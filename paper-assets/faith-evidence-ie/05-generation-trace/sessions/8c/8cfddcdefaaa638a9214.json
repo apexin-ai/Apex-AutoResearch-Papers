@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cfddcdefaaa638a9214",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "train 4b rsft ced s44",
+  "task_key": "worker_train_4b-rsft-ced-s44_20260523T083842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_4b-rsft-ced-s44_20260523T083842_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "eb3dd4d2fcfba261434c3f974c93cd79b187dc168dbe454909c74340f7761b15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已在 cuda:3 上运行，registry 已更新为 RUNNING。\n\n**汇总：**\n- **exp_id**: `rsft_ced_s44_train_v2`\n- **GPU**: cuda:3, PID 238227\n- **数据**: `/root/autodl-tmp/rsft_filtered/rsft_train.jsonl` (2718 samples, 与 s42/s43 一致)\n- **输出**: `/root/autodl-tmp/rsft_output_ced_s44`\n- **超参**: lr=2e-5, epochs=3, batch=1, grad_accum=16, lora_rank=64, lora_alpha=128, seed=44\n- **预计 510 步, ~30 min**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-4b-rsft-ced-s44.md"
+}

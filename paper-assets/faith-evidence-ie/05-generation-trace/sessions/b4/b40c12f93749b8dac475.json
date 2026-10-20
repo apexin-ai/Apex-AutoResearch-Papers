@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b40c12f93749b8dac475",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit plan019 8b sft s44 eval",
+  "task_key": "worker_submit_plan019_8b_sft_s44_eval_20260518T213541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_plan019_8b_sft_s44_eval_20260518T213541_result.json",
+    "occurrence": 1,
+    "bytes": 250,
+    "sha256": "acd6b099ecb8005344d19b45d0ff6be40207e7575d7f2693331e272a82292a75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交成功。\n\n- **实验**: plan019_8b_sft_s44_eval\n- **GPU**: cuda:2, 18141MiB / 32607MiB\n- **PID**: 577861\n- **tmux session**: plan019_8b_sft_s44_eval\n- **日志**: `/root/autodl-tmp/eval_results/plan019_8b_sft_s44_eval.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-plan019-8b-sft-s44-eval.md"
+}

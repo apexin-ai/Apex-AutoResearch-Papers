@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2aa179dd3efa9371e94",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "status cuda1 check",
+  "task_key": "worker_status_cuda1_check_20260516T145501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_cuda1_check_20260516T145501_result.json",
+    "occurrence": 1,
+    "bytes": 868,
+    "sha256": "7c2e9d6f1791fc9c66c503f362b9e235f6870ea5d0bb1b1a4fe4f1e8b531ab57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "That's a single JSON array file. The progress shows 64 completed doc_ids and 512 generation lines (likely 8 candidates per doc: 64×8=512).\n\n## 汇报\n\n| 实验 | PID | 状态 | 详情 |\n|------|-----|------|------|\n| **plan_016_llama_rsft_candidates_r2** | 353179 | **DEAD** | 进程已退出。已生成 512 行 (64 docs × 8 candidates/doc)。progress.json 记录 64 个 completed_doc_ids。DocRED dev 约 998 docs → 进度约 **6.4%**，提前终止。 |\n| **plan_014_no_evidence_eval_d076** | 353322 | **ALIVE** | 运行中 30min，GPU 1 占用 10,288 MiB。输出目录尚无结果文件（推理还未完成写出）。 |\n\n**需要关注：**\n- plan_016 (PID 353179) 已死但只完成 6.4%，需要排查退出原因（可能 OOM 或代码错误）并决定是否重启。\n- plan_014 正常运行中，等待完成后检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-cuda1-check.md"
+}

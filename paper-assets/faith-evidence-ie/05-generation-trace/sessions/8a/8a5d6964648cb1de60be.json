@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a5d6964648cb1de60be",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "infra smoke test zero2",
+  "task_key": "worker_infra_smoke-test-zero2_20260514T054853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_smoke-test-zero2_20260514T054853_result.json",
+    "occurrence": 1,
+    "bytes": 92,
+    "sha256": "c73989e57903db57d27554cc53b3f5de80bd4fef80eca201eaaae4c8fd9c2e73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 background task 已完成，无需额外操作。任务全部结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-smoke-test-zero2.md"
+}

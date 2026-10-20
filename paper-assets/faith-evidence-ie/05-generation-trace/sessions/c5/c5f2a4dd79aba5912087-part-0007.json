@@ -1,0 +1,2738 @@
+{
+  "schema_version": "1.0",
+  "session_id": "c5f2a4dd79aba5912087",
+  "rounds": [
+    {
+      "number": 64,
+      "messages": [
+        {
+          "source_line": 1081,
+          "timestamp": "2026-05-25T00:07:36.061040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 5136
+          },
+          "id": "event-001081"
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "messages": [
+        {
+          "source_line": 1082,
+          "timestamp": "2026-05-25T00:08:52.201858+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Paper Agent 触发审查]:\n## 审查请求：GRPO G 值修正（CRITICAL 事实性错误修复）\n\n### 修改背景\nRegistry 验证确认 QLoRA 和 bf16 GRPO 实验均使用 G=8（`--num_generations 8`）。论文之前错误声称 QLoRA 使用 G=4、bf16 使用 G=8，将 G 值差异作为混淆因素讨论。实际上 G 值完全相同，差异因素是 quantization precision（4-bit vs bf16）以及 lr/batch 配置。\n\n### 修改清单\n\n**1. method.tex §3.3 GRPO 段（L32）**\n- 旧：`QLoRA with $G{=}4$ groups under 4-bit quantization, and bf16 full-precision LoRA with $G{=}8$`\n- 新：`QLoRA under 4-bit quantization, and bf16 full-precision LoRA, both with $G{=}8$ groups`\n\n**2. experiments.tex §4.1 setup（L7）**\n- 旧：`GRPO uses group sizes $G{=}4$ (QLoRA) and $G{=}8$ (bf16)`\n- 新：`GRPO uses $G{=}8$ groups under both QLoRA and bf16`\n\n**3. experiments.tex §4.3 GRPO 段（L49-50）** — 完整重写\n- 移除 G=4/G=8 对比叙事，改为 quantization-driven 解释\n- 新增 lr/batch 差异（QLoRA: lr 5e-6, eff batch 16; bf16: lr 5e-5, eff batch 1）作为反面论证——更稳定的训练条件下 QLoRA 仍崩溃，强化 4-bit precision 是主因\n- 引用 gao2023scaling（scaling laws for reward model overoptimization）和 li2026qurl（quantized-actor divergence）\n\n**4. appendix 超参数表（L20-26）**\n- GRPO QLoRA: G=4→8, batch=4→1 (per device)\n- GRPO bf16: lr=5e-6→5e-5, batch=8→1, GA=4→1\n\n**5. appendix spectrum 表（L340）**\n- QLoRA G=4 → G=8\n\n**6. appendix GRPO dynamics 正文（L358）**\n- 更新为 \"both G=8\"\n\n**7. appendix GRPO dynamics caption（L363）**\n- 旧：`G=4 QLoRA (4-bit) ... G=8 bf16`\n- 新：`GRPO training dynamics (both $G{=}8$). QLoRA (4-bit) ... bf16 (full-precision) ...`\n\n**8. appendix qualitative Case 2（L458）**\n- `GRPO QLoRA $G{=}4$` → `GRPO QLoRA $G{=}8$`\n\n**9. fig_grpo_dynamics.pdf 图例**\n- 旧：`G=4, QLoRA` / `G=8, bf16`\n- 新：`QLoRA (4-bit)` / `bf16`\n\n**10. fig_spectrum.pdf 图例**\n- 旧：`GRPO bf16 G=8` / `GRPO QLoRA G=4`\n- 新：`GRPO bf16` / `GRPO QLoRA (4-bit)`\n\n### 重点验证项\n1. 论文全文是否还残留任何 G=4 引用（grep 确认 .tex 文件已无）\n2. §4.3 新叙事逻辑：lr/batch 反面论证是否有说服力——\"更稳定训练条件下仍崩溃→quantization 是主因\"\n3. 超参数表数值与 registry 一致性\n4. 图表标签与正文一致性\n5. 此次修改是否引入与其他章节的数字/术语不一致"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "paper_agent"
+          },
+          "id": "event-001082"
+        },
+        {
+          "source_line": 1083,
+          "timestamp": "2026-05-25T00:09:20.514058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "fields": "['hypothesis', 'metrics', 'notes', 'spec']",
+              "filters": "{'exp_id': 'r3_grpo_bf16_g4'}"
+            }
+          },
+          "id": "event-001083"
+        },
+        {
+          "source_line": 1084,
+          "timestamp": "2026-05-25T00:09:22.428297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2145}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1914
+          },
+          "id": "event-001084"
+        },
+        {
+          "source_line": 1085,
+          "timestamp": "2026-05-25T00:09:22.779790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "num_generations|group.size|G=4|G=8",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "output_mode": "content",
+              "-C": "2",
+              "head_limit": "60"
+            }
+          },
+          "id": "event-001085"
+        },
+        {
+          "source_line": 1086,
+          "timestamp": "2026-05-25T00:09:22.880711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "146-        /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n147-        --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end\n148:        0.5 --output_dir /root/autodl-tmp/grpo_s3 --num_generations 4 --reward_device\n149-        cpu --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs\n150-        1 --learning_rate 5e-5 --seed 42 --wandb_run_name grpo-s3-ced\"\n--\n316-        /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n317-        --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end\n318:        0.5 --output_dir /root/autodl-tmp/grpo_s3 --num_generations 4 --reward_device\n319-        cpu --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs\n320-        1 --learning_rate 5e-5 --seed 42 --wandb_run_name grpo-s3-ced-r1\"\n--\n374-        per_device_batch_size: 1\n375-        gradient_accumulation_steps: 16\n376:        num_generations: 4\n377-    reproduce:\n378-      finished_at: '2026-05-14T11:26:47.993Z'\n--\n448-      command: python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.0 --num_iterations\n449-        1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight\n450:        1.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\n451-      server: rtx5090-4x\n452-      gpu:\n--\n479-        per_device_batch_size: 1\n480-        gradient_accumulation_steps: 16\n481:        num_generations: 4\n482-        quantization: QLoRA 4-bit NF4\n483-      wall_clock_seconds: 1169.5\n--\n494-      command: python -m freige.training.grpo_trainer --stage 1 --kl_coef 0.0 --num_iterations\n495-        1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight\n496:        0.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\n497-      server: rtx5090-4x\n498-      gpu:\n--\n525-        per_device_batch_size: 1\n526-        gradient_accumulation_steps: 16\n527:        num_generation\n…[truncated 977 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-001086"
+        },
+        {
+          "source_line": 1087,
+          "timestamp": "2026-05-25T00:09:29.724458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "num_generations",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "output_mode": "content",
+              "-B": "5",
+              "head_limit": "80"
+            }
+          },
+          "id": "event-001087"
+        },
+        {
+          "source_line": 1088,
+          "timestamp": "2026-05-25T00:09:29.825410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "143-        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n144-        && conda activate base && cd /root/autodl-tmp && accelerate launch --config_file\n145-        freige/configs/accelerate_4gpu.yaml -m freige.training.grpo_trainer --model_name\n146-        /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n147-        --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end\n148:        0.5 --output_dir /root/autodl-tmp/grpo_s3 --num_generations 4 --reward_device\n--\n313-        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n314-        && conda activate base && cd /root/autodl-tmp && accelerate launch --config_file\n315-        freige/configs/accelerate_4gpu.yaml -m freige.training.grpo_trainer --model_name\n316-        /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n317-        --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end\n318:        0.5 --output_dir /root/autodl-tmp/grpo_s3 --num_generations 4 --reward_device\n--\n371-        format_reward_weight: 0.3\n372-        f1_reward_weight: 3\n373-        ced_reward_weight: 1\n374-        per_device_batch_size: 1\n375-        gradient_accumulation_steps: 16\n376:        num_generations: 4\n--\n445-    created_at: '2026-05-14T12:10:15.698Z'\n446-    updated_at: '2026-05-22T19:39:33.220Z'\n447-    spec:\n448-      command: python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.0 --num_iterations\n449-        1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight\n450:        1.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\n--\n476-        format_reward_weight: 0.3\n477-        f1_reward_weight: 3\n478-        ced_reward_weight: 1\n479-        per_device_batch_size: 1\n480-        gradient_accumulation_steps: 16\n481:        num_generations: 4\n--\n491-    created_at: '2026\n…[truncated 1950 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-001088"
+        },
+        {
+          "source_line": 1089,
+          "timestamp": "2026-05-25T00:09:34.595395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "plan_011.*num_generations|num_generations.*plan_011",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-001089"
+        },
+        {
+          "source_line": 1090,
+          "timestamp": "2026-05-25T00:09:34.595861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-001090"
+        },
+        {
+          "source_line": 1091,
+          "timestamp": "2026-05-25T00:09:38.839893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "plan_011_grpo",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "output_mode": "content",
+              "-A": "30",
+              "head_limit": "50"
+            }
+          },
+          "id": "event-001091"
+        },
+        {
+          "source_line": 1092,
+          "timestamp": "2026-05-25T00:09:38.903546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3458:  plan_011_grpo_g8_bf16:\n3459-    status: DONE\n3460-    retry_count: 0\n3461-    created_at: '2026-05-15T13:59:50.014Z'\n3462-    updated_at: '2026-05-15T15:55:53.725Z'\n3463-    hypothesis: 'GRPO G=8 bf16 LoRA: 验证 catastrophic forgetting 是否在 bf16（非 QLoRA 4-bit）下仍复现。CED\n3464-      reward + kl_coef=0.01, 100 steps。如仍 fail → 加强 Claim 3'\n3465-    spec:\n3466-      command: bash -c \"cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache\n3467-        HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python -m freige.training.grpo_trainer\n3468-        --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n3469-        --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/grpo_ced_g8_bf16\n3470-        --stage 3 --num_generations 8 --kl_coef 0.01 --learning_rate 5e-5 --max_steps\n3471-        100 --save_steps 10 --save_total_limit 10 --per_device_batch_size 1 --gradient_accumulation_steps\n3472-        1 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0\n3473:        --num_iterations 1 --no-quantize --wandb_run_name plan_011_grpo_g8_bf16\"\n3474-      server: rtx5090-4x\n3475-      gpu:\n3476-      - cuda:3\n3477-      pid: '210099'\n3478:      log_path: ~/runs/faith-evidence-ie/plan_011_grpo_g8_bf16.log\n3479-      submitted_at: '2026-05-15T14:00:10.122Z'\n3480-      submitted_via: submit_training_job\n3481-      backend: tmux\n3482-      account: root\n3483-      wall_clock_seconds: 6943.6\n3484-      gpu_hours: 1.93\n3485:    log_path: /root/runs/faith-evidence-ie/plan_011_grpo_g8_bf16.log\n3486-    checkpoint_path: /root/autodl-tmp/grpo_ced_g8_bf16\n3487-    reproduce:\n3488-      finished_at: '2026-05-15T14:35:19.476Z'\n3489-    extra:\n3490-      hook_events:\n3491-      - event: on_complete\n3492-        action: agent\n3493-        ts: '2026-05-15T14:35:23.573303+00:00'\n3494-    metrics:\n3495-      final_step: 100\n3496-      train_runtime_s: 554\n3497-      reward_final: 1.795\n3498-\n…[truncated 393 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 63
+          },
+          "id": "event-001092"
+        },
+        {
+          "source_line": 1093,
+          "timestamp": "2026-05-25T00:12:57.115437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001093"
+        },
+        {
+          "source_line": 1094,
+          "timestamp": "2026-05-25T00:12:57.218620+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 103
+          },
+          "id": "event-001094"
+        },
+        {
+          "source_line": 1095,
+          "timestamp": "2026-05-25T00:13:00.786993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'mvp2_grpo_4bit_g4'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001095"
+        },
+        {
+          "source_line": 1096,
+          "timestamp": "2026-05-25T00:13:02.042855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0264}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1255
+          },
+          "id": "event-001096"
+        },
+        {
+          "source_line": 1097,
+          "timestamp": "2026-05-25T00:13:02.043354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'plan_011_grpo_g8_bf16'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001097"
+        },
+        {
+          "source_line": 1098,
+          "timestamp": "2026-05-25T00:13:02.196997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'r3_grpo_bf16_g4'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001098"
+        },
+        {
+          "source_line": 1099,
+          "timestamp": "2026-05-25T00:13:03.100123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0745}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1056
+          },
+          "id": "event-001099"
+        },
+        {
+          "source_line": 1100,
+          "timestamp": "2026-05-25T00:13:04.514960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3893}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2317
+          },
+          "id": "event-001100"
+        },
+        {
+          "source_line": 1101,
+          "timestamp": "2026-05-25T00:13:08.288200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "fields": "['*']",
+              "limit": "100"
+            }
+          },
+          "id": "event-001101"
+        },
+        {
+          "source_line": 1102,
+          "timestamp": "2026-05-25T00:13:09.699283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (173,458 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1411
+          },
+          "id": "event-001102"
+        },
+        {
+          "source_line": 1103,
+          "timestamp": "2026-05-25T00:13:31.853932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Extract GRPO experiment details from registry",
+              "prompt": "Read the file /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt\n\nThis is JSON with schema: {result: string} where result is a JSON string that needs to be parsed again.\n\nI need you to find ALL experiments related to GRPO. Search for any experiment where:\n- exp_id contains \"grpo\" (case insensitive)\n- OR the hypothesis/spec/conclusion mentions \"grpo\" or \"GRPO\"\n- OR the spec command contains \"num_generations\"\n\nFor each GRPO experiment found, extract and report VERBATIM:\n1. exp_id\n2. The full spec field (especially the command/training command)\n3. Any mention of \"num_generations\" or \"group\" or \"G=\" in any field\n4. status\n5. conclusion (if any)\n6. Any mention of quantization (4-bit, qlora, bf16)\n\nPay special attention to what value of --num_generations each experiment uses. This is critical.\n\nReport the raw data - do not summarize or interpret. Quote exact strings from the registry."
+            }
+          },
+          "id": "event-001103"
+        },
+        {
+          "source_line": 1104,
+          "timestamp": "2026-05-25T00:13:35.821489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt",
+              "limit": "200"
+            }
+          },
+          "id": "event-001104"
+        },
+        {
+          "source_line": 1105,
+          "timestamp": "2026-05-25T00:13:36.124536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (77870 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 303
+          },
+          "id": "event-001105"
+        },
+        {
+          "source_line": 1106,
+          "timestamp": "2026-05-25T00:13:47.726906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "grpo|GRPO|num_generations",
+              "-i": "True",
+              "path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt",
+              "output_mode": "content",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-001106"
+        },
+        {
+          "source_line": 1107,
+          "timestamp": "2026-05-25T00:13:47.777512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001107"
+        },
+        {
+          "source_line": 1108,
+          "timestamp": "2026-05-25T00:13:52.751557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt",
+              "limit": "5"
+            }
+          },
+          "id": "event-001108"
+        },
+        {
+          "source_line": 1109,
+          "timestamp": "2026-05-25T00:13:53.095224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (77870 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 343
+          },
+          "id": "event-001109"
+        },
+        {
+          "source_line": 1110,
+          "timestamp": "2026-05-25T00:13:56.613471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt",
+              "description": "Count lines in registry file"
+            }
+          },
+          "id": "event-001110"
+        },
+        {
+          "source_line": 1111,
+          "timestamp": "2026-05-25T00:13:56.765602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 152
+          },
+          "id": "event-001111"
+        },
+        {
+          "source_line": 1112,
+          "timestamp": "2026-05-25T00:14:09.902929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\n# The outer structure has a 'result' field which is itself a JSON string\nresult = data.get('result', data)\nif isinstance(result, str):\n    result = json.loads(result)\n# result should now be the actual registry data\nprint(type(result).__name__)\nif isinstance(result, dict):\n    print('Keys:', list(result.keys())[:20])\nelif isinstance(result, list):\n    print('List length:', len(result))\n    if result:\n        print('First item keys:', list(result[0].keys()) if isinstance(result[0], dict) else type(result[0]).__name__)\n\"\n",
+              "description": "Parse JSON structure of registry file"
+            }
+          },
+          "id": "event-001112"
+        },
+        {
+          "source_line": 1113,
+          "timestamp": "2026-05-25T00:14:10.006222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "dict\nKeys: ['success', 'data', 'error', 'metadata']"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 103
+          },
+          "id": "event-001113"
+        },
+        {
+          "source_line": 1114,
+          "timestamp": "2026-05-25T00:14:14.679066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = data.get('result', data)\nif isinstance(result, str):\n    result = json.loads(result)\ninner = result.get('data', result)\nif isinstance(inner, str):\n    inner = json.loads(inner)\nprint(type(inner).__name__)\nif isinstance(inner, dict):\n    print('Keys:', list(inner.keys())[:20])\nelif isinstance(inner, list):\n    print('List length:', len(inner))\n    if inner:\n        print('First item keys:', list(inner[0].keys()) if isinstance(inner[0], dict) else str(inner[0])[:200])\n\"\n",
+              "description": "Parse inner data structure"
+            }
+          },
+          "id": "event-001114"
+        },
+        {
+          "source_line": 1115,
+          "timestamp": "2026-05-25T00:14:14.780398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "dict\nKeys: ['experiments', 'count', 'total', 'baseline']"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-001115"
+        },
+        {
+          "source_line": 1116,
+          "timestamp": "2026-05-25T00:14:31.768652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = data.get('result', data)\nif isinstance(result, str):\n    result = json.loads(result)\ninner = result.get('data', result)\nif isinstance(inner, str):\n    inner = json.loads(inner)\nexperiments = inner.get('experiments', [])\nprint('Total experiments:', len(experiments))\nprint()\n\n# Find ALL experiments related to GRPO\ngrpo_exps = []\nfor exp in experiments:\n    exp_str = json.dumps(exp).lower()\n    if 'grpo' in exp_str or 'num_generations' in exp_str:\n        grpo_exps.append(exp)\n\nprint(f'Found {len(grpo_exps)} GRPO-related experiments')\nprint()\n\nfor exp in grpo_exps:\n    print('='*80)\n    print(f'exp_id: {exp.get(\\\"exp_id\\\", \\\"N/A\\\")}')\n    print(f'status: {exp.get(\\\"status\\\", \\\"N/A\\\")}')\n    print()\n    \n    # Print full spec\n    spec = exp.get('spec', {})\n    print('--- FULL SPEC ---')\n    print(json.dumps(spec, indent=2, ensure_ascii=False))\n    print()\n    \n    # Print hypothesis\n    hyp = exp.get('hypothesis', '')\n    print(f'--- HYPOTHESIS ---')\n    print(hyp)\n    print()\n    \n    # Print conclusion\n    conc = exp.get('conclusion', '')\n    print(f'--- CONCLUSION ---')\n    print(conc if conc else '(none)')\n    print()\n    \n    # Search for num_generations, group, G= mentions in all fields\n    exp_full = json.dumps(exp, ensure_ascii=False)\n    import re\n    for pattern_name, pattern in [('num_generations', r'num_generations[^\\s,\\\"]*'), \n                                    ('group|G=', r'(?:group|G=)[^\\s,\\\"]*'),\n                                    ('quantization/4-bit/qlora/bf16', r'(?:4.bit|qlora|bf16|quantiz|quant)[^\\s,\\\"]*')]:\n        matches = re.findall(pattern, exp_full, re.IGNORECASE)\n        if matches:\n            print(f'--- Mentions of {pattern_name} ---')\n            for m in matches:\n                print(f'  {m}')\n            print()\n    \n    # Also print any metrics/results\n    metrics = exp.get('metrics', exp.get('results', {}))\n    if metrics:\n        print('--- METRICS/RESULTS ---')\n        print(json.dumps(metrics, indent=2, ensure_ascii=False))\n        print()\n    \n    print()\n\" 2>&1",
+              "description": "Extract all GRPO-related experiments from registry",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-001116"
+        },
+        {
+          "source_line": 1117,
+          "timestamp": "2026-05-25T00:14:31.971431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 26, in <module>\n    print(f'exp_id: {exp.get(\"exp_id\", \"N/A\")}')\n                     ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\nTotal experiments: 100\n\nFound 4 GRPO-related experiments\n\n================================================================================"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 202
+          },
+          "id": "event-001117"
+        },
+        {
+          "source_line": 1118,
+          "timestamp": "2026-05-25T00:14:37.549539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = data.get('result', data)\nif isinstance(result, str):\n    result = json.loads(result)\ninner = result.get('data', result)\nif isinstance(inner, str):\n    inner = json.loads(inner)\nexperiments = inner.get('experiments', [])\n# Check type of first experiment\nprint('Type of first experiment:', type(experiments[0]).__name__)\nif isinstance(experiments[0], str):\n    print('First experiment (first 500 chars):')\n    print(experiments[0][:500])\nelif isinstance(experiments[0], dict):\n    print('Keys:', list(experiments[0].keys()))\n\" 2>&1",
+              "description": "Check experiment data type"
+            }
+          },
+          "id": "event-001118"
+        },
+        {
+          "source_line": 1119,
+          "timestamp": "2026-05-25T00:14:37.750717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 12, in <module>\n    print('Type of first experiment:', type(experiments[0]).__name__)\n                                            ~~~~~~~~~~~^^^\nKeyError: 0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-001119"
+        },
+        {
+          "source_line": 1120,
+          "timestamp": "2026-05-25T00:14:48.145625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = data.get('result', data)\nif isinstance(result, str):\n    result = json.loads(result)\ninner = result.get('data', result)\nif isinstance(inner, str):\n    inner = json.loads(inner)\nexperiments = inner.get('experiments', {})\nprint('Type:', type(experiments).__name__)\nif isinstance(experiments, dict):\n    keys = list(experiments.keys())\n    print('Number of keys:', len(keys))\n    print('First 5 keys:', keys[:5])\n    first_key = keys[0]\n    first_val = experiments[first_key]\n    print('Type of value:', type(first_val).__name__)\n    if isinstance(first_val, str):\n        print('First value (500 chars):', first_val[:500])\n    elif isinstance(first_val, dict):\n        print('Value keys:', list(first_val.keys()))\n\" 2>&1",
+              "description": "Explore experiments dict structure"
+            }
+          },
+          "id": "event-001120"
+        },
+        {
+          "source_line": 1121,
+          "timestamp": "2026-05-25T00:14:48.196440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Type: dict\nNumber of keys: 100\nFirst 5 keys: ['r3_grpo_bf16_g4', 'd158_1_7b_rsft_s44_train', 'test_eval_4b_rsft_s44_no_evi_v2', 'd102_1_7b_k1_s42', 'd102_llama_k1_s42']\nType of value: dict\nValue keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'parent', 'spec']"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-001121"
+        },
+        {
+          "source_line": 1122,
+          "timestamp": "2026-05-25T00:15:04.734157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt | python3 -c \"\nimport json, sys, re\ndata = json.load(sys.stdin)\nresult = data.get('result', data)\nif isinstance(result, str):\n    result = json.loads(result)\ninner = result.get('data', result)\nif isinstance(inner, str):\n    inner = json.loads(inner)\nexperiments = inner.get('experiments', {})\n\n# Find ALL experiments related to GRPO\ngrpo_exps = {}\nfor exp_id, exp_data in experiments.items():\n    exp_str = json.dumps(exp_data, ensure_ascii=False).lower() + exp_id.lower()\n    if 'grpo' in exp_str or 'num_generations' in exp_str:\n        grpo_exps[exp_id] = exp_data\n\nprint(f'Found {len(grpo_exps)} GRPO-related experiments out of {len(experiments)} total')\nprint()\n\nfor exp_id, exp in sorted(grpo_exps.items()):\n    print('=' * 100)\n    print(f'exp_id: {exp_id}')\n    print(f'status: {exp.get(\\\"status\\\", \\\"N/A\\\")}')\n    print()\n    \n    # Print full spec\n    spec = exp.get('spec', {})\n    print('--- FULL SPEC ---')\n    if isinstance(spec, dict):\n        print(json.dumps(spec, indent=2, ensure_ascii=False))\n    else:\n        print(spec)\n    print()\n    \n    # Print hypothesis\n    hyp = exp.get('hypothesis', '')\n    print(f'--- HYPOTHESIS ---')\n    print(hyp if hyp else '(none)')\n    print()\n    \n    # Print conclusion\n    conc = exp.get('conclusion', '')\n    print(f'--- CONCLUSION ---')\n    print(conc if conc else '(none)')\n    print()\n    \n    # Print all other fields\n    other_keys = [k for k in exp.keys() if k not in ('spec', 'hypothesis', 'conclusion', 'status')]\n    for k in other_keys:\n        v = exp[k]\n        print(f'--- {k} ---')\n        if isinstance(v, (dict, list)):\n            print(json.dumps(v, indent=2, ensure_ascii=False))\n        else:\n            print(v)\n        print()\n    \n    # Search for specific patterns in full experiment text\n    exp_full = json.dumps(exp, ensure_ascii=False) + exp_id\n    \n    # num_generations mentions with context\n    for match in re.finditer(r'.{0,60}num_generations.{0,60}', exp_full, re.IGNORECASE):\n        print(f'[MATCH num_generations]: ...{match.group()}...')\n    \n    # quantization mentions\n    for match in re.finditer(r'.{0,40}(?:4.bit|qlora|bf16|quantiz|bitsandbytes|bnb).{0,40}', exp_full, re.IGNORECASE):\n        print(f'[MATCH quant]: ...{match.group()}...')\n    \n    # group/G= mentions  \n    for match in re.finditer(r'.{0,40}(?:\\\"group|G=|group_size).{0,40}', exp_full, re.IGNORECASE):\n        print(f'[MATCH group]: ...{match.group()}...')\n    \n    print()\n    print()\n\" 2>&1",
+              "description": "Extract all GRPO experiments with full details",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-001122"
+        },
+        {
+          "source_line": 1123,
+          "timestamp": "2026-05-25T00:15:04.937357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 13 GRPO-related experiments out of 100 total\n\n====================================================================================================\nexp_id: d158_14b_rsft_s44_generate\nstatus: RUNNING\n\n--- FULL SPEC ---\n{\n  \"command\": \"python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s44 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b_s44 --num_generations 8 --max_new_tokens 1024 --seed 44\",\n  \"server\": \"rtx5090-4x\",\n  \"gpu\": \"cuda:2\",\n  \"pid\": \"306172\",\n  \"log_path\": \"~/runs/faith-evidence-ie/d158_14b_rsft_s44_generate.log\",\n  \"submitted_at\": \"2026-05-24T10:10:43.414Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"data_path\": \"/root/autodl-tmp/data/docred\",\n  \"data_count\": 3027,\n  \"model_name\": \"Qwen3-14B\",\n  \"seed\": 44,\n  \"checkpoint_source\": \"/root/autodl-tmp/sft_output_14b_s44\",\n  \"eval_data\": \"N/A (generation)\"\n}\n\n--- HYPOTHESIS ---\n14B seed=44 candidate generation for 3-seed statistical robustness. Replicates plan017_14b_rsft_s43_generate parameters with seed=44 SFT adapter.\n\n--- CONCLUSION ---\n(none)\n\n--- retry_count ---\n0\n\n--- created_at ---\n2026-05-24T10:10:30.985Z\n\n--- updated_at ---\n2026-05-24T10:11:26.861Z\n\n--- parent ---\nd158_14b_sft_s44\n\n[MATCH num_generations]: ...ed --output_dir /root/autodl-tmp/rsft_generations_14b_s44 --num_generations 8 --max_new_tokens 1024 --seed 44\", \"server\": \"rtx5090-4x\",...\n\n\n====================================================================================================\nexp_id: d158_1_7b_rsft_s44_generate\nstatus: DONE\n\n--- FULL SPEC ---\n{\n  \"command\": \"nohup python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_1_7b_s44 --num_generations 8 --max_new_tokens \n…[truncated 25704 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 203
+          },
+          "id": "event-001123"
+        },
+        {
+          "source_line": 1124,
+          "timestamp": "2026-05-25T00:15:19.953753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = data.get('result', data)\nif isinstance(result, str):\n    result = json.loads(result)\ninner = result.get('data', result)\nif isinstance(inner, str):\n    inner = json.loads(inner)\nexperiments = inner.get('experiments', {})\n\n# Find experiments referenced from GRPO experiments\ntargets = ['plan_011_grpo_g8_bf16', 'mvp2_grpo_ced_kl001_r4', 'eval_grpo_g8_bf16', 'plan_009_dynamics_figure']\nfor t in targets:\n    if t in experiments:\n        exp = experiments[t]\n        print('=' * 100)\n        print(f'exp_id: {t}')\n        print(f'status: {exp.get(\\\"status\\\", \\\"N/A\\\")}')\n        print()\n        print('--- FULL SPEC ---')\n        spec = exp.get('spec', {})\n        print(json.dumps(spec, indent=2, ensure_ascii=False))\n        print()\n        print(f'--- HYPOTHESIS ---')\n        print(exp.get('hypothesis', '(none)'))\n        print()\n        print(f'--- CONCLUSION ---')\n        print(exp.get('conclusion', '(none)'))\n        print()\n        # All other fields\n        for k, v in exp.items():\n            if k not in ('spec', 'hypothesis', 'conclusion', 'status'):\n                print(f'--- {k} ---')\n                if isinstance(v, (dict, list)):\n                    print(json.dumps(v, indent=2, ensure_ascii=False))\n                else:\n                    print(v)\n                print()\n        print()\n    else:\n        print(f'=== {t}: NOT FOUND IN REGISTRY ===')\n        print()\n\" 2>&1",
+              "description": "Look up referenced GRPO experiments",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-001124"
+        },
+        {
+          "source_line": 1125,
+          "timestamp": "2026-05-25T00:15:20.054802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== plan_011_grpo_g8_bf16: NOT FOUND IN REGISTRY ===\n\n=== mvp2_grpo_ced_kl001_r4: NOT FOUND IN REGISTRY ===\n\n=== eval_grpo_g8_bf16: NOT FOUND IN REGISTRY ===\n\n=== plan_009_dynamics_figure: NOT FOUND IN REGISTRY ==="
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-001125"
+        },
+        {
+          "source_line": 1126,
+          "timestamp": "2026-05-25T00:15:28.742425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = data.get('result', data)\nif isinstance(result, str):\n    result = json.loads(result)\ninner = result.get('data', result)\nif isinstance(inner, str):\n    inner = json.loads(inner)\nexperiments = inner.get('experiments', {})\n\n# Find ALL exp_ids that contain 'grpo' or 'g8' or 'g4' in the key name\nfor exp_id in sorted(experiments.keys()):\n    low = exp_id.lower()\n    if 'grpo' in low or ('_g8_' in low) or ('_g4_' in low) or 'ced' in low:\n        print(f'{exp_id} -> status={experiments[exp_id].get(\\\"status\\\",\\\"?\\\")}')\n\" 2>&1",
+              "description": "List all experiment IDs with grpo/g8/g4/ced in name"
+            }
+          },
+          "id": "event-001126"
+        },
+        {
+          "source_line": 1127,
+          "timestamp": "2026-05-25T00:15:29.144319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d158_1_7b_rsft_s44_ced_score -> status=DONE\nplan017_14b_rsft_s43_ced_scoring -> status=DONE\nplan_011_eval_g8_bf16_ckpt100 -> status=DONE\nplan_015_grpo_g4_bf16 -> status=DONE\nplan_015_grpo_g4_bf16_v2 -> status=DONE\nplan_015_grpo_g4_bf16_v3 -> status=DONE\nr3_grpo_bf16_g4 -> status=ANALYZING\nretrain_4b_rsft_ced_s42 -> status=DONE\nrsft_ced_s43_train -> status=DONE\nrsft_ced_s43_train_r2 -> status=DONE\nrsft_ced_s44_train_v2 -> status=DONE\nrsft_ced_s45_train -> status=DONE\nrsft_ced_s45_train_r2 -> status=DONE\nrsft_ced_s45_train_r3 -> status=DONE"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 401
+          },
+          "id": "event-001127"
+        },
+        {
+          "source_line": 1128,
+          "timestamp": "2026-05-25T00:15:47.019471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = data.get('result', data)\nif isinstance(result, str):\n    result = json.loads(result)\ninner = result.get('data', result)\nif isinstance(inner, str):\n    inner = json.loads(inner)\nexperiments = inner.get('experiments', {})\n\n# Search more broadly - any experiment mentioning grpo in ANY field\nall_grpo = set()\nfor exp_id, exp_data in experiments.items():\n    full_str = json.dumps(exp_data, ensure_ascii=False).lower()\n    if 'grpo' in full_str:\n        all_grpo.add(exp_id)\n\n# Also add by exp_id\nfor exp_id in experiments:\n    if 'grpo' in exp_id.lower():\n        all_grpo.add(exp_id)\n\nalready_reported = {\n    'd158_14b_rsft_s44_generate', 'd158_1_7b_rsft_s44_generate',\n    'plan017_14b_rsft_generate_r3', 'plan017_14b_rsft_s43_generate',\n    'plan_006_qwen3_8b_rsft_candidates', 'plan_009_flatnli_reward_eval',\n    'plan_009_flatnli_reward_eval_r2', 'plan_011_eval_g8_bf16_ckpt100',\n    'plan_015_grpo_g4_bf16', 'plan_015_grpo_g4_bf16_v2',\n    'plan_015_grpo_g4_bf16_v3', 'plan_016_llama_rsft_candidates_r2',\n    'r3_grpo_bf16_g4'\n}\n\nmissing = all_grpo - already_reported\nprint(f'Total experiments mentioning GRPO: {len(all_grpo)}')\nprint(f'Already reported: {len(already_reported & all_grpo)}')\nprint(f'Missing from report: {len(missing)}')\nprint()\n\nfor exp_id in sorted(missing):\n    exp = experiments[exp_id]\n    print('=' * 100)\n    print(f'exp_id: {exp_id}')\n    print(f'status: {exp.get(\\\"status\\\", \\\"N/A\\\")}')\n    print()\n    print('--- FULL SPEC ---')\n    spec = exp.get('spec', {})\n    print(json.dumps(spec, indent=2, ensure_ascii=False))\n    print()\n    print(f'--- HYPOTHESIS ---')\n    print(exp.get('hypothesis', '(none)'))\n    print()\n    print(f'--- CONCLUSION ---')\n    print(exp.get('conclusion', '(none)'))\n    print()\n    for k, v in exp.items():\n        if k not in ('spec', 'hypothesis', 'conclusion', 'status'):\n            print(f'--- {k} ---')\n            if isinstance(v, (dict, list)):\n                print(json.dumps(v, indent=2, ensure_ascii=False))\n            else:\n                print(v)\n            print()\n    \n    # Search for num_generations\n    import re\n    exp_full = json.dumps(exp, ensure_ascii=False) + exp_id\n    for match in re.finditer(r'.{0,60}num_generations.{0,60}', exp_full, re.IGNORECASE):\n        print(f'[MATCH num_generations]: ...{match.group()}...')\n    for match in re.finditer(r'.{0,40}(?:4.bit|qlora|bf16|quantiz|bitsandbytes|bnb|no.quantize).{0,40}', exp_full, re.IGNORECASE):\n        print(f'[MATCH quant]: ...{match.group()}...')\n    print()\n\" 2>&1",
+              "description": "Find any GRPO experiments not yet reported",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-001128"
+        },
+        {
+          "source_line": 1129,
+          "timestamp": "2026-05-25T00:15:47.170520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total experiments mentioning GRPO: 7\nAlready reported: 7\nMissing from report: 0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-001129"
+        },
+        {
+          "source_line": 1130,
+          "timestamp": "2026-05-25T00:16:00.993067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/mcp-agent-ml-research-read_registry-1779667989681.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = data.get('result', data)\nif isinstance(result, str):\n    result = json.loads(result)\ninner = result.get('data', result)\nif isinstance(inner, str):\n    inner = json.loads(inner)\nexperiments = inner.get('experiments', {})\n\n# Classify: which experiments are GRPO training vs RSFT generation\n# GRPO training uses grpo_trainer; RSFT generation uses rsft_generate with --num_generations\ngrpo_training = []\nrsft_generation = []\n\nfor exp_id, exp_data in experiments.items():\n    full_str = json.dumps(exp_data, ensure_ascii=False)\n    if 'grpo_trainer' in full_str or ('grpo' in exp_id.lower() and 'rsft' not in exp_id.lower() and 'flatnli' not in exp_id.lower()):\n        grpo_training.append(exp_id)\n    elif 'rsft_generate' in full_str and 'num_generations' in full_str:\n        rsft_generation.append(exp_id)\n\nprint('=== GRPO TRAINING experiments (use grpo_trainer) ===')\nfor e in sorted(grpo_training):\n    exp = experiments[e]\n    print(f'  {e}: status={exp.get(\\\"status\\\",\\\"?\\\")}')\nprint()\nprint('=== RSFT GENERATION experiments (use rsft_generate --num_generations) ===')\nfor e in sorted(rsft_generation):\n    exp = experiments[e]\n    print(f'  {e}: status={exp.get(\\\"status\\\",\\\"?\\\")}')\n\" 2>&1",
+              "description": "Classify GRPO training vs RSFT generation experiments"
+            }
+          },
+          "id": "event-001130"
+        },
+        {
+          "source_line": 1131,
+          "timestamp": "2026-05-25T00:16:01.095195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== GRPO TRAINING experiments (use grpo_trainer) ===\n  plan_015_grpo_g4_bf16: status=DONE\n  plan_015_grpo_g4_bf16_v2: status=DONE\n  plan_015_grpo_g4_bf16_v3: status=DONE\n  r3_grpo_bf16_g4: status=ANALYZING\n\n=== RSFT GENERATION experiments (use rsft_generate --num_generations) ===\n  d158_14b_rsft_s44_generate: status=RUNNING\n  d158_1_7b_rsft_s44_generate: status=DONE\n  plan017_14b_rsft_generate_r3: status=DONE\n  plan017_14b_rsft_s43_generate: status=DONE\n  plan_006_qwen3_8b_rsft_candidates: status=DONE\n  plan_016_llama_rsft_candidates_r2: status=DONE"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-001131"
+        },
+        {
+          "source_line": 1132,
+          "timestamp": "2026-05-25T00:16:46.334971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete raw data for all GRPO-related experiments found in the registry.\n\n---\n\n## Summary of findings\n\n**13 experiments** matched the search criteria (grpo in exp_id OR grpo/num_generations in any field). They break into two categories:\n\n### A. GRPO Training experiments (4 total, all use `grpo_trainer`)\n\n**1. `r3_grpo_bf16_g4`** — status: **ANALYZING**\n- **Spec command**: `CUDA_VISIBLE_DEVICES=1 ... python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/grpo_ced_g4_bf16 --stage 3 --num_generations 4 --kl_coef 0.01 --learning_rate 5e-5 --max_steps 100 --save_steps 10 --save_total_limit 10 --per_device_batch_size 1 --gradient_accumulation_steps 1 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --no-quantize --wandb_run_name r3_grpo_bf16_g4`\n- **`--num_generations 4`**\n- **`--no-quantize`** (bf16)\n- Hypothesis: `\"GRPO bf16 G=4 控制实验。照搬 plan_011 (bf16 G=8) 全部超参仅改 G=4。如果 bf16 G=4 不 collapse → quantization 是 primary factor；如果 collapse → group size 是 key factor。\"`\n- Parent: `plan_011_grpo_g8_bf16`\n- Conclusion: **(none)**\n\n**2. `plan_015_grpo_g4_bf16`** — status: DONE, conclusion: **killed**\n- **Spec command**: `python -m freige.training.grpo_trainer --model_name Qwen3-4B --sft_adapter sft_output --data_dir data/docred --output_dir grpo_ced_g4_bf16 --stage 3 --num_generations 4 --kl_coef 0 --learning_rate 5e-5 --max_steps 100 --no-quantize --wandb_run_name plan_015_grpo_g4_bf16`\n- **`--num_generations 4`**\n- **`--no-quantize`** (bf16)\n- **`--kl_coef 0`**\n- Hypothesis: `\"bf16 LoRA GRPO clean control: 与原始 QLoRA GRPO 仅改 quantization（4-bit → bf16），保持 G=4, kl=0, CED reward 不变。验证 catastrophic forgetting 是否由 QLoRA quantization 导致。\"`\n- Notes: `\"[ARCHIVED] superseded by plan_011_grpo_g8_bf16\"`\n\n**3. `plan_015_grpo_g4_bf16_v2`** — status: DONE, conclusion: **killed**\n- **Spec command**: \n…[truncated 4463 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Agent",
+            "elapsed_ms": 194481
+          },
+          "id": "event-001132"
+        },
+        {
+          "source_line": 1133,
+          "timestamp": "2026-05-25T00:16:54.323417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "num_generations",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+              "glob": "registry.yaml",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-001133"
+        },
+        {
+          "source_line": 1134,
+          "timestamp": "2026-05-25T00:16:54.775548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (30.4KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/toolu_019cr3DxDmEqK2Rk9fRMamgq.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-145-        freige/configs/accelerate_4gpu.yaml -m freige.training.grpo_trainer --model_name\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-146-        /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-147-        --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml:148:        0.5 --output_dir /root/autodl-tmp/grpo_s3 --num_generations 4 --reward_device\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-149-        cpu --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-150-        1 --learning_rate 5e-5 --seed 42 --wandb_run_name grpo-s3-ced\"\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-151-      server: rtx5090-4x\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-315-        freige/configs/accelerate_4gpu.yaml -m freige.training.grpo_trainer --model_name\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-316-        /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-317-        --data_dir /root/autodl-tmp/data/docred \n…[truncated 238 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 452
+          },
+          "id": "event-001134"
+        },
+        {
+          "source_line": 1135,
+          "timestamp": "2026-05-25T00:16:55.327850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "plan_011_grpo",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+              "glob": "registry.yaml",
+              "output_mode": "content",
+              "-C": "5"
+            }
+          },
+          "id": "event-001135"
+        },
+        {
+          "source_line": 1136,
+          "timestamp": "2026-05-25T00:16:55.730940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-3453-      dev_rel_r: 60.51\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-3454-      dev_evi_p: 60.53\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-3455-      dev_evi_r: 48.76\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-3456-    conclusion: success\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-3457-    completed_at: '2026-05-15T15:44:24.920Z'\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml:3458:  plan_011_grpo_g8_bf16:\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-3459-    status: DONE\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-3460-    retry_count: 0\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-3461-    created_at: '2026-05-15T13:59:50.014Z'\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-3462-    updated_at: '2026-05-15T15:55:53.725Z'\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-3463-    hypothesis: 'GRPO G=8 bf16 LoRA: 验证 catastrophic forgetting 是否在 bf16（非 QLoRA 4-bit）下仍复现。CED\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-3468-        --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-3469-        --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/grpo_ced_g8_bf16\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-3470-        --stage 3 --num_generations 8 --kl_coef 0.01 --learning_rate 5e-5 --max_steps\n/home/ubuntu/.agent-ml-\n…[truncated 16453 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 403
+          },
+          "id": "event-001136"
+        },
+        {
+          "source_line": 1137,
+          "timestamp": "2026-05-25T00:16:56.435946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "mvp2_grpo",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+              "glob": "registry.yaml",
+              "output_mode": "content",
+              "-C": "5"
+            }
+          },
+          "id": "event-001137"
+        },
+        {
+          "source_line": 1138,
+          "timestamp": "2026-05-25T00:16:56.487056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (28.4KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-reviewer-3281a603/15013e53-b26f-4bd4-b301-91c5285b50b8/tool-results/toolu_014otsYvZEJEHkfLqCByTL5W.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-130-      checkpoint_path: /root/autodl-tmp/nli_cache/\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-131-      wall_clock_seconds: 1766.1\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-132-      gpu_hours: 0.49\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-133-    conclusion: success\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-134-    completed_at: '2026-05-14T07:35:24.549Z'\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml:135:  mvp2_grpo_ced:\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-136-    status: DONE\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-137-    retry_count: 0\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-138-    created_at: '2026-05-14T07:10:31.165Z'\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-139-    updated_at: '2026-05-22T19:39:11.160Z'\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-140-    spec:\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-153-      - cuda:0\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-154-      - cuda:1\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml-155-      - cuda:2\n/\n…[truncated 242 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-001138"
+        },
+        {
+          "source_line": 1139,
+          "timestamp": "2026-05-25T00:17:01.257825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "offset": "135",
+              "limit": "80"
+            }
+          },
+          "id": "event-001139"
+        },
+        {
+          "source_line": 1140,
+          "timestamp": "2026-05-25T00:17:01.409066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "135\t  mvp2_grpo_ced:\n136\t    status: DONE\n137\t    retry_count: 0\n138\t    created_at: '2026-05-14T07:10:31.165Z'\n139\t    updated_at: '2026-05-22T19:39:11.160Z'\n140\t    spec:\n141\t      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n142\t        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n143\t        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n144\t        && conda activate base && cd /root/autodl-tmp && accelerate launch --config_file\n145\t        freige/configs/accelerate_4gpu.yaml -m freige.training.grpo_trainer --model_name\n146\t        /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n147\t        --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end\n148\t        0.5 --output_dir /root/autodl-tmp/grpo_s3 --num_generations 4 --reward_device\n149\t        cpu --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs\n150\t        1 --learning_rate 5e-5 --seed 42 --wandb_run_name grpo-s3-ced\"\n151\t      server: rtx5090-4x\n152\t      gpu:\n153\t      - cuda:0\n154\t      - cuda:1\n155\t      - cuda:2\n156\t      - cuda:3\n157\t      pid: '20973'\n158\t      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced.log\n159\t      submitted_at: '2026-05-14T07:19:59.045Z'\n160\t      submitted_via: submit_training_job\n161\t      backend: tmux\n162\t      account: root\n163\t      wall_clock_seconds: 2189.9\n164\t      gpu_hours: 2.43\n165\t    reproduce:\n166\t      finished_at: '2026-05-14T07:56:28.316Z'\n167\t    failure_reason: EXIT_CODE=1 (generic error — check log tail)\n168\t    conclusion: failed\n169\t    completed_at: '2026-05-14T07:56:28.916Z'\n170\t    extra:\n171\t      hook_events:\n172\t      - event: on_failed\n173\t        action: agent\n174\t        ts: '2026-05-14T07:56:29.797308+00:00'\n175\t    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n176\t  mvp2_grpo_flatnli:\n177\t    \n…[truncated 1431 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-001140"
+        },
+        {
+          "source_line": 1141,
+          "timestamp": "2026-05-25T00:17:08.545083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "mvp2_grpo_ced_kl001",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-001141"
+        },
+        {
+          "source_line": 1142,
+          "timestamp": "2026-05-25T00:17:08.595913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "735-    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n736-    conclusion: killed\n737-    completed_at: '2026-05-14T15:27:48.503Z'\n738:  mvp2_grpo_ced_kl001:\n739-    status: DONE\n740-    retry_count: 0\n741-    created_at: '2026-05-14T12:32:53.111Z'\n--\n749-      gpu:\n750-      - cuda:0\n751-      pid: '64981'\n752:      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001.log\n753-      data_path: /root/autodl-tmp/data/docred\n754-      data_count:\n755-        train: 3027\n--\n903-    notes: 统一 eval 代码验证：r3 与 r2 所有指标完全一致（差异=0.00pp），含 _repair_truncated_json 的统一 eval\n904-      脚本未引入任何偏差。SFT baseline 可靠确认：rel_f1=0.4057, evi_f1=0.7979, edcr=0.7118。983 parseable\n905-      / 617 field_complete / 367 truncated / 18815 predictions。\n906:  mvp2_grpo_ced_kl001_r2:\n907-    status: DONE\n908-    retry_count: 0\n909-    created_at: '2026-05-14T15:23:16.518Z'\n--\n911-    hypothesis: 'kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while\n912-      keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary\n913-      (retry: fix --lr → --learning_rate)'\n914:    parent: mvp2_grpo_ced_kl001\n915-    spec:\n916-      command: python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.01 --num_iterations\n917-        1 --save_steps 20 --save_total_limit 20 --format_reward_weight 0.3 --f1_reward_weight\n--\n921-      gpu:\n922-      - cuda:0\n923-      pid: unknown\n924:      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r2.log\n925-      submitted_at: '2026-05-14T15:23:31.047Z'\n926-      submitted_via: submit_training_job\n927-      backend: tmux\n--\n931-    conclusion: killed\n932-    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n933-    completed_at: '2026-05-15T12:09:19.263Z'\n934:  mvp2_grpo_ced_kl001_r3:\n935-    status: DONE\n936-    retry_count: 0\n937-    created_at: '2026-05-14T15:25:06.729Z'\n--\n939-    hypothesis: 'kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while\n940-      keeping QLoRA \n…[truncated 7225 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001142"
+        },
+        {
+          "source_line": 1143,
+          "timestamp": "2026-05-25T00:17:13.608423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "offset": "1003",
+              "limit": "80"
+            }
+          },
+          "id": "event-001143"
+        },
+        {
+          "source_line": 1144,
+          "timestamp": "2026-05-25T00:17:13.608983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1003\t  mvp2_grpo_ced_kl001_r4:\n1004\t    status: DONE\n1005\t    retry_count: 0\n1006\t    created_at: '2026-05-14T15:32:32.529Z'\n1007\t    updated_at: '2026-05-14T18:11:53.975Z'\n1008\t    spec:\n1009\t      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n1010\t        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n1011\t        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n1012\t        && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer\n1013\t        --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n1014\t        --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end\n1015\t        0.5 --output_dir /root/autodl-tmp/grpo_ced_kl001 --num_generations 8 --reward_device\n1016\t        cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs\n1017\t        1 --learning_rate 5e-5 --seed 42 --kl_coef 0.01 --save_steps 10 --save_total_limit\n1018\t        20 --max_steps 100 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight\n1019\t        1.0 --num_iterations 1 --wandb_run_name grpo-s3-ced-kl001-r4\"\n1020\t      server: rtx5090-4x\n1021\t      gpu:\n1022\t      - cuda:0\n1023\t      pid: '68084'\n1024\t      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r4.log\n1025\t      submitted_at: '2026-05-14T15:32:32.454Z'\n1026\t      submitted_via: submit_training_job\n1027\t      backend: tmux\n1028\t      account: root\n1029\t      data_path: /root/autodl-tmp/data/docred\n1030\t      data_count:\n1031\t        train: 3027\n1032\t        dev: 985\n1033\t      model_name: Qwen3-4B\n1034\t      seed: 42\n1035\t      hypothesis: kl_coef=0.01 + num_generations=8 prevents mode collapse (vs r5 kl=0/gen=4\n1036\t        which collapsed at step 250). 100-step probe to verify KL stability before\n1037\t        full run.\n1038\t      parent: mvp2_grpo_ced_r5\n10\n…[truncated 1525 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001144"
+        },
+        {
+          "source_line": 1145,
+          "timestamp": "2026-05-25T00:18:06.735261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+              "offset": "0",
+              "limit": "20"
+            }
+          },
+          "id": "event-001145"
+        },
+        {
+          "source_line": 1146,
+          "timestamp": "2026-05-25T00:18:07.187297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t\\section{Experiments}\n1\t\\label{sec:experiments}\n2\t\n3\t\\subsection{Experimental Setup}\n4\t\\label{sec:setup}\n5\t\n6\tWe evaluate on DocRED~\\citep{yao2019docred} (3,053 training / 998 dev documents, 96 relation types) with Re-DocRED~\\citep{tan2022redocred} for cross-dataset validation. Our primary model is Qwen3-4B; we also train Qwen3-1.7B, 8B, and 14B to study scale effects, with LLaMA-3.1-8B for cross-family validation. All models use LoRA~\\citep{hu2022lora} ($r{=}64$, $\\alpha{=}128$) with structured output jointly producing triples and evidence. RSFT selects the top-$k{=}1$ of $N{=}8$ samples by CED score (\\S\\ref{sec:ced}); GRPO uses $G{=}8$ groups under both QLoRA and bf16; DPO constructs preference pairs from CED-ranked outputs. We report Ign-F1 (primary; ignores training-set triples), Rel-F1, Evi-F1 (TP-only and joint per DREEAM protocol~\\citep{ma2023dreeam}), and EDCR (\\S\\ref{sec:edcr}). Detailed hyperparameters appear in the Appendix.\n7\t\n8\t\n9\t\\subsection{Main Results}\n10\t\\label{sec:main_results}\n11\t\n12\tTable~\\ref{tab:main} presents the primary comparison on Qwen3-4B. The SFT baseline exhibits high seed sensitivity (mean Ign-F1 43.58, std 3.80pp, range 39.74--47.34). Removing evidence entirely (no-evidence SFT, s42) reaches 47.21 Ign-F1.\n13\t\n14\tRSFT CED achieves 44.82 Ign-F1 (+1.24 over SFT mean) with substantially lower variance (std 0.51pp), though these reflect different sources of variation (Section~\\ref{sec:scaling}). Even the weakest RSFT seed (44.23) exceeds the SFT mean. Evidence quality improves (Evi-F1 80.96 vs.\\ 79.61) and coupling tightens (EDCR 0.6487 vs.\\ 0.6797). Per-seed results appear in Appendix~\\ref{sec:ablation_full}.\n15\t\n16\t\\begin{table}[t]\n17\t\\centering\n18\t\\caption{Main results on DocRED dev (Qwen3-4B). Ign-F1 shows mean $\\pm$ std$^{(\\text{seeds})}$; other metrics are same-seed means. Best \\textbf{bold}; best evidence-generating \\underline{underlined}. Per-seed: Appendix~\\ref{tab:ablation_full}.}\n19\t\\label{tab:main}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-001146"
+        },
+        {
+          "source_line": 1147,
+          "timestamp": "2026-05-25T00:18:10.250096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex",
+              "offset": "28",
+              "limit": "15"
+            }
+          },
+          "id": "event-001147"
+        },
+        {
+          "source_line": 1148,
+          "timestamp": "2026-05-25T00:18:10.350868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "28\t\n29\tWe evaluate three post-SFT optimization paradigms that differ in how they incorporate quality signals from the CED scoring function (\\S\\ref{sec:ced}).\n30\t\n31\t\\paragraph{GRPO.}\n32\tGroup Relative Policy Optimization~\\citep{shao2024deepseekmath} is an online RL method that eliminates the need for a separate value network by computing advantages within groups of sampled outputs. For each training document, the policy generates $G$ candidate responses, which are scored by CED. The advantage of each response is computed relative to the group mean, and the policy is updated to increase the probability of above-average outputs. We test two configurations: QLoRA \\citep{dettmers2023qlora} under 4-bit quantization, and bf16 full-precision LoRA, both with $G{=}8$ groups. Because GRPO applies gradient updates that directly optimize the reward signal, evidence quality and extraction accuracy compete for gradient capacity. We analyze this multi-objective tension in Section~\\ref{sec:spectrum}.\n33\t\n34\t\\paragraph{DPO.}\n35\tDirect Preference Optimization~\\citep{rafailov2023direct} reformulates RLHF~\\citep{ouyang2022instructgpt} as a classification problem over preference pairs, without explicit reward models. We construct preference data from the SFT model's sampled outputs: for each document, the response with the highest CED score is labeled as preferred and the lowest-scoring response as rejected. DPO then adjusts the policy to increase the log-probability ratio between preferred and rejected completions. We train for 1 and 3 epochs to observe the temporal dynamics of evidence-extraction trade-offs under implicit optimization.\n36\t\n37\t\\paragraph{RSFT.}\n38\tRejection Sampling Fine-Tuning is a single-round variant of iterative self-improvement methods such as STaR~\\citep{zelikman2022star}. The procedure is straightforward: for each SFT checkpoint, the corresponding model generates $N{=}8$ candidate outputs per training document, each candidate is scored by CED, and only the top-$\n…[truncated 1249 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001148"
+        },
+        {
+          "source_line": 1149,
+          "timestamp": "2026-05-25T00:18:33.191748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+              "offset": "45",
+              "limit": "30"
+            }
+          },
+          "id": "event-001149"
+        },
+        {
+          "source_line": 1150,
+          "timestamp": "2026-05-25T00:18:34.196813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "45\t\\label{sec:spectrum}\n46\t\n47\tBecause evidence and extraction share gradient capacity, different optimization paradigms handle this competition in qualitatively different ways. We organize the outcomes along a \\emph{decoupling spectrum} from catastrophic collapse to no decoupling (Figure~\\ref{fig:spectrum}; full data in Table~\\ref{tab:spectrum}, Appendix). Figure~\\ref{fig:grpo_dynamics} (Appendix) traces these dynamics across training checkpoints.\n48\t\n49\t\\paragraph{GRPO.}\n50\tBoth QLoRA and bf16 configurations use $G{=}8$ groups. Under QLoRA 4-bit quantization, GRPO drives Rel-F1 to 1.38 while Evi-F1 rises to 85.04 (EDCR 0.9876): quantization-constrained precision limits the effective parameter space, so the reward signal preferentially optimizes the easier sub-task~\\citep{gao2023scaling}, resembling the quantized-actor divergence of \\citet{li2026qurl}. Full-precision bf16 avoids catastrophe (Rel-F1 45.49, EDCR 0.6318). QLoRA additionally uses a lower learning rate ($5{\\times}10^{-6}$ vs.\\ $5{\\times}10^{-5}$) and larger effective batch size (16 vs.\\ 1 via gradient accumulation)---conditions that typically promote training stability. Despite these favorable settings, QLoRA exhibits catastrophic extraction collapse while bf16 maintains stable performance, strongly implicating 4-bit quantization precision as the primary factor driving GRPO instability in this setting.\n51\t\n52\t\\paragraph{DPO and RSFT.}\n53\tDPO exhibits substantial extraction degradation: Rel-F1 drops from 33.37 (1 epoch) to 31.45 (3 epochs) while Evi-F1 rises (80.90$\\to$84.84). EDCR is non-monotonic (0.8123$\\to$0.7503): despite worsening extraction, evidence selectivity improves with continued training, partially reducing the decoupling. RSFT maintains both capabilities simultaneously (Rel-F1 45.80, Evi-F1 80.96, EDCR 0.6487) because discrete output selection cannot exploit the extraction-evidence trade-off.\n54\t\n55\t\\begin{figure}[t]\n56\t\\centering\n57\t\\includegraphics[width=\\columnwidth]{fig_spectrum.pdf}\n5\n…[truncated 2526 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 1005
+          },
+          "id": "event-001150"
+        },
+        {
+          "source_line": 1151,
+          "timestamp": "2026-05-25T00:18:35.654505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "G.?=.?4|G=4|G\\{=\\}4|group.size.4",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-001151"
+        },
+        {
+          "source_line": 1152,
+          "timestamp": "2026-05-25T00:18:36.159402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 504
+          },
+          "id": "event-001152"
+        },
+        {
+          "source_line": 1153,
+          "timestamp": "2026-05-25T00:18:36.862815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "G.?=.?4|G=4|G\\{=\\}4|group.size.4",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-001153"
+        },
+        {
+          "source_line": 1154,
+          "timestamp": "2026-05-25T00:18:36.913532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001154"
+        },
+        {
+          "source_line": 1155,
+          "timestamp": "2026-05-25T00:18:58.328378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "offset": "934",
+              "limit": "70"
+            }
+          },
+          "id": "event-001155"
+        },
+        {
+          "source_line": 1156,
+          "timestamp": "2026-05-25T00:18:58.379770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "934\t  mvp2_grpo_ced_kl001_r3:\n935\t    status: DONE\n936\t    retry_count: 0\n937\t    created_at: '2026-05-14T15:25:06.729Z'\n938\t    updated_at: '2026-05-22T19:39:15.560Z'\n939\t    hypothesis: 'kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while\n940\t      keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary\n941\t      (retry: fix --lr + bash -c wrapping)'\n942\t    parent: mvp2_grpo_ced_kl001\n943\t    spec:\n944\t      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n945\t        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n946\t        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n947\t        && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer\n948\t        --stage 3 --kl_coef 0.01 --num_iterations 1 --save_steps 20 --save_total_limit\n949\t        20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0\n950\t        --learning_rate 5e-5 --gradient_accumulation_steps 16 --num_generations 4\"\n951\t      server: rtx5090-4x\n952\t      gpu:\n953\t      - cuda:0\n954\t      pid: '65740'\n955\t      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r3.log\n956\t      submitted_at: '2026-05-14T15:25:17.200Z'\n957\t      submitted_via: submit_training_job\n958\t      backend: tmux\n959\t      account: root\n960\t      wall_clock_seconds: 74643.1\n961\t      gpu_hours: 20.73\n962\t    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n963\t    conclusion: killed\n964\t    completed_at: '2026-05-15T12:09:20.252Z'\n965\t  mvp2_grpo_flatnli_r4:\n966\t    status: DONE\n967\t    retry_count: 0\n968\t    created_at: '2026-05-14T15:32:31.804Z'\n969\t    updated_at: '2026-05-22T19:39:43.807Z'\n970\t    spec:\n971\t      command: CUDA_VISIBLE_DEVICES=3 python -m freige.training.grpo_trainer --stage\n972\t        2 --reward_device cuda --resume_from_checkpoint /root/aut\n…[truncated 1167 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-001156"
+        },
+        {
+          "source_line": 1157,
+          "timestamp": "2026-05-25T00:19:10.646855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.2167|rel_f1.*0\\.21",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "output_mode": "content",
+              "-C": "10",
+              "head_limit": "50"
+            }
+          },
+          "id": "event-001157"
+        },
+        {
+          "source_line": 1158,
+          "timestamp": "2026-05-25T00:19:10.697450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1445-    notes: '2026-05-15 03:20 UTC: ckpt-100 inference 48/62 (77%), ~20 min remaining.\n1446-      Started 02:09 UTC.'\n1447-    reproduce:\n1448-      finished_at: '2026-05-14T19:35:23.622Z'\n1449-    extra:\n1450-      hook_events:\n1451-      - event: on_complete\n1452-        action: agent\n1453-        ts: '2026-05-14T19:35:25.057156+00:00'\n1454-    metrics:\n1455:      rel_f1: 0.2167\n1456:      ign_f1: 0.2167\n1457-      precision: 0.2849\n1458-      recall: 0.1749\n1459-      evi_f1: 0.5746\n1460-      evi_precision: 0.5244\n1461-      evi_recall: 0.6353\n1462-      edcr: 0.8539\n1463-      pred_count: 7460\n1464-      gold_count: 12151\n1465-      tp: 2125\n1466-      n_truncated: 21\n--\n1600-    notes: '2026-05-15 03:20 UTC: ckpt-90 inference 31/62 (50%), ~45 min remaining.\n1601-      Started 02:32 UTC.'\n1602-    reproduce:\n1603-      finished_at: '2026-05-14T19:57:37.435Z'\n1604-    extra:\n1605-      hook_events:\n1606-      - event: on_complete\n1607-        action: agent\n1608-        ts: '2026-05-14T19:57:39.702949+00:00'\n1609-    metrics:\n1610:      rel_f1: 0.2108\n1611-      ign_f1: 0.2108\n1612-      evi_f1: 0.5666\n1613-      edcr: 0.8584\n1614-      pred_count: 11160\n1615-      n_truncated: 22\n1616-      format_ok_rate: 1\n1617-      n_documents: 985\n1618-    conclusion: negative\n1619-    completed_at: '2026-05-14T20:01:45.201Z'\n1620-  mvp2_grpo_ced_lr5e6_r1:\n--\n2234-      - cuda:3\n2235-      pid: '117635'\n2236-      log_path: ~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\n2237-      submitted_at: '2026-05-14T23:39:51.199Z'\n2238-      submitted_via: submit_training_job\n\n[Showing results with pagination = limit: 50]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001158"
+        },
+        {
+          "source_line": 1159,
+          "timestamp": "2026-05-25T00:19:14.271030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "offset": "1400",
+              "limit": "60"
+            }
+          },
+          "id": "event-001159"
+        },
+        {
+          "source_line": 1160,
+          "timestamp": "2026-05-25T00:19:14.522678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1400\t        edcr: 0.8858\n1401\t        format_ok_rate: 0.999\n1402\t      checkpoint-60:\n1403\t        f1: 0.1467\n1404\t        ign_f1: 0.1467\n1405\t        evi_f1: 0.5763\n1406\t        edcr: 0.9062\n1407\t        format_ok_rate: 1\n1408\t      checkpoint-90:\n1409\t        f1: 0.2108\n1410\t        ign_f1: 0.2108\n1411\t        evi_f1: 0.5666\n1412\t        edcr: 0.8584\n1413\t        format_ok_rate: 1\n1414\t  mvp2_eval_ced_kl001_r4_step100:\n1415\t    status: DONE\n1416\t    retry_count: 0\n1417\t    created_at: '2026-05-14T18:08:31.821Z'\n1418\t    updated_at: '2026-05-14T19:41:30.318Z'\n1419\t    hypothesis: Eval ced_kl001_r4 last checkpoint (step 100) to compare with best-reward\n1420\t      checkpoint (step 50). If best ≠ last, the gap measures training stability under\n1421\t      batch_size=1 GRPO variance.\n1422\t    parent: mvp2_grpo_ced_kl001_r4\n1423\t    spec:\n1424\t      command: python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001\n1425\t        --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001_step100\n1426\t        --checkpoints 100 --quantize\n1427\t      server: rtx5090-4x\n1428\t      gpu:\n1429\t      - cuda:0\n1430\t      pid: '80789'\n1431\t      log_path: ~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step100.log\n1432\t      submitted_at: '2026-05-14T18:09:02.064Z'\n1433\t      submitted_via: submit_training_job\n1434\t      backend: tmux\n1435\t      account: root\n1436\t      data_path: /root/autodl-tmp/data/docred\n1437\t      model_name: Qwen3-4B + SFT adapter + GRPO ced_kl001 step-100\n1438\t      checkpoint_source: /root/autodl-tmp/grpo_ced_kl001/checkpoint-100\n1439\t      eval_data: DocRED dev set\n1440\t      data_count: 998\n1441\t      seed: 42\n1442\t      checkpoint_path: /root/autodl-tmp/grpo_ced_kl001/checkpoint-100\n1443\t      wall_clock_seconds: 5458.4\n1444\t      gpu_hours: 1.52\n1445\t    notes: '2026-05-15 03:20 UTC: ckpt-100 inference 48/62 (77%), ~20 min remaining.\n1446\t      Started 02:09 UTC.'\n1447\t    reproduce:\n1448\t      \n…[truncated 341 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-001160"
+        },
+        {
+          "source_line": 1161,
+          "timestamp": "2026-05-25T00:19:38.735603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "5e-6|5\\\\times10|learning.rate|hyperparameter",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True",
+              "head_limit": "40"
+            }
+          },
+          "id": "event-001161"
+        },
+        {
+          "source_line": 1162,
+          "timestamp": "2026-05-25T00:19:38.836504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1:\\section{Training Hyperparameters}\n4:Table~\\ref{tab:hyperparams} lists the hyperparameters for all training configurations. All methods use LoRA with rank $r{=}64$ and $\\alpha{=}128$ applied to all linear projections (attention and feed-forward). SFT and RSFT share the same optimizer settings; RSFT differs only in data construction (top-1 CED-selected outputs from $N{=}8$ candidates). GRPO and DPO use lower learning rates to stabilize post-SFT optimization.\n8:\\caption{Training hyperparameters for all optimization paradigms. All experiments use Qwen3-4B with LoRA. A dash indicates non-applicable parameters. \\textsuperscript{$\\star$}DPO is trained for both 1 and 3 epochs to observe temporal dynamics of the evidence-extraction trade-off (\\S\\ref{sec:spectrum}).}\n20:\\quad Learning rate & 2e-5 & 2e-5 & 5e-6 & 5e-5 & 5e-7 \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-001162"
+        },
+        {
+          "source_line": 1163,
+          "timestamp": "2026-05-25T00:19:56.850312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "offset": "1620",
+              "limit": "80"
+            }
+          },
+          "id": "event-001163"
+        },
+        {
+          "source_line": 1164,
+          "timestamp": "2026-05-25T00:19:56.951275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1620\t  mvp2_grpo_ced_lr5e6_r1:\n1621\t    status: DONE\n1622\t    retry_count: 0\n1623\t    created_at: '2026-05-14T19:21:08.231Z'\n1624\t    updated_at: '2026-05-22T19:39:18.476Z'\n1625\t    hypothesis: 'D030/P0: lr=5e-6 (10x lower than ced_kl001_r4) prevents catastrophic\n1626\t      forgetting while maintaining CED reward improvement. Community consensus GRPO+QLoRA\n1627\t      lr=5e-6~1e-5. Pass criteria: ckpt-20 rel_f1 > 0.30. Extra monitoring: pred_count\n1628\t      + recall trend.'\n1629\t    parent: mvp2_grpo_ced_kl001_r4\n1630\t    spec:\n1631\t      command: python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B\n1632\t        --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred\n1633\t        --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6\n1634\t        --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps\n1635\t        16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps\n1636\t        20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight\n1637\t        3.0 --ced_reward_weight 1.0 --num_iterations 1 --wandb_run_name grpo-s3-ced-lr5e6-r1\n1638\t      server: rtx5090-4x\n1639\t      gpu:\n1640\t      - cuda:0\n1641\t      pid: '90080'\n1642\t      data_path: /root/autodl-tmp/data/docred\n1643\t      data_count: 3053\n1644\t      model_name: Qwen3-4B + SFT adapter\n1645\t      seed: 42\n1646\t      hyperparams:\n1647\t        learning_rate: 5.0e-06\n1648\t        kl_coef: 0.01\n1649\t        num_generations: 8\n1650\t        gradient_accumulation_steps: 16\n1651\t        max_steps: 200\n1652\t        save_steps: 20\n1653\t        format_reward_weight: 0.3\n1654\t        f1_reward_weight: 3\n1655\t        ced_reward_weight: 1\n1656\t        tau_start: 0.3\n1657\t        tau_end: 0.5\n1658\t    server: rtx5090-4x\n1659\t    gpu: cuda:0\n1660\t    pid: '90080'\n1661\t    log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log\n1662\t    wand\n…[truncated 2189 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001164"
+        },
+        {
+          "source_line": 1165,
+          "timestamp": "2026-05-25T00:20:09.337135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "mvp2_eval.*lr5e6|eval.*lr5e6",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "output_mode": "content",
+              "-C": "15",
+              "head_limit": "60"
+            }
+          },
+          "id": "event-001165"
+        },
+        {
+          "source_line": 1166,
+          "timestamp": "2026-05-25T00:20:09.393858+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1844-        gradient_accumulation_steps: 16\n1845-        max_steps: 200\n1846-        save_steps: 20\n1847-        format_reward_weight: 0.3\n1848-        f1_reward_weight: 3\n1849-        ced_reward_weight: 1\n1850-        tau_start: 0.3\n1851-        tau_end: 0.5\n1852-        ced_recall_penalty: true\n1853-      wall_clock_seconds: 5716.8\n1854-      gpu_hours: 1.59\n1855-    wandb_run_id: grpo-s3-ced-lr5e6-rp-r2\n1856-    conclusion: killed\n1857-    completed_at: '2026-05-14T21:40:44.215Z'\n1858-    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n1859:  mvp2_eval_lr5e6_r1_ckpt20:\n1860-    status: DONE\n1861-    retry_count: 0\n1862-    created_at: '2026-05-14T20:44:21.167Z'\n1863-    updated_at: '2026-05-14T22:12:16.372Z'\n1864-    spec:\n1865-      server: rtx5090-4x\n1866-      gpu:\n1867-      - cuda:1\n1868-      account: root\n1869:      command: bash /root/autodl-tmp/scripts/eval_lr5e6_ckpt20.sh\n1870-      pid: '96500'\n1871-      data_path: /root/autodl-tmp/data/docred/dev.json\n1872-      data_count: 985\n1873-      model_name: Qwen3-4B + SFT + GRPO lr5e6 ckpt-20\n1874-      seed: 42\n1875-      checkpoint_source: /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-20\n1876-      eval_data: /root/autodl-tmp/data/docred/dev.json\n1877:      log_path: /tmp/eval_lr5e6_ckpt20.log\n1878-    hypothesis: 'P0 ckpt-20 early eval: lr=5e-6 GRPO at step 20. Pass criteria: rel_f1\n1879-      > 0.30 (no catastrophic forgetting). Key MVP gate for P0.'\n1880-    parent: mvp2_grpo_ced_lr5e6_r1\n1881-    conclusion: negative\n1882-    metrics:\n1883-      rel_f1: 0.0077\n1884-      rel_precision: 0.0071\n1885-      rel_recall: 0.0084\n1886-      evi_f1: 0.628\n1887-      evi_precision: 0.855\n1888-      evi_recall: 0.496\n1889-      edcr: 0.993\n1890-      format_ok_rate: 0.991\n1891-      field_compliance_rate: 0.399\n1892-      pred_count: 14440\n1893-      gold_count: 12151\n1894-      tp: 102\n1895-      n_truncated: 587\n1896-      inference_time_seconds: 6370.4\n1897-    checkpoint_path: /root/a\n…[truncated 309 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 56
+          },
+          "id": "event-001166"
+        },
+        {
+          "source_line": 1167,
+          "timestamp": "2026-05-25T00:20:38.109950+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "offset": "0",
+              "limit": "40"
+            }
+          },
+          "id": "event-001167"
+        },
+        {
+          "source_line": 1168,
+          "timestamp": "2026-05-25T00:20:38.160742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t\\section{Training Hyperparameters}\n1\t\\label{sec:hyperparams}\n2\t\n3\tTable~\\ref{tab:hyperparams} lists the hyperparameters for all training configurations. All methods use LoRA with rank $r{=}64$ and $\\alpha{=}128$ applied to all linear projections (attention and feed-forward). SFT and RSFT share the same optimizer settings; RSFT differs only in data construction (top-1 CED-selected outputs from $N{=}8$ candidates). GRPO and DPO use lower learning rates to stabilize post-SFT optimization.\n4\t\n5\t\\begin{table*}[t]\n6\t\\centering\n7\t\\caption{Training hyperparameters for all optimization paradigms. All experiments use Qwen3-4B with LoRA. A dash indicates non-applicable parameters. \\textsuperscript{$\\star$}DPO is trained for both 1 and 3 epochs to observe temporal dynamics of the evidence-extraction trade-off (\\S\\ref{sec:spectrum}).}\n8\t\\label{tab:hyperparams}\n9\t\\small\n10\t\\begin{tabular}{l@{\\hspace{8pt}}c@{\\hspace{8pt}}c@{\\hspace{8pt}}c@{\\hspace{8pt}}c@{\\hspace{8pt}}c}\n11\t\\toprule\n12\t\\textbf{Parameter} & \\textbf{SFT} & \\textbf{RSFT} & \\textbf{GRPO QLoRA} & \\textbf{GRPO bf16} & \\textbf{DPO} \\\\\n13\t\\midrule\n14\t\\multicolumn{6}{l}{\\textit{Model \\& Adapter}} \\\\\n15\t\\quad LoRA rank $r$ / $\\alpha$ & 64 / 128 & 64 / 128 & 64 / 128 & 64 / 128 & 64 / 128 \\\\\n16\t\\quad Quantization & -- & -- & NF4 4-bit & bf16 & bf16 \\\\\n17\t\\midrule\n18\t\\multicolumn{6}{l}{\\textit{Optimization}} \\\\\n19\t\\quad Learning rate & 2e-5 & 2e-5 & 5e-6 & 5e-5 & 5e-7 \\\\\n20\t\\quad Batch size (per device) & 4 & 4 & 1 & 1 & 4 \\\\\n21\t\\quad Gradient accumulation & 4 & 4 & 16 & 1 & 4 \\\\\n22\t\\quad Epochs / Max steps & 3 / -- & 3 / -- & -- / 100 & -- / 100 & 1, 3\\textsuperscript{$\\star$} / -- \\\\\n23\t\\midrule\n24\t\\multicolumn{6}{l}{\\textit{RL / Selection}} \\\\\n25\t\\quad Group size $G$ & -- & -- & 4 & 8 & -- \\\\\n26\t\\quad KL coeff.\\ / $\\beta$ & -- & -- & 0 & 0.01 & 0.1 \\\\\n27\t\\quad Candidates $N$ / Top-$k$ & -- & 8 / 1 & -- & -- & 8 / -- \\\\\n28\t\\midrule\n29\t\\multicolumn{6}{l}{\\textit{Data}} \\\\\n30\t\\quad Max new tokens & 1024 & 1024 & 1024 & 1024\n…[truncated 257 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001168"
+        },
+        {
+          "source_line": 1169,
+          "timestamp": "2026-05-25T00:21:39.348208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: critical] GRPO G 值修正审查 + 超参数表严重不一致\n\n## 1. G=8 修正：已确认正确\n\nPaper Agent 的 G=8 修正经 registry 验证正确：\n- `mvp2_grpo_ced_kl001_r4`（QLoRA，产出 rel_f1=0.2167 的实验）：`--num_generations 8`（registry L1015）\n- `plan_011_grpo_g8_bf16`（bf16）：`--num_generations 8`（registry L3470）\n\n主文 L6 \"GRPO uses $G{=}8$ groups under both QLoRA and bf16\" 和 L32 \"both with $G{=}8$ groups\" 均正确。\n\n## 2. [CRITICAL] Appendix 超参数表（tab:hyperparams）有 3 项错误\n\nappendix.tex L25-26，表格中 GRPO QLoRA 列：\n\n| 参数 | 表中值 | Registry 实际值 (mvp2_grpo_ced_kl001_r4) | 需改为 |\n|------|--------|---------|--------|\n| Group size G | **4** | **8** | 8 |\n| KL coeff | **0** | **0.01** | 0.01 |\n| Learning rate | **5e-6** | **5e-5** | 5e-5 |\n\n证据：registry L1048 `num_generations: 8`；L1043 `kl_coef: 0.01`；L1042 `learning_rate: 5e-5`。\n\n这些错误值来自不同的 ARCHIVED 实验：G=4 来自 `mvp2_grpo_ced`（L148，FAILED）；lr=5e-6 来自 `mvp2_grpo_ced_lr5e6_r1`（L1647，KILLED）；kl=0 来自更早的 r5 实验。表格是多个废弃实验参数的嵌合体。\n\n## 3. [CRITICAL] 主文 L50 learning rate 描述错误\n\n当前文本：\"QLoRA additionally uses a lower learning rate ($5{\\times}10^{-6}$ vs.\\ $5{\\times}10^{-5}$)\"\n\n实际两个实验 lr 均为 5e-5（registry L1017 和 L3470），lr 不是 confound。L50 应删除 lr 相关内容，仅保留 batch size confound：\"QLoRA additionally uses a larger effective batch size (16 vs.\\ 1 via gradient accumulation)---conditions that typically promote training stability.\"\n\n## 4. 实际 confound 情况（比论文描述的更干净）\n\n修正后的实际对照：\n- 量化：QLoRA 4-bit vs bf16（唯一 intentional 变量）\n- Effective batch：16 vs 1（有利于 QLoRA）\n- G、lr、kl 三项完全相同（均为 8、5e-5、0.01）\n\n论文目前的描述反而夸大了 confound 数量（错误地将 lr 列为不同），修正后 ablation 实际上更干净。\n\n## 5. 行动建议\n\n1. 立即修改 appendix.tex L25-26：QLoRA 列的 G 改为 8，KL 改为 0.01，lr 改为 5e-5\n2. 修改 experiments.tex L50：删除 lr 相关内容\n3. 修改 appendix.tex L3 文本：\"GRPO and DPO use lower learning rates\"——GRPO QLoRA 并非 lower lr\n4. 全文 grep 确认无其他引用错误 lr/kl/G 值的位置",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-001169"
+        },
+        {
+          "source_line": 1170,
+          "timestamp": "2026-05-25T00:21:43.539073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4190
+          },
+          "id": "event-001170"
+        },
+        {
+          "source_line": 1171,
+          "timestamp": "2026-05-25T00:21:49.350293+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查已提交。总结：\n\n1. **G=8 修正确认正确** — registry 证实 QLoRA 和 bf16 实验均使用 G=8\n2. **发现更严重的问题**：Appendix 超参数表（tab:hyperparams）的 QLoRA 列有 3 项错误（G=4→8, kl=0→0.01, lr=5e-6→5e-5），来自不同的 ARCHIVED 实验参数嵌合\n3. **主文 L50 也受影响** — 错误声称 QLoRA 使用 \"lower learning rate\"，实际两个实验 lr 均为 5e-5\n4. 修正后 ablation 实际上比论文目前描述的更干净（confound 更少）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-001171"
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "messages": [
+        {
+          "source_line": 1172,
+          "timestamp": "2026-05-25T00:23:28.013815+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_audit_bib-chen2025docksrag_20260525T002231]:\nWorker worker_audit_bib-chen2025docksrag_20260525T002231 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "worker_done:worker_audit_bib-chen2025docksrag_20260525t002231"
+          },
+          "id": "event-001172"
+        },
+        {
+          "source_line": 1173,
+          "timestamp": "2026-05-25T00:23:35.772152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_audit_bib-chen2025docksrag_20260525T002231_result.json"
+            }
+          },
+          "id": "event-001173"
+        },
+        {
+          "source_line": 1174,
+          "timestamp": "2026-05-25T00:23:35.822991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"已修正完毕。结论：\\n\\n**当前 bib 状态**：key 为 `chen2025docksrag`，但 author 字段已经是 `Xu, Xiaolong` 为第一作者——key 与作者不一致。\\n\\n**WebSearch 验证**：ICML 2025 proceedings 页面 `proceedings.mlr.press/v267/xu25am.html` 确认第一作者为 **Xu, Xiaolong**，不是 Chen。审稿人判断正确。\\n\\n**已完成修正**：\\n1. `references.bib`：key `chen2025docksrag` → `xu2025docksrag`\\n2. `sections/related_work.tex`：`\\\\citet{chen2025docksrag}` → `\\\\citet{xu2025docksrag}`\\n3. `sections/introduction.tex`：`\\\\citet{chen2025docksrag}` → `\\\\citet{xu2025docksrag}`\\n\\nSources:\\n- [ICML 2025 Proceedings](https://proceedings.mlr.press/v267/xu25am.html)\\n- [OpenReview](https://openreview.net/forum?id=SVl9tIADWV)\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001174"
+        },
+        {
+          "source_line": 1175,
+          "timestamp": "2026-05-25T00:23:39.475751+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "bib key 修正（chen2025docksrag → xu2025docksrag），已通过 ICML 2025 proceedings 验证第一作者为 Xu, Xiaolong。修正覆盖 references.bib、related_work.tex、introduction.tex 三处引用。无异常，不需要上报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-001175"
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "messages": [
+        {
+          "source_line": 1176,
+          "timestamp": "2026-05-25T00:24:42.013361+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_exp_d158_1_7b_rsft_s44_eval_20260525T002220]:\nWorker worker_exp_d158_1_7b_rsft_s44_eval_20260525T002220 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "worker_done:worker_exp_d158_1_7b_rsft_s44_eval_20260525t002220"
+          },
+          "id": "event-001176"
+        },
+        {
+          "source_line": 1177,
+          "timestamp": "2026-05-25T00:24:48.047986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_exp_d158_1_7b_rsft_s44_eval_20260525T002220_result.json"
+            }
+          },
+          "id": "event-001177"
+        },
+        {
+          "source_line": 1178,
+          "timestamp": "2026-05-25T00:24:48.098778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"eval 正常运行中：\\n\\n- **PID**: 342049，cuda:0\\n- **进度**: 3/247 batches，约 28s/batch，预计约 **1 小时 54 分**完成\\n- **Registry**: `d158_1_7b_rsft_s44_eval` → RUNNING\\n- **日志**: `/root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log`\\n- **输出**: `/root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval/`\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001178"
+        },
+        {
+          "source_line": 1179,
+          "timestamp": "2026-05-25T00:24:52.352682+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "d158_1_7b_rsft_s44_eval 正在运行中（3/247 batches，预计约 2 小时），待完成后再审查结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-001179"
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "messages": [
+        {
+          "source_line": 1180,
+          "timestamp": "2026-05-25T00:45:29.147549+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_exp_r3_grpo_bf16_g4_eval_20260525T004216]:\nWorker worker_exp_r3_grpo_bf16_g4_eval_20260525T004216 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "worker_done:worker_exp_r3_grpo_bf16_g4_eval_20260525t004216"
+          },
+          "id": "event-001180"
+        },
+        {
+          "source_line": 1181,
+          "timestamp": "2026-05-25T00:45:35.149427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_exp_r3_grpo_bf16_g4_eval_20260525T004216_result.json"
+            }
+          },
+          "id": "event-001181"
+        },
+        {
+          "source_line": 1182,
+          "timestamp": "2026-05-25T00:45:35.149926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"已提交并注册。\\n\\n**状态汇总**：\\n- **实验**: r3_grpo_bf16_g4_eval — RUNNING on cuda:1\\n- **PID**: 343374\\n- **模型**: Qwen3-4B + SFT + GRPO bf16 G=4 checkpoint-100\\n- **数据**: docred dev (985 docs, 12275 triples), 247 batches\\n- **日志**: `/tmp/r3_grpo_bf16_g4_eval.log`\\n- **注意**: 第一次因 `--base_model` 路径错误（`models/Qwen/Qwen3-4B` → 实际是 `models/Qwen3-4B`）失败，已修正重新提交\\n\\n推理已在进行中，预计需要几十分钟完成。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001182"
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "messages": [
+        {
+          "source_line": 1183,
+          "timestamp": "2026-05-25T01:07:46.904033+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_14b_precision_recall_decomp_20260525T010222]:\nWorker worker_analysis_14b_precision_recall_decomp_20260525T010222 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "worker_done:worker_analysis_14b_precision_recall_decomp_20260525t010222"
+          },
+          "id": "event-001183"
+        },
+        {
+          "source_line": 1184,
+          "timestamp": "2026-05-25T01:07:52.239593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_analysis_14b_precision_recall_decomp_20260525T010222_result.json"
+            }
+          },
+          "id": "event-001184"
+        },
+        {
+          "source_line": 1185,
+          "timestamp": "2026-05-25T01:07:52.290218+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"EDCR bins 全显示 1.0 是脚本 bug —— 只有 TP 预测才有匹配的 gold evidence 来计算 EDCR，所以那个分层实际上只包含 TP。evidence count 分层的 precision 分析是有效的。\\n\\n完整结果如下：\\n\\n## 14B RSFT s42 — Test-Set P/R Decomposition\\n\\n**Overall**: P=0.4951, R=0.3188, F1=0.3878 (TP=5562, Pred=11235, Gold=17448)\\n\\n### Top-5 高 F1 关系 (gold≥10)\\n| Relation | P | R | F1 | TP | Gold |\\n|---|---|---|---|---|---|\\n| date of birth | 0.553 | **0.920** | 0.690 | 184 | 200 |\\n| original network | **0.909** | 0.556 | 0.690 | 20 | 36 |\\n| director | **0.884** | 0.528 | 0.661 | 38 | 72 |\\n| date of death | 0.533 | **0.853** | 0.656 | 145 | 170 |\\n| performer | 0.745 | 0.580 | 0.652 | 164 | 283 |\\n\\n### 最保守 (P >> R)\\n| Relation | P | R | Gap | Gold |\\n|---|---|---|---|---|\\n| notable work | 0.750 | 0.050 | **+0.700** | 598 |\\n| spouse | 0.889 | 0.300 | +0.589 | 80 |\\n| P131 (admin entity) | 0.748 | 0.164 | +0.585 | **4048** |\\n| composer | 0.824 | 0.246 | +0.578 | 57 |\\n\\n### 最激进 (R >> P)\\n| Relation | P | R | Gap | Gold |\\n|---|---|---|---|---|\\n| date of birth | 0.553 | 0.920 | **-0.367** | 200 |\\n| date of death | 0.533 | 0.853 | -0.320 | 170 |\\n| place of death | 0.376 | 0.683 | -0.307 | 60 |\\n| member of sports team | 0.469 | 0.762 | -0.293 | 80 |\\n| inception | 0.292 | 0.572 | -0.280 | 180 |\\n\\n### Cross-Sentence vs Within-Sentence\\n| Category | TP | Gold | Recall |\\n|---|---|---|---|\\n| Cross-sentence (evi≥2) | 1427 | 3848 | **0.371** |\\n| Within-sentence (evi=1) | 1812 | 3699 | **0.490** |\\n| No evidence annotation | 2323 | 9901 | 0.235 |\\n\\n跨句 recall 比句内低 12pp（0.371 vs 0.490）。\\n\\n### Precision by Evidence Count\\n| Predicted evi sents | Correct | Total | Precision |\\n|---|---|---|---|\\n| 1 sent | 2774 | 4669 | **0.594** |\\n| 2 sents | 2389 | 5316 | **0.449** |\\n| 3 sents | 263 | 896 | **0.294** |\\n| 4+ sents | 81 | 228 | 0.355 |\\n\\n证据句越多，precision 越低。单句证据预测 P=0.594 是 3 句证据的 2 倍。\\n\\n### 关键问题\\n1. **P131 (located in admin entity)** 是最大瓶颈：gold=4048 但 recall=0.164，贡献了大量漏检（3385 FN）\\n2. **notable work (P800)**: gold=5\n…[truncated 228 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001185"
+        },
+        {
+          "source_line": 1186,
+          "timestamp": "2026-05-25T01:08:17.021780+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "14B precision/recall 分解分析结果合理，无需审查干预。关键发现（跨句 recall 低 12pp、precision 随证据句数下降）与论文叙事一致。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-001186"
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "messages": [
+        {
+          "source_line": 1187,
+          "timestamp": "2026-05-25T01:28:46.124178+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_edcr_partial_correlation_20260525T012215]:\nWorker worker_analysis_edcr_partial_correlation_20260525T012215 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-001187"
+        },
+        {
+          "source_line": 1188,
+          "timestamp": "2026-05-25T01:28:57.406754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_analysis_edcr_partial_correlation_20260525T012215_result.json"
+            }
+          },
+          "id": "event-001188"
+        },
+        {
+          "source_line": 1189,
+          "timestamp": "2026-05-25T01:28:57.507671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"结果清晰。关键发现：\\n\\n**EDCR ↔ F1 partial correlation（控制 relation frequency 后）全部显著：**\\n\\n| Model | Raw r | Partial r (ctrl freq) | p-value |\\n|-------|------:|-----:|------:|\\n| Qwen3-8B RSFT | -0.712 | **-0.675** | 3.9e-13 *** |\\n| Qwen3-1.7B RSFT | -0.664 | **-0.636** | 2.2e-11 *** |\\n| Llama-3.1-8B RSFT | -0.601 | **-0.562** | 1.0e-08 *** |\\n\\n控制 frequency + avg_evi_count 后仍然显著（r ∈ [-0.65, -0.51], 全部 p < 1e-7）。\\n\\n**Robustness checks：**\\n- 排除 F1=0 的 relation 后仍高度显著（r ∈ [-0.66, -0.52]）\\n- EDCR_tp（仅 TP 三元组的 evidence）控制 freq 后变弱（r ≈ -0.13 ~ -0.25），8B 模型 p=0.02 显著，其余两个 n.s.。说明 EDCR 的预测力主要来自整体 evidence 模式（含 FP 预测），而非仅 TP 子集\\n\\n**结论**：EDCR 在控制 relation frequency 后仍与 per-relation F1 强负相关，支持论文声称 EDCR 是 evidence grounding 质量的可靠指标。脚本和结果已保存到服务器。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001189"
+        },
+        {
+          "source_line": 1190,
+          "timestamp": "2026-05-25T01:29:13.567896+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-001190"
+        }
+      ]
+    },
+    {
+      "number": 71,
+      "messages": [
+        {
+          "source_line": 1191,
+          "timestamp": "2026-05-25T03:53:52.555767+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:d158_14b_rsft_s44_generate]:\n实验 d158_14b_rsft_s44_generate complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-001191"
+        },
+        {
+          "source_line": 1192,
+          "timestamp": "2026-05-25T03:54:06.828086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'd158_14b_rsft_s44_generate'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001192"
+        },
+        {
+          "source_line": 1193,
+          "timestamp": "2026-05-25T03:54:07.883724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0523}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1055
+          },
+          "id": "event-001193"
+        },
+        {
+          "source_line": 1194,
+          "timestamp": "2026-05-25T03:54:14.164476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "d158_14b_rsft_s44_generate",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "output_mode": "content",
+              "-C": "20"
+            }
+          },
+          "id": "event-001194"
+        },
+        {
+          "source_line": 1195,
+          "timestamp": "2026-05-25T03:54:14.265462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15757-        epochs: 3\n15758-        batch: 1\n15759-        grad_accum: 64\n15760-        lora_rank: 64\n15761-        lora_alpha: 128\n15762-        lora_dropout: 0.05\n15763-        max_length: 4096\n15764-        warmup_ratio: 0.05\n15765-      pid: '302391'\n15766-      log_path: /root/autodl-tmp/d158_14b_sft_s44.log\n15767-    conclusion: success\n15768-    checkpoint_path: /root/autodl-tmp/sft_output_14b_s44\n15769-    completed_at: '2026-05-24T10:09:19.336Z'\n15770-    metrics:\n15771-      train_loss: 0.6083\n15772-      eval_loss: 0.6541\n15773-      eval_mean_token_accuracy: 0.8446\n15774-      eval_entropy: 0.6077\n15775-      train_runtime_sec: 4255\n15776-      epochs: 3\n15777:  d158_14b_rsft_s44_generate:\n15778-    status: ANALYZING\n15779-    retry_count: 0\n15780-    created_at: '2026-05-24T10:10:30.985Z'\n15781-    updated_at: '2026-05-25T03:53:46.443Z'\n15782-    hypothesis: 14B seed=44 candidate generation for 3-seed statistical robustness.\n15783-      Replicates plan017_14b_rsft_s43_generate parameters with seed=44 SFT adapter.\n15784-    parent: d158_14b_sft_s44\n15785-    spec:\n15786-      command: python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B\n15787-        --sft_adapter /root/autodl-tmp/sft_output_14b_s44 --data_path /root/autodl-tmp/data/docred\n15788-        --output_dir /root/autodl-tmp/rsft_generations_14b_s44 --num_generations 8\n15789-        --max_new_tokens 1024 --seed 44\n15790-      server: rtx5090-4x\n15791-      gpu: cuda:2\n15792-      pid: '306172'\n15793:      log_path: ~/runs/faith-evidence-ie/d158_14b_rsft_s44_generate.log\n15794-      submitted_at: '2026-05-24T10:10:43.414Z'\n15795-      submitted_via: submit_training_job\n15796-      backend: tmux\n15797-      account: root\n15798-      data_path: /root/autodl-tmp/data/docred\n15799-      data_count: 3027\n15800-      model_name: Qwen3-14B\n15801-      seed: 44\n15802-      checkpoint_source: /root/autodl-tmp/sft_output_14b_s44\n15803-      eval_data: N/A (generation\n…[truncated 316 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-001195"
+        },
+        {
+          "source_line": 1196,
+          "timestamp": "2026-05-25T03:54:23.704908+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "14B s44 generation 完成（~17.7h），使用了 seed-matched SFT adapter (`sft_output_14b_s44`)。下一步是 CED scoring → RSFT train → eval。无异常。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-001196"
+        }
+      ]
+    },
+    {
+      "number": 72,
+      "messages": [
+        {
+          "source_line": 1197,
+          "timestamp": "2026-05-25T03:58:54.375785+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_d158_14b_rsft_s44_generate_20260525T035658]:\nWorker worker_analysis_d158_14b_rsft_s44_generate_20260525T035658 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-001197"
+        },
+        {
+          "source_line": 1198,
+          "timestamp": "2026-05-25T03:59:04.638912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_analysis_d158_14b_rsft_s44_generate_20260525T035658_result.json"
+            }
+          },
+          "id": "event-001198"
+        },
+        {
+          "source_line": 1199,
+          "timestamp": "2026-05-25T03:59:04.689538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"CED scoring 已提交。\\n\\n**结果汇总：**\\n\\n| 项目 | 值 |\\n|------|-----|\\n| d158_14b_rsft_s44_generate | DONE/success, 24216 samples (3027 docs × 8), format 100.0%, diversity 7.40/8 |\\n| d158_14b_rsft_s44_ced_score | RUNNING on cuda:2, PID 353179 |\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001199"
+        }
+      ]
+    },
+    {
+      "number": 73,
+      "messages": [
+        {
+          "source_line": 1200,
+          "timestamp": "2026-05-25T03:59:54.686622+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_stale_analyzing_cleanup_20260525T035721]:\nWorker worker_analysis_stale_analyzing_cleanup_20260525T035721 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-001200"
+        },
+        {
+          "source_line": 1201,
+          "timestamp": "2026-05-25T03:59:59.773150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_analysis_stale_analyzing_cleanup_20260525T035721_result.json"
+            }
+          },
+          "id": "event-001201"
+        },
+        {
+          "source_line": 1202,
+          "timestamp": "2026-05-25T03:59:59.773668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"5 个实验全部推进到 DONE。汇总：\\n\\n| 实验 | Conclusion | 关键指标 | 备注 |\\n|------|-----------|---------|------|\\n| **d158_1_7b_rsft_s44_train** | success | loss=0.526, acc=0.879, 567 steps/3 epochs | 正常收敛 |\\n| **d158_1_7b_rsft_s44_eval** | success | **ign_f1=47.30**, evi_f1_joint=38.97, edcr=63.68 | 比 plan019 共享SFT的 51.09/51.25 低约 3.8 点，seed-matched pipeline 性能偏低 |\\n| **r3_grpo_bf16_g4** | success | reward=1.02, f1_reward=0.68, ced_reward=0.17 | 100 steps 完成，50% clipped_ratio 偏高 |\\n| **r3_grpo_bf16_g4_eval** | success | **ign_f1=29.17** > 10, no collapse | 确认 bf16 G=4 不 collapse，quantization 是 collapse 主因 |\\n| **test_eval_4b_rsft_s44_no_evi_v2** | killed → DONE | — | 直接关闭 |\\n\\n关注点：\\n- **d158_1_7b_rsft_s44_eval** 的 ign_f1=47.30 显著低于共享 s42 SFT 的 plan019 结果（51.09/51.25），差距约 3.8 点，可能意味着 seed-matched SFT 初始化确实影响了 variance estimate\\n- **r3_grpo_bf16_g4_eval** 的 ign_f1=29.17 远高于 collapse 阈值 10，确认 quantization 是 collapse 根因；但绝对值远低于 RSFT baseline（~51），GRPO 100 steps 尚未充分优化\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001202"
+        },
+        {
+          "source_line": 1203,
+          "timestamp": "2026-05-25T04:00:38.635688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "d158_1_7b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "output_mode": "content",
+              "-C": "5",
+              "head_limit": "80"
+            }
+          },
+          "id": "event-001203"
+        },
+        {
+          "source_line": 1204,
+          "timestamp": "2026-05-25T04:00:38.736717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15694-      eval_data: DocRED dev (985 docs)\n15695-      checkpoint_path: /root/autodl-tmp/rsft_output_qwen3_1_7b_k1/checkpoint-567\n15696-      log_path: /root/autodl-tmp/eval_results/d102_1_7b_k1_s42/metrics.json\n15697-    conclusion: success\n15698-    completed_at: '2026-05-24T22:32:27.386Z'\n15699:  d158_1_7b_rsft_s44_generate:\n15700-    status: DONE\n15701-    retry_count: 0\n15702-    created_at: '2026-05-24T08:29:12.272Z'\n15703-    updated_at: '2026-05-24T18:12:57.513Z'\n15704-    hypothesis: 1.7B RSFT k=1 seed=44 候选生成（N=8, T=0.7）。补全 3-seed 统计鲁棒性，解决 Reviewer\n--\n15714-      data_count: 3027\n15715-      model_name: Qwen3-1.7B\n15716-      seed: 44\n15717-      checkpoint_source: /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44\n15718-      pid: '302254'\n15719:      log_path: /root/autodl-tmp/d158_1_7b_rsft_s44_generate.log\n15720-    notes: 'Completed in ~9h. 3027 docs → 24216 outputs (8/doc). Output: /root/autodl-tmp/rsft_generations_1_7b_s44/generations.jsonl\n15721-      (244MB). Format compliance: 24214/24216 (100.0%). Diversity: mean=7.52/8, median=8.0/8.\n15722-      Truncation rate: 15.5%-27.4% across batches (last batch 16.4%), all above 10%\n15723-      threshold.'\n15724-    conclusion: success\n--\n15818-      docs_covered: 3027/3027\n15819-      format_ok: 24208/24216 (100.0%)\n15820-      mean_diversity: 7.40/8\n15821-      median_diversity: 8.0/8\n15822-    completed_at: '2026-05-25T03:57:57.663Z'\n15823:  d158_1_7b_rsft_s44_ced_score:\n15824-    status: DONE\n15825-    retry_count: 0\n15826-    created_at: '2026-05-24T18:13:38.408Z'\n15827-    updated_at: '2026-05-24T22:31:31.393Z'\n15828-    hypothesis: 1.7B seed=44 CED/NLI scoring + k=1 selection. 对 24216 个生成样本进行 CED\n15829-      评分并筛选 top-1。预期保留 ~3021 样本（与 s42/s43 一致）。D158 强制检查点：保留数与 3021 差异 >10% 则暂停 A3。\n15830:    parent: d158_1_7b_rsft_s44_generate\n15831-    spec:\n15832-      command: CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_score_filter\n15833-        --input_dir /root/autodl-tmp/rsft_generations_1_7b_s\n…[truncated 2024 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 101
+          },
+          "id": "event-001204"
+        },
+        {
+          "source_line": 1205,
+          "timestamp": "2026-05-25T04:01:34.467481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: critical] d158_1_7b_rsft_s44_eval 结果验证了 seed protocol 问题的严重性 + r3_grpo_bf16_g4_eval 确认 quantization claim\n\n## 1. d158_1_7b_rsft_s44_eval: seed-matched vs shared-SFT 差距实锤\n\n**Pipeline**: s44 SFT（sft_output_qwen3_1_7b_bf16_seed44）→ s44 generate → s44 CED score (3019 samples) → s44 RSFT train → eval\n**结果**: ign_f1 = **47.30**\n\n对比 1.7B RSFT 共享 SFT 结果：\n| Seed | SFT 来源 | CED 数据来源 | Ign-F1 |\n|------|---------|-------------|--------|\n| s42 | s42 SFT | s42 CED data | 51.22 |\n| s43 | s42 SFT | s42 CED data | 51.09 |\n| s44 | s42 SFT | s42 CED data | 51.25 |\n| **s44** | **s44 SFT** | **s44 CED data** | **47.30** |\n\n**关键对比**：同一个 RSFT seed=44，共享 SFT 得 51.25，seed-matched 得 47.30，差 **3.95pp**。\n\n共享 SFT 三 seed std=0.09pp；seed-matched 两点（s42=51.22, s44=47.30）range=3.92pp，估计 std≈2.77pp。**真实 pipeline variance 约是共享 SFT 估计的 30 倍**。\n\n### 对论文的影响\n\n1. **Abstract** \"lower cross-seed variance\" observation 在 1.7B seed-matched 数据下不成立——shared 的 std=0.09 vs seed-matched 的 range=3.92pp\n2. **Experiments.tex L70** 已加了 shared-base caveat，但 d158 结果提供了定量证据，建议加入：\"A seed-matched 1.7B run (s44 SFT → s44 CED → s44 RSFT) yields 47.30 Ign-F1, 3.95pp below the shared-base s44 (51.25), confirming that shared initialization substantially compresses variance.\"\n3. **Table 1/Table 6** 的 1.7B RSFT 行：如果要报 seed-matched variance，需等 s43 seed-matched（当前无）。如果只用 d158 s44 替换，则 mean 和 std 会大幅变化\n4. **Introduction L26** contribution 3 关于 \"lower cross-seed variance\" 需要进一步弱化或删除\n\n## 2. r3_grpo_bf16_g4_eval: quantization claim 确认\n\n**结果**: ign_f1 = **29.17**（远高于 collapse 阈值，QLoRA G=8 rel_f1=1.38/ign_f1=0.2167 为 catastrophic）\n\n但绝对值 29.17 远低于 bf16 G=8 的 45.49（-16.32pp），说明 G=4 虽不 collapse 但性能显著差。\n\n### 对论文 claim 的影响\n- \"quantization is the primary cause of collapse\" ✓ 确认——bf16 G=4 不 collapse\n- 但 G=4 vs G=8 性能差 16pp，说明 group size 对 GRPO 性能有实质影响（只是不导致 collapse）\n- 论文 §4.3 confound 讨论可加强：\"while G=4 does not trigger catastrophic collapse under bf16 (Ign-F1 29.17 vs. QLoRA's 2.17), G=8 substantially outperforms G=4 (45.49 vs 29.17), suggesting group size affects optimization quality without determining collapse.\"\n\n## 3. 当前待决事项优先级\n\n1. **[P0]** 修复 appendix hyperparameter table 的 3 项错误（上条 review 已提）\n2. **[P0]** 修复 experiments.tex L50 的 lr 描述错误\n3. **[P1]** 决定是否将 d158 seed-matched 数据纳入论文——如果纳入，需要更新 Table 1/6 和相关文本\n4. **[P2]** 14B s44 pipeline 还在 CED scoring 阶段，完成后可提供 14B seed-matched 数据点",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-001205"
+        },
+        {
+          "source_line": 1206,
+          "timestamp": "2026-05-25T04:01:39.576222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 5108
+          },
+          "id": "event-001206"
+        },
+        {
+          "source_line": 1207,
+          "timestamp": "2026-05-25T04:01:45.252881+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "d158_1_7b_rsft_s44 是完全 seed-matched pipeline（s44 SFT → s44 generate → s44 CED → s44 RSFT），ign_f1=47.30 远低于共享 SFT 的 51.09/51.25。这是关键验证数据。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-001207"
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "messages": [
+        {
+          "source_line": 1208,
+          "timestamp": "2026-05-25T04:01:45.896876+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:d158_14b_rsft_s44_ced_score]:\n实验 d158_14b_rsft_s44_ced_score failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-001208"
+        },
+        {
+          "source_line": 1209,
+          "timestamp": "2026-05-25T04:02:03.993723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "d158_14b_rsft_s44_ced_score",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+              "output_mode": "content",
+              "-C": "25"
+            }
+          },
+          "id": "event-001209"
+        },
+        {
+          "source_line": 1210,
+          "timestamp": "2026-05-25T04:02:04.044461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15998-        --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred\n15999-        --split dev --output_dir /root/autodl-tmp/eval_results/r3_grpo_bf16_g4_eval\n16000-        --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 42\n16001-      server: rtx5090-4x\n16002-      data_path: /root/autodl-tmp/data/docred\n16003-      data_count: 998\n16004-      model_name: Qwen3-4B + SFT + GRPO bf16 G=4 checkpoint-100\n16005-      seed: 42\n16006-      checkpoint_source: /root/autodl-tmp/grpo_ced_g4_bf16/checkpoint-100\n16007-      eval_data: docred dev (985 docs, 12275 triples)\n16008-      gpu_id: cuda:1\n16009-      pid: 343374\n16010-      log_path: /tmp/r3_grpo_bf16_g4_eval.log\n16011-      checkpoint_path: /root/autodl-tmp/eval_results/r3_grpo_bf16_g4_eval\n16012-    metrics:\n16013-      f1: 0.2873\n16014-      ign_f1: 0.2917\n16015-      evi_f1_joint: 0.2084\n16016-      evi_f1_tp: 0.7303\n16017-      edcr: 0.796\n16018-      format_ok: 985/985\n16019-      truncated: 387/985\n16020-      predictions: 18159\n16021-    conclusion: success\n16022-    completed_at: '2026-05-25T03:59:16.227Z'\n16023:  d158_14b_rsft_s44_ced_score:\n16024-    status: PREPARING\n16025-    retry_count: 0\n16026-    created_at: '2026-05-25T03:58:08.969Z'\n16027-    updated_at: '2026-05-25T04:01:36.196Z'\n16028-    hypothesis: 14B seed=44 CED/NLI scoring + k=1 selection. 对生成样本进行 CED 评分并筛选 top-1。预期保留\n16029-      ~3017 样本（与 s43 的 3017 一致）。\n16030-    parent: d158_14b_rsft_s44_generate\n16031-    spec:\n16032-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n16033-        base && CUDA_VISIBLE_DEVICES=2 python -m freige.training.rsft_score_filter\n16034-        --input_dir /root/autodl-tmp/rsft_generations_14b_s44 --output_path /root/autodl-tmp/rsft_scored_14b_s44\n16035-        --nli_model_path cross-encoder/nli-deberta-v3-base --selection_strategy top_k\n16036-        --top_k 1 --scoring_mode ced\"\n16037-      server: rtx5090-4x\n16038-      gpu:\n16039-      \n…[truncated 592 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001210"
+        },
+        {
+          "source_line": 1211,
+          "timestamp": "2026-05-25T04:02:11.756393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__tail_training_logs",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001211"
+        },
+        {
+          "source_line": 1212,
+          "timestamp": "2026-05-25T04:02:11.857292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-001212"
+        },
+        {
+          "source_line": 1213,
+          "timestamp": "2026-05-25T04:02:20.645174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "d158_14b_rsft_s44_ced_score",
+              "project": "faith-evidence-ie",
+              "n": "40"
+            }
+          },
+          "id": "event-001213"
+        },
+        {
+          "source_line": 1214,
+          "timestamp": "2026-05-25T04:02:21.852332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\\\\\", line 559, in http_backoff\\\", \\\"    return next(\\\", \\\"           ^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\\\\\", line 467, in _http_backoff_base\\\", \\\"    response = client.request(method=method, url=url, **kwargs)\\\", \\\"               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\\\\\", line 825, in request\\\", \\\"    return self.send(request, auth=auth, follow_redirects=follow_redirects)\\\", \\\"           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\\\\\", line 901, in send\\\", \\\"    raise RuntimeError(\\\\\\\"Cannot send a request, as the client has been closed.\\\\\\\")\\\", \\\"RuntimeError: Cannot send a request, as the client has been closed.\\\", \\\"\\\", \\\"During handling of the above exception, another exception occurred:\\\", \\\"\\\", \\\"Traceback (most recent call last):\\\", \\\"  File \\\\\\\"<frozen runpy>\\\\\\\", line 198, in _run_module_as_main\\\", \\\"  File \\\\\\\"<frozen runpy>\\\\\\\", line 88, in _run_code\\\", \\\"  File \\\\\\\"/root/autodl-tmp/freige/freige/training/rsft_score_filter.py\\\\\\\", line 604, in <module>\\\", \\\"    main()\\\", \\\"  File \\\\\\\"/root/autodl-tmp/freige/freige/training/rsft_score_filter.py\\\\\\\", line 533, in main\\\", \\\"    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\\", \\\"                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/autodl-tmp/freige/freige/rewards/ced_reward.py\\\\\\\", line 146, in __init__\\\", \\\"    self.tokenizer = AutoTokenizer.from_pretrained(model_name)\\\", \\\"                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformer\n…[truncated 1578 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1207
+          },
+          "id": "event-001214"
+        },
+        {
+          "source_line": 1215,
+          "timestamp": "2026-05-25T04:02:39.364087+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "NLI 模型下载失败——`cross-encoder/nli-deberta-v3-base` 未缓存到本地，且网络连接被关闭（httpx client closed）。之前 1.7B CED scoring 成功是因为模型已缓存。Agent 重试时需要先 `source /etc/network_turbo` 启用代理或指定本地缓存路径。这是常见的 AutoDL 网络问题，不影响实验设计。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-001215"
+        }
+      ]
+    },
+    {
+      "number": 75,
+      "messages": [
+        {
+          "source_line": 1216,
+          "timestamp": "2026-05-25T04:02:39.884558+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001216"
+        },
+        {
+          "source_line": 1217,
+          "timestamp": "2026-05-25T04:03:32.196542+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 论文引用的 QLoRA GRPO 实验是 `mvp2_grpo_ced_kl001_r4`（G=8, lr=5e-5, kl=0.01），不是早期的 mvp2_grpo_ced（G=4, FAILED）或 lr5e6 系列（KILLED）。任何超参数核对必须以 r4 为准\n- RSFT seed protocol：4B/8B/LLaMA 的 RSFT seeds 共享 s42 SFT + s42 CED data，论文已加 caveat（experiments.tex L70, method.tex L38）。14B 用 seed-matched SFT。这是已知局限，不是 bug\n- 1.7B d158 seed-matched s44 结果（ign_f1=47.30）已证实共享 SFT 压缩 variance ~30×。这是 reviewer 最关注的 integrity 问题\n- NLI 模型 `cross-encoder/nli-deberta-v3-base` 在服务器上需要离线可用或 network_turbo 启用，否则 CED scoring 会 OSError 失败（刚在 14B s44 CED 踩过）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x (root) + bjb2-12179 (root)\n- 代码：/root/autodl-tmp/freige\n- Python：/root/miniconda3/bin/python（conda base）\n- 模型：/root/autodl-tmp/models/（Qwen3-4B, Qwen3-1.7B, Qwen3-8B, Qwen/Qwen3-14B, Llama-3.1-8B）\n- HF cache：/root/autodl-tmp/.hf_cache\n- 数据：/root/autodl-tmp/data/docred\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/\n- 活跃进程：d158_14b_rsft_s44_ced_score 刚 FAILED（PID 353179 已退出），其余无 RUNNING\n\n### 3. 📊 当前状态\n**刚完成的审查**：\n- 发布了 2 条 CRITICAL review：(1) appendix hyperparameter table 有 3 项错误（G=4→8, lr=5e-6→5e-5, kl=0→0.01）+ experiments.tex L50 lr 描述错误；(2) d158_1_7b_rsft_s44 seed-matched 结果（47.30 vs 共享 SFT 51.25，差 3.95pp）证实 variance 被 30× 压缩\n- r3_grpo_bf16_g4_eval 完成：ign_f1=29.17，确认 bf16 G=4 不 collapse（支持 quantization claim），但绝对值远低于 G=8 的 45.49\n- 14B precision/recall decomposition + EDCR partial correlation 分析均完成，结果支持论文 claim\n- bib key chen2025docksrag→xu2025docksrag 修正已完成\n\n**等待中**：\n- d158_14b_rsft_s44_ced_score FAILED（NLI 模型下载失败 OSError），等 Agent 重试\n- Director 对我两条 CRITICAL review 的响应（超参数表修复 + seed-matched variance 数据处理决策）\n\n### 4. 📋 待办\n- d158_14b_rsft_s44_ced_score 重试成功 → 验证 k=1 retained samples 数量（预期 ~3017），确认 CED scoring 正常\n- 14B s44 CED→RSFT train→eval 全 pipeline 完成 → 对比 14B seed-matched vs shared-SFT variance（14B 声称用 seed-matched SFT，需验证）\n- Director 回复超参数表修复 → 验证修改是否覆盖所有 5 处错误（appendix table 3 项 + L50 lr + L3 text）\n- Director 决定是否将 d158 seed-matched 数据纳入论文 → 如果纳入，审查 Table 1/6 更新和 variance 文本修改\n- DPO β sweep / single-objective RSFT 如果启动 → 标准审查流程\n\n### 5. 🎯 战略上下文\n**核心结论链**：quantization causes GRPO collapse（mvp2 QLoRA G=8 rel_f1=0.2167 vs plan_011 bf16 G=8 rel_f1=45.49）→ RSFT avoids decoupling through filtering not gradients → evidence tax scale-dependent（1.7B beneficial, ≥4B neutral）→ EDCR diagnostic validated（per-relation ρ=-0.79, cross-method ρ=-0.96）\n\n**最容易判错的事**：\n1. 超参数表是多个 ARCHIVED 实验的嵌合体——G=4 来自 mvp2_grpo_ced（FAILED），lr=5e-6 来自 lr5e6 系列（KILLED），kl=0 来自 r5。Paper Agent 可能只修了 G 没修 lr/kl，需逐项核对\n2. \"QLoRA 和 bf16 GRPO 都用 G=8\" 是正确的（已验证），但早期 mvp2 entries 有 G=4 的会迷惑人——那些都是 ARCHIVED/FAILED，不是论文引用的实验\n3. d158_1_7b s44 的 47.30 是真实 seed-matched 结果（SFT+generate+CED 全 s44），不是 bug。它证明 shared-SFT variance 估计完全不可靠\n4. r3_grpo_bf16_g4 的 batch size confound 方向有利（QLoRA effective batch=16 更大却 collapse），所以不削弱 quantization claim\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-001217"
+        }
+      ]
+    }
+  ]
+}

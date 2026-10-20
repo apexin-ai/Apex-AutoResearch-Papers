@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e4cc959609f58183174",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code ced scoring pipeline prep",
+  "task_key": "worker_code_ced_scoring_pipeline_prep_20260516T174005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ced_scoring_pipeline_prep_20260516T174005_result.json",
+    "occurrence": 1,
+    "bytes": 307,
+    "sha256": "dd181941e475ceddbc708f465bd9c7b601d0598ea18212cc4ac4957023d01a3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "memory.md 已更新。\n\n**总结**：CED scoring pipeline 完全就绪（代码 + NLI 模型 + 命令模板），唯一阻塞项是 3 个 candidate generation 作业尚未完成（1.7B ~36%，8B ~29%，LLaMA ~18%）。1.7B 预计明早 ~08:00 最先完成，届时可立即启动 scoring。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ced-scoring-pipeline-prep.md"
+}

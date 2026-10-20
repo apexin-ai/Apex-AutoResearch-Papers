@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99d5e6d740198dc554a7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose full gpu progress and cascade",
+  "task_key": "worker_diagnose_full-gpu-progress-and-cascade_20260522T073135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_full-gpu-progress-and-cascade_20260522T073135_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "b629ddc74bfc10c138054b374a291c4e3bed376ce207d337c007d1844487f7f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n## 完成的实验\n\n**test_eval_4b_sft_s42_no_evi** → DONE\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | 0.2219 |\n| precision | 0.2753 |\n| recall | 0.1859 |\n| 配对 with-evi ign_f1 | 0.2232 |\n| **test fair_tax** | **-0.13pp** (evidence 略有帮助) |\n\n与 dev fair_tax +0.25±0.47pp 一致，test 上也确认 4B SFT evidence tax 中性。Registry 已更新为 DONE/success。\n\n## 仍在运行\n\n| 实验 | GPU | 进度 | 预计完成 |\n|------|-----|------|---------|\n| dev_eval_4b_rsft_ced_s42_v2 | cuda:0 | 553/985 (56%) | ~3h后 |\n| test_eval_llama_sft_s42_no_evi | cuda:3 | 运行中 2h54m | 待定 |\n\n## 未提交的后续任务\n\ndev_eval_4b_rsft_ced_s42_v2 尚未完成（metrics.json 不存在），cuda:1 和 cuda:2 空闲。等 dev eval 完成后根据 ign_f1 决定是否提交 test eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-full-gpu-progress-and-cascade.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e4f94514c06faa496b2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix 14b eval bf16 resubmit",
+  "task_key": "worker_fix_14b_eval_bf16_resubmit_20260519T085020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_14b_eval_bf16_resubmit_20260519T085020_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "401a6b436b325eef780c108177773ad6cca053cae502fd86690a842e802f9d0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 正常运行，无 OOM：\n\n| 实验 | exp_id | PID (python) | GPU | 显存占用 |\n|---|---|---|---|---|\n| 14B SFT eval | `plan017_14b_sft_eval_r2` | 633119 | cuda:1 | 30760 MiB / 32607 MiB |\n| 14B no-evidence eval | `plan017_14b_sft_no_evidence_eval_r2` | 633203 | cuda:2 | 30866 MiB / 32607 MiB |\n\n**汇报：**\n\n- **脚本修改**：两个脚本均已 `--quantize` → `--no-quantize`，`--batch_size 4` → `--batch_size 2`\n- **PID**：SFT eval = 633106 (tmux) / 633119 (python)，no-evidence eval = 633190 (tmux) / 633203 (python)\n- **GPU 显存**：cuda:1 30760 MiB，cuda:2 30866 MiB（总 32607 MiB，headroom ~1.8GB）\n- **OOM**：未发生，batch_size=2 下 14B bf16 单卡可行，但余量极小\n- **Cron 监控**：两个实验均已注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-14b-eval-bf16-resubmit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bca21995826fd041f7f9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check d112 completion",
+  "task_key": "worker_ops_check_d112_completion_20260519T184025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_d112_completion_20260519T184025_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "c2b162b7d118f82c97dd7e2f93408992993d2bdf12e41cde0955d117dcb8b53b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**d112_rsft_no_evidence_eval_r3 已完成。** 全部 metrics：\n\n| Metric | Value |\n|--------|-------|\n| **F1** | 0.5341 |\n| **Ign-F1** | 0.5246 |\n| Precision | 0.5338 |\n| Recall | 0.5344 |\n| Ign-Precision | 0.5122 |\n| Ign-Recall | 0.5377 |\n| Evi-F1 | 0.0000 |\n| EDCR | 0.0000 |\n| Format OK | 983/985 (99.8%) |\n| Truncated | 144/985 |\n| Predictions | 16,018 |\n| Inference time | 9288s (~2h35m) |\n\nConfig 确认 `no_evidence: true`，模型 = `rsft_output_4b_sft_s44_bf16`，base = Qwen3-4B，SFT adapter = `sft_output_seed44`。\n\nEvi-F1 和 EDCR 为 0 符合预期（no-evidence 模型不输出 evidence）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-d112-completion.md"
+}

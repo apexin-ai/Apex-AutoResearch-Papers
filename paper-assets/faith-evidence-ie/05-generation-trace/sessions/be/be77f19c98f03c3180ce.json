@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be77f19c98f03c3180ce",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops update roadmap",
+  "task_key": "worker_ops_update_roadmap_20260519T171259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_update_roadmap_20260519T171259_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "f46afd01701d7af0d9f2428d2b18a40db2fa56af7609d481ae03b30f2febbb94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP.md 已更新。主要变更：\n\n- **Scaling table**: 新增 14B 行 (0.5507)，8B SFT 从 2-seed 0.4866 更新为 3-seed 0.5019，4B 加入 D112 Method B 结果 (0.5152)，8B Δ 从 +5.48pp 修正为 +3.95pp\n- **D112**: 标记完成，ign_f1=0.5152 (+4.18pp over s44 baseline)\n- **14B evidence tax (D117)**: tax=0.03pp≈0，14B 容量足够\n- **1.7B claim (D118)**: \"surpasses\" 降级为 \"comparable\"，variance stabilization 独立化\n- **Tier 1 实验**: D112、8B SFT s43、14B SFT 全部标记 ✅；8B RSFT s43 移入 Tier 2\n- **GPU 分布**: 更新为当前状态（cuda:2 空闲）\n- **关键风险**: D112 标记已解决，1.7B/14B 风险项更新为最新结论"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-update-roadmap.md"
+}

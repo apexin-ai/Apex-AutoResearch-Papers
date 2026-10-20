@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e80081c00a7dd0fbd846",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "harvest s43 r2 and progress",
+  "task_key": "worker_harvest_s43_r2_and_progress_20260519T055844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_s43_r2_and_progress_20260519T055844_result.json",
+    "occurrence": 1,
+    "bytes": 1295,
+    "sha256": "5ce3a642307266af46d1977e33ad4dcc21fb09365bcd0d0eb8d424381550e368"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总报告：\n\n---\n\n## 实验状态汇总\n\n### 1. plan019_1_7b_rsft_s43_r2 — 已完成\n- **Final loss**: 0.5526 @ step 567/567\n- Loss 趋势: 520→0.5352, 530→0.5519, 540→0.5683, 550→0.5482, 560→0.5526\n- checkpoint-567 完整（adapter_model.safetensors 278MB + 全部文件）\n- Registry metrics 已更新\n\n### 2. 三个 running 实验进度\n\n| 实验 | GPU | 进度 | 最新 loss | 剩余 steps |\n|------|-----|------|-----------|------------|\n| d112_rsft_s44_train | cuda:0 (29.6/32.6 GB) | **350/567** (62%) | 0.6624 | 217 |\n| plan019_1_7b_rsft_s44_r2 | cuda:3 (27.5/32.6 GB) | **300/567** (53%) | 0.5459 | 267 |\n| plan017_14b_sft | cuda:1+2 (16.1+25.2/32.6 GB) | **48/144** (33%) | 0.6035 | 96 |\n\n### 3. GPU 显存\n\n| GPU | 显存占用 | 利用率 | 进程 PID |\n|-----|----------|--------|----------|\n| cuda:0 | 29.6 / 32.6 GB | 19% | 613083 |\n| cuda:1 | 16.1 / 32.6 GB | 84% | 611578 |\n| cuda:2 | 25.2 / 32.6 GB | 82% | 611579 |\n| cuda:3 | 27.5 / 32.6 GB | 99% | 618028 |\n\n四卡全部在用，无空闲 GPU。所有 PID 与 registry 记录的略有偏差（d112 registry PID 613075 vs 实际 613083，plan019_s44 registry 618021 vs 实际 618028），可能是子进程。三个实验都在正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-s43-r2-and-progress.md"
+}

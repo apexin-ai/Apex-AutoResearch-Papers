@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ab76af5b3d909b80fa03",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "infra smoke test zero2",
+  "task_key": "worker_infra_smoke-test-zero2_20260514T054853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_smoke-test-zero2_20260514T054853.log",
+    "occurrence": 1,
+    "bytes": 603564,
+    "sha256": "9b43e7ab9b51da02e423d13c70713b50d2d5d6a2ad025abbed75e88d442a61a2"
+  },
+  "statistics": {
+    "messages": 287,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 1,
+      "assistant": 79,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 287,
+      "chunks": [
+        {
+          "path": "ab76af5b3d909b80fa03-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab76af5b3d909b80fa03-part-0002.json",
+          "message_count": 107
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-smoke-test-zero2.md"
+}

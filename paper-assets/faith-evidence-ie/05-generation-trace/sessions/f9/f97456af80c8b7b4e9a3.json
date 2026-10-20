@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f97456af80c8b7b4e9a3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis 1 7b truncation subset",
+  "task_key": "worker_analysis_1_7b_truncation_subset_20260516T142416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_1_7b_truncation_subset_20260516T142416_result.json",
+    "occurrence": 1,
+    "bytes": 1039,
+    "sha256": "bb97c86c3d86ff6d9cac1e66030f024967d35e096ecb0bc0cdc51704c96158b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结论\n\n**公平子集（442篇，两边均未截断）上的真实 evidence tax = +0.0616**，with-evidence 模型仍显著优于 no-evidence。\n\n核心数据：\n\n| | Ign-F1 | Ign-P | Ign-R |\n|--|--------|-------|-------|\n| no-evidence | 0.5704 | 0.5140 | 0.6406 |\n| with-evidence | **0.6319** | **0.6079** | **0.6579** |\n\n关键发现：\n\n1. **截断确实是偏差来源**——全量 tax +0.0804 中约 0.02 来自截断混淆（no-evi 截断率 50.9% vs with-evi 31.9%），但排除后 gap 仍有 +0.0616\n2. **evidence generation 起正则化作用**——with-evi Precision 比 no-evi 高 9.4pp（0.608 vs 0.514），no-evi 过度预测（4513 vs 3991 triples），evidence 约束减少了幻觉\n3. **不存在\"小模型 evidence 负担\"**——即使在公平条件下，with-evidence 在 P 和 R 上都更优，per-doc 胜负比 218:125\n\nDirector 假设\"截断混淆结果\"成立，但方向判断需修正：真实 tax 仍为正，evidence generation 对 1.7B 模型是净正向的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-1-7b-truncation-subset.md"
+}

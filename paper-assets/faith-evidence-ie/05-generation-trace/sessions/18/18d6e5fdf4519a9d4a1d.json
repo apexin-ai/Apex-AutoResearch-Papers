@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18d6e5fdf4519a9d4a1d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis 3seed rsft summary",
+  "task_key": "worker_analysis_3seed-rsft-summary_20260515T162743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_3seed-rsft-summary_20260515T162743_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "9adc3f6b70fee10a770acfc54bbd3261ab626060166f609ef890bf25c6fd1c10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。写入 memory.md 的全景分析要点：\n\n- **RSFT 3-seed**: rel_f1 = 0.4596 ± 0.0128, evi_f1 = 0.8143 ± 0.0051, EDCR = 0.6434 ± 0.0115。vs SFT +5.39pp / +1.64pp / −6.84pp，std 2.8%，结果稳定。\n- **方法排序**: CED reranker (0.4864) > RSFT mean (0.4596) > bf16 GRPO (0.4549) >> QLoRA GRPO (0.2167)\n- **四个决策性洞察**: (1) RSFT ceiling 受限于 rejection pool；(2) CED reranker 是 upper-bound reference，8x 推理成本；(3) forgetting 确认 QLoRA-specific；(4) EDCR drop 是 recall-oriented training 的固有 trade-off，非 truncation artifact\n- **待完成**: plan_015 隔离 confound、plan_014 SFT-no-evidence、plan_001 flat-NLI ablation"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-3seed-rsft-summary.md"
+}

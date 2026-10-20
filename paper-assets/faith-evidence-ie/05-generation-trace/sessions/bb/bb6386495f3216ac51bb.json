@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb6386495f3216ac51bb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops read kl001 ckpt30 results",
+  "task_key": "worker_ops_read-kl001-ckpt30-results_20260514T212719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read-kl001-ckpt30-results_20260514T212719_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "eaa76e2a12a5d5b2efa82dcdc758a6b97c15ac37904e23a914c6615ea8bc74af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**kl001_r4 ckpt-30 评估结果：**\n\n| 指标 | ckpt-30 |\n|------|---------|\n| **Rel-F1** | **0.0338** |\n| Precision | 0.0459 |\n| Recall | 0.0267 |\n| **Evi-F1** | **0.5889** |\n| **EDCR** | **0.9798** |\n| pred_count | 7085 (n_predictions=8127) |\n| truncated | 1/985 |\n| format_compliance | 100% |\n| 推理耗时 | 3462s |\n\n**与已知 kl001 checkpoint 对比：**\n\n| checkpoint | Rel-F1 | Evi-F1 | EDCR | pred_count |\n|-----------|--------|--------|------|------------|\n| ckpt-10 | 0.003 | 0.720 | 0.998 | 11621 |\n| **ckpt-30** | **0.034** | **0.589** | **0.980** | 7085 |\n| ckpt-50 | 0.156 | — | — | — |\n| ckpt-100 | 0.217 | — | — | — |\n| SFT baseline | 0.406 | 0.798 | 0.712 | — |\n\nckpt-30 的 Rel-F1 从 ckpt-10 的 0.003 提升到 0.034，有进步但仍然很低。Evi-F1 反而从 0.720 下降到 0.589。EDCR 保持高位(0.98)说明模型仍在大量引用 distractor 文档。整体趋势：关系抽取能力在缓慢恢复，但到 ckpt-100 也只有 0.217，远低于 SFT baseline 的 0.406。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-kl001-ckpt30-results.md"
+}

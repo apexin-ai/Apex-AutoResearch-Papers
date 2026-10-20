@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdad97ebf24552940052",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis verify ced s42 s44 hyperparams",
+  "task_key": "worker_analysis_verify_ced_s42_s44_hyperparams_20260516T002605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verify_ced_s42_s44_hyperparams_20260516T002605_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "782ad85de8cba9e0737f79c061c510dd77de18ce1328b158114b5ffd6b41654b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。所有证据来源：`training_args.bin`、`adapter_config.json`、训练日志。\n\n## 对比结果\n\n| 参数 | s42 实际 | s44 实际 | s43/s45 r3 目标 | 一致？ |\n|------|---------|---------|----------------|--------|\n| per_device_batch_size | 4 | 4 | 4 | ✓ |\n| gradient_accumulation_steps | 4 | 4 | 4 | ✓ |\n| weighted_sampling | True | True | True | ✓ |\n| data_path | rsft_filtered/rsft_train.jsonl | rsft_filtered/rsft_train.jsonl | rsft_filtered/rsft_train.jsonl | ✓ |\n| data_count | 2718 | 2718 | 2718 | ✓ |\n| learning_rate | 2e-5 | 2e-5 | 2e-5 | ✓ |\n| num_epochs | 3 | 3 | 3 | ✓ |\n| lora_rank | 64 | 64 | 64 | ✓ |\n| lora_alpha | 128 | 128 | 128 | ✓ |\n| seed | 42 | 44 | 43/45 | ✓ |\n| bf16 | True | True | — | ✓ |\n| warmup_steps | 100 | 100 | — | ✓ |\n| lr_scheduler | LINEAR | LINEAR | — | ✓ |\n\n**结论：s42/s44 原始训练超参与 s43/s45 r3 完全一致。** 四个 seed 的 paired t-test 前提条件满足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-verify-ced-s42-s44-hyperparams.md"
+}

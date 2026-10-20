@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f44f3cbf6c617678636",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose harvest and resubmit cuda123",
+  "task_key": "worker_diagnose_harvest-and-resubmit-cuda123_20260520T153701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_harvest-and-resubmit-cuda123_20260520T153701_result.json",
+    "occurrence": 1,
+    "bytes": 696,
+    "sha256": "ba9e3ef715575b89828e1ec201d484d88a44157d97f0f5f18dc9f384cb179846"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报：3 个实验全部仍在运行\n\n| 实验 | GPU | PID | 运行时间 | 进度 | 预估剩余 |\n|------|-----|-----|---------|------|---------|\n| eval_llama_sft_s43_no_evidence | cuda:1 | 27322 | 1h29m | **183/247** (74%) | ~30min |\n| eval_llama_sft_s44_no_evidence | cuda:2 | 29983 | 46min | **92/247** (37%) | ~70min |\n| eval_llama_rsft_s44_no_evidence | cuda:3 | 30188 | 46min | **105/247** (43%) | ~55min |\n\nGPU 利用率 85-91%，每张卡占用 ~18.9GB，推理正常无报错。\n\n- **s43** 最先完成，约 30 分钟后\n- **rsft_s44** 其次，约 55 分钟\n- **s44** 最后，约 70 分钟\n\n无需干预，等完成后 harvest 结果即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-harvest-and-resubmit-cuda123.md"
+}

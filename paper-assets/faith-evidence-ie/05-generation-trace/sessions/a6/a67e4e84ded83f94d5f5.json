@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a67e4e84ded83f94d5f5",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "diag mvp2 rsft gen s2 fail",
+  "task_key": "worker_diag_mvp2_rsft_gen_s2_fail_20260515T043833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_mvp2_rsft_gen_s2_fail_20260515T043833.log",
+    "occurrence": 1,
+    "bytes": 637931,
+    "sha256": "0cc35cfd381e81b7df1a344de71e50273b26acdb2987e9416631d1b65feaa3cc"
+  },
+  "statistics": {
+    "messages": 157,
+    "user_turns": 0,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 63,
+      "tool_result": 63,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 157,
+      "chunks": [
+        {
+          "path": "a67e4e84ded83f94d5f5-part-0001.json",
+          "message_count": 153
+        },
+        {
+          "path": "a67e4e84ded83f94d5f5-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-mvp2-rsft-gen-s2-fail.md"
+}

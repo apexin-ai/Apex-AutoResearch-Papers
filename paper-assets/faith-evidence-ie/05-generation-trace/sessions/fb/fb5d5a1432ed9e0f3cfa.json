@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb5d5a1432ed9e0f3cfa",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp d158 1 7b rsft s44 ced score",
+  "task_key": "worker_exp_d158_1_7b_rsft_s44_ced_score_20260524T181408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_d158_1_7b_rsft_s44_ced_score_20260524T181408_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "987ed9ea4b912eee8bcecdaa2df1e4aaeb09b5a3b5492a92200d87ad94846fdf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功提交并正在运行。\n\n**汇总：**\n- **命令**: `CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations_1_7b_s44 --output_path /root/autodl-tmp/rsft_scored_1_7b_s44 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 1 --scoring_mode ced`\n- **PID**: 325535（tmux session: `d158_ced_score`）\n- **GPU**: cuda:0\n- **状态**: RUNNING，已加载 24216 records / 3027 unique docs，NLI 模型加载中\n- **输出目录**: `/root/autodl-tmp/rsft_scored_1_7b_s44`\n- **日志**: `~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_ced_score.log`\n\n3027 unique docs 与 s42 的 3021 接近（差异 0.2%），符合预期。完成后需检查 `rsft_report.json` 中 `selected_records` 的值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d158-1-7b-rsft-s44-ced-score.md"
+}

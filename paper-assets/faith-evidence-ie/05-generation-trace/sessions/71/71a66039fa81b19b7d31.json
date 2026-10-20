@@ -1,0 +1,852 @@
+{
+  "schema_version": "1.0",
+  "id": "71a66039fa81b19b7d31",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "code fair comparison script",
+  "task_key": "worker_code_fair-comparison-script_20260520T160300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_fair-comparison-script_20260520T160300.jsonl",
+    "occurrence": 1,
+    "bytes": 41080,
+    "sha256": "eacd5f7d9f4e1f77f4169ec2e5c023de52fe90f6fcb9cf2cb4a5f7bb4593cc0f"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T16:05:11.972334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T16:05:11.972759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T16:05:11.972943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T16:05:11.973076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/freige/freige/eval/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T16:05:11.973200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/freige/scripts/analysis/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T16:05:11.973465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3seed_summary.json\\\\n8b_sft_s43\\\\nbf16_g8_step30\\\\nbf16_g8_step50\\\\nced_reranker_dryrun\\\\nced_reranker_poc\\\\nced_reranker_poc_dryrun\\\\ncross_method_table.json\\\\nd076_paired_ttest_report.json\\\\nd076_paired_ttest_results.json\\\\nd076_paired_ttest_results.md\\\\nd076_seed_summary.json\\\\nd102_1_7b_k1_s42\\\\nd102_1_7b_k1_s42.log\\\\nd102_8b_k1_s42\\\\nd102_8b_k1_s43\\\\nd102_llama_k1_s42\\\\nd102_llama_k1_s42.log\\\\nd102_llama_k1_s43\\\\nd102_llama_k1_s43.log\\\\nd111_4b_sft_s42_reeval\\\\nd112_rsft_bf16\\\\nd112_rsft_from_sft_s44\\\\ndpo_ced_1ep\\\\ndpo_ced_1ep_fixed\\\\ndpo_ced_ckpt400\\\\nedcr_analysis.json\\\\nedcr_analysis_r2b.md\\\\nedcr_diagnostic.json\\\\nedcr_diagnostic.tex\\\\nedcr_diagnostic_table.csv\\\\nedcr_diagnostic_table.md\\\\nedcr_diagnostic_v2.json\\\\nedcr_diagnostic_v2.tex\\\\nedcr_per_relation_analysis.json\\\\nedcr_per_relation_analysis.md\\\\neval_llama_rsft_k1_s43\\\\neval_llama_rsft_s42_no_evidence\\\\neval_llama_rsft_s43_no_evidence\\\\neval_llama_rsft_s44_no_evidence\\\\neval_llama_sft_s42_no_evidence_std\\\\neval_llama_sft_s43_no_evidence\\\\neval_llama_sft_s44_no_evidence\\\\nevi_f1_joint_comparison.json\\\\nfig_edcr_relations.pdf\\\\nfig_edcr_relations.png\\\\ngrpo_bf16_g4_ckpt100_eval\\\\ngrpo_bf16_g4_ckpt200_eval\\\\ngrpo_ced_kl001\\\\ngrpo_ced_kl001_step100\\\\ngrpo_ced_lr5e6\\\\ngrpo_ced_lr5e6_ckpt60\\\\ngrpo_ced_lr5e6_rp\\\\ngrpo_extract_r4_step10\\\\ngrpo_flatnli_r3\\\\ngrpo_g8_bf16\\\\ngrpo_g8_bf16_ckpt100\\\\nllama_3_1_8b_no_evidence_eval\\\\nllama_3_1_8b_sft_eval\\\\nlr5e6_r1_ckpt100\\\\nlr5e6_r1_ckpt40\\\\nlr5e6_r1_ckpt60\\\\nlr5e6_r1_ckpt80\\\\npaper_metrics_corrected.md\\\\npaper_table_data.json\\\\nplan010_nli_large_ablation\\\\nplan019_1_7b_sft_s43_eval\\\\nplan019_1_7b_sft_s44_eval\\\\nplan019_8b_sft_s44_eval\\\\nplan019_8b_sft_s44_eval.log\\\\nplan_002_test_rsft_s43\\\\nplan_002_test_rsft_s43.log\\\\nplan_002_test_rsft_s44\\\\nplan_006_llama_rsft_r3_eval\\\\nplan_006_llama_rsft_seed43_eval\\\\nplan_006_llama_rsft_seed43_eval_r2\\\\nplan_006_llama_rsft_test\\\\nplan_006_llama_rsft_test.log\\\\nplan_0\n…[truncated 2025 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T16:05:11.973660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\nbatch_eval.py\\\\nced_evidence_filter.py\\\\nced_reranker.py\\\\ncross_method_table.py\\\\nevaluator.py\\\\nevaluator.py.bak\\\\nfind_best_checkpoint.py\\\\ninference.py\\\\ninference.py.bak\\\\npost_hoc_retrieval.py\\\\ntest_inference.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T16:05:11.973948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T16:05:11.974128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/freige/scripts/analysis/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T16:05:11.974329+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"deep_error_analysis.py\\\\nevidence_tax_analysis.py\\\\nevidence_tax_plots.py\\\\nper_relation_1_7b_llama.py\\\\nresults\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T16:05:11.974492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/freige/freige/eval/evaluator.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T16:05:11.974775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"DocRED 关系抽取评测模块。\\\\n\\\\n指标:\\\\n  - F1 / Ign-F1: 关系三元组级别 micro-F1，Ign-F1 排除训练集中出现的三元组\\\\n  - Evi-F1: 对正确预测的三元组，计算 evidence 句子级 F1\\\\n  - EDCR: Evidence Distractor Citation Rate，预测 evidence 中非 gold 的比例\\\\n\\\\n输入: 预测列表 + gold 标注列表（每个元素为文档级标注）\\\\n输出: 指标字典\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nfrom collections import defaultdict\\\\nfrom typing import Optional\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef _triple_key(doc_id: str, head: str, tail: str, relation: str) -> tuple:\\\\n    return (doc_id, head.lower().strip(), tail.lower().strip(), relation.lower().strip())\\\\n\\\\n\\\\nclass DocREDEvaluator:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"DocRED 评测器。\\\\n\\\\n    Args:\\\\n        train_triples: 训练集中的三元组集合，用于计算 Ign-F1。\\\\n                       每个元素为 (doc_title, head_name, tail_name, relation)。\\\\n                       为 None 时 Ign-F1 = F1。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, train_triples: Optional[set[tuple]] = None, train_facts: Optional[set[tuple]] = None):\\\\n        self.train_triples = train_triples or set()\\\\n        self.train_facts = train_facts or set()\\\\n\\\\n    @classmethod\\\\n    def from_train_file(cls, train_path: str) -> \\\\\\\"DocREDEvaluator\\\\\\\":\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"从训练集 JSON 文件构建 evaluator，自动提取训练集三元组。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        from freige.data.docred_processor import DOCRED_REL_INFO\\\\n\\\\n        with open(train_path) as f:\\\\n            train_data = json.load(f)\\\\n\\\\n        train_triples = set()\\\\n        train_facts = set()\\\\n        for doc in train_data:\\\\n            doc_id = doc.get(\\\\\\\"title\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            vertex_set = doc[\\\\\\\"vertexSet\\\\\\\"]\\\\n            for label in doc.get(\\\\\\\"labels\\\\\\\", []):\\\\n                h_name = vertex_set[label[\\\\\\\"h\\\\\\\"]][0][\\\\\\\"name\\\\\\\"]\\\\n                t_name = vertex_set[label[\\\\\\\"t\\\\\\\"]][0][\\\\\\\"name\\\\\\\"]\\\\n                rel_name = DOCRED_REL_INFO.get(label[\\\\\\\"r\\\\\\\"], label[\\\\\\\"r\\\\\\\"])\\\\n                train_triples.add(\\\\n                    \n…[truncated 7276 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T16:05:11.974959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/sft/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T16:05:11.975095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T16:05:11.975216+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/eval_llama_sft_s42_no_evidence_std/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T16:05:11.975413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"metrics.json\\\\npredictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T16:05:11.975568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/freige/scripts/analysis/evidence_tax_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T16:05:11.975843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport os\\\\nimport sys\\\\nfrom collections import defaultdict, Counter\\\\n\\\\nRESULTS_DIR = \\\\\\\"/root/autodl-tmp/freige/scripts/analysis/results\\\\\\\"\\\\nos.makedirs(RESULTS_DIR, exist_ok=True)\\\\n\\\\nPAIRS = {\\\\n    \\\\\\\"Qwen3-1.7B\\\\\\\": {\\\\n        \\\\\\\"with\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval/predictions.json\\\\\\\",\\\\n        \\\\\\\"without\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3/predictions.json\\\\\\\",\\\\n    },\\\\n    \\\\\\\"Qwen3-4B\\\\\\\": {\\\\n        \\\\\\\"with\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/d111_4b_sft_s42_reeval/predictions.json\\\\\\\",\\\\n        \\\\\\\"without\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/plan_014_no_evidence_eval_d076/predictions.json\\\\\\\",\\\\n    },\\\\n    \\\\\\\"Qwen3-8B\\\\\\\": {\\\\n        \\\\\\\"with\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/qwen3_8b_sft_eval/predictions.json\\\\\\\",\\\\n        \\\\\\\"without\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/predictions.json\\\\\\\",\\\\n    },\\\\n    \\\\\\\"Llama-3.1-8B\\\\\\\": {\\\\n        \\\\\\\"with\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval/predictions.json\\\\\\\",\\\\n        \\\\\\\"without\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval/predictions.json\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\nMETRICS_PAIRS = {\\\\n    \\\\\\\"Qwen3-1.7B\\\\\\\": {\\\\n        \\\\\\\"with\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval/metrics.json\\\\\\\",\\\\n        \\\\\\\"without\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3/metrics.json\\\\\\\",\\\\n    },\\\\n    \\\\\\\"Qwen3-4B\\\\\\\": {\\\\n        \\\\\\\"with\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/d111_4b_sft_s42_reeval/metrics.json\\\\\\\",\\\\n        \\\\\\\"without\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/plan_014_no_evidence_eval_d076/metrics.json\\\\\\\",\\\\n    },\\\\n    \\\\\\\"Qwen3-8B\\\\\\\": {\\\\n        \\\\\\\"with\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/qwen3_8b_sft_eval/metrics.json\\\\\\\",\\\\n        \\\\\\\"without\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/m\n…[truncated 7257 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T16:05:11.976010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -100 /root/autodl-tmp/eval_results/eval_llama_sft_s42_no_evidence_std/predictions.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T16:05:11.976221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"doc_id\\\\\\\": \\\\\\\"Skai TV\\\\\\\",\\\\n    \\\\\\\"raw_output\\\\\\\": \\\\\\\"[{\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Greece\\\\\\\\\\\\\\\"}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"owned by\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai Group\\\\\\\\\\\\\\\"}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Piraeus\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Greece\\\\\\\\\\\\\\\"}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Athens\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Greece\\\\\\\\\\\\\\\"}]�\\\\\\\",\\\\n    \\\\\\\"parsed_triples\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\",\\\\n        \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\",\\\\n        \\\\\\\"evidence\\\\\\\": []\\\\n      },\\\\n      {\\\\n        \\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": \\\\\\\"owned by\\\\\\\",\\\\n        \\\\\\\"tail\\\\\\\": \\\\\\\"Skai Group\\\\\\\",\\\\n        \\\\\\\"evidence\\\\\\\": []\\\\n      },\\\\n      {\\\\n        \\\\\\\"head\\\\\\\": \\\\\\\"Piraeus\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\",\\\\n        \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\",\\\\n        \\\\\\\"evidence\\\\\\\": []\\\\n      },\\\\n      {\\\\n        \\\\\\\"head\\\\\\\": \\\\\\\"Athens\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\",\\\\n        \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\",\\\\n        \\\\\\\"evidence\\\\\\\": []\\\\n      }\\\\n    ],\\\\n    \\\\\\\"gold_triples\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"head\\\\\\\": \\\\\\\"Piraeus\\\\\\\",\\\\n        \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\",\\\\n        \\\\\\\"evidence\\\\\\\": [\\\\n          0,\\\\n          4\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"head\\\\\\\": \\\\\\\"Skai Group\\\\\\\",\\\\n        \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\",\\\\n        \\\\\\\"evidence\\\\\\\": [\\\\n          0,\\\\n          1,\\\\n          4\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"head\\\\\\\"\n…[truncated 1297 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T16:05:11.976411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/ -maxdepth 2 -name \"predictions.json\" -path \"*sft*s42*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T16:05:11.976549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/d111_4b_sft_s42_reeval/predictions.json\\\\n/root/autodl-tmp/eval_results/eval_llama_rsft_s42_no_evidence/predictions.json\\\\n/root/autodl-tmp/eval_results/eval_llama_sft_s42_no_evidence_std/predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T16:05:11.976731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval/",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T16:05:11.976880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"metrics.json\\\\npredictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T16:05:11.977002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/sft_baseline_d076_reeval/",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T16:05:11.977124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T16:05:11.977255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T16:05:11.977422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5464242424242425,\\\\n  \\\\\\\"recall\\\\\\\": 0.5564974076207719,\\\\n  \\\\\\\"f1\\\\\\\": 0.5514148250835847,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.523913613709889,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.5537381018390167,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5384131548207386,\\\\n  \\\\\\\"tp\\\\\\\": 6762,\\\\n  \\\\\\\"pred_count\\\\\\\": 12375,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.7799210545914947,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8536724545528654,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8151319374172957,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 14848,\\\\n  \\\\\\\"edcr\\\\\\\": 0.627953245461328,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 17675,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 28147,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.39707933740191803,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.4729245625876123,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.43169593137603374,\\\\n  \\\\\\\"evi_tp\\\\\\\": 9109,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 22940,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9949238578680203,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7979695431472081,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7979695431472081,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 980,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 786,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 786,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15325,\\\\n  \\\\\\\"n_truncated\\\\\\\": 197,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 980,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9949238578680203,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 7331.3,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_llama_3_1_8b\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"qu\n…[truncated 131 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T16:05:11.977574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/eval_llama_sft_s42_no_evidence_std/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T16:05:11.977736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5630763555883438,\\\\n  \\\\\\\"recall\\\\\\\": 0.5025100814747757,\\\\n  \\\\\\\"f1\\\\\\\": 0.5310719721678625,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.5420067688632292,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.503188245079013,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5218766473379021,\\\\n  \\\\\\\"tp\\\\\\\": 6106,\\\\n  \\\\\\\"pred_count\\\\\\\": 10844,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 1.0,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.005117790414297319,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.010183463994180877,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 66,\\\\n  \\\\\\\"edcr\\\\\\\": 0.58,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 87,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 150,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.21739130434782608,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.0002595919214994029,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.0005185646131507986,\\\\n  \\\\\\\"evi_tp\\\\\\\": 5,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 23,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.8873096446700508,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 874,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 0,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 16292,\\\\n  \\\\\\\"n_truncated\\\\\\\": 219,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 874,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.8873096446700508,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6927.2,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_llama_3_1_8b\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": null,\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/eval_llama_sft_s42_no_evidence_std\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": true,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"me\n…[truncated 40 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T16:05:11.978213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/data/docred/",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T16:05:11.978386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dev.json\\\\ntest.json\\\\ntrain_annotated.json\\\\ntrain_distant.json\\\\ntrain_nli_cache.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T16:05:11.978513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -5 /root/autodl-tmp/freige/freige/data/docred_processor.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T16:05:11.978646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"DocRED 数据预处理模块。\\\\n\\\\n加载 DocRED 数据集（train_annotated / dev / test），解析实体、关系、\\\\nevidence 标注，构建含 hard negatives 的训练样本。\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T16:05:11.978773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"DOCRED_REL_INFO\" /root/autodl-tmp/freige/freige/data/docred_processor.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T16:05:11.978897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"20:DOCRED_REL_INFO = {\\\\n214:                    relation_name=DOCRED_REL_INFO.get(relation, relation),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T16:05:11.979083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat > /root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py << 'PYEOF'\n\"\"\"Fair evidence tax comparison.\n\nComputes ign_f1 on the subset of documents where both with-evidence and\nno-evidence predictions have format_ok=True, giving a fair measurement\nof the evidence tax uncontaminated by format failures.\n\nUsage:\n    python fair_evidence_tax.py \\\n        --with-evi /path/to/with_evidence/predictions.json \\\n        --no-evi /path/to/no_evidence/predictions.json \\\n        [--train /path/to/train_annotated.json] \\\n        [--json-out /path/to/output.json]\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nfrom collections import defaultdict\nfrom pathlib import Path\n\n\ndef _load_train_facts(train_path: str) -> set[tuple]:\n    sys.path.insert(0, \"/root/autodl-tmp/freige\")\n    from freige.data.docred_processor import DOCRED_REL_INFO\n\n    with open(train_path) as f:\n        data = json.load(f)\n    facts = set()\n    for doc in data:\n        vs = doc[\"vertexSet\"]\n        for lab in doc.get(\"labels\", []):\n            h = vs[lab[\"h\"]][0][\"name\"].lower().strip()\n            t = vs[lab[\"t\"]][0][\"name\"].lower().strip()\n            r = DOCRED_REL_INFO.get(lab[\"r\"], lab[\"r\"]).lower().strip()\n            facts.add((h, t, r))\n    return facts\n\n\ndef _triple_key(doc_id, head, tail, relation):\n    return (doc_id, head.lower().strip(), tail.lower().strip(), relation.lower().strip())\n\n\ndef compute_ign_f1(docs: list[dict], train_facts: set[tuple]) -> dict:\n    \"\"\"Compute ign_f1 over a list of prediction docs.\"\"\"\n    pred_set = set()\n    gold_set = set()\n    for d in docs:\n        doc_id = d[\"doc_id\"]\n        for t in d[\"parsed_triples\"]:\n            pred_set.add(_triple_key(doc_id, t[\"head\"], t[\"tail\"], t[\"relation\"]))\n        for t in d[\"gold_triples\"]:\n            gold_set.add(_triple_key(doc_id, t[\"head\"], t[\"tail\"], t[\"relation\"]))\n\n    tp = pred_set & gold_set\n\n    # full f1\n    prec = len(tp) / len(pred_set) if pred_set else 0.0\n    rec = len(tp) / len(gold_set) if gold_set else 0.0\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\n\n    # ign f1\n    pred_ign = {k for k in pred_set if k[1:] not in train_facts}\n    gold_ign = {k for k in gold_set if k[1:] not in train_facts}\n    tp_ign = pred_ign & gold_ign\n    ign_prec = len(tp_ign) / len(pred_ign) if pred_ign else 0.0\n    ign_rec = len(tp_ign) / len(gold_ign) if gold_ign else 0.0\n    ign_f1 = 2 * ign_prec * ign_rec / (ign_prec + ign_rec) if (ign_prec + ign_rec) > 0 else 0.0\n\n    return {\n        \"f1\": f1, \"precision\": prec, \"recall\": rec,\n        \"ign_f1\": ign_f1, \"ign_precision\": ign_prec, \"ign_recall\": ign_rec,\n        \"tp\": len(tp), \"pred_count\": len(pred_set), \"gold_count\": len(gold_set),\n    }\n\n\ndef classify_failure(doc: dict) -> str:\n    if doc.get(\"truncated\", False):\n        return \"truncated\"\n    return \"malformed_json\"\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Fair evidence tax comparison\")\n    parser.add_argument(\"--with-evi\", required=True, help=\"With-evidence predictions.json\")\n    parser.add_argument(\"--no-evi\", required=True, help=\"No-evidence predictions.json\")\n    parser.add_argument(\"--train\", default=\"/root/autodl-tmp/data/docred/train_annotated.json\",\n                        help=\"Train file for ign_f1 computation\")\n    parser.add_argument(\"--json-out\", default=None, help=\"Optional JSON output path\")\n    args = parser.parse_args()\n\n    # Load\n    with open(args.with_evi) as f:\n        with_preds = json.load(f)\n    with open(args.no_evi) as f:\n        no_preds = json.load(f)\n    train_facts = _load_train_facts(args.train)\n\n    # Index by doc_id\n    with_by_doc = {d[\"doc_id\"]: d for d in with_preds}\n    no_by_doc = {d[\"doc_id\"]: d for d in no_preds}\n\n    all_doc_ids = sorted(set(with_by_doc.keys()) | set(no_by_doc.keys()))\n    common_doc_ids = sorted(set(with_by_doc.keys()) & set(no_by_doc.keys()))\n\n    # Format compliance\n    with_ok = {did for did in common_doc_ids if with_by_doc[did].get(\"format_ok\", True)}\n    no_ok = {did for did in common_doc_ids if no_by_doc[did].get(\"format_ok\", True)}\n    fair_ids = sorted(with_ok & no_ok)\n\n    # Failure classification (no-evidence side)\n    no_failures = [no_by_doc[did] for did in common_doc_ids if did not in no_ok]\n    n_trunc = sum(1 for d in no_failures if classify_failure(d) == \"truncated\")\n    n_malformed = len(no_failures) - n_trunc\n\n    # With-evidence failures\n    with_failures = [with_by_doc[did] for did in common_doc_ids if did not in with_ok]\n    with_n_trunc = sum(1 for d in with_failures if classify_failure(d) == \"truncated\")\n    with_n_malformed = len(with_failures) - with_n_trunc\n\n    # Compute metrics on full set\n    with_full_docs = [with_by_doc[did] for did in common_doc_ids]\n    no_full_docs = [no_by_doc[did] for did in common_doc_ids]\n    with_full = compute_ign_f1(with_full_docs, train_facts)\n    no_full = compute_ign_f1(no_full_docs, train_facts)\n\n    # Compute metrics on fair subset\n    with_fair_docs = [with_by_doc[did] for did in fair_ids]\n    no_fair_docs = [no_by_doc[did] for did in fair_ids]\n    with_fair = compute_ign_f1(with_fair_docs, train_facts)\n    no_fair = compute_ign_f1(no_fair_docs, train_facts)\n\n    raw_tax = (no_full[\"ign_f1\"] - with_full[\"ign_f1\"]) * 100\n    fair_tax = (no_fair[\"ign_f1\"] - with_fair[\"ign_f1\"]) * 100\n\n    # Print report\n    print(\"=\" * 55)\n    print(\"  Evidence Tax Fair Comparison\")\n    print(\"=\" * 55)\n    print(f\"\\nFull set: {len(common_doc_ids)} docs\")\n    print(f\"  With-evidence: ign_f1={with_full['ign_f1']:.4f}  (format_ok={len(with_ok)}/{len(common_doc_ids)})\")\n    print(f\"  No-evidence:   ign_f1={no_full['ign_f1']:.4f}  (format_ok={len(no_ok)}/{len(common_doc_ids)})\")\n    print(f\"  Raw tax: {raw_tax:+.2f}pp\")\n\n    print(f\"\\nFair subset: {len(fair_ids)} docs (both format-OK)\")\n    print(f\"  With-evidence: ign_f1={with_fair['ign_f1']:.4f}\")\n    print(f\"  No-evidence:   ign_f1={no_fair['ign_f1']:.4f}\")\n    print(f\"  Fair tax: {fair_tax:+.2f}pp\")\n\n    print(f\"\\nFormat failures (no-evidence): {len(no_failures)} docs\")\n    print(f\"  Truncated:      {n_trunc}\")\n    print(f\"  Malformed JSON: {n_malformed}\")\n\n    if with_failures:\n        print(f\"\\nFormat failures (with-evidence): {len(with_failures)} docs\")\n        print(f\"  Truncated:      {with_n_trunc}\")\n        print(f\"  Malformed JSON: {with_n_malformed}\")\n\n    # Detailed breakdown\n    print(f\"\\n{'─' * 55}\")\n    print(\"Detailed metrics:\")\n    for label, full_m, fair_m in [(\"With-evidence\", with_full, with_fair),\n                                   (\"No-evidence\", no_full, no_fair)]:\n        print(f\"\\n  {label}:\")\n        print(f\"    Full:  P={full_m['ign_precision']:.4f}  R={full_m['ign_recall']:.4f}  F1={full_m['ign_f1']:.4f}  (pred={full_m['pred_count']}, gold={full_m['gold_count']})\")\n        print(f\"    Fair:  P={fair_m['ign_precision']:.4f}  R={fair_m['ign_recall']:.4f}  F1={fair_m['ign_f1']:.4f}  (pred={fair_m['pred_count']}, gold={fair_m['gold_count']})\")\n\n    # JSON output\n    if args.json_out:\n        result = {\n            \"full_set\": {\n                \"n_docs\": len(common_doc_ids),\n                \"with_evidence\": with_full,\n                \"no_evidence\": no_full,\n                \"raw_tax_pp\": round(raw_tax, 4),\n            },\n            \"fair_subset\": {\n                \"n_docs\": len(fair_ids),\n                \"with_evidence\": with_fair,\n                \"no_evidence\": no_fair,\n                \"fair_tax_pp\": round(fair_tax, 4),\n            },\n            \"format_failures\": {\n                \"no_evidence\": {\"total\": len(no_failures), \"truncated\": n_trunc, \"malformed_json\": n_malformed},\n                \"with_evidence\": {\"total\": len(with_failures), \"truncated\": with_n_trunc, \"malformed_json\": with_n_malformed},\n            },\n            \"with_format_ok\": len(with_ok),\n            \"no_format_ok\": len(no_ok),\n        }\n        Path(args.json_out).parent.mkdir(parents=True, exist_ok=True)\n        with open(args.json_out, \"w\") as f:\n            json.dump(result, f, indent=2)\n        print(f\"\\nJSON output saved to {args.json_out}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"DONE\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T16:05:11.979328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T16:05:11.979490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python scripts/analysis/fair_evidence_tax.py \\\n  --with-evi /root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval/predictions.json \\\n  --no-evi /root/autodl-tmp/eval_results/eval_llama_sft_s42_no_evidence_std/predictions.json \\\n  --json-out /root/autodl-tmp/freige/scripts/analysis/results/fair_tax_s42_sft.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T16:05:11.979643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=======================================================\\\\n  Evidence Tax Fair Comparison\\\\n=======================================================\\\\n\\\\nFull set: 985 docs\\\\n  With-evidence: ign_f1=0.5384  (format_ok=980/985)\\\\n  No-evidence:   ign_f1=0.5219  (format_ok=874/985)\\\\n  Raw tax: -1.65pp\\\\n\\\\nFair subset: 873 docs (both format-OK)\\\\n  With-evidence: ign_f1=0.5443\\\\n  No-evidence:   ign_f1=0.5577\\\\n  Fair tax: +1.34pp\\\\n\\\\nFormat failures (no-evidence): 111 docs\\\\n  Truncated:      46\\\\n  Malformed JSON: 65\\\\n\\\\nFormat failures (with-evidence): 5 docs\\\\n  Truncated:      3\\\\n  Malformed JSON: 2\\\\n\\\\n───────────────────────────────────────────────────────\\\\nDetailed metrics:\\\\n\\\\n  With-evidence:\\\\n    Full:  P=0.5239  R=0.5537  F1=0.5384  (pred=12375, gold=12151)\\\\n    Fair:  P=0.5311  R=0.5583  F1=0.5443  (pred=10770, gold=10625)\\\\n\\\\n  No-evidence:\\\\n    Full:  P=0.5420  R=0.5032  F1=0.5219  (pred=10844, gold=12151)\\\\n    Fair:  P=0.5421  R=0.5743  F1=0.5577  (pred=10839, gold=10625)\\\\n\\\\nJSON output saved to /root/autodl-tmp/freige/scripts/analysis/results/fair_tax_s42_sft.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T16:05:11.979820+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n\n| 指标 | 预期 | 实际 |\n|------|------|------|\n| Full set | 985 docs | 985 docs |\n| No-evi ign_f1 | 0.5219 | 0.5219 |\n| With-evi ign_f1 | 0.5384 | 0.5384 |\n| Raw tax | -1.65pp | -1.65pp |\n| No-evi format_ok | 874 | 874 |\n| Format failures | 46 trunc + 65 malformed | 46 + 65 |\n| Fair subset | ~874 docs | 873 docs (因 with-evi 也有5个failure，交集少1) |\n| Fair tax | ~+1.35pp | +1.34pp |\n\nFair subset 是 873 而非 874，因为有 1 个 doc 在 with-evidence 侧也 format failure 了，从交集中排除。fair tax +1.34pp 与预期 +1.35pp 几乎一致（四舍五入差异）。\n\n脚本位置：`/root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py`\n\n用法：\n```bash\npython fair_evidence_tax.py \\\n  --with-evi <with-evidence predictions.json> \\\n  --no-evi <no-evidence predictions.json> \\\n  [--train <train_annotated.json>] \\\n  [--json-out <output.json>]\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fair-comparison-script_20260520T160300"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/code-fair-comparison-script.md"
+}

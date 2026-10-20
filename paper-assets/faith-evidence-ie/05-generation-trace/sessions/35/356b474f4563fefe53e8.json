@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "356b474f4563fefe53e8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose three probe health check",
+  "task_key": "worker_diagnose_three-probe-health-check_20260514T170334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_three-probe-health-check_20260514T170334_result.json",
+    "occurrence": 1,
+    "bytes": 2568,
+    "sha256": "351d8170907d24ff3aa25e61cdfde69644f83a50cde003413a7fb794208cb1b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 三路探测健康检查 (~17:05 UTC, 2026-05-14)\n\n### ced_kl001_r4 (cuda:0)\n- **进度**: step 64/100 (elapsed 1h30m)\n- **最新指标** (step ~40, 后续指标在 stdout 缓冲中未 flush):\n\n| 指标 | step ~5 | step ~25 | step ~30 | step ~35 | step ~40 |\n|------|---------|----------|----------|----------|----------|\n| KL | 0.014 | 0.181 | 0.115 | 0.125 | 0.098 |\n| f1_reward | 0.015 | 0.028 | 0.089 | 0.082 | **0.240** |\n| ced_reward | 0.026 | 0.015 | 0.058 | 0.120 | **0.236** |\n| format_reward | 0.181 | 0.296 | 0.300 | 0.293 | 0.220 |\n| reward_std | 0.176 | 0.186 | 0.280 | 0.370 | **0.617** |\n| frac_zero_std | 0.3 | 0.7 | 0.6 | 0.4 | **0.0** |\n| grad_norm | 0.222 | 0.457 | 0.357 | 0.242 | 0.158 |\n| loss | 0.091 | -0.015 | -0.010 | -0.018 | 0.130 |\n\n- **健康度**: ✅ **优秀**\n  - KL 全程 <0.2，远低于 5 的警戒线\n  - f1 和 ced 同步上升（0.015→0.240, 0.026→0.236），CED 确实在引导 faithfulness\n  - frac_reward_zero_std 从 0.7 降到 0.0 — 所有 batch 都有 reward 方差，GRPO 在有效学习\n  - reward_std 持续增长到 0.617 — 模型在产生有质量差异的生成\n  - grad_norm 稳定 >0，无梯度消失\n- **step_time**: ~97s/it（后半段因 completion 变长而增加）\n- **预计完成**: ~18:03 UTC\n\n---\n\n### extract_r4 (cuda:2)\n- **进度**: step 5/100 (elapsed ~8.5min)\n- **指标**: 暂无 — 刚到 step 5，第一条 metric 在 stdout 缓冲中未 flush\n- **step_time**: ~103s/it\n- **健康度**: ⏳ **太早评估** — 进程正常运行中，step 时间合理\n- **预计完成**: ~19:48 UTC\n\n---\n\n### flatnli_r5 (cuda:3)\n- **进度**: step 112/200 (即第 12/100 个新 step, elapsed ~8min)\n- **指标**: 暂无 — 理论上 step 105 和 110 应有日志，但 stdout block-buffered 未 flush 到 log 文件\n- **step_time**: 从 ~30s 逐步增加到 ~35s/step（初期快是因为 resume warmup，预计会收敛到 ~80-100s/step）\n- **健康度**: ⏳ **太早评估** — 进度条正常推进\n- **预计完成**: tqdm 估计 ~31min 剩余 (~17:36 UTC)，但若 step time 收敛到 90s/step，实际可能 ~19:30 UTC\n\n---\n\n### 总结\n- **ced_kl001_r4**: 运行最佳，f1 和 ced 同步上升、KL 极低、frac_zero_std=0 — 这是三路中最有信号的实验。预计 ~1h 内完成\n- **extract_r4 / flatnli_r5**: 刚启动 8-9 分钟，尚无 metric 可评估。建议 **30-40 分钟后再查一次**，届时两者都应有至少 2-3 轮 metric 日志\n- **无需干预**: 三个进程均在正常运行，无异常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-three-probe-health-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3e9a6d4bd9a0ba094f5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code unify eval",
+  "task_key": "worker_code_unify-eval_20260514T133544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_unify-eval_20260514T133544_result.json",
+    "occurrence": 1,
+    "bytes": 1528,
+    "sha256": "a68dcaa66859debf5a637cb8706042e9a6152bc2fa0242906efafe3cfd08f6b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 执行结果汇总\n\n### Fix 1: 删除 run_eval.py\n- `/root/autodl-tmp/freige/eval/run_eval.py` 已删除\n- 无其他文件引用它（仅自身 docstring 中提及）\n\n### Fix 2: 统一 JSON parsing\n**evaluator.py:**\n- 新增 `_try_parse_json_list`、`_repair_truncated_json`、`_normalize_triples` 三个模块级函数\n- `parse_model_output` 签名改为 `(output_text: str) -> tuple[list[dict], bool]`，整合截断修复逻辑\n- `compute_format_compliance` 中调用更新为 `parsed, _ = parse_model_output(raw_text)`\n\n**inference.py:**\n- import 添加 `parse_model_output`\n- 删除 Section D（本地的 `parse_model_output`、`_try_parse_json_list`、`_repair_truncated_json`、`_normalize_triples`）\n- `run_inference` 中调用 `parse_model_output(generated_text)` 返回 `(parsed, format_ok)` — 签名兼容\n\n### Fix 3: _triple_key relation 不做 lower\n已确认：`_triple_key` 返回 `(doc_id, head.lower().strip(), tail.lower().strip(), relation)` — relation 保持原始大小写，无需修改。inference.py 中无独立 triple matching 逻辑。\n\n### Sanity Check\n- 脚本启动无 import error\n- 模型加载成功（Qwen3-4B + SFT LoRA adapter）\n- 数据准备成功（985 eval docs, 12275 gold triples）\n- 完成 1 batch 推理（4 docs），无 crash（tqdm 进度: 1/247, 109.94s/it）\n- 注意：服务器上已有一个先前启动的完整 eval 作业（`mvp2_sft_eval_r2`，已跑到 36/62 batch），使用旧代码，已 kill sanity check 释放 GPU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-unify-eval.md"
+}

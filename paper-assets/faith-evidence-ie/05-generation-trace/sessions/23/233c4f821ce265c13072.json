@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "233c4f821ce265c13072",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis test eval 8b rsft s43 no evi",
+  "task_key": "worker_analysis_test_eval_8b_rsft_s43_no_evi_20260523T102332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_test_eval_8b_rsft_s43_no_evi_20260523T102332_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "a5b55eeabcd085ef34ce07983cd855e13aa86add3dc43e1851524bb5bfed8c69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 220069 已终止，eval 已完成。结果：\n\n| Metric | s43 no-evi | s43 with-evi | s42 no-evi | s42 with-evi |\n|--------|-----------|-------------|-----------|-------------|\n| **Ign-F1** | **0.3224** | 0.3398 | 0.3326 | 0.3360 |\n| Evi-F1 (DREEAM) | 0.0938 | — | — | — |\n| Evi-F1 (TP) | 0.2301 | — | — | — |\n| EDCR | 0.7218 | — | — | — |\n| Format OK | 499/500 | — | — | — |\n| Truncated | 43/500 | — | — | — |\n| Predictions | 18972 | — | — | — |\n\n**s43 evidence tax = 0.3224 - 0.3398 = -1.74pp**\n\n相比 s42 的 evidence tax (-0.34pp)，s43 的 no-evi 模型掉得更多。s43 no-evi (0.3224) 也低于 s42 no-evi (0.3326)，差 1.02pp。\n\nRegistry 状态需要更新为 COMPLETED。需要我更新吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-test-eval-8b-rsft-s43-no-evi.md"
+}

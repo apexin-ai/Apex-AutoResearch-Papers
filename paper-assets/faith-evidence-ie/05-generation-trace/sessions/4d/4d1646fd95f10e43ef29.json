@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d1646fd95f10e43ef29",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops kill r3 fix rsft submit r4",
+  "task_key": "worker_ops_kill_r3_fix_rsft_submit_r4_20260516T175811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_r3_fix_rsft_submit_r4_20260516T175811_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "c3dd812a8e8af07d87d1f4b132fb6c9f2d097a28cd3280792f0f34e272c077d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，eval r4 正常运行中。关键确认：\n\n1. **Kill r3 (368368)** — 已终止 ✓\n2. **额外 kill 旧 eval (370325)** — 参数反的旧进程，已终止 ✓\n3. **脚本修复** — `run_plan002_test.sh` 的 model_path/sft_adapter 已修正 ✓\n4. **cuda:1 释放 → 0 MiB** — C001 满足 ✓\n5. **r4 已提交** — PID 370795 在 cuda:1 运行，10396 MiB ✓\n6. **模型加载正确**：\n   - Base model: `Qwen3-4B`\n   - SFT adapter merged: `/root/autodl-tmp/sft_output`\n   - RSFT LoRA loaded: `/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510`\n7. **推理进行中** — 500 docs, 7473 triples, 124 batches, 已开始推理\n8. **Registry** — RUNNING, hypothesis/plan_id/parent 全部设置 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-r3-fix-rsft-submit-r4.md"
+}

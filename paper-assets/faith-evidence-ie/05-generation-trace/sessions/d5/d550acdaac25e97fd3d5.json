@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d550acdaac25e97fd3d5",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_2_1778771560.md",
+  "task_key": "loop_2_1778771560",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778771560.md",
+    "occurrence": 1,
+    "bytes": 4807,
+    "sha256": "17e9cbc50a4473c1262f970c83e536840874d526c46711928bb6feabaf8a9fba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T14:51:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `cuda:0,1,2,3`（全在 rtx5090-4x 一台机器上）。**rtx5090-4x 和 gpu-5090-4x-1 是同一台机器的两个 SSH endpoint**，不要当两台服务器分别调度\n- QLoRA 4-bit NF4 + kl_coef > 0 会导致 KL 爆炸（D008 根因确认），当前所有 GRPO 实验必须 kl_coef=0.0。唯一例外是 mvp2_grpo_ced_kl001（kl_coef=0.01 对照实验，Director 已批准）\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`。服务器无 .venv，用 conda base\n- kill_job 后必须验证子进程已退出（nvidia-smi / ps），否则 orphan python 进程占 GPU 显存\n- 模型下载用 ModelScope 不用 HuggingFace（AutoDL 代理 HF 下载极慢/超时）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（= gpu-5090-4x-1），4× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/`（代码在 `/root/autodl-tmp/freige/`）\n- Python：`/root/miniconda3/bin/python`，conda base env\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`（7.6GB，ModelScope 下载）\n- 数据：`/root/autodl-tmp/data/docred/`（train 3027, dev 985）\n- SFT checkpoint：`/root/autodl-tmp/sft_output`\n- NLI cache：`/root/autodl-tmp/nli_cache/`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 无 flash-attn，用 `attn_implementation=\"sdpa\"`\n- TRL 1.1.0（`processing_class=` 不是 `tokenizer=`，`max_length` 不是 `max_seq_length`）\n- 活跃进程：\n  - mvp2_grpo_ced_r5: PID 53066, tmux=mvp2_grpo_ced_r5, cuda:0\n  - mvp2_sft_eval_r2: PID 55410, tmux=mvp2_sft_eval_r2, cuda:1\n  - mvp2_grpo_extract_r3: PID 53144, tmux=mvp2_grpo_extract_r3, cuda:2\n  - mvp2_grpo_flatnli_r3: PID 53287, tmux=mvp2_grpo_flatnli_r3, cuda:3\n- Cron：reconcile 返回 0 活跃（可能需要重新注册监控）\n\n### 3. 📊 当前状态\n4 卡满载运行 MVP-2 核心三路 GRPO（kl_coef=0.0）+ SFT eval baseline：\n- **cuda:0** mvp2_grpo_ced_r5 — CED reward (format×0.3, f1×3.0, ced×1.0)，核心实验\n- **cuda:1** mvp2_sft_eval_r2 — SFT baseline eval on DocRED dev（batch_size=16，预计 ~1.5h）\n- **cuda:2** mvp2_grpo_extract_r3 — extraction-only (ced=0)，GRPO baseline\n- **cuda:3** mvp2_grpo_flatnli_r3 — flat-NLI reward，消融对照\n\nPREPARING 队列：\n- mvp2_sft_eval_r3 — 用统一 eval 代码重跑 SFT eval（parse_model_output + _repair_truncated_json），等 r2 结果决定是否需要\n- mvp2_grpo_ced_kl001 — kl_coef=0.01 对照实验，等 cuda:1 释放后提交\n\n**reconcile_crons 返回 0 活跃 cron**——上一个 session 可能没有注册 cron 监控，下一个 session 需要为 4 个 RUNNING 实验注册 cron 或手动检查状态。\n\n### 4. 📋 待办（条件触发式）\n- mvp2_sft_eval_r2 完成 → 检查 F1/Evi-F1 baseline metrics → 更新 registry → 提交 mvp2_grpo_ced_kl001 到 cuda:1\n- mvp2_sft_eval_r2 结果 vs r3 parsing 差异显著 → 提交 mvp2_sft_eval_r3（统一 eval 代码）\n- 三路 GRPO 完成 → 每个实验 eval best reward checkpoint + last checkpoint → 计算 pass criteria：(CED_Evi-F1 − SFT_Evi-F1) ≥ 2pp\n- CED Evi-F1 ≥ SFT+2pp → MVP-2 PASS → 进入 post-MVP 流程（paper_framing → experiment_plan → dream_simulate）\n- CED Evi-F1 < SFT+2pp → negative → red-section framing 提案 → Director 决策\n- ced_kl001 完成 → 对比 ced_r5（kl=0）看 kl_coef=0.01 是否可行（论文 ablation 数据点）\n\n### 5. 🎯 战略上下文\n- **核心假设**：CED（对比证据判别）reward 能让 GRPO 训练的 LLM 在 DocRED 上同时提升关系抽取 F1 和 evidence quality（Evi-F1）\n- **MVP-1 已验证**：CED 信号本身有判别力（margin=0.48, acc=81.5%）\n- **MVP-2 正在验证**：CED reward 在 GRPO 训练中是否实际起效\n- **关键决策链**：D002(MVP-1 pass) → D003(smoke pass) → D008(QLoRA+KL不兼容,kl=0) → D010(保留kl=0实验) → D011(Reviewer评估框架)\n- **最容易判断错的事**：\n  1. 三路 GRPO 用的超参完全一致（lr=5e-5, grad_accum=16, num_gen=4），只有 ced_reward_weight 不同（extract=0, flatnli=1, ced=1）。flatnli 的 `--ced_reward_weight 1.0` 实际是 evidence reward weight，stage 2 下计算的是 flat-NLI 不是 CED\n  2. 不要直接对比 r1/r2/r3/r4 的 metrics——配置差异太大（kl_coef, grad_accum, lr 都不同），只有 r5/r3(extract)/r3(flatnli) 是控制变量实验\n  3. 多 checkpoint 评估是 D011 要求——kl_coef=0 有稳定性风险，不能只看 last checkpoint\n- **不要再试的事**：kl_coef ≥ 0.05 + QLoRA 4-bit（必爆，D008 三个实验已验证）；num_iterations=2（交替震荡）；accelerate 4-GPU GRPO（r2 OOM killed）——当前单卡 GRPO + grad_accum=16 是稳定配置\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778771560.md"
+}

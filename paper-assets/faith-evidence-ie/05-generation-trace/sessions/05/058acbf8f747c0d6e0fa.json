@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "058acbf8f747c0d6e0fa",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "eval lead1 ced filter",
+  "task_key": "worker_eval_lead1_ced_filter_20260517T123015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_lead1_ced_filter_20260517T123015.log",
+    "occurrence": 1,
+    "bytes": 830764,
+    "sha256": "ab912d482d4ff359afed02fc6392654f6393a4416602902e8260a629ccdbf60f"
+  },
+  "statistics": {
+    "messages": 418,
+    "user_turns": 0,
+    "tool_calls": 174,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 174,
+      "tool_result": 174,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 418,
+      "chunks": [
+        {
+          "path": "058acbf8f747c0d6e0fa-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "058acbf8f747c0d6e0fa-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "058acbf8f747c0d6e0fa-part-0003.json",
+          "message_count": 58
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-lead1-ced-filter.md"
+}

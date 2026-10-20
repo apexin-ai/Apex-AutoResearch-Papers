@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7703b7d5ec15065aa07",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor ced step20 check",
+  "task_key": "worker_monitor_ced-step20-check_20260514T084134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_ced-step20-check_20260514T084134_result.json",
+    "occurrence": 1,
+    "bytes": 1737,
+    "sha256": "5655737841a41f63a425bcd10d117ae3414e917a346c78548a2e5f14eba179d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练当前在 **step 16/189**，尚未到 step 20。已有 3 个 checkpoint（每 5 步记录一次）：\n\n| Step | Format | F1 | CED | Truncation | Mean Length | Loss | Total Reward |\n|------|--------|----|-----|------------|-------------|------|--------------|\n| 5 | 0.554 | 0.0084 | 0.085 | 18.1% | 668 | 0.026 | 0.648 |\n| 10 | **0.886** | 0.0120 | 0.048 | **6.9%** | 562 | 0.039 | 0.946 |\n| 15 | 0.853 | **0.043** | **0.427** | 13.8% | 631 | 0.051 | **1.323** |\n\n**GPU 状态**：4x RTX 5090，利用率 57-66%，显存 17.5-24.6 / 32.6 GB。正常。\n\n### 分析\n\n**积极信号：**\n- **CED reward 爆发**：step 15 从 0.048 跳到 0.427（近 9 倍），模型开始学会提取证据句\n- **Format reward 稳定在 ~0.85**：从 0.554 快速收敛，JSON 格式基本学会了\n- **F1 上升 5 倍**：0.0084 → 0.043，虽然绝对值仍低，但趋势正确\n- **Total reward 持续上升**：0.648 → 0.946 → 1.323\n\n**需关注：**\n- **截断率反弹**：step 10 降到 6.9%（好），但 step 15 回升到 13.8%。可能因为模型开始尝试输出更完整的证据（mean_length 从 562 回升到 631），导致部分长文档截断\n- **F1 仍然很低（0.043）**，说明关系抽取准确率还很差，但 CED 的跳升表明方向对了\n\n### 判断\n\n**继续观察，暂不干预。** 理由：\n1. Step 15 的 CED 和 F1 同时大幅改善，训练正在起效\n2. 截断率 13.8% 低于初始的 18.1%，虽然反弹但不算失控\n3. 现在停止会浪费已有的正向趋势，建议等 step 20-25 再评估\n\n**预计时间**：当前 step time ~150s，step 20 约在 10 分钟后，全部 189 步约需再 **7.2 小时**（~23:50 服务器时间完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-ced-step20-check.md"
+}

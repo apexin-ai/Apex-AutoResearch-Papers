@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "21999890d43b2d35ad92",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "code seed comparison prep",
+  "task_key": "worker_code_seed_comparison_prep_20260516T053908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_seed_comparison_prep_20260516T053908.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/code-seed-comparison-prep.md"
+}

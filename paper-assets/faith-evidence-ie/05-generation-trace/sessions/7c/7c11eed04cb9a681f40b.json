@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c11eed04cb9a681f40b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code 8b sft s43 script prep",
+  "task_key": "worker_code_8b_sft_s43_script_prep_20260519T105913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_8b_sft_s43_script_prep_20260519T105913_result.json",
+    "occurrence": 1,
+    "bytes": 902,
+    "sha256": "7801bbaa91f371dd2eb0e47489c4e712e180361eba1ade15d6af66fe780216a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已创建并通过语法检查。\n\n**训练脚本** `/root/autodl-tmp/freige/scripts/seed_expansion/sft_8b_s43.sh`：\n- 参数与 `sft_8b_s44.sh` 完全一致（lora_rank=64, lr=2e-4, grad_accum=16, epochs=3）\n- seed=43, output → `/root/autodl-tmp/sft_output_8b_seed43`\n- wandb run: `sft-8b-s43`\n\n**Eval 脚本** `/root/autodl-tmp/freige/scripts/seed_expansion/eval_sft_8b_s43.sh`：\n- D076 协议：`--no-quantize`, `--batch_size 4`, `--max_new_tokens 1024`, `--seed 42`\n- 无 `--sft_adapter`（SFT 直接推理）\n- output → `/root/autodl-tmp/eval_results/sft_8b_s43_eval`\n\n注意：用户指定的 `--base_model` 路径 `/root/autodl-tmp/models/Qwen3-8B` 不存在，实际路径是 `/root/autodl-tmp/models/Qwen/Qwen3-8B`（有 `Qwen/` 子目录），脚本中已用正确路径。两个脚本均未设 `CUDA_VISIBLE_DEVICES`，由 tmux wrapper 处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-8b-sft-s43-script-prep.md"
+}

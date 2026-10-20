@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9339485a5a44e712f09",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix 1 7b scripts revert to s42 adapter",
+  "task_key": "worker_fix_1_7b_scripts_revert_to_s42_adapter_20260519T042711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_1_7b_scripts_revert_to_s42_adapter_20260519T042711_result.json",
+    "occurrence": 1,
+    "bytes": 1074,
+    "sha256": "5c8b450ca4dd908e569c22661d2ee688cbc744cc5d28ca79b68437fe72860bad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n**1. 脚本恢复 ✓**\n- `train_1_7b_s43.sh`: `--sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\n- `train_1_7b_s44.sh`: `--sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\n- 已从错误的 `_seed43`/`_seed44` 后缀恢复为 s42 共享 adapter\n\n**2. s42 SFT adapter 存在 ✓**\n- `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16/adapter_model.safetensors` (279MB)\n\n**3. 离线环境变量 ✓**\n- 两个脚本均已有 `HF_HUB_OFFLINE=1`、`TRANSFORMERS_OFFLINE=1`、`HF_HOME`\n\n**4. GPU 状态 — 无法提交 s43**\n\n| GPU | 占用 | 任务 |\n|-----|------|------|\n| cuda:0 | 1.5GB | d112_ced_score (22500/24216, ~5 min 剩余) |\n| cuda:1 | 16.1GB | plan017_14b_sft (6/144, ~2.5h 剩余) |\n| cuda:2 | 17.3GB | plan017_14b_sft |\n| cuda:3 | 18.9GB | plan019_8b_rsft_s44_eval (197/247, ~40 min 剩余) |\n\n**8B eval ETA: ~13:08 UTC（约 40 分钟后）。** cuda:3 释放后可提交 s43。cuda:0 也将在 ~5 min 后释放，但 1.7B RSFT 通常需要更多显存，需确认是否够用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-1-7b-scripts-revert-to-s42-adapter.md"
+}

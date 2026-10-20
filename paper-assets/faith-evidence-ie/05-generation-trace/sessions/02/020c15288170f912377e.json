@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "020c15288170f912377e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan017 14b rsft s43 no evi eval",
+  "task_key": "worker_analysis_plan017_14b_rsft_s43_no_evi_eval_20260523T200057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan017_14b_rsft_s43_no_evi_eval_20260523T200057_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "517d546777ffb5825a3f572f83f04d1e4a83cdf200d82f94449c6def42d7a6a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n## plan017_14b_rsft_s43_no_evi_eval 结果\n\n| Metric | s43 no-evi | s42 no-evi | Δ |\n|--------|-----------|-----------|---|\n| **Ign-F1** | **0.5713** | 0.5432 | **+2.81pp** |\n| F1 | 0.5850 | — | — |\n| Precision | 0.5491 | — | — |\n| Recall | 0.6260 | — | — |\n| Format OK | 99.80% | — | — |\n| Truncated | 92/985 | — | — |\n\ns43 seed 在 no-evidence 条件下比 s42 提升 +2.81pp。s43 with-evidence eval 还在跑，跑完后可计算 s43 evidence tax（s42 dev evidence tax 为 +4.54pp）。\n\nRegistry 已更新为 DONE/success，分析报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan017-14b-rsft-s43-no-evi-eval.md"
+}

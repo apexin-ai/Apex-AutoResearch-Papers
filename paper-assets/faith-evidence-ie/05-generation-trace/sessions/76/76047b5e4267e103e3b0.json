@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76047b5e4267e103e3b0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose full status post restart",
+  "task_key": "worker_diagnose_full-status-post-restart_20260522T020954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_full-status-post-restart_20260522T020954_result.json",
+    "occurrence": 1,
+    "bytes": 1767,
+    "sha256": "b89acceec8aac19ae73679b10728c615a2c676fe74d52561ff86f1640e3cfb56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1.7B SFT 在 497/500，输出目录仍为空（结果在推理全部完成后才写入）。报告当前状态：\n\n---\n\n## GPU 状态\n| GPU | 显存占用 | 利用率 | PID | 实验 |\n|-----|----------|--------|-----|------|\n| 0 | 6,071 / 97,887 MiB | 51% | 140534 | test_eval_1_7b_sft_s42 |\n| 1 | 6,071 / 97,887 MiB | 49% | 147596 | test_eval_1_7b_sft_s42_no_evi |\n| 2 | 19,599 / 97,887 MiB | 88% | 152873 | test_eval_8b_sft_s42_no_evi |\n| 3 | 32,503 / 97,887 MiB | 91% | 143166 | test_eval_14b_sft_s42_no_evi |\n\n## 实验结果\n| 状态 | 实验 | 进度 | 速度 | ETA |\n|------|------|------|------|-----|\n| [RUNNING] | test_eval_1_7b_sft_s42 | **497/500 (99.4%)** | ~27s/it | **~1-2 min** |\n| [RUNNING] | test_eval_1_7b_sft_s42_no_evi | 260/500 (52%) | ~27s/it | ~1h48m |\n| [RUNNING] | test_eval_8b_sft_s42_no_evi | 56/500 (11.2%) | ~32s/it | ~3h57m |\n| [RUNNING] | test_eval_14b_sft_s42_no_evi | 274/500 (54.8%) | ~40s/it | ~2h31m |\n\n服务重启后 4 个进程全部存活，均在正常推理。\n\n## 8B no-evi 验证\n- 参数正确: ✅ (`python -m freige.eval.test_inference --model_path .../Qwen3-8B --sft_adapter .../sft_output_qwen3_8b_bf16 ... --split test_revised --no_evidence`)\n- adapter: ✅ (698MB, `/root/autodl-tmp/sft_output_qwen3_8b_bf16/adapter_model.safetensors`)\n- --no_evidence: ✅\n- --max_new_tokens 2048: ✅\n- CUDA_VISIBLE_DEVICES=2: ✅\n\n## Registry 更新\n- 无需更新 — 4 个实验均仍在 RUNNING，无已完成实验。\n\n## 备注\n- test_eval_1_7b_sft_s42 即将完成（差 3 个 doc），完成后需要立即收集 test_summary.json 并更新 registry\n- 日志路径：该实验日志在 `/tmp/test_eval_1_7b_sft_s42.log`（非标准路径），registry 中未记录 log_path"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-full-status-post-restart.md"
+}

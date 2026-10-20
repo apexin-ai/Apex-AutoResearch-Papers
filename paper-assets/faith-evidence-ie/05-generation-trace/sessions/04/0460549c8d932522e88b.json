@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0460549c8d932522e88b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check and fix plan010 eval",
+  "task_key": "worker_ops_check_and_fix_plan010_eval_20260519T231756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_and_fix_plan010_eval_20260519T231756_result.json",
+    "occurrence": 1,
+    "bytes": 329,
+    "sha256": "621193c04b09444989365b80d95b7e0f1541b657b0dd4c1c0a3adc923bd457d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "重提交完成：\n\n- **原因**：旧进程 (PID 733518) 因 argparse 错误已死（用了不存在的 `--adapter_path` 参数）\n- **修复**：用正确的 `--model_path` 参数重新提交到 cuda:1\n- **新 PID**：733763，模型正在加载中，日志输出正常\n- **Registry**：已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-and-fix-plan010-eval.md"
+}

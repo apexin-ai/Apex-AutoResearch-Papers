@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1db710f0db7b76eff1b3",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "reviewer / loop_16.md",
+  "task_key": "loop_16",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_16.md",
+    "occurrence": 1,
+    "bytes": 4921,
+    "sha256": "cf8f65336aec5faac9599108fb74a95ae8243f08ae7ed234a6bcc7b3f8e2b30b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: max_wall_time\nupdated: '2026-05-21T02:55:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 on rtx5090-4x。每次审查训练/eval 实验必须核对 CUDA_VISIBLE_DEVICES 是否在白名单内，越界即 CRITICAL。\n- Evidence tax 公约（D127）：tax = ign_f1(no_evidence) - ign_f1(with_evidence)。正=成本，负=收益。\n- **Matched token budget 原则（D137 CRITICAL）**：所有用于论文的 evidence tax 必须在 matched@2048 下计算。no-evi@2048 vs with-evi@1024 的 mismatched 比较已被推翻（s42 with-evi@1024→2048 delta=+2.65pp 证明 with-evi@1024 也被截断）。\n- 14B RSFT @1024 tax 是例外：因为截断对称（no-evi 10.8% vs with-evi 10.7%），@1024 数据可信。但仍有 @2048 control 在跑。\n- s43 @1024 eval 有 seed=43 违反 D076 协议（应为 seed=42），已标记 warning，实际影响可忽略。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（root），4× RTX PRO 6000 96GB\n- 远程代码根：`/root/autodl-tmp/freige`\n- 远程 eval 输出：`/root/autodl-tmp/eval_results/` 和 `/root/autodl-tmp/freige/eval_outputs/`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/`\n- 模型路径：\n  - LLaMA 8B base: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`\n  - SFT adapters: `sft_output_llama_3_1_8b` (s42), `_s43`, `_s44`\n  - RSFT adapter: `rsft_output_llama_3_1_8b_k1` (s42)\n  - 14B base: `/root/autodl-tmp/models/Qwen/Qwen3-14B`\n  - 14B SFT: `sft_output_14b/checkpoint-144`\n  - 14B RSFT: `rsft_output_14b`\n- 活跃进程（截至 handoff）：\n  - GPU 0: eval_llama_rsft_s42_with_evidence_2048 (PID 70706)\n  - GPU 1: plan017_14b_rsft_eval_2048（刚启动）\n  - GPU 2: eval_llama_sft_s43_with_evidence_2048 (PID 64391，~58%)\n  - GPU 3: eval_llama_sft_s44_with_evidence_2048 (PID 64023，~63%)\n\n### 3. 📊 当前状态\n本 session 发了 8 份报告：2× CRITICAL（methodology control failure + matched@2048 全面重算）、3× WARNING（s44 Branch C / narrative / registry 不一致）、3× INFO/PASS（14B train / 14B eval / ROADMAP）。\n\n**已完成实验（本 session 审查过的）：**\n- plan017_14b_rsft_eval: ign_f1=0.5886, tax=-4.54pp, format_ok=100%, 截断对称 ✅\n- eval_llama_sft_s43_no_evidence_2048_r2: Branch B 确认, ign_f1=0.3389, 真实差非截断伪影\n- eval_llama_sft_s42_with_evidence_2048: ign_f1=0.5649, delta=+2.65pp（推翻 mismatched tax）\n- eval_llama_sft_s42_no_evidence_2048: ign_f1=0.5210, Branch ~A (robust)\n- eval_llama_sft_s44_no_evidence_2048: ign_f1=0.4373, Branch C (partial)\n\n**Registry 问题**：plan017_14b_rsft_eval 的 `truncated` 字段记录为 0，实际为 105。已报告 Director。\n\n**4 个 RUNNING 实验等待审查**（见 §4）。\n\n### 4. 📋 待办（条件触发式）\n- **s44 with-evi@2048 完成**（最先，~40-60 min）→ 读 metrics.json，计算 s44 matched@2048 tax，与 s44 no-evi@2048 (0.4373) 对比\n- **s43 with-evi@2048 完成**（~1-1.5h）→ 读 metrics，计算 s43 matched@2048 tax，与 s43 no-evi@2048 (0.3389) 对比。注意 s43 no-evi 极差（Branch B），tax 方向可能很特殊\n- **RSFT s42 with-evi@2048 完成**（~3h）→ 与 RSFT s42 with-evi@1024 (0.5384) 对比 delta，验证 RSFT @1024 是否也有截断偏差。如 delta <1pp → RSFT @1024 可信；>1pp → 需要 RSFT 也全面转 @2048\n- **14B RSFT with-evi@2048 完成**（~4h）→ 与 @1024 (0.5886) 对比 delta。预期 delta 很小（截断对称），但需确认\n- **全部 matched@2048 数据齐全** → 系统性审查 evidence tax narrative：(1) \"direction instability\" 是否完全坍缩为 truncation artifact (2) \"magnitude instability\" 是否成立 (3) 最终 3-seed mean±std 重算 (4) RSFT 是否 consistent negative tax across seeds\n\n### 5. 🎯 战略上下文\n**核心发现链**：D134(fair comparison) → D136(方向不稳定) → D137(**方向不稳定被推翻，是截断伪影**) → D138(14B 最强结果)\n\n**最容易判断错的事**：\n1. **不要用 mismatched tax 数字**。@1024 时代的 tax 数字（D136 的 per-seed tax）已全部作废，只有 matched@2048 的数字可用于论文。唯一例外是 14B（截断对称）。\n2. **s43 SFT 是真的差，不是截断**。Branch B 已确认。不要因为 s42 robust 就假设所有 seed 都 robust。\n3. **SFT no-evi@2048 variance (7.44pp) vs RSFT (0.13pp) 的 57× compression 是真实的**，不是截断伪影导致的——s42 @2048 robust 证明了 s42 数据点是干净的，s43 Branch B 证明差异是真实模型行为。\n4. **14B 只有 1 seed**。不要 claim 14B 的 variance compression。14B 的 absolute performance 和 evidence tax claim 有 1 seed 支撑，variance compression 需要 3-seed 数据（目前 TBD）。\n5. **registry 数据偶尔有 Agent 录入错误**（如 14B truncated=0）。关键数字务必读远程 metrics.json 独立核实。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-copy-2.md"
+}

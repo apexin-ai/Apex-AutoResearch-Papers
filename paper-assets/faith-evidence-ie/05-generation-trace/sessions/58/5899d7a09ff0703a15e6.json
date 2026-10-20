@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5899d7a09ff0703a15e6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval llama rsft seed43 eval",
+  "task_key": "worker_eval_llama_rsft_seed43_eval_20260517T155945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama_rsft_seed43_eval_20260517T155945_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "6cea8e3b41d0e0c17a7e344a17e3e1c6b314e9b6d246c4e276c26f6ef643090b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估已提交并进入 RUNNING 状态。\n\n- **exp_id**: `plan_006_llama_rsft_seed43_eval`\n- **PID**: 462707\n- **GPU**: cuda:0（显存 0MB，空闲）\n- **日志**: `~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval.log`\n- **Checkpoint**: `/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312`\n- **三层加载**: base (Meta-Llama-3.1-8B) → SFT adapter → RSFT-seed43 LoRA"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama-rsft-seed43-eval.md"
+}

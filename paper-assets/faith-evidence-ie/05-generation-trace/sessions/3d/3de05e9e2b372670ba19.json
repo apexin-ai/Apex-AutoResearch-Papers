@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3de05e9e2b372670ba19",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh identify pid 93402",
+  "task_key": "worker_ssh_identify-pid-93402_20260521T090552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_identify-pid-93402_20260521T090552_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "54dd3a5b9e4b0b87d4977e356c2802fc8430a9d2cb259695a3b3ab0ae2d26071"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 93402 是本项目的 eval 推理进程，运行了约 2 分 8 秒：\n\n```\npython -m freige.eval.inference \\\n  --model_path /root/autodl-tmp/models/Qwen3-4B \\\n  --sft_adapter /root/autodl-tmp/sft_output \\\n  --output_dir /root/autodl-tmp/eval_results/d140_4b_sft_s42_with_evi_2048 \\\n  --split dev --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 42\n```\n\n实验标识：**d140_4b_sft_s42_with_evi_2048**（Qwen3-4B SFT eval，带 evidence，max_new_tokens=2048）。\n\n当前全部 GPU 占用：\n\n| GPU | PID | 显存 |\n|-----|-----|------|\n| cuda:0 | 87387 | 6,150 MiB |\n| cuda:1 | 88992 | 11,454 MiB |\n| cuda:2 | 87307 | 19,590 MiB |\n| cuda:3 | 93402 | 11,140 MiB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-identify-pid-93402.md"
+}

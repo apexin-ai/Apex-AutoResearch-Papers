@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5710f5c1de10ee6d19a0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis per relation 1 7b llama",
+  "task_key": "worker_analysis_per_relation_1_7b_llama_20260519T115920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_per_relation_1_7b_llama_20260519T115920_result.json",
+    "occurrence": 1,
+    "bytes": 1020,
+    "sha256": "a70c4de2ea7751b5e4c0dd127f54bc3adee2a6305ba36444703fa6b8289c45e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已保存到服务器：\n\n**1.7B Qwen (SFT → RSFT)**\n- micro-F1: 0.4945 → 0.5290 (+3.45pp)\n- 89 个高频关系中 55 个改善，30 个退化\n- 最大收益：screenwriter (+0.172), conflict (+0.133), notable work (+0.127)\n- 最大退化：founded by (-0.186), participant of (-0.166), cast member (-0.109)\n- 平均改善 +0.053，平均退化 -0.047\n\n**LLaMA-8B (SFT → RSFT)**\n- micro-F1: 0.5514 → 0.5839 (+3.25pp)\n- 89 个高频关系中 57 个改善，26 个退化\n- 最大收益：operator (+0.305), participant of (+0.163), mother/screenwriter (+0.114)\n- 最大退化：genre (-0.301), chairperson (-0.267), capital of (-0.152)\n- 平均改善 +0.052，平均退化 -0.061\n- LLaMA 的 hallucinated relations (0 gold, FP only) 有 25 种，显著多于 1.7B 的 6 种\n\n输出文件：\n- `/root/autodl-tmp/freige/scripts/analysis/results/per_relation_1_7b.txt` / `.csv`\n- `/root/autodl-tmp/freige/scripts/analysis/results/per_relation_llama.txt` / `.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-per-relation-1-7b-llama.md"
+}

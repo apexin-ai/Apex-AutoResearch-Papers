@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55260232d60c916bb622",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose grpo bf16 completion",
+  "task_key": "worker_diagnose_grpo_bf16_completion_20260518T192203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo_bf16_completion_20260518T192203_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "5eb0a99a828ede8937b177fc85bcff38c7782e656e5fd538188b809baa69654e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 诊断结果 ===\n状态: 正常完成\n完成 steps: 200/200\n训练时长: 6h35m (23737s)\n最终 checkpoint: /root/autodl-tmp/grpo_bf16_g4/checkpoint-200\ncuda:2: 空闲 (0MiB)\n\n=== Metrics (最终 step) ===\nreward_mean: 1.7646\n  - f1_reward:    1.2756\n  - ced_reward:   0.2261\n  - format_reward: 0.2629\ntrain_loss: 0.0983\nentropy: 0.1184\nclipped_ratio: 0.10\n\n=== Registry 操作 ===\nconclusion: success ✓\nmetrics: 已写入 ✓\nspec: checkpoint_path + log_path 已写入 ✓\ncron: 已删除 ✓\n```\n\n注意：cuda:1 和 cuda:3 各有一个 python 进程占用 ~11.4GB，非本实验相关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grpo-bf16-completion.md"
+}

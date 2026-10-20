@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96d124322660e0dfed60",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code 14b rsft withevi 2048 launch",
+  "task_key": "worker_code_14b-rsft-withevi-2048-launch_20260521T024530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-rsft-withevi-2048-launch_20260521T024530_result.json",
+    "occurrence": 1,
+    "bytes": 876,
+    "sha256": "86ee7cb933e3c5caaf6e6b668403aca1c760ffe19fa8693ab4d691b5b55bf656"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，推理进行中。\n\n| 项目 | 值 |\n|------|-----|\n| **exp_id** | plan017_14b_rsft_eval_2048 |\n| **PID** | 70388 |\n| **GPU** | cuda:1, 32.5GB / 97.9GB |\n| **进度** | 5/985 docs, ~13.6s/it |\n| **预计耗时** | ~3.7h |\n| **日志** | `/root/logs/plan017_14b_rsft_eval_2048.log` |\n| **输出** | `/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval_2048/` |\n\n**命令**:\n```\nCUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference \\\n  --model_path /root/autodl-tmp/rsft_output_14b \\\n  --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B \\\n  --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 \\\n  --data_path /root/autodl-tmp/data/docred \\\n  --split dev \\\n  --output_dir /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval_2048 \\\n  --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-14b-rsft-withevi-2048-launch.md"
+}

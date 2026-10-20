@@ -1,0 +1,2496 @@
+{
+  "schema_version": "1.0",
+  "id": "e938a3eb1af1cc432e49",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "analysis plan 009 forgetting figure",
+  "task_key": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_plan_009_forgetting_figure_20260515T162745.jsonl",
+    "occurrence": 1,
+    "bytes": 99456,
+    "sha256": "035798e582092ac3a14599d0979e1c2f1ed43d4baca1a515cda5b70049c0afe3"
+  },
+  "statistics": {
+    "messages": 123,
+    "user_turns": 0,
+    "tool_calls": 61,
+    "roles": {
+      "tool_call": 61,
+      "tool_result": 61,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T16:34:04.330064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__fetch_wandb_run_history,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__list_wandb_runs,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T16:34:04.330532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T16:34:04.330753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T16:34:04.330898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_wandb_runs"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "limit": "50"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T16:34:04.331625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (157,939 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b3f8131b-6573-4e1a-b1dd-40458dda2a9b/tool-results/mcp-agent-ml-research-read_registry-1778862484201.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b3f8131b-6573-4e1a-b1dd-40458dda2a9b/tool-results/mcp-agent-ml-research-read_registry-1778862484201.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T16:34:04.331814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T16:34:04.331949+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/ -maxdepth 3 -type d -name \"*grpo*\" -o -name \"*GRPO*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T16:34:04.332077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T16:34:04.332199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T16:34:04.332588+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdescription: 生成学术论文级 matplotlib 图表——reliability diagrams、ECE heatmap、T* scatter plot、模型对比图，直接在 A6000 服务器上执行，输出 PDF/PNG\n3\tname: draw-paper-figure\n4\tscope: global\n5\ttags:\n6\t  - research\n7\t  - visualization\n8\t  - paper\n9\t  - matplotlib\n10\tversion: 1\n11\ttools:\n12\t  - ssh_execute\n13\t---\n14\t\n15\t# Draw Paper Figure — 学术图表生成\n16\t\n17\t为 ML 论文生成发表级图表。通过 SSH 在 A6000 上运行 matplotlib 脚本，直接输出到实验目录。\n18\t\n19\t## 触发条件\n20\t\n21\t- 用户说\"画个图\"、\"生成 reliability diagram\"、\"做个 heatmap\"\n22\t- 论文写作阶段需要插图\n23\t- 实验结果需要可视化汇总\n24\t\n25\t## 通用样式标准（所有图表必须遵守）\n26\t\n27\t```python\n28\timport matplotlib\n29\tmatplotlib.use('Agg')\n30\timport matplotlib.pyplot as plt\n31\timport matplotlib.patches as mpatches\n32\timport numpy as np\n33\t\n34\t# 字体和全局样式\n35\tplt.rcParams.update({\n36\t    'font.family': 'DejaVu Sans',\n37\t    'font.size': 11,\n38\t    'axes.titlesize': 13,\n39\t    'axes.labelsize': 12,\n40\t    'xtick.labelsize': 10,\n41\t    'ytick.labelsize': 10,\n42\t    'legend.fontsize': 10,\n43\t    'figure.dpi': 300,\n44\t    'savefig.dpi': 300,\n45\t    'savefig.bbox': 'tight',\n46\t    'savefig.pad_inches': 0.05,\n47\t    'axes.spines.top': False,\n48\t    'axes.spines.right': False,\n49\t    'lines.linewidth': 1.8,\n50\t})\n51\t\n52\t# 色盲友好配色（Okabe-Ito）\n53\tCOLORS = {\n54\t    'fp16':   '#E69F00',  # 橙黄\n55\t    'nf4':    '#56B4E9',  # 天蓝\n56\t    'int8':   '#009E73',  # 绿\n57\t    'gptq':   '#F0E442',  # 黄\n58\t    'awq':    '#CC79A7',  # 粉紫\n59\t    'llama':  '#0072B2',  # 深蓝\n60\t    'qwen3':  '#D55E00',  # 橙红\n61\t    'gemma':  '#009E73',  # 绿\n62\t    'mistral':'#CC79A7',  # 粉紫\n63\t    'phi3':   '#F0E442',  # 黄\n64\t}\n65\t\n66\t# 方法标签\n67\tMETHOD_LABELS = {\n68\t    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n69\t    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n70\t}\n71\t```\n72\t\n73\t---\n74\t\n75\t## 1. Reliability Diagram（校准图）\n76\t\n77\t**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n78\t\n79\t```python\n80\tdef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n81\t                              label='', color='#0072B2',\n82\t                              title='Reliability\n…[truncated 8160 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T16:34:04.332828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b3f8131b-6573-4e1a-b1dd-40458dda2a9b/tool-results/mcp-agent-ml-research-read_registry-1778862484201.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\ngrpo_exps = [e for e in result if 'grpo' in e.get('exp_id','').lower()]\nprint(f'Total experiments: {len(result)}, GRPO experiments: {len(grpo_exps)}')\nfor e in grpo_exps:\n    print(json.dumps({\n        'exp_id': e.get('exp_id'),\n        'status': e.get('status'),\n        'conclusion': e.get('conclusion'),\n        'metrics': e.get('metrics'),\n        'wandb_run_id': e.get('wandb_run_id'),\n        'config': e.get('config'),\n        'hypothesis': e.get('hypothesis'),\n    }, indent=2, ensure_ascii=False))\n    print('---')\n\"\n",
+              "description": "Extract GRPO experiments from registry JSON",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T16:34:04.332993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n    grpo_exps = [e for e in result if 'grpo' in e.get('exp_id','').lower()]\n                                                ^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T16:34:04.333121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/ -maxdepth 3 -type d -name \"*grpo*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T16:34:04.333263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-2/proje…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T16:34:04.333394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_wandb_runs"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "limit": "50"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T16:34:04.333510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-2/proje…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T16:34:04.333643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -c 500 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b3f8131b-6573-4e1a-b1dd-40458dda2a9b/tool-results/mcp-agent-ml-research-read_registry-1778862484201.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nprint(type(data))\nprint(list(data.keys()) if isinstance(data, dict) else 'not dict')\nresult = data.get('result','')\nprint(type(result))\nprint(result[:300])\n\"",
+              "description": "Inspect registry JSON structure",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T16:34:04.333769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 3, in <module>\n    data = json.loads(sys.stdin.read())\n  File \"/usr/lib/python3.14/json/__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/usr/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\njson.decoder.JSONDecodeError: Unterminated string starting at: line 1 column 11 (char 10)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T16:34:04.333888+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b3f8131b-6573-4e1a-b1dd-40458dda2a9b/tool-results/mcp-agent-ml-research-read_registry-1778862484201.txt",
+              "limit": "30"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T16:34:04.334011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (71444 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T16:34:04.334133+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "grpo",
+              "path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b3f8131b-6573-4e1a-b1dd-40458dda2a9b/tool-results/mcp-agent-ml-research-read_registry-1778862484201.txt",
+              "output_mode": "content",
+              "-i": "True",
+              "head_limit": "100"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T16:34:04.334268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T16:34:04.334403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b3f8131b-6573-4e1a-b1dd-40458dda2a9b/tool-results/mcp-agent-ml-research-read_registry-1778862484201.txt') as f:\n    raw = f.read()\ndata = json.loads(raw)\nresult_str = data['result']\n# The result is likely a JSON string itself\nresult = json.loads(result_str)\nif isinstance(result, list):\n    print(f'Total: {len(result)} experiments')\n    for e in result:\n        eid = e.get('exp_id','')\n        if 'grpo' in eid.lower():\n            print(json.dumps({\n                'exp_id': eid,\n                'status': e.get('status'),\n                'conclusion': e.get('conclusion'),\n                'metrics': e.get('metrics'),\n                'wandb_run_id': e.get('wandb_run_id'),\n            }, indent=2, ensure_ascii=False))\n            print('---')\nelif isinstance(result, dict):\n    print('dict keys:', list(result.keys())[:10])\nelse:\n    print(type(result), str(result)[:500])\n\" 2>&1",
+              "description": "Parse registry and extract GRPO experiments",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T16:34:04.334527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "dict keys: ['success', 'data', 'error', 'metadata']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T16:34:04.334645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b3f8131b-6573-4e1a-b1dd-40458dda2a9b/tool-results/mcp-agent-ml-research-read_registry-1778862484201.txt') as f:\n    raw = f.read()\ndata = json.loads(raw)\nresult = json.loads(data['result'])\nexps = result['data']\nif isinstance(exps, dict):\n    print('data is dict, keys:', list(exps.keys())[:10])\n    # maybe it's {exp_id: exp_data}\n    grpo = {k:v for k,v in exps.items() if 'grpo' in k.lower()}\n    print(f'GRPO experiments: {len(grpo)}')\n    for k,v in grpo.items():\n        print(json.dumps({\n            'exp_id': k,\n            'status': v.get('status'),\n            'conclusion': v.get('conclusion'),\n            'metrics': v.get('metrics'),\n            'wandb_run_id': v.get('wandb_run_id'),\n        }, indent=2, ensure_ascii=False))\n        print('---')\nelif isinstance(exps, list):\n    print(f'data is list, len={len(exps)}')\n    for e in exps:\n        eid = e.get('exp_id','')\n        if 'grpo' in eid.lower():\n            print(json.dumps({\n                'exp_id': eid,\n                'status': e.get('status'),\n                'conclusion': e.get('conclusion'),\n                'metrics': e.get('metrics'),\n                'wandb_run_id': e.get('wandb_run_id'),\n            }, indent=2, ensure_ascii=False))\n            print('---')\n\" 2>&1",
+              "description": "Parse registry data structure for GRPO experiments",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T16:34:04.334786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "data is dict, keys: ['experiments', 'count', 'total', 'baseline']\nGRPO experiments: 0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T16:34:04.334908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b3f8131b-6573-4e1a-b1dd-40458dda2a9b/tool-results/mcp-agent-ml-research-read_registry-1778862484201.txt') as f:\n    raw = f.read()\ndata = json.loads(raw)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(f'Total experiments: {len(exps)}, type: {type(exps)}')\nif isinstance(exps, list):\n    for e in exps:\n        eid = e.get('exp_id','')\n        if 'grpo' in eid.lower():\n            print(json.dumps({\n                'exp_id': eid,\n                'status': e.get('status'),\n                'conclusion': e.get('conclusion'),\n                'metrics': e.get('metrics'),\n                'wandb_run_id': e.get('wandb_run_id'),\n                'config': e.get('config'),\n            }, indent=2, ensure_ascii=False))\n            print('---')\nelif isinstance(exps, dict):\n    for k,v in exps.items():\n        if 'grpo' in k.lower():\n            print(json.dumps({\n                'exp_id': k,\n                'status': v.get('status'),\n                'conclusion': v.get('conclusion'),\n                'metrics': v.get('metrics'),\n                'wandb_run_id': v.get('wandb_run_id'),\n                'config': v.get('config'),\n            }, indent=2, ensure_ascii=False))\n            print('---')\n\" 2>&1",
+              "description": "Extract GRPO experiments from registry experiments list",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T16:34:04.335427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total experiments: 86, type: <class 'dict'>\n{\n  \"exp_id\": \"plan_015_grpo_g4_bf16_v3\",\n  \"status\": \"ALLOCATED\",\n  \"conclusion\": null,\n  \"metrics\": null,\n  \"wandb_run_id\": null,\n  \"config\": null\n}\n---\n{\n  \"exp_id\": \"plan_015_grpo_g4_bf16_v2\",\n  \"status\": \"DONE\",\n  \"conclusion\": \"killed\",\n  \"metrics\": null,\n  \"wandb_run_id\": null,\n  \"config\": null\n}\n---\n{\n  \"exp_id\": \"plan_015_grpo_g4_bf16\",\n  \"status\": \"DONE\",\n  \"conclusion\": \"killed\",\n  \"metrics\": null,\n  \"wandb_run_id\": null,\n  \"config\": null\n}\n---\n{\n  \"exp_id\": \"plan_011_grpo_g8_bf16\",\n  \"status\": \"DONE\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"final_step\": 100,\n    \"train_runtime_s\": 554,\n    \"reward_final\": 1.795,\n    \"f1_reward_final\": 1.002,\n    \"ced_reward_final\": 0.494,\n    \"format_reward_final\": 0.3,\n    \"frac_zero_std_final\": 0,\n    \"kl_final\": 0.022,\n    \"best_reward_step\": 85,\n    \"best_reward\": 2.858,\n    \"best_f1_reward\": 1.85,\n    \"mode_collapse\": false,\n    \"lora_config\": \"r=64, alpha=128, dropout=0.05, bf16\",\n    \"checkpoints\": \"10 checkpoints (step 10-100)\"\n  },\n  \"wandb_run_id\": null,\n  \"config\": null\n}\n---\n{\n  \"exp_id\": \"plan_011_grpo_g8_bf16_eval\",\n  \"status\": \"DONE\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"rel_f1\": 0.4549,\n    \"ign_f1\": 0.4549,\n    \"evi_f1\": 0.8086,\n    \"edcr\": 0.6318,\n    \"format_ok_rate\": 1,\n    \"n_truncated\": 61,\n    \"n_total\": 985,\n    \"n_predictions\": 10701,\n    \"checkpoint\": \"checkpoint-100\",\n    \"model\": \"Qwen3-4B + SFT merged + GRPO bf16 LoRA ckpt-100\",\n    \"inference_time_s\": 3170.3\n  },\n  \"wandb_run_id\": null,\n  \"config\": null\n}\n---\n{\n  \"exp_id\": \"eval_grpo_g8_bf16\",\n  \"status\": \"RUNNING\",\n  \"conclusion\": null,\n  \"metrics\": null,\n  \"wandb_run_id\": null,\n  \"config\": null\n}\n---\n{\n  \"exp_id\": \"mvp2_grpo_ced_kl001_r3\",\n  \"status\": \"DONE\",\n  \"conclusion\": \"killed\",\n  \"metrics\": null,\n  \"wandb_run_id\": null,\n  \"config\": null\n}\n---\n{\n  \"exp_id\": \"mvp2_grpo_ced_kl001_r2\",\n  \"status\": \"DONE\",\n  \"conclusion\": \"killed\",\n  \"metrics\": null,\n  \"wandb_run_id\": null,\n  \"\n…[truncated 4141 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T16:34:04.335790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/ -maxdepth 3 -type d -name \"*grpo*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T16:34:04.335958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_wandb_runs"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "limit": "50"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T16:34:04.336111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/grpo_s3\\\\n/root/autodl-tmp/grpo_s3_r2\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_rp\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100\\\\n/root/autodl-tmp/grpo_extract\\\\n/root/autodl-tmp/grpo_flatnli\\\\n/root/autodl-tmp/grpo_ced_r3\\\\n/root/autodl-tmp/grpo_extract_r2\\\\n/root/autodl-tmp/grpo_ced_r4\\\\n/root/autodl-tmp/grpo_flatnli_r2\\\\n/root/autodl-tmp/grpo_extract_r3\\\\n/root/autodl-tmp/grpo_ced_r5\\\\n/root/autodl-tmp/grpo_flatnli_r3\\\\n/root/autodl-tmp/grpo_flatnli_r4\\\\n/root/autodl-tmp/grpo_ced_kl001\\\\n/root/autodl-tmp/grpo_extract_r4\\\\n/root/autodl-tmp/grpo_flatnli_r5\\\\n/root/autodl-tmp/grpo_flatnli_r6\\\\n/root/autodl-tmp/grpo_ced_lr5e6\\\\n/root/autodl-tmp/grpo_ced_lr5e6_rp\\\\n/root/autodl-tmp/artifacts/plan_009_grpo_forgetting\\\\n/root/autodl-tmp/grpo_ced_g8_bf16\\\\n/root/autodl-tmp/grpo_ced_g4_bf16\\\\n/root/autodl-tmp/grpo_g4_bf16_control\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T16:34:04.336634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T16:34:04.336823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'exp_id': 'mvp2_sft_v2'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T16:34:04.336991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.508}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T16:34:04.337250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T16:34:04.337450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/artifacts/plan_009_grpo_forgetting/",
+              "account": "root"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T16:34:04.337586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/grpo_ced_g8_bf16/ -maxdepth 2 -name \"*.json\" -o -name \"*.log\" -o -name \"trainer_state*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T16:34:04.337874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3seed_summary.json\\\\nced_reranker_dryrun\\\\nced_reranker_poc\\\\nced_reranker_poc_dryrun\\\\nedcr_analysis.json\\\\nedcr_analysis_r2b.md\\\\nevi_f1_joint_comparison.json\\\\ngrpo_ced_kl001\\\\ngrpo_ced_kl001_step100\\\\ngrpo_ced_lr5e6\\\\ngrpo_ced_lr5e6_ckpt60\\\\ngrpo_ced_lr5e6_rp\\\\ngrpo_g8_bf16\\\\ngrpo_g8_bf16_ckpt100\\\\nlr5e6_r1_ckpt100\\\\nlr5e6_r1_ckpt40\\\\nlr5e6_r1_ckpt60\\\\nlr5e6_r1_ckpt80\\\\nrsft_r1\\\\nrsft_r2a\\\\nrsft_r2b\\\\nrsft_r2b_maxtok1536\\\\nrsft_s43\\\\nrsft_s44\\\\nsft\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T16:34:04.338146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/grpo_s3/ -maxdepth 2 -name \"*.json\" -o -name \"*.log\" -o -name \"trainer_state*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T16:34:04.338361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"grpo_forgetting_dynamics.pdf\\\\ngrpo_forgetting_dynamics.png\\\\nplot_forgetting.py\\\\nplot_forgetting_v2.py\\\\nplot_forgetting_v3.py\\\\nsummary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T16:34:04.338695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-10/adapter_config.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-10/tokenizer_config.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-10/special_tokens_map.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-10/added_tokens.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-10/vocab.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-10/tokenizer.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-10/trainer_state.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-20/adapter_config.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-20/tokenizer_config.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-20/special_tokens_map.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-20/added_tokens.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-20/vocab.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-20/tokenizer.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-20/trainer_state.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-30/adapter_config.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-30/tokenizer_config.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-30/special_tokens_map.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-30/added_tokens.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-30/vocab.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-30/tokenizer.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-30/trainer_state.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-40/adapter_config.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-40/tokenizer_config.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-40/special_tokens_map.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-40/added_tokens.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-40/vocab.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-40/tokenizer.json\\\\n/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-40/trainer_state.json\\\\n/root/autodl-tmp/grpo_ced_g8\n…[truncated 3283 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T16:34:04.339178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T16:34:04.339597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/artifacts/plan_009_grpo_forgetting/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T16:34:04.339819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"runs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"QLoRA GRPO, lr=5e-5, kl=0.01\\\\\\\",\\\\n      \\\\\\\"dir\\\\\\\": \\\\\\\"grpo_ced_kl001\\\\\\\",\\\\n      \\\\\\\"best_rel_f1\\\\\\\": 0.2167,\\\\n      \\\\\\\"best_rel_f1_step\\\\\\\": 100,\\\\n      \\\\\\\"final_rel_f1\\\\\\\": 0.2167,\\\\n      \\\\\\\"best_reward\\\\\\\": 1.37,\\\\n      \\\\\\\"final_reward\\\\\\\": 1.195,\\\\n      \\\\\\\"total_steps\\\\\\\": 100,\\\\n      \\\\\\\"best_evi_f1\\\\\\\": 0.72,\\\\n      \\\\\\\"final_evi_f1\\\\\\\": 0.5746\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"QLoRA GRPO, lr=5e-6, kl=0.01\\\\\\\",\\\\n      \\\\\\\"dir\\\\\\\": \\\\\\\"grpo_ced_lr5e6\\\\\\\",\\\\n      \\\\\\\"best_rel_f1\\\\\\\": 0.0138,\\\\n      \\\\\\\"best_rel_f1_step\\\\\\\": 100,\\\\n      \\\\\\\"final_rel_f1\\\\\\\": 0.0138,\\\\n      \\\\\\\"best_reward\\\\\\\": 0.461,\\\\n      \\\\\\\"final_reward\\\\\\\": 0.38,\\\\n      \\\\\\\"total_steps\\\\\\\": 180,\\\\n      \\\\\\\"best_evi_f1\\\\\\\": 0.8504,\\\\n      \\\\\\\"final_evi_f1\\\\\\\": 0.8504\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"bf16 GRPO, lr=5e-5, G=8\\\\\\\",\\\\n      \\\\\\\"dir\\\\\\\": \\\\\\\"grpo_ced_g8_bf16\\\\\\\",\\\\n      \\\\\\\"best_rel_f1\\\\\\\": 0.4549,\\\\n      \\\\\\\"best_rel_f1_step\\\\\\\": 100,\\\\n      \\\\\\\"final_rel_f1\\\\\\\": 0.4549,\\\\n      \\\\\\\"best_reward\\\\\\\": 2.858,\\\\n      \\\\\\\"final_reward\\\\\\\": 1.795,\\\\n      \\\\\\\"total_steps\\\\\\\": 100,\\\\n      \\\\\\\"best_evi_f1\\\\\\\": 0.8086,\\\\n      \\\\\\\"final_evi_f1\\\\\\\": 0.8086,\\\\n      \\\\\\\"eval_checkpoints\\\\\\\": {\\\\n        \\\\\\\"checkpoint-80\\\\\\\": {\\\\n          \\\\\\\"rel_f1\\\\\\\": 0.4456,\\\\n          \\\\\\\"evi_f1\\\\\\\": 0.8034,\\\\n          \\\\\\\"edcr\\\\\\\": 0.6409\\\\n        },\\\\n        \\\\\\\"checkpoint-100\\\\\\\": {\\\\n          \\\\\\\"rel_f1\\\\\\\": 0.4549,\\\\n          \\\\\\\"evi_f1\\\\\\\": 0.8086,\\\\n          \\\\\\\"edcr\\\\\\\": 0.6318\\\\n        }\\\\n      }\\\\n    }\\\\n  ],\\\\n  \\\\\\\"sft_baseline\\\\\\\": {\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4057,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7979\\\\n  },\\\\n  \\\\\\\"key_finding\\\\\\\": \\\\\\\"Catastrophic forgetting is QLoRA-specific: bf16 GRPO maintains and exceeds SFT-level rel_f1 (0.455 vs 0.406) while QLoRA GRPO collapses to 0.217.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \n…[truncated 61 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T16:34:04.339998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/artifacts/plan_009_grpo_forgetting/plot_forgetting_v3.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T16:34:04.340268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json, os\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\n\\\\nplt.rcParams.update({\\\\n    'font.family': 'serif',\\\\n    'font.size': 10,\\\\n    'axes.labelsize': 11,\\\\n    'axes.titlesize': 12,\\\\n    'legend.fontsize': 8,\\\\n    'xtick.labelsize': 9,\\\\n    'ytick.labelsize': 9,\\\\n    'figure.dpi': 300,\\\\n    'savefig.dpi': 300,\\\\n    'savefig.bbox': 'tight',\\\\n    'axes.spines.top': False,\\\\n    'axes.spines.right': False,\\\\n    'axes.linewidth': 0.8,\\\\n})\\\\n\\\\n# ===== Data =====\\\\ndef extract_training_metrics(path):\\\\n    ckpts = sorted([d for d in os.listdir(path) if d.startswith('checkpoint-')],\\\\n                   key=lambda x: int(x.split('-')[1]))\\\\n    latest = os.path.join(path, ckpts[-1], 'trainer_state.json')\\\\n    with open(latest) as f:\\\\n        state = json.load(f)\\\\n    log_history = state.get('log_history', [])\\\\n    steps, rewards = [], []\\\\n    for entry in log_history:\\\\n        r = entry.get('reward')\\\\n        if r is not None:\\\\n            steps.append(entry['step'])\\\\n            rewards.append(r)\\\\n    return steps, rewards\\\\n\\\\n# Training reward data\\\\ntrain_data = {}\\\\nfor label, path in [\\\\n    ('QLoRA, lr=5e-5', '/root/autodl-tmp/grpo_ced_kl001'),\\\\n    ('QLoRA, lr=5e-6', '/root/autodl-tmp/grpo_ced_lr5e6'),\\\\n    ('bf16, G=8', '/root/autodl-tmp/grpo_ced_g8_bf16'),\\\\n]:\\\\n    s, r = extract_training_metrics(path)\\\\n    train_data[label] = (s, r)\\\\n\\\\n# Eval data\\\\neval_data = {\\\\n    'QLoRA, lr=5e-5': {\\\\n        'steps':  [10,     20,     30,     50,     60,     90,     100],\\\\n        'rel_f1': [0.0030, 0.0088, 0.0338, 0.1563, 0.1467, 0.2108, 0.2167],\\\\n        'evi_f1': [0.7200, 0.4230, 0.5889, 0.5643, 0.5763, 0.5666, 0.5746],\\\\n    },\\\\n    'QLoRA, lr=5e-6': {\\\\n        'steps':  [20,     40,     60,     80,     100],\\\\n        'rel_f1': [0.0077, 0.0071, 0.0093, 0.0116, 0.0138],\\\\n        'evi_f1': [0.6281, 0.7584, 0.8100, \n…[truncated 6612 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T16:34:04.340449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-100/trainer_state.json')); print(json.dumps({k:d[k] for k in ['best_metric','best_model_checkpoint','global_step','max_steps','epoch'] if k in d}, indent=2)); print('log_history length:', len(d.get('log_history',[]))); print('First entry:', json.dumps(d['log_history'][0]) if d.get('log_history') else 'empty'); print('Last entry:', json.dumps(d['log_history'][-1]) if d.get('log_history') else 'empty')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T16:34:04.340631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T16:34:04.340944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/grpo_g8_bf16/",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T16:34:04.341090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"checkpoint-100\\\\ncheckpoint-80\\\\ncheckpoint-90\\\\nsummary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T16:34:04.341288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/grpo_g8_bf16/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T16:34:04.341557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T16:34:04.341780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/ -name \"summary.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T16:34:04.342024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/grpo_ced_kl001/summary.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/summary.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/summary.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/summary.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_rp/summary.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt60/summary.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/summary.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T16:34:04.342216+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T16:34:04.342450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"metrics.json\\\\npredictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T16:34:04.342639+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/grpo_ced_g4_bf16/",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T16:34:04.342785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-10\\\\ncheckpoint-100\\\\ncheckpoint-20\\\\ncheckpoint-30\\\\ncheckpoint-40\\\\ncheckpoint-50\\\\ncheckpoint-60\\\\ncheckpoint-70\\\\ncheckpoint-80\\\\ncheckpoint-90\\\\nmerges.txt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T16:34:04.342944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/grpo_ced_kl001/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T16:34:04.343082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint-90\\\\\\\": {\\\\n    \\\\\\\"step\\\\\\\": 90,\\\\n    \\\\\\\"f1\\\\\\\": 0.2108256321722352,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.2108256321722352,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.5665522678786755,\\\\n    \\\\\\\"edcr\\\\\\\": 0.8584013353115727,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 1.0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T16:34:04.343210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/grpo_ced_kl001_step100/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T16:34:04.343397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint-100\\\\\\\": {\\\\n    \\\\\\\"step\\\\\\\": 100,\\\\n    \\\\\\\"f1\\\\\\\": 0.21671510886747236,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.21671510886747236,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.5745594009679481,\\\\n    \\\\\\\"edcr\\\\\\\": 0.8539190193164933,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 1.0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T16:34:04.343528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/grpo_ced_lr5e6/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T16:34:04.343809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint-20\\\\\\\": {\\\\n    \\\\\\\"step\\\\\\\": 20,\\\\n    \\\\\\\"f1\\\\\\\": 0.007671768643526005,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.007671768643526005,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.6280623608017818,\\\\n    \\\\\\\"edcr\\\\\\\": 0.993393928035982,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 0.9908629441624366\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T16:34:04.344186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T16:34:04.344380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint-40\\\\\\\": {\\\\n    \\\\\\\"step\\\\\\\": 40,\\\\n    \\\\\\\"f1\\\\\\\": 0.007146887342486364,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.007146887342486364,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7583892617449665,\\\\n    \\\\\\\"edcr\\\\\\\": 0.9942045337983383,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 0.9939086294416244\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T16:34:04.344514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/lr5e6_r1_ckpt60/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T16:34:04.344819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T16:34:04.345493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T16:34:04.346089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint-80\\\\\\\": {\\\\n    \\\\\\\"step\\\\\\\": 80,\\\\n    \\\\\\\"f1\\\\\\\": 0.011624773855806613,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.011624773855806613,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8279569892473118,\\\\n    \\\\\\\"edcr\\\\\\\": 0.9908366059740569,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 0.9989847715736041\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T16:34:04.346267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/grpo_ced_lr5e6_rp/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T16:34:04.346433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T16:34:04.346564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T16:34:04.346736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5042050460552663,\\\\n  \\\\\\\"recall\\\\\\\": 0.41445148547444655,\\\\n  \\\\\\\"f1\\\\\\\": 0.45494376439766926,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.5042050460552663,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.41445148547444655,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.45494376439766926,\\\\n  \\\\\\\"tp\\\\\\\": 5036,\\\\n  \\\\\\\"pred_count\\\\\\\": 9988,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.7915446773626889,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.826485693323551,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8086379135012263,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 10686,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6318226386316592,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 11599,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 18358,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3781259065854366,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.3383521104823218,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.35713502849627354,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6517,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 17235,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.9380710659898477,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.9380710659898477,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 924,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 924,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 10701,\\\\n  \\\\\\\"n_truncated\\\\\\\": 61,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 3170.3,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-100\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\"\n…[truncated 52 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T16:34:04.347107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/ -maxdepth 2 -name \"metrics.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T16:34:04.347299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T16:34:04.347491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/grpo_ced_kl001/ -maxdepth 1 -type d -name \"checkpoint-*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-15T16:34:04.347651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/grpo_ced_kl001/checkpoint-10\\\\n/root/autodl-tmp/grpo_ced_kl001/checkpoint-20\\\\n/root/autodl-tmp/grpo_ced_kl001/checkpoint-30\\\\n/root/autodl-tmp/grpo_ced_kl001/checkpoint-40\\\\n/root/autodl-tmp/grpo_ced_kl001/checkpoint-50\\\\n/root/autodl-tmp/grpo_ced_kl001/checkpoint-60\\\\n/root/autodl-tmp/grpo_ced_kl001/checkpoint-70\\\\n/root/autodl-tmp/grpo_ced_kl001/checkpoint-80\\\\n/root/autodl-tmp/grpo_ced_kl001/checkpoint-90\\\\n/root/autodl-tmp/grpo_ced_kl001/checkpoint-100\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-15T16:34:04.347781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/grpo_ced_lr5e6/ -maxdepth 1 -type d -name \"checkpoint-*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-15T16:34:04.347909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-20\\\\n/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-40\\\\n/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60\\\\n/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80\\\\n/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\\\\n/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-120\\\\n/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-140\\\\n/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-160\\\\n/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-180\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-15T16:34:04.348031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/sft/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-15T16:34:04.348153+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/eval_results/sft/summary.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-15T16:34:04.348374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\n\ndef get_reward_trajectory(path):\n    ckpts = sorted([d for d in os.listdir(path) if d.startswith('checkpoint-')],\n                   key=lambda x: int(x.split('-')[1]))\n    latest = os.path.join(path, ckpts[-1], 'trainer_state.json')\n    with open(latest) as f:\n        state = json.load(f)\n    log_history = state.get('log_history', [])\n    data = []\n    for entry in log_history:\n        row = {'step': entry.get('step')}\n        for k in ['reward', 'reward/mean', 'kl', 'loss', 'completion_length/mean',\n                   'reward/f1_reward/mean', 'reward/ced_reward/mean', 'reward/format_reward/mean',\n                   'reward/flat_nli_reward/mean', 'frac_zero_std']:\n            if k in entry:\n                row[k] = entry[k]\n        if len(row) > 1:\n            data.append(row)\n    return data\n\nruns = {\n    'qlora_kl001': '/root/autodl-tmp/grpo_ced_kl001',\n    'qlora_lr5e6': '/root/autodl-tmp/grpo_ced_lr5e6',\n    'bf16_g8': '/root/autodl-tmp/grpo_ced_g8_bf16',\n    'bf16_g4': '/root/autodl-tmp/grpo_ced_g4_bf16',\n}\n\nresult = {}\nfor name, path in runs.items():\n    if os.path.exists(path):\n        try:\n            result[name] = get_reward_trajectory(path)\n            print(f'{name}: {len(result[name])} entries, steps {result[name][0][\\\"step\\\"]}-{result[name][-1][\\\"step\\\"]}')\n        except Exception as e:\n            print(f'{name}: ERROR {e}')\n    else:\n        print(f'{name}: NOT FOUND')\n\nwith open('/root/autodl-tmp/artifacts/plan_009_grpo_forgetting/reward_trajectories.json', 'w') as f:\n    json.dump(result, f, indent=2)\nprint('Saved reward_trajectories.json')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-15T16:34:04.348541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"qlora_kl001: 20 entries, steps 5-100\\\\nqlora_lr5e6: 36 entries, steps 5-180\\\\nbf16_g8: 20 entries, steps 5-100\\\\nbf16_g4: 20 entries, steps 5-100\\\\nSaved reward_trajectories.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-15T16:34:04.348668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-15T16:34:04.349046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.008546424176124709,\\\\n  \\\\\\\"recall\\\\\\\": 0.010287219158916961,\\\\n  \\\\\\\"f1\\\\\\\": 0.009336370765955856,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.008546424176124709,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.010287219158916961,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.009336370765955856,\\\\n  \\\\\\\"tp\\\\\\\": 125,\\\\n  \\\\\\\"pred_count\\\\\\\": 14626,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.9285714285714286,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.7182320441988951,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8099688473520251,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 17961,\\\\n  \\\\\\\"edcr\\\\\\\": 0.9929835924006909,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 18398,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 18528,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9979695431472081,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.6730964467005076,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.6730964467005076,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 983,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 663,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 663,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 18046,\\\\n  \\\\\\\"n_truncated\\\\\\\": 321,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 983,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9979695431472081,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 5731.8,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": true\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-15T16:34:04.349206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-15T16:34:04.349361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/summary.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-15T16:34:04.349485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/grpo_g4_bf16_control/ -maxdepth 1 -type d -name \"checkpoint-*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-15T16:34:04.349607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-15T16:34:04.349896+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/artifacts/plan_009_grpo_forgetting/reward_trajectories.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-15T16:34:04.350291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qlora_kl001\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 5,\\\\n      \\\\\\\"reward\\\\\\\": 0.22153395116329194,\\\\n      \\\\\\\"kl\\\\\\\": 0.014244648643762048,\\\\n      \\\\\\\"loss\\\\\\\": 0.0907\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 10,\\\\n      \\\\\\\"reward\\\\\\\": 0.2527500122785568,\\\\n      \\\\\\\"kl\\\\\\\": 0.04515832807228435,\\\\n      \\\\\\\"loss\\\\\\\": 0.0232\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 15,\\\\n      \\\\\\\"reward\\\\\\\": 0.28912500739097596,\\\\n      \\\\\\\"kl\\\\\\\": 0.12371939779259264,\\\\n      \\\\\\\"loss\\\\\\\": 0.008\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 20,\\\\n      \\\\\\\"reward\\\\\\\": 0.2660387396812439,\\\\n      \\\\\\\"kl\\\\\\\": 0.11954217026941479,\\\\n      \\\\\\\"loss\\\\\\\": 0.0901\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 25,\\\\n      \\\\\\\"reward\\\\\\\": 0.3390855848789215,\\\\n      \\\\\\\"kl\\\\\\\": 0.180795057117939,\\\\n      \\\\\\\"loss\\\\\\\": -0.0147\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 30,\\\\n      \\\\\\\"reward\\\\\\\": 0.4466639578342438,\\\\n      \\\\\\\"kl\\\\\\\": 0.11503728968091309,\\\\n      \\\\\\\"loss\\\\\\\": -0.0104\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 35,\\\\n      \\\\\\\"reward\\\\\\\": 0.49427078366279603,\\\\n      \\\\\\\"kl\\\\\\\": 0.12470924151130021,\\\\n      \\\\\\\"loss\\\\\\\": -0.0184\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 40,\\\\n      \\\\\\\"reward\\\\\\\": 0.6951801717281342,\\\\n      \\\\\\\"kl\\\\\\\": 0.09760254183784127,\\\\n      \\\\\\\"loss\\\\\\\": 0.1298\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 45,\\\\n      \\\\\\\"reward\\\\\\\": 0.5164763569831848,\\\\n      \\\\\\\"kl\\\\\\\": 0.12257009814493358,\\\\n      \\\\\\\"loss\\\\\\\": 0.0931\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 50,\\\\n      \\\\\\\"reward\\\\\\\": 1.1008556365966797,\\\\n      \\\\\\\"kl\\\\\\\": 0.13094596145674586,\\\\n      \\\\\\\"loss\\\\\\\": 0.0036\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 55,\\\\n      \\\\\\\"reward\\\\\\\": 0.8231163501739502,\\\\n      \\\\\\\"kl\\\\\\\": 0.1330781408585608,\\\\n      \\\\\\\"loss\\\\\\\": 0.0894\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 60,\\\\n      \\\\\\\"reward\\\\\\\": 0.520784878730774,\\\\n      \\\\\\\"kl\\\\\\\": 0.11658263546414674,\\\\n      \\\\\\\"loss\\\\\\\": -0.0131\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\":\n…[truncated 8641 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-15T16:34:04.350475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/ -maxdepth 2 -name \"summary.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-15T16:34:04.350732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/grpo_ced_kl001/summary.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/summary.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/summary.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/summary.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_rp/summary.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt60/summary.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/summary.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-15T16:34:04.351004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/ -maxdepth 2 -name \"metrics.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-15T16:34:04.351211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-15T16:34:04.351911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/lr5e6_r1_ckpt60/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-15T16:34:04.352105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-15T16:34:04.352276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/ -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-15T16:34:04.352433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-15T16:34:04.352564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/grpo_g8_bf16/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-15T16:34:04.352786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-15T16:34:04.352941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-15T16:34:04.353099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.013157894736842105,\\\\n  \\\\\\\"recall\\\\\\\": 0.014402106822483746,\\\\n  \\\\\\\"f1\\\\\\\": 0.013751915445365604,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.013157894736842105,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.014402106822483746,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.013751915445365604,\\\\n  \\\\\\\"tp\\\\\\\": 175,\\\\n  \\\\\\\"pred_count\\\\\\\": 13300,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.9255813953488372,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.7865612648221344,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8504273504273504,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15456,\\\\n  \\\\\\\"edcr\\\\\\\": 0.9876051074431641,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 15856,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 16055,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8162436548223351,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8162436548223351,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 984,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 804,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 804,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15498,\\\\n  \\\\\\\"n_truncated\\\\\\\": 181,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 984,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 5901.7,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": true\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-15T16:34:04.353369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat > /root/autodl-tmp/artifacts/plan_009_grpo_forgetting/plot_forgetting_v4.py << 'PYEOF'\nimport json, os\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.titlesize': 12,\n    'axes.labelsize': 11,\n    'xtick.labelsize': 9,\n    'ytick.labelsize': 9,\n    'legend.fontsize': 8.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.6,\n    'axes.linewidth': 0.7,\n})\n\n# ===== Color Palette (Okabe-Ito, colorblind-safe) =====\nC = {\n    'qlora_kl001': '#E69F00',   # orange\n    'qlora_lr5e6': '#D55E00',   # vermillion\n    'bf16_g8':     '#0072B2',   # blue\n    'bf16_g4':     '#56B4E9',   # sky blue\n    'sft':         '#888888',   # gray\n}\nMARKERS = {'qlora_kl001': 'o', 'qlora_lr5e6': 's', 'bf16_g8': '^', 'bf16_g4': 'D'}\nLABELS = {\n    'qlora_kl001': 'QLoRA 4-bit (lr=5e-5, kl=0.01)',\n    'qlora_lr5e6': 'QLoRA 4-bit (lr=5e-6, kl=0.01)',\n    'bf16_g8':     'bf16 LoRA (G=8, kl=0.01)',\n    'bf16_g4':     'bf16 LoRA (G=4, kl=0)',\n}\n\n# ===== Training Reward Data =====\nwith open('/root/autodl-tmp/artifacts/plan_009_grpo_forgetting/reward_trajectories.json') as f:\n    raw_traj = json.load(f)\n\ndef get_reward_series(data):\n    steps = [e['step'] for e in data if 'reward' in e]\n    rewards = [e['reward'] for e in data if 'reward' in e]\n    return steps, rewards\n\ndef get_kl_series(data):\n    steps = [e['step'] for e in data if 'kl' in e and e['kl'] < 1e6]\n    kls = [e['kl'] for e in data if 'kl' in e and e['kl'] < 1e6]\n    return steps, kls\n\ntrain_reward = {}\ntrain_kl = {}\nfor key in ['qlora_kl001', 'qlora_lr5e6', 'bf16_g8', 'bf16_g4']:\n    train_reward[key] = get_reward_series(raw_traj[key])\n    train_kl[key] = get_kl_series(raw_traj[key])\n\n# ===== Eval Data =====\neval_data = {\n    'qlora_kl001': {\n        'steps':  [90,     100],\n        'rel_f1': [0.2108, 0.2167],\n        'evi_f1': [0.5666, 0.5746],\n        'edcr':   [0.8584, 0.8539],\n    },\n    'qlora_lr5e6': {\n        'steps':  [20,     40,     60,     80,     100],\n        'rel_f1': [0.0077, 0.0071, 0.0093, 0.0116, 0.0138],\n        'evi_f1': [0.6281, 0.7584, 0.8100, 0.8280, 0.8504],\n        'edcr':   [0.9934, 0.9942, 0.9930, 0.9908, 0.9876],\n    },\n    'bf16_g8': {\n        'steps':  [80,     100],\n        'rel_f1': [0.4456, 0.4549],\n        'evi_f1': [0.8034, 0.8086],\n        'edcr':   [0.6409, 0.6318],\n    },\n}\n\nSFT_REL_F1 = 0.4057\nSFT_EVI_F1 = 0.7979\n\n# ===== Figure: 2x2 =====\nfig, axes = plt.subplots(2, 2, figsize=(10, 7.5))\nfig.subplots_adjust(hspace=0.38, wspace=0.30)\n\n# --- (a) Training Reward ---\nax = axes[0, 0]\nfor key in ['qlora_kl001', 'qlora_lr5e6', 'bf16_g8', 'bf16_g4']:\n    s, r = train_reward[key]\n    ax.plot(s, r, color=C[key], marker=MARKERS[key], markersize=3,\n            linewidth=1.4, label=LABELS[key], alpha=0.85)\nax.set_ylabel('Mean Reward')\nax.set_xlabel('Training Step')\nax.set_title('(a) Training Reward', fontweight='bold', loc='left')\nax.legend(loc='upper left', framealpha=0.9, edgecolor='#dddddd', fontsize=7.5)\nax.grid(axis='y', alpha=0.2, linewidth=0.4)\nax.set_xlim(0, 185)\n\n# --- (b) Relation F1 ---\nax = axes[0, 1]\nfor key in ['qlora_kl001', 'qlora_lr5e6', 'bf16_g8']:\n    d = eval_data[key]\n    ax.plot(d['steps'], d['rel_f1'], color=C[key], marker=MARKERS[key],\n            markersize=5, linewidth=1.5, label=LABELS[key], alpha=0.85)\n\nax.axhline(y=SFT_REL_F1, color=C['sft'], linestyle=':', linewidth=1.2,\n           label=f'SFT baseline ({SFT_REL_F1:.3f})', zorder=0)\n\n# forgetting zone\nax.axhspan(-0.02, 0.05, alpha=0.06, color='#D55E00', zorder=0)\nax.text(5, 0.025, 'Catastrophic\\nforgetting zone', fontsize=7, color='#D55E00',\n        alpha=0.7, va='center')\n\n# annotations\nax.annotate(f'bf16: {0.4549:.3f}\\n(+12.1% vs SFT)',\n            xy=(100, 0.4549), xytext=(55, 0.50),\n            fontsize=7, color=C['bf16_g8'],\n            arrowprops=dict(arrowstyle='->', color=C['bf16_g8'],\n                           connectionstyle='arc3,rad=0.15', linewidth=0.7),\n            bbox=dict(boxstyle='round,pad=0.25', facecolor='#E3F2FD',\n                     edgecolor=C['bf16_g8'], alpha=0.9, linewidth=0.5))\n\nax.annotate(f'QLoRA best: {0.2167:.3f}\\n(46.6% drop vs SFT)',\n            xy=(100, 0.2167), xytext=(35, 0.30),\n            fontsize=7, color=C['qlora_kl001'],\n            arrowprops=dict(arrowstyle='->', color=C['qlora_kl001'],\n                           connectionstyle='arc3,rad=-0.15', linewidth=0.7),\n            bbox=dict(boxstyle='round,pad=0.25', facecolor='#FFF8E1',\n                     edgecolor=C['qlora_kl001'], alpha=0.9, linewidth=0.5))\n\nax.set_ylabel('Relation F1')\nax.set_xlabel('Training Step')\nax.set_title('(b) Relation Extraction (rel_f1)', fontweight='bold', loc='left')\nax.set_ylim(-0.02, 0.56)\nax.set_xlim(0, 110)\nax.legend(loc='center right', framealpha=0.9, edgecolor='#dddddd', fontsize=7)\nax.grid(axis='y', alpha=0.2, linewidth=0.4)\n\n# --- (c) Evidence F1 ---\nax = axes[1, 0]\nfor key in ['qlora_kl001', 'qlora_lr5e6', 'bf16_g8']:\n    d = eval_data[key]\n    ax.plot(d['steps'], d['evi_f1'], color=C[key], marker=MARKERS[key],\n            markersize=5, linewidth=1.5, label=LABELS[key], alpha=0.85)\n\nax.axhline(y=SFT_EVI_F1, color=C['sft'], linestyle=':', linewidth=1.2,\n           label=f'SFT baseline ({SFT_EVI_F1:.3f})', zorder=0)\n\nax.annotate('QLoRA lr=5e-6:\\nevi_f1 rises while\\nrel_f1 collapses\\n→ task decoupling',\n            xy=(80, 0.828), xytext=(15, 0.90),\n            fontsize=7, color=C['qlora_lr5e6'],\n            arrowprops=dict(arrowstyle='->', color=C['qlora_lr5e6'],\n                           connectionstyle='arc3,rad=0.2', linewidth=0.7),\n            bbox=dict(boxstyle='round,pad=0.25', facecolor='#FBE9E7',\n                     edgecolor=C['qlora_lr5e6'], alpha=0.9, linewidth=0.5))\n\nax.set_ylabel('Evidence F1')\nax.set_xlabel('Training Step')\nax.set_title('(c) Evidence Extraction (evi_f1)', fontweight='bold', loc='left')\nax.set_ylim(0.40, 0.95)\nax.set_xlim(0, 110)\nax.legend(loc='lower right', framealpha=0.9, edgecolor='#dddddd', fontsize=7)\nax.grid(axis='y', alpha=0.2, linewidth=0.4)\n\n# --- (d) EDCR ---\nax = axes[1, 1]\nfor key in ['qlora_kl001', 'qlora_lr5e6', 'bf16_g8']:\n    d = eval_data[key]\n    ax.plot(d['steps'], d['edcr'], color=C[key], marker=MARKERS[key],\n            markersize=5, linewidth=1.5, label=LABELS[key], alpha=0.85)\n\n# danger zone for EDCR\nax.axhspan(0.95, 1.02, alpha=0.06, color='#D55E00', zorder=0)\nax.text(5, 0.975, 'Near-total\\ndistractor citations', fontsize=7,\n        color='#D55E00', alpha=0.7, va='center')\n\nax.annotate(f'bf16: EDCR={0.6318:.2f}\\n(meaningful citations)',\n            xy=(100, 0.6318), xytext=(30, 0.72),\n            fontsize=7, color=C['bf16_g8'],\n            arrowprops=dict(arrowstyle='->', color=C['bf16_g8'],\n                           connectionstyle='arc3,rad=0.15', linewidth=0.7),\n            bbox=dict(boxstyle='round,pad=0.25', facecolor='#E3F2FD',\n                     edgecolor=C['bf16_g8'], alpha=0.9, linewidth=0.5))\n\nax.set_ylabel('EDCR (↓ better)')\nax.set_xlabel('Training Step')\nax.set_title('(d) Evidence Distractor Citation Rate', fontweight='bold', loc='left')\nax.set_ylim(0.55, 1.02)\nax.set_xlim(0, 110)\nax.legend(loc='center left', framealpha=0.9, edgecolor='#dddddd', fontsize=7)\nax.grid(axis='y', alpha=0.2, linewidth=0.4)\n\noutdir = '/root/autodl-tmp/artifacts/plan_009_grpo_forgetting'\nfig.savefig(os.path.join(outdir, 'grpo_forgetting_dynamics_v4.pdf'), format='pdf')\nfig.savefig(os.path.join(outdir, 'grpo_forgetting_dynamics_v4.png'), format='png')\nprint(f'Saved v4 to {outdir}/')\nplt.close()\n\n# ===== Comprehensive Summary JSON =====\nsummary = {\n    \"figure_version\": \"v4\",\n    \"date\": \"2026-05-15\",\n    \"layout\": \"2x2 grid: (a) reward, (b) rel_f1, (c) evi_f1, (d) EDCR\",\n    \"runs\": [\n        {\n            \"name\": \"QLoRA 4-bit (lr=5e-5, kl=0.01)\",\n            \"run_key\": \"qlora_kl001\",\n            \"precision\": \"NF4 QLoRA\",\n            \"group_size\": 4,\n            \"lr\": \"5e-5\",\n            \"kl_coeff\": 0.01,\n            \"total_steps\": 100,\n            \"forgetting\": True,\n            \"eval_checkpoints\": {\n                \"step_90\": {\"rel_f1\": 0.2108, \"evi_f1\": 0.5666, \"edcr\": 0.8584},\n                \"step_100\": {\"rel_f1\": 0.2167, \"evi_f1\": 0.5746, \"edcr\": 0.8539},\n            },\n            \"reward_range\": [0.22, 1.37],\n        },\n        {\n            \"name\": \"QLoRA 4-bit (lr=5e-6, kl=0.01)\",\n            \"run_key\": \"qlora_lr5e6\",\n            \"precision\": \"NF4 QLoRA\",\n            \"group_size\": 4,\n            \"lr\": \"5e-6\",\n            \"kl_coeff\": 0.01,\n            \"total_steps\": 180,\n            \"forgetting\": True,\n            \"eval_checkpoints\": {\n                \"step_20\":  {\"rel_f1\": 0.0077, \"evi_f1\": 0.6281, \"edcr\": 0.9934},\n                \"step_40\":  {\"rel_f1\": 0.0071, \"evi_f1\": 0.7584, \"edcr\": 0.9942},\n                \"step_60\":  {\"rel_f1\": 0.0093, \"evi_f1\": 0.8100, \"edcr\": 0.9930},\n                \"step_80\":  {\"rel_f1\": 0.0116, \"evi_f1\": 0.8280, \"edcr\": 0.9908},\n                \"step_100\": {\"rel_f1\": 0.0138, \"evi_f1\": 0.8504, \"edcr\": 0.9876},\n            },\n            \"reward_range\": [0.07, 0.46],\n        },\n        {\n            \"name\": \"bf16 LoRA (G=8, kl=0.01)\",\n            \"run_key\": \"bf16_g8\",\n            \"precision\": \"bf16\",\n            \"group_size\": 8,\n            \"lr\": \"5e-5\",\n            \"kl_coeff\": 0.01,\n            \"total_steps\": 100,\n            \"forgetting\": False,\n            \"eval_checkpoints\": {\n                \"step_80\":  {\"rel_f1\": 0.4456, \"evi_f1\": 0.8034, \"edcr\": 0.6409},\n                \"step_100\": {\"rel_f1\": 0.4549, \"evi_f1\": 0.8086, \"edcr\": 0.6318},\n            },\n            \"reward_range\": [0.85, 2.86],\n        },\n        {\n            \"name\": \"bf16 LoRA (G=4, kl=0)\",\n            \"run_key\": \"bf16_g4\",\n            \"precision\": \"bf16\",\n            \"group_size\": 4,\n            \"lr\": \"5e-5\",\n            \"kl_coeff\": 0.0,\n            \"total_steps\": 100,\n            \"forgetting\": \"unknown (no eval data)\",\n            \"eval_checkpoints\": {},\n            \"reward_range\": [0.34, 4.04],\n        },\n    ],\n    \"sft_baseline\": {\"rel_f1\": 0.4057, \"evi_f1\": 0.7979},\n    \"key_findings\": [\n        \"QLoRA 4-bit GRPO causes catastrophic forgetting: rel_f1 drops to 0.014-0.217 (vs SFT 0.406)\",\n        \"bf16 LoRA GRPO preserves and improves rel_f1: 0.455 (+12.1% vs SFT)\",\n        \"Task decoupling in QLoRA lr=5e-6: evi_f1 rises to 0.850 while rel_f1 stays at 0.014\",\n        \"EDCR confirms: QLoRA generates 85-99% distractor citations vs bf16's 63%\",\n        \"bf16 runs achieve 2-6x higher training reward than QLoRA runs\",\n    ],\n    \"data_completeness\": {\n        \"training_reward\": \"4/4 runs have step-level data (steps 5-100/180)\",\n        \"eval_rel_f1\": \"3/4 runs have eval (qlora_kl001: 2 pts, qlora_lr5e6: 5 pts, bf16_g8: 2 pts, bf16_g4: 0 pts)\",\n        \"missing\": [\n            \"bf16 G=4 has no eval data (need to run eval on its checkpoints)\",\n            \"QLoRA kl001 missing eval at early checkpoints (steps 10-80)\",\n            \"bf16 G=8 missing eval at early checkpoints (steps 10-70)\",\n            \"No eval data for flatnli/extract reward type experiments\",\n        ],\n    },\n    \"training_reward_trajectories\": \"See reward_trajectories.json for step-level data\",\n}\n\nwith open(os.path.join(outdir, 'summary_v4.json'), 'w') as f:\n    json.dump(summary, f, indent=2, ensure_ascii=False)\nprint('Summary v4 saved.')\nPYEOF\necho \"Script written.\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-15T16:34:04.353679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-15T16:34:04.353827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/artifacts/plan_009_grpo_forgetting && python3 plot_forgetting_v4.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-15T16:34:04.353961+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved v4 to /root/autodl-tmp/artifacts/plan_009_grpo_forgetting/\\\\nSummary v4 saved.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-15T16:34:04.354125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/",
+              "description": "List local artifacts directory"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-15T16:34:04.354286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\nced_stabilizer_literature_survey.md\ncuda3_diagnostic.md\nd024_literature_survey.md\ndiag_mvp2_grpo_flatnli_r3.md\ndiagnose_plan_001.md\ndiversity_probe.py\ndiversity_probe_results.md\ndream_reports\nedcr_analysis_r2b.md\neval_progress_check_0515.md\neval_script_audit.md\neval_status_check.md\nfreige\ngap_analysis_w3.md\nkl_analysis_report.md\nmanifest.yaml\nmvp2_eval_rsft_r2b_maxtok1536_r2\nplan_009_grpo_forgetting\nplan_012_dpo_ced\nrelated_work_gap_analysis.md\nrsft_gen_progress_check.md\nrsft_pipeline_commands.md\nstatus_check_loop4.md\ntraining_health_check.md\ntraining_trajectory_loop4.md\ntrl_grpo_stability_research.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-15T16:34:04.354426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/",
+              "description": "List existing plan_009 local artifacts"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-15T16:34:04.354551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "grpo_forgetting_dynamics.pdf\ngrpo_forgetting_dynamics.png\nsummary.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-15T16:34:04.354676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp rtx5090-4x:/root/autodl-tmp/artifacts/plan_009_grpo_forgetting/grpo_forgetting_dynamics_v4.png /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/ && scp rtx5090-4x:/root/autodl-tmp/artifacts/plan_009_grpo_forgetting/grpo_forgetting_dynamics_v4.pdf /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/ && scp rtx5090-4x:/root/autodl-tmp/artifacts/plan_009_grpo_forgetting/summary_v4.json /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/ && scp rtx5090-4x:/root/autodl-tmp/artifacts/plan_009_grpo_forgetting/reward_trajectories.json /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/ && echo \"All files copied.\"",
+              "description": "SCP figure and data files from server to local artifacts",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-15T16:34:04.354817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All files copied."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-15T16:34:04.354951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/grpo_forgetting_dynamics_v4.png"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-15T16:34:04.355220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-15T16:34:04.355421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "GRPO Forgetting Dynamics Figure v4",
+              "type": "chart",
+              "description": "2x2 paper figure: (a) training reward, (b) rel_f1, (c) evi_f1, (d) EDCR. Shows QLoRA catastrophic forgetting vs bf16 LoRA stability across 4 GRPO runs.",
+              "project": "faith-evidence-ie",
+              "exp_id": "plan_009_grpo_forgetting",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/grpo_forgetting_dynamics_v4.png",
+              "tags": "['grpo', 'forgetting', 'paper-figure', 'v4']"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-15T16:34:04.355587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_8010b4\\\", \\\"name\\\": \\\"GRPO Forgetting Dynamics Figure v4\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"2x2 paper figure: (a) training reward, (b) rel_f1, (c) evi_f1, (d) EDCR. Shows QLoRA catastrophic forgetting vs bf16 LoRA stability across 4 GRPO runs.\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/chart/grpo_forgetting_dynamics_v4.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": \\\"plan_009_grpo_forgetting\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T16:33:46.209997+00:00\\\", \\\"tags\\\": [\\\"grpo\\\", \\\"forgetting\\\", \\\"paper-figure\\\", \\\"v4\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-15T16:34:04.355805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "GRPO Forgetting Summary v4",
+              "type": "data",
+              "description": "Comprehensive JSON summary of all GRPO forgetting dynamics data: eval metrics at each checkpoint, training reward trajectories, key findings, and data completeness audit.",
+              "project": "faith-evidence-ie",
+              "exp_id": "plan_009_grpo_forgetting",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/summary_v4.json",
+              "tags": "['grpo', 'forgetting', 'data', 'v4']"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-15T16:34:04.355972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_1e75dc\\\", \\\"name\\\": \\\"GRPO Forgetting Summary v4\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Comprehensive JSON summary of all GRPO forgetting dynamics data: eval metrics at each checkpoint, training reward trajectories, key findings, and data completeness audit.\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/data/summary_v4.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": \\\"plan_009_grpo_forgetting\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T16:33:46.501528+00:00\\\", \\\"tags\\\": [\\\"grpo\\\", \\\"forgetting\\\", \\\"data\\\", \\\"v4\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-15T16:34:04.356105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "GRPO Reward Trajectories",
+              "type": "data",
+              "description": "Step-level training reward, KL, and loss data for 4 GRPO runs (qlora_kl001, qlora_lr5e6, bf16_g8, bf16_g4).",
+              "project": "faith-evidence-ie",
+              "exp_id": "plan_009_grpo_forgetting",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/reward_trajectories.json",
+              "tags": "['grpo', 'reward', 'timeseries', 'data']"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-15T16:34:04.356436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_c03098\\\", \\\"name\\\": \\\"GRPO Reward Trajectories\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Step-level training reward, KL, and loss data for 4 GRPO runs (qlora_kl001, qlora_lr5e6, bf16_g8, bf16_g4).\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/data/reward_trajectories.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": \\\"plan_009_grpo_forgetting\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T16:33:48.827836+00:00\\\", \\\"tags\\\": [\\\"grpo\\\", \\\"reward\\\", \\\"timeseries\\\", \\\"data\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-15T16:34:04.356833+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出总结\n\n### 1. 数据点统计\n- **4 个 GRPO 训练 run** 的 step-level reward 轨迹（共 96 个数据点）\n- **3 个 run** 有 checkpoint eval 数据（共 9 个 eval 数据点）\n- **1 个 SFT baseline** 对照\n\n### 2. 数据维度齐全/缺失\n\n| 维度 | 状态 |\n|------|------|\n| Training reward (step-level) | 4/4 run 齐全 |\n| rel_f1 eval | 3/4 (bf16 G=4 缺 eval) |\n| evi_f1 eval | 3/4 |\n| EDCR eval | 3/4 |\n| **缺失** | bf16 G=4 无 eval；QLoRA kl001 早期 checkpoint (step 10-80) 无 eval；bf16 G=8 早期 checkpoint (step 10-70) 无 eval；flatnli/extract reward type 无 eval |\n\n### 3. 图的内容和关键发现\n\n**2×2 四面板图 (`grpo_forgetting_dynamics_v4.pdf/png`)**：\n\n- **(a) Training Reward**: bf16 runs 达到 1-4 reward，QLoRA 仅 0.2-1.4。bf16 reward 2-6× 高于 QLoRA。\n- **(b) Relation F1**: bf16 G=8 达 0.455 (+12.1% vs SFT)，QLoRA kl001 崩到 0.217 (-46.6%)，QLoRA lr5e6 崩到 0.014。\n- **(c) Evidence F1**: QLoRA lr5e6 的 evi_f1 持续上升到 0.850 但 rel_f1 接近 0 → **task decoupling**。bf16 G=8 evi_f1=0.809。\n- **(d) EDCR**: QLoRA 产生 85-99% distractor citations，bf16 仅 63%。\n\n### 4. 文件路径\n- 图: `artifacts/plan_009_grpo_forgetting/grpo_forgetting_dynamics_v4.pdf` / `.png`\n- 数据汇总: `artifacts/plan_009_grpo_forgetting/summary_v4.json`\n- Reward 轨迹: `artifacts/plan_009_grpo_forgetting/reward_trajectories.json`\n- 服务器脚本: `/root/autodl-tmp/artifacts/plan_009_grpo_forgetting/plot_forgetting_v4.py`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_009_forgetting_figure_20260515T162745"
+          },
+          "id": "event-000123"
+        }
+      ],
+      "message_count": 123
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-plan-009-forgetting-figure-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "987bf10d849afac45d41",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research related work gaps w3",
+  "task_key": "worker_research_related_work_gaps_w3_20260515T144828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_gaps_w3_20260515T144828_result.json",
+    "occurrence": 1,
+    "bytes": 1474,
+    "sha256": "1fa5047ecaaddeebb5b62e2d29cb68e36bde016f6244d08931ec524828094421"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files are written. Here's the summary:\n\n## 完成情况\n\n### literature_map.yaml 更新\n所有条目已补充以下信息：\n- **R1-RE**: 补充 reward 设计细节（format +1/-3, metric +2/-1.5）、未出现 catastrophic forgetting、句子级 vs 文档级 GRPO 成败分析\n- **DAPO**: 补充 entropy collapse 根因（clipping 不对称性）、Dynamic Sampling 与我们 frac_zero_std 的对应关系\n- **Dr. GRPO**: 补充 difficulty bias + length bias 两个机制、std→0 时 advantage 爆炸的技术细节\n- **\"Minimalist Approach\"**: 补充 RAFT 与 GRPO 核心区别（负样本处理）、对 RSFT 的理论支持\n- **DocRE 方法**全部补充了 F1 数据和 evidence_generation 标记：\n  - RelPrior: DocRED test 48.34, Re-DocRED test 54.80\n  - AutoRE: DocRED test 45.96, Re-DocRED test 51.97\n  - LMRC: DocRED test 60.52, Re-DocRED test 74.63 (hybrid, 非纯 LLM)\n  - GLiDRE: Re-DocRED test 77.83 (encoder-based, 非 LLM)\n  - Ru-LLM: Springer 付费墙，声称超越 AutoRE 等 baseline\n- **Contrastive rewards**: 补充两步机制细节、与 CED 的三点关键差异\n\n### gap_analysis_w3.md\n写入 `artifacts/gap_analysis_w3.md`，包含：\n- 每篇论文的关键发现和数据\n- 与 FREIGE 的关系分析\n- 论文引用策略建议（按 related work 子节组织）\n\n**关键发现：所有 LLM-based DocRE 方法均不生成 evidence，FREIGE 是唯一联合抽取 relation+evidence 的方法。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-gaps-w3.md"
+}

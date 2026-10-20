@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "347b7e71ddbc72dfb74e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnosis anon repo integrity",
+  "task_key": "worker_diagnosis_anon-repo-integrity_20260523T185759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_anon-repo-integrity_20260523T185759_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "a62ae574333b36c0c27ec3404884413a1fb9cd83b2ab9f22c260fa3798090013"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/anon_repo_diff.md`。核心结论：\n\n- **核心源码 100% 覆盖**：`analysis/`、`data/`、`eval/`、`rewards/`、`training/` 所有模块完整映射到 `freige/` 包下\n- **configs 和 tests 完全一致**\n- **匿名仓库合理新增**：`README.md`、`requirements.txt`\n- **匿名仓库合理精简**：~70 个实验/分析/可视化脚本未包含（d102、d112、plan010、plan017、seed_expansion 等实验批次脚本），保留了 8 个核心脚本\n- **需关注**：服务器上存在 `freige/freige/` 嵌套副本（残留），建议清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-anon-repo-integrity.md"
+}

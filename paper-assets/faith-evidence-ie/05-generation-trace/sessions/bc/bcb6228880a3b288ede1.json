@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcb6228880a3b288ede1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose eval rsft r2b",
+  "task_key": "worker_diagnose_eval_rsft_r2b_20260515T114358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_rsft_r2b_20260515T114358_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "94204579ddfcc56e4edaeac1137b0cfbd45cca9288a07c33381359cbaeb7c0a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能之前已清除）。\n\n**r2b 评估总结**：\n\n| 指标 | SFT baseline | r1 (3ep, α=128) | **r2b (1ep, α=32)** |\n|------|-------------|-----------------|---------------------|\n| rel_f1 | 0.4057 | 0.4449 | **0.4493** |\n| evi_f1 | 0.7979 | 0.8187 | **0.8128** |\n| edcr | 0.7118 | — | **0.6609** |\n\nr2b 在 rel_f1 上略优于 r1（+0.44pt），evi_f1 低于 r1（-0.59pt）。1 epoch + conservative scaling (α=32/r=64=0.5) 已足够超过 baseline，但 EDCR 下降说明 distractor citation 问题更突出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-rsft-r2b.md"
+}

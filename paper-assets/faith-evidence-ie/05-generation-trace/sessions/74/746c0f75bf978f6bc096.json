@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "746c0f75bf978f6bc096",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "train wave1 sft s43",
+  "task_key": "worker_train_wave1_sft_s43_20260518T124304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_wave1_sft_s43_20260518T124304_result.json",
+    "occurrence": 1,
+    "bytes": 396,
+    "sha256": "4d49fd997c92e7f38b8cd5fa883bf261e4b5dabc0986f1b2941a6c8af26dbca2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功提交并注册。\n\n**汇总：**\n- **exp_id**: `wave1_sft_4b_s43`\n- **PID**: 540777\n- **GPU**: cuda:0 (12.1 GB / 32.6 GB, 85% utilization)\n- **输出目录**: `/root/autodl-tmp/sft_output_seed43`\n- **训练进度**: 0/144 steps（3 epochs, 刚开始）\n- **W&B run**: `sft-4b-seed43` (project: freige-sft)\n- **Registry**: RUNNING, plan_id=plan_w3_sft_seeds"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-wave1-sft-s43.md"
+}

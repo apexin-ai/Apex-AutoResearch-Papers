@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8bfbc2efa2754cb0a93",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval cuda1 forgetting eval",
+  "task_key": "worker_eval_cuda1_forgetting_eval_20260515T195206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cuda1_forgetting_eval_20260515T195206_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "46858a216a68ce7c9f93d10587abe1c282f3ff10c48de8c744c2628818d30d83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 RUNNING。\n\n**诊断总结：**\n- `plan_009_flatnli_reward_eval` 失败原因：日志文件不存在、registry 无命令记录——说明之前根本没成功提交，任务只是被标记了 spec 但从未实际执行。\n- `plan_009_extract_reward_eval` 不在 registry 中，未曾提交。\n\n**已提交 (plan_009_flatnli_reward_eval_r2)：**\n- `batch_eval` 在 **cuda:1** 上评估 `grpo_flatnli_r3` 的 **5 个 checkpoint** (step 20, 40, 60, 80, 100)\n- 已确认 cuda:1 占用 12GB、utilization 100%，checkpoint-20 inference 进行中\n- 每个 checkpoint eval 约 1 小时，共 ~5 小时\n- 日志：`~/runs/faith-evidence-ie/plan_009_flatnli_reward_eval.log`\n- 结果输出：`/root/autodl-tmp/eval_results/grpo_flatnli_r3/`\n\n完成后可用这些数据补充 forgetting dynamics 3-panel figure 的 flatNLI reward 曲线。extract reward 的 checkpoints 也齐全（`grpo_extract_r3`/`r4`），可作为下一个 eval 排期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cuda1-forgetting-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c39c93b470ff652e2b5d",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_5_1778806880.md",
+  "task_key": "loop_5_1778806880",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778806880.md",
+    "occurrence": 1,
+    "bytes": 5009,
+    "sha256": "620336f604d5e2eefe9e72872ec9844926e35737e407c474dfbe5994b253775f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-15T00:56:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **RSFT 训练禁止 --quantize**：RTX 5090 上 4-bit quantize + merge_and_unload 触发 CUBLAS 错误，bf16 Qwen3-4B 仅 ~8GB 无需量化\n- **工作目录必须 `/root/autodl-tmp/`**：不能 cd 到 freige/ 子目录运行（freige 不是 pip 包，cd 到内层会导致 import 空包）\n- **GRPO+QLoRA 方向已判死 (D031)**：不要再开新 GRPO 实验。当前 RUNNING 的几个是 sunk cost 收尾轨迹数据\n- **数据格式不一致未修**：rsft_score_filter.py 输出 JSON，rsft_trainer.py 期望 JSONL——RSFT pipeline 串联前必须统一\n- **NLI 模型 (cross-encoder/nli-deberta-v3-base) 可能未本地缓存**——RSFT scoring 阶段需要它，先确认再跑\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：rtx5090-4x（RTX 5090 32GB × 4，单机双 SSH endpoint 指向同一主机）\n- **工作目录**：`/root/autodl-tmp/`（freige 代码在此目录下）\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型**：SFT adapter 在 `/root/autodl-tmp/` 下（mvp2_sft_warmup 产出）；base model Qwen3-4B\n- **数据**：`/root/autodl-tmp/data/docred/`（本地 DocRED 数据，不走 HF 远程下载，必须传 --data_dir）\n- **NLI cache**：`/root/autodl-tmp/` 下 precompute_nli_train 已完成的 NLI 缓存\n- **活跃进程**：\n  - mvp2_grpo_ced_lr5e6_r1: PID 90080, cuda:0, 训练 ~113/200 步\n  - mvp2_eval_lr5e6_r1_ckpt100: PID 117635, 运行中\n  - mvp2_rsft_generate: PID 122144, 运行中（SFT 生成 N=8 候选输出）\n  - mvp2_eval_lr5e6_r1_ckpt80: **进程已消失** (reconcile 报 \"Process gone, no sentinel, no W&B\", miss 1/5)\n- **Cron**：4 个活跃 cron 对应上述 4 个 RUNNING 实验\n\n### 3. 📊 当前状态\n**刚做完**：D031 pivot 决策——GRPO+QLoRA 全线失败（14 次实验），判定 catastrophic forgetting 是结构性问题而非超参问题。CED reward signal 本身有效 (MVP-1: margin=0.48, accuracy=81.5%)，问题在在线 RL 方法论。已启动 RSFT (Rejection Sampling FT) 方向。\n\n**Registry 关键状态**：\n- `mvp2_rsft_generate` (RUNNING): RSFT 生成阶段，SFT 模型 N=8 T=0.7 生成候选，PID 122144\n- `mvp2_grpo_ced_lr5e6_r1` (RUNNING): GRPO 训练收尾，step ~113/200，仅为收集完整轨迹数据\n- `mvp2_eval_lr5e6_r1_ckpt100` (RUNNING): 关键 eval——step-100 有 f1_reward 拐点(0.016→0.093)，eval F1 > 0.15 则拐点真实，< 0.05 则 reward hacking\n- `mvp2_eval_lr5e6_r1_ckpt80` (RUNNING but process gone): 需要立即调查——可能已完成或崩溃\n- `mvp2_diversity_probe` (PREPARING but conclusion=success): 已完成但状态未推进到 DONE。结果：T=0.7 unique=7/8, T=1.0=8/8，RSFT 可行性确认。format_ok_rate ~50% 是字段名变体问题（evaluator.py 已修复 normalized 对比）\n\n**等待中**：\n- ckpt80 eval 进程消失需要调查\n- ckpt100 eval 和 RSFT generate 的 cron 回调\n- GRPO lr5e6 训练完成回调\n\n### 4. 📋 待办（条件触发式）\n- **mvp2_eval_lr5e6_r1_ckpt80 进程消失** → 立即 SSH 查日志判断是完成还是崩溃，更新 registry\n- **mvp2_eval_lr5e6_r1_ckpt100 完成** → 读 metrics；rel_f1 > 0.15 记录\"拐点真实但不足以改变 D031 结论\"；< 0.05 追加 D031 证据\n- **mvp2_rsft_generate 完成** → 运行 rsft_score_filter.py（CED 打分）→ 修复 JSON/JSONL 格式不一致 → rsft_trainer.py 训练。注意先确认 NLI 模型已缓存\n- **mvp2_grpo_ced_lr5e6_r1 训练完成** → 收集最终 metrics 写入 registry，释放 cuda:0 给 RSFT\n- **RSFT 训练完成** → eval pipeline 评估（同 SFT baseline eval 协议），对比 pass criteria：CED_Evi-F1 ≥ SFT_Evi-F1, rel_f1 ≥ 0.356, EDCR << 61%\n- **mvp2_diversity_probe 状态修正** → update_registry status=DONE（已有 conclusion=success 和 metrics）\n- **RSFT 也失败** → Contingency: (1) 全参微调排除 adapter 根因 (2) CED 作为推理时 reranker 而非训练信号\n\n### 5. 🎯 战略上下文\n- **项目核心**：FREIGE = 用 CED (Contrastive Evidence Discrimination) 奖励让 LLM 在 DocRE 中生成可验证证据。CED 信号已验证有效，关键在找到能利用它的训练方法\n- **决策链**：D001-D031，最关键是 D031（GRPO 判死 → RSFT pivot）\n- **SFT baseline 数字**：rel_f1=0.406, evi_f1=0.798, edcr=0.712——这是所有对比的锚点\n- **Paper framing**：CED 定位为 anti-reward-overoptimization mechanism；EDCR 作为独立评估贡献；目标 6+ baselines\n- **易错点**：\n  - 不要把 GRPO 轨迹分析当作还有救的信号——即使 ckpt-100 eval 有改善，D031 结论不变，RSFT 才是主线\n  - format_ok_rate ~50% 的问题已在 evaluator.py 修复（normalized 字段名对比），不要重复 debug\n  - JSON vs JSONL 格式不一致是 RSFT pipeline 的 known bug，别等到跑时才发现\n  - 两个 SSH endpoint 指向同一台机器，不要当作两台服务器分别部署\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778806880.md"
+}

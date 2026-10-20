@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "097a1c76b783130521bc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code 14b rsft s43 test eval",
+  "task_key": "worker_code_14b-rsft-s43-test-eval_20260523T150101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-rsft-s43-test-eval_20260523T150101_result.json",
+    "occurrence": 1,
+    "bytes": 429,
+    "sha256": "a188026190f0a0c065d3efdaab6d66e192086217ae373bba2527218fcc8263ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| Eval | GPU | PID | Status | Cron |\n|------|-----|-----|--------|------|\n| `test_eval_14b_rsft_s43_with_evi` | cuda:1 | 261715 | RUNNING | ✓ 120s |\n| `test_eval_14b_rsft_s43_no_evi` | cuda:3 | 261858 | RUNNING | ✓ 120s |\n\n两个 eval 均已提交、registry 更新（status/spec/hypothesis/parent）、cron 监控注册。no-evi eval 已传 `--no_evidence` 参数（C005）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-14b-rsft-s43-test-eval.md"
+}

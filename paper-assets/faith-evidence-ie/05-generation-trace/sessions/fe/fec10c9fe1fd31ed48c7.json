@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fec10c9fe1fd31ed48c7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose d140 4b sft s42 with evi 2048",
+  "task_key": "worker_diagnose_d140_4b_sft_s42_with_evi_2048_20260521T113420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_d140_4b_sft_s42_with_evi_2048_20260521T113420_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "d8cb2803ebf1498082d469fd20d4f249e44cc5cd6f047e380b98c2b1fb4e8b70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**实验已成功完成，无需重跑。**\n\nEXIT_CODE=129 (SIGHUP) 发生在所有工作完成**之后**。日志显示：\n\n- 推理 247/247 batch 全部完成（985 个 doc）\n- metrics.json 和 predictions.json 均已写入 `/root/autodl-tmp/eval_results/d140_4b_sft_s42_with_evi_2048/`\n- SIGHUP 是 tmux/终端断连导致的信号，发生在结果写入之后\n\n**结果摘要：**\n\n| 指标 | 值 |\n|------|-----|\n| F1 | 0.4033 |\n| Ign-F1 | 0.3946 |\n| Evi-F1 (DREEAM) | 0.3129 |\n| Evi-F1 (TP) | 0.7906 |\n| EDCR | 0.7262 |\n| Format OK | 983/985 (99.8%) |\n| Truncated | 243/985 |\n\n**GPU 当前状态：** cuda:3 已释放（0 MiB），进程已正常退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d140-4b-sft-s42-with-evi-2048.md"
+}

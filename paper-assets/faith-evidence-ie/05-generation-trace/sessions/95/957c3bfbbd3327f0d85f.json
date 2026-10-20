@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "957c3bfbbd3327f0d85f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 009 forgetting figure",
+  "task_key": "worker_analysis_plan_009_forgetting_figure_20260515T175822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_009_forgetting_figure_20260515T175822_result.json",
+    "occurrence": 1,
+    "bytes": 1097,
+    "sha256": "a530d011dd681036a5c37069039fe4cb128dc8d57d54deccec1bd1eb1185c631"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出完成。\n\n**文件**:\n- `artifacts/plan_009_grpo_forgetting/grpo_forgetting_dynamics_v5.pdf` (矢量) + `.png`\n- `artifacts/plan_009_forgetting_data_v5.csv` (完整数据)\n- `artifacts/plan_009_grpo_forgetting/summary_v5.json`\n\n**相比 v4 的改进**:\n- QLoRA kl001 eval 从 2 个点扩展到 5 个 (step 10/50/60/90/100)\n- bf16 G=8 eval 从 2 个点扩展到 3 个 (step 80/90/100)\n- Step 0 = SFT baseline 显式标注\n- Okabe-Ito 色盲友好配色，更清晰的标注\n\n**论文引用关键数据点**:\n\n| 指标 | QLoRA lr=5e-5 | QLoRA lr=5e-6 | bf16 G=8 | SFT baseline |\n|------|--------------|--------------|----------|-------------|\n| rel_f1 | 0.217 (-46.6%) | 0.014 (-96.6%) | **0.455 (+12.1%)** | 0.406 |\n| evi_f1 | 0.575 (-28.0%) | **0.850 (+6.6%)** | **0.809 (+1.3%)** | 0.798 |\n| EDCR | 0.854 | 0.988 | **0.632** | 0.712 |\n\n**Narrative**: QLoRA GRPO 选择性摧毁 relation extraction 同时保留/提升 evidence extraction（task decoupling）。bf16 GRPO 两项指标均改善，证明 forgetting 是 QLoRA-specific 而非算法缺陷。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-009-forgetting-figure-copy-3.md"
+}

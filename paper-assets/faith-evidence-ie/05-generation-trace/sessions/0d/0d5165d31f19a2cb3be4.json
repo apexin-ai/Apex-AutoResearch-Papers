@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d5165d31f19a2cb3be4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh full status sync",
+  "task_key": "worker_ssh_full-status-sync_20260515T005356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_full-status-sync_20260515T005356_result.json",
+    "occurrence": 1,
+    "bytes": 2173,
+    "sha256": "377c5a172a83e20d21a9d9a8205cb2cdb08c23b748d68e4d6965d0eb159fc1c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### GPU 占用\n| GPU | 显存占用 | 利用率 | 实验 |\n|-----|---------|--------|------|\n| 0 | 13645 MiB | 47% | GRPO 训练 |\n| 1 | 23195 MiB | 88% | RSFT 生成 |\n| 2 | **0 MiB** | **0%** | ckpt80 eval 已结束 |\n| 3 | 10653 MiB | 82% | ckpt100 eval |\n\n---\n\n### 实验 1: mvp2_grpo_ced_lr5e6_r1 — **ALIVE** (5h14m)\n- **进度**: 183/200 steps (92%)，~25min 完成\n- 已保存 checkpoint: 20, 40, 60, 80, 100, 120, 140, 160, 180\n- 最近 step 指标下降趋势：\n  - reward: 0.453 → 0.281\n  - f1_reward: 0.060 → 0.014\n  - ced_reward: 0.107 → 0.015\n  - format_reward: 0.286 → 0.252\n- **WARNING**: KL divergence 极大（step 5 时 2.4B，step 30 时 70T），仅监控未停止\n\n### 实验 2: mvp2_rsft_generate — **ALIVE** (44min，**新启动**)\n- **进度**: 83/1514 batches (5%)，预计 ~14h 完成\n- **前 100 样本监控**：\n  - format_ok_rate: **99.6%**\n  - truncation_rate: **9.2%**\n  - mean_diversity: **0.9/8** ⚠️ 极低，8 次生成几乎完全相同\n- 无输出文件路径/大小信息（尚在生成中）\n\n### 实验 3: mvp2_eval_lr5e6_r1_ckpt100 — **ALIVE** (1h14m)\n- **进度**: 47/62 batches (76%)，~24min 完成\n- 结果待产出\n\n### 实验 4: mvp2_eval_lr5e6_r1_ckpt80 — **已完成** ✓\n- 日志文件不存在（路径无 `mvp2_eval_lr5e6_r1_ckpt80.log`）\n- 结果路径: `/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/`\n- **关键指标**：\n  - **rel_f1: 0.0116** ⚠️ 灾难性低\n  - ign_f1: 0.0116\n  - precision: 0.0109, recall: 0.0124\n  - pred_count: 13828 vs gold_count: 12151（预测数量级正确但几乎全错）\n  - **evi_f1: 0.828**（evidence 本身还行）\n  - evi_precision: 0.928, evi_recall: 0.748\n  - format_ok_rate: 99.9%\n  - field_compliance: 78.8%\n  - truncated: 210/985\n  - inference_time: 6099s (~1h42m)\n\n**关键发现**：ckpt80 的 rel_f1 只有 1.2%，模型能正确输出格式和找到 evidence，但关系抽取几乎完全失败。结合 GRPO 训练中 reward 持续下降和 KL 爆炸，训练可能已经崩溃。RSFT 生成的 diversity 0.9/8 也印证模型输出高度退化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-full-status-sync.md"
+}

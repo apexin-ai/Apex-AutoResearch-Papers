@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c15847fe7d169ed518be",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis collect paper metrics table",
+  "task_key": "worker_analysis_collect_paper_metrics_table_20260516T022503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_collect_paper_metrics_table_20260516T022503_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "e7ec838e870aadc784c9f6d8b75051133beb262817d9791976ad3311524dfdf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/paper_metrics_table.md`，覆盖 34 个 eval 目录。\n\n**核心结果速览：**\n\n| 方法 | 最佳 F1 | Ign-F1 |\n|------|---------|--------|\n| SFT no-evidence (上界) | 48.93 | 47.36 |\n| CED RSFT s43 | **46.83** | **45.85** |\n| CED RSFT s44 | 46.55 | 45.51 |\n| flat-NLI RSFT s42 | 45.39 | 44.49 |\n| GRPO bf16 G=8 step100 | 45.49 | 45.59 |\n| CED RSFT s42 r2b (max1536) | 45.04 | 44.20 |\n| SFT baseline | 41.06 | 40.36 |\n| DPO 1ep | 40.34 | 38.88 |\n\n**4 项 eval 仍 pending：** CED RSFT s45、flat-NLI s45、DPO 3ep、SFT no-evidence-noquant。`rsft_flat_nli_s44` 只有 metrics.json（ign_f1 有 bug），需 v2 re-eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-collect-paper-metrics-table.md"
+}

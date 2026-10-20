@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61c82e798616515a4891",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research related work gap fill",
+  "task_key": "worker_research_related_work_gap_fill_20260515T210911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_gap_fill_20260515T210911_result.json",
+    "occurrence": 1,
+    "bytes": 1143,
+    "sha256": "bee1b80825d6b37667edc8f3e54c0ce18157b07ebcde291aa4aaca447591b373"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册（`art_20260515_ab131b`）。\n\n**7 个方法全部找到，无幻觉项**：\n\n| 方法 | Venue | Role | 关键点 |\n|------|-------|------|--------|\n| **R1-RE** | arXiv 2025.07 | direct-competitor | GRPO+RLVR 做 RE，最直接 concurrent work |\n| **RelPrior** | arXiv 2025.11 | direct-competitor | 两阶段过滤，LLM-based DocRE 最新 SOTA |\n| **Ru-LLM** | NLPCC 2025 | direct-competitor | MCTS 挖逻辑规则+CoT 验证，explicit rule 路线 |\n| **AutoRE** | ACL 2024 Demo | direct-competitor | QLoRA+RHF 三阶段，必引的 LLM DocRE baseline |\n| **GLiDRE** | arXiv 2025.08 | related_method | Encoder-based zero/few-shot DocRE |\n| **InFusE** | arXiv 2024.02 | evaluation | NLI-based 增量 faithfulness 评估，与 EDCR 概念相关 |\n| **TRUE** | NAACL 2022 | background | Factual consistency evaluation 经典框架 |\n\n**优先级建议**：R1-RE 和 AutoRE 必须重点讨论（分别是 GRPO for RE 的 concurrent work 和 QLoRA DocRE 的直接 baseline）。RelPrior/Ru-LLM 作为 LLM-based DocRE 近期方法补充。TRUE/InFusE 在 evaluation 相关段落简要引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-gap-fill.md"
+}

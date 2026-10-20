@@ -1,0 +1,537 @@
+{
+  "schema_version": "1.0",
+  "id": "2795ab9e73203ceed0d1",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "submit test eval llama sft s42",
+  "task_key": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_submit_test_eval_llama_sft_s42_20260521T193958.jsonl",
+    "occurrence": 1,
+    "bytes": 16251,
+    "sha256": "213e974f91b9f679c102559769624f67c52e1cddf2d668d931db41b830fc9ee1"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T19:41:56.137276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T19:41:56.137759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T19:41:56.138039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/sft_output_llama* 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T19:41:56.138287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T19:41:56.138507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,memory.used --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T19:41:56.138745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 9409 MiB\\\\n1, 32503 MiB\\\\n2, 19599 MiB\\\\n3, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T19:41:56.139005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/sft_output_llama*",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T19:41:56.139260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b\\\\n/root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence\\\\n/root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence.log\\\\n/root/autodl-tmp/sft_output_llama_3_1_8b_s43\\\\n/root/autodl-tmp/sft_output_llama_3_1_8b_s44\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T19:41:56.139484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T19:41:56.139686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T19:41:56.139915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/sft_output_llama_3_1_8b",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T19:41:56.140118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nchat_template.jinja\\\\ncheckpoint-190\\\\ncheckpoint-570\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T19:41:56.140335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.eval.test_inference --help 2>&1 | head -40",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T19:41:56.140554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: test_inference.py [-h] --model_path MODEL_PATH\\\\n                         [--base_model BASE_MODEL] [--sft_adapter SFT_ADAPTER]\\\\n                         --data_path DATA_PATH --output_dir OUTPUT_DIR\\\\n                         [--batch_size BATCH_SIZE]\\\\n                         [--max_new_tokens MAX_NEW_TOKENS] [--seed SEED]\\\\n                         [--split SPLIT] [--no_evidence]\\\\n                         [--quantize | --no-quantize]\\\\n\\\\nFREIGE test set inference + CodaLab submission\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --model_path MODEL_PATH\\\\n  --base_model BASE_MODEL\\\\n  --sft_adapter SFT_ADAPTER\\\\n  --data_path DATA_PATH\\\\n  --output_dir OUTPUT_DIR\\\\n  --batch_size BATCH_SIZE\\\\n  --max_new_tokens MAX_NEW_TOKENS\\\\n  --seed SEED\\\\n  --split SPLIT\\\\n  --no_evidence\\\\n  --quantize, --no-quantize\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T19:41:56.140824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=3 nohup python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_llama_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised > /root/autodl-tmp/eval_results/test_eval_llama_sft_s42.log 2>&1 & echo PID=\\$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T19:41:56.141058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=3 nohup python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_llama_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised > /root/autodl-tmp/eval_results/test_eval_llama_sft_s42.log 2>&1 & echo PID=\\\\\\\\\\\\\\\\$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=130446\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T19:41:56.141351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ps -p 130446 -o pid,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T19:41:56.141577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID CMD\\\\n130446 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=3 nohup python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_llama_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised > /root/autodl-tmp/eval_results/test_eval_llama_sft_s42.log 2>&1 & echo PID=$!\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T19:41:56.141796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "test_eval_llama_sft_s42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "faith-evidence-ie",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_llama_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised', 'server': 'rtx5090-4x', 'data_path': '/root/autodl-tmp/data/re-docred-repo/data', 'data_count': 500, 'model_name': 'Meta-Llama-3.1-8B + SFT adapter s42', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/sft_output_llama_3_1_8b', 'eval_data': 're-docred test_revised', 'pid': 130446, 'gpu': 'cuda:3', 'log_path': '/root/autodl-tmp/eval_results/test_eval_llama_sft_s42.log'}"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T19:41:56.142056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7281}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T19:41:56.142311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "test_eval_llama_sft_s42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T19:41:56.142551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_llama_sft_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T18:57:52.300Z\\\", \\\"updated_at\\\": \\\"2026-05-21T19:41:38.605Z\\\", \\\"hypothesis\\\": \\\"Re-DocRED test set eval: LLaMA-3.1-8B SFT s42 on test_revised.json (500 docs)。配对 LLaMA RSFT test=0.3599，补全 test table cross-family 对比。LLaMA SFT dev ign_f1=0.5109 (3-seed mean)。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.8467}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T19:41:56.142780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "test_eval_llama_sft_s42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "faith-evidence-ie",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_llama_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised', 'server': 'rtx5090-4x', 'data_path': '/root/autodl-tmp/data/re-docred-repo/data', 'data_count': 500, 'model_name': 'Meta-Llama-3.1-8B + SFT adapter s42', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/sft_output_llama_3_1_8b', 'eval_data': 're-docred test_revised', 'pid': 130446, 'gpu': 'cuda:3', 'log_path': '/root/autodl-tmp/eval_results/test_eval_llama_sft_s42.log'}"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T19:41:56.143042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_llama_sft_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T18:57:52.300Z\\\", \\\"updated_at\\\": \\\"2026-05-21T19:41:48.126Z\\\", \\\"hypothesis\\\": \\\"Re-DocRED test set eval: LLaMA-3.1-8B SFT s42 on test_revised.json (500 docs)。配对 LLaMA RSFT test=0.3599，补全 test table cross-family 对比。LLaMA SFT dev ign_f1=0.5109 (3-seed mean)。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_llama_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B + SFT adapter s42\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b\\\", \\\"eval_data\\\": \\\"re-docred test_revised\\\", \\\"pid\\\": 130446, \\\"gpu\\\": \\\"cuda:3\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_llama_sft_s42.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.9528}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T19:41:56.143330+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **PID**: 130446，cuda:3 上运行\n- **Registry**: `test_eval_llama_sft_s42` → RUNNING，spec 已填充\n- **Adapter**: `/root/autodl-tmp/sft_output_llama_3_1_8b`\n- **Base model**: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`\n- **日志**: `/root/autodl-tmp/eval_results/test_eval_llama_sft_s42.log`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_test_eval_llama_sft_s42_20260521T193958"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/submit-test-eval-llama-sft-s42.md"
+}

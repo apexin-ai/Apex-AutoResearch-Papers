@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e53bd12586bc71ae887",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "infra check model data readiness",
+  "task_key": "worker_infra_check_model_data_readiness_20260516T103212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_model_data_readiness_20260516T103212_result.json",
+    "occurrence": 1,
+    "bytes": 2375,
+    "sha256": "00d80a85ac76453d4a26471aa807dcabe9ea366efd8f06a3c20fa84fc17570b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D077 资源就绪状态\n\n### 1. LLaMA-3.1-8B ✅ 就绪（symlink 需修复）\n\n实际路径 `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/`，文件完整：\n\n| 文件 | 大小 |\n|------|------|\n| model-00001-of-00004.safetensors | 4.6GB |\n| model-00002-of-00004.safetensors | 4.7GB |\n| model-00003-of-00004.safetensors | 4.6GB |\n| model-00004-of-00004.safetensors | 1.1GB |\n| **总计** | **~15GB** |\n\nconfig.json 确认：LlamaForCausalLM, hidden_size=4096, 32层, 8 KV heads, vocab_size=128256, bfloat16 — 正确。tokenizer.json / tokenizer_config.json / special_tokens_map.json / generation_config.json / model.safetensors.index.json 齐全。\n\n⚠️ **快捷 symlink 损坏**：`/root/autodl-tmp/models/Meta-Llama-3.1-8B` → 指向不存在的 `...LLM-Research/Meta-Llama-3___1-8B`。代码应直接引用 `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/`，或修复 symlink。\n\n### 2. Re-DocRED ✅ 就绪\n\n路径 `/root/autodl-tmp/data/re-docred/`，含 3 个 JSON + metadata：\n\n| 文件 | 大小 | 文档数 | 保留三元组 |\n|------|------|--------|-----------|\n| train_annotated.json | 12.8MB | 3,053 | 47,260 |\n| dev.json | 2.1MB | 500 | 7,473 |\n| test.json | 2.1MB | 500 | 7,547 |\n\n- 格式：标准 DocRED 格式（vertexSet + labels），每个 label 含 `r`/`h`/`t`/`evidence` 字段\n- mode 为 `evidence_only`：已过滤仅保留有 evidence 标注的三元组\n- relation type 使用 Wikidata PID（P17, P131, P150 等），与 DocRED 96 类体系兼容\n- 另有原始 repo clone：`/root/autodl-tmp/data/re-docred-repo/`（含 evaluation.py）\n\n### 3. GPU 状态\n\n| GPU | 显存 | 利用率 | 进程 |\n|-----|------|--------|------|\n| 0 | **0MiB / 32GB** | 0% | 空闲 ✅ |\n| 1 | 11,415MiB / 32GB | 49% | python (PID 319638) |\n| 2 | 5,503MiB / 32GB | 36% | python (PID 324684) |\n| 3 | 18,471MiB / 32GB | 64% | python (PID 322973) |\n\nGPU 0 完全空闲，可用于 LLaMA-3.1-8B 实验（bf16 约需 ~16GB）。\n\n### 4. 磁盘空间 ⚠️ 偏紧\n\n```\n/root/autodl-tmp: 250GB total, 204GB used, 47GB available (82%)\n```\n\n47GB 剩余。LLaMA-3.1-8B 已下载（15GB），Re-DocRED 数据很小（~17MB）。训练产出（checkpoints、logs）需要注意空间，LoRA checkpoint 每个约几百 MB 问题不大，但 full-finetune checkpoint 约 15GB/个会很紧。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-model-data-readiness.md"
+}

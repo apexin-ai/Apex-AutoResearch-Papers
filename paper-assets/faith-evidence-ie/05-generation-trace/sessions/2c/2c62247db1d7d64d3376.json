@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c62247db1d7d64d3376",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis ced r5 checkpoint investigation",
+  "task_key": "worker_analysis_ced-r5-checkpoint-investigation_20260514T150138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ced-r5-checkpoint-investigation_20260514T150138_result.json",
+    "occurrence": 1,
+    "bytes": 2022,
+    "sha256": "beb102bb5fb5cf59bd05457ed8397384dc26a76f8df688a8f1348051c58fe188"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全，汇报如下。\n\n---\n\n## ced_r5 调查结果\n\n### 现存 checkpoint\n| checkpoint | step |\n|---|---|\n| checkpoint-440 | 440 |\n| checkpoint-460 | 460 |\n| checkpoint-480 | 480 |\n| checkpoint-500 | 500 |\n| checkpoint-520 | 520 |\n\n`save_steps=20`, `save_total_limit=5`（从存活 checkpoint 数量推断）。\n\n### f1_reward 时间线（关键转折）\n\n| step | f1_reward | 备注 |\n|---|---|---|\n| 5 | 0.0681 | 初始 |\n| 20 | **0.2453** | 早期峰值 |\n| 30 | 0.0577 | 最后一个 > 0.01 的 step |\n| **35** | **0.0000** | **首次归零** |\n| 40 | 0.0039 | 短暂微弱回升 |\n| **45** | **0.0000** | **永久归零起点** |\n| 45–520 | 0.0000 | 全部为零，无例外 |\n\n**Collapse 时间线**：\n- **step 35**：f1 首次 = 0\n- **step 45**：f1 永久归零\n- **step 170**：completion 长度坍缩到 ~34 tokens 并锁死\n- **step 220+**：entropy 降至 < 0.001，grad_norm 几乎全为 0，模型完全停止学习\n\n### \"最后正常\" checkpoint 是否存在\n\n**不存在。** f1 最后 > 0 在 step 40，而现存最早的 checkpoint 是 step 440 — 已经在 collapse 后 400 步了。save_total_limit=5 导致早期 checkpoint 全部被覆盖。无法恢复到 collapse 前的状态。\n\n---\n\n## extract_r3 健康状况\n\n**未发生 mode collapse。** 具体指标：\n\n| 指标 | 状态 |\n|---|---|\n| f1_reward | 正常波动，0.02–0.49 范围，最近 step 505=0.47, step 520=0.35 |\n| completion length | 稳定 ~43 tokens，未坍缩 |\n| entropy | 低但非零（0.005–0.025） |\n| grad_norm | **大部分 step 为 0**，偶尔脉冲式出现（step 265=2.15, step 415=1.69） |\n\n**grad_norm 多数为 0 的解释**：模型已经收敛到一个较稳定的策略，大部分 batch 的梯度被 clip 或接近零，但偶尔遇到 informative 样本时仍能产生梯度更新。f1 在 step 300+ 有上升趋势（多次达到 0.3+），说明模型仍在缓慢学习。**不需要干预，但值得持续监控。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ced-r5-checkpoint-investigation.md"
+}

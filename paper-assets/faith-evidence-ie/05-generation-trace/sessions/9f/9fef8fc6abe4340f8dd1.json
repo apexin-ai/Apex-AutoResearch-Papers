@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fef8fc6abe4340f8dd1",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_11_1778892899.md",
+  "task_key": "loop_11_1778892899",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778892899.md",
+    "occurrence": 1,
+    "bytes": 4802,
+    "sha256": "301c644ea73f8210c37ebf47cde09ca9e04f534c3ffa2dc59ea3b47d2104374f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T00:45:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 cuda:0/1/2/3 on rtx5090-4x。不可使用其他 GPU，即使 Director 指令也要 push back\n- RSFT 训练 cwd 必须是 `/root/autodl-tmp`（不是 `/root/autodl-tmp/freige`），否则 `No module named freige.training.rsft_trainer`\n- rsft_ced_s45_train_r4 (PID 279531, cuda:2) 是通过 worker_nohup 提交的（非 submit_training_job），**没有 tmux/cron 自动监控**，需手动检查或补注册 cron\n- eval_plan_014_no_evidence 的 adapter 是 standalone LoRA，命令里**不带 --sft_adapter**，与其他 eval 不同\n- C3 (CED vs flat-NLI) 已被 D056 降级，不再作为独立贡献。不要在论文/汇报中将 CED 优于 flat-NLI 作为 claim\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x (4× RTX 5090 32GB)，账号 root\n- **工作目录**: `/root/autodl-tmp`（代码在 `/root/autodl-tmp/freige`）\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`\n- **SFT adapter**: `/root/autodl-tmp/sft_output`\n- **数据集**: `/root/autodl-tmp/data/docred` (dev=985 docs)，RSFT 数据 `/root/autodl-tmp/rsft_filtered/rsft_train.jsonl` (2718 samples)\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - cuda:0: eval_flat_nli_s44 PID=270462, tmux, cron 监控中\n  - cuda:1: rsft_ced_s43_train_r3 PID=277310, tmux, cron 监控中\n  - cuda:2: rsft_ced_s45_train_r4 PID=279531, **nohup（无 cron）**\n  - cuda:3: eval_flat_nli_seed45 PID=272164, tmux, cron 监控中\n- **Seed comparison script**: `/root/autodl-tmp/scripts/seed_comparison.py`\n\n### 3. 📊 当前状态\n4 块 GPU 全部在跑，2 个 CPU Worker 在跑（related-work-draft + seed-comparison-prep）。\n\n**RUNNING (4)**:\n- `eval_flat_nli_s44` (cuda:0) — flat-NLI seed44 全量 dev eval，出 C3 统计数据点\n- `rsft_ced_s43_train_r3` (cuda:1) — CED RSFT seed43 训练，补 paired t-test 第 3 个 CED seed\n- `rsft_ced_s45_train_r4` (cuda:2) — CED RSFT seed45 训练，⚠️ nohup 提交无 cron 监控\n- `eval_flat_nli_seed45` (cuda:3) — flat-NLI seed45 全量 dev eval，中间 eval rel_f1=0.4876\n\n**QUEUED (1)**:\n- `eval_plan_014_no_evidence` — SFT-no-evidence eval，等 GPU 释放\n\n**等待中**: 4 个 cron 回调（3 个有 cron，1 个需手动检查）；2 个 Worker 回调\n\n### 4. 📋 待办（条件触发式）\n- eval_flat_nli_s44 完成 → 在 cuda:0 立即提交 eval_plan_014_no_evidence（Director 指令）\n- eval_flat_nli_seed45 完成 → 如 eval_plan_014 还没提交，在 cuda:3 提交它\n- rsft_ced_s43_train_r3 完成 → 在 cuda:1 提交 CED s43 eval（命令模板同 eval_flat_nli_s44，换 checkpoint 路径 `/root/autodl-tmp/rsft_output_ced_s43` 和 seed 43）\n- rsft_ced_s45_train_r4 完成 → 在 cuda:2 提交 CED s45 eval（checkpoint `/root/autodl-tmp/rsft_output_ced_s45`，seed 45）。**注意**: 此实验无 cron，需 spawn worker 手动检查进程状态\n- CED s42/s43/s44/s45 eval + flat-NLI s42/s43/s44/s45 eval 全部就绪 → 跑 `/root/autodl-tmp/scripts/seed_comparison.py` 产出 paired t-test + Cohen's d，汇报 Director\n- 所有 eval 收齐后 → 提交 plan_003_edcr_diagnostic (EDCR cross-method diagnostic table, ~2h)\n- 所有核心 eval 收齐后 → plan_002 test set eval + Paper Agent retitle\n\n### 5. 🎯 战略上下文\n**论文**: FREIGE — LLM-based evidence-grounded DocRE 系统性研究。EMNLP 2026 Main (ARR July, ~7/15-25)。\n\n**四个 Claims**:\n- C1: Evidence generation 代价 ~8pp rel_f1（evidence tax）；CED reranker 恢复 97%\n- C2: Evidence-extraction decoupling 是 QLoRA-specific artifact（非 RL 固有）。Spectrum: GRPO QLoRA catastrophic > GRPO bf16 mild > DPO gradual > RSFT none\n- C3: **已降级** — CED vs flat-NLI 统计不可区分，不再是独立贡献\n- C4: EDCR 双层诊断（方法级 decoupling 度量 + per-relation 难度诊断）\n\n**关键决策链**: D054→D065→D066 确认 QLoRA confound；D056 降级 C3；D067→D068→D069 DPO 叙事修正为\"中性/轻度退化\"；D070→D072→D073 EDCR 重定位为双层诊断\n\n**易错点**:\n- GRPO bf16 的 0.4549 是 ckpt-100（训练前起点），不是训练后结果。实际训练后 step_30=0.434\n- rsft_ced_s45_train_r4 没有 cron 监控，会被漏掉。新 session 第一件事应该 spawn worker 检查它的状态\n- flat-NLI 有 4 个 seeds (s42-s45)，CED 目前只有 2 个完成 (s42/s44)，s43/s45 正在训练。paired t-test 需要 matched pairs\n- RSFT top_k=3 是 negative (rel_f1=0.4454 < top_k=1 ~0.46)，Director 决定只加 ablation table 行\n- Q-BLoRA (TACL 2025) 可在 Discussion 引用解释 QLoRA decoupling 机制\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778892899.md"
+}

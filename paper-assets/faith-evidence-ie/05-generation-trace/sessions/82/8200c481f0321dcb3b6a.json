@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8200c481f0321dcb3b6a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper fig ced scoring",
+  "task_key": "worker_paper_fig-ced-scoring_20260524T215807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig-ced-scoring_20260524T215807_result.json",
+    "occurrence": 1,
+    "bytes": 438,
+    "sha256": "ac2c9104050055218da41abbf0342a2739f110cf0ef1643ab2790602fda75974"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图渲染成功，页数不变（主文 8 页，References 从第 9 页开始）。\n\n汇报：\n\n- **图文件**：`figures/paper/fig_ced_scoring.pdf`（38KB）、`.png`（121KB）\n- **脚本**：`figures/paper/plot_ced_scoring.py`\n- **插入位置**：`method.tex` §3.4 CED 公式（Eq. 1）之后，约第 51 行\n- **编译**：通过，19 页总计，主文 8 页，未超页\n- **未做文字缩减**（无需）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig-ced-scoring.md"
+}

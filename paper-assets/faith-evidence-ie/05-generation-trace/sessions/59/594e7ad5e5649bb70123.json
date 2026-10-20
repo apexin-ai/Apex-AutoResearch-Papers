@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "594e7ad5e5649bb70123",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ops flatnli backup kill fix restart",
+  "task_key": "worker_ops_flatnli-backup-kill-fix-restart_20260514T152334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_flatnli-backup-kill-fix-restart_20260514T152334.log",
+    "occurrence": 1,
+    "bytes": 932788,
+    "sha256": "8eb69102156ca0d4b271380f8c302d675919827195faecd5a57b0cf227461c34"
+  },
+  "statistics": {
+    "messages": 229,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 229,
+      "chunks": [
+        {
+          "path": "594e7ad5e5649bb70123-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "594e7ad5e5649bb70123-part-0002.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-flatnli-backup-kill-fix-restart.md"
+}

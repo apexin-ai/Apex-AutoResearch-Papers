@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50de394470b4d28be203",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval llama rsft s44 no evidence",
+  "task_key": "worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342_result.json",
+    "occurrence": 1,
+    "bytes": 992,
+    "sha256": "02fa147616ec64e1f8bb77ad4b129050c5c71be8c5c4c78ca55a5b42a76e6c01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 format-OK subset 文件。全部指标如下：\n\n```\nign_f1=0.5550\nf1=0.5674\nevi_f1=0.0010 (TP-only)\nevi_f1_joint=0.0001\nedcr=0.6818\nformat_compliance=0.9990 (984/985)\nn_truncated=178\nn_predictions=18089\ninference_time=6555.2s\nn_documents=985\nn_format_ok=984\n```\n\n补充：\n- `no_evidence=true` 已确认传入\n- evi_f1 ≈ 0 符合预期（no-evidence 模型几乎不输出 evidence）\n- format-OK subset 指标不存在，eval 脚本未生成该子集（984/985 几乎全量，差异可忽略）\n\n**Evidence tax 计算（LLaMA RSFT 3-seed）：**\n\n| seed | with-evi ign_f1 | no-evi ign_f1 | tax (pp) |\n|------|----------------|---------------|----------|\n| s42 | 0.5714 | 0.5526 | +1.88 |\n| s43 | 0.5662 | 0.5546 | +1.16 |\n| s44 | 0.5587 | 0.5550 | +0.37 |\n\n**Mean evidence tax = +1.14 pp, std = 0.76 pp**\n\n3 个 seed 均为正 tax（with-evidence > no-evidence），表明 evidence 训练对关系抽取性能有一致的正向贡献。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-llama-rsft-s44-no-evidence.md"
+}

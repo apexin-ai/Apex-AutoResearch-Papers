@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b1fca13d4dae4deeb43",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit plan019 8b rsft s44 training",
+  "task_key": "worker_submit_plan019_8b_rsft_s44_training_20260518T222357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_plan019_8b_rsft_s44_training_20260518T222357_result.json",
+    "occurrence": 1,
+    "bytes": 355,
+    "sha256": "b594fbb8ff3dcf1d906f937ee992a97cbcd3a2ae4cef2a67c68ba123a42c64f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交完成。\n\n| 项目 | 值 |\n|---|---|\n| exp_id | `plan019_8b_rsft_s44` |\n| PID | **581524** |\n| GPU | **cuda:1** (23534MiB / 32607MiB, 97% util) |\n| 命令 | `bash scripts/seed_expansion/train_8b_s44.sh` |\n| 数据 | 3018 samples, seed=44 |\n| 输出 | `/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44/` |\n| Registry | RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-plan019-8b-rsft-s44-training.md"
+}

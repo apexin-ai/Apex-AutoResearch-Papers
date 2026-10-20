@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6310746f742b7d5e289",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze 8b s44 noevi results",
+  "task_key": "worker_analyze_8b-s44-noevi-results_20260523T080022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_8b-s44-noevi-results_20260523T080022_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "c85b9d968ec2f980c0a0b30f886c360434ebdc50f8285fc82667bec40ab4244c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。结果汇总：\n\n**8B s44 no-evi test eval**\n- ign_f1 = **0.3264**\n- precision = 0.5006, recall = 0.2422\n- format_ok_rate = 0.992, n_truncated = 39\n\n**s44 evidence tax**\n- with-evi ign_f1 = 0.3329, no-evi ign_f1 = 0.3264\n- tax = 0.3264 − 0.3329 = **−0.65pp**（evidence helps）\n\n**8B 3-seed evidence tax 统计**\n\n| Seed | with-evi | no-evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42  | 0.3353   | 0.3319 | −0.34    |\n| s43  | 0.3398   | 0.3224 | −1.74    |\n| s44  | 0.3329   | 0.3264 | −0.65    |\n\n- **Mean = −0.91pp ± 0.74pp** (std, N=3)\n\n所有 3 个 seed 的 evidence tax 均为负值，表明 evidence 一致性地帮助了关系分类（平均提升 ~0.91pp ign_f1）。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-8b-s44-noevi-results.md"
+}

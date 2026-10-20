@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2a841eab3801304e503",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops investigate cuda2 dpo 1ep",
+  "task_key": "worker_ops_investigate-cuda2-dpo-1ep_20260515T211913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_investigate-cuda2-dpo-1ep_20260515T211913_result.json",
+    "occurrence": 1,
+    "bytes": 1180,
+    "sha256": "6c4f3cb962d6d6e676d7ed1e89466f2f5bb775ab0e4a0a7ca92a32bfc29190c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查结果汇总：\n\n## eval_plan_012_dpo_ced_1ep 状态：**正在运行**（inference 阶段）\n\n### DPO 训练\n- **已完成**，耗时 33m49s，exit code 0\n- 模型保存在 `/root/autodl-tmp/dpo_output_1ep`\n- 训练 loss: 0.593，rewards/accuracies: 0.821，rewards/margins: 0.859\n\n### Dev Eval\n- **正在运行**，进度 95% (59/62 batches)\n- PID 251136，CPU 103%，运行在 cuda:2 上\n- 启动于 04:21，已运行约 58 分钟，预计剩余 ~3 分钟\n- 输出目录 `/root/autodl-tmp/eval_results/dpo_ced_1ep/`（目前只有 eval.log）\n\n### cuda:2\n- **正在使用**（89% GPU 利用率，19517/32607 MiB），被 eval_plan_012_dpo_ced_1ep 的 inference 进程占用\n- resource_usage 报告空闲是误判\n\n### 4 块 GPU 当前分配\n| GPU | 利用率 | 显存 | 任务 |\n|-----|--------|------|------|\n| 0 | 91% | 18337M | eval_plan_001_flat_nli_s43 |\n| 1 | 77% | 15769M | eval_plan_011_bf16_g8_step50 |\n| 2 | 89% | 19517M | **eval_plan_012_dpo_ced_1ep** (95%) |\n| 3 | 72% | 16469M | eval_plan_008_rsft_topk3 |\n\n**结论**：eval_plan_012_dpo_ced_1ep 运行正常，即将在几分钟内完成。cuda:2 当前不可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-investigate-cuda2-dpo-1ep.md"
+}

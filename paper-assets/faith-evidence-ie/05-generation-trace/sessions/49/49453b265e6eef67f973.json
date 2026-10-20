@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "49453b265e6eef67f973",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "eval plan 012 dpo ced",
+  "task_key": "worker_eval_plan_012_dpo_ced_20260515T174106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_012_dpo_ced_20260515T174106.log",
+    "occurrence": 1,
+    "bytes": 1102975,
+    "sha256": "a7ac48fe29104ebb6b5db66b5076c30dd2c63d622eeabcb825549b4b8f378f1d"
+  },
+  "statistics": {
+    "messages": 615,
+    "user_turns": 1,
+    "tool_calls": 243,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 3,
+      "assistant": 112,
+      "tool_call": 243,
+      "tool_result": 243,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 577,
+      "chunks": [
+        {
+          "path": "49453b265e6eef67f973-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "49453b265e6eef67f973-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "49453b265e6eef67f973-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "49453b265e6eef67f973-part-0004.json",
+          "message_count": 37
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "49453b265e6eef67f973-part-0004.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-plan-012-dpo-ced.md"
+}

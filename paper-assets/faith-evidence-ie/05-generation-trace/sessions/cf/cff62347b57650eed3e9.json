@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cff62347b57650eed3e9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit test eval 1 7b sft s42",
+  "task_key": "worker_submit_test_eval_1_7b_sft_s42_20260521T224931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_test_eval_1_7b_sft_s42_20260521T224931_result.json",
+    "occurrence": 1,
+    "bytes": 160,
+    "sha256": "f7c98fddf6032d6859f9587eca58b4716d1d2d90c98a36c552519a6639d02732"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。\n\n- **PID**: 140534，cuda:0\n- **Registry**: `test_eval_1_7b_sft_s42` → RUNNING\n- **日志**: `/tmp/test_eval_1_7b_sft_s42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-test-eval-1-7b-sft-s42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e74cd8b2ced6a767726",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778902147.md",
+  "task_key": "loop_12_1778902147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778902147.md",
+    "occurrence": 1,
+    "bytes": 4905,
+    "sha256": "6f169c3777d7c5cb7534a2f0b56f06dace01e1f3e6abf351532c5129c90fa634"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T03:27:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `gpu_ids: [0, 1, 2, 3]`，全在 rtx5090-4x，不可用其他服务器 GPU\n- 所有命令 cwd 必须 `cd /root/autodl-tmp`，**不是** `cd /root/autodl-tmp/freige`（r1 失败根因）\n- RSFT checkpoint 路径有三代命名不一致，必须参考 memory.md 的映射表，不可猜路径（如 `rsft_output_ced_s42/` 不存在，s42 实际在 `rsft_output/`）\n- Eval 统一协议：batch_size=4, max_new_tokens=1024, --no-quantize, --sft_adapter，偏离此协议的 eval 结果不可用于 seed comparison\n- flat-NLI 最终 checkpoint 是 507（不是 510），CED 是 510\n- 主表必须报 Ign-F1（metrics_v2.json），不是 metrics.json 的旧值\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x (4× RTX 5090 32GB)，账号 root\n- **工作目录**: `/root/autodl-tmp`，项目代码在 `/root/autodl-tmp/freige/`（但 cwd 用 `/root/autodl-tmp`）\n- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（base），SFT adapter `/root/autodl-tmp/sft_output`\n- **数据**: DocRED `/root/autodl-tmp/data/docred`，RSFT 训练数据 `/root/autodl-tmp/rsft_filtered/rsft_train.jsonl` (2718 samples)\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - eval_rsft_ced_s45 — PID 283838, cuda:2\n  - eval_rsft_ced_s43 — PID 286587, cuda:1\n  - eval_plan_014_no_evidence_r2 — PID 288109, cuda:0\n  - reeval_flat_nli_s43_r2 — PID 291003, cuda:3\n- **活跃 Worker**: `worker_research_compile_paper_evidence_table_20260516T032102`（编译论文 evidence table）\n\n### 3. 📊 当前状态\n**刚做完**: 处理 rsft_ced_s43_train_r2 失败 CRON。发现 s43 和 s45 的 r2 训练同时被 SIGTERM (~00:20 UTC)，派了诊断 Worker（`worker_diagnose_rsft_ced_s43_train_r2_20260516T002202`），但此后 registry 状态已大幅推进——4 个 GPU 现在都在跑新 eval，说明中间有其他 session 或 Worker 完成了训练重试和提交。\n\n**RUNNING (4/4 GPU 满载)**:\n| GPU | exp_id | 说明 |\n|-----|--------|------|\n| cuda:0 | eval_plan_014_no_evidence_r2 | SFT-no-evidence eval（C1 ablation 最后一块） |\n| cuda:1 | eval_rsft_ced_s43 | CED RSFT s43 eval（C3 paired t-test 数据点） |\n| cuda:2 | eval_rsft_ced_s45 | CED RSFT s45 eval（C3 paired t-test 数据点） |\n| cuda:3 | reeval_flat_nli_s43_r2 | flat-NLI s43 统一协议重跑 |\n\n**PREPARING (等 GPU 释放)**:\n- reeval_ced_s42 / reeval_ced_s44 — CED s42/s44 统一协议重跑\n- reeval_flat_nli_s42 — flat-NLI s42 统一协议重跑\n- seed_comparison_prep — 汇总脚本准备\n\n**等待中**:\n- Worker `compile_paper_evidence_table` 正在跑（编译论文用的 evidence 汇总表）\n- 4 个 RUNNING eval 的 cron 回调\n\n### 4. 📋 待办（条件触发式）\n- eval_rsft_ced_s43 + eval_rsft_ced_s45 完成 → 提交 reeval_ced_s42 和 reeval_ced_s44 到释放的 GPU → CED 4-seed 全量 eval 收齐\n- reeval_flat_nli_s43_r2 完成 → 提交 reeval_flat_nli_s42 → flat-NLI 统一协议重跑收齐\n- eval_plan_014_no_evidence_r2 完成 → 更新 C1 evidence tax 数字（当前 0.4893 是旧 eval，统一协议下可能微调）\n- 所有 8 seed eval 收齐 → 跑 `seed_comparison.py` + `paired_ttest_analysis.py` → 汇报 Director C3 统计显著性最终结论\n- compile_paper_evidence_table Worker 完成 → 整合到论文 results section\n- 如果任何 eval 因 SIGTERM 再次失败 → 优先查 dmesg / tmux，rtx5090-4x 之前出现过同时杀训练进程的情况\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- **C1**: Evidence generation 代价 ~8pp rel_f1（SFT 0.4057 vs no-evidence ~0.4893）。CED reranker 恢复 97%（0.4864）\n- **C2**: Task decoupling 是 QLoRA-specific（D054/D065/D066）。bf16 GRPO 无 catastrophic forgetting。DPO 中性/轻度退化（D067-D069）\n- **C3 已降级**: CED vs flat-NLI 统计不可区分（D056），不再独立贡献。当前在补全 4-seed paired t-test 确认\n- **C4**: EDCR 从跨方法指标降级为 per-relation 诊断工具（D070-D073）\n\n**投稿**: EMNLP 2026 Main (ARR July, ~7月15-25)，剩 ~2 个月\n\n**易错点**:\n- `rsft_output/` 是 CED s42（不是 `rsft_output_ced_s42/`，后者不存在）；`rsft_output_s44/` 是 CED s44（无 `_ced` 前缀）\n- 旧 eval 用了混合 batch_size/max_new_tokens，D076 统一协议后需要全部重跑，不能混用新旧数据\n- metrics.json 是旧 Ign-F1（bug 未修），必须用 metrics_v2.json\n- Eval 提交务必带 `--sft_adapter`，D064 之前多个 eval 因遗漏此 flag 全部无效\n- 两个训练进程曾同时被 SIGTERM 杀死（00:20 UTC），诊断 Worker 已派但本 session 未收到回调，根因未确认——如果新 eval 再次被杀，优先查系统级问题\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778902147.md"
+}

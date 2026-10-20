@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "0749732cfafd9d11f30d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose d112 rsft no evidence eval",
+  "task_key": "worker_diagnose_d112_rsft_no_evidence_eval_20260519T134139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_d112_rsft_no_evidence_eval_20260519T134139_result.json",
+    "occurrence": 1,
+    "bytes": 888,
+    "sha256": "f48351815f9316a8cde11f5ed557b20693a41dffd4c86c25a1934afc82a2d37c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志确认：`bash: scripts/d112/eval_4b_rsft_no_evidence.sh: No such file or directory`。脚本名错了。\n\n目录下实际只有一个脚本：`eval_d112_rsft_bf16.sh`。\n\n```json\n{\"root_cause\":\"bash: scripts/d112/eval_4b_rsft_no_evidence.sh: No such file or directory — 脚本不存在，实际文件名是 eval_d112_rsft_bf16.sh\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"将提交命令中的脚本路径改为 scripts/d112/eval_d112_rsft_bf16.sh 重新提交\"],\"can_auto_fix\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "bash: scripts/d112/eval_4b_rsft_no_evidence.sh: No such file or directory — 脚本不存在，实际文件名是 eval_d112_rsft_bf16.sh",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "将提交命令中的脚本路径改为 scripts/d112/eval_d112_rsft_bf16.sh 重新提交"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d112-rsft-no-evidence-eval.md"
+}

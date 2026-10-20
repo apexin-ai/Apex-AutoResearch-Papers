@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b24b627a85996f4a27c2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops disk cleanup execute",
+  "task_key": "worker_ops_disk_cleanup_execute_20260516T095655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_execute_20260516T095655_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "107101e3f2a43fe39620b8d2fb38c16df0e6c38277ea303e7ac0e85c3dcb0ee1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| | 清理前 | 清理后 |\n|---|---|---|\n| 已用 | 244GB (98%) | 202GB (81%) |\n| 可用 | 6.1GB | 49GB |\n\n**释放约 42GB**，已删除 6 个目录：\n\n- `grpo_ced_g4_bf16/` (16GB) — GRPO LoRA + checkpoints\n- `grpo_ced_g8_bf16/` (16GB) — GRPO LoRA + checkpoints\n- `dpo_output/` (7GB) — DPO 3ep 输出\n- `dpo_output_1ep/` (5GB) — DPO 1ep 输出\n- `dpo_data/` (13MB) — DPO 训练数据\n- `eval_plan_012_dpo_ced/` (7.5MB) — DPO eval 输出\n\nDPO 已删除，因 plan_012 两组 metrics (1ep + 3ep) 均已完整录入 registry，conclusion=negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-execute.md"
+}

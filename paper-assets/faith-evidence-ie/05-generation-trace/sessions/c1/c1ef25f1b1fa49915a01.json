@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1ef25f1b1fa49915a01",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_13_1778934823.md",
+  "task_key": "loop_13_1778934823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778934823.md",
+    "occurrence": 1,
+    "bytes": 3695,
+    "sha256": "279655154d8de4ef1d59b55a72faf945ed19e3bd04f06b2d1cdb13329875b574"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T12:04:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0, cuda:1, cuda:2, cuda:3（共 4 张）\n- 服务器用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），**不存在 .venv**\n- submit_training_job 命令必须自带 conda 激活，GPU 编号始终从 0 开始（框架自动映射）\n- HF_HOME=/root/autodl-tmp/.hf_cache，模型/数据全在 /root/autodl-tmp/，根分区空间有限\n- D076 reeval 协议：batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024，偏离即废弃重跑\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x，4× RTX 5090 32GB\n- 工作目录：/root/autodl-tmp（代码 freige 包、数据、模型、eval 输出全在此）\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型路径：/root/autodl-tmp/models/Qwen3-4B（base），/root/autodl-tmp/sft_output（SFT adapter）\n- RSFT checkpoints：/root/autodl-tmp/rsft_output_flat_nli/checkpoint-507（flat-NLI），/root/autodl-tmp/rsft_output/checkpoint-507（CED）\n- Eval 输出：/root/autodl-tmp/eval_results/（各实验子目录）\n- 活跃进程：plan_006_qwen3_1_7b_sft_bf16（PID 310381, cuda:3），plan_006_qwen3_8b_sft_bf16（PID 317310, cuda:3）\n- Cron：reconcile 显示 0 个活跃（刚被 reconcile 清理）\n\n### 3. 📊 当前状态\n**刚做完**：收到 reeval_flat_nli_s42 ANALYZING 回调，已 spawn Worker（worker_analysis_reeval_flat_nli_s42_20260516T080058）去服务器读结果。\n\n**同时 ANALYZING 的还有 3 个**（也刚完成但我尚未收到它们的回调）：\n- reeval_ced_s44（07:56 转 ANALYZING）\n- reeval_sft_baseline_d076（07:25 转 ANALYZING）\n- reeval_ced_s42（07:25 转 ANALYZING）\n\n**RUNNING**：\n- plan_006_qwen3_1_7b_sft_bf16（cuda:3, Qwen3-1.7B SFT，D077 scope 扩展）\n- plan_006_qwen3_8b_sft_bf16（cuda:3, Qwen3-8B SFT，D077 scope 扩展）\n\n**等待中**：Worker 回调（分析 reeval_flat_nli_s42 结果）\n\n### 4. 📋 待办\n- Worker 回调到达 → 读取 metrics → update_registry(status=DONE, conclusion=success/negative) → 刷新 report.md\n- 4 个 ANALYZING reeval 全部转 DONE → spawn Worker 做 paired t-test（CED vs flat-NLI per-doc scores）→ 汇报 Director D078 最终结论\n- reeval_ced_s44 / reeval_ced_s42 / reeval_sft_baseline_d076 如果也回调 → 同样流程分析\n- paired t-test 完成 → 确认 C3 是否维持\"统计不可区分\"→ 更新 paper_framing.md\n- plan_006 SFT 完成 → 接力 RSFT → eval（D077 scope 扩展流水线）\n- cuda:0/1/2 空闲 → 如果 Qwen3-8B/LLaMA 模型下载完毕，立即提交 SFT 训练\n\n### 5. 🎯 战略上下文\n- **核心论文 story**：FREIGE = evidence-grounded DocRE 系统性研究。4 个 Claims：C1 evidence tax ~8pp、C2 QLoRA-specific decoupling、C3 CED≈flat-NLI（降级/统计不可区分）、C4 EDCR 双层诊断\n- **D076 是 C3 的最终裁决**：之前 eval 协议不统一（batch_size=16 vs 4），现在 5 个 reeval 用统一协议重跑，收齐后 paired t-test 决定 C3 措辞\n- **D077 scope 扩展是投稿关键**：EMNLP 需要多模型多数据集证据，plan_006（Qwen3 1.7B/8B）和 plan_016（LLaMA）是主战场\n- **易错点**：reeval 的 eval_results 目录命名不完全一致（有的 `_reeval` 后缀，有的 `_r2` 后缀），Worker 需要 ls 确认实际路径再读\n- **易错点**：两个 plan_006 实验共用 cuda:3（1.7B 和 8B 显存加起来刚好够），不要假设它们是串行的\n- **决策链**：D056(C3 不显著) → D076(协议审计+重跑) → D077(scope 扩展) → D078(待 paired t-test 最终确认)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778934823.md"
+}

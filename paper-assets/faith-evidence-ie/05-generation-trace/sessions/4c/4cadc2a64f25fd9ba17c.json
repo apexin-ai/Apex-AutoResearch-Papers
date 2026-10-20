@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cadc2a64f25fd9ba17c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis mvp2 eval lr5e6 r1 ckpt100",
+  "task_key": "worker_analysis_mvp2_eval_lr5e6_r1_ckpt100_20260515T012129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp2_eval_lr5e6_r1_ckpt100_20260515T012129_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "4935cf057302e6bad85969cd0a88fb6d4c078c8fb6ac37b52386c0ad37d3e5c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。汇总：\n\n## mvp2_eval_lr5e6_r1_ckpt100 结果\n\n| 指标 | 值 |\n|------|-----|\n| **rel_f1** | **0.0138** |\n| rel_precision | 0.0132 |\n| rel_recall | 0.0144 |\n| ign_f1 | 0.0138 |\n| evi_f1 | 0.8504 |\n| evi_precision | 0.9256 |\n| evi_recall | 0.7866 |\n| edcr | 0.9876 |\n| format_ok_rate | 99.9% |\n| field_compliance_rate | 81.6% |\n| tp / pred / gold | 175 / 13300 / 12151 |\n| n_truncated | 181/985 |\n| inference_time | 5901.7s |\n\n**结论：negative**。rel_f1=0.0138 远低于 pass criteria 0.30，也远低于 SFT baseline 0.4057。与 ckpt-80 (0.0116) 和 ckpt-60 (0.0093) 相当——模型预测了大量关系（13300）但几乎全错（tp 仅 175），说明 lr=5e-6 的 GRPO 训练在关系抽取准确性上严重退化，虽然格式和证据质量维持良好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp2-eval-lr5e6-r1-ckpt100.md"
+}

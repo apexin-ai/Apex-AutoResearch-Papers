@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8e1c7430ec259c7ee27",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check lead2 ckpt20 result",
+  "task_key": "worker_ops_check_lead2_ckpt20_result_20260517T152546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_lead2_ckpt20_result_20260517T152546_result.json",
+    "occurrence": 1,
+    "bytes": 569,
+    "sha256": "abab16cdb01be5039f33c81f7d85838e53ea19e21d0b0081b6855a28b416e412"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：RSFT→GRPO pipeline 可行。**\n\nCheckpoint-20 vs RSFT baseline 对比：\n- **rel_f1**: 0.4617 vs 0.4601 (+0.16pp) — 性能保持\n- **evi_f1_joint**: 0.3642 vs 0.3605 (+0.37pp) — 证据质量略提升\n- **edcr**: 0.6465 vs 0.6542 (-0.77pp) — 干扰引用率下降（更好）\n- 100% format compliance，无错误\n\nGRPO 在仅 20 步后已略微超越 RSFT baseline 的所有核心指标，说明从 RSFT 出发做 GRPO 不会导致性能退化，pipeline 设计正确。\n\nRegistry 已更新为 DONE/success，cron 已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-lead2-ckpt20-result.md"
+}

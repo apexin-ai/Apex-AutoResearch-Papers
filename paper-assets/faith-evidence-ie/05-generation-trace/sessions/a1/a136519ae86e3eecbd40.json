@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a136519ae86e3eecbd40",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 001 flat nli seed44",
+  "task_key": "worker_analysis_plan_001_flat_nli_seed44_20260515T232414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_001_flat_nli_seed44_20260515T232414_result.json",
+    "occurrence": 1,
+    "bytes": 1266,
+    "sha256": "9d8c5fa54d9a6b35d86e0dc7887fa39e6899c1793f1b5c2d022cae17700ad35a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。汇总报告：\n\n## plan_001_flat_nli_seed44 训练结果\n\n| 项目 | 值 |\n|------|-----|\n| 训练时长 | 1h43m (6197s) |\n| 总步数 | 507 (3 epochs) |\n| 训练样本 | 2691 (CED mean=0.725) |\n| Final train loss | 0.6247 |\n| Final eval loss | 0.7564 |\n| Checkpoint | `/root/autodl-tmp/rsft_output_flat_nli_s44/` (adapter 528MB) |\n| W&B | 未启用 |\n\n### Mid-train Task Eval (50 docs)\n\n| Epoch | F1 | Evi-F1 | EDCR | Preds |\n|-------|----|--------|------|-------|\n| 1 | 0.4306 | 0.7292 | 0.6474 | 883 |\n| 2 | 0.4884 | 0.7458 | 0.6317 | 876 |\n| 3 | **0.4897** | **0.7800** | **0.6596** | 782 |\n\n### 与其他 seed/方法对比（mid-train 50-doc eval）\n\n| 方法 | rel_f1 | 备注 |\n|------|--------|------|\n| SFT baseline | 0.4057 | 全量 eval |\n| flat-NLI s42 | 0.4539 | 全量 eval |\n| flat-NLI s45 | 0.4876 | mid-train eval |\n| **flat-NLI s44** | **0.4897** | mid-train eval |\n| CED RSFT mean | ~0.4596 | 全量 eval |\n\ns44 的 mid-train F1=0.4897 是三个 flat-NLI seed 中最高的，且 Evi-F1=0.78 也很出色。注意 s44 和 s45 的数值都是 50-doc mid-train eval，需全量 eval 才能与 s42 的 0.4539 直接对比。预期全量 eval 数值会有所变动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-001-flat-nli-seed44.md"
+}

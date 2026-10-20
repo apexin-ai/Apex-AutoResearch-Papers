@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "696a768b9e5b624e09ee",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "train mvp2 sft launch",
+  "task_key": "worker_train_mvp2-sft-launch_20260514T061031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_mvp2-sft-launch_20260514T061031.log",
+    "occurrence": 1,
+    "bytes": 680256,
+    "sha256": "5a3f3b1bd977d4cc6b1d0e61167033309267b66bdbf523865a4fc8a3614fdc92"
+  },
+  "statistics": {
+    "messages": 319,
+    "user_turns": 0,
+    "tool_calls": 116,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 116,
+      "tool_result": 116,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 319,
+      "chunks": [
+        {
+          "path": "696a768b9e5b624e09ee-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "696a768b9e5b624e09ee-part-0002.json",
+          "message_count": 139
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-mvp2-sft-launch.md"
+}

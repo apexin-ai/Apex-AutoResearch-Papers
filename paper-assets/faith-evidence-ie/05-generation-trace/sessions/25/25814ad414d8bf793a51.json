@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25814ad414d8bf793a51",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh ced score shard1",
+  "task_key": "worker_ssh_ced-score-shard1_20260515T044134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_ced-score-shard1_20260515T044134_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "2df96d7a0c7077b0da9d1be87d5595cd6f9325915935e51ab2651a1f9b27504c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Scoring 正常推进中。进度模式稳定（~3.5 min / 500 records），预计 ~13:21 完成。\n\n**当前状态汇总：**\n- 进程 PID 156417 在 cuda:1 上运行 CED scoring\n- 输入：shard_1, 5552 records, 694 unique docs\n- 进度：2000/5552 (36%)，速率 ~3.5 min/500 records\n- 预计完成：~13:21（还需 ~25 分钟）\n- 无错误，进程稳定\n\n完成后输出将写入 `/root/autodl-tmp/rsft_scored_s1/`：\n- `rsft_scores.jsonl`：带分数的完整记录\n- `rsft_train.jsonl`：筛选后的 SFT 训练数据\n- `rsft_report.json`：统计报告\n\n进程在 nohup 后台运行，不会因 SSH 断连中断。完成后可通过以下方式查看结果：\n```bash\ncat /root/autodl-tmp/rsft_scored_s1/rsft_report.json\nwc -l /root/autodl-tmp/rsft_scored_s1/rsft_train.jsonl\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-ced-score-shard1.md"
+}

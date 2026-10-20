@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60bc3f4a86bd5077a830",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "verify d102 eval metrics",
+  "task_key": "worker_verify_d102_eval_metrics_20260518T122108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_d102_eval_metrics_20260518T122108_result.json",
+    "occurrence": 1,
+    "bytes": 2131,
+    "sha256": "ebd76e1436b0fea2b9fb68e709cbe3ff6fa2012b56a3094b0e097a82818d7ca1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D102 k=1 Eval 结果汇总\n\n| 模型 | rel_f1 | ign_f1 | evi_f1 | edcr | 路径 | 修改时间 |\n|---|---|---|---|---|---|---|\n| **1.7B k=1 s42** | 52.90 | 51.22 | 82.43 | 62.24 | `/root/autodl-tmp/eval_results/d102_1_7b_k1_s42/metrics.json` | 2026-05-18 18:14 |\n| **8B k=1 s42** | 55.49 | 53.76 | 81.36 | 62.31 | `/root/autodl-tmp/eval_results/d102_8b_k1_s42/metrics.json` | 2026-05-18 19:43 |\n| **8B k=1 s43** | 56.51 | 54.71 | 81.80 | 60.94 | `/root/autodl-tmp/eval_results/d102_8b_k1_s43/metrics.json` | 2026-05-18 19:45 |\n| **LLaMA k=1 s42** | 58.39 | 57.14 | 82.38 | 57.99 | `/root/autodl-tmp/eval_results/d102_llama_k1_s42/metrics.json` | 2026-05-18 18:52 |\n\n补充指标（format/field compliance）：\n\n| 模型 | format_ok_rate | field_compliance_rate | n_truncated |\n|---|---|---|---|\n| 1.7B k=1 s42 | 99.90% | 74.42% | 249 |\n| 8B k=1 s42 | 100% | 74.92% | 242 |\n| 8B k=1 s43 | 100% | 75.33% | 231 |\n| LLaMA k=1 s42 | 99.90% | 83.96% | 158 |\n\n---\n\n## LLaMA s43 训练进度\n\n- **PID 537136 存活**，在 cuda:3 运行，GPU 利用率 98%，显存 30593MiB/32607MiB\n- 进度：**761/1107 steps (68.7%)**，~3.15s/it\n- 最新 checkpoint：`checkpoint-750`（`/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43/`）\n- 训练 loss 已降至 ~0.45，token accuracy ~0.89\n- 预估剩余：~346 steps × 3.15s ≈ **18 分钟**\n\n---\n\n## Qwen3-14B 下载状态\n\n已完成。8 个 shard 全部下载完毕，总计 ~27.5GB，路径 `/root/autodl-tmp/models/Qwen/Qwen3-14B/`。\n\n---\n\n## Wave1 脚本内容\n\n**sft_seed43.sh** — SFT Qwen3-4B seed43，CUDA_VISIBLE_DEVICES=0，output → `/root/autodl-tmp/sft_output_seed43`，batch=1, grad_accum=64, epochs=3, lr=2e-4, lora_rank=64\n\n**sft_seed44.sh** — SFT Qwen3-4B seed44，CUDA_VISIBLE_DEVICES=1，output → `/root/autodl-tmp/sft_output_seed44`，同上参数 seed=44\n\n**grpo_bf16_g4.sh** — GRPO bf16 Qwen3-4B stage3，CUDA_VISIBLE_DEVICES=2，no_quantize，num_generations=4，grad_accum=16，max_steps=200，kl_coef=0.0，reward weights: format=0.3 / f1=3.0 / ced=1.0，output → `/root/autodl-tmp/grpo_bf16_g4`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-d102-eval-metrics.md"
+}

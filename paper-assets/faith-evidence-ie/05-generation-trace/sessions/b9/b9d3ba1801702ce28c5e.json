@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9d3ba1801702ce28c5e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis paired ttest prep",
+  "task_key": "worker_analysis_paired_ttest_prep_20260516T024727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paired_ttest_prep_20260516T024727_result.json",
+    "occurrence": 1,
+    "bytes": 1074,
+    "sha256": "24e5d0f8adedd9e7d65a3a5b372cbdfc2f751807b5ae048e1bddf7f43f9b6d7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪。\n\n**产出**: `artifacts/paired_ttest_analysis.py`\n\n**当前 eval 结果状态（3 matched pairs 可用，1 缺失）：**\n\n| Seed | CED RSFT | flat-NLI RSFT |\n|------|----------|---------------|\n| 42 | ✓ `rsft_r2b` (f1=0.4493) | ✓ `rsft_flat_nli` (f1=0.4539) |\n| 43 | ✓ `rsft_s43` (f1=0.4683) | ✓ `rsft_flat_nli_s43_reeval` (f1=0.4523) |\n| 44 | ✓ `rsft_s44` (f1=0.4655) | ✓ `rsft_flat_nli_s44` (f1=0.4615) |\n| 45 | ✗ `rsft_ced_s45` 空 | ✗ `rsft_flat_nli_s45` 空 |\n\n**运行方式**（在服务器上）：\n```bash\npython paired_ttest_analysis.py --seeds 42 43 44 --per-doc --output /root/autodl-tmp/eval_results/ttest_results.json\n```\n\n脚本功能：\n- 读取 `metrics_v2.json`（优先）或 `metrics.json`，按 seed 配对\n- Seed-level paired t-test + Cohen's d + 95% CI\n- Bootstrap CI（10000 resamples）作为非参数替代\n- `--per-doc`：加载 `predictions.json` 计算 per-document rel_f1，逐 seed 和 pooled 做 bootstrap paired comparison\n- `--output`：JSON 输出完整统计结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paired-ttest-prep.md"
+}

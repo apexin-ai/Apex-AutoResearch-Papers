@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78411ba69bdbf82d9fac",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh rsft shard progress",
+  "task_key": "worker_ssh_rsft-shard-progress_20260515T022408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rsft-shard-progress_20260515T022408_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "5d4b405352b6ddae752f9d3265e065fe02935fe49b6eff1b260ba507739dfe08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前时间: **2026-05-15 02:28 UTC**，启动时间约 01:40 UTC，已运行 **~48 分钟**。\n\n| Shard | 已完成 | 总 docs | 进度% | 速度 (docs/min) | 剩余 | ETA (UTC) |\n|-------|--------|---------|-------|-----------------|------|-----------|\n| shard_0 | 183 | 682 | 26.8% | 3.76 | 499 | ~04:41 |\n| shard_1 | 195 | 681 | 28.6% | 4.00 | 486 | ~04:30 |\n| shard_2 | 199 | 681 | 29.2% | 4.09 | 482 | ~04:27 |\n| shard_3 | 180 | 681 | 26.4% | 3.70 | 501 | ~04:44 |\n| **合计** | **757** | **2725** | **27.8%** | **15.55** | **1968** | — |\n\n**GPU 状态**: 4 个 GPU 均在运行，显存占用 14.9–19.3 GiB，正常。\n\n**Root 目录**: `progress.json` 有 302 docs（应是分片前的旧数据），`generations.jsonl` 2416 行。\n\n**预计全部完成**: ~04:44 UTC（约 2 小时 16 分钟后），瓶颈在 shard_3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rsft-shard-progress.md"
+}

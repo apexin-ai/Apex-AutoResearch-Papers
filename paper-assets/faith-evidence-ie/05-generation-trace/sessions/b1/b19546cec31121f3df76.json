@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b19546cec31121f3df76",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "write test table draft",
+  "task_key": "worker_write_test_table_draft_20260521T210823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_test_table_draft_20260521T210823_result.json",
+    "occurrence": 1,
+    "bytes": 386,
+    "sha256": "97c3436418e6e2ea443e8ef1fae809baf48d29336e286e7958755f86e322239d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/test_table_draft.md` 并注册 (`art_20260521_aaf66e`)。\n\n数据要点：\n- RSFT test ign_f1 从 registry 全部验证一致\n- 8B Trunc.% = 1.8%（仅 9/500 截断，远低于其他 scale）\n- 4B 标注 —† 附 footnote（checkpoint 不可恢复）\n- SFT test 列待填：1.7B pending，其余 4 个 running\n- Δ 列待 SFT 完成后计算"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-test-table-draft.md"
+}

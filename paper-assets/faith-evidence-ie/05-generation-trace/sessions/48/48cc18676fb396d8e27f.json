@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48cc18676fb396d8e27f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code test split support",
+  "task_key": "worker_code_test_split_support_20260516T052513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_test_split_support_20260516T052513_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "0234eaff02bf10e606ff7a5f6b03aaa53a2c3588cb6a8c7832eac630bc1fdac6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，验证通过。\n\n**变更摘要：**\n\n1. **`prepare_test_data()`** (L147) — 从 test.json 的 vertexSet 直接构建 entity list + prompt，不依赖 labels\n2. **`convert_to_codalab()`** (L200) — 模型预测 → CodaLab 提交格式 `[{title, h_idx, t_idx, r, evidence}]`，entity/relation 匹配用 lowercase+strip 容错\n3. **`main()` 分支** — `--split test` 时调用 `prepare_test_data`，跳过 `evaluate()`，输出 `codalab_submission.json`\n\n**验证结果：**\n- `--help` 正常，`--split {dev,test}` 可选\n- `from freige.eval.inference import prepare_test_data, convert_to_codalab` 导入正常\n- 备份在 `inference.py.bak`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-test-split-support.md"
+}

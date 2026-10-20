@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef145b6261e3475b0b0f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research grpo forgetting recovery",
+  "task_key": "worker_research_grpo_forgetting_recovery_20260514T222706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_grpo_forgetting_recovery_20260514T222706_result.json",
+    "occurrence": 1,
+    "bytes": 3425,
+    "sha256": "c0c8a3403165e2b8a87f72eb4bc9330f10e5701df66e236dda357aee629f8a81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。以下是结果摘要。\n\n---\n\n## 5 篇核心论文\n\n### 1. Mitigating the Alignment Tax of RLHF (EMNLP 2024)\nLin et al. | [arXiv 2309.06256](https://arxiv.org/abs/2309.06256)\n\nRLHF 导致模型遗忘 SFT 能力（alignment tax）。发现**模型权重插值**（SFT 与 RLHF checkpoint 线性插值）在 alignment-forgetting Pareto 前沿表现最优。提出 HMA 对不同层设不同插值比例。\n\n### 2. Online Merging Optimizers for Boosting Rewards and Mitigating Tax (2024)\nQwen 团队 | [arXiv 2405.17931](https://arxiv.org/abs/2405.17931) | [GitHub](https://github.com/QwenLM/online_merging_optimizers)\n\n在 RLHF 每个优化步实时合并 RL policy 和 SFT 参数，将梯度方向锚定在 SFT 优化方向上。Qwen/LLaMA 1.8B-8B + DPO/KTO 上验证，14 个 benchmark 同时提升 reward 并降低 alignment tax。\n\n### 3. FRPO: Robust Policy Optimization to Prevent Catastrophic Forgetting (2025)\nSabbaghi et al. | [arXiv 2602.08813](https://arxiv.org/abs/2602.08813)\n\n修改 GRPO 的 advantage 计算，加入 entropic risk 项——强调低 reward 轨迹，抑制高方差策略。**无额外计算开销**，直接替换 GRPO 即可。核心论点：标准 GRPO 找到的高 reward 解是脆弱的。\n\n### 4. RL-Struct: Structured Output + GRPO (2025)\n[arXiv 2512.00319](https://arxiv.org/abs/2512.00319)\n\n针对 JSON 结构化输出 + RL 的挑战，提出**分层 reward**（structure → format → content → validity）。4B 模型上 1000 样本达 80%+ 结构准确率。解决单一 reward 让模型在格式和内容间混淆的问题。\n\n### 5. GRPO + LoRA 不稳定性（综合多源）\n[GRPO++ blog](https://cameronrwolfe.substack.com/p/grpo-tricks) | [HF GRPO+LoRA handbook](https://huggingface.co/blog/Weyaxi/engineering-handbook-grpo-lora-with-verl) | [arXiv 2504.20834](https://arxiv.org/abs/2504.20834)\n\n**已知问题**：GRPO + LoRA 低秩更新时 advantage 估计方差增大，TRL 默认 KL β=0.0，策略易大幅偏离。Full-token GRPO 在 LoRA 下\"未能提升性能\"。建议 β≥0.01、rank≥16、lr~1e-6。\n\n---\n\n## 综合诊断\n\n你们的\"先崩后恢复\"是 **三因素叠加**：\n\n1. **Alignment tax**：GRPO 梯度覆盖 SFT 关系抽取能力，rank=4 的 LoRA 参数同时承载旧能力和新优化目标，冲突剧烈\n2. **KL 约束过弱（β=0.001）+ 低秩放大不稳定性**：策略快速偏离 SFT 分布，训练前 20 步即崩塌\n3. **Reward proxy mismatch**：reward↑ 但 F1↓ 是经典 reward hacking——模型可能学会生成格式正确但关系错误的输出\n\nU 型恢复的原因：崩塌后模型在新策略空间中缓慢重新发现部分抽取模式，但 LoRA 容量不足 + reward 噪声导致恢复不完全。\n\n---\n\n## 最值得尝试的 2 个方案\n\n| | 方案 A：增强正则化 | 方案 B：分层 Reward |\n|---|---|---|\n| 改动 | KL β: 0.001→0.04, rank: 4→16, lr: 5e-6→1e-6 | reward 拆为 format + entity + relation，分权重 |\n| 成本 | 低（改配置即可） | 中（需重写 reward 函数） |\n| 针对问题 | 策略偏离过快 | reward hacking |\n| 优先级 | **先试这个** | A 不够再加 |\n\n备选方案 C：集成 Qwen 团队的 Online Merging Optimizer，每步锚定 SFT 方向，实现复杂度中等但同源验证过。\n\n已将完整调研存入 `memory.md`，三个缓解方案存入 `ideas.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-grpo-forgetting-recovery.md"
+}

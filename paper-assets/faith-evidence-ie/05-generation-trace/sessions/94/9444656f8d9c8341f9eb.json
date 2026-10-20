@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9444656f8d9c8341f9eb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze wave1 sft 4b s43 eval r2",
+  "task_key": "worker_analyze_wave1_sft_4b_s43_eval_r2_20260518T213345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_wave1_sft_4b_s43_eval_r2_20260518T213345_result.json",
+    "occurrence": 1,
+    "bytes": 824,
+    "sha256": "33a0df7b109b57fccc916bfef585117af20e887655e509dd54a162b31039223c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated, status = DONE (success).\n\n## wave1_sft_4b_s43_eval_r2 结果摘要\n\n| 指标 | s43 值 | s42 canonical | 差异 |\n|------|--------|---------------|------|\n| **ign_f1** | **0.4365** | 0.3974 | **+3.91 pp** |\n| rel_f1 | 0.4429 | 0.4049 | +3.80 pp |\n| evi_f1_joint | 0.3462 | — | — |\n| evi_f1_tp | 0.8021 | — | — |\n| edcr | 0.6827 | — | — |\n| format_compliance | 100% | — | — |\n| n_truncated | 318/985 | — | — |\n| n_predictions | 17,055 | — | — |\n| inference_time | 7,158s | — | — |\n\n**Conclusion: success.** s43 的 ign_f1=0.4365 比 s42 canonical 高 +3.91 pp，是目前 4B SFT 三个 seed 中最好的结果。截断率 32.3% 偏高但未影响格式合规率（100%）。与更大模型相比仍有差距（1.7B s42: 0.4786, 8B s42: 0.5051）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-wave1-sft-4b-s43-eval-r2.md"
+}

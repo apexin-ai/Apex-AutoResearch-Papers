@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea3a53efdef6c345f9fb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops harvest plan010 nli large eval",
+  "task_key": "worker_ops_harvest_plan010_nli_large_eval_20260520T020703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_harvest_plan010_nli_large_eval_20260520T020703_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "9bdb5d38353fef5c4000b5e5cddffb50615c44cd71dc0fc1284e02b3d32df313"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。Cron 不存在（可能已被清理）。\n\n## plan010_nli_large_eval_r2 结果摘要\n\n| 指标 | v3-large (本次) | v3-base baseline (s42) | Δ |\n|------|----------------|----------------------|---|\n| **ign_f1** | **0.4533** | 0.4423 | **+1.10pp** |\n| f1 | 0.4636 | 0.4517 | +1.19pp |\n| evi_f1_joint | 0.3606 | — | — |\n| edcr | 0.653 | — | — |\n| format | 100% | — | — |\n| truncated | 180/985 | — | — |\n\n**结论：v3-large > v3-base，ign_f1 提升 +1.1pp。** 属于第一种解读——当前 CED scorer 有提升空间，更强的 NLI 模型能产出更高质量的 reward signal，进而提升下游 RSFT 效果。提升幅度不算大但方向明确一致（f1/ign_f1 均提升）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-plan010-nli-large-eval.md"
+}

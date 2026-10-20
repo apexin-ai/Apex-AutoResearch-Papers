@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5f0935e51d13d20525c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "experiment qwen3 1 7b sft eval r2",
+  "task_key": "worker_experiment_qwen3_1_7b_sft_eval_r2_20260516T081017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_qwen3_1_7b_sft_eval_r2_20260516T081017_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "520891e90cbf5e53b51a9b806804eaf1905a2c52418b9def2736659ae3c56dc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果：**\n- Qwen3-1.7B SFT eval 已在 cuda:1 上启动（PID 319245）\n- 模型从本地加载，无 HF 下载\n- Base model: `/root/autodl-tmp/models/Qwen/Qwen3-1.7B`，SFT adapter: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`（merge 方式）\n- 推理中：247 batches，~27s/batch，预计 ~1.8h 完成\n- Registry: `plan_006_qwen3_1_7b_sft_eval` → RUNNING\n\n**注意：** cuda:1 上同时有另一个 worker 的 4B test eval（PID 319638，9.8GB）。当前总占用 ~15GB/32GB，两者目前都在正常推理，但需关注后续是否 OOM。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-qwen3-1-7b-sft-eval-r2.md"
+}

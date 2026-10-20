@@ -1,0 +1,852 @@
+{
+  "schema_version": "1.0",
+  "id": "3715b1807bcec7824360",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "ssh find 4b sft adapter",
+  "task_key": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_find-4b-sft-adapter_20260521T073041.jsonl",
+    "occurrence": 1,
+    "bytes": 31844,
+    "sha256": "8e6a911cb541d0251f246628e5be53bb31b77ee79f85dd730e0f6321fd224ae6"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T07:33:25.905671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T07:33:25.906064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T07:33:25.907268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/sft_output*4b* /root/autodl-tmp/sft_output*4B* 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T07:33:25.907542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T07:33:25.907695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/ -maxdepth 2 -name \"adapter_config.json\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T07:33:25.907831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T07:33:25.907980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/sft_output*4b* /root/autodl-tmp/sft_output*4B*",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T07:33:25.908106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/ -maxdepth 2 -name \"adapter_config.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T07:33:25.908264+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/sft_output_14b:\\\\ntotal 517408\\\\ndrwxr-xr-x  4 root root      4096 May 19 15:17 .\\\\ndrwxr-xr-x 82 root root      8192 May 21 03:17 ..\\\\n-rw-r--r--  1 root root      1470 May 19 15:17 README.md\\\\n-rw-r--r--  1 root root      1118 May 19 15:17 adapter_config.json\\\\n-rw-r--r--  1 root root 513878424 May 19 15:17 adapter_model.safetensors\\\\n-rw-r--r--  1 root root       707 May 19 15:17 added_tokens.json\\\\n-rw-r--r--  1 root root      4168 May 19 15:17 chat_template.jinja\\\\ndrwxr-xr-x  3 root root      4096 May 19 15:17 checkpoint-144\\\\ndrwxr-xr-x  3 root root      4096 May 19 14:17 checkpoint-96\\\\n-rw-r--r--  1 root root   1671853 May 19 15:17 merges.txt\\\\n-rw-r--r--  1 root root       499 May 19 15:17 special_tokens_map.json\\\\n-rw-r--r--  1 root root  11422654 May 19 15:17 tokenizer.json\\\\n-rw-r--r--  1 root root      5431 May 19 15:17 tokenizer_config.json\\\\n-rw-r--r--  1 root root      8337 May 19 15:17 training_args.bin\\\\n-rw-r--r--  1 root root   2776833 May 19 15:17 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/sft_output*4B*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T07:33:25.908460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/grpo_bf16_g4/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_4b_sft_s44/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_4b_sft_s44_bf16/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_ced_s43/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_llama_3_1_8b_k1/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_nli_large/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_8b_k1/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_random_k1/adapter_config.json\\\\n/root/autodl-tmp/sft_no_evidence_output/adapter_config.json\\\\n/root/autodl-tmp/sft_output/adapter_config.json\\\\n/root/autodl-tmp/sft_output_14b/adapter_config.json\\\\n/root/autodl-tmp/sft_output_llama_3_1_8b/adapter_config.json\\\\n/root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence/adapter_config.json\\\\n/root/autodl-tmp/sft_output_llama_3_1_8b_s43/adapter_config.json\\\\n/root/autodl-tmp/sft_output_llama_3_1_8b_s44/adapter_config.json\\\\n/root/autodl-tmp/sft_output_qwen3_1_7b_bf16/adapter_config.json\\\\n/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed43/adapter_config.json\\\\n/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44/adapter_config.json\\\\n/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence/adapter_config.json\\\\n/root/autodl-tmp/sft_output_qwen3_8b_bf16/adapter_config.json\\\\n/root/autodl-tmp/sft_output_qwen3_8b_no_evidence/adapter_config.json\\\\n/root/autodl-tmp/sft_output_qwen3_8b_s43/adapter_config.json\\\\n/root/autodl-tmp/sft_output_qwen3_8b_s44/adapter_con\n…[truncated 284 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T07:33:25.908640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/sft_output/adapter_config.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T07:33:25.908766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/sft_output_seed43/adapter_config.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T07:33:25.908887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/sft_no_evidence_output/adapter_config.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T07:33:25.909053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"alora_invocation_tokens\\\\\\\": null,\\\\n  \\\\\\\"alpha_pattern\\\\\\\": {},\\\\n  \\\\\\\"arrow_config\\\\\\\": null,\\\\n  \\\\\\\"auto_mapping\\\\\\\": null,\\\\n  \\\\\\\"base_model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n  \\\\\\\"bias\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"corda_config\\\\\\\": null,\\\\n  \\\\\\\"ensure_weight_tying\\\\\\\": false,\\\\n  \\\\\\\"eva_config\\\\\\\": null,\\\\n  \\\\\\\"exclude_modules\\\\\\\": null,\\\\n  \\\\\\\"fan_in_fan_out\\\\\\\": false,\\\\n  \\\\\\\"inference_mode\\\\\\\": true,\\\\n  \\\\\\\"init_lora_weights\\\\\\\": true,\\\\n  \\\\\\\"layer_replication\\\\\\\": null,\\\\n  \\\\\\\"layers_pattern\\\\\\\": null,\\\\n  \\\\\\\"layers_to_transform\\\\\\\": null,\\\\n  \\\\\\\"loftq_config\\\\\\\": {},\\\\n  \\\\\\\"lora_alpha\\\\\\\": 128,\\\\n  \\\\\\\"lora_bias\\\\\\\": false,\\\\n  \\\\\\\"lora_dropout\\\\\\\": 0.05,\\\\n  \\\\\\\"lora_ga_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_core\\\\\\\": \\\\\\\"megatron.core\\\\\\\",\\\\n  \\\\\\\"modules_to_save\\\\\\\": null,\\\\n  \\\\\\\"peft_type\\\\\\\": \\\\\\\"LORA\\\\\\\",\\\\n  \\\\\\\"peft_version\\\\\\\": \\\\\\\"0.19.0\\\\\\\",\\\\n  \\\\\\\"qalora_group_size\\\\\\\": 16,\\\\n  \\\\\\\"r\\\\\\\": 64,\\\\n  \\\\\\\"rank_pattern\\\\\\\": {},\\\\n  \\\\\\\"revision\\\\\\\": null,\\\\n  \\\\\\\"target_modules\\\\\\\": [\\\\n    \\\\\\\"v_proj\\\\\\\",\\\\n    \\\\\\\"gate_proj\\\\\\\",\\\\n    \\\\\\\"q_proj\\\\\\\",\\\\n    \\\\\\\"o_proj\\\\\\\",\\\\n    \\\\\\\"down_proj\\\\\\\",\\\\n    \\\\\\\"up_proj\\\\\\\",\\\\n    \\\\\\\"k_proj\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"target_parameters\\\\\\\": null,\\\\n  \\\\\\\"task_type\\\\\\\": \\\\\\\"CAUSAL_LM\\\\\\\",\\\\n  \\\\\\\"trainable_token_indices\\\\\\\": null,\\\\n  \\\\\\\"use_bdlora\\\\\\\": null,\\\\n  \\\\\\\"use_dora\\\\\\\": false,\\\\n  \\\\\\\"use_qalora\\\\\\\": false,\\\\n  \\\\\\\"use_rslora\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T07:33:25.909250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"alora_invocation_tokens\\\\\\\": null,\\\\n  \\\\\\\"alpha_pattern\\\\\\\": {},\\\\n  \\\\\\\"arrow_config\\\\\\\": null,\\\\n  \\\\\\\"auto_mapping\\\\\\\": null,\\\\n  \\\\\\\"base_model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n  \\\\\\\"bias\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"corda_config\\\\\\\": null,\\\\n  \\\\\\\"ensure_weight_tying\\\\\\\": false,\\\\n  \\\\\\\"eva_config\\\\\\\": null,\\\\n  \\\\\\\"exclude_modules\\\\\\\": null,\\\\n  \\\\\\\"fan_in_fan_out\\\\\\\": false,\\\\n  \\\\\\\"inference_mode\\\\\\\": true,\\\\n  \\\\\\\"init_lora_weights\\\\\\\": true,\\\\n  \\\\\\\"layer_replication\\\\\\\": null,\\\\n  \\\\\\\"layers_pattern\\\\\\\": null,\\\\n  \\\\\\\"layers_to_transform\\\\\\\": null,\\\\n  \\\\\\\"loftq_config\\\\\\\": {},\\\\n  \\\\\\\"lora_alpha\\\\\\\": 128,\\\\n  \\\\\\\"lora_bias\\\\\\\": false,\\\\n  \\\\\\\"lora_dropout\\\\\\\": 0.05,\\\\n  \\\\\\\"lora_ga_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_core\\\\\\\": \\\\\\\"megatron.core\\\\\\\",\\\\n  \\\\\\\"modules_to_save\\\\\\\": null,\\\\n  \\\\\\\"peft_type\\\\\\\": \\\\\\\"LORA\\\\\\\",\\\\n  \\\\\\\"peft_version\\\\\\\": \\\\\\\"0.19.0\\\\\\\",\\\\n  \\\\\\\"qalora_group_size\\\\\\\": 16,\\\\n  \\\\\\\"r\\\\\\\": 64,\\\\n  \\\\\\\"rank_pattern\\\\\\\": {},\\\\n  \\\\\\\"revision\\\\\\\": null,\\\\n  \\\\\\\"target_modules\\\\\\\": [\\\\n    \\\\\\\"o_proj\\\\\\\",\\\\n    \\\\\\\"k_proj\\\\\\\",\\\\n    \\\\\\\"down_proj\\\\\\\",\\\\n    \\\\\\\"q_proj\\\\\\\",\\\\n    \\\\\\\"gate_proj\\\\\\\",\\\\n    \\\\\\\"up_proj\\\\\\\",\\\\n    \\\\\\\"v_proj\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"target_parameters\\\\\\\": null,\\\\n  \\\\\\\"task_type\\\\\\\": \\\\\\\"CAUSAL_LM\\\\\\\",\\\\n  \\\\\\\"trainable_token_indices\\\\\\\": null,\\\\n  \\\\\\\"use_bdlora\\\\\\\": null,\\\\n  \\\\\\\"use_dora\\\\\\\": false,\\\\n  \\\\\\\"use_qalora\\\\\\\": false,\\\\n  \\\\\\\"use_rslora\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T07:33:25.909434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"alora_invocation_tokens\\\\\\\": null,\\\\n  \\\\\\\"alpha_pattern\\\\\\\": {},\\\\n  \\\\\\\"arrow_config\\\\\\\": null,\\\\n  \\\\\\\"auto_mapping\\\\\\\": null,\\\\n  \\\\\\\"base_model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n  \\\\\\\"bias\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"corda_config\\\\\\\": null,\\\\n  \\\\\\\"ensure_weight_tying\\\\\\\": false,\\\\n  \\\\\\\"eva_config\\\\\\\": null,\\\\n  \\\\\\\"exclude_modules\\\\\\\": null,\\\\n  \\\\\\\"fan_in_fan_out\\\\\\\": false,\\\\n  \\\\\\\"inference_mode\\\\\\\": true,\\\\n  \\\\\\\"init_lora_weights\\\\\\\": true,\\\\n  \\\\\\\"layer_replication\\\\\\\": null,\\\\n  \\\\\\\"layers_pattern\\\\\\\": null,\\\\n  \\\\\\\"layers_to_transform\\\\\\\": null,\\\\n  \\\\\\\"loftq_config\\\\\\\": {},\\\\n  \\\\\\\"lora_alpha\\\\\\\": 128,\\\\n  \\\\\\\"lora_bias\\\\\\\": false,\\\\n  \\\\\\\"lora_dropout\\\\\\\": 0.05,\\\\n  \\\\\\\"lora_ga_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_core\\\\\\\": \\\\\\\"megatron.core\\\\\\\",\\\\n  \\\\\\\"modules_to_save\\\\\\\": null,\\\\n  \\\\\\\"peft_type\\\\\\\": \\\\\\\"LORA\\\\\\\",\\\\n  \\\\\\\"peft_version\\\\\\\": \\\\\\\"0.19.0\\\\\\\",\\\\n  \\\\\\\"qalora_group_size\\\\\\\": 16,\\\\n  \\\\\\\"r\\\\\\\": 64,\\\\n  \\\\\\\"rank_pattern\\\\\\\": {},\\\\n  \\\\\\\"revision\\\\\\\": null,\\\\n  \\\\\\\"target_modules\\\\\\\": [\\\\n    \\\\\\\"o_proj\\\\\\\",\\\\n    \\\\\\\"v_proj\\\\\\\",\\\\n    \\\\\\\"down_proj\\\\\\\",\\\\n    \\\\\\\"q_proj\\\\\\\",\\\\n    \\\\\\\"gate_proj\\\\\\\",\\\\n    \\\\\\\"k_proj\\\\\\\",\\\\n    \\\\\\\"up_proj\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"target_parameters\\\\\\\": null,\\\\n  \\\\\\\"task_type\\\\\\\": \\\\\\\"CAUSAL_LM\\\\\\\",\\\\n  \\\\\\\"trainable_token_indices\\\\\\\": null,\\\\n  \\\\\\\"use_bdlora\\\\\\\": null,\\\\n  \\\\\\\"use_dora\\\\\\\": false,\\\\n  \\\\\\\"use_qalora\\\\\\\": false,\\\\n  \\\\\\\"use_rslora\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T07:33:25.909613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -50 /root/autodl-tmp/sft_output/trainer_state.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T07:33:25.909739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -50 /root/autodl-tmp/sft_no_evidence_output/trainer_state.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T07:33:25.909863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/autodl-tmp/sft_output/trainer_state.json' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T07:33:25.909985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/autodl-tmp/sft_no_evidence_output/trainer_state.json' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T07:33:25.910135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/sft_output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T07:33:25.910283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-144\\\\ncheckpoint-96\\\\nmerges.txt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T07:33:25.910411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/sft_output/ -name \"trainer_state.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T07:33:25.910534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/sft_output/checkpoint-144/trainer_state.json\\\\n/root/autodl-tmp/sft_output/checkpoint-96/trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T07:33:25.910649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -30 /root/autodl-tmp/sft_output/checkpoint-144/trainer_state.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T07:33:25.911158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"best_global_step\\\\\\\": 144,\\\\n  \\\\\\\"best_metric\\\\\\\": 0.7200767397880554,\\\\n  \\\\\\\"best_model_checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output/checkpoint-144\\\\\\\",\\\\n  \\\\\\\"epoch\\\\\\\": 3.0,\\\\n  \\\\\\\"eval_steps\\\\\\\": 500,\\\\n  \\\\\\\"global_step\\\\\\\": 144,\\\\n  \\\\\\\"is_hyper_param_search\\\\\\\": false,\\\\n  \\\\\\\"is_local_process_zero\\\\\\\": true,\\\\n  \\\\\\\"is_world_process_zero\\\\\\\": true,\\\\n  \\\\\\\"log_history\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"entropy\\\\\\\": 0.9244873046875,\\\\n      \\\\\\\"epoch\\\\\\\": 0.21136063408190225,\\\\n      \\\\\\\"grad_norm\\\\\\\": 0.0792296901345253,\\\\n      \\\\\\\"learning_rate\\\\\\\": 0.0001985294117647059,\\\\n      \\\\\\\"loss\\\\\\\": 1.2741,\\\\n      \\\\\\\"mean_token_accuracy\\\\\\\": 0.7591710906475783,\\\\n      \\\\\\\"num_tokens\\\\\\\": 555730.0,\\\\n      \\\\\\\"step\\\\\\\": 10\\\\n    },\\\\n    {\\\\n      \\\\\\\"entropy\\\\\\\": 0.848193359375,\\\\n      \\\\\\\"epoch\\\\\\\": 0.4227212681638045,\\\\n      \\\\\\\"grad_norm\\\\\\\": 0.04085889458656311,\\\\n      \\\\\\\"learning_rate\\\\\\\": 0.0001838235294117647,\\\\n      \\\\\\\"loss\\\\\\\": 0.7883,\\\\n      \\\\\\\"mean_token_accuracy\\\\\\\": 0.8194206487387419,\\\\n      \\\\\\\"num_tokens\\\\\\\": 1106502.0,\\\\n      \\\\\\\"step\\\\\\\": 20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T07:33:25.911404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/sft_no_evidence_output/ -name \"trainer_state.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T07:33:25.911538+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/sft_no_evidence_output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T07:33:25.911667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/sft_no_evidence_output/checkpoint-190/trainer_state.json\\\\n/root/autodl-tmp/sft_no_evidence_output/checkpoint-570/trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T07:33:25.911804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-190\\\\ncheckpoint-570\\\\nmerges.txt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T07:33:25.911929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/sft_output_qwen3_8b_bf16/ -name \"trainer_state.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T07:33:25.912050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/sft_output_qwen3_8b_bf16/checkpoint-190/trainer_state.json\\\\n/root/autodl-tmp/sft_output_qwen3_8b_bf16/checkpoint-570/trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T07:33:25.912209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -30 /root/autodl-tmp/sft_output_qwen3_8b_bf16/checkpoint-570/trainer_state.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T07:33:25.912384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"best_global_step\\\\\\\": 190,\\\\n  \\\\\\\"best_metric\\\\\\\": 0.6813984513282776,\\\\n  \\\\\\\"best_model_checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_8b_bf16/checkpoint-190\\\\\\\",\\\\n  \\\\\\\"epoch\\\\\\\": 3.0,\\\\n  \\\\\\\"eval_steps\\\\\\\": 500,\\\\n  \\\\\\\"global_step\\\\\\\": 570,\\\\n  \\\\\\\"is_hyper_param_search\\\\\\\": false,\\\\n  \\\\\\\"is_local_process_zero\\\\\\\": true,\\\\n  \\\\\\\"is_world_process_zero\\\\\\\": true,\\\\n  \\\\\\\"log_history\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"entropy\\\\\\\": 0.6421456978656351,\\\\n      \\\\\\\"epoch\\\\\\\": 0.052857614800132145,\\\\n      \\\\\\\"grad_norm\\\\\\\": 0.4840833842754364,\\\\n      \\\\\\\"learning_rate\\\\\\\": 6.206896551724138e-05,\\\\n      \\\\\\\"loss\\\\\\\": 1.248,\\\\n      \\\\\\\"mean_token_accuracy\\\\\\\": 0.7474235128611326,\\\\n      \\\\\\\"num_tokens\\\\\\\": 141227.0,\\\\n      \\\\\\\"step\\\\\\\": 10\\\\n    },\\\\n    {\\\\n      \\\\\\\"entropy\\\\\\\": 0.9501719243824482,\\\\n      \\\\\\\"epoch\\\\\\\": 0.10571522960026429,\\\\n      \\\\\\\"grad_norm\\\\\\\": 0.20185545086860657,\\\\n      \\\\\\\"learning_rate\\\\\\\": 0.00013103448275862068,\\\\n      \\\\\\\"loss\\\\\\\": 0.8207,\\\\n      \\\\\\\"mean_token_accuracy\\\\\\\": 0.8024970300495624,\\\\n      \\\\\\\"num_tokens\\\\\\\": 276962.0,\\\\n      \\\\\\\"step\\\\\\\": 20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T07:33:25.912534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -30 /root/autodl-tmp/sft_output_qwen3_1_7b_bf16/checkpoint-570/trainer_state.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T07:33:25.912683+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"best_global_step\\\\\\\": 380,\\\\n  \\\\\\\"best_metric\\\\\\\": 0.7873569130897522,\\\\n  \\\\\\\"best_model_checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16/checkpoint-380\\\\\\\",\\\\n  \\\\\\\"epoch\\\\\\\": 3.0,\\\\n  \\\\\\\"eval_steps\\\\\\\": 500,\\\\n  \\\\\\\"global_step\\\\\\\": 570,\\\\n  \\\\\\\"is_hyper_param_search\\\\\\\": false,\\\\n  \\\\\\\"is_local_process_zero\\\\\\\": true,\\\\n  \\\\\\\"is_world_process_zero\\\\\\\": true,\\\\n  \\\\\\\"log_history\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"entropy\\\\\\\": 0.7330757294781506,\\\\n      \\\\\\\"epoch\\\\\\\": 0.052857614800132145,\\\\n      \\\\\\\"grad_norm\\\\\\\": 0.8391917943954468,\\\\n      \\\\\\\"learning_rate\\\\\\\": 6.206896551724138e-05,\\\\n      \\\\\\\"loss\\\\\\\": 1.5694,\\\\n      \\\\\\\"mean_token_accuracy\\\\\\\": 0.716822512820363,\\\\n      \\\\\\\"num_tokens\\\\\\\": 141227.0,\\\\n      \\\\\\\"step\\\\\\\": 10\\\\n    },\\\\n    {\\\\n      \\\\\\\"entropy\\\\\\\": 1.0906264197081328,\\\\n      \\\\\\\"epoch\\\\\\\": 0.10571522960026429,\\\\n      \\\\\\\"grad_norm\\\\\\\": 0.3718288838863373,\\\\n      \\\\\\\"learning_rate\\\\\\\": 0.00013103448275862068,\\\\n      \\\\\\\"loss\\\\\\\": 0.958,\\\\n      \\\\\\\"mean_token_accuracy\\\\\\\": 0.7808495718985796,\\\\n      \\\\\\\"num_tokens\\\\\\\": 276962.0,\\\\n      \\\\\\\"step\\\\\\\": 20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T07:33:25.912814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/sft_output_qwen3_1_7b_bf16/ -name \"trainer_state.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T07:33:25.912936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16/checkpoint-380/trainer_state.json\\\\n/root/autodl-tmp/sft_output_qwen3_1_7b_bf16/checkpoint-570/trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T07:33:25.913109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -30 /root/autodl-tmp/sft_no_evidence_output/checkpoint-570/trainer_state.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T07:33:25.913313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"best_global_step\\\\\\\": 190,\\\\n  \\\\\\\"best_metric\\\\\\\": 0.8374003171920776,\\\\n  \\\\\\\"best_model_checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_no_evidence_output/checkpoint-190\\\\\\\",\\\\n  \\\\\\\"epoch\\\\\\\": 3.0,\\\\n  \\\\\\\"eval_steps\\\\\\\": 500,\\\\n  \\\\\\\"global_step\\\\\\\": 570,\\\\n  \\\\\\\"is_hyper_param_search\\\\\\\": false,\\\\n  \\\\\\\"is_local_process_zero\\\\\\\": true,\\\\n  \\\\\\\"is_world_process_zero\\\\\\\": true,\\\\n  \\\\\\\"log_history\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"entropy\\\\\\\": 0.8077931884676218,\\\\n      \\\\\\\"epoch\\\\\\\": 0.052857614800132145,\\\\n      \\\\\\\"grad_norm\\\\\\\": 0.73046875,\\\\n      \\\\\\\"learning_rate\\\\\\\": 6.206896551724138e-05,\\\\n      \\\\\\\"loss\\\\\\\": 1.5467,\\\\n      \\\\\\\"mean_token_accuracy\\\\\\\": 0.7150686398148537,\\\\n      \\\\\\\"num_tokens\\\\\\\": 119651.0,\\\\n      \\\\\\\"step\\\\\\\": 10\\\\n    },\\\\n    {\\\\n      \\\\\\\"entropy\\\\\\\": 1.08616476431489,\\\\n      \\\\\\\"epoch\\\\\\\": 0.10571522960026429,\\\\n      \\\\\\\"grad_norm\\\\\\\": 0.3125,\\\\n      \\\\\\\"learning_rate\\\\\\\": 0.00013103448275862068,\\\\n      \\\\\\\"loss\\\\\\\": 0.9787,\\\\n      \\\\\\\"mean_token_accuracy\\\\\\\": 0.7783265620470047,\\\\n      \\\\\\\"num_tokens\\\\\\\": 235585.0,\\\\n      \\\\\\\"step\\\\\\\": 20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T07:33:25.913559+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Confirmed.\n\n| Adapter | num_tokens @ step 10 | Total steps | Total tokens (~) |\n|---|---|---|---|\n| `sft_output_qwen3_8b_bf16` (standard 8B) | **141,227** | 570 | ~8.05M |\n| `sft_output_qwen3_1_7b_bf16` (standard 1.7B) | **141,227** | 570 | ~8.05M |\n| **`sft_output`** (Qwen3-4B candidate) | 555,730 | 144 | **~8.00M** |\n| `sft_no_evidence_output` (no-evidence 4B) | **119,651** | 570 | ~6.82M |\n\n**结论：`/root/autodl-tmp/sft_output/` 是 Qwen3-4B 的标准 SFT adapter（含 evidence）。**\n\n- `base_model_name_or_path` = `/root/autodl-tmp/models/Qwen3-4B`\n- 总训练 token 数 ~8.0M，与 8B/1.7B 标准 SFT (~8.05M) 一致\n- no-evidence 版本 (`sft_no_evidence_output`) 仅 ~6.82M tokens（少了 evidence 字段的 token），与预期匹配\n- 该 adapter 使用了更大 batch size（~4x），因此 steps 少（144 vs 570）但每步 token 多，总数据量一致"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_find-4b-sft-adapter_20260521T073041"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-find-4b-sft-adapter.md"
+}

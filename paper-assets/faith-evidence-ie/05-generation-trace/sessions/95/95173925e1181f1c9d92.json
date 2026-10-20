@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95173925e1181f1c9d92",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh kill zombie 83655",
+  "task_key": "worker_ssh_kill-zombie-83655_20260521T074110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-zombie-83655_20260521T074110_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "02468ada042ca11d15d00941ae650ca46c7de52a9fb301b782253a290b4740a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **PID 83655**: 已终止（ps 返回 exit code 1，进程不存在）\n- **cuda:2 当前进程**: PID 87307，占用 19590 MiB（即你提到的 87302 附近的进程，实际 PID 是 87307）\n- **GPU 内存状态**:\n\n| GPU | 已用 | 总量 | 利用率 |\n|-----|------|------|--------|\n| 0 | 6115 MiB | 97887 MiB | 85% |\n| 1 | 0 MiB | 97887 MiB | 0% |\n| 2 | 19599 MiB | 97887 MiB | 91% |\n| 3 | 19599 MiB | 97887 MiB | 90% |\n\nPID 83655 已成功清除，cuda:2 上仅剩 PID 87307。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-zombie-83655.md"
+}

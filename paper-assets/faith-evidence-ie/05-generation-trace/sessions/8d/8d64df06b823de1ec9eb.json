@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d64df06b823de1ec9eb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops cleanup stale running",
+  "task_key": "worker_ops_cleanup_stale_running_20260519T184848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_stale_running_20260519T184848_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "343d2ed3d0a145483f15132d1d41dc4bc7020613eeb1373017fcf00e8339727b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个条目都已经不是 RUNNING 状态，已被清理过：\n\n- **d112_rsft_s44_generate** → DONE/success ✓\n- **d112_rsft_s44_ced_score** → DONE/success ✓  \n- **seed_llama_rsft_k1_s43** → DONE/failed ⚠️\n\n前两个状态正确。但 **seed_llama_rsft_k1_s43 标记为 failed 可能有误**：训练日志显示 EXIT_CODE=0、epoch 3.0 完成、loss=0.49，checkpoint 目录有完整的 adapter_model.safetensors (671MB)。训练本身是成功的。\n\n是否需要将 seed_llama_rsft_k1_s43 的 conclusion 从 failed 改为 success？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-stale-running.md"
+}

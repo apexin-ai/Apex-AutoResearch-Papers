@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a59a241eede2b714796c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops kill zombie 223975",
+  "task_key": "worker_ops_kill_zombie_223975_20260515T165146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_zombie_223975_20260515T165146_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "b9dfafdad888583be8cb94dd739b2b4bdec1baac246c691212fdbadfdab1cef2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 223975 已死亡，cuda:3 上无该进程残留。\n\n当前 GPU 占用：\n\n| GPU | 占用 | 总计 | PID |\n|-----|------|------|-----|\n| 0 | 16.0 GB | 32 GB | 226481 |\n| 1 | 22.4 GB | 32 GB | 222212 |\n| 2 | 22.7 GB | 32 GB | 221967 |\n| 3 | 15.6 GB | 32 GB | 220202 |\n\ncuda:3 当前被 PID 220202 占用 15.6GB——这不是 223975，是另一个进程。223975 的显存已释放，但 cuda:3 并非空闲，需确认 220202 是否是你预期中的 eval 进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombie-223975.md"
+}

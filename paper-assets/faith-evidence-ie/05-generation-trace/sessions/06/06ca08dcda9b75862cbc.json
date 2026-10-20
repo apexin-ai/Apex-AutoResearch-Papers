@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06ca08dcda9b75862cbc",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_18_1779392487.md",
+  "task_key": "loop_18_1779392487",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779392487.md",
+    "occurrence": 1,
+    "bytes": 4664,
+    "sha256": "ae271477732e0590d60662b1210191545bef7c0ac1a25e5fc66b681a7b98f8bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-21T18:44:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0, cuda:1, cuda:2, cuda:3（共 4 张）。bjb2-12179 不可用\n- eval 实验用 `--no-quantize`，batch_size=1（with-evidence）或 batch_size=4（no-evidence）\n- evidence tax 计算必须用 matched@2048 methodology（D137 决策）：no-evi@2048 vs with-evi@2048，同 token budget 下对比\n- LLaMA SFT s42 的 ground truth ign_f1=0.5384（D130 审计确认，非 0.5514 那个是 rel_f1）\n- LLaMA RSFT s42 ign_f1=0.5714（D129 修正，非 0.5839 那个是 rel_f1）\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090），工作目录 `/root/autodl-tmp/freige`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型路径**:\n  - 基座: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`, `/root/autodl-tmp/models/Qwen/Qwen3-14B`\n  - SFT adapters: `/root/autodl-tmp/sft_output_llama_3_1_8b_s42`, `_s43`, `_s44`\n  - RSFT adapters: `/root/autodl-tmp/rsft_output_llama_*`\n  - 14B SFT: `/root/autodl-tmp/sft_output_14b/checkpoint-144`, RSFT: `/root/autodl-tmp/rsft_output_14b`\n- **数据**: `/root/autodl-tmp/data/docred`（dev.json 985 docs, 12275 gold triples）\n- **Eval 结果**: `/root/autodl-tmp/eval_results/`\n- **活跃进程**:\n  - `plan017_14b_rsft_eval` PID 53413, cuda:0（14B RSFT eval）\n  - `eval_llama_sft_s44_with_evidence_2048` PID 64023, cuda:3\n  - `eval_llama_sft_s43_with_evidence_2048` PID 64391, cuda:2\n\n### 3. 📊 当前状态\n**刚收到 `eval_llama_sft_s43_no_evidence_2048_r2` 完成回调，已派 Worker 提取 metrics 但 Worker 尚未返回。** 这是 s43 no-evi@2048 的超时重跑（上次在 237/247 batch 超时，本次 timeout 改为 6h，跑了 4.18h 完成）。\n\n**RUNNING (3)**:\n| exp_id | GPU | 说明 |\n|--------|-----|------|\n| plan017_14b_rsft_eval | cuda:0 | 14B RSFT eval，补齐 scaling table 第 4 行 |\n| eval_llama_sft_s43_with_evidence_2048 | cuda:2 | s43 with-evi@2048，配对 s43 no-evi 算 matched tax |\n| eval_llama_sft_s44_with_evidence_2048 | cuda:3 | s44 with-evi@2048，配对 s44 no-evi 算 matched tax |\n\n**ANALYZING (1)**:\n- `eval_llama_sft_s43_no_evidence_2048_r2` (cuda:1 已释放) — Worker `worker_analysis_eval_llama_sft_s43_no_evidence_2048_r2_20260521T024145` 正在读 log 提取 metrics\n\n**等待中**: 3 个 cron 回调（上述 3 个 RUNNING 实验）+ 1 个 Worker 回调\n\n### 4. 📋 待办（条件触发式）\n- Worker 分析回调到达 → 用 metrics 更新 registry（status=DONE, conclusion, metrics）→ cuda:1 空出可接新实验\n- `eval_llama_sft_s43_with_evidence_2048` 完成 → 提取 metrics → 计算 s43 matched evidence tax = with-evi@2048 - no-evi@2048\n- `eval_llama_sft_s44_with_evidence_2048` 完成 → 同上算 s44 matched tax\n- **三组 matched tax 全到齐**（s42/s43/s44）→ 计算 SFT 3-seed matched evidence tax mean±std → 对比 RSFT 3-seed tax (-1.14pp±0) → 更新 D137 → 汇报 Director\n- `plan017_14b_rsft_eval` 完成 → 提取 ign_f1 → 对比 14B SFT baseline (0.5507) → 补齐 scaling table 第 4 行 RSFT 列 → 如果 RSFT>SFT，计算 14B evidence tax 并与小尺度对比\n- cuda:1 空出 → 检查是否有待跑实验可以立即填上（如 14B no-evidence eval 或其他矩阵格子）\n\n### 5. 🎯 战略上下文\n- **核心 story**: FREIGE 三大贡献 — (1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression。D131 统一叙事主线\n- **当前阶段**: matched@2048 evidence tax 方法论重跑（D137 决策），同时 14B RSFT 最后一行 scaling table\n- **已知 LLaMA SFT evidence tax 极其 seed-dependent**（D136）：s42 fair_tax=+1.2pp, s44 fair_tax=-4.18pp。这正是 matched@2048 要解决的——用统一 token budget 消除截断伪影\n- **s42 matched@2048 control 已完成**：with-evi@1024 ign_f1=0.5384 → with-evi@2048 ign_f1=0.5649（+2.65pp），证明 with-evi 也受 token budget 影响，matched comparison 是必要的\n- **LLaMA RSFT 3-seed evidence tax**: 已完成，-1.14pp±0（极度稳定），是 variance compression story 的关键证据\n- **Scaling table**: 1.7B/4B/8B 完成，14B 最后一行 RSFT eval 在跑\n- **投稿目标**: EMNLP 2026 Main (ARR July cycle, ~56 天)\n- **易错点**: (1) 不要把 rel_f1 和 ign_f1 搞混（D129/D130 教训）(2) evidence tax 必须用 matched@2048 不能用旧的 fair comparison (3) s43 no-evi 之前超时过一次，这次是 r2 重跑成功\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779392487.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9623e605e3384ae85a79",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval plan 012 dpo ced",
+  "task_key": "worker_eval_plan_012_dpo_ced_20260515T174106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_012_dpo_ced_20260515T174106_result.json",
+    "occurrence": 1,
+    "bytes": 1312,
+    "sha256": "81bd042b327dbd550eb5c5e4baa1900fd016d96ddaa550624d359a1afdb560ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Plan 012 DPO + CED Eval 结果\n\n**Conclusion: NEGATIVE**\n\n| Metric | DPO CED | SFT baseline | RSFT CED | bf16 GRPO G=8 | QLoRA GRPO |\n|--------|---------|-------------|----------|---------------|------------|\n| **rel_f1** | **0.3429** | 0.4057 | 0.4596 | 0.4549 | 0.2167 |\n| evi_f1 | 0.8403 | — | — | — | — |\n| edcr | 0.7294 | — | — | — | — |\n| format_ok | 99.5% | — | — | — | — |\n\n关键发现：\n\n- **rel_f1=0.3429 低于 SFT 基线 0.4057**，相对下降 15.5%。DPO 训练损害了关系抽取性能。\n- 训练时 rewards/accuracies=1.0、margins=9.01，模型完美区分了 chosen/rejected，但这个信号没有迁移到推理阶段——典型的 DPO 过拟合：preference pairs 太容易区分（top-1 vs bottom-1 差距过大）。\n- 证据质量保持良好（evi_f1=0.8403, edcr=0.7294），说明 CED preference 在证据引用维度上是有效的，但关系抽取准确率反而退化。\n- 优于 QLoRA GRPO（0.2167），但这个基线本身就是失败的。\n\n**结论：离线 DPO + CED preference pairs 不能替代在线 GRPO。** 如果要继续探索 DPO 方向，需要使用更难区分的 preference pairs（如 top-1 vs mid-ranked）、减少训练轮数、或换用 IPO/KTO。\n\n报告已注册：`art_20260515_b15af8`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-012-dpo-ced.md"
+}

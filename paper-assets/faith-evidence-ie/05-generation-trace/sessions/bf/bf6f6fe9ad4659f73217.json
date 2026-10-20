@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf6f6fe9ad4659f73217",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose mvp2 grpo flatnli r3",
+  "task_key": "worker_diagnose_mvp2_grpo_flatnli_r3_20260514T151222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mvp2_grpo_flatnli_r3_20260514T151222_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "26a8972473d28081991ef5964ae0b0dfb2ca449154bb4167b6565e72b3eb2468"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果：**误报，进程正常运行**\n\nPID 53292 在 cuda:3 上正常训练，当前 step 94/756（12%），GPU 占用 13GB。\n\n**误报原因**：监控系统依赖 sentinel 文件和 W&B heartbeat 判活，但该实验可能未成功连接 W&B（AutoDL 网络），也未写入 sentinel 文件，被误判为 dead。\n\n**训练健康度**：正常，非 mode collapse。reward 在 0.33-0.74 波动，f1 从 step 84 起开始出现，grad_norm 健康。唯一需关注的是 clipped_ratio 偏高（0.41-0.73）。\n\n| 字段 | 值 |\n|------|-----|\n| error_type | false_alarm |\n| can_auto_fix | N/A（无需修复） |\n| action | 标记为 running，修复监控检测逻辑 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mvp2-grpo-flatnli-r3.md"
+}

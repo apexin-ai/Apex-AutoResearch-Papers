@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fca086e851e2d46d2aa",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops submit llama rsft s42 no evidence eval",
+  "task_key": "worker_ops_submit_llama_rsft_s42_no_evidence_eval_20260519T223825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_llama_rsft_s42_no_evidence_eval_20260519T223825_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "e6804c3cf6bd4ee2f333c976e681f115604f73d8156ace15dbd425cc1760b598"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交完成。\n\n**汇总：**\n- **exp_id**: `eval_llama_rsft_s42_no_evidence`\n- **PID**: 731088\n- **GPU**: cuda:3（提交前确认 0 MiB 占用）\n- **tmux session**: `eval_llama_rsft_s42_no_evidence`\n- **日志**: `~/runs/faith-evidence-ie/eval_llama_rsft_s42_no_evidence.log`\n- **完整命令**: `CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_rsft_s42_no_evidence`\n- **parent**: `d102_llama_rsft_k1_s42`\n- **Registry 状态**: RUNNING\n- **关键参数**: `--no_evidence` 已添加（C005 约束）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-llama-rsft-s42-no-evidence-eval.md"
+}

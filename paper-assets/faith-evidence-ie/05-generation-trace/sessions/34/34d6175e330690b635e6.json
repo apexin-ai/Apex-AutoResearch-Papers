@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34d6175e330690b635e6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose ced s42 s44 eval protocol",
+  "task_key": "worker_diagnose_ced_s42_s44_eval_protocol_20260516T023234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_ced_s42_s44_eval_protocol_20260516T023234_result.json",
+    "occurrence": 1,
+    "bytes": 1691,
+    "sha256": "7e88dee04dd7d08efaf689c11c71f1455b4a7bbd823cbc9a18d2c07b6927601b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收齐。以下是核实结果：\n\n---\n\n## CED s42 — 来源: `rsft_r2b_maxtok1536` (F1=0.4504)\n\n| 参数 | 标准协议 | 实际值 | 一致？ |\n|------|----------|--------|--------|\n| batch_size | 4 | **8** | **✗** |\n| max_new_tokens | 1024 | **1536** | **✗** |\n| seed | 42 | 42 | ✓ |\n| --no-quantize | true | true | ✓ |\n| --sft_adapter | /root/autodl-tmp/sft_output | /root/autodl-tmp/sft_output | ✓ |\n| --base_model | Qwen3-4B | Qwen3-4B | ✓ |\n\n**备选**: `rsft_r2b` (F1=0.4493) 修正了 max_new_tokens=1024，但 batch_size 仍为 8，也不合标准。\n\n---\n\n## CED s44 — 来源: `rsft_s44` (F1=0.4655)\n\n| 参数 | 标准协议 | 实际值 | 一致？ |\n|------|----------|--------|--------|\n| batch_size | 4 | config 记录 8，但 inference 仅 62 batches (985/62≈16)，**实际可能是 16** | **✗** |\n| max_new_tokens | 1024 | 1024 | ✓ |\n| seed | 44 | **42** | **✗** |\n| --no-quantize | true | true | ✓ |\n| --sft_adapter | /root/autodl-tmp/sft_output | /root/autodl-tmp/sft_output | ✓ |\n| --base_model | Qwen3-4B | Qwen3-4B | ✓ |\n\n日志 `mvp2_eval_rsft_s44.log` 仅 12 行，严重截断，无法从日志端确认完整参数。\n\n---\n\n## 验证依据\n\n当前正在运行的 s43/s45 标准 eval 确认 batch_size=4：进度条均显示 `0/247` batches（985/4=246.25→247），与标准协议一致。\n\n---\n\n## 结论\n\n**两个都需要用标准协议重跑：**\n\n1. **CED s42**: batch_size=8→4, max_new_tokens=1536→1024，两项偏差。adapter 路径 `rsft_output_r2b`。\n2. **CED s44**: batch_size≠4, seed=42→44，两项偏差。adapter 路径 `rsft_output_s44`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-ced-s42-s44-eval-protocol.md"
+}

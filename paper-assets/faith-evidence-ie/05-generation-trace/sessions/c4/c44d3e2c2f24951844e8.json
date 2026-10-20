@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c44d3e2c2f24951844e8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor running experiments eta",
+  "task_key": "worker_monitor_running_experiments_eta_20260521T103859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_running_experiments_eta_20260521T103859_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "b2934711b0a991a8a3bf5ffa8ef302023724563233ff06ea2a1e1f10b9c0c6a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张卡均在工作，状态正常。\n\n```\n实验                              | 进度        | 平均速度      | tqdm ETA       | 均值 ETA (UTC)\n----------------------------------|-------------|--------------|----------------|---------------\n1. llama_rsft_no_evi (cuda:0)     | 226/985 23% | 15.7 s/doc   | ~1h49m remain  | ~22:00\n2. 14b_rsft test (cuda:1)         | 50/500  10% | 36.6 s/doc   | ~4h25m remain  | ~23:13\n3. llama_rsft test (cuda:2)       | 10/500   2% | 36.1 s/doc   | ~3h38m remain  | ~23:34 *\n4. 4b_sft_with_evi (cuda:3)       | 161/247 65% | 35.3 s/batch | ~58m remain    | ~19:30\n```\n\n\\* 实验 3 仅处理 10 docs，速度估计不稳定。\n\nGPU 显存：cuda:0 19GB, cuda:1 33GB, cuda:2 19GB, cuda:3 12GB — 均正常。\n\n实验 4 最快完成（~50 分钟），实验 2 和 3 还需 4-5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-running-experiments-eta.md"
+}

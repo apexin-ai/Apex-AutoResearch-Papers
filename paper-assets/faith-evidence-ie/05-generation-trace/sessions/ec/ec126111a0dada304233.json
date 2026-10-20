@@ -1,0 +1,539 @@
+{
+  "schema_version": "1.0",
+  "id": "ec126111a0dada304233",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "cron hook d158 14b rsft s44 test no evi",
+  "task_key": "cron_hook_d158_14b_rsft_s44_test_no_evi",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_d158_14b_rsft_s44_test_no_evi.jsonl",
+    "occurrence": 1,
+    "bytes": 19789,
+    "sha256": "c6f41d1d19bd93f0147ca7238f860b8962e7ee34c3f2cf8d63e9b4daee447e08"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 2,
+    "tool_calls": 11,
+    "roles": {
+      "user": 2,
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T12:44:35.669050+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: d158_14b_rsft_s44_test_no_evi\n- project: faith-evidence-ie\n- server: rtx5090-4x\n- log_path: ~/runs/faith-evidence-ie/d158_14b_rsft_s44_test_no_evi.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T12:44:48.393858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T12:44:48.444595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T12:44:51.444247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T12:44:51.896185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T12:44:52.348393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T12:44:52.399075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T12:44:52.956103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (230,687 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-2b7aafc0/0201d897-3c5e-437f-aaab-e9ae5032f96a/tool-results/mcp-agent-ml-research-read_registry-1779713092914.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-2b7aafc0/0201d897-3c5e-437f-aaab-e9ae5032f96a/tool-results/mcp-agent-ml-research-read_registry-1779713092914.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1511
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T12:45:00.888159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"d158_14b_rsft_s44_eval\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=366546)\\\"]}, {\\\"exp_id\\\": \\\"d158_14b_rsft_s44_dev_no_evi\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=371138)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 8991
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T12:45:00.889055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-25T12:44:35Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 358 个实验 — DONE 355, PREPARING 3\\\\n**DONE 分布**: failed 62, killed 36, negative 19, success 238\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:1, rtx5090-4x:cuda:3\\\\n\\\\n### 💾 磁盘余量\\\\n- **rtx5090-4x**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 815G/879G 可用（已用 3%）\\\\n- **bjb2-12179**:\\\\n  - `/autodl-pub`: 9.2T/14T 可用（已用 35%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `d158_14b_rsft_s44_test_with_evi` [success] — 2026-05-25T10:56:00\\\\n- `test_eval_1_7b_rsft_s44_with_evi` [success] — 2026-05-25T09:19:07\\\\n- `d158_14b_rsft_s44_train` [success] — 2026-05-25T09:01:27\\\\n- `test_eval_1_7b_rsft_s44_no_evi` [success] — 2026-05-25T05:37:52\\\\n- `d158_14b_rsft_s44_ced_score` [success] — 2026-05-25T05:10:52 — HF_HOME 未设置，transformers 无法找到本地缓存的 cross-encoder/nli-deberta-v3-base 模型，网络不通无法下载\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-25\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- d158_14b_rsft_s44_test_no_evi: 14B RSFT s44 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s44 test evidence tax. s42 test tax=+0.77pp, s43 test tax=+0.08pp.（准备中）\\\\n- d158_14b_rsft_s44_dev_no_evi: 14B RSFT s44 no-evidence dev eval (DocRED dev 985 docs, matched@2048). 配对 with-evi 计算 14B s44 dev evidence tax. s42 dev tax=-4.54pp, s43 dev tax=-1.02pp.（准备中）\\\\n- d158_14b_rsft_s44_eval: 14B RSFT k=1 s44 dev eval。seed-matched pipeline (SFT s44 → CED score → RSFT train s44)。对比 s42 dev ign_f1=0.58\n…[truncated 6154 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 8540
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T12:45:00.939812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-23 23:00 UTC | 更新原因: 1.7B s43 tax 数据补全，全部实验完成\\\\n\\\\n> 投稿目标: **EMNLP 2026 Main** (ARR July cycle, ~54 天)\\\\n\\\\n## 核心方向\\\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：(1) RSFT+NLI 有效性 (2) Decoupling spectrum (GRPO catastrophic > DPO gradual > RSFT none) (3) Evidence tax landscape + variance compression。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: ✅ 数据审计完成，准备 Round 3 review\\\\n- **Round 2 评分**: 3.0 (Findings)。升级路径: 3.0→3.5→4.0\\\\n- **论文状态**: 正文 8 页（3 figures + 2 tables）。所有审计发现已修复\\\\n- **数据审计**: ✅ 完成（62 项，58 PASS，3 FAIL 已修正，1 multi-seed 补全）\\\\n  - F1: DPO 1ep Rel-F1 33.38→33.37（四舍五入修正）\\\\n  - F2: method.tex EDCR 值统一为 Table 1 三-seed mean（0.6797/0.6487）\\\\n  - F3: fig_spectrum caption 轴标签已修正\\\\n  - 8B test tax: 补 error bar（3-seed, -0.91±0.74pp）\\\\n  - LLaMA test tax: 更新为 2-seed mean（-1.46±0.40pp）\\\\n- **14B RSFT s43**: ✅ 全部完成。dev with-evi=0.5815, dev no-evi=0.5713, dev tax=-1.02pp; test with-evi=0.3767, test tax=+0.08pp\\\\n\\\\n## 剩余任务\\\\n- [x] **14B RSFT s43 test eval** ✅ (ign_f1=0.3767, tax=+0.08pp)\\\\n- [x] **14B RSFT s43 dev eval** ✅ (with-evi=0.5815, no-evi=0.5713, tax=-1.02pp)\\\\n- [ ] **Round 3 review** (recommended_review_mode=\\\\\\\"continue\\\\\\\")\\\\n- [ ] **Reviewer 最终验证**：审计修复后的图表和文字\\\\n\\\\n## Multi-seed Evidence Tax 汇总（RSFT test, Re-DocRED）\\\\n| Scale | s42 tax | s43 tax | s44 tax | Mean±std | 方向 |\\\\n|-------|---------|---------|---------|----------|------|\\\\n| 1.7B | -5.43pp | -4.59pp | — | -5.01±0.59 (n=2) | negative |\\\\n| 4B | +1.51pp | +1.99pp | +1.46pp | +1.65±0.29 (n=3) | positive |\\\\n| 8B | -0.34pp | -1.74pp | -0.65pp | -0.91±0.74 (n=3) | negative |\\\\n| 14B | +0.77pp | +0.08pp | — | +0.43±0.49 (n=2) | positive |\\\\n| LLaMA | -1.74pp | -1.17pp | — | -1.46±0.40 (n=2) | negative |\\\\n\\\\n## GPU 预算\\\\nrtx5090-4x cuda:0-3 — 全部空闲（14B eval 全部完成）\\\\n\\\\n## 关键决策日志\\\\n\\\n…[truncated 1389 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 8540
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T12:45:11.034438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T12:45:11.034914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T12:45:14.498335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'exp_id': 'd158_14b_rsft_s44_test_no_evi'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T12:45:15.151019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'exp_id': 'd158_14b_rsft_s44_test_with_evi'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T12:45:15.503448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0236}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1005
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T12:45:16.557679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0366}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1406
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-25T12:45:22.963839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 50 \"d158_14b_rsft_s44_test_no_evi\" /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml | head -60",
+              "description": "Find experiment entry in registry"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-25T12:45:23.367009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  d158_14b_rsft_s44_test_no_evi:\n    status: PREPARING\n    retry_count: 0\n    created_at: '2026-05-25T10:52:42.657Z'\n    updated_at: '2026-05-25T12:44:28.568Z'\n    hypothesis: 14B RSFT s44 no-evidence test eval (Re-DocRED test_revised 500 docs,\n      matched@2048). 配对 with-evi 计算 14B s44 test evidence tax. s42 test tax=+0.77pp,\n      s43 test tax=+0.08pp.\n    parent: d158_14b_rsft_s44_test_with_evi\n    spec:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache\n        && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=3\n        python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s44\n        --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s44\n        --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised\n        --output_dir /root/autodl-tmp/eval_results/d158_14b_rsft_s44_test_no_evi --max_new_tokens\n        2048 --no-quantize --no_evidence --seed 44\"\n      server: rtx5090-4x\n      gpu:\n      - cuda:3\n      pid: '371282'\n      log_path: ~/runs/faith-evidence-ie/d158_14b_rsft_s44_test_no_evi.log\n      submitted_at: '2026-05-25T10:53:03.248Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n    reproduce:\n      finished_at: '2026-05-25T12:44:28.568Z'\n    extra:\n      hook_events:\n      - event: on_complete\n        action: agent\n        ts: '2026-05-25T12:44:34.661626+00:00'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "Bash",
+            "elapsed_ms": 403
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T12:45:23.518893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 50 \"d158_14b_rsft_s44_test_with_evi\" /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml | head -60",
+              "description": "Find paired with-evi experiment entry"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-25T12:45:23.570681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  d158_14b_rsft_s44_test_with_evi:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-25T09:01:40.917Z'\n    updated_at: '2026-05-25T10:56:00.587Z'\n    hypothesis: 14B RSFT k=1 s44 test eval (with-evi) on Re-DocRED test_revised (500\n      docs)。对比 s42 test ign_f1=0.3849, s43 test ign_f1=0.3767。\n    parent: d158_14b_rsft_s44_train\n    spec:\n      command: CUDA_VISIBLE_DEVICES=1 python -m freige.eval.test_inference --model_path\n        /root/autodl-tmp/rsft_output_14b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B\n        --sft_adapter /root/autodl-tmp/sft_output_14b_s44 --data_path /root/autodl-tmp/data/re-docred-repo/data\n        --split test_revised --output_dir /root/autodl-tmp/eval_results/d158_14b_rsft_s44_test_with_evi\n        --max_new_tokens 2048 --no-quantize --seed 44\n      server: rtx5090-4x\n      gpu:\n      - cuda:1\n      pid: '366690'\n      log_path: ~/runs/faith-evidence-ie/d158_14b_rsft_s44_test_with_evi.log\n      submitted_at: '2026-05-25T09:02:01.294Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_count: 500\n      data_path: /root/autodl-tmp/data/re-docred-repo/data\n      model_name: Qwen3-14B\n      seed: 44\n      checkpoint_source: d158_14b_rsft_s44_train\n      eval_data: test_revised\n      wall_clock_seconds: 6830.3\n      gpu_hours: 1.9\n    conclusion: success\n    checkpoint_path: /root/autodl-tmp/rsft_output_14b_s44\n    log_path: /root/runs/faith-evidence-ie/d158_14b_rsft_s44_test_with_evi.log\n    completed_at: '2026-05-25T10:55:51.612Z'\n    metrics:\n      ign_f1: 0.3716\n      precision: 0.4267\n      recall: 0.3292\n      evi_f1_tp: 0.6081\n      evi_f1_joint: 0.2396\n      edcr: 0.8169\n      format_ok_rate: 0.998\n      n_truncated: 277\n      n_documents: 500\n  d158_14b_rsft_s44_dev_no_evi:\n    status: PREPARING\n    retry_count: 0\n    created_at: '2026-05-25T10:52:40.942Z'\n    updated_at: '2026-05-25T10:53:00.718Z'\n    hypothesis: 14B RSFT s44 no-evidence dev eval (DocRED dev 985 docs, m\n…[truncated 751 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "Bash",
+            "elapsed_ms": 51
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-25T12:45:53.659441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:d158_14b_rsft_s44_test_no_evi",
+              "project": "faith-evidence-ie",
+              "task_prompt": "## 任务\n分析实验 d158_14b_rsft_s44_test_no_evi 的结果，提取 metrics。\n\n## 背景\n这是 14B RSFT seed=44 no-evidence test eval（Re-DocRED test_revised 500 docs）。配对的 with-evi 实验 d158_14b_rsft_s44_test_with_evi 已完成，ign_f1=0.3716。\n\n需要计算 evidence tax = with_evi - no_evi。前两个 seed 的 test tax：s42=+0.77pp, s43=+0.08pp。\n\n## 步骤\n\n1. SSH 到 rtx5090-4x，读取日志：\n   ```\n   cat ~/runs/faith-evidence-ie/d158_14b_rsft_s44_test_no_evi.log | tail -100\n   ```\n\n2. 同时检查 output_dir 的结果文件：\n   ```\n   ls /root/autodl-tmp/eval_results/d158_14b_rsft_s44_test_no_evi/\n   cat /root/autodl-tmp/eval_results/d158_14b_rsft_s44_test_no_evi/eval_metrics.json\n   ```\n   如果 eval_metrics.json 不存在，看其他 json/txt 文件。\n\n3. 提取以下 metrics（如果有的话）：\n   - ign_f1\n   - precision\n   - recall\n   - evi_f1_tp（如有）\n   - evi_f1_joint（如有）\n   - edcr（如有）\n   - format_ok_rate\n   - n_truncated\n   - n_documents\n\n4. 计算 evidence tax：\n   - with_evi ign_f1 = 0.3716\n   - no_evi ign_f1 = [从日志提取]\n   - tax = with_evi - no_evi（正值=evidence helps）\n\n5. 检查进程是否确实正常退出（检查日志末尾有无 error/traceback）\n\n6. 汇报所有提取到的 metrics 和 evidence tax 计算结果。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-25T12:45:56.878383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_d158_14b_rsft_s44_test_no_evi_20260525T124554\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_analysis_d158_14b_rsft_s44_test_no_evi_20260525T124554.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_d158_14b_rsft_s44_test_no_evi_20260525T124554 started. Use get_worker_status('worker_analysis_d158_14b_rsft_s44_test_no_evi_20260525T124554') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3218
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-25T12:46:07.315023+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派发分析 d158_14b_rsft_s44_test_no_evi 日志。等待回调。\n\n当前状态：\n- d158_14b_rsft_s44_test_no_evi：日志分析中（Worker 已派发）\n- d158_14b_rsft_s44_eval：仍在运行（pid=366546）\n- d158_14b_rsft_s44_dev_no_evi：仍在运行（pid=371138）"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi"
+          },
+          "id": "event-000024"
+        }
+      ],
+      "message_count": 24
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-25T12:46:07.322829+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: d158_14b_rsft_s44_test_no_evi\n- project: faith-evidence-ie\n- server: rtx5090-4x\n- log_path: ~/runs/faith-evidence-ie/d158_14b_rsft_s44_test_no_evi.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi",
+            "source": "cron:hook"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-25T12:46:13.607768+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已有 Worker 在分析此实验，等待回调。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d158_14b_rsft_s44_test_no_evi"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-d158-14b-rsft-s44-test-no-evi.md"
+}

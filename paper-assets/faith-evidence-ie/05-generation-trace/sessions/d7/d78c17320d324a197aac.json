@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d78c17320d324a197aac",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "audit trace llama rsft s42",
+  "task_key": "worker_audit_trace-llama-rsft-s42_20260524T053125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_trace-llama-rsft-s42_20260524T053125_result.json",
+    "occurrence": 1,
+    "bytes": 1948,
+    "sha256": "891ba6a86c13c50cd876b66d19bbf5aee87c9f83f5af5c2bd6caee4b0c797e15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集完毕。以下是完整汇总。\n\n---\n\n## LLaMA-3.1-8B RSFT s42 所有 eval 输出\n\n| # | 目录 | ign_f1 | rel_f1 | evi_f1 | max_new_tokens | no_evidence | checkpoint | 时间 |\n|---|------|--------|--------|--------|---------------|-------------|------------|------|\n| 1 | `plan_006_llama_rsft_r3_eval` | **55.63** | 56.74 | 82.55 | 1024 | false | `rsft_output_llama_3_1_8b_r3/checkpoint-3312` (**k=3**) | May 17 19:05 |\n| 2 | `d102_llama_k1_s42` | **57.14** | 58.39 | 82.38 | 1024 | false | `rsft_output_llama_3_1_8b_k1` (**k=1**) | May 18 18:52 |\n| 3 | `eval_llama_rsft_s42_no_evidence` | 55.26 | 56.66 | 0.03 | 1024 | true | `rsft_output_llama_3_1_8b_k1` (k=1) | May 20 08:57 |\n| 4 | `eval_llama_rsft_s42_with_evidence_2048` | 57.74 | 58.92 | 82.22 | 2048 | false | `rsft_output_llama_3_1_8b_k1` (k=1) | May 21 15:03 |\n| 5 | `eval_llama_rsft_s42_no_evi_2048` | 55.59 | 57.03 | 0.07 | 2048 | true | `rsft_output_llama_3_1_8b_k1` (k=1) | May 21 22:01 |\n\n## 结论\n\n- **Registry 55.63** → 来自 `plan_006_llama_rsft_r3_eval`（May 17）。使用的是旧的 **k=3** RSFT 模型 (`rsft_output_llama_3_1_8b_r3/checkpoint-3312`)。\n\n- **Paper 57.14** → 来自 `d102_llama_k1_s42`（May 18）。使用的是方法论修正后的 **k=1** RSFT 模型 (`rsft_output_llama_3_1_8b_k1`)。\n\n**差异根因**：不是同一个模型的不同 eval 配置，而是**两个不同的 RSFT 模型**。d102 的 registry hypothesis 明确写道：\"D102 方法论修正：LLaMA-8B RSFT 从 k=3 改为 k=1（与论文声明和 4B canonical 一致）\"。即 d102 将 LLaMA RSFT 从 k=3 修正为 k=1 以匹配论文方法论声明，产生了新的 57.14 结果，但 registry 的 ign_f1 字段仍指向旧的 plan_006 (k=3) 的 55.63，**未更新为 d102 (k=1) 的 57.14**。\n\n**Paper 57.14 是正确值**（k=1，与论文声明的方法论一致）。Registry 的 55.63 是过时值，应更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-trace-llama-rsft-s42.md"
+}

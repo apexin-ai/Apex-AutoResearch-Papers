@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "779960e8a0a1296e2a2d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d102 training results",
+  "task_key": "worker_analysis_d102_training_results_20260518T085001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102_training_results_20260518T085001_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "80c6da4293c64b04fdbb9672b13e60b44a1c900915a967e52bed06f2b4f8abaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四个实验的 registry 已全部确认——状态均为 DONE/success，checkpoint_path、metrics 都已就绪（之前的 on_complete hook 已自动更新）。\n\n## 分析结果\n\n| exp_id | 模型 | train_loss | token_acc | steps | checkpoint | 状态 |\n|--------|------|-----------|-----------|-------|------------|------|\n| d102_8b_rsft_k1_s42 | Qwen3-8B | 0.3877 | 0.858 | 1134 | checkpoint-1134 | 完成 |\n| d102_8b_rsft_k1_s43 | Qwen3-8B | 0.3862 | 0.874 | 1134 | checkpoint-1134 | 完成 |\n| d102_1_7b_rsft_k1_s42 | Qwen3-1.7B | 0.3063 | 0.873 | 567 | checkpoint-567 | 完成 |\n| d102_llama_rsft_k1_s42 | LLaMA-3.1-8B | 0.3698 | 0.888 | 1107 | checkpoint-1107 | 完成 |\n\n**要点**:\n- 四个实验全部 epoch=3.0, EXIT_CODE=0, 输出 \"RSFT training complete.\"\n- Qwen3-8B 两个 seed 的 train_loss 极为接近 (0.3877 vs 0.3862)，训练稳定\n- LLaMA-8B token accuracy 最高 (0.888)，1.7B train_loss 最低 (0.306，因模型小拟合快)\n- 所有 output_dir 根目录均保存了最终 adapter，可直接用于 eval\n\n**可以进入 eval 阶段。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-training-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b035fea8aa8330c97e2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose server recovery check",
+  "task_key": "worker_diagnose_server-recovery-check_20260520T062152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_server-recovery-check_20260520T062152_result.json",
+    "occurrence": 1,
+    "bytes": 317,
+    "sha256": "9c362fe9945831f2f03508c7290dd9dfc50f8bd16a6febe672499b464f9051aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接失败：`Unable to connect to port 12179 on 106.38.204.136`。\n\n这是 AutoDL 实例重启后的典型问题——**端口已变**。请去 AutoDL 控制台查看 rtx5090-4x 的新 SSH 端口，然后更新 `~/.ssh/config` 中的端口号。更新后我再重新检查所有实验状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-server-recovery-check.md"
+}

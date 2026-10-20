@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e10669e92600c5e3b6c8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code s43 no evi 2048 r2 launch",
+  "task_key": "worker_code_s43-no-evi-2048-r2-launch_20260520T222855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_s43-no-evi-2048-r2-launch_20260520T222855_result.json",
+    "occurrence": 1,
+    "bytes": 1115,
+    "sha256": "1a6d344323271c906fd7a39bbba4f808ef328980e64790abc363c0d84139a621"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**发现：s43 no-evidence 2048 eval 已在运行。**\n\nPID 58422 已于 06:29:45 启动，cuda:1 占用 18870 MiB。无需重复提交。\n\n与你要求的参数对比：\n\n| 参数 | 你要求的 | PID 58422 实际 |\n|------|---------|---------------|\n| timeout | 21600s (6h) | 无 timeout（更好，不会超时） |\n| output_dir | `_r2/` | 原目录 `eval_llama_sft_s43_no_evidence_2048/` |\n| quantize | 默认 True (4-bit) | `--no-quantize` (FP16) |\n| 模块路径 | `eval.inference` | `freige.eval.inference` |\n\n**注意**：`--no-quantize` 是和之前 s42/s44 eval 的主要差异——之前用 4-bit，这次用 FP16。可能影响结果的可比性。\n\n我的提交失败（conda 环境下 `python` 不在 PATH），且 `>` 重定向覆盖了 PID 58422 的 log 文件。eval 进程本身不受影响，完成后结果会写入 `metrics.json` 和 `predictions.json`。\n\n参考 s42 耗时 ~3h28m（带 quantize），PID 58422 预计在 ~10:00 左右完成。\n\n需要我注册 registry 吗？还是要 kill 58422 重新用 4-bit quantize 提交以保持和 s42/s44 一致？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-s43-no-evi-2048-r2-launch.md"
+}

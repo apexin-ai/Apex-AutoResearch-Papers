@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4de6512d09306e7be30c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose urgent gpu status and dispatch",
+  "task_key": "worker_diagnose_urgent-gpu-status-and-dispatch_20260523T023139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_urgent-gpu-status-and-dispatch_20260523T023139_result.json",
+    "occurrence": 1,
+    "bytes": 1347,
+    "sha256": "3a098bd445fd466952ad8639a1e333229ffdeaeeea99c10e57161ba44ccf0599"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 实际状态\n\n| GPU | 显存占用 | 利用率 | PID | 任务 |\n|-----|---------|--------|-----|------|\n| cuda:0 | 0 / 98GB | 0% | — | 空闲 |\n| cuda:1 | 32.5GB / 98GB | 92% | 194682 | 14B s43 generation |\n| cuda:2 | 0 / 98GB | 0% | — | 空闲 |\n| cuda:3 | 6.1GB / 98GB | 47% | 214028 | 1.7B s43 with-evi eval |\n\n## PID 状态\n\n| PID | 任务 | 存活? | 运行时间 | 结果 |\n|-----|------|-------|---------|------|\n| 212762 | 8B s43 with-evi eval | DEAD | — | **已完成** |\n| 213753 | 4B s43 with-evi eval | DEAD | — | **已完成** |\n| 214028 | 1.7B s43 with-evi eval | ALIVE | 1h23m | 113/500 (23%), ~4.5h 剩余 |\n| 194682 | 14B s43 generation | ALIVE | 8h15m | 11352 lines generated |\n\n## 已完成实验结果\n\n**8B s43 with-evi (test_revised):**\n- ign_f1=**33.98**, f1=33.98, P=52.08, R=25.22\n- evi_f1=60.61, evi_f1_joint=25.83, edcr=79.51\n- format_ok=100%, inference=3212s\n\n**4B s43 with-evi (test_revised):**\n- ign_f1=**25.03**, f1=25.03, P=33.36, R=20.03\n- evi_f1=61.27, evi_f1_joint=17.80, edcr=84.25\n- format_ok=99.6%, truncated=237/500, inference=4138s\n\n## 仍在运行的实验\n\n- **1.7B s43 with-evi eval** — cuda:3, 23% done, 预计 ~4.5h 后完成\n- **14B s43 generation** — cuda:1, 11352 lines generated, 仍在运行\n\n## 空闲 GPU\n\n**cuda:0, cuda:2**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-urgent-gpu-status-and-dispatch.md"
+}

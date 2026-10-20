@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c83d0560f2e657840f2c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops d158 a2 ced check",
+  "task_key": "worker_ops_d158_a2_ced_check_20260524T223041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d158_a2_ced_check_20260524T223041_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "edc94bcbafc6e98d806bf80d5f518d128b1ae1afe17652db7d34ff58b7f551c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No active cron to delete — already cleared.\n\n**汇报：**\n\n| 项目 | 值 |\n|---|---|\n| 状态 | **成功** |\n| k=1 保留样本数 | **3019** |\n| vs s42 (3021) 差异 | **-2 条 (-0.07%)** |\n| D158 检查点 | **通过** （远低于 10% 阈值） |\n| 输出路径 | `/root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl` |\n| selected combined_score mean | 0.7512 |\n| selected f1 mean | 0.6986 |\n| selected ced mean | 0.6794 |\n\nRegistry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d158-a2-ced-check.md"
+}

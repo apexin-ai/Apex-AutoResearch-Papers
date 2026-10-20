@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "304216d108ee0b43285a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval llama rsft s42 no evi 2048",
+  "task_key": "worker_analysis_eval_llama_rsft_s42_no_evi_2048_20260521T140345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_llama_rsft_s42_no_evi_2048_20260521T140345_result.json",
+    "occurrence": 1,
+    "bytes": 2245,
+    "sha256": "189e64ce284c48ff6760998258394ee86e3b4aac4bdab33deccfbfe8b89f105f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n---\n\n## 分析报告：eval_llama_rsft_s42_no_evi_2048\n\n### 1. 核心指标\n\n| 指标 | 值 |\n|------|-----|\n| **Ign-F1** | **0.5559** |\n| F1 | 0.5703 |\n| Evi-F1 (DREEAM) | 0.0006 |\n| Evi-F1 (TP) | 0.0007 |\n| EDCR | 0.6250 |\n| Format OK | 984/985 (99.9%) |\n| Truncated | 140/985 (14.2%) |\n| Predictions | 24,365 |\n| Inference Time | 4h22m (15.95 s/doc) |\n\n### 2. Matched@2048 Evidence Tax（s42）\n\n| 条件 | Ign-F1 | \n|------|--------|\n| with-evidence @2048 | 0.5774 |\n| no-evidence @2048 | 0.5559 |\n| **Evidence Tax** | **-2.15pp** |\n\n### 3. 与 @1024 Tax 对比\n\n| Seed | @1024 Tax | @2048 Tax |\n|------|-----------|-----------|\n| s42 | -1.88pp | **-2.15pp** |\n| s43 | -1.16pp | — |\n| s44 | -0.37pp | — |\n| **@1024 3-seed mean** | **-1.14±0.76pp** | — |\n\n@2048 s42 tax (-2.15pp) 比 @1024 s42 tax (-1.88pp) 增大了 0.27pp。原因：with-evidence 从 @1024→@2048 增益 (+0.60pp: 0.5714→0.5774) 大于 no-evidence 增益 (+0.33pp: 0.5526→0.5559)。\n\n### 4. 截断率对比\n\n| 条件 | @1024 | @2048 | 降幅 |\n|------|-------|-------|------|\n| no-evidence (s42) | ~18%* | 14.2% (140/985) | ~4pp |\n| with-evidence (s42) | N/A | 9.1% (90/985) | — |\n| no-evidence (s43 @1024) | 18.6% (183/985) | — | — |\n| no-evidence (s44 @1024) | 18.1% (178/985) | — | — |\n\n*s42 @1024 截断率未直接记录，参考 s43/s44 估计。\n\n@2048 确实降低了截断率（~18%→14.2%），但 no-evidence 截断仍高于 with-evidence（140 vs 90），因为 no-evidence 模型输出更多 predictions（24365 vs 18129）。\n\n### 5. 结论\n\n**@2048 budget 下 RSFT evidence tax 略微增大但基本稳定。**\n\n- Tax 从 @1024 的 -1.88pp 变为 @2048 的 -2.15pp（delta = -0.27pp），方向一致、幅度相近\n- @2048 对 with-evidence 的增益大于 no-evidence（+0.60 vs +0.33pp），说明额外 token budget 更有利于 evidence 输出而非纯 relation 预测，符合直觉\n- @2048 s42 tax (-2.15pp) 超出 @1024 3-seed 1-sigma 范围（-1.14±0.76 → [-1.90, -0.38]），但仅超出 0.25pp，在 seed variance 可解释范围内\n- 需要 s43/s44 @2048 no-evi 数据才能做 matched-budget 3-seed 统计"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-llama-rsft-s42-no-evi-2048.md"
+}

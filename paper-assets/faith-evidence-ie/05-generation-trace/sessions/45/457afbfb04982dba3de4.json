@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "457afbfb04982dba3de4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code prep 14b eval scripts",
+  "task_key": "worker_code_prep_14b_eval_scripts_20260519T072129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_14b_eval_scripts_20260519T072129_result.json",
+    "occurrence": 1,
+    "bytes": 664,
+    "sha256": "7f4704735685a7bd85d4f83203aa2ef30d04ebac3df057281900f40b6a571b28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**脚本路径:**\n- `/root/autodl-tmp/scripts/14b/eval_14b_sft.sh`\n- `/root/autodl-tmp/scripts/14b/eval_14b_sft_no_evidence.sh`\n\n**Dry-run:** 两个脚本参数解析均通过（`--help` 正常退出，无 unrecognized arguments 错误）。\n\n**GPU 状态:**\n\n| GPU | 已用 | 总量 | 可用于 eval |\n|-----|------|------|-------------|\n| 0 | 29639 MiB | 32607 MiB | 否（被占用） |\n| 1 | 0 MiB | 32607 MiB | 是 |\n| 2 | 0 MiB | 32607 MiB | 是 |\n| 3 | 5415 MiB | 32607 MiB | 否（>2GB，C001） |\n\ncuda:1 和 cuda:2 空闲可用。运行时需按 C002 在脚本前加 `CUDA_VISIBLE_DEVICES=1`（或 2）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-14b-eval-scripts.md"
+}

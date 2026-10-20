@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "921920dcdb8afc7cb777",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "reviewer / loop_15.md",
+  "task_key": "loop_15",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_15.md",
+    "occurrence": 1,
+    "bytes": 4378,
+    "sha256": "65f51d2e1796e0c49b38143812a39020c365b7488c6f1870f3a507b375025ae6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: max_wall_time\nupdated: '2026-05-19T08:45:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 项目 GPU 白名单：rtx5090-4x cuda:0-3。越界进程必须 kill + CRITICAL。\n- D076 eval 协议：bs=4, mnt=1024, seed=42, --no-quantize。inference.py 默认值不同（bs=8, quantize=True），必须显式传参。\n- 所有远程脚本必须设 `HF_HUB_OFFLINE=1` + `TRANSFORMERS_OFFLINE=1`（服务器无外网，Step 2 CED scoring 已因此卡死过一次）。\n- RSFT seed expansion 四要素一致性：generation source / CED scoring data / filtered data / training adapter 必须来自同一 SFT base。Method A = 全部用 SFT s42；Method B (D112) = 全部用 SFT s44。混用 = 科学无效。我曾在此误判过（M010/M011），Director 已纠正。\n- Cron 监控有系统性误报问题（无 sentinel file + 无 W&B → 自动标 failed）。收到 cron:on_failed 时先验证 metrics.json / trainer_state.json 存在性，再判断。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x (root)，代码根目录 `/root/autodl-tmp/freige`\n- Python：`/root/miniconda3/bin/python`，conda env = base\n- 模型路径：`/root/autodl-tmp/models/Qwen/Qwen3-{1.7B,4B,8B}`，14B = `Qwen/Qwen3-14B`\n- SFT adapters：`sft_output` (4B s42), `sft_output_seed44` (4B s44), `sft_output_qwen3_8b_bf16` (8B s42), `sft_output_qwen3_8b_s44` (8B s44), `sft_output_qwen3_1_7b_bf16` (1.7B s42), `sft_output_14b` (14B)\n- RSFT outputs：`rsft_output*/` 各 scale/seed\n- D112 pipeline scripts：`/root/autodl-tmp/scripts/d112/step{1-4}*.sh`\n- 1.7B/8B seed expansion scripts：`/root/autodl-tmp/freige/scripts/seed_expansion/`\n- Eval outputs：`/root/autodl-tmp/eval_results/`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 无 W&B（HF_HUB_OFFLINE=1 环境）\n\n### 3. 📊 当前状态\n**刚完成审查**：1.7B RSFT s43_r2 eval (ign_f1=0.5109, D076合规)。与s42(0.5122)高度一致，确认1.7B RSFT稳定。\n\n**RUNNING / 等待中**：\n- **D112 Step 4 eval** (cuda:0, PID 627505) — RSFT from SFT s44，验证 Method B 泛化性。**最关键实验**，阈值 ign_f1 > 0.4734\n- **1.7B RSFT s44_r2 eval** — 应在 cuda:3 排队或运行中（s43 eval 刚完成释放 cuda:3）\n- **14B SFT** — 已完成(144/144)，14B eval 脚本已准备好\n- **14B eval** — 可能已提交到 cuda:1/2（14B SFT 完成后释放的）\n\n**本 session 已提交 8 个审查报告**：8B SFT s44 eval WARNING、D112 sharding WARNING、Worker GPU 误报 WARNING、d111 reeval PASS、1.7B adapter 路径 CRITICAL(已撤回)、8B RSFT s44 eval PASS、ROADMAP PASS、D112 Step 2 卡死 WARNING\n\n### 4. 📋 待办\n- D112 Step 4 eval 完成 → 读 metrics.json，验证 D076，判断 ign_f1 vs 0.4734。≥0.4734 = Claim 1 robust（Method B 验证通过）；<0.4734 = 需要 reframe\n- 1.7B RSFT s44_r2 eval 完成 → 计算 1.7B 3-seed RSFT stats（s42=0.5122, s43=0.5109, s44=?），对比 SFT 3-seed (mean=0.4464, std=2.79pp)，发综合审查\n- 14B SFT eval 完成 → 验证 D076，记录 14B baseline，与 4B/8B 比较 scaling 趋势\n- 所有 Tier 1 完成 → 对照 paper_framing.md 审查三个 Core Claims 是否有充分数据支撑，特别关注 CED vs flat-NLI 无显著差异对 Claim 2 的影响\n\n### 5. 🎯 战略上下文\n**核心数据（已验证）**：\n| Scale | SFT mean | RSFT mean | Δ | SFT std | RSFT std | Variance compression |\n|-------|----------|-----------|---|---------|----------|---------------------|\n| 1.7B | 0.4464 | ~0.511 (2/3 seeds) | +6.5pp | 2.79pp | ~0.1pp | ~28x |\n| 4B | 0.4358 | 0.4482 | +1.24pp | 3.80pp | 0.51pp | 7.5x |\n| 8B | 0.4866 | 0.5414 | +5.48pp | 2.62pp | 0.53pp | 5x |\n\n**最容易判断错的事**：\n1. RSFT adapter 路径审查——必须追溯四要素一致性（generation→CED→data→adapter），不能只看 adapter 名字是否 seed-matched。Method A 全部用 s42 base 是正确设计。\n2. Worker 的 GPU 状态报告不可信——多次误报空闲（实际有进程）。必须独立 nvidia-smi 核实。\n3. 4B RSFT +1.24pp 在 SFT variance 范围内，但 variance compression 7.5x 和 CED vs Random +3.52pp 是 robust 的。4B 的 story 是稳定性，不是绝对提升。\n4. 8B RSFT 有 evidence quality trade-off（EDCR 从 0.65→0.62），论文需讨论。\n5. 综合结果表发现 CED vs flat-NLI 无显著差异——可能削弱 CED 的方法论贡献，需关注论文 framing。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-copy-2.md"
+}

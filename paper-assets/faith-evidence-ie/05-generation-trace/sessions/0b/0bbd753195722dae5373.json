@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bbd753195722dae5373",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research qualitative case study",
+  "task_key": "worker_research_qualitative_case_study_20260518T034656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_qualitative_case_study_20260518T034656_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "62f68ccf47673fa1e5def2fb66602d01592ea738e9cacafec5de683160441d0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 组定性样例全部提取完成，保存在 `/root/autodl-tmp/eval_results/qualitative_case_study.json`。\n\n**汇总：**\n\n**Group 1 — RSFT vs SFT evidence 质量对比（3 例）：**\n- Oleg Tinkov: SFT 引用错误句子 [4]（precision=0.00），RSFT 精准命中 [5]（precision=1.00）\n- America's Sweetheart: SFT 堆砌 6 句 [0,1,2,3,4,7]（precision=0.17），RSFT 只引 [0]（precision=1.00）\n- Jade (Mortal Kombat): SFT 引了 5 句 [0-4]（precision=0.20），RSFT 精准 [0]（precision=1.00）\n\n**Group 2 — GRPO catastrophic forgetting（2 例）：**\n- Something to Believe In: 35 个预测，0 个正确。模型输出 \"is a\" 等非 DocRED 标准关系\n- Józef Piłsudski Monument: 28 个预测，0 个正确。模型输出 \"honor\"、\"location\" 等自由格式关系\n\n**Group 3 — EDCR 对比（2 例）：**\n- Low EDCR（faithful）: \"date of birth\"（EDCR=0.12），Dieter Eppler 文档，预测 evidence=[0,1] 与 gold 完全匹配\n- High EDCR（distractor-heavy）: \"notable work\"（EDCR=0.94），Across the Black Waters 文档，预测引 [0] 但 gold 是 [3]，100% distractor"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-qualitative-case-study.md"
+}

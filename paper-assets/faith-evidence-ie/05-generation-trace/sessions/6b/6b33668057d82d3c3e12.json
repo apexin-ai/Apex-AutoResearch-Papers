@@ -1,0 +1,289 @@
+{
+  "schema_version": "1.0",
+  "id": "6b33668057d82d3c3e12",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "knowledge sync experiment plan d112",
+  "task_key": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_knowledge_sync_experiment_plan_d112_20260518T232310.jsonl",
+    "occurrence": 1,
+    "bytes": 9194,
+    "sha256": "df47a804c28f931ee974f4caa4472aa26e89e5cfc195c325f7f3e671da7012bb"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T23:24:04.807601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/**/experiment_plan.yaml"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T23:24:04.808026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiment_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T23:24:04.808252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T23:24:04.808723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texperiments:\n2\t- id: plan_001\n3\t  claim: 2\n4\t  description: 'CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选\n5\t    RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py\n6\t    用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。'\n7\t  priority: P0\n8\t  gpu_budget_hours: 20\n9\t  deps: []\n10\t  registry_id: eval_flat_nli_seed45\n11\t- id: plan_002\n12\t  claim: 1\n13\t  description: 'Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set\n14\t    上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。'\n15\t  priority: P0\n16\t  gpu_budget_hours: 4\n17\t  deps:\n18\t  - plan_001\n19\t  registry_id: plan_002_test_rsft_s44\n20\t- id: plan_003\n21\t  claim: 4\n22\t  description: 'EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing\n23\t    方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。'\n24\t  priority: P0\n25\t  gpu_budget_hours: 2\n26\t  deps:\n27\t  - plan_001\n28\t  registry_id: plan_003_edcr_diagnostic\n29\t- id: plan_004\n30\t  claim: 1\n31\t  description: 'DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large)\n32\t    的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。'\n33\t  priority: P0\n34\t  gpu_budget_hours: 8\n35\t  deps: []\n36\t  registry_id: plan_004_dreeam_baseline\n37\t- id: plan_005\n38\t  claim: 1\n39\t  description: 'CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。'\n40\t  priority: P1\n41\t  gpu_budget_hours: 6\n42\t  deps: []\n43\t  registry_id: mvp2_ced_reranker_poc\n44\t- id: plan_006\n45\t  claim: 1\n46\t  description: 'Model size ablation (D077 升 P0): Qwen3-1.7B 和 Qwen3-8B 上复现 SFT → RSFT\n47\t    → eval pipeline，验证 evidence tax + RSFT 增益 + decoupling 在不同模型规模下成立。应对 RC4 和 scope\n48\t    不足问题。'\n49\t  priority: P0\n50\t  gpu_budget_hours: 32\n51\t  deps: []\n52\t  registry_id: plan_006_qwen3_1_7b_no_evidence_eval_v3\n53\t- id: plan_007\n54\t  claim: 1\n55\t  description: 'Re-DocRED cross-dataset (D077 升 P0): 在 Re-DocRED 上用当前 best config\n56\t    做 SFT → RSFT → eval。数据已就绪（格式与 DocRED 兼容\n…[truncated 8083 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T23:24:04.808982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+              "old_string": "  registry_id: null\n- id: plan_w18_random",
+              "new_string": "  registry_id: wave1_sft_4b_s44_eval_r2\n- id: plan_d112\n  claim: 1\n  description: \"D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\\\n    \\ 所有现有 4B RSFT 都基于 SFT s42 (最弱\\\n    \\ seed)。验证 RSFT 是否能在强 SFT base 上\\\n    也产生提升。Steps: generate candidates (N=8) → CED\\\n    \\ score → k=1 filter → RSFT train → D076 eval。\"\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_w3_sft_seeds\n  registry_id: d112_rsft_s44_generate\n- id: plan_w18_random"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T23:24:04.809390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T23:24:04.809560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+              "offset": "245"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T23:24:04.809713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "245\t- id: plan_w3_sft_seeds\n246\t  claim: 1\n247\t  description: W3 修复：SFT 4B baseline seed43 + seed44 训练 + eval。 与 canonical SFT (seed42)\n248\t    配对，计算 bootstrap CI + Cohen d， 验证 RSFT +4.92pp 增益的统计显著性。Wave 1 实验。\n249\t  priority: P0\n250\t  gpu_budget_hours: 8\n251\t  deps: []\n252\t  registry_id: wave1_sft_4b_s44_eval_r2\n253\t- id: plan_d112\n254\t  claim: 1\n255\t  description: \"D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\\\n256\t    \\ 所有现有 4B RSFT 都基于 SFT s42 (最弱\\\n257\t    \\ seed)。验证 RSFT 是否能在强 SFT base 上\\\n258\t    也产生提升。Steps: generate candidates (N=8) → CED\\\n259\t    \\ score → k=1 filter → RSFT train → D076 eval。\"\n260\t  priority: P0\n261\t  gpu_budget_hours: 8\n262\t  deps:\n263\t  - plan_w3_sft_seeds\n264\t  registry_id: d112_rsft_s44_generate\n265\t- id: plan_w18_random\n266\t  claim: 1\n267\t  description: W18 修复：Random k=1 RSFT baseline。从 k=1 候选中随机抽取（不用 NLI 分数）， 验证 NLI-based\n268\t    selection 的价值。如果 random 也提升 → NLI scoring 不关键； 如果 random 不提升 → NLI scoring 是 RSFT\n269\t    有效的关键。Wave 1 实验。\n270\t  priority: P0\n271\t  gpu_budget_hours: 4\n272\t  deps: []\n273\t  registry_id: random_rsft_k1_baseline\n274\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T23:24:04.809904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+              "old_string": "- id: plan_d112\n  claim: 1\n  description: \"D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\\\n    \\ 所有现有 4B RSFT 都基于 SFT s42 (最弱\\\n    \\ seed)。验证 RSFT 是否能在强 SFT base 上\\\n    也产生提升。Steps: generate candidates (N=8) → CED\\\n    \\ score → k=1 filter → RSFT train → D076 eval。\"\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_w3_sft_seeds\n  registry_id: d112_rsft_s44_generate",
+              "new_string": "- id: plan_d112\n  claim: 1\n  description: 'D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\n    所有现有 4B RSFT 都基于 SFT s42 (最弱 seed)。验证 RSFT 是否能在强 SFT base 上也产生提升。Steps:\n    generate candidates (N=8) → CED score → k=1 filter → RSFT train → D076 eval。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_w3_sft_seeds\n  registry_id: d112_rsft_s44_generate"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T23:24:04.810117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T23:24:04.810297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"import yaml; yaml.safe_load(open('/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml')); print('YAML valid')\"",
+              "description": "Validate YAML syntax"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T23:24:04.810432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML valid"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T23:24:04.810591+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改了两处：\n\n1. **plan_w3_sft_seeds**: `registry_id: null` → `registry_id: wave1_sft_4b_s44_eval_r2`\n2. **plan_d112**: 新增条目，claim=1, P0, deps=[plan_w3_sft_seeds], registry_id=d112_rsft_s44_generate\n\nplan_019 保持不变（registry_id: plan019_1_7b_sft_s43_r2）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_d112_20260518T232310"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/knowledge-sync-experiment-plan-d112.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b8cb4e5ee68449875aa",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze mvp2 rsft train r1",
+  "task_key": "worker_analyze_mvp2_rsft_train_r1_20260515T073626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_mvp2_rsft_train_r1_20260515T073626_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "e577fccdefd03006b7342bd214351d27b7ca5c3d7a8c641ea740444ed3713421"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE / negative。\n\n## 实验结果总结\n\n**mvp2_rsft_train_r1** — **NEGATIVE**\n\n| 指标 | 最终值 | Baseline | 变化 |\n|------|--------|----------|------|\n| **rel_f1** | 0.0483 | 0.4057 | **↓88.1%** |\n| **evi_f1** | 0.7646 | 0.798 | ↓4.2% |\n| ign_f1 | 0.0483 | — | — |\n| EDCR | 0.6534 | — | — |\n| train_loss | 0.6116 | — | — |\n| eval_loss | 0.7624 | — | — |\n\n**关键观察**：\n- 训练正常完成，checkpoint 完整（adapter_model.safetensors 528MB），耗时 ~1h56m\n- **rel_f1 灾难性崩塌**：从 baseline 0.4057 跌至 0.0483，仅为原始值的 12%\n- Evi-F1 也低于 baseline（0.7646 vs 0.798）\n- 仅产出 848 个预测（step 170 时为 881），数量偏低\n- 从 step 170 到 step 510，F1 仅从 0.0458 微升至 0.0483，说明从 epoch 1 开始 rel_f1 就已经崩了\n- train_loss 正常下降（0.65→0.57），eval token accuracy 稳定在 0.829——模型在\"学习\"，但学到的不是正确的 relation extraction 行为"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-mvp2-rsft-train-r1.md"
+}

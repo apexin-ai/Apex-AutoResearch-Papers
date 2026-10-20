@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9bc7d1acf9706928a81",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan010 nli large pipeline",
+  "task_key": "worker_code_plan010_nli_large_pipeline_20260519T184258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan010_nli_large_pipeline_20260519T184258_result.json",
+    "occurrence": 1,
+    "bytes": 207,
+    "sha256": "2976a8439cd8e58b9cb6bb340375827048e67a5e277edc2cebf88f273f311d4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并验证：`/root/autodl-tmp/freige/scripts/plan010/nli_large_ablation.sh`，内容完整，权限可执行。未提交任务，等待 Agent 用 `submit_training_job` 提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan010-nli-large-pipeline.md"
+}

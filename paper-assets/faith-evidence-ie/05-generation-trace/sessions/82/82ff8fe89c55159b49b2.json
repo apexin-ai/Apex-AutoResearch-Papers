@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82ff8fe89c55159b49b2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor rsync selfmon",
+  "task_key": "worker_monitor_rsync-selfmon_20260520T082351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_rsync-selfmon_20260520T082351_result.json",
+    "occurrence": 1,
+    "bytes": 111,
+    "sha256": "a777502456889413ce9517b00d1c1d58bdef2db2a7c748325963ea91c4fb8e8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "rsync 迁移进行中：6 个 rsync 进程活跃，已传 10G。5 分钟后自动再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-rsync-selfmon.md"
+}

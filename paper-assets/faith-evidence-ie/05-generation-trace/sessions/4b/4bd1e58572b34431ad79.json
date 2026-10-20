@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bd1e58572b34431ad79",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research plan 009 forgetting figure",
+  "task_key": "worker_research_plan_009_forgetting_figure_20260515T184800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan_009_forgetting_figure_20260515T184800_result.json",
+    "occurrence": 1,
+    "bytes": 947,
+    "sha256": "5ec59f0213158ed171aed2a60a31632d51546d4ddfadd57f2bf8b13825cc409a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出：**\n- 绘图脚本：`/root/autodl-tmp/freige/scripts/plot_forgetting_dynamics.py`\n- 图表 PDF：`/root/autodl-tmp/freige/figures/grpo_forgetting_dynamics.pdf`\n- 图表 PNG：`/root/autodl-tmp/freige/figures/grpo_forgetting_dynamics.png`\n- 已注册：`art_20260515_eace0b` (PNG), `art_20260515_319233` (PDF)\n\n**图表内容（3 panels）：**\n- **(a) Training Reward**：bf16 reward 显著高于 QLoRA（1.5-3.0 vs 0.1-1.2）\n- **(b) Rel-F1**：QLoRA 从 SFT baseline (0.41) 暴跌至 ~0.01（lr=5e-6）或 ~0.22（lr=5e-5）；bf16 稳定在 0.45+\n- **(c) Evi-F1**：QLoRA lr=5e-6 反升至 0.85（超 SFT baseline 0.80）；QLoRA lr=5e-5 降至 0.57；bf16 稳定在 0.81\n\n**数据来源：**\n- 训练曲线：trainer_state.json（bf16_ced_g8, qlora_ced_kl001, qlora_ced_lr5e6）\n- 评估指标：registry 中 eval_grpo_g8_bf16 / mvp2_eval_ced_kl001_r4_multi / mvp2_eval_lr5e6_r1_ckpt* 系列"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan-009-forgetting-figure.md"
+}

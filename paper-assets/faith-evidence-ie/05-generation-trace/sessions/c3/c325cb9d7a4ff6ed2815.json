@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c325cb9d7a4ff6ed2815",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval ced kl001 r4 final checkpoints",
+  "task_key": "worker_eval_ced-kl001-r4-final-checkpoints_20260514T181012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ced-kl001-r4-final-checkpoints_20260514T181012_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "95a0a173f19a6b90c4006ac0879115de829240e291c04131663c3602c780904f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:0 不空闲，无法启动新任务。** 当前 4 张 GPU 全部被占用：\n\n| GPU | PID | 显存 | 任务 |\n|-----|-----|------|------|\n| cuda:0 | 80799 | 8482 MiB | eval checkpoint-100 (`grpo_ced_kl001`) |\n| cuda:1 | 75587 | 10430 MiB | eval checkpoint-50 (`grpo_ced_kl001`) |\n| cuda:2 | 78857 | 9400 MiB | eval checkpoint-10 (`grpo_ced_kl001`) |\n| cuda:3 | 76958 | 13638 MiB | GRPO 训练 (`grpo_flatnli_r6`) |\n\ncheckpoint-90 和 checkpoint-100 的情况：\n- **checkpoint-100**：已在 cuda:0 上评估中\n- **checkpoint-90**：目前没有任何 GPU 在评估\n\n已有评估结果目录：`checkpoint-10`, `checkpoint-50`, `summary.json`（在 `eval_results/grpo_ced_kl001/`）\n\n等某张 GPU 空闲后可立即提交 checkpoint-90 的评估。是否需要我监控 GPU 状态，一旦空闲就提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ced-kl001-r4-final-checkpoints.md"
+}

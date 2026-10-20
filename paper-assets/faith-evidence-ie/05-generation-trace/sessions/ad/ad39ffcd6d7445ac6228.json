@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad39ffcd6d7445ac6228",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnosis 14b eval progress check",
+  "task_key": "worker_diagnosis_14b-eval-progress-check_20260523T153642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_14b-eval-progress-check_20260523T153642_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "0e36a46028aa5c3ec98f6c69a8db7d8bf851b4f88977e29c2d1cae2a6aa04172"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 14B RSFT s43 Eval 状态汇总\n\n### GPU 状态\n| GPU | 显存占用 | 总显存 | 利用率 |\n|-----|---------|--------|--------|\n| 0 | 32,479 MiB | 97,887 MiB (33%) | 84% |\n| 1 | 40,521 MiB | 97,887 MiB (41%) | 96% |\n| 2 | 32,479 MiB | 97,887 MiB (33%) | 87% |\n| 3 | 40,379 MiB | 97,887 MiB (41%) | 96% |\n\n**4 卡全部占用，无空闲 GPU。**\n\n### 4 个 Eval 进度\n\n| Eval | GPU | 进度 | 速度 | 预计剩余 |\n|------|-----|------|------|---------|\n| plan017_14b_rsft_s43_eval (dev with-evi) | cuda:0 | **126/985** (12.8%) | ~20s/doc | ~4.5h |\n| plan017_14b_rsft_s43_no_evi_eval (dev no-evi) | cuda:2 | **144/985** (14.6%) | ~15s/doc | ~3.5h |\n| test_eval_14b_rsft_s43_with_evi (test with-evi) | cuda:1 | **10/32** batch (31.3%) | ~206s/batch | ~75min |\n| test_eval_14b_rsft_s43_no_evi (test no-evi) | cuda:3 | **10/32** batch (31.3%) | ~205s/batch | ~75min |\n\n所有 4 个进程状态正常（S, running ~40min）。test eval 预计约 75 分钟后完成，dev eval 预计 3.5-4.5 小时后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-14b-eval-progress-check.md"
+}

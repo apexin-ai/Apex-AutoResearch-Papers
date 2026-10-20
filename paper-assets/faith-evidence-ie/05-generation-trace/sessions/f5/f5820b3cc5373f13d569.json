@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "id": "f5820b3cc5373f13d569",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "analysis test eval llama rsft s43 no evi",
+  "task_key": "worker_analysis_test_eval_llama_rsft_s43_no_evi_20260523T102223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_test_eval_llama_rsft_s43_no_evi_20260523T102223.jsonl",
+    "occurrence": 1,
+    "bytes": 5678,
+    "sha256": "c5aa80e5de041c8b8da9718c95cc245cc6c7546f08c9ea796b9e9b368afbcdc0"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T10:22:47.956259+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_test_eval_llama_rsft_s43_no_evi_20260523T102223",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T10:22:47.956630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_test_eval_llama_rsft_s43_no_evi_20260523T102223",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T10:22:47.956806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_test_eval_llama_rsft_s43_no_evi_20260523T102223",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -100 ~/runs/faith-evidence-ie/test_eval_llama_rsft_s43_no_evi.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T10:22:47.957051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_test_eval_llama_rsft_s43_no_evi_20260523T102223",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/test_eval_llama_rsft_s43_no_evi/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T10:22:47.957310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 17:12:03,821 INFO Detected adapter at /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n2026-05-23 17:12:03,821 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n2026-05-23 17:12:04,561 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:35,  8.26it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:38,  7.53it/s]\\\\rLoading weights:   5%|▌         | 15/291 [00:00<00:05, 51.85it/s]\\\\rLoading weights:  11%|█         | 32/291 [00:00<00:02, 87.56it/s]\\\\rLoading weights:  17%|█▋        | 49/291 [00:00<00:02, 110.04it/s]\\\\rLoading weights:  21%|██        | 61/291 [00:00<00:02, 112.53it/s]\\\\rLoading weights:  26%|██▋       | 77/291 [00:00<00:01, 122.41it/s]\\\\rLoading weights:  32%|███▏      | 94/291 [00:00<00:01, 131.45it/s]\\\\rLoading weights:  37%|███▋      | 108/291 [00:01<00:01, 130.22it/s]\\\\rLoading weights:  42%|████▏     | 123/291 [00:01<00:01, 130.25it/s]\\\\rLoading weights:  48%|████▊     | 140/291 [00:01<00:01, 136.20it/s]\\\\rLoading weights:  54%|█████▍    | 157/291 [00:01<00:00, 142.29it/s]\\\\rLoading weights:  59%|█████▉    | 172/291 [00:01<00:00, 140.49it/s]\\\\rLoading weights:  64%|██████▍   | 187/291 [00:01<00:00, 136.84it/s]\\\\rLoading weights:  70%|██████▉   | 203/291 [00:01<00:00, 138.39it/s]\\\\rLoading weights:  76%|███████▌  | 220/291 [00:01<00:00, 144.33it/s]\\\\rLoading weights:  81%|████████  | 235/291 [00:01<00:00, 141.64it/s]\\\\rLoading weights:  86%|████████▌ | 250/291 [00:02<00:00, 139.33it/s]\\\\rLoading weights:  91%|█████████▏| 266/291 [00:02<00:00, 141.86it/s]\\\\rLoading weights:  97%|█████████▋| 283/291 [00:02<00:00, 146.29it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 125.79it/s]\n…[truncated 3909 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_test_eval_llama_rsft_s43_no_evi_20260523T102223",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T10:22:47.957515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8224\\\\ndrwxr-xr-x   2 root root     102 May 23 18:20 .\\\\ndrwxr-xr-x 176 root root   12288 May 23 17:42 ..\\\\n-rw-r--r--   1 root root  447220 May 23 18:20 codalab_submission.json\\\\n-rw-r--r--   1 root root 7948760 May 23 18:20 predictions.json\\\\n-rw-r--r--   1 root root    1722 May 23 18:20 test_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_test_eval_llama_rsft_s43_no_evi_20260523T102223",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T10:22:47.957710+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## test_eval_llama_rsft_s43_no_evi Metrics\n\n| Metric | 值 |\n|--------|-----|\n| **Ign-F1** | **0.3371** |\n| F1 | 0.3371 |\n| Precision | — (未单独输出，Ign-F1=F1 因 train_annotated.json 缺失) |\n| Recall | — |\n| Evi-F1 (DREEAM) | 0.0032 |\n| Evi-F1 (TP) | 0.0035 |\n| EDCR | 0.9640 |\n| Documents | 500 |\n| Predictions | 32541 |\n| Format OK | 499/500 |\n| Truncated | 306/500 |\n| CodaLab converted | 9166 |\n| CodaLab skipped (rel) | 432 |\n| CodaLab skipped (entity) | 2183 |\n\n结果目录包含：`predictions.json`、`codalab_submission.json`、`test_summary.json`\n\n## s43 Evidence Tax\n\ns43_no_evi - s43_with_evi = 0.3371 - 0.3488 = **-1.17pp**\n\n## 对比 s42\n\n| Seed | no-evi | with-evi | evidence tax |\n|------|--------|----------|-------------|\n| s42 | 0.3334 | 0.3599 | -2.65pp |\n| s43 | 0.3371 | 0.3488 | -1.17pp |\n\ns43 的 evidence tax（-1.17pp）比 s42（-2.65pp）小了约一半，with-evi 提升幅度更小。两个 seed 的 no-evi 基线接近（0.3334 vs 0.3371），差异主要来自 s43 的 with-evi 效果弱于 s42。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_test_eval_llama_rsft_s43_no_evi_20260523T102223"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-test-eval-llama-rsft-s43-no-evi.md"
+}

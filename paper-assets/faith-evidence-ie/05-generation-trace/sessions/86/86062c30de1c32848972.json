@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86062c30de1c32848972",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh submit test eval 14b rsft",
+  "task_key": "worker_ssh_submit-test-eval-14b-rsft_20260521T100647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit-test-eval-14b-rsft_20260521T100647_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "109f074e6d9f8b3eec758250894bc4767cded801980541eb8db72af5298fe983"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册监控。\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | `test_eval_14b_rsft_s42` |\n| PID | 97434 |\n| GPU | cuda:1 |\n| 脚本 | `freige.eval.test_inference` |\n| base_model | `/root/autodl-tmp/models/Qwen/Qwen3-14B` |\n| RSFT adapter | `/root/autodl-tmp/rsft_output_14b/` |\n| SFT adapter | `/root/autodl-tmp/sft_output_14b/checkpoint-144` |\n| data_path | `/root/autodl-tmp/data/re-docred-repo/data` |\n| split | `test_revised` |\n| output_dir | `/root/autodl-tmp/eval_results/test_eval_14b_rsft_s42` |\n| log | `~/runs/faith-evidence-ie/test_eval_14b_rsft_s42.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-test-eval-14b-rsft.md"
+}

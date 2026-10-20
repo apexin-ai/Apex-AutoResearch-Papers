@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "335b9b478eaee0cd1c1e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis matched fair tax corrected",
+  "task_key": "worker_analysis_matched-fair-tax-corrected_20260521T045658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_matched-fair-tax-corrected_20260521T045658_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "04bd3d76d85e870c0ba4bbfbc5044e8194bcda0b1bfa76593ab8ecc6807ccd22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。Registry 已更新，旧 `fair_tax_pp` 已标注 INVALIDATED。\n\n## 最终结果：3-seed Matched Fair Evidence Tax @2048\n\n| Seed | fair_subset_docs | fair_with_evi@2048 (ign_f1) | fair_no_evi@2048 (ign_f1) | matched_fair_tax (pp) |\n|------|------------------|-----------------------------|---------------------------|-----------------------|\n| s42 | 873 | 0.5716 | 0.5564 | **-1.53** |\n| s43 | 834 | 0.4910 | 0.3789 | **-11.20** |\n| s44 | 977 | 0.4679 | 0.4395 | **-2.83** |\n| **Mean±Std** | 895 | 0.5102 | 0.4583 | **-5.19 ± 5.25** |\n\n要点：\n- 3 个 seed 的 fair tax 全部为负（with-evi 优于 no-evi），但方差极大（std=5.25pp），主要被 s43 的 -11.20pp 拉动\n- s43 no-evi format_ok 仅 834/985（84.7%），即使在 fair subset 上 ign_f1 也只有 0.3789，远低于 s42/s44\n- s42 和 s44 的 fair tax 较温和（-1.53pp, -2.83pp），s43 是明显的 outlier"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-matched-fair-tax-corrected.md"
+}

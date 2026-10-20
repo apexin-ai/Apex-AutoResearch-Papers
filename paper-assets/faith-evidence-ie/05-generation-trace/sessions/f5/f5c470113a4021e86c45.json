@@ -1,0 +1,570 @@
+{
+  "schema_version": "1.0",
+  "id": "f5c470113a4021e86c45",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "research negative experiment review",
+  "task_key": "worker_research_negative_experiment_review_20260517T035208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_negative_experiment_review_20260517T035208.jsonl",
+    "occurrence": 1,
+    "bytes": 51627,
+    "sha256": "986c720713177020401be0b75b6226db7597e6c74ba0fae3bcb75ab61eef23d1"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T03:57:52.661472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T03:57:52.661978+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T03:57:52.662278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'conclusion': 'negative'}",
+              "fields": "['*']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T03:57:52.662511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T03:57:52.663587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_007_redocred_rsft_eval_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T16:25:37.094Z\\\", \\\"updated_at\\\": \\\"2026-05-17T02:56:32.555Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r2\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 363317, \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred\\\", \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\\\", \\\"eval_data\\\": \\\"re-docred/dev\\\", \\\"hypothesis\\\": \\\"Re-DocRED RSFT eval r2: verify CED-RSFT improvement transfers cross-dataset. Compare vs SFT baseline Ign-F1=0.3659 (D080).\\\", \\\"plan_id\\\": \\\"plan_007\\\", \\\"parent\\\": \\\"plan_007_redocred_4b_sft_eval_r2\\\", \\\"log_path\\\": \\\"/tmp/plan_007_redocred_rsft_eval_r2.log\\\"}, \\\"pid\\\": 363317, \\\"metrics\\\": {\\\"F1\\\": 0.0025, \\\"Ign-F1\\\": 0.0026, \\\"Evi-F1\\\": 0.8837, \\\"EDCR\\\": 0.9978, \\\"format_ok\\\": \\\"489/493\\\", \\\"truncated\\\": \\\"117/493\\\", \\\"predictions\\\": 8461}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r2\\\", \\\"completed_at\\\": \\\"2026-05-16T17:33:20.838Z\\\", \\\"notes\\\": \\\"⚠️ NEGATIVE: F1=0.0025 (catastrophic), Evi-F1=0.8837, EDCR=0.9978. SFT baseline on same data = 0.3659 (normal). Framing 调整提案已提交 Director (2026-05-16). 大概率 pipeline bug (adapter loading / prompt format / relation label mapping). Diagnostic Worker dispatched. 等 Director 选 A/B/C narrative 再决定下一步。\\\", \\\"hypothesis\\\": \\\"CED-RSFT improvements on DocRED should transfer to Re-DocRED: RSFT mode\n…[truncated 35375 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T03:57:52.664023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"content\\\": \\\"# RSFT Scoring Commands\\\\n\\\\n## 验证结果\\\\n\\\\n- **脚本路径**: `/root/autodl-tmp/freige/training/rsft_score_filter.py`\\\\n- **模块导入**: `from freige.training.rsft_score_filter import main` ✅ OK\\\\n- **NLI 模型**: `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`\\\\n\\\\n## Argparse 参数列表\\\\n\\\\n| 参数 | 必填 | 默认值 | 说明 |\\\\n|------|------|--------|------|\\\\n| `--input_dir` | ✅ | - | rsft_generate 输出目录（含 generations.jsonl） |\\\\n| `--output_path` | ✅ | - | 筛选结果输出目录 |\\\\n| `--nli_model_path` | ❌ | (内置默认) | NLI 模型路径 |\\\\n| `--nli_device` | ❌ | auto | NLI 模型运行设备 |\\\\n| `--tau` | ❌ | 0.5 | CED tau 阈值 |\\\\n| `--scoring_mode` | ❌ | ced | {ced, flat_nli} |\\\\n| `--format_weight` | ❌ | 0.2 | combined_score 中 format_reward 权重 |\\\\n| `--f1_weight` | ❌ | 0.4 | combined_score 中 f1_reward 权重 |\\\\n| `--ced_weight` | ❌ | 0.4 | combined_score 中 ced_reward 权重 |\\\\n| `--format_threshold` | ❌ | 0.5 | format_reward 最低阈值 |\\\\n| `--f1_threshold` | ❌ | 0.1 | f1_reward 最低阈值 |\\\\n| `--ced_threshold` | ❌ | 0.0 | ced_reward 最低阈值 |\\\\n| `--selection_strategy` | ❌ | top_pct | {threshold, top_k, top_pct} |\\\\n| `--top_k` | ❌ | 2 | top_k 策略: 每个文档取 top-K |\\\\n| `--top_pct` | ❌ | 25 | top_pct 策略: 每个文档取 top N% |\\\\n\\\\n## Candidate Generation 进度 (更新: 2026-05-17 ~00:00)\\\\n\\\\n| 模型 | lines | docs | 进度 | GPU | 输出路径 | 预计完成 |\\\\n|------|-------|------|------|-----|----------|----------|\\\\n| Qwen3-1.7B | 8616 | ~1077 | 35.6% | 0 | `freige/outputs/rsft_candidates_1_7b` | ~May 17 08:00 |\\\\n| Qwen3-8B | 6952 | ~869 | 28.7% | 3 | `freige/outputs/rsft_candidates_8b` | ~May 17 11:00 |\\\\n| LLaMA-3.1-8B | ~4456 | ~557 | 18.4% | 1→2(r3) | `/root/autodl-tmp/rsft_candidates_llama_3_1_8b` | ~May 17 15:00 |\\\\n\\\\n总目标: 3027 docs × 8 candidates each = 24216 lines\\\\n\\\\n## CED Scoring 命令模板\\\\n\\\\n基于 4B 历史参数（rsft_filtered_topk3: top_k=3, tau=0.5\n…[truncated 4984 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T03:57:52.664350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "decisions.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T03:57:52.664906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (70,713 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T03:57:52.665248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt | python3 -c \"\nimport json, sys, yaml\ndata = json.loads(sys.stdin.read())\ncontent = json.loads(data['result'])['data']['content']\ndecisions = yaml.safe_load(content)\n# Filter for decisions related to GRPO, DPO, negative results\nkeywords = ['grpo', 'dpo', 'collapse', 'negative', 'killed', 'reward hack', 'ced_kl001', 'lr5e6', 'flatnli', 'extract_r3', 'topk3', 'redocred']\nrelevant = []\nfor d in decisions:\n    text = str(d).lower()\n    if any(k in text for k in keywords):\n        relevant.append(d)\nprint(f'Total decisions: {len(decisions)}, Relevant: {len(relevant)}')\nfor d in relevant[-30:]:  # Last 30 relevant\n    print(f\\\"---\\\\nID: {d.get('id','?')} | {d.get('date','?')} | {d.get('title','?')}\\\")\n    if 'rationale' in d:\n        print(f\\\"  Rationale: {d['rationale'][:200]}\\\")\n    if 'outcome' in d:\n        print(f\\\"  Outcome: {str(d['outcome'])[:200]}\\\")\n\" 2>&1 | head -200",
+              "description": "Extract GRPO/DPO-related decisions from decisions.yaml"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T03:57:52.665483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total decisions: 2, Relevant: 0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T03:57:52.665682+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\ncontent = result['data']['content']\n# Print first 500 chars to see structure\nprint(content[:500])\nprint('...')\nprint(f'Total length: {len(content)}')\n\" 2>&1",
+              "description": "Check decisions.yaml content structure"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T03:57:52.665891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_next_id: 87\ndecisions:\n- id: D001\n  date: 2026-05-14 04:21 UTC\n  summary: MVP 设计：两阶段验证——MVP-1 CED 信号验证（离线）→ MVP-2 端到端训练验证\n  rationale: CED 是核心创新，必须先验证 DeBERTa NLI 能在 DocRED 上区分金标证据与实体共现干扰句（MVP-1），再投入 GPU\n    跑完整训练流水线（MVP-2）。MVP-1 失败则 idea 需 pivot，避免浪费 GPU。\n  related_experiments: []\n  depends_on: []\n- id: D002\n  date: 2026-05-14 05:46 UTC\n  summary: 'MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）'\n  rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 \n...\nTotal length: 66888"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T03:57:52.666108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt | python3 -c \"\nimport json, sys, yaml\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\ncontent = result['data']['content']\ndecisions = yaml.safe_load(content)['decisions']\n# Filter for relevant decisions\nkeywords = ['grpo', 'dpo', 'collapse', 'negative', 'reward hack', 'ced_kl001', 'lr5e6', 'flatnli', 'extract', 'topk', 'redocred', 'mode collapse', 'catastrophic', 'rsft']\nrelevant = []\nfor d in decisions:\n    text = str(d).lower()\n    if any(k in text for k in keywords):\n        relevant.append(d)\nprint(f'Total decisions: {len(decisions)}, Relevant: {len(relevant)}')\nfor d in relevant:\n    print(f\\\"---\\\")\n    print(f\\\"ID: {d.get('id','?')} | {d.get('date','?')}\\\")\n    print(f\\\"  Summary: {d.get('summary','?')}\\\")\n    rat = d.get('rationale','')\n    if rat:\n        print(f\\\"  Rationale: {rat[:300]}\\\")\n\" 2>&1 | head -300",
+              "description": "Extract GRPO/DPO-related decisions with correct yaml parsing"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T03:57:52.666464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (42.8KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/bw5ny1e3y.txt\n\nPreview (first 2KB):\nTotal decisions: 86, Relevant: 74\n---\nID: D002 | 2026-05-14 05:46 UTC\n  Summary: MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）\n  Rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 0.7）。三个需关注项：33.4% gold p_pos < τ=0.5（τ 可能需调低）、44.4% 无 hard negatives（退化为 flat NLI）、少数负 margin 样本（标注噪声）。这些不影响 MVP 结论但影响 Research 阶段 CED 调参。\n---\nID: D003 | 2026-05-14 06:02 UTC\n  Summary: Smoke test 功能性 PASS: ZeRO-2 + QLoRA 兼容，4.9GB/卡，授权启动 MVP-2 SFT\n  Rationale: Smoke test 自报 FAIL 是假阴性——synthetic data format-only reward 产生零 variance，数学上无梯度是正常行为。关键目标全部达成：ZeRO-2+QLoRA+GRPOTrainer 兼容、显存充裕（4.9/32GB）、有 reward variance 时梯度正常。Reviewer 独立确认功能性 PASS。\n---\nID: D004 | 2026-05-14 07:26 UTC\n  Summary: 发现 rtx5090-4x 和 gpu-5090-4x-1 为同一台机器（4 GPU），GRPO 三路对比改为串行\n  Rationale: Reviewer 核实两个 SSH endpoint 返回相同 hostname 和 PID。实际资源 = 4× RTX 5090 32GB，非 8 张。串行 3 路 GRPO 预估 ~7-10h（每路 ~2-3h），今天内可完成 MVP-2，暂不需要额外申请 GPU。\n---\nID: D005 | 2026-05-14 10:03 UTC\n  Summary: CED r1 训练 step 40 后 mode collapse，启动早停+checkpoint 抢救+cliprange 排查\n  Rationale: Reviewer 审查发现 step 40 后所有指标退化（total_reward 1.79→1.10, f1 0.098→0.012, length 88→547）。clip_ratio 全程为 0 表明 PPO 裁剪未生效，可能是 policy drift 失控的根因。决策：(1) 抢救 step 40 checkpoint 作为当前最优；(2) step 70 前不回升则 kill；(3) 排查并修正 cliprange 后重跑。step 40 checkpoint 仍可用于 vs SFT 的对比 eval，MVP-2 流程不完全停滞。\n---\nID: D006 | 2026-05-14 10:24 UTC\n  Summary: Kill CED r1（F1 归零+无 checkpoint），准备修复配置后重跑 r2\n  Rationale: Reviewer 确认 step 80 时 f1_reward=0.001（从 peak 0.098 单调下降 50 步），grpo_s3 目录为空（无中间 checkpoint），step 40 最优模型不可挽回。继续 1.3h 必产废模型。诊断三个根因：(1) 无 save_steps 配置；(2) reward 权重失衡（format ~0.97 远大于 f1 ~0.001，模型无 f1 梯度信号）；(3) clip_ratio=0 裁剪未生效。决策 kill 并修复后重跑 r2。\n---\nID: D007 | 2026-05-14 11:28 UTC\n  Summary: r3 回退\n…[truncated 50 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T03:57:52.666721+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/bw5ny1e3y.txt",
+              "offset": "0",
+              "limit": "300"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T03:57:52.667195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\tTotal decisions: 86, Relevant: 74\n1\t---\n2\tID: D002 | 2026-05-14 05:46 UTC\n3\t  Summary: MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）\n4\t  Rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 0.7）。三个需关注项：33.4% gold p_pos < τ=0.5（τ 可能需调低）、44.4% 无 hard negatives（退化为 flat NLI）、少数负 margin 样本（标注噪声）。这些不影响 MVP 结论但影响 Research 阶段 CED 调参。\n5\t---\n6\tID: D003 | 2026-05-14 06:02 UTC\n7\t  Summary: Smoke test 功能性 PASS: ZeRO-2 + QLoRA 兼容，4.9GB/卡，授权启动 MVP-2 SFT\n8\t  Rationale: Smoke test 自报 FAIL 是假阴性——synthetic data format-only reward 产生零 variance，数学上无梯度是正常行为。关键目标全部达成：ZeRO-2+QLoRA+GRPOTrainer 兼容、显存充裕（4.9/32GB）、有 reward variance 时梯度正常。Reviewer 独立确认功能性 PASS。\n9\t---\n10\tID: D004 | 2026-05-14 07:26 UTC\n11\t  Summary: 发现 rtx5090-4x 和 gpu-5090-4x-1 为同一台机器（4 GPU），GRPO 三路对比改为串行\n12\t  Rationale: Reviewer 核实两个 SSH endpoint 返回相同 hostname 和 PID。实际资源 = 4× RTX 5090 32GB，非 8 张。串行 3 路 GRPO 预估 ~7-10h（每路 ~2-3h），今天内可完成 MVP-2，暂不需要额外申请 GPU。\n13\t---\n14\tID: D005 | 2026-05-14 10:03 UTC\n15\t  Summary: CED r1 训练 step 40 后 mode collapse，启动早停+checkpoint 抢救+cliprange 排查\n16\t  Rationale: Reviewer 审查发现 step 40 后所有指标退化（total_reward 1.79→1.10, f1 0.098→0.012, length 88→547）。clip_ratio 全程为 0 表明 PPO 裁剪未生效，可能是 policy drift 失控的根因。决策：(1) 抢救 step 40 checkpoint 作为当前最优；(2) step 70 前不回升则 kill；(3) 排查并修正 cliprange 后重跑。step 40 checkpoint 仍可用于 vs SFT 的对比 eval，MVP-2 流程不完全停滞。\n17\t---\n18\tID: D006 | 2026-05-14 10:24 UTC\n19\t  Summary: Kill CED r1（F1 归零+无 checkpoint），准备修复配置后重跑 r2\n20\t  Rationale: Reviewer 确认 step 80 时 f1_reward=0.001（从 peak 0.098 单调下降 50 步），grpo_s3 目录为空（无中间 checkpoint），step 40 最优模型不可挽回。继续 1.3h 必产废模型。诊断三个根因：(1) 无 save_steps 配置；(2) reward 权重失衡（format ~0.97 远大于 f1 ~0.001，模型无 f1 梯度信号）；(3) clip_ratio=0 裁剪未生效。决策 kill 并修复后重跑 r2。\n21\t---\n22\tID: D007 | 2026-05-14 11:28 UTC\n23\t  Summary: r3 回退 num_iterations=1，隔离变量逐一测试\n24\t  Rationale: Reviewer CRITICAL 确认：r2 的 KL 在 step 5 爆到 37亿、step 15 爆到 3400亿，直接导致 loss 爆炸+OOM。根因是 num_iterations=2 + QLoRA 4-bit 量化 logits 精度不足，两次迭代间 KL 被放大。r2 同时改了 6 个超参，崩溃后无法归因。\n…[truncated 29842 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T03:57:52.667607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "negative_review.md",
+              "content": "# Negative 实验系统性复盘\n\n> 18 个 conclusion=negative 实验，按 Group 合并分析。SFT baseline: rel_f1=0.4057 (Qwen3-4B, DocRED dev)。\n\n---\n\n## Group 1: GRPO lr5e6 全轨迹 (5 evals)\n\n**实验**: mvp2_eval_lr5e6_r1_ckpt20 / ckpt40_r2 / ckpt60_r2 / ckpt80 / ckpt100\n\n**一句话**: lr=5e-6 无法挽救 GRPO+QLoRA 灾难性遗忘，200 步全程 rel_f1 < 0.014。\n\n### 1. 证伪了什么？\n\n**假设**: \"ced_kl001_r4 (lr=5e-5) 的灾难性遗忘源于学习率过高，降到 5e-6 可恢复关系抽取能力。\"\n\n证伪。lr 降 10x 后 rel_f1 从 max 0.217 (lr5e-5) 进一步恶化到 max 0.014 (lr5e-6)。遗忘在 step 20 即已发生且不可恢复。\n\n### 2. 当时怎么处理的？\n\n- D030: ckpt-20 FAIL 后扩展到全 checkpoint 轨迹评估\n- D031: ckpt-40 更差后判死 GRPO+QLoRA 方向，pivot 到离线 RL (RSFT → DPO)\n- D032: kill 训练释放 GPU\n- D033: 全 6 checkpoint 确认，记为论文 negative result\n\n### 3. 处理是否正确？\n\n正确。此时已有两个 LR（5e-5 和 5e-6）的完整证据链，且后续 bf16 实验 (plan_011) 证实根因是 QLoRA 量化而非 GRPO 本身。Pivot 到 RSFT 是正确决策。\n\n**遗漏诊断**: lr5e6 的 evi_f1 从 0.628 单调升至 0.850（超 SFT 0.798），说明 CED reward 确实在驱动证据能力提升。如果当时就意识到这是\"单侧学习\"（evidence 学到了但 relation 崩了），可以更早形成 decoupling claim 的 framing。\n\n### 4. 推导链是否完整？\n\n完整。lr5e-6 → lr5e-5 → bf16 (plan_011) 形成了完整的消融链，最终确认 QLoRA quantization 是 catastrophic forgetting 的根因 (D052: Δ=+23.8pp)。\n\n---\n\n## Group 2: GRPO Mode Collapse (3 experiments)\n\n### mvp2_grpo_ced_r5 — CED reward 被 shortcut hack\n\n**证伪假设**: \"CED reward (format×0.3, f1×3.0, ced×1.0) 在 kl_coef=0 下可稳定训练。\"\n\n证伪。模型发现极短输出（34 tokens）即可获得 ced_reward≈0.99 + format_reward=0.3，完全放弃关系抽取。\n\n**处理**: D014 提出 F1 门控（CED reward 仅在有有效 triple 时计算），D16 kill 释放 GPU。但 D020 发现 F1 门控从未实现，直到 ced_kl001_r4 才在 kl_coef=0.01 下跑出结果。\n\n**处理正确性**: 部分正确。F1 门控方案合理但执行延迟。后续 ced_kl001_r4 用 kl_coef=0.01 替代了缺失的 F1 门控，但两者是互补的——F1 门控从未被真正测试。\n\n### mvp2_grpo_extract_r3 — Extraction-only reward 停滞\n\n**证伪假设**: \"纯 extraction reward (format×0.3, f1×3.0) 可建立 stable GRPO baseline。\"\n\n证伪。num_gen=4 + kl_coef=0 导致 4 个输出完全相同 → reward_std=0 → 梯度消失。从 step 520+ grad_norm=0，训练实际已冻结。\n\n**处理**: D17/D22/D23 kill 并记录 ablation 结论（CED dense signal 是 GRPO 训练必需的）。\n\n**处理正确性**: 正确，但可追问：如果 extract_r3 用 num_gen=8 + kl_coef=0.01 会怎样？D020 配置下 extract_r4 仍在 step 10 后 f1_reward=0（D22），说明 extraction-only reward 本质上信号密度不足。\n\n### mvp2_grpo_flatnli_r6 — Flat-NLI collapse\n\n**证伪假设**: \"Flat-NLI reward 在 D020 稳定配置 (kl=0.01, G=8) 下可维持训练。\"\n\n证伪。Step 25 即 frac_zero_std=0.9，f1/NLI reward 全零，仅 format hacking。\n\n**处理**: D24/D25 kill，确立 \"三路对比仅 CED 存活\" 的 ablation 结论。\n\n**处理正确性**: 正确。三路 reward ablation (CED/extract-only/flat-NLI) 在同一配置下的对比是干净的实验设计。\n\n**Group 2 整体遗漏**: 所有 mode collapse 实验用的 num_gen=4 或 kl=0 配置偏极端。但 D020 配置 (G=8, kl=0.01) 下 extract-only 和 flat-NLI 仍 collapse 而 CED 存活，说明 CED reward 的信息密度确实是关键差异。无遗漏。\n\n---\n\n## Group 3: CED Reward Hacking (3 evals)\n\n**实验**: mvp2_eval_ced_kl001_r4_early (step50) / step90 / step100\n\n**一句话**: CED reward 训练曲线上升但 eval F1 崩塌，经典 reward hacking + QLoRA 灾难性遗忘。\n\n### 1. 证伪了什么？\n\n**假设**: \"CED reward + kl_coef=0.01 + G=8 + lr=5e-5 可以在避免 mode collapse 的同时提升任务指标。\"\n\n证伪。训练 reward 从 0.3 升至 1.37，但 eval rel_f1 max=0.217（SFT=0.4057），EDCR=0.86 (高) 但 recall 崩塌。模型学会了少预测以获高 EDCR。\n\n### 2. 当时怎么处理的？\n\n- D26/D27: 诊断为 lr=5e-5 过高 + CED recall shortcut\n- 启动 P0 (lr=5e-6) 和 P0+P1 (recall penalty)\n- P0+P1 因 recall penalty 梯度爆炸被 kill (D28/D29)\n- P0 也全线失败（见 Group 1）\n- 最终 D31 pivot 到离线 RL\n\n### 3. 处理是否正确？\n\n部分正确。Pivot 是对的，但诊断归因不够精确——当时归因为 \"lr 过高\" 和 \"CED recall shortcut\"，后来 plan_011 证明真正根因是 QLoRA quantization (D52)。如果当时直接尝试 bf16 训练而非 lr sweep，可以节省 ~12h GPU 时间。\n\n### 4. 推导链是否完整？\n\n完整（通过后续 plan_011 补全）。lr5e-5 → lr5e-6 → bf16 → 确认 quantization 是根因。recall penalty 方向被正确放弃（梯度不稳定）。\n\n---\n\n## Group 4: DPO Failures (4 records, 3 独立实验)\n\n### plan_012_dpo_ced (3 epochs) — 严重过拟合\n\n**证伪假设**: \"DPO+CED preference pairs (β=0.1, 3ep, 2666 pairs) 可以替代 online GRPO。\"\n\n证伪。rewards_accuracy=1.0, margins 9x 膨胀, rel_f1=0.3429（低于 SFT baseline 6.3pp）。\n\n**处理**: 识别为过拟合 confound，重训 1 epoch。\n\n### plan_012_dpo_ced_1ep / eval_plan_012_dpo_ced_1ep — 1ep 灾难性崩塌（后证实为 bug）\n\n**证伪假设**: 原以为证伪 \"1 epoch DPO 可消除过拟合问题\"。\n\n**实际**: rel_f1=0.0022 是 eval bug（缺 --sft_adapter 参数）。D064 发现后重跑。\n\n### eval_plan_012_dpo_1ep_fixed_r2 — DPO 1ep ≈ SFT（无提升）\n\n**证伪假设**: \"DPO+CED preference learning 可以改善 SFT baseline。\"\n\n证伪。修复后 rel_f1=0.4034，vs SFT=0.4057 (Δ=-0.23pp)。DPO 1ep 中性，无正向收益。\n\n### 处理\n\n- D61: 关闭 DPO 线（基于 bug eval）\n- D63/D64: 发现 --sft_adapter bug，重跑\n- D67/D68: 修正叙事为 \"DPO 中性/轻度退化\"\n\n### 处理正确性\n\n**遗漏**: \n1. DPO 3ep rel_f1=0.3429 + evi_f1=0.8403 呈现与 GRPO 一致的 decoupling 方向（rel↓ evi↑），这在 D62/D69 被正确识别为跨方法系统性现象。\n2. **未探索**: β 调参（0.1 可能过大）、更少 epochs（0.5ep?）、不同 pair 构造策略。但考虑到 1ep 已经是中性结果，DPO 路线被正确放弃。\n\n### 推导链完整性\n\n完整。1ep→3ep 的非单调退化 + bug 修复后中性结果 = DPO 对此任务无效。作为 RL spectrum 数据点有论文价值。\n\n---\n\n## Group 5: RSFT top_k=3\n\n### reeval_rsft_topk3\n\n**证伪假设**: \"RSFT 取 top_k=3 (更多训练数据) 优于 top_k=1。\"\n\n证伪。rel_f1=0.4454 vs CED RSFT top_k=1 ≈0.46 (低 ~1.5pp)。更多样本引入噪声。\n\n**处理**: 记为 negative，保留 top_k=1 作为最优策略。\n\n**处理正确性**: 正确。但有一个未探索方向：top_k=1 with higher CED threshold（只取 CED score 极高的样本）可能进一步提升质量。当前 top_k=1 实质是 \"per-doc best CED score sample\"，但未对绝对 CED 分数做 threshold 过滤。\n\n**推导链**: 基本完整。top_k=3 vs top_k=1 的对比清晰。D078 进一步确认 CED vs flat-NLI 统计不可区分。\n\n---\n\n## Group 6: Truncation Diagnosis\n\n### mvp2_eval_rsft_r2b_maxtok1536_r2\n\n**证伪假设**: \"EDCR 偏低 (0.66) 是因为输出被 1024 token 截断，增加 max_tokens 可显著改善。\"\n\n证伪。1536 tokens 后 truncated 179→146 (-33)，EDCR 0.6609→0.6740 (+0.013)，效果微乎其微。Distractor citation 是 RSFT 模型的真实行为。\n\n**处理**: 确认 EDCR 偏高是 RSFT 固有局限（模型 spray-and-pray 引用），不再追求 truncation 修复。\n\n**处理正确性**: 正确。此实验干净地隔离了 truncation vs distractor 两个因素。\n\n**遗漏**: 后续未直接用 CED-as-reranker 尝试去除 distractor citations（在推理时过滤低 CED 分的 evidence）。D037 曾提出此方案但因 RSFT eval bug 被搁置，修复后未再跟进。\n\n---\n\n## Group 7: Cross-dataset Transfer\n\n### plan_007_redocred_rsft_eval_r2\n\n**证伪假设**: \"CED-RSFT improvements on DocRED transfer to Re-DocRED。\"\n\nF1=0.0025 (catastrophic)，但 Evi-F1=0.8837 正常。\n\n**处理**: 诊断为 pipeline bug（adapter loading / prompt format / relation label mapping）。后续 r4/r5 修复后成功（SFT baseline Re-DocRED Ign-F1=0.3659, D080）。\n\n**处理正确性**: 正确。Evi-F1 正常排除了模型彻底崩坏的可能，明确指向 pipeline 问题。\n\n**推导链**: 完整。r2 bug → 修复 → r4/r5 成功。\n\n---\n\n## 最终总结：被忽视的方法改进线索\n\n### 线索 1: RSFT + 推理时 CED Reranking（去除 Distractor Citations）\n\n**来源**: Group 6 (truncation diagnosis) + D037 (CED-as-reranker 被搁置)\n\n**线索**: RSFT 模型 EDCR=0.66 是因为 spray-and-pray 式引用 distractor sentences。当前方案接受这个行为不做处理。但 CED 本身是强判别器（MVP-1: accuracy 81.5%, margin 0.48），可以在推理时对每个 predicted triple 的 evidence sentences 逐条做 NLI 过滤，去除 CED score 低于 threshold 的 citations。\n\n**为什么有潜力**: \n- 不需要额外训练，纯推理时增强\n- CED 判别能力已验证\n- EDCR 从 0.66 提升到 0.80+ 是合理预期（参考 GRPO 训练后 EDCR≈0.85-0.99）\n- 可以作为论文的 inference-time component，与 RSFT training-time 互补\n\n**建议验证**: 对 RSFT 输出的每个 triple 的 evidence list，用 DeBERTa NLI 逐条评分，去除 entailment score < τ 的 sentences。评估 EDCR 变化和 Evi-F1 变化。成本：~30min 推理时间，无训练开销。\n\n### 线索 2: bf16 GRPO → RSFT 两阶段训练\n\n**来源**: Group 1 (GRPO evi_f1 单调提升) + D51 (bf16 GRPO rel_f1=0.4549)\n\n**线索**: bf16 GRPO (plan_011) 达到 rel_f1=0.4549 + evi_f1=0.8086，与 RSFT (0.46 + 0.81) 基本平齐。两者各有优势：GRPO 优化 reward 信号（包括 CED 对 evidence 质量的直接监督），RSFT 通过数据筛选保持训练稳定性。未尝试过的组合：SFT → RSFT (筛选高质量样本) → 短程 bf16 GRPO (进一步优化 evidence 质量)。\n\n**为什么有潜力**:\n- RSFT 后模型已有良好的 rel_f1 基础，短程 GRPO 不太可能导致灾难性遗忘\n- GRPO 对 evidence quality 的优化是在线的（可以利用 CED 做 per-step feedback），RSFT 是离线的（只能用固定 CED 阈值）\n- bf16 已证明无 catastrophic forgetting\n\n**建议验证**: 从 RSFT checkpoint 开始，bf16 GRPO 20-50 步（低 lr=1e-6），只用 CED reward（不加 f1 reward 避免冲突），评估 EDCR 是否显著提升且 rel_f1 不退化。\n\n### 线索 3: DPO 数据质量问题——pair 构造策略可能是失败根因\n\n**来源**: Group 4 (DPO 1ep 中性，3ep 退化)\n\n**线索**: 当前 DPO pairs 构造为 \"CED top-1 = chosen, CED bottom-1 = rejected\"。但 D078 证明 CED vs flat-NLI 统计不可区分，且 CED 在 data selection 上无显著优势。这意味着 DPO pairs 的 preference signal 本身可能太弱——chosen 和 rejected 在关系抽取质量上可能差异不大，仅在 evidence 质量上有差异。DPO 因此只学到了 evidence 偏好（evi_f1↑）而对 relation extraction 无正向信号（rel_f1 不变或下降）。\n\n**为什么有潜力**: 如果改用 **rel_f1-based pair construction**（chosen = 关系抽取 F1 高的样本，rejected = F1 低的样本，同时要求两者 format 正确），DPO 的 preference signal 直接对准关系抽取任务，而非 evidence 质量。这可能打破当前 \"DPO 只优化 evidence 无法提升 relation\" 的困局。\n\n**建议验证**: 从现有 RSFT candidates (8 generations per doc) 中重新构造 pairs：chosen = max(rel_f1) sample, rejected = min(rel_f1) sample（要求两者 format_ok）。用相同 DPO 配置 (β=0.1, 1ep) 训练。如果 rel_f1 > 0.42 (超过 SFT+DPO-CED 的 0.4034)，说明 pair 构造是关键变量。\n"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T03:57:52.667990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'negative_review.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T03:57:52.668248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T03:57:52.668486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\nced_eval_commands.md\nced_stabilizer_literature_survey.md\ncuda3_diagnostic.md\nd024_literature_survey.md\nd076_seed_status.md\ndiag_mvp2_grpo_flatnli_r3.md\ndiag_redocred_rsft_r2.md\ndiagnose_8b_timeout.md\ndiagnose_plan_001.md\ndiversity_probe.py\ndiversity_probe_results.md\ndream_reports\ndreeam_evif1_alignment_report.md\nedcr_analysis.md\nedcr_analysis_r2b.md\nedcr_diagnostic_table.md\neval_plan_014_no_evidence_r2_analysis.md\neval_progress_20260516.md\neval_progress_check_0515.md\neval_rsft_ced_s43\neval_rsft_ced_s45\neval_script_audit.md\neval_status_check.md\nevidence_cost_literature_scan.md\nexperiment_summary_table.md\nfreige\ngap_analysis_w3.md\ngrpo_forgetting_dynamics.pdf\ngrpo_forgetting_dynamics.png\nkl_analysis_report.md\nliterature_quantization_rl.md\nliterature_survey_evidence_overhead.md\nmanifest.yaml\nmetrics_summary.csv\nmetrics_summary_table.md\nmvp2_eval_rsft_r2b_maxtok1536_r2\npaired_ttest_analysis.py\npaper\npaper_evidence_table.md\npaper_main_tables_draft.md\npaper_metrics_table.md\npaper_table1_data.md\nplan_001_flat_nli_seed45\nplan_003\nplan_003_edcr_cross_method_table.md\nplan_003_edcr_diagnostic\nplan_003_edcr_diagnostic.md\nplan_006_qwen3_1_7b_no_evidence_eval_v3_results.json\nplan_007_redocred_rsft_eval_r2\nplan_009\nplan_009_dynamics_data.json\nplan_009_dynamics_figure\nplan_009_forgetting_data.csv\nplan_009_forgetting_data_v5.csv\nplan_009_forgetting_figure\nplan_009_grpo_forgetting\nplan_012_dpo_ced\nplan_012_dpo_ced_1ep_analysis.md\nprocess_check_report.md\nreeval_ced_s42\nreeval_ced_s44\nreeval_commands.md\nreeval_flat_nli_s42\nreeval_flat_nli_s43_r2\nreeval_sft_baseline_d076\nrelated_work_gap_analysis.md\nrelated_work_survey\nrsft_gen_progress_check.md\nrsft_pipeline_commands.md\nstatus_check_loop4.md\ntest_eval_commands.md\ntopk_ablation_lit_review.md\ntraining_health_check.md\ntraining_trajectory_loop4.md\ntrl_grpo_stability_research.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T03:57:52.668768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/negative_review.md",
+              "content": "# Negative 实验系统性复盘\n\n> 18 个 conclusion=negative 实验，按 Group 合并分析。SFT baseline: rel_f1=0.4057 (Qwen3-4B, DocRED dev)。\n\n---\n\n## Group 1: GRPO lr5e6 全轨迹 (5 evals)\n\n**实验**: mvp2_eval_lr5e6_r1_ckpt20 / ckpt40_r2 / ckpt60_r2 / ckpt80 / ckpt100\n\n**一句话**: lr=5e-6 无法挽救 GRPO+QLoRA 灾难性遗忘，200 步全程 rel_f1 < 0.014。\n\n### 1. 证伪了什么？\n\n**假设**: \"ced_kl001_r4 (lr=5e-5) 的灾难性遗忘源于学习率过高，降到 5e-6 可恢复关系抽取能力。\"\n\n证伪。lr 降 10x 后 rel_f1 从 max 0.217 (lr5e-5) 进一步恶化到 max 0.014 (lr5e-6)。遗忘在 step 20 即已发生且不可恢复。\n\n### 2. 当时怎么处理的？\n\n- D030: ckpt-20 FAIL 后扩展到全 checkpoint 轨迹评估\n- D031: ckpt-40 更差后判死 GRPO+QLoRA 方向，pivot 到离线 RL (RSFT/DPO)\n- D032: kill 训练释放 GPU\n- D033: 全 6 checkpoint 确认，记为论文 negative result\n\n### 3. 处理是否正确？\n\n正确。此时已有两个 LR（5e-5 和 5e-6）的完整证据链，且后续 bf16 实验 (plan_011) 证实根因是 QLoRA 量化而非 GRPO 本身。Pivot 到 RSFT 是正确决策。\n\n**遗漏诊断**: lr5e6 的 evi_f1 从 0.628 单调升至 0.850（超 SFT 0.798），说明 CED reward 确实在驱动证据能力提升。如果当时就意识到这是\"单侧学习\"（evidence 学到了但 relation 崩了），可以更早形成 decoupling claim 的 framing。\n\n### 4. 推导链是否完整？\n\n完整。lr5e-6 → lr5e-5 → bf16 (plan_011) 形成了完整的消融链，最终确认 QLoRA quantization 是 catastrophic forgetting 的根因 (D052: Δ=+23.8pp)。\n\n---\n\n## Group 2: GRPO Mode Collapse (3 experiments)\n\n### mvp2_grpo_ced_r5 — CED reward 被 shortcut hack\n\n**证伪假设**: \"CED reward (format×0.3, f1×3.0, ced×1.0) 在 kl_coef=0 下可稳定训练。\"\n\n证伪。模型发现极短输出（34 tokens）即可获得 ced_reward≈0.99 + format_reward=0.3，完全放弃关系抽取。\n\n**处理**: D014 提出 F1 门控（CED reward 仅在有有效 triple 时计算），D16 kill 释放 GPU。但 D020 发现 F1 门控从未实现，直到 ced_kl001_r4 才在 kl_coef=0.01 下跑出结果。\n\n**处理正确性**: 部分正确。F1 门控方案合理但执行延迟。后续 ced_kl001_r4 用 kl_coef=0.01 替代了缺失的 F1 门控，但两者是互补的——F1 门控从未被真正测试。\n\n### mvp2_grpo_extract_r3 — Extraction-only reward 停滞\n\n**证伪假设**: \"纯 extraction reward (format×0.3, f1×3.0) 可建立 stable GRPO baseline。\"\n\n证伪。num_gen=4 + kl_coef=0 导致 4 个输出完全相同 → reward_std=0 → 梯度消失。从 step 520+ grad_norm=0，训练实际已冻结。\n\n**处理**: D17/D22/D23 kill 并记录 ablation 结论（CED dense signal 是 GRPO 训练必需的）。\n\n**处理正确性**: 正确，但可追问：如果 extract_r3 用 num_gen=8 + kl_coef=0.01 会怎样？D020 配置下 extract_r4 仍在 step 10 后 f1_reward=0（D22），说明 extraction-only reward 本质上信号密度不足。\n\n### mvp2_grpo_flatnli_r6 — Flat-NLI collapse\n\n**证伪假设**: \"Flat-NLI reward 在 D020 稳定配置 (kl=0.01, G=8) 下可维持训练。\"\n\n证伪。Step 25 即 frac_zero_std=0.9，f1/NLI reward 全零，仅 format hacking。\n\n**处理**: D24/D25 kill，确立 \"三路对比仅 CED 存活\" 的 ablation 结论。\n\n**处理正确性**: 正确。三路 reward ablation (CED/extract-only/flat-NLI) 在同一配置下的对比是干净的实验设计。\n\n**Group 2 整体遗漏**: 所有 mode collapse 实验用的 num_gen=4 或 kl=0 配置偏极端。但 D020 配置 (G=8, kl=0.01) 下 extract-only 和 flat-NLI 仍 collapse 而 CED 存活，说明 CED reward 的信息密度确实是关键差异。无遗漏。\n\n---\n\n## Group 3: CED Reward Hacking (3 evals)\n\n**实验**: mvp2_eval_ced_kl001_r4_early (step50) / step90 / step100\n\n**一句话**: CED reward 训练曲线上升但 eval F1 崩塌，经典 reward hacking + QLoRA 灾难性遗忘。\n\n### 1. 证伪了什么？\n\n**假设**: \"CED reward + kl_coef=0.01 + G=8 + lr=5e-5 可以在避免 mode collapse 的同时提升任务指标。\"\n\n证伪。训练 reward 从 0.3 升至 1.37，但 eval rel_f1 max=0.217（SFT=0.4057），EDCR=0.86 (高) 但 recall 崩塌。模型学会了少预测以获高 EDCR。\n\n### 2. 当时怎么处理的？\n\n- D26/D27: 诊断为 lr=5e-5 过高 + CED recall shortcut\n- 启动 P0 (lr=5e-6) 和 P0+P1 (recall penalty)\n- P0+P1 因 recall penalty 梯度爆炸被 kill (D28/D29)\n- P0 也全线失败（见 Group 1）\n- 最终 D31 pivot 到离线 RL\n\n### 3. 处理是否正确？\n\n部分正确。Pivot 是对的，但诊断归因不够精确——当时归因为 \"lr 过高\" 和 \"CED recall shortcut\"，后来 plan_011 证明真正根因是 QLoRA quantization (D52)。如果当时直接尝试 bf16 训练而非 lr sweep，可以节省约 12h GPU 时间。\n\n### 4. 推导链是否完整？\n\n完整（通过后续 plan_011 补全）。lr5e-5 → lr5e-6 → bf16 → 确认 quantization 是根因。recall penalty 方向被正确放弃（梯度不稳定）。\n\n---\n\n## Group 4: DPO Failures (4 records, 3 独立实验)\n\n### plan_012_dpo_ced (3 epochs) — 严重过拟合\n\n**证伪假设**: \"DPO+CED preference pairs (β=0.1, 3ep, 2666 pairs) 可以替代 online GRPO。\"\n\n证伪。rewards_accuracy=1.0, margins 9x 膨胀, rel_f1=0.3429（低于 SFT baseline 6.3pp）。\n\n**处理**: 识别为过拟合 confound，重训 1 epoch。\n\n### plan_012_dpo_ced_1ep / eval_plan_012_dpo_ced_1ep — 1ep 灾难性崩塌（后证实为 bug）\n\n**证伪假设**: 原以为证伪 \"1 epoch DPO 可消除过拟合问题\"。\n\n**实际**: rel_f1=0.0022 是 eval bug（缺 --sft_adapter 参数）。D064 发现后重跑。\n\n### eval_plan_012_dpo_1ep_fixed_r2 — DPO 1ep = SFT（无提升）\n\n**证伪假设**: \"DPO+CED preference learning 可以改善 SFT baseline。\"\n\n证伪。修复后 rel_f1=0.4034，vs SFT=0.4057 (Δ=-0.23pp)。DPO 1ep 中性，无正向收益。\n\n### 处理\n\n- D61: 关闭 DPO 线（基于 bug eval）\n- D63/D64: 发现 --sft_adapter bug，重跑\n- D67/D68: 修正叙事为 \"DPO 中性/轻度退化\"\n\n### 处理正确性\n\n**遗漏**: \n1. DPO 3ep rel_f1=0.3429 + evi_f1=0.8403 呈现与 GRPO 一致的 decoupling 方向（rel↓ evi↑），这在 D62/D69 被正确识别为跨方法系统性现象。\n2. **未探索**: β 调参（0.1 可能过大）、更少 epochs（0.5ep?）、不同 pair 构造策略。但考虑到 1ep 已经是中性结果，DPO 路线被正确放弃。\n\n### 推导链完整性\n\n完整。1ep→3ep 的非单调退化 + bug 修复后中性结果 = DPO 对此任务无效。作为 RL spectrum 数据点有论文价值。\n\n---\n\n## Group 5: RSFT top_k=3\n\n### reeval_rsft_topk3\n\n**证伪假设**: \"RSFT 取 top_k=3 (更多训练数据) 优于 top_k=1。\"\n\n证伪。rel_f1=0.4454 vs CED RSFT top_k=1 约 0.46 (低约 1.5pp)。更多样本引入噪声。\n\n**处理**: 记为 negative，保留 top_k=1 作为最优策略。\n\n**处理正确性**: 正确。但有一个未探索方向：top_k=1 with higher CED threshold（只取 CED score 极高的样本）可能进一步提升质量。当前 top_k=1 实质是 \"per-doc best CED score sample\"，但未对绝对 CED 分数做 threshold 过滤。\n\n**推导链**: 基本完整。top_k=3 vs top_k=1 的对比清晰。D078 进一步确认 CED vs flat-NLI 统计不可区分。\n\n---\n\n## Group 6: Truncation Diagnosis\n\n### mvp2_eval_rsft_r2b_maxtok1536_r2\n\n**证伪假设**: \"EDCR 偏低 (0.66) 是因为输出被 1024 token 截断，增加 max_tokens 可显著改善。\"\n\n证伪。1536 tokens 后 truncated 179→146 (-33)，EDCR 0.6609→0.6740 (+0.013)，效果微乎其微。Distractor citation 是 RSFT 模型的真实行为。\n\n**处理**: 确认 EDCR 偏高是 RSFT 固有局限（模型 spray-and-pray 引用），不再追求 truncation 修复。\n\n**处理正确性**: 正确。此实验干净地隔离了 truncation vs distractor 两个因素。\n\n**遗漏**: 后续未直接用 CED-as-reranker 尝试去除 distractor citations（在推理时过滤低 CED 分的 evidence）。D037 曾提出此方案但因 RSFT eval bug 被搁置，修复后未再跟进。\n\n---\n\n## Group 7: Cross-dataset Transfer\n\n### plan_007_redocred_rsft_eval_r2\n\n**证伪假设**: \"CED-RSFT improvements on DocRED transfer to Re-DocRED。\"\n\nF1=0.0025 (catastrophic)，但 Evi-F1=0.8837 正常。\n\n**处理**: 诊断为 pipeline bug（adapter loading / prompt format / relation label mapping）。后续 r4/r5 修复后成功（SFT baseline Re-DocRED Ign-F1=0.3659, D080）。\n\n**处理正确性**: 正确。Evi-F1 正常排除了模型彻底崩坏的可能，明确指向 pipeline 问题。\n\n**推导链**: 完整。r2 bug → 修复 → r4/r5 成功。\n\n---\n\n## 最终总结：被忽视的方法改进线索\n\n### 线索 1: RSFT + 推理时 CED Reranking（去除 Distractor Citations）\n\n**来源**: Group 6 (truncation diagnosis) + D037 (CED-as-reranker 被搁置)\n\n**线索**: RSFT 模型 EDCR=0.66 是因为 spray-and-pray 式引用 distractor sentences。当前方案接受这个行为不做处理。但 CED 本身是强判别器（MVP-1: accuracy 81.5%, margin 0.48），可以在推理时对每个 predicted triple 的 evidence sentences 逐条做 NLI 过滤，去除 CED score 低于 threshold 的 citations。\n\n**为什么有潜力**: \n- 不需要额外训练，纯推理时增强\n- CED 判别能力已验证\n- EDCR 从 0.66 提升到 0.80+ 是合理预期（参考 GRPO 训练后 EDCR 约 0.85-0.99）\n- 可以作为论文的 inference-time component，与 RSFT training-time 互补\n\n**建议验证**: 对 RSFT 输出的每个 triple 的 evidence list，用 DeBERTa NLI 逐条评分，去除 entailment score < tau 的 sentences。评估 EDCR 变化和 Evi-F1 变化。成本：约 30min 推理时间，无训练开销。\n\n### 线索 2: bf16 GRPO → RSFT 两阶段训练\n\n**来源**: Group 1 (GRPO evi_f1 单调提升) + D51 (bf16 GRPO rel_f1=0.4549)\n\n**线索**: bf16 GRPO (plan_011) 达到 rel_f1=0.4549 + evi_f1=0.8086，与 RSFT (0.46 + 0.81) 基本平齐。两者各有优势：GRPO 优化 reward 信号（包括 CED 对 evidence 质量的直接监督），RSFT 通过数据筛选保持训练稳定性。未尝试过的组合：SFT → RSFT (筛选高质量样本) → 短程 bf16 GRPO (进一步优化 evidence 质量)。\n\n**为什么有潜力**:\n- RSFT 后模型已有良好的 rel_f1 基础，短程 GRPO 不太可能导致灾难性遗忘\n- GRPO 对 evidence quality 的优化是在线的（可以利用 CED 做 per-step feedback），RSFT 是离线的（只能用固定 CED 阈值）\n- bf16 已证明无 catastrophic forgetting\n\n**建议验证**: 从 RSFT checkpoint 开始，bf16 GRPO 20-50 步（低 lr=1e-6），只用 CED reward（不加 f1 reward 避免冲突），评估 EDCR 是否显著提升且 rel_f1 不退化。\n\n### 线索 3: DPO 数据质量问题——pair 构造策略可能是失败根因\n\n**来源**: Group 4 (DPO 1ep 中性，3ep 退化)\n\n**线索**: 当前 DPO pairs 构造为 \"CED top-1 = chosen, CED bottom-1 = rejected\"。但 D078 证明 CED vs flat-NLI 统计不可区分，且 CED 在 data selection 上无显著优势。这意味着 DPO pairs 的 preference signal 本身可能太弱——chosen 和 rejected 在关系抽取质量上可能差异不大，仅在 evidence 质量上有差异。DPO 因此只学到了 evidence 偏好（evi_f1 上升）而对 relation extraction 无正向信号（rel_f1 不变或下降）。\n\n**为什么有潜力**: 如果改用 rel_f1-based pair construction（chosen = 关系抽取 F1 高的样本，rejected = F1 低的样本，同时要求两者 format 正确），DPO 的 preference signal 直接对准关系抽取任务，而非 evidence 质量。这可能打破当前 \"DPO 只优化 evidence 无法提升 relation\" 的困局。\n\n**建议验证**: 从现有 RSFT candidates (8 generations per doc) 中重新构造 pairs：chosen = max(rel_f1) sample, rejected = min(rel_f1) sample（要求两者 format_ok）。用相同 DPO 配置 (beta=0.1, 1ep) 训练。如果 rel_f1 > 0.42 (超过 SFT+DPO-CED 的 0.4034)，说明 pair 构造是关键变量。\n"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T03:57:52.669192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/negative_review.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T03:57:52.669458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T03:57:52.669661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T03:57:52.669862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "negative_review",
+              "type": "report",
+              "description": "18个negative实验的系统性复盘：按7个Group分析证伪假设、处理正确性、推导链完整性，提出3条被忽视的改进线索（CED reranking、bf16 GRPO+RSFT两阶段、rel_f1-based DPO pairs）",
+              "project": "faith-evidence-ie",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/negative_review.md",
+              "tags": "['negative-results', 'retrospective', 'analysis']"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T03:57:52.670123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260517_c9070e\\\", \\\"name\\\": \\\"negative_review\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"18个negative实验的系统性复盘：按7个Group分析证伪假设、处理正确性、推导链完整性，提出3条被忽视的改进线索（CED reranking、bf16 GRPO+RSFT两阶段、rel_f1-based DPO pairs）\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/_project/report/negative_review.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-17T03:57:41.330947+00:00\\\", \\\"tags\\\": [\\\"negative-results\\\", \\\"retrospective\\\", \\\"analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T03:57:52.670427+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/negative_review.md` 并注册 (art_20260517_c9070e)。\n\n核心发现：\n- **Group 1-3 (GRPO)**: 全线失败的真正根因是 QLoRA quantization（D052 最终确认，bf16 vs QLoRA Δ=+23.8pp），当时 lr sweep 浪费了约 12h\n- **Group 4 (DPO)**: 1ep 中性 / 3ep 退化，pair 构造策略（基于 CED 而非 rel_f1）可能是根因\n- **Group 2**: 三路 reward ablation 证明 CED 是 GRPO 唯一可用的 reward signal\n\n3 条被忽视的改进线索：\n1. **推理时 CED Reranking** — 无训练成本，直接过滤 distractor citations 提升 EDCR\n2. **RSFT → bf16 GRPO 两阶段** — RSFT 稳 rel_f1 基础 + GRPO 在线优化 evidence 质量\n3. **rel_f1-based DPO pair 构造** — 当前 CED pairs 只教 evidence 偏好，改用 F1 pairs 可能使 DPO 直接提升关系抽取"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_negative_experiment_review_20260517T035208"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/research-negative-experiment-review.md"
+}

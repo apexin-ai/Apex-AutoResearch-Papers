@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "299522b37e5e128275a9",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_9_1778892316.md",
+  "task_key": "loop_9_1778892316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778892316.md",
+    "occurrence": 1,
+    "bytes": 1430,
+    "sha256": "ec1db9de15d85a235989211b4a630edd8b6f907c6298a163b8bdf1f5162db676"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_messages\nupdated: '2026-05-16T00:44:52+00:00'\n---\n\n## 当前状态快照\n\n### 实验进展\n我需要先同步 registry 和项目状态才能给出准确的 handoff。但基于上次 session 的记忆：\n\n**项目：faith-evidence-ie**\n- 这是一个关于 faithfulness evidence 的信息抽取研究项目\n- 需要查 registry 确认当前实验状态\n\n### 待执行的 Session Start\n新 session 启动时必须执行：\n1. `read_registry` — 了解所有实验当前状态\n2. `reconcile_crons` — 同步 cron 监控\n3. 读 `report.md` — 上次 handover 状态\n4. 读 `ROADMAP.md` — 研究方向和短期任务\n5. 向 Director 汇报当前状态\n\n### Memory 中的关键约束\n- GPU 提交前必须 nvidia-smi 验证，不信 Worker 声称\n- batch_eval --no-quantize + batch_size 16 在 32GB GPU 上 OOM，用 batch_size 4\n- SFT base 模型的 eval 必须带 --sft_adapter，否则 rel_f1≈0\n- CED/flat-NLI RSFT 用不同 batch config，配对 t-test seeds 不能混模板\n\n### 上一条消息的上下文\n系统提醒我上一条回复没有用 `<handoff>` 标签包裹。这是第 1/2 次提醒。当前这条回复就是补写的 handoff。\n\n### 给下一个 session 的建议\n- 立即执行 session-start 五步初始化\n- 检查是否有未处理的 cron/worker 回调\n- 检查 GPU 利用率，确保分配的 GPU 都在跑\n- Worker 池 < 2 = 失职，立即评估是否需要 spawn 新 Worker\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778892316.md"
+}

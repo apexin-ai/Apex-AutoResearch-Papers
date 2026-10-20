@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e87d36c195bdea54d110",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check plan014 noevi completion",
+  "task_key": "worker_ops_check_plan014_noevi_completion_20260516T162119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_plan014_noevi_completion_20260516T162119_result.json",
+    "occurrence": 1,
+    "bytes": 458,
+    "sha256": "ffa9e1b24744031fdd40f097c89d13d188f2cddd10627387627549352962c140"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 已更新为 DONE，cron 已删除。\n\n**结果摘要：**\n\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | **0.4721** |\n| ign_precision / recall | 0.4654 / 0.4791 |\n| format_compliance | 99.3% |\n| n_truncated | 307/985 (31.2%) |\n| inference_time | 6904s (~115min) |\n\n**4B Evidence Tax：-7.5pp ign_f1**（with-evidence 0.3974 vs no-evidence 0.4721）。要求模型输出 evidence 使关系抽取性能显著下降。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-plan014-noevi-completion.md"
+}

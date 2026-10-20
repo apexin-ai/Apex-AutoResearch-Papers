@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9860a18cea70781de90d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix mvp2 eval lr5e6 r1 ckpt60 r2",
+  "task_key": "worker_fix_mvp2_eval_lr5e6_r1_ckpt60_r2_20260514T222815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_mvp2_eval_lr5e6_r1_ckpt60_r2_20260514T222815_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "8a480d8ae3fcf095b4cdf1b97ea990d130ca805dccf6221f6826a7378468f4f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 检查项 | 结果 |\n|--------|------|\n| checkpoint-60 | ✅ 存在，adapter_model.safetensors 252MB |\n| cuda:1 | ✅ 空闲，0MiB / 32607MiB，无进程 |\n| 语法检查 | ✅ `bash -n` 通过 |\n\n**脚本路径**: `/root/autodl-tmp/scripts/eval_lr5e6_ckpt60.sh`\n\n相比模板的改动：\n- `--checkpoints 20` → `60`\n- `--output_dir` → `/root/autodl-tmp/eval_results/lr5e6_r1_ckpt60`\n- 新增 `export PYTHONUNBUFFERED=1`\n- `cd /root/autodl-tmp` 保持不变（修复原来 cd 到 freige 内部的问题）\n\n可以提交运行了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-mvp2-eval-lr5e6-r1-ckpt60-r2.md"
+}

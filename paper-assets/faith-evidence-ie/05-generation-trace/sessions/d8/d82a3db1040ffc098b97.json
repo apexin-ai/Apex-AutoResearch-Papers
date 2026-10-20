@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d82a3db1040ffc098b97",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval cascade cuda0 4b s43 noevi",
+  "task_key": "worker_eval_cascade-cuda0-4b-s43-noevi_20260523T041122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cascade-cuda0-4b-s43-noevi_20260523T041122_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "5a7ba9118e44dd6a80b3f4d37f1fa02e1bd4951b4e1fdc15157cbacd8eb065de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "总结：\n\n**1. 8B RSFT s43 no-evi test eval — 已完成**\n- **ign_f1 = 0.3224**\n- precision = 0.5017, recall = 0.2375\n- 500 docs, 43 truncated, format_ok_rate = 0.998\n- Adapter: `/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43`\n\n**2. 4B RSFT s43 no-evi test eval — 已提交**\n- PID: **224409**, cuda:0\n- Adapter: `/root/autodl-tmp/rsft_output_ced_s43`\n- Base: `/root/autodl-tmp/models/Qwen3-4B`, SFT: `/root/autodl-tmp/sft_output`\n- Registry: RUNNING\n- 注意：首次提交因缺 `--no-quantize` 失败（bitsandbytes 未安装），已修复重提；项目目录也从错误的 `faith-evidence-ie` 改为 `freige`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cascade-cuda0-4b-s43-noevi.md"
+}

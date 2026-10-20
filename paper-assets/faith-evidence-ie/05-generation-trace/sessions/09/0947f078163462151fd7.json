@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0947f078163462151fd7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check sft predictions and edcr",
+  "task_key": "worker_ops_check_sft_predictions_and_edcr_20260517T184013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_sft_predictions_and_edcr_20260517T184013_result.json",
+    "occurrence": 1,
+    "bytes": 1308,
+    "sha256": "1902362c2c96ce408d92e11c551027811ceef1346aa6df4faea5aab6af70ead4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 1.7B SFT dev — **Y，数据存在**\n路径: `/root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval/metrics.json`\n\n| 指标 | 值 |\n|---|---|\n| evi_f1 (TP-only) | 83.16 |\n| evi_f1_joint (DREEAM) | 39.58 |\n| EDCR | 67.04 |\n| RE F1 | 49.45 |\n| RE ign_F1 | 47.86 |\n\n### 2. 8B SFT dev — **Y，数据存在**\n路径: `/root/autodl-tmp/eval_results/qwen3_8b_sft_eval/metrics.json`\n\n| 指标 | 值 |\n|---|---|\n| evi_f1 (TP-only) | 81.88 |\n| evi_f1_joint (DREEAM) | 41.39 |\n| EDCR | 65.10 |\n| RE F1 | 52.62 |\n| RE ign_F1 | 50.51 |\n\n### 3. 1.7B RSFT (seed 42) dev — **Y，数据存在**\n路径: `/root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_eval_r2/metrics.json`\n\n| 指标 | 值 |\n|---|---|\n| evi_f1 (TP-only) | 83.09 |\n| evi_f1_joint (DREEAM) | 42.23 |\n| EDCR | 62.97 |\n| RE F1 | 52.19 |\n| RE ign_F1 | 50.50 |\n\n注: Registry 查询 `plan_006_qwen3_1_7b_rsft_eval_r2` 返回 0 条结果（可能 exp_id 不完全匹配），但磁盘上数据完整。\n\n### 4. 额外：No-evidence SFT baseline\n也已存在，但 evidence 指标均为 0（`no_evidence=true`，符合预期）：\n- 1.7B no-evidence (v3): RE F1 = 41.03\n- 8B no-evidence (v2): RE F1 = 52.83\n\n**结论：Table 3 所需的 3 项数据全部已存在，无需重跑。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-sft-predictions-and-edcr.md"
+}

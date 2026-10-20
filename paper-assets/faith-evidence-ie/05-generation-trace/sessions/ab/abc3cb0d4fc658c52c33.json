@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abc3cb0d4fc658c52c33",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose harvest 8b eval and rsft s44",
+  "task_key": "worker_diagnose_harvest_8b_eval_and_rsft_s44_20260518T234226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_harvest_8b_eval_and_rsft_s44_20260518T234226_result.json",
+    "occurrence": 1,
+    "bytes": 1011,
+    "sha256": "57d8e4d83583b248bcccd26e305c16e6c18ebffc8b80d61731cef04d07b9d194"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n### 实验 1：plan019_8b_sft_s44_eval — 完成\n\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | **0.4681** |\n| f1 | 0.4841 |\n| evi_f1_joint (DREEAM) | 0.3839 |\n| evi_f1 (TP) | 0.8361 |\n| edcr | 0.6697 |\n| format | 985/985 (100%) |\n| truncated | 306/985 |\n\nvs s42 canonical ign_f1=0.5051，s44 低了 **3.7pp**。8B SFT seed 方差较大。\n\n### 实验 2：plan019_8b_rsft_s44 — 训练完成\n\n| 指标 | 值 |\n|------|-----|\n| train_loss | 0.4725 |\n| total_steps | 1134 (3 epochs) |\n| mean_token_accuracy | 0.8734 |\n| checkpoint | `/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44/` |\n\n等待 eval 才能得到 ign_f1。\n\n### GPU 状态\n\n| GPU | 状态 |\n|-----|------|\n| cuda:0 | 占用 10.4GB (d111_4b_sft_s42_reeval, PID 579965) |\n| cuda:1 | **空闲** |\n| cuda:2 | **空闲** |\n| cuda:3 | 占用 20.4GB (d112_rsft_s44_generate, PID 584466) |\n\ncuda:1 和 cuda:2 确认空闲，可用于下一步任务（如 8B RSFT s44 eval）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-harvest-8b-eval-and-rsft-s44.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "eec3a27a4dbb8a0ad219",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "audit variance data source",
+  "task_key": "worker_audit_variance-data-source_20260524T234130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_variance-data-source_20260524T234130.log",
+    "occurrence": 1,
+    "bytes": 922430,
+    "sha256": "c2d309fd4d318286a9991d5820029a15a26bbe7f2397597dbf496d0f3fc9de94"
+  },
+  "statistics": {
+    "messages": 85,
+    "user_turns": 0,
+    "tool_calls": 27,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 27,
+      "tool_result": 27,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 85,
+      "chunks": [
+        {
+          "path": "eec3a27a4dbb8a0ad219-part-0001.json",
+          "message_count": 23
+        },
+        {
+          "path": "eec3a27a4dbb8a0ad219-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "eec3a27a4dbb8a0ad219-part-0003.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-variance-data-source.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c2672e26e65bac4bf60",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778908578.md",
+  "task_key": "loop_12_1778908578",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778908578.md",
+    "occurrence": 1,
+    "bytes": 4723,
+    "sha256": "bc89f3258dd9085cea7be76c6227b0a968a3a58a003ebbc59f3527b73ead2c11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T04:20:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`gpu_ids=[0,1,2,3]`，服务器 `rtx5090-4x`（4× RTX 5090 32GB）。不得用白名单外 GPU\n- 所有命令 cwd 必须 `cd /root/autodl-tmp`，**不是** `cd /root/autodl-tmp/freige`（多次踩坑）\n- CED s42 checkpoint 路径是 `rsft_output/`（不是 `rsft_output_ced_s42/`，不存在）；s44 是 `rsft_output_s44/`（无 `_ced` 前缀）。详见 memory.md 路径映射表\n- flat-NLI 最终 checkpoint 是 507（非 510）\n- `rsft_output_r2b/` 是旧实验（lora_alpha=32/160步），NOT CED s42\n- Eval 统一协议（D076）：batch_size=4, max_new_tokens=1024, --no-quantize, --sft_adapter, 正确 seed。提交 eval 必须用此协议，不得沿用旧参数\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`rtx5090-4x`（主），`bjb2-12179`（备，account=root）\n- 工作目录：`/root/autodl-tmp`（代码在 `/root/autodl-tmp/freige`）\n- Python：`/root/miniconda3/bin/python`，环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：`/root/autodl-tmp/.hf_cache`，离线模式（HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1）\n- 脚本：`/root/autodl-tmp/scripts/seed_comparison.py` + `artifacts/paired_ttest_analysis.py`（增强版 per-doc bootstrap）\n- 活跃进程（4 个 GPU 全满）：\n  - cuda:0 — `reeval_ced_s44` PID 297190（cron 监控中）\n  - cuda:1 — `eval_rsft_ced_s43` PID 286587（cron 监控中）\n  - cuda:2 — `eval_rsft_ced_s45` PID 283838（cron 监控中）\n  - cuda:3 — `reeval_flat_nli_s43_r2` PID 291003（cron 监控中）\n\n### 3. 📊 当前状态\n**刚完成的事**：D076 协议审计发现 4/8 个 eval 数据点 batch_size/max_new_tokens/seed 不一致，已提交统一协议重跑。eval_plan_014_no_evidence_r2 (success, rel_f1=0.4893) 和 CED reranker PoC 已完成。\n\n**正在运行**（全部是 D076 统一协议 re-eval，paired t-test 关键路径）：\n| exp_id | GPU | 内容 |\n|--------|-----|------|\n| reeval_ced_s44 | cuda:0 | CED RSFT s44 重跑 |\n| eval_rsft_ced_s43 | cuda:1 | CED RSFT s43 全量 eval（第 4 个 CED seed） |\n| eval_rsft_ced_s45 | cuda:2 | CED RSFT s45 全量 eval |\n| reeval_flat_nli_s43_r2 | cuda:3 | flat-NLI RSFT s43 重跑（r2 修复 batch_size） |\n\n**PREPARING（等 GPU 释放）**：\n- `reeval_flat_nli_s42` — flat-NLI s42 统一协议重跑\n- `reeval_ced_s42` — CED s42 统一协议重跑\n- `seed_comparison_prep` — 收齐所有 seed 后跑 paired t-test\n\n**活跃 Worker（2）**：\n1. `worker_research_evidence-cost-literature` — 文献调研（evidence cost 方向）\n2. `worker_analysis_eval_plan_014_no_evidence_r2` — 分析 no-evidence ablation 结果\n\n**等待**：4 个 cron 回调（实验完成时自动触发）；2 个 Worker 完成回调。\n\n### 4. 📋 待办（条件触发式）\n- 任一当前 RUNNING eval 完成 → 立即提交 PREPARING 队列中的下一个（reeval_flat_nli_s42 或 reeval_ced_s42），保持 4 GPU 满载\n- 所有 8 个统一协议 eval 完成 → 跑 `seed_comparison.py` + `paired_ttest_analysis.py` 做 CED vs flat-NLI paired t-test → 汇报 Director C3 最终结论\n- paired t-test 完成 → plan_003_edcr_diagnostic 提交（Claim 4 双层诊断）\n- plan_003 完成 → plan_002 test set eval（最终数字，D057 失败过需重试）\n- Worker evidence-cost-literature 完成 → 整合到 literature_map.yaml，更新 related work gap 分析\n- Worker eval_plan_014 分析完成 → 更新 registry metrics，确认 C1 evidence tax 最终数字\n\n### 5. 🎯 战略上下文\n**项目**：FREIGE — LLM-based evidence-grounded DocRE 系统性研究。目标 EMNLP 2026 Main（ARR July cycle，~7月15-25）。\n\n**核心结论链**：\n- C1：Evidence generation 有 ~8pp rel_f1 代价（no-evidence 0.4893 vs evidence-SFT 0.4106）\n- C2：QLoRA + GRPO 导致 catastrophic task decoupling（QLoRA-specific，bf16 不复现）。Spectrum: GRPO QLoRA > GRPO bf16 > DPO bf16 > RSFT\n- C3 **已降级**（D056）：CED vs flat-NLI 统计不可区分。当前正在跑 4-seed paired t-test 做最终确认\n- C4：EDCR 双层诊断（D072/D073）——方法级 decoupling 量化 + per-relation 难度诊断\n\n**易错点**：\n- 不要把 `rsft_output_r2b/` 当作 CED s42 checkpoint\n- GRPO bf16 基准 0.4549 是 plan_011 ckpt-100（训练前起点），不是训练后结果\n- Ign-F1 已修复（memory.md），论文主表报 Ign-F1，所有数值用 metrics_v2.json\n- C3 虽降级但 paired t-test 仍是关键路径——如果新数据翻转结论需立即通知 Director\n- DPO 1ep 是\"中性/轻度退化\"（D067/D068），不是\"失败\"，叙事已从\"RL fails\"转向\"RL spectrum\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778908578.md"
+}

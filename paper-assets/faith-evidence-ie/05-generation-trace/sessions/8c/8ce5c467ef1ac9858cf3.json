@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ce5c467ef1ac9858cf3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan017 14b rsft train prep",
+  "task_key": "worker_code_plan017_14b_rsft_train_prep_20260520T191330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan017_14b_rsft_train_prep_20260520T191330_result.json",
+    "occurrence": 1,
+    "bytes": 2230,
+    "sha256": "d3aa8b215d17a71a8b672892d7902a4ba55cc22ee48d13f4a62d138b4732d76d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据格式正确。汇总如下：\n\n---\n\n## 14B RSFT 训练准备状态\n\n### 脚本（全部就绪）\n\n| 脚本 | 路径 | 状态 |\n|---|---|---|\n| CED 打分 | `scripts/plan017/step2_ced_score_14b.sh` | ✅ 已完成 |\n| RSFT 训练 | `scripts/plan017/step3_rsft_train_14b.sh` | ✅ 语法通过 |\n| Eval (with evidence) | `scripts/plan017/step4_eval_14b_rsft.sh` | ✅ 就绪 |\n| Eval (no-evidence) | `scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh` | ✅ `--no_evidence` 已加 (C005) |\n\n### 关键路径\n\n| 项 | 路径 | 状态 |\n|---|---|---|\n| Qwen3-14B base | `/root/autodl-tmp/models/Qwen/Qwen3-14B/` (56GB) | ✅ |\n| 14B SFT adapter | `/root/autodl-tmp/sft_output_14b/` (r=64, α=128) | ✅ |\n| **Merged SFT model** | `/root/autodl-tmp/models/Qwen3-14B-sft-merged/` | ❌ 不存在 |\n| CED 训练数据 | `/root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl` | ✅ 3015 样本 |\n| RSFT 输出 | `/root/autodl-tmp/rsft_output_14b/` | 待生成 |\n\n### 训练参数（step3）\n\n- **策略**: accelerate + DeepSpeed ZeRO-3 (CPU offload) × 2 GPU\n- **LoRA**: rank=64, alpha=128, dropout=0.05, bf16（非 QLoRA）\n- **训练**: lr=2e-5, epochs=3, batch=1/gpu, grad_accum=8, warmup=100\n- **数据**: 3015 样本，CED top_k=1，selected combined_score mean=0.768\n- **seed**: 42\n\n### ⚠️ 启动前需执行的前置步骤\n\n**1. 合并 SFT adapter**（必须先完成，预计 ~10 分钟，CPU 运行，产出 ~28GB）:\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/freige\nCUDA_VISIBLE_DEVICES=0 python scripts/merge_sft_adapter_14b.py\n```\n\n**2. 确认 GPU 空闲**（C001/C002）— 当前 GPU 0-3 都有占用（GPU0: 38GB, GPU1-3: ~19GB），提交前需确认目标 GPU 空闲。\n\n**3. 启动训练**:\n```bash\nGPU=2,3 nohup bash /root/autodl-tmp/freige/scripts/plan017/step3_rsft_train_14b.sh > /tmp/rsft_14b_train.log 2>&1 &\n```\n\n### VRAM 预估\n\n14B bf16 ≈ 28GB base → ZeRO-3 分两卡各 ~14GB + LoRA(r=64) + activations + gradient checkpointing → 每卡约 35-45GB。97GB/卡足够，但需要 GPU 干净。\n\n### 磁盘\n\n可用 114GB，merged model ~28GB + RSFT output ~1GB，充裕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan017-14b-rsft-train-prep.md"
+}

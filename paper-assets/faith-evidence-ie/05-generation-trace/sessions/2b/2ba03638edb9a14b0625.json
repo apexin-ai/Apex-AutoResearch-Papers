@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ba03638edb9a14b0625",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose d112 shard2 completion",
+  "task_key": "worker_diagnose_d112_shard2_completion_20260519T024737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_d112_shard2_completion_20260519T024737_result.json",
+    "occurrence": 1,
+    "bytes": 1000,
+    "sha256": "a675af2ab9481fd132a21e370b400a7a98a8b05f81e065edb9c7e23fca1e19f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. 汇报：\n\n| Shard | 行数 | 进度 | 状态 |\n|-------|------|------|------|\n| shard 0 | 6048/6048 | **100%** | 完成 |\n| shard 1 | 5688/6048 | **94.0%** (711/756 docs) | 运行中 |\n| shard 2 | 6048/6048 | **100%** | 完成 (registry → DONE) |\n| shard 3 | 5216/6048 | **86.2%** (652/756 docs) | 运行中 |\n\n**GPU 状态：**\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 18021/32607 MiB | 64% | 占用 (PID 590568) |\n| 1 | 19129/32607 MiB | 57% | 占用 (PID 587729) |\n| 2 | 0 MiB | 0% | **空闲** |\n| 3 | 18891/32607 MiB | 69% | 占用 (PID 598911) |\n\n**结论：** 2/4 shard 已完成（0、2），shard 1 和 3 仍在运行。GPU 2 已空闲。按当前速度，shard 1 预计还需约 10 分钟，shard 3 约 20-25 分钟。全部完成后可开始 step 2 CED scoring。\n\n注意 GPU 0 仍有进程——shard 0 已写完 6048 行，可能是进程还在做收尾或是其他任务，需要确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d112-shard2-completion.md"
+}

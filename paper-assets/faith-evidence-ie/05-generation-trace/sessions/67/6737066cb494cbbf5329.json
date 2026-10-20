@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6737066cb494cbbf5329",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh fix load generations",
+  "task_key": "worker_ssh_fix-load-generations_20260515T015836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-load-generations_20260515T015836_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "3903833e1db972ffa4b224a3fec5d24d9f80e046999ceb75b3ead0595ddc4067"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一致性检查正常工作。结果：\n\n- **root**: 302 docs (之前被丢失，现已加载)\n- **shard_0**: JSONL 84 docs > progress 74 (正常, 还在生成中)\n- **shard_1**: JSONL 86 > progress 79\n- **shard_2**: JSONL 90 > progress 85\n- **shard_3**: JSONL 44 < progress 75 (**缺 31 docs** — 确认了之前发现的不一致)\n- 去重后: **4744 records, 593 unique docs**\n- 120 条根目录/shard 重叠记录被正确去重\n\n所有任务完成：\n1. `load_generations()` 已修复 — 现在加载根目录 + 所有 shard，shard 版本去重优先\n2. `_check_shard_consistency()` 已添加 — 对比 progress.json 与 JSONL，报告缺失/多余的 doc_id\n3. cross-check 脚本已创建在 `/root/autodl-tmp/scripts/diversity_crosscheck.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-load-generations.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52ef24a0d05e9ce9a791",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops cleanup duplicate s44 eval",
+  "task_key": "worker_ops_cleanup-duplicate-s44-eval_20260515T233732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-duplicate-s44-eval_20260515T233732_result.json",
+    "occurrence": 1,
+    "bytes": 302,
+    "sha256": "7891c5dc4b4295ac2aaaa54b5b8412ffe79042aed2c5ee6bc66ea26e42348ffb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成：\n\n- **已 kill**: PID 270061（旧 `eval_flat_nli_seed44` 的 GPU 子进程）+ tmux session `eval_flat_nli_seed44`\n- **保留运行**: PID 270467（`eval_flat_nli_s44`），cuda:0 独占 10618 MiB，推理进度 11/247（~4%），约 ~50s/it，预计还需 ~3.3 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-duplicate-s44-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2533feca23c5108a00db",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "experiment plan 006 qwen3 1 7b sft submit",
+  "task_key": "worker_experiment_plan_006_qwen3_1_7b_sft_submit_20260516T061421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_plan_006_qwen3_1_7b_sft_submit_20260516T061421_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "9a2a6a5b7c449ef0ceb30672476410db3493bf639fb7be27734ad2f715c1f472"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交并在运行中。\n\n**汇总：**\n- **实验**: `plan_006_qwen3_1_7b_sft`，cuda:3，PID 308118\n- **模型**: Qwen3-1.7B，QLoRA 4-bit，69.7M trainable params (3.89%)\n- **配置**: 与 Qwen3-4B SFT 一致 — rank=64, alpha=128, 7 target modules, 3 epochs, lr=2e-4, batch=1×16 accumulation, seed=42\n- **数据**: DocRED gold train_annotated, 3027 样本\n- **输出**: `/root/autodl-tmp/sft_output_qwen3_1_7b/`\n- **日志**: `~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_sft.log`\n- **Registry**: RUNNING，spec 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-plan-006-qwen3-1-7b-sft-submit.md"
+}

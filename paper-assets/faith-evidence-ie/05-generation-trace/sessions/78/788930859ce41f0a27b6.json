@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "788930859ce41f0a27b6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check gpu status all",
+  "task_key": "worker_check_gpu-status-all_20260515T005840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu-status-all_20260515T005840_result.json",
+    "occurrence": 1,
+    "bytes": 1836,
+    "sha256": "de87ea8115b598e9f6729bdc8d65861e1ece879dc5bf1d805946bd62d9bcc46e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告\n\n### GPU 占用\n\n| GPU | 显存占用 | 利用率 | 任务 |\n|-----|---------|--------|------|\n| 0 | 13645 / 32607 MiB (42%) | 48% | GRPO 训练 |\n| 1 | 23195 / 32607 MiB (71%) | 88% | RSFT 生成 |\n| 2 | 0 / 32607 MiB | 0% | **空闲** |\n| 3 | 10653 / 32607 MiB (33%) | 77% | ckpt-100 eval |\n\n### PID 状态\n\n| PID | 状态 | 运行时间 | 任务 |\n|-----|------|---------|------|\n| 90080 | **ALIVE** | 5.3h | GRPO 训练 |\n| 117635 | **ALIVE** | 1.3h | ckpt-100 eval |\n| 122144 | **ALIVE** | 49min | RSFT 生成 |\n| 111731 | **DEAD** | — | (见下) |\n\n### 各任务详情\n\n**1. GRPO 训练 (PID 90080, GPU 0)** — step 185/200 (92.5%)\n- ETA: ~26 分钟\n- 最近 reward: 0.28~0.45，learning rate 已衰减至 1.275e-6\n- ⚠️ step 85 和 90 出现 KL 爆炸警告（13.8M 和 684.8），但设置为 monitoring only 未停止训练\n- 训练即将完成\n\n**2. RSFT 生成 (PID 122144, GPU 1)** — 91/1514 batches (6%)\n- **无 CUBLAS 错误**，运行正常\n- 已产出 1456 行 generations.jsonl (13.7MB)\n- 首 100 样本监控：format_ok 99.6%，truncation 9.2%，diversity 0.9/8\n- 速度 ~30-37s/batch，ETA ~13 小时\n\n**3. ckpt-100 Eval (PID 117635, GPU 3)** — 49/62 batches (79%)\n- 使用 `--quantize` 加载，运行正常\n- 速度 ~95s/batch，ETA ~20 分钟\n- 即将完成\n\n**4. ckpt-80 Eval (PID 111731)** — **DEAD**\n- 日志文件 `mvp2_eval_lr5e6_r1_ckpt80.log` 不存在\n- 该任务从未启动或使用了不同的日志路径\n\n### 总结\n- GRPO 和 ckpt-100 eval 都将在 ~20-30 分钟内完成\n- RSFT 生成正常运行，无 CUBLAS 错误，但全量生成还需 ~13 小时\n- GPU 2 空闲，可用于启动 ckpt-80 eval 或其他任务\n- GRPO 训练中出现过两次 KL 爆炸（step 85/90），后续已恢复正常范围"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-status-all-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ff39d15790fa1af5dd2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval rsft ced s43",
+  "task_key": "worker_analysis_eval_rsft_ced_s43_20260516T051532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_rsft_ced_s43_20260516T051532_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "eb74e468ea3ef21a1debe5feda27fe8a2c0e1e640051623f14d96bb838624bb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**eval_rsft_ced_s43 结果**：\n- **rel_f1 = 0.4601**（在 0.43–0.47 预期范围内 → **success**）\n- ign_f1 = 0.4512, evi_f1 = 0.8063, edcr = 0.6542, evi_f1_joint = 0.3605\n- 格式合规 100%, truncation 184/985 (18.7%)\n- s43 是目前 CED 最高的 rel_f1（s45 = 0.4514），属于正常 seed 方差\n\n**CED vs flat-NLI（初步，2 CED seeds）**：rel_f1 几乎一致（CED 0.4558 vs fNLI 0.4557，Δ < 0.001）。最终 4-seed 对比需等 `reeval_ced_s42` 和 `reeval_ced_s44` 完成。\n\nRegistry 已更新（metrics / conclusion=success / status=DONE），报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-rsft-ced-s43.md"
+}

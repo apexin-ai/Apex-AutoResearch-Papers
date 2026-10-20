@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42e27a9f73bc057c1df8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval submit 3 evals gpu saturation",
+  "task_key": "worker_eval_submit_3_evals_gpu_saturation_20260518T163339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_submit_3_evals_gpu_saturation_20260518T163339_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "f8ec096e54f222c2630bfa19fdbb716128c9bd7a488fbae0fa3b7385fa6a3743"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 张卡已开始加载模型，确认全部在跑。\n\n**提交汇总：**\n\n| Eval | GPU | PID | 命令关键参数 |\n|---|---|---|---|\n| `plan019_1_7b_sft_s44_eval` | cuda:0 | 558241 | `--model_path .../Qwen3-1.7B --sft_adapter .../sft_output_qwen3_1_7b_bf16_seed44/` |\n| `random_rsft_k1_eval` | cuda:1 | 558320 | `--model_path .../rsft_output_random_k1/checkpoint-1020 --base_model .../Qwen3-4B --sft_adapter .../sft_output/` |\n| `grpo_bf16_g4_ckpt100_eval` | cuda:3 | 558467 | `--model_path .../grpo_bf16_g4/checkpoint-100 --base_model .../Qwen3-4B --sft_adapter .../sft_output/` |\n\n**注意事项：**\n- 1.7B SFT s44 adapter 实际路径为 `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44/`（非指令中的 `sft_output_qwen3_1_7b_s44`）\n- 4B base model 路径为 `/root/autodl-tmp/models/Qwen3-4B`\n- 所有命令均设置了 `CUDA_VISIBLE_DEVICES`（C002/C003），提交前已验证目标 GPU 显存 < 2GB（C001）\n- D076 协议参数全部已加：`--batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-submit-3-evals-gpu-saturation.md"
+}

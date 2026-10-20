@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "654ee538ad5ebce7f90b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check high eval completion",
+  "task_key": "worker_ops_check-high-eval-completion_20260514T194540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-high-eval-completion_20260514T194540_result.json",
+    "occurrence": 1,
+    "bytes": 973,
+    "sha256": "a0c14506fdd03d4111ecdcbbb056cec15db10855b61dd41eb15112ab06bb0953"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 完成状态：1/4 checkpoint 完成，进程已挂\n\n| Checkpoint | 状态 |\n|-----------|------|\n| 60 | ✅ 完成 |\n| 70 | ❌ 推理到 8% (5/62 batch) 时进程死亡，目录为空 |\n| 80 | ❌ 目录不存在 |\n| 90 | ❌ 目录为空 |\n\n进程 81962 已不存在。日志在 checkpoint-70 推理 8% 处中断，无错误信息——可能是 OOM 或被 kill。\n\n### checkpoint-60 metrics\n\n| 指标 | 值 |\n|------|-----|\n| F1 | 0.1467 |\n| Ign-F1 | 0.1467 |\n| Precision | 0.1909 |\n| Recall | 0.1192 |\n| Evi-F1 | 0.5763 |\n| EDCR | 0.9062 |\n| Predictions | 10041 (gold: 12151) |\n| Format OK | 985/985 (100%) |\n| Truncated | 16/985 |\n| Inference time | 4849s (~81 min) |\n\n### summary.json\n\n只包含之前运行的 checkpoint-50（F1=0.1563, Evi-F1=0.5643, EDCR=0.8858），checkpoint-60 未被写入 summary。\n\n### cuda:3\n\n9503 MiB 占用, 65% 利用率——仍被其他进程占用，未释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-high-eval-completion.md"
+}

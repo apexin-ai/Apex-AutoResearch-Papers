@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfafcefd7285ea426e60",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_9_1778878823.md",
+  "task_key": "loop_9_1778878823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778878823.md",
+    "occurrence": 1,
+    "bytes": 4855,
+    "sha256": "48f5a0bb9840e53b5e4727ebfafa43606f59708a0110cd42d937b8c677fdb319"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T20:06:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 on rtx5090-4x，无其他服务器可用\n- RTX 5090 禁用 QLoRA merge_and_unload（CUBLAS 错误），训练/推理用 bf16 + --no-quantize\n- 运行目录必须 cd /root/autodl-tmp/（freige 不是 pip 包，cd 到子目录会 import 空包）\n- inference.py 必须传完整 model stack（--base_model + --sft_adapter + --model_path），漏传会导致模型 stack 错误，结果不可用（maxtok1536 事故教训）\n- plan_015 已被 D052 判定 killed（plan_011 vs mvp2_grpo_ced_kl001_r4 已构成 clean quantization ablation），不要再重试\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x，account=root，4× RTX 5090 32GB\n- 工作目录：/root/autodl-tmp/（代码在 /root/autodl-tmp/freige/）\n- Python：/root/miniconda3/bin/python，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：/root/autodl-tmp/models/Qwen3-4B\n- SFT adapter：/root/autodl-tmp/sft_output\n- RSFT adapters：/root/autodl-tmp/rsft_output_*/\n- SFT-no-evidence adapter：/root/autodl-tmp/sft_no_evidence_output\n- 数据：/root/autodl-tmp/data/docred\n- HF cache：/root/autodl-tmp/.hf_cache（HF_HUB_OFFLINE=1）\n- W&B：wandb config 未在 project yaml 中配置，需 Worker SSH 直接查 W&B 或读日志\n- 活跃 cron：eval_grpo_g8_bf16 (PID 214552, cuda:3)、plan_012_dpo_ced (PID 221962, cuda:2)\n\n### 3. 📊 当前状态\n**刚做完**：收到 plan_014_sft_no_evidence 训练完成 cron 回调，已派 Worker (`worker_analysis_plan_014_sft_no_evidence_20260515T170422`) 分析日志 + 在 cuda:1 提交 dev eval。已向 Director 汇报训练完成。\n\n**RUNNING/ANALYZING 实验**：\n| exp_id | GPU | 状态 | 摘要 |\n|--------|-----|------|------|\n| eval_plan_001_flat_nli | cuda:0 | RUNNING | flat-NLI RSFT dev eval（对比 CED RSFT） |\n| plan_014_sft_no_evidence | cuda:1 | ANALYZING | SFT-no-evidence 训练完成，Worker 正在分析+提交 eval |\n| plan_012_dpo_ced | cuda:2 | RUNNING | DPO+CED preference learning 训练 |\n| eval_grpo_g8_bf16 | cuda:3 | RUNNING | GRPO bf16 checkpoint 80/90/100 eval |\n\n**等待中**：\n- Worker `analysis:plan_014_sft_no_evidence` 回调（分析训练日志 + 提交 eval）\n- eval_plan_001_flat_nli cron 回调（cuda:0）\n- plan_012_dpo_ced cron 回调（cuda:2）\n- eval_grpo_g8_bf16 cron 回调（cuda:3）\n\n### 4. 📋 待办（条件触发式）\n- Worker analysis:plan_014 回调 → 确认 eval 已提交，更新 registry spec，等 eval cron 回调\n- plan_014 eval 完成 → 对比 SFT baseline (rel_f1=0.4057)。rel_f1 > 0.4057 → evidence 是负担（gap 来自 evidence generation）；≈ baseline → evidence 不影响；< baseline → multi-task benefit。结论写入 registry + memory.md + 汇报 Director\n- eval_plan_001_flat_nli 完成 → 对比 CED RSFT 3-seed mean (rel_f1=0.4596)。flat-NLI ≈ CED → contrastive margin 无增益，CED 贡献需 downplay；CED >> flat-NLI → margin 关键，加强 C2\n- plan_012_dpo_ced 完成 → 对比 RSFT (0.4596) 和 SFT (0.4057)。DPO 不崩 → offline preference RL 可行，论文增加 RL spectrum 数据点；DPO 崩 → GRPO forgetting 非 QLoRA-specific，需 revisit C3\n- eval_grpo_g8_bf16 完成 → 这个实验可能跑多个 checkpoint eval。确认 ckpt 80/90/100 的 rel_f1 趋势\n- 所有 P0 eval 完成后 → plan_009 forgetting dynamics figure（CPU task，汇总全部 GRPO checkpoint 数据+画图）\n- 4 个 P0 实验结果齐全后 → 触发 Paper Agent retitle+reframe（Dream v2 行动追踪表中的待办）\n\n### 5. 🎯 战略上下文\n**核心发现链**：SFT baseline (0.4057) → RSFT+CED 显著提升 (+5.4pp, 3-seed stable) → GRPO+QLoRA catastrophic forgetting (0.2167) → **bf16 GRPO 完全不崩塌 (0.4549)**，forgetting 是 QLoRA-specific。CED reranker 是 inference-time best (0.4864)。\n\n**论文定位**（D044 reframe 后）：从 CED-centric 转向 \"task definition + decoupling finding + EDCR metric\"。Decoupling（rel_f1↑但 EDCR↓）是最强 novelty point，RSFT+CED 是实用方案。\n\n**Dream v2 未达标**（D049: best=3.0 < 3.5 目标）。5 个结构性问题待解：CED≈flat-NLI 标题错配、QLoRA confound（plan_011 已解）、related work 缺口、缺 forgetting figure、DPO 细节不足。\n\n**投稿目标**：EMNLP 2026 Main (ARR July cycle, ~7月15-25)，不 fallback Findings。\n\n**易错点**：\n- plan_014 的 eval 输出格式不含 evidence sentences，evi_f1 指标不适用或为 0——只看 rel_f1\n- D052 已确认 plan_011 vs mvp2_grpo_ced_kl001_r4 是 clean quantization ablation（Δ=+23.8pp），不要再开 plan_015 变体\n- EDCR 低于 SFT 不是 bug，是 recall-oriented training 的固有 trade-off（更多 predictions → 更多 distractor citations）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778878823.md"
+}

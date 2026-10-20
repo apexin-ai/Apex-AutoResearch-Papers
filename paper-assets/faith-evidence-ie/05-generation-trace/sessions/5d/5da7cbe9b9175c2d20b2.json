@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5da7cbe9b9175c2d20b2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval command prep",
+  "task_key": "worker_analysis_eval-command-prep_20260516T003947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval-command-prep_20260516T003947_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "15532c6fa48bbcb066fca49ee10d2c5a7c41cb7447afaa9ab4fa07312b267ab0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/ced_eval_commands.md` 并注册。\n\n内容：两个完整 eval 命令（基于 eval_flat_nli_s44 模板），提交前需：\n1. `ls` 确认最终 checkpoint 目录名替换 `<CHECKPOINT>`\n2. `nvidia-smi` 确认目标 GPU 空闲后替换 `<GPU>`\n3. `--sft_adapter /root/autodl-tmp/sft_output` 已包含"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-command-prep.md"
+}

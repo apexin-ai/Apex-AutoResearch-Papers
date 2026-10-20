@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9da63089a3eb6a544c23",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778902052.md",
+  "task_key": "loop_12_1778902052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778902052.md",
+    "occurrence": 1,
+    "bytes": 4446,
+    "sha256": "0985686c993669fed482e6cc9dff54897af8da690d141562bf1ad8512b30b9d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T03:21:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0/1/2/3 on rtx5090-4x（`load_project_config` 的 `execution.gpu_ids`）\n- 所有 SSH 命令 cwd 必须 `cd /root/autodl-tmp`，**不是** `/root/autodl-tmp/freige`（反复踩坑）\n- CED RSFT s42 的 checkpoint 在 `rsft_output/`（非 `rsft_output_ced_s42/`，后者不存在）；s44 在 `rsft_output_s44/`（无 `_ced` 前缀）。flat-NLI 全系列最终 checkpoint 是 507 非 510。详见 memory.md 路径映射表\n- Eval 统一协议 (D076): batch_size=4, max_new_tokens=1024, --no-quantize, --sft_adapter, 正确 seed。偏离此协议的 eval 结果不可纳入 paired t-test\n- C3 CED vs flat-NLI 统计不显著 (D056)，CED 已降级，不可作为独立贡献 claim\n- 主表报 Ign-F1（DocRED 惯例），所有指标必须来自 metrics_v2.json（Ign-F1 bug 已修复）\n\n### 2. 🖥️ 基础设施快照\n- **主服务器**: rtx5090-4x, 4× RTX 5090 32GB\n- **工作目录**: `/root/autodl-tmp`（代码 `/root/autodl-tmp/freige`）\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，无 venv）\n- **备用服务器**: bjb2-12179 (account: root)\n- **模型 checkpoint 根目录**: `/root/autodl-tmp/rsft_output*` 和 `/root/autodl-tmp/rsft_output_flat_nli*`\n- **脚本**: `/root/autodl-tmp/scripts/seed_comparison.py`, `artifacts/paired_ttest_analysis.py`\n- **活跃进程**:\n  - eval_rsft_ced_s45: PID 283838, cuda:2, cron 监控中\n  - eval_rsft_ced_s43: PID 286587, cuda:1, cron 监控中\n  - eval_plan_014_no_evidence_r2: PID 288109, cuda:0, cron 监控中\n  - reeval_flat_nli_s43_r2: PID 291003, cuda:3, cron 监控中\n\n### 3. 📊 当前状态\n4 块 GPU 全满，跑的全是 eval（paired t-test 关键路径）：\n\n| GPU | exp_id | 内容 |\n|-----|--------|------|\n| cuda:0 | eval_plan_014_no_evidence_r2 | no-evidence SFT 重跑（修复 adapter 检测逻辑）|\n| cuda:1 | eval_rsft_ced_s43 | CED RSFT s43 全量 eval（补第 4 个 CED seed）|\n| cuda:2 | eval_rsft_ced_s45 | CED RSFT s45 全量 eval（补第 3 个 CED seed）|\n| cuda:3 | reeval_flat_nli_s43_r2 | flat-NLI s43 协议统一重跑（D076）|\n\n**PREPARING 队列**（等 GPU 释放）:\n- reeval_ced_s44, reeval_ced_s42, reeval_flat_nli_s42 — 协议统一重跑（D076 批准的 4 个中剩 3 个）\n- seed_comparison_prep — 汇总脚本\n\n**所有 Worker 已完成**，无运行中 Worker。等 cron 回调。\n\n### 4. 📋 待办（条件触发式）\n- eval_rsft_ced_s43 完成 → 记录 metrics_v2 → cuda:1 释放 → 提交 reeval_ced_s42（协议统一重跑）\n- eval_rsft_ced_s45 完成 → 记录 metrics_v2 → cuda:2 释放 → 提交 reeval_ced_s44（协议统一重跑）\n- eval_plan_014_no_evidence_r2 完成 → 更新 C1 evidence tax 数据（当前 Ign-F1=47.36 基于旧 eval，需确认 metrics_v2）→ cuda:0 释放 → 提交 reeval_flat_nli_s42\n- reeval_flat_nli_s43_r2 完成 → 对比 s42 (0.4539) → cuda:3 释放 → 提交 seed_comparison_prep 或 plan_003_edcr_diagnostic\n- **全部 6 个 reeval 收齐后** → 跑 paired t-test (CED 4 seeds vs flat-NLI 4 seeds) → 更新 C3 结论 → 汇报 Director\n- paired t-test 后 → plan_002 test set eval（D057 失败需重试）→ plan_003 EDCR cross-method diagnostic → Paper Agent retitle + related work\n\n### 5. 🎯 战略上下文\n**项目**: FREIGE — evidence-grounded DocRE。目标 EMNLP 2026 Main (ARR July, ~7月15-25)。\n\n**核心结论链**:\n- D054/D065/D066: decoupling 是 QLoRA-specific amplification，不是 GRPO 本身问题\n- D056: CED ≈ flat-NLI 统计不可区分 → C3 降级\n- D068/D069: decoupling spectrum（GRPO-QLoRA catastrophic > bf16 mild > DPO gradual > RSFT none）\n- D070/D072/D073: EDCR 双层诊断（方法级 + per-relation）\n- D076: 协议审计发现 4/8 eval 不一致，批准统一重跑\n\n**最容易判断错的事**:\n1. `rsft_output/` 就是 CED s42，不要去找 `rsft_output_ced_s42/`（不存在）\n2. eval 提交时 `--model_path` 传底座 Qwen3-4B，`--sft_adapter` 传 adapter 路径。两者不能混淆（eval_plan_014_no_evidence 就是因为这个失败过一次）\n3. 当前跑的 4 个 eval 全是 cron 监控，完成会自动回调。不要 spawn worker 去轮询\n4. Dream v2 median=2.5 未达标，但 Director 尚未要求 re-dream v3，先把 paired t-test 数据收齐\n5. 已有 116 篇文献扫描确认无直接竞争者，不需要重做 novelty check\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778902052.md"
+}

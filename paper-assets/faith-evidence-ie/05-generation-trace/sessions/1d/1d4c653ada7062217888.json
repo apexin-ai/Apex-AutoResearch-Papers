@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d4c653ada7062217888",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis ced kl001 early check",
+  "task_key": "worker_analysis_ced_kl001_early_check_20260514T152026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ced_kl001_early_check_20260514T152026_result.json",
+    "occurrence": 1,
+    "bytes": 430,
+    "sha256": "8ddb795f8bd2e52ba26a1c89816861300d441ca038277c7f401bacf5d3e007c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 64981 已不存在，进程已退出。\n\n## 启动状态\n- **状态：已崩溃**\n- 当前 step：0（未开始训练）\n- **错误原因：`unrecognized arguments: --lr 5e-5`**，应改为 `--learning_rate 5e-5`\n- GPU 利用率：cuda:0 被 PID 53071 占用（13GB，非本实验），本实验进程已死\n- KL 值：N/A\n- **建议：修正启动命令中 `--lr` → `--learning_rate`，重新启动**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ced-kl001-early-check.md"
+}

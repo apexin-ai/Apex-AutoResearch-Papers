@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89a4a1703c2863239fef",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "knowledge paper framing fix",
+  "task_key": "worker_knowledge_paper_framing_fix_20260517T010520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_paper_framing_fix_20260517T010520_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "9603d7c82c355c582148844c6f3c28ba4fa87a694c291dc8cd440aeeffe5ae30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修正内容：\n\n1. **4B evidence tax**: 所有 -7.0pp → -7.5pp（Core Insight、Story Arc、Claim 5、Evidence Tax Scaling 表）\n2. **MVP Evidence Summary 表**：SFT baseline Ign-F1 40.36→39.86，no-evidence Δ +7.00pp→+7.50pp，所有 RSFT/DPO/GRPO 的 Δ vs SFT 列同步重算（基于新 baseline 39.86）\n3. **移除矛盾的内联计算**：Claim 5 中 \"(D076 统一协议：no-evi 47.36 vs with-evi 40.36)\" 删除（与 -7.5pp 矛盾）\n4. **最后更新日期**：2026-05-16 → 2026-05-17\n\n已确认：p=0.44 全文一致，\"non-monotonic\" 已在使用（无 V-shape 残留），1.7B = +6.2pp 正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-paper-framing-fix.md"
+}

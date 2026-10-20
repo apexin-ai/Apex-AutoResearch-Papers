@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "968400766221f11ed64b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose and submit d112 step3 to step4",
+  "task_key": "worker_diagnose_and_submit_d112_step3_to_step4_20260519T073210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_and_submit_d112_step3_to_step4_20260519T073210_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "c7b7f990d0e789d75cc1e5b02332748a8565d710d1d822f6b6d9304afa306316"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**Step 3 训练完成 (d112_rsft_s44_train → DONE/success)**\n- 567/567 steps 完成，final train_loss = 0.6488\n- 最后 5 步 loss 稳定：0.6359 → 0.6684 → 0.6495 → 0.6461 → 0.6488\n- Checkpoint: `/root/autodl-tmp/rsft_output_4b_sft_s44/checkpoint-567/`（adapter_model.safetensors 252MB）\n\n**Step 4 eval 已提交 (d112_rsft_s44_eval)**\n- GPU: cuda:0（提交前 0 MiB，符合 C001）\n- PID: 627505，tmux session: d112_rsft_s44_eval\n- Cron 已注册，120s 轮询\n- 预期目标: ign_f1 > 0.4734 (SFT s44 baseline)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-and-submit-d112-step3-to-step4.md"
+}

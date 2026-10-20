@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e44399c192ed8ae0d7ba",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_14_1779018912.md",
+  "task_key": "loop_14_1779018912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1779018912.md",
+    "occurrence": 1,
+    "bytes": 6158,
+    "sha256": "03bb633a5f05a78f6db4eeabbc96bc18952ccf048876b2f586e7ad92fe184379"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T17:59:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `[0, 1, 2, 3]`（rtx5090-4x），无其他服务器分配给本项目\n- RSFT candidate generation 正在 cuda:0/2/3 跑，**不能 kill 这些进程**——它们各需 ~10-20h 才完成，重跑代价极大\n- `plan_007_redocred_rsft_eval_r3` 已 failed（conclusion=failed 但 status 仍 RUNNING），有活跃 Worker `worker_ops_kill_r3_fix_rsft_submit_r4` 正在处理修复+重提交——等这个 Worker 回调再决定下一步，不要重复操作\n- submit_training_job 的 command 必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv 存在\n- paper 写作前必须读 red-section skill；negative 结果禁止默默跑下一个实验\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），账号 root\n- **工作目录**: `/root/autodl-tmp/freige`（代码仓），`/root/autodl-tmp/` 下存模型/数据/输出\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境，无 venv\n- **模型路径**:\n  - Qwen3-4B: `/root/autodl-tmp/models/Qwen3-4B`\n  - Qwen3-1.7B: 已下载（SFT adapter: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`）\n  - Qwen3-8B: 已下载（SFT adapter: `/root/autodl-tmp/sft_output_qwen3_8b_bf16`）\n  - LLaMA-3.1-8B: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`（SFT adapter: `/root/autodl-tmp/sft_output_llama_3_1_8b`）\n  - NLI 模型: `cross-encoder/nli-deberta-v3-base`（HF cache 已有）\n- **数据集**: `/root/autodl-tmp/data/docred`（DocRED），`/root/autodl-tmp/data/re-docred`（Re-DocRED）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **RSFT 产出路径**:\n  - 4B 已完成: `/root/autodl-tmp/rsft_filtered_topk3/`\n  - 1.7B 生成中: `/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b`\n  - 8B 生成中: `/root/autodl-tmp/freige/outputs/rsft_candidates_8b`\n  - LLaMA 生成中: `/root/autodl-tmp/rsft_candidates_llama_3_1_8b`\n- **活跃进程**:\n  - cuda:0 — 1.7B RSFT gen, PID via cron `plan_006_qwen3_1_7b_rsft_candidates`\n  - cuda:2 — LLaMA RSFT gen r3, PID 360970, cron `plan_016_llama_rsft_candidates_r3`\n  - cuda:3 — 8B RSFT gen, PID 349382, cron `plan_006_qwen3_8b_rsft_candidates`\n  - cuda:1 — Worker 正在修复 Re-DocRED RSFT eval r4 提交\n- **活跃 Crons**: 3 个（对应上述 3 个 RSFT generation 进程）\n- **活跃 Worker**: `worker_ops_kill_r3_fix_rsft_submit_r4`（running，处理 plan_007 r3 失败 → r4 重提交）\n\n### 3. 📊 当前状态\n**刚完成**: D078-D085 系列决策——paired t-test 确认 CED vs flat-NLI 不可区分（D078）、8B evidence tax ≈0（D079）、Re-DocRED cross-dataset 验证（D080）、1.7B 非截断子集分析（D083）、LLaMA GRPO QLoRA catastrophic decoupling 确认并 kill（D084/D085）、paper_framing.md 更新至 Claim 5（scaling pattern）。\n\n**RUNNING 实验**:\n| exp_id | GPU | 进度 | 预计完成 |\n|--------|-----|------|----------|\n| plan_006_qwen3_1_7b_rsft_candidates | cuda:0 | ~35.6% (1077/3027 docs) | ~May 17 08:00 UTC |\n| plan_006_qwen3_8b_rsft_candidates | cuda:3 | ~28.7% (869/3027 docs) | ~May 17 11:00 UTC |\n| plan_016_llama_rsft_candidates_r3 | cuda:2 | ~18.4% (557/3027 docs, start_idx=64) | ~May 17 15:00 UTC |\n| plan_002_test_rsft_s43 | cuda:1 | 刚提交 | ~1-2h |\n| plan_007_redocred_rsft_eval_r3 | cuda:1 | FAILED，Worker 正在修复 | — |\n\n**等待中**:\n- `worker_ops_kill_r3_fix_rsft_submit_r4` Worker 回调 → 处理 plan_007 Re-DocRED RSFT eval r4\n- 3 个 RSFT generation cron 完成回调（预计 May 17）\n- plan_002_test_rsft_s43 完成回调\n\n### 4. 📋 待办（条件触发式）\n- `worker_ops_kill_r3_fix_rsft_submit_r4` 回调 → 检查 plan_007 r4 是否成功提交，确认 cuda:1 状态\n- plan_002_test_rsft_s43 完成 → 记录 test set RSFT 数字到 registry + report.md，汇报 Director\n- plan_006_qwen3_1_7b_rsft_candidates 完成 → 立即在 cuda:0 启动 CED scoring（命令模板在 memory.md），然后启动 1.7B RSFT train\n- plan_006_qwen3_8b_rsft_candidates 完成 → 立即在对应 GPU 启动 CED scoring，然后启动 8B RSFT train\n- plan_016_llama_rsft_candidates_r3 完成 → 立即启动 LLaMA CED scoring，然后启动 LLaMA RSFT train\n- RSFT train 完成（任一模型）→ 跑 eval（DocRED dev），然后跑 Re-DocRED eval + GRPO（如果 ROADMAP 要求）\n- 所有 scope 扩展完成 → 汇报 Director 全景结果表，更新 paper_framing.md 的 evidence summary table\n\n### 5. 🎯 战略上下文\n**项目核心**: FREIGE——evidence-grounded DocRE 的系统性研究，投 EMNLP 2026 Main（ARR July cycle ~July 15-25）。时间充裕（~2 个月）。\n\n**已确立的 5 个 Claims**:\n1. Evidence-grounded DocRE 可行（RSFT 4/4 超 SFT baseline）\n2. RL optimization pressure ∝ decoupling severity（GRPO-QLoRA catastrophic > bf16 mild > DPO gradual > RSFT none）\n3. CED ≈ flat-NLI 统计不可区分（D078），NLI-based scoring 是关键而非具体变体\n4. EDCR 双层诊断（方法级 + per-relation）\n5. Evidence tax U-shape scaling（1.7B +6.2pp, 4B -7.9pp, 8B ≈0）\n\n**当前阶段**: D077 scope 扩展——SFT + no-evidence eval 已完成全部模型/数据集，现在跑 RSFT pipeline（candidate gen → CED scoring → RSFT train → eval）补齐 scaling 实验的 RSFT 数据点。\n\n**易错点**:\n- RSFT candidate generation 的模块是 `freige.training.rsft_generate`（不是 `freige.rsft.generate_candidates`），参数是 `--base_model`（不是 `--model_path`）\n- 1.7B evidence tax 的 +6.2pp 是**非截断公平子集**（442 docs）的结果，不是全集——全集被截断严重混淆（50.9% 截断率），论文中必须标注子集分析\n- Re-DocRED eval 已多次因 config 错误失败（model_path 应指向 base model，sft_adapter 指向 RSFT ckpt，之前搞混导致 r1/r2/r3 连续失败）\n- GRPO 在 LLaMA 上已确认 QLoRA catastrophic decoupling（D084），不需要再跑 GRPO QLoRA 实验\n- CED scoring 用 DeBERTa NLI 模型，显存 ~400MB，可以和 generation 共享 GPU 但建议等 generation 完成后用同一张卡\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1779018912.md"
+}

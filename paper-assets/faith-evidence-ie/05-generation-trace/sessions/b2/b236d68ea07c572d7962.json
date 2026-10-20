@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b236d68ea07c572d7962",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis test eval llama rsft s42 with evi v3",
+  "task_key": "worker_analysis_test_eval_llama_rsft_s42_with_evi_v3_20260523T115003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_test_eval_llama_rsft_s42_with_evi_v3_20260523T115003_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "9014ef8e569181c6f925649619fc54670918e99eeddaa8c49c90b841f3c8032f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated, artifact registered. Summary:\n\n**v3 成功修复了 field compliance 问题**（176/500 → 499/500），产出干净结果。\n\n**关键结论：**\n- **ign_f1 = 0.3554**，与 s43 (0.3488) 跨 seed 一致（+0.66pp）\n- **修正后 LLaMA 8B evidence tax = −2.20pp**（evidence helps），方向与旧值 −2.65pp 一致，幅度减小 0.45pp（旧值因 field compliance 低导致 with-evi F1 偏低，tax 被夸大）\n- 两个 seed 方向一致：s42 = −2.20pp, s43 = −1.17pp\n- LLaMA 8B 与 Phi 8B / 1.7B 同向（evidence helps），仅 4B 反向（evidence hurts）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-test-eval-llama-rsft-s42-with-evi-v3.md"
+}

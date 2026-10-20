@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9cbeaf8850d9df09207",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code rsft generate resume",
+  "task_key": "worker_code_rsft-generate-resume_20260520T075154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rsft-generate-resume_20260520T075154_result.json",
+    "occurrence": 1,
+    "bytes": 1503,
+    "sha256": "191ef1a04e89100bb7cd2aeb3e358e27c73e33f1ef35d57f3644a86521046fe8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n## 改动摘要\n\n**修改文件**: `/root/autodl-tmp/freige/freige/training/rsft_generate.py`（bjb2 服务器）\n\n### 改动内容\n\n1. **新增函数 `load_progress_from_jsonl(output_file, num_generations)`**（L158-197）\n   - 扫描 `generations.jsonl`，统计每个 `doc_id` 的条目数\n   - `count >= num_generations` 的 doc 标记为已完成\n   - 如果存在不完整的 doc（崩溃中断导致 < N 条），自动截断这些条目（通过 `os.replace` 原子写入 tmp 文件），避免后续 append 产生重复\n\n2. **新增参数 `--resume`**（L279-280）\n   - `action=\"store_true\"`，默认 False\n   - 启用后从 `generations.jsonl` 重建已完成集合，不依赖 `progress.json`\n\n3. **修改进度加载逻辑**（L329-332）\n   - `--resume` → `load_progress_from_jsonl(output_file, args.num_generations)`\n   - 否则 → 原有 `load_progress(output_dir)`（基于 `progress.json`）\n\n### 使用方式\n\n```bash\n# 崩溃后恢复（从现有 14976 行 jsonl 续跑）\npython -m freige.training.rsft_generate \\\n    --base_model ... --sft_adapter ... --data_path ... \\\n    --output_dir /root/autodl-tmp/rsft_generations_14b \\\n    --resume\n```\n\n### 关键字段\n\n- Resume 使用的 doc_id 字段: `doc_id`（jsonl 每行的 `\"doc_id\"` 字段）\n- 完整性判定: `doc_id` 出现次数 >= `--num_generations`（默认 8）\n- 已有的 append 写入 + `fout.flush()` + `save_progress()` 机制保持不变"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rsft-generate-resume.md"
+}

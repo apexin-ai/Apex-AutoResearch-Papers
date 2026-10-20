@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fab4d2942bd5c08d011",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_3_1778784175.md",
+  "task_key": "loop_3_1778784175",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778784175.md",
+    "occurrence": 1,
+    "bytes": 5105,
+    "sha256": "0eb24e2853fc1a4283ec75318f75aec5fbab23dee9a49795980c85ccbeb86b54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T18:36:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0,1,2,3（rtx5090-4x），不存在其他可用 GPU\n- rtx5090-4x 和 bjb2-12179 是**同一台机器**（两个 SSH endpoint），不要当成两台服务器分别派任务\n- kill_job 后**必须 SSH 验证子进程已死**（`ps -p <PID>` + `nvidia-smi`），已两次出现僵尸进程占显存\n- 不能从 kl_coef=0 的 checkpoint 恢复加 KL penalty（flatnli_r5 已验证会立即崩溃）\n- SFT baseline 指标是固定锚点：F1=0.4057, Evi-F1=0.7979, EDCR=0.7118（sft_eval_r2/r3 完全一致）\n- MVP-2 pass 阈值：CED_Evi-F1 ≥ 0.8179（SFT + 2pp）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：rtx5090-4x（= bjb2-12179），4× RTX 5090 32GB，account=root\n- **工作目录**：`/root/autodl-tmp/freige`\n- **Python**：`/root/miniconda3/bin/python`（conda base，不是 venv）\n- **模型**：`/root/autodl-tmp/models/Qwen3-4B`（7.6GB, ModelScope 下载）\n- **SFT adapter**：`/root/autodl-tmp/sft_output`\n- **GRPO ced_kl001 checkpoints**：`/root/autodl-tmp/grpo_ced_kl001`（step 10-100，save_steps=10）\n- **数据**：`/root/autodl-tmp/data/docred`\n- **HF cache**：`/root/autodl-tmp/.hf_cache`（必须设 HF_HOME 指向这里）\n- **wandb**：entity=`xiaoyucorynne-`, project=`freige-grpo`（MCP list_wandb_runs 有 bug，用 fetch_wandb_run_history + run_id）\n- **活跃进程**（cron 监控中）：\n  - mvp2_eval_ced_kl001_r4_ckpt10: PID 78857\n  - mvp2_eval_ced_kl001_r4_multi: PID 78850\n  - mvp2_eval_ced_kl001_r4_step100: PID 80789\n  - mvp2_eval_ced_kl001_r4_high: PID 81962\n  - mvp2_eval_ced_kl001_r4_step90: 刚创建（<60s），cron 还没首次 poll\n- **活跃 Worker**：`worker_analysis_ced-kl001-r4-true-best-checkpoint_20260514T175952`（分析 step 90 趋势）\n\n### 3. 📊 当前状态\nced_kl001_r4 训练已完成（success，100 步，D020 配置），现在进入**多 checkpoint 评估阶段**，4 卡满载跑 eval：\n- 6 个 RUNNING eval 实验覆盖 checkpoints 10-100（低端 ckpt10/multi 在 cuda:2，高端 high 在 cuda:3，step90/step100/ckpt90 分布在其他卡）\n- 3 个 PREPARING 实验（mvp2_eval_ced_kl001_r4_last 待提交；mvp2_grpo_ced_kl001_r2/r3 是之前的失败重试残留，不要启动）\n- **早期 checkpoint 已出结果且为 negative**：mvp2_eval_ced_kl001_r4_early（ckpt 10-50）→ f1=0.1563, evi_f1=0.5643，远低于 SFT。ckpt-50 确认 reward hacking（rel_f1 -24.9pp）\n- **关键等待**：step 90（true best, reward=1.370）和 step 100（last）的 eval 结果，这决定 MVP-2 pass/fail\n- 1 个 Worker 在跑（分析 ced_kl001_r4 训练曲线），会通过 [WORKER DONE] 回调\n\n### 4. 📋 待办（条件触发式）\n- **eval cron 回调到达**（任一 eval 完成）→ 读 eval 结果 JSON，update_registry metrics，刷新 report.md\n- **step 90 eval 出 Evi-F1 ≥ 0.8179** → MVP-2 PASS → 向 Director 汇报，启动 post-MVP 流程（paper_framing.md → experiment_plan.yaml → dream_simulate）\n- **step 90 eval 出 Evi-F1 < 0.8179** → 检查 step 70/80/100 是否有更好的 → 全部低于阈值则 MVP-2 NEGATIVE → 按 red-section 产 Framing 调整提案，禁止默默下一步\n- **Worker 分析回调到达** → 整合训练曲线分析到 report.md，向 Director 汇报 CED-as-stabilizer finding\n- **所有 eval 完成后** → 汇总对比矩阵（CED vs SFT，报告 best checkpoint + last checkpoint 差异，评估稳定性），向 Director 发完整 MVP-2 判定报告\n- mvp2_grpo_ced_kl001_r2/r3 是**残留 PREPARING**，不要启动——它们是之前 r4 之前的失败重试，配置有问题（r2 缺 bash -c wrapping，r3 是另一次修复尝试），r4 已经成功完成训练\n\n### 5. 🎯 战略上下文\n- **核心假说**：CED (Contrastive Evidence Discrimination) reward 能在 GRPO 训练中同时改善 evidence faithfulness 和防止 mode collapse\n- **MVP-1 已 PASS**（CED margin 0.48, accuracy 81.5%），证明 CED 信号有区分力\n- **MVP-2 核心问题**：CED reward 训练后的模型在 downstream eval 上是否真正改善 evidence quality（Evi-F1 ≥ SFT + 2pp）\n- **D024 是论文级 finding**：D020 配置下 CED 成功而 extract/flatnli 都 collapse，证明 CED 有 dual role（evidence quality + training stability）。机制是 CED 提供额外 reward variance 维持 GRPO 梯度流\n- **最容易判断错的事**：\n  1. 早期 checkpoint（10-50）eval 全是 negative，**不代表 MVP-2 失败**——ced_kl001_r4 训练曲线显示后半程（70-100）远优于前半程，step 90 是 true best\n  2. mvp2_grpo_ced_kl001_r2/r3 看起来像\"待启动的训练\"，实际是废弃实验，不要碰\n  3. F1 不退化条件里的 extraction-only baseline 还没跑（extract_r3 negative, extract_r4 collapsed），可能需要补\n  4. batch_size=1 GRPO 方差极大，单个 checkpoint eval 不可靠，必须看多 checkpoint 趋势\n- **决策链**：D008（QLoRA+KL 不兼容）→ D020（统一稳定配置 kl=0.01）→ D024（CED dual role finding）→ 当前等 eval 判 MVP-2\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778784175.md"
+}

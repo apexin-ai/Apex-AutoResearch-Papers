@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4eab0ea17f50fa7c5e77",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code training rtx5090 adapt",
+  "task_key": "worker_code_training-rtx5090-adapt_20260514T045017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_training-rtx5090-adapt_20260514T045017_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "827bfe33ee685c29245900a4d09aaf69da5403ed755c81fe83b8e460f3ca048a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。我注意到 linter 自动将 `grpo_trainer.py` 头部注释中的多卡示例改成了 `--deepspeed configs/deepspeed_zero3.json --reward_device cpu`，这是合理的（ZeRO-3 场景下 reward 模型放 CPU 也可以），不影响功能。\n\n改动摘要：\n\n**sft_trainer.py**:\n- 加了 `--quantize`（默认开启）/ `--no_quantize`，启用时用 `BitsAndBytesConfig` 4-bit NF4 + double quant\n- 加了 `--deepspeed` 传入 DeepSpeed 配置路径\n- `per_device_batch_size` 默认 1，`gradient_accumulation_steps` 默认 16\n- 头部注释更新了多卡启动命令\n\n**grpo_trainer.py**:\n- 同样的 QLoRA + DeepSpeed 参数\n- 加了 `--reward_device`（默认 `cuda:3`），传给 `CEDRewardWrapper` → `CEDRewardModel`\n- `gradient_accumulation_steps` 默认 16\n- 头部注释更新\n\n**新建 configs/**:\n- `deepspeed_zero2.json` — ZeRO-2 + CPU offload optimizer\n- `deepspeed_zero3.json` — ZeRO-3 + CPU offload optimizer & param\n- `accelerate_4gpu.yaml` — 4 进程 DeepSpeed bf16 配置"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-training-rtx5090-adapt.md"
+}

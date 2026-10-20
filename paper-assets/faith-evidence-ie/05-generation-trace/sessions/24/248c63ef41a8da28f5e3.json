@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "248c63ef41a8da28f5e3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops kill zombie 73412",
+  "task_key": "worker_ops_kill-zombie-73412_20260514T173026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-zombie-73412_20260514T173026_result.json",
+    "occurrence": 1,
+    "bytes": 379,
+    "sha256": "f9f592957df84a83f9cec75936313d8a22c5c8ca55fa25b069899c0872dd43a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 步骤 | 状态 |\n|------|------|\n| PID 73412 (僵尸进程) | **已杀死** |\n| cuda:3 显存 | 僵尸进程的 12920 MiB 已释放，当前仅 flatnli_r6 占用 13626 MiB / 32607 MiB |\n| flatnli_r6 (PID 76953/76958) | **正常运行中**，GPU 利用率 69%，无 OOM |\n\ncuda:3 还剩约 19 GB 空闲显存，flatnli_r6 运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombie-73412.md"
+}

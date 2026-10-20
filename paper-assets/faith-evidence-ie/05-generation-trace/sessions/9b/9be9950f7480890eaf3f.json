@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9be9950f7480890eaf3f",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_14_1778946539.md",
+  "task_key": "loop_14_1778946539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778946539.md",
+    "occurrence": 1,
+    "bytes": 4663,
+    "sha256": "a59d87823eeea461263a0fa46dd5b3e1963457d9f31af79ca21dcb8862249799"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T15:39:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: rtx5090-4x 的 cuda:0, cuda:1, cuda:2, cuda:3（共 4 张），禁止用白名单外 GPU\n- D076 reeval 统一协议: batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024。偏离导致 paired t-test 无效\n- CED RSFT 正确 checkpoint: `/root/autodl-tmp/rsft_output/checkpoint-510`（seed=42, lora_alpha=128, 510 步）。rsft_output_r2b 是错的（lora_alpha=32, 160 步），不要用\n- C3 (CED vs flat-NLI) 已降级为统计不可区分（D056），不要 claim CED 优于 flat-NLI\n- 所有命令 cwd 必须是 `cd /root/autodl-tmp`，不是 `cd /root/autodl-tmp/freige`\n- 提交实验到 GPU 前必须先 nvidia-smi 确认目标 GPU 显存 < 2GB\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 2. 🖥️ 基础设施快照\n- 服务器: rtx5090-4x, 4× RTX 5090 32GB\n- 工作目录: /root/autodl-tmp（项目代码 freige 包在此目录下）\n- Python: /root/miniconda3/bin/python (conda base env)\n- 模型: Qwen3-4B `/root/autodl-tmp/models/Qwen3-4B`; Qwen3-1.7B 已下载; Qwen3-8B 已完成 SFT; LLaMA-3.1-8B SFT 正在训练\n- SFT adapter: /root/autodl-tmp/sft_output\n- RSFT checkpoints: /root/autodl-tmp/rsft_output/checkpoint-510 (CED s42)\n- 数据: /root/autodl-tmp/data/docred (dev 985 docs)\n- HF cache: /root/autodl-tmp/.hf_cache\n- Eval 输出: /root/autodl-tmp/eval_results/\n- 日志: ~/runs/faith-evidence-ie/\n- 活跃进程（cron 确认）:\n  - plan_002_test_eval_s44_r2 (PID 319632)\n  - plan_016_llama_3_1_8b_sft (PID 331871)\n  - plan_016_llama_3_1_8b_no_evidence_sft (PID 333911)\n- plan_006_qwen3_8b_no_evidence_eval_v2: RUNNING 但无 cron、无 spec，GPU 审计 Worker 正在确认真实状态\n\n### 3. 📊 当前状态\n**刚完成**: Session-start 初始化。确认 D076 reeval 全部 DONE（5/5 success），已向 Director 汇报 aggregate metrics。\n\n**D076 最终数字**:\n- SFT baseline: rel_f1=0.4049\n- CED s42: rel_f1=0.4517, CED s44: rel_f1=0.4621（mean 0.4569）\n- flat-NLI s42: rel_f1=0.4535, flat-NLI s43_r2: rel_f1=0.4586（mean 0.4561）\n\n**Registry 活跃实验**:\n- RUNNING: plan_006_qwen3_8b_no_evidence_eval_v2, plan_016_llama_3_1_8b_sft, plan_016_llama_3_1_8b_no_evidence_sft, plan_002_test_eval_s44_r2\n- PREPARING: seed_comparison_prep\n\n**等待中的 Worker 回调**:\n- `worker_analysis_d076_paired_ttest_20260516T113418`（11 turns，发现 eval 只有 aggregate metrics.json 无 per-document predictions，正在寻找解决方案）\n- `worker_ops_gpu_audit_loop14_20260516T113517`（刚派出，查 GPU 状态 + 确认 plan_006_qwen3_8b_no_evidence_eval_v2 是否真在跑）\n\n### 4. 📋 待办\n- t-test Worker 回调 → 读结果，update_registry 写 D076 统计结论，更新 paper_framing.md C1/C3 evidence 强度，汇报 Director\n- GPU 审计 Worker 回调 → 确认 GPU 分配表，更新 report.md，空闲 GPU 立即铺 scope 扩展实验\n- plan_006_qwen3_8b_no_evidence_eval_v2 若已死 → 修正 registry 状态，腾出 GPU 铺新实验\n- plan_016 LLaMA SFT 完成 → 派 Worker 做 RSFT 数据生成 + RSFT 训练 + eval pipeline\n- plan_002_test_eval_s44_r2 完成 → 分析 test set 结果，对比 dev set 数字\n- t-test 若发现无 per-doc predictions → 可能需要重新 eval 并保存 per-doc 输出（修改 eval 脚本加 --save_per_doc），或改用 bootstrap on aggregate metrics across seeds\n\n### 5. 🎯 战略上下文\n- 核心方向: FREIGE — LLM evidence-grounded DocRE 系统性研究，目标 EMNLP 2026 Main (ARR July, ~July 15-25)\n- 关键发现: (1) evidence generation 代价 ~8pp rel_f1（但 D076 reeval 显示差距缩小到 ~5pp：0.4049 vs 0.4569）; (2) QLoRA GRPO 导致 decoupling（bf16 仅 mild）; (3) CED reranker 恢复 97%; (4) CED vs flat-NLI 不可区分\n- **D076 是关键里程碑**: 统一协议 reeval 全部完成，数字可写入论文。但 paired t-test 还没出——report.md 和 paper_framing.md 的数字尚未用 D076 最终数字更新\n- **D077 scope 扩展已在跑**: LLaMA cross-family (plan_016) 是最大块 ~40 GPU·h，正在 SFT 阶段\n- **易错点**: 不要把旧 eval 数字（report.md 中的 0.4106/0.4893）当最终数字——那些是旧协议产物，D076 reeval 才是 ground truth\n- **易错点**: t-test Worker 可能因为缺 per-doc predictions 而需要改 eval 脚本重跑，这会占用 GPU 时间。评估是否值得（bootstrap on 2-3 seeds 的 aggregate 可能不够 power）\n- **易错点**: reeval_flat_nli_s43 和 reeval_flat_nli_s43_r2 都是 seed=43，t-test 只能用一个（优先 r2）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778946539.md"
+}

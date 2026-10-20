@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8a364c72c4e0dbc9797",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops ced scoring pipeline validation",
+  "task_key": "worker_ops_ced_scoring_pipeline_validation_20260516T163031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ced_scoring_pipeline_validation_20260516T163031_result.json",
+    "occurrence": 1,
+    "bytes": 2347,
+    "sha256": "e0c5121ccec8e55706d63367e2365fb967d5f42ff7feb6bd5d86b196cb635f44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，汇总结果：\n\n## CED Scoring Pipeline 验证结果\n\n### 1. 脚本与模型\n| 检查项 | 状态 |\n|--------|------|\n| `rsft_score_filter.py` 存在 | OK (24KB, May 15) |\n| `from freige.training.rsft_score_filter import main` | OK |\n| NLI 模型加载 (nli-deberta-v3-base) | OK, vocab_size=128000 |\n\n### 2. Dry-run 结果 (5 条记录)\n- 输入 5 条，选出 1 条 (top 25% → 20% selection rate)\n- 输出文件齐全：`rsft_scores.jsonl` (20KB), `rsft_train.jsonl` (3.7KB), `rsft_report.json` (4.6KB)\n- 分数分布合理：format_reward=1.0, f1_reward mean=0.759, ced_reward mean=0.574, combined mean=0.733\n- 选出样本 combined_score=0.806，符合 top 25% 逻辑\n- **Pipeline 完全可用，零问题。**\n\n### 3. RSFT Gen 当前进度\n| 模型 | 行数 | 预计总量 (每 doc 8 gen, ~500 docs = ~4000) | 状态 |\n|------|------|-------------------------------------------|------|\n| 1.7B | 6024 | ~4000+ | 已完成（超预期，可能含多轮） |\n| 8B | 4824 | ~4000+ | 已完成或接近完成 |\n| LLaMA-3.1-8B | 1616 | ~4000 | 进行中 (~40%) |\n\n### 4. GPU 状态\n| GPU | 已用/总量 | 空闲 |\n|-----|-----------|------|\n| 0 | 13.5/32.6 GB | 18.6 GB |\n| 1 | 10.3/32.6 GB | 21.8 GB |\n| 2 | 24.0/32.6 GB | 8.1 GB |\n| 3 | 28.1/32.6 GB | 4.0 GB |\n\n### 5. LLaMA CED Scoring 命令模板确认\n```bash\nCUDA_VISIBLE_DEVICES=X python -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/rsft_candidates_llama_3_1_8b \\\n    --output_path /root/autodl-tmp/rsft_scored_llama_3_1_8b \\\n    --nli_model_path /root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7 \\\n    --nli_device cuda:0 \\\n    --scoring_mode ced \\\n    --selection_strategy top_pct --top_pct 25\n```\n命令模板正确，参数与 1.7B/8B 一致，仅 input_dir/output_path 路径不同。\n\n### 6. 风险/注意事项\n- **1.7B 和 8B 的 gen 看起来已完成**（行数超过预期 4000），可以立即启动 scoring，无需等到 May 17。\n- LLaMA gen 还在跑（1616/~4000），预计还需数小时。\n- NLI 模型仅 ~400MB，任何一张有 2GB+ 空闲的 GPU 都能跑 scoring，不与训练冲突。\n- Dry-run 耗时仅 ~10s（含模型加载），全量 scoring 预计几分钟内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ced-scoring-pipeline-validation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0f009c8a3354c065826",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops llama rsft r2 oom fix",
+  "task_key": "worker_ops_llama_rsft_r2_oom_fix_20260517T031213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama_rsft_r2_oom_fix_20260517T031213_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "d9c8c217880b2cdc86d8d8bc7a6e3ebb241264636a06b15523e55f058fe19a73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**R2 已在正常训练中，无需重新提交。**\n\nPID 405397（另一个 session 提交）已在 GPU 2 上运行，使用 `--quantize --bf16 --per_device_batch_size 2 --gradient_accumulation_steps 8`：\n\n- 进度：20/1656 steps（~1.2%），~9s/step\n- 显存：18374MiB / 32607MiB（4-bit QLoRA 模式）\n- 预计完成时间：约 4 小时（~15:15 左右）\n- Registry 已标记 RUNNING\n\n我的启动是重复的——405397 在我初始 nvidia-smi 检查（11:12:34）和启动（11:14:43）之间的 1 分钟窗口内被另一个 session 抢先提交到了 GPU 2，导致我的进程因显存不足 OOM。无需进一步操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama-rsft-r2-oom-fix.md"
+}

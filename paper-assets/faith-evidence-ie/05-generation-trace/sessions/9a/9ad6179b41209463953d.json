@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ad6179b41209463953d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose mvp2 sft eval",
+  "task_key": "worker_diagnose_mvp2_sft_eval_20260514T124719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mvp2_sft_eval_20260514T124719_result.json",
+    "occurrence": 1,
+    "bytes": 1810,
+    "sha256": "dd753a663fa827f19529c14a19cfeef60d8fd8f92482e1df5ff3b6e47bcb6100"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 1. mvp2_sft_eval 失败根因\n\n**收到 SIGHUP 信号被终止**，在 batch 36/247（~14.6%，运行约 56 分钟）时被 `Terminated`。日志末尾无 OOM、CUDA error 或 Python traceback，是外部信号杀死的进程。\n\n证据行：\n```\nInference:  15%|█▍  | 36/247 [56:09<5:36:40, 95.74s/it]Terminated\nEXIT_CODE=129\n```\n\nEXIT_CODE=129 = SIGHUP。可能原因：\n- tmux/screen session 断开导致 shell 收到 HUP\n- AutoDL 平台层面的进程管理（如实例休眠/资源回收）\n- SSH 连接断开且进程未做 nohup 保护（但从 trap 设置看已有 HUP 处理，说明是 wrapper shell 自身收到了信号）\n\n### 2. mvp2_sft_eval_r2 状态\n\n**正在运行**（PID 55410，已运行约 2 分钟）。模型已加载完毕，正在推理阶段（0/62 batches）。注意 r2 用了 `batch_size 16`（r1 用的是 4），所以总 batch 数从 247 降到 62，预计运行时间约 **1.5-2 小时**。使用 GPU 1，显存占用 8469 MiB / 32607 MiB，带 `--quantize` 标志。\n\n### 3. 其他实验健康状态\n\n三个 GRPO 实验全部存活，已运行约 15 小时 50 分钟：\n\n| 实验 | PID | GPU | 运行时间 | 状态 |\n|------|-----|-----|---------|------|\n| grpo_ced_r5 | 53066 | GPU 0 (13061/32607 MiB, 46%) | 15:51 | ✓ Running |\n| grpo_extract_r3 | 53144 | GPU 2 (13061/32607 MiB, 51%) | 15:48 | ✓ Running |\n| grpo_flatnli_r3 | 53287 | GPU 3 (13061/32607 MiB, 44%) | 15:44 | ✓ Running |\n\n### 4. 建议下一步\n\n- **r2 已在跑，无需干预**，batch_size=16 + quantize 预计 ~2 小时完成，等它跑完即可\n- r1 的 SIGHUP 根因大概率是 AutoDL 平台侧事件或 tmux session 异常断开。如果 r2 也出现相同问题，需要检查 AutoDL 实例是否有自动休眠策略"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mvp2-sft-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f57d52e7c3641479cb7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "rsft prep nli download",
+  "task_key": "worker_rsft-prep_nli-download_20260515T010828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_rsft-prep_nli-download_20260515T010828_result.json",
+    "occurrence": 1,
+    "bytes": 704,
+    "sha256": "2b9768035689956bc10815fde20f8e42577e5aebd03eb9983da856e99ef9c4df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇报：\n\n| 项目 | 状态 |\n|------|------|\n| **NLI 模型** (`cross-encoder/nli-deberta-v3-base`) | 已下载成功，缓存在 `/root/autodl-tmp/.hf_cache` |\n| **RSFT 代码文件** | 三个文件均存在且是今天更新的版本：`rsft_generate.py` (08:06)、`rsft_score_filter.py` (08:04)、`rsft_trainer.py` (07:25) |\n| **generate 进度** | `generations.jsonl` 已有 **1744 行**，文件 ~16MB，最后写入时间 09:08，正在持续生成中 |\n| **sentence-transformers** | 已安装（`/root/miniconda3/lib/python3.12/site-packages/sentence_transformers`），无需额外安装 |\n\n一切就绪，generate 完成后可直接运行 score_filter。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/rsft-prep-nli-download.md"
+}

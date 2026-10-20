@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0cf9a77e0bd2cbc4e4b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "data ign f1 sync",
+  "task_key": "worker_data_ign_f1_sync_20260516T000634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_ign_f1_sync_20260516T000634_result.json",
+    "occurrence": 1,
+    "bytes": 1427,
+    "sha256": "51c13d3f9de30b5fb76fabed4fc7b9d54aa49424d22070679f800612f66546e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。汇总结果：\n\n## 修正后指标一览\n\n| Method | F1 | **Ign-F1** | Δ | Evi-F1 |\n|--------|------|--------|-----|--------|\n| SFT baseline | 41.06 | **40.36** | 0.70 | 80.13 |\n| SFT no-evidence | 48.93 | **47.36** | 1.57 | — |\n| RSFT CED s43 (best) | 46.83 | **45.85** | 0.98 | 81.56 |\n| RSFT CED s44 | 46.55 | **45.51** | 1.04 | 80.87 |\n| RSFT r2b | 44.93 | **44.10** | 0.84 | 81.28 |\n| RSFT r2a | 44.94 | **44.01** | 0.93 | 81.08 |\n| RSFT CED s42 | 44.49 | **43.63** | 0.86 | 81.87 |\n| GRPO bf16 | 45.49 | **45.59** | −0.10 | 80.86 |\n| flat-NLI s42 | 45.39 | **44.49** | 0.89 | 80.43 |\n| flat-NLI s43 reeval | 45.23 | **TBD** | — | 81.58 |\n| DPO 1ep | 40.34 | **38.88** | 1.46 | 80.88 |\n\n## 排名变化\n\n**RSFT 内部**: 排名基本不变，仅 **r2a 与 r2b 互换**（原差距 0.01pp → 现差距 0.09pp，在噪声范围内）。Top 1/2/5 位置不变。\n\n**关键对比**:\n- RSFT best (s43) vs SFT baseline: 5.77pp → **5.49pp**（缩小 0.28pp）\n- CED best vs flat-NLI: 1.44pp → **1.36pp**（缩小 0.08pp）\n- GRPO bf16 vs RSFT CED s43: 差距从 −1.34pp 缩小到 **−0.26pp**（GRPO 几乎追平 RSFT）\n\n**结论**: 排名无实质性变化，论文 claims 不受影响。\n\n## 待处理\n- **flat-NLI s43 reeval** 缺 metrics_v2.json（需要重跑 Ign-F1 修正）\n- **flat-NLI s44 和 s45**: eval 结果目录为空，尚未产出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-ign-f1-sync.md"
+}

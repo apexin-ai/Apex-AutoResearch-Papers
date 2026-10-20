@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f9f0f3b22df5966dc86",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check wave1 all status",
+  "task_key": "worker_check_wave1_all_status_20260518T133812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_wave1_all_status_20260518T133812_result.json",
+    "occurrence": 1,
+    "bytes": 1126,
+    "sha256": "f53fcb7ff913960eb3fe6d711f1dbe20a05d69290e74d70a32f21b9a46b7abe6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 个实验仍在运行中，没有完成。GPU 并非空闲。\n\n| exp_id | GPU | PID | 状态 | 进度 | 预计剩余 |\n|--------|-----|-----|------|------|----------|\n| wave1_sft_4b_s43 | cuda:0 (22GB) | 540786 | RUNNING | 105/144 steps (73%) | ~20 min |\n| wave1_sft_4b_s44 | cuda:1 (28GB) | 540991 | RUNNING | 106/144 steps (74%) | ~18 min |\n| wave1_grpo_bf16_g4 | cuda:2 (17GB) | 542126 | RUNNING | 25/200 steps (12.5%) | ~5-6 hours |\n| seed_llama_rsft_k1_s43_eval | cuda:3 (18GB) | 541954 | RUNNING | 86/247 batches (35%) | ~90 min |\n\n详细进度：\n- **SFT s43/s44**: 两个 SFT 训练进度接近，都在 ~73-74%，每 step ~30s，内层 eval loop 985 samples 已完成多轮。约 20 分钟后完成。\n- **GRPO bf16 g4**: 仅完成 25/200 steps，每 step ~2 min（含 generation），预计还需 5-6 小时。\n- **LLaMA eval**: 86/247 inference batches，~35s/batch，输出目录尚为空（结果在推理全部完成后写入），约 90 分钟完成。\n\nDirector 报告\"4 张 GPU 全部空闲\"与实际不符。无需更新 registry，所有实验维持 RUNNING 状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-wave1-all-status.md"
+}

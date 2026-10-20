@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17d27d46737ab9945cf7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "verify 8b s44 rsft scripts intact",
+  "task_key": "worker_verify_8b_s44_rsft_scripts_intact_20260518T203711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_8b_s44_rsft_scripts_intact_20260518T203711_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "b0a007120d2c62fe1c23bbad7a2308cf1182688445d434b7c2f59fac8eace582"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**脚本状态：正确，无需恢复。**\n\n`train_8b_s44.sh`：\n- `--sft_adapter` → `/root/autodl-tmp/sft_output_qwen3_8b_bf16`（s42 adapter ✓）\n- `--rsft_data_path` → `/root/autodl-tmp/rsft_scored_qwen3_8b_k1/rsft_train.jsonl`（s42 scored data ✓）\n- `--seed 44` ✓\n- `--output_dir` → `/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44` ✓\n\n`eval_8b_s44.sh`：\n- `--sft_adapter` → `/root/autodl-tmp/sft_output_qwen3_8b_bf16`（s42 adapter ✓）\n- D076 protocol（bs=4, no-quantize, seed=42）✓\n\n不需要的文件 `rsft_generate_8b_s44.sh` / `rsft_score_8b_s44.sh` 不存在 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-8b-s44-rsft-scripts-intact.md"
+}

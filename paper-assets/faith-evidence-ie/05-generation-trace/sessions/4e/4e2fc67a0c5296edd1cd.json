@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e2fc67a0c5296edd1cd",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper appendix figures",
+  "task_key": "worker_paper_appendix-figures_20260524T210736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-figures_20260524T210736_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "fecc66a85547f43e97385d8878d32e0e2598ec80779d84a00530362096b47d15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，无 undefined reference 警告。\n\n| 图 | 文件 | 大小 (PDF/PNG) | 插入位置 |\n|---|---|---|---|\n| fig_variance_compression | `fig_variance_compression.pdf/png` | 15K / 41K | Appendix D (`sec:variance_ci`), Table 5 之后 |\n| fig_rsft_ablation | `fig_rsft_ablation.pdf/png` | 13K / 67K | Appendix B (`sec:ablation_full`), Table 4 之后 |\n| fig_error_decomposition | `fig_error_decomposition.pdf/png` | 14K / 70K | Appendix K (`sec:error_analysis`), Table 11 之后 |\n| fig_inference_time | `fig_inference_time.pdf/png` | 12K / 82K | Appendix N (`sec:inference_efficiency`), Table 12 之后 |\n\n编译输出 19 页 PDF，无警告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-figures.md"
+}

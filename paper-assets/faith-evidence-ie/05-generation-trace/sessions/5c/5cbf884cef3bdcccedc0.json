@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cbf884cef3bdcccedc0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops redocred rsft eval r2 cuda1",
+  "task_key": "worker_ops_redocred_rsft_eval_r2_cuda1_20260516T162430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_redocred_rsft_eval_r2_cuda1_20260516T162430_result.json",
+    "occurrence": 1,
+    "bytes": 441,
+    "sha256": "bacc08bc7883076bf0653bc950e53c9fc69f5b78eef3086cd24258cfc5cc27fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常运行：\n\n- **PID**: 363322 (子进程)，cuda:1 占用 10230 MiB\n- **状态**: 模型加载成功，SFT adapter 已合并，推理进行中 (1/124 batches, ~33s/batch)\n- **数据**: 493 eval docs, 7473 gold triples\n- **预计耗时**: ~68 分钟 (124 batches × 33s)\n\n修正了原指令中的模型路径错误（`models/Qwen/Qwen3-4B` → `models/Qwen3-4B`）。Registry 已更新为正确命令和 PID。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-redocred-rsft-eval-r2-cuda1.md"
+}

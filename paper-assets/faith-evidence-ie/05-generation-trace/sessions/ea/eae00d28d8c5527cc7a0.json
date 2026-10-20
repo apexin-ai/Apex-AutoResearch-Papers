@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eae00d28d8c5527cc7a0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "experiment plan 006 qwen3 1 7b sft bf16",
+  "task_key": "worker_experiment_plan_006_qwen3_1_7b_sft_bf16_20260516T063412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_plan_006_qwen3_1_7b_sft_bf16_20260516T063412_result.json",
+    "occurrence": 1,
+    "bytes": 517,
+    "sha256": "09ba075fcaa4a41e600a0ac160ad7893e3fc8e15da558c0b21aacd7986ead363"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**训练已在 cuda:3 启动**（PID 310381）：\n- 模型：Qwen3-1.7B，bf16 LoRA（无量化），`--no-quantize`\n- LoRA：rank=64, alpha=128, 69.7M trainable / 1.79B total (3.89%)\n- 数据：3027 samples, 3 epochs, batch=1×16 accumulation, lr=2e-4, seed=42\n- 输出：`/root/autodl-tmp/sft_output_qwen3_1_7b_bf16/`\n- 日志：`~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_sft_bf16.log`\n- Registry：`plan_006_qwen3_1_7b_sft_bf16` → RUNNING，spec.quantize=\"none (bf16 LoRA)\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-plan-006-qwen3-1-7b-sft-bf16.md"
+}

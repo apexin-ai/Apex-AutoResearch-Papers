@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3600763ca70fc82a673",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh fix diversity monitor",
+  "task_key": "worker_ssh_fix-diversity-monitor_20260515T014729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-diversity-monitor_20260515T014729_result.json",
+    "occurrence": 1,
+    "bytes": 1164,
+    "sha256": "4b408418b8dac13a5875013ba31a033aa7ebfa69f9f20cb2c1b2efd5d3786a5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "39/39 tests passed.\n\n修复完成。变更总结：\n\n**`training/diversity_analysis.py`** — 核心 bug 修复：\n- 原版用 `json.loads(output)` 重新解析模型原始输出文本。~9% 的 truncated 输出虽然被 `parse_model_output` 的 repair 逻辑正确解析（存入 `parsed_triples`），但 `json.loads` 直接失败导致这些 generation 被跳过\n- 改为直接使用 JSONL 记录中的 `parsed_triples` 字段\n- `normalize_triple` 增加了 `.get()` 安全访问和 `str()` 类型转换，与 `diversity_metrics.py` 保持一致\n- 不再跳过任何 generation（包括空输出的），所有 N 个 generation 都参与 diversity 计算\n\n**`training/rsft_generate.py`** — 已经使用 `build_triple_set` 和 `len(generations)`（之前已修复）\n\n**`tests/test_diversity.py`** — 16 个测试覆盖：\n- 8 个完全不同输出 → diversity=8\n- 8 个完全相同输出 → diversity=1\n- 混合情况（部分重复、空输出混入）\n- JSON key 顺序不同但内容相同 → 视为相同\n- 大小写/空白不敏感\n- triple 顺序不影响 set 比较\n- `compute_diversity_from_file` 端到端测试"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-diversity-monitor.md"
+}

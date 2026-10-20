@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2953791fa108a460c9be",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp test eval 4b rsft s44 no evi v2",
+  "task_key": "worker_exp_test_eval_4b_rsft_s44_no_evi_v2_20260524T225129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_test_eval_4b_rsft_s44_no_evi_v2_20260524T225129_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "3557e2a8768eb85a4503b6303be8f0470389e491b29768d9440b20db368aabe0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 里 conclusion 还残留 \"killed\"，清除不了（API 不接受空值）。状态已到 RUNNING，不影响运行。\n\n**提交成功：**\n- PID: **336785**\n- GPU: cuda:3（提交前确认 0 MiB 占用）\n- conda 激活正常，模型已在加载权重，无 127 错误\n- Registry: RUNNING，spec 含完整 provenance\n- 日志: `/root/runs/faith-evidence-ie/test_eval_4b_rsft_s44_no_evi_v2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-test-eval-4b-rsft-s44-no-evi-v2.md"
+}

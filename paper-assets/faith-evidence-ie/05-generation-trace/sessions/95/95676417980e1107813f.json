@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95676417980e1107813f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code rsft bugfix",
+  "task_key": "worker_code_rsft-bugfix_20260515T010036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rsft-bugfix_20260515T010036_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "deca5da4b50265a80e341a1f81c56128f850edb322f4836b1acfe95fafb2daf9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n1. **Bug 1** — `rsft_generate.py:210`: `--quantize` default 已改为 `False`\n2. **Bug 2** — `rsft_score_filter.py:437-448`: 输出改为 JSONL (`rsft_train.jsonl`)，每行含 `input`/`output`/`ced_score` 字段，与 `rsft_trainer.py:62-78` 的 `load_rsft_data` 完全匹配（读 JSONL，取 `s[\"input\"]`、`s[\"output\"]`、`s.get(\"ced_score\", 1.0)`）\n3. **Bug 3** — NLI 模型路径逻辑正确，无需修改\n4. `rsft_trainer.py` 无需改动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rsft-bugfix.md"
+}

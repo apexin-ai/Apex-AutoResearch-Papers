@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43c4d06c5563da3fe76e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan017 14b rsft s43 eval",
+  "task_key": "worker_analysis_plan017_14b_rsft_s43_eval_20260523T204723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan017_14b_rsft_s43_eval_20260523T204723_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "ab670bde60da2d677a6c8d39d7b08b36e95ce60826f79dd5b8af0be1cb2f45bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果摘要：\n\n**plan017_14b_rsft_s43_eval** — Ign-F1 = **0.5815**\n\n| 对比项 | 值 |\n|--------|------|\n| s43 dev with-evi | 0.5815 |\n| s42 dev with-evi | 0.5886 |\n| **Seed 间差异** | **−0.71pp** |\n| s43 dev no-evi | 0.5713 |\n| **s43 dev evidence tax** | **−1.02pp**（evidence 有帮助） |\n| s42 dev evidence tax | −4.54pp |\n\n关键发现：\n1. **两 seed 可复现性合理**，差 0.71pp\n2. **s43 dev evidence tax (−1.02pp) 远小于 s42 (−4.54pp)**，因为 s43 no-evi 模型本身更强（0.5713 vs 0.5432）\n3. **Dev→Test tax 方向翻转**在两个 seed 上一致出现（dev: evidence 有帮助；test: 中性/微负），确认是系统性模式而非 seed 噪声\n\nRegistry 已更新为 DONE(success)，分析报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan017-14b-rsft-s43-eval.md"
+}

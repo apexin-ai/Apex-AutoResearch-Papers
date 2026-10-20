@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b44bbbbd34352e39730f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose mvp2 eval ced kl001 r4 multi",
+  "task_key": "worker_diagnose_mvp2_eval_ced_kl001_r4_multi_20260514T212003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mvp2_eval_ced_kl001_r4_multi_20260514T212003_result.json",
+    "occurrence": 1,
+    "bytes": 770,
+    "sha256": "636b476dcff7d2b709d42fda391253697114c317235a7d18c844cb169a5f43e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。诊断摘要：\n\n**失败原因：** 进程在 ckpt-30 eval 完成后按 Director 指令被外部 kill，非异常崩溃。监控检测到 dead process 后 auto-resolved as FAIL。\n\n**已完成 eval 的 6 个 checkpoint：**\n\n| Checkpoint | F1 | Evi-F1 | EDCR |\n|---|---|---|---|\n| ckpt-10 | 0.003 | 0.720 | 0.998 |\n| ckpt-20 | 0.009 | 0.423 | 0.995 |\n| ckpt-30 | 0.034 | 0.589 | 0.980 |\n| ckpt-50 | 0.156 | 0.564 | 0.886 |\n| ckpt-60 | 0.147 | 0.576 | 0.906 |\n| ckpt-90 | **0.211** | 0.567 | 0.858 |\n\n**未完成：** ckpt-40（中断，目录为空）、ckpt-70/80（未执行）\n\nF1 整体随 step 单调上升，best = ckpt-90 (F1=0.211)。EDCR 随 step 下降（模型逐步学会过滤 distractor citations）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mvp2-eval-ced-kl001-r4-multi.md"
+}

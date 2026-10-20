@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1131eb621c5426a8a85a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "train dpo rebuilt 1ep",
+  "task_key": "worker_train_dpo_rebuilt_1ep_20260523T023404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_dpo_rebuilt_1ep_20260523T023404_result.json",
+    "occurrence": 1,
+    "bytes": 310,
+    "sha256": "1bc8bc4bc0ed9f3b7d09dc409be23429cc96dd2b6ef2afd05a7d3131a628845b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`dpo_rebuilt_1ep` 已提交并运行中。\n\n- **PID**: 218955\n- **GPU**: cuda:2 (CUDA_VISIBLE_DEVICES=2)\n- **总步数**: 187 steps (2977 pairs / batch 2 / grad_accum 8)\n- **日志**: `/root/autodl-tmp/dpo_rebuilt_1ep.log`\n- **W&B**: freige-dpo / dpo_rebuilt_1ep\n- **预估时间**: ~1-2h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-dpo-rebuilt-1ep.md"
+}

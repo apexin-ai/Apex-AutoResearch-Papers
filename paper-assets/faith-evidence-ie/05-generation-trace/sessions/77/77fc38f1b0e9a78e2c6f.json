@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77fc38f1b0e9a78e2c6f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper fig task example paperbanana",
+  "task_key": "worker_paper_fig_task_example_paperbanana_20260525T112205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig_task_example_paperbanana_20260525T112205_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "e76f5ed2e705cbb065951a1b93b8930a0a8165a884bd63437f70e542aafbfa78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出：\n\n- `figures/paper/fig_task_example.png` — PaperBanana 生成的 300 DPI 概念图（实际为 JPEG）\n- `figures/paper/fig_task_example.pdf` — 转换后的 PDF\n- `docs/paper/sections/method.tex` — 已在 §3.1 第一段后插入 `\\begin{figure}` 环境，label 为 `fig:task_example`\n\nPaperBanana critic 阶段有 JSON 解析 bug 导致崩溃，但第 1 轮生成的图效果已达标：实体高亮清晰（蓝/金/绿三色区分）、上下两部分逻辑关系明确、排版干净。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig-task-example-paperbanana.md"
+}

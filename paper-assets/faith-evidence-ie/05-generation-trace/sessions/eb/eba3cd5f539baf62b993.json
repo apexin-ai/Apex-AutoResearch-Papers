@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eba3cd5f539baf62b993",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d140 fair tax 1 7b 8b",
+  "task_key": "worker_analysis_d140_fair_tax_1_7b_8b_20260521T114538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d140_fair_tax_1_7b_8b_20260521T114538_result.json",
+    "occurrence": 1,
+    "bytes": 330,
+    "sha256": "bedd597e6ed6062da20e3b7d4d409bc83cbb9dc87d6feabd7b049649f36aefec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n```\n1.7B: fair_subset=971 docs, fair_with=0.4838, fair_no=0.4275, fair_tax=-5.63 pp\n8B:   fair_subset=984 docs, fair_with=0.5015, fair_no=0.5019, fair_tax=+0.04 pp\n```\n\n1.7B 的 evidence tax 在 fair comparison 下依然显著（-5.63pp），8B 则几乎为零（+0.04pp）。Registry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d140-fair-tax-1-7b-8b-copy-2.md"
+}

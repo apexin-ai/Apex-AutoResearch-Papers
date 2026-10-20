@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fe6200afaba25bea511",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "harvest llama rsft s44 pipeline",
+  "task_key": "worker_harvest_llama_rsft_s44_pipeline_20260520T041515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_llama_rsft_s44_pipeline_20260520T041515_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "87a7d829b3bd79e383a67fed90a31d12fcfaa3d872f1863998d8bac8ef2e58bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## LLaMA-3.1-8B RSFT k=1 s44 Pipeline 结果\n\n**训练**：完成，checkpoint 在 `/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44/`（adapter_model.safetensors 671MB, checkpoint-1107）\n\n**Eval 指标**：\n\n| 指标 | s42 | s43 | **s44** |\n|------|-----|-----|---------|\n| Ign-F1 | 0.5714 | 0.5662 | **0.5587** |\n| Rel-F1 | 0.5839 | 0.5780 | **0.5706** |\n| Evi-F1 (TP) | 0.8238 | 0.8287 | **0.8328** |\n| Evi-F1 (Joint/DREEAM) | 0.4701 | 0.4644 | **0.4609** |\n| EDCR | 0.5799 | 0.5783 | **0.5829** |\n| Format OK | 984/985 | 985/985 | **985/985** |\n| Truncated | 158 | 173 | **166** |\n\n**3-seed 统计**：\n- **Ign-F1 mean** = (0.5714 + 0.5662 + 0.5587) / 3 = **0.5654** (±0.0052 std)\n- **Rel-F1 mean** = (0.5839 + 0.5780 + 0.5706) / 3 = **0.5775** (±0.0054 std)\n\n注意：你之前给的 s42 ign_f1=0.5839 实际上是 rel_f1。s42 的 ign_f1 是 0.5714。\n\nRegistry 和 cron 已更新完毕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-llama-rsft-s44-pipeline.md"
+}

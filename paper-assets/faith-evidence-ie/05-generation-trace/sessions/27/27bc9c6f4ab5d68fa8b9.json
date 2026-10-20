@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27bc9c6f4ab5d68fa8b9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops update roadmap 8b 3seed",
+  "task_key": "worker_ops_update_roadmap_8b_3seed_20260519T172913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_update_roadmap_8b_3seed_20260519T172913_result.json",
+    "occurrence": 1,
+    "bytes": 262,
+    "sha256": "abc6e793193f7a338287404f18b423dc3aad351dd9c171d4c79f7152438cef25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP.md 已更新完毕，共 8 处修改：scaling table 8B 行（mean 0.5433/3seeds, Δ+4.14pp, std 0.50pp）、Tier 2 任务标记完成、近期任务勾选、variance compression 更新为 7.4x、GPU 分布刷新、风险区数值同步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-update-roadmap-8b-3seed.md"
+}

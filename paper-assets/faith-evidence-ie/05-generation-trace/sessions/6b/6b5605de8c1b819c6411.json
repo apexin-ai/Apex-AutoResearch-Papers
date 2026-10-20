@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b5605de8c1b819c6411",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diag plan019 1 7b rsft s43",
+  "task_key": "worker_diag_plan019_1_7b_rsft_s43_20260519T033008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_plan019_1_7b_rsft_s43_20260519T033008_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "5cf1b2a8a66ac792a4e93d0ccce2e9b02857798de8815097fe7e193fbc0976a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果：\n\n**三个实验都不是真正失败，是监控误判。**\n\n| 实验 | 监控判定 | 实际状态 |\n|------|---------|---------|\n| s43 训练 | failed | **已完成** 567/567 steps, loss=0.55, acc=0.87 |\n| s44 训练 | miss 1/5 | **已完成** 567/567 steps, loss=0.55, acc=0.87 |\n| d112 CED scoring | failed | **仍在运行** 3500/24216, 预计 ~12:33 完成 |\n\n**共同根因**：\n1. 服务器无 `WANDB_API_KEY` → `report_to=\"none\"` → 监控检测不到 W&B run\n2. `rsft_trainer.py` 无 sentinel 文件写入逻辑 → 监控检测不到完成标记\n3. 训练脚本无 `tee` 重定向 → tmux session 消失后日志丢失\n\n**结论**: s43 和 s44 的 adapter 已完整保存，可直接用于下游 eval。d112 CED scoring 正常推进中，无需干预。\n\n报告已写入 `artifacts/diag_plan019_1_7b_rsft_s43.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-plan019-1-7b-rsft-s43.md"
+}

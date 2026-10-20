@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f79a2758da7abaebc9f1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose d112 cuda3 verify and fix registry",
+  "task_key": "worker_diagnose_d112_cuda3_verify_and_fix_registry_20260518T231821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_d112_cuda3_verify_and_fix_registry_20260518T231821_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "487430861f82a181ed1cce2baeb5b5a12a79afd99787b9fca99bdeef99993b02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 修复完成。汇报：\n\n- **进程**: PID 584466，cuda:3，18698MiB，tmux session `d112_rsft_s44_generate` 存在\n- **进度**: 88/3027 docs（~3%），运行约 20 分钟\n- **速度**: 平均 ~13.5s/doc\n- **预估完成**: 剩余 2939 docs × 13.5s ≈ 11 小时，预计 UTC 5/19 ~18:00（北京时间 5/20 凌晨 2 点左右）\n- **Registry**: `d112_rsft_s44_generate` 已创建并推进到 RUNNING，包含完整 spec（command、PID、GPU、output_dir 等）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d112-cuda3-verify-and-fix-registry.md"
+}

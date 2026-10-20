@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6e9706219d43f9ea66c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "audit trace 1 7b rsft s42",
+  "task_key": "worker_audit_trace-1_7b-rsft-s42_20260524T053119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_trace-1_7b-rsft-s42_20260524T053119_result.json",
+    "occurrence": 1,
+    "bytes": 1846,
+    "sha256": "43261fa38049e3348c74d7d06191d9107b5fe5f48094f69cfff587783b410a06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整结果。\n\n---\n\n## 所有 1.7B RSFT s42 Eval 结果\n\n| 文件路径 | ign_f1 | f1 | evi_f1 | max_new_tokens | checkpoint | split | 修改时间 |\n|----------|--------|-----|--------|----------------|------------|-------|----------|\n| `eval_results/d102_1_7b_k1_s42/` | **51.22** | 52.90 | 82.43 | 1024 | `rsft_output_qwen3_1_7b_k1/checkpoint-567` (k=1 CED) | dev | May 18 18:14 |\n| `eval_results/plan_006_qwen3_1_7b_rsft_eval_r2/` | **50.50** | 52.19 | 83.09 | 1024 | `rsft_output_qwen3_1_7b/checkpoint-1698` (k=3 CED) | dev | May 17 19:16 |\n| `eval_results/test_eval_1_7b_rsft_s42/` | 29.33 | 29.33 | 23.20 | 2048 | `rsft_output_qwen3_1_7b_k1` | test | May 21 |\n| `eval_results/test_eval_1_7b_rsft_s42_no_evi/` | 23.90 | 23.90 | — | 2048 | `rsft_output_qwen3_1_7b_k1` | test (no-evi) | May 22 |\n\n对照 seeds（s43/s44，均为 k=1 CED dev eval）：\n- s43 (`rsft_1_7b_s43_r2_eval`): ign_f1 = **51.09**\n- s44 (`rsft_1_7b_s44_r2_eval`): ign_f1 = **51.25**\n\n---\n\n## 结论\n\n**Registry 50.50** = `plan_006_qwen3_1_7b_rsft_eval_r2`\n- checkpoint: `rsft_output_qwen3_1_7b/checkpoint-1698`（**旧 k=3 CED**，9042 训练样本）\n- 精确值: ign_f1 = 0.504952\n\n**Paper 51.23** = `d102_1_7b_k1_s42`\n- checkpoint: `rsft_output_qwen3_1_7b_k1/checkpoint-567`（**新 k=1 CED**，3021 训练样本）\n- 精确值: ign_f1 = 0.512172 → **51.22**（paper 写成 51.23 有 0.01pp 四舍五入偏差）\n\n**根因：两个 eval 使用了不同的 RSFT checkpoint。** D102 是方法论修正后的 k=1 CED 版本（与论文声明和 4B canonical 一致），plan_006 是修正前的 k=3 CED。Registry 未更新为 d102 的值。\n\n第一版 audit (`final_audit_w2_tables.md:61`) 已验证 paper 用 d102 值计算 3-seed mean = (51.22 + 51.09 + 51.25)/3 = 51.19±0.09 ✅。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-trace-1-7b-rsft-s42.md"
+}

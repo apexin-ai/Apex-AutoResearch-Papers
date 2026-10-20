@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90f573c0a47b54920ae7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh diversity probe",
+  "task_key": "worker_ssh_diversity-probe_20260514T232333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diversity-probe_20260514T232333_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "1e010e4f10fb2afaf855b67613d1c4748edf1bae9879be019ad9c64da77c7947"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Diversity probe is nearly complete. Sample 3 T=1.0 is finishing (gen 3/8, ~5 min remaining) but it's all truncated outputs — won't change the conclusions.\n\n**Summary of findings:**\n\n| | T=0.7 | T=1.0 |\n|---|---|---|\n| Unique triple-sets | 7.0/8 avg | 8.0/8 avg |\n| Jaccard similarity | 0.170 | 0.051 |\n| Format OK rate | 50.0% | 43.8% |\n| F1 | 0.000 | 0.000 |\n\n**Conclusions in `artifacts/diversity_probe_results.md`:**\n1. **Diversity is sufficient** — RSFT is viable. 6-8 unique outputs per 8 generations.\n2. **Format compliance (~50%) is the main risk** — field name instability (`head` vs `head_entity`, `evidence` vs `sentence_ids`).\n3. **F1=0 is a measurement artifact** — relation name mismatch (e.g. \"founded\" vs \"inception\"). CED reward must be used instead.\n4. **Recommended RSFT config**: T=0.7, N=8, max_new_tokens=2048, CED reward + format gating."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diversity-probe.md"
+}

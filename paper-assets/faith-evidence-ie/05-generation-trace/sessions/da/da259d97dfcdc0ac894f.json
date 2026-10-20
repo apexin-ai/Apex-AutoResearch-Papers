@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da259d97dfcdc0ac894f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit plan019 1 7b sft s43 eval cuda0",
+  "task_key": "worker_submit_plan019_1_7b_sft_s43_eval_cuda0_20260518T203120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_plan019_1_7b_sft_s43_eval_cuda0_20260518T203120_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "40fb1480a1340924aa9780272da9806c531bb24613ca1bf181b8a48b5a79c5f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 产出报告\n\n**1. plan019_8b_sft_s44 训练结果**（已完成，registry 已更新 DONE/success）\n| 指标 | 值 |\n|---|---|\n| train_loss | 0.5691 |\n| eval_loss | 0.7196 |\n| eval_mean_token_accuracy | 0.8379 |\n| eval_entropy | 0.5579 |\n| train_runtime | 3823.9s (~63min) |\n| epoch | 3 |\n| checkpoint | `/root/autodl-tmp/sft_output_qwen3_8b_s44` |\n\n**2. plan019_1_7b_sft_s43_eval 提交确认**\n- PID: **573657**\n- GPU: **cuda:0**（4768 MiB 占用，推理进行中）\n- 模型路径修正：`/root/autodl-tmp/models/Qwen/Qwen3-1.7B`（原始路径不存在）\n- Registry: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-plan019-1-7b-sft-s43-eval-cuda0.md"
+}

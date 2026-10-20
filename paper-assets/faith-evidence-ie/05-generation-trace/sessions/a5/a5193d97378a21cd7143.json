@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0",
+  "id": "a5193d97378a21cd7143",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "diagnose 8b rsft s42 ground truth",
+  "task_key": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202.jsonl",
+    "occurrence": 1,
+    "bytes": 16796,
+    "sha256": "238d46e584f8f61d1e416748c9e9545485cc194d340900fc032cd37c0e4c8557"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T21:43:22.638377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T21:43:22.638725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T21:43:22.638907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/d102_8b_k1_s42/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T21:43:22.639100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5529046490726367,\\\\n  \\\\\\\"recall\\\\\\\": 0.5569088963871286,\\\\n  \\\\\\\"f1\\\\\\\": 0.55489954899549,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.5274764360661569,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.5481933277885593,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5376353831513119,\\\\n  \\\\\\\"tp\\\\\\\": 6767,\\\\n  \\\\\\\"pred_count\\\\\\\": 12239,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.7889466442439994,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8398567824884042,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8136060856883843,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15962,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6231148438926419,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 17064,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 27385,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.4231967409537503,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.45843933336794557,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.44011364202761305,\\\\n  \\\\\\\"evi_tp\\\\\\\": 8830,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 20865,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.749238578680203,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.749238578680203,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 738,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 738,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 16314,\\\\n  \\\\\\\"n_truncated\\\\\\\": 242,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 11700.1,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_qwen3_8b_k1\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_8b_bf16\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/d102_8b_k1_s42\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\n…[truncated 87 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T21:43:22.639278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/d102_8b_k1_s43/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T21:43:22.639465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5639701663798049,\\\\n  \\\\\\\"recall\\\\\\\": 0.5662908402600609,\\\\n  \\\\\\\"f1\\\\\\\": 0.565128120893561,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.5384821908000716,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.5560484243600406,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5471243464423732,\\\\n  \\\\\\\"tp\\\\\\\": 6881,\\\\n  \\\\\\\"pred_count\\\\\\\": 12201,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.7909984480082773,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8468233246301131,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8179594956056554,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15796,\\\\n  \\\\\\\"edcr\\\\\\\": 0.609436578601664,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 16701,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 27404,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.4382927417410176,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.4718342765173148,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.4544454445444545,\\\\n  \\\\\\\"evi_tp\\\\\\\": 9088,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 20735,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7532994923857868,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7532994923857868,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 742,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 742,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 16226,\\\\n  \\\\\\\"n_truncated\\\\\\\": 231,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 11751.9,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_8b_bf16\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/d102_8b_k1_s43\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\n…[truncated 91 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T21:43:22.639625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/rsft_8b_k1_s44_eval/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T21:43:22.639795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5606619152945032,\\\\n  \\\\\\\"recall\\\\\\\": 0.5632458233890215,\\\\n  \\\\\\\"f1\\\\\\\": 0.5619508990885952,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.5360493165371214,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.5544774050457444,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5451076587626056,\\\\n  \\\\\\\"tp\\\\\\\": 6844,\\\\n  \\\\\\\"pred_count\\\\\\\": 12207,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.7965653896961691,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8332114118507681,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8144764023518195,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15778,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6233465608465608,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 16965,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 27216,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.4310768489520597,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.46451378433103163,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.447171131547381,\\\\n  \\\\\\\"evi_tp\\\\\\\": 8947,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 20755,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7614213197969543,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7614213197969543,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 750,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 750,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 16254,\\\\n  \\\\\\\"n_truncated\\\\\\\": 230,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 10428.3,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_8b_bf16\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_8b_k1_s44_eval\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"\n…[truncated 98 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T21:43:22.639948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/ -maxdepth 2 -name \"metrics.json\" -path \"*8b*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T21:43:22.640086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/8b_sft_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/d102_8b_k1_s42/metrics.json\\\\n/root/autodl-tmp/eval_results/d102_8b_k1_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval/metrics.json\\\\n/root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval/metrics.json\\\\n/root/autodl-tmp/eval_results/plan019_8b_sft_s44_eval/metrics.json\\\\n/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_eval/metrics.json\\\\n/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test/metrics.json\\\\n/root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/metrics.json\\\\n/root/autodl-tmp/eval_results/qwen3_8b_sft_eval/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_8b_k1_s44_eval/metrics.json\\\\n/root/autodl-tmp/eval_results/d140_8b_sft_s42_with_evi_2048/metrics.json\\\\n/root/autodl-tmp/eval_results/d140_8b_sft_s42_no_evi_2048_fix/metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T21:43:22.640277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_eval/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T21:43:22.640476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5553043759082835,\\\\n  \\\\\\\"recall\\\\\\\": 0.5660439470002468,\\\\n  \\\\\\\"f1\\\\\\\": 0.560622733015446,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.5299130281999473,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.557434617872655,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5433255269320844,\\\\n  \\\\\\\"tp\\\\\\\": 6878,\\\\n  \\\\\\\"pred_count\\\\\\\": 12386,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.778534923339012,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8337431585627033,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8051938103263369,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 16350,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6377141281494503,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 18502,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 29013,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.4177602596800371,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.46773272415762424,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.44133640327242446,\\\\n  \\\\\\\"evi_tp\\\\\\\": 9009,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 21565,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7299492385786802,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7299492385786802,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 719,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 719,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 16831,\\\\n  \\\\\\\"n_truncated\\\\\\\": 267,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 10546.3,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-3393\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_8b_bf16\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_eval\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\n…[truncated 114 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T21:43:22.640715+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部拿到。两个 s42 eval 的差异已清楚。\n\n## 诊断报告\n\n### 两个 s42 eval 的差异\n\n| | d102_8b_k1_s42 | plan_006_qwen3_8b_rsft_eval |\n|---|---|---|\n| **ign_f1** | **0.5376** | **0.5433** |\n| model_path | `rsft_output_qwen3_8b_k1` | `rsft_output_qwen3_8b/checkpoint-3393` |\n| n_predictions | 16,314 | 16,831 |\n| n_truncated | 242 | 267 |\n| max_new_tokens | 1024 | 1024 |\n| split | dev | dev |\n| seed | 42 | 42 |\n\n**根因：模型不同。** plan_006 用的是早期 RSFT 模型的 checkpoint-3393，d102 系列用的是 k1 rejection sampling RSFT 模型。不是同一个模型的两次 eval，而是两个不同模型的 eval。\n\n### 3-seed 同协议结果（d102 系列，k1 RSFT）\n\n| Seed | Model | ign_f1 |\n|------|-------|--------|\n| s42 | rsft_output_qwen3_8b_k1 | 0.5376 |\n| s43 | rsft_output_qwen3_8b_k1_s43 | 0.5471 |\n| s44 | rsft_output_qwen3_8b_k1_s44 | 0.5451 |\n\n三个 seed 的 eval 配置完全一致（同 base_model、同 sft_adapter、同 max_new_tokens=1024、同 split=dev、同 seed=42），仅训练 seed 不同。\n\n### 正确的 Mean ± Std\n\n```\nvals = [0.5376, 0.5471, 0.5451]\nMean = 0.5433\nStd  = 0.0050 (0.50pp)\n```\n\n**论文应报告：54.33 ± 0.50**\n\n### Registry 问题\n\nRegistry 中 plan_006_qwen3_8b_rsft_eval 的 ign_f1=0.5433 是那个**旧模型**（非 k1）的真实结果，不是 d102 s42 的结果。Registry 如果把这个值当作 s42 的 ign_f1 来算 3-seed 均值，就混入了不同模型的数据——尽管巧合地 0.5433 恰好接近 3-seed 均值。\n\n正确的 s42 ign_f1 是 **0.5376**（来自 d102_8b_k1_s42/metrics.json）。\n\n### 其他关键指标（d102 三 seed 均值）\n\n| 指标 | s42 | s43 | s44 | Mean |\n|------|-----|-----|-----|------|\n| ign_f1 | 53.76 | 54.71 | 54.51 | 54.33 |\n| evi_f1 (TP-only) | 81.36 | 81.80 | 81.45 | 81.54 |\n| evi_f1_joint | 44.01 | 45.44 | 44.72 | 44.72 |\n| edcr | 62.31 | 60.94 | 62.33 | 61.86 |\n| n_truncated | 242 | 231 | 230 | 234 |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/diagnose-8b-rsft-s42-ground-truth.md"
+}

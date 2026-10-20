@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd83d56fa2a78ee51245",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit 1 7b rsft s43 r2 cuda3",
+  "task_key": "worker_submit_1_7b_rsft_s43_r2_cuda3_20260519T051027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_1_7b_rsft_s43_r2_cuda3_20260519T051027_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "60ed1acd0addf3aee12a7c5b98e7bff8b92d689f349856fa8feeecb716ac88d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n**训练已启动** — `plan019_1_7b_rsft_s43_r2`\n\n| 项目 | 值 |\n|---|---|\n| PID | 615557 |\n| GPU | cuda:3, 22484MiB / 32607MiB |\n| Adapter | `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16` (s42, 正确) |\n| 数据 | 3021 samples, CED mean=0.690 |\n| 进度 | 5/567 steps, ~2.9s/it |\n| 预计耗时 | ~28 min |\n\n**全卡状态：**\n- GPU 0: 29637MiB — python (已有任务)\n- GPU 1: 16181MiB — python (已有任务)\n- GPU 2: 25207MiB — python (已有任务)\n- GPU 3: 22493MiB — plan019_1_7b_rsft_s43_r2 (刚启动)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-1-7b-rsft-s43-r2-cuda3.md"
+}

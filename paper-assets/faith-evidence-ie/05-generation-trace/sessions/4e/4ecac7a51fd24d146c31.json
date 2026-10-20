@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ecac7a51fd24d146c31",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops fix cuda3 conflict urgent",
+  "task_key": "worker_ops_fix_cuda3_conflict_urgent_20260515T193659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_cuda3_conflict_urgent_20260515T193659_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "54c0be6486348a5a121fbc2bb57dabbade715940e2d8b10f1a6ab9be79ece6a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程运行中，已加载 tokenizer 和 2666 条 DPO pairs，正在加载模型到 GPU。\n\n**执行总结：**\n\n| Step | 状态 |\n|------|------|\n| 1. Kill PID 242801 (OOM eval) | 完成 |\n| 2. Registry 标记 eval_plan_012_dpo_ced_ckpt400 为 failed | 完成 |\n| 3. 确认 cuda:2 空闲 (0 MiB / 32607 MiB) | 完成 |\n| 4. 提交 plan_012_dpo_ced_1ep 到 cuda:2 | 完成 (PID 244073) |\n| 5. ckpt-400 eval 排队 | 待 DPO 1ep 完成后在 cuda:2 串行执行 |\n\n额外处理：`plan_009_flatnli_reward_eval` 在 registry 中残留占用 cuda:2（实际无进程），已将其 status 从 QUEUED 改为 DONE 释放 GPU 分配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-cuda3-conflict-urgent.md"
+}

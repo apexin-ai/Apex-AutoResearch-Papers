@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9180f0a5c66b2fc4c0e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp r3 grpo bf16 g4 eval",
+  "task_key": "worker_exp_r3_grpo_bf16_g4_eval_20260525T004216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r3_grpo_bf16_g4_eval_20260525T004216_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "59c412ba6e7925b67721f0faf69f8aef83e7ee40b2c2b17cc250535d19b0b23b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册。\n\n**状态汇总**：\n- **实验**: r3_grpo_bf16_g4_eval — RUNNING on cuda:1\n- **PID**: 343374\n- **模型**: Qwen3-4B + SFT + GRPO bf16 G=4 checkpoint-100\n- **数据**: docred dev (985 docs, 12275 triples), 247 batches\n- **日志**: `/tmp/r3_grpo_bf16_g4_eval.log`\n- **注意**: 第一次因 `--base_model` 路径错误（`models/Qwen/Qwen3-4B` → 实际是 `models/Qwen3-4B`）失败，已修正重新提交\n\n推理已在进行中，预计需要几十分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-r3-grpo-bf16-g4-eval.md"
+}

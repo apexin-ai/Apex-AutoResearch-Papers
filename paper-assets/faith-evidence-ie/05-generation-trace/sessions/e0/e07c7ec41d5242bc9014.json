@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e07c7ec41d5242bc9014",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_9_1778871680.md",
+  "task_key": "loop_9_1778871680",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778871680.md",
+    "occurrence": 1,
+    "bytes": 3576,
+    "sha256": "fe9fcba24f3dc8bde4f2e58d71649b1ea08fe1a0797060973f418d643c96460d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T18:46:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0/1/2/3，无其他服务器\n- Evi-F1 评测协议不一致（D041/D042）：我们是 conditional Evi-F1（仅 TP triples），DREEAM 是 unconditional。论文写对比数字时**必须注明**，不能直接比\n- DREEAM 论文报告的 57.34 是 student model + test set + 4阶段 self-training，不是 teacher model dev set。不要搞混\n- plan_011 eval 是分叉点：rel_f1 崩→plan_015 降优先级；rel_f1 回升→需拆分三变量 ablation。不要在 eval 结果出来前启动 plan_015\n- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不要假设 .venv\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x，4× RTX 5090 32GB\n- 工作目录：代码在 `/root/autodl-tmp/` 下各子目录\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- DREEAM baseline 代码：`/root/autodl-tmp/baselines/dreeam/`\n- DREEAM checkpoint：`/root/autodl-tmp/baselines/dreeam/checkpoints/teacher_roberta/2026-05-15_22:29:42.720935/last.ckpt`\n- 活跃进程：eval_grpo_g8_bf16 (PID 214552, cuda:3, tmux session)\n- plan_004_dreeam_baseline 已完成，cuda:2 已释放\n\n### 3. 📊 当前状态\n**刚完成**：plan_004_dreeam_baseline 分析 → DONE(success)。DREEAM teacher RoBERTa-large DocRED dev: RE-F1=63.57, Evi-F1=54.01，与论文高度吻合。已更新 registry + 汇报 Director。\n\n**RUNNING**：\n- eval_grpo_g8_bf16 (cuda:3) — 评估 GRPO G=8 bf16 checkpoints 80/90/100，验证 catastrophic forgetting 是否在 bf16 下复现\n\n**PENDING**：\n- plan_011_grpo_g8_bf16_eval — 等人工审批\n\n**PREPARING**：\n- plan_001_rsft_flat_nli — flat-NLI scoring 已完成，待训练\n- plan_011_eval_g8_bf16_ckpt100\n- mvp2_eval_rsft_s44\n\n**等待中**：\n- eval_grpo_g8_bf16 cron 回调 — 完成后分析 forgetting 是否复现\n- Director 审批：已建议在 cuda:0/1/2 启动 plan_001 + plan_014 + plan_012\n\n### 4. 📋 待办\n- eval_grpo_g8_bf16 cron 回调到达 → 分析 rel_f1：>0.30 forgetting 不复现（QLoRA-specific），<0.05 复现（加强 C3）→ 决定 plan_015 优先级\n- Director 审批 plan_001/014/012 → 立即 spawn 3 Workers 并行铺 cuda:0/1/2\n- plan_001 训练完成 → 全量 dev eval → 与 CED RSFT 对比，决定 CED contrastive margin 是否关键\n- plan_009 (forgetting dynamics figure) 随时可 spawn CPU Worker 画图，不占 GPU\n\n### 5. 🎯 战略上下文\n- **论文定位已 reframe**（D044）：从 CED-centric → \"task definition + decoupling finding + EDCR metric\"。CED 降为 \"one scoring option\"\n- **Dream v2 仍未达标**（D049: best=3.0 < 3.5）。五个结构性问题：(1) CED≈flat-NLI 标题错配 (2) QLoRA confound (3) related work 缺口 (4) 缺 forgetting figure (5) DPO 细节不足\n- **GRPO 判死确认中**：QLoRA G=4 全线 catastrophic forgetting 已确认。plan_011 (G=8 bf16) 是最后验证——如果 bf16 也崩，C3 (decoupling is genuine RL-for-IE phenomenon) 大幅加强；如果回升，需要更精细的 ablation\n- **关键数字**：SFT rel_f1=0.4057, RSFT-best(s44) rel_f1=0.4655/evi_f1=0.8087, DREEAM RE-F1=63.57/Evi-F1=54.01, CED-reranker rel_f1=0.4864\n- **易错**：DREEAM 的 RE-F1 63.57 和我们的 rel_f1 0.4057 不在同一量纲（DREEAM 是百分制 discriminative model，我们是 0-1 generative model）。论文对比时注意 framing\n- **投稿目标**：EMNLP 2026 Main (ARR July cycle, ~7月15-25)，不 fallback Findings\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778871680.md"
+}

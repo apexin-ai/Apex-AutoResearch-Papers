@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cc77ecbd70503f92f66",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d140 4b fair tax",
+  "task_key": "worker_analysis_d140_4b_fair_tax_20260521T113700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d140_4b_fair_tax_20260521T113700_result.json",
+    "occurrence": 1,
+    "bytes": 586,
+    "sha256": "dce3311bf353ed6fa8edd930513ca82d892c2d9aef8ce32235e4158327eae767"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `/root/autodl-tmp/eval_results/d140_4b_matched_fair_tax_2048.json`。\n\n**4B SFT s42 matched@2048 fair evidence tax：**\n\n| | with-evi | no-evi |\n|---|---|---|\n| format_ok | 983 | 983 |\n| truncated (总) | 243 | 178 |\n\n- **fair subset docs**: 981（交集）\n- **fair with-evi ign_f1**: 0.3951\n- **fair no-evi ign_f1**: 0.4024\n- **fair_tax**: **+0.73pp**（no-evi 更高，即 evidence 有负面影响）\n\n对比其他 scale：1.7B fair_tax = -5.63pp（evidence 大幅帮助），8B 待查。4B 的 evidence tax 接近零且方向反转。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d140-4b-fair-tax.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33e83396c36f0cf2a87a",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778802382.md",
+  "task_key": "loop_4_1778802382",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778802382.md",
+    "occurrence": 1,
+    "bytes": 4220,
+    "sha256": "dd794c4ce13843fc7aa20c1e916a535fffbb206990efbfb7e1b421cc09e786d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T23:27:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0,1,2,3（rtx5090-4x），config 里写死，不可用其他\n- **D031 已判死 GRPO+QLoRA 方向**——不要再启动任何 GRPO 训练实验。当前 RUNNING 的 4 个都是收尾数据收集\n- eval 脚本必须 `cd /root/autodl-tmp`（不是 `/root/autodl-tmp/freige`）——内层空 `freige/freige/` 包会导致 import 失败，之前踩过\n- PREPARING 的 3 个旧实验（mvp2_eval_ced_kl001_r4_last、mvp2_grpo_ced_kl001_r2、mvp2_grpo_ced_kl001_r3）已过时，**不要提交**，择机标记 killed\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（4× RTX 5090 32GB），备用 SSH endpoint bjb2-12179（同一台机器）\n- 工作目录：`/root/autodl-tmp/freige`\n- Python：aml-train 镜像，conda 环境 `/root/miniconda3/bin/python`\n- 活跃进程：\n  - cuda:0 — mvp2_grpo_ced_lr5e6_r1 训练（PID 90080，step ~104/200，~2.7h 完成）\n  - cuda:1 — mvp2_eval_lr5e6_r1_ckpt60_r2 eval retry（PID 108185）+ 原 ckpt60（PID 108025，可能 orphan）\n  - cuda:2 — mvp2_eval_lr5e6_r1_ckpt80 eval（PID 111731）\n  - cuda:3 — mvp2_eval_sft_baseline（PID 104979，~44min 完成）\n- Cron：4 个活跃，分别监控上述 4 个 RUNNING 实验（reconcile 刚确认全部 still running）\n\n### 3. 📊 当前状态\n刚完成 D031 决策：GRPO+QLoRA 全线失败，pivot 到 Rejection Sampling FT (RSFT) + CED scoring。当前 4 卡全在跑 GRPO 收尾（收集完整 trajectory 数据 + SFT baseline），跑完全部转投 RSFT。\n\n**两个活跃 Worker（都在跑，别重复派）**：\n1. `worker_code_rsft-training-script_20260514T231604`（turn 15）——正在写 RSFT 训练脚本，已在服务器上做 nohup 模型加载测试\n2. `worker_ssh_diversity-probe_20260514T232333`（turn 20）——在 cuda:2 上探测 SFT 模型生成多样性（确定 RSFT 的 N 和 temperature 参数），正在写 probe 脚本\n\n**Registry 总览**：49 个实验，5 RUNNING / 1 QUEUED / 3 PREPARING / 8 success / 8 negative / 9 failed / 15 killed\n\n### 4. 📋 待办（条件触发式）\n- `mvp2_eval_sft_baseline` cron 回调 → 记录 SFT baseline rel_f1（**RSFT 的关键参照线**），更新 registry + report.md，汇报 Director\n- `mvp2_eval_lr5e6_r1_ckpt60_r2` cron 回调 → 更新 registry（收尾数据，ckpt-60 轨迹点）\n- `mvp2_eval_lr5e6_r1_ckpt80` cron 回调 → 更新 registry（ckpt-80 轨迹点）\n- `mvp2_grpo_ced_lr5e6_r1` 训练完成 → 提交 mvp2_eval_lr5e6_r1_ckpt100（已 QUEUED），最后一个轨迹点\n- Worker rsft-training-script 完成 → review RSFT 代码，设计实验方案（pass/fail criteria），提交 Director 审批\n- Worker diversity-probe 完成 → 用多样性数据确定 RSFT 生成参数（N, temperature, top-p），写入实验方案\n- 所有收尾实验 + Worker 完成 → 向 Director 提交 RSFT MVP-2 实验计划，申请 4 卡全部转投\n- 3 个 PREPARING 旧实验 → 标记 killed（GRPO 方向已死）\n\n### 5. 🎯 战略上下文\n**决策链**：MVP-1 CED signal PASS (margin=0.48, acc=81.5%, r=0.34) → SFT warmup DONE (eval_loss=0.72, token_acc=83.5%) → GRPO+QLoRA 全线 FAIL: lr=5e-5 catastrophic forgetting (best rel_f1=0.211=SFT的52%), lr=5e-6 零学习 (rel_f1=0.007) → **D031: Pivot to RSFT+CED**\n\n**核心判断**：CED reward signal 有效（MVP-1 验证），问题在在线 RL 方法论。GRPO+QLoRA 在结构化生成任务上 catastrophic forgetting 是根本性的（不是超参问题）。RSFT 完全避免在线 RL，用 CED 做离线筛选。\n\n**易踩的坑**：\n- cuda:1 上可能有两个进程（ckpt60 原始 PID 108025 + retry PID 108185），cron 只监控 retry 的 PID，原始可能是 orphan\n- SFT baseline 数字还没出——**不要在没有 baseline 的情况下设计 RSFT pass/fail criteria**\n- memory.md 里的文献调研（5 篇论文）是针对 GRPO 的缓解方案，pivot 后大部分不适用了，但\"alignment tax\"和\"reward hacking\"的分析仍有参考价值\n- Contingency：如果 RSFT 也失败，备选是全参微调（排除 adapter 是 forgetting 根因）或 CED 作为 reranker（后训练→推理时）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778802382.md"
+}

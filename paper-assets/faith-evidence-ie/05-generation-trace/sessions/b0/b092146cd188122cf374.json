@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "b092146cd188122cf374",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "code dreeam evif1 alignment",
+  "task_key": "worker_code_dreeam_evif1_alignment_20260517T125441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dreeam_evif1_alignment_20260517T125441.log",
+    "occurrence": 1,
+    "bytes": 19639215,
+    "sha256": "cdaefa1840926dfbc21193efc3a6838b285d828f971edf1eaf3208f5a2814bd0"
+  },
+  "statistics": {
+    "messages": 156,
+    "user_turns": 0,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 35,
+      "tool_call": 58,
+      "tool_result": 58,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 156,
+      "chunks": [
+        {
+          "path": "b092146cd188122cf374-part-0001.json",
+          "message_count": 84
+        },
+        {
+          "path": "b092146cd188122cf374-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "b092146cd188122cf374-part-0003.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-dreeam-evif1-alignment.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e743ad9aa173f3e8bf9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "maintenance fix rsync priority scp",
+  "task_key": "worker_maintenance_fix-rsync-priority-scp_20260520T090022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_maintenance_fix-rsync-priority-scp_20260520T090022_result.json",
+    "occurrence": 1,
+    "bytes": 446,
+    "sha256": "404949f3dc8a5adbf0adaadba789a419c74e36b562e190ba4b86ca9f28dfff36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Phase 1 完成：**\n- Kill PID 4910（较早启动的重复 rsync）→ 成功\n- 保留 PID 5150 继续后台 rsync\n\n**Phase 2 已启动：**\n- SCP PID 8061 后台运行中，正在传 meta-llama 基座模型（~15G，最大文件）\n- 当前磁盘 26G\n- 传输顺序：meta-llama → sft_output_llama_3_1_8b → data → freige → rsft_generations_14b → sft_output_14b → Qwen3-14B\n\n3 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/maintenance-fix-rsync-priority-scp.md"
+}

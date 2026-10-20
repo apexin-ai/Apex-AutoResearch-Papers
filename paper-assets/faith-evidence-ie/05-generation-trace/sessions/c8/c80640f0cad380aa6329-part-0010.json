@@ -1,0 +1,1556 @@
+{
+  "schema_version": "1.0",
+  "session_id": "c80640f0cad380aa6329",
+  "rounds": [
+    {
+      "number": 287,
+      "messages": [
+        {
+          "source_line": 1621,
+          "timestamp": "2026-05-21T00:48:15.461635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md",
+              "old_string": "- **规则**: 任何 decoder-only 模型（GPT、LLaMA、Qwen 等）的批量生成/eval 前必须设置 `tokenizer.padding_side = 'left'`；运行时如果出现 `right-padding was detected` 警告必须立即修复，不能忽略\n\n## Checkpoint 管理",
+              "new_string": "- **规则**: 任何 decoder-only 模型（GPT、LLaMA、Qwen 等）的批量生成/eval 前必须设置 `tokenizer.padding_side = 'left'`；运行时如果出现 `right-padding was detected` 警告必须立即修复，不能忽略\n\n### Ablation 对比必须在 matched eval 条件下进行\n- **问题模式**: 对比两个实验条件（如 with-evidence vs no-evidence）时使用不同的 eval 参数（如 max_new_tokens 1024 vs 2048），导致截断率差异系统性地偏移指标，伪造出不存在的效应甚至翻转效应方向。实测案例：mismatched token budget 让 evidence tax 从 -4.39pp 显示为 +1.20pp（方向翻转）\n- **规则**: 任何对比实验（ablation、evidence tax、reward comparison 等）的 eval 必须使用完全相同的 eval 参数（max_new_tokens、batch_size、seed 等）。如果因实验条件差异（如 no-evidence 输出更冗长）需要不同 token budget，必须先跑 control 验证 token budget 对两个条件的影响是否对称（delta <1pp），再决定是否需要 matched comparison\n\n## Checkpoint 管理"
+            }
+          },
+          "id": "event-001621"
+        },
+        {
+          "source_line": 1622,
+          "timestamp": "2026-05-21T00:48:15.512963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001622"
+        },
+        {
+          "source_line": 1623,
+          "timestamp": "2026-05-21T00:48:18.883754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md",
+              "offset": "36",
+              "limit": "8"
+            }
+          },
+          "id": "event-001623"
+        },
+        {
+          "source_line": 1624,
+          "timestamp": "2026-05-21T00:48:18.934781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "36\t\n37\t### Decoder-only 模型批量 eval 必须用 left-padding\n38\t- **问题模式**: 批量推理/eval 时 tokenizer 使用默认 right-padding，decoder-only 架构下 PAD token 出现在输入末尾，破坏 causal attention mask，系统性降低生成质量。实测导致 eval 指标被低估 5-8pp，且 DDP multi-GPU eval 放大此效应（更大 batch = 更多 padding）\n39\t- **规则**: 任何 decoder-only 模型（GPT、LLaMA、Qwen 等）的批量生成/eval 前必须设置 `tokenizer.padding_side = 'left'`；运行时如果出现 `right-padding was detected` 警告必须立即修复，不能忽略\n40\t\n41\t## Checkpoint 管理\n42\t### save_total_limit + save_best_model\n43\t- **问题模式**: save_total_limit 过小，训练继续运行后最优 checkpoint 被自动删除，增益全部丧失"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-001624"
+        },
+        {
+          "source_line": 1625,
+          "timestamp": "2026-05-21T00:48:25.717037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md",
+              "old_string": "- **规则**: 任何 decoder-only 模型（GPT、LLaMA、Qwen 等）的批量生成/eval 前必须设置 `tokenizer.padding_side = 'left'`；运行时如果出现 `right-padding was detected` 警告必须立即修复，不能忽略\n\n## Checkpoint 管理",
+              "new_string": "- **规则**: 任何 decoder-only 模型（GPT、LLaMA、Qwen 等）的批量生成/eval 前必须设置 `tokenizer.padding_side = 'left'`；运行时如果出现 `right-padding was detected` 警告必须立即修复，不能忽略\n\n### Ablation 对比必须在 matched eval 条件下进行\n- **问题模式**: 对比两个实验条件（如 with-evidence vs no-evidence）时使用不同的 eval 参数（如 max_new_tokens 1024 vs 2048），导致截断率差异系统性地偏移指标，伪造出不存在的效应甚至翻转效应方向。实测案例：mismatched token budget 让 evidence tax 从 -4.39pp 显示为 +1.20pp（方向翻转）\n- **规则**: 任何对比实验（ablation、evidence tax、reward comparison 等）的 eval 必须使用完全相同的 eval 参数（max_new_tokens、batch_size、seed 等）。如果因实验条件差异（如 no-evidence 输出更冗长）需要不同 token budget，必须先跑 control 验证 token budget 对两个条件的影响是否对称（delta <1pp），再决定是否需要 matched comparison\n\n## Checkpoint 管理"
+            }
+          },
+          "id": "event-001625"
+        },
+        {
+          "source_line": 1626,
+          "timestamp": "2026-05-21T00:48:25.717671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001626"
+        },
+        {
+          "source_line": 1627,
+          "timestamp": "2026-05-21T00:48:28.875046+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 教训已正确添加到 ML experiment guide，其余内容完整保留。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-001627"
+        }
+      ]
+    },
+    {
+      "number": 288,
+      "messages": [
+        {
+          "source_line": 1628,
+          "timestamp": "2026-05-21T00:48:30.902626+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n两个 launch worker 都在进行中：\n\n- **s44 with-evi 2048 (cuda:3)**: 已提交，cuda:3 占用 18879 MiB，registry 更新中\n- **s43 with-evi 2048**: turn 15，找到 adapter，正在提交（将用 cuda:2）\n- **PID 53413 (14B RSFT with-evi)**: Worker 确认 **仍在运行**（3h54m elapsed）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "main_agent"
+          },
+          "id": "event-001628"
+        },
+        {
+          "source_line": 1629,
+          "timestamp": "2026-05-21T00:48:38.208946+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-001629"
+        }
+      ]
+    },
+    {
+      "number": 289,
+      "messages": [
+        {
+          "source_line": 1630,
+          "timestamp": "2026-05-21T00:49:21.088010+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 4/4 全占用 | Worker 0 (全部完成) | 磁盘: rtx5090-4x / ~114GB 可用\n\n**全部 GPU 已派活，cron 监控已注册：**\n\n| GPU | 任务 | PID | 状态 |\n|---|---|---|---|\n| cuda:0 | 14B RSFT with-evi eval | 53413 | 运行 3h54m，正常推理中 |\n| cuda:1 | s43 no-evi 2048 r2 | 58417 | 54% (134/247) |\n| cuda:2 | **s43 with-evi 2048** ✓ | 64391 | 刚启动，~6s/it |\n| cuda:3 | **s44 with-evi 2048** ✓ | 64023 | 刚启动 |\n\n**PID 53413 确认存活**：14B 模型推理较慢（每 batch ~14s），985 docs 预计总时 ~4-5h。ETA ~01:00-01:30 UTC。\n\n**预计回调顺序**：\n1. 14B with-evi eval (~01:00) → 计算 14B evidence tax\n2. s43 no-evi 2048 r2 (~02:30) → 配对 s43 with-evi 2048\n3. s43/s44 with-evi 2048 (~04:00-04:30) → 完成 3-seed matched@2048 evidence tax\n\n全部完成后可计算：\n- 3-seed matched@2048 SFT evidence tax (s42/s43/s44)\n- 14B RSFT evidence tax\n- SFT vs RSFT evidence tax variance compression（matched 版）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "agent"
+          },
+          "id": "event-001630"
+        },
+        {
+          "source_line": 1631,
+          "timestamp": "2026-05-21T00:49:27.151400+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-001631"
+        }
+      ]
+    },
+    {
+      "number": 290,
+      "messages": [
+        {
+          "source_line": 1632,
+          "timestamp": "2026-05-21T01:20:29.109276+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。\n调用规范：\n  • `keepalive_respond(kind=\"ACK\", minutes=X, detail=\"具体行动\")`\n  • `keepalive_respond(kind=\"WAIT\", minutes=X, detail=\"等什么\")`\n  • `keepalive_respond(kind=\"BLOCKED\", detail=\"阻塞项\")`\n工具失败时按返回的 `remediation` 重调直到成功。不调用工具 = 视为本轮无响应（连续 2 次升级运维群）。\n\n---\n\n⏰ **[System → Director]**\n\n30 分钟没动作，但系统状态很健康——4 GPU 满载，s43/s44 with-evi@2048 和 14B RSFT eval 都在跑，节奏不错。\n\n**direction-instability claim 被推翻是重大变化。** 你让 Agent 更新 paper_framing.md，Reviewer 也出了紧急审查报告确认截断伪影问题。但我没看到你和 Reviewer 深入讨论过：推翻这个 claim 之后，论文的主 narrative 怎么调？\"direction-stability\"之前是核心卖点之一，现在塌了，替代 story 是什么？这不是改一个 .md 文件的事，需要你和 Reviewer 多轮对齐。\n\n**14B RSFT with-evi eval 快出结果了（90%，~25 分钟）。** 这是第一个 14B 规模的完整 eval，结果出来后立刻和 Reviewer 仔细审查——14B 的表现直接决定 scaling claim 能不能写进论文。\n\n**s42/s43/s44 三个 seed 的 with-evi@2048 数据马上要凑齐了。** 凑齐后你有条件重新评估 evidence tax 的真实幅度。这批数据对论文核心 claim 影响很大，别急着写结论，等数据齐了和 Reviewer 一起系统性地看。\n\n请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "system:keepalive"
+          },
+          "id": "event-001632"
+        },
+        {
+          "source_line": 1633,
+          "timestamp": "2026-05-21T01:20:45.317128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__keepalive_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__keepalive_respond",
+            "tool_args": {
+              "kind": "WAIT",
+              "minutes": "120",
+              "detail": "等 4 个实验完成：14B RSFT with-evi (~25min) → s43 no-evi 2048 r2 (~2h) → s43/s44 with-evi 2048 (~4h)。14B 结果出来后立即 harvest + 发 Reviewer 审查。3-seed matched@2048 数据齐全后（~04:30 UTC），和 Reviewer 系统性重新评估 evidence tax narrative——替代 story 是 \"magnitude instability\"（evidence consistently helps LLaMA SFT，但量级跨 seed 高度不稳定），具体措辞待 matched 数据确认。M025 教训：本轮 WAIT 结束前如果实验完成但 Agent 未自动 harvest，我会主动检查。"
+            }
+          },
+          "id": "event-001633"
+        },
+        {
+          "source_line": 1634,
+          "timestamp": "2026-05-21T01:20:46.021564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"kind\\\": \\\"WAIT\\\", \\\"minutes\\\": 120, \\\"next_nudge_in_minutes\\\": 120}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__keepalive_respond",
+            "elapsed_ms": 704
+          },
+          "id": "event-001634"
+        }
+      ]
+    },
+    {
+      "number": 291,
+      "messages": [
+        {
+          "source_line": 1635,
+          "timestamp": "2026-05-21T01:54:02.665696+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Research Reviewer 达到硬限\n  触发原因：运行时长 16h31m\n  本轮累计 77 条消息 / 16h 31min\n\n⚠️ 你自己的 context 状态：已 96 条消息 / 16h 31min\n\n请回复：\n  [RESET AGENT]     只重置 Research Reviewer，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Research Reviewer 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001635"
+        },
+        {
+          "source_line": 1636,
+          "timestamp": "2026-05-21T01:54:09.485932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_REVIEWER"
+            }
+          },
+          "id": "event-001636"
+        },
+        {
+          "source_line": 1637,
+          "timestamp": "2026-05-21T01:54:09.537425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_REVIEWER\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 51
+          },
+          "id": "event-001637"
+        }
+      ]
+    },
+    {
+      "number": 292,
+      "messages": [
+        {
+          "source_line": 1638,
+          "timestamp": "2026-05-21T02:43:48.020963+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — s43 no-evi@2048 + 14B RSFT with-evi（双实验批量审查）\n\n**结论**: WARNING（s43）+ PASS（14B RSFT）\n\n---\n\n### 1. eval_llama_sft_s43_no_evidence_2048_r2 — Branch B 确认\n\n**决策树判定：Branch B（真实性能差，非截断伪影）**\n\n| 指标 | @1024 (seed=43) | @2048 (seed=42) | Delta |\n|------|-----------------|-----------------|-------|\n| ign_f1 | 0.3391 | 0.3389 | **-0.02pp** |\n| truncated | 38.4% (378/985) | 36.4% (359/985) | -2.0pp |\n| format_ok | 84.77% (835) | 84.67% (834) | -0.1pp |\n| predictions | 14538 | 23070 | +58.7% |\n\ntoken budget 翻倍后：predictions 数量增 59% 但 ign_f1 完全不变、format_ok 完全不变、截断只降 2pp。s43 SFT 在 no-evidence 模式下的低性能是**真实的模型失败**，不是截断伪影。\n\n**SFT 3-seed no-evi@2048 决策树汇总（全部完成）：**\n- s42: Branch ~A（robust，delta -0.09pp）\n- s43: Branch B（no recovery，delta -0.02pp）\n- s44: Branch C（partial，delta +10.47pp）\n\nSFT no-evi@2048 三种子: **43.24 ± 7.44pp**（vs RSFT no-evi@1024: 55.41 ± 0.13pp）\n\n- [severity: warning] s43 @1024 eval 使用 seed=43（metrics.json 确认 `\"seed\": 43`），违反 D076 协议（应为 seed=42）。但实际影响可忽略：两次 ign_f1 仅差 0.02pp。\n- [severity: info] s43 @2048 截断仍达 36.4%，说明该模型在 no-evidence 模式极度冗长，即使 4096 tokens 也未必能根本解决。\n\n---\n\n### 2. plan017_14b_rsft_eval（with-evidence @1024）— 强结果\n\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | **0.5886** |\n| f1 | 0.6009 |\n| format_ok | **100%** (985/985) |\n| truncated | 10.7% (105/985) |\n| predictions | 13275 |\n| evi_f1 | 0.8392 |\n| edcr | 0.5396 |\n| inference_time | 16337s (~4h32m) |\n\n**14B Evidence Tax 计算（@1024）：**\n- no-evi: 0.5432（truncated 10.8%）\n- with-evi: 0.5886（truncated 10.7%）\n- **tax = -4.54pp**（证据强烈有益）\n\n**关键发现：14B 截断对称**\nno-evi 截断 10.8% vs with-evi 截断 10.7%——几乎完全一样。这意味着 14B @1024 的 evidence tax 计算**不受差异截断偏差影响**，-4.54pp 数值可信，无需 @2048 matched 重跑。这与 8B SFT 的情况根本不同（SFT no-evi 38-42% vs with-evi ~15%，严重不对称）。\n\n**为什么 14B 截断对称？** RSFT 训练使模型更简洁——14B RSFT 在两种模式下都产生紧凑输出（~13k predictions），没有 SFT no-evidence 模式的冗长问题。这本身就是 RSFT 优势的证据。\n\n- [severity: info] 14B RSFT 是目前所有模型中表现最好的：最高 ign_f1（0.5886）、最大 evidence benefit（-4.54pp）、完美 format compliance（100%）。\n- [severity: info] edcr = 0.5396 意味着 54% 的 evidence citations 指向 distractor sentences。evi_f1 = 0.84 说明正确证据大多被召回，但 false positive 率高。可作为论文 analysis 中讨论的点。\n\n---\n\n### 3. GPU 利用率 & 下一步\n\n当前状态：\n- GPU 0: **空闲**（14B eval 完成）\n- GPU 1: **空闲**（s43 no-evi 2048 r2 完成）\n- GPU 2: s43 with-evi @2048 RUNNING (~2h in，~2-3h remaining)\n- GPU 3: s44 with-evi @2048 RUNNING (~2h in，~2-3h remaining)\n\n- [severity: warning] **GPU 0/1 空闲**。建议优先队列：(1) RSFT s42 with-evi @2048 control（验证 RSFT evidence tax 在 @2048 下是否与 @1024 一致）；(2) 14B RSFT @2048 no-evi/with-evi control（虽然对称截断表明 @1024 可信，但额外确认更强）。\n- [severity: info] 14B eval 结果可能尚未被 Agent 收割入 registry——提醒 Agent harvest。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "reviewer"
+          },
+          "id": "event-001638"
+        },
+        {
+          "source_line": 1639,
+          "timestamp": "2026-05-21T02:44:22.836829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__urgent_agent_message"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "message": "**两个实验完成 + 两个 GPU 空闲，立即执行：**\n\n## 1. Harvest（如果还没做）\n- plan017_14b_rsft_eval: ign_f1=0.5886, format=100%, evi_f1=0.8392, edcr=0.5396。Registry 更新。\n- eval_llama_sft_s43_no_evidence_2048_r2: ign_f1=0.3389。Registry 更新。\n\n## 2. cuda:0 → eval_llama_rsft_s42_with_evidence_2048\nRSFT s42 with-evi@2048 control。验证 RSFT evidence tax 在 matched@2048 下是否与 @1024 一致。预期 delta <1pp（RSFT 截断率低且对称）。\n\n参数：LLaMA RSFT s42 adapter（nested_lora: base + SFT merge + RSFT），with-evidence 模式，max_new_tokens=2048，seed=42。\n\n## 3. cuda:1 → plan017_14b_rsft_eval_2048\n14B RSFT with-evi@2048 control。虽然 14B 截断对称（10.7%），额外确认 @2048 delta 增强 robustness。\n\n参数：14B RSFT adapter（nested_lora: base + SFT merge + RSFT），with-evidence 模式，max_new_tokens=2048，seed=42。\n\n4 GPU 全满后汇报。"
+            }
+          },
+          "id": "event-001639"
+        },
+        {
+          "source_line": 1640,
+          "timestamp": "2026-05-21T02:44:23.800534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"inserted\\\":true,\\\"queue_depth\\\":1,\\\"agent_key\\\":\\\"feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "elapsed_ms": 963
+          },
+          "id": "event-001640"
+        },
+        {
+          "source_line": 1641,
+          "timestamp": "2026-05-21T02:44:34.507509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md",
+              "old_string": "- **14B SFT evidence tax ≈ 0 (D117)**: 14B with-evidence=0.5507, no-evidence=0.5510, tax=+0.03pp——14B 容量完全 absorb evidence 生成负担，延续 8B 的 neutral 趋势",
+              "new_string": "- **14B SFT evidence tax ≈ 0 (D117)**: 14B with-evidence=0.5507, no-evidence=0.5510, tax=+0.03pp——14B 容量完全 absorb evidence 生成负担，延续 8B 的 neutral 趋势\n- **14B RSFT 完成 (D138)**: ign_f1=**0.5886** (全项目最高), f1=0.6009, format=100%, evi_f1=0.8392, edcr=0.5396。RSFT gain=+3.79pp (vs 14B SFT 0.5507)。Evidence tax=-4.54pp（evidence 强烈有益）。**截断对称**: no-evi 10.8% vs with-evi 10.7%，@1024 tax 可信，无需 @2048 matched。RSFT 训练使 14B 输出简洁对称——与 SFT no-evi 的冗长退化形成对比"
+            }
+          },
+          "id": "event-001641"
+        },
+        {
+          "source_line": 1642,
+          "timestamp": "2026-05-21T02:44:34.561080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "elapsed_ms": 53
+          },
+          "id": "event-001642"
+        },
+        {
+          "source_line": 1643,
+          "timestamp": "2026-05-21T02:44:43.678657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "summary": "D138: 14B RSFT eval complete — ign_f1=0.5886 (project best), evidence tax=-4.54pp, truncation symmetric",
+              "rationale": "14B RSFT with-evi ign_f1=0.5886 (f1=0.6009, format=100%, evi_f1=0.8392). RSFT gain over 14B SFT: +3.79pp. Evidence tax: no-evi@1024 0.5432 vs with-evi@1024 0.5886 = -4.54pp. 截断对称 (10.8% vs 10.7%)，@1024 tax 可信无需 matched 2048。14B 是全项目最高绝对性能和最大 evidence benefit。s43 no-evi@2048 确认为 Branch B（真实模型失败，非截断伪影，delta -0.02pp）。",
+              "related_experiments": "[{'exp_id': 'plan017_14b_rsft_eval', 'role': 'primary', 'result': 'ign_f1=0.5886, tax=-4.54pp'}, {'exp_id': 'plan017_14b_rsft_no_evidence_eval', 'role': 'primary', 'result': 'ign_f1=0.5432'}, {'exp_id': 'eval_llama_sft_s43_no_evidence_2048_r2', 'role': 'supporting', 'result': 'ign_f1=0.3389, Branch B confirmed'}]",
+              "depends_on": "['D137', 'D117']"
+            }
+          },
+          "id": "event-001643"
+        },
+        {
+          "source_line": 1644,
+          "timestamp": "2026-05-21T02:44:44.700427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D138\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 1021
+          },
+          "id": "event-001644"
+        },
+        {
+          "source_line": 1645,
+          "timestamp": "2026-05-21T02:44:49.393148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:director_reply_to_user",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001645"
+        },
+        {
+          "source_line": 1646,
+          "timestamp": "2026-05-21T02:44:49.444561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-001646"
+        },
+        {
+          "source_line": 1647,
+          "timestamp": "2026-05-21T02:47:32.878465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_project_status,get_agent_queue_status,get_gpu_health",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001647"
+        },
+        {
+          "source_line": 1648,
+          "timestamp": "2026-05-21T02:47:32.879974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-001648"
+        },
+        {
+          "source_line": 1649,
+          "timestamp": "2026-05-21T02:47:36.148255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_project_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001649"
+        },
+        {
+          "source_line": 1650,
+          "timestamp": "2026-05-21T02:47:36.202420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 54
+          },
+          "id": "event-001650"
+        },
+        {
+          "source_line": 1651,
+          "timestamp": "2026-05-21T02:47:38.957548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "project status gpu health agent queue",
+              "max_results": "5"
+            }
+          },
+          "id": "event-001651"
+        },
+        {
+          "source_line": 1652,
+          "timestamp": "2026-05-21T02:47:39.008390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001652"
+        },
+        {
+          "source_line": 1653,
+          "timestamp": "2026-05-21T02:47:41.886559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-001653"
+        },
+        {
+          "source_line": 1654,
+          "timestamp": "2026-05-21T02:47:42.239110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-001654"
+        },
+        {
+          "source_line": 1655,
+          "timestamp": "2026-05-21T02:47:42.340517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "tool_args": {
+              "server": "rtx5090-4x"
+            }
+          },
+          "id": "event-001655"
+        },
+        {
+          "source_line": 1656,
+          "timestamp": "2026-05-21T02:47:43.470175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `faith-evidence-ie`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    rtx5090-4x (connect.westd.seetacloud.com) [root] + bjb2-12179 (connect.bjb2.seetacloud.com) [root]\\n✓ 代码路径  /root/autodl-tmp/freige\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 138 条记录\\n**论文溯源**: 覆盖率 49/56\\n\\n── 📊 研究进度 ──\\n实验: 293 个 (运行中 3 | 完成 290 | 成功 164)\\n\\n  mvp2_grpo_ced_r3      DONE (failed)\\n  mvp2_grpo_ced_r2      DONE (killed)\\n  mvp2_grpo_ced_r1      DONE (killed)\\n  mvp2_grpo_ced         DONE (failed)\\n  precompute_nli_train  DONE (success)\\n  mvp2_sft_warmup       DONE (success)\\n  smoke_test_grpo       DONE (success)\\n  mvp1_ced_signal       DONE (success)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan017_14b_rsft_eval_2048 | matched@2048 control: 14B RSFT with-evi@2048。@1024 ign_f1=0.5886, format_ok=100%, truncated=0。预期 delta 极小（@1024 已无截断），验证 token budget 对 14B RSFT 无影响。 | — | — | — |\\n| eval_llama_sft_s43_with_evidence_2048 | matched@2048 methodology: s43 SFT with-evidence eval at max_new_tokens=2048. 配对 s43 no-evi@2048 计算 matched evidence tax。 | — | — | — |\\n| eval_llama_sft_s44_with_evidence_2048 | matched@2048 methodology: s44 SFT with-evid\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 1583
+          },
+          "id": "event-001656"
+        },
+        {
+          "source_line": 1657,
+          "timestamp": "2026-05-21T02:47:43.470714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":0,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] **两个实验完成 + 两个 GPU 空闲，立即执行：**\\\\n\\\\n## 1. Harvest（如果还没做）\\\\n- plan017_14b_rsft_eval: ign_f1=0.5886, format=100%, ev\\\"},\\\"pending\\\":[],\\\"idle_seconds\\\":213}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 1231
+          },
+          "id": "event-001657"
+        },
+        {
+          "source_line": 1658,
+          "timestamp": "2026-05-21T02:47:43.471103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {\\\"rtx5090-4x\\\": {\\\"error\\\": \\\"no data yet\\\", \\\"stale\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 1130
+          },
+          "id": "event-001658"
+        },
+        {
+          "source_line": 1659,
+          "timestamp": "2026-05-21T02:47:51.830479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:read_project_file,auto_build_provenance",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001659"
+        },
+        {
+          "source_line": 1660,
+          "timestamp": "2026-05-21T02:47:51.830991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-001660"
+        },
+        {
+          "source_line": 1661,
+          "timestamp": "2026-05-21T02:47:54.347457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "read project file report",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001661"
+        },
+        {
+          "source_line": 1662,
+          "timestamp": "2026-05-21T02:47:54.398200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001662"
+        },
+        {
+          "source_line": 1663,
+          "timestamp": "2026-05-21T02:47:57.522330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "report.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-001663"
+        },
+        {
+          "source_line": 1664,
+          "timestamp": "2026-05-21T02:47:57.623522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| plan017_14b_rsft_eval_2048 | matched@2048 control: 14B RSFT with-evi@2048。@1024 ign_f1=0.5886, format_ok=100%, truncated=0。预期 delta 极小（@1024 已无截断），验证 token budget 对 14B RSFT 无影响。 | — | — | — |\\\\n| eval_llama_sft_s43_with_evidence_2048 | matched@2048 methodology: s43 SFT with-evidence eval at max_new_tokens=2048. 配对 s43 no-evi@2048 计算 matched evidence tax。 | — | — | — |\\\\n| eval_llama_sft_s44_with_evidence_2048 | matched@2048 methodology: s44 SFT with-evidence eval at max_new_tokens=2048. 配对 s44 no-evi@2048 (ign_f1=0.4373) 计算 matched evidence tax。s42 control 显示 with-evi@1024→2048 delta=+2.65pp，证明 matched budget 必要。 | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **plan017_14b_rsft_eval** (success): 14B RSFT eval on DocRED dev set. 14B SFT baseline ign_f1=0.5507. Expect RSFT improvement consistent with smaller scales (+2-6pp). Completes scaling table row 4. ← 基于 plan017_14b_rsft_train\\\\n- **eval_llama_sft_s43_no_evidence_2048_r2** (success): 方法论一致性重跑：s43 SFT no-evi 2048 eval。上次在 237/247 batch 超时(4h timeout)。timeout 改为 6h。与 s42/s44 2048 matched comparison，验证截断伪影 vs 真实 evidence dependency。 ← 基于 eval_llama_sft_s43_no_evidence_2048\\\\n- **eval_llama_sft_s42_with_evidence_2048** (success): 方法论 control: LLaMA SFT s42 with-evidence eval at max_new_tokens=2048. 原 1024 版 ign_f1=0.5384. 预期 delta<1pp, 证明 with-evi 对 token budget 不敏感, 从而验证 no-evi@2048 vs with-evi@1024 的 tax 计算方法论合理。 ← 基于 llama_sft_s42\\\\n\\\\n## 趋势\\\\n成功 164 / 负向 22 / 失败 60 / 共 290\\\\nf1: 0.5886 ↑（近 3 次 success）\\\\nformat_ok: 985 ↑（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nbjb2-12179: 不可用 cuda:0\\\\nrtx5090-4x: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\\\n\\\\n## 告警\\\\n- mvp2_grpo_ced: 训练失败 — un\n…[truncated 4800 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-001664"
+        },
+        {
+          "source_line": 1665,
+          "timestamp": "2026-05-21T02:48:43.677955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:feishu_read_chat_history,read_roadmap,keepalive_respond",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001665"
+        },
+        {
+          "source_line": 1666,
+          "timestamp": "2026-05-21T02:48:43.678438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-001666"
+        },
+        {
+          "source_line": 1667,
+          "timestamp": "2026-05-21T02:48:46.345752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "feishu chat history",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001667"
+        },
+        {
+          "source_line": 1668,
+          "timestamp": "2026-05-21T02:48:46.396461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001668"
+        },
+        {
+          "source_line": 1669,
+          "timestamp": "2026-05-21T02:48:50.417455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_read_chat_history"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__feishu_read_chat_history",
+            "tool_args": {
+              "chat_id": "oc_84537e1e2f9ef71a90742c2db859c6f2",
+              "limit": "20"
+            }
+          },
+          "id": "event-001669"
+        },
+        {
+          "source_line": 1670,
+          "timestamp": "2026-05-21T02:48:54.539503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"messages\\\": [{\\\"messageId\\\": \\\"om_x100b6fd19011bcb0c3c4d3432255598\\\", \\\"senderId\\\": \\\"cli_a97eee45d8f89cde\\\", \\\"createTime\\\": \\\"1779326445874\\\", \\\"msgType\\\": \\\"post\\\", \\\"content\\\": \\\"📋  [WAIT 120m]  等 4 个实验完成：14B RSFT with-evi (~ 25min) → s43 no-evi 2048 r2 (~ 2h) → s43/s44 with-evi 2048 (~ 4h)。14B 结果出来后立即 harvest + 发 Reviewer 审查。3-seed matched@2048 数据齐全后（~ 04:30 UTC），和 Reviewer 系统性重新评估 evidence tax narrative——替代 story 是 \\\\\\\"magnitude instability\\\\\\\"（evidence consistently helps LLaMA SFT，但量级跨 seed 高度不稳定），具体措辞待 matched 数据确认。M025 教训：本轮 WAIT 结束前如果实验完成但 Agent 未自动 harvest，我会主动检查。\\\", \\\"rootId\\\": \\\"\\\"}, {\\\"messageId\\\": \\\"om_x100b6fd1937bd0b8c29a747d3382025\\\", \\\"senderId\\\": \\\"cli_a97eee45d8f89cde\\\", \\\"createTime\\\": \\\"1779326427506\\\", \\\"msgType\\\": \\\"post\\\", \\\"content\\\": \\\"⏰  [System → Director] 30 分钟没动作，但系统状态很健康——4 GPU 满载，s43/s44 with-evi@2048 和 14B RSFT eval 都在跑，节奏不错。 direction-instability claim 被推翻是重大变化。  你让 Agent 更新 paper_ framing.md，Reviewer 也出了紧急审查报告确认截断伪影问题。但我没看到你和 Reviewer 深入讨论过：推翻这个 claim 之后，论文的主 narrative 怎么调？\\\\\\\"direction-stability\\\\\\\"之前是核心卖点之一，现在塌了，替代 story 是什么？这不是改一个 .md 文件的事，需要你和 Reviewer 多轮对齐。 14B RSFT with-evi eval 快出结果了（90%，~25 分钟）。  这是第一个 14B 规模的完整 eval，结果出来后立刻和 Reviewer 仔细审查——14B 的表现直接决定 scaling claim 能不能写进论文。 s42/s43/s44 三个 seed 的 with-evi@2048 数据马上要凑齐了。  凑齐后你有条件重新评估 evidence tax 的真实幅度。这批数据对论文核心 claim 影响很大，别急着写结论，等数据齐了和 Reviewer 一起系统性地看。 请调用  keepalive_respond  工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。\\\", \\\"rootId\\\": \\\"\\\"}, {\\\"messageId\\\": \\\"om_x100b6fd10fd2a0b8c33e4f7635239dc\\\", \\\"senderId\\\": \\\"cli_a97eee45d8f89cde\\\", \\\"createTime\\\": \\\"1779323922055\\\", \\\"msgType\\\": \\\"post\\\", \\\"content\\\": \\\"📋  [ACK 5m]  立即检查 cuda:0/2/3 实验完成状态，harvest 14B RSFT eval + s42 with-evi 2048 control 结果，空闲 GPU 派活。\\\", \\\"rootId\\\": \\\"\\\"}, {\\\"messageId\\\": \\\"om_x100b6fd10eae8cacc3b1926b2b6a327\\\", \\\"senderId\\\": \\\"cli_a97eee45d8f89cde\\\", \\\"createTime\\\": \\\"1779323910289\\\", \\\"msgType\\\": \\\"post\\\", \\\"content\\\": \\\"⏰  [System → Director]\n…[truncated 21644 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__feishu_read_chat_history",
+            "elapsed_ms": 4122
+          },
+          "id": "event-001670"
+        },
+        {
+          "source_line": 1671,
+          "timestamp": "2026-05-21T02:49:33.058214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "ROADMAP.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-001671"
+        },
+        {
+          "source_line": 1672,
+          "timestamp": "2026-05-21T02:49:33.323505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 07:31 UTC | 更新原因: 服务器迁移: westd-37389 (4×RTX PRO 6000 96GB), 数据完好从 bjb2 迁移中\\\\n\\\\n## 核心方向\\\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：(1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\\\\n- **服务器迁移中**: bjb2-12179 → westd-37389 (4× RTX PRO 6000, 96GB VRAM/卡, 350GB disk)\\\\n- **数据状况**: bjb2 上全部完好（adapters + 14B gen 62% + eval results），迁移中\\\\n- **D130**: LLaMA 全系列 ign_f1 审计完成，论文数据正确\\\\n\\\\n| Scale | SFT ign_f1 (seeds) | RSFT ign_f1 (seeds) | Δ | Variance compression |\\\\n|-------|---------------------|----------------------|---|---------------------|\\\\n| 1.7B | 0.4464 (3) | 0.5119 (3) | +6.55pp | **31×** (2.79→0.09pp) |\\\\n| 4B | 0.4358 (3) | 0.4482 (3, A) / 0.5152 (1, B) | +1.24/+4.18pp | **7.5×** (3.80→0.51pp) |\\\\n| 8B | 0.5019 (3) | 0.5433 (3) | +4.14pp | **7.4×** (3.72→0.50pp) |\\\\n| 14B | 0.5507 (1) | 🔄 gen 62% done, resume pending | — | — |\\\\n| LLaMA-8B | 0.5384 (1) | 0.5654 (3) ±0.64pp | +2.70pp | TBD (需 SFT 3-seed) |\\\\n\\\\n## 投稿目标\\\\n- **EMNLP 2026 Main** (ARR July cycle, **~56 天**)\\\\n\\\\n## 服务器迁移计划\\\\n1. 🔄 rsync bjb2 → westd-37389 (~207G, ~30-60min)\\\\n2. 🔄 ML 依赖安装（并行）\\\\n3. 📋 rsft_generate 脚本加 resume 机制（M019）\\\\n4. 📋 迁移完成后 4 GPU 并行恢复实验\\\\n\\\\n## 迁移后实验计划（96GB/卡，14B 单卡可跑）\\\\n| GPU | 实验 | 预计时长 |\\\\n|-----|------|---------|\\\\n| cuda:0 | 14B RSFT gen resume (1155 docs remaining) | ~4-5h |\\\\n| cuda:1 | LLaMA SFT s43 retrain + eval | ~3h |\\\\n| cuda:2 | LLaMA SFT s44 retrain + eval | ~3h |\\\\n| cuda:3 | eval_llama_sft_s42_no_evidence_std (~30min) → 其他 | ~30min+ |\\\\n\\\\n## 近期任务\\\\n- [x] D129-D130: LLaMA metrics 审计 + 修正\\\\n- [x] 新服务器注册 + SSH 配置\\\\n- [ ] 数据迁移 bjb2 → westd-37389\\\\n- [ ] ML 依赖安装\\\\n- [ ] rsft_generate 脚本加 res\n…[truncated 1866 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 265
+          },
+          "id": "event-001672"
+        },
+        {
+          "source_line": 1673,
+          "timestamp": "2026-05-21T02:49:33.379564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-001673"
+        },
+        {
+          "source_line": 1674,
+          "timestamp": "2026-05-21T02:49:33.451567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — FREIGE\\\\n\\\\n> **状态**: 审稿修复中（D103 Action Matrix）— Round 1 得分 3.0 (Findings)，22 个 issue 跟踪中\\\\n> **最后更新**: 2026-05-20 (D131: 统一叙事主线——3 contributions 从独立小文章升级为同一 finding 的三个 facet)\\\\n> **审稿 Round 1**: 3.0 (Findings)。3 个系统性问题：claim>evidence、实验混淆、贡献过度\\\\n> **贡献重构**: 4 贡献 → 3 贡献（CED 合并入 RSFT，EDCR 降级为分析工具）\\\\n> **Dream v1**: best=2.5, median=3.0, worst=2.5 → reframe 完成\\\\n> **Dream v2**: best=3.0, median=2.5, worst=2.5\\\\n\\\\n## ⚠️ Post-Review Contribution Restructuring (D103)\\\\n\\\\n审稿后从 4 贡献重构为 3 贡献：\\\\n\\\\n### 原 4 贡献\\\\n1. Task formalization (evidence-grounded DocRE)\\\\n2. EDCR diagnostic metric\\\\n3. Decoupling spectrum\\\\n4. CED scoring\\\\n\\\\n### 新 3 贡献\\\\n1. **Evidence-grounded DocRE + RSFT with NLI-based scoring** — 合并原 C1+C4。CED 不再作为独立贡献，NLI-based scoring（CED/flat-NLI 等效）是 RSFT 有效的关键组件\\\\n2. **Decoupling spectrum（观察性，非因果）** — 原 C3 降级为观察性描述。\\\\\\\"co-occurs with\\\\\\\" 替代 \\\\\\\"acts as amplifier\\\\\\\"。EDCR 作为分析工具嵌入此贡献（不独立列出）\\\\n3. **Scale-dependent evidence tax + RSFT variance compression** — 原 C5 提升为正式贡献。4 尺度 (1.7B/4B/8B/14B) evidence tax curve + RSFT 跨 scale 压缩 seed 方差 (7.5-31×, D118; 8B 修正后为 17×)。\\\\\\\"scale-dependent\\\\\\\" 替代 \\\\\\\"non-monotonic\\\\\\\"（4 个数据点支撑趋势，非严格 non-monotonic claim）\\\\n\\\\n### 关键 claim 调整\\\\n- 所有因果 claim → 观察性描述（GRPO \\\\\\\"acts as catastrophic amplifier\\\\\\\" → \\\\\\\"co-occurs with\\\\\\\"）\\\\n- EDCR ρ 从 -0.965 (n=15) 改为去重后数值（待 Agent 计算完成）\\\\n- \\\\\\\"+8pp\\\\\\\" → fair subset \\\\\\\"+6.2pp\\\\\\\"，Abstract 加 \\\\\\\"on a controlled evaluation subset\\\\\\\"\\\\n- \\\\\\\"matches 8B SFT\\\\\\\" → \\\\\\\"approaches 8B SFT\\\\\\\"\\\\n- CED vs flat-NLI 不再区分，统称 \\\\\\\"NLI-based scoring\\\\\\\"\\\\n\\\\n## Target Venue\\\\n\\\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)\\\\n- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)\\\\n\\\\n## Core Insight\\\\n\\\\n**统一主线 (D131)**: Evidence generation in LLM-based DocRE is not a fixed cost — its\n…[truncated 24904 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 71
+          },
+          "id": "event-001674"
+        },
+        {
+          "source_line": 1675,
+          "timestamp": "2026-05-21T02:50:37.708395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:update_roadmap,keepalive_respond,post_to_reviewer",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001675"
+        },
+        {
+          "source_line": 1676,
+          "timestamp": "2026-05-21T02:50:37.759119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001676"
+        },
+        {
+          "source_line": 1677,
+          "timestamp": "2026-05-21T02:50:40.850407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "update roadmap",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001677"
+        },
+        {
+          "source_line": 1678,
+          "timestamp": "2026-05-21T02:50:40.951410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-001678"
+        },
+        {
+          "source_line": 1679,
+          "timestamp": "2026-05-21T02:50:58.453407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "content": "# faith-evidence-ie — Research Dashboard\n\n## 核心方向\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：(1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression。详见 paper_framing.md。\n\n## 当前进展\n- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\n- **服务器**: rtx5090-4x (4× RTX PRO 6000, 96GB/卡)\n- **D138**: 14B RSFT ign_f1=**0.5886**（全项目最高），tax=-4.54pp，截断对称（10.8% vs 10.7%）\n- **D137**: Evidence tax 必须 matched@2048（D136 \"方向不稳定\" 被推翻——是截断伪影）\n- **LLaMA RSFT**: 3-seed mean=0.5654±0.64pp, gain=+5.45pp, Cohen's d=2.58\n- **SFT no-evi@2048**: 43.24±7.44pp; **RSFT no-evi@1024**: 55.41±0.13pp（variance compression 57×）\n- **Matched@2048 进行中**: s42 已完成（tax=-4.39pp），s43/s44 with-evi@2048 正在跑\n\n| Scale | SFT ign_f1 (N) | RSFT ign_f1 (N) | Δ | Var. compress |\n|-------|----------------|-----------------|---|---------------|\n| 1.7B | 0.4464 (3) | 0.5119 (3) | +6.55pp | **31×** |\n| 4B | 0.4358 (3) | 0.4482 (3,A)/0.5152 (1,B) | +1.2/+4.2pp | **7.5×** |\n| 8B Qwen | 0.5019 (3) | 0.5433 (3) | +4.14pp | **17×** |\n| 14B | 0.5507 (1) | **0.5886** (1) | **+3.79pp** | TBD |\n| LLaMA-8B | ⚠️ matched 进行中 | 0.5654 (3) | +5.45pp | **4.6×** |\n\n## 投稿目标\n- **EMNLP 2026 Main** (ARR July cycle, **~55 天**)\n\n## 正在运行\n| GPU | 实验 | 目标 |\n|-----|------|------|\n| cuda:0 | 空闲/Agent 分配中 | — |\n| cuda:1 | plan017_14b_rsft_eval_2048 | 14B with-evi@2048 robustness |\n| cuda:2 | eval_llama_sft_s43_with_evidence_2048 | matched SFT tax s43 |\n| cuda:3 | eval_llama_sft_s44_with_evidence_2048 | matched SFT tax s44 |\n\n## 近期任务\n- [ ] s43/s44 with-evi@2048 → 重算 3-seed matched SFT tax\n- [ ] RSFT s42 with-evi@2048 结果确认 → RSFT tax @1024 可靠性\n- [ ] matched 数据齐全 → Reviewer 系统性审查 evidence tax narrative\n- [ ] 确定 \"magnitude instability\" vs \"consistent benefit\" 最终 claim\n- [ ] Qwen with-evi truncation 检查 → 是否需 Qwen matched@2048\n- [ ] Paper Agent patch: evidence tax 数字全面更新\n- [ ] Test set eval (blocked: SFT adapter rsync + CodaLab)\n- [ ] EDCR 人工验证 100 例\n\n## GPU 预算\nrtx5090-4x cuda:0-3 (4× RTX PRO 6000, 96GB)\n\n## 关键风险\n- **Matched@2048 narrative**: s43/s44 with-evi@2048 结果可能改变 SFT tax 故事\n- **Qwen tax 可能也受截断影响**: 需验证 Qwen with-evi truncation rate\n- **Test set blocked**: SFT adapter rsync 未完成，CodaLab 账号未设置",
+              "reason": "全面刷新: 14B RSFT 完成 (D138), matched@2048 pivot (D137), 服务器迁移已完成, 清理过期任务"
+            }
+          },
+          "id": "event-001679"
+        },
+        {
+          "source_line": 1680,
+          "timestamp": "2026-05-21T02:50:59.468466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"lines\\\": 70, \\\"reason\\\": \\\"全面刷新: 14B RSFT 完成 (D138), matched@2048 pivot (D137), 服务器迁移已完成, 清理过期任务\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "elapsed_ms": 1015
+          },
+          "id": "event-001680"
+        },
+        {
+          "source_line": 1681,
+          "timestamp": "2026-05-21T02:51:39.023120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:keepalive_respond,post_to_reviewer,director_post_to_main_agent",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001681"
+        },
+        {
+          "source_line": 1682,
+          "timestamp": "2026-05-21T02:51:40.084163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 1061
+          },
+          "id": "event-001682"
+        },
+        {
+          "source_line": 1683,
+          "timestamp": "2026-05-21T02:51:47.713481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "keepalive respond director post agent",
+              "max_results": "5"
+            }
+          },
+          "id": "event-001683"
+        },
+        {
+          "source_line": 1684,
+          "timestamp": "2026-05-21T02:51:47.764363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001684"
+        },
+        {
+          "source_line": 1685,
+          "timestamp": "2026-05-21T02:52:01.859986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-001685"
+        },
+        {
+          "source_line": 1686,
+          "timestamp": "2026-05-21T02:52:01.912302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":2,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] **两个实验完成 + 两个 GPU 空闲，立即执行：**\\\\n\\\\n## 1. Harvest（如果还没做）\\\\n- plan017_14b_rsft_eval: ign_f1=0.5886, format=100%, ev\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_code_14b-rsft-withevi-2048-launch_20260521T024530 已完成（status=done）。用 `get_worker_status('wor\\\",\\\"queued_at\\\":1779331672.3079846},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_code_llama-rsft-s42-withevi-2048-launch_20260521T024516 已完成（status=done）。用 `get_worker_statu\\\",\\\"queued_at\\\":1779331708.0595834}],\\\"idle_seconds\\\":472}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 52
+          },
+          "id": "event-001686"
+        },
+        {
+          "source_line": 1687,
+          "timestamp": "2026-05-21T02:52:33.861063+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 正在处理中（depth=2）。队列中有 2 个新的 WORKER DONE 消息：\n\n1. **14B RSFT with-evi@2048** (cuda:1) — 完成\n2. **RSFT s42 with-evi@2048** (cuda:0) — 完成\n\n这两个都是关键结果。Agent 处理完当前指令后会自动 harvest。现在 4 个 GPU 中：\n- cuda:0, cuda:1: 实验刚完成，即将空闲\n- cuda:2, cuda:3: s43/s44 with-evi@2048 仍在运行\n\n等 Agent 报告这两个结果：\n- RSFT s42 with-evi@2048 delta vs @1024 → 确认 RSFT tax @1024 可靠性\n- 14B with-evi@2048 delta vs @1024 → 确认 14B tax 可靠性\n\n两个空闲 GPU 可以考虑：Qwen with-evi truncation 诊断、14B RSFT 2nd seed、或其他候选。等 Agent 汇报后决定。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-001687"
+        }
+      ]
+    },
+    {
+      "number": 293,
+      "messages": [
+        {
+          "source_line": 1688,
+          "timestamp": "2026-05-21T02:52:34.451704+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 3/4 (cuda:1 空闲) | Worker 0 | 磁盘: rtx5090-4x / ~114GB 可用\n\n## s43 no-evi 2048 r2 完成\n\n| 指标 | s42 @2048 | s43 @2048 | s44 @2048 |\n|---|---|---|---|\n| ign_f1 | 0.5210 | **0.3389** | 0.4373 |\n| format_ok | 874/985 (88.7%) | 834/985 (84.7%) | 977/985 (99.2%) |\n| truncated | 201 (20.4%) | **359 (36.4%)** | 246 (25.0%) |\n\n**s43 即使 @2048 仍有 36.4% 截断，ign_f1=0.3389 是三 seed 最差。** 不仅截断严重（模型输出极其冗长），precision (0.4493) 也低 — 说明 s43 SFT 在没有 evidence 时模型质量本身就弱。\n\n## 3-seed no-evi@2048 统计（待 with-evi@2048 配对后计算 matched tax）\n- mean ign_f1 = 0.4324 ± 7.47pp（极大方差）\n- range: 0.3389 — 0.5210 (swing = 18.21pp)\n\n## GPU 状态\n\n| GPU | 任务 | 状态 |\n|---|---|---|\n| cuda:0 | 14B RSFT with-evi eval | PID 53413, ~4h+ |\n| cuda:1 | **空闲** | — |\n| cuda:2 | s43 with-evi 2048 | PID 64391, 运行中 |\n| cuda:3 | s44 with-evi 2048 | PID 64023, 运行中 |\n\n**cuda:1 待派活。** 请指示方向。候选：\n1. RSFT with-evi @2048 control（验证 RSFT 在 matched budget 下 tax 是否稳定）\n2. 其他 pending 实验\n\n---\n\n[Reviewer 回复]:\n[severity: warning] plan017_14b_rsft_eval registry 数据不一致：\n\n1. **status 未更新**：registry 仍为 RUNNING，但进程 PID 53413 已结束，metrics.json 已写入。需要 Agent harvest。\n\n2. **truncated 字段错误**：registry 记录 `truncated: 0`，但远程 metrics.json 显示 `n_truncated: 105`（10.7%）。这个截断数据对 evidence tax 分析至关重要（我在前一份报告中利用 14B 截断对称性 10.8% vs 10.7% 论证了 @1024 tax 可信）。如果 registry 中 truncated=0 被后续分析引用，会产生错误结论。\n\n请 Agent 修正 registry 中 plan017_14b_rsft_eval 的 status → DONE，truncated → 105。\n\n---\n\n[Reviewer 回复]:\n## 审查报告 — ROADMAP 更新 (2026-05-21 02:50 UTC)\n\n**结论**: PASS（一处小遗漏）\n\n### 方向与计划\n\n核心方向正确，3 contributions 框架清晰。D137 matched@2048 pivot 和 D138 14B RSFT 成果均已准确反映。近期任务列表覆盖了所有关键 matched@2048 实验和后续分析，无遗漏 ablation。\n\n### Scale 表验证\n- 14B 行：SFT 0.5507 / RSFT 0.5886 / Δ +3.79pp ✅（与远程 metrics.json 一致）\n- LLaMA-8B RSFT 0.5654 (3-seed) ✅\n- SFT no-evi@2048 43.24±7.44pp / RSFT no-evi@1024 55.41±0.13pp ✅\n\n### GPU 预算\n距 EMNLP 2026 约 55 天，当前剩余实验（matched@2048 系列、Qwen check、test set eval）GPU-hours 估算远低于可用时间。**无 deadline 风险**。\n\n### 发现\n\n- [severity: warning] \"正在运行\"表中 cuda:0 标为\"空闲/Agent 分配中\"，但 `eval_llama_rsft_s42_with_evidence_2048`（PID 70706）已于 02:48 UTC 在 GPU 0 上启动。ROADMAP 更新时间 02:50 UTC，该实验被遗漏。建议补充。\n\n- [severity: info] 14B 行仅 1 seed，Var. compress 标 TBD。如论文要 claim 14B 的 variance compression，至少需要 3-seed 数据。当前 1 seed 足以支撑 absolute performance 和 evidence tax 的 claim，但 variance compression claim 在 14B scale 上缺乏支撑。\n\n---\n\n[RESET REQUEST] Research Reviewer 达到硬限\n  触发原因：运行时长 17h29m\n  本轮累计 83 条消息 / 17h 29min\n\n⚠️ 你自己的 context 状态：已 97 条消息 / 17h 29min\n\n请回复：\n  [RESET AGENT]     只重置 Research Reviewer，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Research Reviewer 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "agent"
+          },
+          "id": "event-001688"
+        },
+        {
+          "source_line": 1689,
+          "timestamp": "2026-05-21T02:54:09.220284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "两件事，按优先级：\n\n## 1. 紧急：plan017_14b_rsft_eval_2048 harvest + registry 修复\nReviewer 发现 PID 53413 已结束，metrics.json 已写入，但 registry 仍为 RUNNING。\n- harvest 远程 metrics.json，报告 ign_f1（与 @1024 的 0.5886 对比）\n- 修复 registry：status → DONE，truncated → 实际值（远程显示 n_truncated=105）\n- 这个 delta 决定 14B evidence tax 是否需要 matched@2048\n\n## 2. cuda:1 派活\n先做一个快速检查（不需要 GPU）：读取 Qwen3-4B 和 Qwen3-8B SFT with-evidence eval 的 metrics.json，检查 truncation rate（n_truncated / n_total）。\n\n然后根据结果：\n- 如果任何 Qwen scale 截断 >5%：cuda:1 立即跑该 scale 的 with-evi@2048 eval\n- 如果 Qwen 截断都 <5%：cuda:1 跑 eval_llama_rsft_s43_with_evidence_2048（RSFT s43 with-evi@2048，进一步验证 RSFT tax 跨 seed 稳定性）\n\n当前 GPU：\n- cuda:0: eval_llama_rsft_s42_with_evidence_2048 (PID 70706, 刚启动)\n- cuda:1: 空闲\n- cuda:2: s43 SFT with-evi@2048 (running)\n- cuda:3: s44 SFT with-evi@2048 (running)"
+            }
+          },
+          "id": "event-001689"
+        },
+        {
+          "source_line": 1690,
+          "timestamp": "2026-05-21T02:54:14.028490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6fd3739d2080c4f993546615c06\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 2, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[Director 指令] **两个实验完成 + 两个 GPU 空闲，立即执行：**\\\\n\\\\n## 1. Harvest（如果还没做）\\\\n- plan017_14b_rsft_eval: ign_f1=0.5886, format=100%, evi_f1=0.8392, edcr=0.5396。Registry 更新。\\\\n- eval_llama_sft_s43_no_evidence_2048_r2: \\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 4808
+          },
+          "id": "event-001690"
+        },
+        {
+          "source_line": 1691,
+          "timestamp": "2026-05-21T02:54:27.179119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:ralph_respond",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001691"
+        },
+        {
+          "source_line": 1692,
+          "timestamp": "2026-05-21T02:54:27.229908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001692"
+        },
+        {
+          "source_line": 1693,
+          "timestamp": "2026-05-21T02:54:29.593438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "ralph respond reset",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001693"
+        },
+        {
+          "source_line": 1694,
+          "timestamp": "2026-05-21T02:54:29.694374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-001694"
+        },
+        {
+          "source_line": 1695,
+          "timestamp": "2026-05-21T02:54:32.509781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-001695"
+        },
+        {
+          "source_line": 1696,
+          "timestamp": "2026-05-21T02:54:32.560629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 50
+          },
+          "id": "event-001696"
+        },
+        {
+          "source_line": 1697,
+          "timestamp": "2026-05-21T02:54:41.359865+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "RESET_BOTH 已批准。等待 [WRITE HANDOFF] 指令。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-001697"
+        }
+      ]
+    },
+    {
+      "number": 294,
+      "messages": [
+        {
+          "source_line": 1698,
+          "timestamp": "2026-05-21T02:54:41.977136+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001698"
+        },
+        {
+          "source_line": 1699,
+          "timestamp": "2026-05-21T02:55:34.280200+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 rtx5090-4x 的 cuda:0-3（项目配置白名单），bjb2-12179 无 GPU 权限\n- Evidence tax 必须用 matched@2048 token budget（D137 硬约束）——mismatched (no-evi@2048 vs with-evi@1024) 会产生截断伪影，D136 就是这么被推翻的\n- D136 \"方向不稳定\" claim 已 INVALIDATED，不要在任何分析或论文中引用\n- RSFT tax 在 @1024 可能是可靠的（14B 截断对称 10.8% vs 10.7%），但需要 RSFT s42 with-evi@2048 control 确认（正在跑）\n- paper_framing.md 的 LLaMA SFT evidence tax 行标注了 \"⚠️ 极不稳定\"——等 matched@2048 3-seed 数据齐全后才能定稿\n- Qwen evidence tax 也可能受截断影响——已指令 Agent 检查 Qwen with-evi truncation rate，如果 >5% 需要 matched@2048\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x (connect.westd.seetacloud.com:37389)，4× RTX PRO 6000 96GB\n- 工作目录：/root/autodl-tmp/faith-evidence-ie/\n- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 模型缓存：/root/autodl-tmp/.hf_cache/\n- 数据盘：/root/autodl-tmp/（~114GB 可用）\n- bjb2-12179：数据源服务器，无 GPU，SFT adapter 等资产在此（rsync 到 rtx5090-4x）\n- 活跃进程：\n  - cuda:0: eval_llama_rsft_s42_with_evidence_2048 (PID 70706, ~02:48 UTC 启动)\n  - cuda:2: eval_llama_sft_s43_with_evidence_2048 (running)\n  - cuda:3: eval_llama_sft_s44_with_evidence_2048 (running)\n  - cuda:1: 空闲，Agent 队列中有指令去检查 Qwen truncation 后派活\n\n### 3. 📊 当前状态\n刚完成：ROADMAP 全面刷新（14B RSFT D138 + matched@2048 D137 + 清理过期迁移任务），Agent 指令已排队（harvest 14B@2048 + cuda:1 Qwen truncation check + 派活）。\n\n- plan017_14b_rsft_eval_2048：已完成但 registry 未更新（Reviewer warning），metrics.json 已写入远程，Agent 队列中有 harvest 指令\n- eval_llama_rsft_s42_with_evidence_2048 (cuda:0)：RSFT with-evi@2048 control，验证 RSFT tax @1024 是否可靠。预期 delta <1pp\n- eval_llama_sft_s43_with_evidence_2048 (cuda:2)：matched SFT tax s43\n- eval_llama_sft_s44_with_evidence_2048 (cuda:3)：matched SFT tax s44\n- Agent 队列 depth=3（旧指令处理中 + 2 worker:done + 我的新指令）\n\n### 4. 📋 待办\n- plan017_14b_rsft_eval_2048 harvest 完成 → 对比 14B @2048 vs @1024 ign_f1 delta。delta <1pp 确认 14B tax 可靠；delta >1pp 需要用 @2048 重算\n- RSFT s42 with-evi@2048 完成 → 对比 @1024 ign_f1=0.5714。delta <1pp → 所有 RSFT tax @1024 可靠，无需更多 RSFT @2048 实验\n- s43 + s44 with-evi@2048 都完成 → 重算 matched@2048 3-seed SFT evidence tax：s42 已知 tax=-4.39pp，合并 3 seed 后确定最终 narrative（\"consistent benefit + magnitude instability\" vs \"consistent large benefit\"）\n- matched 数据齐全 → 发 Reviewer 系统性审查 evidence tax narrative，然后派 Paper Agent 全面 patch evidence tax 数字\n- Qwen truncation check 结果出来 → 如果 >5%，需规划 Qwen matched@2048 系列实验（这会是大工程）\n- 所有 evidence tax 定稿后 → 重新 submit_paper_to_review\n\n### 5. 🎯 战略上下文\n- 项目目标：EMNLP 2026 Main (ARR July, ~55天)，Round 1 = 3.0 Findings，冲 4.0 Main\n- 14B RSFT ign_f1=0.5886 是全项目最高，evidence tax=-4.54pp（强 benefit），截断对称——这是最强结果\n- D137 是本轮最重要的方法论修正：with-evi 也受 1024 截断影响（s42 delta=+2.65pp），所有 mismatched tax 都不可信\n- 预期 matched@2048 下 LLaMA SFT tax 全部为 negative（evidence consistently helps），但量级差异巨大（s42 -4.39pp，s43 可能 -17pp 因为 s43 no-evi@2048 只有 33.89）\n- 新叙事方向：evidence 是 \"safety net\"——弱 seed/弱模型从 evidence 获益最多。与 1.7B tax=-6.2pp 的 regularization 发现一致\n- Cohen's d=2.58 for RSFT vs SFT（LLaMA 8B），统计防御力很强\n- 易错点：不要引用 D136 的 \"方向不稳定\" 数据——那些是 mismatched 伪影。只用 matched@2048 数据\n- 易错点：Reviewer 发现 plan017_14b_rsft_eval registry 的 truncated=0 是错的（实际 105），分析前必须确认 registry 已修正\n- 易错点：Agent 报告的 GPU 状态可能滞后——Reviewer 交叉检查更可靠\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-001699"
+        }
+      ]
+    }
+  ]
+}

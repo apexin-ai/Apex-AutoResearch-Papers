@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "530edcc8a3c68fb482a7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops read step100 results",
+  "task_key": "worker_ops_read-step100-results_20260514T193831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read-step100-results_20260514T193831_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "bdb62f53ec6412f5d23db15bec9d7da0da008de086c2dade263e6008ad2a0ff5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Step-100 Eval 结果\n\n进程已结束（EXIT_CODE=0），**cuda:0 已释放**（0 MiB / 0% utilization）。\n\n### 核心指标\n\n| Metric | Value |\n|--------|-------|\n| **F1** | 0.2167 |\n| **Ign-F1** | 0.2167 |\n| **Precision** | 0.2849 |\n| **Recall** | 0.1749 |\n| **Evi-F1** | 0.5746 |\n| **Evi-Precision** | 0.5244 |\n| **Evi-Recall** | 0.6353 |\n| **EDCR** | 0.8539 |\n\n### 预测统计\n\n| Stat | Value |\n|------|-------|\n| pred_count | 11,067 (pred triples) |\n| gold_count | 12,151 |\n| TP | 2,125 |\n| format_ok | 985/985 (100%) |\n| field_compliance | 97.9% |\n| evidence_format | 97.9% |\n| truncated | 21/985 |\n| inference_time | 5,139.9s (~85.7 min) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-step100-results.md"
+}

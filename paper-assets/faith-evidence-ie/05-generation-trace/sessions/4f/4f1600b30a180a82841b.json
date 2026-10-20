@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "id": "4f1600b30a180a82841b",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "analysis eval llama rsft s44 no evidence",
+  "task_key": "worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342.jsonl",
+    "occurrence": 1,
+    "bytes": 8622,
+    "sha256": "8e5d0f80affc65bc9b09f6cfce3db8fdf176c5edf1dbfc5f9bfd8fc7d047c350"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T16:44:18.950656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T16:44:18.951069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T16:44:18.951272+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat ~/runs/faith-evidence-ie/eval_llama_rsft_s44_no_evidence.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T16:44:18.951571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 22:50:54,839 INFO Detected adapter at /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n2026-05-20 22:50:54,839 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n2026-05-20 22:50:55,680 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:50,  5.75it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:49,  5.89it/s]\\\\rLoading weights:   5%|▍         | 14/291 [00:00<00:06, 41.49it/s]\\\\rLoading weights:   9%|▉         | 27/291 [00:00<00:03, 67.82it/s]\\\\rLoading weights:  14%|█▎        | 40/291 [00:00<00:02, 86.04it/s]\\\\rLoading weights:  18%|█▊        | 51/291 [00:00<00:02, 89.19it/s]\\\\rLoading weights:  23%|██▎       | 67/291 [00:00<00:02, 108.03it/s]\\\\rLoading weights:  27%|██▋       | 79/291 [00:00<00:01, 107.18it/s]\\\\rLoading weights:  32%|███▏      | 94/291 [00:01<00:01, 114.88it/s]\\\\rLoading weights:  36%|███▋      | 106/291 [00:01<00:01, 105.41it/s]\\\\rLoading weights:  42%|████▏     | 121/291 [00:01<00:01, 116.98it/s]\\\\rLoading weights:  46%|████▌     | 134/291 [00:01<00:01, 114.54it/s]\\\\rLoading weights:  51%|█████     | 148/291 [00:01<00:01, 120.04it/s]\\\\rLoading weights:  55%|█████▌    | 161/291 [00:01<00:01, 115.08it/s]\\\\rLoading weights:  60%|██████    | 176/291 [00:01<00:00, 118.85it/s]\\\\rLoading weights:  65%|██████▍   | 189/291 [00:01<00:00, 117.27it/s]\\\\rLoading weights:  69%|██████▉   | 202/291 [00:02<00:00, 117.90it/s]\\\\rLoading weights:  74%|███████▎  | 214/291 [00:02<00:00, 112.66it/s]\\\\rLoading weights:  78%|███████▊  | 226/291 [00:02<00:00, 100.96it/s]\\\\rLoading weights:  85%|████████▍ | 247/291 [00:02<00:00, 125.55it/s]\\\\rLoading weights:  89%|████████▉ | 260/291 [00:02<00:00, 122.13it/s]\\\\r\n…[truncated 6446 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T16:44:18.951765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T16:44:18.951956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5711188927797232,\\\\n  \\\\\\\"recall\\\\\\\": 0.5637396099086495,\\\\n  \\\\\\\"f1\\\\\\\": 0.5674052598881756,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.5487804878048781,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.5614083726088162,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5550226120323422,\\\\n  \\\\\\\"tp\\\\\\\": 6850,\\\\n  \\\\\\\"pred_count\\\\\\\": 11994,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 1.0,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.0004877029192503309,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.0009749303621169917,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 22,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6818181818181818,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 15,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 22,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3333333333333333,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 5.191838429988059e-05,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.00010382059800664452,\\\\n  \\\\\\\"evi_tp\\\\\\\": 1,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 3,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 984,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 0,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 18089,\\\\n  \\\\\\\"n_truncated\\\\\\\": 178,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 984,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6555.2,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_llama_3_1_8b\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": true,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\n…[truncated 104 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T16:44:18.952158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T16:44:18.952328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 6588\\\\ndrwxr-xr-x   2 root root      62 May 21 00:40 .\\\\ndrwxr-xr-x 118 root root    8192 May 21 00:13 ..\\\\n-rw-r--r--   1 root root    1528 May 21 00:40 metrics.json\\\\n-rw-r--r--   1 root root 6727260 May 21 00:40 predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T16:44:18.952510+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 format-OK subset 文件。全部指标如下：\n\n```\nign_f1=0.5550\nf1=0.5674\nevi_f1=0.0010 (TP-only)\nevi_f1_joint=0.0001\nedcr=0.6818\nformat_compliance=0.9990 (984/985)\nn_truncated=178\nn_predictions=18089\ninference_time=6555.2s\nn_documents=985\nn_format_ok=984\n```\n\n补充：\n- `no_evidence=true` 已确认传入\n- evi_f1 ≈ 0 符合预期（no-evidence 模型几乎不输出 evidence）\n- format-OK subset 指标不存在，eval 脚本未生成该子集（984/985 几乎全量，差异可忽略）\n\n**Evidence tax 计算（LLaMA RSFT 3-seed）：**\n\n| seed | with-evi ign_f1 | no-evi ign_f1 | tax (pp) |\n|------|----------------|---------------|----------|\n| s42 | 0.5714 | 0.5526 | +1.88 |\n| s43 | 0.5662 | 0.5546 | +1.16 |\n| s44 | 0.5587 | 0.5550 | +0.37 |\n\n**Mean evidence tax = +1.14 pp, std = 0.76 pp**\n\n3 个 seed 均为正 tax（with-evidence > no-evidence），表明 evidence 训练对关系抽取性能有一致的正向贡献。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-eval-llama-rsft-s44-no-evidence.md"
+}

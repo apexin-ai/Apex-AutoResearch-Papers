@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb8a7fc79c86ab0e7c4d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code create 4b no evidence eval script",
+  "task_key": "worker_code_create_4b_no_evidence_eval_script_20260519T135844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_create_4b_no_evidence_eval_script_20260519T135844_result.json",
+    "occurrence": 1,
+    "bytes": 724,
+    "sha256": "835137a0c0af364175a52523959bb9853b02a53909a68cf1b9996dc92f5b56b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本 `scripts/d112/eval_4b_rsft_no_evidence.sh` 已存在，权限可执行（`-rwxr-xr-x`），创建于 2026-05-19 21:45。\n\n内容摘要：\n- 基于 `eval_d112_rsft_bf16.sh`，添加了 `--no_evidence` 参数（符合 C005 约束）\n- `output_dir` 改为 `/root/autodl-tmp/eval_results/d112_rsft_bf16_no_evidence`\n- GPU 使用 `${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`（符合 C002 约束）\n- checkpoint 路径指向 `/root/autodl-tmp/rsft_output_4b_sft_s44_bf16`\n- SFT adapter 路径 `/root/autodl-tmp/sft_output_seed44`\n\n脚本内容正确，无需额外修改。之前 eval 失败（EXIT_CODE=127）可能是路径拼写不同——任务提交时引用的路径需与实际文件路径一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-create-4b-no-evidence-eval-script.md"
+}

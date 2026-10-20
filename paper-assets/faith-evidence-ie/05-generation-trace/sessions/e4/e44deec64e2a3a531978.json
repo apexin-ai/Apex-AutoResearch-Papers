@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e44deec64e2a3a531978",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code llama rsft s42 withevi 2048 launch",
+  "task_key": "worker_code_llama-rsft-s42-withevi-2048-launch_20260521T024516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-rsft-s42-withevi-2048-launch_20260521T024516_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "a8a41ff32290f462c9530adea8750232deae375eff194cf04159562d9dcffed2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动。\n\n| 项目 | 值 |\n|------|-----|\n| **exp_id** | `eval_llama_rsft_s42_with_evidence_2048` |\n| **PID** | 70706 |\n| **GPU** | cuda:0, 18879 MiB |\n| **Base** | `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B` |\n| **SFT adapter** | `/root/autodl-tmp/sft_output_llama_3_1_8b` |\n| **RSFT adapter** | `/root/autodl-tmp/rsft_output_llama_3_1_8b_k1` |\n| **Output** | `/root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048` |\n| **Log** | `/root/runs/faith-evidence-ie/eval_llama_rsft_s42_with_evidence_2048.log` |\n\n**完整命令：**\n```\nCUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference \\\n  --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1 \\\n  --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B \\\n  --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b \\\n  --data_path /root/autodl-tmp/data/docred --split dev \\\n  --output_dir /root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048 \\\n  --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42\n```\n\n推理已进行中（~9s/it, 预计 ~2.5h）。Nested LoRA: base → merge SFT → load RSFT。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-rsft-s42-withevi-2048-launch.md"
+}

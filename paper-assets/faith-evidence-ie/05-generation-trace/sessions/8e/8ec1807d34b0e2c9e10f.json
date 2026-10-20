@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ec1807d34b0e2c9e10f",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "reviewer / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_6.md",
+    "occurrence": 1,
+    "bytes": 3856,
+    "sha256": "5e780808e4ab047b59930e5928abee137dcf42bf8946b8dab5c39e3e1f74214b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-15T09:41:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **r1 的 rel_f1=0.0483 是评估 bug，不是模型失败**。rsft_trainer 的 `--eval_max_docs 50` 只在 50 docs 上生成预测，但 gold triples 用了全量 985 docs 的 12275 条，recall 被人为压到 ~3.5%。s44 全量 eval 实际通过 MVP-2（rel_f1=0.4655）。D037 pivot 基于错误数据，需撤回。\n- r1 registry 里的 conclusion=negative 和 failure_mode=\"relation_ontology_collapse_to_freetext\" 是基于上述 bug 的误判，**不要引用这些作为 RSFT 失败的证据**。\n- CED reranker POC（PID 178055）仍在 GPU 0 运行，不要 kill——它作为增强方案仍有价值，但不再是\"唯一活路\"。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`rtx5090-4x`（root），4× RTX 5090 32GB。另有 `bjb2-12179`（root）未使用。\n- 工作目录：`/root/autodl-tmp/freige`（代码），`/root/autodl-tmp/` 为数据盘根\n- Python：`/root/miniconda3/bin/python`，conda base 环境\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`，SFT adapter：`/root/autodl-tmp/sft_output`\n- 数据：`/root/autodl-tmp/data/docred/`（train_annotated + dev）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- RSFT 输出：`rsft_output/`(r1/seed42), `rsft_output_s43/`, `rsft_output_s44/`, `rsft_output_r2a/`, `rsft_output_r2b/`\n- RSFT 训练数据：`rsft_filtered/rsft_train.jsonl`(2718), `rsft_filtered/rsft_train_clean.jsonl`(2548), `rsft_filtered_topk3/rsft_train.jsonl`(8037)\n- 活跃进程：PID 178055（CED reranker POC，GPU 0，16.6 GB）\n- GPU 1/2/3 空闲\n\n### 3. 📊 当前状态\n**刚发现并报告**：r1 的 0.0483 是 50-doc eval bug，s44 全量 eval 通过 MVP-2（rel_f1=0.4655, evi_f1=0.8087）。已通过 reviewer_post_to_director 发送 CRITICAL 报告，等待 Director 响应。\n\nRegistry 关键状态：\n- `mvp2_rsft_r2a` / `mvp2_rsft_r2b`：ANALYZING（训练完成，待全量 eval）\n- `mvp2_ced_reranker_poc`：QUEUED（PID 178055 实际在 GPU 0 运行，~54%+）\n- `mvp2_rsft_train_r1`：DONE/negative（**错误结论，需 Director 修正**）\n- `mvp2_eval_rsft_s44`：PREPARING（**实际已完成**，结果在 `/root/autodl-tmp/eval_results/rsft_s44/metrics.json`）\n- `mvp2_rsft_train_r1_s43`：ANALYZING（训练完成，未做全量 eval）\n- `mvp2_rsft_ced_scoring_topk3`：PENDING（**实际已完成**，8037 samples，registry 未更新）\n\n### 4. 📋 待办\n- Director 回应 eval bug 报告 → 确认 D037 撤回 → 协助更新 r1 conclusion 和 ROADMAP\n- r1 全量 dev eval 结果出来 → 核实是否与 s44 一致（预期 rel_f1 ~0.46）\n- r2a/r2b 全量 dev eval 完成 → 对比 r1/s44，判断 1-epoch / LoRA-scaling 修改的增量效果\n- CED reranker POC 完成 → 审查结果，判断 reranker 能否在 RSFT 基础上进一步提升\n- Agent 修复 rsft_trainer eval bug（gold triples 须限制为 eval_max_docs 对应的子集）→ 核实修复正确性\n\n### 5. 🎯 战略上下文\n- **MVP-2 实际上已通过**：RSFT s44 全量 eval rel_f1=0.4655（+5.98pp vs SFT），evi_f1=0.8087（+1.08pp），edcr 从 0.7118 降至 0.6350。CED 通过 rejection sampling 成功提升了关系抽取和证据质量。\n- **GRPO 确实失败**（D031/D033）：6 个 checkpoint 全量 eval 均 <0.014 rel_f1，这是真的 catastrophic forgetting。但 RSFT 与 GRPO 不同——RSFT 成功了。\n- **最易判断错的事**：看到 r1 registry 的 conclusion=negative / rel_f1=0.0483 不要相信——这是 50-doc eval bug。必须看 `/root/autodl-tmp/eval_results/rsft_s44/metrics.json` 的全量结果。\n- **决策链**：D002(MVP-1 PASS) → D031(GRPO 判死) → D037(RSFT \"失败\" pivot，**需撤回**) → 实际 RSFT PASS\n- r2a/r2b 作为 ablation 仍有价值但不再是\"救命实验\"。3 seed 训练指标方差 <0.04%，模型稳定。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-3.md"
+}

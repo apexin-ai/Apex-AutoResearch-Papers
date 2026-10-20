@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e859db80aaf196bb15f8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops diagnose plan014 and monitor s43",
+  "task_key": "worker_ops_diagnose-plan014-and-monitor-s43_20260516T013110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-plan014-and-monitor-s43_20260516T013110_result.json",
+    "occurrence": 1,
+    "bytes": 1137,
+    "sha256": "4dbed4d6421ae37cfb819eb8df6abc00bfbbd52dd91155c2b6f28539357acca0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 任务 A: eval_plan_014_no_evidence 失败原因\n\n**根因**: `inference.py:299` 抛出 `ValueError` — 模型路径 `/root/autodl-tmp/sft_no_evidence_output` 包含 `adapter_config.json`（是 LoRA adapter），但命令未设置 `--sft_adapter`。eval 脚本的逻辑是：发现 LoRA adapter 就要求 `--sft_adapter` 指向 SFT adapter 目录。\n\n**问题本质**: 这个模型本身就是 SFT adapter，不是建在 SFT 之上的 RSFT adapter。eval 脚本没有区分这两种情况。\n\n**修复方案**: 用 base model 作为 `--model_path`，加 `--sft_adapter /root/autodl-tmp/sft_no_evidence_output`，去掉多余的 `--base_model` 参数。或者在 `inference.py` 中增加直接评估 SFT LoRA adapter 的路径。\n\n### 任务 B: rsft_ced_s43_train_r3 状态\n\n- **仍在运行** — PID 277310, 已运行 1h10m\n- **进度**: 340/510 步 (67%)，当前正在执行 step-340 的 eval（每 170 步触发一次）\n- **GPU 1**: 28.6GB/32.6GB, 36% utilization，正常活跃\n- **预估剩余**: eval 完成后还剩 170 步 × ~5.5s/步 ≈ 15 分钟训练 + step-510 的最终 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-plan014-and-monitor-s43.md"
+}

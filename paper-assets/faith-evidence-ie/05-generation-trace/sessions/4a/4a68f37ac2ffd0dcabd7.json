@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a68f37ac2ffd0dcabd7",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778806543.md",
+  "task_key": "loop_4_1778806543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778806543.md",
+    "occurrence": 1,
+    "bytes": 3382,
+    "sha256": "0e396eace3d32c785c50a8d653082716166e9d80c9d7e1c965f2a7e1edaddac5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-15T00:21:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：rtx5090-4x 的 cuda:0, cuda:1, cuda:2, cuda:3（4 张全分配）\n- kl001_r4 系列（lr=5e-5）已判 FAIL(D027)，禁止再启动该方向新实验\n- PREPARING 队列中的 mvp2_grpo_ced_kl001_r2/r3 属 FAIL 方向，不要启动\n- P0 pass criteria: ckpt-20 rel_f1 > 0.30；P0+P1 额外要求 pred_count ≥ 9720\n- submit_on_allocated 命令必须自带环境激活（服务器用 conda：`source /root/miniconda3/bin/activate`）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（4× RTX 5090 32GB，2 个 SSH endpoint 同一台机器）\n- 工作目录：/root/autodl-tmp/（大文件）、代码在 /root/ 下的项目目录\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型：Qwen3-4B，SFT adapter 在 /root/autodl-tmp/sft_output\n- GRPO checkpoint 目录：/root/autodl-tmp/grpo_ced_lr5e6_r1/（P0）、/root/autodl-tmp/grpo_ced_lr5e6_rp_r2/（P0+P1）\n- 数据：/root/autodl-tmp/data/docred（dev: 985 条）\n- Eval 结果：/root/autodl-tmp/eval_results/\n- 活跃进程：\n  - mvp2_grpo_ced_lr5e6_r1: PID 90080, cuda:0, step ~25/200\n  - mvp2_grpo_ced_lr5e6_rp_r2: PID 94758, cuda:3, step ~8/200\n  - mvp2_eval_lr5e6_r1_ckpt20: PID 96500, cuda:1, ~6% done\n- Cron 监控上述 3 个实验\n\n### 3. 📊 当前状态\n刚收到 mvp2_eval_ced_kl001_r4_multi 的失败 cron 回调（\"process dead 5× with no sentinel/W&B\"）。这是预期退出——kl001_r4 已 FAIL，Director 之前指令 ckpt-30 后即停。\n\n已完成动作：\n- session-start 初始化（registry + reconcile + ROADMAP）\n- 派 Worker（worker_diagnose_mvp2_eval_ced_kl001_r4_multi_20260514T212003）读日志确认失败原因\n- 向 Director 汇报 cuda:2 空闲，请求决策下一步\n\n等待中：\n- Worker 诊断回调（读日志 + 更新 registry failure_reason）\n- Director 决策 cuda:2 分配（建议 P0 ckpt-30 eval，但 P0 目前 step 25，ckpt-30 即将生成）\n\n### 4. 📋 待办\n- 诊断 Worker 完成 → 确认 failure_reason 已更新，检查是否有可提取的 eval metrics\n- Director 回复 cuda:2 决策 → 按指令执行（大概率是 P0 ckpt-30 或 ckpt-40 eval）\n- P0 到达 step 30 → 在 cuda:2 启动 ckpt-30 eval（如 Director 批准）\n- mvp2_eval_lr5e6_r1_ckpt20 完成（cuda:1）→ 分析结果，rel_f1 > 0.30 = PASS → 立即启动 P0+P1 ckpt-20 eval\n- P0 ckpt-20 eval PASS → MVP-2 P0 通过，进入完整评估框架阶段\n- P0 ckpt-20 eval FAIL (rel_f1 ≤ 0.30) → 产出 Framing 调整提案，禁止默默跑下一个\n\n### 5. 🎯 战略上下文\n- 项目核心：FREIGE — 用 CED 奖励训练 LLM 做文档级关系抽取 + 可验证证据生成\n- MVP-1 已 PASS（CED margin 0.4827, acc 81.5%）\n- MVP-2 核心验证：lr=5e-6 GRPO 是否避免灾难性遗忘（lr=5e-5 全灭）\n- 关键决策链：D027 判定 lr=5e-5 FAIL → 转向 lr=5e-6 → P0（纯 lr 修复）vs P0+P1（lr + recall_penalty）并行验证\n- 易错点：P0 训练 200 steps，checkpoint 间隔看代码配置（可能 10 steps），不要假设 ckpt 编号 = step 数（需确认）\n- 易错点：eval 脚本用 `--quantize` 标志（QLoRA 4-bit），忘加会 OOM 或结果不对\n- cuda:2 空闲是当前唯一资源浪费点，但短期内确实没可跑的实验（P0 ckpt-30 几小时内会到）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778806543.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "018df84bc5d4b14ede6f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops cuda0 relay llama sft",
+  "task_key": "worker_ops_cuda0_relay_llama_sft_20260516T103340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda0_relay_llama_sft_20260516T103340_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "bbec65d1bf0e48f892db91d16d8b04379877c3854de421c24dd5ba05bd988576"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Phase 1 结果 — plan_006_qwen3_8b_no_evidence_sft**:\n- 状态：成功，已标记 DONE\n- train_loss=0.6509, eval_loss=0.8153, token_acc=0.8174\n- checkpoint: `/root/autodl-tmp/sft_output_qwen3_8b_no_evidence/` (adapter 698MB)\n- 训练耗时 ~61 分钟\n\n**Phase 3 — plan_016_llama_3_1_8b_sft**:\n- PID: 331871, cuda:0, 已开始训练（~6.3s/it, 预计 ~60 分钟）\n- Registry 已注册 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda0-relay-llama-sft.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6f2cfe4a7d1be2cea0d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze plan 016 llama 3 1 8b no evidence eval",
+  "task_key": "worker_analyze_plan_016_llama_3_1_8b_no_evidence_eval_20260516T132825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_plan_016_llama_3_1_8b_no_evidence_eval_20260516T132825_result.json",
+    "occurrence": 1,
+    "bytes": 1110,
+    "sha256": "5bb893270c911a204685edb28b6517978558c7db043eadafd953d3d378c4ad23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan_016_llama_3_1_8b_no_evidence_eval 结果\n\n### 核心指标\n\n| 指标 | 数值 |\n|------|------|\n| **rel_f1 (F1)** | **0.5624** |\n| **Ign-F1** | **0.5452** |\n| rel_p (Precision) | 0.5370 |\n| rel_r (Recall) | 0.5903 |\n| evi_f1 | 0.0000 (预期，no-evidence 模式) |\n| Format OK | 985/985 (100%) |\n| Truncated | 182/985 |\n| Predictions | 18,466 |\n\n### 配置确认\n- `no_evidence: true` ✓ (正确传了参数)\n- W&B: 无 run ID（未上传 W&B）\n\n### 跨模型对比\n\n| 模型 | rel_f1 | 备注 |\n|------|--------|------|\n| **LLaMA-3.1-8B no-evidence** | **0.5624** | 本次结果 |\n| Qwen2.5-3B no-evidence | 0.4893 | 基线 |\n| LLaMA-3.1-8B with-evidence | 待出 | plan_016_llama_3_1_8b_sft_eval |\n\n### 分析\n\nLLaMA-3.1-8B no-evidence 的 rel_f1=0.5624，大幅超过 Qwen2.5-3B no-evidence (0.4893)，高出 **+7.31pp**。这符合预期——8B 参数模型在纯关系抽取上应强于 3B 模型。\n\n等 plan_016_llama_3_1_8b_sft_eval（with-evidence）完成后即可计算 LLaMA 的 evidence tax = rel_f1(with-evidence) - rel_f1(no-evidence)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-plan-016-llama-3-1-8b-no-evidence-eval.md"
+}

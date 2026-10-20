@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "348a7972292270860397",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "audit trace 1 7b rsft s42",
+  "task_key": "worker_audit_trace-1_7b-rsft-s42_20260524T053119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_trace-1_7b-rsft-s42_20260524T053119.log",
+    "occurrence": 1,
+    "bytes": 1019289,
+    "sha256": "b18b2aff66802601a4e9295f3cb7b86472f1a7b96aeff4a27f4b94079ba03d31"
+  },
+  "statistics": {
+    "messages": 157,
+    "user_turns": 0,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 61,
+      "tool_result": 61,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 157,
+      "chunks": [
+        {
+          "path": "348a7972292270860397-part-0001.json",
+          "message_count": 9
+        },
+        {
+          "path": "348a7972292270860397-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "348a7972292270860397-part-0003.json",
+          "message_count": 147
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-trace-1-7b-rsft-s42.md"
+}

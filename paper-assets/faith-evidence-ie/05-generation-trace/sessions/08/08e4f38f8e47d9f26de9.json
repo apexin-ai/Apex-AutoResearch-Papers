@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08e4f38f8e47d9f26de9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval flat nli s44",
+  "task_key": "worker_analysis_eval_flat_nli_s44_20260516T022550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_flat_nli_s44_20260516T022550_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "e8f2c9d1f5127e60d9fe59726d487d4296f5899eb3dc4b734e3aceceffadc13d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_flat_nli_s44 结果\n\n### 核心指标\n\n| 指标 | 数值 | vs s42 (0.4539) |\n|------|------|-----------------|\n| **rel_f1** | **0.4615** | **+0.0076** |\n| rel_p | 0.4779 | — |\n| rel_r | 0.4462 | — |\n| ign_f1 | 0.4615 | +0.0076 |\n| **evi_f1** | **0.8131** | — |\n| evi_p | 0.8187 | — |\n| evi_r | 0.8077 | — |\n| evi_f1_joint | 0.3597 | — |\n| EDCR | 0.6458 | — |\n\n### 其他统计\n\n- Format OK: 985/985 (100%)\n- Truncated: 206/985\n- Predictions: 15,257 (gold: 12,151)\n- TP: 5,422\n- Inference time: 2h56m (10.74 s/doc)\n\n### 结论\n\n- **Success.** rel_f1 = 0.4615，高于 s42 (+0.76pp)，高于 CED mean (0.4596, +0.19pp)，远高于 SFT baseline。\n- flat-NLI RSFT 方法在多个 seed 上表现稳定且优异（s42=0.4539, s44=0.4615）。\n- 无异常——进程正常退出，无错误，format compliance 100%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-flat-nli-s44.md"
+}

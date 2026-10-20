@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5d81fd87bfd25bcaa6c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops verify before rsft",
+  "task_key": "worker_ops_verify-before-rsft_20260515T053634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-before-rsft_20260515T053634_result.json",
+    "occurrence": 1,
+    "bytes": 315,
+    "sha256": "291805ef086e878ce1bb8673760abf071bab0614c1a7980e29e1916243386133"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项检查结果：\n\n| 检查项 | 结果 | 符合预期 |\n|--------|------|----------|\n| PID 159689 | **DEAD**（进程不存在，exit code 1） | ✅ |\n| rsft_train.jsonl | **2718 行** | ✅ |\n| GPU 0 | **无进程**（输出为空） | ✅ |\n\n全部符合预期，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-before-rsft.md"
+}

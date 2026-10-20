@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "799f1f98b7a07c97358f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp eval rsft r2a full",
+  "task_key": "worker_exp_eval-rsft-r2a-full_20260515T094327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_eval-rsft-r2a-full_20260515T094327_result.json",
+    "occurrence": 1,
+    "bytes": 148,
+    "sha256": "5aa3054371c147640720f699ea96e89320c9ab57cb5e3a2e3422f8290cb95046"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "r2a eval 已在 cuda:1 上启动 (PID 189488)。s44 跑完用了约 1h40m，预计 r2a 类似。4.5 分钟后第一次检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-eval-rsft-r2a-full.md"
+}

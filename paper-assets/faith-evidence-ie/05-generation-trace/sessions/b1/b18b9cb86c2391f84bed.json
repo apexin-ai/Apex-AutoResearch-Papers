@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b18b9cb86c2391f84bed",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "infra env setup and submit",
+  "task_key": "worker_infra_env-setup-and-submit_20260514T050853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup-and-submit_20260514T050853_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "0506da38e97f0978532c331a79a29be13e2288424489129b5869f8db85c41715"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。执行汇总：\n\n**环境**\n- 服务器：4x RTX 5090 32GB，Python 3.12.3，conda base\n- 所有依赖已预装（torch 2.10.0+cu128, transformers 4.57.6, trl 1.1.0, peft 0.19.0 等），无需额外安装\n\n**数据与模型**\n- DocRED（train 12.4MB, dev 4.1MB, test 3.5MB）→ `/root/autodl-tmp/data/docred/`\n- DeBERTa NLI 模型已缓存 → `/root/autodl-tmp/.hf_cache/`\n\n**代码部署**\n- 16 个源文件 + 3 个配置文件 → `/root/autodl-tmp/freige/`\n- 导入验证通过：dev split 12275 samples, 6830 with hard negatives\n\n**实验提交**\n| 实验 | tmux session | GPU | 状态 |\n|------|-------------|-----|------|\n| `mvp1_ced_signal` | mvp1_ced_signal | cuda:0 (CPU推理) | 运行中，正在处理 6830 样本 |\n| `smoke_test_grpo` | smoke_test_grpo | cuda:1,2,3 | 运行中，正在加载模型 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup-and-submit.md"
+}

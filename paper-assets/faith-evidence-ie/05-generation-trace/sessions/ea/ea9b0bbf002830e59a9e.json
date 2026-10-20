@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea9b0bbf002830e59a9e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "verify cuda2 s43 r2",
+  "task_key": "worker_verify_cuda2_s43_r2_20260515T113451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_cuda2_s43_r2_20260515T113451_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "16dfa3739676acf4b8c847f5483ac71060e09bbb1dd6927458685e2d8d44192a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态汇总**：\n\n| 项目 | 状态 |\n|------|------|\n| PID 194837 | 存活，正在运行推理 |\n| GPU cuda:2 | 利用率 66%，显存 12331/32607 MiB |\n| 推理进度 | **6/124 batches (5%)**，~50s/it，预计剩余 ~1h38m |\n| 模型 | Qwen3-4B + SFT adapter + RSFT LoRA (seed43) |\n| 数据 | DocRED dev set，985 docs，12275 gold triples |\n\n进程正常运行中，按当前速度约 **1 小时 40 分钟** 后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-cuda2-s43-r2.md"
+}

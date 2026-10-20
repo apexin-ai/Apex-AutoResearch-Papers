@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ad24166562b8759cd8c",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_14_1778949641.md",
+  "task_key": "loop_14_1778949641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778949641.md",
+    "occurrence": 1,
+    "bytes": 4476,
+    "sha256": "0d45660a031c48049868d7d78413900cec202930073e9c3ca02784f47827dc8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T16:27:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（rtx5090-4x）。无其他服务器 GPU 可用\n- bjb2-12179 是辅助服务器（AutoDL），仅用于 CPU 任务或已过期——当前所有 GPU 任务在 rtx5090-4x\n- LLaMA GRPO QLoRA 已确认 catastrophic decoupling（D084/D085），step 60 已 kill，**不要再跑 GRPO QLoRA**\n- CED vs flat-NLI 统计不可区分（D078 p=0.44），**不要再为区分二者设计实验**\n- RSFT candidate generation 用 `freige.training.rsft_generate`（不是 freige.rsft.generate_candidates），参数名 `--base_model`（不是 --model_path）、`--num_generations`（不是 --n_candidates）\n- submit_training_job 的 command 必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && ...`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），account=root\n- **工作目录**: `/root/autodl-tmp/freige`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型路径**:\n  - Qwen3-1.7B base: 已下载\n  - Qwen3-8B base: 已下载\n  - LLaMA-3.1-8B: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`\n  - SFT adapters: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`, `sft_output_qwen3_8b_bf16`, `sft_output_llama_3_1_8b`\n- **数据集**: `/root/autodl-tmp/data/docred`（3027 train docs）\n- **NLI 模型（CED scoring）**: `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - plan_006_qwen3_8b_rsft_candidates: PID 349382, cuda:3（cron 监控中）\n  - plan_006_qwen3_1_7b_rsft_candidates: PID 349794, cuda:0（cron 监控中）\n  - plan_016_llama_rsft_candidates_r3: PID 360970, cuda:2（start_idx=64 resume）\n- **活跃 Worker**: worker_ops_redocred_rsft_eval_r2_cuda1（Re-DocRED RSFT eval on cuda:1）\n\n### 3. 📊 当前状态\n三个 RSFT candidate generation 任务并行跑（1.7B/8B/LLaMA），预计 May 17 08:30-13:00 UTC 陆续完成。一个 Worker 正在 cuda:1 跑 Re-DocRED RSFT eval。\n\n**Registry RUNNING (3)**:\n- `plan_006_qwen3_1_7b_rsft_candidates` — 1.7B RSFT gen, cuda:0, ~17.5% done (531/3027)\n- `plan_006_qwen3_8b_rsft_candidates` — 8B RSFT gen, cuda:3, ~14.1% done (428/3027)\n- `plan_016_llama_rsft_candidates_r3` — LLaMA-8B RSFT gen r3, cuda:2, start_idx=64 resume\n\n**等待中**:\n- Worker `redocred_rsft_eval_r2_cuda1` 回调（Re-DocRED RSFT eval）\n- 三个 RSFT gen cron 完成回调\n- `seed_comparison_prep` 处于 PREPARING 状态（低优先级）\n\n### 4. 📋 待办（条件触发式）\n- RSFT gen 任一完成 → spawn Worker 跑 CED scoring（命令模板在 memory.md 里，NLI 模型 ~400MB 显存可复用同卡）\n- 三个 RSFT gen 全完成 → CED scoring → RSFT training → eval → 与 4B results 对比形成 scaling 完整图\n- Re-DocRED RSFT eval Worker 回调 → 更新 registry metrics → 若成功则 D080 cross-dataset 验证链完整\n- CED scoring 完成后 → RSFT training（每模型 ~2-6h），利用已有 SFT adapter 做 continued training\n- 全部 RSFT eval 收齐 → 更新 paper_framing.md 中 scaling table → 准备 paper writing\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D078: CED vs flat-NLI 统计不可区分 → C3 降级，CED 仅因可解释性推荐\n- D079/D082/D083: evidence tax 呈 U-shape（1.7B +6.2pp / 4B -7.9pp / 8B ≈0）→ 推翻\"evidence 总有代价\"叙事\n- D084/D085: LLaMA GRPO QLoRA 复现 catastrophic decoupling → 跨家族验证 Claim 2\n- D080: Re-DocRED cross-dataset 验证——rel_f1 降 3.15pp 但 evi_f1 保持 0.817\n\n**目标**: EMNLP 2026 Main（ARR July cycle）。当前处于 scope 扩展阶段（D077），需要 1.7B/8B/LLaMA RSFT 完整 pipeline 结果来支撑 scaling narrative。\n\n**易错点**:\n- 1.7B evidence tax 是**正向**的（+6.2pp），但这基于排除截断样本的 442 docs 子集分析（D083）。汇报时必须注明\"公平子集\"\n- LLaMA RSFT r3 是从 start_idx=64 resume 的（前两轮 r1/r2 失败），最终输出合并需要注意\n- plan_016_llama_grpo_qlora 虽然 conclusion=success，实际是\"成功复现了 catastrophic decoupling\"（metrics: f1_reward=0, ced_reward=0），不是训练成功\n- 4 张 GPU 全满（0/1/2/3），下一个实验必须等卡释放\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778949641.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19a451cbd1ab5fab70b4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops submit lead2 r2 cuda2",
+  "task_key": "worker_ops_submit_lead2_r2_cuda2_20260517T061607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_lead2_r2_cuda2_20260517T061607_result.json",
+    "occurrence": 1,
+    "bytes": 199,
+    "sha256": "ded716dc5289fe95740963915bcc4d09fec27baea4649f584d0febe5dc1c1ac8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LLaMA r3 当前进度 3200/3312 steps，预计 ~5 分钟完成。已设置 270 秒后自动唤醒继续执行后续步骤（读 metrics → 确认 GPU 空闲 → 提交 Lead 2 r2）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-lead2-r2-cuda2.md"
+}

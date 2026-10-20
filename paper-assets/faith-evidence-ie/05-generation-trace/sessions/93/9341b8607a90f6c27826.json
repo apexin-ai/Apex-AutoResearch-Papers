@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9341b8607a90f6c27826",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp ced evidence reranking cuda0",
+  "task_key": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_ced_evidence_reranking_cuda0_20260517T045906_result.json",
+    "occurrence": 1,
+    "bytes": 337,
+    "sha256": "945456adfaa9183969a2ed6f8a92af14a5593706678cd185e7ed22a6bbfe9f41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度：\n- **Step 1 (Inference)**: 已提交，PID 414832，247 batches 运行中\n- **Step 2 (Script)**: 已完成，`/root/autodl-tmp/freige/eval/ced_evidence_filter.py` 已写入并通过 syntax check\n- NLI 模型路径已确认存在\n\n等待 inference 完成后执行 Step 3 filtering。5 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-ced-evidence-reranking-cuda0.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bde44918b2f50c862fa8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code rsft oom fix",
+  "task_key": "worker_code_rsft-oom-fix_20260515T000325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rsft-oom-fix_20260515T000325_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "b7a0fc2b3fae7606286be461f504097fc7c94bf9678598042b3d621ab9b43be3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个修复均已完成并验证通过：\n\n**修复 1** — `rsft_generate.py`: `--batch_size` 默认值从 2 → 1。降低并发序列数（1×8=8），避免 RTX 5090 32GB OOM。\n\n**修复 2** — `rsft_score_filter.py`: 新增三个 CLI 参数 `--format_weight`(0.2) / `--f1_weight`(0.4) / `--ced_weight`(0.4)，`combined_score` 计算已改用参数值替代硬编码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rsft-oom-fix.md"
+}

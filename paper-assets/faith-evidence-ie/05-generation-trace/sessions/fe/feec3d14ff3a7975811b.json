@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "feec3d14ff3a7975811b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis llama sft s43 train eval r3",
+  "task_key": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "deaa6dc56834de966252cc39d1da7b3f66ab293c2ca0538256b144267f303651"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 wandb 记录。所有数据已收集完毕。\n\n## 结果\n\n- **conclusion**: success\n- **ign_f1**: 0.5142\n- **evi_f1**: 0.4220 (joint) / 0.8245 (TP)\n- **edcr**: 0.5866\n- **re_p** (ign_precision): 0.4917\n- **re_r** (ign_recall): 0.5389\n- **train_loss_final**: 0.521\n- **checkpoint_path**: `/root/autodl-tmp/sft_output_llama_3_1_8b_s43/` (adapter_model.safetensors 640MB, checkpoint-190, checkpoint-570)\n- **log_path**: `~/runs/faith-evidence-ie/llama_sft_s43_train_eval_r3.log`\n- **wandb_run_id**: 无（未启用 wandb）\n\n## 对比\n\n| Seed | ign_f1 | evi_f1 (joint) | edcr |\n|------|--------|----------------|------|\n| s42 (SFT) | 0.5384 | — | — |\n| **s43 (SFT)** | **0.5142** | **0.4220** | **0.5866** |\n| RSFT 3-seed mean | 0.5654 ± 0.0052 | — | — |\n\ns43 ign_f1 = 0.5142，比 s42 (0.5384) 低 **0.0242**（-4.5%）。两个 SFT seed 目前 mean = 0.5263，与 RSFT mean 0.5654 差距 0.0391。\n\nSFT 两个 seed 之间的差异 (0.0242) 已经明显大于 RSFT 3-seed 的 std (0.0052)，初步支持 \"SFT variance > RSFT variance\" 的 claim。还需要 s44 完成 3-seed 统计才能做正式对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-sft-s43-train-eval-r3.md"
+}

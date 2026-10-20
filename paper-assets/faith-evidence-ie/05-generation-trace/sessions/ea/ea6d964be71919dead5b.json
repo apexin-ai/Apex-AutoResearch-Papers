@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea6d964be71919dead5b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis matched 2048 fair tax",
+  "task_key": "worker_analysis_matched-2048-fair-tax_20260521T043703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_matched-2048-fair-tax_20260521T043703_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "a008dd37d0d6919e8b2972557ee410edc49e4ce4b7b86c45f01b8f57e2e62e31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| Seed | fair_subset_docs | fair_with_evi | fair_no_evi | fair_tax (pp) |\n|------|-----------------|---------------|-------------|---------------|\n| s42  | 873             | 0.5716        | 0.5564      | **-1.53**     |\n| s43  | 834             | 0.4910        | 0.3789      | **-11.20**    |\n| s44  | 977             | 0.4679        | 0.4395      | **-2.83**     |\n\n**3-seed mean ± std: -5.19 ± 5.25 pp**\n\n所有三个 seed 的 fair_tax 均为负值（with-evi 在 fair subset 上优于 no-evi）。\n\n**s42 验证不一致**：本次得到 fair_tax=-1.53pp（with_evi=0.5716），与之前记录的 +1.20pp（with_evi=0.5443）不符。fair_subset_docs=873 和 fair_no_evi=0.5564 一致，差异在 with_evi 侧——可能 s42 with_evidence predictions.json 被重新生成过。\n\n**s43 异常**：no-evi 仅 834/985 format_ok（151 failures，其中 104 malformed JSON），即使在 fair subset 上 ign_f1 也只有 0.3789，与 with-evi 的 0.4910 差距极大（-11.20pp），方差主要来源于此。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-matched-2048-fair-tax.md"
+}

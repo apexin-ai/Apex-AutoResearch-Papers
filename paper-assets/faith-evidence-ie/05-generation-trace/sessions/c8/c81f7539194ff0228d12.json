@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c81f7539194ff0228d12",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code prep 1 7b no evidence eval",
+  "task_key": "worker_code_prep_1_7b_no_evidence_eval_20260519T065335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_1_7b_no_evidence_eval_20260519T065335_result.json",
+    "occurrence": 1,
+    "bytes": 602,
+    "sha256": "c1f1e8e2ac9df8be63aa362d065445b321744aecd7b90b50f51b4d1339d67036"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过，所有参数解析正确。\n\n**结果：**\n\n- 脚本路径：`/root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh`\n- Dry-run 验证：参数全部正确解析，`no_evidence = True`，`quantize = False`\n- 关键参数：\n  - `--model_path`: `/root/autodl-tmp/rsft_output_qwen3_1_7b_k1`（s42 RSFT）\n  - `--no_evidence`: 已启用\n  - `--output_dir`: `/root/autodl-tmp/eval_outputs/eval_1_7b_rsft_no_evidence`\n  - `HF_HUB_OFFLINE=1` + `TRANSFORMERS_OFFLINE=1` 已设置\n  - 脚本中未写 `CUDA_VISIBLE_DEVICES`（提交时外部指定）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-1-7b-no-evidence-eval.md"
+}

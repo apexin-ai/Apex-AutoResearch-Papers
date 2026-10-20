@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b892cfb41c3c23f35e37",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code d112 bf16 rerun",
+  "task_key": "worker_code_d112_bf16_rerun_20260519T112015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d112_bf16_rerun_20260519T112015_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "7a2352d0d94dfde031f4f982376f49bd8e6ebd9871aba278cfbbb9bb9789e9b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**已完成：**\n- **训练脚本** `/root/autodl-tmp/scripts/d112/step3_k1_filter_and_train_bf16.sh` — 移除 `--quantize`，保留 `--bf16`，输出到 `rsft_output_4b_sft_s44_bf16/`，其余参数不变\n- **训练已提交** `d112_rsft_s44_train_bf16`，PID 675161，GPU cuda:0，cron 已注册\n- **Eval 脚本** `/root/autodl-tmp/scripts/d112/step4_eval_bf16.sh` 已创建（指向 bf16 输出目录，`--no-quantize`），未提交\n\n训练数据 3014 条，3 epochs，预计运行时间不长。训练完成后可用 eval 脚本评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d112-bf16-rerun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "947158d1b9abe649e75f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check llama sft completion",
+  "task_key": "worker_ops_check_llama_sft_completion_20260516T113955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_llama_sft_completion_20260516T113955_result.json",
+    "occurrence": 1,
+    "bytes": 1001,
+    "sha256": "d2e48ca723d08a72e039fefc1348ac54f9f71f9e2e8ae548912336f35ba6b6ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n**训练状态：成功完成。**\n\n- `max_steps: 570`，最终 step 570，epoch 3.0，`should_training_stop: true` — 训练正常跑完全部 3 个 epoch。\n- 最终 checkpoint 保存在 `/root/autodl-tmp/sft_output_llama_3_1_8b/checkpoint-570/`，顶层也有完整的 adapter 输出。\n\n**最终指标：**\n\n| 指标 | Train (step 570) | Eval |\n|------|-----------------|------|\n| loss | 0.409 | 0.736 |\n| mean_token_accuracy | 89.2% | 83.6% |\n| entropy | 0.468 | 0.549 |\n\n**LoRA 配置：** r=64, alpha=128, dropout=0.05, 目标模块: q/k/v/o/gate/up/down_proj\n\n**Checkpoints：** checkpoint-190, checkpoint-570 + 顶层最终 adapter（adapter_model.safetensors, 671MB）\n\n**GPU 状态：**\n\n| GPU | 显存占用 | 状态 |\n|-----|---------|------|\n| cuda:0 | 0 MiB | 空闲 ✓ |\n| cuda:1 | 11,415 MiB | 占用 |\n| cuda:2 | 18,421 MiB | 占用 |\n| cuda:3 | 23,737 MiB | 占用 |\n\ncuda:0 已完全释放，可用于下一个任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-llama-sft-completion.md"
+}

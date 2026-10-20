@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c6deea074d31b8cd20e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code fix d112 no evidence eval r3",
+  "task_key": "worker_code_fix_d112_no_evidence_eval_r3_20260519T134502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_d112_no_evidence_eval_r3_20260519T134502_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "20f7a595a1d1272c2357081a6b7b44aee21021afec9261f77bb2be8c40a44ff3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本创建完成，内容正确。\n\n**结果汇总：**\n\n- **脚本路径**: `/root/autodl-tmp/freige/scripts/d112/eval_4b_rsft_no_evidence.sh`\n- **RSFT checkpoint**: `/root/autodl-tmp/rsft_output_4b_sft_s44_bf16/` (已确认存在)\n- **与 with-evidence 版本的区别**: 添加了 `--no_evidence` 参数（C005），output_dir 改为 `d112_rsft_bf16_no_evidence`\n- **语法验证**: 通过\n\n**提交命令**（需先按 C001 确认目标 GPU 显存空闲）：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=X GPU=X bash scripts/d112/eval_4b_rsft_no_evidence.sh\"\n```\n\n（将 `X` 替换为空闲 GPU 编号）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-d112-no-evidence-eval-r3.md"
+}

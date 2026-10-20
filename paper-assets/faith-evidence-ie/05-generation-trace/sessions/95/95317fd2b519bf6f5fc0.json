@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95317fd2b519bf6f5fc0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code llama template dryrun",
+  "task_key": "worker_code_llama_template_dryrun_20260516T100450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_template_dryrun_20260516T100450_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "e47388b8598233dbfc63325567efb1af715339f4f0fec2f34ec2b80bcfd321d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证全部通过。\n\n**结果：**\n\n1. **Chat template**：LLaMA-3.1-8B base 无 `chat_template`，但词表含全部特殊 token（`<|start_header_id|>` 128006, `<|end_header_id|>` 128007, `<|eot_id|>` 128009, `<|begin_of_text|>` 128000）。使用标准 LLaMA 3.1 Instruct 格式模板。\n\n2. **代码修改**：\n   - `freige/training/__init__.py` — 新增 `LLAMA3_CHAT_TEMPLATE` 常量\n   - `sft_trainer.py` / `rsft_generate.py` / `rsft_trainer.py` / `grpo_trainer.py` / `smoke_test.py` — 导入常量 + tokenizer 加载后 fallback 设置（`if not getattr(tokenizer, 'chat_template', None)`）\n\n3. **Dry run**：\n   - 3027 个训练文档全部处理成功\n   - 10 个样本 tokenization 正确：均含 `<|start_header_id|>`、`<|eot_id|>`、`<|begin_of_text|>`\n   - Token 长度：min=491, max=1537, mean=886（4096 max_length 下无截断问题）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-template-dryrun.md"
+}

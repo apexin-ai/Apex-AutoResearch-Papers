@@ -1,0 +1,1359 @@
+{
+  "schema_version": "1.0",
+  "id": "dd34f2704472fd76c2b8",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "cron hook mvp2 eval ced kl001 r4 step90 20260515T023223 152209",
+  "task_key": "cron_hook_mvp2_eval_ced_kl001_r4_step90_20260515T023223_152209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_mvp2_eval_ced_kl001_r4_step90_20260515T023223_152209.jsonl",
+    "occurrence": 1,
+    "bytes": 67168,
+    "sha256": "b7a46eea7a19fbf41793b3fcee26d7d7502f30ad1a3dd9f4ddc0e06ef8757a00"
+  },
+  "statistics": {
+    "messages": 68,
+    "user_turns": 2,
+    "tool_calls": 32,
+    "roles": {
+      "user": 2,
+      "tool_call": 32,
+      "tool_result": 32,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T23:27:37.659570+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #5。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0,1,2,3（rtx5090-4x），config 里写死，不可用其他\n- **D031 已判死 GRPO+QLoRA 方向**——不要再启动任何 GRPO 训练实验。当前 RUNNING 的 4 个都是收尾数据收集\n- eval 脚本必须 `cd /root/autodl-tmp`（不是 `/root/autodl-tmp/freige`）——内层空 `freige/freige/` 包会导致 import 失败，之前踩过\n- PREPARING 的 3 个旧实验（mvp2_eval_ced_kl001_r4_last、mvp2_grpo_ced_kl001_r2、mvp2_grpo_ced_kl001_r3）已过时，**不要提交**，择机标记 killed\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（4× RTX 5090 32GB），备用 SSH endpoint bjb2-12179（同一台机器）\n- 工作目录：`/root/autodl-tmp/freige`\n- Python：aml-train 镜像，conda 环境 `/root/miniconda3/bin/python`\n- 活跃进程：\n  - cuda:0 — mvp2_grpo_ced_lr5e6_r1 训练（PID 90080，step ~104/200，~2.7h 完成）\n  - cuda:1 — mvp2_eval_lr5e6_r1_ckpt60_r2 eval retry（PID 108185）+ 原 ckpt60（PID 108025，可能 orphan）\n  - cuda:2 — mvp2_eval_lr5e6_r1_ckpt80 eval（PID 111731）\n  - cuda:3 — mvp2_eval_sft_baseline（PID 104979，~44min 完成）\n- Cron：4 个活跃，分别监控上述 4 个 RUNNING 实验（reconcile 刚确认全部 still running）\n\n### 3. 📊 当前状态\n刚完成 D031 决策：GRPO+QLoRA 全线失败，pivot 到 Rejection Sampling FT (RSFT) + CED scoring。当前 4 卡全在跑 GRPO 收尾（收集完整 trajectory 数据 + SFT baseline），跑完全部转投 RSFT。\n\n**两个活跃 Worker（都在跑，别重复派）**：\n1. `worker_code_rsft-training-script_20260514T231604`（turn 15）——正在写 RSFT 训练脚本，已在服务器上做 nohup 模型加载测试\n2. `worker_ssh_diversity-probe_20260514T232333`（turn 20）——在 cuda:2 上探测 SFT 模型生成多样性（确定 RSFT 的 N 和 temperature 参数），正在写 probe 脚本\n\n**Registry 总览**：49 个实验，5 RUNNING / 1 QUEUED / 3 PREPARING / 8 success / 8 negative / 9 failed / 15 killed\n\n### 4. 📋 待办（条件触发式）\n- `mvp2_eval_sft_baseline` cron 回调 → 记录 SFT baseline rel_f1（**RSFT 的关键参照线**），更新 registry + report.md，汇报 Director\n- `mvp2_eval_lr5e6_r1_ckpt60_r2` cron 回调 → 更新 registry（收尾数据，ckpt-60 轨迹点）\n- `mvp2_eval_lr5e6_r1_ckpt80` cron 回调 → 更新 registry（ckpt-80 轨迹点）\n- `mvp2_grpo_ced_lr5e6_r1` 训练完成 → 提交 mvp2_eval_lr5e6_r1_ckpt100（已 QUEUED），最后一个轨迹点\n- Worker rsft-training-script 完成 → review RSFT 代码，设计实验方案（pass/fail criteria），提交 Director 审批\n- Worker diversity-probe 完成 → 用多样性数据确定 RSFT 生成参数（N, temperature, top-p），写入实验方案\n- 所有收尾实验 + Worker 完成 → 向 Director 提交 RSFT MVP-2 实验计划，申请 4 卡全部转投\n- 3 个 PREPARING 旧实验 → 标记 killed（GRPO 方向已死）\n\n### 5. 🎯 战略上下文\n**决策链**：MVP-1 CED signal PASS (margin=0.48, acc=81.5%, r=0.34) → SFT warmup DONE (eval_loss=0.72, token_acc=83.5%) → GRPO+QLoRA 全线 FAIL: lr=5e-5 catastrophic forgetting (best rel_f1=0.211=SFT的52%), lr=5e-6 零学习 (rel_f1=0.007) → **D031: Pivot to RSFT+CED**\n\n**核心判断**：CED reward signal 有效（MVP-1 验证），问题在在线 RL 方法论。GRPO+QLoRA 在结构化生成任务上 catastrophic forgetting 是根本性的（不是超参问题）。RSFT 完全避免在线 RL，用 CED 做离线筛选。\n\n**易踩的坑**：\n- cuda:1 上可能有两个进程（ckpt60 原始 PID 108025 + retry PID 108185），cron 只监控 retry 的 PID，原始可能是 orphan\n- SFT baseline 数字还没出——**不要在没有 baseline 的情况下设计 RSFT pass/fail criteria**\n- memory.md 里的文献调研（5 篇论文）是针对 GRPO 的缓解方案，pivot 后大部分不适用了，但\"alignment tax\"和\"reward hacking\"的分析仍有参考价值\n- Contingency：如果 RSFT 也失败，备选是全参微调（排除 adapter 是 forgetting 根因）或 CED 作为 reranker（后训练→推理时）\n\n## 可查的历史\n前 31 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T23:27:50.715188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T23:27:50.765949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T23:27:54.836421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T23:27:55.391573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T23:27:55.392467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp2_eval_lr5e6_r1_ckpt80\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:25:45.043Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:23:04.429Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + GRPO lr5e6 ckpt-80\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80 --quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"111731\\\", \\\"account\\\": \\\"root\\\", \\\"log_path\\\": \\\"/tmp/eval_lr5e6_ckpt80.log\\\"}, \\\"hypothesis\\\": \\\"P0 ckpt-80 eval: lr=5e-6 GRPO at step 80. 训练轨迹继续——ckpt-20 FAIL (0.0077), ckpt-40/60 待出. Step 80 reward=0.283 (回升), format_reward=0.249. Pass criteria: rel_f1 > 0.30.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_lr5e6_r1\\\", \\\"notes\\\": \\\"[2026-05-15 07:22] PID 111731 启动于 cuda:2, cron 120s 轮询已注册。预计耗时 ~100min。ckpt-20 rel_f1=0.0077, ckpt-40 rel_f1=0.0071 (flat)。W&B 训练轨迹显示 step 100 有 f1_reward 拐点 (0.016→0.093)，但尚未转化为 eval 改善。\\\"}, \\\"mvp2_grpo_ced_lr5e6_r1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:21:08.231Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:13:53.131Z\\\", \\\"hypothesis\\\": \\\"D030/P0: lr=5e-6 (10x lower than ced_kl001_r4) prevents catastrophic forgetting while maintaining CED reward improvement. Community consensus GRPO+QLoRA lr=5e-6~1e-5. Pass criteria: ckpt-20 rel_f1 > 0.30. Extra monitoring: pred_count + recall trend.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001_r4\\\", \\\"spec\\\": {\\\"command\\\"\n…[truncated 6051 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 556
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T23:27:55.744302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T23:27:55.744797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T23:28:00.774424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 4, \\\"results\\\": [{\\\"exp_id\\\": \\\"mvp2_grpo_ced_lr5e6_r1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=90080)\\\"]}, {\\\"exp_id\\\": \\\"mvp2_eval_sft_baseline\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=104979)\\\"]}, {\\\"exp_id\\\": \\\"mvp2_eval_lr5e6_r1_ckpt60_r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=108185)\\\"]}, {\\\"exp_id\\\": \\\"mvp2_eval_lr5e6_r1_ckpt80\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=111731)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 5382
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T23:28:00.828601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| mvp2_eval_lr5e6_r1_ckpt80 | P0 ckpt-80 eval: lr=5e-6 GRPO at step 80. 训练轨迹继续——ckpt-20 FAIL (0.0077), ckpt-40/60 待出. Step 80 reward=0.283 (回升), format_reward=0.249. Pass criteria: rel_f1 > 0.30. | — | — | — |\\\\n| mvp2_grpo_ced_lr5e6_r1 | D030/P0: lr=5e-6 (10x lower than ced_kl001_r4) prevents catastrophic forgetting while maintaining CED reward improvement. Community consensus GRPO+QLoRA lr=5e-6~1e-5. Pass criteria: ckpt-20 rel_f1 > 0.30. Extra monitoring: pred_count + recall trend. | — | — | [grpo-s3-ced-lr5e6-r1] |\\\\n| mvp2_eval_lr5e6_r1_ckpt60_r2 | P0 ckpt-60 eval retry: 原 submit_on_allocated 失败 (pid=unknown). 手动 SSH 启动 /root/autodl-tmp/scripts/eval_lr5e6_ckpt60.sh. Pass criteria: rel_f1 > 0.30. | — | — | — |\\\\n\\\\n## 待处理\\\\n- mvp2_eval_lr5e6_r1_ckpt100: P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.（排队等待 GPU）\\\\n- mvp2_eval_ced_kl001_r4_last（准备中）\\\\n- mvp2_grpo_ced_kl001_r2: kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr → --learning_rate)（准备中）\\\\n- mvp2_grpo_ced_kl001_r3: kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr + bash -c wrapping)（准备中）\\\\n\\\\n## 近期结论\\\\n- **mvp2_eval_lr5e6_r1_ckpt60** (failed): P0 ckpt-60 eval: lr=5e-6 GRPO at step 60. 训练轨迹数据点——ckpt-20 catastrophic forgetting (rel_f1=0.0077)，需看后续 checkpoint 是否恢复。Pass criteria: rel_f1 > 0.30. ← 基于 mvp2_grpo_ced_lr5e6_r1\\\\n- **mvp2_eval_lr5e6_r1_ckpt40_r2** (negative): Re-t\n…[truncated 1678 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 5084
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T23:28:00.879534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 23:11 UTC | 更新原因: D031: GRPO+QLoRA 判死, pivot 到离线 RL (Rejection Sampling FT + DPO)\\\\n\\\\n## 核心方向\\\\nFREIGE: 用对比证据判别 (CED) 奖励训练 LLM 在文档级关系抽取中同时生成抽取结果和可验证证据。\\\\n\\\\n## 当前进展\\\\n- 阶段: MVP 验证（MVP-1 ✅, MVP-2 运行中 — GRPO 方向已判死，pivot 到离线 RL）\\\\n- **MVP-1**: CED margin 0.4827, accuracy 81.5%, r=0.34 — PASS\\\\n- **SFT warmup**: 完成（eval loss 0.72, token accuracy 83.5%）\\\\n- **GRPO+QLoRA 全线失败 (D031)**:\\\\n  - lr=5e-5 系列: 6 次尝试均失败（mode collapse / KL 爆炸 / 灾难性遗忘），最佳 rel_f1=0.211 (ckpt-90)\\\\n  - lr=5e-6 系列: ckpt-20=0.0077, ckpt-40=0.0071（下降趋势），完全没学到关系抽取\\\\n  - 根因: GRPO+QLoRA 在结构化生成任务上 catastrophic forgetting 是根本性问题\\\\n- **CED reward signal 有效**，问题在在线 RL 方法论\\\\n- **Pivot**: Rejection Sampling FT（优先）+ DPO+CED（并行备选）\\\\n- 服务器: RTX 5090 32GB × 4（1 台机器，2 个 SSH endpoint）\\\\n\\\\n## GPU 分配（2026-05-14 实况）\\\\n4/4 运行中（收尾阶段，跑完即释放给新方向）\\\\n\\\\n| GPU | 实验 | 说明 | 预计释放 |\\\\n|-----|------|------|----------|\\\\n| cuda:0 | lr5e6_r1 训练 | step 104/200, 收尾 | ~2.7h |\\\\n| cuda:1 | ckpt-60 eval r2 | 21%, 收数据 | ~75min |\\\\n| cuda:2 | ckpt-40 eval r2 | ✅ 完成 rel_f1=0.0071 FAIL | 已释放 |\\\\n| cuda:3 | SFT baseline eval | 55%, 需要作为 baseline | ~44min |\\\\n\\\\n## MVP-2 Pivot: 离线 RL 路线\\\\n\\\\n### 方案 1: Rejection Sampling FT（优先）\\\\n- SFT 模型对每个训练样本生成 N 个输出（N=8~16）\\\\n- CED reward 打分筛选 top-k\\\\n- 在高质量样本上继续 SFT\\\\n- 优势: 最简单、最稳定、不需要处理 KL/梯度问题\\\\n\\\\n### 方案 2: DPO + CED scoring（并行备选）\\\\n- SFT 模型生成 N 个输出\\\\n- CED 打分构建偏好对（high CED vs low CED）\\\\n- DPO 训练\\\\n- 优势: 理论上限更高，但实现更复杂\\\\n\\\\n## 近期任务\\\\n- [ ] 等 SFT baseline eval 完成（~44min），确认 baseline 数字\\\\n- [ ] 等 ckpt-60 eval 完成，收集完整 trajectory 数据\\\\n- [ ] cuda:2 已释放 → 提交 ckpt-80 eval（收数据）\\\\n- [ ] 准备 Rejection Sampling FT 代码（CPU Worker 可提前写）\\\\n- [ ] 设计 Rejection Sampling MVP-2 实验方案（pass/fail criteria）\\\\n- [ ] 训练跑完后全部 GPU 转投新方向\\\\n\\\\n## Contingency（离线 RL 也失败时）\\\\n1. 全参微调（non-QLoRA）— 排除 adapter 是 forgetting 根因\n…[truncated 2178 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 5134
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T23:28:20.464417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T23:28:20.464917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T23:28:23.441009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "status": "running"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T23:28:23.945455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_code_rsft-training-script_20260514T231604\\\", \\\"task_type\\\": \\\"code:rsft-training-script\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T23:16:04.480508+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_ssh_diversity-probe_20260514T232333\\\", \\\"task_type\\\": \\\"ssh:diversity-probe\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T23:23:33.773790+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 2}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 504
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T23:28:23.945900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'PREPARING'}",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T23:28:24.397966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp2_eval_ced_kl001_r4_last\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T18:10:05.820Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:21:08.204Z\\\", \\\"notes\\\": \\\"已被拆分为独立 eval：ckpt-90 → mvp2_eval_ced_kl001_r4_ckpt90 (cuda:3)，ckpt-100 → mvp2_eval_ced_kl001_r4_step100 (cuda:0)。此条目作废。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp2_grpo_ced_kl001_r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T15:23:16.518Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:29:52.768Z\\\", \\\"hypothesis\\\": \\\"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr → --learning_rate)\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: 命令未用 bash -c 包裹，tmux 以 sh 执行导致 source 命令失败。error_type: infrastructure | can_auto_fix: true\\\"}, \\\"mvp2_grpo_ced_kl001_r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T15:25:06.729Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:26:33.763Z\\\", \\\"hypothesis\\\": \\\"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr + bash -c wrapping)\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001\\\", \\\"notes\\\": \\\"失败原因: datasets 库不支持 thunlp/docred 自定义脚本 (RuntimeError: Dataset scripts are no longer supported)。命令缺少 --data_dir /root/autodl-tmp/data/docred 参数，触发 HF 远程下载失败。需要补全所有必要参数后重新提交。error_type: infrastructure | can_auto_fix: true\\\"}}, \\\"count\\\": 3, \\\"total\\\": 3, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T23:28:24.398488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'QUEUED'}",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T23:28:24.802567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp2_eval_lr5e6_r1_ckpt100\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-14T23:00:57.035Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:24:29.985Z\\\", \\\"hypothesis\\\": \\\"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_lr5e6_r1\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1898}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 404
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T23:28:24.803072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "faith-evidence-ie",
+              "section": "execution"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T23:28:24.853660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"faith-evidence-ie\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [0, 1, 2, 3], \\\"project_path\\\": \\\"/root/autodl-tmp/freige\\\", \\\"servers\\\": [\\\"rtx5090-4x\\\", {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb2-12179\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 50
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T23:28:56.289414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mvp2_eval_ced_kl001_r4_last",
+              "field": "status",
+              "value": "DONE",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T23:28:56.695484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.187}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 406
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T23:28:56.695963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mvp2_grpo_ced_kl001_r2",
+              "field": "status",
+              "value": "DONE",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T23:28:57.148461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1516}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T23:28:57.600758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mvp2_grpo_ced_kl001_r3",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T23:28:59.108118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_grpo_ced_kl001_r3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T15:25:06.729Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:28:57.752Z\\\", \\\"hypothesis\\\": \\\"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr + bash -c wrapping)\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.01 --num_iterations 1 --save_steps 20 --save_total_limit 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --learning_rate 5e-5 --gradient_accumulation_steps 16 --num_generations 4\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"65740\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T15:25:17.200Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"失败原因: datasets 库不支持 thunlp/docred 自定义脚本 (RuntimeError: Dataset scripts are no longer supported)。命令缺少 --data_dir /root/autodl-tmp/data/docred 参数，触发 HF 远程下载失败。需要补全所有必要参数后重新提交。error_type: infrastructure | can_auto_fix: true\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2906}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1507
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T23:28:59.160011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T23:28:59.210951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_3b30d88b."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T23:29:08.916467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mvp2_grpo_ced_kl001_r2",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T23:29:09.432130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_grpo_ced_kl001_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T15:23:16.518Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:29:09.081Z\\\", \\\"hypothesis\\\": \\\"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr → --learning_rate)\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.01 --num_iterations 1 --save_steps 20 --save_total_limit 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --learning_rate 5e-5 --gradient_accumulation_steps 16 --num_generations 4\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T15:23:31.047Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"失败原因: 命令未用 bash -c 包裹，tmux 以 sh 执行导致 source 命令失败。error_type: infrastructure | can_auto_fix: true\\\"}, \\\"impact_analysis\\\": {\\\"change_type\\\": \\\"experiment\\\", \\\"change_id\\\": \\\"mvp2_grpo_ced_kl001_r2\\\", \\\"affected_decisions\\\": [], \\\"cascade_decisions\\\": [], \\\"affected_claims\\\": [], \\\"affected_figures\\\": [], \\\"recommendations\\\": [\\\"No downstream impact detected\\\"]}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.394}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 515
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T23:29:09.432643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T23:29:09.486907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "Glob",
+            "elapsed_ms": 54
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T23:29:12.522413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/skills/**/resource-saturation*",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T23:29:13.025297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "Glob",
+            "elapsed_ms": 502
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T23:29:15.139847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T23:29:15.242040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "Read",
+            "elapsed_ms": 102
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T23:29:49.823467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 4 | Worker 池 2 (GPU 0 / CPU 2)\n\n**Session-start 状态同步 (Loop #5)**\n\n**RUNNING (4 卡全占, 收尾中):**\n- cuda:0 — mvp2_grpo_ced_lr5e6_r1 训练 (PID 90080, step ~113/200)\n- cuda:1 — mvp2_eval_lr5e6_r1_ckpt60_r2 eval (PID 108185, ~37%)\n- cuda:2 — mvp2_eval_lr5e6_r1_ckpt80 eval (PID 111731)\n- cuda:3 — mvp2_eval_sft_baseline eval (PID 104979, ~55%, ETA ~44min from last check)\n\n**活跃 Worker (2):**\n1. rsft-training-script — 正在写 RSFT 训练脚本（代码任务）\n2. diversity-probe — 探测 SFT 模型生成多样性，确定 RSFT 的 N/temperature 参数\n\n**已清理:** 3 个过时 PREPARING 实验 (kl001_r4_last, kl001_r2, kl001_r3) 标记 killed，GRPO 方向已死。\n\n**QUEUED:** mvp2_eval_lr5e6_r1_ckpt100 等待训练完成后提交（最后一个 trajectory 点）。\n\n**等待回调:**\n- SFT baseline eval 完成 → 确认 RSFT baseline 参照线\n- ckpt-60/80 eval 完成 → 收集完整 GRPO trajectory 数据\n- 训练 lr5e6_r1 完成 → 提交 ckpt100 eval\n- 两个 Worker 完成 → 整合 RSFT 代码 + 生成参数，提交 RSFT 实验方案审批\n\nPivot 到 RSFT+CED 进展有序，无阻塞。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T23:29:54.052221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4228
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T23:29:58.607689+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session-start 初始化完成。\n\n**当前状态总结：**\n- 4/4 GPU 全部在跑 GRPO 收尾实验，cron 监控正常\n- 2 个活跃 Worker 并行推进 RSFT 准备（代码 + 多样性探测）\n- 3 个过时 PREPARING 实验已 killed\n- 1 个 QUEUED eval 等训练完成后自动提交\n\n等待 cron 回调处理实验完成事件。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90"
+          },
+          "id": "event-000040"
+        }
+      ],
+      "message_count": 40
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T02:30:56.425414+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T02:31:05.713069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T02:31:05.766225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "ToolSearch",
+            "elapsed_ms": 53
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T02:31:10.810441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T02:31:10.810884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T02:31:11.775869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (99,073 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-3b30d88b/b9733eff-97d2-4c96-bd0c-21f300a3ab6f/tool-results/mcp-agent-ml-research-read_registry-1778812271395.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-3b30d88b/b9733eff-97d2-4c96-bd0c-21f300a3ab6f/tool-results/mcp-agent-ml-research-read_registry-1778812271395.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-3b30d88b/b9733eff-97d2-4c96-bd0c-21f300a3ab6f/tool-results/mcp-agent-ml-research-read_registry-1778812271395.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 965
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T02:31:11.777016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T02:31:12.230778+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T02:31:12.683745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T02:31:13.186759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T02:31:13.438194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "status": "running"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T02:31:17.714810+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 4, \\\"results\\\": [{\\\"exp_id\\\": \\\"mvp2_rsft_gen_s0\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=135867)\\\"]}, {\\\"exp_id\\\": \\\"mvp2_rsft_gen_s1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=136270)\\\"]}, {\\\"exp_id\\\": \\\"mvp2_rsft_gen_s2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=136649)\\\"]}, {\\\"exp_id\\\": \\\"mvp2_rsft_gen_s3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=137985)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 6903
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T02:31:17.715458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| mvp2_rsft_gen_s3 | RSFT generation shard 3/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1. | — | — | — |\\\\n| mvp2_rsft_gen_s2 | RSFT generation shard 2/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1. | — | — | — |\\\\n| mvp2_rsft_gen_s1 | RSFT generation shard 1/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1. | — | — | — |\\\\n\\\\n## 待处理\\\\n- mvp2_grpo_ced_kl001_r2: kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr → --learning_rate)（准备中）\\\\n- mvp2_grpo_ced_kl001_r3: kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr + bash -c wrapping)（准备中）\\\\n- mvp2_eval_ced_kl001_r4_last（准备中）\\\\n\\\\n## 近期结论\\\\n- **mvp2_rsft_generate** (failed): RSFT generation phase: SFT model generates N=8 candidate outputs per training sample at T=0.7. CED scoring + filtering后作为 RSFT 训练数据。D031 pivot 方向。 ← 基于 mvp2_sft_warmup\\\\n- **mvp2_diversity_probe** (success): RSFT viability check: SFT model output diversity at T=0.7/1.0 with N=8 generations. Pass criteria: unique triple-sets >= 5/8.\\\\n- **mvp2_eval_lr5e6_r1_ckpt100** (negative): P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30. ← 基于 mvp2_grpo_ced_lr5e6_r1\\\\n\\\\n## 趋势\\\\n成功 10 / 负向 11 / 失败 11 / 共 48\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nrtx5090-4x: 空闲 cuda:0, cuda:1, cu\n…[truncated 1250 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 5938
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T02:31:17.767666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 01:42 UTC | 更新原因: D036: 撤销 diversity crisis，恢复 4 卡并行 RSFT 生成\\\\n\\\\n## 核心方向\\\\nFREIGE: 用对比证据判别 (CED) 奖励训练 LLM 在文档级关系抽取中同时生成抽取结果和可验证证据。\\\\n\\\\n## 当前进展\\\\n- 阶段: MVP 验证（MVP-1 ✅, MVP-2 运行中 — GRPO 判死，离线 RL pivot 进行中）\\\\n- **MVP-1**: CED margin 0.4827, accuracy 81.5%, r=0.34 — PASS\\\\n- **SFT warmup**: 完成（eval loss 0.72, token accuracy 83.5%）\\\\n- **GRPO+QLoRA 全线 FAIL (D031/D033)**: CED 有效但在线 RL 导致 rel_f1 catastrophic forgetting\\\\n- **D034/D035 撤销 (D036)**: diversity crisis 为监控 bug（度量代码错误报 1.0/8，实际 7.11/8 median=8.0）\\\\n- **RSFT 生成**: T=0.7 diversity 充足，4 卡并行分片重启中（已完成 302/3027 docs，断点续传）\\\\n\\\\n## GPU 分配（2026-05-15 实况）\\\\n\\\\n| GPU | 状态 | 任务 |\\\\n|-----|------|------|\\\\n| cuda:0 | 🏃 启动中 | RSFT generate shard 0 |\\\\n| cuda:1 | 🏃 启动中 | RSFT generate shard 1（续跑已有 302 docs） |\\\\n| cuda:2 | 🏃 启动中 | RSFT generate shard 2 |\\\\n| cuda:3 | 🏃 启动中 | RSFT generate shard 3 |\\\\n\\\\n## MVP-2: 离线 RL 路线\\\\n\\\\n### RSFT 流水线（diversity gate 已通过）\\\\n1. ✅ 代码准备（含 generation_config 修复 + 分片并行 + diversity 监控修复）\\\\n2. 🏃 生成候选（4 卡并行，预计 ~3h 完成全量 3027 docs × 8 generations）\\\\n3. ⬜ CED 打分筛选\\\\n4. ⬜ RSFT 训练\\\\n5. ⬜ Eval\\\\n\\\\n### 方案 2: DPO + CED（RSFT 完成后考虑）\\\\n\\\\n### Contingency（RSFT 训练效果不佳时）\\\\n1. Prompt-level 多样性: 不同 prompt 模板 / 不同实体子集\\\\n2. CED 作为 reranker（推理时方案）\\\\n3. 全参微调（non-QLoRA）\\\\n\\\\n## 近期任务\\\\n- [ ] 4 卡并行 RSFT 生成完成（~3h）\\\\n- [ ] 合并 4 shard 输出\\\\n- [ ] CED 打分筛选 top candidates\\\\n- [ ] RSFT 训练\\\\n- [ ] Eval: rel_f1 / evidence quality\\\\n\\\\n## Post-MVP 流程（MVP-2 通过后）\\\\n1. complete_mvp() → paper_framing.md → experiment_plan.yaml → dream_simulate\\\\n\\\\n## GPU 预算\\\\n- 硬件: 4× RTX 5090 32GB\\\\n- GRPO 已消耗: ~60+ GPU-hours\\\\n- RSFT 生成预估: ~3h（4 卡并行）\\\\n- RSFT 训练预估: ~4-8h\\\\n\\\\n## 评审笔记（Research 阶段处理）\\\\n1. CED 重框定为 anti-reward-overoptimization mechanism\\\\n2. EDCR 升格为独立评估贡献\\\\n3. ~~NLI lexical overlap bias~~ → MVP-1 已验证 (r=0.34)\\\\n4.\n…[truncated 1632 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 5536
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T02:31:17.768512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"content\\\": \\\"# 文献调研：GRPO/RLHF 训练中的\\\\\\\"先遗忘后恢复\\\\\\\"现象\\\\n\\\\n日期：2026-05-14\\\\n\\\\n## 背景\\\\n\\\\nQwen3-4B + GRPO + QLoRA 4-bit 训练文档级关系抽取，观察到：\\\\n- Reward 上升但 eval rel_F1 崩塌（ckpt-20: 0.0077 vs SFT baseline 0.406）\\\\n- lr=5e-5 和 lr=5e-6 下都出现\\\\n- 存在\\\\\\\"先遗忘后缓慢恢复\\\\\\\"的 U 型曲线（step-10=0.003 → step-90=0.211），但恢复不足\\\\n\\\\n---\\\\n\\\\n## 论文 1：Mitigating the Alignment Tax of RLHF\\\\n\\\\n- **作者**：Yifei Lin, Yuxin Tan, et al.\\\\n- **年份/Venue**：2024, EMNLP 2024\\\\n- **arXiv**：2309.06256\\\\n\\\\n### 核心发现\\\\n- 定义了\\\\\\\"alignment tax\\\\\\\"：RLHF 对齐后模型遗忘预训练/SFT 阶段习得能力的现象\\\\n- 发现简单的**模型参数平均**（插值 SFT 和 RLHF 后模型权重）在 alignment-forgetting Pareto 前沿上表现最优\\\\n- 提出 **Heterogeneous Model Averaging (HMA)**：对不同层使用不同插值比例，最大化对齐收益同时最小化遗忘\\\\n\\\\n### 与我们场景的相关性\\\\n- **直接相关**。我们的 rel_F1 崩塌就是 alignment tax 的典型表现——GRPO 优化 reward 的过程中覆盖了 SFT 学到的抽取能力\\\\n- HMA 的层级插值思路可直接应用于 QLoRA adapter 权重\\\\n\\\\n### 推荐缓解方案\\\\n- 训练后对 SFT checkpoint 和 GRPO checkpoint 做权重插值（α=0.3~0.7）\\\\n- 或用 HMA 对不同 LoRA 层设置不同插值系数\\\\n\\\\n---\\\\n\\\\n## 论文 2：Online Merging Optimizers for Boosting Rewards and Mitigating Tax in Alignment\\\\n\\\\n- **作者**：Lu et al. (Qwen 团队)\\\\n- **年份/Venue**：2024, arXiv 2405.17931\\\\n- **开源**：github.com/QwenLM/online_merging_optimizers\\\\n\\\\n### 核心发现\\\\n- 在 RLHF 每个优化步骤中实时合并 RL policy 和 SFT 模型参数，持续调节训练方向\\\\n- 将梯度与 SFT-pretrained 参数差合并，引导梯度朝着\\\\\\\"在 SFT 优化方向上最大化 reward\\\\\\\"的方向前进\\\\n- 在 Qwen 和 LLaMA 系列（1.8B-8B）、DPO/KTO 等多种 RLHF 算法上验证有效\\\\n- 14 个 benchmark 上同时提升对齐 reward 并降低 alignment tax\\\\n\\\\n### 与我们场景的相关性\\\\n- **高度相关**。该方法正是为解决我们观察到的问题设计的——reward 上升但能力退化\\\\n- 来自 Qwen 团队，与我们使用的 Qwen3-4B 模型同源，兼容性好\\\\n- 在训练过程中在线缓解，而非事后补救\\\\n\\\\n### 推荐缓解方案\\\\n- 在 GRPO 训练中集成 Online Merging Optimizer，每步将 LoRA 更新方向锚定在 SFT 附近\\\\n\\\\n---\\\\n\\\\n## 论文 3：Robust Policy Optimization to Prevent Catastrophic Forgetting (FRPO)\\\\n\\\\n- **作者**：Sabbaghi, Hassani, Javanmard et al.\\\\n- **年份/Venue**：2025, arXiv 2602.08813\\\\n\\\\n### 核心发现\\\\n- 指出即使小幅下游更新也会破坏 RLHF 学到的行为（如安全性），暴露 cata\n…[truncated 10071 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 5084
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T02:31:17.768928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"faith-evidence-ie\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [0, 1, 2, 3], \\\"project_path\\\": \\\"/root/autodl-tmp/freige\\\", \\\"servers\\\": [\\\"rtx5090-4x\\\", {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb2-12179\\\"}]}, \\\"feishu\\\": {\\\"chat_id\\\": \\\"oc_84537e1e2f9ef71a90742c2db859c6f2\\\", \\\"operational_chat_id\\\": \\\"oc_14f1701558037f8ed8fe6fdc4e7df95b\\\"}, \\\"project\\\": {\\\"created_at\\\": \\\"2026-05-14T04:18:52.432Z\\\", \\\"description\\\": \\\"FREIGE: Faithfulness-Rewarded Evidence-Grounded Information Extraction via Contrastive Evidence Discrimination\\\", \\\"name\\\": \\\"faith-evidence-ie\\\", \\\"phase\\\": \\\"mvp\\\", \\\"source_idea_id\\\": \\\"idea_006\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 4582
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T02:31:17.819412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_code_rsft-train-config_20260515T022446\\\", \\\"task_type\\\": \\\"code:rsft-train-config\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-15T02:24:47.043815+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 4381
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T02:31:23.976045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T02:31:24.481002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T02:31:24.782487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp2_rsft_gen_s3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:39:34.645Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:50:52.582Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"137985\\\"}, \\\"hypothesis\\\": \\\"RSFT generation shard 3/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\\\", \\\"parent\\\": \\\"mvp2_sft_warmup\\\"}, \\\"mvp2_rsft_gen_s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:39:32.299Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:50:09.425Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"136649\\\"}, \\\"hypothesis\\\": \\\"RSFT generation shard 2/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\\\", \\\"parent\\\": \\\"mvp2_sft_warmup\\\"}, \\\"mvp2_rsft_gen_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:39:29.894Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:50:08.464Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"136270\\\"}, \\\"hypothesis\\\": \\\"RSFT generation shard 1/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\\\", \\\"parent\\\": \\\"mvp2_sft_warmup\\\"}, \\\"mvp2_rsft_gen_s0\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:39:26.572Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:50:07.589Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"135867\\\"}, \\\"hypothesis\\\": \\\"RSFT generation shard 0/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\\\", \\\"parent\\\": \\\"mvp2_sft_warmup\\\"}}, \\\"count\\\": 4, \\\"total\\\": 4, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5083}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 806
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T02:31:24.833108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T02:31:24.935731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp2_grpo_ced_kl001_r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T15:23:16.518Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:29:09.081Z\\\", \\\"hypothesis\\\": \\\"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr → --learning_rate)\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.01 --num_iterations 1 --save_steps 20 --save_total_limit 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --learning_rate 5e-5 --gradient_accumulation_steps 16 --num_generations 4\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T15:23:31.047Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"失败原因: 命令未用 bash -c 包裹，tmux 以 sh 执行导致 source 命令失败。error_type: infrastructure | can_auto_fix: true\\\"}, \\\"mvp2_grpo_ced_kl001_r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T15:25:06.729Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:28:57.752Z\\\", \\\"hypothesis\\\": \\\"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr + bash -c wrapping)\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer\n…[truncated 1931 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 454
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T02:31:24.936197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "ToolSearch",
+            "elapsed_ms": 103
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T02:31:28.060440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_rsft-train-config_20260515T022446",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T02:31:28.262004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_rsft-train-config_20260515T022446\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:rsft-train-config\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"started_at\\\": \\\"2026-05-15T02:24:47.043815+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T02:31:20.580126+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"语法和导入均通过。下面是汇总结果。\\\\n\\\\n---\\\\n\\\\n## 验证结果\\\\n\\\\n### 已满足项\\\\n\\\\n| 项目 | 状态 |\\\\n|------|------|\\\\n| SFT 训练框架复用 | ✅ 相同 SFTConfig/SFTTrainer, chat template, SYSTEM_PROMPT |\\\\n| LoRA 结构一致 | ✅ r=64, alpha=128, dropout=0.05, 7 target modules 完全一致 |\\\\n| SFT adapter merge | ✅ base → PeftModel.from_pretrained → merge_and_unload → 新 LoRA |\\\\n| CED 数据加载 | ✅ JSONL 格式，ced_score 加权采样 |\\\\n| 多 GPU 支持 | ✅ accelerate_4gpu.yaml + deepspeed_zero2.json 已配置，`--deepspeed` 参数已有 |\\\\n| bf16 / gradient checkpointing | ✅ |\\\\n\\\\n### 新增修改\\\\n\\\\n| 修改 | 内容 |\\\\n|------|------|\\\\n| `TrainerCallback` import | 新增 |\\\\n| `prepare_eval_data()` | 加载 DocRED dev set，构建 task eval prompts + gold + loss-based eval dataset |\\\\n| `TaskEvalCallback` | 每个 epoch 结束时：generate on dev subset → parse → 计算 F1/Ign-F1/Evi-F1/EDCR → log to W&B |\\\\n| eval_loss 支持 | `eval_strategy=\\\\\\\"epoch\\\\\\\"`, `eval_dataset` 传入 trainer |\\\\n| 新 CLI 参数 | `--eval_data_dir`, `--eval_max_docs`(50), `--max_new_tokens`(1024) |\\\\n\\\\n### SFT vs RSFT 超参对比\\\\n\\\\n| 参数 | SFT warmup | RSFT 默认 | 说明 |\\\\n|------|-----------|----------|------|\\\\n| learning_rate | 2e-4 | **2e-5** | 10x 低，合理——从 warmup checkpoint 继续 |\\\\n| per_device_batch_size | 1 | **4** | RSFT 样本更短 (max_length=2048 vs 4096) |\\\\n| gradient_accumulation | 16 | **4** | effective bs: SFT=16, RSFT=16 (4×4) |\\\\n| warmup | ratio=0.05 | **steps=100** | |\\\\n| max_length | 4096 | **2048** | RSFT 生成数据一般更短 |\\\\n| epochs | 3 | 3 | 相同 |\\\\n\\\\n### 显存估算 (单卡 RTX 5090 32GB)\\\\n\\\\n- Qwen3-4B bf16: ~8GB\\\\n- LoRA trainable: ~250MB\\\\n- Optimizer (AdamW): ~500MB\\\\n- Activations (bs=4, seq=2048, grad ckpt): ~8-10GB\\\\n- 总计: ~17-19GB → **\n…[truncated 2292 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 201
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T02:31:28.413317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__poll_cron",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T02:31:28.464043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T02:32:23.150413+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `cuda:0,1,2,3` on `rtx5090-4x`，无其他服务器/GPU 可用\n- RSFT 训练**禁止 `--quantize`**（4-bit + merge_and_unload 在 RTX 5090 有 CUBLAS 错误），bf16 Qwen3-4B 仅 ~8GB 无需量化\n- 工作目录必须 `cd /root/autodl-tmp`（不能 cd 到 freige/ 子目录，否则 Python import 找到内层空包）\n- Qwen3 `generation_config.json` 会静默覆盖温度/top_k，生成前必须显式 `model.generation_config.temperature=X, top_k=0`\n- GRPO+QLoRA 方向已判死 (D031)，不要重试任何 GRPO 实验\n- 3 个 PREPARING 状态实验（mvp2_grpo_ced_kl001_r2/r3, mvp2_eval_ced_kl001_r4_last）是 GRPO 时代残留，全部已 killed/作废，忽略\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），account=root\n- **工作目录**: `/root/autodl-tmp/freige`（代码），运行目录 `/root/autodl-tmp`\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（base），`/root/autodl-tmp/sft_output`（SFT adapter）\n- **数据**: `/root/autodl-tmp/data/docred`（DocRED），RSFT 生成输出目录待确认（各 shard 独立输出）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`，NLI 模型 (nli-deberta-v3-base) 已下载\n- **W&B**: 项目名待确认\n- **活跃进程**: 4 个 RSFT 生成 shard\n  - s0: PID 135867, cuda:0, cron 监控中\n  - s1: PID 136270, cuda:1, cron 监控中（续跑，已有 302 docs）\n  - s2: PID 136649, cuda:2, cron 监控中\n  - s3: PID 137985, cuda:3, cron 监控中\n- **Worker**: `worker_code_rsft-train-config_20260515T022446` 已完成（产出 RSFT 训练命令和超参配置，见 memory.md）\n\n### 3. 📊 当前状态\n4 卡并行 RSFT 生成正在跑（约 3027 docs × 8 generations，预计 ~3h 总计）。reconcile_crons 确认 4 个进程均存活。RSFT 训练代码已就绪（rsft_generate.py / rsft_score_filter.py / rsft_trainer.py），训练配置由 rsft-train-config Worker 验证完毕。\n\n**Pipeline 进度**: 生成（🏃 运行中） → CED 打分筛选（⬜） → RSFT 训练（⬜） → Eval（⬜）\n\n**等待中**: 4 个 RSFT 生成 shard 的 cron 完成回调。无待处理的 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- **任一 shard cron 回调到达** → 检查该 shard 输出完整性（docs 数量、diversity metrics），更新 registry\n- **全部 4 shard 完成** → spawn Worker 合并 4 shard 输出 → 运行 `rsft_score_filter.py` CED 打分筛选 → 检查筛选后数据量是否充足（预期 ~3000×8×25% ≈ 6000 条）\n- **筛选完成** → 立即提交 RSFT 训练（单卡或 4GPU，训练命令已在 rsft-train-config Worker 产出中）→ 注册实验 → submit_training_job\n- **RSFT 训练完成** → spawn eval Worker（rel_f1 / evidence quality / EDCR），与 SFT baseline (rel_f1=0.406, evi_f1=0.628) 对比\n- **Eval 结果出来** → 按 on-experiment-done skill 分叉处理（success: 推进 post-MVP；negative: red-section framing 提案）\n\n### 5. 🎯 战略上下文\n- **核心结论链**: MVP-1 CED 有效 (margin=0.48, acc=81.5%) → GRPO+QLoRA 全线 FAIL (D031, catastrophic forgetting 不可逆) → pivot RSFT (D031) → diversity 充足 (D036, 7.52/8 median=8.0) → 当前：4 卡并行生成中\n- **RSFT 是最后的 MVP-2 路径**。如果 RSFT 训练后 rel_f1 仍不超 SFT baseline，contingency 选项有：prompt-level 多样性、CED 作为 inference-time reranker、全参微调。但这些是 Director 决策域\n- **易踩的坑**:\n  1. 不要把 PREPARING 状态的 3 个 GRPO 实验当作待办——它们是历史残留\n  2. 合并 shard 时注意 s1 有 302 docs 是断点续传的，可能有重复 doc_id 需去重\n  3. rsft_score_filter 输出的是 `rsft_train.jsonl`（字段: input/output/ced_score），trainer 直接消费，格式已验证兼容\n  4. 4GPU 训练时 WeightedRandomSampler 在 DDP 下不生效（Accelerate 替换 sampler），如果 CED 加权采样很重要则用单卡\n  5. diversity 监控 bug 已修复（提取 diversity_metrics.py 独立模块），但生成完成后仍应做端到端 cross-check 确认\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mvp2_eval_ced_kl001_r4_step90"
+          },
+          "id": "event-000068"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-mvp2-eval-ced-kl001-r4-step90-20260515t023223-152209.md"
+}

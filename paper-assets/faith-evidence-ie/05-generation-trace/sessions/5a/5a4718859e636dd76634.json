@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a4718859e636dd76634",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops d158 1 7b generate check",
+  "task_key": "worker_ops_d158_1_7b_generate_check_20260524T180321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d158_1_7b_generate_check_20260524T180321_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "542e4c361b9d4e34759ff114982c9e5018d2528c68e386f92b5e6eab7d67cfbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被清理），无影响。\n\n**实验 d158_1_7b_rsft_s44_generate — 成功完成**\n\n| 指标 | 值 |\n|------|-----|\n| 状态 | ANALYZING |\n| 文档数 | 3,027 |\n| 总输出数 | 24,216 (8/doc) |\n| 运行时间 | ~9h |\n| Format compliance | 24,214/24,216 (100.0%) |\n| Diversity | mean=7.52/8, median=8.0/8 |\n| Truncation rate | 15.5%–27.4%（各 batch），整体偏高 |\n| 输出文件 | `/root/autodl-tmp/rsft_generations_1_7b_s44/generations.jsonl` (244MB) |\n\nTruncation rate 全程 >10%，与之前 seed 的表现一致（max_new_tokens=1024 对部分长文档不够）。格式合规率和多样性均正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d158-1-7b-generate-check.md"
+}

@@ -1,0 +1,1649 @@
+{
+  "schema_version": "1.0",
+  "id": "7b72123cfcff69abec2c",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "code 14b rsft no evi eval launch",
+  "task_key": "worker_code_14b-rsft-no-evi-eval-launch_20260520T211810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-rsft-no-evi-eval-launch_20260520T211810.log",
+    "occurrence": 1,
+    "bytes": 51810,
+    "sha256": "7ccd7805856450b7e6d31c5da3acc96535962f8aee8ccc636562be74cc5a78e4"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "2d0ea5ec-dfc7-4379-910f-bdc50cb2c6a7",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779390000,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.75,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "c81462cb-1714-46a2-af78-5a2485c0e1db",
+                "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking if the eval script exists and verifying GPU 2 is free.",
+              "signature": "EpQCCmMIDRgCKkDI/w54jZnubbrriQH/EbcGVmxAVfGBF3qVlwjdAQZ2WvPAiiOTFZvujXNOziDtq5HEJKeoqB4Q7TIb3gjBJ/ehMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDJmsNPaP8RSMLmrVJxoM3D0idoQcxecKqi49IjB+VpZ3vh331TQOuy2+6TQiYq4T78VrpEDPEfCgS8wh5yNOht43q6hZ2rQFV1mkYaMqX0+lh6oOaJAQl2N8bfIvaMZKLRmZyi9iv6kf2dfpqO+3+KqYyzYrjOvkif59l+s8PjSWSOVx9ON0Dp8x98oen09HRdTGHQd0UCpUAJB51Zxbujl5o0dqWjO6kNeuSaecGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "a78bdabd-bfb0-4c6e-812b-74276057f594",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QzbKW6gwoczxsSZeNKza75",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12442,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12442
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YJEUWBKWF2dcCvvFuJXfUy",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+                "max_results": 4
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "bbe84dc0-703b-4d8a-b713-a13172ba33fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QzbKW6gwoczxsSZeNKza75",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12442,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12442
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T21:18:25.050Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01YJEUWBKWF2dcCvvFuJXfUy",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "ccbc85a4-f6b0-4724-8c6c-a181ce33db69",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the eval script and GPU status in parallel.",
+              "signature": "Ev0BCmMIDRgCKkAEREY31g407ze/HzLCCg+QiwQN0E+1sXPpPADxCKVXot+pmi1UnHzhAOdo5zsNNfsljXeXoWSlf8mCuN36NCmiMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDFECvfooGo+Cxt8Z0xoM8nzNkMQatnNLp9ffIjB8bdREHRGLugrofHEkiehhLLYUdb8FaEiwbk5jag11UrmIeyrlko5r0m5yyBbGR7QqSGD2dywZD+GnkFFZqhSv5RML9WNnfMbb4qebz3tv3ycfUKE6VhJwteK/etkHUnG3TjAJvF+mlvBMcl0XEUOQ5kzaaLCBTI7LwhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "f2b02da9-3abb-42ad-8b48-cdc6a85f6218",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PiHAGYk8CNsaqyQkwTDfoZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1810,
+                "cache_read_input_tokens": 24283,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1810
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Rg6ZQ6EzC8Cd9kF91tusrw",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/freige/scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "87cd3136-e2b8-4259-a81d-3c5fa4439be0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PiHAGYk8CNsaqyQkwTDfoZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1810,
+                "cache_read_input_tokens": 24283,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1810
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012285mJaJt2Lgbkv2qD9qp7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "3bc8b650-59b7-43c2-843f-39b5685908ce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PiHAGYk8CNsaqyQkwTDfoZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1810,
+                "cache_read_input_tokens": 24283,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1810
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T21:18:31.188Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Rg6ZQ6EzC8Cd9kF91tusrw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Step 4b: D076 eval for 14B RSFT (no-evidence variant — evidence tax measurement)\\\\n# Must pass --no_evidence to use NO_EVIDENCE_SYSTEM_PROMPT (C005)\\\\nset -euo pipefail\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\ncd /root/autodl-tmp/freige\\\\n\\\\nexport CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-2,3}}\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_OFFLINE=1\\\\nexport TRANSFORMERS_OFFLINE=1\\\\n\\\\nRSFT_ADAPTER=\\\\\\\"/root/autodl-tmp/rsft_output_14b\\\\\\\"\\\\nSFT_ADAPTER=\\\\\\\"/root/autodl-tmp/sft_output_14b\\\\\\\"\\\\nBASE_MODEL=\\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\\\\\"\\\\nOUTPUT_DIR=\\\\\\\"/root/autodl-tmp/eval_results/plan017_14b_rsft_no_evidence_eval\\\\\\\"\\\\n\\\\n# --- Pre-flight checks ---\\\\nif [ ! -f \\\\\\\"${RSFT_ADAPTER}/adapter_config.json\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: RSFT adapter not found at ${RSFT_ADAPTER}/adapter_config.json\\\\\\\"\\\\n    echo \\\\\\\"Training may not have completed yet. Latest checkpoints:\\\\\\\"\\\\n    ls -d \\\\\\\"${RSFT_ADAPTER}\\\\\\\"/checkpoint-* 2>/dev/null || echo \\\\\\\"  (none)\\\\\\\"\\\\n    exit 1\\\\nfi\\\\n\\\\nif [ ! -f \\\\\\\"${SFT_ADAPTER}/adapter_config.json\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: SFT adapter not found at ${SFT_ADAPTER}/adapter_config.json\\\\\\\"\\\\n    exit 1\\\\nfi\\\\n\\\\necho \\\\\\\"=== Step 4b: Eval 14B RSFT (no-evidence) ===\\\\\\\"\\\\necho \\\\\\\"Base:    $BASE_MODEL\\\\\\\"\\\\necho \\\\\\\"SFT:     $SFT_ADAPTER\\\\\\\"\\\\necho \\\\\\\"RSFT:    $RSFT_ADAPTER\\\\\\\"\\\\necho \\\\\\\"Output:  $OUTPUT_DIR\\\\\\\"\\\\necho \\\\\\\"GPUs:    $CUDA_VISIBLE_DEVICES\\\\\\\"\\\\n\\\\npython -m freige.eval.inference \\\\\\\\\\\\n    --model_path \\\\\\\"${RSFT_ADAPTER}\\\\\\\" \\\\\\\\\\\\n    --base_model \\\\\\\"${BASE_MODEL}\\\\\\\" \\\\\\\\\\\\n    --sft_adapter \\\\\\\"${SFT_ADAPTER}\\\\\\\" \\\\\\\\\\\\n    --data_path /root/autodl-tmp/data/docred \\\\\\\\\\\\n    --split dev \\\\\\\\\\\\n    --output_dir \\\\\\\"${OUTPUT_DIR}\\\\\\\" \\\\\\\\\\\\n    --batch_size 4 \\\\\\\\\\\\n    --max_new_tokens 1024 \\\\\\\\\\\\n    --no-quantize \\\\\\\\\\\\n    --no_evidence \\\\\\\\\\\\n    --seed 42\\\\n\\\\necho \\\\\\\"=== Eval Complete ===\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "e94c027d-6312-4e67-86c4-3333bee5e61c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Step 4b: D076 eval for 14B RSFT (no-evidence variant — evidence tax measurement)\\\\n# Must pass --no_evidence to use NO_EVIDENCE_SYSTEM_PROMPT (C005)\\\\nset -euo pipefail\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\ncd /root/autodl-tmp/freige\\\\n\\\\nexport CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-2,3}}\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_OFFLINE=1\\\\nexport TRANSFORMERS_OFFLINE=1\\\\n\\\\nRSFT_ADAPTER=\\\\\\\"/root/autodl-tmp/rsft_output_14b\\\\\\\"\\\\nSFT_ADAPTER=\\\\\\\"/root/autodl-tmp/sft_output_14b\\\\\\\"\\\\nBASE_MODEL=\\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\\\\\"\\\\nOUTPUT_DIR=\\\\\\\"/root/autodl-tmp/eval_results/plan017_14b_rsft_no_evidence_eval\\\\\\\"\\\\n\\\\n# --- Pre-flight checks ---\\\\nif [ ! -f \\\\\\\"${RSFT_ADAPTER}/adapter_config.json\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: RSFT adapter not found at ${RSFT_ADAPTER}/adapter_config.json\\\\\\\"\\\\n    echo \\\\\\\"Training may not have completed yet. Latest checkpoints:\\\\\\\"\\\\n    ls -d \\\\\\\"${RSFT_ADAPTER}\\\\\\\"/checkpoint-* 2>/dev/null || echo \\\\\\\"  (none)\\\\\\\"\\\\n    exit 1\\\\nfi\\\\n\\\\nif [ ! -f \\\\\\\"${SFT_ADAPTER}/adapter_config.json\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: SFT adapter not found at ${SFT_ADAPTER}/adapter_config.json\\\\\\\"\\\\n    exit 1\\\\nfi\\\\n\\\\necho \\\\\\\"=== Step 4b: Eval 14B RSFT (no-evidence) ===\\\\\\\"\\\\necho \\\\\\\"Base:    $BASE_MODEL\\\\\\\"\\\\necho \\\\\\\"SFT:     $SFT_ADAPTER\\\\\\\"\\\\necho \\\\\\\"RSFT:    $RSFT_ADAPTER\\\\\\\"\\\\necho \\\\\\\"Output:  $OUTPUT_DIR\\\\\\\"\\\\necho \\\\\\\"GPUs:    $CUDA_VISIBLE_DEVICES\\\\\\\"\\\\n\\\\npython -m freige.eval.inference \\\\\\\\\\\\n    --model_path \\\\\\\"${RSFT_ADAPTER}\\\\\\\" \\\\\\\\\\\\n    --base_model \\\\\\\"${BASE_MODEL}\\\\\\\" \\\\\\\\\\\\n    --sft_adapter \\\\\\\"${SFT_ADAPTER}\\\\\\\" \\\\\\\\\\\\n    --data_path /root/autodl-tmp/data/docred \\\\\\\\\\\\n    --split dev \\\\\\\\\\\\n    --output_dir \\\\\\\"${OUTPUT_DIR}\\\\\\\" \\\\\\\\\\\\n    --batch_size 4 \\\\\\\\\\\\n    --max_new_tokens 1024 \\\\\\\\\\\\n    --no-quantize \\\\\\\\\\\\n    --no_evidence \\\\\\\\\\\\n    --seed 42\\\\n\\\\necho \\\\\\\"=== Eval Complete ===\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# Step 4b: D076 eval for 14B RSFT (no-evidence variant — evidence tax measurement)\\n# Must pass --no_evidence to use NO_EVIDENCE_SYSTEM_PROMPT (C005)\\nset -euo pipefail\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/autodl-tmp/freige\\n\\nexport CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-2,3}}\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport HF_HUB_OFFLINE=1\\nexport TRANSFORMERS_OFFLINE=1\\n\\nRSFT_ADAPTER=\\\"/root/autodl-tmp/rsft_output_14b\\\"\\nSFT_ADAPTER=\\\"/root/autodl-tmp/sft_output_14b\\\"\\nBASE_MODEL=\\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\"\\nOUTPUT_DIR=\\\"/root/autodl-tmp/eval_results/plan017_14b_rsft_no_evidence_eval\\\"\\n\\n# --- Pre-flight checks ---\\nif [ ! -f \\\"${RSFT_ADAPTER}/adapter_config.json\\\" ]; then\\n    echo \\\"ERROR: RSFT adapter not found at ${RSFT_ADAPTER}/adapter_config.json\\\"\\n    echo \\\"Training may not have completed yet. Latest checkpoints:\\\"\\n    ls -d \\\"${RSFT_ADAPTER}\\\"/checkpoint-* 2>/dev/null || echo \\\"  (none)\\\"\\n    exit 1\\nfi\\n\\nif [ ! -f \\\"${SFT_ADAPTER}/adapter_config.json\\\" ]; then\\n    echo \\\"ERROR: SFT adapter not found at ${SFT_ADAPTER}/adapter_config.json\\\"\\n    exit 1\\nfi\\n\\necho \\\"=== Step 4b: Eval 14B RSFT (no-evidence) ===\\\"\\necho \\\"Base:    $BASE_MODEL\\\"\\necho \\\"SFT:     $SFT_ADAPTER\\\"\\necho \\\"RSFT:    $RSFT_ADAPTER\\\"\\necho \\\"Output:  $OUTPUT_DIR\\\"\\necho \\\"GPUs:    $CUDA_VISIBLE_DEVICES\\\"\\n\\npython -m freige.eval.inference \\\\\\n    --model_path \\\"${RSFT_ADAPTER}\\\" \\\\\\n    --base_model \\\"${BASE_MODEL}\\\" \\\\\\n    --sft_adapter \\\"${SFT_ADAPTER}\\\" \\\\\\n    --data_path /root/autodl-tmp/data/docred \\\\\\n    --split dev \\\\\\n    --output_dir \\\"${OUTPUT_DIR}\\\" \\\\\\n    --batch_size 4 \\\\\\n    --max_new_tokens 1024 \\\\\\n    --no-quantize \\\\\\n    --no_evidence \\\\\\n    --seed 42\\n\\necho \\\"=== Eval Complete ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T21:18:31.779Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012285mJaJt2Lgbkv2qD9qp7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 32503 MiB, 97887 MiB\\\\n1, 18879 MiB, 97887 MiB\\\\n2, 0 MiB, 97887 MiB\\\\n3, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "911b613a-08ed-4f74-a50a-08b8f4321f76",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 32503 MiB, 97887 MiB\\\\n1, 18879 MiB, 97887 MiB\\\\n2, 0 MiB, 97887 MiB\\\\n3, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 32503 MiB, 97887 MiB\\n1, 18879 MiB, 97887 MiB\\n2, 0 MiB, 97887 MiB\\n3, 0 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Script exists and has `--no_evidence` flag. GPU 2 is free (0 MiB used). Let me check the script details:\n\n- `--no_evidence` ✓ (C005 compliant)\n- `CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-2,3}}` — default is 2,3 but I need to set GPU=2 for single GPU\n- Output dir: `/root/autodl-tmp/eval_results/plan017_14b_rsft_no_evidence_eval/`\n\nWait, 14B model on a single GPU — the with-evidence eval is on cuda:0 (PID 53413) using 32.5GB. \n\nThe RTX 5090 has ~97GB VRAM each, so the 14B model should fit on one GPU without quantization. Since the user specified cuda:2, I'll set GPU=2 to use just that single device. Now I need to submit the job — let me check what tools are available for this.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "fe42c929-8601-48bc-a39f-d7ba3411b165",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JbY4nNvaobqxdTftYdks5w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1408,
+                "cache_read_input_tokens": 26093,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1408
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本存在且包含 `--no_evidence`。GPU 2 空闲（0 MiB）。提交任务。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "a4b85bb4-7823-4c45-8fd4-8b34a56ef547",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JbY4nNvaobqxdTftYdks5w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1408,
+                "cache_read_input_tokens": 26093,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1408
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MgMbgst3yAx6gti7aDbeX1",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__kill_job",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "f1c00cae-84ed-4e4c-be4b-aa265d7debfe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JbY4nNvaobqxdTftYdks5w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1408,
+                "cache_read_input_tokens": 26093,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1408
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T21:18:52.502Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01MgMbgst3yAx6gti7aDbeX1",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__kill_job"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "9ab36105-3b6e-4789-943c-6e1dac30a4e8",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__kill_job"
+              ],
+              "query": "select:mcp__agent-ml-research__kill_job",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I need to submit the job. The user mentioned \"submit_training_job\" but I don't see that tool. Let me use ssh_execute to launch the script with GPU=2. I'll use nohup to run it in the background.\n\nThe script defaults to `CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-2,3}}`. I need to set GPU=2 to use only cuda:2.\n\nLet me submit via ssh_execute and create the registry entry in parallel.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "6ced1ffc-c454-4c4c-b110-c0399fb0ae36",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RCJASFSh21rT7qYZVpEvJ7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 742,
+                "cache_read_input_tokens": 27501,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 742
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kxh98G9kJTUQpHN5WfXNQU",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export GPU=2 && nohup bash scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh > /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_no_evidence_eval.log 2>&1 & echo \"PID=$!\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "37fced96-8046-4a4d-9b1e-fb64e6492201",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RCJASFSh21rT7qYZVpEvJ7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 742,
+                "cache_read_input_tokens": 27501,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 742
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E88dbcsmFBkwezzo9aLmES",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan017_14b_rsft_no_evidence_eval",
+                "field": "hypothesis",
+                "value": "14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "8fb53cf6-e083-468a-9d32-576834668901",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RCJASFSh21rT7qYZVpEvJ7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 742,
+                "cache_read_input_tokens": 27501,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 742
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T21:19:31.108Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kxh98G9kJTUQpHN5WfXNQU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export GPU=2 && nohup bash scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh > /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_no_evidence_eval.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=55039\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "a9853c50-d6af-4131-8f4a-6b1589faba3b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export GPU=2 && nohup bash scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh > /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_no_evidence_eval.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=55039\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export GPU=2 && nohup bash scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh > /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_no_evidence_eval.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=55039\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T21:19:32.602Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E88dbcsmFBkwezzo9aLmES",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan017_14b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:19:31.984Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:19:31.984Z\\\", \\\"hypothesis\\\": \\\"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4743}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "7e7cfc75-dd2b-4e20-ae78-5deee132bd92",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan017_14b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:19:31.984Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:19:31.984Z\\\", \\\"hypothesis\\\": \\\"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4743}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan017_14b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T21:19:31.984Z\", \"updated_at\": \"2026-05-20T21:19:31.984Z\", \"hypothesis\": \"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4743}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "PID=55039. The command timed out but that's expected — nohup launched the background process. Let me verify the process is running and GPU usage, then update the registry with parent and status.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "b863b3c6-bc31-4bf9-b4a6-ef97ead261dc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DmuSRPtpfzYq5dksAChz68",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 987,
+                "cache_read_input_tokens": 28243,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 987
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 55039 已启动。验证进程和 GPU 占用。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "45e36ca3-6c7c-43a5-a40b-3769059665e1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DmuSRPtpfzYq5dksAChz68",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 987,
+                "cache_read_input_tokens": 28243,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 987
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0127pjaU5xmgrtmxeBbAdnoR",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ps -p 55039 -o pid,cmd --no-headers",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "1df6be10-9e71-4076-9588-045c17737ee3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DmuSRPtpfzYq5dksAChz68",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 987,
+                "cache_read_input_tokens": 28243,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 987
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HW9t4nU2Ae9He92v25yAK1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "bc83138c-5777-40fd-81f7-dba23c579f47",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DmuSRPtpfzYq5dksAChz68",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 987,
+                "cache_read_input_tokens": 28243,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 987
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T21:19:38.447Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0127pjaU5xmgrtmxeBbAdnoR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 55039 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export GPU=2 && nohup bash scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh > /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_no_evidence_eval.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "a64fa038-b364-45f4-bca1-7d2a5e41611a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 55039 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export GPU=2 && nohup bash scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh > /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_no_evidence_eval.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \" 55039 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export GPU=2 && nohup bash scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh > /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_no_evidence_eval.log 2>&1 & echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T21:19:39.046Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HW9t4nU2Ae9He92v25yAK1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 32503 MiB, 97887 MiB\\\\n1, 18879 MiB, 97887 MiB\\\\n2, 32503 MiB, 97887 MiB\\\\n3, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "5d2abe82-0fb8-4aad-87ca-f8c099979fda",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 32503 MiB, 97887 MiB\\\\n1, 18879 MiB, 97887 MiB\\\\n2, 32503 MiB, 97887 MiB\\\\n3, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 32503 MiB, 97887 MiB\\n1, 18879 MiB, 97887 MiB\\n2, 32503 MiB, 97887 MiB\\n3, 0 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L9FXtg7NXyvcDQtpq7toZS",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan017_14b_rsft_no_evidence_eval",
+                "field": "parent",
+                "value": "plan017_14b_rsft_train",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "94c212c0-3b97-4e7f-8f5b-3647f3d46bdc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DmuSRPtpfzYq5dksAChz68",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 987,
+                "cache_read_input_tokens": 28243,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 987
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T21:19:40.949Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L9FXtg7NXyvcDQtpq7toZS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan017_14b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:19:31.984Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:19:40.395Z\\\", \\\"hypothesis\\\": \\\"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_train\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4163}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "cc00ee56-ebd4-4b8c-a010-d1d1f18b67f4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan017_14b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:19:31.984Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:19:40.395Z\\\", \\\"hypothesis\\\": \\\"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_train\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4163}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan017_14b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T21:19:31.984Z\", \"updated_at\": \"2026-05-20T21:19:40.395Z\", \"hypothesis\": \"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\", \"parent\": \"plan017_14b_rsft_train\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4163}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Process is running and GPU 2 now has 32503 MiB occupied — the model loaded successfully. Let me update registry to RUNNING status.",
+              "signature": "EsoCCmMIDRgCKkDzeZIkjZHG9bX1rfEq7SuGDkjJiDgM7FEkNh4nOhSczwqk7GiAf/WNP0eKihq3Ur4JB5lhxVKoTQHrxoINGjlzMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDJAcIHaA43wQaykn9BoMAgezHNQdizvUBn8rIjD7wd+ZuQZP6Sh3LJu19qvENZFOD/mee/v2hnn+gBKztNtihImvD1thyanr4XeIEegqlAFxUCw4HoX/vVJJLm3HmKzlxOrwrotQeMIHU8NQmDnalBU+J0TzyVWuLJzjwuWX5Ubfk56dQQMgpZcsEpELSPToEBfDz0kqHh24ZeZv2yzsEA/u+DDsrzovn3KuJHIB/GVOZwp6ixQIz8z8GEXG0mZUUdVs16ZJCMou6FhPC3P/CAR46GajfuFU40ARU4RjpzV9QzdpGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "7b246dfd-0c17-42a1-ad13-9ff26f994f8d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A8b1oNMNhakZmm5Yo5CfzZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1189,
+                "cache_read_input_tokens": 29230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1189
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程运行正常，GPU 2 已加载模型（32503 MiB）。更新 registry 为 RUNNING。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "379a3b30-9bfa-4379-bdc1-243a959f4d75",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A8b1oNMNhakZmm5Yo5CfzZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1189,
+                "cache_read_input_tokens": 29230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1189
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016n5tmpmaqoZ7vt2vSSG3KX",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan017_14b_rsft_no_evidence_eval",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "command": "bash scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh",
+                  "server": "rtx5090-4x",
+                  "data_path": "/root/autodl-tmp/data/docred",
+                  "data_count": null,
+                  "model_name": "Qwen3-14B + SFT ckpt-144 + RSFT",
+                  "seed": 42,
+                  "checkpoint_source": "/root/autodl-tmp/rsft_output_14b/",
+                  "eval_data": "docred dev split",
+                  "pid": 55039,
+                  "gpu": "cuda:2"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "c5834aaa-adee-41f1-9378-b56abf2418e5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A8b1oNMNhakZmm5Yo5CfzZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1189,
+                "cache_read_input_tokens": 29230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1189
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T21:19:50.235Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016n5tmpmaqoZ7vt2vSSG3KX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8377}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "9de8a1f5-d3ce-4c74-81df-2f962b8f9b22",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8377}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.8377}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0192GpurBjizW7mYCr6hGUdq",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan017_14b_rsft_no_evidence_eval",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "0cc3ae95-0fd1-409f-be14-768d00a98c69",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WsywLQjiAnkff1XQCbcWUP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 455,
+                "cache_read_input_tokens": 30419,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 455
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T21:19:57.430Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0192GpurBjizW7mYCr6hGUdq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan017_14b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:19:31.984Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:19:55.747Z\\\", \\\"hypothesis\\\": \\\"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_train\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4907}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "9b8a29c1-a82c-46a8-a247-9c0acd913096",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan017_14b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:19:31.984Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:19:55.747Z\\\", \\\"hypothesis\\\": \\\"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_train\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4907}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan017_14b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T21:19:31.984Z\", \"updated_at\": \"2026-05-20T21:19:55.747Z\", \"hypothesis\": \"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\", \"parent\": \"plan017_14b_rsft_train\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4907}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01236WBHygkr9XdamVtKGiea",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan017_14b_rsft_no_evidence_eval",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "command": "bash scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh",
+                  "server": "rtx5090-4x",
+                  "data_path": "/root/autodl-tmp/data/docred",
+                  "data_count": null,
+                  "model_name": "Qwen3-14B + SFT ckpt-144 + RSFT",
+                  "seed": 42,
+                  "checkpoint_source": "/root/autodl-tmp/rsft_output_14b/",
+                  "eval_data": "docred dev split",
+                  "pid": 55039,
+                  "gpu": "cuda:2"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "1d385980-77bc-43d0-bdde-56eb260ae2b6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AoL9BqRsep1jUrViqmQ75P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 356,
+                "cache_read_input_tokens": 30874,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 356
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T21:20:04.204Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01236WBHygkr9XdamVtKGiea",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan017_14b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:19:31.984Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:20:02.303Z\\\", \\\"hypothesis\\\": \\\"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_train\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": null, \\\"model_name\\\": \\\"Qwen3-14B + SFT ckpt-144 + RSFT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b/\\\", \\\"eval_data\\\": \\\"docred dev split\\\", \\\"pid\\\": 55039, \\\"gpu\\\": \\\"cuda:2\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8771}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "f92d90e3-a705-46cc-888b-2fca2292ab47",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan017_14b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:19:31.984Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:20:02.303Z\\\", \\\"hypothesis\\\": \\\"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_train\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": null, \\\"model_name\\\": \\\"Qwen3-14B + SFT ckpt-144 + RSFT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b/\\\", \\\"eval_data\\\": \\\"docred dev split\\\", \\\"pid\\\": 55039, \\\"gpu\\\": \\\"cuda:2\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8771}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan017_14b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T21:19:31.984Z\", \"updated_at\": \"2026-05-20T21:20:02.303Z\", \"hypothesis\": \"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\", \"parent\": \"plan017_14b_rsft_train\", \"spec\": {\"command\": \"bash scripts/plan017/step4b_eval_14b_rsft_no_evidence.sh\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": null, \"model_name\": \"Qwen3-14B + SFT ckpt-144 + RSFT\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b/\", \"eval_data\": \"docred dev split\", \"pid\": 55039, \"gpu\": \"cuda:2\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8771}}"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n- **PID**: 55039\n- **GPU**: cuda:2，占用 32503 MiB / 97887 MiB\n- **日志**: `/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_no_evidence_eval.log`\n- **Registry**: `plan017_14b_rsft_no_evidence_eval` → RUNNING\n- **预估时间**: ~1.5-2h（参考 with-evidence eval 同规模）\n\n当前 GPU 分布：\n| GPU | 占用 | 用途 |\n|-----|------|------|\n| 0 | 32503 MiB | 14B RSFT with-evidence eval (PID 53413) |\n| 1 | 18879 MiB | 其他任务 |\n| 2 | 32503 MiB | 14B RSFT no-evidence eval (PID 55039) |\n| 3 | 空闲 | — |"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "uuid": "8042b1ec-4d60-4142-8e39-1d521f8c3e92",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TQnFG28Ads5b74VLyBn9bN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 688,
+                "cache_read_input_tokens": 31230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 688
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n- **PID**: 55039\n- **GPU**: cuda:2，占用 32503 MiB / 97887 MiB\n- **日志**: `/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_no_evidence_eval.log`\n- **Registry**: `plan017_14b_rsft_no_evidence_eval` → RUNNING\n- **预估时间**: ~1.5-2h（参考 with-evidence eval 同规模）\n\n当前 GPU 分布：\n| GPU | 占用 | 用途 |\n|-----|------|------|\n| 0 | 32503 MiB | 14B RSFT with-evidence eval (PID 53413) |\n| 1 | 18879 MiB | 其他任务 |\n| 2 | 32503 MiB | 14B RSFT no-evidence eval (PID 55039) |\n| 3 | 空闲 | — |"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 110768,
+            "duration_api_ms": 74178,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "fe25cc83-854c-4a3c-862a-3abe763f6e85",
+            "total_cost_usd": 0.32097825,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 20077,
+              "cache_read_input_tokens": 239714,
+              "output_tokens": 2946,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20077,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 262,
+                  "cache_read_input_tokens": 31230,
+                  "cache_creation_input_tokens": 688,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 688
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1805,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00192,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 2946,
+                "cacheReadInputTokens": 239714,
+                "cacheCreationInputTokens": 20077,
+                "webSearchRequests": 0,
+                "costUSD": 0.31905825,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "74f45a61-0f83-4333-b839-c1155f40b6ca"
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-14b-rsft-no-evi-eval-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d038c2af65cd7fb0bfc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze plan019 8b rsft no evidence eval r2",
+  "task_key": "worker_analyze_plan019_8b_rsft_no_evidence_eval_r2_20260519T170942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_plan019_8b_rsft_no_evidence_eval_r2_20260519T170942_result.json",
+    "occurrence": 1,
+    "bytes": 1277,
+    "sha256": "5dc5edda05ae37f1505599c0945535918b730929d0150843052ff1504047d295"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nign_f1: 0.5336\nf1: 0.5530\nign_precision: 0.5061\nign_recall: 0.5643\nprecision: 0.5324\nrecall: 0.5753\nformat_compliance_rate: 100.0%\ntruncated_rate: 310/985 (31.5%)\nn_predictions: 20605\nn_total: 985\nevi_f1_joint (DREEAM): 0.0411\nevi_f1 (TP-only): 0.0652\nedcr: 0.6207\nno_evidence: true (confirmed in config)\nseed: 42\nwandb_run_id: none\n\nevidence_tax (vs s42 with-evidence 0.5376): -0.40pp\nevidence_tax (vs mean with-evidence 0.5414): -0.78pp\nconclusion: negative — evidence helps 8B, no positive evidence tax\n\ncomparison:\n  8B:  no-evi 0.5336 vs with-evi 0.5414 (mean) → tax = -0.78pp (evidence slightly helps)\n  1.7B: no-evi 0.4352 vs with-evi 0.5122       → tax = -7.70pp (evidence strongly helps)\n```\n\nEvidence acts as CoT for 8B too, but the effect is ~10x smaller than 1.7B. The \"evidence tax\" hypothesis is not supported — evidence generation helps RE performance at both scales, with diminishing benefit as model size increases. This is consistent with larger models having stronger internal reasoning that partially substitutes for explicit evidence chain-of-thought.\n\nNote: evi_f1 metrics are near-zero as expected (only 30/985 docs produced any evidence fields), confirming `--no_evidence` was correctly applied."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-plan019-8b-rsft-no-evidence-eval-r2.md"
+}

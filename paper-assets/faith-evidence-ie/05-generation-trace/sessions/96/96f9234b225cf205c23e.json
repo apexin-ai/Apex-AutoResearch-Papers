@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96f9234b225cf205c23e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research evidence generation overhead",
+  "task_key": "worker_research_evidence-generation-overhead_20260515T201203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_evidence-generation-overhead_20260515T201203_result.json",
+    "occurrence": 1,
+    "bytes": 1108,
+    "sha256": "5145df8325d25edc71108ea0cfe2b7103f3b96afdfbed2d1bf7e700260fd1998"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/literature_survey_evidence_overhead.md`。\n\n核心发现：\n\n**四个方向共 15 篇论文，关键结论：**\n\n1. **MTL 开销**：负迁移（gradient conflict）在 joint IE 中普遍存在；Saini et al. (2023) 直接证明 joint model 在 document-level 反而不如 pipeline。\n2. **Rationale 生成代价**：Mind Your Step (ICML 2025) 显示 CoT 最高导致 36.3% 性能下降；Token-Budget-Aware (ACL 2025) 证明推理 token 与答案 token 存在直接竞争。\n3. **Decoupling**：generative IE survey 一致指出输出 token 限制是核心瓶颈，输出格式设计直接影响抽取质量。\n4. **DocRE evidence 处理**：DREEAM/Eider/SIRE 全部回避了将 evidence 作为生成目标——它们用 attention 引导或轻量级独立模块，从未在同一序列中联合生成。\n\n**关键缺口**：没有先前工作量化过在单一自回归输出中联合生成 evidence + relation 的代价。我们的 no-evidence ablation (+20.6% rel_f1) 是这方面的首个实证，为 decoupled 架构提供了强有力的动机。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-evidence-generation-overhead.md"
+}

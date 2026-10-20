@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc6cbb8396a472a71a45",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu scan full",
+  "task_key": "worker_ops_gpu-scan-full_20260515T143521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-scan-full_20260515T143521_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "a1070d70a204561ee65883f21f7ebb9b5f057e816ed065c48fc99d8476d05e56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总\n\n| GPU | 进程 | PID | 显存 | GPU利用率 | 状态 |\n|-----|------|-----|------|-----------|------|\n| **cuda:0** | `freige.eval.ced_reranker` — CED scoring 阶段 | 178055 | 1728/32607 MiB | 42% | 运行中，809/985 (82%)，预计还 ~10 min |\n| **cuda:1** | `freige.eval.inference` — RSFT R2B eval (maxtok1536) | 197386 | 14675/32607 MiB | 64% | 运行中，108/124 batch (87%)，预计还 ~20 min |\n| **cuda:2** | DREEAM teacher roberta 训练 | 213006 | 24899/32607 MiB | 98% | 正常，epoch 2/30 (7%)，刚启动 ~5 min |\n| **cuda:3** | `freige.training.rsft_score_filter` — flat_nli scoring | 208155 | 1467/32607 MiB | 34% | 运行中，15000/21728 (69%)，预计还 ~45 min |\n\n**已死 PID**: 210099, 210104 — 已不存在。\n\n**空闲卡: 无。** 四张卡全部在跑任务。cuda:0 和 cuda:1 的任务预计 10-20 分钟内完成，之后可释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-scan-full.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "841e8027118e1e13da2f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops verify extract r4 kill",
+  "task_key": "worker_ops_verify-extract-r4-kill_20260514T173932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-extract-r4-kill_20260514T173932_result.json",
+    "occurrence": 1,
+    "bytes": 308,
+    "sha256": "3a74203a7eb66c5bc83f813e849d3e2e9e795c12f2a45bde974c7b4663f7cf43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部清理完毕：\n\n| 项目 | 状态 |\n|------|------|\n| PID 73264 (tmux) | 已终止 |\n| PID 73268 (timeout) | 已 kill -9 |\n| PID 73269 (python trainer) | 已 kill -9 |\n| cuda:2 显存 | **0 MiB / 32607 MiB**，完全空闲 |\n| cuda:2 GPU 利用率 | 0% |\n| 残留进程 | 无 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-extract-r4-kill.md"
+}

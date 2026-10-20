@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b46c1f913c049c2fdcf",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis verify ced s43 s45 r3 startup",
+  "task_key": "worker_analysis_verify_ced_s43_s45_r3_startup_20260516T002137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verify_ced_s43_s45_r3_startup_20260516T002137_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "2e8307c821e46b5498db0d4e4f90cfae70c0c0004d5ba4774dacd6284d0b189d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：s43 通过，s45 失败（OOM）。**\n\n### s43 (PID 277310, cuda:1) — 正常运行\n- [x] PID 存活，运行 00:46，子进程 277315 占用 GPU 30204 MiB\n- [x] data_path = rsft_filtered/rsft_train.jsonl\n- [x] data_count = 2718\n- [x] weighted_sampling=True\n- [x] 已到 step 4/510，输出目录有 checkpoint-50\n- [x] 无错误\n\n### s45 (PID 277407, cuda:2) — 已崩溃\n- **进程已死**（ps 未返回 277407）\n- **原因**：`CUDA error: out of memory` — 模型加载阶段 OOM\n- **根因**：cuda:2 被 PID 276148 占用 31628 MiB，s45 无法分配显存\n- EXIT_CODE=1\n\n这又是 C001 约束场景：cuda:2 在提交时已被占用。需要等 276148 结束释放 cuda:2 后重新提交 s45，或改用空闲 GPU。\n\n当前 GPU 占用：\n| GPU | PID | 显存 |\n|-----|-----|------|\n| GPU-0 | 270467 | 10846 MiB |\n| GPU-1 | 277315 (s43) | 30204 MiB |\n| GPU-2 | 276148 | 31628 MiB |\n| GPU-3 | 272169 | 10850 MiB |\n\n四卡全部被占用，暂无空闲 GPU 可用。需等待 GPU-0/2/3 上任一进程结束后重提 s45。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-verify-ced-s43-s45-r3-startup.md"
+}

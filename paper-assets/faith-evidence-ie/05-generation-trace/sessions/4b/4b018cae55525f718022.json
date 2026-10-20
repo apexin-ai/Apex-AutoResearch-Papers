@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b018cae55525f718022",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778797169.md",
+  "task_key": "loop_4_1778797169",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778797169.md",
+    "occurrence": 1,
+    "bytes": 5609,
+    "sha256": "a6b165d5c6938ef9ab7a00122b5301b3c63f563db66ba1929d870e10a94dc307"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T22:08:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 = `[0,1,2,3]`，全在 rtx5090-4x 一台机器上（bjb2-12179 是同一台的另一个 SSH endpoint）\n- **训练提交必须用 .sh 脚本文件**（D035）：`submit_training_job` / `submit_on_allocated` 禁止 `bash -c \"...\"` 内联，引号嵌套已坑 4 次以上。写到 `/root/autodl-tmp/scripts/train_xxx.sh` 再 `bash /path/to/script.sh`\n- **kill 后必须验证子进程终止**：`kill_job` 只杀 tmux wrapper，python 子进程可能 reparent 继续占 GPU。kill 后必须 `ps -p <PID>` + `nvidia-smi -i <GPU>` 验证\n- **启动任何 GPU 任务前必须 `nvidia-smi -i <GPU>` 检查无占用**，本 session 两次重复进程冲突\n- **不能从 kl_coef=0 的 checkpoint 恢复加 KL**：已验证会立即崩溃（flatnli_r5 教训）\n- SFT baseline 指标：F1=0.4057, Evi-F1=0.7979, EDCR=0.7118。所有 eval 对比以此为锚\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：rtx5090-4x（= bjb2-12179），4× RTX 5090 32GB\n- **工作目录**：`/root/autodl-tmp/freige`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型**：`/root/autodl-tmp/models/Qwen3-4B`（7.6GB, ModelScope 下载）\n- **SFT checkpoint**：应在 `/root/autodl-tmp/freige/outputs/sft_warmup/` 下\n- **GRPO checkpoints**：`/root/autodl-tmp/freige/outputs/` 各子目录\n- **wandb**：entity=`xiaoyucorynne-`，project=`freige-grpo`。`list_wandb_runs` 有 bug，用 `fetch_wandb_run_history` + run_id\n- **HF cache**：应设 `HF_HOME=/root/autodl-tmp/.hf_cache`\n- **flash_attn 未装**：训练脚本用 `attn_implementation=\"sdpa\"`\n- **活跃进程**：\n  - `mvp2_grpo_ced_lr5e6_r1`: PID 90080, cuda:0, P0 训练 ~step 25/200\n  - `mvp2_eval_lr5e6_r1_ckpt20`: PID 96500, cuda:1, P0 ckpt-20 eval\n  - `mvp2_eval_lr5e6_r1_ckpt40_r2`: PID 101842, cuda:2, P0 ckpt-40 eval（orphan re-track）\n  - `mvp2_eval_lr5e6_rp_r2_ckpt20`: PID 103825, cuda:3 — **cron 报 process gone (miss 1/5)，需立即检查**\n- **活跃 cron**：4 个（上述 4 个实验各一个）\n- **活跃 Worker**：`worker_ops_eval-output-prep_20260514T220250`（running，准备 eval 输出）\n\n### 3. 📊 当前状态\n上一轮完成了 lr=5e-5 全系列的失败判定（D026-D029），转向 lr=5e-6 方向。P0（纯 lr=5e-6）训练已在 cuda:0 运行，同时三个 eval 在 cuda:1/2/3 并行。P0+P1（lr=5e-6 + recall_penalty）的训练 rp_r2 已被 Director kill（loss 爆炸，D028-D029），但其 ckpt-20 eval 仍需完成以关闭对比线。\n\n**紧急**：`mvp2_eval_lr5e6_rp_r2_ckpt20` cron 报进程消失（miss 1/5），下一个\"你\"需要立即派 Worker SSH 检查 PID 103825 状态——可能已完成但缺 sentinel，也可能真的挂了。\n\n**mvp2_eval_sft_baseline** 在 registry 里标 RUNNING 但没有 PID，且 GPU 标 cuda:3 和 rp_r2_ckpt20 冲突——这个可能是上一轮未实际提交的幽灵条目，需要确认。\n\n**等待中**：\n- P0 ckpt-20 eval 结果（cuda:1，关键判定点：rel_f1 > 0.30 = P0 PASS）\n- P0 ckpt-40 eval 结果（cuda:2）\n- P0 训练继续到 200 步（cuda:0，约还需 5h+）\n- Worker `eval-output-prep` 回调\n\n### 4. 📋 待办（条件触发式）\n- `mvp2_eval_lr5e6_rp_r2_ckpt20` cron 再次报 process gone → 派 Worker SSH 检查 PID 103825 + 检查是否有输出文件。有结果则收割指标更新 registry；挂了则标 failed 并释放 cuda:3\n- `mvp2_eval_lr5e6_r1_ckpt20` 完成（P0 ckpt-20 eval）→ **关键决策点**：\n  - rel_f1 ≥ 0.30 → P0 ckpt-20 PASS，向 Director 汇报，准备 MVP-2 完整对比（CED_Evi-F1 − SFT_Evi-F1 ≥ 2pp）\n  - rel_f1 < 0.30 但 ckpt-40 eval 尚未出 → 等 ckpt-40（Director D032 判定框架：ckpt-20 FAIL + ckpt-40 PASS → P0 仍判 PASS）\n  - 两个都 < 0.30 → P0 FAIL，需要 Framing 调整提案\n- `mvp2_eval_lr5e6_r1_ckpt40_r2` 完成 → 收割指标，与 ckpt-20 对比判断训练轨迹\n- P0 训练 step 40 到达 → 如 cuda 有空，启动 ckpt-40 新一轮 eval\n- P0 训练 200 步完成 → eval best reward ckpt + last ckpt\n- cuda:3 释放 → 排队启动 P0+P1 ckpt-20 eval（如 rp_r2_ckpt20 已失败）或其他 eval\n- MVP-2 全部 eval 完成 → 执行完整对比矩阵，走 Post-MVP 流程（complete_mvp → paper_framing → experiment_plan）\n\n### 5. 🎯 战略上下文\n**核心问题**：CED reward 能否在 GRPO 训练中改善 evidence quality 同时不退化 extraction F1？\n\n**决策链关键节点**：\n- D008：QLoRA 4-bit + kl_coef 不兼容（已用 kl_coef=0.01 折中）\n- D024：**CED reward 有 anti-mode-collapse 作用**——这是论文的核心 finding 之一。CED 通过 reward variance 维持梯度流，extract-only 和 flat-NLI 在相同配置下 collapse\n- D029：lr=5e-5 过高导致灾难性遗忘，转 lr=5e-6\n- D032：eval 轨迹揭示\"崩溃→部分恢复\"模式 + CED recall shortcut（少预测→高 CED）\n\n**最容易判断错的事**：\n1. **不要把 rp_r2 的失败等同于 recall penalty 方法无效**——rp_r2 失败是因为 recall penalty 梯度太强 + kl_coef=0.01 的 KL penalty 爆炸。如果重试，考虑 kl_coef=0.001 或 gradient clipping\n2. **P0 ckpt-20 eval 的 rel_f1 计算方式**：rel_f1 = GRPO_F1 / SFT_F1，不是绝对 F1。SFT F1=0.4057，所以 rel_f1 > 0.30 意味着 GRPO F1 > 0.122\n3. **mvp2_eval_sft_baseline 可能是幽灵条目**——没有 PID，GPU 与另一个实验冲突，先确认再动\n4. **pred_count ≥ 9720 只是 P0+P1 的额外 pass criteria**（SFT 的 80%），纯 P0 不需要这个条件\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778797169.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a172ae4b5a96f91a5888",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops verify kill and gpu status",
+  "task_key": "worker_ops_verify-kill-and-gpu-status_20260514T181617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-kill-and-gpu-status_20260514T181617_result.json",
+    "occurrence": 1,
+    "bytes": 1436,
+    "sha256": "75fe18c0f943804a18ec0dc15069f31e23960730493868cc83b071fcd7670365"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Kill 验证\n- PID 76953: **已死**（kill -9 后确认）\n- PID 76958: **已死**（kill -9 后确认）\n- tmux session mvp2_grpo_flatnli_r6: **GONE**\n- cuda:3 显存: **0 MiB**（完全释放，P8 idle 18W）\n\n⚠️ kill_job 再次未能杀死子进程——tmux session 被移除但 python 进程变成孤儿仍占显存。已手动 kill -9 清理。\n\n## GPU 总览\n| GPU | PID | 显存 | GPU利用率 | 进程 | 预期匹配 |\n|-----|-----|------|----------|------|---------|\n| cuda:0 | 80799 | 9710 MiB | 63% | /root/miniconda3/bin/python | ✅ eval ckpt-100（PID 80799 ≈ 80789） |\n| cuda:1 | 75587 | 11020 MiB | 78% | /root/miniconda3/bin/python | ✅ eval ckpt-50（PID 75587 ≈ 75581） |\n| cuda:2 | 78857 | 9400 MiB | 59% | /root/miniconda3/bin/python | ✅ eval multi ckpts（PID 78857 ≈ 78850） |\n| cuda:3 | — | 0 MiB | 0% | 空闲 | ✅ flatnli_r6 已清理 |\n\n注：实际 PID 与预期有微小偏移（80799 vs 80789 等），这是因为实际运行的是 fork 出的子进程而非 wrapper shell。\n\n## eval_step100 详情\n- tmux session: `mvp2_eval_ced_kl001_r4_step100`（唯一存活的 tmux session）\n- 日志位置: `/root/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step100.log`\n- 进度: **5/62 batches（8%）**，~83s/batch，已运行约 7 分钟，预估剩余 ~79 分钟\n- 评估目标: `grpo_ced_kl001/checkpoint-100`，dev set 985 docs / 12275 triples"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-kill-and-gpu-status.md"
+}

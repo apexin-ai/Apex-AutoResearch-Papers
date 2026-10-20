@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ab5a46bd6a97181edfa",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix d112 shard0 restart cuda3",
+  "task_key": "worker_fix_d112_shard0_restart_cuda3_20260519T000608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d112_shard0_restart_cuda3_20260519T000608_result.json",
+    "occurrence": 1,
+    "bytes": 667,
+    "sha256": "151d74fc0b43988c0445a650c7b2790c97536bec49e99ac11e5cba61b90d4139"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n**汇报：**\n\n| 项目 | 结果 |\n|---|---|\n| 非分片 run (PID 584466) | 已 kill，cuda:3 释放 |\n| 已有数据 | 288 docs / 2304 行，已移至 `shard_0/`，全部在 shard 0 范围内 |\n| shard 0 重启 | 成功，tmux `d112_gen_shard0`，cuda:3，resume 模式，剩余 468 docs |\n| step2 合并 | `rsft_score_filter.load_generations` 已原生支持 `shard_*/generations.jsonl` 自动合并去重，无需额外脚本 |\n| 4 卡状态 | cuda:0 = shard 3, cuda:1 = shard 1, cuda:2 = shard 2, cuda:3 = shard 0，全部正常运行 |\n| Registry | `d112_rsft_s44_generate` → conclusion=killed, status=DONE |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d112-shard0-restart-cuda3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "570c7104cec240ddb359",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops fix plan011 gpu conflict",
+  "task_key": "worker_ops_fix_plan011_gpu_conflict_20260515T195135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_plan011_gpu_conflict_20260515T195135_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "7e8ef16988ed53c3172974382a2950ad3bd07909f6669b5c73f30a519d9617c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 步骤 | 状态 |\n|------|------|\n| Kill plan_011 eval (PID 246051) | 已 kill，plan_001 (236779) 安全 |\n| nvidia-smi 确认 cuda:1 | 0 MiB / 32607 MiB，完全空闲 |\n| 重新提交到 cuda:1 | PID 247234，循环 eval checkpoint-30/50/70 |\n| 验证 cuda:1 | 20312 MiB 占用，正在运行 |\n| Registry 更新 | status=RUNNING, gpu=cuda:1, spec.gpu=[\"cuda:1\"] |\n\n**注意**：checkpoint 实际路径是 `/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-{30,50,70}`（非原始指令中的 `grpo_g8_bf16_output`），已修正。三个 checkpoint 的 eval 结果会分别存到 `/root/autodl-tmp/eval_results/bf16_g8_step{30,50,70}/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-plan011-gpu-conflict.md"
+}

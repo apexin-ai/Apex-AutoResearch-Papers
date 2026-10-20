@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee6390c8332cd6c03ec9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "setup install tmux",
+  "task_key": "worker_setup_install-tmux_20260520T112203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_install-tmux_20260520T112203_result.json",
+    "occurrence": 1,
+    "bytes": 89,
+    "sha256": "cbeb7ed5e4910f304dbbc9637e9191a0bfc627ff24e2ceb4798ba324a526a135"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 安装成功。\n\n- 路径: `/usr/bin/tmux`\n- 版本: **tmux 3.2a**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-install-tmux.md"
+}

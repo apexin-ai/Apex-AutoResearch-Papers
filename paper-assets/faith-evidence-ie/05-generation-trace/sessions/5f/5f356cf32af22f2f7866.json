@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f356cf32af22f2f7866",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops sync experiment plan v2",
+  "task_key": "worker_ops_sync_experiment_plan_v2_20260519T172921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_experiment_plan_v2_20260519T172921_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "3c1faa7018f089c6ddbe68ed84cf50e6c9b57f91066687d98484bb5ab389961b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新完成。变更摘要：\n\n**plan_019 notes**:\n- 8B RSFT 从 \"2-seed\" 更新为 \"3-seed\"，新增 s43 DONE (ign_f1=0.5471)，更新 mean=0.5433, std=0.49pp\n- 8B no-evidence eval: 从 \"r1 DONE/killed, r2 RUNNING\" 更新为 \"r2 DONE (ign_f1=0.5336, tax=-0.78pp)\"\n- 1.7B 2048-token retry 保持 RUNNING\n- 剩余项简化为 \"LLaMA s43/s44\"（8B 3rd RSFT seed 已完成）\n\n**plan_d112 notes**:\n- d112_rsft_s44_eval_bf16 从 \"RUNNING\" 更新为 \"DONE (ign_f1=0.5152)\"\n- 新增 \"CED scoring DONE (3014 selected)\"\n- d112_rsft_no_evidence_eval_r3 保持 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-experiment-plan-v2.md"
+}

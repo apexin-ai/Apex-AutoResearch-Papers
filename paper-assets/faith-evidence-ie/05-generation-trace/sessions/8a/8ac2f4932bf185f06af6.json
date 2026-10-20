@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ac2f4932bf185f06af6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check llama rsft test result",
+  "task_key": "worker_ops_check_llama_rsft_test_result_20260517T183717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_llama_rsft_test_result_20260517T183717_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "69e23fa42420f088b6526b01fe5ab7371f5f65c7456b790f03da4cbd8224ca10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**LLaMA RSFT test predictions 完成。**\n\n| 项目 | 值 |\n|---|---|\n| 状态 | 成功 |\n| 文档数 | 1000 |\n| 预测数 | 27,918 |\n| CodaLab 条目 | 25,773 |\n| 格式正确率 | 99.8% (998/1000) |\n| 截断率 | 792/1000 |\n| 推理耗时 | 2h58m (10.73s/doc) |\n| predictions 文件 | `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test/predictions.json` (8.0MB) |\n| CodaLab 提交文件 | `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test/codalab_submission.json` (2.2MB) |\n\nCodaLab 提交文件已就绪，可直接上传评测。截断率 79.2% 较高，与 dev 评估一致（max_new_tokens=1024 对长文档不够）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-llama-rsft-test-result.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ceabbabfca6e1e107d67",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis 3seed summary edcr",
+  "task_key": "worker_analysis_3seed_summary_edcr_20260515T115333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_3seed_summary_edcr_20260515T115333_result.json",
+    "occurrence": 1,
+    "bytes": 1537,
+    "sha256": "a3e34ce1a06985e11f2bb667f7753d74c21b5ea36bc2080386d1f87082361351"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成，汇总如下。\n\n---\n\n### 任务 1：3-seed 汇总脚本\n\n脚本已创建在 `/root/autodl-tmp/scripts/summarize_3seed.py`，dry-run 通过（r1+s44 两个 seed 正常加载，s43 跳过）。\n\n当前 2-seed 快照：\n\n| 指标 | Mean | Std | SFT | Delta |\n|------|------|-----|-----|-------|\n| Rel F1 | 0.4552 | 0.0146 | 0.4057 | **+0.0495** |\n| Evi F1 | 0.8137 | 0.0071 | 0.7979 | +0.0158 |\n| EDCR | 0.6458 | 0.0152 | 0.7118 | **-0.0660** (↓好) |\n\ns43_r2 完成后直接跑 `python /root/autodl-tmp/scripts/summarize_3seed.py` 即可（会自动检查 `rsft_s43/` 和 `rsft_s43_r2/` 两个路径）。\n\n---\n\n### 任务 2：EDCR 分析核心发现\n\n报告已保存到 `/root/autodl-tmp/eval_results/edcr_analysis_r2b.md`。\n\n**EDCR=0.6609 的根因是 FP triples，不是 evidence 选择质量：**\n\n| 类别 | 三元组数 | Distractor引用数 | 占比 |\n|------|---------|-----------------|------|\n| A: FP triple（无 gold 匹配）| 8,279 | 14,766 | **90.2%** |\n| B: TP + evidence 超集 | 992 | 1,122 | 6.9% |\n| C: TP + evidence 部分重叠 | 330 | 367 | 2.2% |\n| D: TP + evidence 完全不交 | 77 | 112 | 0.7% |\n\n**关键结论**：90.2% 的 distractor citations 来自 FP triples —— 模型预测了错误的三元组，这些三元组的所有 evidence 都被计为 distractor。TP triples 的 evidence 质量其实很好（只贡献 9.8% distractor）。要降 EDCR，核心是**提升 precision、减少 FP**，而非改善 evidence 选择策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-3seed-summary-edcr-copy-2.md"
+}

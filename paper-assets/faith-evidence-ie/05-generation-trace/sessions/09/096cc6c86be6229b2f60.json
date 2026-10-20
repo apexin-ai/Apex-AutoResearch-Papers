@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "096cc6c86be6229b2f60",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit retrain 4b rsft ced s42 v2",
+  "task_key": "worker_submit_retrain_4b_rsft_ced_s42_v2_20260521T231317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_retrain_4b_rsft_ced_s42_v2_20260521T231317_result.json",
+    "occurrence": 1,
+    "bytes": 355,
+    "sha256": "a43ce7f8fadea03c6dd30b66f178a7ab1feb287c4a674899e74b5aafe74e6bff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交并运行中：\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | `retrain_4b_rsft_ced_s42_v2` |\n| PID | 142867 |\n| GPU | cuda:2 (rtx5090-4x) |\n| 数据 | 2718 samples |\n| 预计 | 510 steps × ~4.5s ≈ 38min |\n| 日志 | `/tmp/rsft_ced_s42_v2.log` |\n| 输出 | `/root/autodl-tmp/rsft_output_ced_s42_v2/checkpoint-510` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-retrain-4b-rsft-ced-s42-v2.md"
+}

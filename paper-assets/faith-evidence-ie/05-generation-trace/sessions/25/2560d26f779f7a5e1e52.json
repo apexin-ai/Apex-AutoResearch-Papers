@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "2560d26f779f7a5e1e52",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze test eval 1 7b rsft s42",
+  "task_key": "worker_analyze_test_eval_1_7b_rsft_s42_20260521T173419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_test_eval_1_7b_rsft_s42_20260521T173419_result.json",
+    "occurrence": 1,
+    "bytes": 2319,
+    "sha256": "41030b5f77d69665d681d4b1da5e2302a9cf3e187159e7654cfd6826707c0331"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"ign_f1\": 0.2933,\n    \"f1\": 0.2933,\n    \"precision\": 0.4625,\n    \"recall\": 0.2148,\n    \"evi_f1_joint\": 0.2320,\n    \"evi_f1_tp\": 0.6196,\n    \"edcr\": 0.8169,\n    \"truncated\": \"369/500\",\n    \"format_ok\": \"500/500\",\n    \"field_compliance\": 0.202,\n    \"n_predictions\": 26098,\n    \"n_docs\": 500,\n    \"codalab_submission\": true,\n    \"codalab_converted\": 7793,\n    \"codalab_skipped_rel\": 131,\n    \"codalab_skipped_entity\": 750\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42\",\n  \"log_path\": \"~/runs/faith-evidence-ie/test_eval_1_7b_rsft_s42.log\",\n  \"notes\": \"1.7B RSFT test ign_f1=0.2933，显著低于 dev ign_f1=0.5119（dev→test 跌幅 42.7%）。也低于 14B test (0.3849) 和 LLaMA-8B test (0.3599)。注意 ign_f1=f1（test 无 train_annotated.json 做 ignore 过滤，符合预期）。369/500 截断率极高（73.8%），field_compliance 仅 20.2%（101/500 evidence 有效），recall 仅 0.2148，说明 1.7B 在 test 长文档上生成能力严重受限。CodaLab submission 已生成。\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "conclusion": "success",
+              "metrics": {
+                "ign_f1": 0.2933,
+                "f1": 0.2933,
+                "precision": 0.4625,
+                "recall": 0.2148,
+                "evi_f1_joint": 0.232,
+                "evi_f1_tp": 0.6196,
+                "edcr": 0.8169,
+                "truncated": "369/500",
+                "format_ok": "500/500",
+                "field_compliance": 0.202,
+                "n_predictions": 26098,
+                "n_docs": 500,
+                "codalab_submission": true,
+                "codalab_converted": 7793,
+                "codalab_skipped_rel": 131,
+                "codalab_skipped_entity": 750
+              },
+              "checkpoint_path": "/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42",
+              "log_path": "~/runs/faith-evidence-ie/test_eval_1_7b_rsft_s42.log",
+              "notes": "1.7B RSFT test ign_f1=0.2933，显著低于 dev ign_f1=0.5119（dev→test 跌幅 42.7%）。也低于 14B test (0.3849) 和 LLaMA-8B test (0.3599)。注意 ign_f1=f1（test 无 train_annotated.json 做 ignore 过滤，符合预期）。369/500 截断率极高（73.8%），field_compliance 仅 20.2%（101/500 evidence 有效），recall 仅 0.2148，说明 1.7B 在 test 长文档上生成能力严重受限。CodaLab submission 已生成。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-test-eval-1-7b-rsft-s42.md"
+}

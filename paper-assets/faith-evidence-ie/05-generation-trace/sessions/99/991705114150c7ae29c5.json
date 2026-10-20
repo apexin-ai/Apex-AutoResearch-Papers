@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "991705114150c7ae29c5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check d158 14b rsft s44 dev no evi",
+  "task_key": "worker_check_d158_14b_rsft_s44_dev_no_evi_20260525T150712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d158_14b_rsft_s44_dev_no_evi_20260525T150712_result.json",
+    "occurrence": 1,
+    "bytes": 272,
+    "sha256": "d9ac6c8c0f74d78380889cc0cd35cf6626f28696b95cc116adaa56367ad98eb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程仍在运行（PID 371138，已运行 4h14m），当前进度 **875/985（89%）**，结果目录为空（推理未完成）。\n\n按最近速率（~15-20s/doc），剩余 110 个文档预计还需 **~25-35 分钟**，大约 UTC 15:35-15:45 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d158-14b-rsft-s44-dev-no-evi.md"
+}

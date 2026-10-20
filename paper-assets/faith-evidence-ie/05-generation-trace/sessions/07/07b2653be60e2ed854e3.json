@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07b2653be60e2ed854e3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check and start cuda2 eval",
+  "task_key": "worker_ops_check-and-start-cuda2-eval_20260514T180256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-and-start-cuda2-eval_20260514T180256_result.json",
+    "occurrence": 1,
+    "bytes": 1010,
+    "sha256": "1b293594dc69746b053ce6b04eea7806786088739bcbfb6f216601a944308fb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "summary.json 为空。目前状态清楚了：\n\n## 状态报告\n\n**进程状态**: ALIVE\n- PID 78850 (bash wrapper) — 运行 20h01m\n- PID 78857 (python inference) — 运行 20h01m, cuda:2 占用 9400 MiB\n\n**当前评估**: checkpoint-10, inference 进度 **14/62 batches (23%)**，约每 batch 80s，预计还需 ~64 分钟完成当前 checkpoint\n\n**Checkpoint 进度**:\n\n| Checkpoint | 状态 |\n|---|---|\n| 10 | **进行中** (23%) |\n| 20 | PENDING |\n| 30 | PENDING |\n| 40 | PENDING |\n| 50 | 目录已存在但空（前次可能失败） |\n| 60 | PENDING |\n| 70 | PENDING |\n| 80 | PENDING |\n\n**注意**: 20 小时只跑到 checkpoint-10 的 23%，速度异常慢。从日志看 01:43 才开始加载 checkpoint-10（距提交约 19h），之前可能卡在排队或 checkpoint-50 的失败尝试上。按当前速度（~80s/batch, 62 batches/checkpoint），单个 checkpoint inference 约 83 分钟，7 个 checkpoint 还需 ~9-10 小时（不含 scoring 时间）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-and-start-cuda2-eval.md"
+}

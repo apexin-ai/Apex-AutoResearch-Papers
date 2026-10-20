@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "561a2ac88e010e911cc3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "infra kill nohup s45 for r4",
+  "task_key": "worker_infra_kill_nohup_s45_for_r4_20260516T003131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill_nohup_s45_for_r4_20260516T003131_result.json",
+    "occurrence": 1,
+    "bytes": 148,
+    "sha256": "dec7026be45fc8e315353ab0e72c57f0deccaf6a10ab52757c9ffd0ed475faf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n- PID 278776 (python trainer) 和 278771 (nohup wrapper) 均已成功 kill\n- cuda:2 已完全释放，无进程占用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-nohup-s45-for-r4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc55af64e3d3b10ae2e7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d020 ablation wandb",
+  "task_key": "worker_analysis_d020_ablation_wandb_20260514T180226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d020_ablation_wandb_20260514T180226_result.json",
+    "occurrence": 1,
+    "bytes": 891,
+    "sha256": "f02d9de8e45653d06e458dcff885e7a282749ddce22c532c80c8683ea64b184a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。memory.md 已更新，新增 \"D020 Ablation 训练曲线深度分析\" 部分。\n\n核心发现总结：\n\n**分化点**：step 15-20。两个实验在 step 10 都 collapse，但只有 CED 实验在 step 20 恢复。\n\n**因果链**：CED reward 提供与 F1 正交的 reward 维度 → 增加 reward variance（step 10: 0.070 vs 0.039）→ 维持 nonzero GRPO advantage → 梯度流不断 → 多样性恢复（step 20）→ 有效学习重新启动（step 30+）。\n\n**双面性**：CED 在有 KL 约束时是 stabilizer，无 KL 时是 hacking target。论文需要同时讲这两面。\n\n**论文 claim 强度**：\"CED 防止 GRPO collapse\" 作为 empirical finding 足够强（干净 A/B 对比）。机制假说（reward variance）有 reward_std 数据支持但 n=1。建议 framing 为 dual role：task improvement + training stabilization。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d020-ablation-wandb.md"
+}

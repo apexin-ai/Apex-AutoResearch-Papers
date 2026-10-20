@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3357bf446f6bf186c235",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d144 fair tax and 4b investigation",
+  "task_key": "worker_analysis_d144_fair_tax_and_4b_investigation_20260521T151258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d144_fair_tax_and_4b_investigation_20260521T151258_result.json",
+    "occurrence": 1,
+    "bytes": 2329,
+    "sha256": "90aa783659923c6b6deb3fb4dce269778edc8503c39de3e7b4a3e5fd00be2858"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n### 子任务 1: test_eval_4b_rsft_s42 失败原因\n\n**失败原因**：4B RSFT s42 adapter 目录 `/root/autodl-tmp/rsft_output/` 已被删除。脚本尝试从 `/root/autodl-tmp/rsft_output/checkpoint-510` 加载 tokenizer，路径不存在导致 `OSError`。\n\n**4B RSFT adapter 路径现状**：\n- 原 s42 adapter：`/root/autodl-tmp/rsft_output/checkpoint-510` — **已删除**\n- 现有 s44 adapter：`/root/autodl-tmp/rsft_output_4b_sft_s44/`（seed 44，非 s42）\n- 现有 s44 bf16 adapter：`/root/autodl-tmp/rsft_output_4b_sft_s44_bf16/`\n\n**4B base model**：`/root/autodl-tmp/models/Qwen3-4B/`（存在，有 tokenizer）\n**SFT adapter**：`/root/autodl-tmp/sft_output`（存在）\n\n**无法修复**：需要恢复 adapter 或重新训练。如果接受 s44 替代，命令为：\n```bash\nCUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference \\\n  --model_path /root/autodl-tmp/rsft_output_4b_sft_s44 \\\n  --base_model /root/autodl-tmp/models/Qwen3-4B \\\n  --sft_adapter /root/autodl-tmp/sft_output \\\n  --data_path /root/autodl-tmp/data/re-docred-repo/data \\\n  --output_dir /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42 \\\n  --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\n```\n注意：s44 adapter 的 sft_adapter 应该是 `/root/autodl-tmp/sft_output_seed44`（从 d112_rsft_bf16 config 看到），不是 `/root/autodl-tmp/sft_output`。\n\n---\n\n### 子任务 2: 4B Qwen matched@2048 fair tax\n\n（结果已存在于 `d140_4b_matched_fair_tax_2048.json`，无需重算）\n\n| 指标 | 值 |\n|---|---|\n| fair_subset_size | 981 |\n| fair_with_evi_ign_f1 | 0.3951 |\n| fair_no_evi_ign_f1 | 0.4024 |\n| **fair_tax_pp** | **+0.726** (no-evi 更高，即 evidence 有 negative tax) |\n| raw_tax_pp | +0.6935 |\n\n---\n\n### 子任务 3: LLaMA RSFT @2048 matched fair tax\n\n（结果已存在于 `llama_rsft_matched_fair_tax_2048.json`，无需重算）\n\n| 指标 | 值 |\n|---|---|\n| fair_subset_size | 983 |\n| fair_with_evi_ign_f1 | 0.5779 |\n| fair_no_evi_ign_f1 | 0.5562 |\n| **fair_tax_pp** | **+2.1721** (with-evi 更高，即 evidence 有 positive benefit) |\n| raw_tax_pp | +2.191 |\n\n---\n\nRegistry 已全部更新（5 个实验的 metrics 和 conclusion/failure_reason）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d144-fair-tax-and-4b-investigation.md"
+}

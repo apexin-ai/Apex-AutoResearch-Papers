@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f52ae2f47eb267e95476",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis 14b sft no evidence eval r2",
+  "task_key": "worker_analysis_14b_sft_no_evidence_eval_r2_20260519T125642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_14b_sft_no_evidence_eval_r2_20260519T125642_result.json",
+    "occurrence": 1,
+    "bytes": 955,
+    "sha256": "170d423541de1d99723a1335b57d2b483c5f895ae0c183f66bb61274d3be463c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE/success.\n\n## 结果汇总\n\n**plan017_14b_sft_no_evidence_eval_r2** — DONE (success)\n\n| Metric | Value |\n|--------|-------|\n| **ign_f1** | **0.5510** |\n| ign_precision | 0.5149 |\n| ign_recall | 0.5926 |\n| f1 | 0.5649 |\n| format_compliance_rate | 0.9868 |\n| n_truncated | 105 |\n| n_predictions | 15605 |\n| inference_time_seconds | 14497.8 |\n\nSettings verified: `no_evidence=true`, `quantize=false`.\n\n## Evidence Tax\n\n**无法计算** — `plan017_14b_sft_eval_r2` (with-evidence) 仍在运行，进度 411/493 batches (83%)，预计还需 ~50 分钟完成。\n\n等 with-evidence eval 完成后可计算：\n- tax = with_evidence_ign_f1 - 0.5510 (no_evidence)\n\n参考其他 scale 的 evidence tax：4B 为 0.4721 - 0.3974 = +7.47pp（with-evidence 更高，因为 evidence 帮助关系预测）。14B no-evidence ign_f1=0.5510 已高于 8B SFT mean (0.4866)，表明 14B 规模提升显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-14b-sft-no-evidence-eval-r2.md"
+}

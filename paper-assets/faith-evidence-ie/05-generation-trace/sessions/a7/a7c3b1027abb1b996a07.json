@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7c3b1027abb1b996a07",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_5_1778806566.md",
+  "task_key": "loop_5_1778806566",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778806566.md",
+    "occurrence": 1,
+    "bytes": 4304,
+    "sha256": "80392b74fe45348effbc48225193c2cf226cd64116658a08d4a01ad561491cfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-15T00:56:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **RTX 5090 禁用 --quantize + merge_and_unload**（触发 CUBLAS 错误）。RSFT 全程用 bf16，Qwen3-4B 仅 ~8GB 无需量化\n- **工作目录必须 `cd /root/autodl-tmp/`**，禁止 `cd /root/autodl-tmp/freige/`（Python path 会找到内层空 freige/freige/ 包，导致 import 失败）\n- **GRPO 方向已判死 (D031)**，PREPARING 状态的 kl001_r2/r3/r4_last 是遗留实验，不要再提交\n- **GPU 白名单**: cuda:0/1/2/3 均属本项目（rtx5090-4x 唯一项目）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB，单机双 SSH endpoint）\n- **工作目录**: `/root/autodl-tmp/`\n- **Python**: `/root/miniconda3/bin/python`；激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`\n- **SFT adapter**: `/root/autodl-tmp/sft_output`（adapter_config.json + adapter_model.safetensors）\n- **数据**: `/root/autodl-tmp/data/docred`（train 3027 / dev 985）\n- **GRPO 输出**: `/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-{20,40,60,80,100,...}`\n- **RSFT 生成输出**: `/root/autodl-tmp/rsft_generations/`\n- **Eval 结果**: `/root/autodl-tmp/eval_results/`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **W&B project**: faith-evidence-ie（run: grpo-s3-ced-lr5e6-r1）\n- **NLI 模型**: `cross-encoder/nli-deberta-v3-base`（本地未缓存，score_filter 前需下载，先 `source /etc/network_turbo`）\n- **活跃进程**:\n  - cuda:0 — lr5e6_r1 GRPO 训练 PID 90080 (tmux: mvp2_grpo_ced_lr5e6_r1, 200 步收尾)\n  - cuda:1 — RSFT generate PID 122144 (tmux: mvp2_rsft_generate)\n  - cuda:2 — ckpt-80 eval PID 111731\n  - cuda:3 — ckpt-100 eval PID 117635\n\n### 3. 📊 当前状态\n**刚做完**：D031 pivot 决策（GRPO→RSFT）、diversity probe 验证（7-8/8 unique, RSFT 可行）、RSFT 代码审查（发现 2 个 CRITICAL bug）、ckpt-60 eval (rel_f1=0.0093, negative)\n\n**正在跑 (4 RUNNING)**：\n| exp_id | GPU | 任务 | 备注 |\n|--------|-----|------|------|\n| mvp2_grpo_ced_lr5e6_r1 | cuda:0 | GRPO 200步训练 | 收尾，step ~150/200 |\n| mvp2_rsft_generate | cuda:1 | RSFT 生成 N=8 候选 | 3027 样本×8，预计数小时 |\n| mvp2_eval_lr5e6_r1_ckpt80 | cuda:2 | lr5e6 ckpt-80 eval | 预计 ~100min |\n| mvp2_eval_lr5e6_r1_ckpt100 | cuda:3 | lr5e6 ckpt-100 eval | 决定性验证 (pass: >0.15) |\n\n**等待中**：这 4 个任务的 cron 回调\n\n### 4. 📋 待办（条件触发式）\n- **ckpt-100 eval 完成** → 如 rel_f1 > 0.15 则 step-100 拐点真实（GRPO 可能还有救，汇报 Director 重评估）；如 < 0.05 则确认 reward hacking，GRPO 彻底死亡，无需进一步分析\n- **ckpt-80 eval 完成** → 记录 metrics 到 registry，补全 trajectory (ckpt-20/40/60/80/100)\n- **RSFT generate 完成** → 修复 score_filter bug（JSON→JSONL + 字段名统一）→ 下载 NLI 模型 → 运行 rsft_score_filter.py → 运行 rsft_trainer.py\n- **lr5e6_r1 训练 200 步完成** → 记录最终 metrics，cuda:0 释放给 RSFT 后续阶段\n- **RSFT trainer 训练完成** → eval on dev set → 与 SFT baseline 对比（pass: CED_Evi-F1 ≥ SFT+2pp, rel_F1 ≥ SFT-5pp）\n\n### 5. 🎯 战略上下文\n- **核心结论链**: CED signal 有效 (MVP-1 ✅) → 但 GRPO+QLoRA 在结构化生成任务上 catastrophic forgetting 不可逆 (D024-D031) → Pivot 到离线 RL (RSFT)\n- **SFT baseline 数字**: rel_f1=0.406, evi_f1=0.7979, EDCR=0.7118。RSFT pass criteria: evi_f1 ≥ 0.8179, rel_f1 ≥ 0.356, EDCR 降 10pp+\n- **最容易判断错的事**: ckpt-100 eval 如果 rel_f1 在 0.05-0.15 之间（灰色地带），不要被吸引回 GRPO 方向。D031 的 pivot 决策是基于 6 次 lr=5e-5 + 2 次 lr=5e-6 的系统性证据，单个数据点不足以翻转\n- **RSFT 代码 bug 必须修**：(1) rsft_generate.py --quantize 默认 True 要改 False；(2) score_filter 输出 JSON array + messages/scores 字段，trainer 期望 JSONL + input/output/ced_score 字段。不修会导致 pipeline 断裂\n- **目标 venue**: EMNLP 2026 (ARR May 25 deadline) / AAAI 2027\n- **Contingency**: RSFT 也失败 → (1) 全参微调排除 adapter 问题 (2) CED 作为推理时 reranker 而非训练 reward\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778806566.md"
+}

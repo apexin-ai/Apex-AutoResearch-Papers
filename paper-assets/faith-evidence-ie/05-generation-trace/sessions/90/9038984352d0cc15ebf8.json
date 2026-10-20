@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9038984352d0cc15ebf8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research ref audit worker 2",
+  "task_key": "worker_research_ref-audit-worker-2_20260526T103533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-worker-2_20260526T103533_result.json",
+    "occurrence": 1,
+    "bytes": 730,
+    "sha256": "a3128e36bb294de1617006f3b6ab834af171481907364178e2a1a857680db634"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已写入 `artifacts/ref_audit_worker2.md`。\n\n**结果**: 52 条引用, 14 条有问题, 17 条未被引用。\n\n**P0 严重 (6条)**:\n- `gulcehre2023rest` — 作者名错 (Dyer/Grangier → Doucet/de Freitas) + entry type 错\n- `ma2023dreeam` — Venue 错 (Findings → EACL main)\n- `wang2025relprior` — 标题严重偏差\n- `rafailov2023direct` — 作者顺序错 (Ermon/Manning 互换)\n- `xu2024lmrc` — 标题多余 \"LMRC:\" 前缀\n- `wang2025rullm` — 标题多余 \"Ru-LLM:\" 前缀 + 可能多一位作者\n\n**P1 中等 (2条)**: `li2026qurl` 和 `liu2026gdpo` venue 需从 arXiv 更新为已接收会议\n\n**全部 7 条 2026 引用均确认真实存在**, 无虚构引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-audit-worker-2.md"
+}

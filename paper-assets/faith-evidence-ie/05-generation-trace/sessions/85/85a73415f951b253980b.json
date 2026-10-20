@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85a73415f951b253980b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh verify gpu processes",
+  "task_key": "worker_ssh_verify-gpu-processes_20260521T071646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-gpu-processes_20260521T071646_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "17df61e16b237b871160261c8a3fd8a608d2a398b14419fce4d87cb9fa726be2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个进程全部存活：\n\n| PID | 实验 | GPU | 显存占用 | GPU利用率 | 运行时长 | 状态 |\n|-----|------|-----|---------|----------|---------|------|\n| 85668 | d140_4b_sft_s42_no_evi_2048 | cuda:0 | 11,696 MiB | 85% | 10min 57s | Rl (运行中) |\n| 70388 | plan017_14b_rsft_eval_2048 | cuda:1 | 32,494 MiB | 83% | 4h 30m 51s | S (睡眠/等IO) |\n| 83650 | d140_8b_sft_s42_no_evi_2048 | cuda:2 | 19,590 MiB | 90% | 48min 15s | Ss+ |\n| 81857 | d140_8b_sft_s42_with_evi_2048 | cuda:3 | 19,590 MiB | 90% | 1h 14m 21s | Ss+ |\n\n4 张卡全部被占满，所有实验正常推理中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-gpu-processes.md"
+}

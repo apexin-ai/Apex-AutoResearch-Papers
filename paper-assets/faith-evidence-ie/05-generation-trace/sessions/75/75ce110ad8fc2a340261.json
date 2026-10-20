@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75ce110ad8fc2a340261",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval 8b rsft evi f1 joint",
+  "task_key": "worker_eval_8b_rsft_evi_f1_joint_20260517T150447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_8b_rsft_evi_f1_joint_20260517T150447_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "52d326a0dfa52de46bc4a1074c651baa60e0cd63098eac008fbcae48ee9d034e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Part 1: 8B RSFT evi_f1_joint\n\nmetrics.json 中已有结果：\n\n| 指标 | 8B RSFT | 4B RSFT | 差值 |\n|------|---------|---------|------|\n| **evi_f1_joint** | **0.4413** | 0.361 | **+0.080** |\n| evi_joint_precision | 0.4178 | - | - |\n| evi_joint_recall | 0.4677 | - | - |\n| f1 (RE) | 0.5606 | - | - |\n| evi_f1 | 0.8051 | - | - |\n\n8B 比 4B evi_f1_joint 高 +8.0 个百分点（相对 +22.2%）。\n\n## Part 2: lead2_ckpt20_eval 进度\n\n- 进程 PID 446829 运行中，已运行 **2h 26m**\n- 进度：**220/247 batches (89%)**\n- 近期速度：~46-48s/batch\n- 剩余 27 batches × ~47s ≈ **21 分钟**后完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-8b-rsft-evi-f1-joint.md"
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "ebe0dd6e79346a1645fb",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ssh e2e pipeline verify",
+  "task_key": "worker_ssh_e2e-pipeline-verify_20260515T040551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_e2e-pipeline-verify_20260515T040551.log",
+    "occurrence": 1,
+    "bytes": 1048237,
+    "sha256": "eccfd864c7160b002824a0c72f68d37bfa8038ff82d4908ace0319f85289a7f0"
+  },
+  "statistics": {
+    "messages": 478,
+    "user_turns": 1,
+    "tool_calls": 174,
+    "roles": {
+      "log": 1,
+      "system": 26,
+      "record": 1,
+      "assistant": 100,
+      "tool_call": 174,
+      "tool_result": 174,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "ebe0dd6e79346a1645fb-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 461,
+      "chunks": [
+        {
+          "path": "ebe0dd6e79346a1645fb-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "ebe0dd6e79346a1645fb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ebe0dd6e79346a1645fb-part-0003.json",
+          "message_count": 118
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-e2e-pipeline-verify.md"
+}

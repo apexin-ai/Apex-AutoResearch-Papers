@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f36858c4d3474edeb9a",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_10_1778888445.md",
+  "task_key": "loop_10_1778888445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778888445.md",
+    "occurrence": 1,
+    "bytes": 5388,
+    "sha256": "48cadd5767091f181474af1e4e0c638ad5d1fe0fa9cfb904e719171b92c40d86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T23:29:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `cuda:0,1,2,3`（rtx5090-4x），禁止使用任何白名单外 GPU\n- D064 教训：**所有 RSFT/DPO eval 必须带 `--sft_adapter /root/autodl-tmp/sft_output`**，否则 rel_f1 降到 0.002 级别（已导致 3 个实验作废重跑）\n- eval 命令必须带 `--no-quantize`（D058 量化 confound）\n- `eval_flat_nli_seed44`（QUEUED，PID 270056）是 killed 状态的废弃条目，实际在跑的是 `eval_flat_nli_s44`（PID 270462）。不要重提交前者\n- C3 已降级（D056）——CED vs flat-NLI 统计不可区分，**不要在汇报中声称 CED 优于 flat-NLI**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），account=root\n- **工作目录**: `/root/autodl-tmp/freige`（Python package `freige.*`）\n- **Python**: `/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（base），`/root/autodl-tmp/sft_output`（SFT adapter）\n- **数据**: `/root/autodl-tmp/data/docred`（985 docs dev set）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`，所有 eval 命令需 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- **Eval 结果**: `/root/autodl-tmp/eval_results/` 下各子目录\n- **活跃进程**:\n  - cuda:0 — `eval_flat_nli_s44` PID 270462, tmux=eval_flat_nli_s44, cron 活跃\n  - cuda:1 — `reeval_flat_nli_s43` PID 266178, tmux=reeval_flat_nli_s43, cron 活跃\n  - cuda:2 — `reeval_rsft_topk3` PID 268485, tmux=reeval_rsft_topk3, cron 活跃\n  - cuda:3 — `eval_plan_012_dpo_1ep_fixed_r2` PID 262075, tmux 对应, cron 活跃\n- **plan_003 EDCR 脚本**: `/root/autodl-tmp/freige/scripts/edcr_diagnostic.py` 已就绪（347行），CPU 任务\n\n### 3. 📊 当前状态\n4 块 GPU 全部在跑 eval（均为 D064 bug fix 后的重跑）。所有 Worker 已完成，无活跃 Worker。\n\n| GPU | exp_id | 内容 | 预计时长 |\n|-----|--------|------|---------|\n| cuda:0 | eval_flat_nli_s44 | flat-NLI s44 全量 dev eval | ~1-2h |\n| cuda:1 | reeval_flat_nli_s43 | flat-NLI s43 重跑（D064 fix） | ~1-2h |\n| cuda:2 | reeval_rsft_topk3 | RSFT top_k=3 重跑（D064 fix） | ~1-2h |\n| cuda:3 | eval_plan_012_dpo_1ep_fixed_r2 | DPO 1ep 重跑（D064 fix） | ~1-2h |\n\n**PREPARING 队列**:\n- `eval_flat_nli_seed45` — 等 cuda:1/2 释放\n- `eval_plan_014_no_evidence` — 等 GPU（no-evidence SFT 无量化 re-eval）\n- `plan_003_edcr_diagnostic` — 等 cuda:3 释放（或 CPU 跑，脚本已就绪）\n\n**等待中**: 4 个 cron 回调（上述 4 个 RUNNING 实验完成时触发）\n\n### 4. 📋 待办（条件触发式）\n- `reeval_flat_nli_s43` 完成 → 记录 rel_f1/evi_f1 到 registry → 对比 s42 (0.4539) 和 CED mean (0.4596) → 释放 cuda:1 → 提交 `eval_flat_nli_seed45` 到 cuda:1\n- `eval_flat_nli_s44` 完成 → 记录 metrics → 释放 cuda:0 → 提交 `eval_plan_014_no_evidence` 到 cuda:0（或 `eval_flat_nli_seed45` 如 cuda:1 仍占用）\n- `reeval_rsft_topk3` 完成 → 记录 metrics → 对比 CED top_k=1 (rel_f1≈0.46) 和 SFT baseline (0.4057) → 释放 cuda:2\n- `eval_plan_012_dpo_1ep_fixed_r2` 完成 → **关键分叉**：DPO 1ep rel_f1 决定 DPO 在论文中的定位（3ep 过拟合 rel_f1=0.3429，1ep 是否救回来）→ 释放 cuda:3 → 提交 `plan_003_edcr_diagnostic`（可 CPU 跑）\n- 4 个 seed eval 全部出齐（s42/s43/s44/s45）→ 汇总 flat-NLI vs CED RSFT seed-level 统计检验 → 更新 C3 结论 → 汇报 Director\n- `plan_003_edcr_diagnostic` 无需 GPU，代码已就绪，可在任何 eval 完成后立即用 CPU Worker 跑（但需 flat-NLI s44/s45 的 predictions.json 才能覆盖全方法，见 memory.md）\n- 所有 P0 eval 收齐 → 准备 plan_002 test set eval（D057 之前失败过，需诊断）\n- **CED 补种**（ROADMAP 标红）：CED 只有 s42/s44 两个 3ep seeds，paired t-test 需 matched pairs，后续需补 CED s43/s45\n\n### 5. 🎯 战略上下文\n- **论文定位**: \"task definition + cost of faithfulness + decoupling finding + EDCR metric\"。RSFT 不是贡献，贡献是任务定义+发现+指标\n- **D064 是本 session 最大事件**：发现 `--sft_adapter` 缺失导致 3 个 eval 无效（plan_001 s43, plan_008 topk3, plan_012 dpo_1ep），当前 4 块 GPU 全在做 D064 补救重跑\n- **D065/D066 关键结论**: task decoupling 确认为 QLoRA-specific artifact（bf16 GRPO 不复现），C2 claim 已从 \"GRPO fails\" 收窄到 \"QLoRA GRPO fails\"\n- **易错点 1**: `eval_flat_nli_seed44`（QUEUED/killed）和 `eval_flat_nli_s44`（RUNNING）是两个不同 registry 条目，前者废弃。下一个\"你\"不要混淆\n- **易错点 2**: plan_003 EDCR 脚本 AUTO_METHODS 列表只有 14 个方法，flat-NLI s44/s45 尚未加入，需 eval 完成后手动添加\n- **易错点 3**: DPO 1ep 结果可能触发 Framing 调整——如果 DPO 1ep 也崩（类似 3ep 的 0.3429），则 DPO 作为 negative result 写入论文；如果 DPO 1ep 正常，则 decoupling 是 on-policy 特有\n- **EMNLP ARR July deadline ~7/15-25**，剩 ~2 个月，核心 eval 必须本周收齐\n- **Decision chain**: D054(QLoRA confound) → D056(CED≈flatNLI, C3降级) → D058(量化confound) → D060(CED reranker 97%) → D064(--sft_adapter bug) → D065/D066(bf16确认no decoupling)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778888445.md"
+}

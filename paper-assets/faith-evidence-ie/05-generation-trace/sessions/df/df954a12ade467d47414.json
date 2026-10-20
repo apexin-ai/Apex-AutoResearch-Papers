@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df954a12ade467d47414",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 012 dpo 1ep wandb",
+  "task_key": "worker_analysis_plan_012_dpo_1ep_wandb_20260515T202035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_012_dpo_1ep_wandb_20260515T202035_result.json",
+    "occurrence": 1,
+    "bytes": 775,
+    "sha256": "6d9ee16ecb33a874aba0ccc65d57866d08ea2880e4427a62ac44e6767ecce6cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n## 1ep vs 3ep 对比\n\n| 指标 | 1ep | 3ep (过拟合) |\n|------|-----|-------------|\n| rewards/accuracies | **0.82** | 1.00 |\n| rewards/margins | **0.86** | 9.01 |\n| train_loss | **0.59** | ~0.1 |\n\n## 判断\n\n- **过拟合已消除**：accuracy 从随机水平 (0.41) 渐进上升到 0.82，未饱和；margins 0.86 比 3ep 的 9.01 低一个数量级\n- **训练健康**：167 steps / 33min，正常结束，loss 仍有余量\n- **Checkpoint 就绪**：`/root/autodl-tmp/dpo_output_1ep/adapter_model.safetensors` (528MB)，checkpoint-167 (final)\n\n**建议立即跑 eval 测 rel_f1，看是否超过 SFT baseline 0.4057。**\n\n产出已写入 `artifacts/plan_012_dpo_ced_1ep_analysis.md` 并注册到 manifest。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-012-dpo-1ep-wandb.md"
+}

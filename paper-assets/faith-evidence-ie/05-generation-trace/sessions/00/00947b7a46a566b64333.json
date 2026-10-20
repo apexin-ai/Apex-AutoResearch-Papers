@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "00947b7a46a566b64333",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "analysis test table progress",
+  "task_key": "worker_analysis_test-table-progress_20260521T225644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_test-table-progress_20260521T225644.log",
+    "occurrence": 1,
+    "bytes": 983668,
+    "sha256": "7a2fc484af3ead6e8748e8ce54ef8f43ee5e7cdcc282e35d6a54a2162ffe80ef"
+  },
+  "statistics": {
+    "messages": 65,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 24,
+      "tool_result": 24,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 65,
+      "chunks": [
+        {
+          "path": "00947b7a46a566b64333-part-0001.json",
+          "message_count": 13
+        },
+        {
+          "path": "00947b7a46a566b64333-part-0002.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-test-table-progress.md"
+}

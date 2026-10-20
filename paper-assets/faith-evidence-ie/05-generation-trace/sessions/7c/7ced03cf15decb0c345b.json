@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ced03cf15decb0c345b",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_5_1778817710.md",
+  "task_key": "loop_5_1778817710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778817710.md",
+    "occurrence": 1,
+    "bytes": 3921,
+    "sha256": "6bb28668f89884427c3220f4a27431a2ccabee1e67cb0f0ab6e9dadc80ed8dfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-15T02:53:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `gpu_ids: [0, 1, 2, 3]`，服务器 `rtx5090-4x`，account `root`\n- `--quantize` (4-bit) + `merge_and_unload` 在 RTX 5090 有 CUBLAS 错误——RSFT 训练**禁止用 quantize**，bf16 Qwen3-4B 仅 ~8GB 无需量化\n- 运行目录必须是 `/root/autodl-tmp/`，**不要 cd 到 freige/ 子目录**（会导致 import 找到内层空包）\n- Qwen3 自带 `generation_config.json` 会静默覆盖温度和 top_k，生成前必须显式 override（已在代码中修复，但新代码需注意）\n- GRPO+QLoRA 方向已判死 (D031)，**不要再跑任何 GRPO 实验**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），备用 bjb2-12179\n- **工作目录**: `/root/autodl-tmp/freige`（但命令在 `/root/autodl-tmp/` 下执行）\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`\n- **SFT adapter**: `/root/autodl-tmp/sft_output`\n- **NLI 模型**: `/root/autodl-tmp/.hf_cache`（cross-encoder/nli-deberta-v3-base，已下载）\n- **数据**: `/root/autodl-tmp/data/docred`（3027 docs）\n- **HF cache**: `HF_HOME=/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - mvp2_rsft_gen_s0: PID 135867, cuda:0, cron 监控中\n  - mvp2_rsft_gen_s1: PID 136270, cuda:1, cron 监控中（shard 1 有 302 docs 断点续传）\n  - mvp2_rsft_gen_s2: PID 136649, cuda:2, cron 监控中\n  - mvp2_rsft_gen_s3: PID 137985, cuda:3, cron 监控中\n\n### 3. 📊 当前状态\n4 卡并行跑 RSFT 生成（`rsft_generate.py`），每卡一个 shard，共 3027 docs × 8 generations/doc，T=0.7，batch_size=1（OOM fix）。预计 ~3h 完成。4 个 cron 在监控进程存活。无 running Worker。\n\n**PREPARING 残留**（全部已废弃，不要动）：mvp2_grpo_ced_kl001_r2/r3、mvp2_eval_ced_kl001_r4_last——都是 GRPO 时代遗留，conclusion=killed。\n\n**等待中**: 4 个 RSFT gen cron 回调。回调到来后进入下一阶段。\n\n### 4. 📋 待办（条件触发式）\n- **4 shard 全部完成 cron 回调** → spawn Worker 合并 4 shard 输出到统一 `generations.jsonl` → 更新 registry 为 DONE\n- **合并完成** → spawn Worker 跑 `rsft_score_filter.py`（CED 打分 + 筛选 top 25%），输出 `rsft_train.jsonl`\n- **筛选完成** → 创建 RSFT 训练实验 → PENDING 审批 → 提交 `rsft_trainer.py`（参数：lr TBD, lora_rank=64, lora_alpha=128, bf16, **不要 quantize**）\n- **RSFT 训练完成** → eval（rel_f1 + evidence quality），与 SFT baseline (rel_f1=0.406) 对比\n- **部分 shard 失败** → 检查 log，断点续传（`--start_idx` 支持续跑）\n\n### 5. 🎯 战略上下文\n- **核心研究方向**: FREIGE——用 CED（对比证据判别）奖励训练 LLM 做文档级关系抽取 + 可验证证据生成\n- **MVP-1 已通过**: CED margin 0.4827, accuracy 81.5%, r=0.34\n- **D031 关键决策**: GRPO+QLoRA 全线 FAIL（在线 RL 导致 rel_f1 catastrophic forgetting），pivot 到 RSFT（离线 RL）\n- **D036**: diversity crisis 是监控 bug（度量代码归一化不一致），实际 diversity=7.52/8 充足，恢复 4 卡并行生成\n- **成功标准**: RSFT 后 rel_f1 > SFT baseline (0.406)，同时 evidence quality 提升\n- **易踩的坑**:\n  1. 不要把 PREPARING 状态的 GRPO 实验复活——那些全是 killed 的废弃实验\n  2. diversity 监控已修复（`diversity_metrics.py` 独立模块），但如果看到 diversity=1.0/8 先怀疑监控而非生成\n  3. `rsft_score_filter.py` 输出字段 (`input`/`output`/`ced_score`) 已与 `rsft_trainer.py` 对齐，不需要额外格式转换\n  4. 总计 48 个实验（success 10 / negative 11 / failed 11），历史很长，不要被告警列表吓到——都是 GRPO 时代遗留\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778817710.md"
+}

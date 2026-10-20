@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e824b95011866a607155",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 001 rsft train",
+  "task_key": "worker_ops_plan_001_rsft_train_20260515T152140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_001_rsft_train_20260515T152140_result.json",
+    "occurrence": 1,
+    "bytes": 259,
+    "sha256": "9ad5ed97e45844a7486cc904fac163d5f06576793f448709829718c4398884a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练启动成功。\n\n- **PID**: 219556，cuda:1\n- **数据**: 2691 RSFT samples（CED scores: min=0.000, max=0.997, mean=0.725）\n- **状态**: 基础模型已加载，正在合并 SFT adapter，即将开始训练\n- **预计耗时**: ~2h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-001-rsft-train.md"
+}

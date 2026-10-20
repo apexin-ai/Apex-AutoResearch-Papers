@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb6dcd4b0e46a1cb0623",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778902163.md",
+  "task_key": "loop_12_1778902163",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778902163.md",
+    "occurrence": 1,
+    "bytes": 5027,
+    "sha256": "b787aa74b020490a063c0a30410b0837f48822b0f7f98eee3cf9ec3bee6f5401"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T03:29:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `gpu_ids=[0,1,2,3]`，服务器 `rtx5090-4x`。`bjb2-12179` 也在 config 但当前所有实验都在 rtx5090-4x\n- **cwd 必须是 `/root/autodl-tmp`**，不是 `/root/autodl-tmp/freige`——已踩过坑\n- **Checkpoint 路径有三代命名不一致**：`rsft_output_r2b/` 是 lora_alpha=32/160步 旧实验，**不是** CED s42。`rsft_output_ced_s42/` 和 `rsft_output_ced_s44/` 不存在。正确映射见 memory.md 顶部表格\n- flat-NLI 最终 checkpoint 是 **507**，CED 是 **510**——混用就废\n- Eval 统一协议（D076）：`batch_size=4, max_new_tokens=1024, --no-quantize, --sft_adapter, 正确 seed`。偏离此协议的旧结果不可用于 paired t-test\n- C3 已降级（D056），CED vs flat-NLI 统计不可区分，不再作为独立贡献\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x, 4× RTX 5090 32GB\n- **工作目录**: `/root/autodl-tmp`（代码 `/root/autodl-tmp/freige`）\n- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（底座），SFT adapter `/root/autodl-tmp/sft_output`\n- **数据**: `/root/autodl-tmp/data/docred`（dev 985 docs）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`，离线模式 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- **活跃进程**:\n  - `eval_rsft_ced_s45`: PID 283838, cuda:2, tmux, cron 监控中\n  - `eval_rsft_ced_s43`: PID 286587, cuda:1, tmux, cron 监控中\n  - `eval_plan_014_no_evidence_r2`: PID 288109, cuda:0, tmux, cron 监控中\n  - `reeval_flat_nli_s43_r2`: PID 291003, cuda:3, tmux, cron 监控中\n- **活跃 Worker**: `worker_research_compile_paper_evidence_table` (running, 编译论文 evidence table)\n\n### 3. 📊 当前状态\n4 块 GPU 全部在跑统一协议 eval，为 paired t-test 收集数据：\n| GPU | exp_id | 内容 | 进度 |\n|-----|--------|------|------|\n| cuda:0 | eval_plan_014_no_evidence_r2 | SFT no-evidence ablation (C1) | 运行中 |\n| cuda:1 | eval_rsft_ced_s43 | CED RSFT s43 eval (C3 t-test) | ~2%, ETA ~05:19 UTC |\n| cuda:2 | eval_rsft_ced_s45 | CED RSFT s45 eval (C3 t-test) | ~28%, ETA ~04:18 UTC |\n| cuda:3 | reeval_flat_nli_s43_r2 | flat-NLI s43 re-eval (统一协议) | 刚启动 |\n\nPREPARING 队列（等 GPU 释放）：`reeval_flat_nli_s42`, `reeval_ced_s44`, `reeval_ced_s42`, `seed_comparison_prep`\n\n1 个 CPU Worker 在编译论文 evidence table。\n\n还在等 4 个 cron 回调（上述 4 个 RUNNING 实验完成时触发）。\n\n### 4. 📋 待办（条件触发式）\n- `eval_rsft_ced_s45` 完成 → 记录 metrics → 提交 `reeval_ced_s44`（cuda:2 释放）\n- `eval_rsft_ced_s43` 完成 → 记录 metrics → 提交 `reeval_ced_s42`（cuda:1 释放）\n- `eval_plan_014_no_evidence_r2` 完成 → 记录 no-evidence rel_f1 → 提交 `reeval_flat_nli_s42`（cuda:0 释放）。这是 C1 evidence tax 的关键 ablation 数据点\n- `reeval_flat_nli_s43_r2` 完成 → 记录 metrics → cuda:3 释放给 `reeval_ced_s44`（如 cuda:2 还没空）或 `seed_comparison_prep`\n- 所有 8 个 seed eval（CED×4 + flat-NLI×4）统一协议结果齐 → 跑 `seed_comparison.py` + `paired_ttest_analysis.py` 做 paired t-test → 汇报 Director C3 最终结论\n- paired t-test 完成 → plan_002 test set eval + plan_003 EDCR diagnostic 进入优先队列\n- evidence table Worker 完成 → 审查产出，注册 artifact\n- 核心 eval 收齐 → Paper Agent retitle + related work 扩展\n\n### 5. 🎯 战略上下文\n**项目**: FREIGE — LLM-based evidence-grounded DocRE。目标 EMNLP 2026 Main (ARR July, ~7月15-25)。\n\n**核心叙事（4 claims）**:\n1. **C1 Evidence Tax**: evidence generation 代价 ~8pp rel_f1。no-evidence SFT=0.4893 vs evidence-SFT=0.4106。CED reranker 恢复 97%（0.4864）\n2. **C2 Decoupling**: QLoRA GRPO → catastrophic task decoupling (rel_f1=0.0167)；bf16 GRPO 不复现 → QLoRA-specific。Spectrum: GRPO-QLoRA > GRPO-bf16 mild > DPO gradual > RSFT none\n3. **C3 已降级**: CED vs flat-NLI 统计不可区分。当前在做统一协议 4-seed paired t-test 最终确认\n4. **C4 EDCR Metric**: 双层诊断——方法级识别病理模型，per-relation 级作难度诊断工具\n\n**关键决策链**: D056 降级 C3 → D065/D066 确认 QLoRA-specific → D068/D069 Decoupling Spectrum → D070/D072/D073 EDCR 双层定位 → D075 区分 intra-task vs inter-task → D076 统一协议审计\n\n**最容易判断错的事**:\n- 旧 eval 结果（batch_size=8/16）**不可与新结果混用**——D076 已明确要求全部重跑\n- `rsft_output_r2b/` 不是 CED s42，是旧配置实验\n- Ign-F1 已修复（metrics_v2.json），论文主表用 Ign-F1，不要用旧 metrics.json\n- 0.4549 是 plan_011 ckpt-100 训练前起点，不是 GRPO bf16 训练后结果\n- EDCR 方法级与 rel_f1 近完美负相关（ρ=-0.96），不能当独立指标——论文价值在 per-relation 诊断层\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778902163.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "534c0d4c329b6ece9941",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor rsync loop",
+  "task_key": "worker_monitor_rsync-loop_20260520T082039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_rsync-loop_20260520T082039_result.json",
+    "occurrence": 1,
+    "bytes": 74,
+    "sha256": "21544f15a31c00b99cc9599789d184e10c5be98dcbb67ca775cd97cd7c3d2876"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本在后台跑着，5 分钟后自动回来查日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-rsync-loop.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ff63c9128ba57014f3f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval test eval 8b rsft s42",
+  "task_key": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_test_eval_8b_rsft_s42_20260521T182956_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "d8138b19559c2fd93763e909f5e09f9f2cb4968c8dfa796fda8f923e56fc403c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "这个实验已经完成了。Registry 显示 `test_eval_8b_rsft_s42` 状态为 **DONE (success)**，无需重新提交。\n\n结果：\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | 0.3353 |\n| f1 | 0.3353 |\n| precision | 0.5149 |\n| recall | 0.2486 |\n| evi_f1_dreeam | 0.2526 |\n| format_ok_rate | 0.998 |\n| wall_clock | ~50 min |\n\n完成时间：2026-05-21T14:57:29Z，使用路径 `/root/autodl-tmp/rsft_output_qwen3_8b_k1`（非用户指定的 checkpoint-3393，该路径不存在）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-test-eval-8b-rsft-s42.md"
+}

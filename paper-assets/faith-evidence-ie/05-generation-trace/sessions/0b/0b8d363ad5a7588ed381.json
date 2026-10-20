@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b8d363ad5a7588ed381",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose 8b rsft s42 ground truth",
+  "task_key": "worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_8b-rsft-s42-ground-truth_20260522T214202_result.json",
+    "occurrence": 1,
+    "bytes": 2022,
+    "sha256": "091aa542783564a0c8e1a2929f7efda4abff1585de7e0320dfda2750366073a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部拿到。两个 s42 eval 的差异已清楚。\n\n## 诊断报告\n\n### 两个 s42 eval 的差异\n\n| | d102_8b_k1_s42 | plan_006_qwen3_8b_rsft_eval |\n|---|---|---|\n| **ign_f1** | **0.5376** | **0.5433** |\n| model_path | `rsft_output_qwen3_8b_k1` | `rsft_output_qwen3_8b/checkpoint-3393` |\n| n_predictions | 16,314 | 16,831 |\n| n_truncated | 242 | 267 |\n| max_new_tokens | 1024 | 1024 |\n| split | dev | dev |\n| seed | 42 | 42 |\n\n**根因：模型不同。** plan_006 用的是早期 RSFT 模型的 checkpoint-3393，d102 系列用的是 k1 rejection sampling RSFT 模型。不是同一个模型的两次 eval，而是两个不同模型的 eval。\n\n### 3-seed 同协议结果（d102 系列，k1 RSFT）\n\n| Seed | Model | ign_f1 |\n|------|-------|--------|\n| s42 | rsft_output_qwen3_8b_k1 | 0.5376 |\n| s43 | rsft_output_qwen3_8b_k1_s43 | 0.5471 |\n| s44 | rsft_output_qwen3_8b_k1_s44 | 0.5451 |\n\n三个 seed 的 eval 配置完全一致（同 base_model、同 sft_adapter、同 max_new_tokens=1024、同 split=dev、同 seed=42），仅训练 seed 不同。\n\n### 正确的 Mean ± Std\n\n```\nvals = [0.5376, 0.5471, 0.5451]\nMean = 0.5433\nStd  = 0.0050 (0.50pp)\n```\n\n**论文应报告：54.33 ± 0.50**\n\n### Registry 问题\n\nRegistry 中 plan_006_qwen3_8b_rsft_eval 的 ign_f1=0.5433 是那个**旧模型**（非 k1）的真实结果，不是 d102 s42 的结果。Registry 如果把这个值当作 s42 的 ign_f1 来算 3-seed 均值，就混入了不同模型的数据——尽管巧合地 0.5433 恰好接近 3-seed 均值。\n\n正确的 s42 ign_f1 是 **0.5376**（来自 d102_8b_k1_s42/metrics.json）。\n\n### 其他关键指标（d102 三 seed 均值）\n\n| 指标 | s42 | s43 | s44 | Mean |\n|------|-----|-----|-----|------|\n| ign_f1 | 53.76 | 54.71 | 54.51 | 54.33 |\n| evi_f1 (TP-only) | 81.36 | 81.80 | 81.45 | 81.54 |\n| evi_f1_joint | 44.01 | 45.44 | 44.72 | 44.72 |\n| edcr | 62.31 | 60.94 | 62.33 | 61.86 |\n| n_truncated | 242 | 231 | 230 | 234 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-8b-rsft-s42-ground-truth.md"
+}

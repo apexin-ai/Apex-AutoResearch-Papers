@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6df61d2370757568aa63",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code fix format parsing",
+  "task_key": "worker_code_fix-format-parsing_20260515T000205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-format-parsing_20260515T000205_result.json",
+    "occurrence": 1,
+    "bytes": 1195,
+    "sha256": "9d0813016c28ffbcbed452a192776e5c505786b2c541607c86e27cdf7799736b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件语法检查全部通过。\n\n### 修改总结\n\n**文件 1: `freige/eval/evaluator.py`**\n- `_triple_key()`: relation 字段加了 `.lower().strip()`，解决关系名大小写不匹配\n- 新增 `_get_field(d, *keys)` 辅助函数，按优先级取字段\n- `_normalize_triples()`: 字段名容忍 `head`/`head_entity`, `tail`/`tail_entity`, `relation`/`type`/`label`, `evidence`/`sentence_ids`；relation 值统一 lowercase+strip\n\n**文件 2: `freige/training/grpo_trainer.py`**\n- `format_reward_fn()`: 同样接受变体字段名，不再严格要求 `head`+`tail`+`relation`+`evidence`\n\n**文件 3: `freige/training/rsft_generate.py`**\n- `generate_batch()`: 新增返回截断标志（生成长度 >= max_new_tokens）\n- 主循环：添加 format_ok / truncation / diversity 实时监控\n- 前 100 文档后打印汇总，之后每 100 文档滚动窗口打印\n- format_ok < 85% 或 truncation > 10% 时输出警告\n\n**验证结果**：\n- 6/6 有效变体格式 → `format_ok=True`（之前只有标准格式通过）\n- 无效输入正确拒绝\n- 关系名 \"Founded By\" 正确归一化为 \"founded by\"\n- 三个文件语法检查全部通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-format-parsing.md"
+}

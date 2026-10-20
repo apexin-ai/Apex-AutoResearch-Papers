@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cffbe39e49f951673ae",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis 1 7b repetition fair subset",
+  "task_key": "worker_analysis_1_7b_repetition_fair_subset_20260518T070802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_1_7b_repetition_fair_subset_20260518T070802_result.json",
+    "occurrence": 1,
+    "bytes": 1071,
+    "sha256": "e395dc98e3f0d869ab453a77038b6c0d4ef94c1bb724d7444586611258da49e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**Repetition rates**:\n- No-evidence: 467/985 (47.4%) repetitive, 全部也被截断\n- With-evidence: 215/985 (21.8%) repetitive\n\n**Fair subset**: 排除两个模型中任一被截断或重复的文档后，剩 **439/985 docs (44.6%)**\n\n**Evidence tax (Ign-F1)**:\n\n| Subset | No-Evi | With-Evi | Tax |\n|---|---|---|---|\n| Full (985) | 0.3982 | 0.4786 | **-8.04pp** |\n| Fair (439) | 0.5722 | 0.6334 | **-6.12pp** |\n\n关键发现：\n1. With-evidence 在所有子集上都优于 no-evidence（evidence helps at 1.7B）\n2. 原始 -8.04pp gap 中约 24% (1.92pp) 来自截断率差异（no-evi 50.9% vs with-evi 31.9%），不是模型能力差异\n3. **Corrected evidence tax = -6.12pp**\n4. No-evidence 模型的重复几乎都伴随截断（rep => trunc），说明 1.7B 一旦开始重复就停不下来直到 max_new_tokens\n\n注意：任务中提到的 \"with-evi 0.3299\" 与实际数据不符。实际 with-evidence SFT 的 ign_f1 = 0.4786。报告已保存到 `artifacts/1_7b_repetition_fair_eval.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-1-7b-repetition-fair-subset.md"
+}

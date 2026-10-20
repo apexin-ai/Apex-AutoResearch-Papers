@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d49d3cab39af1375328d",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_2_1778773789.md",
+  "task_key": "loop_2_1778773789",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778773789.md",
+    "occurrence": 1,
+    "bytes": 6248,
+    "sha256": "824cd0f138695cea489c3989c972a827aa72ff80e10cdaa48110feb1bcb69cff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T15:26:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（rtx5090-4x 唯一服务器）。`rtx5090-4x` 和 `gpu-5090-4x-1` 是同一台机器的两个 SSH endpoint\n- submit_training_job 命令必须用 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹（conda 环境，不是 venv）\n- CED reward 存在 gaming 漏洞：空 triple 输出可拿 CED≈0.99。D014/D020 要求必须先实现 F1 门控（F1=0 时 CED reward=0）再启动 ced_kl001，**但本 session 的 ced_kl001_r3 提交时此门控尚未确认实现**——下一个\"你\"必须验证代码里是否已加门控\n- kl_coef>0 + QLoRA 4-bit 不兼容（D008）：kl_coef=0.05 在 step 5 KL 爆炸至 10^11。kl_coef=0.01 是当前探测值，尚未验证是否安全\n- `--lr` 不是有效参数，正确为 `--learning_rate`（ced_kl001 首次提交因此失败）\n- bjb2-12179 是配置中的第二台服务器，但本项目所有实验都在 rtx5090-4x 上跑，未使用过 bjb2\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：rtx5090-4x（= gpu-5090-4x-1），4× RTX 5090 32GB\n- **工作目录**：`/root/autodl-tmp/`（代码在 `/root/autodl-tmp/freige/`）\n- **Python**：`/root/miniconda3/bin/python`，conda base 环境，**无 venv**\n- **模型**：`/root/autodl-tmp/models/Qwen3-4B`（7.6GB，ModelScope 下载）\n- **SFT adapter**：`/root/autodl-tmp/sft_output`（QLoRA rank64/alpha128 4-bit NF4）\n- **数据**：`/root/autodl-tmp/data/docred/`（train 3027, dev 985）\n- **NLI cache**：`/root/autodl-tmp/nli_cache/`（预计算完成）\n- **HF cache**：`/root/autodl-tmp/.hf_cache`\n- **SFT eval 结果**：`/root/autodl-tmp/sft_eval_results/`（r2）和 `/root/autodl-tmp/sft_eval_r3_results/`（r3 运行中）\n- **活跃进程（截至 handoff 时刻）**：\n  - `mvp2_grpo_extract_r3`：PID 53149, cuda:2, tmux session, cron 监控中（仍在运行）\n  - `mvp2_sft_eval_r3`：PID 62352, cuda:1, tmux session（运行中）\n  - `mvp2_grpo_ced_kl001_r3`：PID 65740, cuda:0, tmux session（刚提交，PREPARING 状态）\n  - `mvp2_grpo_flatnli_r3`：PID 53292, cuda:3, **cron 报 \"Process gone, no sentinel, no W&B — escalating\"**——进程可能已死，需要立即 SSH 检查\n- **Worker 运行中**：`worker_ops_flatnli-backup-kill-fix-restart_20260514T152334`（正在处理 flatnli_r3 的 backup/kill/fix/restart 流程）\n\n### 3. 📊 当前状态\n**刚做完**：\n- mvp2_grpo_ced_kl001 因 `--lr` 参数名错误失败 → 自动重试 r2（同样失败，未加 `bash -c` 包裹）→ r3 已用正确命令重新提交到 cuda:0\n- mvp2_sft_eval_r2 完成（**SFT baseline 确立**）：F1=0.4057, Evi-F1=0.7979, EDCR=0.7118\n- mvp2_grpo_ced_r5 确认 mode collapse（step 250+, f1=0, 固定 34-token 输出）\n- mvp2_grpo_extract_r3 grad_norm=0 停滞但仍在跑\n\n**Registry 活跃实验**：\n| exp_id | GPU | 状态 | 摘要 |\n|--------|-----|------|------|\n| mvp2_grpo_extract_r3 | cuda:2 | RUNNING | extraction-only, kl=0, grad_norm=0 停滞 |\n| mvp2_grpo_flatnli_r3 | cuda:3 | RUNNING(?) | flat-NLI, kl=0, NLI 在 CPU 导致 ~100s/step（应 12s），cron 报进程消失 |\n| mvp2_sft_eval_r3 | cuda:1 | RUNNING | 统一 eval 代码重跑 SFT baseline |\n| mvp2_grpo_ced_kl001_r3 | cuda:0 | PREPARING | kl_coef=0.01 探测，刚提交 |\n\n**等待中**：\n- Worker `ops_flatnli-backup-kill-fix-restart` 回调（处理 flatnli_r3 进程消失问题）\n- mvp2_sft_eval_r3 完成回调（统一 eval 代码的 SFT baseline）\n- mvp2_grpo_extract_r3 完成回调（虽然 grad_norm=0 停滞，但在跑完取分析价值）\n- mvp2_grpo_ced_kl001_r3 完成回调（关键实验：kl_coef=0.01 是否能防 collapse）\n\n### 4. 📋 待办（条件触发式）\n- **flatnli Worker 回调到达** → 读取结果，确认 flatnli_r3 是否已重启/修复/放弃；若放弃则 cuda:3 空出可跑其他实验\n- **mvp2_sft_eval_r3 完成** → 对比 r2 结果验证 eval 代码一致性；若一致则 r2 metrics 为最终 SFT baseline\n- **mvp2_grpo_extract_r3 完成** → eval best+last checkpoint（与 SFT baseline 对比 F1），回答\"GRPO 本身是否改善 F1\"\n- **mvp2_grpo_ced_kl001_r3 完成且未 collapse** → eval checkpoint，对比 SFT baseline Evi-F1；≥2pp 则 MVP-2 核心 pass criteria 达成\n- **mvp2_grpo_ced_kl001_r3 collapse** → kl_coef=0.01 不够 → 需要更激进方案（kl_coef=0.1？全精度 ref model？FP16 训练？），向 Director 汇报 pivot 建议\n- **所有 GRPO 实验完成** → 按 ROADMAP 对比矩阵（CED vs SFT / flat-NLI vs SFT / CED vs flat-NLI / extract vs SFT / CED vs extract）做 MVP-2 判定\n- **Director 未收到本 session 的状态汇报**——下一个\"你\"启动后应立即向 Director 汇报当前实验状态\n\n### 5. 🎯 战略上下文\n**项目核心**：FREIGE = 用对比证据判别 (CED) reward 做 GRPO，让 LLM 在文档级 RE 中同时生成关系抽取结果和可验证证据。MVP-2 要证明 CED reward 确实能提升 Evi-F1。\n\n**关键决策链**：\n- D008：QLoRA 4-bit + kl_coef 不兼容（根因确认），所以 kl=0 或极小值\n- D014：CED reward 需要 F1 门控防 gaming（**尚未确认代码是否已实现**）\n- D020：ced_kl001 启动前必须修复 F1 门控（本 session 跳过了这步直接提交——**这是技术债**）\n\n**SFT baseline 已确立**：F1=0.4057, Evi-F1=0.7979, EDCR=0.7118。MVP-2 pass 需要 CED_Evi-F1 ≥ 0.8179（+2pp）。\n\n**最容易判断错的事**：\n1. **不要把 extract_r3 的 grad_norm=0 当成\"失败\"就 kill**——Director (D019) 明确要求跑完取分析价值\n2. **ced_r5 已确认 mode collapse 但 registry 仍是 RUNNING**——不要当它在正常训练，它的 checkpoint 全部 post-collapse 不可用\n3. **flatnli_r3 的 `--ced_reward_weight 1.0` 不是 bug**——stage 2 下 CED reward 实际是 flat-NLI（非对比版本），参数名有误导性\n4. **SFT eval 有 37.3% 截断率**——max_new_tokens=1024 对长文档不够，但这是所有模型共用的限制，对比仍然公平\n5. **NLI 推理在 CPU 导致 flatnli_r3 慢 10x**（~100s/step vs ~12s/step）——如果重启 flatnli，需要修复 reward_device 到 cuda\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778773789.md"
+}

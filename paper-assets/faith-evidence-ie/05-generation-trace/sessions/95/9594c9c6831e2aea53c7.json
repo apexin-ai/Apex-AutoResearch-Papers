@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9594c9c6831e2aea53c7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit test eval 4b rsft s42 no evi",
+  "task_key": "worker_submit_test_eval_4b_rsft_s42_no_evi_20260522T185509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_test_eval_4b_rsft_s42_no_evi_20260522T185509_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "25c256d899c1df236af3e2feadaf23db6b7e1d3c2eacdf79a34b78ab9512802d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 上已经在运行**完全相同的实验** (PID 194600, 已运行 ~39 分钟)：\n\n```\npython -m freige.eval.test_inference \\\n  --model_path /root/autodl-tmp/rsft_output_ced_s42_v2 \\\n  --base_model /root/autodl-tmp/models/Qwen3-4B \\\n  --sft_adapter /root/autodl-tmp/sft_output \\\n  --split test_revised --no_evidence --no-quantize \\\n  --output_dir /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_no_evi \\\n  --batch_size 1 --seed 42\n```\n\n唯一差异：正在运行的用 `--max_new_tokens 2048`，Director 指定的是 `1024`。\n\n**不提交。** 原因：\n1. C001 违反 — GPU 0 显存占用 9584 MiB >> 2GB\n2. 同 exp_id、同 output_dir 的任务已在运行，重复提交会冲突\n\n需要 Director 决定：等当前任务完成（max_new_tokens=2048 版本），还是 kill 后用 1024 重跑？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-test-eval-4b-rsft-s42-no-evi-copy-2.md"
+}

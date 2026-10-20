@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd5f539c7e4909e7f8d3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops kill v2r2 and status",
+  "task_key": "worker_ops_kill_v2r2_and_status_20260516T120838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_v2r2_and_status_20260516T120838_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "a3b8f8badaf2000af497035d9e3f1fee7645785aec84c4455050da286d8c8aad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**Kill 完成**: PID 339089 + 子进程 339094/339093 全部已终止，GPU 0 已释放。\n\n**当前 GPU 分配**:\n\n| GPU | 显存占用 | 实验 | PID |\n|-----|---------|------|-----|\n| **0** | **0 MiB / 32GB — 空闲** | — | — |\n| 1 | 23.3 GB / 32GB | `plan_006_qwen3_1_7b_no_evidence_eval_v3` (PID 337844) + `plan_016_llama_3_1_8b_sft_eval` (PID 340116) | 337844, 340116 |\n| 2 | 18.4 GB / 32GB | `qwen3_8b_no_evidence_eval_v2` (PID 335357) | 335357 |\n| 3 | 17.9 GB / 32GB | `plan_016_llama_3_1_8b_no_evidence_eval` (PID 339692) | 339692 |\n\n**空闲 GPU**: cuda:0（完全空闲）\n\n**注意**: GPU 1 上跑了两个 eval（1.7B v3 + 8B sft），1.7B 只占 ~5.4GB 所以能共存，但 8B 占 ~17.9GB，总计 23.3GB，还有余量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-v2r2-and-status.md"
+}

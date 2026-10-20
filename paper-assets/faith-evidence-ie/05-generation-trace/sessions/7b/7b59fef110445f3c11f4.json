@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b59fef110445f3c11f4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval lead1 ced filter",
+  "task_key": "worker_eval_lead1_ced_filter_20260517T123015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_lead1_ced_filter_20260517T123015_result.json",
+    "occurrence": 1,
+    "bytes": 1979,
+    "sha256": "e74571d97d3f5fcf314ac5a79388195c3e37c1f66ab4a3e04f710cd4d44bc6a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报结果：\n\n## CED Evidence Filter 运行结果\n\n### --help 参数列表\n| 参数 | 说明 |\n|------|------|\n| `--predictions` (required) | Path to predictions.json |\n| `--data_dir` | DocRED 数据目录 (默认 /root/autodl-tmp/data/docred) |\n| `--nli_model` | NLI 模型名/路径 |\n| `--nli_device` | NLI 模型设备 |\n| `--taus` | 过滤阈值列表 |\n| `--output_dir` (required) | 输出目录 |\n\n### 实际命令\n```bash\nCUDA_VISIBLE_DEVICES=0 python -m freige.eval.ced_evidence_filter \\\n  --predictions /root/autodl-tmp/eval_results/rsft_s43_dev_eval_preds/predictions.json \\\n  --taus 0.3 0.5 0.7 \\\n  --nli_model cross-encoder/nli-deberta-v3-base \\\n  --output_dir /root/autodl-tmp/lead1_ced_filter_results\n```\n注意：需要 `source /etc/network_turbo` + `HF_ENDPOINT=https://hf-mirror.com` 才能下载 NLI 模型；默认的本地缓存路径已失效。\n\n### 结果汇总\n\n| 设置 | F1 | Ign-F1 | Evi-F1 | EDCR | Evidence Kept |\n|------|-----|--------|--------|------|---------------|\n| **Baseline** | 0.4601 | 0.4512 | **0.8063** | **0.6542** | 25246 (100%) |\n| tau=0.3 | 0.4601 | 0.4512 | 0.7301 (-0.076) | 0.5797 (-0.074) | 15731 (62.3%) |\n| tau=0.5 | 0.4601 | 0.4512 | 0.7297 (-0.077) | 0.5784 (-0.076) | 15632 (61.9%) |\n| tau=0.7 | 0.4601 | 0.4512 | 0.7287 (-0.078) | 0.5776 (-0.077) | 15518 (61.5%) |\n\n### 关键发现\n- **F1/Ign-F1 完全不变**：CED filter 只移除 evidence 句子，不改变关系预测本身\n- **Evi-F1 和 EDCR 反而下降**：过滤掉 ~38% evidence 后，Evi-F1 从 0.806 降到 ~0.730，EDCR 从 0.654 降到 ~0.578\n- **tau 阈值敏感度低**：0.3/0.5/0.7 之间差异极小（保留率 62.3% vs 61.5%）\n- Evi-Precision 大幅提升（0.80 → 0.90），但 Evi-Recall 大幅下降（0.61 → 0.61），整体 Evi-F1 净下降\n\n输出保存在 `/root/autodl-tmp/lead1_ced_filter_results/`（含 filtered predictions、metrics 和 summary.json）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-lead1-ced-filter.md"
+}

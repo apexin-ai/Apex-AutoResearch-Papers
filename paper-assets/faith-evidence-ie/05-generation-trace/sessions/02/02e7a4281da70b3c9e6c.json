@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02e7a4281da70b3c9e6c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "harvest eval llama rsft s43 no evidence",
+  "task_key": "worker_harvest_eval_llama_rsft_s43_no_evidence_20260520T042343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_eval_llama_rsft_s43_no_evidence_20260520T042343_result.json",
+    "occurrence": 1,
+    "bytes": 967,
+    "sha256": "8ba174b85be8f154aeea82f738d57b2f214ce3e92135d903b7dd080f5307b0aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE，cron 已删除。\n\n## 指标汇总\n\n| 指标 | 值 |\n|------|-----|\n| **Ign-F1** | **0.5546** |\n| F1 (rel) | 0.5670 |\n| Evi-F1 | 0.0000 (expected, no-evidence) |\n| Evi-F1(TP) | 0.0000 |\n| Evi-F1(joint) | 0.0000 |\n| EDCR | 0.0000 |\n| Format OK | 983/985 (99.8%) |\n| Truncated | 183/985 |\n| Predictions | 18,008 |\n| Inference time | 7,798s (~2h10m) |\n\n## Evidence Tax 计算\n\n| Seed | With-evidence Ign-F1 | No-evidence Ign-F1 | Evidence Tax |\n|------|---------------------|--------------------|----|\n| **s42** | 0.5714 | 0.5526 | **-1.88pp** |\n| **s43** | 0.5662 | 0.5546 | **-1.16pp** |\n\ns43 evidence tax = 0.5546 − 0.5662 = **−1.16pp**（negative，no-evidence 更差）。\n\n两个 seed 一致表明：去掉 evidence 输出会损害关系抽取性能，但 s43 的 tax（-1.16pp）比 s42（-1.88pp）更小。Evidence tax 在 LLaMA-8B 上稳定为负，跨 seed 范围约 -1.2pp ~ -1.9pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-llama-rsft-s43-no-evidence.md"
+}

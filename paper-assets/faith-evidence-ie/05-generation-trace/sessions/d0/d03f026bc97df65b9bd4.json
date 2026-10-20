@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d03f026bc97df65b9bd4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval plan 011 step100",
+  "task_key": "worker_eval_plan_011_step100_20260515T144401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_011_step100_20260515T144401_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "a456fa081874641ddc0774e0ed014141f0d4e48a7d242e8c1a9c8804706ec714"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:3 上已经在跑 checkpoint-100 的 eval（PID 215286，启动 1 分 12 秒前）。**\n\n具体进程：\n\n| PID | 运行时间 | 任务 |\n|-----|---------|------|\n| 208155 | 47m | RSFT score filter (NLI scoring) |\n| 214562 | 3m29s | **checkpoint-80 eval** |\n| 215286 | 1m12s | **checkpoint-100 eval** ← 你要提交的任务 |\n\nPID 215286 的完整命令：\n```\npython -m freige.eval.inference \\\n  --model_path /root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-100 \\\n  --sft_adapter /root/autodl-tmp/sft_output \\\n  --base_model /root/autodl-tmp/models/Qwen3-4B \\\n  --data_path /root/autodl-tmp/data/docred \\\n  --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 \\\n  --output_dir /root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100 \\\n  --no-quantize\n```\n\ncheckpoint-100 eval 已经在运行中，无需重复提交。三个参数（`--base_model` + `--sft_adapter` + `--model_path`）都已正确传入。结果将输出到 `/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-011-step100.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ca477cfa628175e3033",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6.md",
+    "occurrence": 1,
+    "bytes": 4259,
+    "sha256": "f64e12d0ac41c321021c7d10b6f45e0a7b5d734a5c0ec43eb8e897916e5ed0b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T04:01:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只用 rtx5090-4x 上的 cuda:0/1/2/3（config gpu_ids=[0,1,2,3]），无其他服务器\n- **GRPO 方向已判死 (D031)**——registry 里 3 个 PREPARING 实验 (mvp2_grpo_ced_kl001_r2, kl001_r3, eval_ced_kl001_r4_last) 是遗留残骸，**绝对不要提交**\n- `--quantize` (4-bit) + merge_and_unload 在 RTX 5090 有 CUBLAS 错误——RSFT 训练用 bf16，不要加 --quantize\n- 运行目录必须 `cd /root/autodl-tmp`（不是 `/root/autodl-tmp/freige`），否则 Python import 找到内层空包\n- Qwen3 自带 generation_config 会静默覆盖 temperature/top_k——生成前必须显式 `model.generation_config.temperature=0.7; top_k=0; do_sample=True`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x (4× RTX 5090 32GB)，account=root\n- **工作目录**: `/root/autodl-tmp/freige`（代码），运行时 cwd=`/root/autodl-tmp`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型路径**: `/root/autodl-tmp/models/Qwen3-4B`（base）, `/root/autodl-tmp/sft_output`（SFT adapter）\n- **NLI 模型**: `/root/autodl-tmp/.hf_cache` 下 cross-encoder/nli-deberta-v3-base（已下载）\n- **HF cache**: `HF_HOME=/root/autodl-tmp/.hf_cache`\n- **RSFT 生成输出**: `/root/autodl-tmp/rsft_output/` 下按 shard 分目录\n- **活跃进程**: 4 个 RSFT 生成 shard\n  - s0: PID 135867, cuda:0\n  - s1: PID 136270, cuda:1（含 302 docs 断点续传）\n  - s2: PID 136649, cuda:2\n  - s3: PID 137985, cuda:3\n- **Cron**: 4 个活跃 cron 分别监控 s0-s3（reconcile 确认全部 still running）\n- **W&B**: project=faith-evidence-ie\n\n### 3. 📊 当前状态\n**刚完成**: D036 决策——撤销 D034/D035 diversity crisis（是监控 bug，不是生成质量问题），修复 diversity_metrics.py，恢复 4 卡并行 RSFT 生成。\n\n**正在跑**: 4 shard RSFT 候选生成（3027 docs × 8 generations, T=0.7, batch_size=1），预计 ~3h 完成全量。Shard 1 有 302 docs 断点续传基础，其余从头开始。\n\n**Registry**: 55 实验——4 RUNNING (rsft_gen s0-s3), 3 PREPARING (废弃 GRPO，不要碰), 48 DONE。成功 10 / 负向 11 / 失败 11。\n\n**无活跃 Worker**，无待处理 Director 决策。等 cron 回调。\n\n### 4. 📋 待办（条件触发式）\n- **任一 shard cron 回调 DONE** → spawn worker 检查 shard 输出完整性（doc 数 + diversity 抽检），更新 registry\n- **全部 4 shard 完成** → spawn worker 合并 4 shard JSONL → CED 打分筛选 (rsft_score_filter.py) → 验证筛选结果统计 → 注册 RSFT 训练实验 → 提交审批\n- **RSFT 训练审批通过** → submit_on_allocated，命令: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.rsft_trainer --rsft_data_path <filtered_path> --output_dir /root/autodl-tmp/rsft_train_output --wandb_project faith-evidence-ie`\n- **RSFT 训练完成** → spawn eval worker (batch_eval)，对比 SFT baseline (rel_f1=0.406)，pass 线: rel_f1 > 0.406\n- **任一 shard FAIL** → 查日志诊断，shard 级重启（支持 --start_idx 断点续传）\n\n### 5. 🎯 战略上下文\n- **核心结论链**: MVP-1 通过 (CED margin=0.48, acc=81.5%) → SFT warmup 通过 (eval_loss=0.72, token_acc=83.5%) → GRPO+QLoRA 全线 FAIL (D031: 在线 RL 导致 rel_f1 catastrophic forgetting，不是超参问题) → Pivot 到 RSFT+CED (D031)\n- **当前阶段**: RSFT 流水线 step 1/5（生成候选），后续: CED 打分 → 筛选 → RSFT 训练 → Eval\n- **D036 关键**: diversity crisis 是假警报——监控代码 triple 归一化不一致导致 unique count 被低估（报 1.0/8，实际 7.11/8）。已修复并验证。**不要再怀疑 T=0.7 diversity**\n- **易踩坑**: (1) 3 个 PREPARING GRPO 实验是死方向残骸，千万别提交 (2) rsft_generate 的 generation_config 覆盖陷阱——代码里已修复但如果重写脚本要记得 (3) submit_on_allocated 的 cwd 必须是 /root/autodl-tmp 不是 freige 子目录\n- **Contingency**: 如果 RSFT 效果不佳，备选方案: DPO+CED / Prompt-level 多样性 / CED 作为 reranker / 全参微调（见 ROADMAP.md）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-2.md"
+}

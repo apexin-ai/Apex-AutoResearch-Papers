@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2498490187e47fc63f88",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit test eval 4b rsft s42 no evi",
+  "task_key": "worker_submit_test_eval_4b_rsft_s42_no_evi_20260522T183543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_test_eval_4b_rsft_s42_no_evi_20260522T183543_result.json",
+    "occurrence": 1,
+    "bytes": 294,
+    "sha256": "8e741801403614ce7e5b65096f4e2dc42985e55c094f4d0c22536a14a2c7ed10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "该实验已经在运行中（PID 194600，已运行 19 分 53 秒，cuda:0）。命令完全匹配：`--no_evidence`、`--no-quantize`、`max_new_tokens 2048`、`test_revised` split 均正确。\n\n无需重复提交。实验 `test_eval_4b_rsft_s42_no_evi` 正在正常执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-test-eval-4b-rsft-s42-no-evi.md"
+}

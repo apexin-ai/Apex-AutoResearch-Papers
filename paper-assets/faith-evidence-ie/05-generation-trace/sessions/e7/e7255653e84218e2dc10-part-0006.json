@@ -1,0 +1,1019 @@
+{
+  "schema_version": "1.0",
+  "session_id": "e7255653e84218e2dc10",
+  "rounds": [
+    {
+      "number": 41,
+      "messages": [
+        {
+          "source_line": 901,
+          "timestamp": "2026-05-15T09:35:58.623609+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:mvp2_rsft_r2b]:\n实验 mvp2_rsft_r2b complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-000901"
+        },
+        {
+          "source_line": 902,
+          "timestamp": "2026-05-15T09:36:08.102437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "limit": "8",
+              "fields": "['status', 'conclusion', 'metrics', 'notes', 'hypothesis', 'updated_at', 'spec', 'server', 'gpu']"
+            }
+          },
+          "id": "event-000902"
+        },
+        {
+          "source_line": 903,
+          "timestamp": "2026-05-15T09:36:08.405545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp2_rsft_r2b\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"updated_at\\\": \\\"2026-05-15T09:35:57.138Z\\\", \\\"hypothesis\\\": \\\"RSFT r2b: data fix + training dynamics fix (1 epoch + filter truncated + LoRA alpha=32/r=64 scaling 0.5 + lr=1e-5). Isolates: is conservative LoRA scaling the key factor? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2b --learning_rate 1e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 32 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2b --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"183587\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_r2b.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:00:01.270Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"mvp2_rsft_r2a\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-15T08:59:59.018Z\\\", \\\"hypothesis\\\": \\\"RSFT r2a: data fix only (1 epoch + filter 170 truncated JSON → 2548 samples). Same LoRA alpha=128/r=64, lr=2e-5 as r1. Isolates: does 1 epoch + clean data alone fix the ontology collapse? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=\n…[truncated 5550 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 303
+          },
+          "id": "event-000903"
+        },
+        {
+          "source_line": 904,
+          "timestamp": "2026-05-15T09:36:23.525399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -15 ~/runs/faith-evidence-ie/mvp2_rsft_r2b.log"
+            }
+          },
+          "id": "event-000904"
+        },
+        {
+          "source_line": 905,
+          "timestamp": "2026-05-15T09:36:24.228979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000905"
+        },
+        {
+          "source_line": 906,
+          "timestamp": "2026-05-15T09:36:24.330205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 99%|█████████▊| 972/985 [01:14<00:01, 12.62it/s]\\\\u001b[A\\\\n\\\\r 99%|█████████▉| 974/985 [01:14<00:00, 11.95it/s]\\\\u001b[A\\\\n\\\\r 99%|█████████▉| 976/985 [01:14<00:00, 11.98it/s]\\\\u001b[A\\\\n\\\\r 99%|█████████▉| 978/985 [01:14<00:00, 12.37it/s]\\\\u001b[A\\\\n\\\\r 99%|█████████▉| 980/985 [01:14<00:00, 13.23it/s]\\\\u001b[A\\\\n\\\\r100%|█████████▉| 982/985 [01:14<00:00, 13.36it/s]\\\\u001b[A\\\\n\\\\r100%|█████████▉| 984/985 [01:15<00:00, 13.03it/s]\\\\u001b[A\\\\r                                                 \\\\r\\\\n\\\\r                                                 \\\\r\\\\u001b[A\\\\r100%|██████████| 160/160 [33:39<00:00,  4.03s/it]\\\\n\\\\r100%|██████████| 985/985 [01:15<00:00, 13.03it/s]\\\\u001b[A\\\\n\\\\r                                                 \\\\u001b[A\\\\r                                                 \\\\r\\\\r100%|██████████| 160/160 [33:39<00:00,  4.03s/it]\\\\r100%|██████████| 160/160 [33:39<00:00, 12.62s/it]\\\\n2026-05-15 17:34:07,044 INFO Saving model to /root/autodl-tmp/rsft_output_r2b\\\\n2026-05-15 17:34:08,075 INFO RSFT training complete.\\\\n{'eval_loss': 0.7545318007469177, 'eval_runtime': 75.2592, 'eval_samples_per_second': 13.088, 'eval_steps_per_second': 13.088, 'eval_entropy': 0.7103106677834757, 'eval_num_tokens': 2078849.0, 'eval_mean_token_accuracy': 0.8289948833170276, 'epoch': 1.0}\\\\n{'train_runtime': 2019.725, 'train_samples_per_second': 1.262, 'train_steps_per_second': 0.079, 'train_loss': 0.6700373858213424, 'epoch': 1.0}\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 804
+          },
+          "id": "event-000906"
+        },
+        {
+          "source_line": 907,
+          "timestamp": "2026-05-15T09:36:24.782623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"178055, GPU-7717ada7-a310-5d90-cecf-d3e06c550631, 16648 MiB, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000907"
+        },
+        {
+          "source_line": 908,
+          "timestamp": "2026-05-15T09:36:41.360741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -10 ~/runs/faith-evidence-ie/mvp2_rsft_r2a.log"
+            }
+          },
+          "id": "event-000908"
+        },
+        {
+          "source_line": 909,
+          "timestamp": "2026-05-15T09:36:41.812970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r100%|█████████▉| 982/985 [01:15<00:00, 13.22it/s]\\\\u001b[A\\\\n\\\\r100%|█████████▉| 984/985 [01:15<00:00, 12.93it/s]\\\\u001b[A\\\\r                                                 \\\\r\\\\n\\\\r                                                 \\\\r\\\\u001b[A\\\\r100%|██████████| 160/160 [35:32<00:00,  4.01s/it]\\\\n\\\\r100%|██████████| 985/985 [01:15<00:00, 12.93it/s]\\\\u001b[A\\\\n\\\\r                                                 \\\\u001b[A\\\\r                                                 \\\\r\\\\r100%|██████████| 160/160 [35:32<00:00,  4.01s/it]\\\\r100%|██████████| 160/160 [35:32<00:00, 13.33s/it]\\\\n2026-05-15 17:35:56,044 INFO Saving model to /root/autodl-tmp/rsft_output_r2a\\\\n2026-05-15 17:35:57,052 INFO RSFT training complete.\\\\n{'eval_loss': 0.7546843886375427, 'eval_runtime': 75.9942, 'eval_samples_per_second': 12.962, 'eval_steps_per_second': 12.962, 'eval_entropy': 0.696403496489307, 'eval_num_tokens': 2078849.0, 'eval_mean_token_accuracy': 0.8293322817323171, 'epoch': 1.0}\\\\n{'train_runtime': 2132.0048, 'train_samples_per_second': 1.195, 'train_steps_per_second': 0.075, 'train_loss': 0.6624050229787827, 'epoch': 1.0}\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000909"
+        },
+        {
+          "source_line": 910,
+          "timestamp": "2026-05-15T09:36:42.315565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -10 /root/autodl-tmp/eval_results/rsft_s44/eval.log"
+            }
+          },
+          "id": "event-000910"
+        },
+        {
+          "source_line": 911,
+          "timestamp": "2026-05-15T09:36:42.818022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n==================================================\\\\n  F1:          0.4655\\\\n  Ign-F1:      0.4655\\\\n  Evi-F1:      0.8087\\\\n  EDCR:        0.6350\\\\n  Format OK:   985/985 (100.0%)\\\\n  Truncated:   189/985\\\\n  Predictions: 15202\\\\n==================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000911"
+        },
+        {
+          "source_line": 912,
+          "timestamp": "2026-05-15T09:36:42.818490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/rsft_s44/"
+            }
+          },
+          "id": "event-000912"
+        },
+        {
+          "source_line": 913,
+          "timestamp": "2026-05-15T09:36:43.119989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 6620\\\\ndrwxr-xr-x  2 root root      82 May 15 17:17 .\\\\ndrwxr-xr-x 15 root root    4096 May 15 16:03 ..\\\\n-rw-r--r--  1 root root   11289 May 15 17:17 eval.log\\\\n-rw-r--r--  1 root root    1257 May 15 17:17 metrics.json\\\\n-rw-r--r--  1 root root 6755504 May 15 17:17 predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 301
+          },
+          "id": "event-000913"
+        },
+        {
+          "source_line": 914,
+          "timestamp": "2026-05-15T09:37:23.896626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/rsft_s44/metrics.json"
+            }
+          },
+          "id": "event-000914"
+        },
+        {
+          "source_line": 915,
+          "timestamp": "2026-05-15T09:37:24.298583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.47977989344047517,\\\\n  \\\\\\\"recall\\\\\\\": 0.452061558719447,\\\\n  \\\\\\\"f1\\\\\\\": 0.46550847457627126,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.47977989344047517,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.452061558719447,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.46550847457627126,\\\\n  \\\\\\\"tp\\\\\\\": 5493,\\\\n  \\\\\\\"pred_count\\\\\\\": 11449,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8117551462621885,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8057173581862174,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8087249831346974,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15125,\\\\n  \\\\\\\"edcr\\\\\\\": 0.635046273745738,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 15645,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 24636,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8010152284263959,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8010152284263959,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 789,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 789,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15202,\\\\n  \\\\\\\"n_truncated\\\\\\\": 189,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6011.5,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_s44\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_s44\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000915"
+        },
+        {
+          "source_line": 916,
+          "timestamp": "2026-05-15T09:37:24.850956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/rsft_r1/"
+            }
+          },
+          "id": "event-000916"
+        },
+        {
+          "source_line": 917,
+          "timestamp": "2026-05-15T09:37:25.152968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -3 /root/autodl-tmp/eval_results/rsft_s44/eval.log"
+            }
+          },
+          "id": "event-000917"
+        },
+        {
+          "source_line": 918,
+          "timestamp": "2026-05-15T09:37:25.254403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/eval_results/rsft_r1/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-000918"
+        },
+        {
+          "source_line": 919,
+          "timestamp": "2026-05-15T09:37:25.556429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 15:37:35,293 INFO Detected adapter at /root/autodl-tmp/rsft_output_s44, base: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 15:37:35,293 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 15:37:35,631 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-000919"
+        },
+        {
+          "source_line": 920,
+          "timestamp": "2026-05-15T09:37:56.248511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/ -name \"metrics.json\" -path \"*rsft*\""
+            }
+          },
+          "id": "event-000920"
+        },
+        {
+          "source_line": 921,
+          "timestamp": "2026-05-15T09:37:56.904363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 655
+          },
+          "id": "event-000921"
+        },
+        {
+          "source_line": 922,
+          "timestamp": "2026-05-15T09:37:56.955167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output/ -name \"trainer_state.json\" -type f"
+            }
+          },
+          "id": "event-000922"
+        },
+        {
+          "source_line": 923,
+          "timestamp": "2026-05-15T09:37:57.759680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output/checkpoint-350/trainer_state.json\\\\n/root/autodl-tmp/rsft_output/checkpoint-400/trainer_state.json\\\\n/root/autodl-tmp/rsft_output/checkpoint-450/trainer_state.json\\\\n/root/autodl-tmp/rsft_output/checkpoint-500/trainer_state.json\\\\n/root/autodl-tmp/rsft_output/checkpoint-510/trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 804
+          },
+          "id": "event-000923"
+        },
+        {
+          "source_line": 924,
+          "timestamp": "2026-05-15T09:37:57.760125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -r \"rel_f1\\|n_documents\\|eval_max_docs\" /root/autodl-tmp/rsft_output/eval_results/ 2>/dev/null"
+            }
+          },
+          "id": "event-000924"
+        },
+        {
+          "source_line": 925,
+          "timestamp": "2026-05-15T09:37:57.810695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000925"
+        },
+        {
+          "source_line": 926,
+          "timestamp": "2026-05-15T09:38:02.494838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output/ -name \"eval_results*\" -type d"
+            }
+          },
+          "id": "event-000926"
+        },
+        {
+          "source_line": 927,
+          "timestamp": "2026-05-15T09:38:02.997438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000927"
+        },
+        {
+          "source_line": 928,
+          "timestamp": "2026-05-15T09:38:02.997948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output/ -name \"metrics*\" -type f"
+            }
+          },
+          "id": "event-000928"
+        },
+        {
+          "source_line": 929,
+          "timestamp": "2026-05-15T09:38:03.450375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000929"
+        },
+        {
+          "source_line": 930,
+          "timestamp": "2026-05-15T09:38:03.551222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/rsft_output/"
+            }
+          },
+          "id": "event-000930"
+        },
+        {
+          "source_line": 931,
+          "timestamp": "2026-05-15T09:38:03.905564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-350\\\\ncheckpoint-400\\\\ncheckpoint-450\\\\ncheckpoint-500\\\\ncheckpoint-510\\\\nmerges.txt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 354
+          },
+          "id": "event-000931"
+        },
+        {
+          "source_line": 932,
+          "timestamp": "2026-05-15T09:38:31.260445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -r \"eval_max_docs\\|n_documents\\|n_total\" /root/autodl-tmp/rsft_output/checkpoint-510/trainer_state.json"
+            }
+          },
+          "id": "event-000932"
+        },
+        {
+          "source_line": 933,
+          "timestamp": "2026-05-15T09:38:31.411632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 151
+          },
+          "id": "event-000933"
+        },
+        {
+          "source_line": 934,
+          "timestamp": "2026-05-15T09:38:35.280360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep \"n_documents\" /root/autodl-tmp/rsft_output/checkpoint-510/trainer_state.json"
+            }
+          },
+          "id": "event-000934"
+        },
+        {
+          "source_line": 935,
+          "timestamp": "2026-05-15T09:38:35.583404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep \"rel_f1\" /root/autodl-tmp/rsft_output/checkpoint-510/trainer_state.json"
+            }
+          },
+          "id": "event-000935"
+        },
+        {
+          "source_line": 936,
+          "timestamp": "2026-05-15T09:38:35.634128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 353
+          },
+          "id": "event-000936"
+        },
+        {
+          "source_line": 937,
+          "timestamp": "2026-05-15T09:38:35.987408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-000937"
+        },
+        {
+          "source_line": 938,
+          "timestamp": "2026-05-15T09:38:42.277834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep \"eval\" ~/runs/faith-evidence-ie/mvp2_rsft_train_r1.log"
+            }
+          },
+          "id": "event-000938"
+        },
+        {
+          "source_line": 939,
+          "timestamp": "2026-05-15T09:38:42.630611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 13:38:15,893 INFO Loading eval data from /root/autodl-tmp/data/docred (max 50 docs for task eval)\\\\n2026-05-15 13:38:16,589 INFO Task eval enabled: 50 docs, 12275 gold triples\\\\n\\\\rAdding EOS to eval dataset:   0%|          | 0/985 [00:00<?, ? examples/s]\\\\rAdding EOS to eval dataset: 100%|██████████| 985/985 [00:00<00:00, 47125.94 examples/s]\\\\n\\\\rTokenizing eval dataset:   0%|          | 0/985 [00:00<?, ? examples/s]\\\\rTokenizing eval dataset:   7%|▋         | 65/985 [00:00<00:01, 640.80 examples/s]\\\\rTokenizing eval dataset:  14%|█▎        | 134/985 [00:00<00:01, 659.74 examples/s]\\\\rTokenizing eval dataset:  21%|██        | 204/985 [00:00<00:01, 675.07 examples/s]\\\\rTokenizing eval dataset:  28%|██▊       | 274/985 [00:00<00:01, 680.30 examples/s]\\\\rTokenizing eval dataset:  35%|███▍      | 344/985 [00:00<00:00, 684.14 examples/s]\\\\rTokenizing eval dataset:  45%|████▍     | 442/985 [00:00<00:00, 667.43 examples/s]\\\\rTokenizing eval dataset:  52%|█████▏    | 512/985 [00:00<00:00, 673.52 examples/s]\\\\rTokenizing eval dataset:  59%|█████▉    | 583/985 [00:00<00:00, 681.15 examples/s]\\\\rTokenizing eval dataset:  66%|██████▋   | 655/985 [00:00<00:00, 690.88 examples/s]\\\\rTokenizing eval dataset:  74%|███████▎  | 726/985 [00:01<00:00, 692.68 examples/s]\\\\rTokenizing eval dataset:  81%|████████  | 799/985 [00:01<00:00, 702.17 examples/s]\\\\rTokenizing eval dataset:  89%|████████▉ | 876/985 [00:01<00:00, 717.77 examples/s]\\\\rTokenizing eval dataset:  99%|█████████▉| 976/985 [00:01<00:00, 692.68 examples/s]\\\\rTokenizing eval dataset: 100%|██████████| 985/985 [00:01<00:00, 634.79 examples/s]\\\\n2026-05-15 14:16:29,874 INFO Task eval @ step 170: F1=0.0458, Ign-F1=0.0458, Evi-F1=0.7514, EDCR=0.6457 (881 preds)\\\\n\\\\r                                                 \\\\u001b[A\\\\r 34%|███▎      | 171/510 [39:28<39:38:22, 420.95s/it]\\\\r 34%|███▎      | 172/510 [39:35<27:52:02, 296.81s/it]\\\\r 34%|███▍      | 173/510 \n…[truncated 6496 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 352
+          },
+          "id": "event-000939"
+        },
+        {
+          "source_line": 940,
+          "timestamp": "2026-05-15T09:39:36.057336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — CRITICAL: RSFT r1 \"灾难性失败\"实为评估 Bug，s44 全量 eval 通过 MVP-2\n\n**结论**: CRITICAL（之前的审查结论需要撤回）\n\n### 核心发现\n\n- [severity: critical] **r1 的 rel_f1=0.0483 是评估代码 bug，不是模型失败。** 训练日志明确显示：\n\n  ```\n  Loading eval data from /root/autodl-tmp/data/docred (max 50 docs for task eval)\n  Task eval enabled: 50 docs, 12275 gold triples\n  ```\n\n  评估仅在 50 个文档上生成预测（pred=848），但 gold triples 使用了全量 dev set 的 12275 条。这导致 recall 被人为压到 ~3.5%（50/985 docs），F1 必然极低。**这不是 catastrophic forgetting，是 denominator mismatch bug。**\n\n- [severity: critical] **s44 全量 dev eval（985 docs, no-quantize）通过 MVP-2 两项标准：**\n\n  | 指标 | SFT Baseline | RSFT s44 | 变化 | 判定 |\n  |------|-------------|----------|------|------|\n  | rel_f1 | 0.4057 | **0.4655** | **+5.98pp** | ✅ PASS |\n  | evi_f1 | 0.7979 | **0.8087** | **+1.08pp** | ✅ PASS |\n  | edcr | 0.7118 | **0.6350** | **-7.68pp** | ✅ 更少 distractor |\n  | pred_count | 12234 | 11449 | -785 | 合理 |\n  | n_truncated | 367 | 189 | -178 | 改善 |\n  | format_ok | 99.8% | 100% | +0.2pp | — |\n\n  数据来源：`/root/autodl-tmp/eval_results/rsft_s44/metrics.json`（独立核实）\n\n- [severity: critical] **D037 pivot 决策基于错误数据**。D037 称\"RSFT 全线 FAIL（rel_f1=0.0483）\"，但 0.0483 是 50-doc 评估 bug 产物。r1 从未接受过正确的全量 dev eval。r1 和 s44 的训练指标几乎完全相同（eval_loss: 0.7624 vs 0.7625, token_accuracy: 0.8293 vs 0.8290），r1 全量 eval 结果大概率与 s44 一致。\n\n- [severity: warning] **我此前的 critical 审查同样受此 bug 误导**。我在之前的审查中将 0.0483 标为\"灾难性失败\"并类比 GRPO 的 catastrophic forgetting——该结论需要撤回。RSFT 与 GRPO 的失败模式根本不同：GRPO 确实在全量 eval 下崩塌（6 个 checkpoint 均 <0.014），但 RSFT 实际上成功了。\n\n### 紧急建议\n\n1. **立即对 r1 模型做全量 dev eval**（`python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output ...`），确认 r1 也通过 MVP-2\n2. **修复 rsft_trainer 的内联评估代码**：`--eval_max_docs N` 时 gold triples 必须也限制为对应 N docs 的子集\n3. **D037 需要撤回或大幅修正**：RSFT 并未失败，CED-as-reranker 可作为增强而非替代\n4. **r2a/r2b 仍有分析价值**：作为 ablation 数据点保留，但不再是 \"救命修复\"\n\n### 影响评估\n\n**RSFT top_k=1 实际上 PASS MVP-2。** CED 信号通过 rejection sampling 成功提升了 rel_f1（+5.98pp）和 evi_f1（+1.08pp），同时降低了 EDCR（-7.68pp）。这是 CED 核心假设的首次端到端验证——在不引入 catastrophic forgetting 的前提下改善了证据质量。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000940"
+        },
+        {
+          "source_line": 941,
+          "timestamp": "2026-05-15T09:39:41.335206+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 5277
+          },
+          "id": "event-000941"
+        },
+        {
+          "source_line": 942,
+          "timestamp": "2026-05-15T09:39:43.684827+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**极其关键的发现**：r1 的 rel_f1=0.0483 是评估 bug 导致的虚假灾难。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-000942"
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "messages": [
+        {
+          "source_line": 943,
+          "timestamp": "2026-05-15T09:39:44.273964+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:mvp2_rsft_r2a]:\n实验 mvp2_rsft_r2a complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "cron:on_complete:mvp2_rsft_r2a"
+          },
+          "id": "event-000943"
+        },
+        {
+          "source_line": 944,
+          "timestamp": "2026-05-15T09:39:54.329475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -10 ~/runs/faith-evidence-ie/mvp2_rsft_r2a.log"
+            }
+          },
+          "id": "event-000944"
+        },
+        {
+          "source_line": 945,
+          "timestamp": "2026-05-15T09:39:55.337767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "limit": "6",
+              "fields": "['status', 'conclusion', 'metrics', 'notes', 'hypothesis', 'updated_at']"
+            }
+          },
+          "id": "event-000945"
+        },
+        {
+          "source_line": 946,
+          "timestamp": "2026-05-15T09:39:55.916478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r100%|█████████▉| 982/985 [01:15<00:00, 13.22it/s]\\\\u001b[A\\\\n\\\\r100%|█████████▉| 984/985 [01:15<00:00, 12.93it/s]\\\\u001b[A\\\\r                                                 \\\\r\\\\n\\\\r                                                 \\\\r\\\\u001b[A\\\\r100%|██████████| 160/160 [35:32<00:00,  4.01s/it]\\\\n\\\\r100%|██████████| 985/985 [01:15<00:00, 12.93it/s]\\\\u001b[A\\\\n\\\\r                                                 \\\\u001b[A\\\\r                                                 \\\\r\\\\r100%|██████████| 160/160 [35:32<00:00,  4.01s/it]\\\\r100%|██████████| 160/160 [35:32<00:00, 13.33s/it]\\\\n2026-05-15 17:35:56,044 INFO Saving model to /root/autodl-tmp/rsft_output_r2a\\\\n2026-05-15 17:35:57,052 INFO RSFT training complete.\\\\n{'eval_loss': 0.7546843886375427, 'eval_runtime': 75.9942, 'eval_samples_per_second': 12.962, 'eval_steps_per_second': 12.962, 'eval_entropy': 0.696403496489307, 'eval_num_tokens': 2078849.0, 'eval_mean_token_accuracy': 0.8293322817323171, 'epoch': 1.0}\\\\n{'train_runtime': 2132.0048, 'train_samples_per_second': 1.195, 'train_steps_per_second': 0.075, 'train_loss': 0.6624050229787827, 'epoch': 1.0}\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1587
+          },
+          "id": "event-000946"
+        },
+        {
+          "source_line": 947,
+          "timestamp": "2026-05-15T09:39:55.917170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp2_rsft_r2a\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"updated_at\\\": \\\"2026-05-15T09:36:16.117Z\\\", \\\"hypothesis\\\": \\\"RSFT r2a: data fix only (1 epoch + filter 170 truncated JSON → 2548 samples). Same LoRA alpha=128/r=64, lr=2e-5 as r1. Isolates: does 1 epoch + clean data alone fix the ontology collapse? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\"}, \\\"mvp2_rsft_r2b\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"updated_at\\\": \\\"2026-05-15T09:35:57.138Z\\\", \\\"hypothesis\\\": \\\"RSFT r2b: data fix + training dynamics fix (1 epoch + filter truncated + LoRA alpha=32/r=64 scaling 0.5 + lr=1e-5). Isolates: is conservative LoRA scaling the key factor? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\"}, \\\"mvp2_rsft_train_r2_fix\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-15T08:57:45.267Z\\\", \\\"hypothesis\\\": \\\"RSFT r2 fix: 4 fixes based on r1 diagnosis. 1) 1 epoch (vs 3), 2) LoRA alpha=32/r=64 (scaling 0.5 vs 2.0), 3) filtered truncated JSON (~2548 vs 2718 samples), 4) lr=1e-5 (vs 2e-5). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp2_rsft_train_r1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T08:35:12.854Z\\\", \\\"hypothesis\\\": \\\"RSFT training on CED-filtered data (2718 samples, mean CED=0.668). SFT warmup baseline: rel_f1=0.4057, evi_f1=0.798. Pass criteria: rel_f1 > 0.4057 AND evi_f1 > 0.798.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.0483, \\\"num_preds\\\": 848, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"failure_mode\\\": \\\"relation_ontology_collapse_to_freetext\\\", \\\"epoch1_eval_loss\\\": 0.756, \\\"epoch2_eval_loss\\\": 0.759}}, \\\"mvp2_rsft_diagnosis\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-15T08:35:10.200Z\\\", \\\"hypothesis\\\": \\\"RSFT failure root cause: rel_f1=0.0483 vs SFT 0.4057. Diagnose: training data distribution (relation count), step-170 checkpoint output analysis, SFT vs RSFT data comparison.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"root_cause\\\": \\\"overfitting_plus_sft_kno\n…[truncated 722 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 579
+          },
+          "id": "event-000947"
+        },
+        {
+          "source_line": 948,
+          "timestamp": "2026-05-15T09:39:55.917527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000948"
+        },
+        {
+          "source_line": 949,
+          "timestamp": "2026-05-15T09:39:56.370143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"178055, GPU-7717ada7-a310-5d90-cecf-d3e06c550631, 16648 MiB, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000949"
+        },
+        {
+          "source_line": 950,
+          "timestamp": "2026-05-15T09:40:14.368140+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "r2a 训练正常完成（eval_loss=0.7547, token_accuracy=0.8293，与 r1/r2b 几乎相同）。GPU 1/2/3 均空闲，仅 GPU 0 运行 reranker POC。\n\n关键等待项：Agent 是否已响应我的 critical 审查，启动 r1/r2a/r2b 的全量 dev eval（985 docs）。训练指标在三个模型间几乎一致，再次佐证 r1 的 \"灾难性失败\" 是 50-doc eval bug 而非真实模型问题。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-000950"
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "messages": [
+        {
+          "source_line": 951,
+          "timestamp": "2026-05-15T09:40:44.714957+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000951"
+        },
+        {
+          "source_line": 952,
+          "timestamp": "2026-05-15T09:41:30.816461+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- **r1 的 rel_f1=0.0483 是评估 bug，不是模型失败**。rsft_trainer 的 `--eval_max_docs 50` 只在 50 docs 上生成预测，但 gold triples 用了全量 985 docs 的 12275 条，recall 被人为压到 ~3.5%。s44 全量 eval 实际通过 MVP-2（rel_f1=0.4655）。D037 pivot 基于错误数据，需撤回。\n- r1 registry 里的 conclusion=negative 和 failure_mode=\"relation_ontology_collapse_to_freetext\" 是基于上述 bug 的误判，**不要引用这些作为 RSFT 失败的证据**。\n- CED reranker POC（PID 178055）仍在 GPU 0 运行，不要 kill——它作为增强方案仍有价值，但不再是\"唯一活路\"。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`rtx5090-4x`（root），4× RTX 5090 32GB。另有 `bjb2-12179`（root）未使用。\n- 工作目录：`/root/autodl-tmp/freige`（代码），`/root/autodl-tmp/` 为数据盘根\n- Python：`/root/miniconda3/bin/python`，conda base 环境\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`，SFT adapter：`/root/autodl-tmp/sft_output`\n- 数据：`/root/autodl-tmp/data/docred/`（train_annotated + dev）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- RSFT 输出：`rsft_output/`(r1/seed42), `rsft_output_s43/`, `rsft_output_s44/`, `rsft_output_r2a/`, `rsft_output_r2b/`\n- RSFT 训练数据：`rsft_filtered/rsft_train.jsonl`(2718), `rsft_filtered/rsft_train_clean.jsonl`(2548), `rsft_filtered_topk3/rsft_train.jsonl`(8037)\n- 活跃进程：PID 178055（CED reranker POC，GPU 0，16.6 GB）\n- GPU 1/2/3 空闲\n\n### 3. 📊 当前状态\n**刚发现并报告**：r1 的 0.0483 是 50-doc eval bug，s44 全量 eval 通过 MVP-2（rel_f1=0.4655, evi_f1=0.8087）。已通过 reviewer_post_to_director 发送 CRITICAL 报告，等待 Director 响应。\n\nRegistry 关键状态：\n- `mvp2_rsft_r2a` / `mvp2_rsft_r2b`：ANALYZING（训练完成，待全量 eval）\n- `mvp2_ced_reranker_poc`：QUEUED（PID 178055 实际在 GPU 0 运行，~54%+）\n- `mvp2_rsft_train_r1`：DONE/negative（**错误结论，需 Director 修正**）\n- `mvp2_eval_rsft_s44`：PREPARING（**实际已完成**，结果在 `/root/autodl-tmp/eval_results/rsft_s44/metrics.json`）\n- `mvp2_rsft_train_r1_s43`：ANALYZING（训练完成，未做全量 eval）\n- `mvp2_rsft_ced_scoring_topk3`：PENDING（**实际已完成**，8037 samples，registry 未更新）\n\n### 4. 📋 待办\n- Director 回应 eval bug 报告 → 确认 D037 撤回 → 协助更新 r1 conclusion 和 ROADMAP\n- r1 全量 dev eval 结果出来 → 核实是否与 s44 一致（预期 rel_f1 ~0.46）\n- r2a/r2b 全量 dev eval 完成 → 对比 r1/s44，判断 1-epoch / LoRA-scaling 修改的增量效果\n- CED reranker POC 完成 → 审查结果，判断 reranker 能否在 RSFT 基础上进一步提升\n- Agent 修复 rsft_trainer eval bug（gold triples 须限制为 eval_max_docs 对应的子集）→ 核实修复正确性\n\n### 5. 🎯 战略上下文\n- **MVP-2 实际上已通过**：RSFT s44 全量 eval rel_f1=0.4655（+5.98pp vs SFT），evi_f1=0.8087（+1.08pp），edcr 从 0.7118 降至 0.6350。CED 通过 rejection sampling 成功提升了关系抽取和证据质量。\n- **GRPO 确实失败**（D031/D033）：6 个 checkpoint 全量 eval 均 <0.014 rel_f1，这是真的 catastrophic forgetting。但 RSFT 与 GRPO 不同——RSFT 成功了。\n- **最易判断错的事**：看到 r1 registry 的 conclusion=negative / rel_f1=0.0483 不要相信——这是 50-doc eval bug。必须看 `/root/autodl-tmp/eval_results/rsft_s44/metrics.json` 的全量结果。\n- **决策链**：D002(MVP-1 PASS) → D031(GRPO 判死) → D037(RSFT \"失败\" pivot，**需撤回**) → 实际 RSFT PASS\n- r2a/r2b 作为 ablation 仍有价值但不再是\"救命实验\"。3 seed 训练指标方差 <0.04%，模型稳定。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-000952"
+        }
+      ]
+    }
+  ]
+}

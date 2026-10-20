@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5a9959485f03a319f40",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check redocred rsft eval r2",
+  "task_key": "worker_ops_check_redocred_rsft_eval_r2_20260516T173222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_redocred_rsft_eval_r2_20260516T173222_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "31f4a6eecffcb02be012ff8affc5dc8e7fa894dc0484e697a9a8350d5dc745ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan_007_redocred_rsft_eval_r2**: 进程正常完成，conclusion=**negative**。\n\n结果摘要：\n\n| 指标 | 值 |\n|------|------|\n| Ign-F1 | 0.0026 |\n| F1 | 0.0025 |\n| Evi-F1 | 0.8837 |\n| EDCR | 0.9978 |\n| Format OK | 489/493 (99.2%) |\n| field_compliance | 0% |\n| evidence_format | 0% |\n| TP | 19 / 7431 gold |\n| Truncated | 117/493 |\n\nCED-RSFT adapter (`rsft_output_ced_s43/checkpoint-510`) 在 Re-DocRED 上关系抽取几乎完全失败（Ign-F1=0.0026 vs SFT baseline 0.3659）。field_compliance_rate=0 说明模型输出格式与 Re-DocRED 的 gold schema 不匹配，7931 条预测中只有 19 条命中。跨数据集迁移未成功。\n\nCron 已清除，registry 已更新为 DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-redocred-rsft-eval-r2.md"
+}

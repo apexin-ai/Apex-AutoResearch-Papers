@@ -1,0 +1,293 @@
+{
+  "schema_version": "1.0",
+  "id": "bb0d26b88c451c9082b3",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "analysis eval flat nli results",
+  "task_key": "worker_analysis_eval_flat_nli_results_20260515T180038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_eval_flat_nli_results_20260515T180038.jsonl",
+    "occurrence": 1,
+    "bytes": 12254,
+    "sha256": "adb5676211489cf55c072843cc40924ae7d72071aa57e6e35fe0f0ec25eb3720"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T18:01:33.504821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_flat_nli_results_20260515T180038",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T18:01:33.505413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_flat_nli_results_20260515T180038",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T18:01:33.505680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_flat_nli_results_20260515T180038",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/rsft_flat_nli/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T18:01:33.505854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_flat_nli_results_20260515T180038",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -50 /root/runs/faith-evidence-ie/eval_plan_001_flat_nli.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T18:01:33.506042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 6648\\\\ndrwxr-xr-x  2 root root      62 May 16 01:58 .\\\\ndrwxr-xr-x 25 root root    4096 May 16 01:20 ..\\\\n-rw-r--r--  1 root root    1467 May 16 01:58 metrics.json\\\\n-rw-r--r--  1 root root 6795854 May 16 01:58 predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_flat_nli_results_20260515T180038",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T18:01:33.507351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 00:57:50,413 INFO Detected adapter at /root/autodl-tmp/rsft_output_flat_nli, base: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-16 00:57:50,413 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-16 00:57:50,747 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-16 00:57:50,975 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.36it/s]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.36it/s]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.01it/s]\\\\n2026-05-16 00:57:52,503 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\\\n2026-05-16 00:57:55,697 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_flat_nli\\\\n2026-05-16 00:57:57,329 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-16 00:57:57,424 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-16 00:57:57,872 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/62 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n\\\\rInference:   2%|▏         | 1/62 [00:57<58:30, 57.56s/it]\\\\rInference:   3%|▎         | 2/62 [01:54<57:26, 57.44s/it]\\\\rInference:   5%|▍         | 3/62 [02:55<57:52, 58.86s/it]\\\\rInference:   6%|▋         | 4/62 [03:54<57:03, 59.03s/it]\\\\rInference:   8%|▊         | 5/62 [04:55<56:38, 59.63s/it]\\\\rInference:  10%|▉         | 6/62 [05:55<55:55, 59.92s/it]\\\\rInference:  11%|█▏        | 7/62 [06:55<54:\n…[truncated 4257 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_flat_nli_results_20260515T180038",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T18:01:33.507698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_flat_nli_results_20260515T180038",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'exp_id': 'eval_plan_001_flat_nli'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T18:01:33.507912+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.407}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_flat_nli_results_20260515T180038",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T18:01:33.508132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_flat_nli_results_20260515T180038",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T18:01:33.508406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.46711958888598554,\\\\n  \\\\\\\"recall\\\\\\\": 0.4413628507941733,\\\\n  \\\\\\\"f1\\\\\\\": 0.4538761002031144,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.46711958888598554,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4413628507941733,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4538761002031144,\\\\n  \\\\\\\"tp\\\\\\\": 5363,\\\\n  \\\\\\\"pred_count\\\\\\\": 11481,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8143277542762553,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.7944554100125606,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.804268846503179,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15173,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6430730783183523,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 15954,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 24809,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3581005882664688,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.35081252271429314,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.35441909257802257,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6757,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 18869,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7888324873096447,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7888324873096447,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 777,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 777,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15294,\\\\n  \\\\\\\"n_truncated\\\\\\\": 199,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 3630.6,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_flat_nli\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadat\n…[truncated 35 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_flat_nli_results_20260515T180038",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T18:01:33.508730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_flat_nli_results_20260515T180038",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_plan_001_flat_nli",
+              "field": "metrics",
+              "value": "{'rel_f1': 0.4539, 'ign_f1': 0.4539, 'evi_f1': 0.8043, 'edcr': 0.6431, 'precision': 0.4671, 'recall': 0.4414, 'evi_precision': 0.8143, 'evi_recall': 0.7945, 'format_ok_rate': 1, 'n_truncated': 199, 'n_documents': 985, 'n_predictions': 15294, 'inference_time_seconds': 3631}",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T18:01:33.509024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_plan_001_flat_nli\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:57:09.693Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:01:16.362Z\\\", \\\"hypothesis\\\": \\\"Dev eval of flat-NLI RSFT (plan_001). 对比 CED RSFT (3-seed mean rel_f1=0.4596). flat-NLI ≈ CED → CED contrastive margin 无增益; CED >> flat-NLI → margin 关键。\\\", \\\"parent\\\": \\\"plan_001_rsft_flat_nli\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli --sft_adapter /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli --no-quantize\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"228508\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_plan_001_flat_nli.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T16:57:46.175Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + RSFT-flat-NLI\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli\\\", \\\"eval_data\\\": \\\"docred dev (985 docs)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T17:58:40.529Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:58:48.797356+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.4539, \\\"ign_f1\\\": 0.4539, \\\"evi_f1\\\": 0.8043, \\\"edcr\\\": 0.6431, \\\"precision\\\": 0.4671, \\\"recall\\\": 0.4414, \\\"evi_precision\\\": 0.8143, \\\"evi_recall\\\": 0.7945, \\\"format_ok_rate\\\": 1, \\\"n_truncated\\\": \n…[truncated 848 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_flat_nli_results_20260515T180038",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T18:01:33.511458+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已有详细 notes（hook 自动填充）。metrics 已更新完毕。\n\n**Flat-NLI RSFT 结果汇总：**\n\n| 指标 | Flat-NLI | CED RSFT (3-seed mean) | Δ |\n|------|----------|----------------------|---|\n| rel_f1 | 0.4539 | 0.4596 ± 0.0128 | -0.57pp |\n| evi_f1 | 0.8043 | 0.8126 | -0.83pp |\n| edcr | 0.6431 | — | — |\n| format_ok | 100% | 100% | — |\n| truncated | 199/985 | ~170/985 | — |\n\n**结论：CED contrastive margin 对 RSFT filtering 无显著增益。**\n\n- rel_f1 差距仅 0.57pp，远在 CED 3-seed 标准差（σ=0.0128）范围内\n- flat-NLI 单 seed=42 的 0.4539 甚至高于 CED seed=42 的 0.4449（+0.90pp）\n- 两种 RSFT 均大幅超过 SFT baseline（+4.8pp），说明 RSFT 本身有效，但 contrastive margin 不是关键因素\n- 论文中 CED 的价值应聚焦在 reranker/GRPO reward 等其他用途，而非 RSFT filtering 的 margin 设计"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_flat_nli_results_20260515T180038"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-eval-flat-nli-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b0aa7b8417c4c65d16c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d140 fair tax 1 7b 8b",
+  "task_key": "worker_analysis_d140_fair_tax_1_7b_8b_20260521T103937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d140_fair_tax_1_7b_8b_20260521T103937_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "d4299ab154d020756448ce2e851e836d8314b140c61b949b69fe0acb672f7d04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 结果汇总\n\n| 模型 | fair_subset | fair_with_evi | fair_no_evi | fair_tax |\n|------|------------|---------------|-------------|----------|\n| **1.7B** | 971 docs | 0.4838 | 0.4275 | **-5.63pp** |\n| **8B** | 984 docs | 0.5015 | 0.5019 | **+0.04pp** |\n\n1.7B fair tax 从 raw -5.73pp 收窄到 -5.63pp（14 个 no-evi format failure 被排除）。8B 几乎无 tax（+0.04pp），仅 1 个 with-evi format failure。\n\nJSON 文件：\n- `/root/autodl-tmp/eval_results/d140_1_7b_matched_fair_tax_2048.json`\n- `/root/autodl-tmp/eval_results/d140_8b_matched_fair_tax_2048.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d140-fair-tax-1-7b-8b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f315a4b06fc7691d8d7a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops sft eval progress",
+  "task_key": "worker_ops_sft-eval-progress_20260514T124134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sft-eval-progress_20260514T124134_result.json",
+    "occurrence": 1,
+    "bytes": 1862,
+    "sha256": "b2d0dcd0c12e3e412efc309d90e0caec31c941a7de6e7ccb7a71a0f6b42aa8a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 当前进度\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **34/247 batches (14%)** |\n| 已运行 | 52 min 56 sec（自 19:48 开始） |\n| 平均速度 | ~95s/batch |\n| 剩余预估 | **5h 38m**（约 02:20 完成） |\n\n### 运行参数\n\n```\n--batch_size 4\n--max_new_tokens 1024\n--quantize (4-bit NF4)\nCUDA_VISIBLE_DEVICES=1\n```\n\n### GPU 状态\n\nGPU 1 显存：**10,666 MiB / 32,607 MiB (33%)**，利用率 88%。\n\n### 加速分析\n\n**瓶颈在哪：** 4-bit Qwen3-4B (~2.5GB weights) 在 RTX 5090 上做 autoregressive decoding 是 memory-bandwidth bound。batch_size=4 时每个 decode step 只生成 4 个 token，GPU 内存带宽远未饱和。\n\n**batch_size 4 → 16 的可行性：**\n- KV cache 估算：batch=4 约 720MB，batch=16 约 2.9GB，总显存约 12.8GB — 32GB 卡完全放得下\n- Decode 阶段，权重读取开销不变（~2GB/step），但每 step 产出从 4 token 增至 16 token → 理论上 **~3-4x 加速**\n- Batch 数从 247 降至 62\n- 保守估计总耗时（含模型加载）：**1.5-2h**\n\n**Restart 成本 vs 收益：**\n\n| 方案 | 剩余耗时 | 说明 |\n|------|----------|------|\n| 继续跑 (batch_size=4) | **~5h 38m** | 无风险 |\n| 重启 (batch_size=16) | **~1.5-2h**（从头） | 丢 53min 已完成进度，净省 ~3.5-4h |\n| 重启 (batch_size=32) | **~1-1.5h** | 更激进，显存约 ~16GB 仍可行 |\n\n**max_new_tokens 1024：** greedy decoding 遇到 EOS 会自动停止，1024 只是上限。除非大量 doc 被截断（需看最终 n_truncated），否则缩小这个值影响不大。代码里没有中间结果保存，无法 resume。\n\n### 建议\n\n**重启，batch_size=16**。净省约 3.5h，风险极低（显存充裕、代码已支持 batched generation）。如果想更激进可以试 32。\n\n需要我执行重启吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sft-eval-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca861303399364561a7d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis flat nli vs ced comparison",
+  "task_key": "worker_analysis_flat_nli_vs_ced_comparison_20260515T232837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_flat_nli_vs_ced_comparison_20260515T232837_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "8caa6e2ff719c4dc5974a9ca1c7f72083e3ed6da627f4da6f9ffac892235cff4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。脚本已部署到 `rtx5090-4x:/root/autodl-tmp/scripts/seed_comparison.py`。\n\n**当前状态**：\n- CED RSFT: 3/3 seeds 就绪 (s42, s43, s44)\n- flat-NLI RSFT: 1/3 seeds 就绪 (s42)，s43 re-eval 和 s44 eval 待完成\n\n**Dry-run 结果**（仅 s42 可比）：\n\n| Metric | CED (3-seed) | fNLI (1-seed) | Δ |\n|--------|-------------|--------------|---|\n| rel_f1 | 0.4610±0.0102 | 0.4539 | -0.0072 |\n| evi_f1 | 0.8124±0.0035 | 0.8043 | -0.0081 |\n| EDCR | 0.6449±0.0140 | 0.6431 | -0.0019 |\n\n统计检验需 ≥2 matched seeds，当前不足。\n\n**用法**：\n```bash\n# 一次性报告\npython3 /root/autodl-tmp/scripts/seed_comparison.py\n\n# Watch 模式：每 60s 检查新 eval 结果\npython3 /root/autodl-tmp/scripts/seed_comparison.py --watch 60\n```\n\n输出写到 `/root/autodl-tmp/eval_results/seed_comparison.{md,json}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-flat-nli-vs-ced-comparison.md"
+}

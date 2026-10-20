@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20e41b93c7fe7b3b392c",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778904512.md",
+  "task_key": "loop_12_1778904512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778904512.md",
+    "occurrence": 1,
+    "bytes": 4449,
+    "sha256": "d5daae510f8ebdf49316005a5f5681b787368730a0d1e3c0e12af4114b39ad97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T04:08:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **cuda:0/1/2/3** on rtx5090-4x，不得用其他设备\n- **cwd 必须 `cd /root/autodl-tmp`**，不是 `/root/autodl-tmp/freige`（多次踩坑）\n- Eval 统一协议（D076）：`batch_size=4 + max_new_tokens=1024 + --no-quantize + --sft_adapter + 正确 seed`，任何偏离都会导致 paired t-test 配对无效\n- flat-NLI checkpoint 是 `checkpoint-507`（不是 510），CED 才是 `checkpoint-510`\n- `rsft_output_r2b/` 是旧实验（lora_alpha=32/160步），**不是** CED s42\n- `rsft_output_s44/` 无 `_ced` 前缀但确实是 CED s44\n- Ign-F1 已修复（metrics_v2.json），主表报 Ign-F1，附录报 F1\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），备用 bjb2-12179\n- **工作目录**: `/root/autodl-tmp`（代码在 `/root/autodl-tmp/freige`）\n- **Python**: `/root/miniconda3/bin/python`，conda activate base\n- **HF cache**: `/root/autodl-tmp/.hf_cache`，`HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- **Checkpoint 路径**: 见 memory.md 中的 RSFT Checkpoint 路径映射表（8 个 checkpoint，CED 4 seeds + flat-NLI 4 seeds）\n- **活跃进程**:\n  - eval_rsft_ced_s45: PID 283838, CUDA:2, cron 监控中\n  - eval_rsft_ced_s43: PID 286587, CUDA:1, cron 监控中\n  - eval_plan_014_no_evidence_r2: PID 288109, CUDA:0, cron 监控中\n  - reeval_flat_nli_s43_r2: PID 291003, CUDA:3, cron 监控中\n- **Cron**: 4 个活跃 cron，对应上述 4 个 RUNNING 实验\n\n### 3. 📊 当前状态\n4 个 eval 正在所有 4 块 GPU 上并行跑，全部是 paired t-test 关键路径数据点。\n\n**RUNNING (4)**:\n- `eval_rsft_ced_s45` (cuda:2) — CED 第 3 个 seed eval\n- `eval_rsft_ced_s43` (cuda:1) — CED 第 4 个 seed eval\n- `eval_plan_014_no_evidence_r2` (cuda:0) — no-evidence baseline 重试（C1 ablation）\n- `reeval_flat_nli_s43_r2` (cuda:3) — flat-NLI s43 统一协议重跑\n\n**PREPARING (5，等 GPU 释放)**:\n- `reeval_ced_s44` — CED s44 统一协议重跑\n- `reeval_ced_s42` — CED s42 统一协议重跑\n- `reeval_flat_nli_s42` — flat-NLI s42 统一协议重跑\n- `reeval_flat_nli_s43` 的 r2 已在跑（上面 RUNNING 列表）\n- `seed_comparison_prep` — 最终统计分析准备\n\n**等待中**: 无 Worker 回调待处理，全部 Worker 已 done。等 4 个 cron 回调（实验完成时自动触发）。\n\n### 4. 📋 待办（条件触发式）\n- `eval_rsft_ced_s45` 完成 → 提取 metrics_v2.json → update_registry → cuda:2 提交 `reeval_ced_s44`\n- `eval_rsft_ced_s43` 完成 → 提取 metrics_v2.json → update_registry → cuda:1 提交 `reeval_ced_s42`\n- `eval_plan_014_no_evidence_r2` 完成 → 提取 metrics → update_registry → cuda:0 提交 `reeval_flat_nli_s42`\n- `reeval_flat_nli_s43_r2` 完成 → 提取 metrics → update_registry → cuda:3 可提交另一个 reeval\n- 所有 8 个 seed eval（CED×4 + flat-NLI×4）统一协议完成 → spawn Worker 跑 `seed_comparison.py` + `paired_ttest_analysis.py` → C3 paired t-test 最终结论\n- paired t-test 出结果 → 向 Director 汇报 C3 最终定位 → 推进 paper writing\n- GPU 全空闲时 → 提交 `plan_003_edcr_diagnostic`（Claim 4）和 `plan_002` test set eval\n\n### 5. 🎯 战略上下文\n**项目核心**: FREIGE — LLM evidence-grounded DocRE 系统性研究，投 EMNLP 2026 Main（ARR July ~7/15-25）。\n\n**四个 Claims**:\n- C1: Evidence tax ~8pp（SFT no-evidence 0.4893 vs evidence-SFT 0.4106），CED reranker 恢复 97%（0.4864）\n- C2: QLoRA+GRPO catastrophic decoupling（QLoRA-specific，bf16 不复现）。Spectrum: GRPO QLoRA > GRPO bf16 > DPO > RSFT\n- C3: **已降级**（D056），CED vs flat-NLI 统计不可区分。当前正在收集统一协议 4-seed paired t-test 数据做最终确认\n- C4: EDCR 双层诊断（方法级 + per-relation 级），D070/D072/D073 已确定叙事\n\n**最容易判断错的事**:\n1. C3 已降级但仍需完成 paired t-test — 目的是用统计证据支撑\"无显著差异\"的结论，不是试图翻盘\n2. D076 统一协议重跑是为了消除 batch_size/max_new_tokens 的 confound，不是因为之前结果\"错了\"\n3. RSFT top_k=3 是 negative（-1.5pp），Director 已决定放主表做 ablation 行\n4. GRPO 全系列已放弃（13 次失败/killed），不要再尝试任何 GRPO 实验\n5. 0.4549 是 plan_011 ckpt-100 训练前起点，不是 GRPO bf16 训练后结果\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778904512.md"
+}

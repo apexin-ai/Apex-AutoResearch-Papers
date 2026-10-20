@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b20d4168401b2f38f6ef",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code test inference redocred fix",
+  "task_key": "worker_code_test-inference-redocred-fix_20260521T054226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_test-inference-redocred-fix_20260521T054226_result.json",
+    "occurrence": 1,
+    "bytes": 1106,
+    "sha256": "79ac375c25d428c32d2c9d821b44ca9f535da7e5d95b5020b5fb960e08c721e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n### 改动摘要\n\n**`freige/data/docred_processor.py`** — `SPLIT_FILENAMES` 新增 3 个 Re-DocRED 映射：\n- `\"train_revised\"` → `\"train_revised.json\"`\n- `\"dev_revised\"` → `\"dev_revised.json\"`\n- `\"test_revised\"` → `\"test_revised.json\"`\n\n**`freige/eval/test_inference.py`** — 4 处修改：\n1. 新增 `evaluate` 和 `gold_from_docred` import\n2. `prepare_test_data()` 新增 `split` 参数（默认 `\"test\"`，向后兼容）\n3. `main()` 新增 `--split` CLI 参数\n4. 推理后自动检测 `has_labels`：有 labels 时调用 `evaluate()` 计算 F1/Ign-F1/Evi-F1/EDCR 并打印；无 labels 时走原来的纯预测路径\n\n### Dry-run 结果\n\n- Re-DocRED `test_revised.json`: **500 篇文档**\n- 文档 keys: `['title', 'vertexSet', 'labels', 'sents']`\n- **有 labels**（首篇文档 11 个标注三元组）\n- 所有 import 正常\n\n### 向后兼容\n\n原有 `--split test`（默认值）和 `--data_path /root/autodl-tmp/data/docred` 用法不变。原 DocRED test.json 无 labels，自动走 CodaLab-only 路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-test-inference-redocred-fix.md"
+}

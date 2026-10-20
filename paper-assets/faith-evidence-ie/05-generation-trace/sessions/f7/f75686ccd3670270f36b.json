@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f75686ccd3670270f36b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code anon repo push",
+  "task_key": "worker_code_anon-repo-push_20260523T131026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon-repo-push_20260523T131026_result.json",
+    "occurrence": 1,
+    "bytes": 223,
+    "sha256": "debcfe1cc97320d30685209a1cc9d8414a5a75bd9c85bfc65cdef4011870db39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Push**: 成功\n- **Commit**: `27e4511` — \"Anonymous submission for review\"\n- **仓库**: https://github.com/anonymous-nlp-2026-2/faith-evidence-ie\n- **Token**: 已从 remote URL 清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anon-repo-push.md"
+}

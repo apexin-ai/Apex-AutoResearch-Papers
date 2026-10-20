@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78f0aeb1930d5afde942",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops codalab batch conversion",
+  "task_key": "worker_ops_codalab-batch-conversion_20260522T051453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_codalab-batch-conversion_20260522T051453_result.json",
+    "occurrence": 1,
+    "bytes": 1061,
+    "sha256": "c02f5a85255e38924d3aebd94d84eb2c4ab01d2fa11cd4135b8dbf9561f554b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12 个文件全部转换成功，汇总：\n\n| 实验 | Triples |\n|------|---------|\n| test_eval_14b_sft_s42 | 14,423 |\n| test_eval_14b_rsft_s42 | 11,235 |\n| test_eval_14b_sft_s42_no_evi | 15,563 |\n| test_eval_8b_sft_s42 | 8,678 |\n| test_eval_8b_rsft_s42 | 8,049 |\n| test_eval_4b_sft_s42 | 10,609 |\n| test_eval_4b_rsft_s42_v2 | 9,630 |\n| test_eval_1_7b_sft_s42 | 8,020 |\n| test_eval_1_7b_rsft_s42 | 7,793 |\n| test_eval_1_7b_sft_s42_no_evi | 6,144 |\n| test_eval_llama_sft_s42 | 9,502 |\n| test_eval_llama_rsft_s42 | 9,641 |\n\n- 输出格式已验证：`list[{title, h_idx, t_idx, r, evidence}]`\n- 原地文件：各 `eval_results/test_eval_*/codalab_submission_codalab.json`\n- 统一目录：`/root/autodl-tmp/codalab_submissions/{exp_id}.json`\n- 失败：无\n\n注意用户列表中的 `test_eval_4b_rsft_s42`（无 v2）不存在 `codalab_submission.json`，另外发现 3 个额外的 no_evi 目录（`4b_sft_s42_no_evi`、`8b_sft_s42_no_evi`、`llama_sft_s42_no_evi`）存在但没有 `codalab_submission.json`，未转换。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-codalab-batch-conversion.md"
+}

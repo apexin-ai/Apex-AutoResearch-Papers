@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0510978be08dea43a2c0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval 1 7b rsft seed43 eval",
+  "task_key": "worker_eval_1_7b_rsft_seed43_eval_20260517T142554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_1_7b_rsft_seed43_eval_20260517T142554_result.json",
+    "occurrence": 1,
+    "bytes": 320,
+    "sha256": "9cb6b1266b84b246e1c132aaefbbbf99665af2b0a4dc3a3196170ba60fde36f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已提交并运行中：\n\n- **exp_id**: `plan_006_qwen3_1_7b_rsft_seed43_eval`\n- **PID**: 455632\n- **GPU**: cuda:2（提交前确认 0 MiB 占用）\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_seed43_eval.log`\n\n1.7B 模型 DocRED dev eval 预计 15-25 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-1-7b-rsft-seed43-eval.md"
+}

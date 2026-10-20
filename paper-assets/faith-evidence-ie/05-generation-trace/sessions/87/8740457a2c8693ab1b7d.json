@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8740457a2c8693ab1b7d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check redocred rsft r2 exit",
+  "task_key": "worker_ops_check_redocred_rsft_r2_exit_20260516T173248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_redocred_rsft_r2_exit_20260516T173248_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "3a5d3d82113b9112506451202eaa89f4356630835e6efb06ae8aacb22cdbf05e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结论：negative** — 进程正常退出，但 RE 指标极差。\n\n| 指标 | 值 | 说明 |\n|------|----|------|\n| F1 | 0.0025 | 几乎为零 (baseline Ign-F1=0.3659) |\n| Ign-F1 | 0.0026 | 跨数据集迁移完全失败 |\n| Evi-F1 | 0.8837 | evidence 提取正常 |\n| EDCR | 0.9978 | 格式正常 |\n| TP | 19 / 7431 gold | 仅命中 19 个三元组 |\n\nCED-RSFT checkpoint-510 在 Re-DocRED 上的关系抽取能力基本丧失，说明 DocRED RSFT 训练未迁移到 Re-DocRED 标注体系。Cron 已不存在（可能已被清理），registry 已更新为 DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-redocred-rsft-r2-exit.md"
+}

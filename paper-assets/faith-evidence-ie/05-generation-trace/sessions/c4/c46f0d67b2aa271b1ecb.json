@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c46f0d67b2aa271b1ecb",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_10_1778880109.md",
+  "task_key": "loop_10_1778880109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778880109.md",
+    "occurrence": 1,
+    "bytes": 5229,
+    "sha256": "a0295abb7ed3fbfd6f05adbe84b2a269e8ba73db151054268fef1cd17f8f1993"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T21:06:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 cuda:0/1/2/3（rtx5090-4x），不可用其他设备\n- SFT baseline 推理必须 `--no-quantize`（D058：之前量化推理引入 confound，所有对比 SFT baseline 的 eval 都需确认此标志）\n- plan_012 DPO 3ep 已确认 negative（rewards_accuracy=1.0 过拟合），**不可基于 3ep 结果写论文**；1ep eval 正在跑，结论未出前不动 DPO 相关 paper 内容\n- CED vs flat-NLI 统计不可区分（D056），CED 不再作为独立贡献（Claim 3 已降级），不可在论文中 claim CED > flat-NLI\n- test set eval 推迟到终稿阶段（D057），不要现在跑 plan_002\n- conda 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（主力），bjb2-12179（config 中有但当前未用）\n- **工作目录**: `/root/autodl-tmp/freige`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（需 `HF_HOME` 和 `HF_HUB_OFFLINE=1`）\n- **活跃进程**:\n  - eval_plan_001_flat_nli_s43: PID 252179, cuda:0（flat-NLI RSFT dev eval）\n  - plan_011_bf16_g8_step_eval: PID 249541, cuda:1（bf16 GRPO G=8 训练+step eval）\n  - eval_plan_012_dpo_ced_1ep: cuda:2（DPO 1ep eval，PID 未记录在 registry）\n  - plan_008_rsft_topk3: PID 234489, cuda:3（top_k=3 RSFT ablation 训练）\n- **活跃 cron**: 4 个，分别监控上述 4 个实验（reconcile 确认全部 still running）\n- **Worker 池**: 0 running（全部完成或未派）\n\n### 3. 📊 当前状态\n4 张卡全部在跑，0 个 Worker 活跃。上一轮完成了大量关键决策：\n\n**刚完成的关键事件**:\n- plan_011 bf16 GRPO eval Reviewer PASS → C2+C3 证据链完整（D054 确认 decoupling 是 QLoRA-specific）\n- plan_012 DPO 3ep negative（rel_f1=0.3429，过拟合），已重训 1ep（train done，eval 正在跑）\n- plan_014 SFT-without-evidence 训练完成（DONE/success），eval 应在运行中（cuda:1 区间，但当前 cuda:1 跑的是 plan_011）\n- D056 确认 CED ≈ flat-NLI → 论文 story 需重构\n\n**RUNNING 实验清单**:\n| exp_id | GPU | 作用 |\n|--------|-----|------|\n| eval_plan_001_flat_nli_s43 | cuda:0 | flat-NLI RSFT dev eval — **关键分叉点** |\n| plan_011_bf16_g8_step_eval | cuda:1 | bf16 GRPO G=8 step-level eval |\n| eval_plan_012_dpo_ced_1ep | cuda:2 | DPO 1ep eval — 决定 DPO narrative |\n| plan_008_rsft_topk3 | cuda:3 | top_k=3 ablation 训练 |\n\n**ANALYZING（需处理）**:\n- plan_012_dpo_ced: negative，Framing 提案待产出（但 1ep eval 未出，建议等 1ep 结论后一并处理）\n- plan_012_dpo_ced_1ep: train metrics 已有（rewards_accuracy=0.82, margins=0.86，比 3ep 的 1.0/9.01 健康得多），eval 在跑\n\n**等待中**:\n- 4 个 cron 回调（实验完成时自动触发）\n- plan_014 eval 状态不明（ROADMAP 说 cuda:1 运行中，但 registry 中 plan_014 是 DONE/success 只记录了训练，eval 可能未单独建 registry entry——需要确认）\n\n### 4. 📋 待办（条件触发式）\n- eval_plan_001_flat_nli_s43 cron 回调 → 拿 rel_f1/evi_f1/edcr → 与 RSFT-CED (rel_f1≈0.46, evi_f1≈0.81) 对比 → 更新 D056 结论 → 解锁 plan_003 EDCR pipeline\n- eval_plan_012_dpo_ced_1ep cron 回调 → 如 rel_f1 > 0.40（SFT baseline）→ DPO 1ep 可用作 RL spectrum 数据点；如 < 0.40 → DPO 全线 negative，产 Framing 提案（合并 3ep negative）\n- plan_011_bf16_g8_step_eval cron 回调 → 已有 step eval 数据点，检查最终结果 → 更新 C2/C3\n- plan_008_rsft_topk3 cron 回调 → 训练完成后 spawn eval worker → top_k=3 vs top_k=1 对比\n- 4 卡空出任何一张 → 按优先级: plan_009 forgetting figure (P0, 纯计算无需GPU训练但需汇总画图) > plan_003 EDCR pipeline (P0, deps plan_001) > plan_014 eval (如未跑)\n- plan_014 SFT-no-evidence eval 状态确认 → 如未跑，立即 spawn worker 在空闲卡上跑 eval\n\n### 5. 🎯 战略上下文\n**论文定位**（D059 后）: \"task definition + decoupling finding + EDCR metric\"。GRPO decoupling 从 \"RL 通病\" 收窄为 \"QLoRA artifact\"（D054）。CED 不再独立 claim，降为 output quality control 工具（D055）。\n\n**核心决策链**:\n- D054: decoupling = QLoRA-specific（plan_011 bf16 无 forgetting 证实）\n- D056: CED ≈ flat-NLI 统计不可区分 → Claim 3 降级\n- D058: SFT baseline 推理必须 --no-quantize\n- D059: Claim 2 re-scope，ideas A/B/C 归入\n\n**最容易判断错的事**:\n1. plan_014 eval 状态——registry 只记录了训练 DONE，eval 是否作为独立 entry 提交不确定，**必须先查**再假设\n2. plan_012 DPO narrative——不要因为 3ep negative 就判定 DPO 全线失败，1ep eval 结果可能完全不同（train metrics 看起来健康）\n3. plan_008 是训练阶段（top_k=3 RSFT），完成后还需单独 spawn eval，不要以为 cron 回调就意味着有 eval 结果\n4. EMNLP ARR July deadline ~7月15-25，还剩 2 个月，当前 P0 实验全在跑，时间够但不能空转——任何卡空出来立即填下一个任务\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778880109.md"
+}

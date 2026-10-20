@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d2ba49760f466d9ee6c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu status check 20260517",
+  "task_key": "worker_ops_gpu_status_check_20260517_20260517T045512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_20260517_20260517T045512_result.json",
+    "occurrence": 1,
+    "bytes": 1977,
+    "sha256": "f89d804181311f778c9ee93a6ba766b51ad4507fc3a09db73edeb48b116fbf6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## nvidia-smi 摘要\n\n| GPU | 显存 | Util | 进程 |\n|-----|------|------|------|\n| cuda:0 | 0MiB / 32607MiB | 0% | **空闲** — PID 396333 (plan_002_test_rsft_s44) 已完成 |\n| cuda:1 | 29569MiB / 32607MiB | 98% | PID 406515 — plan_006_qwen3_1_7b_rsft_train |\n| cuda:2 | 22985MiB / 32607MiB | 93% | PID 409565 — plan_016_llama_rsft_train_r3 |\n| cuda:3 | 1539MiB / 32607MiB | 37% | PID 411032 — plan_006_qwen3_8b_ced_scoring |\n\n## 各任务状态\n\n**plan_002_test_rsft_s44 (cuda:0)** — 已完成\n- test split, 1000 docs, 26925 predictions, 626 truncated, format_ok=99.6%\n- 推理时间: 12494s (~3.5h)\n- 这是 test set（无 gold labels），需提交 CodaLab 评分\n- `predictions.json` 在 `/root/autodl-tmp/eval_results/plan_002_test_rsft_s44/predictions.json`\n\n**plan_006_qwen3_1_7b_rsft_train (cuda:1)** — 运行中\n- 进度: 1297/1698 steps (**76%**)，已跑 ~1h38m\n- ~2.8s/it，预计还需约 19min 完成\n\n**plan_016_llama_rsft_train_r3 (cuda:2)** — 刚开始\n- 进度: 24/3312 steps (**0.7%**)，~3.1s/it\n- 刚启动约 1min，预计总时长 ~2h50m\n\n**plan_006_qwen3_8b_ced_scoring (cuda:3)** — 运行中\n- 进度: 17000/24216 records (**70%**)\n- ~2min/500 records，预计还需约 30min\n\n## RSFT s44 dev predictions\n\n**没有找到 RSFT s44 dev set 的 predictions.json 文件。** 已有的 s44 相关 predictions 都是 test split:\n- `/root/autodl-tmp/eval_results/plan_002_test_rsft_s44/predictions.json` (test)\n- `/root/autodl-tmp/eval_results/test_rsft_ced_s44/predictions.json` (test)\n\ndev eval 目录 `/root/autodl-tmp/eval_results/rsft_s44/` 只有 `metrics.json` 和 `eval.log`，没有保存 predictions。dev metrics:\n- **F1: 46.55**, Ign_F1: 46.55\n- Evi_F1: 80.87, Evi_F1_joint: 37.13, EDCR: 63.50\n\n如果后续 CED reranking 实验需要 dev predictions，需要重新跑一次 rsft_s44 dev eval 并加 `--save_predictions` 参数。cuda:0 现在空闲，可以立即启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-20260517.md"
+}

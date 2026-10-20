@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04640a26e7efa48c85c7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh merge scored shards",
+  "task_key": "worker_ssh_merge-scored-shards_20260515T052217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_merge-scored-shards_20260515T052217_result.json",
+    "occurrence": 1,
+    "bytes": 697,
+    "sha256": "066b9e49f04ae4801a5bf264678a4c61cde2dd7a8a3c54b7ecbcc7b0427e8c57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 指标 | 值 |\n|------|-----|\n| **总输入 generations** | 21,952 |\n| **筛选后样本数** | 2,719 (去重后 **2,718**) |\n| **选择率** | 12.4% |\n| **Unique docs** | 2,691 |\n| **去重删除** | 1 条 |\n| **Mean F1 reward** | 0.6157 |\n| **Mean CED score** | 0.6683 |\n| **F1 范围** | [0.1026, 1.0000] |\n| **f1 < 0.1 样本** | 0 (f1 threshold 生效) |\n| **截断比例** | 8.88% (1,950 条) |\n| **f1 过滤丢弃** | 1,310 generations / 25 docs |\n| **缺失 input/output** | 0 / 0 |\n\n输出文件：`/root/autodl-tmp/rsft_filtered/rsft_train.jsonl` (2,718 samples)，汇总报告 `rsft_combined_report.json` 已写入同目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-merge-scored-shards.md"
+}

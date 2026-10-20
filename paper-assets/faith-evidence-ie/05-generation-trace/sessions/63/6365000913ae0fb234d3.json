@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6365000913ae0fb234d3",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778794857.md",
+  "task_key": "loop_4_1778794857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778794857.md",
+    "occurrence": 1,
+    "bytes": 4822,
+    "sha256": "02ec8f964b19fc5c764cdaaccb3368d1ef8aebffd734cf17fd353656c916dc3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T21:31:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 = cuda:0,1,2,3（rtx5090-4x）。`load_project_config` 的 `gpu_ids` 是唯一 truth source，Director 说用白名单外的也要 push back\n- **rtx5090-4x 和 bjb2-12179 是同一台机器**（两个 SSH endpoint），不要当两台服务器用\n- **D035 硬规则**：训练提交禁止 `bash -c \"...\"` 内联——必须先写 `.sh` 脚本到 `/root/autodl-tmp/scripts/`，再 `bash /path/to/script.sh` 提交。反复出 EXIT_CODE=2 的引号冲突\n- **Kill 后必须验证子进程终止**：`kill_job` 只杀 tmux，python 子进程可能 reparent 到 init 继续占 GPU。kill 后派 Worker `ps -p <PID>` + `nvidia-smi -i <GPU>` 验证\n- PREPARING 里的 kl001_r2、kl001_r3、eval_kl001_r4_last 是 lr=5e-5 时代遗留，**不要启动**——已被 lr=5e-6 方向取代\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：rtx5090-4x（别名 bjb2-12179），4× RTX 5090 32GB\n- **工作目录**：`/root/autodl-tmp/freige`\n- **Python**：`/root/miniconda3/bin/python`（conda base，不是 venv）。环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**：`/root/autodl-tmp/models/Qwen3-4B`（7.6GB，ModelScope 下载）\n- **SFT checkpoint**：由 `mvp2_sft_warmup` 产出，具体路径在 registry spec 里\n- **wandb**：entity=`xiaoyucorynne-`，project=`freige-grpo`，API key 在 `~/.netrc`\n- **注意**：无 flash-attn，训练脚本用 `attn_implementation=\"sdpa\"`\n- **活跃进程**（4/4 GPU 满载）：\n\n| GPU | exp_id | PID | 说明 |\n|-----|--------|-----|------|\n| cuda:0 | mvp2_grpo_ced_lr5e6_r1 | 90080 | P0 GRPO 训练，~step 25/200 |\n| cuda:1 | mvp2_eval_lr5e6_r1_ckpt20 | 96500 | P0 ckpt-20 eval，~6% |\n| cuda:2 | mvp2_eval_lr5e6_r1_ckpt40 | 100549 | P0 ckpt-40 eval，刚启动 |\n| cuda:3 | mvp2_grpo_ced_lr5e6_rp_r2 | 94753 | P0+P1 GRPO 训练（+recall_penalty），~step 8/200 |\n\n- **Cron**：4 个活跃，分别监控上述 4 个实验\n\n### 3. 📊 当前状态\n刚完成：kill 了 cuda:2 上已判 FAIL 的 kl001_r4 multi-eval（ckpt-30 结果已读取），在 cuda:2 上启动了 P0 ckpt-40 eval。cuda:1 上 P0 ckpt-20 eval 已在跑。两个 analysis worker（P0 早期 metrics + rp_r2 早期 metrics）刚完成。两个 worker 仍在运行：`analysis:wandb-training-progress` 和 `ops:verify-cuda2-and-p0-step60`。\n\nRegistry 状态：RUNNING 4 个（见上表）；PREPARING 3 个（全是 lr=5e-5 遗留，不要动）；SUCCESS 8 个；NEGATIVE 6 个。总计 35 个实验。\n\n**关键背景**：lr=5e-5 系列全灭（D027-D029），根因是 lr 太高导致灾难性遗忘 + CED recall shortcut。当前转向 lr=5e-6，两路并行验证。Director 定义了新判定框架：**ckpt-20 FAIL + ckpt-40 PASS → P0 仍判 PASS**。\n\n### 4. 📋 待办（条件触发式）\n- **ckpt-20 eval 完成** → rel_f1 > 0.30 = P0 ckpt-20 PASS（重大利好）；< 0.30 = 等 ckpt-40 结果\n- **ckpt-40 eval 完成** → rel_f1 > 0.30 = P0 整体 PASS（即使 ckpt-20 FAIL）；< 0.30 + ckpt-20 也 < 0.30 = P0 FAIL → 走 red-section Framing 提案\n- **P0 PASS 后** → cuda:1 或 cuda:2 释放 → 启动 P0+P1 (rp_r2) ckpt-20 eval\n- **rp_r2 训练达 step 20** → 在释放的 GPU 上启动 rp_r2 ckpt-20 eval\n- **P0 训练 (lr5e6_r1) 跑完 200 步** → eval best checkpoint + last checkpoint\n- **P0 + P0+P1 全部 eval 完成** → MVP-2 完整对比判定；PASS → 进入 post-MVP 流程（paper_framing.md → experiment_plan.yaml → dream_simulate）\n- **P0 FAIL** → 产出 Framing 调整提案，禁止默默跑下一个。这可能意味着项目需要 fundamental pivot（lr=5e-6 是最后一搏）\n\n### 5. 🎯 战略上下文\n- **核心发现（D024）**：CED reward 双重作用——改善 evidence quality + 防止 GRPO mode collapse。这是论文最重要的 finding。在相同 D020 配置下，CED 训练成功而 extraction-only 和 flat-NLI 都 collapse\n- **lr=5e-6 是关键拐点**：之前 lr=5e-5 导致 10 步内灾难性遗忘（F1: 0.4057→0.003）。lr=5e-6 是社区共识范围（Unsloth 5e-6, HF 1e-5）。如果 lr=5e-6 仍然崩，需要重新审视 QLoRA+GRPO 的可行性\n- **SFT baseline**：rel_f1=0.4057, evi_f1=0.7979, EDCR=0.7118。Pass criteria = rel_f1 > 0.30（保留 SFT 能力的 74%+）\n- **易错点**：\n  - 不要只看 F1 对比 P0 vs P0+P1——recall_penalty 改变 pred_count 分布，必须同时看 pred_count 和 EDCR\n  - kl001_r4 的 \"崩溃→部分恢复\" 模式（ckpt-10 F1=0.003 → ckpt-100 F1=0.217）说明即使早期 checkpoint 差，后期可能回升——所以 Director 才定了 ckpt-20 FAIL + ckpt-40 PASS = 整体 PASS\n  - wandb MCP 工具 `list_wandb_runs` 有 bug，用 `fetch_wandb_run_history` + 已知 run_id 替代\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778794857.md"
+}

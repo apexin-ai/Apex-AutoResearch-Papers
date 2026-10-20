@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bbc463fc2c346b0eec4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose cron false failure root cause",
+  "task_key": "worker_diagnose_cron-false-failure-root-cause_20260522T023419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cron-false-failure-root-cause_20260522T023419_result.json",
+    "occurrence": 1,
+    "bytes": 3534,
+    "sha256": "cbb26a1e06fee93f9da8eb42c08e462683598226b7aa8feee3a3c478d872bc5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根因完全清晰了。以下是完整诊断。\n\n---\n\n## 诊断结果\n\n### 两个实验的具体根因\n\n#### 1. test_eval_4b_rsft_s42_v2\n\n**第一次提交**（通过 `submit_training_job`，pid=146146）：\n- 命令含 `--rsft_adapter` 参数，但 `test_inference.py` 不识别该参数\n- argparse 打印 usage 并返回 exit code 2\n- EXIT trap 正确记录 `EXIT_CODE=2` 到 sentinel\n- **这次失败是合理的**\n\n**第二次提交**（on_failed hook 自动重试，pid=146485）：\n- 修正了命令，实验成功完成，产出了正确结果\n- **但重试不是通过 `submit_training_job` 提交的**（通过 `ssh_execute` 直接运行）\n- 没有 tmux wrapper → 没有 `rm -f` 清除旧 sentinel → 没有 EXIT trap 写新 sentinel\n- 旧 sentinel（EXIT_CODE=2）仍然存在\n- cron 在 01:14 检测到进程死亡 → 读到旧 sentinel → `EXIT_CODE=2` → 再次标记 failed\n\n**证据**：sentinel 文件 mtime 是 00:01 UTC（第一次失败时间），而实验结果 mtime 是 01:12 UTC（第二次完成时间）。log 文件仍然是第一次的 argparse 错误输出，未被第二次覆盖。\n\n#### 2. test_eval_1_7b_sft_s42\n\n- **没有通过 `submit_training_job` 提交**（cron entry 的 `log_path: null` 证实）\n- 没有 tmux wrapper → 没有 sentinel 文件\n- 没有 W&B（eval 实验不用）\n- 进程在 02:13 UTC 正常完成\n- cron 从 02:14 开始检测到 process dead，连续 5 次 \"no signal\" → 02:23 auto-resolved as failed\n\n**证据**：`/tmp/agent-ml-exit/test_eval_1_7b_sft_s42.exit` 不存在；cron poll log 显示 5 次 `escalate_no_signal` → `auto_resolve_no_signal`。\n\n---\n\n### 系统性根因（3 个）\n\n| # | 问题 | 影响 |\n|---|------|------|\n| **S1** | **实验通过 `ssh_execute` 提交时没有 sentinel 文件**。只有 `submit_training_job` 的 tmux wrapper 才有 EXIT trap 写 sentinel。直接 ssh_execute 运行的实验，cron 无法判断完成状态。 | eval 实验（无 W&B）在正常完成后被误判为 failed |\n| **S2** | **on_failed hook 重试时不使用 `submit_training_job`**。重试走 ssh_execute → 没有新 sentinel → 旧 sentinel 被复用（或完全无 sentinel）。 | 重试的实验即使成功也仍被标记 failed |\n| **S3** | **cron 不验证 sentinel 时间戳的有效性**。`check_status()` 读到 sentinel 后直接信任其 exit code，不检查 sentinel 时间是否在 cron entry 创建时间之后。旧 sentinel 会被当作当前实验的状态。 | 重试实验继承前次 sentinel 的失败状态 |\n\n---\n\n### 建议修复（按优先级）\n\n1. **[高] 确保所有实验提交统一走 `submit_training_job`**——包括 on_failed hook 的重试路径。这从源头解决 S1 和 S2。\n\n2. **[高] `check_status()` 增加 sentinel 时间戳验证**（`cron.py` ~line 754）：\n   - 对比 sentinel 的 `finished_at` 与 cron entry 的 `created_at`\n   - 如果 sentinel 时间早于 cron 创建时间，忽略该 sentinel，fall through 到 no-signal 路径\n   - 这修复 S3，防止旧 sentinel 被复用\n\n3. **[中] 为 eval 实验增加输出文件检测作为补充信号**：\n   - 在 \"no signal\" 路径中，检查 output_dir 是否存在 `test_summary.json`\n   - 如果存在且非空，视为成功（→ ANALYZING），而非 auto-fail\n   - 这为 eval 实验提供了 W&B 的替代信号\n\n4. **[低] 强制所有 cron entry 必须有 `log_path`**，使 `_extract_failure_reason` 能从日志中提取有用信息。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cron-false-failure-root-cause.md"
+}

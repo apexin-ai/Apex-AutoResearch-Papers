@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc4119b8c3f1cd2f8dd5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops prep cuda1 p0 eval script",
+  "task_key": "worker_ops_prep-cuda1-p0-eval-script_20260514T202225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep-cuda1-p0-eval-script_20260514T202225_result.json",
+    "occurrence": 1,
+    "bytes": 423,
+    "sha256": "6e36f2b8ac1673ecbf2db1a19a386d96084cc7aaabcb06c1faff3a5ff089c6b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**脚本**:\n- `/root/autodl-tmp/scripts/eval_p0_ckpt20.sh` — P0 eval ✓\n- `/root/autodl-tmp/scripts/eval_p0p1_ckpt20.sh` — P0+P1 eval 备用 ✓\n\n**P0 训练进度**: step 23/200（~111s/step）\n\n**ckpt-20**: 已存在（05-15 04:17 生成，adapter 252MB）\n\n**Eval 已启动**: tmux session `eval_p0_ckpt20` 在 cuda:1 运行，日志 `~/runs/faith-evidence-ie/eval_p0_ckpt20.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-cuda1-p0-eval-script.md"
+}

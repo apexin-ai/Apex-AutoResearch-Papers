@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28c349e652f062ecde5d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260517T170247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260517T170247_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "312e8fcda03fb9810e3c73d5aa5bf81873e41d2f70da07a790f55af545628742"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All clean. The `ing` matches are nouns (decoding, training, following), not participial phrase endings.\n\nWritten to `docs/paper/sections/related_work.tex`. Three thematic paragraphs (~680 words total):\n- **P1** (~300w): Encoder DocRE (DocRED, ATLOP, KD-DocRE) → evidence in encoders (SAIS, DREEAM, EIDER as classification) → LLM DocRE (GenRES, LMRC, DocKS-RAG) → key distinction: classification evidence regularizes; generative evidence costs capacity\n- **P2** (~220w): GRPO + structured IE extensions (E-GRPO, R1-RE) → DPO → RL forgetting debate (our decoupling is intra-task trade-off, not inter-task forgetting) → reward overoptimization (Gao, Moskovitz) → QLoRA amplification\n- **P3** (~160w): STaR → RSFT as single-round variant → honest positioning (novelty is CED/NLI filter for DocRE, not framework) → structural advantage of discrete selection over gradient optimization\n\n17 unique citations, 0 dashes, 0 -ing phrase endings."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

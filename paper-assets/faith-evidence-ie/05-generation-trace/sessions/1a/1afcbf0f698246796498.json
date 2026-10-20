@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1afcbf0f698246796498",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "maintenance verify and cleanup",
+  "task_key": "worker_maintenance_verify-and-cleanup_20260520T063917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_maintenance_verify-and-cleanup_20260520T063917_result.json",
+    "occurrence": 1,
+    "bytes": 198,
+    "sha256": "0c3e1ed514251ee05998aefe527bf54966316a1883a0b167b37bf5b81a1776b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接失败，端口 49673 无法连接。AutoDL 实例重启后端口会变——请去 AutoDL 控制台查看当前 SSH 端口，更新 `~/.ssh/config` 后告诉我新端口。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/maintenance-verify-and-cleanup.md"
+}

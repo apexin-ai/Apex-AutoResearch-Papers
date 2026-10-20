@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e6e37dd69b634b73fd5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "data dpo pairs rebuild",
+  "task_key": "worker_data_dpo-pairs-rebuild_20260523T020420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_dpo-pairs-rebuild_20260523T020420_result.json",
+    "occurrence": 1,
+    "bytes": 2905,
+    "sha256": "7c08b1a0d27b48fc8165cefea89ebfc33487f893b43f524f4a2160ab75de8a21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n## 报告\n\n### 1. 原始 DPO 超参（来源：代码默认值）\n\nwandb list_wandb_runs 接口有 bug（`wandb_project` 参数不匹配），无法查询历史 run。以下为 `dpo_trainer.py` 和 `dpo_data_builder.py` 中的 argparse 默认值：\n\n**DPO Data Builder:**\n| 参数 | 值 |\n|------|-----|\n| rank_by | `ced_reward` |\n| pair_k | `1` |\n| min_margin | `0.05` |\n| require_format_ok | `True` |\n\n**DPO Trainer:**\n| 参数 | 值 |\n|------|-----|\n| beta | `0.1` |\n| loss_type | `sigmoid` |\n| label_smoothing | `0.0` |\n| learning_rate | `5e-6` |\n| num_epochs | `3` |\n| per_device_batch_size | `2` |\n| gradient_accumulation_steps | `8` |\n| warmup_steps | `50` |\n| max_length | `2048` |\n| lora_rank | `64` |\n| lora_alpha | `128` |\n| lora_dropout | `0.05` |\n| base_model | `Qwen3-4B` |\n| sft_adapter | `/root/autodl-tmp/sft_output` |\n\n### 2. DPO Pairs 构建结果\n\n- **输入**: 24216 generation records（4 shards 合并），24216 scores\n- **输出**: **2977 DPO pairs**（3026 docs 中 1 doc 仅单条生成，48 pairs 低于 min_margin 被过滤）\n- **Margin 统计**: mean=0.400, std=0.183, median=0.366, range=[0.056, 0.997]\n- **Chosen CED**: mean=0.724, median=0.740\n- **Rejected CED**: mean=0.325, median=0.329\n- **样本格式**: `{doc_id, input, chosen, rejected, chosen_score, rejected_score, chosen_ced, rejected_ced, margin}`\n- **路径**: `/root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl`\n\n### 3. 数据准备完成\n\n### 4. 建议的 DPO 训练命令\n\n**1 epoch:**\n```bash\nCUDA_VISIBLE_DEVICES=X source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.training.dpo_trainer \\\n    --dpo_data_path /root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl \\\n    --output_dir /root/autodl-tmp/dpo_output_rebuilt_1ep \\\n    --num_epochs 1 \\\n    --beta 0.1 \\\n    --loss_type sigmoid \\\n    --learning_rate 5e-6 \\\n    --per_device_batch_size 2 \\\n    --gradient_accumulation_steps 8 \\\n    --lora_rank 64 \\\n    --lora_alpha 128 \\\n    --wandb_project freige-dpo \\\n    --wandb_run_name dpo_rebuilt_1ep\n```\n\n**3 epoch:**\n```bash\nCUDA_VISIBLE_DEVICES=X source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.training.dpo_trainer \\\n    --dpo_data_path /root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl \\\n    --output_dir /root/autodl-tmp/dpo_output_rebuilt_3ep \\\n    --num_epochs 3 \\\n    --beta 0.1 \\\n    --loss_type sigmoid \\\n    --learning_rate 5e-6 \\\n    --per_device_batch_size 2 \\\n    --gradient_accumulation_steps 8 \\\n    --lora_rank 64 \\\n    --lora_alpha 128 \\\n    --wandb_project freige-dpo \\\n    --wandb_run_name dpo_rebuilt_3ep\n```\n\n（`X` 需替换为空闲 GPU 编号，提交前 `nvidia-smi` 确认显存 < 2GB — C001）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-dpo-pairs-rebuild.md"
+}

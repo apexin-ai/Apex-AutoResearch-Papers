@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82c546738179995c7bbe",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_18_1779359575.md",
+  "task_key": "loop_18_1779359575",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779359575.md",
+    "occurrence": 1,
+    "bytes": 4525,
+    "sha256": "74580a0dfb0c91b98995c77dbff1976eec92c5bcfa11cc2abfaf49bbfc114d16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-21T09:02:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0/1/2/3，不得使用其他 GPU\n- LLaMA SFT 脚本用 `GPU=X` 环境变量传物理 GPU 编号，不能依赖框架注入的 CUDA_VISIBLE_DEVICES\n- Evidence tax 必须用 fair comparison（format-OK 子集），不能用全集——全集结果是测量伪影（D134）\n- eval 的 output_dir 重试时必须换新目录（如 `_r2`），避免覆盖残留文件导致结果混淆\n- submit_training_job 的默认 timeout_hours 对 LLaMA eval 不够（2h 跑到 99% 超时），**必须显式设 timeout_hours=3**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x (connect.westd.seetacloud.com:37389), 4× RTX PRO 6000 96GB\n- **工作目录**: `/root/autodl-tmp/freige`\n- **Python**: `/root/miniconda3/bin/python`, conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B` (base), SFT adapters 在 `/root/autodl-tmp/sft_output_llama_3_1_8b_s{42,43,44}`\n- **RSFT adapters**: `/root/autodl-tmp/rsft_output_llama_s{42,43,44}`\n- **数据**: `/root/autodl-tmp/data/docred`\n- **14B 模型**: `/root/autodl-tmp/models/Qwen/Qwen3-14B`, SFT adapter `/root/autodl-tmp/sft_output_14b/checkpoint-144`\n- **14B RSFT 生成输出**: `/root/autodl-tmp/rsft_generations_14b`\n- **磁盘**: 814G/879G 可用（3% used）\n- **活跃进程**:\n  - plan017_14b_rsft_generate_r4: PID 33608, cuda:0, 14B RSFT 候选生成（从 doc 2553/3027 继续）\n  - eval_llama_sft_s44_no_evidence: PID 29983, cuda:2\n  - eval_llama_rsft_s44_no_evidence: PID 30188, cuda:3\n  - migration_bjb2_to_westd: PID 6660（后台 rsync）\n\n### 3. 📊 当前状态\n我刚处理 `eval_llama_sft_s43_no_evidence` 的超时失败回调。日志确认推理完成 244/247 batches (99%) 时被 timeout kill。已创建重试实验 `eval_llama_sft_s43_no_evidence_r2`（ALLOCATED, cuda:1），registry 字段已设好（server/gpu/account），**但 submit_on_allocated 尚未成功执行**——需要立即提交，timeout_hours=3。\n\nRegistry RUNNING/ALLOCATED:\n- `plan017_14b_rsft_generate_r4` — RUNNING, cuda:0, 14B RSFT 候选生成 resume r4\n- `eval_llama_sft_s44_no_evidence` — RUNNING, cuda:2, LLaMA SFT s44 no-evidence eval\n- `eval_llama_rsft_s44_no_evidence` — RUNNING, cuda:3, LLaMA RSFT s44 no-evidence eval\n- `eval_llama_sft_s43_no_evidence_r2` — **ALLOCATED, cuda:1, 等待提交**\n\n### 4. 📋 待办\n- **立即**: `submit_on_allocated(\"eval_llama_sft_s43_no_evidence_r2\", command=<同原命令但 output_dir 改 _r2>, timeout_hours=3)` — cuda:1 空着是失职\n- eval_llama_sft_s44_no_evidence cron 回调 → 记录 SFT s44 no-evi ign_f1，做 fair comparison 分析（filter format-OK subset）\n- eval_llama_rsft_s44_no_evidence cron 回调 → 记录 RSFT s44 no-evi ign_f1，补齐 3-seed evidence tax\n- eval_llama_sft_s43_no_evidence_r2 cron 回调 → 同上 fair comparison 分析\n- 上述 3 个 eval 全部完成 → 计算 SFT 3-seed evidence tax mean±std 和 RSFT 3-seed evidence tax mean±std → 汇报 Director\n- plan017_14b_rsft_generate_r4 完成 → CED scoring → 14B RSFT train → eval，补齐 14B 行\n- **所有 no-evidence eval 结果出来后**：必须做 fair comparison（filter format-OK subset），不能直接用全集数据（D134 教训）\n\n### 5. 🎯 战略上下文\n- **核心方向**: FREIGE — LLM-based evidence-grounded DocRE，3 贡献：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax + variance compression\n- **投稿**: EMNLP 2026 Main (ARR July, ~56 天)\n- **关键进展**: 1.7B/4B/8B/LLaMA-8B 的 SFT 和 RSFT 数据基本完备，14B 是最后一个 scale 待补齐\n- **LLaMA 升级为 co-primary evidence**（D133），不再只是 cross-family 验证\n- **Evidence tax 方法论陷阱（最容易判断错的事）**: SFT s42 全集 tax=-1.65pp 是伪影（format failure 拉低了 no-evi 分数），fair subset 实际 tax=+1.35pp（方向反转！）。所有后续 no-evidence eval 必须做 fair comparison。Claim 3 (scale-dependent evidence tax) 的表述可能需要修改\n- **方差压缩是强叙事**: RSFT 在所有 scale 上压缩 SFT 方差 7-31×，且最弱 seed 提升最大\n- **D131**: 3 contributions 从独立小文章重构为统一叙事主线\n- **易踩坑**: eval configs 的 base_model 可能指向 Qwen3-4B（不影响结果但容易 confuse），实际 model_path 是正确的\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779359575.md"
+}

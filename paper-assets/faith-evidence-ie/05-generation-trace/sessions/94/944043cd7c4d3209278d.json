@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "944043cd7c4d3209278d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research compile paper evidence table",
+  "task_key": "worker_research_compile_paper_evidence_table_20260516T032102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_compile_paper_evidence_table_20260516T032102_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "053fecbb40f34becebfccc74d8b58b68f1dd33398301d51cb2c4ec13d41efa31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Evidence table 已编译完成，写入 `artifacts/paper_evidence_table.md` 并注册为 artifact `art_20260516_a1a71e`。\n\n核心发现：\n\n**Paper-ready 数据**：4 个 claim 都有实验支撑——evidence tax -7pp, CED reranker 97% recovery, decoupling spectrum 完整, EDCR per-relation 独立性 ρ=-0.064。\n\n**4 个 blocking gaps**：\n1. D076 统一协议 reeval（4/8 eval 不一致，阻塞 C3 paired t-test）\n2. CED reranker 缺 Ign-F1（主表需要）\n3. Test set evaluation（plan_002 未开始）\n4. DREEAM-protocol Evi-F1 对齐（跨范式对比）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-compile-paper-evidence-table.md"
+}

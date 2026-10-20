@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12a0ea8d5bd49623c6ad",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "prepare seed comparison pipeline",
+  "task_key": "worker_prepare_seed_comparison_pipeline_20260516T001825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prepare_seed_comparison_pipeline_20260516T001825_result.json",
+    "occurrence": 1,
+    "bytes": 1507,
+    "sha256": "661240bf9dcd64ede9487d0a560bd4cd9cb329fcd742056cd47316d4bb06d843"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Denominator 修正完毕，显示 3/4 和 2/4。\n\n## 报告\n\n### (1) 脚本状态：就绪 ✓\n\n`/root/autodl-tmp/scripts/seed_comparison.py` 已存在并可正常运行。功能完整：\n- 自动读取各 eval 目录的 metrics.json\n- 提取 rel_f1, evi_f1, EDCR\n- 运行 paired t-test + Cohen's d + 95% CI\n- 输出 markdown 表格和 JSON\n- 支持 `--watch N` 模式自动轮询\n\n已更新：添加了 s45 支持（CED → `rsft_s45`, flat-NLI → `rsft_flat_nli_s45`），denominator 从 3 改为 4。\n\n### (2) 已有 eval 结果目录\n\n| Method | Seed | Eval Dir | 状态 |\n|--------|------|----------|------|\n| CED | s42 | `rsft_r2b` | ✅ |\n| CED | s43 | `rsft_s43` | ✅ |\n| CED | s44 | `rsft_s44` | ✅ |\n| CED | s45 | `rsft_s45` | ❌ 不存在 |\n| flat-NLI | s42 | `rsft_flat_nli` | ✅ |\n| flat-NLI | s43 | `rsft_flat_nli_s43_reeval` | ✅ |\n| flat-NLI | s44 | `rsft_flat_nli_s44` | ❌ 空目录 |\n| flat-NLI | s45 | `rsft_flat_nli_s45` | ❌ 空目录 |\n\n### (3) CED s42/s43/s44 实际 rel_f1 值\n\n| Seed | rel_f1 | evi_f1 | EDCR |\n|------|--------|--------|------|\n| s42 | **0.4493** | 0.8128 | 0.6609 |\n| s43 | **0.4683** | 0.8156 | 0.6388 |\n| s44 | **0.4655** | 0.8087 | 0.6350 |\n| mean | 0.4610 ± 0.0102 | 0.8124 ± 0.0035 | 0.6449 ± 0.0140 |\n\n当前可配对 2 seeds (s42, s43)，paired t-test 已可运行但 N=2 统计不可靠。还需等待 flat-NLI s44/s45 和 CED s45 的 eval 完成才能做有效的 4-seed paired comparison。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prepare-seed-comparison-pipeline.md"
+}

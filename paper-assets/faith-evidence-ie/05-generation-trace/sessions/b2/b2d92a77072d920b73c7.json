@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2d92a77072d920b73c7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research ced stabilizer literature",
+  "task_key": "worker_research_ced-stabilizer-literature_20260514T183814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ced-stabilizer-literature_20260514T183814_result.json",
+    "occurrence": 1,
+    "bytes": 1442,
+    "sha256": "ce8bc5c996c3835b338b4963ad6c1a54e7a08ef3ee9c892824b5783f2c45b2b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出总结：\n\n**`literature_map.yaml`** — 17 篇论文，按 5 个 category 组织，每篇含 key_finding 和 relevance_to_ced_stabilizer。\n\n**`artifacts/ced_stabilizer_literature_survey.md`** — 调研摘要，核心结论：\n\n**最相关的已有工作**：\n- **GDPO** (ICML 2026)：理论上解释了多 reward 归一化导致 advantage collapse——与我们的 CED vs. extraction-only 对比完美吻合\n- **Dr. GRPO** (COLM 2025)：分析了 reward_std→0 时的 difficulty bias，直接解释我们观察到的 frac_zero_std 现象\n- **DRA-GRPO**：从优化层面注入 diversity 信号，CED 从 reward design 层面天然具备\n- **DAPO** (NeurIPS 2025)：Clip-Higher 解决 entropy collapse，但属于 algorithm trick 而非 reward design\n\n**我们的新颖性**：\n1. 首次证明 reward 结构（非 algorithm trick）决定 GRPO 训练稳定性\n2. Contrastive evidence discrimination 作为 RL stabilizer 在 IE 领域全新\n3. 三种 reward type 的 controlled ablation 提供了罕见的干净因果证据\n\n**建议的三个 positioning 角度**：\n1. Multi-dimensional reward as implicit diversity regularizer（引 GDPO 理论）\n2. Reward variance maintenance for gradient health（引 Dr. GRPO + arXiv 2601.23135 理论）\n3. Task-specific contrastive signal as a \"free stabilizer\"（最有叙事张力——CED 本为 faithfulness 设计，意外稳定了训练）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ced-stabilizer-literature.md"
+}

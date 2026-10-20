@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ef9312a610776994dad",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit d112 step1 generation cuda3",
+  "task_key": "worker_submit_d112_step1_generation_cuda3_20260518T225655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_d112_step1_generation_cuda3_20260518T225655_result.json",
+    "occurrence": 1,
+    "bytes": 927,
+    "sha256": "151688fb7a758c751ec09ee8b2501e0cb9b77e42ce7ebabf360092e40ec83854"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个子任务均完成。\n\n**子任务 1 — GRPO ckpt-200 eval 收割完毕**\n\n| 指标 | 值 |\n|------|-----|\n| Ign-F1 | 0.4446 |\n| Rel-F1 | 0.4513 |\n| Evi-F1(DREEAM) | 0.3562 |\n| Evi-F1(TP) | 0.8053 |\n| EDCR | 0.6489 |\n| Format OK | 984/985 |\n| Truncated | 204/985 |\n| Predictions | 15733 |\n\nRegistry `grpo_bf16_g4_ckpt200_eval` 已更新为 DONE/success，metrics 已写入。\n\n**子任务 2 — D112 RSFT 候选生成已提交到 cuda:3**\n\n- tmux session: `d112_rsft_s44_generate`\n- 日志: `/root/runs/faith-evidence-ie/d112_rsft_s44_generate.log`\n- 模型已在加载中，SFT s44 adapter 已合并\n- Registry `d112_rsft_s44_generate` 状态 RUNNING\n\nGRPO ckpt-200 的 ign_f1=0.4446 低于 SFT s44 baseline 的 0.4734，说明 GRPO 200 步训练在 RE 指标上有退化，但 evi_f1_joint=0.3562 和 edcr=0.6489 需要和 SFT baseline 对比才能判断 evidence 质量变化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-d112-step1-generation-cuda3.md"
+}

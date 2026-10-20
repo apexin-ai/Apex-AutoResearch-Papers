@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7087bd21b281e5965906",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose 14b progress 8b s44 prep",
+  "task_key": "worker_diagnose_14b-progress-8b-s44-prep_20260523T050412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_14b-progress-8b-s44-prep_20260523T050412_result.json",
+    "occurrence": 1,
+    "bytes": 1872,
+    "sha256": "c25b726c9c22acf1b9807b5fd22ff15858c346187acb2ab368a0709826f6ae3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Part A: 14B s43 Generation 进度\n\n| 指标 | 值 |\n|------|-----|\n| 当前行数 | **14,992** / 24,216 |\n| 进度 | **61.9%** |\n| 进程状态 | PID 194682, 运行 10h47m, CPU 100%, RSS 2.4GB |\n| 生成速率 | ~1,390 lines/hour |\n| 剩余 | 9,224 lines → **约 6h38m** |\n| 预计完成 | **今天 ~17:00 UTC+8** |\n| 磁盘 | 87GB 可用 (76%) ✅ |\n\n### CED Scoring 环境就绪情况\n\n| 组件 | 状态 | 路径 |\n|------|------|------|\n| Score+Filter 脚本 | ✅ | `/root/autodl-tmp/freige/training/rsft_score_filter.py` |\n| CED Evidence Filter | ✅ | `/root/autodl-tmp/freige/eval/ced_evidence_filter.py` |\n| NLI DeBERTa-v3-base | ✅ 已缓存 | `.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base` |\n| NLI DeBERTa-v3-large | ✅ 已缓存 | `.hf_cache/hub/models--cross-encoder--nli-deberta-v3-large` |\n\nCED scoring pipeline 就绪，14B generation 完成后可直接启动。\n\n### Part B: 8B RSFT s44 Adapter\n\n**找到**: `/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44/`\n- `adapter_model.safetensors` 698MB, 创建于 May 19\n- 含 checkpoint-1100, checkpoint-1134\n\n**8B s44 with-evi test eval 完整命令**:\n\n```bash\nCUDA_VISIBLE_DEVICES=0 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.eval.test_inference \\\n  --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s44 \\\n  --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B \\\n  --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 \\\n  --data_path /root/autodl-tmp/data/re-docred-repo/data \\\n  --split test_revised \\\n  --max_new_tokens 2048 \\\n  --no-quantize \\\n  --seed 44 \\\n  --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s44_with_evi\n```\n\n注意：按 C001 约束，提交前需 `nvidia-smi` 确认 cuda:0 显存占用 < 2GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-14b-progress-8b-s44-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3267b51680b8beec4b7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d158 14b rsft s44 test no evi",
+  "task_key": "worker_analysis_d158_14b_rsft_s44_test_no_evi_20260525T124554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d158_14b_rsft_s44_test_no_evi_20260525T124554_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "fb5ec446ab67fab59b92caff7042917a34c136f21c2a0fc201082341c34b62da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正常退出，EXIT_CODE=0，无 error/traceback。\n\n## d158_14b_rsft_s44_test_no_evi 结果\n\n| Metric | Value |\n|--------|-------|\n| **ign_f1** | **0.3666** |\n| precision | 0.4161 |\n| recall | 0.3276 |\n| evi_f1 / evi_f1_joint / edcr | 0.0 (no-evidence, 符合预期) |\n| format_ok_rate | 99.6% (498/500) |\n| n_truncated | 271/500 |\n| n_documents | 500 |\n| n_predictions | 29840 |\n\n## Evidence Tax (seed=44)\n\n| | ign_f1 |\n|--|--------|\n| with_evi | 0.3716 |\n| no_evi | 0.3666 |\n| **tax (with - no)** | **+0.50pp** |\n\n## 三个 seed test tax 汇总\n\n| Seed | with_evi | no_evi | Tax |\n|------|----------|--------|-----|\n| s42 | — | — | +0.77pp |\n| s43 | — | — | +0.08pp |\n| s44 | 0.3716 | 0.3666 | +0.50pp |\n| **Mean** | | | **+0.45pp** |\n\n三个 seed 的 evidence tax 均为正值（evidence helps），范围 +0.08 ~ +0.77pp，均值 +0.45pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d158-14b-rsft-s44-test-no-evi.md"
+}

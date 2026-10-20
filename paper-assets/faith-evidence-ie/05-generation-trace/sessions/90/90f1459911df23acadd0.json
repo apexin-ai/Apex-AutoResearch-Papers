@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90f1459911df23acadd0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 001 wait and submit",
+  "task_key": "worker_ops_plan_001_wait_and_submit_20260515T143351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_001_wait_and_submit_20260515T143351_result.json",
+    "occurrence": 1,
+    "bytes": 41,
+    "sha256": "ac46f7b3f337a48b1bd947049d440f8cda262a1b6d07053dbb7e4e0c85241769"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-001-wait-and-submit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8bf5b1d078ccea1260b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose urgent gpu check",
+  "task_key": "worker_diagnose_urgent-gpu-check_20260522T000436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_urgent-gpu-check_20260522T000436_result.json",
+    "occurrence": 1,
+    "bytes": 253,
+    "sha256": "d89e16cc4befbe2c7cb1772b1ff0ffcbe7a64909243dcc800a3b2d3487660581"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 10 分钟后自动检查 14B SFT 完成状态。届时自动：\n1. 收集 14B SFT ign_f1\n2. 更新 registry\n3. 提交 `test_eval_1_7b_sft_s42_no_evi` 到释放的 cuda:1\n\n当前 4 GPU 全满载运行，无需手动干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-urgent-gpu-check.md"
+}

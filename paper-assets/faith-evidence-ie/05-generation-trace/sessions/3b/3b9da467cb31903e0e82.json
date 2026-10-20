@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b9da467cb31903e0e82",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh full experiment check",
+  "task_key": "worker_ssh_full-experiment-check_20260515T010123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_full-experiment-check_20260515T010123_result.json",
+    "occurrence": 1,
+    "bytes": 1421,
+    "sha256": "5453f99645092937cf49334ccc23863e6843ec473b4af0390037b4a150d2beb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n### 1. ckpt-100 eval (pid=117635, cuda:3)\n- **状态**: 运行中，已运行 1h22m\n- **进度**: 51/62 batches (**82%**)，~95s/batch\n- **预计剩余**: ~17 分钟完成\n\n### 2. GRPO 训练 (pid=90080, cuda:0)\n- **状态**: 运行中，已运行 5h22m\n- **进度**: **186/200 steps (93%)**，~95s/step\n- **最新指标** (step ~185):\n  - reward: 0.281, format_reward: 0.252, f1_reward: 0.014, ced_reward: 0.015\n  - clipped_ratio: 0.088, kl: 0.036\n  - lr: 1.275e-6 (衰减阶段)\n- **预计剩余**: ~22 分钟完成\n\n### 3. RSFT generation (pid=122144, cuda:1)\n- **状态**: 运行中，已运行 52m\n- **进度**: 97/1514 batches (**6.4%**)，完成约 186/3027 docs\n- **diversity 监控** (最近 100 样本):\n  - format_ok_rate: **99.6%**\n  - truncation_rate: **9.2%**\n  - **mean_diversity: 0.9/8** — 仍然是危机级别，没有改善\n- **预计剩余**: ~12-13 小时\n\n### 4. GPU 使用情况\n\n| GPU | 利用率 | 显存 | 用途 |\n|-----|--------|------|------|\n| 0 | 60% | 13.6/32.6 GB | GRPO 训练 |\n| 1 | 79% | 23.2/32.6 GB | RSFT 生成 |\n| 2 | **0%** | **0 GB** | 空闲 |\n| 3 | 79% | 11.2/32.6 GB | ckpt-100 eval |\n\n**关键问题**: RSFT diversity 仍然是 0.9/8，8 个 generation 中平均只有 0.9 个不同输出，基本上都是重复的。这个问题从上次检查到现在没有改善，生成的数据质量堪忧。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-full-experiment-check.md"
+}

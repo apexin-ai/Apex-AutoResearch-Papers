@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "539b118819813625b747",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose check all 3 evals urgent",
+  "task_key": "worker_diagnose_check_all_3_evals_urgent_20260518T192647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_check_all_3_evals_urgent_20260518T192647_result.json",
+    "occurrence": 1,
+    "bytes": 1300,
+    "sha256": "ebf2225e828493b69170c92dce546589c6cb3217b7f762cc42bfacd08871d5d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== GPU Status ===\ncuda:0: 26853MiB/32607MiB, 84% util — 8B SFT s44 训练 (PID 567995)\ncuda:1: 11387MiB/32607MiB, 46% util — random_rsft_k1_eval 运行中 (PID 558325)\ncuda:2: 0MiB/32607MiB, 空闲\ncuda:3: 11387MiB/32607MiB, 44% util — grpo_bf16_g4_ckpt100_eval 运行中 (PID 558472)\n\n=== plan019_1_7b_sft_s44_eval (cuda:0) ===\nPID 558241: dead\n状态: 完成 (02:17 May 19)\n指标: ign_f1=0.4321, f1=0.4441, evi_f1_tp=0.819, evi_f1_joint=0.3482, EDCR=0.69\n       format_ok=985/985 (100%), field_compliance=51.98%, truncated=473/985, predictions=20237\nRegistry: ✅ 已更新 (DONE/success)\n\n=== random_rsft_k1_eval (cuda:1) ===\nPID 558325: alive\n状态: 运行中 — 214/247 (87%), ~25 min remaining\nRegistry: 待完成后更新\n\n=== grpo_bf16_g4_ckpt100_eval (cuda:3) ===\nPID 558472: alive\n状态: 运行中 — 223/247 (90%), ~18 min remaining\nRegistry: 待完成后更新\n```\n\n**关键发现 — plan019_1_7b_sft_s44_eval:**\n- ign_f1=0.4321 显著低于预期的 ~0.495（canonical 1.7B SFT s42 水平）\n- field_compliance 仅 51.98%（512/985 文档有有效 evidence），truncated 高达 48%\n- 这可能说明 1.7B 模型在 max_new_tokens=1024 下严重截断，导致大量输出不完整\n\n两个 4B eval 预计 ~20 min 内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-check-all-3-evals-urgent.md"
+}

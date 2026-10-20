@@ -1,0 +1,398 @@
+{
+  "schema_version": "1.0",
+  "session_id": "8c6192bf814d4a6cfcff",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-21T19:48:46.798Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012RevBjX1PGyn5zWxvVhHev",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"content\\\": \\\"# faith-evidence-ie Memory\\\\n\\\\n## 服务器架构（2026-05-20 更新）\\\\n\\\\n- **主服务器 westd-37389**: 4× RTX PRO 6000 Blackwell, 98GB VRAM/卡, 350GB 数据盘 (46% used, 190GB free)\\\\n  - SSH: `rtx5090-4x` (connect.westd.seetacloud.com:37389)\\\\n  - 环境: conda base, Python 3.12, PyTorch 2.8.0+cu128, transformers 5.8.1, flash-attn 2.8.3\\\\n- **数据源 bjb2-12179**: 全部 208G 数据完好，rsync 迁移主体完成，SFT adapter 补传中\\\\n  - SSH: `bjb2-12179` (connect.bjb2.seetacloud.com:12179)\\\\n- **废弃 bjb1-49673**: AutoDL 重启导致数据清空，已关停\\\\n\\\\n## GPU 分配教训（2026-05-20）\\\\n\\\\nLLaMA SFT 脚本里有 `export CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`，会覆盖 submit_training_job 注入的 CUDA_VISIBLE_DEVICES。**必须通过 `GPU=X` 环境变量传物理 GPU 编号**，不能依赖框架注入。\\\\n\\\\n## 🔴 Adapter 路径教训（2026-05-21 — 严重）\\\\n\\\\n**D140 全尺度 no-evi eval 全部用错了 adapter**。错误：用了 plan_014 训练的 \\\\\\\"no-evidence training regime\\\\\\\" adapter（训练数据本身不含 evidence），而非标准 SFT adapter + `--no_evidence` inference flag。\\\\n\\\\n**铁证**：trainer_state.json 中 tokens/step 差 ~18%（no_evidence adapter: 119,651 vs standard: 141,227）。\\\\n\\\\n**正确做法**：evidence tax = 同一个标准 SFT adapter，分别有/无 `--no_evidence` 参数，对比 ign_f1。\\\\n\\\\n**Qwen 各 scale 标准 SFT adapter 路径**：\\\\n- 1.7B: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\\\\n- 8B: `/root/autodl-tmp/sft_output_qwen3_8b_bf16`\\\\n- 4B: `/root/autodl-tmp/sft_output`（标准 SFT，非 plan_014）\\\\n- 14B: `/root/autodl-tmp/sft_output_14b/checkpoint-144`\\\\n\\\\n**错误 adapter 路径（plan_014，不可用于 evidence tax）**：\\\\n- `sft_output_qwen3_1_7b_no_evidence`\\\\n- `sft_output_qwen3_8b_no_evidence`\\\\n- `sft_no_evidence_output`（4B）\\\\n\\\\n## 🔴 4B RSFT s42 checkpoint 丢失（2026-05-21）\\\\n\\\\n4B RSFT s42 adapter（rsft_output, rsft_output_r2b）在 rtx5090-4x 和 bjb2-12179 上均不存在，已永久丢失。需走正规流程重训。未经审批的 retrain_4b_rsft_ced_s42 被 kill 并记录 M028 违规。\\\\n\\\\n## submit_training_job timeout 教训（2026-05-20 更新）\\\\n\\\\nLLaMA 8B no-evidence eval timeout 参考：\\\\n- **max_new_tokens=1024**: ~2h+，至少 14400s (4h)\\\\n- **max_new_tokens=2048 + 高截断 seed (s43)**: ~4.5h+，4h 仍不够（237/247, 96%，末段 ~70s/batch）。**至少 21600s (6h)**。s43 原 1024 版 truncation=38.4%，2048 版生成更长输出导致每 batch 耗时远超 s42/s44\\\\n\\\\n## LLaMA 完整统计（2026-05-20 更新）\\\\n\\\\n### SFT 3-seed\\\\n| Seed | ign_f1 | rel_f1 | edcr |\\\\n|------|--------|--------|------|\\\\n| s42 | 0.5384 | 0.5514 | — |\\\\n| s43 | 0.5142 | 0.5308 | 0.5866 |\\\\n| s44 | 0.4802 | 0.4902 | 0.6579 |\\\\n| **Mean** | **0.5109** | — | — |\\\\n| **Std** | **0.0238** | — | — |\\\\n\\\\ns44 异常低（较 s42 低 5.8pp），拉大了 SFT 方差。这恰好强化了 RSFT variance compression 的价值。\\\\n\\\\n### RSFT 3-seed (k=1)\\\\n| Seed | ign_f1 | rel_f1 | edcr |\\\\n|------|--------|--------|------|\\\\n| s42 | 0.5714 | 0.5839 | 0.5799 |\\\\n| s43 | 0.5662 | 0.5780 | 0.5783 |\\\\n| s44 | 0.5587 | 0.5706 | 0.5829 |\\\\n| **Mean** | **0.5654** | — | — |\\\\n| **Std** | **0.0052** | — | — |\\\\n\\\\n### 跨方法对比\\\\n- **SFT→RSFT Δ**: +5.45pp\\\\n- **方差压缩**: 4.58× (0.0238→0.0052)\\\\n- RSFT 在最弱 SFT seed (s44) 上仍显著提升：0.4802→0.5587 (+7.85pp)\\\\n\\\\n## 🚨 Evidence Tax 方法论（D134/D137/D140 决策）\\\\n\\\\n**论文报告标准**：用 fair comparison（format-OK 子集），不修 parser。与 1.7B D083 方法论一致。\\\\n\\\\n**D137 追加**：所有 evidence tax 必须在 matched token budget (max_new_tokens=2048) 下计算，@1024 受截断伪影影响。\\\\n\\\\n**D140 追加**：Qwen 全尺度 @1024 截断率 14-48%，必须全面 @2048 重跑。Pilot-first 策略：每个 scale 先跑 s42，delta >1pp 则扩 3-seed。\\\\n\\\\n**Fair comparison 脚本**：`/root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py`，接受 `--with-evi` 和 `--no-evi` predictions.json 路径。\\\\n\\\\n**⚠️ fair_tax 计算教训（2026-05-21）**：Worker 调 fair_evidence_tax.py 时，必须确保 --with-evi 和 --no-evi 都指向 @2048 predictions。第一次 Worker 误用了 @1024 with-evi 文件导致结果无效。**验证方法**：检查 predictions 所在目录的 metrics.json 的 ign_f1 与已知 @2048 值匹配。\\\\n\\\\n### Evidence Tax (LLaMA) — Matched@2048 Fair Tax（最终版）\\\\n\\\\n**SFT 3-seed matched fair tax @2048（2026-05-21 完成）**：\\\\n| Seed | fair_subset | fair_with_evi@2048 | fair_no_evi@2048 | matched_fair_tax (pp) |\\\\n|------|------------|-------------------|-----------------|----------------------|\\\\n| s42 | 873 docs | 0.5716 | 0.5564 | **-1.53** |\\\\n| s43 | 834 docs | 0.4910 | 0.3789 | **-11.20** |\\\\n| s44 | 977 docs | 0.4679 | 0.4395 | **-2.83** |\\\\n| **Mean±Std** | 895 | 0.5102 | 0.4583 | **-5.19 ± 5.25** |\\\\n\\\\n3-seed 全部为负（evidence helps）。s43 是离群值（no-evi 输出过度冗长，即使 @2048 format_ok 仅 84.7%）。\\\\n\\\\n**关键发现**：s42 fair_tax 从 @1024 mismatched 的 +1.20pp（evidence 有害）翻转为 matched@2048 的 -1.53pp（evidence 有帮助）。证明 @1024 截断伪影能翻转 evidence tax 符号。\\\\n\\\\n**RSFT 3-seed（@1024，fair≈full）**：\\\\n- s42: tax=-1.88pp, s43: tax=-1.16pp, s44: tax=-0.37pp\\\\n- **Mean: -1.14pp ± 0.76pp**（一致负向，方差远小于 SFT）\\\\n- RSFT format compliance: 984/985 (99.9%)\\\\n\\\\n**Variance compression in evidence tax**：SFT fair_tax std=5.25pp → RSFT tax std=0.76pp → **6.9× compression**。\\\\n\\\\n## Matched@2048 Evidence Tax 数据编译（2026-05-21 更新）\\\\n\\\\n### LLaMA 8B SFT — @2048 原始指标（全部完成）\\\\n\\\\n| Seed | Config | ign_f1 | truncated | format_ok | status |\\\\n|------|--------|--------|-----------|-----------|--------|\\\\n| s42 | no-evi@2048 | 0.5210 | 201 (20.4%) | 874 (88.7%) | ✅ |\\\\n| s42 | with-evi@2048 | 0.5649 | 147 (14.9%) | 976 (99.1%) | ✅ |\\\\n| s43 | no-evi@2048 | 0.3389 | 359 (36.4%) | 834 (84.7%) | ✅ |\\\\n| s43 | with-evi@2048 | 0.4954 | 242 (24.6%) | 985 (100%) | ✅ |\\\\n| s44 | no-evi@2048 | 0.4373 | 246 (25.0%) | 977 (99.2%) | ✅ |\\\\n| s44 | with-evi@2048 | 0.4655 | 177 (18.0%) | 985 (100%) | ✅ |\\\\n\\\\n### LLaMA 8B RSFT — @2048\\\\n\\\\n| Seed | Config | @1024 ign_f1 | @2048 ign_f1 | delta | status |\\\\n|------|--------|-------------|-------------|-------|--------|\\\\n| s42 | with-evi | 0.5714 | **0.5774** | +0.60pp | ✅ 完成 |\\\\n| s42 | no-evi | 0.5526 | **0.5559** | +0.33pp | ✅ 完成 |\\\\n\\\\n**结论**：RSFT @2048 delta=+0.60pp <1pp，@1024 可靠。truncated=90/985 (9.1%)，format_ok=984/985。\\\\n\\\\n### Qwen3-14B RSFT — @2048（完成）\\\\n\\\\n| Config | @1024 ign_f1 | @1024 truncated | @2048 ign_f1 | delta | status |\\\\n|--------|-------------|-----------------|-------------|-------|--------|\\\\n| with-evi | 0.5886 | 105 (10.7%) | **0.5896** | +0.10pp | ✅ 完成 |\\\\n| no-evi | 0.5432 | 106 (10.8%) | 待提交 | — | — |\\\\n\\\\n### D140/D145 Qwen SFT Matched@2048 Evidence Tax（3-seed 完成）\\\\n\\\\n⚠️ **M027 adapter 错误已修复。**\\\\n\\\\n| Scale | Seed | with-evi ign_f1 | no-evi ign_f1 | fair_tax (pp) | fair_subset |\\\\n|-------|------|----------------|---------------|---------------|-------------|\\\\n| **1.7B** | s42 | 0.4838 | 0.4275 | **-5.63** | 971 |\\\\n| **4B** | s42 | 0.3951 | 0.4024 | **+0.73** | 981 |\\\\n| **4B** | s43 | 0.4375 | 0.4355 | **-0.20** | 982 |\\\\n| **4B** | s44 | 0.4667 | 0.4688 | **+0.21** | 982 |\\\\n| **4B mean±std** | — | — | — | **+0.25 ± 0.47** | — |\\\\n| **8B** | s42 | 0.5015 | 0.5019 | **+0.04** | 984 |\\\\n\\\\n**4B 3-seed 结论（2026-05-21）**：evidence tax 不显著（mean=+0.25pp, std=0.47pp > mean），方向不稳定（s43 为负）。4B 是 Qwen family 内 evidence benefit 消失的 transition point：1.7B=-5.63pp（evidence 显著帮助）→ 4B≈0 → 8B≈0。\\\\n\\\\n### Cross-scale @2048 Delta Pattern（2026-05-21 发现）\\\\n\\\\n@2048 vs @1024 的 ign_f1 delta 随模型增大而缩小：\\\\n\\\\n| Scale | @2048 Δ_ign_f1 | Truncation Δ | 解读 |\\\\n|-------|---------------|--------------|------|\\\\n| 1.7B SFT | +0.96pp (s42 only: 0.4710→0.4806) | 31.9%→27.1% (-4.8pp) | 截断率高但 delta 仍有限 |\\\\n| 8B SFT | +0.40pp (matched s42) | 31.8%→24.0% (-7.8pp) | 截断率降更多但 F1 delta 更小 |\\\\n| 14B RSFT | +0.10pp | 10.7%→~0% | @1024 已几乎不截断 |\\\\n| LLaMA RSFT | +0.60pp | 9.1%→? | @1024 已较可靠 |\\\\n\\\\n**含义**: 截断率高 ≠ 性能瓶颈。@1024 结果对所有 scale 基本可靠，matched@2048 主要用于消除截断伪影对 evidence tax 的干扰（见 D140 s42 翻转案例）。\\\\n\\\\n### Seed-dependent token budget 效应（2026-05-21 发现）\\\\n\\\\ns42 with-evi@1024→2048 delta=**+2.65pp**（大幅提升），s44 with-evi@1024→2048 delta=**-1.47pp**（反向下降），s43 delta=**-1.88pp**。Token budget 效应本身是 seed-dependent 的。\\\\n\\\\n## 🔴 Test Set Scaling Table Status（2026-05-21 编译）\\\\n\\\\n### 综合表格\\\\n\\\\n| Scale | Dev ign_f1 (RSFT) | SFT test ign_f1 | RSFT test ign_f1 | RSFT test evi_f1 | RSFT test edcr | Dev→Test Gap |\\\\n|-------|-------------------|-----------------|------------------|------------------|----------------|-------------|\\\\n| **1.7B** | 0.5119 | ❌ P1 | **0.2933** | 0.2320 | 0.8169 | -21.9pp |\\\\n| **4B** | 0.4423 | 🔄 运行中 | ❌ 需重训 | — | — | — |\\\\n| **8B** | 0.5433 | 🔄 运行中 | **0.3353** | 0.2526 | 0.7993 | -20.8pp |\\\\n| **14B** | 0.5886 | 🔄 运行中 | **0.3849** | 0.2688 | 0.7865 | -20.4pp |\\\\n| **LLaMA-8B** | 0.5654 | 🔄 提交中 | **0.3599** | 0.2509 | 0.8391 | -20.6pp |\\\\n\\\\n### 关键观察\\\\n\\\\n1. **Dev→Test gap 惊人一致**：所有完成的 scale 均为 ~20-22pp，与 scale 无关\\\\n2. **Scaling 趋势在 test 上保持**：1.7B < 8B < LLaMA < 14B 的排序与 dev 一致\\\\n3. **LLaMA vs Qwen-8B**：test 上 LLaMA (0.3599) > Qwen-8B (0.3353)，与 dev 一致（0.5654 > 0.5433）\\\\n4. **4B RSFT test 是唯一缺口**：checkpoint 丢失，需重训后再 eval\\\\n\\\\n## RSFT inference 架构（2026-05-20 确认）\\\\n\\\\nRSFT 是 nested LoRA：inference.py 先 merge SFT adapter 到 base model，再加载 RSFT adapter。**eval 时必须传 `--sft_adapter` 参数**，否则代码报错。\\\\n\\\\n## 14B Pipeline 状态（2026-05-21 更新）\\\\n\\\\n- Generation: r4 完成, 24216 candidates from 3027 docs\\\\n- **CED Scoring 完成** (plan017_14b_ced_scoring)：\\\\n  - 输出: `/root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl` (3015 条, 9.1MB)\\\\n  - Selected F1=0.730, CED=0.690, Combined=0.768\\\\n- **RSFT Training 完成** (plan017_14b_rsft_train): train_loss=0.5005, token_acc=0.8783, 1131 steps, 66min, LoRA r=64/α=128, bf16, single GPU 38GB\\\\n- **Eval @1024 完成**: with-evi ign_f1=0.5886 (全项目最高), no-evi ign_f1=0.5432, tax=-4.54pp\\\\n- **Eval @2048 完成**: with-evi ign_f1=0.5896 (+0.10pp vs @1024), 确认 @1024 可靠\\\\n- **Test set eval 完成**: test ign_f1=0.3849, codalab 已生成\\\\n\\\\n## Qwen3-8B RSFT Evidence Tax 确认（2026-05-20）\\\\n\\\\n- no-evi ign_f1 = 0.5336, with-evi ign_f1 = 0.5414\\\\n- D127 tax = -0.78pp（evidence helps，微弱）\\\\n- 与 LLaMA RSFT (-1.14pp) 方向一致，跨家族均为负\\\\n\\\\n## Reviewer 发现（2026-05-20）\\\\n\\\\n- SFT evidence tax 方法论不一致：应该用同一模型加 `--no_evidence` flag，而非对比独立训练的 no-evidence 模型\\\\n- LLaMA eval configs 的 base_model 指向 Qwen3-4B（不影响结果，model_path 正确）\\\\n\\\\n## 竞品实验参考\\\\n\\\\n（待填充——首次进入新方向时从 literature_map 提取）\\\\n\\\", \\\"total_chars\\\": 9230, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "uuid": "8b216a8a-0d2c-4a57-8d62-74b88cae7f48",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"content\\\": \\\"# faith-evidence-ie Memory\\\\n\\\\n## 服务器架构（2026-05-20 更新）\\\\n\\\\n- **主服务器 westd-37389**: 4× RTX PRO 6000 Blackwell, 98GB VRAM/卡, 350GB 数据盘 (46% used, 190GB free)\\\\n  - SSH: `rtx5090-4x` (connect.westd.seetacloud.com:37389)\\\\n  - 环境: conda base, Python 3.12, PyTorch 2.8.0+cu128, transformers 5.8.1, flash-attn 2.8.3\\\\n- **数据源 bjb2-12179**: 全部 208G 数据完好，rsync 迁移主体完成，SFT adapter 补传中\\\\n  - SSH: `bjb2-12179` (connect.bjb2.seetacloud.com:12179)\\\\n- **废弃 bjb1-49673**: AutoDL 重启导致数据清空，已关停\\\\n\\\\n## GPU 分配教训（2026-05-20）\\\\n\\\\nLLaMA SFT 脚本里有 `export CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`，会覆盖 submit_training_job 注入的 CUDA_VISIBLE_DEVICES。**必须通过 `GPU=X` 环境变量传物理 GPU 编号**，不能依赖框架注入。\\\\n\\\\n## 🔴 Adapter 路径教训（2026-05-21 — 严重）\\\\n\\\\n**D140 全尺度 no-evi eval 全部用错了 adapter**。错误：用了 plan_014 训练的 \\\\\\\"no-evidence training regime\\\\\\\" adapter（训练数据本身不含 evidence），而非标准 SFT adapter + `--no_evidence` inference flag。\\\\n\\\\n**铁证**：trainer_state.json 中 tokens/step 差 ~18%（no_evidence adapter: 119,651 vs standard: 141,227）。\\\\n\\\\n**正确做法**：evidence tax = 同一个标准 SFT adapter，分别有/无 `--no_evidence` 参数，对比 ign_f1。\\\\n\\\\n**Qwen 各 scale 标准 SFT adapter 路径**：\\\\n- 1.7B: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\\\\n- 8B: `/root/autodl-tmp/sft_output_qwen3_8b_bf16`\\\\n- 4B: `/root/autodl-tmp/sft_output`（标准 SFT，非 plan_014）\\\\n- 14B: `/root/autodl-tmp/sft_output_14b/checkpoint-144`\\\\n\\\\n**错误 adapter 路径（plan_014，不可用于 evidence tax）**：\\\\n- `sft_output_qwen3_1_7b_no_evidence`\\\\n- `sft_output_qwen3_8b_no_evidence`\\\\n- `sft_no_evidence_output`（4B）\\\\n\\\\n## 🔴 4B RSFT s42 checkpoint 丢失（2026-05-21）\\\\n\\\\n4B RSFT s42 adapter（rsft_output, rsft_output_r2b）在 rtx5090-4x 和 bjb2-12179 上均不存在，已永久丢失。需走正规流程重训。未经审批的 retrain_4b_rsft_ced_s42 被 kill 并记录 M028 违规。\\\\n\\\\n## submit_training_job timeout 教训（2026-05-20 更新）\\\\n\\\\nLLaMA 8B no-evidence eval timeout 参考：\\\\n- **max_new_tokens=1024**: ~2h+，至少 14400s (4h)\\\\n- **max_new_tokens=2048 + 高截断 seed (s43)**: ~4.5h+，4h 仍不够（237/247, 96%，末段 ~70s/batch）。**至少 21600s (6h)**。s43 原 1024 版 truncation=38.4%，2048 版生成更长输出导致每 batch 耗时远超 s42/s44\\\\n\\\\n## LLaMA 完整统计（2026-05-20 更新）\\\\n\\\\n### SFT 3-seed\\\\n| Seed | ign_f1 | rel_f1 | edcr |\\\\n|------|--------|--------|------|\\\\n| s42 | 0.5384 | 0.5514 | — |\\\\n| s43 | 0.5142 | 0.5308 | 0.5866 |\\\\n| s44 | 0.4802 | 0.4902 | 0.6579 |\\\\n| **Mean** | **0.5109** | — | — |\\\\n| **Std** | **0.0238** | — | — |\\\\n\\\\ns44 异常低（较 s42 低 5.8pp），拉大了 SFT 方差。这恰好强化了 RSFT variance compression 的价值。\\\\n\\\\n### RSFT 3-seed (k=1)\\\\n| Seed | ign_f1 | rel_f1 | edcr |\\\\n|------|--------|--------|------|\\\\n| s42 | 0.5714 | 0.5839 | 0.5799 |\\\\n| s43 | 0.5662 | 0.5780 | 0.5783 |\\\\n| s44 | 0.5587 | 0.5706 | 0.5829 |\\\\n| **Mean** | **0.5654** | — | — |\\\\n| **Std** | **0.0052** | — | — |\\\\n\\\\n### 跨方法对比\\\\n- **SFT→RSFT Δ**: +5.45pp\\\\n- **方差压缩**: 4.58× (0.0238→0.0052)\\\\n- RSFT 在最弱 SFT seed (s44) 上仍显著提升：0.4802→0.5587 (+7.85pp)\\\\n\\\\n## 🚨 Evidence Tax 方法论（D134/D137/D140 决策）\\\\n\\\\n**论文报告标准**：用 fair comparison（format-OK 子集），不修 parser。与 1.7B D083 方法论一致。\\\\n\\\\n**D137 追加**：所有 evidence tax 必须在 matched token budget (max_new_tokens=2048) 下计算，@1024 受截断伪影影响。\\\\n\\\\n**D140 追加**：Qwen 全尺度 @1024 截断率 14-48%，必须全面 @2048 重跑。Pilot-first 策略：每个 scale 先跑 s42，delta >1pp 则扩 3-seed。\\\\n\\\\n**Fair comparison 脚本**：`/root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py`，接受 `--with-evi` 和 `--no-evi` predictions.json 路径。\\\\n\\\\n**⚠️ fair_tax 计算教训（2026-05-21）**：Worker 调 fair_evidence_tax.py 时，必须确保 --with-evi 和 --no-evi 都指向 @2048 predictions。第一次 Worker 误用了 @1024 with-evi 文件导致结果无效。**验证方法**：检查 predictions 所在目录的 metrics.json 的 ign_f1 与已知 @2048 值匹配。\\\\n\\\\n### Evidence Tax (LLaMA) — Matched@2048 Fair Tax（最终版）\\\\n\\\\n**SFT 3-seed matched fair tax @2048（2026-05-21 完成）**：\\\\n| Seed | fair_subset | fair_with_evi@2048 | fair_no_evi@2048 | matched_fair_tax (pp) |\\\\n|------|------------|-------------------|-----------------|----------------------|\\\\n| s42 | 873 docs | 0.5716 | 0.5564 | **-1.53** |\\\\n| s43 | 834 docs | 0.4910 | 0.3789 | **-11.20** |\\\\n| s44 | 977 docs | 0.4679 | 0.4395 | **-2.83** |\\\\n| **Mean±Std** | 895 | 0.5102 | 0.4583 | **-5.19 ± 5.25** |\\\\n\\\\n3-seed 全部为负（evidence helps）。s43 是离群值（no-evi 输出过度冗长，即使 @2048 format_ok 仅 84.7%）。\\\\n\\\\n**关键发现**：s42 fair_tax 从 @1024 mismatched 的 +1.20pp（evidence 有害）翻转为 matched@2048 的 -1.53pp（evidence 有帮助）。证明 @1024 截断伪影能翻转 evidence tax 符号。\\\\n\\\\n**RSFT 3-seed（@1024，fair≈full）**：\\\\n- s42: tax=-1.88pp, s43: tax=-1.16pp, s44: tax=-0.37pp\\\\n- **Mean: -1.14pp ± 0.76pp**（一致负向，方差远小于 SFT）\\\\n- RSFT format compliance: 984/985 (99.9%)\\\\n\\\\n**Variance compression in evidence tax**：SFT fair_tax std=5.25pp → RSFT tax std=0.76pp → **6.9× compression**。\\\\n\\\\n## Matched@2048 Evidence Tax 数据编译（2026-05-21 更新）\\\\n\\\\n### LLaMA 8B SFT — @2048 原始指标（全部完成）\\\\n\\\\n| Seed | Config | ign_f1 | truncated | format_ok | status |\\\\n|------|--------|--------|-----------|-----------|--------|\\\\n| s42 | no-evi@2048 | 0.5210 | 201 (20.4%) | 874 (88.7%) | ✅ |\\\\n| s42 | with-evi@2048 | 0.5649 | 147 (14.9%) | 976 (99.1%) | ✅ |\\\\n| s43 | no-evi@2048 | 0.3389 | 359 (36.4%) | 834 (84.7%) | ✅ |\\\\n| s43 | with-evi@2048 | 0.4954 | 242 (24.6%) | 985 (100%) | ✅ |\\\\n| s44 | no-evi@2048 | 0.4373 | 246 (25.0%) | 977 (99.2%) | ✅ |\\\\n| s44 | with-evi@2048 | 0.4655 | 177 (18.0%) | 985 (100%) | ✅ |\\\\n\\\\n### LLaMA 8B RSFT — @2048\\\\n\\\\n| Seed | Config | @1024 ign_f1 | @2048 ign_f1 | delta | status |\\\\n|------|--------|-------------|-------------|-------|--------|\\\\n| s42 | with-evi | 0.5714 | **0.5774** | +0.60pp | ✅ 完成 |\\\\n| s42 | no-evi | 0.5526 | **0.5559** | +0.33pp | ✅ 完成 |\\\\n\\\\n**结论**：RSFT @2048 delta=+0.60pp <1pp，@1024 可靠。truncated=90/985 (9.1%)，format_ok=984/985。\\\\n\\\\n### Qwen3-14B RSFT — @2048（完成）\\\\n\\\\n| Config | @1024 ign_f1 | @1024 truncated | @2048 ign_f1 | delta | status |\\\\n|--------|-------------|-----------------|-------------|-------|--------|\\\\n| with-evi | 0.5886 | 105 (10.7%) | **0.5896** | +0.10pp | ✅ 完成 |\\\\n| no-evi | 0.5432 | 106 (10.8%) | 待提交 | — | — |\\\\n\\\\n### D140/D145 Qwen SFT Matched@2048 Evidence Tax（3-seed 完成）\\\\n\\\\n⚠️ **M027 adapter 错误已修复。**\\\\n\\\\n| Scale | Seed | with-evi ign_f1 | no-evi ign_f1 | fair_tax (pp) | fair_subset |\\\\n|-------|------|----------------|---------------|---------------|-------------|\\\\n| **1.7B** | s42 | 0.4838 | 0.4275 | **-5.63** | 971 |\\\\n| **4B** | s42 | 0.3951 | 0.4024 | **+0.73** | 981 |\\\\n| **4B** | s43 | 0.4375 | 0.4355 | **-0.20** | 982 |\\\\n| **4B** | s44 | 0.4667 | 0.4688 | **+0.21** | 982 |\\\\n| **4B mean±std** | — | — | — | **+0.25 ± 0.47** | — |\\\\n| **8B** | s42 | 0.5015 | 0.5019 | **+0.04** | 984 |\\\\n\\\\n**4B 3-seed 结论（2026-05-21）**：evidence tax 不显著（mean=+0.25pp, std=0.47pp > mean），方向不稳定（s43 为负）。4B 是 Qwen family 内 evidence benefit 消失的 transition point：1.7B=-5.63pp（evidence 显著帮助）→ 4B≈0 → 8B≈0。\\\\n\\\\n### Cross-scale @2048 Delta Pattern（2026-05-21 发现）\\\\n\\\\n@2048 vs @1024 的 ign_f1 delta 随模型增大而缩小：\\\\n\\\\n| Scale | @2048 Δ_ign_f1 | Truncation Δ | 解读 |\\\\n|-------|---------------|--------------|------|\\\\n| 1.7B SFT | +0.96pp (s42 only: 0.4710→0.4806) | 31.9%→27.1% (-4.8pp) | 截断率高但 delta 仍有限 |\\\\n| 8B SFT | +0.40pp (matched s42) | 31.8%→24.0% (-7.8pp) | 截断率降更多但 F1 delta 更小 |\\\\n| 14B RSFT | +0.10pp | 10.7%→~0% | @1024 已几乎不截断 |\\\\n| LLaMA RSFT | +0.60pp | 9.1%→? | @1024 已较可靠 |\\\\n\\\\n**含义**: 截断率高 ≠ 性能瓶颈。@1024 结果对所有 scale 基本可靠，matched@2048 主要用于消除截断伪影对 evidence tax 的干扰（见 D140 s42 翻转案例）。\\\\n\\\\n### Seed-dependent token budget 效应（2026-05-21 发现）\\\\n\\\\ns42 with-evi@1024→2048 delta=**+2.65pp**（大幅提升），s44 with-evi@1024→2048 delta=**-1.47pp**（反向下降），s43 delta=**-1.88pp**。Token budget 效应本身是 seed-dependent 的。\\\\n\\\\n## 🔴 Test Set Scaling Table Status（2026-05-21 编译）\\\\n\\\\n### 综合表格\\\\n\\\\n| Scale | Dev ign_f1 (RSFT) | SFT test ign_f1 | RSFT test ign_f1 | RSFT test evi_f1 | RSFT test edcr | Dev→Test Gap |\\\\n|-------|-------------------|-----------------|------------------|------------------|----------------|-------------|\\\\n| **1.7B** | 0.5119 | ❌ P1 | **0.2933** | 0.2320 | 0.8169 | -21.9pp |\\\\n| **4B** | 0.4423 | 🔄 运行中 | ❌ 需重训 | — | — | — |\\\\n| **8B** | 0.5433 | 🔄 运行中 | **0.3353** | 0.2526 | 0.7993 | -20.8pp |\\\\n| **14B** | 0.5886 | 🔄 运行中 | **0.3849** | 0.2688 | 0.7865 | -20.4pp |\\\\n| **LLaMA-8B** | 0.5654 | 🔄 提交中 | **0.3599** | 0.2509 | 0.8391 | -20.6pp |\\\\n\\\\n### 关键观察\\\\n\\\\n1. **Dev→Test gap 惊人一致**：所有完成的 scale 均为 ~20-22pp，与 scale 无关\\\\n2. **Scaling 趋势在 test 上保持**：1.7B < 8B < LLaMA < 14B 的排序与 dev 一致\\\\n3. **LLaMA vs Qwen-8B**：test 上 LLaMA (0.3599) > Qwen-8B (0.3353)，与 dev 一致（0.5654 > 0.5433）\\\\n4. **4B RSFT test 是唯一缺口**：checkpoint 丢失，需重训后再 eval\\\\n\\\\n## RSFT inference 架构（2026-05-20 确认）\\\\n\\\\nRSFT 是 nested LoRA：inference.py 先 merge SFT adapter 到 base model，再加载 RSFT adapter。**eval 时必须传 `--sft_adapter` 参数**，否则代码报错。\\\\n\\\\n## 14B Pipeline 状态（2026-05-21 更新）\\\\n\\\\n- Generation: r4 完成, 24216 candidates from 3027 docs\\\\n- **CED Scoring 完成** (plan017_14b_ced_scoring)：\\\\n  - 输出: `/root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl` (3015 条, 9.1MB)\\\\n  - Selected F1=0.730, CED=0.690, Combined=0.768\\\\n- **RSFT Training 完成** (plan017_14b_rsft_train): train_loss=0.5005, token_acc=0.8783, 1131 steps, 66min, LoRA r=64/α=128, bf16, single GPU 38GB\\\\n- **Eval @1024 完成**: with-evi ign_f1=0.5886 (全项目最高), no-evi ign_f1=0.5432, tax=-4.54pp\\\\n- **Eval @2048 完成**: with-evi ign_f1=0.5896 (+0.10pp vs @1024), 确认 @1024 可靠\\\\n- **Test set eval 完成**: test ign_f1=0.3849, codalab 已生成\\\\n\\\\n## Qwen3-8B RSFT Evidence Tax 确认（2026-05-20）\\\\n\\\\n- no-evi ign_f1 = 0.5336, with-evi ign_f1 = 0.5414\\\\n- D127 tax = -0.78pp（evidence helps，微弱）\\\\n- 与 LLaMA RSFT (-1.14pp) 方向一致，跨家族均为负\\\\n\\\\n## Reviewer 发现（2026-05-20）\\\\n\\\\n- SFT evidence tax 方法论不一致：应该用同一模型加 `--no_evidence` flag，而非对比独立训练的 no-evidence 模型\\\\n- LLaMA eval configs 的 base_model 指向 Qwen3-4B（不影响结果，model_path 正确）\\\\n\\\\n## 竞品实验参考\\\\n\\\\n（待填充——首次进入新方向时从 literature_map 提取）\\\\n\\\", \\\"total_chars\\\": 9230, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# faith-evidence-ie Memory\\n\\n## 服务器架构（2026-05-20 更新）\\n\\n- **主服务器 westd-37389**: 4× RTX PRO 6000 Blackwell, 98GB VRAM/卡, 350GB 数据盘 (46% used, 190GB free)\\n  - SSH: `rtx5090-4x` (connect.westd.seetacloud.com:37389)\\n  - 环境: conda base, Python 3.12, PyTorch 2.8.0+cu128, transformers 5.8.1, flash-attn 2.8.3\\n- **数据源 bjb2-12179**: 全部 208G 数据完好，rsync 迁移主体完成，SFT adapter 补传中\\n  - SSH: `bjb2-12179` (connect.bjb2.seetacloud.com:12179)\\n- **废弃 bjb1-49673**: AutoDL 重启导致数据清空，已关停\\n\\n## GPU 分配教训（2026-05-20）\\n\\nLLaMA SFT 脚本里有 `export CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`，会覆盖 submit_training_job 注入的 CUDA_VISIBLE_DEVICES。**必须通过 `GPU=X` 环境变量传物理 GPU 编号**，不能依赖框架注入。\\n\\n## 🔴 Adapter 路径教训（2026-05-21 — 严重）\\n\\n**D140 全尺度 no-evi eval 全部用错了 adapter**。错误：用了 plan_014 训练的 \\\"no-evidence training regime\\\" adapter（训练数据本身不含 evidence），而非标准 SFT adapter + `--no_evidence` inference flag。\\n\\n**铁证**：trainer_state.json 中 tokens/step 差 ~18%（no_evidence adapter: 119,651 vs standard: 141,227）。\\n\\n**正确做法**：evidence tax = 同一个标准 SFT adapter，分别有/无 `--no_evidence` 参数，对比 ign_f1。\\n\\n**Qwen 各 scale 标准 SFT adapter 路径**：\\n- 1.7B: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\\n- 8B: `/root/autodl-tmp/sft_output_qwen3_8b_bf16`\\n- 4B: `/root/autodl-tmp/sft_output`（标准 SFT，非 plan_014）\\n- 14B: `/root/autodl-tmp/sft_output_14b/checkpoint-144`\\n\\n**错误 adapter 路径（plan_014，不可用于 evidence tax）**：\\n- `sft_output_qwen3_1_7b_no_evidence`\\n- `sft_output_qwen3_8b_no_evidence`\\n- `sft_no_evidence_output`（4B）\\n\\n## 🔴 4B RSFT s42 checkpoint 丢失（2026-05-21）\\n\\n4B RSFT s42 adapter（rsft_output, rsft_output_r2b）在 rtx5090-4x 和 bjb2-12179 上均不存在，已永久丢失。需走正规流程重训。未经审批的 retrain_4b_rsft_ced_s42 被 kill 并记录 M028 违规。\\n\\n## submit_training_job timeout 教训（2026-05-20 更新）\\n\\nLLaMA 8B no-evidence eval timeout 参考：\\n- **max_new_tokens=1024**: ~2h+，至少 14400s (4h)\\n- **max_new_tokens=2048 + 高截断 seed (s43)**: ~4.5h+，4h 仍不够（237/247, 96%，末段 ~70s/batch）。**至少 21600s (6h)**。s43 原 1024 版 truncation=38.4%，2048 版生成更长输出导致每 batch 耗时远超 s42/s44\\n\\n## LLaMA 完整统计（2026-05-20 更新）\\n\\n### SFT 3-seed\\n| Seed | ign_f1 | rel_f1 | edcr |\\n|------|--------|--------|------|\\n| s42 | 0.5384 | 0.5514 | — |\\n| s43 | 0.5142 | 0.5308 | 0.5866 |\\n| s44 | 0.4802 | 0.4902 | 0.6579 |\\n| **Mean** | **0.5109** | — | — |\\n| **Std** | **0.0238** | — | — |\\n\\ns44 异常低（较 s42 低 5.8pp），拉大了 SFT 方差。这恰好强化了 RSFT variance compression 的价值。\\n\\n### RSFT 3-seed (k=1)\\n| Seed | ign_f1 | rel_f1 | edcr |\\n|------|--------|--------|------|\\n| s42 | 0.5714 | 0.5839 | 0.5799 |\\n| s43 | 0.5662 | 0.5780 | 0.5783 |\\n| s44 | 0.5587 | 0.5706 | 0.5829 |\\n| **Mean** | **0.5654** | — | — |\\n| **Std** | **0.0052** | — | — |\\n\\n### 跨方法对比\\n- **SFT→RSFT Δ**: +5.45pp\\n- **方差压缩**: 4.58× (0.0238→0.0052)\\n- RSFT 在最弱 SFT seed (s44) 上仍显著提升：0.4802→0.5587 (+7.85pp)\\n\\n## 🚨 Evidence Tax 方法论（D134/D137/D140 决策）\\n\\n**论文报告标准**：用 fair comparison（format-OK 子集），不修 parser。与 1.7B D083 方法论一致。\\n\\n**D137 追加**：所有 evidence tax 必须在 matched token budget (max_new_tokens=2048) 下计算，@1024 受截断伪影影响。\\n\\n**D140 追加**：Qwen 全尺度 @1024 截断率 14-48%，必须全面 @2048 重跑。Pilot-first 策略：每个 scale 先跑 s42，delta >1pp 则扩 3-seed。\\n\\n**Fair comparison 脚本**：`/root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py`，接受 `--with-evi` 和 `--no-evi` predictions.json 路径。\\n\\n**⚠️ fair_tax 计算教训（2026-05-21）**：Worker 调 fair_evidence_tax.py 时，必须确保 --with-evi 和 --no-evi 都指向 @2048 predictions。第一次 Worker 误用了 @1024 with-evi 文件导致结果无效。**验证方法**：检查 predictions 所在目录的 metrics.json 的 ign_f1 与已知 @2048 值匹配。\\n\\n### Evidence Tax (LLaMA) — Matched@2048 Fair Tax（最终版）\\n\\n**SFT 3-seed matched fair tax @2048（2026-05-21 完成）**：\\n| Seed | fair_subset | fair_with_evi@2048 | fair_no_evi@2048 | matched_fair_tax (pp) |\\n|------|------------|-------------------|-----------------|----------------------|\\n| s42 | 873 docs | 0.5716 | 0.5564 | **-1.53** |\\n| s43 | 834 docs | 0.4910 | 0.3789 | **-11.20** |\\n| s44 | 977 docs | 0.4679 | 0.4395 | **-2.83** |\\n| **Mean±Std** | 895 | 0.5102 | 0.4583 | **-5.19 ± 5.25** |\\n\\n3-seed 全部为负（evidence helps）。s43 是离群值（no-evi 输出过度冗长，即使 @2048 format_ok 仅 84.7%）。\\n\\n**关键发现**：s42 fair_tax 从 @1024 mismatched 的 +1.20pp（evidence 有害）翻转为 matched@2048 的 -1.53pp（evidence 有帮助）。证明 @1024 截断伪影能翻转 evidence tax 符号。\\n\\n**RSFT 3-seed（@1024，fair≈full）**：\\n- s42: tax=-1.88pp, s43: tax=-1.16pp, s44: tax=-0.37pp\\n- **Mean: -1.14pp ± 0.76pp**（一致负向，方差远小于 SFT）\\n- RSFT format compliance: 984/985 (99.9%)\\n\\n**Variance compression in evidence tax**：SFT fair_tax std=5.25pp → RSFT tax std=0.76pp → **6.9× compression**。\\n\\n## Matched@2048 Evidence Tax 数据编译（2026-05-21 更新）\\n\\n### LLaMA 8B SFT — @2048 原始指标（全部完成）\\n\\n| Seed | Config | ign_f1 | truncated | format_ok | status |\\n|------|--------|--------|-----------|-----------|--------|\\n| s42 | no-evi@2048 | 0.5210 | 201 (20.4%) | 874 (88.7%) | ✅ |\\n| s42 | with-evi@2048 | 0.5649 | 147 (14.9%) | 976 (99.1%) | ✅ |\\n| s43 | no-evi@2048 | 0.3389 | 359 (36.4%) | 834 (84.7%) | ✅ |\\n| s43 | with-evi@2048 | 0.4954 | 242 (24.6%) | 985 (100%) | ✅ |\\n| s44 | no-evi@2048 | 0.4373 | 246 (25.0%) | 977 (99.2%) | ✅ |\\n| s44 | with-evi@2048 | 0.4655 | 177 (18.0%) | 985 (100%) | ✅ |\\n\\n### LLaMA 8B RSFT — @2048\\n\\n| Seed | Config | @1024 ign_f1 | @2048 ign_f1 | delta | status |\\n|------|--------|-------------|-------------|-------|--------|\\n| s42 | with-evi | 0.5714 | **0.5774** | +0.60pp | ✅ 完成 |\\n| s42 | no-evi | 0.5526 | **0.5559** | +0.33pp | ✅ 完成 |\\n\\n**结论**：RSFT @2048 delta=+0.60pp <1pp，@1024 可靠。truncated=90/985 (9.1%)，format_ok=984/985。\\n\\n### Qwen3-14B RSFT — @2048（完成）\\n\\n| Config | @1024 ign_f1 | @1024 truncated | @2048 ign_f1 | delta | status |\\n|--------|-------------|-----------------|-------------|-------|--------|\\n| with-evi | 0.5886 | 105 (10.7%) | **0.5896** | +0.10pp | ✅ 完成 |\\n| no-evi | 0.5432 | 106 (10.8%) | 待提交 | — | — |\\n\\n### D140/D145 Qwen SFT Matched@2048 Evidence Tax（3-seed 完成）\\n\\n⚠️ **M027 adapter 错误已修复。**\\n\\n| Scale | Seed | with-evi ign_f1 | no-evi ign_f1 | fair_tax (pp) | fair_subset |\\n|-------|------|----------------|---------------|---------------|-------------|\\n| **1.7B** | s42 | 0.4838 | 0.4275 | **-5.63** | 971 |\\n| **4B** | s42 | 0.3951 | 0.4024 | **+0.73** | 981 |\\n| **4B** | s43 | 0.4375 | 0.4355 | **-0.20** | 982 |\\n| **4B** | s44 | 0.4667 | 0.4688 | **+0.21** | 982 |\\n| **4B mean±std** | — | — | — | **+0.25 ± 0.47** | — |\\n| **8B** | s42 | 0.5015 | 0.5019 | **+0.04** | 984 |\\n\\n**4B 3-seed 结论（2026-05-21）**：evidence tax 不显著（mean=+0.25pp, std=0.47pp > mean），方向不稳定（s43 为负）。4B 是 Qwen family 内 evidence benefit 消失的 transition point：1.7B=-5.63pp（evidence 显著帮助）→ 4B≈0 → 8B≈0。\\n\\n### Cross-scale @2048 Delta Pattern（2026-05-21 发现）\\n\\n@2048 vs @1024 的 ign_f1 delta 随模型增大而缩小：\\n\\n| Scale | @2048 Δ_ign_f1 | Truncation Δ | 解读 |\\n|-------|---------------|--------------|------|\\n| 1.7B SFT | +0.96pp (s42 only: 0.4710→0.4806) | 31.9%→27.1% (-4.8pp) | 截断率高但 delta 仍有限 |\\n| 8B SFT | +0.40pp (matched s42) | 31.8%→24.0% (-7.8pp) | 截断率降更多但 F1 delta 更小 |\\n| 14B RSFT | +0.10pp | 10.7%→~0% | @1024 已几乎不截断 |\\n| LLaMA RSFT | +0.60pp | 9.1%→? | @1024 已较可靠 |\\n\\n**含义**: 截断率高 ≠ 性能瓶颈。@1024 结果对所有 scale 基本可靠，matched@2048 主要用于消除截断伪影对 evidence tax 的干扰（见 D140 s42 翻转案例）。\\n\\n### Seed-dependent token budget 效应（2026-05-21 发现）\\n\\ns42 with-evi@1024→2048 delta=**+2.65pp**（大幅提升），s44 with-evi@1024→2048 delta=**-1.47pp**（反向下降），s43 delta=**-1.88pp**。Token budget 效应本身是 seed-dependent 的。\\n\\n## 🔴 Test Set Scaling Table Status（2026-05-21 编译）\\n\\n### 综合表格\\n\\n| Scale | Dev ign_f1 (RSFT) | SFT test ign_f1 | RSFT test ign_f1 | RSFT test evi_f1 | RSFT test edcr | Dev→Test Gap |\\n|-------|-------------------|-----------------|------------------|------------------|----------------|-------------|\\n| **1.7B** | 0.5119 | ❌ P1 | **0.2933** | 0.2320 | 0.8169 | -21.9pp |\\n| **4B** | 0.4423 | 🔄 运行中 | ❌ 需重训 | — | — | — |\\n| **8B** | 0.5433 | 🔄 运行中 | **0.3353** | 0.2526 | 0.7993 | -20.8pp |\\n| **14B** | 0.5886 | 🔄 运行中 | **0.3849** | 0.2688 | 0.7865 | -20.4pp |\\n| **LLaMA-8B** | 0.5654 | 🔄 提交中 | **0.3599** | 0.2509 | 0.8391 | -20.6pp |\\n\\n### 关键观察\\n\\n1. **Dev→Test gap 惊人一致**：所有完成的 scale 均为 ~20-22pp，与 scale 无关\\n2. **Scaling 趋势在 test 上保持**：1.7B < 8B < LLaMA < 14B 的排序与 dev 一致\\n3. **LLaMA vs Qwen-8B**：test 上 LLaMA (0.3599) > Qwen-8B (0.3353)，与 dev 一致（0.5654 > 0.5433）\\n4. **4B RSFT test 是唯一缺口**：checkpoint 丢失，需重训后再 eval\\n\\n## RSFT inference 架构（2026-05-20 确认）\\n\\nRSFT 是 nested LoRA：inference.py 先 merge SFT adapter 到 base model，再加载 RSFT adapter。**eval 时必须传 `--sft_adapter` 参数**，否则代码报错。\\n\\n## 14B Pipeline 状态（2026-05-21 更新）\\n\\n- Generation: r4 完成, 24216 candidates from 3027 docs\\n- **CED Scoring 完成** (plan017_14b_ced_scoring)：\\n  - 输出: `/root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl` (3015 条, 9.1MB)\\n  - Selected F1=0.730, CED=0.690, Combined=0.768\\n- **RSFT Training 完成** (plan017_14b_rsft_train): train_loss=0.5005, token_acc=0.8783, 1131 steps, 66min, LoRA r=64/α=128, bf16, single GPU 38GB\\n- **Eval @1024 完成**: with-evi ign_f1=0.5886 (全项目最高), no-evi ign_f1=0.5432, tax=-4.54pp\\n- **Eval @2048 完成**: with-evi ign_f1=0.5896 (+0.10pp vs @1024), 确认 @1024 可靠\\n- **Test set eval 完成**: test ign_f1=0.3849, codalab 已生成\\n\\n## Qwen3-8B RSFT Evidence Tax 确认（2026-05-20）\\n\\n- no-evi ign_f1 = 0.5336, with-evi ign_f1 = 0.5414\\n- D127 tax = -0.78pp（evidence helps，微弱）\\n- 与 LLaMA RSFT (-1.14pp) 方向一致，跨家族均为负\\n\\n## Reviewer 发现（2026-05-20）\\n\\n- SFT evidence tax 方法论不一致：应该用同一模型加 `--no_evidence` flag，而非对比独立训练的 no-evidence 模型\\n- LLaMA eval configs 的 base_model 指向 Qwen3-4B（不影响结果，model_path 正确）\\n\\n## 竞品实验参考\\n\\n（待填充——首次进入新方向时从 literature_map 提取）\\n\", \"total_chars\": 9230, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the full picture. Let me prepare the update for memory.md.\n\nSummary of findings:\n\n### 1.7B SFT test eval command (ready to submit when GPU free):\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES={GPU} python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/re-docred --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\n```\n\n### 4B RSFT adapter status:\nThe original checkpoint at `/root/autodl-tmp/rsft_output/checkpoint-510` has been deleted, and while `/root/autodl-tmp/rsft_output_ced_s42/` exists, it contains no adapter files. There are alternative adapters available but they use different seeds and configurations.\n\nI need to retrain the 4B RSFT CED model with seed 42, and I haven't found any RSFT candidate data at the expected location.\n\n### Current GPU status (all 4 occupied):\n- GPU 0: 4B SFT test eval (PID 126054, ~9.4GB)\n- GPU 1: 14B SFT test eval (PID 125323, ~32.5GB)\n- GPU 2: 8B SFT test eval (PID 125617, ~19.6GB)\n- GPU 3: Llama SFT test eval (PID 130451, ~18.9GB)\n\n### Missing test eval data points:\n1. **test_eval_1_7b_sft_s42** —\n\nI'm waiting for a GPU to free up to run the command, and I need to retrain the 4B RSFT model since the adapter was deleted. Let me update the memory file with the current test set scaling status and prepare notes for the next batch of evaluations.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "uuid": "cc531257-b8ed-4e3d-9d40-110d1e2d8b49",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FnyKw9zeF8GRP3zMe7ZQQ7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6797,
+                "cache_read_input_tokens": 74370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6797
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。现在更新 memory.md。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "uuid": "97e57b6a-4b91-4171-9042-a3e2e47d5e8a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FnyKw9zeF8GRP3zMe7ZQQ7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6797,
+                "cache_read_input_tokens": 74370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6797
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SMFrzUfaJBJquENH1jFhhZ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__save_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "uuid": "5f0a3139-a468-401f-944c-6cbd8c32eccf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FnyKw9zeF8GRP3zMe7ZQQ7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6797,
+                "cache_read_input_tokens": 74370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6797
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-21T19:49:05.158Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01SMFrzUfaJBJquENH1jFhhZ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "uuid": "29cc6a62-5bab-4935-9c6a-b04b3e226463",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 29
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011gDzk7n9FjFRfdGW7kkDx3",
+              "name": "mcp__agent-ml-research__save_project_file",
+              "input": {
+                "project": "faith-evidence-ie",
+                "file": "memory.md",
+                "content": "# faith-evidence-ie Memory\n\n## 服务器架构（2026-05-20 更新）\n\n- **主服务器 westd-37389**: 4× RTX PRO 6000 Blackwell, 98GB VRAM/卡, 350GB 数据盘 (46% used, 190GB free)\n  - SSH: `rtx5090-4x` (connect.westd.seetacloud.com:37389)\n  - 环境: conda base, Python 3.12, PyTorch 2.8.0+cu128, transformers 5.8.1, flash-attn 2.8.3\n- **数据源 bjb2-12179**: 全部 208G 数据完好，rsync 迁移主体完成，SFT adapter 补传中\n  - SSH: `bjb2-12179` (connect.bjb2.seetacloud.com:12179)\n- **废弃 bjb1-49673**: AutoDL 重启导致数据清空，已关停\n\n## GPU 分配教训（2026-05-20）\n\nLLaMA SFT 脚本里有 `export CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`，会覆盖 submit_training_job 注入的 CUDA_VISIBLE_DEVICES。**必须通过 `GPU=X` 环境变量传物理 GPU 编号**，不能依赖框架注入。\n\n## 🔴 Adapter 路径教训（2026-05-21 — 严重）\n\n**D140 全尺度 no-evi eval 全部用错了 adapter**。错误：用了 plan_014 训练的 \"no-evidence training regime\" adapter（训练数据本身不含 evidence），而非标准 SFT adapter + `--no_evidence` inference flag。\n\n**铁证**：trainer_state.json 中 tokens/step 差 ~18%（no_evidence adapter: 119,651 vs standard: 141,227）。\n\n**正确做法**：evidence tax = 同一个标准 SFT adapter，分别有/无 `--no_evidence` 参数，对比 ign_f1。\n\n**Qwen 各 scale 标准 SFT adapter 路径**：\n- 1.7B: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\n- 8B: `/root/autodl-tmp/sft_output_qwen3_8b_bf16`\n- 4B: `/root/autodl-tmp/sft_output`（标准 SFT，非 plan_014）\n- 14B: `/root/autodl-tmp/sft_output_14b/checkpoint-144`\n\n**错误 adapter 路径（plan_014，不可用于 evidence tax）**：\n- `sft_output_qwen3_1_7b_no_evidence`\n- `sft_output_qwen3_8b_no_evidence`\n- `sft_no_evidence_output`（4B）\n\n## 🔴 4B RSFT s42 checkpoint 丢失（2026-05-21）\n\n4B RSFT s42 adapter（rsft_output, rsft_output_r2b）在 rtx5090-4x 和 bjb2-12179 上均不存在，已永久丢失。需走正规流程重训。未经审批的 retrain_4b_rsft_ced_s42 被 kill 并记录 M028 违规。\n\n## submit_training_job timeout 教训（2026-05-20 更新）\n\nLLaMA 8B no-evidence eval timeout 参考：\n- **max_new_tokens=1024**: ~2h+，至少 14400s (4h)\n- **max_new_tokens=2048 + 高截断 seed (s43)**: ~4.5h+，4h 仍不够（237/247, 96%，末段 ~70s/batch）。**至少 21600s (6h)**。s43 原 1024 版 truncation=38.4%，2048 版生成更长输出导致每 batch 耗时远超 s42/s44\n\n## LLaMA 完整统计（2026-05-20 更新）\n\n### SFT 3-seed\n| Seed | ign_f1 | rel_f1 | edcr |\n|------|--------|--------|------|\n| s42 | 0.5384 | 0.5514 | — |\n| s43 | 0.5142 | 0.5308 | 0.5866 |\n| s44 | 0.4802 | 0.4902 | 0.6579 |\n| **Mean** | **0.5109** | — | — |\n| **Std** | **0.0238** | — | — |\n\ns44 异常低（较 s42 低 5.8pp），拉大了 SFT 方差。这恰好强化了 RSFT variance compression 的价值。\n\n### RSFT 3-seed (k=1)\n| Seed | ign_f1 | rel_f1 | edcr |\n|------|--------|--------|------|\n| s42 | 0.5714 | 0.5839 | 0.5799 |\n| s43 | 0.5662 | 0.5780 | 0.5783 |\n| s44 | 0.5587 | 0.5706 | 0.5829 |\n| **Mean** | **0.5654** | — | — |\n| **Std** | **0.0052** | — | — |\n\n### 跨方法对比\n- **SFT→RSFT Δ**: +5.45pp\n- **方差压缩**: 4.58× (0.0238→0.0052)\n- RSFT 在最弱 SFT seed (s44) 上仍显著提升：0.4802→0.5587 (+7.85pp)\n\n## 🚨 Evidence Tax 方法论（D134/D137/D140 决策）\n\n**论文报告标准**：用 fair comparison（format-OK 子集），不修 parser。与 1.7B D083 方法论一致。\n\n**D137 追加**：所有 evidence tax 必须在 matched token budget (max_new_tokens=2048) 下计算，@1024 受截断伪影影响。\n\n**D140 追加**：Qwen 全尺度 @1024 截断率 14-48%，必须全面 @2048 重跑。Pilot-first 策略：每个 scale 先跑 s42，delta >1pp 则扩 3-seed。\n\n**Fair comparison 脚本**：`/root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py`，接受 `--with-evi` 和 `--no-evi` predictions.json 路径。\n\n**⚠️ fair_tax 计算教训（2026-05-21）**：Worker 调 fair_evidence_tax.py 时，必须确保 --with-evi 和 --no-evi 都指向 @2048 predictions。第一次 Worker 误用了 @1024 with-evi 文件导致结果无效。**验证方法**：检查 predictions 所在目录的 metrics.json 的 ign_f1 与已知 @2048 值匹配。\n\n### Evidence Tax (LLaMA) — Matched@2048 Fair Tax（最终版）\n\n**SFT 3-seed matched fair tax @2048（2026-05-21 完成）**：\n| Seed | fair_subset | fair_with_evi@2048 | fair_no_evi@2048 | matched_fair_tax (pp) |\n|------|------------|-------------------|-----------------|----------------------|\n| s42 | 873 docs | 0.5716 | 0.5564 | **-1.53** |\n| s43 | 834 docs | 0.4910 | 0.3789 | **-11.20** |\n| s44 | 977 docs | 0.4679 | 0.4395 | **-2.83** |\n| **Mean±Std** | 895 | 0.5102 | 0.4583 | **-5.19 ± 5.25** |\n\n3-seed 全部为负（evidence helps）。s43 是离群值（no-evi 输出过度冗长，即使 @2048 format_ok 仅 84.7%）。\n\n**关键发现**：s42 fair_tax 从 @1024 mismatched 的 +1.20pp（evidence 有害）翻转为 matched@2048 的 -1.53pp（evidence 有帮助）。证明 @1024 截断伪影能翻转 evidence tax 符号。\n\n**RSFT 3-seed（@1024，fair≈full）**：\n- s42: tax=-1.88pp, s43: tax=-1.16pp, s44: tax=-0.37pp\n- **Mean: -1.14pp ± 0.76pp**（一致负向，方差远小于 SFT）\n- RSFT format compliance: 984/985 (99.9%)\n\n**Variance compression in evidence tax**：SFT fair_tax std=5.25pp → RSFT tax std=0.76pp → **6.9× compression**。\n\n## Matched@2048 Evidence Tax 数据编译（2026-05-21 更新）\n\n### LLaMA 8B SFT — @2048 原始指标（全部完成）\n\n| Seed | Config | ign_f1 | truncated | format_ok | status |\n|------|--------|--------|-----------|-----------|--------|\n| s42 | no-evi@2048 | 0.5210 | 201 (20.4%) | 874 (88.7%) | ✅ |\n| s42 | with-evi@2048 | 0.5649 | 147 (14.9%) | 976 (99.1%) | ✅ |\n| s43 | no-evi@2048 | 0.3389 | 359 (36.4%) | 834 (84.7%) | ✅ |\n| s43 | with-evi@2048 | 0.4954 | 242 (24.6%) | 985 (100%) | ✅ |\n| s44 | no-evi@2048 | 0.4373 | 246 (25.0%) | 977 (99.2%) | ✅ |\n| s44 | with-evi@2048 | 0.4655 | 177 (18.0%) | 985 (100%) | ✅ |\n\n### LLaMA 8B RSFT — @2048\n\n| Seed | Config | @1024 ign_f1 | @2048 ign_f1 | delta | status |\n|------|--------|-------------|-------------|-------|--------|\n| s42 | with-evi | 0.5714 | **0.5774** | +0.60pp | ✅ 完成 |\n| s42 | no-evi | 0.5526 | **0.5559** | +0.33pp | ✅ 完成 |\n\n**结论**：RSFT @2048 delta=+0.60pp <1pp，@1024 可靠。truncated=90/985 (9.1%)，format_ok=984/985。\n\n### Qwen3-14B RSFT — @2048（完成）\n\n| Config | @1024 ign_f1 | @1024 truncated | @2048 ign_f1 | delta | status |\n|--------|-------------|-----------------|-------------|-------|--------|\n| with-evi | 0.5886 | 105 (10.7%) | **0.5896** | +0.10pp | ✅ 完成 |\n| no-evi | 0.5432 | 106 (10.8%) | 待提交 | — | — |\n\n### D140/D145 Qwen SFT Matched@2048 Evidence Tax（3-seed 完成）\n\n⚠️ **M027 adapter 错误已修复。**\n\n| Scale | Seed | with-evi ign_f1 | no-evi ign_f1 | fair_tax (pp) | fair_subset |\n|-------|------|----------------|---------------|---------------|-------------|\n| **1.7B** | s42 | 0.4838 | 0.4275 | **-5.63** | 971 |\n| **4B** | s42 | 0.3951 | 0.4024 | **+0.73** | 981 |\n| **4B** | s43 | 0.4375 | 0.4355 | **-0.20** | 982 |\n| **4B** | s44 | 0.4667 | 0.4688 | **+0.21** | 982 |\n| **4B mean±std** | — | — | — | **+0.25 ± 0.47** | — |\n| **8B** | s42 | 0.5015 | 0.5019 | **+0.04** | 984 |\n\n**4B 3-seed 结论（2026-05-21）**：evidence tax 不显著（mean=+0.25pp, std=0.47pp > mean），方向不稳定（s43 为负）。4B 是 Qwen family 内 evidence benefit 消失的 transition point：1.7B=-5.63pp（evidence 显著帮助）→ 4B≈0 → 8B≈0。\n\n### Cross-scale @2048 Delta Pattern（2026-05-21 发现）\n\n@2048 vs @1024 的 ign_f1 delta 随模型增大而缩小：\n\n| Scale | @2048 Δ_ign_f1 | Truncation Δ | 解读 |\n|-------|---------------|--------------|------|\n| 1.7B SFT | +0.96pp (s42 only: 0.4710→0.4806) | 31.9%→27.1% (-4.8pp) | 截断率高但 delta 仍有限 |\n| 8B SFT | +0.40pp (matched s42) | 31.8%→24.0% (-7.8pp) | 截断率降更多但 F1 delta 更小 |\n| 14B RSFT | +0.10pp | 10.7%→~0% | @1024 已几乎不截断 |\n| LLaMA RSFT | +0.60pp | 9.1%→? | @1024 已较可靠 |\n\n**含义**: 截断率高 ≠ 性能瓶颈。@1024 结果对所有 scale 基本可靠，matched@2048 主要用于消除截断伪影对 evidence tax 的干扰（见 D140 s42 翻转案例）。\n\n### Seed-dependent token budget 效应（2026-05-21 发现）\n\ns42 with-evi@1024→2048 delta=**+2.65pp**（大幅提升），s44 with-evi@1024→2048 delta=**-1.47pp**（反向下降），s43 delta=**-1.88pp**。Token budget 效应本身是 seed-dependent 的。\n\n## 🔴 Test Set Scaling Table Status（2026-05-22 更新）\n\n### 综合表格\n\n| Scale | Dev ign_f1 (RSFT) | SFT test ign_f1 | RSFT test ign_f1 | RSFT test evi_f1 | RSFT test edcr | Dev→Test Gap |\n|-------|-------------------|-----------------|------------------|------------------|----------------|-------------|\n| **1.7B** | 0.5119 | ❌ 待提交 | **0.2933** | 0.2320 | 0.8169 | -21.9pp |\n| **4B** | 0.4423 | 🔄 运行中 | ❌ 需重训 adapter | — | — | — |\n| **8B** | 0.5433 | 🔄 运行中 | **0.3353** | 0.2526 | 0.7993 | -20.8pp |\n| **14B** | 0.5886 | 🔄 运行中 | **0.3849** | 0.2688 | 0.7865 | -20.4pp |\n| **LLaMA-8B** | 0.5654 | 🔄 运行中 | **0.3599** | 0.2509 | 0.8391 | -20.6pp |\n\n### 关键观察\n\n1. **Dev→Test gap 惊人一致**：所有完成的 scale 均为 ~20-22pp，与 scale 无关\n2. **Scaling 趋势在 test 上保持**：1.7B < 8B < LLaMA < 14B 的排序与 dev 一致\n3. **LLaMA vs Qwen-8B**：test 上 LLaMA (0.3599) > Qwen-8B (0.3353)，与 dev 一致（0.5654 > 0.5433）\n4. **4B RSFT test 是唯一缺口**：checkpoint 丢失，需重训后再 eval\n\n## 下批 Test Eval 准备（2026-05-22）\n\n### 当前 GPU 占用（所有 4 卡被占）\n\n| GPU | 任务 | PID | 模型 | 进度 |\n|-----|------|-----|------|------|\n| 0 | test_eval_4b_sft_s42 | 126054 | Qwen3-4B + SFT | ~20% |\n| 1 | test_eval_14b_sft_s42 | 125323 | Qwen3-14B + SFT | ~20% |\n| 2 | test_eval_8b_sft_s42 | 125617 | Qwen3-8B + SFT | ~27% |\n| 3 | test_eval_llama_sft_s42 | 130451 | LLaMA-3.1-8B + SFT | 刚启动 |\n\n### 1.7B SFT test eval 完整命令（GPU 释放后立即提交）\n\n1.7B 模型仅 ~3.4GB VRAM，GPU 0（4B 完成后）最先释放。\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\"\n```\n\n**路径已验证**：\n- ✅ 模型: `/root/autodl-tmp/models/Qwen/Qwen3-1.7B`\n- ✅ SFT adapter: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16/` (adapter_model.safetensors 278MB)\n- ✅ 脚本: `/root/autodl-tmp/freige/freige/eval/test_inference.py`\n- ✅ 数据: `/root/autodl-tmp/data/re-docred-repo/data` (test_revised.json, 500 docs)\n\n### 4B RSFT adapter 状态\n\n- 原路径 `/root/autodl-tmp/rsft_output/checkpoint-510` → **已删除**\n- `/root/autodl-tmp/rsft_output_ced_s42/` → **空目录**（无 adapter 文件）\n- **需重训 4B RSFT CED s42**\n- 无 `rsft_candidates*` 训练数据残留，需从 generation→scoring→training 完整流程重做\n- 可用的其他 4B RSFT adapter（非 s42，不可替代）：\n  - `rsft_output_ced_s43` (seed 43, checkpoint-510)\n  - `rsft_output_4b_sft_s44` / `_bf16` (seed 44)\n\n### 缺失 Test Eval 完整清单\n\n| 缺失项 | 阻塞原因 | 优先级 |\n|--------|---------|--------|\n| test_eval_1_7b_sft_s42 | 无空闲 GPU（预计 GPU 0 最先释放） | P1 — 命令已就绪 |\n| test_eval_4b_rsft_s42 | adapter 丢失，需完整重训流程 | P2 — 需用户审批重训 |\n\n## RSFT inference 架构（2026-05-20 确认）\n\nRSFT 是 nested LoRA：inference.py 先 merge SFT adapter 到 base model，再加载 RSFT adapter。**eval 时必须传 `--sft_adapter` 参数**，否则代码报错。\n\n## 14B Pipeline 状态（2026-05-21 更新）\n\n- Generation: r4 完成, 24216 candidates from 3027 docs\n- **CED Scoring 完成** (plan017_14b_ced_scoring)：\n  - 输出: `/root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl` (3015 条, 9.1MB)\n  - Selected F1=0.730, CED=0.690, Combined=0.768\n- **RSFT Training 完成** (plan017_14b_rsft_train): train_loss=0.5005, token_acc=0.8783, 1131 steps, 66min, LoRA r=64/α=128, bf16, single GPU 38GB\n- **Eval @1024 完成**: with-evi ign_f1=0.5886 (全项目最高), no-evi ign_f1=0.5432, tax=-4.54pp\n- **Eval @2048 完成**: with-evi ign_f1=0.5896 (+0.10pp vs @1024), 确认 @1024 可靠\n- **Test set eval 完成**: test ign_f1=0.3849, codalab 已生成\n\n## Qwen3-8B RSFT Evidence Tax 确认（2026-05-20）\n\n- no-evi ign_f1 = 0.5336, with-evi ign_f1 = 0.5414\n- D127 tax = -0.78pp（evidence helps，微弱）\n- 与 LLaMA RSFT (-1.14pp) 方向一致，跨家族均为负\n\n## Reviewer 发现（2026-05-20）\n\n- SFT evidence tax 方法论不一致：应该用同一模型加 `--no_evidence` flag，而非对比独立训练的 no-evidence 模型\n- LLaMA eval configs 的 base_model 指向 Qwen3-4B（不影响结果，model_path 正确）\n\n## 竞品实验参考\n\n（待填充——首次进入新方向时从 literature_map 提取）\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "uuid": "731e213a-7b34-45bc-9b6a-e4060acbedae",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YaemEwcQByKEZ3M5NT7F32",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1089,
+                "cache_read_input_tokens": 81167,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1089
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-21T19:50:46.167Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011gDzk7n9FjFRfdGW7kkDx3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "uuid": "0d9975df-43d1-48cf-a311-fc8fe038adc1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总如下：\n\n### 当前状态\n\n**4 个 GPU 全部被 SFT test eval 占用**（4B/8B/14B/Llama，均约 20% 进度）。\n\n### 1.7B SFT test eval\n\n命令已就绪，所有路径已验证。GPU 0（4B eval）预计最先完成释放，届时直接提交：\n\n```bash\nCUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference \\\n  --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B \\\n  --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 \\\n  --data_path /root/autodl-tmp/data/re-docred-repo/data \\\n  --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42 \\\n  --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\n```\n\n### 4B RSFT adapter 状态\n\n**需重训**。原 checkpoint `/root/autodl-tmp/rsft_output/checkpoint-510` 已删除，`rsft_output_ced_s42/` 为空目录。无 `rsft_candidates*` 训练数据残留，需 generation→scoring→training 完整流程。其他 seed 的 4B RSFT adapter 存在（s43/s44）但不可替代 s42。\n\n### 缺失 test eval 清单\n\n| 缺失项 | 阻塞 | 优先级 |\n|--------|------|--------|\n| test_eval_1_7b_sft_s42 | GPU 占满 | P1 — 命令就绪 |\n| test_eval_4b_rsft_s42 | adapter 丢失 | P2 — 需审批重训 |"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "uuid": "94efbfd8-c4c7-420b-8318-e7401e76a68f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CAHZYAfHsfYzsHg3RjjtDq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6626,
+                "cache_read_input_tokens": 82256,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6626
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总如下：\n\n### 当前状态\n\n**4 个 GPU 全部被 SFT test eval 占用**（4B/8B/14B/Llama，均约 20% 进度）。\n\n### 1.7B SFT test eval\n\n命令已就绪，所有路径已验证。GPU 0（4B eval）预计最先完成释放，届时直接提交：\n\n```bash\nCUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference \\\n  --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B \\\n  --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 \\\n  --data_path /root/autodl-tmp/data/re-docred-repo/data \\\n  --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42 \\\n  --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\n```\n\n### 4B RSFT adapter 状态\n\n**需重训**。原 checkpoint `/root/autodl-tmp/rsft_output/checkpoint-510` 已删除，`rsft_output_ced_s42/` 为空目录。无 `rsft_candidates*` 训练数据残留，需 generation→scoring→training 完整流程。其他 seed 的 4B RSFT adapter 存在（s43/s44）但不可替代 s42。\n\n### 缺失 test eval 清单\n\n| 缺失项 | 阻塞 | 优先级 |\n|--------|------|--------|\n| test_eval_1_7b_sft_s42 | GPU 占满 | P1 — 命令就绪 |\n| test_eval_4b_rsft_s42 | adapter 丢失 | P2 — 需审批重训 |"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 298095,
+            "duration_api_ms": 294278,
+            "num_turns": 41,
+            "stop_reason": "end_turn",
+            "session_id": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "total_cost_usd": 1.34900975,
+            "usage": {
+              "input_tokens": 22,
+              "cache_creation_input_tokens": 77041,
+              "cache_read_input_tokens": 753037,
+              "output_tokens": 19540,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 77041,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 539,
+                  "cache_read_input_tokens": 82256,
+                  "cache_creation_input_tokens": 6626,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 6626
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2270,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002375,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 22,
+                "outputTokens": 19540,
+                "cacheReadInputTokens": 753037,
+                "cacheCreationInputTokens": 77041,
+                "webSearchRequests": 0,
+                "costUSD": 1.34663475,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a81507f1-852e-4a4d-a9a6-e505813f1dca"
+          },
+          "id": "event-000109"
+        }
+      ]
+    }
+  ]
+}

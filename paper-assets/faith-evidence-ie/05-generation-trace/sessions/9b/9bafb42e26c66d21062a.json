@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bafb42e26c66d21062a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose 14b sft registry fix",
+  "task_key": "worker_diagnose_14b_sft_registry_fix_20260519T065038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_14b_sft_registry_fix_20260519T065038_result.json",
+    "occurrence": 1,
+    "bytes": 827,
+    "sha256": "a79f2e31d0cca7c634c8090312d799b28d2e3720eb2bf5ba57bcf1063bdf76b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已修正。汇报：\n\n**nvidia-smi GPU 占用：**\n| GPU | PID | 进程 | 显存 |\n|-----|-----|------|------|\n| cuda:0 | 613083 | d112_rsft_s44_train | 29630 MiB |\n| cuda:1 | 611578 | **plan017_14b_sft** (worker 0) | 16130 MiB |\n| cuda:2 | 611579 | **plan017_14b_sft** (worker 1) | 25158 MiB |\n| cuda:3 | 620737 | plan019_1_7b_rsft_s43_r2_eval | 5380 MiB |\n\n**Registry 修正内容：**\n- 原 spec 使用 `gpu_ids: [\"cuda:1\", \"cuda:2\"]`（非标准字段），系统无法识别 GPU 注册\n- 已改为 `gpu: \"cuda:1,cuda:2\"`（标准字段），`pid: 611578`（整数）\n- 其余字段保留不变\n\n**训练进度：**\n- Step 125 / 144（87%），epoch 2.51\n- 最新 loss: 0.5385（step 120），mean_token_accuracy: 0.864\n- 预计剩余约 21 分钟（19 steps × ~67s/step）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-14b-sft-registry-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce6dbb1180b2740de642",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code prep 14b rsft pipeline steps234",
+  "task_key": "worker_code_prep_14b_rsft_pipeline_steps234_20260519T192430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_14b_rsft_pipeline_steps234_20260519T192430_result.json",
+    "occurrence": 1,
+    "bytes": 913,
+    "sha256": "b969c5f0d8c114670f484dbe4d5f21d4d009981629fc246c5791217506428f6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个脚本已创建，全部通过 `bash -n` 语法验证。\n\n| 脚本 | 用途 | GPU |\n|------|------|-----|\n| `step2_ced_score_14b.sh` | CED scoring + top_k=1 筛选 | 单卡（默认 0） |\n| `step3_rsft_train_14b.sh` | RSFT LoRA 训练（accelerate + ZeRO-3） | 双卡（默认 2,3） |\n| `step4_eval_14b_rsft.sh` | D076 eval（with evidence） | 双卡（默认 2,3） |\n| `step4b_eval_14b_rsft_no_evidence.sh` | D076 eval no-evidence 变体 | 双卡（默认 2,3） |\n\n注意事项：\n- **step3 前需先合并 SFT adapter**：`Qwen3-14B-sft-merged` 不存在，脚本里有 pre-flight check 和提示，需先运行 `python scripts/merge_sft_adapter_14b.py`\n- 所有脚本支持 `GPU=x,y` 环境变量覆盖默认 GPU 分配\n- eval 脚本遵守 C001（提交前须确认 GPU 空闲）、C002（显式设 CUDA_VISIBLE_DEVICES）、C005（no-evidence 变体传 `--no_evidence`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-14b-rsft-pipeline-steps234.md"
+}

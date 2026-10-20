@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edf0060157aa59036cdd",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops harvest llama no evidence eval",
+  "task_key": "worker_ops_harvest_llama_no_evidence_eval_20260520T005857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_harvest_llama_no_evidence_eval_20260520T005857_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "41fbd8961491fbc09adb8c1db2a4d2bdbdfb454b7ab8d25c75138d2ee64da284"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/negative。Cron 不存在（可能已在之前的 session 中删除）。\n\n## 结果摘要\n\n| 指标 | LLaMA-3.1-8B no-evidence | LLaMA-3.1-8B with-evidence |\n|------|--------------------------|---------------------------|\n| **ign_f1** | 0.5526 | 0.5839 |\n| f1 | 0.5666 | — |\n| format_compliance | 99.8% | — |\n| n_truncated | 190/985 | — |\n\n**Evidence tax: -3.13pp** (0.5526 − 0.5839)\n\n对比 Qwen3-8B evidence tax = **-0.78pp**，LLaMA 的 evidence tax 大 4 倍。去掉 evidence 输出反而严重损害 LLaMA 的关系抽取性能，说明 LLaMA 比 Qwen3 更依赖 evidence 生成作为推理的中间步骤（chain-of-thought 效应）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-llama-no-evidence-eval.md"
+}

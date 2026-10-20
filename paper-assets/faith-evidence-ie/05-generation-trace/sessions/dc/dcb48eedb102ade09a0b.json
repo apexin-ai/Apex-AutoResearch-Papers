@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcb48eedb102ade09a0b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis seed comparison prep",
+  "task_key": "worker_analysis_seed-comparison-prep_20260516T004221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_seed-comparison-prep_20260516T004221_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "996242041886585df70c221d305c3288e96fc0168f9ec7feed92c783b1584d74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**seed_comparison.py** — 可正常运行，输出对比表到 `eval_results/seed_comparison.{md,json}`。\n\n**当前 eval 完成情况：**\n\n| Method | 已完成 seeds | 待完成 |\n|--------|-------------|--------|\n| CED RSFT | s42, s43, s44 (3/4) | s45 (训练中) |\n| flat-NLI RSFT | s42, s43 (2/4) | s44, s45 (eval 运行中) |\n\n**关键指标（metrics_v2.json）：**\n\n| | CED (3-seed mean) | flat-NLI (2-seed mean) | Delta |\n|--|--|--|--|\n| rel_f1 | **0.4610** | 0.4531 | CED +0.0079 |\n| evi_f1 | 0.8124 | 0.8100 | CED +0.0024 |\n| edcr | 0.6449 | 0.6468 | fNLI +0.0019 |\n\n汇总已写入 `/root/autodl-tmp/eval_results/seed_status_summary.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-seed-comparison-prep.md"
+}

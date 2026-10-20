@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cf56517d9d74ce67606",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "reviewer / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_5.md",
+    "occurrence": 1,
+    "bytes": 3793,
+    "sha256": "f8f3b31f993789e5d1ab02b3af57bd071d8e7813dbbe76f3fd4c6cb24159dd35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-15T04:00:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目使用 rtx5090-4x 的 4 张 GPU（cuda:0-3），均已分配给 RSFT generation shards，不可越界到其他项目的 GPU\n- SFT adapter 路径固定 `/root/autodl-tmp/sft_output`，RSFT 训练必须从此 adapter merge 后再训新 LoRA，不可跳过 merge 步骤\n- RSFT 训练启动时**必须传 `--eval_data_dir /root/autodl-tmp/data/docred`**，否则无 rel_f1 监控——这是 GRPO catastrophic forgetting (D031) 的核心教训\n- `merge_shards.py` 和 `load_generations()` 均已统一为 last-wins（shard 覆盖 root），不可改回 first-wins\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x (root)，备用 bjb2-12179 (root)\n- 工作目录：`/root/autodl-tmp/freige`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型：base `/root/autodl-tmp/models/Qwen3-4B`，SFT adapter `/root/autodl-tmp/sft_output`\n- NLI 模型（CED 用）：HF cache `/root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base`\n- 数据集：`/root/autodl-tmp/data/docred`（train_annotated 3027 docs）\n- 生成输出：`/root/autodl-tmp/rsft_generations/`（root + shard_0-3）\n- 活跃进程：4 shard generation — s0 PID 135867 cuda:0, s1 PID 136270 cuda:1, s2 PID 136649 cuda:2, s3 PID 137985 cuda:3\n\n### 3. 📊 当前状态\n4 shard RSFT generation 持续运行中。最后一次检查（~02:55 UTC）进度：\n- shard_0: 2392 lines = 299 docs / ~757 (39%)\n- shard_1: 2664 lines = 333 docs / ~757 (44%)\n- shard_2: 2648 lines = 331 docs / ~757 (44%)\n- shard_3: 2176 lines = 272 docs / ~756 (36%)\n- 总计: ~1235/3027 docs (41%), 4 GPU 均正常（util 55-65%）\n\nshard_3 一直偏慢（早期 duplicate process 事件导致 data gap + 重启）。\n\n已完成的审查：\n- pipeline-prep-verify: PASS（merge_shards.py + diversity_analysis.py）\n- fix-dedup-strategy: PASS（统一为 last-wins）\n- rsft-train-config: WARNING（eval_data_dir 默认不启用）\n- verify-ced-pipeline: PASS（NLI 模型在 HF cache，CED pipeline 就绪）\n- 多个 progress monitor workers: 确认进度正常\n\nRegistry: mvp2_rsft_gen_s0/s1/s2/s3 全部 RUNNING。\n\n### 4. 📋 待办\n- 任一 shard 完成（registry status → DONE）→ 验证该 shard 数据完整性（JSONL 行数 = progress.json doc 数 × 8）\n- 全部 4 shard 完成 → 验证：(1) diversity cross-check 用 diversity_metrics.py，(2) 数据完整性全量检查，(3) shard_3 之前的 data gap 是否已填补\n- CED scoring 启动时 → 验证分数分布有意义方差（不全是 0 或 1），验证 F1 gate 生效（无 gold match → CED=0）\n- RSFT training 启动时 → **核查是否传了 --eval_data_dir**，核查 GPU 设备号在白名单内，监控前几步 rel_f1 是否维持在 SFT baseline 附近（0.4057）\n\n### 5. 🎯 战略上下文\n- 决策链：GRPO+QLoRA 判死（D031/D033，rel_f1<0.02 catastrophic forgetting）→ pivot 到 RSFT（D031）→ diversity crisis 是监控 bug 非真问题（D036）→ 恢复 4 卡并行 RSFT generation\n- SFT baseline: rel_f1=0.4057, evi_f1=0.7979, EDCR=0.7118。RSFT 的目标是在此基础上提升\n- 核心方法论：CED reward（DeBERTa NLI 区分 gold evidence vs entity-sharing distractors）→ 筛选高质量生成 → SFT 训练\n- **易错点**：(1) generation_config.json 会覆盖代码参数（D034 已修复，但要警惕类似问题）；(2) 监控指标可能有 bug 导致误报（D034/D036 前车之鉴）；(3) root generations.jsonl 是修复前（T=0.6, top_k=20）生成的，质量低于 shard 输出——去重已统一为 shard 优先\n- **最大风险**：RSFT 训练后 rel_f1 不升反降（重蹈 GRPO 覆辙）。TaskEvalCallback 是唯一防线，必须确保启用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-3.md"
+}

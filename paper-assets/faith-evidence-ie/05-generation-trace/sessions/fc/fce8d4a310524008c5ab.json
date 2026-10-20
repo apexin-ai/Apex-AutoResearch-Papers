@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fce8d4a310524008c5ab",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research paper status audit",
+  "task_key": "worker_research_paper_status_audit_20260521T225539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper_status_audit_20260521T225539_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "cc58233e698b0b5d20ffcb43cd31d6eecc11fa2207d2b9a856b6bef51371db1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已写入 `artifacts/paper_status_audit.md`。\n\n核心结论：\n\n**论文主体已基本完成**——8个 LaTeX section 全部有实质内容，12张表格已填数，5张图已生成，references.bib 301行。evidence_tax 数字修正（+7.5→+0.25, -6.2→-5.63）已应用到 .tex。dev_test_gap 段落已整合到 appendix。\n\n**3个 CRITICAL gap：**\n1. **DocRED 官方 test set 缺失**——只有 Re-DocRED test，CodaLab 未提交\n2. **SFT test baselines 全部缺失**——test 表无法计算 RSFT gain\n3. **4B test checkpoint 不可恢复**——test 表缺 4B 行\n\n**需要立即验证的：**\n- LaTeX 编译（figures 路径是否对齐、页数是否 ≤8 页主文）\n- 全文 grep 旧数字残留（\"+7.5\" / \"-6.2\" / \"non-monotonic\"）\n- flat-NLI Ign-F1 和 14B RSFT 详细指标在附录表中仍为 \"--\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-status-audit.md"
+}

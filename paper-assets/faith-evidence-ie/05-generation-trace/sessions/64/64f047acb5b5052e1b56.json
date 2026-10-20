@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64f047acb5b5052e1b56",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "director / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_3.md",
+    "occurrence": 1,
+    "bytes": 4139,
+    "sha256": "dd5bfcab942fc8a3b46061f58b28e65cd68f3a4ab734fb3347d9b9c81c23a792"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-15T11:28:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：rtx5090-4x 的 cuda:0/1/2/3，不可越界\n- SFT warmup 模型路径：`/root/autodl-tmp/sft_output`（已 merge，是所有下游实验的基座）\n- RSFT 训练数据：`/root/autodl-tmp/rsft_filtered/rsft_train.jsonl`（2718 samples）和清洗版 `rsft_train_clean.jsonl`（2548 samples，去掉 170 截断 JSON）\n- **TaskEvalCallback 的 rel_f1 数字不可信**（D038）：训练中间 eval 报的 ~0.05 是 50-doc vs 全量 gold 分母不匹配 bug。已修复但旧实验的中间 eval 数字全部作废，必须用独立的 `freige.eval.inference` 做全量 985-doc eval\n- D037 已撤回——RSFT \"灾难性失败\" 是 eval bug，不是模型问题\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x (connect.bjb2.seetacloud.com)，account=root\n- 工作目录：`/root/autodl-tmp/freige`\n- 4× RTX 5090 32GB，bf16 only（不 quantize）\n- 模型路径：SFT base `/root/autodl-tmp/sft_output`，RSFT 输出 `/root/autodl-tmp/rsft_output`(r1) / `rsft_output_s43` / `rsft_output_s44` / `rsft_output_r2a` / `rsft_output_r2b`\n- 数据集：`/root/autodl-tmp/data/docred`\n- W&B：project 内配置，run names rsft-ced-r1 / rsft-ced-r1-s43 / rsft-ced-r1-s44 / rsft-r2a / rsft-r2b\n- 活跃进程（写 handoff 时）：\n  - cuda:0: CED reranker PoC (PID 178050, ~37%)\n  - cuda:1: r2a full eval (PID 189488)\n  - cuda:2: s43 full eval (PID 194296, 刚启动)\n  - cuda:3: r2b full eval (PID 189855)\n\n### 3. 📊 当前状态\n**MVP-2 已有 2/3 seed 通过**：\n- r1 (seed=42): rel_f1=0.4449(+3.9pp), evi_f1=0.8187(+2.1pp), edcr=0.6565(-5.5pp) ✅\n- s44 (seed=44): rel_f1=0.4655(+6.0pp), evi_f1=0.8087(+1.1pp), edcr=0.6350(-7.7pp) ✅\n- SFT baseline: rel_f1=0.4057, evi_f1=0.7979, edcr=0.7118\n\n**等待中**：\n- s43 full eval (cuda:2) → 3 seed 齐全后 complete_mvp\n- r2a eval (cuda:1) → ablation：1 epoch + clean data, original LoRA scaling\n- r2b eval (cuda:3) → ablation：1 epoch + clean data + conservative LoRA (alpha=32, lr=1e-5)\n- CED reranker PoC (cuda:0, ~37%) → 额外方案，dry run 显示 CED-F1 可能负相关（warning）\n\n### 4. 📋 待办\n- s43 eval 完成 → 汇总 3 seed 均值±std，确认全部 PASS → `complete_mvp(\"faith-evidence-ie\")` → 进入 research 阶段\n- complete_mvp 后立即执行 post-mvp-kickoff skill：写 paper_framing.md 定稿 → experiment_plan.yaml → dream_simulate(review_mode=\"full\") → update_roadmap\n- r2a/r2b eval 完成 → 对比 r1/s44 量化 epoch 数和 LoRA scaling 的效果（ablation 数据点）\n- CED reranker PoC 完成 → 如果 CED > Random 且 evi_f1 提升，作为论文额外贡献；如果 CED-F1 负相关确认，记录为 negative result 但不影响 RSFT 主线\n- ROADMAP 严重过时（7h+未更新）→ complete_mvp 后全量覆写\n\n### 5. 🎯 战略上下文\n- **核心结论**：CED rejection sampling 有效——SFT 模型生成 8 candidates → CED 打分 → top-1 筛选 → 再微调，三个维度全面改善。这是 CED 的首次端到端验证。\n- **决策链**：MVP-1 PASS(CED 信号有效) → GRPO 全线 FAIL(D027/D031/D033, catastrophic forgetting) → RSFT \"FAIL\"(D037, 实为 eval bug) → D038 撤回 D037 → RSFT 实际 PASS\n- **最容易判断错的事**：\n  1. 不要相信任何 TaskEvalCallback 报的 rel_f1 ~0.05 数字，那是 bug 遗留。只看独立 full eval\n  2. rel_f1 跨 seed 方差较大（0.4449 vs 0.4655, ~2pp），报均值时必须带 std\n  3. paper_framing.md 里的 Claims 还是基于 GRPO 写的（\"CED GRPO 的 Evi-F1 > DREEAM\"），进 research 后需要全面改为 RSFT 框架\n  4. CED reranker PoC dry run 显示 CED-F1 Spearman r=-0.39（负相关），全量结果可能确认 CED 选 evidence 好但不选 relation 好的 candidate——这不矛盾，但论文 framing 要小心处理\n- **GRPO 失败是有价值的 negative result**：CED reward 在 GRPO 中是唯一不 collapse 的（flat-NLI 和 extract-only 都 20-30 步崩），但在线 RL 导致 catastrophic forgetting。论文可以讲\"CED 有效但训练范式matters\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3.md"
+}

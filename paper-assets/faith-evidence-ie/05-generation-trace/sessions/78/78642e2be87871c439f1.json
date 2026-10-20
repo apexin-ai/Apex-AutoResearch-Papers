@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78642e2be87871c439f1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops rsft status and downstream",
+  "task_key": "worker_ops_rsft_status_and_downstream_20260516T215928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rsft_status_and_downstream_20260516T215928_result.json",
+    "occurrence": 1,
+    "bytes": 1011,
+    "sha256": "6cd727a9321f0654e05423d53386908170395a20b4b041b27856a0e421b763d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 分配状态\n| GPU | 任务 | 显存 | 进度 |\n|-----|------|------|------|\n| 0 | Qwen3-1.7B rsft_generate | 13.5/32.6 GB | 2263/3027 (75%) |\n| 1 | **Re-DocRED eval r5 (新提交)** | 9.9/32.6 GB | 2/124 batches |\n| 2 | LLaMA-3.1-8B rsft_generate | 24.0/32.6 GB | 1889/3027 (62%) |\n| 3 | Qwen3-8B rsft_generate | 28.1/32.6 GB | 1871/3027 (62%) |\n\n### RSFT Candidate Gen（均未完成，仍在运行）\n- **Qwen3-1.7B**: 75% 完成，预计 ~2-3h 后结束\n- **Qwen3-8B**: 62% 完成，预计 ~5h 后结束\n- **LLaMA-3.1-8B**: 62% 完成，预计 ~5h 后结束\n\n### 已提交\n- **plan_007_redocred_rsft_eval_r5** (GPU 1, PID 384691): 模型加载成功（base→SFT→RSFT 三层），正在推理 re-docred dev (493 docs, 124 batches, ~43s/batch ≈ 1.5h)\n\n### 待办（candidate gen 完成后）\n- Step 3 CED scoring 需等至少一个 candidate gen 完成。最快的是 Qwen3-1.7B (~2-3h)。届时 eval r5 应已结束释放 GPU 1，可用于 scoring。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-rsft-status-and-downstream.md"
+}

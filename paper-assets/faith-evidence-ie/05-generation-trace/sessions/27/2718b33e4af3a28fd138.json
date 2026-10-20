@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2718b33e4af3a28fd138",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper figure fig scaling",
+  "task_key": "worker_paper_figure_fig_scaling_20260517T142547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_scaling_20260517T142547_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "e303b46d2006a0d117385c50050b961259006b7574cfc64b568900a0836e68ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fig_scaling 已生成并注册 (`art_20260517_d17d53`)。\n\n输出文件:\n- PDF: `figures/paper/fig_scaling.pdf`\n- PNG: `figures/paper/fig_scaling.png`\n\n视觉检查结果:\n- 4 组 grouped bars 清晰区分，4B 组有红色背景高亮，视觉上 with-evidence bar (39.7) 明显矮于 no-evidence bar (47.2)\n- 1.7B 组反转效果明确：蓝色 bar 高于灰色 bar，+8.0pp 绿色粗体标注醒目\n- Qwen3-8B no-evidence bar 用半透明虚线边框标记为占位值，附 \"(eval running)\" 注释\n- LLaMA-3.1-8B 两个 bar 接近等高，-0.7pp 灰色标注\n- 配色、字号、spine 移除、grid 样式均符合要求"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-scaling.md"
+}

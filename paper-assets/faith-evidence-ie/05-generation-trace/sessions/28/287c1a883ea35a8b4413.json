@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "287c1a883ea35a8b4413",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "knowledge sync experiment plan full",
+  "task_key": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_sync_experiment_plan_full_20260519T004352_result.json",
+    "occurrence": 1,
+    "bytes": 458,
+    "sha256": "2d12600b958fe9da5f2eb9c2666ce767009742948c56755dcda702ee0fd1439e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改已生效：\n\n| 条目 | 修改 |\n|---|---|\n| plan_w3_sft_seeds | 已是 `wave1_sft_4b_s44_eval_r2`（无需改） |\n| plan_015 | `plan_015_grpo_g4_bf16_v3` → `wave1_grpo_bf16_g4` |\n| plan_w18_random | `random_rsft_k1_baseline` → `random_rsft_k1_eval` |\n| plan_019 | 保持 `plan019_1_7b_sft_s43_r2` 不变 |\n| plan_d112 | `d112_rsft_s44_generate` → `d112_rsft_s44_gen_shard0`（已存在，仅更新 registry_id） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-sync-experiment-plan-full.md"
+}

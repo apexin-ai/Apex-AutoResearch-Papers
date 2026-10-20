@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "649a65101e4792510629",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "download qwen3 14b",
+  "task_key": "worker_download_qwen3_14b_20260518T112127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_download_qwen3_14b_20260518T112127_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "f3891ab399974860a158dc2db30fc01c21a2992e9d3175401c2595f80262d52e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "11.8GB (42%)。18 分钟内下载了 11.8GB。稳定 ~11 MB/s。剩 ~16GB，约 25 分钟。\n\n当前状态汇报：\n- **进度**: 11.8GB / ~28GB (42%)，1/8 shards 完成\n- **速度**: ~11 MB/s\n- **PID**: 534739，运行中\n- **预计完成**: ~20:05\n\n下载在后台稳定进行。如果你需要我继续监控到完成请告诉我，否则可以稍后手动检查：\n```bash\nssh rtx5090-4x 'ls -lh /root/autodl-tmp/models/Qwen/Qwen3-14B/*.safetensors | wc -l && du -sh /root/autodl-tmp/models/Qwen/Qwen3-14B/'\n```\n期望结果：8 个 safetensors 文件，总计约 28GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/download-qwen3-14b.md"
+}

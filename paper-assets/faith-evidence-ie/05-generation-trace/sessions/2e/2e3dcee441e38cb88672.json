@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e3dcee441e38cb88672",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose full gpu status and registry audit",
+  "task_key": "worker_diagnose_full_gpu_status_and_registry_audit_20260519T031518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_full_gpu_status_and_registry_audit_20260519T031518_result.json",
+    "occurrence": 1,
+    "bytes": 1878,
+    "sha256": "60b2103e663c87e0ef2d7d1702a55b842a7d5450d23391ff2c3891d7eba8e84a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry fixed. Here's the full report:\n\n---\n\n## GPU 全卡状态\n\n| GPU | 显存 | PID | 实验 | Registry |\n|-----|------|-----|------|----------|\n| **0** | **0 MiB (空闲)** | — | — | — |\n| 1 | 27524 / 32607 MiB (84%), util 99% | 602749 | `plan019_1_7b_rsft_s44` — 1.7B RSFT s44 训练 | ✅ RUNNING |\n| 2 | 29110 / 32607 MiB (89%), util 69% | 601718 | `plan019_1_7b_rsft_s43` — 1.7B RSFT s43 训练 | ✅ RUNNING |\n| 3 | 18882 / 32607 MiB (58%), util 69% | 598911 | `plan019_8b_rsft_s44_eval` — 8B RSFT s44 eval | ✅ RUNNING |\n| CPU | 无 GPU 占用 | 603844 | `d112_rsft_s44_ced_score` — D112 step 2 CED scoring | ❌ 无条目 + **卡死** |\n\n## Registry 审计结果\n\n| 条目 | 问题 | 修复 |\n|------|------|------|\n| `d112_rsft_s44_gen_shard3` (PID 590568) | 进程不存在，registry 仍 RUNNING | ✅ 已更新为 DONE (success) |\n| `d112_rsft_s44_ced_score` (PID 603844) | 有进程无 registry | ⏸️ 暂不创建——进程已卡死需重启 |\n| 其余 3 个 RUNNING 条目 | PID/GPU 均匹配 | ✅ 无需修复 |\n\n## cuda:1 状态\n\n**Director 报告有误：cuda:1 不空闲。** PID 602749 (1.7B RSFT s44) 正在 cuda:1 上跑，27524 MiB，GPU 利用率 99%。\n\n**cuda:0 才是空闲卡。**\n\n## D112 Step 2 — 严重阻塞\n\nPID 603844 (`d112_rsft_s44_ced_score`) **卡死**：\n- 加载 NLI 模型 `cross-encoder/nli-deberta-v3-base` 时尝试连接 HuggingFace，网络不可达\n- 5 次重试全部失败，log 从 11:13:58 起冻结（3+ 分钟无输出）\n- 无 GPU 显存占用，输出目录为空\n\n**模型已缓存在本地** `/root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/`，但脚本未设离线模式。\n\n**修复方案：** kill PID 603844，在脚本中加 `export HF_HUB_OFFLINE=1` 后重新启动，强制使用本地缓存。是否执行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-full-gpu-status-and-registry-audit.md"
+}

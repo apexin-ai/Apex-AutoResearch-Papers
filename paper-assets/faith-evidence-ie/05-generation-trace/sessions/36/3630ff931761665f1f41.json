@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3630ff931761665f1f41",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh check gpu conflict",
+  "task_key": "worker_ssh_check_gpu_conflict_20260516T053100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_gpu_conflict_20260516T053100_result.json",
+    "occurrence": 1,
+    "bytes": 1666,
+    "sha256": "9fee897e559b901d00738efc5e59e1757cdb0154451163b21850ae67c827e08a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告\n\n### 各 GPU 占用\n\n| GPU | 显存占用 | GPU Util | 进程 |\n|-----|----------|----------|------|\n| 0 | 21706 / 32607 MiB | 86% | PID 296737 (10846M) + PID 297195 (10846M) |\n| 1 | 10149 / 32607 MiB | 34% | PID 303070 (10140M) — sft_baseline_d076_reeval, 运行 4m |\n| 2 | 10855 / 32607 MiB | 50% | PID 298023 (10846M) — rsft_ced_s42_reeval, 运行 1h07m |\n| 3 | 11091 / 32607 MiB | 47% | PID 291008 (11082M) — rsft_flat_nli_s43_reeval_r2, 运行 2h26m |\n\n### 双进程冲突确认\n\n两个 PID 均存活：\n- **296732** (reeval_flat_nli_s42): 运行 1h14m, 子进程 PID 296737 占 GPU 0\n- **297190** (reeval_ced_s44): 运行 1h12m, 子进程 PID 297195 占 GPU 0\n\n两者共用 cuda:0，合计 ~21.7GB / 32GB，未 OOM。\n\n### 日志状态\n\n- **reeval_flat_nli_s42**: 87/247 (35%), ~50s/it，无错误\n- **reeval_ced_s44**: 88/247 (36%), ~55s/it，无错误\n\n两个都在正常推进，没有 OOM 或报错。\n\n### 分析与建议\n\n**当前不需要 kill。** 原因：\n1. 两个 eval 各占 ~10.8GB，合计 21.7GB 在 32GB 内，没有 OOM 风险\n2. 都已完成 ~35%，kill 重启会浪费已有进度\n3. **4 张 GPU 全部被占用**（GPU 1/2/3 各有一个 eval），没有空闲卡可迁移\n4. GPU 0 利用率 86% 说明两者在争抢算力，速度比独占慢约 40-50%，但都在推进\n\n**预计完成时间**：按当前速度，两者各剩 ~160 batch × ~55s ≈ 2.5h，约 16:00 UTC 完成。\n\n**根因**：提交时未检查 cuda:0 是否已有任务，两个 eval 被分配到同一张卡。后续应在提交前 `nvidia-smi` 确认目标 GPU 空闲（C001 约束）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-gpu-conflict.md"
+}

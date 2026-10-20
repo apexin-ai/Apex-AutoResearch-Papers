@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc6a76d645ab3f2b6d68",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix d112 shard registry entries",
+  "task_key": "worker_fix_d112_shard_registry_entries_20260519T004337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d112_shard_registry_entries_20260519T004337_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "00a706cf50a6e09a2dc91ff0db1e1a043b0139b00378cd2ad4f3131899039ddf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 修复完成。汇总：\n\n| exp_id | status | gpu | PID | docs 范围 |\n|--------|--------|-----|-----|----------|\n| `d112_rsft_s44_gen_shard0` | RUNNING | cuda:3 | 590423 | [0:756] |\n| `d112_rsft_s44_gen_shard1` | RUNNING | cuda:1 | 587729 | [756:1512] |\n| `d112_rsft_s44_gen_shard2` | RUNNING | cuda:2 | 587819 | [1512:2268] |\n| `d112_rsft_s44_gen_shard3` | RUNNING | cuda:0 | 590568 | [2268:3027] |\n\n- shard0/shard3：新建，状态从 PREPARING 推进至 RUNNING\n- shard1/shard2：已清除多余 parent 字段，更新 hypothesis 和 spec（补充 gpu_ids/pid）\n- `d112_rsft_s44_generate`：已确认为 DONE 状态，无需修改"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d112-shard-registry-entries.md"
+}

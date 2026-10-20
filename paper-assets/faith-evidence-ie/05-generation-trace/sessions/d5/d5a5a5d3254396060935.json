@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "d5a5a5d3254396060935",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "research next batch planning",
+  "task_key": "worker_research_next-batch-planning_20260521T061905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_next-batch-planning_20260521T061905.log",
+    "occurrence": 1,
+    "bytes": 1170266,
+    "sha256": "dc1f2c01e00b9ada57e71b39fc3c1f05dc3e92e7af585de7497e575c6f1ef2c2"
+  },
+  "statistics": {
+    "messages": 159,
+    "user_turns": 1,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 51,
+      "tool_result": 51,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 65,
+      "chunks": [
+        {
+          "path": "d5a5a5d3254396060935-part-0001.json",
+          "message_count": 29
+        },
+        {
+          "path": "d5a5a5d3254396060935-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 94,
+      "chunks": [
+        {
+          "path": "d5a5a5d3254396060935-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-next-batch-planning.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adff01836bcba55cfb8c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research evidence cost literature",
+  "task_key": "worker_research_evidence-cost-literature_20260515T210541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_evidence-cost-literature_20260515T210541_result.json",
+    "occurrence": 1,
+    "bytes": 1174,
+    "sha256": "584d57b36664b8eb303dd5468d44f7e940cd4cbf83338c4839a29c9f86981919"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "literature_map.yaml 已更新，新增 4 个 categories（9-12）共 9 篇论文。\n\n## 调研结果总结\n\n新增论文按 4 个调研方向分布：\n\n| 方向 | Category | 论文数 | 最关键论文 |\n|------|----------|--------|-----------|\n| Evidence generation 性能代价 | Cat 9 | 4 | EIDER (ACL'22), Mind Your Step (NeurIPS'24) |\n| Multi-task negative transfer | Cat 10 | 1 | ForkMerge (NeurIPS'23) |\n| Faithfulness vs accuracy | Cat 11 | 3 | Correctness≠Faithfulness (SIGIR'25), Lyu survey (CL'24) |\n| Reranking as bridge | Cat 12 | 1 | GENIE (ICLR'24) |\n\n**核心叙事线**：我们的 evidence-grounded RE 的 8pp F1 下降不是孤立现象——\n- Sprague et al. 证明 CoT 可降 36% accuracy；Resck et al. 形式化了 performance-plausibility Pareto trade-off\n- Wallat et al. 明确区分 correctness 和 faithfulness 是独立且可能冲突的维度\n- EIDER 早在 encoder-based DocRE 中就发现 evidence 需要 inference-stage 融合而非 joint generation\n- CED reranker 的 NLI verification 思路在 GENIE (ICLR'24) 中有成功先例\n- ForkMerge 提供了 auxiliary task negative transfer 的理论解释框架"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-evidence-cost-literature.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a07f31bc9779f12dab2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis sft eval r3 results",
+  "task_key": "worker_analysis_sft-eval-r3-results_20260514T165947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft-eval-r3-results_20260514T165947_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "5fde72c4f35c9abcabb73240afaadbf92fc2cb5f609e70aa8dda788e5c99696c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "r3 正常完成，结果如下：\n\n## r2 vs r3 对比\n\n| 指标 | r2 | r3 | 差异 |\n|------|------|------|------|\n| **F1** | 0.4057 | 0.4057 | 0.00pp |\n| **Precision** | 0.4043 | 0.4043 | 0.00pp |\n| **Recall** | 0.4070 | 0.4070 | 0.00pp |\n| **Evi-F1** | 0.7979 | 0.7979 | 0.00pp |\n| **Evi-Precision** | 0.8035 | 0.8035 | 0.00pp |\n| **Evi-Recall** | 0.7924 | 0.7924 | 0.00pp |\n| **EDCR** | 0.7118 | 0.7118 | 0.00pp |\n| **format_ok_rate** | 0.998 | 0.998 | 0.00pp |\n| **format_compliance_rate** | 0.626 | 0.626 | 0.00pp |\n| **n_parseable** | 617 | 617 (983 parseable, 617 field_complete) | 一致 |\n| **n_truncated** | 367 | 367 | 一致 |\n| **n_predictions** | 18815 | 18815 | 一致 |\n\n**结论**: r2 与 r3 所有指标完全一致（差异 = 0），远低于 0.5pp 阈值。r2 的 baseline 结果完全可靠，统一 eval 代码（含 `_repair_truncated_json`）未引入任何偏差。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sft-eval-r3-results.md"
+}

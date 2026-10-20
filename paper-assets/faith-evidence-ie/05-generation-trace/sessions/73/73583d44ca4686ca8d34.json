@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73583d44ca4686ca8d34",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor scp priority",
+  "task_key": "worker_monitor_scp-priority_20260520T090325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_scp-priority_20260520T090325_result.json",
+    "occurrence": 1,
+    "bytes": 41,
+    "sha256": "f8aa17b72a4c6b7cd9bba42728b75c658020aa3ad63fcce97ea4a4e453a3c5f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后继续检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-scp-priority.md"
+}

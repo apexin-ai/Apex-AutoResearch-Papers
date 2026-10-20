@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b7d9d9118131f2b467c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval check 4b submit 8b s44",
+  "task_key": "worker_eval_check-4b-submit-8b-s44_20260523T054119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check-4b-submit-8b-s44_20260523T054119_result.json",
+    "occurrence": 1,
+    "bytes": 931,
+    "sha256": "fb87c8cced34c1c7eb9aa1a34210679b31219c51357f65b870f9ddda3e8a1286"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### GPU 状态\n| GPU | 显存占用 | 进程 | 任务 |\n|-----|---------|------|------|\n| cuda:0 | 0 → 刚提交 8B | PID 228226 | **test_eval_8b_rsft_s44_with_evi** (刚启动) |\n| cuda:1 | 32479/97887 MiB | PID 194682 | (其他任务) |\n| cuda:2 | 12013/97887 MiB | PID 221956 | DPO dev eval — **batch 150/247 (61%)**, 预计还需 ~1.5h |\n| cuda:3 | 6071/97887 MiB | PID 214028 | 1.7B s43 with-evi — 运行 4h33m，输出目录仍空 |\n\n### 4B s43 no-evi → DONE ✓\n- **ign_f1 = 0.2702**, precision=0.3583, recall=0.2169\n- format_ok_rate=0.992, 500 docs, 68min\n- s43 evidence tax = 0.2702 - 0.2503 = **+1.99pp**（s42 tax=+1.51pp）\n\n### 8B s44 with-evi → RUNNING ✓\n- PID **228226**, cuda:0, timeout 4h\n- Cron 已注册，自动监控\n\n### 注意\n1.7B s43 with-evi 运行 4.5h 但输出目录为空，可能是模型加载慢或卡在推理。需关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-4b-submit-8b-s44.md"
+}

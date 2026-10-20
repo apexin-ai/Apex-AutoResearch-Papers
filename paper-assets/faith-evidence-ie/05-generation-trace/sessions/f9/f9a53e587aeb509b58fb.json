@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9a53e587aeb509b58fb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose all gpu status urgent",
+  "task_key": "worker_diagnose_all_gpu_status_urgent_20260518T162201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_all_gpu_status_urgent_20260518T162201_result.json",
+    "occurrence": 1,
+    "bytes": 2035,
+    "sha256": "6cf75ed85584b964af2f0809ab6f8aafa63cf32b1329e28ab1df767a10081a15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n---\n\n## GPU 全卡诊断报告\n\n### cuda:0 — plan019_1_7b_sft_s43 — **崩溃 (OOM)**\n\n- PID 554962 已死，GPU 0 当前空闲 (0MiB)\n- **崩溃原因**: 模型加载时 OOM。日志显示 `Process 553704 has 28.30 GiB memory in use` 占满了 GPU 0\n- **根因**: `random_rsft.sh` 脚本内 `export CUDA_VISIBLE_DEVICES=${GPU:-0}` 覆盖了 tmux wrapper 设的 `CUDA_VISIBLE_DEVICES=3`，导致 random_rsft 实际跑在 GPU 0 而非 GPU 3。s43 启动时 GPU 0 已被占满\n- 输出目录不存在（训练未开始即崩溃）\n\n### cuda:1 — plan019_1_7b_sft_s44 — **运行中 (~95%)**\n\n- PID 555056 存活，GPU 1: 27913MiB, 32% util\n- 进度: **539/570 steps**，~4.3s/step，预计 **2-3 分钟**完成\n- 总 570 steps = 3 epochs\n\n### cuda:2 — wave1_grpo_bf16_g4 — **运行中 (~50%)**\n\n- PID 542126 存活，GPU 2: 16631MiB, 44% util\n- max_steps=200，最新 checkpoint 在 **step 100**\n- step 100 metrics: reward=1.827, f1_reward=1.311, ced_reward=0.216, format_reward=0.300\n- 平均 step_time ~110s，预计还需 **~3 小时**完成\n- 无标准日志文件（直接 bash 启动，未走 agent-ml 注册）\n\n### cuda:3 — random_rsft_k1_baseline — **已完成 (实际跑在 GPU 0)**\n\n- EXIT_CODE=0，完成时间: 2026-05-18T16:10:14Z（~8h 前）\n- **train_loss: 0.6081**, epoch: 3.0, 1020 steps, runtime: 2793s (~46 min)\n- Checkpoint: `/root/autodl-tmp/rsft_output_random_k1/` (含 `adapter_model.safetensors`)\n- GPU 3 一直空闲 (0MiB)\n\n### 关键问题\n\n**random_rsft.sh 的 CUDA_VISIBLE_DEVICES bug** 直接导致了 s43 崩溃：\n\n- tmux wrapper 设了 `CUDA_VISIBLE_DEVICES=3`\n- 脚本内 `export CUDA_VISIBLE_DEVICES=${GPU:-0}` 覆盖为 0（因为 `GPU` 环境变量未传入）\n- random_rsft 占了 GPU 0 → s43 无法启动 → OOM\n\n**需要决策**:\n1. s43 需要在 GPU 0 或 GPU 3 上重新启动\n2. random_rsft.sh 的脚本需要修复（删除 `CUDA_VISIBLE_DEVICES` 覆盖或确保 `GPU` 变量传递）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-all-gpu-status-urgent.md"
+}

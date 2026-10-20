@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14058545b084d5450b2c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 009 figure update",
+  "task_key": "worker_analysis_plan_009_figure_update_20260515T162610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_009_figure_update_20260515T162610_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "fa5a7f314fb6b41cc9428c7a2354529332fcc5e4a68938e23c6029d470c3e90b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 已更新并注册。更新内容：\n\n- **Panel (a)**: bf16 GRPO 训练 reward 曲线（绿色虚线，三角标记）已加入\n- **Panel (b)**: bf16 GRPO ckpt-80 (0.446) 和 ckpt-100 (0.455) 两个数据点，标注\"112% of SFT\"——与 QLoRA 的 0.217 (53% of SFT) 形成鲜明对比\n- **Panel (c)**: bf16 evi_f1 数据点加入，annotation 改为\"QLoRA-specific decoupling\"\n- **summary.json**: bf16 eval 数据（含 per-checkpoint 的 rel_f1/evi_f1/EDCR）已填入，`key_finding` 字段已更新\n\n输出文件：\n- `artifacts/plan_009_grpo_forgetting/grpo_forgetting_dynamics.pdf`\n- `artifacts/plan_009_grpo_forgetting/grpo_forgetting_dynamics.png`\n- `artifacts/plan_009_grpo_forgetting/summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-009-figure-update.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd90b50c1b285291123c",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_13_1778933076.md",
+  "task_key": "loop_13_1778933076",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778933076.md",
+    "occurrence": 1,
+    "bytes": 4202,
+    "sha256": "3ac2e7173cadc5d57926c69d23a85154e675f583f0689ad5848a85cf2e13c664"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T11:30:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0, cuda:1, cuda:2, cuda:3（共 4 张）。不得用其他卡。\n- D076 reeval 协议：batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024。任何偏离都需要重跑。\n- CED RSFT 正确 checkpoint：/root/autodl-tmp/rsft_output/checkpoint-510（seed=42, lora_alpha=128, 510步）。不要用 rsft_output_r2b（错误的 lora_alpha=32, 仅 160 步）。\n- C3 已降级：CED vs flat-NLI 统计不可区分（D056），不要在论文中 claim CED > flat-NLI。\n- Paired t-test 需要全部 5 个 D076 reeval 统一协议结果收齐才能做，不能用旧协议数据混入。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x，工作目录 /root/autodl-tmp\n- Python：/root/miniconda3/bin/python（conda base），激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 代码：/root/autodl-tmp/freige（`python -m freige.eval.inference`）\n- 模型：/root/autodl-tmp/models/Qwen3-4B（base），/root/autodl-tmp/sft_output（SFT adapter），/root/autodl-tmp/rsft_output/checkpoint-510（CED RSFT s42）\n- Flat-NLI RSFT adapters：/root/autodl-tmp/flat_nli_rsft_output/（s42/s43/s44/s45 子目录）\n- 数据：/root/autodl-tmp/data/docred（dev 985 docs）\n- Eval 输出：/root/autodl-tmp/eval_results/（各实验子目录）\n- HF cache：/root/autodl-tmp/.hf_cache\n- Qwen3-1.7B：/root/autodl-tmp/models/Qwen3-1.7B（已下载）\n- 活跃进程：reeval_ced_s44 (PID 297190, cuda:0)，reeval_flat_nli_s42 (PID 296732, cuda:0)，plan_006_qwen3_1_7b_sft_bf16 (PID 310381, cuda:3)\n\n### 3. 📊 当前状态\n刚收到 cron 回调：reeval_ced_s42（cuda:2）和 reeval_sft_baseline_d076（cuda:1）进入 ANALYZING。已派出 3 个 Worker：\n1. `worker_analysis_reeval_ced_s42_20260516T072635` — 分析 CED RSFT s42 reeval 结果\n2. `worker_analysis_reeval_sft_baseline_d076_20260516T072641` — 分析 SFT baseline reeval 结果\n3. `worker_check_download_status_20260516T072755` — 检查 Qwen3-8B / LLaMA / Re-DocRED 下载进度\n\n**Registry RUNNING**: reeval_ced_s44, reeval_flat_nli_s42, plan_006_qwen3_1_7b_sft_bf16\n**Registry ANALYZING**: reeval_ced_s42, reeval_sft_baseline_d076（Worker 分析中）\n**等待**: 3 个 Worker 回调；reeval_ced_s44 和 reeval_flat_nli_s42 的 cron 完成回调\n\n**D076 reeval 进度**: 5/5 已提交，3/5 完成（flat_nli_s43_r2 success + 刚完成的 2 个），2/5 仍在跑。\n\n### 4. 📋 待办（条件触发式）\n- Worker 分析回调到 → update_registry(conclusion/metrics) + 转 DONE + 刷新 report.md\n- reeval_ced_s44 / reeval_flat_nli_s42 cron 回调 → 同上流程分析\n- **全部 5 个 D076 reeval 完成** → 立即派 Worker 做 paired t-test（SFT baseline vs CED RSFT vs flat-NLI RSFT，跨 seed），汇报 Director\n- download_status Worker 回调 → 若 Qwen3-8B 就绪 → 在 cuda:1 或 cuda:2 提交 plan_006 Qwen3-8B SFT；若 LLaMA 就绪 → 提交 plan_016；若 Re-DocRED 就绪 → 提交 plan_007\n- cuda:1/cuda:2 空闲且无可铺实验 → 汇报 Director \"等待下载完成，建议加速\"\n- plan_006_qwen3_1_7b_sft_bf16 完成 → 分析 + 继续 RSFT + eval pipeline\n\n### 5. 🎯 战略上下文\n- **核心论文 story**: FREIGE = LLM-based evidence-grounded DocRE 系统研究。4 个 Claims: C1 evidence tax ~8pp + CED reranker 恢复 97%；C2 decoupling 是 QLoRA-specific（bf16 下 mild）；C3 CED vs flat-NLI 统计不可区分（降级）；C4 EDCR 双层诊断指标。\n- **D076 是关键路径**：统一协议 reeval 是做 paired t-test 的前提，t-test 结果决定 C1/C3 的定量 claim 强度。\n- **D077 scope 扩展**已批准：多 scale（1.7B/8B）× 跨家族（LLaMA）× 跨数据集（Re-DocRED）。这是应对审稿人\"单模型单数据集\"质疑的核心。\n- **易错点**：(1) CED RSFT 有多个 checkpoint 版本，只有 checkpoint-510 是正确的（旧 r2b 是错误配置）；(2) flat-NLI RSFT seeds 在 /root/autodl-tmp/flat_nli_rsft_output/ 而非 rsft_output/；(3) 投稿目标 EMNLP 2026 Main (ARR July cycle ~July 15-25)，时间充裕但不能拖。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778933076.md"
+}

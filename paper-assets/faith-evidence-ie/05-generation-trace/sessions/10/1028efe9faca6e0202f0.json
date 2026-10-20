@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1028efe9faca6e0202f0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix 14b eval oom",
+  "task_key": "worker_fix_14b_eval_oom_20260518T133906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_14b_eval_oom_20260518T133906_result.json",
+    "occurrence": 1,
+    "bytes": 383,
+    "sha256": "536fa4b06334c7a322fecf9fbc8977e8b3b22fee16dbdc6ebb135d008284fdba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。改动：\n\n- `CUDA_VISIBLE_DEVICES` 默认 `2,3`（2-GPU），`device_map=\"auto\"` 自动将 14B bf16 (~28GB) 分到两张卡（~14GB/卡，留 ~18GB 给 KV cache）\n- `batch_size` 4→2，余量更安全\n- 其余参数（`--no-quantize`, `--max_new_tokens 1024`, `--split dev`）不变\n- 无需改 `inference.py`，已原生支持 `device_map=\"auto\"`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-14b-eval-oom.md"
+}

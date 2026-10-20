@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c197f9a6116efec49baf",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze plan019 1 7b rsft s43 r2 eval",
+  "task_key": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "31802d9f6bf012595c0bff75bede6e432c5e7ae94491e362917879a255878653"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。结果摘要：\n\n## plan019_1_7b_rsft_s43_r2_eval 结果\n\n### 核心指标\n\n| 指标 | s43 (本次) | s42 (canonical) | SFT mean | Δ vs s42 | Δ vs SFT |\n|------|-----------|-----------------|----------|----------|----------|\n| **ign_f1** | **0.5109** | 0.5122 | 0.4464 | **-0.13pp** | **+6.45pp** |\n| ign_precision | 0.5186 | — | — | — | — |\n| ign_recall | 0.5035 | — | — | — | — |\n\n### Evidence 指标\n\n| 指标 | 值 |\n|------|-----|\n| evi_precision | 0.8218 |\n| evi_recall | 0.8340 |\n| evi_f1 | 0.8278 |\n| EDCR | 0.6245 |\n| evi_f1_joint | 0.4278 |\n\n### 格式 & 推理\n\n| 指标 | 值 |\n|------|-----|\n| format_compliance | 99.9% |\n| field_compliance | 75.0% |\n| n_truncated | 244/985 |\n| inference_time | 8498s (~2.4h) |\n\n### 结论\n\n**Success.** ign_f1 = 0.5109 与 s42 canonical (0.5122) 仅差 0.13pp，显著高于 SFT baseline (+6.45pp)。1.7B RSFT 跨 seed 稳健性得到验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-plan019-1-7b-rsft-s43-r2-eval.md"
+}

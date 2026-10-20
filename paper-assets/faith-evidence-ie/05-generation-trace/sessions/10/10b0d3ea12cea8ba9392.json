@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10b0d3ea12cea8ba9392",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp d102 1 7b k1 s42 eval",
+  "task_key": "worker_exp_d102_1_7b_k1_s42_eval_20260524T223054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_d102_1_7b_k1_s42_eval_20260524T223054_result.json",
+    "occurrence": 1,
+    "bytes": 312,
+    "sha256": "2216dc1e488fb0b817ff5cf2c507dd3278f1eab3c32208f11f1d781f193a8daf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果已存在，无需重跑。** Registry 已更新为 DONE (success)。\n\nMetrics：\n- **ign_f1**: 0.5122 (51.22%)\n- **rel_f1**: 0.5290 (52.90%)\n- **evi_f1**: 0.8243 (82.43%)\n- **edcr**: 0.6224 (62.24%)\n- **evi_f1_joint**: 0.4275 (42.75%)\n- inference_time: 8836s, n_truncated: 249/985"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d102-1-7b-k1-s42-eval.md"
+}

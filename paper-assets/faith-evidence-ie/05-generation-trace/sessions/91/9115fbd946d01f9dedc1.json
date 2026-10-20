@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9115fbd946d01f9dedc1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "harvest test eval 14b rsft s42",
+  "task_key": "worker_harvest_test_eval_14b_rsft_s42_20260521T154912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_test_eval_14b_rsft_s42_20260521T154912_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "1d0ebea7a9c6c95562954edcb925f56b6fa35380a6d41859ba50db983045ca1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ntest_eval_14b_rsft_s42:\n  pid_alive: false (DEAD)\n  completed: true (EXIT_CODE=0)\n  runtime: 19085.8s (~5h18m)\n  metrics:\n    f1: 0.3849\n    ign_f1: 0.3849 (= f1, no train_annotated.json)\n    precision: 0.4805\n    recall: 0.3210\n    evi_f1_joint (DREEAM): 0.2688\n    evi_f1_tp: 0.6025\n    edcr: 0.7865\n    truncated: 67/500\n    format_ok: 499/500\n    field_compliance: 0.36 (known evaluator bug)\n    n_predictions: 15835\n  codalab_submission: exists (579KB, 11235 converted, 225 skipped_rel, 349 skipped_entity)\n  log_status: clean exit, EXIT_CODE=0\n\nOther test evals:\n  test_eval_llama (PID 98968, cuda:2): ALIVE\n  test_eval_1_7b (PID 102815, cuda:3): ALIVE\n```\n\n14B RSFT F1=0.3849，比 8B 的 0.3353 高 +5.0 pp。需要 CodaLab 提交获取真实 ign_f1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-test-eval-14b-rsft-s42-copy-2.md"
+}

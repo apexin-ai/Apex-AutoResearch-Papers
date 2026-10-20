@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76b367a70b02331c964f",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_9_1778878981.md",
+  "task_key": "loop_9_1778878981",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778878981.md",
+    "occurrence": 1,
+    "bytes": 4196,
+    "sha256": "b3cb32c6a9308db947dc49e6afd5a074a52aa089e71264c66b2cfab55dca0adb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T21:00:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `gpu_ids: [0, 1, 2, 3]`，全在 `rtx5090-4x`。不得用 `bjb2-12179` 的 GPU 跑实验（该服务器仅做辅助用途）\n- SFT baseline 推理必须用 `--no-quantize`（D058 发现量化 confound，之前结果被污染）\n- CED vs flat-NLI 统计不可区分（D056），CED 不再作为独立贡献——论文中不可 claim CED 优于 flat-NLI\n- test set eval 推迟到论文终稿阶段（D057），当前只做 dev eval\n- plan_011_eval_g8_bf16_ckpt100（PREPARING, pid=215276）状态可能是残留——该 PID 很老，接手后需验证进程是否存活再决定是否清理\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: `rtx5090-4x`（4× RTX 5090 32GB），工作目录 `/root/autodl-tmp/freige`\n- **备用服务器**: `bjb2-12179`（root 账号）\n- **Python/conda**: 需 detect_image 确认，预置镜像可能是 `aml-train`（conda base）\n- **活跃进程**:\n  - `plan_008_rsft_topk3`: PID 234494, cuda:3, cron 监控中\n  - `plan_011_bf16_g8_step_eval`: PID 249541, cuda:1, cron 监控中\n  - `eval_plan_012_dpo_ced_1ep`: cuda:2, cron 监控中（PID 在 cron 里记录）\n  - `eval_plan_001_flat_nli_s43`: QUEUED, cuda:0, PID 252179（需确认是否实际在跑）\n- **Worker 池**: 0 个 running worker\n\n### 3. 📊 当前状态\n4 块 GPU 全部有任务，3 个 cron 在监控。Worker 池为空（= 失职，应立即派非 GPU 任务 Worker）。\n\n**RUNNING (3)**:\n- `plan_008_rsft_topk3` — RSFT top_k ablation，cuda:3\n- `plan_011_bf16_g8_step_eval` — bf16 GRPO step-level eval，cuda:1（C2+C3 证据链核心）\n- `eval_plan_012_dpo_ced_1ep` — DPO+CED eval，cuda:2（Reviewer WARNING 过拟合信号）\n\n**QUEUED (1)**:\n- `eval_plan_001_flat_nli_s43` — flat-NLI eval，cuda:0（下游 plan_002/003 的前置依赖）\n\n**PREPARING (2)**:\n- `mvp2_eval_rsft_s44` — RSFT seed=44 eval（可能已过时，需确认是否仍需要）\n- `plan_011_eval_g8_bf16_ckpt100` — bf16 GRPO ckpt-100 eval（PID 215276 可能已死）\n\n**ANALYZING (2)**: 需检查具体哪些实验，可能有回调未处理。\n\n### 4. 📋 待办（条件触发式）\n- `eval_plan_001_flat_nli_s43` 完成 → 解锁 plan_002 (test eval) + plan_003 (EDCR pipeline)，这是当前最关键的分叉点（CED vs flat-NLI 差距决定论文 CED 章节权重）\n- `plan_011_bf16_g8_step_eval` 完成 → 确认 step-level forgetting dynamics，生成 forgetting figure (plan_009 依赖)\n- `eval_plan_012_dpo_ced_1ep` 完成 → 关注过拟合信号，若过拟合确认则 DPO 路线需要 reframe\n- `plan_008_rsft_topk3` 完成 → top_k ablation 结果入表，补充 RSFT 方法章节\n- 2 个 ANALYZING 实验 → 立即检查并处理回调（更新 registry + report.md）\n- Worker 池 = 0 → **立即**派 CPU Worker 做：plan_009 forgetting dynamics figure 准备、related work 扩展调研、paper_framing.md 更新\n- 核心 eval 收齐后 → Paper Agent: retitle + reframe + related work 扩展\n\n### 5. 🎯 战略上下文\n**项目核心结论链**:\n- D054: GRPO decoupling（evidence-extraction 脱钩）是 QLoRA 量化噪声导致，不是 RL 通病\n- D056: CED vs flat-NLI 统计不可区分 → CED 不再独立贡献，Claim 3 降级\n- D055: CED 优势重新定位为 output quality control (compliance)\n- D059: Claim 2 re-scope，decoupling 作为负面发现保留\n- 论文定位：\"task definition + decoupling finding + EDCR metric\"\n\n**投稿目标**: EMNLP 2026 Main，ARR July cycle (~7月15-25)，剩余约 2 个月\n\n**最容易判断错的事**:\n1. **不要把 CED 和 flat-NLI 当成有显著差异**——D056 已确认统计不可区分，写论文时不可 overclaim\n2. **plan_011_eval_g8_bf16_ckpt100 (PREPARING)** 的 PID 很老（215276），大概率已死进程，不要假设它在跑——需 SSH 确认\n3. **mvp2 系列实验全是历史遗留**（大量 killed/failed），不要试图复活它们\n4. **Dream v2 评分 best=3.0 未达标**（阈值 3.5），结构性问题尚在修复中——不要假设论文框架已稳定\n5. **Worker 池 = 0 是当前最大失职**——接手后第一件事就是派 Worker\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778878981.md"
+}

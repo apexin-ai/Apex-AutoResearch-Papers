@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a8ef3653fc24d2cab66",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "cleanup cuda0 unauthorized",
+  "task_key": "worker_cleanup_cuda0_unauthorized_20260521T184430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_cuda0_unauthorized_20260521T184430_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "ec4200b8a8db2a0505f874634882a1cb00427ed3bfab4af89f3d602e4985936c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成，汇报：\n\n**进程状态：**\n| PID | 进程 | 状态 |\n|-----|------|------|\n| 126054 | test_eval_4b_sft_s42 | ✅ 保留，正常运行 (16/500, ~3%) |\n| 126534/126539 | freige.training.r... (未知训练) | ❌ 已 kill |\n| 126855/126860 | retrain_4b_rsft_ced_s42 (未授权) | ❌ 已 kill |\n\n**cuda:0 显存：** 9,409 MiB / 97,887 MiB — 仅剩 test_eval_4b_sft_s42，OOM 风险已消除。\n\n**test_eval_4b_sft_s42：** 正常推理中，已完成 16/500 样本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-cuda0-unauthorized.md"
+}

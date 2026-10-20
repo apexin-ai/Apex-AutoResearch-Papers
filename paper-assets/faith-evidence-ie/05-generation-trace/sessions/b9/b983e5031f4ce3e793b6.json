@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b983e5031f4ce3e793b6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh verify adapter identity",
+  "task_key": "worker_ssh_verify-adapter-identity_20260521T071803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-adapter-identity_20260521T071803_result.json",
+    "occurrence": 1,
+    "bytes": 1980,
+    "sha256": "e1675b65cee788e7fae29a37c9ec37222ec8432d90190cfb84b5ff77b924b48a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是明确结论：\n\n---\n\n## 审计结果：D140 no-evidence eval 全部用错了 adapter\n\n### 铁证\n\n**训练数据不同** — trainer_state.json 中 `num_tokens` per step：\n- 所有 `_no_evidence` adapters: **119,651 tokens/10 steps**\n- 标准 SFT adapters (8B/1.7B): **141,227 tokens/10 steps**\n\n差 ~18%，正好是训练数据去掉 evidence 字段后减少的 token 量。\n\n**4B 更明显**：adapter 大小 528MB (no_evi) vs 264MB (standard)，step 数 570 vs 144，完全是两个不同的训练 run。\n\n### 各 scale 详情\n\n| Scale | 条件 | Adapter 路径 | 正确? |\n|-------|------|-------------|-------|\n| **1.7B** | with_evi | `sft_output_qwen3_1_7b_bf16` (标准 SFT) | ✅ |\n| **1.7B** | no_evi | `sft_output_qwen3_1_7b_no_evidence` (plan_014 训练) | ❌ **错误** |\n| **8B** | with_evi (PID in log) | `sft_output_qwen3_8b_bf16` (标准 SFT) | ✅ |\n| **8B** | no_evi (PID 83650) | `sft_output_qwen3_8b_no_evidence` (plan_014 训练) | ❌ **错误** |\n| **4B** | no_evi (PID 85668) | `sft_no_evidence_output` (plan_014 训练) | ❌ **错误** |\n| **4B** | with_evi | 尚未提交 | — |\n\n### 1.7B 已完成结果（无效）\n\n| | ign_f1 | adapter |\n|---|---|---|\n| with_evi | 0.4806 | 标准 SFT ✅ |\n| no_evi | 0.3925 | plan_014 ❌ |\n\n这个 0.0881 的差值混淆了 training regime 差异和 evidence tax，不可用。\n\n### 需要的操作\n\n1. **Kill PID 85668** — 4B no_evi eval，用了错误 adapter `sft_no_evidence_output`\n2. **Kill PID 83650** — 8B no_evi eval，用了错误 adapter `sft_output_qwen3_8b_no_evidence`\n3. **1.7B no_evi 结果作废**，需要用 `sft_output_qwen3_1_7b_bf16` + `--no_evidence` 重跑\n4. 所有 no_evi eval 应改为：**标准 SFT adapter** + `--no_evidence` 参数\n\n正确的 evidence tax 计算：同一个标准 SFT adapter，分别传/不传 `--no_evidence`，比较 ign_f1 差值。\n\n是否立即 kill 这两个进程？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-adapter-identity.md"
+}

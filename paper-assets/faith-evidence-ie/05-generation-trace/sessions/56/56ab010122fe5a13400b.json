@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56ab010122fe5a13400b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "maintenance fix nested paths",
+  "task_key": "worker_maintenance_fix-nested-paths_20260520T112919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_maintenance_fix-nested-paths_20260520T112919_result.json",
+    "occurrence": 1,
+    "bytes": 412,
+    "sha256": "b3a37bd1f6baeabc4ebd678947603d406855102d545629e2866980f5574cf27f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个目录全部修复完成，无残留嵌套。\n\n| 目录 | 状态 | 关键文件 |\n|------|------|---------|\n| `sft_output_llama_3_1_8b` | FIXED | `adapter_model.safetensors` (671MB), `adapter_config.json`, checkpoints 190/570 |\n| `sft_output_14b` | FIXED | `checkpoint-96/`, `checkpoint-144/` 各含 adapter (514MB) |\n| `rsft_generations_14b` | FIXED | `generations.jsonl` (14976 行) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/maintenance-fix-nested-paths.md"
+}

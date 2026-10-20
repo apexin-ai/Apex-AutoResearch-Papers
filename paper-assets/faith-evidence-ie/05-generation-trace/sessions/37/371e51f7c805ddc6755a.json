@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "371e51f7c805ddc6755a",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_14_1778954385.md",
+  "task_key": "loop_14_1778954385",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778954385.md",
+    "occurrence": 1,
+    "bytes": 4630,
+    "sha256": "650e69182ac34d1a90b68fa5b618a682e7ae5a6e5eb02b75ac0cd52bbb3811de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T17:58:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0, cuda:1, cuda:2, cuda:3（共 4 张）。禁止使用其他 GPU\n- plan_006_qwen3_1_7b_no_evidence_eval_v3 截断问题未解决（v1=531, v3 仍有 501/985），结论判断需排除截断干扰后再定性\n- 1.7B no-evidence 已跑 3 版（v1/v2/v2r2/v3）全有问题，下一次必须彻底修好 max_new_tokens 或换推理策略，不能再盲目重跑\n- Qwen3-1.7B RSFT candidates 生成（cuda:0）刚提交，依赖 SFT checkpoint `/root/autodl-tmp/sft_output_qwen3_1_7b`（有 evidence 版本），不要和 no_evidence adapter 混淆\n- CED vs flat-NLI 已被 D078 paired t-test 确认统计不可区分，C3 已降级，不要再跑 CED vs flat-NLI 对比实验\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x，工作目录 `/root/autodl-tmp`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型路径：`/root/autodl-tmp/models/Qwen/Qwen3-1.7B`, `/root/autodl-tmp/models/Qwen/Qwen3-8B`, `/root/autodl-tmp/models/meta-llama/Llama-3.1-8B-Instruct`\n- SFT adapters：`/root/autodl-tmp/sft_output_qwen3_1_7b`, `/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence`, `/root/autodl-tmp/sft_output_qwen3_8b_bf16`, `/root/autodl-tmp/sft_output_qwen3_8b_no_evidence`\n- 数据：`/root/autodl-tmp/data/docred`（12275 dev samples）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 项目代码：`/root/autodl-tmp/freige/`（pip install -e 安装）\n- W&B：entity=nyoungmatt, project=faith-evidence-ie\n- 活跃进程：\n  - plan_016_llama_3_1_8b_sft_eval: PID 340111, cuda:1\n  - plan_016_llama_grpo_qlora: PID 346621, cuda:2\n  - plan_006_qwen3_8b_rsft_candidates: PID 349382, cuda:3\n  - plan_006_qwen3_1_7b_rsft_candidates: cuda:0（刚提交，cron 已注册）\n\n### 3. 📊 当前状态\n**正在做**：分析 `plan_006_qwen3_1_7b_no_evidence_eval_v3` 结果。Worker 已发现截断仍严重（501/985 samples truncated），正在写入结果文件。Worker 即将回调。\n\n**RUNNING 实验**：\n- `plan_016_llama_3_1_8b_sft_eval` (cuda:1) — LLaMA-3.1-8B SFT eval，cross-family 验证\n- `plan_016_llama_grpo_qlora` (cuda:2) — LLaMA GRPO QLoRA 训练，验证 decoupling 跨家族\n- `plan_006_qwen3_8b_rsft_candidates` (cuda:3) — 8B RSFT candidate 生成 (N=8, T=0.7)\n- `plan_006_qwen3_1_7b_rsft_candidates` (cuda:0) — 1.7B RSFT candidate 生成（刚提交）\n\n**等待中**：\n- Worker `worker_analysis_plan_006_qwen3_1_7b_no_evidence_eval_v3_20260516T135316` 回调（马上完成）\n- 4 个 RUNNING 实验的 cron 完成回调\n\n### 4. 📋 待办（条件触发式）\n- Worker 分析回调到达 → 根据截断严重程度判断：(a) 若截断 <5% 可信，定性 conclusion 并 update_registry 到 DONE；(b) 若截断仍严重（>30%），标记 failed + 记录需要修复 max_new_tokens 后重跑\n- plan_016_llama_3_1_8b_sft_eval 完成 → 对比 4B SFT baseline (ign_f1=0.4786)，量化 cross-family evidence tax\n- plan_016_llama_grpo_qlora 完成 → 对比 Qwen3-4B QLoRA GRPO (catastrophic 0.2167) 验证 decoupling 跨家族\n- plan_006_qwen3_8b_rsft_candidates 完成 → 派 Worker 做 CED scoring → 筛选 top-k → RSFT 训练\n- plan_006_qwen3_1_7b_rsft_candidates 完成 → 同上，1.7B 版本\n- 所有 scope 扩展实验完成后 → compute_coverage_matrix 检查论文 claims 覆盖率，向 Director 汇报是否可以开始写论文\n\n### 5. 🎯 战略上下文\n**核心发现链**：\n- D079: 8B evidence tax ≈ 0（scale 越大 evidence generation cost 越低）\n- D081: 1.7B evidence tax 反转（no-evi 更差），但被严重截断混淆，结论不可靠\n- D078: CED vs flat-NLI 统计不可区分（C3 降级）\n- D077: Scope 扩展启动（多 scale × 跨家族 × 跨数据集）\n- D080: Re-DocRED cross-dataset Ign-F1 下降 3.15pp 但 Evi-F1 保持\n\n**易错点**：\n- 1.7B no-evidence eval 的截断问题：模型 1.7B 容量小，生成长度不够，max_new_tokens=1024 对 no-evidence 模式可能不够（虽然 no-evidence 理论上 output 更短）。真正原因可能是模型 repeat/degenerate 导致截断。需要看具体 log 判断是 output 太长还是模型退化\n- evidence tax 方向：4B 上是 ~8pp（no-evi 更好），8B 上 ≈0。1.7B 如果截断修复后是 negative（no-evi 更差），这个 U 形趋势本身就是有趣发现（小模型需要 evidence 作为 scaffold）\n- EMNLP 2026 DDL: ARR July cycle ~July 15-25，时间充裕但 scope 扩展 ~100 GPU·h 需要高效推进\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778954385.md"
+}

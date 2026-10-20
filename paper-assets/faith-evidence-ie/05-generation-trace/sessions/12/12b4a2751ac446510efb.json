@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12b4a2751ac446510efb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp d158 1 7b s44 test tax",
+  "task_key": "worker_exp_d158_1_7b_s44_test_tax_20260525T041215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_d158_1_7b_s44_test_tax_20260525T041215_result.json",
+    "occurrence": 1,
+    "bytes": 374,
+    "sha256": "afab97f68cafc275fa92da6aa52f6f561468484300842f34a55e460285fee828"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n1. **with-evi eval** 已提交到 cuda:0，tmux session `test_eval_1_7b_rsft_s44_with_evi`，PID 354294，registry 状态 RUNNING\n2. **cron 监控** 每 10 分钟轮询，with-evi 完成后自动提交 no-evi eval 并继续监控\n3. 两个 eval 都完成后会计算 evidence tax 并输出\n\n1.7B test eval 预计 ~1-2h，会自动推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d158-1-7b-s44-test-tax.md"
+}

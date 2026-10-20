@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "245a97b253ab00b8ba26",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops cleanup and fix kl",
+  "task_key": "worker_ops_cleanup-and-fix-kl_20260514T120827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-and-fix-kl_20260514T120827_result.json",
+    "occurrence": 1,
+    "bytes": 680,
+    "sha256": "8d3687f78bfdf046743e8e475e1edfe0414d64961cfdfb80193a7614ca68d202"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n### Part 1: GPU 清理\n- **cuda:0/2/3**：已空闲（0 MiB），无 GRPO 残留进程（连接时就已经是干净的）\n- **cuda:1**：sft_eval 保留，88% 利用率，10454 MiB 占用\n\n### Part 2: KLDivergenceCallback 修改\n修改前后 diff：\n- ✅ 添加 docstring，说明 QLoRA 4-bit 下 KL 不可靠的原因\n- ✅ `control.should_training_stop = True` 已移除（grep 返回空，确认文件中不再有 `should_training_stop`）\n- ✅ warning 消息改为 `\"monitoring only, not stopping\"`\n\n### Part 3: 验证\n- 代码修改正确（行 30-44）\n- 无早停逻辑残留\n- GPU 0/2/3 可用于新训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-and-fix-kl.md"
+}

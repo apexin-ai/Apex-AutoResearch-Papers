@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd7f01aca46a64065d5f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval rsft ced s45",
+  "task_key": "worker_analysis_eval_rsft_ced_s45_20260516T042335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_rsft_ced_s45_20260516T042335_result.json",
+    "occurrence": 1,
+    "bytes": 676,
+    "sha256": "5a8c75dda1a57c0092166f73be478bb6ee424e942374e42db14d39e8fc8cfc12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_rsft_ced_s45 完成，registry 已更新。**\n\n关键 metrics：\n\n| 指标 | 值 |\n|------|-----|\n| **rel_f1** | 0.4514 |\n| **rel_ign_f1** | 0.4416 |\n| **evi_f1** | 0.8174 |\n| rel_p | 0.4718 |\n| rel_r | 0.4326 |\n| edcr | 0.655 |\n| format_ok | 100% |\n\n**对比 flat-NLI RSFT s45**（0.4876）：CED s45 的 rel_f1 = 0.4514，低 3.6 个百分点。这与 CED 系列整体趋势一致——CED RSFT 在 rel_f1 上落后于 flat-NLI RSFT，但 evi_f1（0.8174）和 edcr（0.655）是 CED 协议的额外产出。\n\nCED s45 的 0.4514 落在预期范围（0.43-0.47）内，结果合理。等 s42/s43/s44 全部到齐后可做配对 t-test。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-rsft-ced-s45.md"
+}

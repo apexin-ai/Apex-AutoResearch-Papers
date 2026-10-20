@@ -1,0 +1,1829 @@
+{
+  "schema_version": "1.0",
+  "id": "52335f48f68e306132f9",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ops cuda2 relay 8b no evidence eval",
+  "task_key": "worker_ops_cuda2_relay_8b_no_evidence_eval_20260516T111025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda2_relay_8b_no_evidence_eval_20260516T111025.log",
+    "occurrence": 1,
+    "bytes": 101179,
+    "sha256": "933238bb2589ea77df7465d0524db5d7e57f2a356c175fa9e885ef5c202ca92d"
+  },
+  "statistics": {
+    "messages": 42,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 10,
+      "tool_call": 14,
+      "tool_result": 14,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "17d1b2d0-bdbe-410f-b514-a8b7467d1dd7",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me execute this task step by step. First, I need to check the 1.7B no-evidence eval results, then submit the 8B no-evidence eval on cuda:2.\n\nLet me start with Phase 1 - checking the eval results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "d09a650c-d0f6-4ea3-aa4a-e879501e52a5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TmYau1gTB1Ww5xYgKfUT9x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12843,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12843
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D5EtkwCdTbYhDXZ389uTDV",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+                "max_results": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "e6375534-013e-43af-b1d8-f721117796f7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TmYau1gTB1Ww5xYgKfUT9x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12843,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12843
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T11:10:40.856Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01D5EtkwCdTbYhDXZ389uTDV",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "c7178801-d023-4608-8d80-33d1a1eecf1b",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__read_registry",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778939400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "b948ff39-29a9-490a-baf4-29e49745b94a",
+                "session_id": "63798bad-217d-4270-b970-d69d5560d813"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me execute Phase 1 - check the 1.7B no-evidence eval results. I'll run multiple read-only commands in parallel.",
+              "signature": "ErMCClkIDRgCKkCMhMterAx6C7E9x8JhN45ileuOIbjsA75+iC5K1RSRaJZDeg6Hpryst5Fcs/qO53lo6EQGMyIsUtdGk7sVQA7QMg9jbGF1ZGUtb3B1cy00LTY4ABIMa8erM/SN9LgqY4QfGgym/XCgHaVRZ99z3YEiMN3oDreVDKdJzUv2SsljY/Sn7MXlIvoY9tWavLRmymKpgSYjDYofgoqoFckbvnJ3CiqHAWy1CpwE0eLyITUwODVFQypJBOe2xyDxhdFXOrhbMwwVS0lYFV0qM7cZdGp8MJX8RgUWaKcv7jYrJDVLrCxMfw6JHNODQ9NkZje4im+6szQ5Yg4Ov/sd5GSQPBtsY4erODOU2kDTliJCqN0FuBkom/W9J3+F9oMOX6PnOXNmf5d02WZcra5hCRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "5558dbea-0d1a-4647-bbcb-c94757068c92",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JYUGrurQYxqpbhxyWC9Hyn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1698,
+                "cache_read_input_tokens": 24290,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1698
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012VEqwq6Ncj8HKznSwrfhgE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "tail -50 /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "8c8a48de-a2d1-4a5c-b93d-a70adec03042",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JYUGrurQYxqpbhxyWC9Hyn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1698,
+                "cache_read_input_tokens": 24290,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1698
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HCSwEcWrSdRW9hJWPCxe1B",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval/metrics.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "6f413b3b-b08c-41bf-ac51-be83c47faca3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JYUGrurQYxqpbhxyWC9Hyn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1698,
+                "cache_read_input_tokens": 24290,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1698
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T11:10:46.080Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012VEqwq6Ncj8HKznSwrfhgE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 17:25:10,419 INFO Full model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B (no adapter)\\\\n2026-05-16 17:25:10,420 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n2026-05-16 17:25:10,751 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-16 17:25:10,970 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.34it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.61it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.28it/s]\\\\n2026-05-16 17:25:11,874 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\\n2026-05-16 17:25:14,666 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-16 17:25:15,007 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-16 17:25:15,207 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n\\\\rInference:   0%|          | 1/247 [00:25<1:45:43, 25.79s/it]\\\\rInference:   1%|          | 2/247 [00:51<1:44:00, 25.47s/it]\\\\rInference:   1%|          | 3/247 [01:16<1:42:38, 25.24s/it]\\\\rInference:   2%|▏         | 4/247 [01:41<1:42:15, 25.25s/it]\\\\rInference:   2%|▏         | 5/247 [02:06<1:41:41, 25.21s/it]\\\\rInference:   2%|▏         | 6/247 [02:31<1:41:29, 25.27s/it]\\\\rInference:   3%|▎         | 7/247 [02:56<1:40:25, 25.11s/it]\\\\rInference:   3%|▎         | 8/247 [03:22<1:40:40, 25.28s/it]\\\\rInference:   4%|▎         | 9/247 [03:47<1:40:19, 25.29s/it]\\\\rInference:   4%|▍         | 10/247 [04:13<1:40:19, 25.40s/it]\\\\rInference:   4%|▍         | 11/247 [04:37<1:39:10, 25.21s/it]\\\\rInference:   5%|▍         | 12/247 [05:03<1:38:42, 25.20s/it]\\\\rInference:   5%|▌         | 13/247 [05:28<1:38:23, 25.23s/it]\\\\rInference:   6%|▌         | 14/247 [05:53<1:37:57, 25.23s/it]\\\\rInference:   6%|▌         | 15/247 [06:18<1:37:05, 25.11s/it]\\\\rInference:   6%|▋         | 16/247 [06:43<1:36:29, 25.06s/it]\\\\rInference:   7%|▋         | 17/247 [07:08<1:35:33, 24.93s/it]\\\\rInference:   7%|▋         | 18/247 [07:33<1:35:14, 24.96s/it]\\\\rInference:   8%|▊         | 19/247 [07:57<1:34:01, 24.74s/it]\\\\rInference:   8%|▊         | 20/247 [08:21<1:33:05, 24.61s/it]\\\\rInference:   9%|▊         | 21/247 [08:46<1:32:59, 24.69s/it]\\\\rInference:   9%|▉         | 22/247 [09:11<1:32:37, 24.70s/it]\\\\rInference:   9%|▉         | 23/247 [09:36<1:32:34, 24.80s/it]\\\\rInference:  10%|▉         | 24/247 [10:01<1:32:20, 24.84s/it]\\\\rInference:  10%|█         | 25/247 [10:26<1:32:08, 24.90s/it]\\\\rInference:  11%|█         | 26/247 [10:51<1:32:11, 25.03s/it]\\\\rInference:  11%|█         | 27/247 [11:16<1:31:32, 24.97s/it]\\\\rInference:  11%|█▏        | 28/247 [11:41<1:31:19, 25.02s/it]\\\\rInference:  12%|█▏        | 29/247 [12:06<1:31:02, 25.06s/it]\\\\rInference:  12%|█▏        | 30/247 [12:31<1:30:17, 24.96s/it]\\\\rInference:  13%|█▎        | 31/247 [12:55<1:29:27, 24.85s/it]\\\\rInference:  13%|█▎        | 32/247 [13:20<1:28:13, 24.62s/it]\\\\rInference:  13%|█▎        | 33/247 [13:44<1:27:28, 24.52s/it]\\\\rInference:  14%|█▍        | 34/247 [14:08<1:26:40, 24.42s/it]\\\\rInference:  14%|█▍        | 35/247 [14:32<1:25:33, 24.21s/it]\\\\rInference:  15%|█▍        | 36/247 [14:56<1:24:50, 24.13s/it]\\\\rInference:  15%|█▍        | 37/247 [15:19<1:23:54, 23.97s/it]\\\\rInference:  15%|█▌        | 38/247 [15:28<1:07:50, 19.48s/it]\\\\rInference:  16%|█▌        | 39/247 [15:52<1:12:09, 20.82s/it]\\\\rInference:  16%|█▌        | 40/247 [16:16<1:14:47, 21.68s/it]\\\\rInference:  17%|█▋        | 41/247 [16:24<1:00:30, 17.62s/it]\\\\rInference:  17%|█▋        | 42/247 [16:49<1:08\\\\n\\\\n... [截断: 输出过长，省略 9589 字符] ...\\\\n\\\\n]\\\\rInference:  80%|███████▉  | 197/247 [1:22:16<20:59, 25.18s/it]\\\\rInference:  80%|████████  | 198/247 [1:22:42<20:37, 25.26s/it]\\\\rInference:  81%|████████  | 199/247 [1:23:07<20:15, 25.32s/it]\\\\rInference:  81%|████████  | 200/247 [1:23:33<19:49, 25.30s/it]\\\\rInference:  81%|████████▏ | 201/247 [1:23:58<19:31, 25.48s/it]\\\\rInference:  82%|████████▏ | 202/247 [1:24:25<19:22, 25.82s/it]\\\\rInference:  82%|████████▏ | 203/247 [1:24:51<19:03, 26.00s/it]\\\\rInference:  83%|████████▎ | 204/247 [1:25:18<18:44, 26.16s/it]\\\\rInference:  83%|████████▎ | 205/247 [1:25:44<18:10, 25.97s/it]\\\\rInference:  83%|████████▎ | 206/247 [1:26:09<17:39, 25.83s/it]\\\\rInference:  84%|████████▍ | 207/247 [1:26:34<17:06, 25.66s/it]\\\\rInference:  84%|████████▍ | 208/247 [1:26:59<16:35, 25.52s/it]\\\\rInference:  85%|████████▍ | 209/247 [1:27:25<16:08, 25.48s/it]\\\\rInference:  85%|████████▌ | 210/247 [1:27:51<15:47, 25.62s/it]\\\\rInference:  85%|████████▌ | 211/247 [1:28:17<15:25, 25.70s/it]\\\\rInference:  86%|████████▌ | 212/247 [1:28:44<15:10, 26.03s/it]\\\\rInference:  86%|████████▌ | 213/247 [1:29:09<14:40, 25.91s/it]\\\\rInference:  87%|████████▋ | 214/247 [1:29:35<14:11, 25.81s/it]\\\\rInference:  87%|████████▋ | 215/247 [1:30:00<13:40, 25.64s/it]\\\\rInference:  87%|████████▋ | 216/247 [1:30:25<13:10, 25.50s/it]\\\\rInference:  88%|██████���█▊ | 217/247 [1:30:50<12:43, 25.45s/it]\\\\rInference:  88%|████████▊ | 218/247 [1:31:16<12:16, 25.39s/it]\\\\rInference:  89%|████████▊ | 219/247 [1:31:41<11:49, 25.34s/it]\\\\rInference:  89%|████████▉ | 220/247 [1:32:07<11:26, 25.43s/it]\\\\rInference:  89%|████████▉ | 221/247 [1:32:31<10:55, 25.22s/it]\\\\rInference:  90%|████████▉ | 222/247 [1:32:57<10:33, 25.34s/it]\\\\rInference:  90%|█████████ | 223/247 [1:33:23<10:12, 25.54s/it]\\\\rInference:  91%|█████████ | 224/247 [1:33:48<09:47, 25.54s/it]\\\\rInference:  91%|█████████ | 225/247 [1:34:14<09:19, 25.43s/it]\\\\rInference:  91%|█████████▏| 226/247 [1:34:40<08:58, 25.65s/it]\\\\rInference:  92%|█████████▏| 227/247 [1:35:06<08:34, 25.74s/it]\\\\rInference:  92%|█████████▏| 228/247 [1:35:31<08:07, 25.64s/it]\\\\rInference:  93%|█████████▎| 229/247 [1:35:56<07:36, 25.38s/it]\\\\rInference:  93%|█████████▎| 230/247 [1:36:21<07:09, 25.29s/it]\\\\rInference:  94%|█████████▎| 231/247 [1:36:47<06:45, 25.35s/it]\\\\rInference:  94%|█████████▍| 232/247 [1:37:12<06:18, 25.24s/it]\\\\rInference:  94%|█████████▍| 233/247 [1:37:36<05:50, 25.04s/it]\\\\rInference:  95%|█████████▍| 234/247 [1:38:01<05:26, 25.13s/it]\\\\rInference:  95%|█████████▌| 235/247 [1:38:26<05:00, 25.03s/it]\\\\rInference:  96%|█████████▌| 236/247 [1:38:51<04:33, 24.89s/it]\\\\rInference:  96%|█████████▌| 237/247 [1:39:15<04:07, 24.75s/it]\\\\rInference:  96%|█████████▋| 238/247 [1:39:40<03:42, 24.72s/it]\\\\rInference:  97%|█████████▋| 239/247 [1:40:05<03:17, 24.70s/it]\\\\rInference:  97%|█████████▋| 240/247 [1:40:29<02:53, 24.73s/it]\\\\rInference:  98%|█████████▊| 241/247 [1:40:53<02:27, 24.50s/it]\\\\rInference:  98%|█████████▊| 242/247 [1:41:18<02:02, 24.54s/it]\\\\rInference:  98%|█████████▊| 243/247 [1:41:42<01:37, 24.45s/it]\\\\rInference:  99%|█████████▉| 244/247 [1:42:06<01:12, 24.32s/it]\\\\rInference:  99%|█████████▉| 245/247 [1:42:30<00:48, 24.26s/it]\\\\rInference: 100%|█████████▉| 246/247 [1:42:55<00:24, 24.30s/it]\\\\rInference: 100%|██████████| 247/247 [1:42:58<00:00, 18.11s/it]\\\\rInference: 100%|██████████| 247/247 [1:42:58<00:00, 25.02s/it]\\\\n2026-05-16 19:08:14,059 INFO Inference done. 531/985 truncated, 0 errors.\\\\n2026-05-16 19:08:14,060 INFO Inference: 6178.8s (6.27 s/doc)\\\\n2026-05-16 19:08:14,765 INFO Loaded 37785 training triples (34610 unique facts) for Ign-F1\\\\n2026-05-16 19:08:15,015 INFO Metrics → /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval/metrics.json\\\\n2026-05-16 19:08:15,212 INFO Predictions → /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval/predictions.json\\\\n\\\\n==================================================\\\\n  F1:          0.3884\\\\n  Ign-F1:      0.3786\\\\n  Evi-F1:      0.0007\\\\n  EDCR:        0.9848\\\\n  Format OK:   984/985 (99.9%)\\\\n  Truncated:   531/985\\\\n  Predictions: 27049\\\\n==================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "6a9e8232-7c18-4478-a6ff-4164386e8f2c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 17:25:10,419 INFO Full model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B (no adapter)\\\\n2026-05-16 17:25:10,420 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n2026-05-16 17:25:10,751 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-16 17:25:10,970 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.34it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.61it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.28it/s]\\\\n2026-05-16 17:25:11,874 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\\n2026-05-16 17:25:14,666 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-16 17:25:15,007 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-16 17:25:15,207 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n\\\\rInference:   0%|          | 1/247 [00:25<1:45:43, 25.79s/it]\\\\rInference:   1%|          | 2/247 [00:51<1:44:00, 25.47s/it]\\\\rInference:   1%|          | 3/247 [01:16<1:42:38, 25.24s/it]\\\\rInference:   2%|▏         | 4/247 [01:41<1:42:15, 25.25s/it]\\\\rInference:   2%|▏         | 5/247 [02:06<1:41:41, 25.21s/it]\\\\rInference:   2%|▏         | 6/247 [02:31<1:41:29, 25.27s/it]\\\\rInference:   3%|▎         | 7/247 [02:56<1:40:25, 25.11s/it]\\\\rInference:   3%|▎         | 8/247 [03:22<1:40:40, 25.28s/it]\\\\rInference:   4%|▎         | 9/247 [03:47<1:40:19, 25.29s/it]\\\\rInference:   4%|▍         | 10/247 [04:13<1:40:19, 25.40s/it]\\\\rInference:   4%|▍         | 11/247 [04:37<1:39:10, 25.21s/it]\\\\rInference:   5%|▍         | 12/247 [05:03<1:38:42, 25.20s/it]\\\\rInference:   5%|▌         | 13/247 [05:28<1:38:23, 25.23s/it]\\\\rInference:   6%|▌         | 14/247 [05:53<1:37:57, 25.23s/it]\\\\rInference:   6%|▌         | 15/247 [06:18<1:37:05, 25.11s/it]\\\\rInference:   6%|▋         | 16/247 [06:43<1:36:29, 25.06s/it]\\\\rInference:   7%|▋         | 17/247 [07:08<1:35:33, 24.93s/it]\\\\rInference:   7%|▋         | 18/247 [07:33<1:35:14, 24.96s/it]\\\\rInference:   8%|▊         | 19/247 [07:57<1:34:01, 24.74s/it]\\\\rInference:   8%|▊         | 20/247 [08:21<1:33:05, 24.61s/it]\\\\rInference:   9%|▊         | 21/247 [08:46<1:32:59, 24.69s/it]\\\\rInference:   9%|▉         | 22/247 [09:11<1:32:37, 24.70s/it]\\\\rInference:   9%|▉         | 23/247 [09:36<1:32:34, 24.80s/it]\\\\rInference:  10%|▉         | 24/247 [10:01<1:32:20, 24.84s/it]\\\\rInference:  10%|█         | 25/247 [10:26<1:32:08, 24.90s/it]\\\\rInference:  11%|█         | 26/247 [10:51<1:32:11, 25.03s/it]\\\\rInference:  11%|█         | 27/247 [11:16<1:31:32, 24.97s/it]\\\\rInference:  11%|█▏        | 28/247 [11:41<1:31:19, 25.02s/it]\\\\rInference:  12%|█▏        | 29/247 [12:06<1:31:02, 25.06s/it]\\\\rInference:  12%|█▏        | 30/247 [12:31<1:30:17, 24.96s/it]\\\\rInference:  13%|█▎        | 31/247 [12:55<1:29:27, 24.85s/it]\\\\rInference:  13%|█▎        | 32/247 [13:20<1:28:13, 24.62s/it]\\\\rInference:  13%|█▎        | 33/247 [13:44<1:27:28, 24.52s/it]\\\\rInference:  14%|█▍        | 34/247 [14:08<1:26:40, 24.42s/it]\\\\rInference:  14%|█▍        | 35/247 [14:32<1:25:33, 24.21s/it]\\\\rInference:  15%|█▍        | 36/247 [14:56<1:24:50, 24.13s/it]\\\\rInference:  15%|█▍        | 37/247 [15:19<1:23:54, 23.97s/it]\\\\rInference:  15%|█▌        | 38/247 [15:28<1:07:50, 19.48s/it]\\\\rInference:  16%|█▌        | 39/247 [15:52<1:12:09, 20.82s/it]\\\\rInference:  16%|█▌        | 40/247 [16:16<1:14:47, 21.68s/it]\\\\rInference:  17%|█▋        | 41/247 [16:24<1:00:30, 17.62s/it]\\\\rInference:  17%|█▋        | 42/247 [16:49<1:08\\\\n\\\\n... [截断: 输出过长，省略 9589 字符] ...\\\\n\\\\n]\\\\rInference:  80%|███████▉  | 197/247 [1:22:16<20:59, 25.18s/it]\\\\rInference:  80%|████████  | 198/247 [1:22:42<20:37, 25.26s/it]\\\\rInference:  81%|████████  | 199/247 [1:23:07<20:15, 25.32s/it]\\\\rInference:  81%|████████  | 200/247 [1:23:33<19:49, 25.30s/it]\\\\rInference:  81%|████████▏ | 201/247 [1:23:58<19:31, 25.48s/it]\\\\rInference:  82%|████████▏ | 202/247 [1:24:25<19:22, 25.82s/it]\\\\rInference:  82%|████████▏ | 203/247 [1:24:51<19:03, 26.00s/it]\\\\rInference:  83%|████████▎ | 204/247 [1:25:18<18:44, 26.16s/it]\\\\rInference:  83%|████████▎ | 205/247 [1:25:44<18:10, 25.97s/it]\\\\rInference:  83%|████████▎ | 206/247 [1:26:09<17:39, 25.83s/it]\\\\rInference:  84%|████████▍ | 207/247 [1:26:34<17:06, 25.66s/it]\\\\rInference:  84%|████████▍ | 208/247 [1:26:59<16:35, 25.52s/it]\\\\rInference:  85%|████████▍ | 209/247 [1:27:25<16:08, 25.48s/it]\\\\rInference:  85%|████████▌ | 210/247 [1:27:51<15:47, 25.62s/it]\\\\rInference:  85%|████████▌ | 211/247 [1:28:17<15:25, 25.70s/it]\\\\rInference:  86%|████████▌ | 212/247 [1:28:44<15:10, 26.03s/it]\\\\rInference:  86%|████████▌ | 213/247 [1:29:09<14:40, 25.91s/it]\\\\rInference:  87%|████████▋ | 214/247 [1:29:35<14:11, 25.81s/it]\\\\rInference:  87%|████████▋ | 215/247 [1:30:00<13:40, 25.64s/it]\\\\rInference:  87%|████████▋ | 216/247 [1:30:25<13:10, 25.50s/it]\\\\rInference:  88%|██████���█▊ | 217/247 [1:30:50<12:43, 25.45s/it]\\\\rInference:  88%|████████▊ | 218/247 [1:31:16<12:16, 25.39s/it]\\\\rInference:  89%|████████▊ | 219/247 [1:31:41<11:49, 25.34s/it]\\\\rInference:  89%|████████▉ | 220/247 [1:32:07<11:26, 25.43s/it]\\\\rInference:  89%|████████▉ | 221/247 [1:32:31<10:55, 25.22s/it]\\\\rInference:  90%|████████▉ | 222/247 [1:32:57<10:33, 25.34s/it]\\\\rInference:  90%|█████████ | 223/247 [1:33:23<10:12, 25.54s/it]\\\\rInference:  91%|█████████ | 224/247 [1:33:48<09:47, 25.54s/it]\\\\rInference:  91%|█████████ | 225/247 [1:34:14<09:19, 25.43s/it]\\\\rInference:  91%|█████████▏| 226/247 [1:34:40<08:58, 25.65s/it]\\\\rInference:  92%|█████████▏| 227/247 [1:35:06<08:34, 25.74s/it]\\\\rInference:  92%|█████████▏| 228/247 [1:35:31<08:07, 25.64s/it]\\\\rInference:  93%|█████████▎| 229/247 [1:35:56<07:36, 25.38s/it]\\\\rInference:  93%|█████████▎| 230/247 [1:36:21<07:09, 25.29s/it]\\\\rInference:  94%|█████████▎| 231/247 [1:36:47<06:45, 25.35s/it]\\\\rInference:  94%|█████████▍| 232/247 [1:37:12<06:18, 25.24s/it]\\\\rInference:  94%|█████████▍| 233/247 [1:37:36<05:50, 25.04s/it]\\\\rInference:  95%|█████████▍| 234/247 [1:38:01<05:26, 25.13s/it]\\\\rInference:  95%|█████████▌| 235/247 [1:38:26<05:00, 25.03s/it]\\\\rInference:  96%|█████████▌| 236/247 [1:38:51<04:33, 24.89s/it]\\\\rInference:  96%|█████████▌| 237/247 [1:39:15<04:07, 24.75s/it]\\\\rInference:  96%|█████████▋| 238/247 [1:39:40<03:42, 24.72s/it]\\\\rInference:  97%|█████████▋| 239/247 [1:40:05<03:17, 24.70s/it]\\\\rInference:  97%|█████████▋| 240/247 [1:40:29<02:53, 24.73s/it]\\\\rInference:  98%|█████████▊| 241/247 [1:40:53<02:27, 24.50s/it]\\\\rInference:  98%|█████████▊| 242/247 [1:41:18<02:02, 24.54s/it]\\\\rInference:  98%|█████████▊| 243/247 [1:41:42<01:37, 24.45s/it]\\\\rInference:  99%|█████████▉| 244/247 [1:42:06<01:12, 24.32s/it]\\\\rInference:  99%|█████████▉| 245/247 [1:42:30<00:48, 24.26s/it]\\\\rInference: 100%|█████████▉| 246/247 [1:42:55<00:24, 24.30s/it]\\\\rInference: 100%|██████████| 247/247 [1:42:58<00:00, 18.11s/it]\\\\rInference: 100%|██████████| 247/247 [1:42:58<00:00, 25.02s/it]\\\\n2026-05-16 19:08:14,059 INFO Inference done. 531/985 truncated, 0 errors.\\\\n2026-05-16 19:08:14,060 INFO Inference: 6178.8s (6.27 s/doc)\\\\n2026-05-16 19:08:14,765 INFO Loaded 37785 training triples (34610 unique facts) for Ign-F1\\\\n2026-05-16 19:08:15,015 INFO Metrics → /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval/metrics.json\\\\n2026-05-16 19:08:15,212 INFO Predictions → /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval/predictions.json\\\\n\\\\n==================================================\\\\n  F1:          0.3884\\\\n  Ign-F1:      0.3786\\\\n  Evi-F1:      0.0007\\\\n  EDCR:        0.9848\\\\n  Format OK:   984/985 (99.9%)\\\\n  Truncated:   531/985\\\\n  Predictions: 27049\\\\n==================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 17:25:10,419 INFO Full model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B (no adapter)\\n2026-05-16 17:25:10,420 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n2026-05-16 17:25:10,751 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-16 17:25:10,970 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.34it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.61it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.28it/s]\\n2026-05-16 17:25:11,874 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\n2026-05-16 17:25:14,666 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-16 17:25:15,007 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-16 17:25:15,207 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n\\rInference:   0%|          | 1/247 [00:25<1:45:43, 25.79s/it]\\rInference:   1%|          | 2/247 [00:51<1:44:00, 25.47s/it]\\rInference:   1%|          | 3/247 [01:16<1:42:38, 25.24s/it]\\rInference:   2%|▏         | 4/247 [01:41<1:42:15, 25.25s/it]\\rInference:   2%|▏         | 5/247 [02:06<1:41:41, 25.21s/it]\\rInference:   2%|▏         | 6/247 [02:31<1:41:29, 25.27s/it]\\rInference:   3%|▎         | 7/247 [02:56<1:40:25, 25.11s/it]\\rInference:   3%|▎         | 8/247 [03:22<1:40:40, 25.28s/it]\\rInference:   4%|▎         | 9/247 [03:47<1:40:19, 25.29s/it]\\rInference:   4%|▍         | 10/247 [04:13<1:40:19, 25.40s/it]\\rInference:   4%|▍         | 11/247 [04:37<1:39:10, 25.21s/it]\\rInference:   5%|▍         | 12/247 [05:03<1:38:42, 25.20s/it]\\rInference:   5%|▌         | 13/247 [05:28<1:38:23, 25.23s/it]\\rInference:   6%|▌         | 14/247 [05:53<1:37:57, 25.23s/it]\\rInference:   6%|▌         | 15/247 [06:18<1:37:05, 25.11s/it]\\rInference:   6%|▋         | 16/247 [06:43<1:36:29, 25.06s/it]\\rInference:   7%|▋         | 17/247 [07:08<1:35:33, 24.93s/it]\\rInference:   7%|▋         | 18/247 [07:33<1:35:14, 24.96s/it]\\rInference:   8%|▊         | 19/247 [07:57<1:34:01, 24.74s/it]\\rInference:   8%|▊         | 20/247 [08:21<1:33:05, 24.61s/it]\\rInference:   9%|▊         | 21/247 [08:46<1:32:59, 24.69s/it]\\rInference:   9%|▉         | 22/247 [09:11<1:32:37, 24.70s/it]\\rInference:   9%|▉         | 23/247 [09:36<1:32:34, 24.80s/it]\\rInference:  10%|▉         | 24/247 [10:01<1:32:20, 24.84s/it]\\rInference:  10%|█         | 25/247 [10:26<1:32:08, 24.90s/it]\\rInference:  11%|█         | 26/247 [10:51<1:32:11, 25.03s/it]\\rInference:  11%|█         | 27/247 [11:16<1:31:32, 24.97s/it]\\rInference:  11%|█▏        | 28/247 [11:41<1:31:19, 25.02s/it]\\rInference:  12%|█▏        | 29/247 [12:06<1:31:02, 25.06s/it]\\rInference:  12%|█▏        | 30/247 [12:31<1:30:17, 24.96s/it]\\rInference:  13%|█▎        | 31/247 [12:55<1:29:27, 24.85s/it]\\rInference:  13%|█▎        | 32/247 [13:20<1:28:13, 24.62s/it]\\rInference:  13%|█▎        | 33/247 [13:44<1:27:28, 24.52s/it]\\rInference:  14%|█▍        | 34/247 [14:08<1:26:40, 24.42s/it]\\rInference:  14%|█▍        | 35/247 [14:32<1:25:33, 24.21s/it]\\rInference:  15%|█▍        | 36/247 [14:56<1:24:50, 24.13s/it]\\rInference:  15%|█▍        | 37/247 [15:19<1:23:54, 23.97s/it]\\rInference:  15%|█▌        | 38/247 [15:28<1:07:50, 19.48s/it]\\rInference:  16%|█▌        | 39/247 [15:52<1:12:09, 20.82s/it]\\rInference:  16%|█▌        | 40/247 [16:16<1:14:47, 21.68s/it]\\rInference:  17%|█▋        | 41/247 [16:24<1:00:30, 17.62s/it]\\rInference:  17%|█▋        | 42/247 [16:49<1:08\\n\\n... [截断: 输出过长，省略 9589 字符] ...\\n\\n]\\rInference:  80%|███████▉  | 197/247 [1:22:16<20:59, 25.18s/it]\\rInference:  80%|████████  | 198/247 [1:22:42<20:37, 25.26s/it]\\rInference:  81%|████████  | 199/247 [1:23:07<20:15, 25.32s/it]\\rInference:  81%|████████  | 200/247 [1:23:33<19:49, 25.30s/it]\\rInference:  81%|████████▏ | 201/247 [1:23:58<19:31, 25.48s/it]\\rInference:  82%|████████▏ | 202/247 [1:24:25<19:22, 25.82s/it]\\rInference:  82%|████████▏ | 203/247 [1:24:51<19:03, 26.00s/it]\\rInference:  83%|████████▎ | 204/247 [1:25:18<18:44, 26.16s/it]\\rInference:  83%|████████▎ | 205/247 [1:25:44<18:10, 25.97s/it]\\rInference:  83%|████████▎ | 206/247 [1:26:09<17:39, 25.83s/it]\\rInference:  84%|████████▍ | 207/247 [1:26:34<17:06, 25.66s/it]\\rInference:  84%|████████▍ | 208/247 [1:26:59<16:35, 25.52s/it]\\rInference:  85%|████████▍ | 209/247 [1:27:25<16:08, 25.48s/it]\\rInference:  85%|████████▌ | 210/247 [1:27:51<15:47, 25.62s/it]\\rInference:  85%|████████▌ | 211/247 [1:28:17<15:25, 25.70s/it]\\rInference:  86%|████████▌ | 212/247 [1:28:44<15:10, 26.03s/it]\\rInference:  86%|████████▌ | 213/247 [1:29:09<14:40, 25.91s/it]\\rInference:  87%|████████▋ | 214/247 [1:29:35<14:11, 25.81s/it]\\rInference:  87%|████████▋ | 215/247 [1:30:00<13:40, 25.64s/it]\\rInference:  87%|████████▋ | 216/247 [1:30:25<13:10, 25.50s/it]\\rInference:  88%|██████���█▊ | 217/247 [1:30:50<12:43, 25.45s/it]\\rInference:  88%|████████▊ | 218/247 [1:31:16<12:16, 25.39s/it]\\rInference:  89%|████████▊ | 219/247 [1:31:41<11:49, 25.34s/it]\\rInference:  89%|████████▉ | 220/247 [1:32:07<11:26, 25.43s/it]\\rInference:  89%|████████▉ | 221/247 [1:32:31<10:55, 25.22s/it]\\rInference:  90%|████████▉ | 222/247 [1:32:57<10:33, 25.34s/it]\\rInference:  90%|█████████ | 223/247 [1:33:23<10:12, 25.54s/it]\\rInference:  91%|█████████ | 224/247 [1:33:48<09:47, 25.54s/it]\\rInference:  91%|█████████ | 225/247 [1:34:14<09:19, 25.43s/it]\\rInference:  91%|█████████▏| 226/247 [1:34:40<08:58, 25.65s/it]\\rInference:  92%|█████████▏| 227/247 [1:35:06<08:34, 25.74s/it]\\rInference:  92%|█████████▏| 228/247 [1:35:31<08:07, 25.64s/it]\\rInference:  93%|█████████▎| 229/247 [1:35:56<07:36, 25.38s/it]\\rInference:  93%|█████████▎| 230/247 [1:36:21<07:09, 25.29s/it]\\rInference:  94%|█████████▎| 231/247 [1:36:47<06:45, 25.35s/it]\\rInference:  94%|█████████▍| 232/247 [1:37:12<06:18, 25.24s/it]\\rInference:  94%|█████████▍| 233/247 [1:37:36<05:50, 25.04s/it]\\rInference:  95%|█████████▍| 234/247 [1:38:01<05:26, 25.13s/it]\\rInference:  95%|█████████▌| 235/247 [1:38:26<05:00, 25.03s/it]\\rInference:  96%|█████████▌| 236/247 [1:38:51<04:33, 24.89s/it]\\rInference:  96%|█████████▌| 237/247 [1:39:15<04:07, 24.75s/it]\\rInference:  96%|█████████▋| 238/247 [1:39:40<03:42, 24.72s/it]\\rInference:  97%|█████████▋| 239/247 [1:40:05<03:17, 24.70s/it]\\rInference:  97%|█████████▋| 240/247 [1:40:29<02:53, 24.73s/it]\\rInference:  98%|█████████▊| 241/247 [1:40:53<02:27, 24.50s/it]\\rInference:  98%|█████████▊| 242/247 [1:41:18<02:02, 24.54s/it]\\rInference:  98%|█████████▊| 243/247 [1:41:42<01:37, 24.45s/it]\\rInference:  99%|█████████▉| 244/247 [1:42:06<01:12, 24.32s/it]\\rInference:  99%|█████████▉| 245/247 [1:42:30<00:48, 24.26s/it]\\rInference: 100%|█████████▉| 246/247 [1:42:55<00:24, 24.30s/it]\\rInference: 100%|██████████| 247/247 [1:42:58<00:00, 18.11s/it]\\rInference: 100%|██████████| 247/247 [1:42:58<00:00, 25.02s/it]\\n2026-05-16 19:08:14,059 INFO Inference done. 531/985 truncated, 0 errors.\\n2026-05-16 19:08:14,060 INFO Inference: 6178.8s (6.27 s/doc)\\n2026-05-16 19:08:14,765 INFO Loaded 37785 training triples (34610 unique facts) for Ign-F1\\n2026-05-16 19:08:15,015 INFO Metrics → /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval/metrics.json\\n2026-05-16 19:08:15,212 INFO Predictions → /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval/predictions.json\\n\\n==================================================\\n  F1:          0.3884\\n  Ign-F1:      0.3786\\n  Evi-F1:      0.0007\\n  EDCR:        0.9848\\n  Format OK:   984/985 (99.9%)\\n  Truncated:   531/985\\n  Predictions: 27049\\n==================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T11:10:46.450Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HCSwEcWrSdRW9hJWPCxe1B",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.42823132625731575,\\\\n  \\\\\\\"recall\\\\\\\": 0.3552794008723562,\\\\n  \\\\\\\"f1\\\\\\\": 0.38835912198632605,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.4049473684210526,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.3555124295351631,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.37862309925692633,\\\\n  \\\\\\\"tp\\\\\\\": 4317,\\\\n  \\\\\\\"pred_count\\\\\\\": 10081,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.028089887640449437,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.0003661394258933802,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.0007228567297961544,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 34,\\\\n  \\\\\\\"edcr\\\\\\\": 0.9848484848484849,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 325,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 330,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.015772870662460567,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.0002595919214994029,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.000510777403207682,\\\\n  \\\\\\\"evi_tp\\\\\\\": 5,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 317,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.0040609137055837565,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.0010152284263959391,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 984,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 4,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 1,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 27049,\\\\n  \\\\\\\"n_truncated\\\\\\\": 531,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 984,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6178.8,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "1881b6c4-c3ac-4b99-896e-6ab1da8e28be",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.42823132625731575,\\\\n  \\\\\\\"recall\\\\\\\": 0.3552794008723562,\\\\n  \\\\\\\"f1\\\\\\\": 0.38835912198632605,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.4049473684210526,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.3555124295351631,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.37862309925692633,\\\\n  \\\\\\\"tp\\\\\\\": 4317,\\\\n  \\\\\\\"pred_count\\\\\\\": 10081,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.028089887640449437,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.0003661394258933802,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.0007228567297961544,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 34,\\\\n  \\\\\\\"edcr\\\\\\\": 0.9848484848484849,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 325,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 330,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.015772870662460567,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.0002595919214994029,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.000510777403207682,\\\\n  \\\\\\\"evi_tp\\\\\\\": 5,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 317,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.0040609137055837565,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.0010152284263959391,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 984,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 4,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 1,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 27049,\\\\n  \\\\\\\"n_truncated\\\\\\\": 531,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 984,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6178.8,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.42823132625731575,\\n  \\\"recall\\\": 0.3552794008723562,\\n  \\\"f1\\\": 0.38835912198632605,\\n  \\\"ign_precision\\\": 0.4049473684210526,\\n  \\\"ign_recall\\\": 0.3555124295351631,\\n  \\\"ign_f1\\\": 0.37862309925692633,\\n  \\\"tp\\\": 4317,\\n  \\\"pred_count\\\": 10081,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.028089887640449437,\\n  \\\"evi_recall\\\": 0.0003661394258933802,\\n  \\\"evi_f1\\\": 0.0007228567297961544,\\n  \\\"n_evaluated\\\": 34,\\n  \\\"edcr\\\": 0.9848484848484849,\\n  \\\"n_distractor_citations\\\": 325,\\n  \\\"n_total_citations\\\": 330,\\n  \\\"evi_joint_precision\\\": 0.015772870662460567,\\n  \\\"evi_joint_recall\\\": 0.0002595919214994029,\\n  \\\"evi_f1_joint\\\": 0.000510777403207682,\\n  \\\"evi_tp\\\": 5,\\n  \\\"evi_pred_total\\\": 317,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.0040609137055837565,\\n  \\\"evidence_format_rate\\\": 0.0010152284263959391,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 4,\\n  \\\"n_evidence_valid\\\": 1,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 27049,\\n  \\\"n_truncated\\\": 531,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 6178.8,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PsKafVWA91iJnMbqPz41iG",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -iE \"error|exception|traceback|oom\" /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "1dbb1034-007e-4deb-9901-268d4ad68b3a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JYUGrurQYxqpbhxyWC9Hyn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1698,
+                "cache_read_input_tokens": 24290,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1698
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T11:10:46.595Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PsKafVWA91iJnMbqPz41iG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "b018aeb0-7d63-4eb3-a565-4f48a7c69576",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "1.7B no-evidence eval 完成。结果：\n\n| 指标 | 值 |\n|------|-----|\n| **F1** | 0.3884 |\n| **Ign-F1** | 0.3786 |\n| **Evi-F1** | 0.0007 |\n| **EDCR** | 0.9848 |\n| Format OK | 984/985 (99.9%) |\n| Truncated | 531/985 |\n| Predictions | 27,049 |\n\n现在检查 cuda:2 显存状态并更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "7190d06e-ae59-44a4-8ad6-a0fb32cd4941",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MYtpgVEyf9TQQe16iKnxVD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6272,
+                "cache_read_input_tokens": 25988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6272
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016KYoDb6ynbYgNW3phG5AUu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "nvidia-smi -i 2 --query-gpu=memory.used,utilization.gpu --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "36938150-3bd9-4354-8e45-3fe067d4d937",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MYtpgVEyf9TQQe16iKnxVD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6272,
+                "cache_read_input_tokens": 25988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6272
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T11:10:53.387Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016KYoDb6ynbYgNW3phG5AUu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "6c330f52-a90c-4c6f-9bbb-4ea37a2dafa4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015P9dPpGWTihziothsxbm1A",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan_006_qwen3_1_7b_no_evidence_eval",
+                "field": "conclusion",
+                "value": "success",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "checkpoint_path": "/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence",
+                  "log_path": "/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "426f6530-d049-42d7-83cd-f6cfb014ff0e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MYtpgVEyf9TQQe16iKnxVD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6272,
+                "cache_read_input_tokens": 25988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6272
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T11:10:56.000Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015P9dPpGWTihziothsxbm1A",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_1_7b_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:25:53.604Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:10:55.657Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval --no-quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": 324679, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 12275, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log\\\", \\\"hypothesis\\\": \\\"Model size ablation: Qwen3-1.7B no-evidence SFT eval. 与 1.7B evidence-SFT eval 对比量化 evidence generation cost on small model. plan_006 claim=1.\\\", \\\"plan_id\\\": \\\"plan_006\\\", \\\"parent\\\": \\\"plan_006_qwen3_1_7b_no_evidence_sft\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7641}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "ef1e9518-7c9e-4d8b-818e-1519babf5b6c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_1_7b_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:25:53.604Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:10:55.657Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval --no-quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": 324679, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 12275, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log\\\", \\\"hypothesis\\\": \\\"Model size ablation: Qwen3-1.7B no-evidence SFT eval. 与 1.7B evidence-SFT eval 对比量化 evidence generation cost on small model. plan_006 claim=1.\\\", \\\"plan_id\\\": \\\"plan_006\\\", \\\"parent\\\": \\\"plan_006_qwen3_1_7b_no_evidence_sft\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7641}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_1_7b_no_evidence_eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:25:53.604Z\", \"updated_at\": \"2026-05-16T11:10:55.657Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": 324679, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 12275, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\", \"eval_data\": \"docred-dev\", \"log_path\": \"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log\", \"hypothesis\": \"Model size ablation: Qwen3-1.7B no-evidence SFT eval. 与 1.7B evidence-SFT eval 对比量化 evidence generation cost on small model. plan_006 claim=1.\", \"plan_id\": \"plan_006\", \"parent\": \"plan_006_qwen3_1_7b_no_evidence_sft\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7641}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:2 空闲（0 MiB）。更新 metrics 到 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "cf70364c-483e-4ea0-9847-d2f52a752577",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WxVe8w6Y9VCVnqbNPjAZH9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1312,
+                "cache_read_input_tokens": 32260,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1312
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016fhrk5hpyYsc1REuQgGri3",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan_006_qwen3_1_7b_no_evidence_eval",
+                "field": "metrics",
+                "value": {
+                  "f1": 0.3884,
+                  "ign_f1": 0.3786,
+                  "evi_f1": 0.0007,
+                  "edcr": 0.9848,
+                  "precision": 0.4282,
+                  "recall": 0.3553,
+                  "pred_count": 27049,
+                  "n_truncated": 531,
+                  "format_ok_rate": 0.999
+                },
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "e4cac737-b2c5-47af-ab9b-8ee6dd87e44a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WxVe8w6Y9VCVnqbNPjAZH9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1312,
+                "cache_read_input_tokens": 32260,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1312
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T11:11:01.382Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016fhrk5hpyYsc1REuQgGri3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_1_7b_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:25:53.604Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:11:01.083Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval --no-quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": 324679, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 12275, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log\\\", \\\"hypothesis\\\": \\\"Model size ablation: Qwen3-1.7B no-evidence SFT eval. 与 1.7B evidence-SFT eval 对比量化 evidence generation cost on small model. plan_006 claim=1.\\\", \\\"plan_id\\\": \\\"plan_006\\\", \\\"parent\\\": \\\"plan_006_qwen3_1_7b_no_evidence_sft\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"f1\\\": 0.3884, \\\"ign_f1\\\": 0.3786, \\\"evi_f1\\\": 0.0007, \\\"edcr\\\": 0.9848, \\\"precision\\\": 0.4282, \\\"recall\\\": 0.3553, \\\"pred_count\\\": 27049, \\\"n_truncated\\\": 531, \\\"format_ok_rate\\\": 0.999}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7211}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "c1a5db61-e810-4216-8cff-f8a8df96d66b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_1_7b_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:25:53.604Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:11:01.083Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval --no-quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": 324679, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 12275, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log\\\", \\\"hypothesis\\\": \\\"Model size ablation: Qwen3-1.7B no-evidence SFT eval. 与 1.7B evidence-SFT eval 对比量化 evidence generation cost on small model. plan_006 claim=1.\\\", \\\"plan_id\\\": \\\"plan_006\\\", \\\"parent\\\": \\\"plan_006_qwen3_1_7b_no_evidence_sft\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"f1\\\": 0.3884, \\\"ign_f1\\\": 0.3786, \\\"evi_f1\\\": 0.0007, \\\"edcr\\\": 0.9848, \\\"precision\\\": 0.4282, \\\"recall\\\": 0.3553, \\\"pred_count\\\": 27049, \\\"n_truncated\\\": 531, \\\"format_ok_rate\\\": 0.999}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7211}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_1_7b_no_evidence_eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:25:53.604Z\", \"updated_at\": \"2026-05-16T11:11:01.083Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": 324679, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 12275, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\", \"eval_data\": \"docred-dev\", \"log_path\": \"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log\", \"hypothesis\": \"Model size ablation: Qwen3-1.7B no-evidence SFT eval. 与 1.7B evidence-SFT eval 对比量化 evidence generation cost on small model. plan_006 claim=1.\", \"plan_id\": \"plan_006\", \"parent\": \"plan_006_qwen3_1_7b_no_evidence_sft\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\"}, \"conclusion\": \"success\", \"metrics\": {\"f1\": 0.3884, \"ign_f1\": 0.3786, \"evi_f1\": 0.0007, \"edcr\": 0.9848, \"precision\": 0.4282, \"recall\": 0.3553, \"pred_count\": 27049, \"n_truncated\": 531, \"format_ok_rate\": 0.999}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7211}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KQSeQbJh8RGodvq7ocGDkq",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan_006_qwen3_1_7b_no_evidence_eval",
+                "field": "status",
+                "value": "DONE",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "9c9d99d5-6193-4ba1-b58e-78db0bffa0b3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015X2R3VLRUAxmVvfr6fdDFq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1040,
+                "cache_read_input_tokens": 33572,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1040
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T11:11:05.892Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KQSeQbJh8RGodvq7ocGDkq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_1_7b_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:25:53.604Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:11:04.903Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval --no-quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": 324679, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 12275, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log\\\", \\\"hypothesis\\\": \\\"Model size ablation: Qwen3-1.7B no-evidence SFT eval. 与 1.7B evidence-SFT eval 对比量化 evidence generation cost on small model. plan_006 claim=1.\\\", \\\"plan_id\\\": \\\"plan_006\\\", \\\"parent\\\": \\\"plan_006_qwen3_1_7b_no_evidence_sft\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"f1\\\": 0.3884, \\\"ign_f1\\\": 0.3786, \\\"evi_f1\\\": 0.0007, \\\"edcr\\\": 0.9848, \\\"precision\\\": 0.4282, \\\"recall\\\": 0.3553, \\\"pred_count\\\": 27049, \\\"n_truncated\\\": 531, \\\"format_ok_rate\\\": 0.999}, \\\"completed_at\\\": \\\"2026-05-16T11:11:04.903Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.465}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "d0d86c54-d435-48f0-b3d9-e93da205415f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_1_7b_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:25:53.604Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:11:04.903Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval --no-quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": 324679, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 12275, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log\\\", \\\"hypothesis\\\": \\\"Model size ablation: Qwen3-1.7B no-evidence SFT eval. 与 1.7B evidence-SFT eval 对比量化 evidence generation cost on small model. plan_006 claim=1.\\\", \\\"plan_id\\\": \\\"plan_006\\\", \\\"parent\\\": \\\"plan_006_qwen3_1_7b_no_evidence_sft\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"f1\\\": 0.3884, \\\"ign_f1\\\": 0.3786, \\\"evi_f1\\\": 0.0007, \\\"edcr\\\": 0.9848, \\\"precision\\\": 0.4282, \\\"recall\\\": 0.3553, \\\"pred_count\\\": 27049, \\\"n_truncated\\\": 531, \\\"format_ok_rate\\\": 0.999}, \\\"completed_at\\\": \\\"2026-05-16T11:11:04.903Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.465}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_1_7b_no_evidence_eval\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:25:53.604Z\", \"updated_at\": \"2026-05-16T11:11:04.903Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": 324679, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 12275, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\", \"eval_data\": \"docred-dev\", \"log_path\": \"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log\", \"hypothesis\": \"Model size ablation: Qwen3-1.7B no-evidence SFT eval. 与 1.7B evidence-SFT eval 对比量化 evidence generation cost on small model. plan_006 claim=1.\", \"plan_id\": \"plan_006\", \"parent\": \"plan_006_qwen3_1_7b_no_evidence_sft\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\"}, \"conclusion\": \"success\", \"metrics\": {\"f1\": 0.3884, \"ign_f1\": 0.3786, \"evi_f1\": 0.0007, \"edcr\": 0.9848, \"precision\": 0.4282, \"recall\": 0.3553, \"pred_count\": 27049, \"n_truncated\": 531, \"format_ok_rate\": 0.999}, \"completed_at\": \"2026-05-16T11:11:04.903Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.465}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 3: 提交 8B no-evidence eval。cuda:2 空闲确认（0 MiB, 0%）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "a40d0704-d48d-44f0-9ef4-78e433f0a86b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RtzAF7KMpPpG7Z7NfhJyw5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1082,
+                "cache_read_input_tokens": 34612,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1082
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YXmgZ5nmyfhGBTbE2iDr44",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && nohup bash -c 'CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval --no-quantize' > /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval.log 2>&1 & echo $!",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "14228a10-3557-4de1-8eca-c2d804c53234",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RtzAF7KMpPpG7Z7NfhJyw5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1082,
+                "cache_read_input_tokens": 34612,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1082
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T11:11:42.262Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YXmgZ5nmyfhGBTbE2iDr44",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && nohup bash -c 'CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval --no-quantize' > /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval.log 2>&1 & echo $!\\\\\\\"\\\\n\\\\nStdout:\\\\n\\\\n334598\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "2aa83b51-18c1-4028-89f8-e514816cf649",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && nohup bash -c 'CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval --no-quantize' > /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval.log 2>&1 & echo $!\\\\\\\"\\\\n\\\\nStdout:\\\\n\\\\n334598\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.29}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && nohup bash -c 'CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval --no-quantize' > /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval.log 2>&1 & echo $!\\\"\\n\\nStdout:\\n\\n334598\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.29}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已启动，PID=334598。超时是因为 nohup 后台化但 SSH session 未立即关闭，进程本身在正常运行。验证一下。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "337fffc1-419c-4f44-ada3-e954882e752a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ThqM12NywRi8wduGXVed8c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 779,
+                "cache_read_input_tokens": 35694,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 779
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KW2gUBfVUjNbSjUHQCMu6i",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "tail -5 /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "d8bdab02-890b-488d-9b40-b56ffa8afbd7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ThqM12NywRi8wduGXVed8c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 779,
+                "cache_read_input_tokens": 35694,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 779
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T11:11:47.461Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KW2gUBfVUjNbSjUHQCMu6i",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 19:11:21,637 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_8b_no_evidence\\\\n2026-05-16 19:11:25,486 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-16 19:11:25,795 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-16 19:11:25,991 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "3d387ee9-509b-4174-82ca-5651fc701e8a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 19:11:21,637 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_8b_no_evidence\\\\n2026-05-16 19:11:25,486 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-16 19:11:25,795 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-16 19:11:25,991 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 19:11:21,637 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_8b_no_evidence\\n2026-05-16 19:11:25,486 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-16 19:11:25,795 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-16 19:11:25,991 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "8B eval 正在推理中。更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "4b0efb8d-8237-4fe8-b7a9-b51a51d3b838",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q4vrr7qjs8YN32K3rMFvUT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 497,
+                "cache_read_input_tokens": 36473,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 497
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Peaq6vh58sx5r1Hp3KCEXb",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan_006_qwen3_8b_no_evidence_eval",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval --no-quantize",
+                  "server": "rtx5090-4x",
+                  "gpu": [
+                    "cuda:2"
+                  ],
+                  "pid": 334598,
+                  "data_path": "/root/autodl-tmp/data/docred",
+                  "data_count": 12275,
+                  "model_name": "Qwen3-8B",
+                  "seed": 42,
+                  "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_8b_no_evidence",
+                  "eval_data": "docred-dev",
+                  "log_path": "/root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval.log",
+                  "hypothesis": "8B no-evidence SFT eval. 与 plan_006_qwen3_8b_sft_eval (Ign-F1=0.5051) 对比量化 8B evidence tax. plan_006 claim=1.",
+                  "plan_id": "plan_006",
+                  "parent": "plan_006_qwen3_8b_no_evidence_sft"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "97f49710-8758-46d2-a7ec-c702b77328d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q4vrr7qjs8YN32K3rMFvUT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 497,
+                "cache_read_input_tokens": 36473,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 497
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T11:11:55.421Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Peaq6vh58sx5r1Hp3KCEXb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5707}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "d6271672-f53b-4b8f-9609-32d0eef32847",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5707}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.5707}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018PtNWuQybJJvcEM86pmTTG",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "faith-evidence-ie",
+                "filters": {
+                  "exp_id": "plan_006_qwen3_8b_no_evidence_eval"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "a9ce4898-ede8-4b52-bd95-f1ccf6b4748e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012sM8Yep67XQoaVAHFydEGh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 36970,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 699
+                },
+                "output_tokens": 54,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T11:11:59.896Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018PtNWuQybJJvcEM86pmTTG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4166}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "442f1893-f845-4efa-a188-c358e82920cd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4166}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4166}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The experiment doesn't exist yet in the registry. Let me create it first with QUEUED status and then transition to RUNNING.",
+              "signature": "ErcCClkIDRgCKkBqBwimxU616A91y49BjaaBrK8uLVoaYuZLF5S/+rCyeOERQL9WBq/GnCDIi3DeOaeW6AfcvtNZS3EhzeVutQeRMg9jbGF1ZGUtb3B1cy00LTY4ABIMdSQYDuPCIfmwHrZNGgzklS1vEi4sTOx7AwwiMCqFCPpJd3ZSWff7xQCiAkYupoF2uvKfORxplKH8nIPoOphyor5Td1i10u+ZTTrWOyqLAZj5PF71sRX0h50PN+WDBpv/vbKhnPmgd6vvL+pREB3pSX2NJvve8W8lbc5w35yV1n8pfQPNl9Hzudt35HF5iaGuVyLZMC0TgykFiDHcpJ7rCeiLo82hRzcfeUaYfHlYG9ocjioHCKYhd0nrXIxraTZ1ep0kW0UoRnyQx5o705LDty1Wy3TpUkeqrDgYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "7bbe9de7-59bc-4c7a-848f-905045a3a71b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011xsxmixpmw5GjJowKeoMi5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 201,
+                "cache_read_input_tokens": 37669,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 201
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验不存在。先创建为 QUEUED 再转 RUNNING。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "db68fb94-f579-47df-b1bb-57cfee746c06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011xsxmixpmw5GjJowKeoMi5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 201,
+                "cache_read_input_tokens": 37669,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 201
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EBEn9tw2r4X1iCYYGVp1ec",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan_006_qwen3_8b_no_evidence_eval",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "6e782249-1ae1-4855-953d-e6dac38245db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011xsxmixpmw5GjJowKeoMi5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 201,
+                "cache_read_input_tokens": 37669,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 201
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T11:12:05.912Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EBEn9tw2r4X1iCYYGVp1ec",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_8b_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T11:12:04.565Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:12:04.565Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7892}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "a7d54d15-1c1a-412a-8dcd-45d237e5b2e5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_8b_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T11:12:04.565Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:12:04.565Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7892}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_no_evidence_eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:12:04.565Z\", \"updated_at\": \"2026-05-16T11:12:04.565Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7892}}"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011r1aQnx6gCHr9zTZ9eEuWW",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan_006_qwen3_8b_no_evidence_eval",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval --no-quantize",
+                  "server": "rtx5090-4x",
+                  "gpu": [
+                    "cuda:2"
+                  ],
+                  "pid": 334598,
+                  "data_path": "/root/autodl-tmp/data/docred",
+                  "data_count": 12275,
+                  "model_name": "Qwen3-8B",
+                  "seed": 42,
+                  "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_8b_no_evidence",
+                  "eval_data": "docred-dev",
+                  "log_path": "/root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval.log",
+                  "hypothesis": "8B no-evidence SFT eval. 与 plan_006_qwen3_8b_sft_eval (Ign-F1=0.5051) 对比量化 8B evidence tax. plan_006 claim=1.",
+                  "plan_id": "plan_006",
+                  "parent": "plan_006_qwen3_8b_no_evidence_sft"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "de175251-37f1-497d-af91-f84969d9511e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016UbeGBZ8XNBHRMM7xQp2PG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 349,
+                "cache_read_input_tokens": 37870,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 349
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T11:12:13.645Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011r1aQnx6gCHr9zTZ9eEuWW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_8b_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T11:12:04.565Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:12:12.689Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval --no-quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": 334598, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 12275, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_qwen3_8b_no_evidence\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval.log\\\", \\\"hypothesis\\\": \\\"8B no-evidence SFT eval. 与 plan_006_qwen3_8b_sft_eval (Ign-F1=0.5051) 对比量化 8B evidence tax. plan_006 claim=1.\\\", \\\"plan_id\\\": \\\"plan_006\\\", \\\"parent\\\": \\\"plan_006_qwen3_8b_no_evidence_sft\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4357}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "8b1f58a0-7a09-44c4-beb7-9ecd1cb60a1a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_8b_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T11:12:04.565Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:12:12.689Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval --no-quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": 334598, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 12275, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_qwen3_8b_no_evidence\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval.log\\\", \\\"hypothesis\\\": \\\"8B no-evidence SFT eval. 与 plan_006_qwen3_8b_sft_eval (Ign-F1=0.5051) 对比量化 8B evidence tax. plan_006 claim=1.\\\", \\\"plan_id\\\": \\\"plan_006\\\", \\\"parent\\\": \\\"plan_006_qwen3_8b_no_evidence_sft\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4357}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_no_evidence_eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:12:04.565Z\", \"updated_at\": \"2026-05-16T11:12:12.689Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": 334598, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 12275, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_8b_no_evidence\", \"eval_data\": \"docred-dev\", \"log_path\": \"/root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval.log\", \"hypothesis\": \"8B no-evidence SFT eval. 与 plan_006_qwen3_8b_sft_eval (Ign-F1=0.5051) 对比量化 8B evidence tax. plan_006 claim=1.\", \"plan_id\": \"plan_006\", \"parent\": \"plan_006_qwen3_8b_no_evidence_sft\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4357}}"
+              }
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Phase 1 结果 — 1.7B no-evidence eval (plan_006_qwen3_1_7b_no_evidence_eval)**:\n- Ign-F1 = **0.3786**, F1 = 0.3884, Evi-F1 ≈ 0 (符合预期，no-evidence 模型不生成证据)\n- Registry → DONE/success\n\n**Phase 3 — 8B no-evidence eval 已提交**:\n- PID 334598, cuda:2, 推理中 (247 batches, 预计 ~1.7h 基于 1.7B 的 25s/it，8B 会更慢)\n- Registry → RUNNING\n\n1.7B 模型在 25s/it 完成了推理；8B 模型加载成功并已开始 inference。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "uuid": "8875ab1d-51d2-4ffe-92f4-9d29eb1d8ebd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K6TjoZYCyh49XKMxwwPNMF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1334,
+                "cache_read_input_tokens": 38219,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1334
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Phase 1 结果 — 1.7B no-evidence eval (plan_006_qwen3_1_7b_no_evidence_eval)**:\n- Ign-F1 = **0.3786**, F1 = 0.3884, Evi-F1 ≈ 0 (符合预期，no-evidence 模型不生成证据)\n- Registry → DONE/success\n\n**Phase 3 — 8B no-evidence eval 已提交**:\n- PID 334598, cuda:2, 推理中 (247 batches, 预计 ~1.7h 基于 1.7B 的 25s/it，8B 会更慢)\n- Registry → RUNNING\n\n1.7B 模型在 25s/it 完成了推理；8B 模型加载成功并已开始 inference。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 107778,
+            "duration_api_ms": 76304,
+            "num_turns": 15,
+            "stop_reason": "end_turn",
+            "session_id": "63798bad-217d-4270-b970-d69d5560d813",
+            "total_cost_usd": 0.4674514999999999,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 28106,
+              "cache_read_input_tokens": 385064,
+              "output_tokens": 3872,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 28106,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 231,
+                  "cache_read_input_tokens": 38219,
+                  "cache_creation_input_tokens": 1334,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1334
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-opus-4-6": {
+                "inputTokens": 15,
+                "outputTokens": 3872,
+                "cacheReadInputTokens": 385064,
+                "cacheCreationInputTokens": 28106,
+                "webSearchRequests": 0,
+                "costUSD": 0.4650695,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              },
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2262,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002382,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "5630867c-c662-4335-bcc8-e6020074bae0"
+          },
+          "id": "event-000042"
+        }
+      ],
+      "message_count": 42
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-cuda2-relay-8b-no-evidence-eval.md"
+}

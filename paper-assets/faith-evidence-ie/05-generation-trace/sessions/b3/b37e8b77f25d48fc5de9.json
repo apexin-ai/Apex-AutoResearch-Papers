@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b37e8b77f25d48fc5de9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "verify 4b rsft test startup",
+  "task_key": "worker_verify_4b-rsft-test-startup_20260521T235932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_4b-rsft-test-startup_20260521T235932_result.json",
+    "occurrence": 1,
+    "bytes": 398,
+    "sha256": "92bd406051e9805a71e4952a59b033bc222a2fc4cb71902028f6f4294895e936"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n- **状态**: 启动失败，未在 cuda:2 运行\n- **退出码**: 127（`python: command not found`）\n- **退出时间**: 2026-05-21T23:58:54Z\n- **原因**: 启动脚本未激活 conda 环境，裸 `python` 命令不在 PATH 中\n\n需要重新提交。启动命令必须包含 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 前缀。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-4b-rsft-test-startup.md"
+}

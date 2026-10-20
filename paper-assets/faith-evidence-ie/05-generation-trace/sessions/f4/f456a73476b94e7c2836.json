@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "f456a73476b94e7c2836",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "analysis lr5e6 trajectory comparison",
+  "task_key": "worker_analysis_lr5e6_trajectory_comparison_20260514T222652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lr5e6_trajectory_comparison_20260514T222652.log",
+    "occurrence": 1,
+    "bytes": 552819,
+    "sha256": "662b63c0900f1924259d22acd559a13ddc3e9f8d99eea01ffd01b4734c6ec873"
+  },
+  "statistics": {
+    "messages": 288,
+    "user_turns": 2,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 68,
+      "record": 1,
+      "assistant": 23,
+      "tool_call": 96,
+      "tool_result": 96,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 88,
+      "chunks": [
+        {
+          "path": "f456a73476b94e7c2836-part-0001.json",
+          "message_count": 88
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "f456a73476b94e7c2836-part-0001.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 190,
+      "chunks": [
+        {
+          "path": "f456a73476b94e7c2836-part-0001.json",
+          "message_count": 82
+        },
+        {
+          "path": "f456a73476b94e7c2836-part-0002.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-lr5e6-trajectory-comparison.md"
+}

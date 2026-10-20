@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afa1dd010aa39e33bfa6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix copy fig and check dpo",
+  "task_key": "worker_fix_copy-fig-and-check-dpo_20260523T132120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_copy-fig-and-check-dpo_20260523T132120_result.json",
+    "occurrence": 1,
+    "bytes": 134,
+    "sha256": "6eeb4dd7e71790bfc15d5edb03d98a5257a98397db8867d26bc5a89c2307eb76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**DPO 3ep eval 进度**: 231/247 batches (93.5%)，已跑 3h39m，预估剩余 ~17 分钟（16 batches × ~65s/it）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-copy-fig-and-check-dpo.md"
+}

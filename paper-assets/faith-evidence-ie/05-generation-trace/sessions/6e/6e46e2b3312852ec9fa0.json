@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e46e2b3312852ec9fa0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis 14b rsft s43 test eval pair",
+  "task_key": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "f852b8ba91636553284de97bee491cd368842a21b00fd2153713e3ce15b6c12e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**14B s43 evidence tax = +0.08pp**（with_evi 0.3767 vs no_evi 0.3775）\n\n**14B 2-seed 汇总：**\n- s42: +0.77pp, s43: +0.08pp\n- Mean: **+0.43 ± 0.49pp**\n- 方向一致（no-evi 略优），但幅度极小，evidence 输出对 RE 性能的负面影响可忽略\n\n两个实验均 conclusion=success。报告已写入 `artifacts/test_eval_14b_rsft_s43_pair/analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-14b-rsft-s43-test-eval-pair.md"
+}

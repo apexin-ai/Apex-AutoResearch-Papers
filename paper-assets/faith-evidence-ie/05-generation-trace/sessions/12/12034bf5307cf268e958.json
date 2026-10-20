@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12034bf5307cf268e958",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops full status check",
+  "task_key": "worker_ops_full_status_check_20260516T101244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full_status_check_20260516T101244_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "e03985df06b0841d00fb9527cb5e2aee886237973e4aa4d152b242b6df09d2e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部更新完成。\n\n```\nGPU 状态:\n  cuda:0  28.9/32.6 GB (95%)  — plan_006_qwen3_8b_no_evidence_sft (训练)\n  cuda:1  11.1/32.6 GB (57%)  — plan_002_test_eval_s44_r2 (推理)\n  cuda:2   5.5/32.6 GB (44%)  — plan_006_qwen3_1_7b_no_evidence_eval (推理)\n  cuda:3  18.5/32.6 GB (64%)  — plan_006_qwen3_8b_sft_eval (推理)\n\n仍在运行:\n  - plan_006_qwen3_8b_no_evidence_sft: 403/570 steps (71%), ~16min 剩余\n  - plan_006_qwen3_1_7b_no_evidence_eval: 117/247 batches (47%), ~54min 剩余\n  - plan_006_qwen3_8b_sft_eval: 145/247 batches (59%), ~56min 剩余\n  - plan_002_test_eval_s44_r2: 123/250 batches (49%), ~110min 剩余\n\n已完成实验 (ANALYZING → DONE, registry 已更新):\n  - reeval_ced_s42:      Ign-F1=0.4423, Rel-F1=0.4517, Evi-F1=0.8175\n  - reeval_ced_s44:      Ign-F1=0.4511, Rel-F1=0.4621, Evi-F1=0.8050\n  - reeval_flat_nli_s42: Ign-F1=0.4448, Rel-F1=0.4535, Evi-F1=0.8039\n\n空闲 GPU: 无（4 张全部占用）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-status-check-copy-2.md"
+}

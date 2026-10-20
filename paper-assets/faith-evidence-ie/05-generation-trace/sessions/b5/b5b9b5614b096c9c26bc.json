@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5b9b5614b096c9c26bc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check full gpu status and harvest",
+  "task_key": "worker_check_full_gpu_status_and_harvest_20260519T084701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_full_gpu_status_and_harvest_20260519T084701_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "f720c985a448b6d37c0c217fba26da1b716ef8ec71111cd49ffb475ef276bb06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部在跑，无已完成任务。进度汇总：\n\n| GPU | 实验 | 进度 | 速度 | 已运行 | 预计剩余 |\n|-----|------|------|------|--------|---------|\n| cuda:0 | d112_rsft_s44_eval | 87/247 (35%) | ~50s/it | 1h12m | ~2h13m |\n| cuda:1 | plan017_14b_sft_eval | 55/247 (22%) | ~90s/it | 1h23m | ~4h48m |\n| cuda:2 | plan017_14b_sft_no_evidence_eval | 62/247 (25%) | ~80s/it | 1h23m | ~4h07m |\n| cuda:3 | plan019_1_7b_rsft_s44_r2_eval | 6/247 (2%) | ~36s/it | 4m | ~2h24m |\n\nGPU 显存使用：\n- cuda:0: 10.9/32.6 GB (4B 模型)\n- cuda:1: 14.3/32.6 GB (14B 模型)\n- cuda:2: 14.3/32.6 GB (14B 模型)\n- cuda:3: 5.3/32.6 GB (1.7B 模型)\n\n预计最早完成的是 **cuda:0 d112_rsft_s44_eval**（约 2h 后），最晚是 **cuda:1 plan017_14b_sft_eval**（约 5h 后）。暂无 metrics 可收割。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-full-gpu-status-and-harvest.md"
+}

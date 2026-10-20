@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94aae936bb7a543211e9",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778904506.md",
+  "task_key": "loop_12_1778904506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778904506.md",
+    "occurrence": 1,
+    "bytes": 5441,
+    "sha256": "01ddcf6e0346a33dc704277ce204c695b19f2c63cb3c3fb6908cd90258789e1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T03:45:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `gpu_ids=[0,1,2,3]`，服务器 `rtx5090-4x`，账户 `root`。不存在第二台服务器可用（bjb2-12179 仅配置中列出，未实际使用）\n- 所有 eval 命令 cwd 必须 `cd /root/autodl-tmp`，**不是** `/root/autodl-tmp/freige`（历史踩坑）\n- Eval 统一协议（D076）：`batch_size=4 + max_new_tokens=1024 + --no-quantize + --sft_adapter + 正确 seed`。违反任一参数的 eval 结果不可用于 paired t-test\n- CED s44 checkpoint 路径是 `rsft_output_s44/`（无 `_ced` 前缀），`rsft_output_r2b/` 是废弃的旧实验（lora_alpha=32/160步），绝对不能用。完整路径映射见 memory.md\n- flat-NLI 系列 checkpoint 都是 `checkpoint-507`，CED 系列是 `checkpoint-510`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x (4× RTX 5090 32GB)，`root@rtx5090-4x`\n- **工作目录**: `/root/autodl-tmp`，代码包 `freige` 在 `/root/autodl-tmp/freige/`\n- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`；SFT 基座 adapter `/root/autodl-tmp/sft_output`\n- **数据**: `/root/autodl-tmp/data/docred` (dev 985 docs)\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（离线模式 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`）\n- **Eval 结果目录**: `/root/autodl-tmp/eval_results/`\n- **脚本**: `scripts/seed_comparison.py` + `artifacts/paired_ttest_analysis.py`\n- **活跃进程**:\n  - eval_rsft_ced_s45: PID 283838, tmux=eval_rsft_ced_s45, cuda:2, cron 监控中\n  - eval_rsft_ced_s43: PID 286587, tmux=eval_rsft_ced_s43, cuda:1, cron 监控中\n  - eval_plan_014_no_evidence_r2: PID 288109, tmux=eval_plan_014_no_evidence_r2, cuda:0, cron 监控中\n  - reeval_flat_nli_s43_r2: PID 291003, tmux=reeval_flat_nli_s43_r2, cuda:3, cron 监控中\n\n### 3. 📊 当前状态\n**刚完成**: Session #12 核心工作——(1) D076 eval 协议审计，发现 4/8 个 seed eval 协议不一致（batch_size/max_new_tokens/seed 混用），创建 6 个 reeval 实验；(2) CED s43/s45 训练完成并提交 eval；(3) Ign-F1 bug 修复（32 个实验重算 metrics_v2.json）；(4) EDCR diagnostic 完成（plan_003）；(5) 一个 Worker 正在重算 CED reranker 的 ign_f1\n\n**RUNNING (4/4 GPU 全占)**:\n| exp_id | GPU | 进度 | ETA (UTC) |\n|--------|-----|------|-----------|\n| eval_plan_014_no_evidence_r2 | cuda:0 | 进行中 | ~04:30 |\n| eval_rsft_ced_s43 | cuda:1 | ~2% | ~05:19 |\n| eval_rsft_ced_s45 | cuda:2 | ~28% | ~04:18 |\n| reeval_flat_nli_s43_r2 | cuda:3 | 进行中 | ~05:00 |\n\n**PREPARING (等 GPU 释放)**:\n- reeval_ced_s42, reeval_ced_s44, reeval_flat_nli_s42（三个 reeval，D076 协议修正）\n- seed_comparison_prep（分析脚本就绪，等数据齐）\n\n**活跃 Worker**: `worker_fix_ced_reranker_ignf1_recalc` (running) — 重算 CED reranker 的 ign_f1\n\n### 4. 📋 待办（条件触发式）\n- **eval_plan_014_no_evidence_r2 完成 → cuda:0 释放** → 提交 reeval_ced_s42（已有 spec，替换 `{GPU}` 为 0）\n- **eval_rsft_ced_s45 完成 → cuda:2 释放** → 提交 reeval_ced_s44 或 reeval_flat_nli_s42\n- **reeval_flat_nli_s43_r2 完成 → cuda:3 释放** → 提交剩余 reeval（reeval_ced_s44 / reeval_flat_nli_s42，谁还没跑就跑谁）\n- **eval_rsft_ced_s43 完成 → cuda:1 释放** → 同上，按优先级填入最后一个 reeval\n- **所有 8 个 unified eval 齐备** → spawn Worker 跑 `seed_comparison.py` + `paired_ttest_analysis.py` → 汇报 Director C3 最终统计结论\n- **eval_plan_014_no_evidence_r2 出结果** → 与 SFT baseline (rel_f1≈0.41) 对比，确认 evidence tax 精确数值 → 更新 C1 narrative\n- **worker_fix_ced_reranker_ignf1_recalc 完成** → 取 CED reranker 修正后 ign_f1，更新 registry + 论文主表\n\n### 5. 🎯 战略上下文\n**论文 framing**: FREIGE = \"task definition + cost of faithfulness + decoupling finding + EDCR metric\"，目标 EMNLP 2026 ARR July (~7/15-25)\n\n**四个 Claims 当前状态**:\n- **C1 (evidence tax)**: no-evidence SFT rel_f1=0.4893 vs evidence-SFT ~0.41 → ~8pp 代价。CED reranker 恢复至 0.4864 (97%)。eval_plan_014_no_evidence_r2 正在跑统一协议版本\n- **C2 (decoupling)**: QLoRA-specific，非通用 RL 现象。Spectrum: GRPO QLoRA catastrophic > GRPO bf16 mild (-2pp) > DPO gradual > RSFT none。文献支撑：QuRL (ICLR 2026) + Q-BLoRA (TACL 2025)\n- **C3 (已降级)**: CED vs flat-NLI 统计不可区分 (D056)。不再作为独立贡献。当前 8 个 reeval 是为了用统一协议重算 paired t-test，最终确认此结论\n- **C4 (EDCR)**: 方法级 Spearman ρ=-0.96 (vs rel_f1)，per-relation 级 ρ(EDCR, evi_f1)=-0.064 → 完全独立。双层诊断叙事 (D070/D072/D073)\n\n**最容易判断错的事**:\n1. **不要把旧 eval 数值和新 unified eval 混用做 t-test**——旧的 batch_size/max_new_tokens 不同，不可比。只用 `_reeval` 后缀的结果\n2. **rsft_output_s44 没有 `_ced` 前缀**——这是历史命名问题，不是 flat-NLI\n3. **0.4549 (plan_011 ckpt-100) 是 GRPO bf16 训练前起点**，不是训练后结果。训练后 best=step_70 rel_f1=0.4341\n4. **C3 降级不意味着 CED 无用**——CED 作为 reranker (C1) 和 EDCR 指标 (C4) 仍是核心贡献，只是 CED vs flat-NLI 作为训练数据筛选器的差异不显著\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778904506.md"
+}

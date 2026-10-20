@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2e6cab944f230fe6f1e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops kill cuda2 duplicate ckpt40",
+  "task_key": "worker_ops_kill-cuda2-duplicate-ckpt40_20260514T213146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-cuda2-duplicate-ckpt40_20260514T213146_result.json",
+    "occurrence": 1,
+    "bytes": 443,
+    "sha256": "23c26d27cdbc7d4fa373ad607ed4a44ef7468ff3da276ce6f290ad5faee9eaf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 100555 已不存在（ps 未输出），101842 存活（运行 7 分钟，占 cuda:2 约 9.7GB）。只剩一个 eval 进程在 cuda:2 上，不存在重复进程。\n\n**结果**:\n- PID 100555: **DEAD**（已退出）\n- PID 101842: **ALIVE**, etime=07:02, 占用 cuda:2 ~9710 MiB\n- cuda:2 上只有 101842 一个进程，无需 kill\n\n101842 是唯一存活的 ckpt-40 eval 进程。要 kill 它还是让它继续跑？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-cuda2-duplicate-ckpt40.md"
+}

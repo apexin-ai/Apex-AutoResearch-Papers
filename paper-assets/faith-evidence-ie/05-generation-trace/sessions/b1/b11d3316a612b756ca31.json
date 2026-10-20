@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b11d3316a612b756ca31",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops submit llama s43 no evidence",
+  "task_key": "worker_ops_submit_llama_s43_no_evidence_20260520T021036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_llama_s43_no_evidence_20260520T021036_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "9b6545737464a77c97b497db2a5d1aec2d4afaca773d0bcc419af134dadcbff5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并启动成功。\n\n**提交结果：**\n- **exp_id**: `eval_llama_rsft_s43_no_evidence`\n- **PID**: 745299\n- **GPU**: cuda:1（显存空闲，0 MiB）\n- **日志**: `/tmp/eval_llama_rsft_s43_no_evidence.log`\n- **关键参数**: `--no_evidence`（C005）、`CUDA_VISIBLE_DEVICES=1`（C002）\n- **命令**: `CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_rsft_s43_no_evidence`\n\n模型正在加载 checkpoint shards，进程运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-llama-s43-no-evidence.md"
+}

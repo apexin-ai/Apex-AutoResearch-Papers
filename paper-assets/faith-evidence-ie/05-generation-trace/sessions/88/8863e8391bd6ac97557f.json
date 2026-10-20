@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8863e8391bd6ac97557f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh quick progress check",
+  "task_key": "worker_ssh_quick-progress-check_20260515T025507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_quick-progress-check_20260515T025507_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "6991c014e42c365ff7faeffdadb44bcc9a2e3ebb45a0524541afeb834e1dc321"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个进程全部在跑，当前状态 (UTC 10:55):\n\n| Shard | 完成 | 总量 | 进度 | 已用时间 | 预估剩余 |\n|-------|------|------|------|----------|----------|\n| shard_0 (GPU0) | 285 | 682 | 41.8% | ~75min | ~104min |\n| shard_1 (GPU1) | 322 | 681 | 47.3% | ~74min | ~82min |\n| shard_2 (GPU2) | 323 | 681 | 47.4% | ~74min | ~82min |\n| shard_3 (GPU3) | 297 | 681 | 43.6% | ~66min | ~85min |\n| **整体** | **1227** | **2725** | **45.0%** | — | — |\n\nshard_0 最慢（启动最早但完成数最少），是瓶颈。预计全部完成约需 **1h45min**（~UTC 12:40）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-quick-progress-check.md"
+}

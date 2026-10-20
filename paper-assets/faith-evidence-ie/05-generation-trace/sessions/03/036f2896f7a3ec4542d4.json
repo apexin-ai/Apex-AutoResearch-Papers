@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "036f2896f7a3ec4542d4",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778927436.md",
+  "task_key": "loop_12_1778927436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778927436.md",
+    "occurrence": 1,
+    "bytes": 5605,
+    "sha256": "29b8e52f98c9f024e80a845a47a2ef288e115fd30bba313bbbb897e47f7d801b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T05:37:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: rtx5090-4x 的 cuda:0/1/2/3（仅 4 张 RTX 5090 32GB），无其他服务器\n- **cuda:0 当前双进程冲突**: reeval_ced_s44 (PID 297190) 和 reeval_flat_nli_s42 (PID 296732) 同时跑在 cuda:0 上——这是已知 bug（memory.md C001），两个进程可能互相拖慢但还在跑。**不要再往 cuda:0 提交新任务，等当前两个跑完**\n- **Eval 协议**: 所有 eval 必须用统一协议 `batch_size=4 + max_new_tokens=1024 + --no-quantize + --sft_adapter + 正确 seed`，不统一的数据点不能入主表\n- **RSFT checkpoint 路径陷阱**: `rsft_output_r2b/` 是旧实验（lora_alpha=32/160步），**不是** CED s42。路径映射见 memory.md 表格，不要猜\n- **cwd**: 所有命令 `cd /root/autodl-tmp`，不是 `cd /root/autodl-tmp/freige`\n- **提交前必须 nvidia-smi 确认目标 GPU 显存 < 2GB**（C001 教训）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x, 工作目录 `/root/autodl-tmp`\n- **Python**: `/root/miniconda3/bin/python`（conda base，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B` (底座), `/root/autodl-tmp/sft_output` (SFT adapter)\n- **数据**: `/root/autodl-tmp/data/docred` (985 docs dev set)\n- **HF cache**: `/root/autodl-tmp/.hf_cache` (`HF_HOME`, `HF_HUB_OFFLINE=1`)\n- **Eval 结果目录**: `/root/autodl-tmp/eval_results/`\n- **RSFT checkpoints** (完整映射):\n  - CED: `rsft_output/ckpt-510` (s42), `rsft_output_ced_s43/ckpt-510` (s43), `rsft_output_s44/ckpt-510` (s44), `rsft_output_ced_s45/ckpt-510` (s45)\n  - flat-NLI: `rsft_output_flat_nli/ckpt-507` (s42), `_s43/ckpt-507`, `_s44/ckpt-507`, `_s45/ckpt-507`\n- **活跃进程** (5 个 eval, 全部 RUNNING):\n\n| exp_id | PID | GPU | tmux session |\n|--------|-----|-----|-------------|\n| reeval_flat_nli_s42 | 296732 | cuda:0 | reeval_flat_nli_s42 |\n| reeval_ced_s44 | 297190 | cuda:0⚠️ | reeval_ced_s44 |\n| reeval_flat_nli_s43_r2 | 291003 | cuda:3 | reeval_flat_nli_s43_r2 |\n| reeval_ced_s42 | 298018 | cuda:2 | reeval_ced_s42 |\n| reeval_sft_baseline_d076 | 303065 | cuda:1 | reeval_sft_baseline_d076 |\n\n- **Cron 监控**: 5 个 active cron 对应上述 5 个实验\n- **脚本**: `/root/autodl-tmp/scripts/seed_comparison.py` + `artifacts/paired_ttest_analysis.py`\n\n### 3. 📊 当前状态\n上一轮完成了 D076 协议审计：发现历史 eval 混用 batch_size=8/16 + max_new_tokens=1536，与当前 batch_size=4 + max_new_tokens=1024 标准不一致。Director 批准重跑 4 个关键数据点 (ced_s42, ced_s44, flat_nli_s42, flat_nli_s43) + SFT baseline 重跑。5 个 re-eval 已全部提交并 RUNNING。\n\n**RUNNING (5)**: 全部是 D076 统一协议 re-eval，预计各需 1-2h（dev set 985 docs, batch_size=4）\n**PREPARING (1)**: seed_comparison_prep — 等所有 re-eval 完成后跑 paired t-test\n**Worker 池**: 0（全部在等 cron 回调，无 CPU 任务可并行——但文献调研 Worker 和 seed45 分析 Worker 在前一轮已完成）\n\n已完成的关键 eval（**已用正确协议，不需重跑**）: eval_rsft_ced_s43, eval_rsft_ced_s45, eval_flat_nli_seed44(需确认协议), eval_flat_nli_seed45(需确认协议)\n\n### 4. 📋 待办（条件触发式）\n- **5 个 reeval cron 任一回调 → spawn Worker 提取 metrics、update_registry(conclusion+metrics)**，注意 cuda:0 上两个实验完成后各自独立处理\n- **5 个 reeval 全部完成 → spawn Worker 跑 `seed_comparison.py`**，产出 paired t-test 结果 (CED vs flat-NLI, 4 seeds each)。这是 Claim 3 的关键判定：p<0.05 → CED 保留独立贡献；p≥0.05 → CED 降级为 \"one possible scoring function\"\n- **t-test 结果出来 → 向 Director 汇报**，附事实 + 对比 + 建议，开头带 [资源] 行\n- **eval_flat_nli_seed44/45 协议需确认** → 如果这两个也是旧协议，需要排队重跑\n- **所有 seed eval 收齐 → 推进**: plan_003 EDCR diagnostic table, plan_002 test set eval, Paper Agent retitle\n- **GPU 释放后 → 按优先级提交**: plan_003_edcr_diagnostic (P0, ~2h) > CED s43/s45 re-eval (如需) > plan_002 test eval (P0, ~4h)\n\n### 5. 🎯 战略上下文\n**项目**: FREIGE — LLM evidence-grounded DocRE。投 EMNLP 2026 Main (ARR July, ~7月15-25)，还有 ~2 个月。\n\n**核心叙事**: (1) evidence tax ~7-8pp, (2) RL optimization pressure ↔ decoupling severity 正相关 (spectrum: GRPO-QLoRA catastrophic > GRPO-bf16 mild > DPO gradual > RSFT none), (3) RSFT 是唯一有效路线, (4) EDCR 双层诊断。C3 (CED vs flat-NLI) 已降级——D056 确认统计不可区分，但仍在收集更多 seed 数据做最终判定。\n\n**关键决策链**: D076 (协议统一重跑) ← D071 (Ign-F1 bug fix) ← D070 (EDCR per-relation 分析) ← D068/D069 (decoupling spectrum 修正)\n\n**易错点**:\n- **不要混淆旧 eval 和 re-eval 的数据**。paper_framing.md 主表中的数字部分来自旧 eval（如 flat-NLI s42 的 45.39 是旧协议），re-eval 完成后需要用新数字更新主表\n- **reeval_ced_s44 的旧 checkpoint 问题**: 旧 eval 可能用了 `rsft_output_r2b`（错误的 alpha=32），当前 re-eval 用的是正确的 `rsft_output_s44/checkpoint-510`。数字可能变化较大\n- **GRPO bf16 Ign-F1=45.59 > F1=43.4** 不是 bug，是 train triples 过滤效应\n- **Worker 池 < 2 = 失职**——当前 0 个 Worker 勉强可接受（全在等 eval 回调），但 re-eval 开始回调后必须立即 spawn Workers 处理，不能串行一个个来\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778927436.md"
+}

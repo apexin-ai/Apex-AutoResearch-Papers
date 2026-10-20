@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaf02aebd43a72498d66",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "prep random rsft baseline",
+  "task_key": "worker_prep_random_rsft_baseline_20260518T130620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_random_rsft_baseline_20260518T130620_result.json",
+    "occurrence": 1,
+    "bytes": 1453,
+    "sha256": "f8446d87910db01c163690a6c9cd7109019d60c9f1642cd9de3a89112bf8a9e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出汇报\n\n### Random Selection 数据\n- **路径**: `/root/autodl-tmp/rsft_random_k1/rsft_train.jsonl`\n- **样本数**: 2716（CED k=1 为 2718，差 2 个因候选源 doc_id 数轻微差异）\n- **选择方式**: 每个 doc 从其 ~8 个候选中 `random.choice`，seed=42\n- **格式**: 与 CED 数据完全一致（input, output, ced_score, doc_id, generation_idx 等 8 个字段）\n- **所有 doc_id 唯一**: 2716 unique docs / 2716 samples = 严格 1 per doc\n\n### 训练脚本\n- **路径**: `/root/autodl-tmp/freige/scripts/d102_next_batch/random_rsft.sh`\n- **超参**: lr=2e-5, epochs=3, batch=1, grad_accum=8, warmup=100, lora_rank=64, lora_alpha=128, lora_dropout=0.05, max_length=2048, bf16\n- **GPU**: 通过 `CUDA_VISIBLE_DEVICES=${GPU:-0}` 指定，启动时 `GPU=X bash random_rsft.sh`\n- **输出**: `/root/autodl-tmp/rsft_output_random_k1`\n- **bash 语法检查和 module import 均通过**\n\n### 与 CED 数据对比\n| | CED k=1 | Random k=1 |\n|---|---|---|\n| 候选源 | `rsft_generations/generations.jsonl` (21968) | 同 |\n| 选择策略 | 按 combined_score 取 top-1 per doc | random.choice per doc |\n| 样本数 | 2718 | 2716 |\n| 唯一 doc | 2718 | 2716 |\n\n### Dry-run 说明\nGPU 全部被占用（GPU 0: 22GB, GPU 1: 28GB, GPU 2: 17GB, GPU 3: 18GB），未能完成模型加载级别的 dry-run。数据验证和脚本语法检查已通过。实际训练时需等 GPU 空闲后执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-random-rsft-baseline.md"
+}

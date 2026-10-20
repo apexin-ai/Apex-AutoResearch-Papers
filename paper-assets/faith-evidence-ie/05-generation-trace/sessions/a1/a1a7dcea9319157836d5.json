@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1a7dcea9319157836d5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "train grpo flatnli launch",
+  "task_key": "worker_train_grpo-flatnli-launch_20260514T073058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_grpo-flatnli-launch_20260514T073058_result.json",
+    "occurrence": 1,
+    "bytes": 586,
+    "sha256": "3d52afd3adbe89b1ff152fc8d66937812a2e2ba708215b3a5c304eed952bcbfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**问题：gpu-5090-4x-1 当前被 `mvp2_grpo_ced`（Stage 3）占用，4 卡都在用。**\n\n当前状态：\n- 进度：5/189 步（2.6%），~2 min/步，预计还需 ~6 小时\n- 显存：17-24 GB/卡（总 32 GB），无法并行启动其他训练\n- 训练指标（step 5）：format_reward=0.49, f1_reward=0.008, ced_reward=0.08, total_reward=0.58\n\n三个选项：\n1. **等 CED 跑完**（~6h），然后启动 flat-NLI + SFT eval\n2. **Kill CED**，立即启动 flat-NLI（CED 进度会丢失）\n3. **用其他服务器**跑 flat-NLI\n\n你想怎么处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-grpo-flatnli-launch.md"
+}

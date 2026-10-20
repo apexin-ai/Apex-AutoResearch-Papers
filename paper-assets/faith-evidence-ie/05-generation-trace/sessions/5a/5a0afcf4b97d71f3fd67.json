@@ -1,0 +1,450 @@
+{
+  "schema_version": "1.0",
+  "id": "5a0afcf4b97d71f3fd67",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "knowledge sync experiment plan full",
+  "task_key": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_knowledge_sync_experiment_plan_full_20260519T004352.jsonl",
+    "occurrence": 1,
+    "bytes": 11136,
+    "sha256": "3cdb6d87d927f542760d402987bc096692e81f1fd3ad941fd848d3a8fdead577"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T00:44:54.309579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/experiment_plan.yaml"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T00:44:54.310078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiment_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T00:44:54.310359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T00:44:54.310725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texperiments:\n2\t- id: plan_001\n3\t  claim: 2\n4\t  description: 'CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选\n5\t    RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py\n6\t    用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。'\n7\t  priority: P0\n8\t  gpu_budget_hours: 20\n9\t  deps: []\n10\t  registry_id: eval_flat_nli_seed45\n11\t- id: plan_002\n12\t  claim: 1\n13\t  description: 'Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set\n14\t    上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。'\n15\t  priority: P0\n16\t  gpu_budget_hours: 4\n17\t  deps:\n18\t  - plan_001\n19\t  registry_id: plan_002_test_rsft_s44\n20\t- id: plan_003\n21\t  claim: 4\n22\t  description: 'EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing\n23\t    方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。'\n24\t  priority: P0\n25\t  gpu_budget_hours: 2\n26\t  deps:\n27\t  - plan_001\n28\t  registry_id: plan_003_edcr_diagnostic\n29\t- id: plan_004\n30\t  claim: 1\n31\t  description: 'DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large)\n32\t    的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。'\n33\t  priority: P0\n34\t  gpu_budget_hours: 8\n35\t  deps: []\n36\t  registry_id: plan_004_dreeam_baseline\n37\t- id: plan_005\n38\t  claim: 1\n39\t  description: 'CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。'\n40\t  priority: P1\n41\t  gpu_budget_hours: 6\n42\t  deps: []\n43\t  registry_id: mvp2_ced_reranker_poc\n44\t- id: plan_006\n45\t  claim: 1\n46\t  description: 'Model size ablation (D077 升 P0): Qwen3-1.7B 和 Qwen3-8B 上复现 SFT → RSFT\n47\t    → eval pipeline，验证 evidence tax + RSFT 增益 + decoupling 在不同模型规模下成立。应对 RC4 和 scope\n48\t    不足问题。'\n49\t  priority: P0\n50\t  gpu_budget_hours: 32\n51\t  deps: []\n52\t  registry_id: plan_006_qwen3_1_7b_no_evidence_eval_v3\n53\t- id: plan_007\n54\t  claim: 1\n55\t  description: 'Re-DocRED cross-dataset (D077 升 P0): 在 Re-DocRED 上用当前 best config\n56\t    做 SFT → RSFT → eval。数据已就绪（格式与 DocRED 兼容\n…[truncated 8525 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T00:44:54.311064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+              "old_string": "  registry_id: plan_015_grpo_g4_bf16_v3",
+              "new_string": "  registry_id: wave1_grpo_bf16_g4"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T00:44:54.311367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T00:44:54.311601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+              "old_string": "  registry_id: random_rsft_k1_baseline",
+              "new_string": "  registry_id: random_rsft_k1_eval"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T00:44:54.311884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T00:44:54.312092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+              "old_string": "  registry_id: d112_rsft_s44_generate",
+              "new_string": "  registry_id: d112_rsft_s44_gen_shard0"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T00:44:54.312376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T00:44:54.312617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T00:44:54.312842+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T00:44:54.313030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "experiment_plan.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T00:44:54.313224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'mistakes.yaml', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'experiment_plan.yaml'\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T00:44:54.313491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "experiment_plan",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T00:44:54.313684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T00:44:54.313898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+              "offset": "130",
+              "limit": "15"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T00:44:54.314111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "130\t  deps: []\n131\t  registry_id: plan_014_sft_no_evidence\n132\t- id: plan_015\n133\t  claim: 2\n134\t  description: 'bf16 LoRA GRPO clean control: 与原始 GRPO (QLoRA 4-bit, G=4, kl=0, CED\n135\t    reward) 只改一个变量——quantization 从 QLoRA 4-bit 改为 bf16 LoRA。G=4, kl_coef=0 不变。目的:\n136\t    隔离 QLoRA confound，判断 decoupling 是 QLoRA artifact 还是 genuine RL-for-IE 现象。Dream\n137\t    v2 三档一致的 critical 要求。如 decoupling 在 bf16 下仍持续 → 可泛化 claim；如消失 → QLoRA 特定，需 re-scope。优先级取决于\n138\t    plan_011 eval 结果。'\n139\t  priority: P0\n140\t  gpu_budget_hours: 8\n141\t  deps:\n142\t  - plan_011\n143\t  registry_id: wave1_grpo_bf16_g4\n144\t- id: plan_mvp1"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T00:44:54.314370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+              "offset": "245",
+              "limit": "30"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T00:44:54.314597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "245\t- id: plan_w3_sft_seeds\n246\t  claim: 1\n247\t  description: W3 修复：SFT 4B baseline seed43 + seed44 训练 + eval。 与 canonical SFT (seed42)\n248\t    配对，计算 bootstrap CI + Cohen d， 验证 RSFT +4.92pp 增益的统计显著性。Wave 1 实验。\n249\t  priority: P0\n250\t  gpu_budget_hours: 8\n251\t  deps: []\n252\t  registry_id: wave1_sft_4b_s44_eval_r2\n253\t- id: plan_d112\n254\t  claim: 1\n255\t  description: 'D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\n256\t    所有现有 4B RSFT 都基于 SFT s42 (最弱 seed)。验证 RSFT 是否能在强 SFT base 上也产生提升。Steps:\n257\t    generate candidates (N=8) → CED score → k=1 filter → RSFT train → D076 eval。'\n258\t  priority: P0\n259\t  gpu_budget_hours: 8\n260\t  deps:\n261\t  - plan_w3_sft_seeds\n262\t  registry_id: d112_rsft_s44_gen_shard0\n263\t- id: plan_w18_random\n264\t  claim: 1\n265\t  description: W18 修复：Random k=1 RSFT baseline。从 k=1 候选中随机抽取（不用 NLI 分数）， 验证 NLI-based\n266\t    selection 的价值。如果 random 也提升 → NLI scoring 不关键； 如果 random 不提升 → NLI scoring 是 RSFT\n267\t    有效的关键。Wave 1 实验。\n268\t  priority: P0\n269\t  gpu_budget_hours: 4\n270\t  deps: []\n271\t  registry_id: random_rsft_k1_eval\n272\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T00:44:54.314871+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改已生效：\n\n| 条目 | 修改 |\n|---|---|\n| plan_w3_sft_seeds | 已是 `wave1_sft_4b_s44_eval_r2`（无需改） |\n| plan_015 | `plan_015_grpo_g4_bf16_v3` → `wave1_grpo_bf16_g4` |\n| plan_w18_random | `random_rsft_k1_baseline` → `random_rsft_k1_eval` |\n| plan_019 | 保持 `plan019_1_7b_sft_s43_r2` 不变 |\n| plan_d112 | `d112_rsft_s44_generate` → `d112_rsft_s44_gen_shard0`（已存在，仅更新 registry_id） |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_sync_experiment_plan_full_20260519T004352"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/knowledge-sync-experiment-plan-full.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0674e50c69172cd96bb7",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "code ced reranker poc",
+  "task_key": "worker_code_ced_reranker_poc_20260515T093913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ced_reranker_poc_20260515T093913.log",
+    "occurrence": 1,
+    "bytes": 776615,
+    "sha256": "0ebf3d8edee27b021d972a48ae2903326a125ffa523e263239bb52133f7a72e3"
+  },
+  "statistics": {
+    "messages": 241,
+    "user_turns": 0,
+    "tool_calls": 87,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 87,
+      "tool_result": 87,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 241,
+      "chunks": [
+        {
+          "path": "0674e50c69172cd96bb7-part-0001.json",
+          "message_count": 155
+        },
+        {
+          "path": "0674e50c69172cd96bb7-part-0002.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-ced-reranker-poc.md"
+}

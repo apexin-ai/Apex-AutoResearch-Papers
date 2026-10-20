@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e48cb4eb200931a557d3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check rsft gen progress",
+  "task_key": "worker_check_rsft_gen_progress_20260515T042640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_rsft_gen_progress_20260515T042640_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "300653345c5ba028e70ac397db9a0405b3bae5a4736d70d7fe5f2ae4b444dc34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## RSFT 生成进度汇总\n\n所有 4 个进程均在运行中（100% CPU，~2.3GB RSS，已运行 ~2h45m）。\n\n| Shard | 进度 | 输出行数 | 预计剩余 |\n|-------|------|----------|----------|\n| shard_0 | 613/682 (89.9%) | 5000 行 | ~21 min |\n| shard_1 | 657/681 (96.5%) | 5360 行 | ~6 min |\n| shard_2 | 654/681 (96.0%) | 5352 行 | ~10 min |\n| shard_3 | 581/657 (88.4%) | 4680 行 | ~25 min |\n\n**总体**: ~92% 完成，预计 shard_3 最晚完成（约 25 分钟后）。全部 shard 无异常，shard_0/2 有 truncation_rate >10% 的 warning 但不影响运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-rsft-gen-progress.md"
+}

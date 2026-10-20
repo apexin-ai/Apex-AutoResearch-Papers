@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b154e72d5f16ea3dd3e9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh ced score shard2",
+  "task_key": "worker_ssh_ced-score-shard2_20260515T044141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_ced-score-shard2_20260515T044141_result.json",
+    "occurrence": 1,
+    "bytes": 971,
+    "sha256": "0aa6a7f7d505e02c7bc4a773a9c0a91c8d5f6636ba3fd1aaf471300a6a130e57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "shard_2 CED scoring 完成，耗时约 28 分钟。结果汇总：\n\n### 关键统计\n| 指标 | 值 |\n|------|-----|\n| 总 records | 5568 (696 unique docs) |\n| f1 过滤丢弃 | 349 generations, 7 docs 完全丢弃 |\n| 筛选后 | 689 samples (689/696 docs), 选择率 12.4% |\n\n### 评分分布 (top_1 selected)\n| 维度 | mean | median | range |\n|------|------|--------|-------|\n| format_reward | 1.000 | 1.000 | [0, 1] |\n| f1_reward | 0.472 | 0.483 | [0, 1] |\n| ced_reward | 0.501 | 0.521 | [0, 0.997] |\n| combined_score | 0.589 | 0.601 | [0, 0.999] |\n\n### 截断 vs 非截断 F1 对比\n| 类别 | 数量 | mean F1 |\n|------|------|---------|\n| 截断 | 492 | 0.330 |\n| 非截断 | 5076 | 0.486 |\n| **gap** | — | **0.156** |\n\n### 产出文件\n- `rsft_scores.jsonl` — 全量评分 (17MB)\n- `rsft_train.jsonl` — 训练数据 (2.1MB, 689 行)\n- `rsft_report.json` — 统计报告\n\n无错误或异常。cuda:2 已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-ced-score-shard2.md"
+}

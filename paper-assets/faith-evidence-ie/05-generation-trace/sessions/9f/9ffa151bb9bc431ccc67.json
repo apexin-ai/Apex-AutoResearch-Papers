@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ffa151bb9bc431ccc67",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "experiment qwen3 8b sft bf16",
+  "task_key": "worker_experiment_qwen3_8b_sft_bf16_20260516T074759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_qwen3_8b_sft_bf16_20260516T074759_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "a0d3dc685edb11cf8314af66ff2fc51068938f68d07f83e56d5391c96fbc3a59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**`plan_006_qwen3_8b_sft_bf16`** 已提交到 cuda:3，registry 已更新为 RUNNING。\n\n| 项目 | 值 |\n|---|---|\n| 模型 | Qwen3-8B bf16 LoRA (无量化) |\n| 可训练参数 | 174.6M / 8.37B (2.09%) |\n| GPU 显存 | 25,113 / 32,607 MiB (~77%) |\n| 训练速度 | ~7.3s/step, 570 steps/epoch |\n| 预估总时长 | ~3.5h (3 epochs) |\n| PID | 317310 |\n| 日志 | `~/runs/faith-evidence-ie/plan_006_qwen3_8b_sft_bf16.log` |\n| tmux session | `plan006_8b_sft` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-qwen3-8b-sft-bf16.md"
+}

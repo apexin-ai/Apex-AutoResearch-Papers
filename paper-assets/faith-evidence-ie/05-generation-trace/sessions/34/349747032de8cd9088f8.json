@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "349747032de8cd9088f8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis test set table",
+  "task_key": "worker_analysis_test-set-table_20260521T194533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_test-set-table_20260521T194533_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "a04438c3e1e36f4cdaa0857afeefd1c985f4b7d028d8d5f108d8c42d933083dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "memory.md 已更新。原 \"🔴 Test Set Scaling Table Status\" 段落替换为 \"🔴 Test Set Results & Dev→Test Generalization\"，包含：\n\n**综合结果表**：5 个 scale × (SFT dev, RSFT dev, SFT test, RSFT test, 双向 gap, RSFT gain) 全列。SFT test 列待 4 个运行中实验完成后填充。\n\n**核心发现**：\n1. **Dev→Test gap = ~20.7pp constant offset**（range 仅 1.5pp），不随 scale 系统性缩小\n2. **Scaling 排序完美保持**：test 上 1.7B < 8B < LLaMA < 14B，Spearman ρ=1.0\n3. **跨架构优势保持**：LLaMA vs Qwen-8B 在 test 上 +2.46pp（dev 上 +2.21pp）\n4. **Evidence quality 在 test 上降幅比 ign_f1 更大**（相对降幅 47% vs 37%）\n5. **RSFT gain on test 待 SFT test 完成后验证**\n\n**待补 6 个数据点**：4 个 SFT test evals 运行中，1.7B SFT test 未提交，4B RSFT test 需重训。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-test-set-table.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29fb188c9e8a3cbeb9a0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval d102 llama rsft k1 s43 eval",
+  "task_key": "worker_eval_d102_llama_rsft_k1_s43_eval_20260518T130559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d102_llama_rsft_k1_s43_eval_20260518T130559_result.json",
+    "occurrence": 1,
+    "bytes": 532,
+    "sha256": "01f19795f6d9aaf2c49e884d7f006e9224abbecda2285a305f65172515701fd8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**C001 约束触发**：cuda:3 当前被 PID 541954 占用 18412MiB，不满足 < 2GB 的要求。四张卡全部被占用：\n\n| GPU | PID | 显存占用 |\n|-----|-----|---------|\n| 0 | 540786 | 22034MiB |\n| 1 | 540991 | 27794MiB |\n| 2 | 542126 | 16608MiB |\n| 3 | 541954 | 18412MiB |\n\nCheckpoint 验证通过：checkpoint-1107、SFT adapter、base model 均存在。\n\n需要等 cuda:3 上的任务结束后再提交 eval。要我查一下 cuda:3 上跑的是什么任务，还是等它跑完后再提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d102-llama-rsft-k1-s43-eval.md"
+}

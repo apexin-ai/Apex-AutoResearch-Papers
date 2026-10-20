@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "510c075f6682ddbb5a86",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval plan 012 dpo ced 1ep",
+  "task_key": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_012_dpo_ced_1ep_20260515T202053_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "5c3bfd6df8db3fdbe23151ddded34620daf6455e75ff23b54a0ec82f33f25e98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪：\n\n- **tmux session**: `eval_plan_012_dpo_ced_1ep` 运行中\n- **模型加载成功**: adapter 从 `/root/autodl-tmp/dpo_output_1ep/` 加载，base model Qwen3-4B\n- **数据**: 985 eval documents, 12275 gold triples，推理已开始 (0/62 batches)\n- **GPU 2**: 12509 MiB 已占用，86% utilization — 正常推理中\n- **Registry**: `eval_plan_012_dpo_ced_1ep` 状态 RUNNING，spec 完整\n- **参数**: `--no-quantize` ✓, seed=42 ✓, batch_size=16 ✓\n- **日志**: `/root/autodl-tmp/eval_results/dpo_ced_1ep/eval.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-012-dpo-ced-1ep.md"
+}

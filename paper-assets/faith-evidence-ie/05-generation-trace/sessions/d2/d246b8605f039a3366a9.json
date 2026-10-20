@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d246b8605f039a3366a9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code 14b rsft s43 train",
+  "task_key": "worker_code_14b-rsft-s43-train_20260523T134440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-rsft-s43-train_20260523T134440_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "cf19157d25c1fa3b6ef8f34e79902b8f107575b68869f03e2e2d14b890f1b248"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交并注册完成。\n\n**摘要：**\n- **exp_id**: `plan017_14b_rsft_s43_train`\n- **GPU**: cuda:1 @ rtx5090-4x (96GB, 空闲)\n- **PID**: 257025\n- **模式**: 单 GPU bf16（96GB 足够 14B + LoRA，无需 ZeRO-3）\n- **SFT adapter**: `/root/autodl-tmp/sft_output_14b_s43`（运行时合并，无需预合并）\n- **数据**: 3,017 条 CED-scored RSFT 数据\n- **关键参数差异 vs s42**: seed 43, gradient_accumulation_steps=16（补偿单卡，保持有效 batch=16）\n- **Cron 监控**: 已注册，120s 轮询"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-14b-rsft-s43-train.md"
+}

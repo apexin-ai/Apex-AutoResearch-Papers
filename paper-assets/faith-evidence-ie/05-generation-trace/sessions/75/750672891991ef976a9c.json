@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "750672891991ef976a9c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research ref audit tiebreak",
+  "task_key": "worker_research_ref-audit-tiebreak_20260526T105706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-tiebreak_20260526T105706_result.json",
+    "occurrence": 1,
+    "bytes": 549,
+    "sha256": "f7f994aa5870012b3af9c28e442163d4cbfd3dc22c61eccd233b73075e81bff9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 条争议全部裁决完毕，结果写入 `artifacts/ref_audit_tiebreak.md`。\n\n| cite_key | 裁决 | 需修改？ |\n|----------|------|----------|\n| gulcehre2023rest | W2/W3 对（Doucet/de Freitas） | 当前 bib 已正确 |\n| tang2025rsftppo | 作者 W2 对（4人）；venue W3 对（名称虚构） | venue 须改 |\n| rafailov2023direct | W1/W3 对（顺序无误） | 无需改 |\n| liu2026gdpo | W2 对（ICML 2026 poster） | venue 须更新 |\n| wang2025rullm | W1/W2 对（无 \"Ru-LLM:\" 前缀） | 须删前缀 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-audit-tiebreak.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02ce3b787f0e835651b0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops codalab convert 4b noevi",
+  "task_key": "worker_ops_codalab-convert-4b-noevi_20260522T073615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_codalab-convert-4b-noevi_20260522T073615_result.json",
+    "occurrence": 1,
+    "bytes": 204,
+    "sha256": "43923b0889d4264fe3f7724894a9f3d30861d2807e5dcf977c89059978c99877"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "转换成功。11166 triples，格式验证通过（keys: evidence, h_idx, r, t_idx, title）。文件已复制到 `/root/autodl-tmp/codalab_submissions/test_eval_4b_sft_s42_no_evi.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-codalab-convert-4b-noevi.md"
+}

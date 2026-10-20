@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "788117272370a3950b32",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d112 rsft no evidence eval r3",
+  "task_key": "worker_analysis_d112_rsft_no_evidence_eval_r3_20260519T182405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d112_rsft_no_evidence_eval_r3_20260519T182405_result.json",
+    "occurrence": 1,
+    "bytes": 633,
+    "sha256": "1d1be6298b94caa10996e5d0b42a7cb5fcfd071635873a3d65c656cec22103f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果摘要：**\n\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | **0.5246** |\n| f1 | 0.5341 |\n| evidence tax | **+0.94pp**（移除 evidence 后 RE 提升） |\n| format_ok | 983/985 (99.8%) |\n| truncated | 144/985 (14.6%) |\n\n**核心发现**：4B RSFT 存在近 1pp 的 evidence tax — 生成 evidence 会拖累 RE 性能。与 8B（evidence 有微弱 bonus，-0.78pp）形成对比，呈现 scale-dependent 趋势：\n\n| Scale | With-evi | No-evi | Tax |\n|-------|----------|--------|-----|\n| 4B | 0.5152 | 0.5246 | +0.94pp |\n| 8B | 0.5414 | 0.5336 | -0.78pp |\n\n报告已注册：`art_20260519_6ccf9c`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d112-rsft-no-evidence-eval-r3.md"
+}

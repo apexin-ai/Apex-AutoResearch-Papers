@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54332ce140a97f5384fb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis llama sft s44 train eval r3",
+  "task_key": "worker_analysis_llama_sft_s44_train_eval_r3_20260520T141646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_sft_s44_train_eval_r3_20260520T141646_result.json",
+    "occurrence": 1,
+    "bytes": 1143,
+    "sha256": "0d647074821978d1f17b20067315f3de4817c9b921902d88de9c4a547c947071"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nMETRICS:\nign_f1=0.4802\nf1=0.4902\nevi_f1_joint=0.3913\nevi_f1_tp=0.8502\nedcr=0.6579\nign_precision=0.4695\nign_recall=0.4915\ntrain_loss=0.526\neval_loss=0.6931 (epoch2, best); 0.7367 (epoch3)\nformat_compliance=1.0000\nn_truncated=240\nn_documents=985\ninference_time_seconds=7227.4\n\nCHECKPOINT_PATH: /root/autodl-tmp/sft_output_llama_3_1_8b_s44\nLOG_PATH: ~/runs/faith-evidence-ie/llama_sft_s44_train_eval_r3.log\n\nWANDB_RUN_ID: (无，日志中未找到 W&B 链接)\n\nCONCLUSION: success（ign_f1=0.4802 > 0.45，训练正常完成 EXIT_CODE=0）\n```\n\n**3-seed SFT baseline 对比：**\n\n| Seed | ign_f1 | f1 | evi_f1_joint | edcr |\n|------|--------|----|-------------|------|\n| s42 | 0.5384 | — | — | — |\n| s43 | 0.5142 | — | — | — |\n| **s44** | **0.4802** | 0.4902 | 0.3913 | 0.6579 |\n| **Mean** | **0.5109** | — | — | — |\n| **Std** | **0.0238** | — | — | — |\n\ns44 比 s42 低 5.8pp，比 s43 低 3.4pp，是三个 seed 中最低的。3-seed mean=0.5109±0.0238，方差偏大。与 RSFT 3-seed mean (0.5654±0.0052) 相比，SFT baseline 低 5.5pp 且方差大约 4.6 倍。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-sft-s44-train-eval-r3.md"
+}

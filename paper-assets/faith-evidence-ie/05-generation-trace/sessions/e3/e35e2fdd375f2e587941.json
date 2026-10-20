@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "e35e2fdd375f2e587941",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "audit table1 edcr spectrum",
+  "task_key": "worker_audit_table1-edcr-spectrum_20260523T141600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_table1-edcr-spectrum_20260523T141600.log",
+    "occurrence": 1,
+    "bytes": 1218445,
+    "sha256": "3068f08aef322160952312a4431cb15bf3f0890b0b6d1998a1f9500b067f4d7a"
+  },
+  "statistics": {
+    "messages": 142,
+    "user_turns": 1,
+    "tool_calls": 48,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "record": 1,
+      "assistant": 20,
+      "tool_call": 48,
+      "tool_result": 48,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "e35e2fdd375f2e587941-part-0001.json",
+          "message_count": 16
+        },
+        {
+          "path": "e35e2fdd375f2e587941-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "e35e2fdd375f2e587941-part-0003.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "e35e2fdd375f2e587941-part-0003.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-table1-edcr-spectrum.md"
+}

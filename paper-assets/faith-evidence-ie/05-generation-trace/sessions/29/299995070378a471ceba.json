@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "299995070378a471ceba",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_11_1778897648.md",
+  "task_key": "loop_11_1778897648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778897648.md",
+    "occurrence": 1,
+    "bytes": 3728,
+    "sha256": "5bc2ab9675d8dd6820ec5f40130e10e7a096e5dae2c528ca553d18307fabd803"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T02:13:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0/1/2/3，无其他服务器可用\n- flat-NLI 和 CED 的 eval 必须带 `--sft_adapter /root/autodl-tmp/sft_output`（D064 教训：不带则 rel_f1≈0.002 无效）\n- paired t-test 需要 matched seeds：CED 目前只有 s42/s44，flat-NLI 将有 s42-s45。CED s43/s45 必须补\n- checkpoint 路径模式：`/root/autodl-tmp/rsft_output_flat_nli_s{seed}/`（训练）、`/root/autodl-tmp/rsft_output_ced_s{seed}/`（CED）\n- DPO 3ep 已确认过拟合 (rel_f1=0.3429)，不要再跑 3ep DPO\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x，工作目录 `/root/autodl-tmp`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`（base）、`/root/autodl-tmp/sft_output`（SFT adapter）\n- 数据：`/root/autodl-tmp/data/docred`（eval）、`/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl`（flat-NLI RSFT data）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- W&B project：faith-evidence-ie（entity 从 project config 读取）\n- 活跃进程：\n  - plan_001_flat_nli_seed44: PID 258503, cuda:0, tmux\n  - reeval_flat_nli_s43: PID 266178, cuda:1, tmux\n  - eval_plan_012_dpo_1ep_fixed_r2: PID 262075, cuda:3, tmux\n\n### 3. 📊 当前状态\n刚收到 `plan_001_flat_nli_seed45` (cuda:2) 的 ANALYZING 回调。已 spawn Worker 分析日志/W&B/checkpoint，**Worker 尚未回调**。\n\nRegistry 活跃实验：\n- `plan_001_flat_nli_seed44` — RUNNING, cuda:0, flat-NLI RSFT 训练 seed=44\n- `reeval_flat_nli_s43` — RUNNING, cuda:1, D064 bug fix 后重跑 eval（对比 s42 的 0.4539）\n- `eval_plan_012_dpo_1ep_fixed_r2` — RUNNING, cuda:3, DPO 1ep eval（决定 DPO 论文定位）\n- `plan_001_flat_nli_seed45` — ANALYZING, cuda:2, 等分析 Worker 回调\n\n等待中：\n- Worker `worker_analysis_plan_001_flat_nli_seed45_20260515T230918` 回调 → 需更新 registry 到 DONE + 汇报 Director\n- `reeval_rsft_topk3` PREPARING — 等 cuda 释放后提交（cuda:2 刚空出来，分析完后可立即提交）\n\n### 4. 📋 待办\n- Worker 分析回调到 → update_registry(DONE, metrics, checkpoint_path) → 更新 report.md → 汇报 Director → **立即在 cuda:2 提交 reeval_rsft_topk3**\n- reeval_flat_nli_s43 完成 → 对比 s42 (0.4539) 和 CED mean (0.4596)，更新 C3 降级证据\n- eval_plan_012_dpo_1ep_fixed_r2 完成 → 决定 DPO 在论文中的定位（D061 暂缓中）\n- plan_001_flat_nli_seed44 完成 → flat-NLI 四个 seeds (s42-s45) 齐全，可做 paired t-test（但 CED 只有 2 seeds，需补 s43/s45）\n- 所有 flat-NLI seeds 完成 + eval 完成 → plan_003 EDCR cross-method diagnostic table\n- CED seeds 补齐后 → paired t-test CED vs flat-NLI → 最终确认 C3 降级是否成立\n\n### 5. 🎯 战略上下文\n- 论文核心 story：C1（evidence tax ~8pp + CED 恢复 97%）、C2（QLoRA-specific decoupling）、C3 已降级（CED≈flat-NLI 统计不可区分）\n- 当前阶段：收齐 seeds 做统计检验，确认 claims 的 robustness\n- D064 是关键转折：之前多个 eval 因缺 `--sft_adapter` 全部无效，正在紧急重跑\n- 易错点：plan_001 是**训练**实验（产出 checkpoint），不是 eval。训练 success 后还需要单独跑 eval 才有 rel_f1 数字。不要把 train loss 当作最终指标汇报\n- reeval_rsft_topk3 是 PREPARING 状态，cuda:2 释放后应立即提交（对比 CED RSFT top_k=1 的 rel_f1≈0.46 和 SFT baseline 0.4057）\n- 时间线：EMNLP ARR July ~7月15-25，还有 ~2 个月，不急但要持续推进\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778897648.md"
+}

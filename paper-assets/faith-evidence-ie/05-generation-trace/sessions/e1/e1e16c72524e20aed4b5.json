@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "e1e16c72524e20aed4b5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 014 sft no evidence",
+  "task_key": "worker_ops_plan_014_sft_no_evidence_20260515T155027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_014_sft_no_evidence_20260515T155027_result.json",
+    "occurrence": 1,
+    "bytes": 3092674,
+    "sha256": "a831d62341a1e0d5523c87f184cd9102adf9bee4fcbcf9227951389687314761"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "e1e16c72524e20aed4b5-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-014-sft-no-evidence.md"
+}

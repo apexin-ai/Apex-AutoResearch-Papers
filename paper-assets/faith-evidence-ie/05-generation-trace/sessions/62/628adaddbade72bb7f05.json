@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "628adaddbade72bb7f05",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops dreeam gpu migration",
+  "task_key": "worker_ops_dreeam-gpu-migration_20260515T142649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_dreeam-gpu-migration_20260515T142649_result.json",
+    "occurrence": 1,
+    "bytes": 794,
+    "sha256": "237700cd724ae547a2db0acc3404dc0c8278e8495a9ab0fd8e7e786fc79f91ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终 GPU 分布\n\n| GPU | 显存占用 | 进程 |\n|-----|---------|------|\n| cuda:0 | 1,701 / 32,607 MiB | PID 178055 — CED reranker（仅此一个，已无冲突） |\n| cuda:1 | 14,083 / 32,607 MiB | PID 197386 |\n| cuda:2 | 1,915 / 32,607 MiB | PID 213006 — **DREEAM teacher**（正在加载数据，显存会增长） |\n| cuda:3 | 1,467 / 32,607 MiB | PID 208155 |\n\n**DREEAM teacher 新 PID: 213006**（tmux session: `plan_004_dreeam_baseline`，日志: `~/runs/faith-evidence-ie/plan_004_dreeam_baseline.log`）\n\ncuda:0 现在只有 CED reranker (PID 178055)，OOM 风险已消除。\n\n注意：wandb 未在服务器配置，本次训练以 `WANDB_MODE=disabled` 运行（与原脚本一致）。如需 wandb 追踪，需先在服务器上 `wandb login`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-dreeam-gpu-migration.md"
+}

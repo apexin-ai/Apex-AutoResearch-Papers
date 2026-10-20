@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f43721f8398abe6459fc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis metrics compilation",
+  "task_key": "worker_analysis_metrics-compilation_20260516T002456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_metrics-compilation_20260516T002456_result.json",
+    "occurrence": 1,
+    "bytes": 965,
+    "sha256": "fba9827ff40a7d306ae0368912297ffddac90cbc2981361c027829d689b8746c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已生成并注册：\n\n**核心结果排序 (Rel-F1)**：\n| 方法 | Rel-F1 | Evi-F1 |\n|------|--------|--------|\n| CED Reranker (N=8) | 0.4864 | 0.8188 |\n| CED RSFT top_k=1 (3-seed mean) | 0.4596±0.013 | 0.8143±0.005 |\n| GRPO bf16 best | 0.4549 | 0.8086 |\n| flat-NLI RSFT (2-seed mean) | 0.4531±0.001 | 0.8101±0.008 |\n| RSFT top_k=3 | 0.4454 | 0.8088 |\n| SFT baseline | 0.4106 | 0.8013 |\n| DPO 1ep | 0.4034 | 0.8088 |\n| DPO 3ep | 0.3429 | 0.8403 |\n| GRPO QLoRA (catastrophic) | 0.2167 | 0.5746 |\n\n**关键发现**：\n- DPO 和 GRPO QLoRA 在 registry 中标记为 `negative`，非 `success`，但仍有指标数据，已纳入表格\n- Registry 中无 DPO/topk3 的 `success` 条目，用 `negative` 结论的实验数据代替\n- flat-NLI 只有 2 个 full-dev seed（s44/s45 full eval 未完成或被 killed）\n\n文件路径：\n- `artifacts/metrics_summary_table.md` (Markdown)\n- `artifacts/metrics_summary.csv` (CSV)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-metrics-compilation.md"
+}

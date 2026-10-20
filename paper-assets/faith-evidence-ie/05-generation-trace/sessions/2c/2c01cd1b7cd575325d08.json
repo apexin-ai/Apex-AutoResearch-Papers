@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c01cd1b7cd575325d08",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval reeval rsft topk3",
+  "task_key": "worker_eval_reeval_rsft_topk3_20260515T231253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_reeval_rsft_topk3_20260515T231253_result.json",
+    "occurrence": 1,
+    "bytes": 286,
+    "sha256": "d4da4e876d55dec5f3bed6b47269c722e6896d96d94f68b0f4ad21204d01a32c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **pid 268485 存活**，推理正在运行中（2/62 batches，~55s/batch，预计还需 ~55 分钟）\n- Registry 已更新为 **RUNNING**\n- Cron 监控已注册（job `672aa9a5`，每 5 分钟检查一次进程状态和日志）\n\n无需重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-reeval-rsft-topk3-copy-2.md"
+}

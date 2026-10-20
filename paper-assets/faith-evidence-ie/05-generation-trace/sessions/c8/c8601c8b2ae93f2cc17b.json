@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8601c8b2ae93f2cc17b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan 008 topk3 ced filter",
+  "task_key": "worker_code_plan_008_topk3_ced_filter_20260515T135350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_008_topk3_ced_filter_20260515T135350_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "291a27ae518d622d3666e4d3dda37e1219508d5306d6a20c1537e1b3ba0f7d35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n| | 样本数 | ced_score mean | median | min | max |\n|---|---|---|---|---|---|\n| 过滤前 | 8037 | 0.6205 | 0.6354 | 0.0000 | 0.9970 |\n| 过滤后 | **7942** | 0.6280 | 0.6387 | 0.0013 | 0.9970 |\n\n- 去除 **95** 个 `ced_score=0` 样本（占 1.18%）\n- 过滤脚本: `/root/autodl-tmp/scripts/filter_topk3_ced.py`\n- 输出数据: `/root/autodl-tmp/rsft_filtered_topk3_ced_filtered/rsft_train.jsonl`（7942 samples）\n\n注：数据中字段名是 `ced_score`（非 `ced_reward`），两个变体数据已就绪：\n- topk3_all: `/root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl`（8037）\n- topk3_ced_filtered: `/root/autodl-tmp/rsft_filtered_topk3_ced_filtered/rsft_train.jsonl`（7942）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-008-topk3-ced-filter.md"
+}

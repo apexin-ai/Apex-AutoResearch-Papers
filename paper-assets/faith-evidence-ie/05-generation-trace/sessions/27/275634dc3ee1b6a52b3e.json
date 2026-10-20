@@ -1,0 +1,570 @@
+{
+  "schema_version": "1.0",
+  "id": "275634dc3ee1b6a52b3e",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "ops d158 a2 ced check",
+  "task_key": "worker_ops_d158_a2_ced_check_20260524T223041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_d158_a2_ced_check_20260524T223041.jsonl",
+    "occurrence": 1,
+    "bytes": 23434,
+    "sha256": "e3edf25453eda6d7d739c3143d8d4cb6f92c16b24d16d638c5dcbecee2d1c8ac"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T22:32:03.177556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T22:32:03.178025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T22:32:03.178309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/rsft_scored_1_7b_s44/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T22:32:03.178532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "wc -l /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T22:32:03.178748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 105260\\\\ndrwxr-xr-x  2 root root       95 May 25 03:33 .\\\\ndrwxr-xr-x 91 root root     8192 May 25 02:16 ..\\\\n-rw-r--r--  1 root root     4671 May 25 03:33 rsft_report.json\\\\n-rw-r--r--  1 root root 97112078 May 25 03:33 rsft_scores.jsonl\\\\n-rw-r--r--  1 root root 10645879 May 25 03:33 rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T22:32:03.178952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3019 /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T22:32:03.179145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T22:32:03.179550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_records\\\\\\\": 24216,\\\\n  \\\\\\\"selected_records\\\\\\\": 3019,\\\\n  \\\\\\\"filtered_records\\\\\\\": 21197,\\\\n  \\\\\\\"selection_rate\\\\\\\": 0.12466963990749917,\\\\n  \\\\\\\"unique_docs_total\\\\\\\": 3027,\\\\n  \\\\\\\"unique_docs_selected\\\\\\\": 3019,\\\\n  \\\\\\\"format_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.9999174099768748,\\\\n    \\\\\\\"std\\\\\\\": 0.009087530028191744,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 1.0,\\\\n    \\\\\\\"median\\\\\\\": 1.0,\\\\n    \\\\\\\"p5\\\\\\\": 1.0,\\\\n    \\\\\\\"p10\\\\\\\": 1.0,\\\\n    \\\\\\\"p25\\\\\\\": 1.0,\\\\n    \\\\\\\"p75\\\\\\\": 1.0,\\\\n    \\\\\\\"p90\\\\\\\": 1.0,\\\\n    \\\\\\\"p95\\\\\\\": 1.0,\\\\n    \\\\\\\"histogram\\\\\\\": {\\\\n      \\\\\\\"counts\\\\\\\": [\\\\n        2,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        24214\\\\n      ],\\\\n      \\\\\\\"bin_edges\\\\\\\": [\\\\n        0.0,\\\\n        0.1,\\\\n        0.2,\\\\n        0.3,\\\\n        0.4,\\\\n        0.5,\\\\n        0.6,\\\\n        0.7,\\\\n        0.8,\\\\n        0.9,\\\\n        1.0\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"f1_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5777292329383508,\\\\n    \\\\\\\"std\\\\\\\": 0.21702647349787205,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 1.0,\\\\n    \\\\\\\"median\\\\\\\": 0.5957446808510638,\\\\n    \\\\\\\"p5\\\\\\\": 0.1858311800172265,\\\\n    \\\\\\\"p10\\\\\\\": 0.2857142857142857,\\\\n    \\\\\\\"p25\\\\\\\": 0.44,\\\\n    \\\\\\\"p75\\\\\\\": 0.7368421052631577,\\\\n    \\\\\\\"p90\\\\\\\": 0.8421052631578948,\\\\n    \\\\\\\"p95\\\\\\\": 0.9090909090909091,\\\\n    \\\\\\\"histogram\\\\\\\": {\\\\n      \\\\\\\"counts\\\\\\\": [\\\\n        601,\\\\n        730,\\\\n        1413,\\\\n        2062,\\\\n        2925,\\\\n        4767,\\\\n        4173,\\\\n        3764,\\\\n        2486,\\\\n        1295\\\\n      ],\\\\n      \\\\\\\"bin_edges\\\\\\\": [\\\\n        0.0,\\\\n        0.1,\\\\n        0.2,\\\\n        0.3,\\\\n        0.4,\\\\n        0.5,\\\\n        0.6,\\\\n        0.7,\\\\n        0.8,\\\\n        0.9,\\\\n        1.0\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"ced_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5436276932717098,\\\\n    \\\\\\\"std\\\\\\\": 0.24150761\n…[truncated 4085 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T22:32:03.179811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -30 /root/runs/faith-evidence-ie/d158_1_7b_rsft_s44_ced_score.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T22:32:03.180077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-25 03:20:12,173 INFO Scored 19500/24216 records\\\\n2026-05-25 03:21:36,701 INFO Scored 20000/24216 records\\\\n2026-05-25 03:23:04,327 INFO Scored 20500/24216 records\\\\n2026-05-25 03:24:29,196 INFO Scored 21000/24216 records\\\\n2026-05-25 03:25:55,747 INFO Scored 21500/24216 records\\\\n2026-05-25 03:27:25,718 INFO Scored 22000/24216 records\\\\n2026-05-25 03:28:42,910 INFO Scored 22500/24216 records\\\\n2026-05-25 03:30:17,273 INFO Scored 23000/24216 records\\\\n2026-05-25 03:31:42,005 INFO Scored 23500/24216 records\\\\n2026-05-25 03:32:51,166 INFO Scored 24000/24216 records\\\\n2026-05-25 03:33:33,222 INFO Scoring complete: 24216 records\\\\n2026-05-25 03:33:33,983 INFO Scores → /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_scores.jsonl\\\\n2026-05-25 03:33:33,988 INFO Truncation analysis: trunc=5000 (mean_f1=0.439), non-trunc=19216 (mean_f1=0.614), gap=0.175\\\\n2026-05-25 03:33:33,997 INFO After threshold filter: 23615/24216 (format>=0.50, f1>=0.10, ced>=0.00)\\\\n2026-05-25 03:33:33,998 INFO   f1 filter dropped 599 generations, 8 docs entirely\\\\n2026-05-25 03:33:34,006 INFO After top_1: 3019 records from 3019 documents\\\\n2026-05-25 03:33:34,084 INFO Training data → /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl (3019 samples)\\\\n2026-05-25 03:33:34,106 INFO Report → /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_report.json\\\\n\\\\n============================================================\\\\n  Total records:    24216\\\\n  Selected:         3019\\\\n  Selection rate:   12.5%\\\\n  Unique docs:      3019/3027\\\\n------------------------------------------------------------\\\\n  format_reward         mean=1.000  std=0.009  median=1.000  [min=0.000, max=1.000]\\\\n  f1_reward             mean=0.578  std=0.217  median=0.596  [min=0.000, max=1.000]\\\\n  ced_reward            mean=0.544  std=0.242  median=0.559  [min=0.000, max=0.998]\\\\n  combined_score        mean=0.649  std=0.147  median=0.659  [min=0.000, max=0.999]\\\\n==================\n…[truncated 149 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T22:32:03.180383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d158_1_7b_rsft_s44_ced_score",
+              "field": "metrics",
+              "value": "{'selected_records': 3019, 'total_scored': 24216, 'retention_rate': 0.1247, 'unique_docs_selected': 3019, 'unique_docs_total': 3027, 'selected_combined_score_mean': 0.7512, 'selected_f1_mean': 0.6986, 'selected_ced_mean': 0.6794, 'output_path': '/root/autodl-tmp/rsft_scored_1_7b_s44'}",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T22:32:03.180619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d158_1_7b_rsft_s44_ced_score",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/rsft_scored_1_7b_s44",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T22:32:03.180813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d158_1_7b_rsft_s44_ced_score",
+              "field": "log_path",
+              "value": "~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_ced_score.log",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T22:32:03.181070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_ced_score\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:13:38.408Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:31:14.333Z\\\", \\\"hypothesis\\\": \\\"1.7B seed=44 CED/NLI scoring + k=1 selection. 对 24216 个生成样本进行 CED 评分并筛选 top-1。预期保留 ~3021 样本（与 s42/s43 一致）。D158 强制检查点：保留数与 3021 差异 >10% 则暂停 A3。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_generate\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations_1_7b_s44 --output_path /root/autodl-tmp/rsft_scored_1_7b_s44 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 1 --scoring_mode ced\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/rsft_generations_1_7b_s44/generations.jsonl\\\", \\\"data_count\\\": 24216, \\\"model_name\\\": \\\"cross-encoder/nli-deberta-v3-base\\\", \\\"seed\\\": 44, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"325535\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_ced_score.log\\\", \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\", \\\"tmux_session\\\": \\\"d158_ced_score\\\", \\\"checkpoint_source\\\": \\\"d158_1_7b_rsft_s44_generate\\\", \\\"eval_data\\\": \\\"N/A\\\"}, \\\"metrics\\\": {\\\"selected_records\\\": 3019, \\\"total_scored\\\": 24216, \\\"retention_rate\\\": 0.1247, \\\"unique_docs_selected\\\": 3019, \\\"unique_docs_total\\\": 3027, \\\"selected_combined_score_mean\\\": 0.7512, \\\"selected_f1_mean\\\": 0.6986, \\\"selected_ced_mean\\\": 0.6794, \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3175}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T22:32:03.181357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_ced_score\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:13:38.408Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:31:18.091Z\\\", \\\"hypothesis\\\": \\\"1.7B seed=44 CED/NLI scoring + k=1 selection. 对 24216 个生成样本进行 CED 评分并筛选 top-1。预期保留 ~3021 样本（与 s42/s43 一致）。D158 强制检查点：保留数与 3021 差异 >10% 则暂停 A3。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_generate\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations_1_7b_s44 --output_path /root/autodl-tmp/rsft_scored_1_7b_s44 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 1 --scoring_mode ced\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/rsft_generations_1_7b_s44/generations.jsonl\\\", \\\"data_count\\\": 24216, \\\"model_name\\\": \\\"cross-encoder/nli-deberta-v3-base\\\", \\\"seed\\\": 44, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"325535\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_ced_score.log\\\", \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\", \\\"tmux_session\\\": \\\"d158_ced_score\\\", \\\"checkpoint_source\\\": \\\"d158_1_7b_rsft_s44_generate\\\", \\\"eval_data\\\": \\\"N/A\\\"}, \\\"metrics\\\": {\\\"selected_records\\\": 3019, \\\"total_scored\\\": 24216, \\\"retention_rate\\\": 0.1247, \\\"unique_docs_selected\\\": 3019, \\\"unique_docs_total\\\": 3027, \\\"selected_combined_score_mean\\\": 0.7512, \\\"selected_f1_mean\\\": 0.6986, \\\"selected_ced_mean\\\": 0.6794, \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.3525}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T22:32:03.181658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_ced_score\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:13:38.408Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:31:20.936Z\\\", \\\"hypothesis\\\": \\\"1.7B seed=44 CED/NLI scoring + k=1 selection. 对 24216 个生成样本进行 CED 评分并筛选 top-1。预期保留 ~3021 样本（与 s42/s43 一致）。D158 强制检查点：保留数与 3021 差异 >10% 则暂停 A3。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_generate\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations_1_7b_s44 --output_path /root/autodl-tmp/rsft_scored_1_7b_s44 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 1 --scoring_mode ced\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/rsft_generations_1_7b_s44/generations.jsonl\\\", \\\"data_count\\\": 24216, \\\"model_name\\\": \\\"cross-encoder/nli-deberta-v3-base\\\", \\\"seed\\\": 44, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"325535\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_ced_score.log\\\", \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\", \\\"tmux_session\\\": \\\"d158_ced_score\\\", \\\"checkpoint_source\\\": \\\"d158_1_7b_rsft_s44_generate\\\", \\\"eval_data\\\": \\\"N/A\\\"}, \\\"metrics\\\": {\\\"selected_records\\\": 3019, \\\"total_scored\\\": 24216, \\\"retention_rate\\\": 0.1247, \\\"unique_docs_selected\\\": 3019, \\\"unique_docs_total\\\": 3027, \\\"selected_combined_score_mean\\\": 0.7512, \\\"selected_f1_mean\\\": 0.6986, \\\"selected_ced_mean\\\": 0.6794, \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_ced_score.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1599}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T22:32:03.181921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d158_1_7b_rsft_s44_ced_score",
+              "field": "conclusion",
+              "value": "success",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T22:32:03.182187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_ced_score\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:13:38.408Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:31:26.014Z\\\", \\\"hypothesis\\\": \\\"1.7B seed=44 CED/NLI scoring + k=1 selection. 对 24216 个生成样本进行 CED 评分并筛选 top-1。预期保留 ~3021 样本（与 s42/s43 一致）。D158 强制检查点：保留数与 3021 差异 >10% 则暂停 A3。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_generate\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations_1_7b_s44 --output_path /root/autodl-tmp/rsft_scored_1_7b_s44 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 1 --scoring_mode ced\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/rsft_generations_1_7b_s44/generations.jsonl\\\", \\\"data_count\\\": 24216, \\\"model_name\\\": \\\"cross-encoder/nli-deberta-v3-base\\\", \\\"seed\\\": 44, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"325535\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_ced_score.log\\\", \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\", \\\"tmux_session\\\": \\\"d158_ced_score\\\", \\\"checkpoint_source\\\": \\\"d158_1_7b_rsft_s44_generate\\\", \\\"eval_data\\\": \\\"N/A\\\"}, \\\"metrics\\\": {\\\"selected_records\\\": 3019, \\\"total_scored\\\": 24216, \\\"retention_rate\\\": 0.1247, \\\"unique_docs_selected\\\": 3019, \\\"unique_docs_total\\\": 3027, \\\"selected_combined_score_mean\\\": 0.7512, \\\"selected_f1_mean\\\": 0.6986, \\\"selected_ced_mean\\\": 0.6794, \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_ced_score.log\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9106}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T22:32:03.182452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d158_1_7b_rsft_s44_ced_score",
+              "field": "status",
+              "value": "DONE",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T22:32:03.182736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_ced_score\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:13:38.408Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:31:31.393Z\\\", \\\"hypothesis\\\": \\\"1.7B seed=44 CED/NLI scoring + k=1 selection. 对 24216 个生成样本进行 CED 评分并筛选 top-1。预期保留 ~3021 样本（与 s42/s43 一致）。D158 强制检查点：保留数与 3021 差异 >10% 则暂停 A3。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_generate\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations_1_7b_s44 --output_path /root/autodl-tmp/rsft_scored_1_7b_s44 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 1 --scoring_mode ced\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/rsft_generations_1_7b_s44/generations.jsonl\\\", \\\"data_count\\\": 24216, \\\"model_name\\\": \\\"cross-encoder/nli-deberta-v3-base\\\", \\\"seed\\\": 44, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"325535\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_ced_score.log\\\", \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\", \\\"tmux_session\\\": \\\"d158_ced_score\\\", \\\"checkpoint_source\\\": \\\"d158_1_7b_rsft_s44_generate\\\", \\\"eval_data\\\": \\\"N/A\\\"}, \\\"metrics\\\": {\\\"selected_records\\\": 3019, \\\"total_scored\\\": 24216, \\\"retention_rate\\\": 0.1247, \\\"unique_docs_selected\\\": 3019, \\\"unique_docs_total\\\": 3027, \\\"selected_combined_score_mean\\\": 0.7512, \\\"selected_f1_mean\\\": 0.6986, \\\"selected_ced_mean\\\": 0.6794, \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_ced_score.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-24T22:31:31.393Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4356}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T22:32:03.183009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:CronDelete",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T22:32:03.183203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T22:32:03.183418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:CronList",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-24T22:32:03.183604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T22:32:03.183786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called CronList"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "CronList"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-24T22:32:03.183961+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No scheduled jobs."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041",
+            "tool": "CronList",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-24T22:32:03.184202+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No active cron to delete — already cleared.\n\n**汇报：**\n\n| 项目 | 值 |\n|---|---|\n| 状态 | **成功** |\n| k=1 保留样本数 | **3019** |\n| vs s42 (3021) 差异 | **-2 条 (-0.07%)** |\n| D158 检查点 | **通过** （远低于 10% 阈值） |\n| 输出路径 | `/root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl` |\n| selected combined_score mean | 0.7512 |\n| selected f1 mean | 0.6986 |\n| selected ced mean | 0.6794 |\n\nRegistry 已更新为 DONE/success。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d158_a2_ced_check_20260524T223041"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/ops-d158-a2-ced-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e5df39d35fcbf19239e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh rsft diversity diagnosis",
+  "task_key": "worker_ssh_rsft-diversity-diagnosis_20260515T010423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rsft-diversity-diagnosis_20260515T010423_result.json",
+    "occurrence": 1,
+    "bytes": 1688,
+    "sha256": "aaeaf599d97afccd9a3908475058ec38f526ae08a6bed0db41b5140e2f755b39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到根因了。\n\n## 诊断结果\n\n### 1. 实际运行参数\n```\n--temperature 0.7 --num_generations 8 --batch_size 2 --max_new_tokens 1024 --seed 42\n```\n代码中 `generate_batch()` 设置: `do_sample=True, temperature=0.7, top_p=0.9` — 采样配置完全正确。\n\n### 2. 实际 diversity（基于数据文件分析）\n```\nTotal docs: 208 (1664 lines / 8 gens per doc)\nAvg diversity: 7.6/8 (94.7%)\n8/8 unique: 166 docs (79.8%)\n7/8 unique:  24 docs (11.5%)\n≤6/8:        18 docs (8.7%)\n```\n**Diversity 非常好，没有危机。**\n\n### 3. 根因：监控日志的显示 bug\n\n`_print_monitor` 第 260 行:\n```python\nmean_div = div_sum / n_docs   # 这是 0~1 的比率，如 0.947\nprint(f\"  mean_diversity: {mean_div:.1f}/{args.num_generations}\")\n```\n\n`diversity` 在第 325 行计算时已经除以了 `num_generations`:\n```python\ndiversity = len(doc_triple_sets) / args.num_generations  # e.g. 8/8 = 1.0\n```\n\n所以 `mean_div` 已经是 **比率**（0~1），但显示格式 `{mean_div:.1f}/{num_generations}` 让它看起来像 \"0.9 个 unique / 8 个 total\"。实际含义是 **diversity ratio = 0.9 = 7.2/8**。\n\n监控显示 `0.9/8` 被误读为\"8个中只有0.9个不同\"，实际是\"diversity比率0.9，即约7.2/8 unique\"。\n\n### 4. 修复建议\n\n改 `_print_monitor` 第 260 行:\n```python\n# 改前（误导）:\nprint(f\"  mean_diversity: {mean_div:.1f}/{args.num_generations}\")\n\n# 改后:\nprint(f\"  mean_diversity: {mean_div * args.num_generations:.1f}/{args.num_generations}\")\n```\n\n**结论：generation 没有问题，diversity 7.6/8 很健康。只是监控日志的显示有误导性 bug。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rsft-diversity-diagnosis.md"
+}

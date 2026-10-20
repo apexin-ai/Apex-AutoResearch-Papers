@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3d066aeaf57a26addb6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops fix cuda1 duplicate eval",
+  "task_key": "worker_ops_fix-cuda1-duplicate-eval_20260514T204307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-cuda1-duplicate-eval_20260514T204307_result.json",
+    "occurrence": 1,
+    "bytes": 488,
+    "sha256": "f7033918f7d48bc32199681a53e6deb39d4c9d994c354067940a089747221328"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**报告：**\n\n| 项目 | 状态 |\n|------|------|\n| **PID 97333 (含子进程树)** | ✅ ALL KILLED（97333/97334/97339/97340 全部清除） |\n| **PID 96500** | ✅ ALIVE，已运行 21 分钟，状态 Rl+（正在执行） |\n| **ckpt-20 eval 结果** | 未完成，metrics.json 尚不存在 |\n| **eval 进度** | 4/62 batches（~6%），每 batch 约 160s，预计还需 ~2.5 小时 |\n| **cuda:1** | 仅 PID 96500 占用 9710 MiB，重复进程已清除干净 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-cuda1-duplicate-eval-copy-2.md"
+}

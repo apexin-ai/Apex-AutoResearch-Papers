@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a584e8e53fec8004f68b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research codalab submission prep",
+  "task_key": "worker_research_codalab-submission-prep_20260522T115222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_codalab-submission-prep_20260522T115222_result.json",
+    "occurrence": 1,
+    "bytes": 3232,
+    "sha256": "ac43036d65f1ad3f423433c6b1630209c2a95a377883ede7f57858df56737ae9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have enough information to compile the report.\n\n---\n\n## 调研报告：Re-DocRED CodaLab 提交\n\n### 1. 已有文件清单\n\n| 文件名 | 大小 | 格式 |\n|--------|------|------|\n| `test_eval_14b_rsft_s42.json` | 1.0MB | ✅ list format |\n| `test_eval_14b_sft_s42.json` | 1.3MB | ✅ list format |\n| `test_eval_14b_sft_s42_no_evi.json` | 1.3MB | ✅ list format |\n| `test_eval_4b_rsft_s42_v2.json` | 872KB | ✅ list format |\n| `test_eval_4b_sft_s42.json` | 963KB | ✅ list format |\n| `test_eval_4b_sft_s42_no_evi.json` | 984KB | ✅ list format |\n| `test_eval_8b_rsft_s42.json` | 736KB | ✅ list format |\n| `test_eval_8b_sft_s42.json` | 796KB | ✅ list format |\n| `test_eval_1_7b_rsft_s42.json` | 709KB | ✅ list format |\n| `test_eval_1_7b_sft_s42.json` | 730KB | ✅ list format |\n| `test_eval_1_7b_sft_s42_no_evi.json` | 538KB | ✅ list format |\n| `test_eval_llama_rsft_s42.json` | 885KB | ✅ list format |\n| `test_eval_llama_sft_s42.json` | 874KB | ✅ list format |\n| `test_eval_llama_sft_s42_no_evi.json` | 652KB | ✅ list format |\n\n每个文件格式为 `[{\"title\": str, \"h_idx\": int, \"t_idx\": int, \"r\": str, \"evidence\": [int, ...]}]`，与评估脚本期望格式一致。\n\n### 2. 关键发现：Re-DocRED 没有 CodaLab\n\n**Re-DocRED 和 DocRED 的 leaderboard 机制完全不同：**\n\n| | 原始 DocRED | Re-DocRED |\n|---|---|---|\n| Test labels | 不公开 | **公开**（在 GitHub repo 的 data/ 目录） |\n| 评估方式 | 必须提交 CodaLab | **本地运行 evaluation.py** |\n| Leaderboard | [CodaLab](https://competitions.codalab.org/competitions/20717) | [Papers with Code](https://paperswithcode.com/sota/relation-extraction-on-redocred)（自报告） |\n| 提交格式 | result.json → zip → 上传 | 无需提交，本地评估 |\n\nKD-DocRE 仓库中提到的 \"compress and submit to CodaLab\" 指的是**原始 DocRED**（注释不完整、60%+ 漏标），不是 Re-DocRED。\n\n### 3. 原始 DocRED CodaLab 提交要求（如需提交）\n\n- **URL**: https://competitions.codalab.org/competitions/20717 （当前返回 502，可能已不稳定）\n- **格式**: 单个 `result.json` 文件\n- **结构**: 与我们已有文件完全相同 `[{title, h_idx, t_idx, r, evidence}]`\n- **打包**: `zip result.zip result.json`（json 必须在 zip 根目录，不能嵌套文件夹）\n- **指标**: Ign F1 / F1\n- **注意**: 该 CodaLab 使用原始 DocRED 的 test 标注（有大量漏标），评估结果会系统性偏低\n\n### 4. 结论和后续行动\n\n**我们项目使用 Re-DocRED，不需要 CodaLab 提交。** 我们已有的本地 eval（ign_f1=0.3849 for 14B RSFT）就是最终评估结果。\n\n如果想上 leaderboard：\n1. **Papers with Code**：自报告，不需要格式转换。在 https://paperswithcode.com/sota/relation-extraction-on-redocred 点 \"Add a result\" 即可\n2. **原始 DocRED CodaLab**：可以提交，但那个 benchmark 已经被 Re-DocRED 淘汰（漏标严重），且 CodaLab 服务器可能已不稳定（502）\n\n**建议**：如果论文需要 leaderboard 数据点，直接用 Re-DocRED 本地 eval 结果 + Papers with Code 自报告。不必折腾原始 DocRED CodaLab。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-codalab-submission-prep.md"
+}

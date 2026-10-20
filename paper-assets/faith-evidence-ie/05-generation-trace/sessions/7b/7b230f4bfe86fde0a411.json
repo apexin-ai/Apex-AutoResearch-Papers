@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b230f4bfe86fde0a411",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval test eval 4b rsft s43 with evi",
+  "task_key": "worker_eval_test_eval_4b_rsft_s43_with_evi_20260523T010751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_test_eval_4b_rsft_s43_with_evi_20260523T010751_result.json",
+    "occurrence": 1,
+    "bytes": 322,
+    "sha256": "c2b6439a19e212f6ac84059fbea4619d97f151ae65568971ad74159f817e545a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并确认运行：\n\n- **exp_id**: `test_eval_4b_rsft_s43_with_evi`\n- **PID**: 213753，rtx5090-4x cuda:2\n- **状态**: RUNNING\n- **日志**: `/tmp/test_eval_4b_rsft_s43_with_evi.log`\n- **输出目录**: `/root/autodl-tmp/eval_results/test_eval_4b_rsft_s43_with_evi`\n- **预估耗时**: ~1.1h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-test-eval-4b-rsft-s43-with-evi.md"
+}

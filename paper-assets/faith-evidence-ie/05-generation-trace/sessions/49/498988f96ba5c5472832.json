@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "498988f96ba5c5472832",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose cuda1 conflict",
+  "task_key": "worker_diagnose_cuda1_conflict_20260515T201048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cuda1_conflict_20260515T201048_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "ee17fd018a7a7b113edf77e992e97a2572bd579a57c15c851f9c42812236a428"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果：\n\n### GPU 占用\n\n| GPU | 显存占用 | PID | 用途 |\n|-----|---------|-----|------|\n| 0 | 16278/32607 MiB (32%) | 236779 | 其他实验 |\n| 1 | 16916/32607 MiB (86%) | 249551 | **plan_011** (249541 的子进程) |\n| 2 | 22682/32607 MiB (95%) | 245108 | 其他实验 |\n| 3 | 20084/32607 MiB (0%) | 234494 | 其他实验 |\n\n### 存活状态\n\n- **plan_011_bf16_g8_step_eval** (pid 249541) — **存活**，GPU 1 独占，运行 11 分钟\n- **plan_009_flatnli_reward_eval_r2** (pid 246974) — **已死**，进程不存在。日志显示加载 checkpoint-40 后 inference 刚开始 (0/62) 就中断了，应该是被 plan_011 上 GPU 挤掉 OOM\n\n### 操作\n\n- plan_009 的 tmux session 不存在（已自行清理），无需 kill\n- **无需任何操作**，冲突已自然解决\n\n### plan_011 日志（最后进展）\n\n正在评估 **step 30 checkpoint**，inference 进度 **11/62 batches (~18%)**，每 batch 约 55 秒。step 30 预计还需 ~47 分钟完成，之后还有 step 50 和 step 70。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cuda1-conflict.md"
+}

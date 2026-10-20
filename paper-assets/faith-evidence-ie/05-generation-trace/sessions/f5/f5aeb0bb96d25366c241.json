@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5aeb0bb96d25366c241",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops cuda1 triage and progress",
+  "task_key": "worker_ops_cuda1_triage_and_progress_20260517T021407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda1_triage_and_progress_20260517T021407_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "f49369678c94c599bfa9e12a6562c87a303c3cbad2c348768bb768dc43606bda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n**1. s43 结果：无**\n目录 `/root/autodl-tmp/eval_results/plan_002_test_rsft_s43` 存在但为空（仅创建了目录，无任何输出文件）。进程 PID 390436 崩溃未产出结果，需重跑。\n\n**2. 1.7B CED scoring：进度 66%，运行中**\n- 当前：16000/24216 records（66.1%）\n- 速率：约 500 records / 2.3 min\n- 剩余约 8216 records → 预计还需 ~38 分钟完成\n- 运行在 cuda:0（12.6GB 占用）\n\n**3. cuda:1 状态：占用**\n\n| GPU | 显存占用 | 总显存 | 利用率 |\n|-----|---------|--------|--------|\n| 0 | 12596 MiB | 32607 MiB | 86% |\n| 1 | **11415 MiB** | 32607 MiB | 48% |\n| 2 | 1533 MiB | 32607 MiB | 31% |\n| 3 | 25281 MiB | 32607 MiB | 71% |\n\ncuda:1 占用 11.4GB，**不空闲**。cuda:2 是唯一接近空闲的卡（1.5GB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda1-triage-and-progress.md"
+}

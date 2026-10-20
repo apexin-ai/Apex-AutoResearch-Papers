@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "633212f9acae49c70157",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 001 monitor and train",
+  "task_key": "worker_ops_plan_001_monitor_and_train_20260515T140013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_001_monitor_and_train_20260515T140013_result.json",
+    "occurrence": 1,
+    "bytes": 196,
+    "sha256": "f21a192b3f2ecb21b32f01570179a544e4dc9a55b4b48ff54810fd0941d03894"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- PID 208148 运行中，NLI scoring 已完成 1000/21728 条（~4.6%）\n- 速度 ~500条/分钟，预计 ~40 分钟后完成\n- 4.5 分钟后自动轮询下一次"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-001-monitor-and-train.md"
+}

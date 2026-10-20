@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75d4e17620ed6b9746be",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval 4b rsft no evi result",
+  "task_key": "worker_eval_4b-rsft-no-evi-result_20260523T000332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_4b-rsft-no-evi-result_20260523T000332_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "4e558994d9a89b4262804c89ff20d795804730a01657bc6d0a48ca250e63ec94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前 session 无 cron，已在之前 session 过期或清理。\n\n## 4B RSFT no-evi test 结果\n状态: **success** (进程已退出，结果完整)\n\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | **0.2652** |\n| f1 | 0.2652 |\n| precision | 0.3557 |\n| recall | 0.2115 |\n| evi_f1(DREEAM) | 0.0014 |\n| evi_f1(TP) | 0.0074 |\n| EDCR | 0.80 |\n| truncated | 224/500 (44.8%) |\n| format_ok | 500/500 (100%) |\n\n**RSFT test evidence tax: no_evi(0.2652) - with_evi(0.2501) = +1.51pp**\n\nno-evidence 反而比 with-evidence 高 1.5pp，与 dev 上观察到的 evidence tax 方向一致（去掉 evidence 输出要求后，模型可以把更多 token budget 用于关系抽取本身）。\n\nRegistry 已更新为 DONE/success。\n\n## 14B s43 generation 状态\n状态: **进行中** (PID 194682, 运行 5h47m)\n进度: **993/3027 docs (32.8%)**\n预计剩余: ~20s/doc × 2034 docs ≈ **11-12 小时**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-4b-rsft-no-evi-result.md"
+}

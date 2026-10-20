@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2c4ee616a7fc2be3e54",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose d112 shard0 exit",
+  "task_key": "worker_diagnose_d112_shard0_exit_20260519T020829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_d112_shard0_exit_20260519T020829_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "c19793b0ff34af4bc188346ac896e14ea0ceb8405b2a4f2397f852b2709ca505"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**Shard 0: 正常完成，非 crash。** 6048 行 = 756 docs × 8 generations，全部生成完毕后进程正常退出。\n\n### 4 Shard 进度概览\n\n| Shard | GPU | Lines | Docs Done | Status |\n|-------|-----|-------|-----------|--------|\n| 0 | cuda:3 | 6048 | 756/756 | **DONE** |\n| 1 | (running) | 4384 | 548 | Running |\n| 2 | (running) | 4800 | 600 | Running |\n| 3 | (running) | 3824 | 478 | Running |\n\nGPU 0/1/2 各有 python 进程活跃（17-19 GiB），shard 1/2/3 仍在生成中。cuda:3 已空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d112-shard0-exit.md"
+}

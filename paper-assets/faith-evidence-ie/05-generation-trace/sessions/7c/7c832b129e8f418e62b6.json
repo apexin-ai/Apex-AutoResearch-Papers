@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c832b129e8f418e62b6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis llama fair tax recompute",
+  "task_key": "worker_analysis_llama-fair-tax-recompute_20260522T062210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama-fair-tax-recompute_20260522T062210_result.json",
+    "occurrence": 1,
+    "bytes": 1197,
+    "sha256": "eb0fd6c4822ffdfa4fff9b5a4a07dff324afff35f091f6b44a52dc7046ffbf42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终结果\n\n| Seed | fair_subset | with_evi ign_f1 | no_evi ign_f1 | fair_tax | raw_tax |\n|------|------------|-----------------|---------------|----------|---------|\n| s42 | 873 | 57.16 | 55.64 | **-1.53pp** | -4.39pp |\n| s43 | 834 | 49.10 | 37.89 | **-11.20pp** | -15.65pp |\n| s44 | 977 | 46.79 | 43.95 | **-2.83pp** | -2.82pp |\n| **Mean±Std** | | | | **-5.19±4.29pp** | -7.62±5.71pp |\n\n**与 Reviewer raw tax 对比：**\n- 方向完全一致（全部为负 = evidence helps）\n- fair_tax 幅度整体缩小（-5.19 vs -7.62），符合预期——去掉 format 失败的 docs 后，no-evi 在 fair subset 上表现提升（那些 format 失败的是 no-evi 的弱文档）\n- s43 仍然是最极端的 seed（no-evi format_ok 只有 834/985），fair_tax 从 -15.65 缩小到 -11.20 但仍很大\n- s44 几乎不变（-2.83 vs -2.82），因为 format_ok 高达 977/985，fair subset ≈ full set\n\nJSON 输出已保存：\n- `/root/autodl-tmp/eval_results/fair_tax_llama_sft_s42_matched_2048_v2.json`\n- `/root/autodl-tmp/eval_results/fair_tax_llama_sft_s43_matched_2048_v2.json`\n- `/root/autodl-tmp/eval_results/fair_tax_llama_sft_s44_matched_2048_v2.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-fair-tax-recompute.md"
+}

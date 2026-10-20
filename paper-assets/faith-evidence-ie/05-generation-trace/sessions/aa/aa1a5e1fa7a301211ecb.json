@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa1a5e1fa7a301211ecb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops cuda2 cleanup submit s45 r4",
+  "task_key": "worker_ops_cuda2-cleanup-submit-s45-r4_20260516T003350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda2-cleanup-submit-s45-r4_20260516T003350_result.json",
+    "occurrence": 1,
+    "bytes": 245,
+    "sha256": "f9399fd646ab6292480f6303067f63cf3d81924b78c80daa657bd3936e639493"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **cuda:2 状态**: orphan PID 276148 已自行消失，显存已释放\n- **训练已提交**: rsft_ced_s45_train_r4, PID=279526, cuda:2 占用 27.9GB\n- **Registry 已更新**: RUNNING，含完整 provenance 信息"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda2-cleanup-submit-s45-r4.md"
+}

@@ -1,0 +1,333 @@
+{
+  "schema_version": "1.0",
+  "id": "679a16569ccd949bd7eb",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "eval test eval 8b rsft s42",
+  "task_key": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_test_eval_8b_rsft_s42_20260521T182956.jsonl",
+    "occurrence": 1,
+    "bytes": 9720,
+    "sha256": "261848edc57f378f06472c79e20e4f7cacf1fe2599870207436bb8b673f6f492"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T18:30:54.266989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T18:30:54.267520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T18:30:54.267791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-3393/adapter_config.json /root/autodl-tmp/sft_output_qwen3_8b_bf16/adapter_config.json /root/autodl-tmp/models/Qwen/Qwen3-8B/config.json /root/autodl-tmp/data/re-docred-repo/data/test_revised.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T18:30:54.268005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T18:30:54.268223+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 3207228 May 16 14:35 /root/autodl-tmp/data/re-docred-repo/data/test_revised.json\\\\n-rw-r--r-- 1 root root     728 May 16 14:39 /root/autodl-tmp/models/Qwen/Qwen3-8B/config.json\\\\n-rw-r--r-- 1 root root    1117 May 16 16:55 /root/autodl-tmp/sft_output_qwen3_8b_bf16/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-3393/adapter_config.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T18:30:54.269426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 97887 MiB\\\\n1, 0 MiB, 97887 MiB\\\\n2, 0 MiB, 97887 MiB\\\\n3, 11767 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T18:30:54.269673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/rsft_output_qwen3_8b/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T18:30:54.269883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/rsft_output_qwen3_8b/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T18:30:54.270105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/rsft_output*",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T18:30:54.270349+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_14b\\\\n/root/autodl-tmp/rsft_output_4b_sft_s44\\\\n/root/autodl-tmp/rsft_output_4b_sft_s44_bf16\\\\n/root/autodl-tmp/rsft_output_ced_s43\\\\n/root/autodl-tmp/rsft_output_llama_3_1_8b_k1\\\\n/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43\\\\n/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44\\\\n/root/autodl-tmp/rsft_output_nli_large\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44\\\\n/root/autodl-tmp/rsft_output_qwen3_8b_k1\\\\n/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43\\\\n/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44\\\\n/root/autodl-tmp/rsft_output_random_k1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T18:30:54.270606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/rsft_output_qwen3_8b_k1/",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T18:30:54.270840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-1100\\\\ncheckpoint-1134\\\\nmerges.txt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T18:30:54.271107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "test_eval_8b_rsft_s42",
+              "field": "hypothesis",
+              "value": "Re-DocRED test set eval: Qwen3-8B RSFT s42 (CED k1, nested LoRA) on test_revised.json (500 docs)。dev ign_f1=0.5433 (3-seed mean)。验证 dev 性能是否泛化到 test set，填充 test set scaling table 8B 数据点。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T18:30:54.271442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T11:47:19.641Z\\\", \\\"updated_at\\\": \\\"2026-05-21T18:30:45.659Z\\\", \\\"hypothesis\\\": \\\"Re-DocRED test set eval: Qwen3-8B RSFT s42 (CED k1, nested LoRA) on test_revised.json (500 docs)。dev ign_f1=0.5433 (3-seed mean)。验证 dev 性能是否泛化到 test set，填充 test set scaling table 8B 数据点。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 42 --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s42\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"109958\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_8b_rsft_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T14:07:50.809Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_8b_rsft_s42\\\", \\\"wall_clock_seconds\\\": 2978.2, \\\"gpu_hours\\\": 0.83}, \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-21T14:07:47.834Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 4\n…[truncated 873 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T18:30:54.271785+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "这个实验已经完成了。Registry 显示 `test_eval_8b_rsft_s42` 状态为 **DONE (success)**，无需重新提交。\n\n结果：\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | 0.3353 |\n| f1 | 0.3353 |\n| precision | 0.5149 |\n| recall | 0.2486 |\n| evi_f1_dreeam | 0.2526 |\n| format_ok_rate | 0.998 |\n| wall_clock | ~50 min |\n\n完成时间：2026-05-21T14:57:29Z，使用路径 `/root/autodl-tmp/rsft_output_qwen3_8b_k1`（非用户指定的 checkpoint-3393，该路径不存在）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s42_20260521T182956"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/eval-test-eval-8b-rsft-s42.md"
+}

@@ -1,0 +1,1032 @@
+{
+  "schema_version": "1.0",
+  "id": "a3e4f98c966c57ff92da",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "knowledge sync experiment plan d112",
+  "task_key": "worker_knowledge_sync_experiment_plan_d112_20260518T232310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_sync_experiment_plan_d112_20260518T232310.log",
+    "occurrence": 1,
+    "bytes": 73322,
+    "sha256": "f038f6575427425a220d899c069596a4e6ff86496d21ccfe28504513c3e24781"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "bed41794-5d4d-41d8-a79e-e67f4f7079b0",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779162600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "51c0e9db-91c2-4d50-8b10-9d92e6a271ff",
+                "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me find the experiment_plan.yaml file first, then read it and make the requested changes.",
+              "signature": "EpgCClkIDRgCKkCWBBK4kg0iYwTvjja3xYUN6H8ol2GLw3Rrph1F8ePvVj2mCQs6F8zUNHSrB5MAugHGln/JjBOCrfWC3Vy++0ySMg9jbGF1ZGUtb3B1cy00LTY4ABIM/9j7uo/gBOKKRo5sGgwfneFJFMF1t0UiClUiMClXA92KoKVBXZQxL8kizfmHM+uoe1OR4xp+RWfk/FgtMpiSDUa0d44ludsG011HcSpt2YrM5QkcjS914R7hRQGmakub37hhskiRT7/YG088xJKcshGneP4EDAexFpGYZe1VGEQEbDJAZpdxp10YpwPUvar5dRGS+I8YLEv0IDuqMnh/w31cbE9yDl1aT4Ctci8C+hE+IjSquV+PA22nNxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "43675d62-7754-403f-9058-1f48cc53aed9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019NZ5WYPHBcyyzY156weRRv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13675,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13675
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AWAdsZSTVebiFxEj329sdX",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/**/experiment_plan.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "d0a98da3-3bf1-4e05-9a60-2f04e09ea04c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019NZ5WYPHBcyyzY156weRRv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13675,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13675
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T23:23:22.979Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AWAdsZSTVebiFxEj329sdX",
+              "type": "tool_result",
+              "content": "experiment_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "076f41c2-64ed-4979-bf40-ef99264657ee",
+            "tool_use_result": {
+              "filenames": [
+                "experiment_plan.yaml"
+              ],
+              "durationMs": 22,
+              "numFiles": 1,
+              "truncated": false
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hn8rzcVoeELSqNaNtj2Wnj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "5c5d6ef9-03c3-4e2e-a6e6-b8583617c789",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RyWtuXaScpvZUvFvHZQyhg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 140,
+                "cache_read_input_tokens": 25516,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 140
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T23:23:27.158Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hn8rzcVoeELSqNaNtj2Wnj",
+              "type": "tool_result",
+              "content": "1\texperiments:\n2\t- id: plan_001\n3\t  claim: 2\n4\t  description: 'CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选\n5\t    RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py\n6\t    用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。'\n7\t  priority: P0\n8\t  gpu_budget_hours: 20\n9\t  deps: []\n10\t  registry_id: eval_flat_nli_seed45\n11\t- id: plan_002\n12\t  claim: 1\n13\t  description: 'Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set\n14\t    上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。'\n15\t  priority: P0\n16\t  gpu_budget_hours: 4\n17\t  deps:\n18\t  - plan_001\n19\t  registry_id: plan_002_test_rsft_s44\n20\t- id: plan_003\n21\t  claim: 4\n22\t  description: 'EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing\n23\t    方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。'\n24\t  priority: P0\n25\t  gpu_budget_hours: 2\n26\t  deps:\n27\t  - plan_001\n28\t  registry_id: plan_003_edcr_diagnostic\n29\t- id: plan_004\n30\t  claim: 1\n31\t  description: 'DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large)\n32\t    的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。'\n33\t  priority: P0\n34\t  gpu_budget_hours: 8\n35\t  deps: []\n36\t  registry_id: plan_004_dreeam_baseline\n37\t- id: plan_005\n38\t  claim: 1\n39\t  description: 'CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。'\n40\t  priority: P1\n41\t  gpu_budget_hours: 6\n42\t  deps: []\n43\t  registry_id: mvp2_ced_reranker_poc\n44\t- id: plan_006\n45\t  claim: 1\n46\t  description: 'Model size ablation (D077 升 P0): Qwen3-1.7B 和 Qwen3-8B 上复现 SFT → RSFT\n47\t    → eval pipeline，验证 evidence tax + RSFT 增益 + decoupling 在不同模型规模下成立。应对 RC4 和 scope\n48\t    不足问题。'\n49\t  priority: P0\n50\t  gpu_budget_hours: 32\n51\t  deps: []\n52\t  registry_id: plan_006_qwen3_1_7b_no_evidence_eval_v3\n53\t- id: plan_007\n54\t  claim: 1\n55\t  description: 'Re-DocRED cross-dataset (D077 升 P0): 在 Re-DocRED 上用当前 best config\n56\t    做 SFT → RSFT → eval。数据已就绪（格式与 DocRED 兼容，96 relation types 一致）。⚠️ Re-DocRED ~55%\n57\t    triples 无 evidence 标注（修正的 false negative），必须报告两种模式：evidence_only（与 DocRED 可比的\n58\t    evi_f1，仅 43% triples）+ full（全部 triples 的 rel_f1，无 evi_f1）。转换脚本已支持 --mode full。'\n59\t  priority: P0\n60\t  gpu_budget_hours: 16\n61\t  deps: []\n62\t  registry_id: plan_007_redocred_rsft_eval_r5\n63\t- id: plan_016\n64\t  claim: 2\n65\t  description: 'LLaMA-3.1-8B cross-family validation (D077 新增): 在非 Qwen 家族模型上复现核心\n66\t    pipeline (SFT → RSFT → GRPO QLoRA)，验证 decoupling spectrum 跨模型家族成立。关键实验：LLaMA GRPO\n67\t    QLoRA 是否也出现 catastrophic forgetting。'\n68\t  priority: P0\n69\t  gpu_budget_hours: 40\n70\t  deps: []\n71\t  registry_id: plan_016_llama_rsft_candidates\n72\t- id: plan_008\n73\t  claim: 2\n74\t  description: 'top_k ablation: CED scoring 筛选 top_k=3（更多训练数据 ~8000 samples）vs top_k=1（更严格\n75\t    ~2718 samples），验证 CED 过滤严格度对 RSFT 质量的影响。'\n76\t  priority: P1\n77\t  gpu_budget_hours: 8\n78\t  deps: []\n79\t  registry_id: reeval_rsft_topk3\n80\t- id: plan_011\n81\t  claim: 3\n82\t  description: 'GRPO G=8 实验: Dream 三档一致指出 G=4 太小，标准 GRPO 用 G=8-16。用 G=8 + CED reward\n83\t    + kl_coef=0.01 重跑 GRPO，验证 failure 是否持续。如仍 fail → 加强 Claim 3；如改善 → 需修改论文结论。可能需要\n84\t    gradient_accumulation 适配显存。'\n85\t  priority: P0\n86\t  gpu_budget_hours: 8\n87\t  deps: []\n88\t  registry_id: plan_011_bf16_g8_step_eval\n89\t- id: plan_012\n90\t  claim: 3\n91\t  description: 'DPO+CED experiment: 用 RSFT 候选数据构造 preference pairs (CED-preferred\n92\t    vs CED-rejected)，DPO 训练。验证 DPO 是否避免 GRPO 的 catastrophic forgetting。Dream v2 三档要求\n93\t    DPO 作为 RL spectrum 关键数据点，必须补全训练超参（β, lr, epochs, pair construction）。D045 升 P0。'\n94\t  priority: P0\n95\t  gpu_budget_hours: 12\n96\t  deps: []\n97\t  registry_id: plan_012_dpo_ced\n98\t- id: plan_013\n99\t  claim: 4\n100\t  description: '[CANCELLED by D104] EDCR 人工标注验证: 用户决定不做。RC6 用 per-relation 分析 + Limitations\n101\t    说明替代。'\n102\t  priority: CANCELLED\n103\t  gpu_budget_hours: 0\n104\t  deps: []\n105\t  registry_id: null\n106\t- id: plan_009\n107\t  claim: 3\n108\t  description: 'GRPO forgetting dynamics figure: 整理全部 GRPO checkpoint（42个）的 rel_f1/evi_f1/EDCR/reward\n109\t    轨迹，绘制 training dynamics 可视化图。包含 G=4 vs G=8 对比、三种 reward 对比。Dream v2 三档一致要求此图作为论文核心\n110\t    figure。数据已有，只需汇总+画图。'\n111\t  priority: P0\n112\t  gpu_budget_hours: 2\n113\t  deps: []\n114\t  registry_id: plan_009_dynamics_figure\n115\t- id: plan_010\n116\t  claim: 1\n117\t  description: 'NLI model ablation: DeBERTa-v3-base vs DeBERTa-v3-large 作为 CED scorer\n118\t    的对比，验证 NLI 模型能力对 CED 打分质量的影响。应对 RC1。D104 升级。'\n119\t  priority: P1\n120\t  gpu_budget_hours: 4\n121\t  deps: []\n122\t  registry_id: null\n123\t- id: plan_014\n124\t  claim: 1\n125\t  description: 'SFT-without-evidence ablation: 训练 Qwen3-4B SFT 只输出 relation triples（不含\n126\t    evidence sentences），对比标准 SFT（含 evidence）的 rel_f1。隔离 evidence generation 对抽取性能的代价。Dream\n127\t    v2 三档一致要求。用于回答\"43.2% vs LMRC 60.7% 的 gap 有多少来自 evidence 生成负担\"。'\n128\t  priority: P0\n129\t  gpu_budget_hours: 8\n130\t  deps: []\n131\t  registry_id: plan_014_sft_no_evidence\n132\t- id: plan_015\n133\t  claim: 2\n134\t  description: 'bf16 LoRA GRPO clean control: 与原始 GRPO (QLoRA 4-bit, G=4, kl=0, CED\n135\t    reward) 只改一个变量——quantization 从 QLoRA 4-bit 改为 bf16 LoRA。G=4, kl_coef=0 不变。目的:\n136\t    隔离 QLoRA confound，判断 decoupling 是 QLoRA artifact 还是 genuine RL-for-IE 现象。Dream\n137\t    v2 三档一致的 critical 要求。如 decoupling 在 bf16 下仍持续 → 可泛化 claim；如消失 → QLoRA 特定，需 re-scope。优先级取决于\n138\t    plan_011 eval 结果。'\n139\t  priority: P0\n140\t  gpu_budget_hours: 8\n141\t  deps:\n142\t  - plan_011\n143\t  registry_id: plan_015_grpo_g4_bf16_v3\n144\t- id: plan_mvp1\n145\t  claim: 1\n146\t  description: 'MVP-1: CED signal verification — DeBERTa NLI 区分 gold evidence vs entity-sharing\n147\t    distractor 的能力验证'\n148\t  priority: P0\n149\t  gpu_budget_hours: 1\n150\t  deps: []\n151\t  registry_id: mvp1_ced_signal\n152\t- id: plan_mvp2_sft\n153\t  claim: 1\n154\t  description: 'SFT baseline: Qwen3-4B + LoRA SFT on DocRED gold, 建立抽取和证据质量基线'\n155\t  priority: P0\n156\t  gpu_budget_hours: 4\n157\t  deps: []\n158\t  registry_id: mvp2_sft_warmup\n159\t- id: plan_mvp2_rsft\n160\t  claim: 1\n161\t  description: 'RSFT+CED 端到端验证: CED-filtered rejection sampling fine-tuning, 4 组配置全部\n162\t    PASS。真实结果(D038修正后): r1 rel_f1=0.4449/evi_f1=0.8187, s44 rel_f1=0.4655/evi_f1=0.8087,\n163\t    r2a rel_f1=0.4494/evi_f1=0.8108, r2b rel_f1=0.4493/evi_f1=0.8128'\n164\t  priority: P0\n165\t  gpu_budget_hours: 20\n166\t  deps:\n167\t  - plan_mvp1\n168\t  - plan_mvp2_sft\n169\t  registry_id: mvp2_rsft_train_r1\n170\t- id: plan_mvp2_grpo\n171\t  claim: 3\n172\t  description: 'GRPO+QLoRA 全线失败（negative result = C3 核心证据）: 3 种 reward × 多 lr, rel_f1\n173\t    max=0.211(lr5e-5)/0.014(lr5e-6), evi_f1 在 GRPO 下反而提升至 0.850 但 rel_f1 catastrophic\n174\t    forgetting。D031/D033 完整轨迹支撑 Claim 3'\n175\t  priority: P0\n176\t  gpu_budget_hours: 60\n177\t  deps:\n178\t  - plan_mvp2_sft\n179\t  registry_id: mvp2_grpo_ced_lr5e6_r1\n180\t- id: plan_017\n181\t  claim: 3\n182\t  description: 'Qwen3-14B scaling study: SFT(with-evidence) + SFT(no-evidence) + RSFT\n183\t    + eval。 第 4 尺度档位（1.7B/4B/8B/14B），验证 evidence tax 在更大模型上是否继续趋近零或转正。 需评估 RTX 5090\n184\t    32GB 显存是否够 bf16 LoRA（14B×2=28GB base），不够则用 QLoRA。 至少 2 seeds。'\n185\t  priority: P0\n186\t  gpu_budget_hours: 50\n187\t  deps: []\n188\t  registry_id: null\n189\t- id: plan_018\n190\t  claim: 1\n191\t  description: 'Cross-domain DocRE validation: 在 CDR (Chemical-Disease Relations)\n192\t    或 GDA (Gene-Disease Associations) 等生物医学 DocRE 数据集上验证 FREIGE pipeline。 需要：数据格式适配、prompt\n193\t    模板调整、relation type 映射。 验证 evidence-grounded DocRE 跨领域泛化能力，回应 \"only Wikipedia domain\"\n194\t    审稿质疑。 ⚠️ CDR/GDA 均无 evidence sentence 标注，无法计算 evi_f1。降级 P2，Limitations 说明。'\n195\t  priority: P2\n196\t  gpu_budget_hours: 60\n197\t  deps: []\n198\t  registry_id: null\n199\t- id: plan_019\n200\t  claim: 3\n201\t  description: 'Scaling seeds supplement: 每个尺度补到 3+ seeds（k=1 RSFT）。 当前缺口：1.7B 需补\n202\t    s43/s44，8B-Qwen 需补 s44，LLaMA 需补 s43/s44。 4B 已有 4+ seeds 不需补。每个 seed 含 SFT + RSFT\n203\t    + no-evidence eval ≈ 5 GPU-h。 目标：每个尺度的 evidence tax 有 mean ± std，scaling claim\n204\t    有统计力。'\n205\t  priority: P0\n206\t  gpu_budget_hours: 25\n207\t  deps: []\n208\t  registry_id: plan019_1_7b_sft_s43_r2\n209\t- id: plan_020\n210\t  claim: 3\n211\t  description: 'Evidence tax mechanistic analysis: 解释 WHY 1.7B 获益而 4B 受损。 分析维度：(1)\n212\t    output length distribution with vs without evidence (2) truncation rate 差异（1.7B\n213\t    fair subset 已有基础） (3) hallucination rate（false positive relations 在 with/without\n214\t    evidence 中的比例） (4) per-document evidence 生成对 RE 的影响（按 doc length 分层） 主要是 CPU 分析\n215\t    + 少量补充 eval。'\n216\t  priority: P1\n217\t  gpu_budget_hours: 10\n218\t  deps: []\n219\t  registry_id: null\n220\t- id: plan_021\n221\t  claim: 1\n222\t  description: 'Deep error analysis: 按 relation type / document length / entity count\n223\t    / evidence distance 分层分析。扩展 D070 per-relation EDCR 分析到更多维度。 区分 Main 和 Findings\n224\t    的 insight 层——Main 论文解释 why，Findings 只报 what。'\n225\t  priority: P1\n226\t  gpu_budget_hours: 5\n227\t  deps: []\n228\t  registry_id: null\n229\t- id: plan_022\n230\t  claim: 3\n231\t  description: 'Third model family validation: Mistral-7B 或 Gemma-2-9B 上复现 SFT + RSFT\n232\t    + eval。 验证 scaling pattern 跨第三个模型家族成立。如果 14B（plan_017）已做则优先级下降。'\n233\t  priority: P2\n234\t  gpu_budget_hours: 30\n235\t  deps: []\n236\t  registry_id: null\n237\t- id: plan_023\n238\t  claim: 1\n239\t  description: 'DocKS-RAG / LMRC baseline reproduction: 在相同 eval protocol 下复现 generative\n240\t    DocRE SOTA（DocKS-RAG, LMRC）作为完整对比表。审稿人期望 same-condition comparison。'\n241\t  priority: P2\n242\t  gpu_budget_hours: 10\n243\t  deps: []\n244\t  registry_id: null\n245\t- id: plan_w3_sft_seeds\n246\t  claim: 1\n247\t  description: W3 修复：SFT 4B baseline seed43 + seed44 训练 + eval。 与 canonical SFT (seed42)\n248\t    配对，计算 bootstrap CI + Cohen d， 验证 RSFT +4.92pp 增益的统计显著性。Wave 1 实验。\n249\t  priority: P0\n250\t  gpu_budget_hours: 8\n251\t  deps: []\n252\t  registry_id: null\n253\t- id: plan_w18_random\n254\t  claim: 1\n255\t  description: W18 修复：Random k=1 RSFT baseline。从 k=1 候选中随机抽取（不用 NLI 分数）， 验证 NLI-based\n256\t    selection 的价值。如果 random 也提升 → NLI scoring 不关键； 如果 random 不提升 → NLI scoring 是 RSFT\n257\t    有效的关键。Wave 1 实验。\n258\t  priority: P0\n259\t  gpu_budget_hours: 4\n260\t  deps: []\n261\t  registry_id: random_rsft_k1_baseline\n262\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "5d3a442a-fb3f-437e-9120-1009d9040ef4",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+                "content": "experiments:\n- id: plan_001\n  claim: 2\n  description: 'CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选\n    RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py\n    用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。'\n  priority: P0\n  gpu_budget_hours: 20\n  deps: []\n  registry_id: eval_flat_nli_seed45\n- id: plan_002\n  claim: 1\n  description: 'Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set\n    上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。'\n  priority: P0\n  gpu_budget_hours: 4\n  deps:\n  - plan_001\n  registry_id: plan_002_test_rsft_s44\n- id: plan_003\n  claim: 4\n  description: 'EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing\n    方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。'\n  priority: P0\n  gpu_budget_hours: 2\n  deps:\n  - plan_001\n  registry_id: plan_003_edcr_diagnostic\n- id: plan_004\n  claim: 1\n  description: 'DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large)\n    的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: plan_004_dreeam_baseline\n- id: plan_005\n  claim: 1\n  description: 'CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。'\n  priority: P1\n  gpu_budget_hours: 6\n  deps: []\n  registry_id: mvp2_ced_reranker_poc\n- id: plan_006\n  claim: 1\n  description: 'Model size ablation (D077 升 P0): Qwen3-1.7B 和 Qwen3-8B 上复现 SFT → RSFT\n    → eval pipeline，验证 evidence tax + RSFT 增益 + decoupling 在不同模型规模下成立。应对 RC4 和 scope\n    不足问题。'\n  priority: P0\n  gpu_budget_hours: 32\n  deps: []\n  registry_id: plan_006_qwen3_1_7b_no_evidence_eval_v3\n- id: plan_007\n  claim: 1\n  description: 'Re-DocRED cross-dataset (D077 升 P0): 在 Re-DocRED 上用当前 best config\n    做 SFT → RSFT → eval。数据已就绪（格式与 DocRED 兼容，96 relation types 一致）。⚠️ Re-DocRED ~55%\n    triples 无 evidence 标注（修正的 false negative），必须报告两种模式：evidence_only（与 DocRED 可比的\n    evi_f1，仅 43% triples）+ full（全部 triples 的 rel_f1，无 evi_f1）。转换脚本已支持 --mode full。'\n  priority: P0\n  gpu_budget_hours: 16\n  deps: []\n  registry_id: plan_007_redocred_rsft_eval_r5\n- id: plan_016\n  claim: 2\n  description: 'LLaMA-3.1-8B cross-family validation (D077 新增): 在非 Qwen 家族模型上复现核心\n    pipeline (SFT → RSFT → GRPO QLoRA)，验证 decoupling spectrum 跨模型家族成立。关键实验：LLaMA GRPO\n    QLoRA 是否也出现 catastrophic forgetting。'\n  priority: P0\n  gpu_budget_hours: 40\n  deps: []\n  registry_id: plan_016_llama_rsft_candidates\n- id: plan_008\n  claim: 2\n  description: 'top_k ablation: CED scoring 筛选 top_k=3（更多训练数据 ~8000 samples）vs top_k=1（更严格\n    ~2718 samples），验证 CED 过滤严格度对 RSFT 质量的影响。'\n  priority: P1\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: reeval_rsft_topk3\n- id: plan_011\n  claim: 3\n  description: 'GRPO G=8 实验: Dream 三档一致指出 G=4 太小，标准 GRPO 用 G=8-16。用 G=8 + CED reward\n    + kl_coef=0.01 重跑 GRPO，验证 failure 是否持续。如仍 fail → 加强 Claim 3；如改善 → 需修改论文结论。可能需要\n    gradient_accumulation 适配显存。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: plan_011_bf16_g8_step_eval\n- id: plan_012\n  claim: 3\n  description: 'DPO+CED experiment: 用 RSFT 候选数据构造 preference pairs (CED-preferred\n    vs CED-rejected)，DPO 训练。验证 DPO 是否避免 GRPO 的 catastrophic forgetting。Dream v2 三档要求\n    DPO 作为 RL spectrum 关键数据点，必须补全训练超参（β, lr, epochs, pair construction）。D045 升 P0。'\n  priority: P0\n  gpu_budget_hours: 12\n  deps: []\n  registry_id: plan_012_dpo_ced\n- id: plan_013\n  claim: 4\n  description: '[CANCELLED by D104] EDCR 人工标注验证: 用户决定不做。RC6 用 per-relation 分析 + Limitations\n    说明替代。'\n  priority: CANCELLED\n  gpu_budget_hours: 0\n  deps: []\n  registry_id: null\n- id: plan_009\n  claim: 3\n  description: 'GRPO forgetting dynamics figure: 整理全部 GRPO checkpoint（42个）的 rel_f1/evi_f1/EDCR/reward\n    轨迹，绘制 training dynamics 可视化图。包含 G=4 vs G=8 对比、三种 reward 对比。Dream v2 三档一致要求此图作为论文核心\n    figure。数据已有，只需汇总+画图。'\n  priority: P0\n  gpu_budget_hours: 2\n  deps: []\n  registry_id: plan_009_dynamics_figure\n- id: plan_010\n  claim: 1\n  description: 'NLI model ablation: DeBERTa-v3-base vs DeBERTa-v3-large 作为 CED scorer\n    的对比，验证 NLI 模型能力对 CED 打分质量的影响。应对 RC1。D104 升级。'\n  priority: P1\n  gpu_budget_hours: 4\n  deps: []\n  registry_id: null\n- id: plan_014\n  claim: 1\n  description: 'SFT-without-evidence ablation: 训练 Qwen3-4B SFT 只输出 relation triples（不含\n    evidence sentences），对比标准 SFT（含 evidence）的 rel_f1。隔离 evidence generation 对抽取性能的代价。Dream\n    v2 三档一致要求。用于回答\"43.2% vs LMRC 60.7% 的 gap 有多少来自 evidence 生成负担\"。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: plan_014_sft_no_evidence\n- id: plan_015\n  claim: 2\n  description: 'bf16 LoRA GRPO clean control: 与原始 GRPO (QLoRA 4-bit, G=4, kl=0, CED\n    reward) 只改一个变量——quantization 从 QLoRA 4-bit 改为 bf16 LoRA。G=4, kl_coef=0 不变。目的:\n    隔离 QLoRA confound，判断 decoupling 是 QLoRA artifact 还是 genuine RL-for-IE 现象。Dream\n    v2 三档一致的 critical 要求。如 decoupling 在 bf16 下仍持续 → 可泛化 claim；如消失 → QLoRA 特定，需 re-scope。优先级取决于\n    plan_011 eval 结果。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_011\n  registry_id: plan_015_grpo_g4_bf16_v3\n- id: plan_mvp1\n  claim: 1\n  description: 'MVP-1: CED signal verification — DeBERTa NLI 区分 gold evidence vs entity-sharing\n    distractor 的能力验证'\n  priority: P0\n  gpu_budget_hours: 1\n  deps: []\n  registry_id: mvp1_ced_signal\n- id: plan_mvp2_sft\n  claim: 1\n  description: 'SFT baseline: Qwen3-4B + LoRA SFT on DocRED gold, 建立抽取和证据质量基线'\n  priority: P0\n  gpu_budget_hours: 4\n  deps: []\n  registry_id: mvp2_sft_warmup\n- id: plan_mvp2_rsft\n  claim: 1\n  description: 'RSFT+CED 端到端验证: CED-filtered rejection sampling fine-tuning, 4 组配置全部\n    PASS。真实结果(D038修正后): r1 rel_f1=0.4449/evi_f1=0.8187, s44 rel_f1=0.4655/evi_f1=0.8087,\n    r2a rel_f1=0.4494/evi_f1=0.8108, r2b rel_f1=0.4493/evi_f1=0.8128'\n  priority: P0\n  gpu_budget_hours: 20\n  deps:\n  - plan_mvp1\n  - plan_mvp2_sft\n  registry_id: mvp2_rsft_train_r1\n- id: plan_mvp2_grpo\n  claim: 3\n  description: 'GRPO+QLoRA 全线失败（negative result = C3 核心证据）: 3 种 reward × 多 lr, rel_f1\n    max=0.211(lr5e-5)/0.014(lr5e-6), evi_f1 在 GRPO 下反而提升至 0.850 但 rel_f1 catastrophic\n    forgetting。D031/D033 完整轨迹支撑 Claim 3'\n  priority: P0\n  gpu_budget_hours: 60\n  deps:\n  - plan_mvp2_sft\n  registry_id: mvp2_grpo_ced_lr5e6_r1\n- id: plan_017\n  claim: 3\n  description: 'Qwen3-14B scaling study: SFT(with-evidence) + SFT(no-evidence) + RSFT\n    + eval。 第 4 尺度档位（1.7B/4B/8B/14B），验证 evidence tax 在更大模型上是否继续趋近零或转正。 需评估 RTX 5090\n    32GB 显存是否够 bf16 LoRA（14B×2=28GB base），不够则用 QLoRA。 至少 2 seeds。'\n  priority: P0\n  gpu_budget_hours: 50\n  deps: []\n  registry_id: null\n- id: plan_018\n  claim: 1\n  description: 'Cross-domain DocRE validation: 在 CDR (Chemical-Disease Relations)\n    或 GDA (Gene-Disease Associations) 等生物医学 DocRE 数据集上验证 FREIGE pipeline。 需要：数据格式适配、prompt\n    模板调整、relation type 映射。 验证 evidence-grounded DocRE 跨领域泛化能力，回应 \"only Wikipedia domain\"\n    审稿质疑。 ⚠️ CDR/GDA 均无 evidence sentence 标注，无法计算 evi_f1。降级 P2，Limitations 说明。'\n  priority: P2\n  gpu_budget_hours: 60\n  deps: []\n  registry_id: null\n- id: plan_019\n  claim: 3\n  description: 'Scaling seeds supplement: 每个尺度补到 3+ seeds（k=1 RSFT）。 当前缺口：1.7B 需补\n    s43/s44，8B-Qwen 需补 s44，LLaMA 需补 s43/s44。 4B 已有 4+ seeds 不需补。每个 seed 含 SFT + RSFT\n    + no-evidence eval ≈ 5 GPU-h。 目标：每个尺度的 evidence tax 有 mean ± std，scaling claim\n    有统计力。'\n  priority: P0\n  gpu_budget_hours: 25\n  deps: []\n  registry_id: plan019_1_7b_sft_s43_r2\n- id: plan_020\n  claim: 3\n  description: 'Evidence tax mechanistic analysis: 解释 WHY 1.7B 获益而 4B 受损。 分析维度：(1)\n    output length distribution with vs without evidence (2) truncation rate 差异（1.7B\n    fair subset 已有基础） (3) hallucination rate（false positive relations 在 with/without\n    evidence 中的比例） (4) per-document evidence 生成对 RE 的影响（按 doc length 分层） 主要是 CPU 分析\n    + 少量补充 eval。'\n  priority: P1\n  gpu_budget_hours: 10\n  deps: []\n  registry_id: null\n- id: plan_021\n  claim: 1\n  description: 'Deep error analysis: 按 relation type / document length / entity count\n    / evidence distance 分层分析。扩展 D070 per-relation EDCR 分析到更多维度。 区分 Main 和 Findings\n    的 insight 层——Main 论文解释 why，Findings 只报 what。'\n  priority: P1\n  gpu_budget_hours: 5\n  deps: []\n  registry_id: null\n- id: plan_022\n  claim: 3\n  description: 'Third model family validation: Mistral-7B 或 Gemma-2-9B 上复现 SFT + RSFT\n    + eval。 验证 scaling pattern 跨第三个模型家族成立。如果 14B（plan_017）已做则优先级下降。'\n  priority: P2\n  gpu_budget_hours: 30\n  deps: []\n  registry_id: null\n- id: plan_023\n  claim: 1\n  description: 'DocKS-RAG / LMRC baseline reproduction: 在相同 eval protocol 下复现 generative\n    DocRE SOTA（DocKS-RAG, LMRC）作为完整对比表。审稿人期望 same-condition comparison。'\n  priority: P2\n  gpu_budget_hours: 10\n  deps: []\n  registry_id: null\n- id: plan_w3_sft_seeds\n  claim: 1\n  description: W3 修复：SFT 4B baseline seed43 + seed44 训练 + eval。 与 canonical SFT (seed42)\n    配对，计算 bootstrap CI + Cohen d， 验证 RSFT +4.92pp 增益的统计显著性。Wave 1 实验。\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: null\n- id: plan_w18_random\n  claim: 1\n  description: W18 修复：Random k=1 RSFT baseline。从 k=1 候选中随机抽取（不用 NLI 分数）， 验证 NLI-based\n    selection 的价值。如果 random 也提升 → NLI scoring 不关键； 如果 random 不提升 → NLI scoring 是 RSFT\n    有效的关键。Wave 1 实验。\n  priority: P0\n  gpu_budget_hours: 4\n  deps: []\n  registry_id: random_rsft_k1_baseline\n",
+                "numLines": 262,
+                "startLine": 1,
+                "totalLines": 262
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012Mr6dHLFVFRbNX9afbhjzL",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+                "old_string": "  registry_id: null\n- id: plan_w18_random",
+                "new_string": "  registry_id: wave1_sft_4b_s44_eval_r2\n- id: plan_d112\n  claim: 1\n  description: \"D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\\\n    \\ 所有现有 4B RSFT 都基于 SFT s42 (最弱\\\n    \\ seed)。验证 RSFT 是否能在强 SFT base 上\\\n    也产生提升。Steps: generate candidates (N=8) → CED\\\n    \\ score → k=1 filter → RSFT train → D076 eval。\"\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_w3_sft_seeds\n  registry_id: d112_rsft_s44_generate\n- id: plan_w18_random"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "0dfb1094-69b7-4065-9f48-93f2f2ca7e89",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HT4pNenweJUbzzo3sy9EW9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5382,
+                "cache_read_input_tokens": 25656,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5382
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T23:23:38.779Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012Mr6dHLFVFRbNX9afbhjzL",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "01d47fb3-07e9-40b1-a60f-50b56b7b0b5f",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+              "oldString": "  registry_id: null\n- id: plan_w18_random",
+              "newString": "  registry_id: wave1_sft_4b_s44_eval_r2\n- id: plan_d112\n  claim: 1\n  description: \"D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\\\n    \\ 所有现有 4B RSFT 都基于 SFT s42 (最弱\\\n    \\ seed)。验证 RSFT 是否能在强 SFT base 上\\\n    也产生提升。Steps: generate candidates (N=8) → CED\\\n    \\ score → k=1 filter → RSFT train → D076 eval。\"\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_w3_sft_seeds\n  registry_id: d112_rsft_s44_generate\n- id: plan_w18_random",
+              "originalFile": "experiments:\n- id: plan_001\n  claim: 2\n  description: 'CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选\n    RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py\n    用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。'\n  priority: P0\n  gpu_budget_hours: 20\n  deps: []\n  registry_id: eval_flat_nli_seed45\n- id: plan_002\n  claim: 1\n  description: 'Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set\n    上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。'\n  priority: P0\n  gpu_budget_hours: 4\n  deps:\n  - plan_001\n  registry_id: plan_002_test_rsft_s44\n- id: plan_003\n  claim: 4\n  description: 'EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing\n    方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。'\n  priority: P0\n  gpu_budget_hours: 2\n  deps:\n  - plan_001\n  registry_id: plan_003_edcr_diagnostic\n- id: plan_004\n  claim: 1\n  description: 'DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large)\n    的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: plan_004_dreeam_baseline\n- id: plan_005\n  claim: 1\n  description: 'CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。'\n  priority: P1\n  gpu_budget_hours: 6\n  deps: []\n  registry_id: mvp2_ced_reranker_poc\n- id: plan_006\n  claim: 1\n  description: 'Model size ablation (D077 升 P0): Qwen3-1.7B 和 Qwen3-8B 上复现 SFT → RSFT\n    → eval pipeline，验证 evidence tax + RSFT 增益 + decoupling 在不同模型规模下成立。应对 RC4 和 scope\n    不足问题。'\n  priority: P0\n  gpu_budget_hours: 32\n  deps: []\n  registry_id: plan_006_qwen3_1_7b_no_evidence_eval_v3\n- id: plan_007\n  claim: 1\n  description: 'Re-DocRED cross-dataset (D077 升 P0): 在 Re-DocRED 上用当前 best config\n    做 SFT → RSFT → eval。数据已就绪（格式与 DocRED 兼容，96 relation types 一致）。⚠️ Re-DocRED ~55%\n    triples 无 evidence 标注（修正的 false negative），必须报告两种模式：evidence_only（与 DocRED 可比的\n    evi_f1，仅 43% triples）+ full（全部 triples 的 rel_f1，无 evi_f1）。转换脚本已支持 --mode full。'\n  priority: P0\n  gpu_budget_hours: 16\n  deps: []\n  registry_id: plan_007_redocred_rsft_eval_r5\n- id: plan_016\n  claim: 2\n  description: 'LLaMA-3.1-8B cross-family validation (D077 新增): 在非 Qwen 家族模型上复现核心\n    pipeline (SFT → RSFT → GRPO QLoRA)，验证 decoupling spectrum 跨模型家族成立。关键实验：LLaMA GRPO\n    QLoRA 是否也出现 catastrophic forgetting。'\n  priority: P0\n  gpu_budget_hours: 40\n  deps: []\n  registry_id: plan_016_llama_rsft_candidates\n- id: plan_008\n  claim: 2\n  description: 'top_k ablation: CED scoring 筛选 top_k=3（更多训练数据 ~8000 samples）vs top_k=1（更严格\n    ~2718 samples），验证 CED 过滤严格度对 RSFT 质量的影响。'\n  priority: P1\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: reeval_rsft_topk3\n- id: plan_011\n  claim: 3\n  description: 'GRPO G=8 实验: Dream 三档一致指出 G=4 太小，标准 GRPO 用 G=8-16。用 G=8 + CED reward\n    + kl_coef=0.01 重跑 GRPO，验证 failure 是否持续。如仍 fail → 加强 Claim 3；如改善 → 需修改论文结论。可能需要\n    gradient_accumulation 适配显存。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: plan_011_bf16_g8_step_eval\n- id: plan_012\n  claim: 3\n  description: 'DPO+CED experiment: 用 RSFT 候选数据构造 preference pairs (CED-preferred\n    vs CED-rejected)，DPO 训练。验证 DPO 是否避免 GRPO 的 catastrophic forgetting。Dream v2 三档要求\n    DPO 作为 RL spectrum 关键数据点，必须补全训练超参（β, lr, epochs, pair construction）。D045 升 P0。'\n  priority: P0\n  gpu_budget_hours: 12\n  deps: []\n  registry_id: plan_012_dpo_ced\n- id: plan_013\n  claim: 4\n  description: '[CANCELLED by D104] EDCR 人工标注验证: 用户决定不做。RC6 用 per-relation 分析 + Limitations\n    说明替代。'\n  priority: CANCELLED\n  gpu_budget_hours: 0\n  deps: []\n  registry_id: null\n- id: plan_009\n  claim: 3\n  description: 'GRPO forgetting dynamics figure: 整理全部 GRPO checkpoint（42个）的 rel_f1/evi_f1/EDCR/reward\n    轨迹，绘制 training dynamics 可视化图。包含 G=4 vs G=8 对比、三种 reward 对比。Dream v2 三档一致要求此图作为论文核心\n    figure。数据已有，只需汇总+画图。'\n  priority: P0\n  gpu_budget_hours: 2\n  deps: []\n  registry_id: plan_009_dynamics_figure\n- id: plan_010\n  claim: 1\n  description: 'NLI model ablation: DeBERTa-v3-base vs DeBERTa-v3-large 作为 CED scorer\n    的对比，验证 NLI 模型能力对 CED 打分质量的影响。应对 RC1。D104 升级。'\n  priority: P1\n  gpu_budget_hours: 4\n  deps: []\n  registry_id: null\n- id: plan_014\n  claim: 1\n  description: 'SFT-without-evidence ablation: 训练 Qwen3-4B SFT 只输出 relation triples（不含\n    evidence sentences），对比标准 SFT（含 evidence）的 rel_f1。隔离 evidence generation 对抽取性能的代价。Dream\n    v2 三档一致要求。用于回答\"43.2% vs LMRC 60.7% 的 gap 有多少来自 evidence 生成负担\"。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: plan_014_sft_no_evidence\n- id: plan_015\n  claim: 2\n  description: 'bf16 LoRA GRPO clean control: 与原始 GRPO (QLoRA 4-bit, G=4, kl=0, CED\n    reward) 只改一个变量——quantization 从 QLoRA 4-bit 改为 bf16 LoRA。G=4, kl_coef=0 不变。目的:\n    隔离 QLoRA confound，判断 decoupling 是 QLoRA artifact 还是 genuine RL-for-IE 现象。Dream\n    v2 三档一致的 critical 要求。如 decoupling 在 bf16 下仍持续 → 可泛化 claim；如消失 → QLoRA 特定，需 re-scope。优先级取决于\n    plan_011 eval 结果。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_011\n  registry_id: plan_015_grpo_g4_bf16_v3\n- id: plan_mvp1\n  claim: 1\n  description: 'MVP-1: CED signal verification — DeBERTa NLI 区分 gold evidence vs entity-sharing\n    distractor 的能力验证'\n  priority: P0\n  gpu_budget_hours: 1\n  deps: []\n  registry_id: mvp1_ced_signal\n- id: plan_mvp2_sft\n  claim: 1\n  description: 'SFT baseline: Qwen3-4B + LoRA SFT on DocRED gold, 建立抽取和证据质量基线'\n  priority: P0\n  gpu_budget_hours: 4\n  deps: []\n  registry_id: mvp2_sft_warmup\n- id: plan_mvp2_rsft\n  claim: 1\n  description: 'RSFT+CED 端到端验证: CED-filtered rejection sampling fine-tuning, 4 组配置全部\n    PASS。真实结果(D038修正后): r1 rel_f1=0.4449/evi_f1=0.8187, s44 rel_f1=0.4655/evi_f1=0.8087,\n    r2a rel_f1=0.4494/evi_f1=0.8108, r2b rel_f1=0.4493/evi_f1=0.8128'\n  priority: P0\n  gpu_budget_hours: 20\n  deps:\n  - plan_mvp1\n  - plan_mvp2_sft\n  registry_id: mvp2_rsft_train_r1\n- id: plan_mvp2_grpo\n  claim: 3\n  description: 'GRPO+QLoRA 全线失败（negative result = C3 核心证据）: 3 种 reward × 多 lr, rel_f1\n    max=0.211(lr5e-5)/0.014(lr5e-6), evi_f1 在 GRPO 下反而提升至 0.850 但 rel_f1 catastrophic\n    forgetting。D031/D033 完整轨迹支撑 Claim 3'\n  priority: P0\n  gpu_budget_hours: 60\n  deps:\n  - plan_mvp2_sft\n  registry_id: mvp2_grpo_ced_lr5e6_r1\n- id: plan_017\n  claim: 3\n  description: 'Qwen3-14B scaling study: SFT(with-evidence) + SFT(no-evidence) + RSFT\n    + eval。 第 4 尺度档位（1.7B/4B/8B/14B），验证 evidence tax 在更大模型上是否继续趋近零或转正。 需评估 RTX 5090\n    32GB 显存是否够 bf16 LoRA（14B×2=28GB base），不够则用 QLoRA。 至少 2 seeds。'\n  priority: P0\n  gpu_budget_hours: 50\n  deps: []\n  registry_id: null\n- id: plan_018\n  claim: 1\n  description: 'Cross-domain DocRE validation: 在 CDR (Chemical-Disease Relations)\n    或 GDA (Gene-Disease Associations) 等生物医学 DocRE 数据集上验证 FREIGE pipeline。 需要：数据格式适配、prompt\n    模板调整、relation type 映射。 验证 evidence-grounded DocRE 跨领域泛化能力，回应 \"only Wikipedia domain\"\n    审稿质疑。 ⚠️ CDR/GDA 均无 evidence sentence 标注，无法计算 evi_f1。降级 P2，Limitations 说明。'\n  priority: P2\n  gpu_budget_hours: 60\n  deps: []\n  registry_id: null\n- id: plan_019\n  claim: 3\n  description: 'Scaling seeds supplement: 每个尺度补到 3+ seeds（k=1 RSFT）。 当前缺口：1.7B 需补\n    s43/s44，8B-Qwen 需补 s44，LLaMA 需补 s43/s44。 4B 已有 4+ seeds 不需补。每个 seed 含 SFT + RSFT\n    + no-evidence eval ≈ 5 GPU-h。 目标：每个尺度的 evidence tax 有 mean ± std，scaling claim\n    有统计力。'\n  priority: P0\n  gpu_budget_hours: 25\n  deps: []\n  registry_id: plan019_1_7b_sft_s43_r2\n- id: plan_020\n  claim: 3\n  description: 'Evidence tax mechanistic analysis: 解释 WHY 1.7B 获益而 4B 受损。 分析维度：(1)\n    output length distribution with vs without evidence (2) truncation rate 差异（1.7B\n    fair subset 已有基础） (3) hallucination rate（false positive relations 在 with/without\n    evidence 中的比例） (4) per-document evidence 生成对 RE 的影响（按 doc length 分层） 主要是 CPU 分析\n    + 少量补充 eval。'\n  priority: P1\n  gpu_budget_hours: 10\n  deps: []\n  registry_id: null\n- id: plan_021\n  claim: 1\n  description: 'Deep error analysis: 按 relation type / document length / entity count\n    / evidence distance 分层分析。扩展 D070 per-relation EDCR 分析到更多维度。 区分 Main 和 Findings\n    的 insight 层——Main 论文解释 why，Findings 只报 what。'\n  priority: P1\n  gpu_budget_hours: 5\n  deps: []\n  registry_id: null\n- id: plan_022\n  claim: 3\n  description: 'Third model family validation: Mistral-7B 或 Gemma-2-9B 上复现 SFT + RSFT\n    + eval。 验证 scaling pattern 跨第三个模型家族成立。如果 14B（plan_017）已做则优先级下降。'\n  priority: P2\n  gpu_budget_hours: 30\n  deps: []\n  registry_id: null\n- id: plan_023\n  claim: 1\n  description: 'DocKS-RAG / LMRC baseline reproduction: 在相同 eval protocol 下复现 generative\n    DocRE SOTA（DocKS-RAG, LMRC）作为完整对比表。审稿人期望 same-condition comparison。'\n  priority: P2\n  gpu_budget_hours: 10\n  deps: []\n  registry_id: null\n- id: plan_w3_sft_seeds\n  claim: 1\n  description: W3 修复：SFT 4B baseline seed43 + seed44 训练 + eval。 与 canonical SFT (seed42)\n    配对，计算 bootstrap CI + Cohen d， 验证 RSFT +4.92pp 增益的统计显著性。Wave 1 实验。\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: null\n- id: plan_w18_random\n  claim: 1\n  description: W18 修复：Random k=1 RSFT baseline。从 k=1 候选中随机抽取（不用 NLI 分数）， 验证 NLI-based\n    selection 的价值。如果 random 也提升 → NLI scoring 不关键； 如果 random 不提升 → NLI scoring 是 RSFT\n    有效的关键。Wave 1 实验。\n  priority: P0\n  gpu_budget_hours: 4\n  deps: []\n  registry_id: random_rsft_k1_baseline\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 249,
+                  "oldLines": 7,
+                  "newStart": 249,
+                  "newLines": 19,
+                  "lines": [
+                    "   priority: P0",
+                    "   gpu_budget_hours: 8",
+                    "   deps: []",
+                    "-  registry_id: null",
+                    "+  registry_id: wave1_sft_4b_s44_eval_r2",
+                    "+- id: plan_d112",
+                    "+  claim: 1",
+                    "+  description: \"D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\\",
+                    "+    \\ 所有现有 4B RSFT 都基于 SFT s42 (最弱\\",
+                    "+    \\ seed)。验证 RSFT 是否能在强 SFT base 上\\",
+                    "+    也产生提升。Steps: generate candidates (N=8) → CED\\",
+                    "+    \\ score → k=1 filter → RSFT train → D076 eval。\"",
+                    "+  priority: P0",
+                    "+  gpu_budget_hours: 8",
+                    "+  deps:",
+                    "+  - plan_w3_sft_seeds",
+                    "+  registry_id: d112_rsft_s44_generate",
+                    " - id: plan_w18_random",
+                    "   claim: 1",
+                    "   description: W18 修复：Random k=1 RSFT baseline。从 k=1 候选中随机抽取（不用 NLI 分数）， 验证 NLI-based"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证修改结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "7e6493a3-c93a-46a7-9a78-8033435ecb69",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FKhuSr9u13WrvTQP8cnBpy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 436,
+                "cache_read_input_tokens": 31038,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 436
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Biwf531t2CguEv4zQHNoCx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+                "offset": 245
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "50a8dccc-b681-44d3-ba22-caebcbcc52c3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FKhuSr9u13WrvTQP8cnBpy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 436,
+                "cache_read_input_tokens": 31038,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 436
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T23:23:41.742Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Biwf531t2CguEv4zQHNoCx",
+              "type": "tool_result",
+              "content": "245\t- id: plan_w3_sft_seeds\n246\t  claim: 1\n247\t  description: W3 修复：SFT 4B baseline seed43 + seed44 训练 + eval。 与 canonical SFT (seed42)\n248\t    配对，计算 bootstrap CI + Cohen d， 验证 RSFT +4.92pp 增益的统计显著性。Wave 1 实验。\n249\t  priority: P0\n250\t  gpu_budget_hours: 8\n251\t  deps: []\n252\t  registry_id: wave1_sft_4b_s44_eval_r2\n253\t- id: plan_d112\n254\t  claim: 1\n255\t  description: \"D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\\\n256\t    \\ 所有现有 4B RSFT 都基于 SFT s42 (最弱\\\n257\t    \\ seed)。验证 RSFT 是否能在强 SFT base 上\\\n258\t    也产生提升。Steps: generate candidates (N=8) → CED\\\n259\t    \\ score → k=1 filter → RSFT train → D076 eval。\"\n260\t  priority: P0\n261\t  gpu_budget_hours: 8\n262\t  deps:\n263\t  - plan_w3_sft_seeds\n264\t  registry_id: d112_rsft_s44_generate\n265\t- id: plan_w18_random\n266\t  claim: 1\n267\t  description: W18 修复：Random k=1 RSFT baseline。从 k=1 候选中随机抽取（不用 NLI 分数）， 验证 NLI-based\n268\t    selection 的价值。如果 random 也提升 → NLI scoring 不关键； 如果 random 不提升 → NLI scoring 是 RSFT\n269\t    有效的关键。Wave 1 实验。\n270\t  priority: P0\n271\t  gpu_budget_hours: 4\n272\t  deps: []\n273\t  registry_id: random_rsft_k1_baseline\n274\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "f364e06c-4c9a-40dd-90d4-a787eb31f7d4",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+                "content": "- id: plan_w3_sft_seeds\n  claim: 1\n  description: W3 修复：SFT 4B baseline seed43 + seed44 训练 + eval。 与 canonical SFT (seed42)\n    配对，计算 bootstrap CI + Cohen d， 验证 RSFT +4.92pp 增益的统计显著性。Wave 1 实验。\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: wave1_sft_4b_s44_eval_r2\n- id: plan_d112\n  claim: 1\n  description: \"D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\\\n    \\ 所有现有 4B RSFT 都基于 SFT s42 (最弱\\\n    \\ seed)。验证 RSFT 是否能在强 SFT base 上\\\n    也产生提升。Steps: generate candidates (N=8) → CED\\\n    \\ score → k=1 filter → RSFT train → D076 eval。\"\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_w3_sft_seeds\n  registry_id: d112_rsft_s44_generate\n- id: plan_w18_random\n  claim: 1\n  description: W18 修复：Random k=1 RSFT baseline。从 k=1 候选中随机抽取（不用 NLI 分数）， 验证 NLI-based\n    selection 的价值。如果 random 也提升 → NLI scoring 不关键； 如果 random 不提升 → NLI scoring 是 RSFT\n    有效的关键。Wave 1 实验。\n  priority: P0\n  gpu_budget_hours: 4\n  deps: []\n  registry_id: random_rsft_k1_baseline\n",
+                "numLines": 30,
+                "startLine": 245,
+                "totalLines": 274
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The YAML description has some awkward line continuations. Let me check if the YAML is valid by looking at the formatting more carefully. The backslash continuations look a bit off - in YAML, the `\\` at the end of lines inside double-quoted strings is a line continuation that removes the newline. But the way I wrote it has `\\` followed by newline then spaces then `\\` which might cause issues.\n\nLet me fix the description to use the same flow style as other multi-line descriptions in the file. Looking at the existing entries, they use single-quoted strings with the content on one line, or the YAML flow scalar style. \n\nI need to rewrite this to match the existing style better - the backslash line continuation in double-quoted strings is problematic with trailing spaces, so I'll switch to the same single-quoted format the other entries use.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "75a944a2-d4a5-4670-a93a-cd6030f8a176",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VkPGSo6Y3ad1GnKgbGeucB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 696,
+                "cache_read_input_tokens": 31474,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 696
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "description 的 YAML 格式不太干净，修正一下。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "3b14a1e4-445e-4dab-8291-22be05b61c62",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VkPGSo6Y3ad1GnKgbGeucB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 696,
+                "cache_read_input_tokens": 31474,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 696
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017cZZWLWZeKwQZnV8XQkatS",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+                "old_string": "- id: plan_d112\n  claim: 1\n  description: \"D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\\\n    \\ 所有现有 4B RSFT 都基于 SFT s42 (最弱\\\n    \\ seed)。验证 RSFT 是否能在强 SFT base 上\\\n    也产生提升。Steps: generate candidates (N=8) → CED\\\n    \\ score → k=1 filter → RSFT train → D076 eval。\"\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_w3_sft_seeds\n  registry_id: d112_rsft_s44_generate",
+                "new_string": "- id: plan_d112\n  claim: 1\n  description: 'D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\n    所有现有 4B RSFT 都基于 SFT s42 (最弱 seed)。验证 RSFT 是否能在强 SFT base 上也产生提升。Steps:\n    generate candidates (N=8) → CED score → k=1 filter → RSFT train → D076 eval。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_w3_sft_seeds\n  registry_id: d112_rsft_s44_generate"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "dfdcf308-349e-4334-915e-4c6940203d5f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VkPGSo6Y3ad1GnKgbGeucB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 696,
+                "cache_read_input_tokens": 31474,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 696
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T23:23:55.422Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017cZZWLWZeKwQZnV8XQkatS",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "e0dc17d5-dcd2-4a53-a313-e5e6cd229108",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+              "oldString": "- id: plan_d112\n  claim: 1\n  description: \"D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\\\n    \\ 所有现有 4B RSFT 都基于 SFT s42 (最弱\\\n    \\ seed)。验证 RSFT 是否能在强 SFT base 上\\\n    也产生提升。Steps: generate candidates (N=8) → CED\\\n    \\ score → k=1 filter → RSFT train → D076 eval。\"\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_w3_sft_seeds\n  registry_id: d112_rsft_s44_generate",
+              "newString": "- id: plan_d112\n  claim: 1\n  description: 'D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\n    所有现有 4B RSFT 都基于 SFT s42 (最弱 seed)。验证 RSFT 是否能在强 SFT base 上也产生提升。Steps:\n    generate candidates (N=8) → CED score → k=1 filter → RSFT train → D076 eval。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_w3_sft_seeds\n  registry_id: d112_rsft_s44_generate",
+              "originalFile": "experiments:\n- id: plan_001\n  claim: 2\n  description: 'CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选\n    RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py\n    用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。'\n  priority: P0\n  gpu_budget_hours: 20\n  deps: []\n  registry_id: eval_flat_nli_seed45\n- id: plan_002\n  claim: 1\n  description: 'Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set\n    上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。'\n  priority: P0\n  gpu_budget_hours: 4\n  deps:\n  - plan_001\n  registry_id: plan_002_test_rsft_s44\n- id: plan_003\n  claim: 4\n  description: 'EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing\n    方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。'\n  priority: P0\n  gpu_budget_hours: 2\n  deps:\n  - plan_001\n  registry_id: plan_003_edcr_diagnostic\n- id: plan_004\n  claim: 1\n  description: 'DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large)\n    的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: plan_004_dreeam_baseline\n- id: plan_005\n  claim: 1\n  description: 'CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。'\n  priority: P1\n  gpu_budget_hours: 6\n  deps: []\n  registry_id: mvp2_ced_reranker_poc\n- id: plan_006\n  claim: 1\n  description: 'Model size ablation (D077 升 P0): Qwen3-1.7B 和 Qwen3-8B 上复现 SFT → RSFT\n    → eval pipeline，验证 evidence tax + RSFT 增益 + decoupling 在不同模型规模下成立。应对 RC4 和 scope\n    不足问题。'\n  priority: P0\n  gpu_budget_hours: 32\n  deps: []\n  registry_id: plan_006_qwen3_1_7b_no_evidence_eval_v3\n- id: plan_007\n  claim: 1\n  description: 'Re-DocRED cross-dataset (D077 升 P0): 在 Re-DocRED 上用当前 best config\n    做 SFT → RSFT → eval。数据已就绪（格式与 DocRED 兼容，96 relation types 一致）。⚠️ Re-DocRED ~55%\n    triples 无 evidence 标注（修正的 false negative），必须报告两种模式：evidence_only（与 DocRED 可比的\n    evi_f1，仅 43% triples）+ full（全部 triples 的 rel_f1，无 evi_f1）。转换脚本已支持 --mode full。'\n  priority: P0\n  gpu_budget_hours: 16\n  deps: []\n  registry_id: plan_007_redocred_rsft_eval_r5\n- id: plan_016\n  claim: 2\n  description: 'LLaMA-3.1-8B cross-family validation (D077 新增): 在非 Qwen 家族模型上复现核心\n    pipeline (SFT → RSFT → GRPO QLoRA)，验证 decoupling spectrum 跨模型家族成立。关键实验：LLaMA GRPO\n    QLoRA 是否也出现 catastrophic forgetting。'\n  priority: P0\n  gpu_budget_hours: 40\n  deps: []\n  registry_id: plan_016_llama_rsft_candidates\n- id: plan_008\n  claim: 2\n  description: 'top_k ablation: CED scoring 筛选 top_k=3（更多训练数据 ~8000 samples）vs top_k=1（更严格\n    ~2718 samples），验证 CED 过滤严格度对 RSFT 质量的影响。'\n  priority: P1\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: reeval_rsft_topk3\n- id: plan_011\n  claim: 3\n  description: 'GRPO G=8 实验: Dream 三档一致指出 G=4 太小，标准 GRPO 用 G=8-16。用 G=8 + CED reward\n    + kl_coef=0.01 重跑 GRPO，验证 failure 是否持续。如仍 fail → 加强 Claim 3；如改善 → 需修改论文结论。可能需要\n    gradient_accumulation 适配显存。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: plan_011_bf16_g8_step_eval\n- id: plan_012\n  claim: 3\n  description: 'DPO+CED experiment: 用 RSFT 候选数据构造 preference pairs (CED-preferred\n    vs CED-rejected)，DPO 训练。验证 DPO 是否避免 GRPO 的 catastrophic forgetting。Dream v2 三档要求\n    DPO 作为 RL spectrum 关键数据点，必须补全训练超参（β, lr, epochs, pair construction）。D045 升 P0。'\n  priority: P0\n  gpu_budget_hours: 12\n  deps: []\n  registry_id: plan_012_dpo_ced\n- id: plan_013\n  claim: 4\n  description: '[CANCELLED by D104] EDCR 人工标注验证: 用户决定不做。RC6 用 per-relation 分析 + Limitations\n    说明替代。'\n  priority: CANCELLED\n  gpu_budget_hours: 0\n  deps: []\n  registry_id: null\n- id: plan_009\n  claim: 3\n  description: 'GRPO forgetting dynamics figure: 整理全部 GRPO checkpoint（42个）的 rel_f1/evi_f1/EDCR/reward\n    轨迹，绘制 training dynamics 可视化图。包含 G=4 vs G=8 对比、三种 reward 对比。Dream v2 三档一致要求此图作为论文核心\n    figure。数据已有，只需汇总+画图。'\n  priority: P0\n  gpu_budget_hours: 2\n  deps: []\n  registry_id: plan_009_dynamics_figure\n- id: plan_010\n  claim: 1\n  description: 'NLI model ablation: DeBERTa-v3-base vs DeBERTa-v3-large 作为 CED scorer\n    的对比，验证 NLI 模型能力对 CED 打分质量的影响。应对 RC1。D104 升级。'\n  priority: P1\n  gpu_budget_hours: 4\n  deps: []\n  registry_id: null\n- id: plan_014\n  claim: 1\n  description: 'SFT-without-evidence ablation: 训练 Qwen3-4B SFT 只输出 relation triples（不含\n    evidence sentences），对比标准 SFT（含 evidence）的 rel_f1。隔离 evidence generation 对抽取性能的代价。Dream\n    v2 三档一致要求。用于回答\"43.2% vs LMRC 60.7% 的 gap 有多少来自 evidence 生成负担\"。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: plan_014_sft_no_evidence\n- id: plan_015\n  claim: 2\n  description: 'bf16 LoRA GRPO clean control: 与原始 GRPO (QLoRA 4-bit, G=4, kl=0, CED\n    reward) 只改一个变量——quantization 从 QLoRA 4-bit 改为 bf16 LoRA。G=4, kl_coef=0 不变。目的:\n    隔离 QLoRA confound，判断 decoupling 是 QLoRA artifact 还是 genuine RL-for-IE 现象。Dream\n    v2 三档一致的 critical 要求。如 decoupling 在 bf16 下仍持续 → 可泛化 claim；如消失 → QLoRA 特定，需 re-scope。优先级取决于\n    plan_011 eval 结果。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_011\n  registry_id: plan_015_grpo_g4_bf16_v3\n- id: plan_mvp1\n  claim: 1\n  description: 'MVP-1: CED signal verification — DeBERTa NLI 区分 gold evidence vs entity-sharing\n    distractor 的能力验证'\n  priority: P0\n  gpu_budget_hours: 1\n  deps: []\n  registry_id: mvp1_ced_signal\n- id: plan_mvp2_sft\n  claim: 1\n  description: 'SFT baseline: Qwen3-4B + LoRA SFT on DocRED gold, 建立抽取和证据质量基线'\n  priority: P0\n  gpu_budget_hours: 4\n  deps: []\n  registry_id: mvp2_sft_warmup\n- id: plan_mvp2_rsft\n  claim: 1\n  description: 'RSFT+CED 端到端验证: CED-filtered rejection sampling fine-tuning, 4 组配置全部\n    PASS。真实结果(D038修正后): r1 rel_f1=0.4449/evi_f1=0.8187, s44 rel_f1=0.4655/evi_f1=0.8087,\n    r2a rel_f1=0.4494/evi_f1=0.8108, r2b rel_f1=0.4493/evi_f1=0.8128'\n  priority: P0\n  gpu_budget_hours: 20\n  deps:\n  - plan_mvp1\n  - plan_mvp2_sft\n  registry_id: mvp2_rsft_train_r1\n- id: plan_mvp2_grpo\n  claim: 3\n  description: 'GRPO+QLoRA 全线失败（negative result = C3 核心证据）: 3 种 reward × 多 lr, rel_f1\n    max=0.211(lr5e-5)/0.014(lr5e-6), evi_f1 在 GRPO 下反而提升至 0.850 但 rel_f1 catastrophic\n    forgetting。D031/D033 完整轨迹支撑 Claim 3'\n  priority: P0\n  gpu_budget_hours: 60\n  deps:\n  - plan_mvp2_sft\n  registry_id: mvp2_grpo_ced_lr5e6_r1\n- id: plan_017\n  claim: 3\n  description: 'Qwen3-14B scaling study: SFT(with-evidence) + SFT(no-evidence) + RSFT\n    + eval。 第 4 尺度档位（1.7B/4B/8B/14B），验证 evidence tax 在更大模型上是否继续趋近零或转正。 需评估 RTX 5090\n    32GB 显存是否够 bf16 LoRA（14B×2=28GB base），不够则用 QLoRA。 至少 2 seeds。'\n  priority: P0\n  gpu_budget_hours: 50\n  deps: []\n  registry_id: null\n- id: plan_018\n  claim: 1\n  description: 'Cross-domain DocRE validation: 在 CDR (Chemical-Disease Relations)\n    或 GDA (Gene-Disease Associations) 等生物医学 DocRE 数据集上验证 FREIGE pipeline。 需要：数据格式适配、prompt\n    模板调整、relation type 映射。 验证 evidence-grounded DocRE 跨领域泛化能力，回应 \"only Wikipedia domain\"\n    审稿质疑。 ⚠️ CDR/GDA 均无 evidence sentence 标注，无法计算 evi_f1。降级 P2，Limitations 说明。'\n  priority: P2\n  gpu_budget_hours: 60\n  deps: []\n  registry_id: null\n- id: plan_019\n  claim: 3\n  description: 'Scaling seeds supplement: 每个尺度补到 3+ seeds（k=1 RSFT）。 当前缺口：1.7B 需补\n    s43/s44，8B-Qwen 需补 s44，LLaMA 需补 s43/s44。 4B 已有 4+ seeds 不需补。每个 seed 含 SFT + RSFT\n    + no-evidence eval ≈ 5 GPU-h。 目标：每个尺度的 evidence tax 有 mean ± std，scaling claim\n    有统计力。'\n  priority: P0\n  gpu_budget_hours: 25\n  deps: []\n  registry_id: plan019_1_7b_sft_s43_r2\n- id: plan_020\n  claim: 3\n  description: 'Evidence tax mechanistic analysis: 解释 WHY 1.7B 获益而 4B 受损。 分析维度：(1)\n    output length distribution with vs without evidence (2) truncation rate 差异（1.7B\n    fair subset 已有基础） (3) hallucination rate（false positive relations 在 with/without\n    evidence 中的比例） (4) per-document evidence 生成对 RE 的影响（按 doc length 分层） 主要是 CPU 分析\n    + 少量补充 eval。'\n  priority: P1\n  gpu_budget_hours: 10\n  deps: []\n  registry_id: null\n- id: plan_021\n  claim: 1\n  description: 'Deep error analysis: 按 relation type / document length / entity count\n    / evidence distance 分层分析。扩展 D070 per-relation EDCR 分析到更多维度。 区分 Main 和 Findings\n    的 insight 层——Main 论文解释 why，Findings 只报 what。'\n  priority: P1\n  gpu_budget_hours: 5\n  deps: []\n  registry_id: null\n- id: plan_022\n  claim: 3\n  description: 'Third model family validation: Mistral-7B 或 Gemma-2-9B 上复现 SFT + RSFT\n    + eval。 验证 scaling pattern 跨第三个模型家族成立。如果 14B（plan_017）已做则优先级下降。'\n  priority: P2\n  gpu_budget_hours: 30\n  deps: []\n  registry_id: null\n- id: plan_023\n  claim: 1\n  description: 'DocKS-RAG / LMRC baseline reproduction: 在相同 eval protocol 下复现 generative\n    DocRE SOTA（DocKS-RAG, LMRC）作为完整对比表。审稿人期望 same-condition comparison。'\n  priority: P2\n  gpu_budget_hours: 10\n  deps: []\n  registry_id: null\n- id: plan_w3_sft_seeds\n  claim: 1\n  description: W3 修复：SFT 4B baseline seed43 + seed44 训练 + eval。 与 canonical SFT (seed42)\n    配对，计算 bootstrap CI + Cohen d， 验证 RSFT +4.92pp 增益的统计显著性。Wave 1 实验。\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: wave1_sft_4b_s44_eval_r2\n- id: plan_d112\n  claim: 1\n  description: \"D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\\\n    \\ 所有现有 4B RSFT 都基于 SFT s42 (最弱\\\n    \\ seed)。验证 RSFT 是否能在强 SFT base 上\\\n    也产生提升。Steps: generate candidates (N=8) → CED\\\n    \\ score → k=1 filter → RSFT train → D076 eval。\"\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_w3_sft_seeds\n  registry_id: d112_rsft_s44_generate\n- id: plan_w18_random\n  claim: 1\n  description: W18 修复：Random k=1 RSFT baseline。从 k=1 候选中随机抽取（不用 NLI 分数）， 验证 NLI-based\n    selection 的价值。如果 random 也提升 → NLI scoring 不关键； 如果 random 不提升 → NLI scoring 是 RSFT\n    有效的关键。Wave 1 实验。\n  priority: P0\n  gpu_budget_hours: 4\n  deps: []\n  registry_id: random_rsft_k1_baseline\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 252,
+                  "oldLines": 11,
+                  "newStart": 252,
+                  "newLines": 9,
+                  "lines": [
+                    "   registry_id: wave1_sft_4b_s44_eval_r2",
+                    " - id: plan_d112",
+                    "   claim: 1",
+                    "-  description: \"D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).\\",
+                    "-    \\ 所有现有 4B RSFT 都基于 SFT s42 (最弱\\",
+                    "-    \\ seed)。验证 RSFT 是否能在强 SFT base 上\\",
+                    "-    也产生提升。Steps: generate candidates (N=8) → CED\\",
+                    "-    \\ score → k=1 filter → RSFT train → D076 eval。\"",
+                    "+  description: 'D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).",
+                    "+    所有现有 4B RSFT 都基于 SFT s42 (最弱 seed)。验证 RSFT 是否能在强 SFT base 上也产生提升。Steps:",
+                    "+    generate candidates (N=8) → CED score → k=1 filter → RSFT train → D076 eval。'",
+                    "   priority: P0",
+                    "   gpu_budget_hours: 8",
+                    "   deps:"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 验证一下。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "67db8c3e-ee45-4be3-8e07-3ade042d8019",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011eRbPoFDo7nXJzvJVFjp4y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 890,
+                "cache_read_input_tokens": 32170,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 890
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WduHoodYJCT1vN4Rhj77UF",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"import yaml; yaml.safe_load(open('/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml')); print('YAML valid')\"",
+                "description": "Validate YAML syntax"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "73e2516a-5d47-4c37-8f7e-87f31c077bde",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011eRbPoFDo7nXJzvJVFjp4y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 890,
+                "cache_read_input_tokens": 32170,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 890
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T23:23:59.456Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WduHoodYJCT1vN4Rhj77UF",
+              "type": "tool_result",
+              "content": "YAML valid",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "c26c327b-b57e-48fe-a43a-4e214144b71c",
+            "tool_use_result": {
+              "stdout": "YAML valid",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改了两处：\n\n1. **plan_w3_sft_seeds**: `registry_id: null` → `registry_id: wave1_sft_4b_s44_eval_r2`\n2. **plan_d112**: 新增条目，claim=1, P0, deps=[plan_w3_sft_seeds], registry_id=d112_rsft_s44_generate\n\nplan_019 保持不变（registry_id: plan019_1_7b_sft_s43_r2）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "uuid": "205de2aa-1f08-45ac-b16f-26d07aecc251",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QQRNth2q1jKibufbvj5af6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 154,
+                "cache_read_input_tokens": 33060,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 154
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改了两处：\n\n1. **plan_w3_sft_seeds**: `registry_id: null` → `registry_id: wave1_sft_4b_s44_eval_r2`\n2. **plan_d112**: 新增条目，claim=1, P0, deps=[plan_w3_sft_seeds], registry_id=d112_rsft_s44_generate\n\nplan_019 保持不变（registry_id: plan019_1_7b_sft_s43_r2）。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 44584,
+            "duration_api_ms": 45646,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "63fd573c-c7f6-4f02-a14f-3fba9cafb494",
+            "total_cost_usd": 0.27794375000000004,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 21373,
+              "cache_read_input_tokens": 190755,
+              "output_tokens": 1878,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21373,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 136,
+                  "cache_read_input_tokens": 33060,
+                  "cache_creation_input_tokens": 154,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 154
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1885,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00199,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 1878,
+                "cacheReadInputTokens": 190755,
+                "cacheCreationInputTokens": 21373,
+                "webSearchRequests": 0,
+                "costUSD": 0.27595375,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "36bb60ad-8c48-4ace-a480-db81cbdaa2dc"
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    }
+  ],
+  "readable_path": "readable/worker-executions/knowledge-sync-experiment-plan-d112.md"
+}

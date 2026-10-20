@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ceedc81354fdc9a017c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "status rsft and eval",
+  "task_key": "worker_status_rsft-and-eval_20260515T010836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_rsft-and-eval_20260515T010836_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "1a3c8da3595fbf016ed544428ba7caa1e00bb5268c2e2b82b2c68e538a61aeb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度报告\n\n### 1. mvp2_eval_lr5e6_r1_ckpt100 (cuda:3)\n| 项目 | 状态 |\n|------|------|\n| 进程 | PID 117635 存活，已运行 1h29m |\n| GPU | 11,243 MiB，利用率 82% |\n| 进度 | **56/62 batches = 90%** |\n| 速度 | ~96s/batch |\n| 预计完成 | **~10 分钟后**（剩余 6 batches × 96s ≈ 576s） |\n| 输出目录 | `lr5e6_r1_ckpt100/checkpoint-100/` 已创建，推理完成后写入结果 |\n\n### 2. mvp2_rsft_generate (cuda:1)\n| 项目 | 状态 |\n|------|------|\n| 进程 | PID 122144 存活，已运行 59m |\n| GPU | 23,195 MiB，利用率 83% |\n| 进度 | **110/1514 batches = 7.3%**（1,744/24,424 行） |\n| 速度 | ~33s/batch（波动 25-39s） |\n| 预计完成 | **~12.9 小时后** |\n| 质量监控 | format_ok 99.8%，truncation 9.9%，diversity 1.0/8 |\n\n### 3. GPU 空闲状态\n| GPU | 状态 |\n|-----|------|\n| cuda:0 | **未空闲** — PID 90085 占用 13,636 MiB，利用率 57% |\n| cuda:2 | 空闲（0 MiB，0%） |\n\n注意：cuda:0 有未知进程 PID 90085 在运行，不属于这两个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-rsft-and-eval.md"
+}

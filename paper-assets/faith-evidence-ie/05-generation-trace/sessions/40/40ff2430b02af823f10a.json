@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40ff2430b02af823f10a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research seed comparison prep",
+  "task_key": "worker_research_seed_comparison_prep_20260516T060550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_seed_comparison_prep_20260516T060550_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "69b8b6b9f32034a3c1a0ab7515a2ffe8636eb1647fcb5c24b9d6935e65a1c957"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行正常。\n\n产出：\n- **`/root/autodl-tmp/freige/seed_comparison.py`** — paired t-test 分析脚本，已验证可执行\n- 当前有 2 对 paired seeds (s43, s45)，CED s42/s44 和 flat-NLI s42/s43 reeval 仍在跑\n- 所有 4 个指标 (Rel-F1, Ign-F1, Evi-F1, EDCR) 均无显著差异 (p > 0.6)，但 n=2 统计效力极低，等 4 seeds 齐全再看\n- `--latex` 生成可直接粘贴到论文的 LaTeX 表格，显著指标自动加粗\n- D076 协议校验内置，batch_size/quantize/max_new_tokens 不符会报 warning"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-seed-comparison-prep-copy-2.md"
+}

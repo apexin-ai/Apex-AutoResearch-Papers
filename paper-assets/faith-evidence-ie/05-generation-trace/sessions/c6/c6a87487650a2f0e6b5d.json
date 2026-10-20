@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6a87487650a2f0e6b5d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check 1 7b no evidence r1 vs r2",
+  "task_key": "worker_ops_check_1_7b_no_evidence_r1_vs_r2_20260516T090309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_1_7b_no_evidence_r1_vs_r2_20260516T090309_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "4d7ab36ac355986dedcef94c1196ed24138fe0bb81167af9b06d1dbc0b02083d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n- **r1 完整性**：确认完成。adapter_model.safetensors (278MB) + adapter_config.json + training_args.bin 均在 16:32:45-46 保存于 output_dir 根目录，为 HuggingFace Trainer 训练结束时的最终模型保存。\n- **r2 已 kill**：PID 321094 (bash) + 321100 (python 子进程) 均已终止。\n- **cuda:2 状态**：0 MiB / 0% — 完全释放，可用。\n- **Registry**：plan_006_qwen3_1_7b_no_evidence_sft → DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-1-7b-no-evidence-r1-vs-r2.md"
+}

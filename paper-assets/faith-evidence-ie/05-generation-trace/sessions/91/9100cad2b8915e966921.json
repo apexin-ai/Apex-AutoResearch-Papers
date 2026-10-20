@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9100cad2b8915e966921",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper writing abstract reframe",
+  "task_key": "worker_paper_writing_abstract_reframe_20260520T101717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_reframe_20260520T101717_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "4aa1e60f4e5b758f9f9c4a85ab7f5b715ba3fa95b774925b3ab718b96b4fa940"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract 已重写。主要变更：\n\n- **¶1**: 保持 3 句 problem 陈述，去掉 \"extractive precision\" 改为 \"extraction performance\"，用 \"so\" 连接代替 -ing 结尾\n- **¶2**: 合并实验规模到第一句，第二句聚焦 EDCR + NLI 工具；NLI 首次出现已展开定义\n- **¶3**: 用 landscape 语言（\"plays a scale-dependent role shaped by three interacting factors\"）替代 \"Three findings emerge\"，三个维度（capacity/paradigm/data quality）各一句\n- **¶4**: 2 句收尾，RSFT 全尺度提升 + 1.7B approaches 8B SFT，以 \"smaller and substantially more predictable\" 结束\n\n所有红线已检查：无 em-dash、无 -ing 短语结尾、无 \"non-monotonic\"/\"novel\"、8 个缩写全部展开、因果语言降级为 \"correlates with\"、positive = cost 标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract-reframe.md"
+}

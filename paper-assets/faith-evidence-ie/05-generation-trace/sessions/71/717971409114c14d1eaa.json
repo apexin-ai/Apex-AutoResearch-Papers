@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "717971409114c14d1eaa",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_11_1778901166.md",
+  "task_key": "loop_11_1778901166",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778901166.md",
+    "occurrence": 1,
+    "bytes": 5739,
+    "sha256": "cdb2ac71f0e3b52622a857ba56db52b6b67cf445059a499ad8c6f1984b441104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T03:06:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `cuda:0,1,2,3`（rtx5090-4x）。即使 Director 指定白名单外 GPU 也必须 push back\n- RSFT 训练命令 cwd **必须** `cd /root/autodl-tmp`，**不是** `cd /root/autodl-tmp/freige`（后者导致 ModuleNotFoundError，已踩坑）\n- C3 已降级（D056）：CED vs flat-NLI 统计不可区分，**不要**把 CED reranker 作为独立贡献 claim\n- D076 批准的 4 个 re-eval（reeval_ced_s42, reeval_ced_s44, reeval_flat_nli_s42, reeval_flat_nli_s43）必须用**统一协议**: batch_size=4 + --no-quantize + --sft_adapter + --max_new_tokens 1024，不可沿用旧参数\n- eval_flat_nli_seed45 处于 ANALYZING 但没有 Worker 在跑（Worker 池=0），这是一个需要立即接续的任务\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），账号 root\n- **工作目录**: `/root/autodl-tmp/freige`（代码），`/root/autodl-tmp`（运行 cwd）\n- **Python**: `/root/miniconda3/bin/python`，环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（底座），SFT adapter: `/root/autodl-tmp/sft_output`\n- **RSFT checkpoints**: `/root/autodl-tmp/rsft_output_ced_s{42,43,44,45}/`, `/root/autodl-tmp/rsft_output_flat_nli_s{42,43,44,45}/`\n- **数据**: `/root/autodl-tmp/data/docred`\n- **Eval 输出**: `/root/autodl-tmp/eval_results/`\n- **Seed comparison script**: `/root/autodl-tmp/scripts/seed_comparison.py`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`，离线模式 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- **活跃进程**:\n  - eval_rsft_ced_s45: PID 283838, cuda:2（推测，命令中无显式 CUDA_VISIBLE_DEVICES）, cron 监控中\n  - eval_rsft_ced_s43: PID 286587, cuda:1, cron 监控中\n  - eval_plan_014_no_evidence_r2: PID 288109, cuda:0, cron 监控中\n- **Cron 活跃**: 3 个（分别监控上述 3 个 RUNNING 实验）\n\n### 3. 📊 当前状态\n**刚做完**: 上一个 session 完成了 CED s43/s45 训练，提交了 3 个 eval（CED s43/s45 + no-evidence r2），创建了 D076 协议审计决策（批准 4 个 re-eval）。\n\n**Registry 活跃实验**:\n| exp_id | 状态 | GPU | 说明 |\n|--------|------|-----|------|\n| eval_rsft_ced_s45 | RUNNING | cuda:2? | CED s45 eval，paired t-test 第 3 个 CED seed |\n| eval_rsft_ced_s43 | RUNNING | cuda:1 | CED s43 eval，paired t-test 第 4 个 CED seed |\n| eval_plan_014_no_evidence_r2 | RUNNING | cuda:0 | SFT-no-evidence eval retry（C1 ablation） |\n| eval_flat_nli_seed45 | ANALYZING | — | flat-NLI s45 eval 已完成，需要 Worker 分析结果 |\n| reeval_flat_nli_s43_r2 | ALLOCATED | — | 统一协议 re-eval，已分配待提交 |\n| reeval_ced_s44 | PREPARING | — | D076 统一协议 re-eval |\n| reeval_ced_s42 | PREPARING | — | D076 统一协议 re-eval |\n| reeval_flat_nli_s42 | PREPARING | — | D076 统一协议 re-eval |\n\n**等待中**:\n- 3 个 cron 回调（eval_rsft_ced_s45/s43, eval_plan_014_no_evidence_r2 完成时触发）\n- eval_flat_nli_seed45 ANALYZING 但 **Worker 池=0**，需要立即 spawn worker 分析\n- reeval_flat_nli_s43_r2 ALLOCATED 但未提交（等 GPU 释放）\n- 4 个 PREPARING re-eval 等 GPU 释放后排队\n\n### 4. 📋 待办（条件触发式）\n- **立即**: spawn worker 处理 eval_flat_nli_seed45 ANALYZING → 提取 metrics → 更新 registry\n- **eval_rsft_ced_s45 完成** → spawn worker 分析 → 释放 GPU → 提交 reeval（D076 队列中优先级最高的一个）\n- **eval_rsft_ced_s43 完成** → spawn worker 分析 → 释放 cuda:1 → 提交 reeval\n- **eval_plan_014_no_evidence_r2 完成** → spawn worker 分析 → 更新 C1 ablation 数据 → 释放 cuda:0 → 提交 reeval\n- **所有 CED + flat-NLI 4 seeds eval + 4 个 reeval 全部完成** → 运行 seed_comparison.py → paired t-test + Cohen's d → 汇报 Director C3 最终统计结论\n- **reeval 全部完成** → 更新论文主表数值（用统一协议数据）\n- **paired t-test 出结果** → 如果 p<0.05 则 C3 可恢复；否则维持 D056 降级\n- 别忘了 reeval_flat_nli_s43_r2 已 ALLOCATED 但未提交，需要 GPU 释放后 submit_on_allocated\n\n### 5. 🎯 战略上下文\n**项目**: FREIGE — LLM-based evidence-grounded DocRE 系统性研究。EMNLP 2026 ARR July（~7.15-25），剩 ~2 个月。\n\n**核心结论链**:\n- **C1**: Evidence generation 代价 ~8pp rel_f1（SFT no-evidence 0.4893 vs evidence-SFT 0.4106）。CED reranker 恢复 97%（0.4864）\n- **C2**: QLoRA GRPO 导致 catastrophic evidence-extraction decoupling（rel_f1=0.014），bf16 下不复现。Decoupling spectrum: GRPO QLoRA > GRPO bf16 > DPO bf16 > RSFT none\n- **C3**: 已降级（D056）。CED vs flat-NLI 统计不可区分。当前在补全 4 seeds × 2 methods 的统一协议 eval 做最终 paired t-test\n- **C4 (EDCR)**: 双层诊断工具。方法级 ρ=-0.96（rel_f1 近完美负相关），per-relation 级是难度诊断\n\n**易错点**:\n- eval_rsft_ced_s45 的 CUDA_VISIBLE_DEVICES 未显式写在命令中，推测是 submit_training_job 框架注入的。查 GPU 实际占用优先看 `nvidia-smi` 而非命令字符串\n- D076 re-eval 的目的是**协议统一**（batch_size/max_new_tokens/quantize 一致），不是因为之前结果错误。但最终论文表格**必须用 re-eval 数据**\n- 0.4549 是 plan_011 ckpt-100 的训练前起点，不是 GRPO bf16 训练后结果（实际 step_30=0.434）\n- Q-BLoRA (TACL 2025) 和 QuRL (arXiv 2026) 可在 Discussion 中引用来解释 QLoRA decoupling 机制\n- 121 个实验中 49 success / 17 negative / 22 failed，大量 GRPO 相关的 killed/failed 实验是历史遗留，不需要处理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778901166.md"
+}

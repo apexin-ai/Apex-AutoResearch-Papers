@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cbe98403ee63d820ef2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops cleanup orphan gpu",
+  "task_key": "worker_ops_cleanup-orphan-gpu_20260514T123135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-orphan-gpu_20260514T123135_result.json",
+    "occurrence": 1,
+    "bytes": 1123,
+    "sha256": "efaf50192bb29b1e2303bbbe3f1ef44aa668c884bff7c05167b5ccac6a6aba1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告：GPU 残留进程\n\n**3 个 GRPO 实验的子进程仍在运行，`kill_job` 只杀了父进程，子 worker 未被终止。**\n\n| GPU | PID | 显存 | 运行时间 | 进程 | 状态 |\n|-----|-----|------|---------|------|------|\n| **0** | **50534** | 13052 MiB | 22min | `grpo_trainer ... grpo_ced_r4` | **残留** (父 PID 50529 已死) |\n| **0** | 53071 | 98 MiB | 32s | `grpo_trainer ... grpo_ced_r5` | **新实验**，刚启动 |\n| 1 | 45531 | 5326 MiB | 44min | `freige.eval.inference ... sft` | 预期 (SFT eval) |\n| 1 | 47298 | 5326 MiB | 43min | `freige.eval.inference ... sft` | 预期 (SFT eval) |\n| **2** | **50675** | 13054 MiB | 22min | `grpo_trainer ... grpo_extract_r2` | **残留** (父 PID 50670 已死) |\n| **3** | **50946** | 13052 MiB | 22min | `grpo_trainer ... grpo_flatnli_r2` | **残留** (父 PID 50941 已死) |\n\n**需要清理的残留进程**: PID 50534 (GPU 0), 50675 (GPU 2), 50946 (GPU 3) — 共占 ~39GB 显存。\n\n**注意**: GPU 0 上还有一个新启动的 `grpo_ced_r5` (PID 53071)，仅 32 秒前启动，不确定是否是你有意发起的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-orphan-gpu.md"
+}

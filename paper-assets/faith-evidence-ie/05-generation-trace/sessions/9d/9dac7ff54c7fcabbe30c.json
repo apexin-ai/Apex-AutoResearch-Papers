@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dac7ff54c7fcabbe30c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan017 14b ced scoring",
+  "task_key": "worker_analysis_plan017_14b_ced_scoring_20260520T191152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan017_14b_ced_scoring_20260520T191152_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "60beb7b8149af01d5f5b228d3ffd1dde06d8b652350f22fa2f813b0f6a4a2b08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。汇总如下：\n\n## plan017_14b_ced_scoring 结果\n\n**基本信息**\n- 输入: 24216 candidates, 3027 unique docs\n- 输出: `/root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl` (3015 条, 9.1MB)\n- 运行时间: ~1h (GPU 0)\n\n**Selected (top_k=1) 指标**\n\n| 指标 | 14B | 4B (d112) | Δ |\n|------|-----|-----------|---|\n| selected_count | 3015 | 3014 | +1 |\n| selection_rate | 12.45% | 12.4% | ~same |\n| mean_f1 | **0.730** | 0.676 | **+5.4pp** |\n| mean_ced | **0.690** | 0.676 | **+1.4pp** |\n| mean_combined | 0.768 | — | — |\n\n**数据质量**\n- f1=0 样本: 0 条（阈值过滤生效）\n- ced=0 样本: 0 条\n- truncated 样本: 0 条（在 selected 中）\n- format_reward: 全部 1.0\n- f1 filter 丢弃 497 gens / 12 docs\n\n**截断分析（全量）**\n- truncated: 1701/24216 (7.0%), mean_f1=0.487\n- non-truncated: 22515, mean_f1=0.625, gap=0.139 (显著)\n\n**结论**: 14B 候选质量显著优于 4B，F1 提升 5.4pp，CED 提升 1.4pp，验证了 model scaling 假设。RSFT 训练数据已就绪，可进入下一步 RSFT training。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan017-14b-ced-scoring.md"
+}

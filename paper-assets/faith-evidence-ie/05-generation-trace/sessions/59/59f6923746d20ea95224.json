@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59f6923746d20ea95224",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "experiment reeval sft baseline d076",
+  "task_key": "worker_experiment_reeval_sft_baseline_d076_20260516T052601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_reeval_sft_baseline_d076_20260516T052601_result.json",
+    "occurrence": 1,
+    "bytes": 350,
+    "sha256": "882c9d15ff7931c390e8335523197d63206a011b592e39cf2da2d66864ec5e4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动并正常运行：\n\n- **PID**: 303065\n- **GPU 1**: 8181 MiB 已占用，模型正在加载\n- **日志**: 底座模型加载完成，正在 merge SFT adapter (`/root/autodl-tmp/sft_output`)\n- **Registry**: `reeval_sft_baseline_d076` — RUNNING\n- **输出目录**: `/root/autodl-tmp/eval_results/sft_baseline_d076_reeval`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-reeval-sft-baseline-d076.md"
+}

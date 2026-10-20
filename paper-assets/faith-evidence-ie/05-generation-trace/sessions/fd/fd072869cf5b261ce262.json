@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd072869cf5b261ce262",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops anon repo push",
+  "task_key": "worker_ops_anon-repo-push_20260525T084033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon-repo-push_20260525T084033_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "1a6eae6b1b3502dc9167284c881b2613e07d36451f32052ded5320467697e625"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **Token 有效** — 验证通过\n2. **推送时间** — 2026-05-25 16:42 UTC\n3. **匿名性确认**：\n   - 未发现真实姓名、邮箱、机构名\n   - 95 个文件中的 `/root/autodl-tmp/freige` 硬编码路径 → 全部替换为 `/workspace/freige`\n   - Git author/committer 均设为 `Anonymous <anonymous@anonymous.invalid>`\n4. **README** — 新建，含安装、SFT/RSFT/GRPO/Eval 用法、项目结构\n5. **文件概要**：\n   - 117 个文件，15314 行代码\n   - 核心模块：`training/`（7 个 trainer）、`eval/`（9 个文件）、`rewards/`（CED reward）、`data/`（DocRED processor）、`analysis/`、`configs/`（5 个 DeepSpeed/Accelerate 配置）、`scripts/`（51 个训练/评测脚本）、`tests/`（3 个测试）\n   - 新增：`.gitignore`、`README.md`、`requirements.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-push.md"
+}

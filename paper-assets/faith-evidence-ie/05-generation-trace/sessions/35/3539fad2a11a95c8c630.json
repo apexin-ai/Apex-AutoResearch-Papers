@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3539fad2a11a95c8c630",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops d158 truncation check",
+  "task_key": "worker_ops_d158_truncation_check_20260524T092058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d158_truncation_check_20260524T092058_result.json",
+    "occurrence": 1,
+    "bytes": 1254,
+    "sha256": "9ec5f7c389760e53ba4154f4e663e0056e94f0f79226a38ed68ff8ac5d7de941"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n**s42/s43 共享同一份生成数据**（两者的 RSFT 训练都使用 `rsft_scored_1_7b` / `rsft_scored_1_7b_k1`，源自同一个 SFT adapter `sft_output_qwen3_1_7b_bf16`，只是训练 seed 不同）。\n\n| Seed | Truncation Rate | 来源 |\n|------|----------------|------|\n| **s42** | **12.1%** (2920/24216) | `rsft_scored_1_7b/rsft_report.json` truncation_analysis |\n| **s43** | **12.1%**（同上） | 与 s42 共享生成数据 |\n| **s44** | **19.2%**（前 100 docs）/ ~20.2%（当前 302/1496） | `d158_1_7b_rsft_s44_generate.log` + JSONL 直接统计 |\n\n**s44 truncation rate 显著高于 s42/s43**（19-20% vs 12.1%，相对增幅 ~60%）。原因是 s44 使用了不同的 SFT adapter（`sft_output_qwen3_1_7b_bf16_seed44`），该模型倾向生成更长的输出。\n\n**是否需要干预：** s44 的 19-20% 不在 s42/s43 的类似范围内（偏高约 8 个百分点）。truncation 的负面影响已在 s42 的 report 中量化：被截断样本的 mean F1 = 0.4389 vs 未截断的 0.6132（差距 0.1743）。s44 更高的 truncation rate 意味着更多低质量候选进入筛选池。建议 Director 决定是否需要增大 `max_new_tokens`（当前默认 1024）或接受该水平。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d158-truncation-check.md"
+}

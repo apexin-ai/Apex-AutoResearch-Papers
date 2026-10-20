@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b088f45499ba2aa9907",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "train mvp2 sft launch",
+  "task_key": "worker_train_mvp2-sft-launch_20260514T061031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_mvp2-sft-launch_20260514T061031_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "cf44c19521cff54936f82dda849413b65e2a1f74ba8f944d29391475254ef513"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练确认正常运行，第一个 loss 已输出：**\n\n- **Step 10/144**: loss=1.2741, grad_norm=0.079, lr=2e-4, token_accuracy=75.9%, epoch=0.21\n- 速度 ~8.1s/step, 预计总训练时间 ~20 分钟\n\n## 任务完成总结\n\n| 步骤 | 状态 |\n|------|------|\n| 1. 终止残留进程 | ✅ |\n| 2. 部署 sft_trainer.py | ✅（修复了 TRL 1.1.0 兼容性：`max_seq_length`→`max_length`, `tokenizer`→`processing_class`, 加入 `device_map` per-rank） |\n| 3. 数据加载验证 | ✅ Train=3027, Dev=985 |\n| 4. 提交 SFT 训练 | ✅ 4×RTX 5090, DeepSpeed ZeRO-2 + QLoRA |\n| 5. 验证训练启动 | ✅ loss=1.2741 @ step 10 |\n| 6. 更新 registry | ✅ RUNNING，完整 spec 已记录 |\n\n修复的 3 个 TRL 1.1.0 兼容性问题：\n1. `SFTConfig.max_seq_length` → `max_length`\n2. `SFTTrainer(tokenizer=...)` → `SFTTrainer(processing_class=...)`\n3. accelerate config 改为 `MULTI_GPU` + 代码加 `device_map={\"\": local_rank}` 解决多 GPU 模型加载冲突"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-mvp2-sft-launch.md"
+}

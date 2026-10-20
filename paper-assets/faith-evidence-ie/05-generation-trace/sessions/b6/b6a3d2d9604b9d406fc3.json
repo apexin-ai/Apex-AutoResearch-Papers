@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6a3d2d9604b9d406fc3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research plan 009 dynamics data",
+  "task_key": "worker_research_plan_009_dynamics_data_20260515T210649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan_009_dynamics_data_20260515T210649_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "3cb4a0e6e43dc9bc08dacb4dcfda8cbc3e1f4a78c556bbb9f6fd9bb4ed30ecbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出文件已保存并注册。\n\n**汇总**：\n\n`plan_009_dynamics_data.json` 包含：\n- **6 个 GRPO runs**：\n  - `qlora_ced_kl001_lr5e5`：20 训练步 + 5 eval 点（rel_f1 最高 0.2167，forgetting）\n  - `qlora_ced_lr5e6`：20 训练步 + 5 eval 点（rel_f1<0.014 但 evi_f1→0.850，极端 decoupling）\n  - `bf16_g8_grpo`：12 训练步 + 3 eval 点（rel_f1=0.4549，**无 forgetting**）\n  - `qlora_extract_r4`：4 步后 collapse（f1_reward=0）\n  - `qlora_flatnli_r6`：25 步 collapse\n  - `qlora_flatnli_r3`：6 个时间点的 NLI reward hacking 数据\n- **7 个 RSFT baselines**（3-seed CED mean=0.4596±0.0128 + flat-NLI + 变体）\n- **SFT baseline**（量化/非量化）\n- **5 个其他 baselines**（no-evidence SFT、CED reranker、random reranker、oracle、DPO 3ep）\n- **6 个关键 decision 引用**（D024-D054）\n\n核心 narrative：QLoRA GRPO 在结构化 IE 上导致 evidence-extraction decoupling（evi_f1↑ 但 rel_f1 catastrophic forgetting），bf16 GRPO 完全不出现此现象（Δrel_f1=+23.8pp），确认为 QLoRA-specific artifact（D054）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan-009-dynamics-data.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "159a60ea1ed950849873",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose evaluator ignf1 root bug",
+  "task_key": "worker_diagnose_evaluator_ignf1_root_bug_20260516T035045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_evaluator_ignf1_root_bug_20260516T035045_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "ca978085d30ac32863ed01ef7e3617c3d355445c138682c33a35a9dbff6cb3e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 结论\n\n### 根因\n\n**原始 bug**：Ign-F1 过滤使用了包含 `doc_id` 的 `train_triples`。由于 dev 集文档的 doc_id 与 train 集不同，`k not in self.train_triples` 永远为 True，**没有任何三元组被过滤**，导致 ign_f1 == f1。\n\nrecompute_ign_f1.py 的 `_note` 字段直接确认了这一点：`\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\"`\n\n### 当前状态：已修复\n\n`evaluator.py` 当前代码正确：\n\n- **`from_train_file()`**（~L47-55）：构建了两个集合——`train_triples`（含 doc_id）和 `train_facts`（不含 doc_id，仅 `(head, tail, relation)`）\n- **`compute_f1()`**（~L76-77）：Ign-F1 过滤使用 `k[1:] not in self.train_facts`，其中 `k[1:]` 去掉了 doc_id，与 `train_facts` 的格式匹配\n\n`inference.py` 的 `evaluate()` 函数（L240-247）正确调用了 `DocREDEvaluator.from_train_file(train_path)`，且 `/root/autodl-tmp/data/docred/train_annotated.json` 存在。\n\n### 当前 RUNNING 实验\n\n**4 个 RUNNING 实验完成后会产出正确的 ign_f1**。evaluator.py 的根源 bug 已修复，不再需要 recompute_ign_f1.py 作为 workaround。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-evaluator-ignf1-root-bug.md"
+}

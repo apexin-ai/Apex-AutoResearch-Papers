@@ -1,0 +1,532 @@
+{
+  "schema_version": "1.0",
+  "id": "8f14e58930ea27295e51",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "status cuda1 check",
+  "task_key": "worker_status_cuda1_check_20260516T145501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_status_cuda1_check_20260516T145501.jsonl",
+    "occurrence": 1,
+    "bytes": 12852,
+    "sha256": "4cc83a70ab32fbb89894e32bdf769d79997d90ff93b8c43aadd949614a4286ef"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T14:55:59.270079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T14:55:59.270953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T14:55:59.271266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ps -p 353179,353322 -o pid,stat,etime,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T14:55:59.271487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi -i 1 --query-compute-apps=pid,used_memory --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T14:55:59.271700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n353322 Rl         30:31 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_no_evidence_output/ --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/plan_014_no_evidence_eval_d076\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T14:55:59.271885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"353322, 10288 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T14:55:59.272093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/freige/outputs/rsft_candidates_llama_8b/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T14:55:59.272302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T14:55:59.273113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/plan_014_no_evidence_eval_d076/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T14:55:59.273304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x  2 root root    6 May 16 22:24 .\\\\ndrwxr-xr-x 66 root root 4096 May 16 22:24 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T14:55:59.273561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/freige/outputs/rsft_candidates_llama_8b/",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T14:55:59.274078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"generations.jsonl\\\\nprogress.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T14:55:59.274253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/freige/outputs/rsft_candidates_llama_8b/progress.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T14:55:59.274472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"completed_doc_ids\\\\\\\": [\\\\\\\"AirAsia Zest\\\\\\\", \\\\\\\"Alton, Illinois\\\\\\\", \\\\\\\"Andrew Kiss\\\\\\\", \\\\\\\"Atomic Blonde\\\\\\\", \\\\\\\"Bartolomeo Altomonte\\\\\\\", \\\\\\\"Basil Gooden\\\\\\\", \\\\\\\"Belgian Socialist Party\\\\\\\", \\\\\\\"Business Executives for National Security\\\\\\\", \\\\\\\"Calochortus lyallii\\\\\\\", \\\\\\\"Center Gai\\\\\\\", \\\\\\\"Chelsea (American band)\\\\\\\", \\\\\\\"Collins Street, Melbourne\\\\\\\", \\\\\\\"Colossal Cave Adventure\\\\\\\", \\\\\\\"David T. McLaughlin\\\\\\\", \\\\\\\"Eclipse Aviation\\\\\\\", \\\\\\\"Eddie Robinson (baseball)\\\\\\\", \\\\\\\"Elbe Lateral Canal\\\\\\\", \\\\\\\"European Parliament Committee on International Trade\\\\\\\", \\\\\\\"FK Sarajevo\\\\\\\", \\\\\\\"Francesco Pazienza\\\\\\\", \\\\\\\"Fran\\\\\\\\u00e7ois Asselineau\\\\\\\", \\\\\\\"George Calnan\\\\\\\", \\\\\\\"Goodbyeee\\\\\\\", \\\\\\\"Hanscarl Leuner\\\\\\\", \\\\\\\"Himnusz\\\\\\\", \\\\\\\"Ho\\\\\\\\u00e0ng Di\\\\\\\\u1ec7u\\\\\\\", \\\\\\\"Jackie Beat\\\\\\\", \\\\\\\"John Samuel Bourque\\\\\\\", \\\\\\\"Jonas Geirnaert\\\\\\\", \\\\\\\"Juan Guzm\\\\\\\\u00e1n (photographer)\\\\\\\", \\\\\\\"List of High Commissioners of New Zealand to Fiji\\\\\\\", \\\\\\\"Little Red Rooster\\\\\\\", \\\\\\\"L\\\\\\\\u00e9lia Abramo\\\\\\\", \\\\\\\"Maple, North Carolina\\\\\\\", \\\\\\\"March for Women's Lives\\\\\\\", \\\\\\\"Mario Amilivia\\\\\\\", \\\\\\\"Maya Ballgame\\\\\\\", \\\\\\\"Michelle Ferre\\\\\\\", \\\\\\\"Mighty Wings\\\\\\\", \\\\\\\"Minister of Home Affairs (India)\\\\\\\", \\\\\\\"Ministry of Home Security\\\\\\\", \\\\\\\"Monson, Maine\\\\\\\", \\\\\\\"Mos\\\\\\\\u00e8 in Egitto\\\\\\\", \\\\\\\"M\\\\\\\\u00e1rio Cravo Neto\\\\\\\", \\\\\\\"Nabacalis\\\\\\\", \\\\\\\"Nicola Lake\\\\\\\", \\\\\\\"Nihil\\\\\\\", \\\\\\\"Niklas Bergqvist\\\\\\\", \\\\\\\"Olen (poet)\\\\\\\", \\\\\\\"Otto Cuntz\\\\\\\", \\\\\\\"Pacific Fair Shopping Centre\\\\\\\", \\\\\\\"Palais Lanckoro\\\\\\\\u0144ski\\\\\\\", \\\\\\\"Ridge Canipe\\\\\\\", \\\\\\\"Rzesz\\\\\\\\u00f3w\\\\\\\", \\\\\\\"Sam Cohen (Australian politician)\\\\\\\", \\\\\\\"Second River (New Jersey)\\\\\\\", \\\\\\\"The Lakes, Western Australia\\\\\\\", \\\\\\\"The One and Only (Lil Wyte album)\\\\\\\", \\\\\\\"The Piano Lesson\\\\\\\", \\\\\\\"Thomas Wolff\\\\\\\", \\\\\\\"Us and Them (Godflesh album)\\\\\\\", \\\\\\\"Where the Party At\\\\\\\", \\\\\\\"William B. Maclay\\\\\\\", \\\\\\\"\\\\\\\\u00d3ttar (mythology)\\\\\\\"]}\\\", \\\"stderr\\\"\n…[truncated 90 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T14:55:59.274810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "wc -l /root/autodl-tmp/freige/outputs/rsft_candidates_llama_8b/generations.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T14:55:59.274979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"512 /root/autodl-tmp/freige/outputs/rsft_candidates_llama_8b/generations.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T14:55:59.275113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -c \"doc_id\" /root/autodl-tmp/freige/outputs/rsft_candidates_llama_8b/generations.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T14:55:59.275261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"512\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T14:55:59.275491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/data/docred -name \"dev*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T14:55:59.275676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/data/docred/.cache/huggingface/download/dev.json.lock\\\\n/root/autodl-tmp/data/docred/dev.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T14:55:59.275815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/data/docred/dev.json')); print(len(d))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T14:55:59.276210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T14:55:59.276375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -c \"title\" /root/autodl-tmp/data/docred/dev.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T14:55:59.276508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T14:55:59.276673+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "That's a single JSON array file. The progress shows 64 completed doc_ids and 512 generation lines (likely 8 candidates per doc: 64×8=512).\n\n## 汇报\n\n| 实验 | PID | 状态 | 详情 |\n|------|-----|------|------|\n| **plan_016_llama_rsft_candidates_r2** | 353179 | **DEAD** | 进程已退出。已生成 512 行 (64 docs × 8 candidates/doc)。progress.json 记录 64 个 completed_doc_ids。DocRED dev 约 998 docs → 进度约 **6.4%**，提前终止。 |\n| **plan_014_no_evidence_eval_d076** | 353322 | **ALIVE** | 运行中 30min，GPU 1 占用 10,288 MiB。输出目录尚无结果文件（推理还未完成写出）。 |\n\n**需要关注：**\n- plan_016 (PID 353179) 已死但只完成 6.4%，需要排查退出原因（可能 OOM 或代码错误）并决定是否重启。\n- plan_014 正常运行中，等待完成后检查结果。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_cuda1_check_20260516T145501"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/status-cuda1-check.md"
+}

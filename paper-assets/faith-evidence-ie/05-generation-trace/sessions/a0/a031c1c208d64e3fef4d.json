@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a031c1c208d64e3fef4d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops post restart status check",
+  "task_key": "worker_ops_post_restart_status_check_20260519T174019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post_restart_status_check_20260519T174019_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "5d761dc769623a8860cb53094dd15e1c91f3ac5c0884b1c60435bfad38dbff1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个进程全部存活：\n\n| 实验 | PID | GPU | 运行时长 | 状态 |\n|------|-----|-----|---------|------|\n| plan017_14b_rsft_generate | 712685 | cuda:0+cuda:2 | 6m46s | **ALIVE** |\n| d112_rsft_no_evidence_eval_r3 | 706326 | cuda:1 | 1h53m | **ALIVE** |\n| plan019_1_7b_rsft_no_evidence_eval_2048 | 702837 | cuda:3 | 2h51m | **ALIVE** |\n\nGPU 显存占用与预期一致：GPU0 16GB、GPU1 11GB、GPU2 18GB、GPU3 7GB，均在工作中。服务重启未影响任何实验进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-status-check.md"
+}

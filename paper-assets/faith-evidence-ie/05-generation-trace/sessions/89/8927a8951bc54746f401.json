@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8927a8951bc54746f401",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_5_1778808705.md",
+  "task_key": "loop_5_1778808705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778808705.md",
+    "occurrence": 1,
+    "bytes": 4962,
+    "sha256": "476af7dd60b631ca124d9ede12ec8b60cadc2ee63c727dd2fd3473b89bd3a7e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-15T01:24:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: rtx5090-4x 上的 cuda:0,1,2,3（且只有这 4 张卡）\n- **RSFT 训练禁止 `--quantize`**: 4-bit + merge_and_unload 在 RTX 5090 有 CUBLAS 错误。bf16 Qwen3-4B 仅 ~8GB，无需量化\n- **工作目录必须 `cd /root/autodl-tmp/`**: freige 不是 pip 包，cd 到 `/root/autodl-tmp/freige/` 会导致 Python 找到内层空 `freige/freige/` 包，所有 import 失败\n- GRPO+QLoRA 方向已判死 (D031)，不要再跑任何 GRPO 实验\n- 3 个 PREPARING 状态的实验 (mvp2_grpo_ced_kl001_r2, r3, mvp2_eval_ced_kl001_r4_last) 都是已作废的 GRPO 残留，不要提交\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），第二 SSH endpoint: bjb2-12179（同一台机器）\n- **工作目录**: `/root/autodl-tmp/`（代码在 `/root/autodl-tmp/freige/`）\n- **Python**: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: `/root/autodl-tmp/models/Qwen3-4B`\n- **SFT adapter**: `/root/autodl-tmp/sft_output`\n- **数据**: `/root/autodl-tmp/data/docred`（split: train_annotated）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（HF_HOME 需设置）\n- **NLI 模型**: 已下载到 HF cache（cross-encoder/nli-deberta-v3-base）\n- **RSFT 生成输出**: `/root/autodl-tmp/rsft_generations/`\n- **活跃进程**: mvp2_rsft_generate, PID=122144, tmux session, cuda:1\n- **活跃 cron**: mvp2_rsft_generate（监控进程存活）\n- **活跃 Worker**: worker_ssh_rsft-early-scorefilter-validation（running，验证 score filter 兼容性）\n\n### 3. 📊 当前状态\n**刚完成**:\n- D031/D032/D033: GRPO+QLoRA 全线判死。lr=5e-5 最佳 rel_f1=0.211（SFT 52%），lr=5e-6 全 6 checkpoint 均 <0.01。根因: GRPO+QLoRA 在结构化生成上 catastrophic forgetting 不可解\n- RSFT 代码 3 个文件就绪: rsft_generate.py / rsft_score_filter.py / rsft_trainer.py（已验证 dry-run + 字段兼容性）\n- quantize 默认值 bug 已修复，NLI 模型已下载，并行生成 shard 支持已添加\n- 提交了 mvp2_rsft_generate 到 cuda:1（N=8, T=0.7, batch_size=2, 全量 train_annotated split）\n\n**正在跑**:\n- `mvp2_rsft_generate` (RUNNING, cuda:1): SFT 模型对训练集生成 8 路候选输出，供 CED 打分筛选。预计需要数小时（DocRED train_annotated ~3053 样本 × 8 生成）\n\n**等待中**:\n- worker_ssh_rsft-early-scorefilter-validation（running）：验证生成早期样本能否通过 score_filter pipeline\n- mvp2_rsft_generate cron 回调：生成完成后触发\n\n**GPU 实况**: cuda:0,2,3 空闲；cuda:1 跑 RSFT 生成\n\n### 4. 📋 待办（条件触发式）\n- **rsft-early-scorefilter-validation Worker 回调** → 确认 score_filter 能正常处理 generate 输出。如有问题，立即派 Worker 修 bug（generate 还在跑，来得及）\n- **mvp2_rsft_generate 完成 (cron 回调)** → (1) 派 Worker 跑 rsft_score_filter.py 打分筛选; (2) 检查 diversity（unique triple-sets >= 5/8，已有 mvp2_diversity_probe 验证 T=0.7 可行）; (3) 筛选后跑 rsft_trainer.py 训练; (4) eval 对比 SFT baseline (rel_f1=0.406)\n- **RSFT 训练完成** → eval 对比。pass criteria: rel_f1 > SFT baseline (0.406)。如 pass → complete_mvp()→ paper_framing.md → experiment_plan.yaml\n- **RSFT 失败** → 按 ROADMAP contingency: (1) DPO+CED 并行备选; (2) 全参微调排除 QLoRA 根因; (3) CED 作为推理时 reranker\n- **cuda:0,2,3 当前空闲** → 可以并行跑更多 RSFT 生成 shard（代码已支持 --shard_id/--start_idx/--end_idx），或提前准备 DPO 代码（dpo-trainer-prep Worker 已完成代码编写）\n\n### 5. 🎯 战略上下文\n- **核心方向**: FREIGE = CED reward 训练 LLM 做文档级关系抽取 + 可验证证据生成\n- **MVP-1 已通过**: CED margin=0.4827, accuracy=81.5%, r=0.34 → CED reward signal 有效\n- **MVP-2 当前 pivot**: 在线 RL (GRPO) 失败 → 离线 RL (RSFT)。CED signal 本身没问题，问题是 GRPO+QLoRA 作为优化方法论不适合结构化生成\n- **SFT baseline**: rel_f1=0.406, evi_f1=0.628 — 这是 RSFT 必须超越的 bar\n- **DPO trainer 代码已准备好**（worker_code_dpo-trainer-prep 完成），作为 RSFT 的并行备选。RSFT 优先是因为最简单最稳定\n- **容易判断错的事**: (1) 不要因为 cuda:0/2/3 空闲就急着跑新 GRPO 实验——方向已判死; (2) RSFT generate 输出在 `/root/autodl-tmp/rsft_generations/`，score_filter 的 --input_dir 指向它; (3) 3 个 PREPARING 实验是废弃残留，不要尝试重启\n- **决策链**: D024-D033 全部是 GRPO 失败的记录。D031 是 pivot 决策点。下一个关键决策是 RSFT 结果出来后的方向判断\n- **Post-MVP 流程**: MVP-2 通过 → complete_mvp() → paper_framing.md → experiment_plan.yaml → dream_simulate(review_mode=\"full\") → 更新 ROADMAP\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778808705.md"
+}

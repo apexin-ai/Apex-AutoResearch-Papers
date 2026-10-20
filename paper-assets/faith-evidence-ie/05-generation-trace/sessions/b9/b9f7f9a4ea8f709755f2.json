@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9f7f9a4ea8f709755f2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval lr5e6 r1 ckpt20",
+  "task_key": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_lr5e6_r1_ckpt20_20260514T200650_result.json",
+    "occurrence": 1,
+    "bytes": 75,
+    "sha256": "95079f249ed388c1c46fa9a4c9b963e8c8d98a0ae6de41bbe9b58689795af458"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待 ~4.5 分钟后再次检查 ckpt-20 是否已保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-lr5e6-r1-ckpt20.md"
+}

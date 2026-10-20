@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e1641b109b77afd6429",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze test eval 1 7b sft s42 completion",
+  "task_key": "worker_analyze_test_eval_1_7b_sft_s42_completion_20260522T023133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_test_eval_1_7b_sft_s42_completion_20260522T023133_result.json",
+    "occurrence": 1,
+    "bytes": 1064,
+    "sha256": "308f419a5cdd9662a17c1af26f156f6fb7b0ccf40c2438826d05650c6bf58f68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。Cron 不存在（可能已在之前的 session 中删除或未在本 session 创建）。\n\n## 结果汇报\n\n**test_eval_1_7b_sft_s42** — Qwen3-1.7B SFT s42, Re-DocRED test set\n\n| 指标 | 值 |\n|------|------|\n| **Ign-F1** | **0.2579** |\n| F1 | 0.2579 |\n| Precision | 0.3977 |\n| Recall | 0.1908 |\n| Evi-F1 (DREEAM/joint) | 0.1975 |\n| Evi-F1 (TP) | 0.5918 |\n| EDCR | 0.8504 |\n| Predictions | 26,863 |\n| TP / Pred / Gold | 3,310 / 8,323 / 17,350 |\n\n**格式合规**: 500/500 (100%), field_compliance 100%, evidence_format 98%\n\n**Truncation**: 409/500 (81.8%) — 高截断率，1.7B 模型输出能力有限\n\n**CodaLab submission**: 已生成，8,020 converted, 40 skipped (rel), 1,093 skipped (entity)\n\n**对比 dev**: dev 3-seed mean ign_f1 = 0.4464, test ign_f1 = 0.2579, 差距约 **18.9pp**。这在预期范围内（~20pp），但注意 ign_f1 == f1（因为 test set 没有 train_annotated.json 做 ignore 过滤，这是正常的——CodaLab 提交后会得到官方 ign_f1）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-test-eval-1-7b-sft-s42-completion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee51e5ac8e90347bfde1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code prepare test eval remaining",
+  "task_key": "worker_code_prepare_test_eval_remaining_20260521T104033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_test_eval_remaining_20260521T104033_result.json",
+    "occurrence": 1,
+    "bytes": 2790,
+    "sha256": "308df6460986a0e2a88a3b95d222098e0605f3ec191790947123bddb8e831b3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。以下是汇总和命令。\n\n---\n\n## 验证结果\n\n### 路径状态\n\n| Scale | RSFT adapter (CED k1 s42) | Base model | SFT adapter | 状态 |\n|-------|---------------------------|------------|-------------|------|\n| 1.7B | `/root/autodl-tmp/rsft_output_qwen3_1_7b_k1` | `/root/autodl-tmp/models/Qwen/Qwen3-1.7B` | `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16` | ✅ |\n| 4B | `/root/autodl-tmp/rsft_output/` (已删除) | `/root/autodl-tmp/models/Qwen3-4B` | `/root/autodl-tmp/sft_output` | ❌ **adapter 不存在** |\n| 8B | `/root/autodl-tmp/rsft_output_qwen3_8b_k1` | `/root/autodl-tmp/models/Qwen/Qwen3-8B` | `/root/autodl-tmp/sft_output_qwen3_8b_bf16` | ✅ |\n\n**4B RSFT s42 问题**：原始 adapter `/root/autodl-tmp/rsft_output/` 已被删除。服务器上仅存的 4B RSFT 是：\n- `rsft_output_ced_s43` (seed 43)\n- `rsft_output_4b_sft_s44` / `rsft_output_4b_sft_s44_bf16` (seed 44)\n- `rsft_output_random_k1` (random baseline, 非 CED 方法)\n\n需要重新训练 4B RSFT s42，或确认是否用其他 seed 替代。\n\n---\n\n## 准备好的命令（2/3）\n\n### 命令 1: Qwen3-1.7B RSFT test eval\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=X python -m freige.eval.test_inference \\\n  --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1 \\\n  --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B \\\n  --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 \\\n  --data_path /root/autodl-tmp/data/re-docred-repo/data \\\n  --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42 \\\n  --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 \\\n  --split test_revised\"\n```\n\n### 命令 2: Qwen3-4B RSFT test eval\n\n**❌ 无法生成** — adapter 已删除。\n\n### 命令 3: Qwen3-8B RSFT test eval\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=X python -m freige.eval.test_inference \\\n  --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1 \\\n  --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B \\\n  --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 \\\n  --data_path /root/autodl-tmp/data/re-docred-repo/data \\\n  --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s42 \\\n  --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 \\\n  --split test_revised\"\n```\n\n---\n\n**说明**：\n- `CUDA_VISIBLE_DEVICES=X` 需替换为实际空闲 GPU 编号（提交前按 C001 用 nvidia-smi 确认显存 < 2GB）\n- RSFT adapter 使用根目录（含 `adapter_model.safetensors`，即最终 checkpoint）\n- 1.7B 模型较小，约需 1 张 RTX 5090；8B 也需 1 张"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-test-eval-remaining.md"
+}

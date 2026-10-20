@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ea23dbd7dffc4cc770e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval llama rsft no evi result",
+  "task_key": "worker_eval_llama-rsft-no-evi-result_20260522T235610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama-rsft-no-evi-result_20260522T235610_result.json",
+    "occurrence": 1,
+    "bytes": 586,
+    "sha256": "95c23d824eaf25c81271bbd54cf9a0e2ada598ddf9f7e550f732b845fa9938ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被删除或在其他 session 创建）。Registry 已更新完毕。\n\n## LLaMA RSFT no-evi test 结果\n\n状态: **success**\n\n| 指标 | 值 |\n|------|-----|\n| **ign_f1** | **0.3334** |\n| f1 | 0.3334 |\n| precision | 0.4549 |\n| recall | 0.2632 |\n| n_truncated | 269/500 |\n| format_ok_rate | 99.8% |\n\n**RSFT test evidence tax**: no_evi(0.3334) - with_evi(0.3599) = **-2.65pp**\n\n负值 = 去掉 evidence 后性能下降，evidence 对 RSFT 有收益。与 dev 方向一致（dev tax = -2.17pp），test 上 evidence 收益更大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama-rsft-no-evi-result.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8b0b6bb97f44aa4738e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops cuda2 kill and resubmit",
+  "task_key": "worker_ops_cuda2_kill_and_resubmit_20260516T111547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda2_kill_and_resubmit_20260516T111547_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "0b25aaa330a0cff8d121be093527a80c4af65ed0d78c0977a5ab8ff69c7292be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**汇总：**\n\n| 步骤 | 结果 |\n|------|------|\n| Kill PID 334598 + 子进程 334603 | 已终止，cuda:2 释放至 0 MiB |\n| `plan_006_qwen3_1_7b_no_evidence_eval` | conclusion=failed, notes 已补 |\n| `plan_006_qwen3_8b_no_evidence_eval` | conclusion=killed, status=DONE, notes 已补 |\n| `plan_006_qwen3_8b_no_evidence_eval_v2` | **PID=335357**, cuda:2, RUNNING, 命令含 `--no_evidence` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda2-kill-and-resubmit.md"
+}

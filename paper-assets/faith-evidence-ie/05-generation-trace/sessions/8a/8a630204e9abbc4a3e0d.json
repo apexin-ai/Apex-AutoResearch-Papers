@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a630204e9abbc4a3e0d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval plan 011 bf16 g8 step eval",
+  "task_key": "worker_eval_plan_011_bf16_g8_step_eval_20260515T194521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_011_bf16_g8_step_eval_20260515T194521_result.json",
+    "occurrence": 1,
+    "bytes": 561,
+    "sha256": "04addfe7db2d4e8a4b9090bc5900876963051a3ecddcf40d188c3f8ab106c9d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功提交并运行。Step 30 的模型正在加载，模块解析正常。\n\n总结：\n- **Checkpoint 目录**: `/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-{30,50,70}`（LoRA adapter）\n- **GPU**: cuda:0（cuda:1 被 plan_009 占用，已切换）\n- **修复**: work_dir 改为 `/root/autodl-tmp`（freige 包的父目录），并补上 `--sft_adapter` 参数\n- **输出**: `/root/autodl-tmp/eval_results/plan_011_bf16_g8_step{30,50,70}/`\n- **预计耗时**: 每个 step ~2h（62 batch × ~130s/batch），3 个 step 共约 6h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-011-bf16-g8-step-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07be218b614f785b93c7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research 14b rsft feasibility",
+  "task_key": "worker_research_14b_rsft_feasibility_20260519T065359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_14b_rsft_feasibility_20260519T065359_result.json",
+    "occurrence": 1,
+    "bytes": 2696,
+    "sha256": "47570f0d7678fcad0cf618b99257b3c8039d98ce0d428036f8f44dcdeac9a842"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息收集完毕。\n\n## 14B RSFT Pipeline 显存可行性评估\n\n### 当前 GPU 状态\n| GPU | 已用 | 空闲 | 占用者 |\n|-----|------|------|--------|\n| 0 | 29.6 GB | 2.4 GB | 某 python 进程 |\n| 1 | 16.1 GB | 15.6 GB | 14B SFT ZeRO-3 (rank 0) |\n| 2 | 25.2 GB | 6.7 GB | 14B SFT ZeRO-3 (rank 1) |\n| 3 | 5.4 GB | 26.1 GB | 某 python 进程 |\n\n### 代码量化支持：已就绪，无需改代码\n\n| 模块 | 参数 | 默认值 | 实现 |\n|------|------|--------|------|\n| `rsft_generate.py` | `--quantize` | OFF | NF4 + double quant |\n| `rsft_trainer.py` | `--quantize` | OFF | QLoRA (NF4) |\n| `eval/inference.py` | `--quantize` | **ON** | NF4 + double quant |\n\n`bitsandbytes` 0.49.2 已安装。Qwen3-14B 权重已下载在 `/root/autodl-tmp/models/Qwen/Qwen3-14B`。\n\n### 显存估算\n\n**Qwen3-14B 各精度占用：**\n- bf16: ~28GB 权重 → 加上 KV cache/adapter 约 30GB+ → 单卡 32GB **放不下**\n- 4-bit NF4 (double quant): ~7-8GB 权重\n\n### 方案总表\n\n| 步骤 | 单卡方案 (4-bit) | 预估显存 | 2-GPU 方案 (bf16) | 推荐 |\n|------|-----------------|---------|-------------------|------|\n| **Candidates gen (N=8)** | `--quantize` 单卡 | ~9-10GB | 无必要 | **单卡 4-bit** |\n| **CED scoring** | NLI 模型单卡 | ~1.5GB | — | **单卡** |\n| **RSFT training** | `--quantize` QLoRA 单卡 | ~16-22GB | DeepSpeed ZeRO-3 bf16 | **单卡 QLoRA** |\n| **Eval** | 默认已 4-bit 单卡 | ~9-10GB | 无必要 | **单卡 4-bit** |\n| **No-evidence eval** | `--quantize --no_evidence` | ~9-10GB | 无必要 | **单卡 4-bit** |\n\n### 关键结论\n\n1. **所有步骤单卡 4-bit 均可行**，不需要 2-GPU 方案。代码已全部支持 `--quantize`，无需改代码。\n\n2. **RSFT training 注意事项**：4B 脚本用 `per_device_batch_size=4`。14B QLoRA 训练 activations 更大，可能需要把 batch_size 降到 **2**（配合 `gradient_accumulation_steps=8` 保持 effective batch=16）。如果 batch_size=4 OOM，这是第一个调的旋钮。\n\n3. **Candidates generation**：4B 脚本未加 `--quantize`（4B bf16 仅 ~8GB）。14B 必须加 `--quantize`，否则 28GB 权重+KV cache 单卡爆。\n\n4. **14B SFT no-evidence eval**：单卡 4-bit 可行（~9-10GB），`inference.py` 默认 quantize=True，直接跑即可。\n\n5. **并行策略**：14B SFT 训练完释放 GPU 1+2 后，4 卡各跑一个 shard 做 candidates generation（和 4B 脚本一样 `SHARD=0..3`），每卡 ~9-10GB，14B 也能 4 卡并行生成。\n\n6. **不推荐 2-GPU bf16 方案**：虽然 `rsft_trainer.py` 支持 `--deepspeed`，但 4-bit QLoRA 单卡够用，避免分布式的额外复杂度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-14b-rsft-feasibility.md"
+}

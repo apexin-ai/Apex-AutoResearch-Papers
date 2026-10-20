@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af2a62ecc2fb62588479",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval 1 7b rsft no evi result",
+  "task_key": "worker_eval_1_7b-rsft-no-evi-result_20260522T225801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_1_7b-rsft-no-evi-result_20260522T225801_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "0c9d65ad11483d49f48edad7eb2fb963e8e87e41439f418aa18c8538de28c25c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被删除或未在本 session 创建），跳过。\n\n## 1.7B RSFT no-evi test 结果\n\n状态: **success**\n\n| 指标 | 值 |\n|------|-----|\n| **ign_f1** | **0.2390** |\n| f1 | 0.2390 |\n| precision | 0.4294 |\n| recall | 0.1655 |\n| format_ok_rate | 97.4% |\n| n_truncated | 474/500 |\n\n**RSFT test evidence tax**: with_evi(0.2933) - no_evi(0.2390) = **+5.43pp**\n\n去掉 evidence 后 ign_f1 下降 5.43pp，说明 evidence 对 RSFT 1.7B 有显著正面作用（与 SFT test tax -4.31pp 方向一致：evidence helps）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-1-7b-rsft-no-evi-result.md"
+}

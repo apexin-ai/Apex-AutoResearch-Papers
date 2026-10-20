@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a3be4011b008bb1456c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research ced reranker ignf1",
+  "task_key": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ced_reranker_ignf1_20260516T033143_result.json",
+    "occurrence": 1,
+    "bytes": 541,
+    "sha256": "70f73b5b39ec2cea140b0f9761387f6f8b911b287b55f38c6c42c985ca301cb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "重算结果：\n\n| Strategy | F1 | Ign-F1 |\n|---|---|---|\n| CED reranker | 48.64 | **47.36** |\n| Oracle reranker | 62.37 | 61.25 |\n| Random baseline | 45.38 | 43.97 |\n\n原 results.json 中 ign_f1 == f1 是 bug（原始 eval 代码运行时可能 `train_facts` 未正确填充，或 `from_train_file` 当时还没实现）。现在重新计算后 CED reranker 的 **Ign-F1 = 47.36**。\n\nF1 和 Ign-F1 差约 1.3 个点，符合 DocRED 的典型 train-dev overlap 比例（约 8.6% 的 dev facts 与 train 重叠）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ced-reranker-ignf1.md"
+}

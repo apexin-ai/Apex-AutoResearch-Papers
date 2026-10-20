@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "211dc948702f724c687e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "emergency eval timeout fix",
+  "task_key": "worker_emergency_eval-timeout-fix_20260520T162238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_eval-timeout-fix_20260520T162238_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "b5b03caab56c66d8ab1ea02b5b6a89551f6c64f688af8b363bd367b0026a8bf9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### 状态总结\n\n| 实验 | GPU | 状态 | 详情 |\n|------|-----|------|------|\n| eval_llama_sft_s43_no_evidence | cuda:1 | **已重启** | 原 PID 27322 在 244/247 batch 超时(EXIT_CODE=124)，无 predictions 产出。已有人重启为 `_r2`（PID 36403，seed 43），运行 10 min |\n| eval_llama_sft_s44_no_evidence | cuda:2 | **仍在运行** | PID 29983，当前 179/247 batch，预计约 34 min 后完成。timeout=86400s，不会再超时 |\n| eval_llama_rsft_s44_no_evidence | cuda:3 | **仍在运行** | PID 30188，当前 211/247 batch，预计约 17 min 后完成。timeout=86400s，不会再超时 |\n\n### 注意事项\n- cuda:1 的重启（PID 36403）使用的是 **seed 43**（非你指定的 seed 42），输出目录为 `eval_llama_sft_s43_no_evidence_r2`\n- cuda:2/3 的 timeout 已设为 86400s（24h），不存在超时风险\n- 三个 GPU 均正常工作中，无需额外操作"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-eval-timeout-fix.md"
+}

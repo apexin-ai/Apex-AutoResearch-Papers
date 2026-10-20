@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "bb2910ffc4bcda6dd178",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "download qwen3 14b",
+  "task_key": "worker_download_qwen3_14b_20260518T112127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_download_qwen3_14b_20260518T112127.log",
+    "occurrence": 1,
+    "bytes": 513804,
+    "sha256": "67a9c9f55d3200f0fcf88bbd10b4092e06fb5d5317ed9b495596f55355089235"
+  },
+  "statistics": {
+    "messages": 407,
+    "user_turns": 0,
+    "tool_calls": 169,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 169,
+      "tool_result": 169,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 407,
+      "chunks": [
+        {
+          "path": "bb2910ffc4bcda6dd178-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bb2910ffc4bcda6dd178-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bb2910ffc4bcda6dd178-part-0003.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/download-qwen3-14b.md"
+}

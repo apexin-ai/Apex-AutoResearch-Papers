@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7accfabbf268ee10bfad",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778794030.md",
+  "task_key": "loop_4_1778794030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778794030.md",
+    "occurrence": 1,
+    "bytes": 5376,
+    "sha256": "80859b5127963fb0d4186f07dd9e8d44fbf54ea6d717d83f9f5e5591528d1d8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T21:27:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3（全在 rtx5090-4x 一台机器上）。`rtx5090-4x` 和 `bjb2-12179` 是两个 SSH endpoint，但指向同一台物理机——不要当两台服务器用\n- 训练提交必须写 .sh 脚本到 `/root/autodl-tmp/scripts/`，再 `bash /path/to/script.sh` 提交。**禁止 bash -c 内联引号**（D035，第 4+ 次踩坑）\n- kill_job 后必须派 Worker SSH 验证子进程终止（`ps -p <PID>` + `nvidia-smi -i <GPU>`），tmux kill 不杀子进程\n- GRPO checkpoint eval 必须传 `--sft_adapter` 参数先 merge SFT 再加载 GRPO delta\n- GPU 编号脚本内始终从 0 开始（框架自动映射物理 GPU）\n- flash_attn 未装，用 `attn_implementation=\"sdpa\"`\n- Qwen3-4B 本地路径 `/root/autodl-tmp/models/Qwen3-4B`，不走 HF 下载\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（= gpu-5090-4x-1），4× RTX 5090 32GB\n- **工作目录**: `/root/autodl-tmp/freige`\n- **Python**: `/root/miniconda3/bin/python`（conda base env，不是 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（7.6GB, ModelScope 下载）\n- **SFT checkpoint**: 被 GRPO 训练 merge 进 base — GRPO eval 需 `--sft_adapter` 路径\n- **wandb**: entity=`xiaoyucorynne-`, project=`freige-grpo`。`list_wandb_runs` MCP 有 bug，用 `fetch_wandb_run_history` + run_id\n- **TRL 版本**: 1.1.0（`max_seq_length`→`max_length`, `tokenizer=`→`processing_class=`）\n- **活跃进程**:\n  - cuda:0: mvp2_grpo_ced_lr5e6_r1, PID=90080, tmux session 存在, cron 监控中\n  - cuda:1: mvp2_eval_lr5e6_r1_ckpt20, PID=96500, cron 监控中\n  - cuda:3: mvp2_grpo_ced_lr5e6_rp_r2, PID=94753 (实际 94758), cron 监控中\n- **活跃 Worker**: 2 个 running（ssh:monitor-all-running + analysis:wandb-training-progress）\n- **Cron**: 3 个活跃（分别监控上述 3 个 RUNNING 实验）\n\n### 3. 📊 当前状态\n**刚完成**: 上一轮 session 提交了 lr=5e-6 方向的三个实验（P0 训练、P0 ckpt-20 eval、P0+P1 训练），并启动了 monitor + wandb 分析 Worker。\n\n**Registry 状态**（35 个实验）:\n- **RUNNING (3)**: mvp2_grpo_ced_lr5e6_r1 (P0, cuda:0, ~step 25/200), mvp2_eval_lr5e6_r1_ckpt20 (P0 eval, cuda:1, 6%), mvp2_grpo_ced_lr5e6_rp_r2 (P0+P1, cuda:3, ~step 8/200)\n- **QUEUED (1)**: mvp2_eval_lr5e6_r1_ckpt40（等 cuda:2 释放）\n- **PREPARING (2)**: mvp2_grpo_ced_kl001_r2/r3（历史残留，实际不会执行）\n- **DONE (29)**: success 8 / negative 6 / failed 9 / killed 6\n\n**等待中**:\n- 2 个 Worker 回调（monitor + wandb 分析）\n- 3 个 cron 回调（实验完成时自动触发）\n- mvp2_eval_lr5e6_r1_ckpt20 预计 ~2.5h 出结果——**这是 MVP-2 P0 的 gate**\n- cuda:2 当前空闲（kl001_r4_multi 已 FAIL 完成），mvp2_eval_lr5e6_r1_ckpt40 已 QUEUED 等待提交\n\n### 4. 📋 待办（条件触发式）\n- **mvp2_eval_lr5e6_r1_ckpt20 cron 回调** → rel_f1 > 0.30 = P0 PASS（lr=5e-6 避免灾难性遗忘确认），< 0.30 = P0 FAIL 需重新评估 lr 策略\n- **cuda:2 空闲（现在就是）** → 应立即提交 mvp2_eval_lr5e6_r1_ckpt40（已 QUEUED，脚本已在服务器 `/root/autodl-tmp/scripts/eval_lr5e6_r1_ckpt40.sh`）\n- **P0 训练 (lr5e6_r1) 到 step 40** → 可以做 ckpt-40 eval（与 ckpt-20 对比看 F1 趋势）\n- **P0+P1 训练 (rp_r2) 到 step 20** → cuda:1 释放后启动 P0+P1 ckpt-20 eval\n- **P0 eval ckpt-20 PASS** → 进入 MVP-2 完整评估框架：核心指标 (CED_Evi-F1 − SFT_Evi-F1) ≥ 2pp，F1 不退化，CED > flat-NLI\n- **P0 eval ckpt-20 FAIL** → 向 Director 汇报 negative，产出 Framing 调整提案（red-section skill），不默默跑下一个\n- **两个 Worker 回调** → 整合 monitor/wandb 结果到 registry + report.md\n- **所有 MVP-2 实验完成** → Post-MVP 流程：complete_mvp() → paper_framing.md → experiment_plan.yaml → dream_simulate\n\n### 5. 🎯 战略上下文\n**项目核心**: FREIGE — 用对比证据判别 (CED) 奖励训练 LLM，在文档级关系抽取中同时生成抽取结果和可验证证据。\n\n**决策链关键节点**:\n- D008: QLoRA 4-bit + kl_coef 不兼容 → kl_coef=0.01 折中\n- D020: 统一稳定配置 kl_coef=0.01 + num_gen=8 + save_steps=10\n- D024: **CED reward 有 anti-mode-collapse 作用**（extract/flatNLI 在同配置下 collapse，CED 不会）——这是论文核心 finding\n- D029: lr=5e-5 太激进导致灾难性遗忘 → 转 lr=5e-6\n- D032: CED recall shortcut 确认（少预测→高 CED→recall 崩塌）→ recall_penalty fix 已部署\n- D035: 禁止 bash -c 内联引号\n\n**最易判断错的事**:\n1. **cuda:2 看起来空闲但 ckpt40 eval 已 QUEUED** — 需要立即 submit_on_allocated，不要等\n2. **mvp2_eval_ced_kl001_r4_multi 虽然在 ROADMAP cuda:2 行但已 DONE(failed)** — cuda:2 实际空闲\n3. **SFT baseline 数字**: F1=0.4057, Evi-F1=0.7979, EDCR=0.7118。P0 pass criteria 是 rel_f1 > 0.30（相对值，不是绝对值）\n4. **不要把 lr=5e-5 系列的经验直接套到 lr=5e-6** — 5e-5 的灾难性遗忘和 CED shortcut 可能在 5e-6 下不复现，需要 eval 数据说话\n5. **report.md 告警区大量 failed/killed 是历史遗留**（lr=5e-5 全灭系列），不需要处理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778794030.md"
+}

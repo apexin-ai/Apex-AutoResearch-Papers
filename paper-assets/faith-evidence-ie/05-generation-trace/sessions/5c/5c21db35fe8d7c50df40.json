@@ -1,0 +1,932 @@
+{
+  "schema_version": "1.0",
+  "id": "5c21db35fe8d7c50df40",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "analysis llama rsft fair tax 2048",
+  "task_key": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_llama_rsft_fair_tax_2048_20260521T140513.jsonl",
+    "occurrence": 1,
+    "bytes": 54836,
+    "sha256": "2b38f48bec6967be2dc77c8e01ab3492b08eade57c32bd1b46b8bff34575daaf"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "tool_call": 22,
+      "tool_result": 22,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T14:08:15.240176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T14:08:15.240722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T14:08:15.241003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/d140_1_7b_matched_fair_tax_2048.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T14:08:15.241338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"full_set\\\\\\\": {\\\\n    \\\\\\\"n_docs\\\\\\\": 985,\\\\n    \\\\\\\"with_evidence\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4951335163463938,\\\\n      \\\\\\\"precision\\\\\\\": 0.5005466319064839,\\\\n      \\\\\\\"recall\\\\\\\": 0.48983622747099004,\\\\n      \\\\\\\"ign_f1\\\\\\\": 0.48062582917791297,\\\\n      \\\\\\\"ign_precision\\\\\\\": 0.47590143141873525,\\\\n      \\\\\\\"ign_recall\\\\\\\": 0.4854449681175492,\\\\n      \\\\\\\"tp\\\\\\\": 5952,\\\\n      \\\\\\\"pred_count\\\\\\\": 11891,\\\\n      \\\\\\\"gold_count\\\\\\\": 12151\\\\n    },\\\\n    \\\\\\\"no_evidence\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4436326565287571,\\\\n      \\\\\\\"precision\\\\\\\": 0.45843209551400227,\\\\n      \\\\\\\"recall\\\\\\\": 0.429758867582915,\\\\n      \\\\\\\"ign_f1\\\\\\\": 0.42333302072587453,\\\\n      \\\\\\\"ign_precision\\\\\\\": 0.42970014278914803,\\\\n      \\\\\\\"ign_recall\\\\\\\": 0.41715183439608167,\\\\n      \\\\\\\"tp\\\\\\\": 5222,\\\\n      \\\\\\\"pred_count\\\\\\\": 11391,\\\\n      \\\\\\\"gold_count\\\\\\\": 12151\\\\n    },\\\\n    \\\\\\\"raw_tax_pp\\\\\\\": -5.7293\\\\n  },\\\\n  \\\\\\\"fair_subset\\\\\\\": {\\\\n    \\\\\\\"n_docs\\\\\\\": 971,\\\\n    \\\\\\\"with_evidence\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4978573550002121,\\\\n      \\\\\\\"precision\\\\\\\": 0.5033891033891034,\\\\n      \\\\\\\"recall\\\\\\\": 0.4924458620110794,\\\\n      \\\\\\\"ign_f1\\\\\\\": 0.4837881968742711,\\\\n      \\\\\\\"ign_precision\\\\\\\": 0.4791608908603641,\\\\n      \\\\\\\"ign_recall\\\\\\\": 0.4885057471264368,\\\\n      \\\\\\\"tp\\\\\\\": 5867,\\\\n      \\\\\\\"pred_count\\\\\\\": 11655,\\\\n      \\\\\\\"gold_count\\\\\\\": 11914\\\\n    },\\\\n    \\\\\\\"no_evidence\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4481441750697275,\\\\n      \\\\\\\"precision\\\\\\\": 0.45843209551400227,\\\\n      \\\\\\\"recall\\\\\\\": 0.4383078730904818,\\\\n      \\\\\\\"ign_f1\\\\\\\": 0.4274823618542545,\\\\n      \\\\\\\"ign_precision\\\\\\\": 0.42970014278914803,\\\\n      \\\\\\\"ign_recall\\\\\\\": 0.42528735632183906,\\\\n      \\\\\\\"tp\\\\\\\": 5222,\\\\n      \\\\\\\"pred_count\\\\\\\": 11391,\\\\n      \\\\\\\"gold_count\\\\\\\": 11914\\\\n    },\\\\n    \\\\\\\"fair_tax_pp\\\\\\\": -5.6306\\\\n  },\\\\n  \\\\\\\"format_failures\\\\\\\": {\\\\n    \\\\\\\"no_evidence\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 14,\\\\n      \\\\\\\"truncated\\\\\\\":\n…[truncated 353 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T14:08:15.241605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T14:08:15.241820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"metrics.json\\\\npredictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T14:08:15.242038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/eval_llama_rsft_s42_no_evi_2048/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T14:08:15.242272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"metrics.json\\\\npredictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T14:08:15.242542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048/predictions.json')); k=list(d.keys()); print(k[:3]); print(list(d[k[0]].keys()))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T14:08:15.242765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T14:08:15.242971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048/predictions.json')); k=list(d.keys())[0]; print(json.dumps({kk: type(d[k][kk]).__name__ for kk in d[k]}))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T14:08:15.243175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T14:08:15.243406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048/predictions.json')); k=list(d.keys())[0]; print(k, list(d[k].keys()))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T14:08:15.243611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T14:08:15.243843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -c 2000 /root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048/predictions.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T14:08:15.244201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"doc_id\\\\\\\": \\\\\\\"Skai TV\\\\\\\",\\\\n    \\\\\\\"raw_output\\\\\\\": \\\\\\\"[{\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Greece\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Piraeus\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai Group\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Greece\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 1, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Athens\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Greece\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 2, 4]}]�\\\\\\\",\\\\n    \\\\\\\"parsed_triples\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\",\\\\n        \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\",\\\\n        \\\\\\\"evidence\\\\\\\": [\\\\n          0,\\\\n          4\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": \\\\\\\"headquarters location\\\\\\\",\\\\n        \\\\\\\"tail\\\\\\\": \\\\\\\"Piraeus\\\\\\\",\\\\n        \\\\\\\"evidence\\\\\\\": [\\\\n          0\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"head\\\\\\\": \\\\\\\"Skai Group\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\",\\\\n        \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\",\\\\n        \\\\\\\"evidence\\\\\\\": [\\\\n          0,\\\\n          1,\\\\n          4\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"head\\\\\\\": \\\\\\\"Athens\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\",\\\\n        \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\",\\\\n        \\\\\\\"evidence\\\\\\\": [\\\\n          0,\\\\n          2,\\\\n          4\\\\n        ]\\\\n      }\\\\n    ],\\\\n    \\\\\\\"gold_triples\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"head\\\\\\\": \\\\\\\"Piraeus\\\\\\\",\\\\n        \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\",\\\\n        \n…[truncated 1088 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T14:08:15.244508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048/predictions.json')); print(list(d[0].keys()))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T14:08:15.244736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T14:08:15.244940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -o '\"[a-z_]*\":' /root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048/predictions.json | head -30",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T14:08:15.245145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T14:08:15.245374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -oP '\"[a-z_]+\":\\s' /root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048/predictions.json -m 50",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T14:08:15.245636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"doc_id\\\\\\\": \\\\n\\\\\\\"raw_output\\\\\\\": \\\\n\\\\\\\"parsed_triples\\\\\\\": \\\\n\\\\\\\"head\\\\\\\": \\\\n\\\\\\\"relation\\\\\\\": \\\\n\\\\\\\"tail\\\\\\\": \\\\n\\\\\\\"evidence\\\\\\\": \\\\n\\\\\\\"head\\\\\\\": \\\\n\\\\\\\"relation\\\\\\\": \\\\n\\\\\\\"tail\\\\\\\": \\\\n\\\\\\\"evidence\\\\\\\": \\\\n\\\\\\\"head\\\\\\\": \\\\n\\\\\\\"relation\\\\\\\": \\\\n\\\\\\\"tail\\\\\\\": \\\\n\\\\\\\"evidence\\\\\\\": \\\\n\\\\\\\"head\\\\\\\": \\\\n\\\\\\\"relation\\\\\\\": \\\\n\\\\\\\"tail\\\\\\\": \\\\n\\\\\\\"evidence\\\\\\\": \\\\n\\\\\\\"gold_triples\\\\\\\": \\\\n\\\\\\\"head\\\\\\\": \\\\n\\\\\\\"tail\\\\\\\": \\\\n\\\\\\\"relation\\\\\\\": \\\\n\\\\\\\"evidence\\\\\\\": \\\\n\\\\\\\"head\\\\\\\": \\\\n\\\\\\\"tail\\\\\\\": \\\\n\\\\\\\"relation\\\\\\\": \\\\n\\\\\\\"evidence\\\\\\\": \\\\n\\\\\\\"head\\\\\\\": \\\\n\\\\\\\"tail\\\\\\\": \\\\n\\\\\\\"relation\\\\\\\": \\\\n\\\\\\\"evidence\\\\\\\": \\\\n\\\\\\\"head\\\\\\\": \\\\n\\\\\\\"tail\\\\\\\": \\\\n\\\\\\\"relation\\\\\\\": \\\\n\\\\\\\"evidence\\\\\\\": \\\\n\\\\\\\"head\\\\\\\": \\\\n\\\\\\\"tail\\\\\\\": \\\\n\\\\\\\"relation\\\\\\\": \\\\n\\\\\\\"evidence\\\\\\\": \\\\n\\\\\\\"head\\\\\\\": \\\\n\\\\\\\"tail\\\\\\\": \\\\n\\\\\\\"relation\\\\\\\": \\\\n\\\\\\\"evidence\\\\\\\": \\\\n\\\\\\\"head\\\\\\\": \\\\n\\\\\\\"tail\\\\\\\": \\\\n\\\\\\\"relation\\\\\\\": \\\\n\\\\\\\"evidence\\\\\\\": \\\\n\\\\\\\"truncated\\\\\\\": \\\\n\\\\\\\"format_ok\\\\\\\": \\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T14:08:15.245936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat << 'PYEOF' > /tmp/fair_tax_llama.py\nimport json\nfrom collections import defaultdict\n\ndef load_preds(path):\n    with open(path) as f:\n        data = json.load(f)\n    return data\n\ndef get_format_ok_docs(data):\n    return {d[\"doc_id\"] for d in data if d.get(\"format_ok\", False)}\n\ndef triple_key(t):\n    return (t[\"head\"], t[\"relation\"], t[\"tail\"])\n\ndef compute_metrics(docs_subset, data, doc_id_set):\n    tp = 0\n    pred_count = 0\n    gold_count = 0\n    \n    # For ign: deduplicate gold across docs\n    # Actually ign means ignore training triples - let me check the reference\n    # Looking at the reference output, ign_f1 is computed alongside f1\n    # In DocRED, \"ign\" means ignoring relational facts shared between train and dev\n    # For simplicity, let's compute both f1 and ign_f1\n    # But we need ign_labels info... Let me check if there's an ign flag\n    \n    # Actually, for a fair comparison we just need to recompute the same metric\n    # on the subset. The standard approach: aggregate tp/pred_count/gold_count\n    # across the subset docs, then compute micro-F1.\n    \n    # But ign requires knowing which triples are \"ign\" (train set triples).\n    # The gold_triples might not have this info. Let me just compute both\n    # by checking if there's an \"ign\" field or similar.\n    \n    # Let's first check what fields gold_triples have\n    sample = data[0][\"gold_triples\"][0] if data[0][\"gold_triples\"] else {}\n    print(f\"Gold triple fields: {list(sample.keys())}\")\n    \n    # We'll compute micro F1 on the subset\n    total_tp = 0\n    total_pred = 0\n    total_gold = 0\n    \n    # For ign: we need to know which gold triples to ignore\n    # Check if there's an \"in_train\" or \"ign\" field\n    has_intrain = \"in_train\" in sample if sample else False\n    print(f\"Has in_train field: {has_intrain}\")\n    \n    total_ign_tp = 0\n    total_ign_gold = 0\n    total_ign_pred_tp = 0  # pred triples that match non-ign gold\n    \n    for doc in data:\n        if doc[\"doc_id\"] not in doc_id_set:\n            continue\n        \n        pred_set = set()\n        for t in doc.get(\"parsed_triples\", []):\n            pred_set.add(triple_key(t))\n        \n        gold_set = set()\n        gold_ign_set = set()  # gold triples that are in training set\n        for t in doc[\"gold_triples\"]:\n            tk = triple_key(t)\n            gold_set.add(tk)\n            if has_intrain and t.get(\"in_train\", False):\n                gold_ign_set.add(tk)\n        \n        # Standard F1\n        tp = len(pred_set & gold_set)\n        total_tp += tp\n        total_pred += len(pred_set)\n        total_gold += len(gold_set)\n        \n        # Ign F1: ignore triples that appear in training set\n        ign_gold = gold_set - gold_ign_set\n        ign_tp = len(pred_set & ign_gold)\n        total_ign_tp += ign_tp\n        total_ign_gold += len(ign_gold)\n    \n    # For ign, pred_count stays the same (we count all predictions)\n    # but tp only counts matches with non-ign gold\n    p = total_tp / total_pred if total_pred > 0 else 0\n    r = total_tp / total_gold if total_gold > 0 else 0\n    f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0\n    \n    ign_p = total_ign_tp / total_pred if total_pred > 0 else 0\n    ign_r = total_ign_tp / total_ign_gold if total_ign_gold > 0 else 0\n    ign_f1 = 2 * ign_p * ign_r / (ign_p + ign_r) if (ign_p + ign_r) > 0 else 0\n    \n    return {\n        \"f1\": f1,\n        \"precision\": p,\n        \"recall\": r,\n        \"ign_f1\": ign_f1,\n        \"ign_precision\": ign_p,\n        \"ign_recall\": ign_r,\n        \"tp\": total_tp,\n        \"pred_count\": total_pred,\n        \"gold_count\": total_gold\n    }\n\n# Load data\nwith_evi_path = \"/root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048/predictions.json\"\nno_evi_path = \"/root/autodl-tmp/eval_results/eval_llama_rsft_s42_no_evi_2048/predictions.json\"\n\nwith_data = load_preds(with_evi_path)\nno_data = load_preds(no_evi_path)\n\n# Format OK docs\nwith_ok = get_format_ok_docs(with_data)\nno_ok = get_format_ok_docs(no_data)\n\nprint(f\"with_evidence format_ok: {len(with_ok)}\")\nprint(f\"no_evidence format_ok: {len(no_ok)}\")\n\n# Truncated counts\nwith_trunc = sum(1 for d in with_data if d.get(\"truncated\", False))\nno_trunc = sum(1 for d in no_data if d.get(\"truncated\", False))\nprint(f\"with_evidence truncated: {with_trunc}\")\nprint(f\"no_evidence truncated: {no_trunc}\")\n\n# Intersection\nfair_docs = with_ok & no_ok\nprint(f\"fair_subset docs: {len(fair_docs)}\")\n\n# Compute metrics on full format_ok sets (for reference)\nprint(\"\\n--- Full set metrics (with_evidence, all format_ok) ---\")\nwith_full = compute_metrics(with_data, with_data, with_ok)\nprint(json.dumps(with_full, indent=2))\n\nprint(\"\\n--- Full set metrics (no_evidence, all format_ok) ---\")\nno_full = compute_metrics(no_data, no_data, no_ok)\nprint(json.dumps(no_full, indent=2))\n\n# Compute on fair subset\nprint(\"\\n--- Fair subset metrics (with_evidence) ---\")\nwith_fair = compute_metrics(with_data, with_data, fair_docs)\nprint(json.dumps(with_fair, indent=2))\n\nprint(\"\\n--- Fair subset metrics (no_evidence) ---\")\nno_fair = compute_metrics(no_data, no_data, fair_docs)\nprint(json.dumps(no_fair, indent=2))\n\nfair_tax = with_fair[\"ign_f1\"] - no_fair[\"ign_f1\"]\nraw_tax = with_full[\"ign_f1\"] - no_full[\"ign_f1\"]\nprint(f\"\\nraw_tax_pp: {raw_tax*100:.4f}\")\nprint(f\"fair_tax_pp: {fair_tax*100:.4f}\")\n\n# Count format failures\nwith_fail_trunc = sum(1 for d in with_data if not d.get(\"format_ok\", False) and d.get(\"truncated\", False))\nwith_fail_malformed = sum(1 for d in with_data if not d.get(\"format_ok\", False) and not d.get(\"truncated\", False))\nno_fail_trunc = sum(1 for d in no_data if not d.get(\"format_ok\", False) and d.get(\"truncated\", False))\nno_fail_malformed = sum(1 for d in no_data if not d.get(\"format_ok\", False) and not d.get(\"truncated\", False))\n\n# Build output\nresult = {\n    \"full_set\": {\n        \"n_docs\": len(with_ok),  # using with_evi full set as reference\n        \"with_evidence\": with_full,\n        \"no_evidence\": no_full,\n        \"raw_tax_pp\": round(raw_tax * 100, 4)\n    },\n    \"fair_subset\": {\n        \"n_docs\": len(fair_docs),\n        \"with_evidence\": with_fair,\n        \"no_evidence\": no_fair,\n        \"fair_tax_pp\": round(fair_tax * 100, 4)\n    },\n    \"format_failures\": {\n        \"with_evidence\": {\n            \"total\": len(with_data) - len(with_ok),\n            \"truncated\": with_fail_trunc,\n            \"malformed_json\": with_fail_malformed\n        },\n        \"no_evidence\": {\n            \"total\": len(no_data) - len(no_ok),\n            \"truncated\": no_fail_trunc,\n            \"malformed_json\": no_fail_malformed\n        }\n    },\n    \"with_format_ok\": len(with_ok),\n    \"no_format_ok\": len(no_ok)\n}\n\nout_path = \"/root/autodl-tmp/eval_results/llama_rsft_matched_fair_tax_2048.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(result, f, indent=2)\nprint(f\"\\nSaved to {out_path}\")\nPYEOF\npython3 /tmp/fair_tax_llama.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T14:08:15.246477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat << \\\\\\\\'PYEOF\\\\\\\\' > /tmp/fair_tax_llama.py\\\\\\\\nimport json\\\\\\\\nfrom collections import defaultdict\\\\\\\\n\\\\\\\\ndef load_preds(path):\\\\\\\\n    with open(path) as f:\\\\\\\\n        data = json.load(f)\\\\\\\\n    return data\\\\\\\\n\\\\\\\\ndef get_format_ok_docs(data):\\\\\\\\n    return {d[\\\\\\\"doc_id\\\\\\\"] for d in data if d.get(\\\\\\\"format_ok\\\\\\\", False)}\\\\\\\\n\\\\\\\\ndef triple_key(t):\\\\\\\\n    return (t[\\\\\\\"head\\\\\\\"], t[\\\\\\\"relation\\\\\\\"], t[\\\\\\\"tail\\\\\\\"])\\\\\\\\n\\\\\\\\ndef compute_metrics(docs_subset, data, doc_id_set):\\\\\\\\n    tp = 0\\\\\\\\n    pred_count = 0\\\\\\\\n    gold_count = 0\\\\\\\\n    \\\\\\\\n    # For ign: deduplicate gold across docs\\\\\\\\n    # Actually ign means ignore training triples - let me check the reference\\\\\\\\n    # Looking at the reference output, ign_f1 is computed alongside f1\\\\\\\\n    # In DocRED, \\\\\\\"ign\\\\\\\" means ignoring relational facts shared between train and dev\\\\\\\\n    # For simplicity, let\\\\\\\\'s compute both f1 and ign_f1\\\\\\\\n    # But we need ign_labels info... Let me check if there\\\\\\\\'s an ign flag\\\\\\\\n    \\\\\\\\n    # Actually, for a fair comparison we just need to recompute the same metric\\\\\\\\n    # on the subset. The standard approach: aggregate tp/pred_count/gold_count\\\\\\\\n    # across the subset docs, then compute micro-F1.\\\\\\\\n    \\\\\\\\n    # But ign requires knowing which triples are \\\\\\\"ign\\\\\\\" (train set triples).\\\\\\\\n    # The gold_triples might not have this info. Let me just compute both\\\\\\\\n    # by checking if there\\\\\\\\'s an \\\\\\\"ign\\\\\\\" field or similar.\\\\\\\\n    \\\\\\\\n    # Let\\\\\\\\'s first check what fields gold_triples have\\\\\\\\n    sample = data[0][\\\\\\\"gold_triples\\\\\\\"][0] if data[0][\\\\\\\"gold_triples\\\\\\\"] else {}\\\\\\\\n    print(f\\\\\\\"Gold triple fields: {list(sample.keys())}\\\\\\\")\\\\\\\\n    \\\\\\\\n    # We\\\\\\\\'ll compute micro F1 on the subset\\\\\\\\n    total_tp = 0\\\\\\\\n    total_pred = 0\\\\\\\\n    total_gold = 0\\\\\\\\n    \\\\\\\\n    # For ign: we need to know w\n…[truncated 6413 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T14:08:15.246881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/miniconda3/bin/python3",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T14:08:15.247100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T14:08:15.247326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/fair_tax_llama.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T14:08:15.247613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"with_evidence format_ok: 984\\\\nno_evidence format_ok: 984\\\\nwith_evidence truncated: 90\\\\nno_evidence truncated: 140\\\\nfair_subset docs: 983\\\\n\\\\n--- Full set metrics (with_evidence, all format_ok) ---\\\\nGold triple fields: ['head', 'tail', 'relation', 'evidence']\\\\nHas in_train field: False\\\\n{\\\\n  \\\\\\\"f1\\\\\\\": 0.5897186410443525,\\\\n  \\\\\\\"precision\\\\\\\": 0.580864148230972,\\\\n  \\\\\\\"recall\\\\\\\": 0.5988472622478386,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5897186410443525,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.580864148230972,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.5988472622478386,\\\\n  \\\\\\\"tp\\\\\\\": 7273,\\\\n  \\\\\\\"pred_count\\\\\\\": 12521,\\\\n  \\\\\\\"gold_count\\\\\\\": 12145\\\\n}\\\\n\\\\n--- Full set metrics (no_evidence, all format_ok) ---\\\\nGold triple fields: ['head', 'tail', 'relation', 'evidence']\\\\nHas in_train field: False\\\\n{\\\\n  \\\\\\\"f1\\\\\\\": 0.5706108430779295,\\\\n  \\\\\\\"precision\\\\\\\": 0.567547783651891,\\\\n  \\\\\\\"recall\\\\\\\": 0.5737071446189262,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5706108430779295,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.567547783651891,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.5737071446189262,\\\\n  \\\\\\\"tp\\\\\\\": 6978,\\\\n  \\\\\\\"pred_count\\\\\\\": 12295,\\\\n  \\\\\\\"gold_count\\\\\\\": 12163\\\\n}\\\\n\\\\n--- Fair subset metrics (with_evidence) ---\\\\nGold triple fields: ['head', 'tail', 'relation', 'evidence']\\\\nHas in_train field: False\\\\n{\\\\n  \\\\\\\"f1\\\\\\\": 0.5897903742448203,\\\\n  \\\\\\\"precision\\\\\\\": 0.5809569454429268,\\\\n  \\\\\\\"recall\\\\\\\": 0.5988965744400527,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5897903742448203,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.5809569454429268,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.5988965744400527,\\\\n  \\\\\\\"tp\\\\\\\": 7273,\\\\n  \\\\\\\"pred_count\\\\\\\": 12519,\\\\n  \\\\\\\"gold_count\\\\\\\": 12144\\\\n}\\\\n\\\\n--- Fair subset metrics (no_evidence) ---\\\\nGold triple fields: ['head', 'tail', 'relation', 'evidence']\\\\nHas in_train field: False\\\\n{\\\\n  \\\\\\\"f1\\\\\\\": 0.5708788734700561,\\\\n  \\\\\\\"precision\\\\\\\": 0.5676027676027676,\\\\n  \\\\\\\"recall\\\\\\\": 0.5741930171277997,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5708788734700561,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.567602767602\n…[truncated 371 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T14:08:15.247915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T14:08:15.248203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5806889936855567,\\\\n  \\\\\\\"recall\\\\\\\": 0.5978931775162538,\\\\n  \\\\\\\"f1\\\\\\\": 0.589165517800665,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.5592207792207792,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.5968949265317438,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5774440123374011,\\\\n  \\\\\\\"tp\\\\\\\": 7265,\\\\n  \\\\\\\"pred_count\\\\\\\": 12511,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.7926185173401209,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8541452376054309,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8222324905934384,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 17550,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6143175625464454,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 19840,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 32296,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.43999461231086967,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.5088001661388297,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.47190253767997303,\\\\n  \\\\\\\"evi_tp\\\\\\\": 9800,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 22273,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8781725888324873,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8781725888324873,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 984,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 865,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 865,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 18129,\\\\n  \\\\\\\"n_truncated\\\\\\\": 90,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 984,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 15374.7,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_llama_3_1_8b_k1\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_llama_3_1_8b\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 1,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evi\n…[truncated 161 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T14:08:15.248478+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/eval_llama_rsft_s42_no_evi_2048/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T14:08:15.248759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5672528904087282,\\\\n  \\\\\\\"recall\\\\\\\": 0.5733684470413958,\\\\n  \\\\\\\"f1\\\\\\\": 0.570294274137437,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.5439511850017686,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.568431753072729,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5559220931808938,\\\\n  \\\\\\\"tp\\\\\\\": 6967,\\\\n  \\\\\\\"pred_count\\\\\\\": 12282,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 1.0,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.000328893274132544,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.0006575702778234424,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 10,\\\\n  \\\\\\\"edcr\\\\\\\": 0.625,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 10,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 16,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.375,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.00031151030579928355,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.0006225035015821964,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 16,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 984,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 0,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 24365,\\\\n  \\\\\\\"n_truncated\\\\\\\": 140,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 984,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 15710.3,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_llama_3_1_8b_k1\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_llama_3_1_8b\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/eval_llama_rsft_s42_no_evi_2048\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 1,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": true,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_\n…[truncated 73 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T14:08:15.249056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/freige -name \"*.py\" -path \"*eval*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T14:08:15.249311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/eval/__init__.py\\\\n/root/autodl-tmp/freige/eval/batch_eval.py\\\\n/root/autodl-tmp/freige/eval/ced_evidence_filter.py\\\\n/root/autodl-tmp/freige/eval/ced_reranker.py\\\\n/root/autodl-tmp/freige/eval/cross_method_table.py\\\\n/root/autodl-tmp/freige/eval/evaluator.py\\\\n/root/autodl-tmp/freige/eval/find_best_checkpoint.py\\\\n/root/autodl-tmp/freige/eval/inference.py\\\\n/root/autodl-tmp/freige/eval/post_hoc_retrieval.py\\\\n/root/autodl-tmp/freige/eval/test_inference.py\\\\n/root/autodl-tmp/freige/freige/freige/eval/__init__.py\\\\n/root/autodl-tmp/freige/freige/freige/eval/evaluator.py\\\\n/root/autodl-tmp/freige/freige/freige/eval/inference.py\\\\n/root/autodl-tmp/freige/freige/freige/eval/batch_eval.py\\\\n/root/autodl-tmp/freige/freige/freige/eval/find_best_checkpoint.py\\\\n/root/autodl-tmp/freige/freige/freige/eval/ced_reranker.py\\\\n/root/autodl-tmp/freige/freige/freige/eval/test_inference.py\\\\n/root/autodl-tmp/freige/freige/freige/eval/cross_method_table.py\\\\n/root/autodl-tmp/freige/freige/freige/eval/ced_evidence_filter.py\\\\n/root/autodl-tmp/freige/freige/freige/eval/post_hoc_retrieval.py\\\\n/root/autodl-tmp/freige/freige/scripts/fair_eval.py\\\\n/root/autodl-tmp/freige/scripts/fair_eval.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T14:08:15.249576+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/freige/scripts/fair_eval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T14:08:15.249929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json, re, sys\\\\nsys.path.insert(0, '/root/autodl-tmp/freige')\\\\nfrom eval.evaluator import DocREDEvaluator\\\\n\\\\nTRAIN_PATH = '/root/autodl-tmp/data/docred/train_annotated.json'\\\\nNOEVI_PRED = '/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3/predictions.json'\\\\nWITHEVI_PRED = '/root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval/predictions.json'\\\\n\\\\ndef is_repetitive(raw_output, threshold=3):\\\\n    pattern = r'\\\\\\\\{[^{}]+\\\\\\\\}'\\\\n    matches = re.findall(pattern, raw_output)\\\\n    if len(matches) < threshold:\\\\n        return False\\\\n    for i in range(len(matches) - threshold + 1):\\\\n        if len(set(matches[i:i+threshold])) == 1:\\\\n            return True\\\\n    if len(matches) > 5 and len(set(matches)) / len(matches) < 0.5:\\\\n        return True\\\\n    return False\\\\n\\\\ndef load_and_tag(path):\\\\n    with open(path) as f:\\\\n        preds = json.load(f)\\\\n    for p in preds:\\\\n        p['repetitive'] = is_repetitive(p['raw_output'])\\\\n    return preds\\\\n\\\\ndef filter_preds_gold(preds, doc_ids):\\\\n    ids = set(doc_ids)\\\\n    filtered_preds = []\\\\n    filtered_gold = []\\\\n    for p in preds:\\\\n        if p['doc_id'] not in ids:\\\\n            continue\\\\n        for t in p['parsed_triples']:\\\\n            if isinstance(t, dict):\\\\n                filtered_preds.append({\\\\n                    'doc_id': p['doc_id'],\\\\n                    'head': t.get('head', ''),\\\\n                    'tail': t.get('tail', ''),\\\\n                    'relation': t.get('relation', ''),\\\\n                })\\\\n        for t in p['gold_triples']:\\\\n            if isinstance(t, dict):\\\\n                filtered_gold.append({\\\\n                    'doc_id': p['doc_id'],\\\\n                    'head': t.get('head', ''),\\\\n                    'tail': t.get('tail', ''),\\\\n                    'relation': t.get('relation', ''),\\\\n                })\\\\n    return filtered_preds, filtered_gold\\\\n\\\\n# Load evaluator with train tr\n…[truncated 5018 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T14:08:15.250183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"ign\" /root/autodl-tmp/freige/eval/evaluator.py -m 40",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T14:08:15.250438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"85:        pred_ign = {k for k in pred_set if k[1:] not in self.train_facts}\\\\n86:        gold_ign = {k for k in gold_set if k[1:] not in self.train_facts}\\\\n87:        tp_ign = pred_ign & gold_ign\\\\n88:        ign_prec = len(tp_ign) / len(pred_ign) if pred_ign else 0.0\\\\n89:        ign_rec = len(tp_ign) / len(gold_ign) if gold_ign else 0.0\\\\n90:        ign_f1 = (\\\\n91:            2 * ign_prec * ign_rec / (ign_prec + ign_rec)\\\\n92:            if (ign_prec + ign_rec) > 0 else 0.0\\\\n99:            \\\\\\\"ign_precision\\\\\\\": ign_prec,\\\\n100:            \\\\\\\"ign_recall\\\\\\\": ign_rec,\\\\n101:            \\\\\\\"ign_f1\\\\\\\": ign_f1,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T14:08:15.250682+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/freige/eval/evaluator.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T14:08:15.251131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"DocRED 关系抽取评测模块。\\\\n\\\\n指标:\\\\n  - F1 / Ign-F1: 关系三元组级别 micro-F1，Ign-F1 排除训练集中出现的三元组\\\\n  - Evi-F1: 对正确预测的三元组，计算 evidence 句子级 F1\\\\n  - EDCR: Evidence Distractor Citation Rate，预测 evidence 中非 gold 的比例\\\\n\\\\n输入: 预测列表 + gold 标注列表（每个元素为文档级标注）\\\\n输出: 指标字典\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nfrom collections import defaultdict\\\\nfrom typing import Optional\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef _triple_key(doc_id: str, head: str, tail: str, relation: str) -> tuple:\\\\n    return (doc_id, head.lower().strip(), tail.lower().strip(), relation.lower().strip())\\\\n\\\\n\\\\nclass DocREDEvaluator:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"DocRED 评测器。\\\\n\\\\n    Args:\\\\n        train_triples: 训练集中的三元组集合，用于计算 Ign-F1。\\\\n                       每个元素为 (doc_title, head_name, tail_name, relation)。\\\\n                       为 None 时 Ign-F1 = F1。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, train_triples: Optional[set[tuple]] = None, train_facts: Optional[set[tuple]] = None):\\\\n        self.train_triples = train_triples or set()\\\\n        self.train_facts = train_facts or set()\\\\n\\\\n    @classmethod\\\\n    def from_train_file(cls, train_path: str) -> \\\\\\\"DocREDEvaluator\\\\\\\":\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"从训练集 JSON 文件构建 evaluator，自动提取训练集三元组。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        from freige.data.docred_processor import DOCRED_REL_INFO\\\\n\\\\n        with open(train_path) as f:\\\\n            train_data = json.load(f)\\\\n\\\\n        train_triples = set()\\\\n        train_facts = set()\\\\n        for doc in train_data:\\\\n            doc_id = doc.get(\\\\\\\"title\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            vertex_set = doc[\\\\\\\"vertexSet\\\\\\\"]\\\\n            for label in doc.get(\\\\\\\"labels\\\\\\\", []):\\\\n                h_name = vertex_set[label[\\\\\\\"h\\\\\\\"]][0][\\\\\\\"name\\\\\\\"]\\\\n                t_name = vertex_set[label[\\\\\\\"t\\\\\\\"]][0][\\\\\\\"name\\\\\\\"]\\\\n                rel_name = DOCRED_REL_INFO.get(label[\\\\\\\"r\\\\\\\"], label[\\\\\\\"r\\\\\\\"])\\\\n                train_triples.add(\\\\n                    \n…[truncated 7276 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T14:08:15.251508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat << 'PYEOF' > /tmp/fair_tax_llama_rsft.py\nimport json, sys\nsys.path.insert(0, '/root/autodl-tmp/freige')\nfrom eval.evaluator import DocREDEvaluator\n\nTRAIN_PATH = '/root/autodl-tmp/data/docred/train_annotated.json'\nWITHEVI_PRED = '/root/autodl-tmp/eval_results/eval_llama_rsft_s42_with_evidence_2048/predictions.json'\nNOEVI_PRED = '/root/autodl-tmp/eval_results/eval_llama_rsft_s42_no_evi_2048/predictions.json'\nOUT_PATH = '/root/autodl-tmp/eval_results/llama_rsft_matched_fair_tax_2048.json'\n\ndef load_preds(path):\n    with open(path) as f:\n        return json.load(f)\n\ndef get_format_ok_ids(preds):\n    return {p['doc_id'] for p in preds if p.get('format_ok', False)}\n\ndef filter_preds_gold(preds, doc_ids):\n    ids = set(doc_ids)\n    filtered_preds = []\n    filtered_gold = []\n    for p in preds:\n        if p['doc_id'] not in ids:\n            continue\n        for t in p['parsed_triples']:\n            if isinstance(t, dict):\n                filtered_preds.append({\n                    'doc_id': p['doc_id'],\n                    'head': t.get('head', ''),\n                    'tail': t.get('tail', ''),\n                    'relation': t.get('relation', ''),\n                })\n        for t in p['gold_triples']:\n            if isinstance(t, dict):\n                filtered_gold.append({\n                    'doc_id': p['doc_id'],\n                    'head': t.get('head', ''),\n                    'tail': t.get('tail', ''),\n                    'relation': t.get('relation', ''),\n                })\n    return filtered_preds, filtered_gold\n\nevaluator = DocREDEvaluator.from_train_file(TRAIN_PATH)\n\nwithevi = load_preds(WITHEVI_PRED)\nnoevi = load_preds(NOEVI_PRED)\n\nwith_ok = get_format_ok_ids(withevi)\nno_ok = get_format_ok_ids(noevi)\nfair_ids = with_ok & no_ok\n\nwith_trunc = sum(1 for p in withevi if p.get('truncated', False))\nno_trunc = sum(1 for p in noevi if p.get('truncated', False))\n\nprint(f\"with_evidence: format_ok={len(with_ok)}, truncated={with_trunc}\")\nprint(f\"no_evidence:   format_ok={len(no_ok)}, truncated={no_trunc}\")\nprint(f\"fair_subset:   {len(fair_ids)} docs\")\n\n# Full set (each using own format_ok)\nall_ids = {p['doc_id'] for p in withevi}\nwe_p, we_g = filter_preds_gold(withevi, with_ok)\nne_p, ne_g = filter_preds_gold(noevi, no_ok)\nwe_full = evaluator.compute_f1(we_p, we_g)\nne_full = evaluator.compute_f1(ne_p, ne_g)\n\nprint(f\"\\nFull with_evi ign_f1={we_full['ign_f1']:.4f}  f1={we_full['f1']:.4f}\")\nprint(f\"Full no_evi   ign_f1={ne_full['ign_f1']:.4f}  f1={ne_full['f1']:.4f}\")\nprint(f\"Raw tax (ign_f1): {(we_full['ign_f1'] - ne_full['ign_f1'])*100:+.2f}pp\")\n\n# Fair subset\nwe_fp, we_fg = filter_preds_gold(withevi, fair_ids)\nne_fp, ne_fg = filter_preds_gold(noevi, fair_ids)\nwe_fair = evaluator.compute_f1(we_fp, we_fg)\nne_fair = evaluator.compute_f1(ne_fp, ne_fg)\n\nfair_tax = we_fair['ign_f1'] - ne_fair['ign_f1']\nprint(f\"\\nFair with_evi ign_f1={we_fair['ign_f1']:.4f}  f1={we_fair['f1']:.4f}\")\nprint(f\"Fair no_evi   ign_f1={ne_fair['ign_f1']:.4f}  f1={ne_fair['f1']:.4f}\")\nprint(f\"Fair tax (ign_f1): {fair_tax*100:+.2f}pp\")\n\n# Format failure breakdown\nwith_fail_total = len(withevi) - len(with_ok)\nno_fail_total = len(noevi) - len(no_ok)\nwith_fail_trunc = sum(1 for d in withevi if not d.get('format_ok', False) and d.get('truncated', False))\nwith_fail_malformed = with_fail_total - with_fail_trunc\nno_fail_trunc = sum(1 for d in noevi if not d.get('format_ok', False) and d.get('truncated', False))\nno_fail_malformed = no_fail_total - no_fail_trunc\n\nresult = {\n    \"full_set\": {\n        \"n_docs\": len(all_ids),\n        \"with_evidence\": we_full,\n        \"no_evidence\": ne_full,\n        \"raw_tax_pp\": round((we_full['ign_f1'] - ne_full['ign_f1']) * 100, 4)\n    },\n    \"fair_subset\": {\n        \"n_docs\": len(fair_ids),\n        \"with_evidence\": we_fair,\n        \"no_evidence\": ne_fair,\n        \"fair_tax_pp\": round(fair_tax * 100, 4)\n    },\n    \"format_failures\": {\n        \"with_evidence\": {\n            \"total\": with_fail_total,\n            \"truncated\": with_fail_trunc,\n            \"malformed_json\": with_fail_malformed\n        },\n        \"no_evidence\": {\n            \"total\": no_fail_total,\n            \"truncated\": no_fail_trunc,\n            \"malformed_json\": no_fail_malformed\n        }\n    },\n    \"with_format_ok\": len(with_ok),\n    \"no_format_ok\": len(no_ok)\n}\n\nwith open(OUT_PATH, 'w') as f:\n    json.dump(result, f, indent=2)\nprint(f\"\\nSaved to {OUT_PATH}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/fair_tax_llama_rsft.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T14:08:15.251802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"with_evidence: format_ok=984, truncated=90\\\\nno_evidence:   format_ok=984, truncated=140\\\\nfair_subset:   983 docs\\\\n\\\\nFull with_evi ign_f1=0.5779  f1=0.5896\\\\nFull no_evi   ign_f1=0.5559  f1=0.5703\\\\nRaw tax (ign_f1): +2.19pp\\\\n\\\\nFair with_evi ign_f1=0.5779  f1=0.5897\\\\nFair no_evi   ign_f1=0.5562  f1=0.5706\\\\nFair tax (ign_f1): +2.17pp\\\\n\\\\nSaved to /root/autodl-tmp/eval_results/llama_rsft_matched_fair_tax_2048.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T14:08:15.252040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/llama_rsft_matched_fair_tax_2048.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T14:08:15.252332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"full_set\\\\\\\": {\\\\n    \\\\\\\"n_docs\\\\\\\": 985,\\\\n    \\\\\\\"with_evidence\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.5806889936855567,\\\\n      \\\\\\\"recall\\\\\\\": 0.5988295417078799,\\\\n      \\\\\\\"f1\\\\\\\": 0.5896197703201721,\\\\n      \\\\\\\"ign_precision\\\\\\\": 0.5592207792207792,\\\\n      \\\\\\\"ign_recall\\\\\\\": 0.5977788061082832,\\\\n      \\\\\\\"ign_f1\\\\\\\": 0.5778573026168641,\\\\n      \\\\\\\"tp\\\\\\\": 7265,\\\\n      \\\\\\\"pred_count\\\\\\\": 12511,\\\\n      \\\\\\\"gold_count\\\\\\\": 12132\\\\n    },\\\\n    \\\\\\\"no_evidence\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.5672528904087282,\\\\n      \\\\\\\"recall\\\\\\\": 0.5734156378600823,\\\\n      \\\\\\\"f1\\\\\\\": 0.5703176162409954,\\\\n      \\\\\\\"ign_precision\\\\\\\": 0.5439511850017686,\\\\n      \\\\\\\"ign_recall\\\\\\\": 0.5684842883548983,\\\\n      \\\\\\\"ign_f1\\\\\\\": 0.555947216196674,\\\\n      \\\\\\\"tp\\\\\\\": 6967,\\\\n      \\\\\\\"pred_count\\\\\\\": 12282,\\\\n      \\\\\\\"gold_count\\\\\\\": 12150\\\\n    },\\\\n    \\\\\\\"raw_tax_pp\\\\\\\": 2.191\\\\n  },\\\\n  \\\\\\\"fair_subset\\\\\\\": {\\\\n    \\\\\\\"n_docs\\\\\\\": 983,\\\\n    \\\\\\\"with_evidence\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.5807818370773044,\\\\n      \\\\\\\"recall\\\\\\\": 0.5988789052839831,\\\\n      \\\\\\\"f1\\\\\\\": 0.5896915584415584,\\\\n      \\\\\\\"ign_precision\\\\\\\": 0.5593176307585729,\\\\n      \\\\\\\"ign_recall\\\\\\\": 0.5978341355053683,\\\\n      \\\\\\\"ign_f1\\\\\\\": 0.5779348604151753,\\\\n      \\\\\\\"tp\\\\\\\": 7265,\\\\n      \\\\\\\"pred_count\\\\\\\": 12509,\\\\n      \\\\\\\"gold_count\\\\\\\": 12131\\\\n    },\\\\n    \\\\\\\"no_evidence\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.5673076923076923,\\\\n      \\\\\\\"recall\\\\\\\": 0.5739015744786086,\\\\n      \\\\\\\"f1\\\\\\\": 0.5705855837397041,\\\\n      \\\\\\\"ign_precision\\\\\\\": 0.5440304451721392,\\\\n      \\\\\\\"ign_recall\\\\\\\": 0.5689559422436135,\\\\n      \\\\\\\"ign_f1\\\\\\\": 0.5562140885852599,\\\\n      \\\\\\\"tp\\\\\\\": 6962,\\\\n      \\\\\\\"pred_count\\\\\\\": 12272,\\\\n      \\\\\\\"gold_count\\\\\\\": 12131\\\\n    },\\\\n    \\\\\\\"fair_tax_pp\\\\\\\": 2.1721\\\\n  },\\\\n  \\\\\\\"format_failures\\\\\\\": {\\\\n    \\\\\\\"with_evidence\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 1,\\\\n      \\\\\\\"truncated\\\\\\\": 0,\\\\n      \n…[truncated 339 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T14:08:15.252654+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇报：\n\n| | with-evi | no-evi |\n|---|---|---|\n| format_ok | 984 | 984 |\n| truncated | 90 | 140 |\n| format_fail | 1 (malformed) | 1 (malformed) |\n\n**Fair subset: 983 docs**（交集只少了各自 1 个 malformed，几乎全重叠）\n\n| 指标 | fair with-evi | fair no-evi | fair tax |\n|---|---|---|---|\n| ign_f1 | 0.5779 | 0.5562 | **+2.17pp** |\n| f1 | 0.5897 | 0.5706 | +1.91pp |\n\nFull set ign_f1 与 metrics.json 吻合（with-evi 0.5779 vs 报告 0.5774，微小差异来自 gold_count 处理）。\n\n**fair_tax = +2.17pp**，evidence 对 LLaMA RSFT 有正向增益。与 Qwen 1.7B 的 -5.63pp（evidence hurts）方向相反。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513"
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-llama-rsft-fair-tax-2048.md"
+}

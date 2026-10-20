@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "972f94656ada62820ba0",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "audit final table cells",
+  "task_key": "worker_audit_final-table-cells_20260524T044728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_final-table-cells_20260524T044728.log",
+    "occurrence": 1,
+    "bytes": 1656601,
+    "sha256": "159ee32d2d0c07bd2dd47dc81ab64b0344a342fd346cf8cb770bbea5835b735d"
+  },
+  "statistics": {
+    "messages": 148,
+    "user_turns": 1,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "assistant": 45,
+      "tool_call": 47,
+      "tool_result": 47,
+      "record": 2,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 84,
+      "chunks": [
+        {
+          "path": "972f94656ada62820ba0-part-0001.json",
+          "message_count": 14
+        },
+        {
+          "path": "972f94656ada62820ba0-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "972f94656ada62820ba0-part-0003.json",
+          "message_count": 69
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 64,
+      "chunks": [
+        {
+          "path": "972f94656ada62820ba0-part-0003.json",
+          "message_count": 20
+        },
+        {
+          "path": "972f94656ada62820ba0-part-0004.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-final-table-cells.md"
+}

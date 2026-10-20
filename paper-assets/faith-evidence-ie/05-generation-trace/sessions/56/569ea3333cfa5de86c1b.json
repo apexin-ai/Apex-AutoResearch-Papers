@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "569ea3333cfa5de86c1b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval plan 014 no evidence r2",
+  "task_key": "worker_analysis_eval_plan_014_no_evidence_r2_20260516T041929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_plan_014_no_evidence_r2_20260516T041929_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "d0c40e0438728ecb1d9d1721082e5ffd73628b12aa0f43f6819c61f1ec7a1e38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## eval_plan_014_no_evidence_r2 结果\n\n| 指标 | 值 |\n|------|-----|\n| **Rel-F1** | **0.4876** |\n| **Ign-F1** | **0.4721** |\n| Evi-F1 | 0.0000 |\n| EDCR | 0.0000 |\n| Evi-F1-Joint | 0.0000 |\n| Precision | 0.4901 |\n| Recall | 0.4851 |\n| Format OK | 978/985 (99.3%) |\n| Truncated | 307/985 (31.2%) |\n| Predictions | 21,181 |\n| 推理耗时 | 6251.6s (~1h44m) |\n\n符合预期：no-evidence baseline 只预测关系不输出证据，所以 Evi-F1 / EDCR / Evi-F1-Joint 均为 0。Rel-F1 48.76%、Ign-F1 47.21% 作为 Qwen3-4B + SFT no-evidence adapter 的 baseline 数值已记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-plan-014-no-evidence-r2.md"
+}

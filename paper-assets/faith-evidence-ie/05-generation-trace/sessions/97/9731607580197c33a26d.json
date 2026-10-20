@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9731607580197c33a26d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 001 flat nli eval",
+  "task_key": "worker_ops_plan_001_flat_nli_eval_20260515T165519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_001_flat_nli_eval_20260515T165519_result.json",
+    "occurrence": 1,
+    "bytes": 527,
+    "sha256": "bdce02c001c6e7bea06ff546e6a9d78554cf8f543014b3c1de829e8e096c1ab7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理已启动，985 docs / batch_size=16 = 62 batches。预计运行 1-2 小时。\n\n总结：\n- 终止了 cuda:0 上残留的 GRPO v3 进程（registry 已标记 killed）\n- 注册 `eval_plan_001_flat_nli`，parent=`plan_001_rsft_flat_nli`，状态 RUNNING\n- 命令使用 `freige.eval.inference`（与之前成功的 RSFT eval 一致），`--no-quantize`，bf16\n- PID 228508，日志 `~/runs/faith-evidence-ie/eval_plan_001_flat_nli.log`\n- 推理已开始（0/62 batches），模型和数据加载正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-001-flat-nli-eval.md"
+}

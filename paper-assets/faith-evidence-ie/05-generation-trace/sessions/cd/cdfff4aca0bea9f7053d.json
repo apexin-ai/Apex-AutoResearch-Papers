@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdfff4aca0bea9f7053d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code write eval runner",
+  "task_key": "worker_code_write-eval-runner_20260514T074007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_write-eval-runner_20260514T074007_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "073dbcbcb190b9c44e0e1fb076cacecb377acb9b6c1610f2386f560367c9948e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `/root/autodl-tmp/freige/eval/run_eval.py`，导入和参数解析验证通过。\n\n运行示例：\n```bash\ncd /root/autodl-tmp && python -m freige.eval.run_eval \\\n  --model_name /root/autodl-tmp/models/Qwen3-4B \\\n  --adapter_path /root/autodl-tmp/sft_output \\\n  --data_dir /root/autodl-tmp/data/docred \\\n  --output_dir /root/autodl-tmp/eval_results/sft \\\n  --batch_size 4 --max_new_tokens 1024 --split dev\n```\n\n输出两个文件到 `--output_dir`：\n- `metrics.json` — F1, Ign-F1, Evi-F1, EDCR, format_compliance_rate, n_truncated 等\n- `raw_predictions.json` — 每个文档的原始模型输出 + truncated 标记"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-write-eval-runner.md"
+}

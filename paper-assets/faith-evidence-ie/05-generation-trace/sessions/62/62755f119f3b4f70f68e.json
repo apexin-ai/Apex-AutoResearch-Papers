@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62755f119f3b4f70f68e",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_14_1778953070.md",
+  "task_key": "loop_14_1778953070",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778953070.md",
+    "occurrence": 1,
+    "bytes": 5443,
+    "sha256": "749edbf9db7cd67fd1db1aab606cc4e4208e229f5a1dc2e7f09eff3341adefed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T17:37:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3（rtx5090-4x），不得用 bjb2-12179 的 GPU（那台只做 CPU 任务）\n- LLaMA GRPO **已永久终止**（D085）——reward hacking confirmed，不要重启任何 GRPO 实验\n- 1.7B evidence tax 是 **+6.2pp benefit**（反转），这不是 bug——D083 确认排除截断后仍成立，不要当作负向结果处理\n- CED vs flat-NLI 统计不可区分（D078 p=0.44）——论文不能 claim CED 优于 flat-NLI，只能说\"等效，CED 因可解释性推荐\"\n- `rsft_generate` 模块是 `freige.training.rsft_generate`，参数是 `--base_model`（不是 --model_path），`--num_generations`（不是 --n_candidates）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x，4× RTX 5090 32GB\n- **工作目录**: `/root/autodl-tmp/freige`（代码）；`/root/autodl-tmp/` 下各子目录存模型/数据/输出\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型路径**:\n  - Qwen3-1.7B SFT: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\n  - Qwen3-8B SFT: `/root/autodl-tmp/sft_output_qwen3_8b_bf16`\n  - LLaMA-3.1-8B SFT: `/root/autodl-tmp/sft_output_llama_3_1_8b`\n  - Qwen2.5-4B（原 baseline）: 各 checkpoint 在 `/root/autodl-tmp/` 下\n- **RSFT candidates 输出**:\n  - 1.7B → `/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b`\n  - 8B → `/root/autodl-tmp/freige/outputs/rsft_candidates_8b`\n  - LLaMA → `/root/autodl-tmp/rsft_candidates_llama_3_1_8b`\n- **NLI 模型**（CED scoring 用）: `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - PID 349382 — plan_006_qwen3_8b_rsft_candidates (cuda:3)\n  - PID 349794 — plan_006_qwen3_1_7b_rsft_candidates (cuda:0)\n  - PID 360970 — plan_016_llama_rsft_candidates_r3 (cuda:2, start_idx=64 resume)\n- **活跃 cron**: 3 个，分别监控上述 3 个 PID\n- **cuda:1 空闲**——上一轮 no-evidence eval (plan_014) 和 Re-DocRED eval 已完成\n\n### 3. 📊 当前状态\n上一轮 session 完成了大量工作：D076 统一协议 reeval 全部跑完，D078 paired t-test 确认 CED≈flat-NLI，D079/D082 确认 8B evidence tax≈0（Qwen 和 LLaMA 跨家族），D083 确认 1.7B evidence tax 反转（+6.2pp），D080 Re-DocRED cross-dataset 验证完成（Ign-F1 -3.15pp 但 Evi-F1 保持），D084/D085 LLaMA GRPO 确认 catastrophic decoupling 并已 kill。paper_framing.md 已更新至 D083。\n\n**RUNNING (3)**:\n| exp_id | GPU | 进度估计 | 说明 |\n|--------|-----|---------|------|\n| plan_006_qwen3_1_7b_rsft_candidates | cuda:0 | ~531/3027 (17.5%, loop15) | 1.7B RSFT候选生成 |\n| plan_016_llama_rsft_candidates_r3 | cuda:2 | start_idx=64 resume | LLaMA RSFT候选生成 |\n| plan_006_qwen3_8b_rsft_candidates | cuda:3 | ~428/3027 (14.1%, loop15) | 8B RSFT候选生成 |\n\n**PREPARING (1)**: seed_comparison_prep（低优先级，已有 pre-comparison N=3 结果）\n\n**等待中**: 3 个 cron 监控回调（候选生成完成时触发）。无 pending Director 决策。\n\n⚠️ **cuda:1 空闲** — 应立即安排任务（plan_002 test eval / 其他 pending 实验）。\n\n### 4. 📋 待办（条件触发式）\n- **1.7B 候选生成完成（cron 回调）** → CED scoring（命令已存 memory.md）→ RSFT train → eval。cuda:0 释放后可复用\n- **8B 候选生成完成（cron 回调）** → CED scoring → RSFT train → eval。cuda:3 释放后可复用\n- **LLaMA 候选生成完成（cron 回调）** → CED scoring → RSFT train → eval。cuda:2 释放后可复用\n- **cuda:1 立即可用** → 安排 plan_002 DocRED test eval（D057 诊断待修复），或其他 pending 实验。report.md 未更新此状态，需主动利用\n- **所有 RSFT eval 收齐后** → 更新 paper_framing.md 中 Claim 3 跨 scale 数据，做完整 scaling analysis table（1.7B/4B/8B × SFT/RSFT/no-evi）\n- **全部 scope 扩展实验完成** → 论文写作阶段，按 paper_framing.md story arc 10 步结构\n\n### 5. 🎯 战略上下文\n**项目核心**: FREIGE — evidence-grounded DocRE 系统性研究。投 EMNLP 2026 Main（ARR July，~July 15-25）。时间充裕（~2 个月），当前在 D077 scope 扩展阶段（多 scale × 跨家族 × 跨数据集）。\n\n**决策链关键节点**:\n- D076: 统一 eval 协议 ✅\n- D077: scope 扩展启动 ✅\n- D078: CED≈flat-NLI 统计等效 ✅（Claim 3 降级完成）\n- D079/D082: 8B evidence tax≈0 ✅\n- D083: 1.7B evidence tax 反转 +6.2pp ✅（U-shape pattern 确立）\n- D084/D085: LLaMA GRPO catastrophic decoupling 跨家族确认 ✅\n\n**最容易判断错的事**:\n1. report.md 里\"资源状态\"说 4 卡全空闲——这是 **过期信息**，实际 3 卡在跑 RSFT gen，只有 cuda:1 空闲\n2. 3 个 RSFT candidate gen 是 **长任务**（每个 ~10-13h wall time），不要因为等太久就去 SSH 干预——cron 会回调\n3. RSFT pipeline 是 3 步串行：candidate gen → CED scoring → RSFT train → eval。不要跳步\n4. memory.md 里的 CED scoring 命令模板是验证过的，直接用，不要重新拼\n5. 1.7B 的 evidence tax 反转（benefit 而非 cost）是 **核心 novelty**——这构成了 U-shape story 的关键数据点，保护好这个发现\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778953070.md"
+}

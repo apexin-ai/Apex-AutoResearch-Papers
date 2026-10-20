@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "382a98cad2c2ad2dca51",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code fix inference sft adapter guard",
+  "task_key": "worker_code_fix-inference-sft-adapter-guard_20260515T214544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-inference-sft-adapter-guard_20260515T214544_result.json",
+    "occurrence": 1,
+    "bytes": 1149,
+    "sha256": "386d7859d56e11f02f4538f943104f490bac54b154945ad77c5a848038864bfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器上没有 git 仓库，无法执行 git commit + push。\n\n**已完成的工作：**\n\n修改已直接在服务器上生效。Diff（第 297-305 行，新增）：\n\n```python\n    if adapter_config.exists() and args.sft_adapter is None:\n        raise ValueError(\n            f\"model_path '{args.model_path}' is a LoRA adapter (adapter_config.json found), \"\n            f\"but --sft_adapter is not set. RSFT/DPO/GRPO adapters are trained on SFT-merged \"\n            f\"model and MUST be evaluated with --sft_adapter pointing to the SFT adapter directory. \"\n            f\"Add: --sft_adapter /path/to/sft_output\"\n        )\n```\n\n插入位置：adapter 检测块（L288-295）之后、`load_model_and_tokenizer` 调用（L306）之前。\n\n**验证结果：**\n- `py_compile` 语法检查通过\n- 用 `--model_path /root/autodl-tmp/rsft_output`（含 `adapter_config.json`）且不传 `--sft_adapter` 触发测试 → 正确抛出 `ValueError`\n\n**Git commit + push 无法执行** — `/root/autodl-tmp/freige` 不是 git 仓库。如需版本控制，需要先 `git init` 或将代码关联到远程 repo。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-inference-sft-adapter-guard.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8aa63c4466c2286853b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d112 rsft s44 eval",
+  "task_key": "worker_analysis_d112_rsft_s44_eval_20260519T105916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d112_rsft_s44_eval_20260519T105916_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "c8c841f43f4685d9e9dd9f083734e448c18694e472e3b932765c88efab1ea3e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果摘要：\n\n## D112 RSFT s44 Eval — 结论：**negative**\n\n| 指标 | D112 RSFT s44 | SFT s44 baseline | RSFT s42 (4B) |\n|---|---|---|---|\n| **ign_f1** | **0.2181** | 0.4734 | 0.4482 |\n| ign_precision | 0.3523 | — | — |\n| ign_recall | 0.1579 | — | — |\n| EDCR | 0.7762 | — | — |\n| evi_f1 (TP) | 0.7654 | — | — |\n| evi_f1 (joint) | 0.1785 | — | — |\n\n**ign_f1 = 0.2181，相比 SFT s44 baseline (0.4734) 下降 53.9%，远低于所有基准。** Hypothesis 被否定。\n\n**根因分析：**\n- **截断率 85.2%**（839/985 文档被截断）— 模型生成过长输出，在 max_new_tokens=1024 处被截断，导致大量预测不完整\n- **evidence_format_rate 仅 13.1%**（129/985）— 绝大多数文档的 evidence 字段格式无效\n- **ign_recall 极低 (0.1579)** — 仅预测 5340 个关系中 2108 个 TP（gold 有 12151 个），模型严重欠召回\n- 对比之下，evi_f1(TP)=0.7654 和 EDCR=0.7762 说明少数正确预测的 evidence 质量尚可，但整体被截断和格式问题压垮\n\nRSFT 在 4B scale + s44 seed 上未能泛化，产出严重退化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d112-rsft-s44-eval.md"
+}

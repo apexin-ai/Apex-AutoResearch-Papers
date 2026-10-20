@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a9fb7912f9399fcaf30",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops verify gpu after kill",
+  "task_key": "worker_ops_verify-gpu-after-kill_20260515T215210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-gpu-after-kill_20260515T215210_result.json",
+    "occurrence": 1,
+    "bytes": 1199,
+    "sha256": "5a8d4b014d2cde796394ffc38c0908aa3411e2abcea8a87edd9acb74200d4c80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Kill 未成功，4 张 GPU 中有 3 张仍被占用。** 当前状态：\n\n### GPU 显存占用\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| cuda:0 | 14597 / 32607 MiB | 76% | **被占用** — rsft_trainer seed44 (PID 258508) |\n| cuda:1 | 18817 / 32607 MiB | 72% | **被占用** — eval inference plan_011 (PID 254077) |\n| cuda:2 | 15167 / 32607 MiB | 41% | **被占用** — rsft_trainer seed45 (PID 257192) |\n| cuda:3 | 0 / 32607 MiB | 0% | **空闲** ✓ |\n\n### 活跃进程\n\n| PID | GPU | 任务 |\n|-----|-----|------|\n| 258508 | cuda:0 | `plan_001_flat_nli_seed44` — rsft_trainer |\n| 254077 | cuda:1 | `plan_011_bf16_g8_step_eval` — eval inference checkpoint-50 |\n| 257192 | cuda:2 | `plan_001_flat_nli_seed45` — rsft_trainer |\n\n### tmux sessions (3 个)\n\n- `plan_001_flat_nli_seed44`\n- `plan_001_flat_nli_seed45`\n- `plan_011_bf16_g8_step_eval`\n\n另外有一个已死的残留 tmux 进程 `mvp2_eval_rsft_s43_r2`（PID 194836，无对应 tmux session，无 GPU 占用）。\n\n**cuda:0 和 cuda:3**：cuda:3 已空闲，cuda:0 仍被 seed44 训练占用。如果需要释放 cuda:0，需要 kill PID 258508。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-gpu-after-kill.md"
+}

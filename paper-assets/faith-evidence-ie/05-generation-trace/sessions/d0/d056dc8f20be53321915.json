@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d056dc8f20be53321915",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose server recovery v2",
+  "task_key": "worker_diagnose_server-recovery-v2_20260520T062501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_server-recovery-v2_20260520T062501_result.json",
+    "occurrence": 1,
+    "bytes": 1680,
+    "sha256": "81ec2eb9a0492e4ce83e2bb28abb89968715d4330b017216b16fe0670d1e1942"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n4x RTX 5090 全部空闲，0% 利用率，2MiB 显存占用，无运行进程。\n\n### 实验状态\n\n| 实验 | PID | 状态 | 最后进度 | 可恢复？ |\n|------|-----|------|----------|----------|\n| plan017_14b_rsft_generate | 712685 | **死亡** | 1712/3027 | 需从 0 重跑 |\n| llama_sft_s43_train_eval_r2 | 754413 | **死亡** | 训练 100% 完成，eval 1/247 | 需完全重跑 |\n| llama_sft_s44_train_eval_r2 | 754497 | **死亡** | 训练 100% 完成，eval 1/247 | 需完全重跑 |\n\n### 数据损失（严重）\n\n重启后**几乎所有训练产出丢失**——目录结构保留但文件内容为空：\n\n- `sft_output_llama_3_1_8b_s43/` — 空（训练已完成，模型已保存但丢失）\n- `sft_output_llama_3_1_8b_s44/` — 空（同上）\n- `rsft_generations_14b/` — 空（1712 个生成文件全丢）\n- `rsft_output_qwen3_8b_k1_s43/`, `s44/` — 空（连 May 18 的旧 checkpoint 也丢了）\n- `rsft_output_llama_3_1_8b_k1_s43/`, `s44/` — 空\n\n**唯一幸存**的训练产出：`grpo_bf16_g4/` (adapter 528MB + 2 checkpoints)。基础模型 (39G) 和数据集完整。\n\n磁盘 95% 满（48G/50G），疑似 AutoDL 重启引发文件系统级丢失。\n\n### 恢复方案\n- **s43/s44**: 训练本身只需 ~57 分钟/个，但 checkpoint 全丢，无法 resume，需完全重跑训练 + eval\n- **14b generate**: `rsft_generate.py` 有 progress.json 断点续传机制，但 progress.json 也丢了，必须从头开始（预估 ~56% 已完成的工作量全部作废）\n- 建议先确认 AutoDL 数据盘是否可恢复（联系客服/检查快照），否则以上全部需要重跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-server-recovery-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86de9ce10bde65ca3979",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit test eval llama sft s42",
+  "task_key": "worker_submit_test_eval_llama_sft_s42_20260521T193958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_test_eval_llama_sft_s42_20260521T193958_result.json",
+    "occurrence": 1,
+    "bytes": 347,
+    "sha256": "af5b2c441d2fb4beb9ccd754c34d670ae8563113e1aed8265259a0575ea2d7df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **PID**: 130446，cuda:3 上运行\n- **Registry**: `test_eval_llama_sft_s42` → RUNNING，spec 已填充\n- **Adapter**: `/root/autodl-tmp/sft_output_llama_3_1_8b`\n- **Base model**: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`\n- **日志**: `/root/autodl-tmp/eval_results/test_eval_llama_sft_s42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-test-eval-llama-sft-s42.md"
+}

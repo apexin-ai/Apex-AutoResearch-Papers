@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9d5aeacfb39b08df5af",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "cpu seed comparison data prep",
+  "task_key": "worker_cpu_seed_comparison_data_prep_20260516T052004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_seed_comparison_data_prep_20260516T052004_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "e062723b4627ebb20a768a10bbbcac316b60becba70a0101195e564fcd4ba1bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出完成：\n\n- **服务器**: `/root/autodl-tmp/eval_results/d076_seed_summary.json` — 8 条记录的机器可读汇总\n- **本地**: `artifacts/d076_seed_status.md` — 完整状态表\n\n**核心发现**：\n\n| | 已完成 | 运行中 |\n|---|---|---|\n| CED | s43, s45 | s42, s44 |\n| flat-NLI | s44, s45 | s42, s43 |\n\n**需要关注的问题**：CED s43/s45 只有 `metrics.json`（无 `metrics_v2.json`），而 `seed_comparison.py` 会从 `metrics.json` 中删除 `ign_f1`。这意味着即使 CED 有数据，paired t-test 也拿不到 `ign_f1`。需要：\n1. 对 CED s43/s45 跑 ign_f1 recomputation 生成 `metrics_v2.json`，或\n2. 修改 `seed_comparison.py` 的 strip 逻辑，允许 D076 合规 eval 的 `metrics.json` 保留 `ign_f1`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-seed-comparison-data-prep.md"
+}

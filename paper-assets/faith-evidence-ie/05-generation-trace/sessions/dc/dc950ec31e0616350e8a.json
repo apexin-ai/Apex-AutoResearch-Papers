@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc950ec31e0616350e8a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval test eval 1 7b rsft s43 with evi",
+  "task_key": "worker_eval_test_eval_1_7b_rsft_s43_with_evi_20260523T010801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_test_eval_1_7b_rsft_s43_with_evi_20260523T010801_result.json",
+    "occurrence": 1,
+    "bytes": 273,
+    "sha256": "efb081899e088cdbdfdaccd819d9629acff11dd83a707a66fcef32d7d08d8bb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交完成。\n\n- **exp_id**: `test_eval_1_7b_rsft_s43_with_evi`\n- **PID**: 214028，cuda:3，进程已确认存活\n- **Registry**: RUNNING\n- **日志**: `/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_with_evi.log`\n- **预估耗时**: ~5.9h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-test-eval-1-7b-rsft-s43-with-evi.md"
+}

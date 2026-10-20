@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c587323a08cf1c097495",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 015 v3 submit",
+  "task_key": "worker_ops_plan_015_v3_submit_20260515T163158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_015_v3_submit_20260515T163158_result.json",
+    "occurrence": 1,
+    "bytes": 350,
+    "sha256": "6c8a51b280c46b37ebdd0d4271dc0e18d08fa309bd9a46a15c9af2148b2a45b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。`plan_015_grpo_g4_bf16_v3` 已提交到 cuda:0 并正常启动：\n\n- Tokenizer、模型 (Qwen3-4B)、SFT adapter 加载成功\n- 数据集 3027 GRPO prompts 就绪\n- NLI reward 模型加载完成，entailment index=1 正确\n- Stage 3 CED reward，tau 0.30→0.50 over 190 steps\n- Registry 状态已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-015-v3-submit.md"
+}

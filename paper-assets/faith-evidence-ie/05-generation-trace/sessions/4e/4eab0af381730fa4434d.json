@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4eab0af381730fa4434d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze test eval 14b no evi completion",
+  "task_key": "worker_analyze_test_eval_14b_no_evi_completion_20260522T043356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_test_eval_14b_no_evi_completion_20260522T043356_result.json",
+    "occurrence": 1,
+    "bytes": 298,
+    "sha256": "1c030a555aedb418c4a1a4d1d31a8c73a4dc114401f44f9cd26c03eb540747ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**汇总**：14B SFT s42 no-evidence test eval 完成。ign_f1 = **0.3854**，与配对 with-evidence 的 0.3886 相比，test set evidence tax = **+0.32pp**，与 dev 上的 ~0pp 一致，证实 evidence 输出对 RE 性能几乎无负担。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-test-eval-14b-no-evi-completion.md"
+}

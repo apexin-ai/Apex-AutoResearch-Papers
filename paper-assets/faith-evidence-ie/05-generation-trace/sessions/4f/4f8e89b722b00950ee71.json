@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f8e89b722b00950ee71",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis topk3 r2 results",
+  "task_key": "worker_analysis_topk3_r2_results_20260515T132412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_topk3_r2_results_20260515T132412_result.json",
+    "occurrence": 1,
+    "bytes": 430,
+    "sha256": "47f1992f03d4ca539a97e086048f40504a572f2ae291ceb7ddc2bbbd619cbbf1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**结果摘要：** `mvp2_rsft_ced_scoring_topk3_r2` 成功完成。\n\n- **8037 samples** selected（top_k=1 的 2718 的 2.96 倍），覆盖 2691/2716 docs（99.1%）\n- Selected 均值质量：CED=0.621（比 topk1 低 4.7pp）、F1=0.576、combined=0.679\n- 核心 trade-off：数据量 3x vs 质量降 ~5pp CED\n- 输出路径：`/root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-topk3-r2-results.md"
+}

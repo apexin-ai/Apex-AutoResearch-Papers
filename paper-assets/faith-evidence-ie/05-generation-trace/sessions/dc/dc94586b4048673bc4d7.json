@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc94586b4048673bc4d7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops full status check 0515",
+  "task_key": "worker_ops_full_status_check_0515_20260514T224859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full_status_check_0515_20260514T224859_result.json",
+    "occurrence": 1,
+    "bytes": 1336,
+    "sha256": "c0f6dedc0476786d04278f5122cf2a0a3a79d089f0b3f647f18ca38ddc03b0ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全面状态检查报告\n\n| 实验 | GPU | PID | 状态 | 进度 | ETA (UTC) |\n|------|-----|-----|------|------|-----------|\n| **训练** mvp2_grpo_ced_lr5e6_r1 | cuda:0 | 90080 | ALIVE | 104/200 steps (52%) | ~09:30 (~2.7h) |\n| **ckpt-60 eval** mvp2_eval_lr5e6_r1_ckpt60_r2 | cuda:1 | 108185 | ALIVE | 13/62 batches (21%) | ~08:05 (~75min) |\n| **ckpt-40 eval** mvp2_eval_lr5e6_r1_ckpt40_r2 | cuda:2 | 101842 | ALIVE | ~55/62 (89%) 估算 | ~07:00 (~10min) |\n| **SFT baseline eval** mvp2_eval_sft_baseline | cuda:3 | 104979 | ALIVE | 34/62 batches (55%) | ~07:35 (~44min) |\n\n### ckpt-60 eval 修复\n\n- PID 108185 正常运行，tmux `eval_ckpt60_r2` 存活\n- Registry 中 `conclusion` 被 cron 误标为 `\"killed\"`，但 `status` 仍为 `RUNNING`\n- 无法将 conclusion 清空（API 不支持空值）。已在 notes 中标注\"忽略 conclusion 字段，以 status=RUNNING 为准\"\n- 进程完成后 cron 会重新设置正确的 conclusion\n\n### 训练关注点\n\n- Step 104/200，reward 趋势：format 0.249, f1 0.016, ced 0.018, total 0.283\n- KL 偶发飙升（step 85: 1.39e7）但自动恢复，训练未中断\n- checkpoint-100 已保存\n\n### 预计结果交付顺序\n\n1. ckpt-40 eval → ~10 min\n2. SFT baseline eval → ~44 min\n3. ckpt-60 eval → ~75 min\n4. 训练完成 → ~2.7h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-status-check-0515.md"
+}

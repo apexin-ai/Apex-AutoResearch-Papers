@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51f31e220a356a816c6c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops kill v3 fix registry",
+  "task_key": "worker_ops_kill-v3-fix-registry_20260522T013227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-v3-fix-registry_20260522T013227_result.json",
+    "occurrence": 1,
+    "bytes": 357,
+    "sha256": "e2afa69118fd5885004be8ea73f96c0c7d9d9fabd65896e3c98f6f6c64ed9798"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nv3 kill: ✅ (PID 151217, kill -9 confirmed dead)\ncuda:2 状态: 基本空闲 (9593/97887 MiB, ~10%)\nregistry 修复: ✅\n  - evi_f1 = 0.1838 (joint, corrected)\n  - evi_f1_tp = 0.6237 (TP-only, corrected)\n```\n\n注：registry 中无 v3 条目，无需更新。cuda:2 残余 ~9.6GB 可能是其他小进程或 CUDA context 残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-v3-fix-registry.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b46e3a84db73c7033c4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research trl grpo stability",
+  "task_key": "worker_research_trl-grpo-stability_20260514T102228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_trl-grpo-stability_20260514T102228_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "04182dad51b1b1be0b190f9517928d39c779b338266de88983eb43028ddb4aba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成并注册。核心结论：\n\n**clip_ratio=0.0 是正常行为** — `num_iterations=1`（默认值）下是纯 on-policy，ratio 恒为 1.0，clipping 永远不触发。同时 `beta=0.0`（默认）意味着也没有 KL 惩罚。**你的 GRPO 训练目前没有任何显式 policy drift 约束。**\n\n**推荐第一轮修复**（最小改动）：\n1. `mask_truncated_completions=True` — 40% 截断率是最大噪声源\n2. `beta=0.04` — 启用 KL 惩罚，直接约束策略偏移\n3. `max_grad_norm=0.1` — 梯度安全网\n\n如果仍不稳定，第二轮加 `num_iterations=2` + `epsilon_high=0.28`（DAPO 非对称 clipping）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-trl-grpo-stability.md"
+}

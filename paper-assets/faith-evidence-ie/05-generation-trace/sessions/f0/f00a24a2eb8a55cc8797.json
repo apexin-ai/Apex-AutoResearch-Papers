@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f00a24a2eb8a55cc8797",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 011 eval g8 bf16 ckpt100",
+  "task_key": "worker_ops_plan_011_eval_g8_bf16_ckpt100_20260515T144139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_011_eval_g8_bf16_ckpt100_20260515T144139_result.json",
+    "occurrence": 1,
+    "bytes": 634,
+    "sha256": "6626bbe7761ba5288ac63d2f812e7dfd34d40d94716979f8924908e6f7aac553"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已启动，正在加载模型。关键信息：\n\n- 正确找到 checkpoint-100，使用 `--no-quantize` (bf16)\n- 完整 model stack: base_model + sft_adapter + checkpoint-100 adapter\n- batch_size=16, split=dev, seed=42\n- 输出到 `/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100/`\n\n预计 ~1.5h 完成。结果出来后对比：\n- SFT baseline: rel_f1=0.4057, evi_f1=0.7979\n- QLoRA GRPO best: rel_f1=0.217 (catastrophic forgetting)\n\n如果 bf16 GRPO 的 rel_f1 接近或超过 SFT baseline → 量化是 QLoRA 失败根因；如果也 forgetting → GRPO 算法层面不适合结构化 IE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-011-eval-g8-bf16-ckpt100.md"
+}

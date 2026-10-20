@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a8da5c0571a196804e9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code push anon repo v4",
+  "task_key": "worker_code_push-anon-repo-v4_20260524T022025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_push-anon-repo-v4_20260524T022025_result.json",
+    "occurrence": 1,
+    "bytes": 381,
+    "sha256": "947c043d9c5676617fb2d99c65f8397c62c72d43e088c943ea14379df28c2c24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推送完成。\n\n**变更文件：**\n- `figures/paper/fig_evidence_tax.pdf` — 新增（1.7B 加 error bar，-5.01pp 2-seed mean）\n- `paper/sections/experiments.tex` — 3 处修改：14B SFT 加 `$^{(1)}$`、caption 删除单 seed 说明、footnote 格式微调\n\n**Commit:** `0dd75cc` | Author/Committer: `Anonymous <anon@example.com>` | 已 push 到 `main`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-push-anon-repo-v4.md"
+}

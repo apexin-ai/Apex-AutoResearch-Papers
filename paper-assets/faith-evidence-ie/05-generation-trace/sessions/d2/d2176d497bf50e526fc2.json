@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2176d497bf50e526fc2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops prep cuda3 queue",
+  "task_key": "worker_ops_prep-cuda3-queue_20260515T230659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep-cuda3-queue_20260515T230659_result.json",
+    "occurrence": 1,
+    "bytes": 2385,
+    "sha256": "5e8ee2dceda6d7a7e2ecad02f9587280711c5f15fcf2a29daf351c8632c1ce56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All info gathered. Here's the summary:\n\n## Checkpoint 路径确认\n\n| 模型 | 路径 | 最终 checkpoint |\n|------|------|----------------|\n| rsft_output_s44 (CED RSFT s44) | `/root/autodl-tmp/rsft_output_s44` | checkpoint-510 (root 有 adapter files) |\n| rsft_output_flat_nli_s44 | `/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507` | checkpoint-507 (root 无 adapter，需用 checkpoint 路径) |\n| rsft_output_flat_nli_s45 | `/root/autodl-tmp/rsft_output_flat_nli_s45` | checkpoint-507 (root 有 adapter files) |\n\n## 建议 eval 命令\n\n**1) CED RSFT s44**\n```bash\ncd /root/autodl-tmp && python -m freige.eval.inference \\\n    --model_path /root/autodl-tmp/rsft_output_s44 \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --base_model /root/autodl-tmp/models/Qwen3-4B \\\n    --data_path /root/autodl-tmp/data/docred \\\n    --split dev \\\n    --batch_size 16 \\\n    --max_new_tokens 1024 \\\n    --seed 42 \\\n    --output_dir /root/autodl-tmp/eval_results/mvp2_rsft_s44 \\\n    --no-quantize\n```\n\n**2) Flat-NLI RSFT s44**\n```bash\ncd /root/autodl-tmp && python -m freige.eval.inference \\\n    --model_path /root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507 \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --base_model /root/autodl-tmp/models/Qwen3-4B \\\n    --data_path /root/autodl-tmp/data/docred \\\n    --split dev \\\n    --batch_size 16 \\\n    --max_new_tokens 1024 \\\n    --seed 42 \\\n    --output_dir /root/autodl-tmp/eval_results/mvp2_rsft_flat_nli_s44 \\\n    --no-quantize\n```\n\n**3) Flat-NLI RSFT s45**\n```bash\ncd /root/autodl-tmp && python -m freige.eval.inference \\\n    --model_path /root/autodl-tmp/rsft_output_flat_nli_s45 \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --base_model /root/autodl-tmp/models/Qwen3-4B \\\n    --data_path /root/autodl-tmp/data/docred \\\n    --split dev \\\n    --batch_size 16 \\\n    --max_new_tokens 1024 \\\n    --seed 42 \\\n    --output_dir /root/autodl-tmp/eval_results/mvp2_rsft_flat_nli_s45 \\\n    --no-quantize\n```\n\n注意 `rsft_output_flat_nli_s44` 的 root 目录没有 adapter files（只有 README + checkpoint 子目录），所以 model_path 必须指向 `checkpoint-507`。另外两个 root 有完整 adapter，直接用 root 路径。\n\n提交前记得按 C001 约束：`nvidia-smi` 确认 cuda:3 显存占用 < 2GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-cuda3-queue.md"
+}

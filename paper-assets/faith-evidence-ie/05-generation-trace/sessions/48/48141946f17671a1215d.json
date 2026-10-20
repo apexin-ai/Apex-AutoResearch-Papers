@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48141946f17671a1215d",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_10_1778883158.md",
+  "task_key": "loop_10_1778883158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778883158.md",
+    "occurrence": 1,
+    "bytes": 5201,
+    "sha256": "bfe0707ca8cdcb1108f05eb8130f84fe58f9bc066da308d7c524726677800de6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T22:12:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0/1/2/3（rtx5090-4x），不得使用白名单外 GPU，即使 Director 指令也要 push back\n- D064 教训：所有 eval 命令**必须带 `--sft_adapter /root/autodl-tmp/sft_output`**，否则 rel_f1 崩到 0.00x（已有 3 个 eval 因此被 killed 重跑）\n- eval 命令必须带 `--no-quantize`（D058 发现量化 confound）\n- submit_training_job 的 command 必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不能假设 .venv\n- 服务器 bjb2-12179 存在但目前未分配 GPU，仅用于 CPU 任务\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），account=root\n- **工作目录**: `/root/autodl-tmp/freige`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境）\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（base），`/root/autodl-tmp/sft_output`（SFT adapter）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **数据**: `/root/autodl-tmp/rsft_filtered_flat_nli/`（flat-NLI RSFT 数据），`/root/autodl-tmp/rsft_filtered/`（CED RSFT 数据）\n- **DPO 模型**: `/root/autodl-tmp/dpo_output_1ep/`（1ep checkpoint）\n- **RSFT 输出**: `/root/autodl-tmp/rsft_output_flat_nli_s44`、`s45`（训练中）\n- **活跃进程**:\n  - plan_011_bf16_g8_step_eval: PID 249541, cuda:1, step 30/50/70 eval\n  - plan_001_flat_nli_seed44: PID 257187, cuda:0, RSFT 训练\n  - plan_001_flat_nli_seed45: PID 258503, cuda:2, RSFT 训练\n  - eval_plan_012_dpo_1ep_fixed_r2: PID 262075, cuda:3, DPO 1ep eval（带 --sft_adapter 修复版）\n- **活跃 Cron**: 上述 4 个实验各有 cron 监控\n- **活跃 Worker**: worker_research_literature-scan_20260515T220732（文献扫描，CPU）\n\n### 3. 📊 当前状态\n**刚完成**: D064 发现 3 个 eval（plan_001_flat_nli_s43、plan_008_rsft_topk3、plan_012_dpo_1ep）因缺 `--sft_adapter` 结果无效，全部 killed。已用修正命令重提交 eval_plan_012_dpo_1ep_fixed_r2（cuda:3 运行中），另外 2 个（reeval_rsft_topk3、reeval_flat_nli_s43）在 PREPARING 状态等 GPU 空出。\n\n**4 个 RUNNING 实验**:\n1. `plan_011_bf16_g8_step_eval` (cuda:1) — bf16 GRPO G=8 step 30/50/70 eval，验证 C2 decoupling 在 G=8 下是否复现\n2. `plan_001_flat_nli_seed44` (cuda:0) — flat-NLI RSFT seed=44 训练，C3 统计检验\n3. `plan_001_flat_nli_seed45` (cuda:2) — flat-NLI RSFT seed=45 训练，C3 统计检验\n4. `eval_plan_012_dpo_1ep_fixed_r2` (cuda:3) — DPO 1ep eval 修复版，决定 DPO 在论文中的定位\n\n**2 个 PREPARING**:\n- `reeval_rsft_topk3` — 等 GPU 空出，re-eval RSFT top_k=3\n- `reeval_flat_nli_s43` — 等 GPU 空出，re-eval flat-NLI s43\n\n**等待中**: 文献扫描 Worker 运行中，无 Director 待决策项\n\n### 4. 📋 待办（条件触发式）\n- `eval_plan_012_dpo_1ep_fixed_r2` 完成 → 分析 rel_f1：若 > SFT baseline (0.4057) → DPO 作为有效 offline RL baseline 纳入论文；若 < 0.4057 → DPO 作为 negative result，D061 结论恢复（关闭 DPO 线）\n- `plan_011_bf16_g8_step_eval` 完成 → 检查 decoupling 是否在 G=8 下复现：复现 → C2 claim 成立（排除 G=4 confound）；不复现 → C2 需大幅 re-scope（failure pivot 风险）\n- `plan_001_flat_nli_seed44/45` 训练完成 → 立即提交 eval（需带 --sft_adapter --no-quantize）→ 结果汇入 C3 统计检验（目标 5 seeds）\n- 任一 GPU 空出 → 立即提交 reeval_rsft_topk3 或 reeval_flat_nli_s43（两个 PREPARING 中优先 reeval_flat_nli_s43，因为直接影响 C3 统计）\n- 文献扫描 Worker 完成 → 整合结果到 literature_map.yaml + 汇报 Director\n- 所有 P0 eval 收齐后 → 启动 plan_002 test set eval + plan_003 EDCR cross-method diagnostic table + Paper Agent retitle\n\n### 5. 🎯 战略上下文\n**项目核心**: FREIGE = evidence-grounded DocRE 系统性研究。投 EMNLP 2026 Main（ARR July，~7月15-25），剩 ~2 个月。\n\n**决策链关键节点**:\n- D054: decoupling 确认为 QLoRA-specific（bf16 下不复现）→ C2 re-scope 为\"QLoRA GRPO 导致 decoupling\"\n- D056: CED vs flat-NLI 统计不可区分 → C3 降级，CED 不再作为独立贡献\n- D058: 量化 confound 发现 → 所有 eval 必须 --no-quantize\n- D060: CED reranker 恢复 97% evidence 代价 → 最优实用方案\n- D064: --sft_adapter bug → 3 个 eval 无效重跑\n\n**最容易判断错的事**:\n1. **不要混淆 conditional evi_f1 和 joint evi_f1** — 表里的 evi_f1 是 conditional（仅 TP triples），与 DREEAM 的 joint protocol 不可比\n2. **plan_011 是 C2 的生死线** — 如果 bf16 G=8 下 decoupling 不复现，C2 从\"core finding\"变成\"QLoRA artifact\"，论文 story 要大改\n3. **flat-NLI seeds 目标是 5 个**（s42 已有，s43 待 re-eval，s44/s45 训练中，还需 s46），CED seeds 也要凑到 5 个\n4. **DPO 3ep 已确认过拟合** (rel_f1=0.3429)，1ep 是最后机会；如果 1ep 也不行 → DPO 作为 negative 写进 paper\n5. **report.md 的告警列表很长但大部分是历史 MVP2 阶段的 killed/failed**，不需要处理，只需关注当前 4 个 RUNNING\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778883158.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1ac1388b88f2ed1ecb6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops urgent gpu check and recover",
+  "task_key": "worker_ops_urgent_gpu_check_and_recover_20260517T080047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_gpu_check_and_recover_20260517T080047_result.json",
+    "occurrence": 1,
+    "bytes": 1942,
+    "sha256": "05b7f938ca8a4f9e66377dae17dd0fad188bf51a6e094e1e7733ffc978c1fb62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**磁盘 100% 满了。** 这是 GRPO 和 8B 训练崩溃的原因。两个 eval 还在跑，但写结果时可能也会失败。\n\n## nvidia-smi 摘要\n| GPU | 显存 | Util | 进程 |\n|-----|------|------|------|\n| cuda:0 | 11383/32607 MiB | 51% | PID 414837 (rsft_s44_dev_eval_preds) |\n| cuda:1 | 5469/32607 MiB | 39% | PID 420018 (plan006_1_7b_rsft_eval) |\n| cuda:2 | 0/32607 MiB | 0% | **空闲** |\n| cuda:3 | 0/32607 MiB | 0% | **空闲** |\n\n## 实验状态\n\n### lead2_rsft_grpo_ced_r2\n- **状态: 崩溃** (EXIT_CODE=1, 2026-05-17T07:07:17Z)\n- **原因: `No space left on device`** — step 30/50 (60%) 保存 checkpoint 时磁盘满\n- Checkpoints: checkpoint-10, checkpoint-20, checkpoint-30\n- 最后 metrics (step 30):\n  - reward: 1.023, ced_reward: 0.540, format_reward: 0.483\n  - f1_reward: 0.0 (始终为 0)\n  - loss: 0.248, kl: 0.000145\n- reward 曲线: step 5→30, reward 从 0.96 → 1.02, ced_reward 从 0.51 → 0.54（缓慢上升）\n\n### plan_006_qwen3_8b_rsft_train\n- **状态: 崩溃** (EXIT_CODE=1, 2026-05-17T06:56:59Z)\n- **原因: `RuntimeError: unexpected pos` (磁盘满导致 optimizer 保存失败)**\n- 进度: step 1000/3393 (29%), epoch 0.88\n- Checkpoints: checkpoint-750, 800, 850, 900, 950, 1000\n- 最后 metrics:\n  - loss: ~0.47, mean_token_accuracy: 0.872\n  - lr: 1.49e-05\n\n### plan_006_qwen3_1_7b_rsft_eval\n- **状态: 运行中** (PID 420018, cuda:1)\n- 进度: 183/247 batches (74%), 已运行 ~1h50m\n- 预计剩余 ~48 min\n- 输出目录尚为空\n\n### rsft_s44_dev_eval_preds\n- **状态: 运行中** (PID 414837, cuda:0)\n- 进度: 239/247 batches (97%), 已运行 ~3h\n- 预计剩余 ~4-5 min\n- 输出目录尚为空\n\n## 空闲 GPU\n**cuda:2, cuda:3** 完全空闲\n\n## 关键问题\n**`/root/autodl-tmp` 磁盘 250G 已 100% 占满 (剩余 1.2M)**。两个正在运行的 eval 写结果时极大概率会失败。需要立即清理磁盘空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-gpu-check-and-recover.md"
+}

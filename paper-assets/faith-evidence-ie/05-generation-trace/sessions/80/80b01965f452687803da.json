@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80b01965f452687803da",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops ckpt60 manual launch",
+  "task_key": "worker_ops_ckpt60_manual_launch_20260514T222840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ckpt60_manual_launch_20260514T222840_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "85306af972fc2584e002a29b43241613ff19c58d3be8cfb1665679b6c4609333"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n- **PID**: 108025\n- **GPU**: cuda:1，已确认占用 4450 MiB（模型加载中）\n- **日志**: `/tmp/eval_lr5e6_ckpt60.log`\n- **Registry**: `mvp2_eval_lr5e6_r1_ckpt60` 已更新为 RUNNING\n- **Cron 监控**: 每 5 分钟自动检查进程状态\n\n**脚本内容摘要**: `freige.eval.batch_eval`，评估 `/root/autodl-tmp/grpo_ced_lr5e6` 的 checkpoint-60，使用 SFT adapter，输出到 `/root/autodl-tmp/eval_results/lr5e6_r1_ckpt60`，启用 quantize。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ckpt60-manual-launch.md"
+}

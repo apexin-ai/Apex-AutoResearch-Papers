@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "34d7e494a16348e21226",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "research ref audit worker 3",
+  "task_key": "worker_research_ref-audit-worker-3_20260526T103541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-worker-3_20260526T103541.log",
+    "occurrence": 1,
+    "bytes": 604406,
+    "sha256": "63d4b0c407cfaed087c532dcf7c9f6def4c64c9b81c61af3cd619317e649b3f6"
+  },
+  "statistics": {
+    "messages": 400,
+    "user_turns": 0,
+    "tool_calls": 121,
+    "roles": {
+      "log": 1,
+      "system": 130,
+      "record": 1,
+      "assistant": 25,
+      "tool_call": 121,
+      "tool_result": 121,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 400,
+      "chunks": [
+        {
+          "path": "34d7e494a16348e21226-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "34d7e494a16348e21226-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "34d7e494a16348e21226-part-0003.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-ref-audit-worker-3.md"
+}

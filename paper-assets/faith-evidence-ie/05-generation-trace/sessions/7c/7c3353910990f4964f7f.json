@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c3353910990f4964f7f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "infra kill orphan cuda2",
+  "task_key": "worker_infra_kill_orphan_cuda2_20260516T002820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill_orphan_cuda2_20260516T002820_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "8ad0a5971afffeaafa479029badc160e0097544b5689a171f574510f871b0759"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**孤儿进程 PID 276148 已自行消亡**（可能 OOM 后被内核杀掉了）。\n\n**当前 GPU 状态：**\n\n| GPU | 显存已用 | 显存总量 | 状态 |\n|-----|---------|---------|------|\n| 0 | 10,855 MiB | 32,607 MiB | 占用（PID 270467） |\n| 1 | 28,341 MiB | 32,607 MiB | 占用（PID 277315） |\n| **2** | **0 MiB** | **32,607 MiB** | **空闲 ✓** |\n| 3 | 10,859 MiB | 32,607 MiB | 占用（PID 272169） |\n\n**cuda:2 已完全释放（0 MiB 占用），可立即用于新任务。** 无需执行 kill 操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-orphan-cuda2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63da21f7cce21d9df0c2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code eval pipeline prep",
+  "task_key": "worker_code_eval_pipeline_prep_20260514T145306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_pipeline_prep_20260514T145306_result.json",
+    "occurrence": 1,
+    "bytes": 3485,
+    "sha256": "f877475e96731d4dd11b7bd23465b6984fb4613eb5d6c15197faedabd3da80cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Eval Pipeline 检查报告\n\n### 1. Eval 代码完整性 — 可直接用\n\n`/root/autodl-tmp/freige/eval/` 有 3 个文件：\n\n| 文件 | 功能 | 状态 |\n|------|------|------|\n| `inference.py` | 加载模型+adapter → 批量推理 → 解析 → 评测 → 输出 metrics.json + predictions.json | **完整** |\n| `evaluator.py` | F1, Ign-F1, Evi-F1, EDCR 计算 + `parse_model_output` (含 `_repair_truncated_json`) | **完整** |\n| `__init__.py` | 空 | OK |\n\nD011 要求的所有功能都已具备：\n- QLoRA checkpoint 加载（自动检测 `adapter_config.json`，base + adapter 分开加载）\n- DocRED dev set 推理\n- JSON 预测输出\n- F1 + Evi-F1 指标\n- `_repair_truncated_json` 截断修复\n- `--model_path` 指定任意 checkpoint 路径\n\n调用方式：\n```bash\npython -m freige.eval.inference \\\n  --model_path /root/autodl-tmp/grpo_ced_r5/checkpoint-480 \\\n  --base_model /root/autodl-tmp/models/Qwen3-4B \\\n  --data_path /root/autodl-tmp/data/docred \\\n  --split dev \\\n  --output_dir /root/autodl-tmp/eval_results/ced_r5_step480\n```\n\n### 2. GRPO Checkpoint 格式 — 标准 LoRA adapter\n\n每个 checkpoint 目录包含 `adapter_config.json` + `adapter_model.safetensors` + tokenizer 文件，与 inference.py 的加载逻辑完全兼容。\n\n现有 checkpoints：\n\n| 实验 | Checkpoints | 训练进度 | save_steps |\n|------|------------|---------|------------|\n| `grpo_ced_r5` | 400, 420, 440, 460, **480** | 480/756 (63%) | 20, limit=5 |\n| `grpo_extract_r3` | 400, 420, 440, 460, **480** | 进行中 | 20, limit=5 |\n| `grpo_flatnli_r3` | 20, 40, 60, **80** | 早期 | 20 |\n| `grpo_s3_r2` | 20 | 早期/旧 | — |\n| SFT | 96, **144** | 完成 | — |\n\n### 3. 缺失项\n\n**A. 无批量 eval 脚本** — 没有找到 `batch_eval*` / `run_eval*` / `eval_all*`。目前只能手动逐个调 `inference.py`。需要写一个遍历多实验×多 checkpoint 的批量脚本。\n\n**B. 无 best-reward checkpoint 追踪** — `trainer_state.json` 中 `best_model_checkpoint: null`，GRPO trainer 没有开启 eval_strategy，不自动标记 best checkpoint。确定 \"best reward checkpoint\" 需要手动解析 `trainer_state.json` 的 `log_history`，找 reward 最高的 step 对应的 checkpoint。\n\n### 4. 严重警告：ced_r5 疑似 mode collapse\n\n从 `trainer_state.json` 看到：\n- **step 250+ 起，f1_reward 归零**，只有 ced_reward (~0.99) + format_reward (0.3) 贡献总 reward\n- **completions 长度坍缩到固定 34 tokens**（所有样本一样长）\n- `frac_reward_zero_std` 达到 0.9-1.0（几乎所有样本产生相同 reward）\n\n这是典型的 reward hacking / mode collapse —— 模型学会了产出固定格式短输出来最大化 ced_reward，但放弃了实际的关系抽取（f1=0）。**ced_r5 的后期 checkpoint 很可能不可用**，需要回退到 step 100 之前的 checkpoint（但已被 save_total_limit=5 覆盖）。\n\n### 5. 建议的后续动作\n\n1. **写批量 eval 脚本**：遍历 `{实验}×{checkpoint}` 组合，自动跑 inference.py 并汇总 metrics\n2. **写 best-checkpoint 查找工具**：解析各实验 `trainer_state.json`，按 reward 排序输出 best step\n3. **ced_r5 需要复盘**：训练已 collapse，当前 checkpoint 评估意义不大；应检查 extract_r3 和 flatnli_r3 是否有同样问题\n4. **extract_r3 / flatnli_r3** 的 trainer_state 也需要检查，确认它们没有 collapse 后再安排 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-pipeline-prep-copy-2.md"
+}

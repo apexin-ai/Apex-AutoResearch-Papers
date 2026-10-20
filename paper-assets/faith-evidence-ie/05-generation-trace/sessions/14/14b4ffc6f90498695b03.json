@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14b4ffc6f90498695b03",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 003 edcr diagnostic",
+  "task_key": "worker_analysis_plan_003_edcr_diagnostic_20260515T213848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_003_edcr_diagnostic_20260515T213848_result.json",
+    "occurrence": 1,
+    "bytes": 680,
+    "sha256": "95f31bfa09195f29f488e930b916f91fb248527ee5abb11556c4a555e23f4169"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已生成并注册 (`art_20260515_127ebc`)。\n\n核心结论：\n\n- **11 种 evidence-producing 方法**中，EDCR 与 rel_f1 单调负相关，从 CED-reranker (0.6156 / 0.4864) 到 DPO-CED 1ep (0.9982 / 0.0022)\n- **EDCR > 0.95** 准确标识所有 catastrophic failure（DPO 1ep, GRPO QLoRA 早期 checkpoints），而 evi_f1 无法区分\n- **5 个诊断 zone** 定义完毕：>0.95 catastrophic → 0.80-0.95 severe → 0.70-0.80 baseline → 0.63-0.67 improved → <0.63 best\n- SFT-no-evidence (rel_f1=0.4893, EDCR=0) 作为反面验证：CED-reranker 在保留 evidence 前提下逼近无 evidence 的 rel_f1 上限（0.4864 vs 0.4893, gap 0.29pp）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-003-edcr-diagnostic-copy-3.md"
+}

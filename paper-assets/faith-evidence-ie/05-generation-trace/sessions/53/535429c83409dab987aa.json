@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "535429c83409dab987aa",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research paper framing update d078 d083",
+  "task_key": "worker_research_paper-framing-update-d078-d083_20260516T154301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-framing-update-d078-d083_20260516T154301_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "080cec30edcffb79ecef1d6992a17ab64b93ec0d81f705ada2c78206de5f5b4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。主要变更：\n\n**结构性变更:**\n- 新增 **Claim 5 (Scaling)**: Evidence Tax U-shape pattern（1.7B +6.2pp / 4B -7.9pp / 8B ≈0 / LLaMA-8B -0.7pp）\n- 新增三个子表：D076 rel_f1 统一协议、Evidence Tax Scaling、Cross-Dataset Validation\n\n**C1 更新:** evidence tax 从固定 \"~7pp\" 改为 pointer 到 C5 的 scale-dependent 叙事；写入 D076 最终数字、LLaMA cross-family 和 Re-DocRED cross-dataset 结果\n\n**C3 降级:** 标题改为 \"CED 与 flat-NLI 统计不可区分（D078）\"；写入 p=0.44、Δ=0.0008；叙事改为 \"NLI-based scoring 是关键，CED 因可解释性作为默认推荐\"\n\n**Story Arc:** 第 3 点改为 scale-dependent 叙事，新增第 10 点 scaling & generalization\n\n**RC 更新:** RC3 标记已解决，RC12 新增 D079/D083 弹药（1.7B evidence 有益与 SAIS 方向一致），RC13 三项泛化实验全标记完成\n\n**优先级:** seed 实验标记为不再需要，三项泛化实验标记完成，Publishability Threshold 更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-framing-update-d078-d083.md"
+}

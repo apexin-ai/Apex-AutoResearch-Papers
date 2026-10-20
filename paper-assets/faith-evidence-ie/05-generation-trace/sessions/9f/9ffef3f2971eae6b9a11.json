@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ffef3f2971eae6b9a11",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops llama template verify",
+  "task_key": "worker_ops_llama_template_verify_20260516T102002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama_template_verify_20260516T102002_result.json",
+    "occurrence": 1,
+    "bytes": 363,
+    "sha256": "a8d96693469fb618e3dba11e482086fc838cf81ca7a5ef2db508c698b57e17ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。完整输出：\n\n```\n<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nExtract relations from: John works at Google.<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n```\n\n模板结构正确：`<|begin_of_text|>` → user header → 用户内容 → `<|eot_id|>` → assistant header（generation prompt）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama-template-verify.md"
+}

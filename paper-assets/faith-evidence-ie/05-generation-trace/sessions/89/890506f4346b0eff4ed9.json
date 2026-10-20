@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "890506f4346b0eff4ed9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops emergency disk cleanup",
+  "task_key": "worker_ops_emergency_disk_cleanup_20260517T080329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_emergency_disk_cleanup_20260517T080329_result.json",
+    "occurrence": 1,
+    "bytes": 1153,
+    "sha256": "60775320099758f6c62b277f0bfb0413ea2e05f11973be752b3c54f893d2aa64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理前\n磁盘: 250G/250G used (1.2M 可用)\n\n## 已清理\n| 目录 | 大小 |\n|------|------|\n| grpo_ced_lr5e6/ | 6.8G |\n| grpo_ced_kl001/ | 7.8G |\n| merged_sft_rsft_ced_s43/ | 7.6G |\n| .hf_cache/ | 2.2G |\n| 8个空目录 | 0 |\n| **总计** | **24.4G** |\n\n## 清理后\n磁盘: 226G/250G used, **25G 可用** (91%)\n\ndpo_output / dpo_output_1ep / dpo_data 在服务器上不存在，跳过。\n\n两个正在运行的 eval（rsft_s44_dev_eval_preds 97%、1.7B eval 74%）现在有足够空间写出 predictions.json。\n\n## 仍需 Director 审批的大目录\n\n如果后续还需更多空间，以下目录值得考虑：\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| rsft_topk3_output/ | 8.0G | 旧 topk3 实验 |\n| rsft_output_s43/ | 8.0G | 旧 seed 43（ced_s43 已单独保留） |\n| rsft_output_flat_nli_s45/ | 8.0G | flat_nli 系列 |\n| rsft_output_flat_nli_s44/ | 8.0G | flat_nli 系列 |\n| rsft_output_flat_nli_s43/ | 8.0G | flat_nli 系列 |\n| rsft_output_flat_nli/ | 8.0G | flat_nli 系列 |\n| rsft_output/ | 8.0G | 最早的 RSFT |\n| rsft_output_r2a/, r2b/ | 13.0G | round 2 variants |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-emergency-disk-cleanup.md"
+}

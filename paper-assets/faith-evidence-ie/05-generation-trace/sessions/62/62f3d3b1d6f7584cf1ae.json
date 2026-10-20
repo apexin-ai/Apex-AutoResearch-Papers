@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62f3d3b1d6f7584cf1ae",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_8_1778870810.md",
+  "task_key": "loop_8_1778870810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778870810.md",
+    "occurrence": 1,
+    "bytes": 6114,
+    "sha256": "660f2b2366f326740dd4b2332195a7bbd1bee6ac324cdbdcaf6d66492e3d1889"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_messages\nupdated: '2026-05-15T18:40:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 on rtx5090-4x。只有这 4 张卡分配给本项目，不得用其他卡\n- 服务器名是 `gpu-5090-4x-1`（kill_job 等工具用这个），不是 `a40` 或 `rtx5090-4x`\n- D058: SFT baseline eval 原来用了 `--quantize`，所有 vs SFT 的 delta 数字待 noquant 重跑后才可信。不要引用旧 SFT baseline rel_f1=0.4057 作为最终数字\n- D056: CED vs flat-NLI 统计不可区分，已取消 5+ seed 显著性检验。CED 在论文中定位 = reranker + EDCR 组件 + \"one possible NLI-based scoring function\"，不再强调 contrastive margin\n- plan_002 test eval: DocRED test split 无 gold labels，inference.py 的 `--split test` 不可用。Worker 已部署 `test_inference.py` 绕过 labels 依赖，但 Director 已标记 failed，推迟到终稿阶段\n- inference.py 必须传完整模型 stack：`--base_model` + `--sft_adapter` + `--model_path`，缺任一层结果不可用\n- RTX 5090 必须 `--no-quantize`（4-bit quantize 有 CUBLAS 错误）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：gpu-5090-4x-1 (又名 rtx5090-4x)，4×RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`\n- SFT adapter：`/root/autodl-tmp/sft_output`\n- RSFT adapters：`rsft_output_s42/s43/s44`（CED），`rsft_output_flat_nli`（flat-NLI s42），`rsft_topk3_output`（plan_008 top_k=3）\n- DPO output：`/root/autodl-tmp/dpo_output`\n- SFT-no-evidence：`/root/autodl-tmp/sft_no_evidence_output`\n- 数据：`/root/autodl-tmp/data/docred`（train 3027 / dev 985 / test 1000）\n- flat-NLI 数据：`/root/autodl-tmp/rsft_data_flat_nli/`（2691 samples）\n- top_k=3 数据：`/root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl`（8037 samples）\n- DPO pairs：`/root/autodl-tmp/dpo_data/dpo_pairs.jsonl`\n- Eval 结果目录：`/root/autodl-tmp/eval_results/`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 日志：`~/runs/faith-evidence-ie/`\n- 活跃进程（handoff 时刻）：\n  - plan_008_rsft_topk3: PID 234489, cuda:3, tmux=plan_008_rsft_topk3, ~2.5h 训练\n  - eval_sft_baseline_noquant: cuda:1, Worker 刚提交（D058）\n  - flat-NLI seed43: cuda:0, Worker 刚提交\n  - eval_plan_012_dpo_ced: cuda:2, PID 232312, 52/124 batches (42%)\n\n### 3. 📊 当前状态\n**刚做完**：\n- eval_plan_001_flat_nli 完成：rel_f1=0.4539（vs CED 3-seed mean 0.4596，差 <1pp，D056 确认统计不可区分）\n- eval_plan_014_sft_no_evidence 完成（18:29），结果提取 Worker 已派出，metrics 尚未入 registry\n- plan_009 forgetting figure v5 完成（CSV + PDF/PNG）\n- plan_003 EDCR cross-method table + 诊断分析完成（edcr_diagnostic_table.md + edcr_analysis.md）。核心发现：rel_f1 与 EDCR 强负相关（ρ=−0.905），EDCR 诊断 evidence-relation pairing quality\n- plan_002 已标记 DONE/failed，但 Worker 部署了 `test_inference.py` 可在终稿阶段使用\n\n**RUNNING 实验**：\n- `plan_008_rsft_topk3`: cuda:3, 8037 samples top_k=3, 1509 steps, ~2.5h\n- `eval_sft_baseline_noquant`: cuda:1, D058 紧急重跑（SFT quantize confound）\n- flat-NLI seed43: cuda:0（可能尚未入 registry）\n- eval_plan_012_dpo_ced: cuda:2, 52/124 (42%), ~60min 剩余\n\n**等待中**：\n- Worker `worker_analysis_eval_plan_014_results`：提取 plan_014 eval metrics\n- Worker `worker_eval_sft_baseline_noquant`：提交 D058 eval\n- Worker `worker_train_plan_001_flat_nli_seed43`：提交 seed43 训练\n- DPO eval Worker 仍在轮询进度\n\n### 4. 📋 待办（条件触发式）\n- eval_sft_baseline_noquant 完成 → 提取 rel_f1，对比原 quantized SFT baseline (0.4057)，更新所有 delta 数字，汇报 Director\n- eval_plan_014 结果提取完成 → 汇报 SFT-no-evidence rel_f1，分析 evidence generation 代价。rel_f1 > 0.4057 → evidence 拖累抽取；≈ 0.4057 → 无代价；< 0.4057 → evidence 帮助抽取\n- eval_plan_012_dpo_ced 完成 → 提取 metrics，关注过拟合信号（Reviewer WARNING），汇报 rel_f1 vs RSFT (0.4596) vs SFT\n- plan_008_rsft_topk3 训练完成 → 提交 dev eval，对比 top_k=1 (rel_f1=0.4596)。如果 top_k=3 显著不同 → 数据量比 scoring 方法更关键\n- flat-NLI seed43 训练完成 → 提交 eval，与 seed42 (0.4539) 取均值确认 CED ≈ flat-NLI\n- 全部 P0 eval 完成后 → 统一做 paper_framing.md 更新（D056 retitle 方向）\n- plan_002 终稿阶段 → 用已部署的 test_inference.py + RSFT s43 checkpoint 跑 test set + CodaLab 提交\n\n### 5. 🎯 战略上下文\n**项目**：FREIGE — LLM-based evidence-grounded document-level relation extraction，目标 EMNLP 2026 Main。\n\n**核心决策链**：\n- D031: GRPO+QLoRA 判死 → pivot 到 RSFT+CED\n- D038: RSFT r1 \"失败\"实为 eval bug，实际 rel_f1=0.4655 (s44 best)\n- D052: plan_011 (bf16 G=8) vs mvp2_grpo_ced_kl001_r4 (QLoRA G=8) = clean quantization ablation，Δ=+23.8pp\n- D054: C2 reframe 为 \"QLoRA quantization noise causes decoupling\"\n- D056: CED vs flat-NLI 统计不可区分，CED 降级为 \"one possible scoring function\"\n- D058: SFT baseline eval quantize confound 发现，所有 delta 待重校\n\n**论文 narrative 方向**（待全 P0 完成后确认）：\n- 去掉 CED 作为方法贡献的强调\n- 加入 quantization artifact 发现（bf16 vs QLoRA）\n- 聚焦 task definition + decoupling finding + EDCR\n\n**易错点**：\n- exp_id filter 在 read_registry 中经常返回 0 结果，用 status filter 更可靠\n- kill_job 的 server 参数必须用 `gpu-5090-4x-1`，不是 `rtx5090-4x`\n- submit_training_job 命令中 CUDA_VISIBLE_DEVICES 的编号是物理 GPU 编号（0/1/2/3），不是逻辑编号\n- plan_002_test_eval_s44 已被 Worker 注册并提交过（虽然 Director 标记 failed），tmux session 可能残留\n- Qwen3 的 generation_config.json 会静默覆盖 temperature 和 top_k，生成前必须显式覆盖\n- RSFT 三 seed 最佳是 s43 (rel_f1=0.4683)，不是 s44 (0.4655)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778870810.md"
+}

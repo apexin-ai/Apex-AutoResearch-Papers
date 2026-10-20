@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05a79f12a52fdf35994a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit eval r2b maxtok1536",
+  "task_key": "worker_submit_eval_r2b_maxtok1536_20260515T115050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_eval_r2b_maxtok1536_20260515T115050_result.json",
+    "occurrence": 1,
+    "bytes": 250,
+    "sha256": "8d45d1899970a42c0b7d871502c135bbf3ab7375a063b1412ab884dbce4da606"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **实验** `mvp2_eval_rsft_r2b_maxtok1536` 已提交到 rtx5090-4x cuda:1\n- **PID**: 196700，日志: `~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536.log`\n- **Registry** 已更新为 RUNNING，含完整 spec"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-eval-r2b-maxtok1536.md"
+}

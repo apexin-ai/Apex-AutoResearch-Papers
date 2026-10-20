@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c4a98a125d2df2f525b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit d111 harvest and d112 shard3 cuda0",
+  "task_key": "worker_submit_d111_harvest_and_d112_shard3_cuda0_20260519T000710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_d111_harvest_and_d112_shard3_cuda0_20260519T000710_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "2da5477fb6c7a60ae9735b7c5ab86fa8305a5b7132baac159064b15e8c37e9dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n### D111 eval 结果\n\n| 指标 | 值 |\n|---|---|\n| ign_f1 | **0.3974** |\n| f1 | 0.4049 |\n| evi_f1 (TP) | 0.7986 |\n| evi_f1_joint | 0.3147 |\n| edcr | 0.6982 |\n| format_ok | 983/985 |\n| truncated | 288/985 |\n\ns42 的 D076 标准化 re-eval ign_f1 = 0.3974，与之前一致。三 seed 对比：s42 (0.3974) < s43 (0.4365) < s44 (0.4734)。\n\n### D112 shard 3\n\n已启动，tmux session `d112_shard3`，python PID 590568，运行在 cuda:0（15029MiB）。\n\n### 当前 4 卡占用\n\n| GPU | 显存 | 进程 |\n|---|---|---|\n| cuda:0 | 15029MiB | D112 shard 3 (PID 590568) |\n| cuda:1 | 18739MiB | D112 shard 1 (PID 587729) |\n| cuda:2 | 17883MiB | D112 shard 2 (PID 587819) |\n| cuda:3 | 11045MiB | D112 shard 0 (PID 590423) |\n\n4 卡满载，D112 四个 shard 并行运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-d111-harvest-and-d112-shard3-cuda0.md"
+}

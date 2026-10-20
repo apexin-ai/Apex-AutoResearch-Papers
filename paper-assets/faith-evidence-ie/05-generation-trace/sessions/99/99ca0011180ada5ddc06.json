@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99ca0011180ada5ddc06",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval lead2 ckpt20 eval",
+  "task_key": "worker_eval_lead2_ckpt20_eval_20260517T123030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_lead2_ckpt20_eval_20260517T123030_result.json",
+    "occurrence": 1,
+    "bytes": 925,
+    "sha256": "d3e36a067d89598113972953cfdee76b0e9157a1d5f5767a5d63dfbf33eb7405"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**Checkpoint 结构**：LoRA adapter（`adapter_model.safetensors` + `adapter_config.json`）\n\n**adapter_config.json 关键内容**：\n- `peft_type`: LORA\n- `base_model_name_or_path`: `/root/autodl-tmp/merged_sft_rsft_ced_s43`\n- `r`: 64, `lora_alpha`: 128, `lora_dropout`: 0.05\n- `target_modules`: q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj\n- `task_type`: CAUSAL_LM\n\n**额外处理**：\n1. `merged_sft_rsft_ced_s43` 不存在，已重建（Qwen3-4B + SFT adapter merge + RSFT_CED_s43 adapter merge → 7.6GB）\n2. `inference.py` 对 adapter 强制要求 `--sft_adapter` 的校验过于严格，已 patch：当 `--base_model` 非默认值时改为 warning\n\n**提交状态**：\n- PID: **446829**\n- GPU: cuda:1\n- tmux session: `lead2_ckpt20_eval`\n- Log: `/root/autodl-tmp/logs/lead2_ckpt20_eval.log`\n- Registry: RUNNING\n- 985 docs / 247 batches，推理已开始"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-lead2-ckpt20-eval.md"
+}

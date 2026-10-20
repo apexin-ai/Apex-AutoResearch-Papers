@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "624c72fb555a713ae257",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis reeval ced s44",
+  "task_key": "worker_analysis_reeval_ced_s44_20260516T075802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reeval_ced_s44_20260516T075802_result.json",
+    "occurrence": 1,
+    "bytes": 1038,
+    "sha256": "3069db15ad71d7faa40801c28db4a3504e9da8087a32b1cbcc33890f2ac2a3e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## reeval_ced_s44 结果 Summary\n\n**状态**: 成功完成 (EXIT_CODE=0)\n\n### 核心指标\n\n| 指标 | 值 |\n|------|-----|\n| **F1** | 0.4621 |\n| **Ign-F1** | 0.4511 |\n| **Precision** | 0.4762 |\n| **Recall** | 0.4488 |\n| **Evi-F1** | 0.8050 |\n| **Evi-Precision** | 0.8097 |\n| **Evi-Recall** | 0.8004 |\n| **EDCR** | 0.6350 |\n| **Evi-F1 (joint)** | 0.3677 |\n\n### 辅助信息\n\n- **W&B run ID**: 无（日志中未找到 wandb 相关记录）\n- **Format compliance**: 985/985 (100%)\n- **Truncated**: 190/985\n- **Predictions**: 15,264\n- **推理时间**: 3h38m (13,078s, 13.28s/doc)\n- **Checkpoint**: `/root/autodl-tmp/rsft_output_s44/checkpoint-510`\n\n### Artifact\n\n已注册: `art_20260516_36e4c6` → `projects/faith-evidence-ie/artifacts/reeval_ced_s44/report/metrics_summary.json`\n\n### 结论\n\n**Success.** 实验正常完成，所有指标已提取。F1=0.4621 / Evi-F1=0.8050 / EDCR=0.6350，数据可用于 paired t-test。待 reeval_ced_s42 完成后即可进行跨 seed 统计检验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-reeval-ced-s44.md"
+}

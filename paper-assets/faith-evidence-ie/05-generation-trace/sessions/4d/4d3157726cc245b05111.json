@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d3157726cc245b05111",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "probe bjb2 old data",
+  "task_key": "worker_probe_bjb2-old-data_20260520T071025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_probe_bjb2-old-data_20260520T071025_result.json",
+    "occurrence": 1,
+    "bytes": 3168,
+    "sha256": "555ff9ffd90c4b8b2bd8c9c6bde9db279d51c9567ee645f7aef5a158f3a86ace"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb2-12179 数据完整性报告\n\n### 磁盘总览\n- 总容量 250G，已用 208G (83%)，剩余 43G\n\n---\n\n### 1. 完整资产（有 safetensors，大小正常）\n\n**Adapter 模型（16 个 SFT + 14 个 RSFT = 30 个）：**\n\n| 目录 | 大小 | safetensors |\n|------|------|-------------|\n| `sft_output_llama_3_1_8b` (s42) | 4.5G | 641M ✓ |\n| `sft_output_llama_3_1_8b_s43` | 4.5G | ✓ |\n| `sft_output_llama_3_1_8b_s44` | 4.5G | ✓ |\n| `sft_output_llama_3_1_8b_no_evidence` | 4.5G | ✓ |\n| `sft_output_14b` | 7.3G | 491M ✓ |\n| `sft_output` (4B s42) | 5.8G | 253M ✓ |\n| `sft_output_seed43` | 2.1G | ✓ |\n| `sft_output_seed44` | 2.1G | ✓ |\n| `sft_output_qwen3_1_7b_bf16` | 1.9G | ✓ |\n| `sft_output_qwen3_1_7b_bf16_seed43` | 1.9G | ✓ |\n| `sft_output_qwen3_1_7b_bf16_seed44` | 1.9G | ✓ |\n| `sft_output_qwen3_1_7b_no_evidence` | 1.9G | ✓ |\n| `sft_output_qwen3_8b_bf16` | 4.6G | ✓ |\n| `sft_output_qwen3_8b_s43` | 4.6G | ✓ |\n| `sft_output_qwen3_8b_s44` | 4.6G | ✓ |\n| `sft_output_qwen3_8b_no_evidence` | 4.6G | ✓ |\n| `rsft_output_llama_3_1_8b_k1` (s42) | 4.5G | 641M ✓ |\n| `rsft_output_llama_3_1_8b_k1_s43` | 4.5G | ✓ |\n| `rsft_output_llama_3_1_8b_k1_s44` | 4.5G | ✓ |\n| `rsft_output_qwen3_1_7b_k1` | 1.9G | ✓ |\n| `rsft_output_qwen3_1_7b_k1_s43` | 1.9G | ✓ |\n| `rsft_output_qwen3_1_7b_k1_s44` | 1.9G | ✓ |\n| `rsft_output_qwen3_8b_k1` | 4.6G | ✓ |\n| `rsft_output_qwen3_8b_k1_s43` | 4.6G | ✓ |\n| `rsft_output_qwen3_8b_k1_s44` | 4.6G | ✓ |\n| `rsft_output_4b_sft_s44` | 4.1G | ✓ |\n| `rsft_output_4b_sft_s44_bf16` | 7.5G | ✓ |\n| `rsft_output_ced_s43` | 8.0G | ✓ |\n| `rsft_output_nli_large` | 8.0G | ✓ |\n| `rsft_output_random_k1` | 3.5G | ✓ |\n\n**基座模型（3 个，70G）：**\n| 目录 | 大小 | 状态 |\n|------|------|------|\n| `models/meta-llama/Meta-Llama-3.1-8B` | 15G | 4 shards, 完整 ✓ |\n| `models/Qwen3-4B` | 7.6G | 3 shards, 完整 ✓ |\n| `models/Qwen/` | 47G | (含 Qwen3-8B / 14B 等) ✓ |\n\n**数据集：**\n| 资产 | 大小/行数 | 状态 |\n|------|-----------|------|\n| `data/` | 497M | ✓ |\n| `rsft_scored_llama_3_1_8b_k1/rsft_train.jsonl` | 2952 行 | ✓ |\n| `rsft_filtered/rsft_train.jsonl` | 2718 行 | ✓ |\n| `rsft_generations_14b/` | 133M | ✓ |\n| `eval_results/` | 370M, ~130 个结果目录/文件 | ✓ |\n\n---\n\n### 2. 空目录（0 字节，已清空）\n\n| 目录 | 说明 |\n|------|------|\n| `rsft_data/` | 0 |\n| `rsft_score_input_s0/` | 0 |\n| `rsft_score_input_s1/` | 0 |\n| `rsft_score_input_s2/` | 0 |\n| `rsft_score_input_s3/` | 0 |\n\n这些是中间产物（scoring pipeline 的临时输入），已被清理，不影响最终数据。\n\n---\n\n### 3. 可迁移数据量估算\n\n| 类别 | 大小 |\n|------|------|\n| Adapter 模型 (30个) | ~117G |\n| 基座模型 (3个) | ~70G |\n| 数据集 + scored/filtered | ~1.5G |\n| eval_results | ~370M |\n| 生成数据 (14b + 4b + llama) | ~750M |\n| 其它 (baselines, GRPO, freige, misc) | ~18G |\n| **合计** | **~208G** |\n\n基座模型如果新服务器已有则不需迁移，实际需迁移约 **138G**（adapter + 数据 + eval）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/probe-bjb2-old-data.md"
+}

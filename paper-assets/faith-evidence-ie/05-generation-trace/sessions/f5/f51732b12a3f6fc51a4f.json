@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f51732b12a3f6fc51a4f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops full status and downstream pipeline",
+  "task_key": "worker_ops_full_status_and_downstream_pipeline_20260517T004956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full_status_and_downstream_pipeline_20260517T004956_result.json",
+    "occurrence": 1,
+    "bytes": 1117,
+    "sha256": "17dfbd090c334e9a9f5b2deacbe641a47427991deccd05ba87a04f411b5494c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CED scoring 正常 - 500/24216 scored，预计 ~80 min 完成。\n\n---\n\n## 状态总结\n\n| 实验 | GPU | 状态 | 进度/结果 |\n|------|-----|------|-----------|\n| **plan_007_r5** Re-DocRED eval | - | ✅ DONE | F1=0.4234, ign_F1=0.4145, evi_F1=0.8182, EDCR=0.621 |\n| **plan_002** test eval | 1 | ▶️ running | 85/250 batches (~34%), ETA ~2h |\n| **plan_006** 1.7B candidates | - | ✅ DONE | 3027/3027 docs, 24216 gens, 11h |\n| **plan_006** 1.7B CED scoring | 0 | ▶️ running | 500/24216, PID 395619, ETA ~80min |\n| **plan_006** 8B candidates | 3 | ▶️ running | 2503/3027 (83%) |\n| **plan_016** LLaMA candidates | 2 | ▶️ running | 2743/3027 (91%) |\n\n## 已完成操作\n1. Registry 更新：plan_007_r5 → DONE (with metrics)\n2. Registry 更新：plan_006_qwen3_1_7b_rsft_candidates → DONE\n3. **已启动 CED scoring** (GPU 0, PID 395619) for 1.7B candidates\n\n## 待 pipeline（无法立即启动）\n- 8B CED scoring: 等 8B candidate gen 完成 + GPU 空闲\n- LLaMA CED scoring: 等 LLaMA candidate gen 完成 + GPU 空闲\n- 8B 预计再跑 ~3-4h，LLaMA ~2-3h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-status-and-downstream-pipeline.md"
+}

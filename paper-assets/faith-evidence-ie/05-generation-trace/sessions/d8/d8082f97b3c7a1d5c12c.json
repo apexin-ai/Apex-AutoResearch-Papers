@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8082f97b3c7a1d5c12c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code llama sft s43 withevi 2048 launch",
+  "task_key": "worker_code_llama-sft-s43-withevi-2048-launch_20260521T004553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-sft-s43-withevi-2048-launch_20260521T004553_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "9c0419e409945756d9bdf629243d0c3ea6666631dc4e7ef53961b12d875d3bcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**PID 53413 (14B RSFT with-evi eval)**：仍在运行，已跑 3h54m，metrics.json 尚未生成。正常推理中。\n\n**eval_llama_sft_s43_with_evidence_2048**：\n- PID: **64391**\n- GPU: **cuda:2** (18879 MiB)\n- Adapter: `/root/autodl-tmp/sft_output_llama_3_1_8b_s43`\n- Output: `/root/autodl-tmp/eval_results/eval_llama_sft_s43_with_evidence_2048`\n- Log: `/root/autodl-tmp/freige/eval_outputs/eval_llama_sft_s43_with_evidence_2048.log`\n- 已开始推理，985 docs，~6s/it 初始速度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-sft-s43-withevi-2048-launch.md"
+}

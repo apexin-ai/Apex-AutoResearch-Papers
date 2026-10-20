@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6aee6397d826b13603eb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp d158 14b rsft s44 train",
+  "task_key": "worker_exp_d158_14b_rsft_s44_train_20260525T051132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_d158_14b_rsft_s44_train_20260525T051132_result.json",
+    "occurrence": 1,
+    "bytes": 661,
+    "sha256": "c91cd2c125a7d22d26c8dafa878ec196c7da06b09c43b4d62175e8b5c3950af0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动。\n\n**状态汇总**：\n- **PID**: 357577, cuda:1\n- **模型加载**: Qwen3-14B 加载完成 → SFT adapter 合并完成 → LoRA 创建完成 (trainable 1.71%, 257M params)\n- **数据**: 3016 samples tokenized, CED scores mean=0.691\n- **训练进度**: 9/567 steps (~7s/step), 总步数 567 (3016 samples × 3 epochs ÷ 16 effective batch)\n- **预计耗时**: ~567 × 7s ≈ 66 min\n- **超参数**: 与原始 14B RSFT 一致 (lr=2e-5, rank=64, alpha=128, dropout=0.05, epochs=3, grad_accum=16 for single GPU)\n- **wandb**: `freige-rsft / rsft_qwen3_14b_k1_s44`\n- **输出**: `/root/autodl-tmp/rsft_output_14b_s44`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d158-14b-rsft-s44-train.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a69b491d0ef63090d7eb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "train llama rsft k1 s43",
+  "task_key": "worker_train_llama_rsft_k1_s43_20260518T114205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_llama_rsft_k1_s43_20260518T114205_result.json",
+    "occurrence": 1,
+    "bytes": 439,
+    "sha256": "7ab6bfe7c50703c86cc33414897be33bb4ec4f4a271354dfee6d600c2a0ca377"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动。\n\n- **PID**: 537136\n- **GPU**: cuda:3，已占用 14825 MiB（模型加载中）\n- **tmux session**: `rsft_llama_k1_s43_train`\n- **日志**: `~/runs/faith-evidence-ie/rsft_llama_k1_s43_train.log`\n- **数据**: 2952 RSFT samples, CED scores mean=0.686\n- **配置**: seed=43, lr=2e-5, epochs=3, grad_accum=8, lora_rank=64, lora_alpha=128, save_total_limit=2\n- **预计训练时间**: ~43 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-llama-rsft-k1-s43.md"
+}

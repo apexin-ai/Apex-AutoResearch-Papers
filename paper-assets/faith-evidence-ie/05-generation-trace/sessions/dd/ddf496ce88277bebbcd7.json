@@ -1,0 +1,369 @@
+{
+  "schema_version": "1.0",
+  "id": "ddf496ce88277bebbcd7",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "eval test eval 14b rsft s42",
+  "task_key": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_test_eval_14b_rsft_s42_20260521T183005.jsonl",
+    "occurrence": 1,
+    "bytes": 7958,
+    "sha256": "473a77df45a83e660f887b13c7b06f0a42f7e35377439470d8b9ddf858ab53c9"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T18:31:00.534112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T18:31:00.534525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T18:31:00.534704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/rsft_output_14b/adapter_config.json /root/autodl-tmp/sft_output_14b/checkpoint-144/adapter_config.json /root/autodl-tmp/models/Qwen/Qwen3-14B/config.json /root/autodl-tmp/data/re-docred-repo/data/test_revised.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T18:31:00.534880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 3207228 May 16 14:35 /root/autodl-tmp/data/re-docred-repo/data/test_revised.json\\\\n-rw-r--r-- 1 root root     728 May 18 19:21 /root/autodl-tmp/models/Qwen/Qwen3-14B/config.json\\\\n-rw-r--r-- 1 root root    1118 May 21 04:23 /root/autodl-tmp/rsft_output_14b/adapter_config.json\\\\n-rw-r--r-- 1 root root    1118 May 19 15:17 /root/autodl-tmp/sft_output_14b/checkpoint-144/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T18:31:00.535029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T18:31:00.535160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 97887 MiB\\\\n1, 0 MiB, 97887 MiB\\\\n2, 0 MiB, 97887 MiB\\\\n3, 11767 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T18:31:00.535336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T18:31:00.535470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T18:31:00.535588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "submit training job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T18:31:00.535705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T18:31:00.535816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "submit training",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T18:31:00.535927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T18:31:00.536065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T18:31:00.536193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T18:31:00.536353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "test_eval_14b_rsft_s42",
+              "field": "hypothesis",
+              "value": "Re-DocRED test set eval: Qwen3-14B RSFT s42 (CED k1, nested LoRA) on test_revised.json (500 docs)。dev ign_f1=0.5886 (项目最高)。验证 dev 性能是否泛化到 test set，建立 test set scaling 最高基线。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T18:31:00.536532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_14b_rsft_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T10:07:51.916Z\\\", \\\"updated_at\\\": \\\"2026-05-21T18:30:47.660Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.test_inference ... --seed 42\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"97434\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T10:07:51.113Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-14B + SFT + RSFT (nested LoRA)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b\\\", \\\"eval_data\\\": \\\"re-docred test_revised\\\", \\\"wall_clock_seconds\\\": 20731.5, \\\"gpu_hours\\\": 5.76}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T15:28:02.945Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T15:28:09.943953+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"f1\\\": 0.3849, \\\"ign_f1\\\": 0.3849, \\\"evi_f1\\\": 0.2688, \\\"evi_f1_tp\\\": 0.6025, \\\"edcr\\\": 0.7865, \\\"truncated\\\": \\\"67/500\\\", \\\"format_ok\\\": \\\"499/500\\\", \\\"n_docs\\\": 500, \\\"inference_time_s\\\": 19080, \\\"codalab_generated\\\": true}, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s42\\\", \\\"hypothesis\\\": \\\"Re-DocRED test set eval: Qwen3-14B RSFT s42 (CED k1, nested LoRA) on test_revised.json (500 docs)。dev ign_f1=0.5886 (项目最高)。验证 dev 性能是否泛化到 test set，建立 test set scaling 最高基线。\\\", \\\"completed_at\\\": \\\"2026-05-21T15:53:22.637Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6509}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T18:31:00.536728+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "该实验已经完成过了。Registry 显示 `test_eval_14b_rsft_s42` 状态为 **DONE (success)**，结果如下：\n\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | 0.3849 |\n| f1 | 0.3849 |\n| evi_f1 | 0.2688 |\n| evi_f1_tp | 0.6025 |\n| edcr | 0.7865 |\n| format_ok | 499/500 |\n| truncated | 67/500 |\n| inference_time | ~5.3h |\n\n之前在 cuda:1 上跑的，已于 2026-05-21T15:28 完成，wall clock 约 5.76 GPU-hours。CodaLab 提交文件也已生成。\n\n不需要重新提交。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_14b_rsft_s42_20260521T183005"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/eval-test-eval-14b-rsft-s42.md"
+}

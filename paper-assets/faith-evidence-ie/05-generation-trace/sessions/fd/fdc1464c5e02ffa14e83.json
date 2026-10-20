@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdc1464c5e02ffa14e83",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260517T174249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_20260517T174249_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "d35fae894a23e2211cad3c8a3cd5c42915779bddb6aec82650b3760f01ea1944"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `appendix.tex`，包含四个 section：\n\n1. **Training Hyperparameters** (`tab:hyperparams`): 全参数对比表，`table*` 双栏宽度\n2. **Full Ablation Results** (`tab:ablation_full`): CED/flat-NLI/top-k 完整消融，含全部 seed\n3. **Scaling Details** (`tab:cross_detail`): 补充 Rel-F1/Evi-F1 per scale\n4. **Additional Figures**: `fig:edcr_relations` 和 `fig:grpo_dynamics` 占位文本\n\n所有表格使用 booktabs，小数精度统一（Ign-F1 xx.xx, Rel-F1 0.xxxx, Evi-F1 xx.xx, EDCR 0.xxxx），TBD 用 `\\texttt{TBD}`，无 em-dash/en-dash。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing.md"
+}

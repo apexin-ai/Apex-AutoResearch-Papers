@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "id": "e9c0162fe3440fea27ba",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose quick gpu check",
+  "task_key": "worker_diagnose_quick-gpu-check_20260521T004032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_quick-gpu-check_20260521T004032_result.json",
+    "occurrence": 1,
+    "bytes": 4404,
+    "sha256": "dadee02708e2a99efe05f7a0bdda5975a1baefb166feee847694238ac2d0c582"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**命令 1 — 状态检查：**\n\n```\n=== PS ===\n   PID STAT     ELAPSED COMMAND\n 53413 Rl      03:49:09 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_14b --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval --batch_size 1 --max_new_tokens 1024 --no-quantize --seed 42\n 58417 Ss+     02:11:17 bash -c ... eval_llama_sft_s43_no_evidence_2048_r2 ...\n\n=== GPU ===\n0, 32503 MiB, 84 %\n1, 18879 MiB, 91 %\n2, 0 MiB, 0 %\n3, 0 MiB, 0 %\n\n=== 14B RSFT EVAL OUTPUTS ===\ntotal 0 (空目录，仅 . 和 ..)\n\n=== 14B RSFT NO-EVI OUTPUTS ===\n(不存在)\n\n=== LLAMA WITH-EVI 2048 ===\nmetrics.json (1572 bytes, May 21 08:16)\npredictions.json (8373522 bytes, May 21 08:16)\n\n=== S43 R2 LOG ===\ntimeout: failed to run command 'python': No such file or directory\n(后跟大量 null bytes)\n... 进度条最后: Inference: 54% | 134/247 [2:10:59<1:51:53, 59.42s/it]\n\n=== TMUX SESSIONS ===\neval_llama_sft_s43_no_evidence_2048_r2: 1 windows (created Thu May 21 06:29:46 2026)\n```\n\n**命令 2 — 指标：**\n\n```\n=== plan017_14b_rsft_eval ===\nNO_METRICS\n\n=== plan017_14b_rsft_no_evidence_eval ===\nNO_METRICS\n\n=== eval_llama_sft_s42_with_evidence_2048 ===\n{\n  \"precision\": 0.5591,\n  \"recall\": 0.5955,\n  \"f1\": 0.5767,\n  \"ign_precision\": 0.5373,\n  \"ign_recall\": 0.5955,\n  \"ign_f1\": 0.5649,\n  \"tp\": 7236,\n  \"pred_count\": 12942,\n  \"gold_count\": 12151,\n  \"evi_precision\": 0.7788,\n  \"evi_recall\": 0.8288,\n  \"evi_f1\": 0.8030,\n  \"n_evaluated\": 19508,\n  \"edcr\": 0.6428,\n  \"n_distractor_citations\": 23472,\n  \"n_total_citations\": 36513,\n  \"evi_joint_precision\": 0.4042,\n  \"evi_joint_recall\": 0.5102,\n  \"evi_f1_joint\": 0.4510,\n  \"evi_tp\": 9827,\n  \"evi_pred_total\": 24313,\n  \"evi_gold_total\": 19261,\n  \"format_compliance_rate\": 0.9909,\n  \"field_compliance_rate\": 0.8467,\n  \"evidence_format_rate\": 0.8467,\n  \"n_total\": 985,\n  \"n_parseable\": 976,\n  \"n_field_complete\": 834,\n  \"n_evidence_valid\": 834,\n  \"n_documents\": 985,\n  \"n_predictions\": 20302,\n  \"n_truncated\": 147,\n  \"n_format_ok\": 976,\n  \"format_ok_rate\": 0.9909,\n  \"inference_time_seconds\": 10491.7,\n  \"config\": {\n    \"model_path\": \"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\",\n    \"base_model\": \"/root/autodl-tmp/models/Qwen3-4B\",\n    \"sft_adapter\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\",\n    \"data_path\": \"/root/autodl-tmp/data/docred\",\n    \"output_dir\": \"/root/autodl-tmp/eval_results/eval_llama_sft_s42_with_evidence_2048\",\n    \"batch_size\": 1,\n    \"max_new_tokens\": 2048,\n    \"split\": \"dev\",\n    \"seed\": 42,\n    \"no_evidence\": false,\n    \"quantize\": false\n  }\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "precision": 0.5591,
+              "recall": 0.5955,
+              "f1": 0.5767,
+              "ign_precision": 0.5373,
+              "ign_recall": 0.5955,
+              "ign_f1": 0.5649,
+              "tp": 7236,
+              "pred_count": 12942,
+              "gold_count": 12151,
+              "evi_precision": 0.7788,
+              "evi_recall": 0.8288,
+              "evi_f1": 0.803,
+              "n_evaluated": 19508,
+              "edcr": 0.6428,
+              "n_distractor_citations": 23472,
+              "n_total_citations": 36513,
+              "evi_joint_precision": 0.4042,
+              "evi_joint_recall": 0.5102,
+              "evi_f1_joint": 0.451,
+              "evi_tp": 9827,
+              "evi_pred_total": 24313,
+              "evi_gold_total": 19261,
+              "format_compliance_rate": 0.9909,
+              "field_compliance_rate": 0.8467,
+              "evidence_format_rate": 0.8467,
+              "n_total": 985,
+              "n_parseable": 976,
+              "n_field_complete": 834,
+              "n_evidence_valid": 834,
+              "n_documents": 985,
+              "n_predictions": 20302,
+              "n_truncated": 147,
+              "n_format_ok": 976,
+              "format_ok_rate": 0.9909,
+              "inference_time_seconds": 10491.7,
+              "config": {
+                "model_path": "/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B",
+                "base_model": "/root/autodl-tmp/models/Qwen3-4B",
+                "sft_adapter": "/root/autodl-tmp/sft_output_llama_3_1_8b",
+                "data_path": "/root/autodl-tmp/data/docred",
+                "output_dir": "/root/autodl-tmp/eval_results/eval_llama_sft_s42_with_evidence_2048",
+                "batch_size": 1,
+                "max_new_tokens": 2048,
+                "split": "dev",
+                "seed": 42,
+                "no_evidence": false,
+                "quantize": false
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-quick-gpu-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "157ecc8e1d462ba8576e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh status check loop4",
+  "task_key": "worker_ssh_status-check-loop4_20260514T230444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_status-check-loop4_20260514T230444_result.json",
+    "occurrence": 1,
+    "bytes": 763,
+    "sha256": "19b7921542ffe1d1bfe1b69ee03c006dd4aa2f5ec47e922a937f04caa438aed5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态报告已写入 `artifacts/status_check_loop4.md`。\n\n**总结**：4 个进程全部存活。\n\n| 任务 | 进度 | ETA |\n|------|------|-----|\n| GRPO 训练 lr5e6_r1 | **113/200 (56.5%)** | ~2h40m |\n| ckpt-40 eval r2 | **60/62 (97%)** | **~3min** |\n| ckpt-60 eval r2 | 23/62 (37%) | ~60min |\n| SFT baseline eval | ~65% (估) | ~36min |\n\n**关键发现**：\n- ckpt-40 eval 即将完成 (60/62)，结果将写入 `/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/`\n- 已完成的 ckpt-20 eval 结果很差：**F1=0.008**，关系抽取能力崩溃，但 EDCR=0.99 证据质量高\n- GRPO 训练 KL divergence 多次爆炸至 7e13（monitoring-only）\n- SFT baseline eval 无日志可追踪（脚本启动未重定向）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-status-check-loop4.md"
+}

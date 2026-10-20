@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a8fa26b577fdad83c77",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit test eval 14b rsft s42 no evi",
+  "task_key": "worker_submit_test_eval_14b_rsft_s42_no_evi_20260522T115936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_test_eval_14b_rsft_s42_no_evi_20260522T115936_result.json",
+    "occurrence": 1,
+    "bytes": 569,
+    "sha256": "0b8bba7f9db692ca3909ab3ba7bd4b176fcbcbddc9b4d87bbfff24e002507235"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册。汇报：\n\n- **RSFT adapter**: `/root/autodl-tmp/rsft_output_14b`\n- **GPU**: cuda:0，bf16 加载占用 ~28.7GB / 96GB\n- **tmux session**: `test_eval_14b_rsft_s42_no_evi`\n- **日志**: `~/runs/faith-evidence-ie/test_eval_14b_rsft_s42_no_evi.log`\n- **输出**: `/root/autodl-tmp/eval_results/test_eval_14b_rsft_s42_no_evi/`\n- **修复**: 原始命令缺少 `--no-quantize`，默认 quantize=True 触发缺失 bitsandbytes 报错，已加上\n\n模型权重加载中，预计推理约 5 小时（参考 with-evi 的 19086s）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-test-eval-14b-rsft-s42-no-evi.md"
+}

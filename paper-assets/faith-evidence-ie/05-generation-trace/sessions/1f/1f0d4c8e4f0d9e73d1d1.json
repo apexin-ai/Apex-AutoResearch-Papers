@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f0d4c8e4f0d9e73d1d1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix kill duplicate cuda3",
+  "task_key": "worker_fix_kill-duplicate-cuda3_20260523T114710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill-duplicate-cuda3_20260523T114710_result.json",
+    "occurrence": 1,
+    "bytes": 317,
+    "sha256": "3ac3c267ec99c603cf35be1f20e8610dcc34dddece2a7d69595b3bc62286d261"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **PID 246933**: 已 kill，确认 KILLED\n- **PID 246528**: 正常运行中（已运行 55m16s），保留\n- **cuda:3 显存**: 12395 MiB（从约 24GB 恢复到 ~12GB，重复进程释放成功）\n- **cuda:2 显存**: 12013 MiB，82% 利用率（无影响）\n- cuda:0、cuda:1 空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-duplicate-cuda3.md"
+}

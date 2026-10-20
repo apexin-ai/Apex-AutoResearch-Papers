@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83e94feb0ad479d31e2b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix ced reranker ignf1 recalc",
+  "task_key": "worker_fix_ced_reranker_ignf1_recalc_20260516T034324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_ced_reranker_ignf1_recalc_20260516T034324_result.json",
+    "occurrence": 1,
+    "bytes": 412,
+    "sha256": "04ed8d62648863ede3be32788dbc852833bbcd7454ffe239e8cbd1b33ec5a90a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| Strategy | F1 | Ign-F1 | Δ |\n|---|---|---|---|\n| ced_reranker | 0.486367 | 0.473634 | -0.012734 |\n| oracle | 0.623746 | 0.612518 | -0.011228 |\n| random | 0.453783 | 0.439677 | -0.014107 |\n\n34610 个 train facts 被用于 Ign 过滤，gold 从 12151 降至 10821（排除了 1330 个与训练集重叠的三元组）。结果已持久化到 `metrics_v2.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-ced-reranker-ignf1-recalc.md"
+}

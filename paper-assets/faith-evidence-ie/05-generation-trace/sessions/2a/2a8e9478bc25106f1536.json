@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a8e9478bc25106f1536",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix plan 009 figure v5",
+  "task_key": "worker_fix_plan_009_figure_v5_20260515T190021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_plan_009_figure_v5_20260515T190021_result.json",
+    "occurrence": 1,
+    "bytes": 1095,
+    "sha256": "ddb6b5ac70bc47daca636215babda65457ec3e5102f1d2b5ba378546f165b968"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三件事全部完成：\n\n### 1. QLoRA KL001 eval 数据补全 ✓\n- freige 脚本（`plot_forgetting_dynamics.py`）已包含完整 7 个 eval 点（step 0/10/20/30/50/60/90/100，step 0 为 SFT 锚点）\n- v4 脚本也已更新：`eval_data['qlora_kl001']` 从 2 点扩展到 7 点\n- 图表已重新生成到 `/root/autodl-tmp/freige/figures/grpo_forgetting_dynamics.{pdf,png}`\n\n### 2. JSON 标签修复 ✓\n- `forgetting_dynamics_data.json` 中 `qlora_grpo_lr5e6` 的 config：`kl=0` → `kl=0.01`\n\n### 3. Checkpoint 可行性 ✓\n三种 reward 变体的 checkpoint 均存在：\n\n| Reward 类型 | 路径 | Checkpoints |\n|---|---|---|\n| **Extract** | `grpo_extract_r3/` | step 680-756 |\n| | `grpo_extract_r4/` | step 10-30 |\n| **FlatNLI** | `grpo_flatnli_r3/` | step 20-100 |\n| | `grpo_flatnli_r4/` | step 120-160 |\n| | `grpo_flatnli_r5/` | step 120-140 |\n| | `grpo_flatnli_r6/` | step 10-20 |\n| **CED** | `grpo_ced_r5/`, `grpo_ced_kl001/`, `grpo_ced_lr5e6/` 等 | 多轮完整 |\n\n后续可对 extract/flatNLI checkpoint 跑 eval 补充数据到图中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-plan-009-figure-v5.md"
+}

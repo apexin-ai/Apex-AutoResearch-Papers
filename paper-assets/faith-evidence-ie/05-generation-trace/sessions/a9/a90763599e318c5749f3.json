@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a90763599e318c5749f3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose eval no evi failure",
+  "task_key": "worker_diagnose_eval-no-evi-failure_20260520T112726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval-no-evi-failure_20260520T112726_result.json",
+    "occurrence": 1,
+    "bytes": 1750,
+    "sha256": "17919439ae3f08930f6b51fa994d6cd01c0dfb8354a155bdbdbb2e37a5fca5b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果：\n\n### 失败原因\n\n**不是 tokenizer 库缺失，而是 SCP 嵌套导致路径错误。**\n\n日志显示 eval 尝试从 `/root/autodl-tmp/sft_output_llama_3_1_8b` 加载 tokenizer，但该目录下没有任何模型文件——只有一个同名子目录 `sft_output_llama_3_1_8b/`。`AutoTokenizer.from_pretrained` 找不到 tokenizer 文件，报 `ValueError`。\n\n### sft_output_llama_3_1_8b 目录结构 — 嵌套确认\n\n```\n/root/autodl-tmp/sft_output_llama_3_1_8b/\n└── sft_output_llama_3_1_8b/          ← SCP 嵌套\n    ├── adapter_model.safetensors\n    ├── adapter_config.json\n    ├── tokenizer.json / tokenizer_config.json\n    ├── checkpoint-190/\n    └── checkpoint-570/\n```\n\nAdapter 实际路径：`/root/autodl-tmp/sft_output_llama_3_1_8b/sft_output_llama_3_1_8b/adapter_model.safetensors`\n\n### 其他 SCP 目录 — 同样嵌套\n\n| 目录 | 嵌套情况 |\n|------|---------|\n| `sft_output_14b/` | `sft_output_14b/sft_output_14b/` |\n| `rsft_generations_14b/` | `rsft_generations_14b/rsft_generations_14b/` |\n\nSCP 嵌套是系统性问题，所有 SCP 传输的目录都受影响。\n\n### LLaMA SFT s43 状态\n\n正常训练中，进度 62/570 steps (~11%)，~4.2s/step。\n\n### 修复方案\n\n最简单：在服务器上 `mv` 把内层内容提到外层：\n```bash\n# 以 sft_output_llama_3_1_8b 为例\nmv /root/autodl-tmp/sft_output_llama_3_1_8b/sft_output_llama_3_1_8b/* /root/autodl-tmp/sft_output_llama_3_1_8b/\nrmdir /root/autodl-tmp/sft_output_llama_3_1_8b/sft_output_llama_3_1_8b\n```\n\n三个目录都需要做。或者修复 SCP 命令源头（用 `scp -r local_dir/* remote:path/` 而非 `scp -r local_dir remote:path/`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-no-evi-failure.md"
+}

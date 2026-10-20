@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4362df13331af8df2c93",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan 008 topk3 rsft",
+  "task_key": "worker_code_plan_008_topk3_rsft_20260515T180110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_008_topk3_rsft_20260515T180110_result.json",
+    "occurrence": 1,
+    "bytes": 597,
+    "sha256": "268881d9e422f705dc05a39758538128661fce71409894eadfc0301130c9957a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动并正在跑步骤，确认正常。\n\n**产出汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 筛选数据 | `/root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl`，**8037 samples**（top_k=1 baseline 为 2718） |\n| 训练 PID | **234489** |\n| GPU | cuda:3（RTX 5090，32GB） |\n| 总步数 | **1509 steps**（8037 / 16 effective batch × 3 epochs） |\n| 每步耗时 | ~5.8s → 预计 **~2.5 小时**完成 |\n| 输出目录 | `/root/autodl-tmp/rsft_topk3_output` |\n| W&B run | `plan_008_rsft_topk3` |\n| Registry | `plan_008_rsft_topk3` → RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-008-topk3-rsft.md"
+}

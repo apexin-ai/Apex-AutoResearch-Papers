@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b10cae5597de7d62bb8b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260517T164308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260517T164308_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "9f12eeab48ef8097dd1aea6d442c712db93a69d4f5ece4cd1df9831e8c1588a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已写入 `docs/paper/sections/introduction.tex`，约 1200 words，5 段结构：\n\n1. **P1** — LLM DocRE 进展但无证据：GenRES/LMRC/DocKS-RAG 逼近 encoder SOTA，但只输出裸三元组，部署场景无法验证\n2. **P2** — 可验证证据的必要性：RE 输出进入 KG 和决策流程，encoder 方法 (SAIS/DREEAM) 有证据但精度已落后\n3. **P3** — Encoder retrieval ≠ generative production：encoder 证据是辅助信号（helps extraction），生成式证据是额外负担（costs capacity）\n4. **P4** — 核心发现：decoupling spectrum、scale-dependent evidence tax、RSFT+CED 方案\n5. **P5** — 5 条贡献列表（enumerate 格式）\n\n风格检查通过：无 em-dash、无解释性 en-dash、无 -ing 短语结尾、无连续过渡词、无黑名单用词。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction.md"
+}

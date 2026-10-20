@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "711286e670eb72cd7acc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh rsft gen progress check",
+  "task_key": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rsft-gen-progress-check_20260515T041544_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "80030bddd5265386ea64f5cf8c23a91cbded52a2fdc1114126a070bcf3f27d21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## RSFT 生成进度 (2026-05-15 ~14:50)\n\n| Shard | 进度 | 完成率 | 速率 | 剩余 |\n|-------|------|--------|------|------|\n| 0 | 577/682 | 84.6% | 3.7 docs/min | ~28 min |\n| 1 | 623/681 | 91.5% | 4.0 docs/min | ~14 min |\n| 2 | 621/681 | 91.2% | 4.0 docs/min | ~15 min |\n| 3 | 548/657 | 83.4% | 3.75 docs/min | ~29 min |\n\n**总体 87.7%，预计 ~15:20 全部完成。**\n\n质量指标正常：format_ok 99.6-100%，diversity 7.4-7.8/8。Shard 1 truncation_rate=10.1% 略超阈值（日志建议 max_new_tokens=3072，当前 1024）。\n\nGPU 3 利用率 99%（其余 58-65%）。4 个进程均正常运行。\n\nrsft_trainer.py 的 max_steps 默认 -1（使用 num_train_epochs 控制），无需修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rsft-gen-progress-check.md"
+}

@@ -1,0 +1,1787 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f7f3a57e6797f2d9fa97",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014LQpGQhWA2jJw3tMKeChWk",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls -la /root/autodl-tmp/rsft_scored_partial/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "c580483d-f6a7-41e2-837d-c63c4672f0de",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HBaebvbUTHW2GACAxKaX4x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2125,
+                "cache_read_input_tokens": 77876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2125
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-15T01:27:54.467Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014LQpGQhWA2jJw3tMKeChWk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "a0296529-d0c4-4fe8-bce9-0e8cf7f14084",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TFXD5UKEComxHq2A8ebtT4",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /tmp/score_filter_partial.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "2a148bfb-6263-42c0-a5eb-55f5bd2ac0c3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TcN4jVd91J87z1ymtnfhTg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1345,
+                "cache_read_input_tokens": 80001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1345
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-15T01:27:57.620Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TFXD5UKEComxHq2A8ebtT4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\\\nent', 2: 'neutral'})\\\\n2026-05-15 09:24:19,546 INFO Scored 500/2080 records\\\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "97fde580-ebe9-4f7f-99e3-2e8c3ca4a598",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\\\nent', 2: 'neutral'})\\\\n2026-05-15 09:24:19,546 INFO Scored 500/2080 records\\\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\nent', 2: 'neutral'})\\n2026-05-15 09:24:19,546 INFO Scored 500/2080 records\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "1500/2080 scored at 09:27:44. So 2000/2080 should be around 09:29:20, and completion around 09:29:30 or so. Let me wait a bit more.\n\nThe log is being written in two \"streams\" due to progress bar interference:\nStream 1: 09:23:22 (500) → 09:25:04 (1000) → 09:26:42 (1500)\n\n\nStream 2: 09:24:19 (500) → 09:26:04 (1000) → 09:27:44 (1500)\n\nThese are likely from the progress bar overwriting lines, but the actual scoring appears to be a single pass. Based on the second stream's timing, batch processing is taking roughly 100 seconds per 500 records. I'm expecting 1500 records done at 09:27:44, 2000 around 09:29:24, then the final 80 records should wrap up by 09:29:30. I'll check back in about 2 minutes.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "c4add945-3268-4641-8222-d82d7ed54098",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FRGtjuWDCBCPuP2ogXTGfD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 532,
+                "cache_read_input_tokens": 81346,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 532
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "1500/2080 完成（09:27:44）。约 2 分钟后完成。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "f985045a-f4f4-4d92-9d49-2893e99e82e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FRGtjuWDCBCPuP2ogXTGfD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 532,
+                "cache_read_input_tokens": 81346,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 532
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HyLBAXkKZp4pPDakNU3Q4J",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls -la /root/autodl-tmp/rsft_scored_partial/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "c2b85230-2b47-4442-abfb-4bee4e3bd530",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FRGtjuWDCBCPuP2ogXTGfD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 532,
+                "cache_read_input_tokens": 81346,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 532
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-15T01:28:08.526Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HyLBAXkKZp4pPDakNU3Q4J",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "2c2fc103-d399-490c-ba59-6410a2145206",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+              }
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tik9dMjMGViNPhn4sFgdbY",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /tmp/score_filter_partial.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "4a3ef1ec-a586-4856-88f6-6af681f94de3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U6MuwZm3NMzdksPQYARgWg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 542,
+                "cache_read_input_tokens": 81878,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 542
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-15T01:28:14.399Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tik9dMjMGViNPhn4sFgdbY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\\\nent', 2: 'neutral'})\\\\n2026-05-15 09:24:19,546 INFO Scored 500/2080 records\\\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "233daddf-59a3-4832-aa61-69d4ce7fd9d2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\\\nent', 2: 'neutral'})\\\\n2026-05-15 09:24:19,546 INFO Scored 500/2080 records\\\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\nent', 2: 'neutral'})\\n2026-05-15 09:24:19,546 INFO Scored 500/2080 records\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C74Zn3S4avY69y8tpkLLzd",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls -la /root/autodl-tmp/rsft_scored_partial/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "820c8703-ade6-421d-992d-c0a514434595",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LhDyCq6wLVnT7xaCYJBLVU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 532,
+                "cache_read_input_tokens": 82420,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 532
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-15T01:28:17.399Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C74Zn3S4avY69y8tpkLLzd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "c2939ce1-a489-41de-9127-9652a86015e7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XbunzME2TxyxfM5gzNz2UH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /tmp/score_filter_partial.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "82c13cfc-a13f-4c60-9b9d-a2947ba0c32c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Vzqh4FdbZH4Tngg1tA72QF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 256,
+                "cache_read_input_tokens": 82952,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 256
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-15T01:28:20.643Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XbunzME2TxyxfM5gzNz2UH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\\\nent', 2: 'neutral'})\\\\n2026-05-15 09:24:19,546 INFO Scored 500/2080 records\\\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "4b6dc71d-2dab-4651-b651-e55a8c876ee2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\\\nent', 2: 'neutral'})\\\\n2026-05-15 09:24:19,546 INFO Scored 500/2080 records\\\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\nent', 2: 'neutral'})\\n2026-05-15 09:24:19,546 INFO Scored 500/2080 records\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+              }
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UYtyZkYnY4Dn7eAkyKZyGy",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "stat -c \"%s %Y\" /tmp/score_filter_partial.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "114522dc-d71e-4133-b624-1596ba7b60f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HUUWpqV2FPRxpuYt2VE8GZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 532,
+                "cache_read_input_tokens": 83208,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 532
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-15T01:28:24.946Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UYtyZkYnY4Dn7eAkyKZyGy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"726 1778808464\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "7db9b8b5-0018-4c7f-ab07-f15ddff9f42d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"726 1778808464\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"726 1778808464\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "File was last modified at 1778808464. The log is still at 1500/2080. Let me wait a bit more. The process should be finishing the last 580 records.\n\nActually, looking at the pattern:\n- 500 records: ~100 seconds\n- So 580 more records: ~116 seconds from 09:27:44 = ~09:29:40\n\nLet me just wait and check again.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "3de75479-9daa-4d2c-8698-afc0b2c46251",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AG8Q1u8TNU8PsoaRRCNcYm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 202,
+                "cache_read_input_tokens": 83740,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 202
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01459qMsH1g99DWDDGpjfXDb",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls -la /root/autodl-tmp/rsft_scored_partial/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "305403d2-f764-459e-8d65-91b333e1d8c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AG8Q1u8TNU8PsoaRRCNcYm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 202,
+                "cache_read_input_tokens": 83740,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 202
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-15T01:28:30.511Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01459qMsH1g99DWDDGpjfXDb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "7e8e21b8-047d-4db7-932a-11aa8e942479",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+              }
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012We7yK39rMyrTe2kn7r5zu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /tmp/score_filter_partial.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "60fdb5d3-da48-45a5-8c65-66185f74435a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tivy8A6YgijKqPFDGZ6eXs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 471,
+                "cache_read_input_tokens": 83942,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 471
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": "2026-05-15T01:28:33.562Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012We7yK39rMyrTe2kn7r5zu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\\\n2026-05-15 09:28:32,001 INFO Scored 2000/2080 records\\\\ned 500/2080 records\\\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "d300fd14-d602-4f16-9092-0ffba4229988",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\\\n2026-05-15 09:28:32,001 INFO Scored 2000/2080 records\\\\ned 500/2080 records\\\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\n2026-05-15 09:28:32,001 INFO Scored 2000/2080 records\\ned 500/2080 records\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "2000/2080 at 09:28:32。最后 80 条即将完成。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "c188e86e-5654-4f46-93a3-5f855c9f9117",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HjnoNB28g5MDo3krXFWzU7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 530,
+                "cache_read_input_tokens": 84413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 530
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01696963Ta3H97ngQtN1xxo5",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls -la /root/autodl-tmp/rsft_scored_partial/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "27f028d1-4260-4801-b6d1-9f2257b02c7a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HjnoNB28g5MDo3krXFWzU7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 530,
+                "cache_read_input_tokens": 84413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 530
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": "2026-05-15T01:28:37.747Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01696963Ta3H97ngQtN1xxo5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "4df619d8-4499-4d23-a2f6-8ba1eca0fef9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+              }
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vgan9DnSTTtjWKkRrHiFrZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls -la /root/autodl-tmp/rsft_scored_partial/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "cc25ab15-2e51-488b-81ee-cc2f26a8cb8d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0151HSbZG7rgM9Uk3ytvqFfX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 282,
+                "cache_read_input_tokens": 84943,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 282
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": "2026-05-15T01:28:41.227Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vgan9DnSTTtjWKkRrHiFrZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "a7757799-5446-4c66-9a74-9419e008032e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JjxdykBXqdwziub1Cn6CDE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /tmp/score_filter_partial.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "9e508283-6bd8-40af-826c-bef6db27d6b4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016XZQBPywxZ6JAt6BwxB7Lv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 256,
+                "cache_read_input_tokens": 85225,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 256
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": "2026-05-15T01:28:44.314Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JjxdykBXqdwziub1Cn6CDE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\\\n2026-05-15 09:28:32,001 INFO Scored 2000/2080 records\\\\ned 500/2080 records\\\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "ea880dad-2bde-45b6-855c-c57c9996a6d4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\\\n2026-05-15 09:28:32,001 INFO Scored 2000/2080 records\\\\ned 500/2080 records\\\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\n2026-05-15 09:28:32,001 INFO Scored 2000/2080 records\\ned 500/2080 records\\n2026-05-15 09:26:04,167 INFO Scored 1000/2080 records\\n2026-05-15 09:27:44,867 INFO Scored 1500/2080 records\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+              }
+            }
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YJKF1mVNm7rfpWPofG1GFA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls -la /root/autodl-tmp/rsft_scored_partial/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "aa0b17ef-bfbe-4368-9620-3ea553c339e1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RY5ffVwZYpnDaqGLbjJujj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 530,
+                "cache_read_input_tokens": 85481,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 530
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": "2026-05-15T01:28:47.371Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YJKF1mVNm7rfpWPofG1GFA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "4a162e6f-e096-41e6-a908-3d8abbe6cc09",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cr4BpecwjeyK7zZQZdbUtf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls -la /root/autodl-tmp/rsft_scored_partial/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "b7ed4d0f-73aa-4164-ad34-61b4286c4d4d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XxdhbeHdZzz3jFNHU7Ptfh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 256,
+                "cache_read_input_tokens": 86011,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 256
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": "2026-05-15T01:28:50.479Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cr4BpecwjeyK7zZQZdbUtf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "b64144ff-3ac2-4b5f-999e-f427d3b8d1fa",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 15 09:20 .\\ndrwxr-xr-x 38 root root 4096 May 15 09:20 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Output directory is still empty. Let me check the process status and the full log one more time.",
+              "signature": "EpsCClkIDRgCKkBCdxKsyNjRBD5lkdxexUn63GVyTLy2oJ7yh2KEZhjMKpLilxBKzhxfWMQAgBqM98f6r6TgpUvI7DGpvURnPwiUMg9jbGF1ZGUtb3B1cy00LTY4ABIMOfph4mz3l1VstQb9Ggyx4z/y8RY6urRm5SwiMFFzos6Qa35pQxF3KcA8Q/zv0NxWuKdrsBJrDxRffmrf2ceE2qyYJL/MJoazDL+y5ypw2AKHNedhNf9KpGT+7Jt3MvS5y7oILTQ8i/AmTyWeSkeALn7ai5xmvorRDmBzDFpkuRlT6fEfY0BQPCck6mIP910hCz40I8c7mGAXUX81TEBj0gMNNwo4I9UqZZkHCr77kOoN6qUsPOMZfw9y0r2czRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "2f163827-2650-4a3c-88c7-40a12dedc52b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01683Kh1NbndA9JuRaYwNNvr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 256,
+                "cache_read_input_tokens": 86267,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 256
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000213"
+        },
+        {
+          "source_line": 214,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019LmBEY2qxA8WBCqaBYBfXc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /tmp/score_filter_partial.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "fb3cc9d0-53b5-403a-b9f3-dd589e7e582d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01683Kh1NbndA9JuRaYwNNvr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 256,
+                "cache_read_input_tokens": 86267,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 256
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000214"
+        },
+        {
+          "source_line": 215,
+          "timestamp": "2026-05-15T01:28:54.554Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019LmBEY2qxA8WBCqaBYBfXc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\\\n2026-05-15 09:28:32,001 INFO Scored 2000/2080 records\\\\n2026-05-15 09:28:53,429 INFO Scoring complete: 2080 records\\\\n2026-05-15 09:28:53,508 INFO Scores → /root/autodl-tmp/rsft_scored_partial/rsft_scores.jsonl\\\\n2026-05-15 09:28:53,509 INFO After threshold filter: 2075/2080 (format>=0.50, f1>=0.00, ced>=0.00)\\\\n2026-05-15 09:28:53,510 INFO After top_25%: 517 records from 260 documents\\\\n2026-05-15 09:28:53,526 INFO Training data → /root/autodl-tmp/rsft_scored_partial/rsft_train.jsonl (517 samples)\\\\n2026-05-15 09:28:53,529 INFO Report → /root/autodl-tmp/rsft_scored_partial/rsft_report.json\\\\n\\\\n============================================================\\\\n  Total records:    2080\\\\n  Selected:         517\\\\n  Selection rate:   24.9%\\\\n  Unique docs:      260/260\\\\n------------------------------------------------------------\\\\n  format_reward         mean=0.998  std=0.049  median=1.000  [min=0.000, max=1.000]\\\\n  f1_reward             mean=0.498  std=0.233  median=0.500  [min=0.000, max=1.000]\\\\n  ced_reward            mean=0.514  std=0.250  median=0.524  [min=0.000, max=0.997]\\\\n  combined_score        mean=0.604  std=0.159  median=0.613  [min=0.000, max=0.999]\\\\n============================================================\\\\n\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\n\\\\n... [截断: 输出过长，省略 5548 字符] ...\\\\n\\\\n'huggingface.co', port=443): Max retries exceeded with url: /api/models/cross-encoder/nli-deberta-v3-base (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fa43fca6720>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\\n\\\\nDuring handling of the above exception, another exception occurred:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<frozen runpy>\\\\\\\", line 198, in _run_module_as_main\\\\n  File \\\\\\\"<frozen runpy>\\\\\\\", line 88, in _run_code\\\\n  File \\\\\\\"/root/autodl-tmp/freige/training/rsft_score_filter.py\\\\\\\", line 460, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/autodl-tmp/freige/training/rsft_score_filter.py\\\\\\\", line 413, in main\\\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/freige/rewards/ced_reward.py\\\\\\\", line 146, in __init__\\\\n    self.tokenizer = AutoTokenizer.from_pretrained(model_name)\\\\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py\\\\\\\", line 1156, in from_pretrained\\\\n    return tokenizer_class.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\\\\\", line 2113, in from_pretrained\\\\n    return cls._from_pretrained(\\\\n           ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\\\\\", line 2395, in _from_pretrained\\\\n    tokenizer = cls._patch_mistral_regex(\\\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\\\\\", line 2442, in _patch_mistral_regex\\\\n    _is_local or (not _is_local and is_base_mistral(pretrained_model_name_or_path))\\\\n                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\\\\\", line 2432, in is_base_mistral\\\\n    model = model_info(model_id)\\\\n            ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 114, in _inner_fn\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/hf_api.py\\\\\\\", line 2660, in model_info\\\\n    r = get_session().get(path, headers=headers, timeout=timeout, params=params)\\\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/requests/sessions.py\\\\\\\", line 605, in get\\\\n    return self.request(\\\\\\\"GET\\\\\\\", url, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/requests/sessions.py\\\\\\\", line 592, in request\\\\n    resp = self.send(prep, **send_kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/requests/sessions.py\\\\\\\", line 706, in send\\\\n    r = adapter.send(request, **kwargs)\\\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\\\\\", line 96, in send\\\\n    return super().send(request, *args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/requests/adapters.py\\\\\\\", line 678, in send\\\\n    raise ConnectionError(e, request=request)\\\\nrequests.exceptions.ConnectionError: (MaxRetryError(\\\\\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/cross-encoder/nli-deberta-v3-base (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fa43fca6720>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\\\\\"), '(Request ID: 967e8c77-971f-4f1a-9939-cbdffe342f6e)')\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "e87b5931-3e9c-473a-9bfd-21c6a11d79da",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\\\n2026-05-15 09:28:32,001 INFO Scored 2000/2080 records\\\\n2026-05-15 09:28:53,429 INFO Scoring complete: 2080 records\\\\n2026-05-15 09:28:53,508 INFO Scores → /root/autodl-tmp/rsft_scored_partial/rsft_scores.jsonl\\\\n2026-05-15 09:28:53,509 INFO After threshold filter: 2075/2080 (format>=0.50, f1>=0.00, ced>=0.00)\\\\n2026-05-15 09:28:53,510 INFO After top_25%: 517 records from 260 documents\\\\n2026-05-15 09:28:53,526 INFO Training data → /root/autodl-tmp/rsft_scored_partial/rsft_train.jsonl (517 samples)\\\\n2026-05-15 09:28:53,529 INFO Report → /root/autodl-tmp/rsft_scored_partial/rsft_report.json\\\\n\\\\n============================================================\\\\n  Total records:    2080\\\\n  Selected:         517\\\\n  Selection rate:   24.9%\\\\n  Unique docs:      260/260\\\\n------------------------------------------------------------\\\\n  format_reward         mean=0.998  std=0.049  median=1.000  [min=0.000, max=1.000]\\\\n  f1_reward             mean=0.498  std=0.233  median=0.500  [min=0.000, max=1.000]\\\\n  ced_reward            mean=0.514  std=0.250  median=0.524  [min=0.000, max=0.997]\\\\n  combined_score        mean=0.604  std=0.159  median=0.613  [min=0.000, max=0.999]\\\\n============================================================\\\\n\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\n\\\\n... [截断: 输出过长，省略 5548 字符] ...\\\\n\\\\n'huggingface.co', port=443): Max retries exceeded with url: /api/models/cross-encoder/nli-deberta-v3-base (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fa43fca6720>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\\n\\\\nDuring handling of the above exception, another exception occurred:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<frozen runpy>\\\\\\\", line 198, in _run_module_as_main\\\\n  File \\\\\\\"<frozen runpy>\\\\\\\", line 88, in _run_code\\\\n  File \\\\\\\"/root/autodl-tmp/freige/training/rsft_score_filter.py\\\\\\\", line 460, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/autodl-tmp/freige/training/rsft_score_filter.py\\\\\\\", line 413, in main\\\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/freige/rewards/ced_reward.py\\\\\\\", line 146, in __init__\\\\n    self.tokenizer = AutoTokenizer.from_pretrained(model_name)\\\\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py\\\\\\\", line 1156, in from_pretrained\\\\n    return tokenizer_class.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\\\\\", line 2113, in from_pretrained\\\\n    return cls._from_pretrained(\\\\n           ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\\\\\", line 2395, in _from_pretrained\\\\n    tokenizer = cls._patch_mistral_regex(\\\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\\\\\", line 2442, in _patch_mistral_regex\\\\n    _is_local or (not _is_local and is_base_mistral(pretrained_model_name_or_path))\\\\n                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\\\\\", line 2432, in is_base_mistral\\\\n    model = model_info(model_id)\\\\n            ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 114, in _inner_fn\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/hf_api.py\\\\\\\", line 2660, in model_info\\\\n    r = get_session().get(path, headers=headers, timeout=timeout, params=params)\\\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/requests/sessions.py\\\\\\\", line 605, in get\\\\n    return self.request(\\\\\\\"GET\\\\\\\", url, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/requests/sessions.py\\\\\\\", line 592, in request\\\\n    resp = self.send(prep, **send_kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/requests/sessions.py\\\\\\\", line 706, in send\\\\n    r = adapter.send(request, **kwargs)\\\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\\\\\", line 96, in send\\\\n    return super().send(request, *args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/requests/adapters.py\\\\\\\", line 678, in send\\\\n    raise ConnectionError(e, request=request)\\\\nrequests.exceptions.ConnectionError: (MaxRetryError(\\\\\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/cross-encoder/nli-deberta-v3-base (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fa43fca6720>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\\\\\"), '(Request ID: 967e8c77-971f-4f1a-9939-cbdffe342f6e)')\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 09:22:40,652 INFO Loaded 2080 generation records from /tmp/rsft_partial_input/generations.jsonl\\n2026-05-15 09:22:40,652 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\\n2026-05-15 09:22:44,801 INFO Loading NLI model: /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--n2026-05-15 09:23:22,130 INFO Scored 500/2080 records\\n2026-05-15 09:25:04,262 INFO Scored 1000/2080 records\\n2026-05-15 09:26:42,061 INFO Scored 1500/2080 records\\n2026-05-15 09:28:32,001 INFO Scored 2000/2080 records\\n2026-05-15 09:28:53,429 INFO Scoring complete: 2080 records\\n2026-05-15 09:28:53,508 INFO Scores → /root/autodl-tmp/rsft_scored_partial/rsft_scores.jsonl\\n2026-05-15 09:28:53,509 INFO After threshold filter: 2075/2080 (format>=0.50, f1>=0.00, ced>=0.00)\\n2026-05-15 09:28:53,510 INFO After top_25%: 517 records from 260 documents\\n2026-05-15 09:28:53,526 INFO Training data → /root/autodl-tmp/rsft_scored_partial/rsft_train.jsonl (517 samples)\\n2026-05-15 09:28:53,529 INFO Report → /root/autodl-tmp/rsft_scored_partial/rsft_report.json\\n\\n============================================================\\n  Total records:    2080\\n  Selected:         517\\n  Selection rate:   24.9%\\n  Unique docs:      260/260\\n------------------------------------------------------------\\n  format_reward         mean=0.998  std=0.049  median=1.000  [min=0.000, max=1.000]\\n  f1_reward             mean=0.498  std=0.233  median=0.500  [min=0.000, max=1.000]\\n  ced_reward            mean=0.514  std=0.250  median=0.524  [min=0.000, max=0.997]\\n  combined_score        mean=0.604  std=0.159  median=0.613  [min=0.000, max=0.999]\\n============================================================\\n\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\n\\n... [截断: 输出过长，省略 5548 字符] ...\\n\\n'huggingface.co', port=443): Max retries exceeded with url: /api/models/cross-encoder/nli-deberta-v3-base (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fa43fca6720>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\n\\nDuring handling of the above exception, another exception occurred:\\n\\nTraceback (most recent call last):\\n  File \\\"<frozen runpy>\\\", line 198, in _run_module_as_main\\n  File \\\"<frozen runpy>\\\", line 88, in _run_code\\n  File \\\"/root/autodl-tmp/freige/training/rsft_score_filter.py\\\", line 460, in <module>\\n    main()\\n  File \\\"/root/autodl-tmp/freige/training/rsft_score_filter.py\\\", line 413, in main\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/freige/rewards/ced_reward.py\\\", line 146, in __init__\\n    self.tokenizer = AutoTokenizer.from_pretrained(model_name)\\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py\\\", line 1156, in from_pretrained\\n    return tokenizer_class.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\", line 2113, in from_pretrained\\n    return cls._from_pretrained(\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\", line 2395, in _from_pretrained\\n    tokenizer = cls._patch_mistral_regex(\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\", line 2442, in _patch_mistral_regex\\n    _is_local or (not _is_local and is_base_mistral(pretrained_model_name_or_path))\\n                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\", line 2432, in is_base_mistral\\n    model = model_info(model_id)\\n            ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 114, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/hf_api.py\\\", line 2660, in model_info\\n    r = get_session().get(path, headers=headers, timeout=timeout, params=params)\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/requests/sessions.py\\\", line 605, in get\\n    return self.request(\\\"GET\\\", url, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/requests/sessions.py\\\", line 592, in request\\n    resp = self.send(prep, **send_kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/requests/sessions.py\\\", line 706, in send\\n    r = adapter.send(request, **kwargs)\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 96, in send\\n    return super().send(request, *args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/requests/adapters.py\\\", line 678, in send\\n    raise ConnectionError(e, request=request)\\nrequests.exceptions.ConnectionError: (MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/cross-encoder/nli-deberta-v3-base (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fa43fca6720>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: 967e8c77-971f-4f1a-9939-cbdffe342f6e)')\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000215"
+        },
+        {
+          "source_line": 216,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The score_filter successfully completed the scoring phase! I can see:\n- 2080 records scored\n- 517 selected (24.9%)\n- Output files written to /root/autodl-tmp/rsft_scored_partial/\n\nBUT then the script seems to have crashed after writing the output files due to a second CEDRewardModel initialization attempt (from a different code path?). No wait - looking at the traceback, the crash is at line 413 in main() which is:\n```python\nced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\n\n\n```\n\nBut this is the initial model loading. That's confusing - the log shows it scored 2080 records and wrote output files, then crashes with a ConnectionError?\n\nWait, I'm looking more carefully at the output. The log is garbled due to progress bar carriage return characters mixing the streams together. Let me separate what actually happened:\n\nThe log file shows the successful scoring run completing first, then a crash traceback appearing after - which means the second run started and failed during model initialization with a connection error.\n\nLooking at the traceback, the crash happens in the CEDRewardModel constructor when trying to load the tokenizer. But the first run loaded the model successfully from a local path, so that worked fine. The issue is that the crash traceback shows it's trying to call `model_info()` which attempts to connect to Hugging Face Hub - that's where the ConnectionError is coming from.\n\n```\nScoring complete: 2080 records\nScores → /root/autodl-tmp/rsft_scored_partial/rsft_scores.jsonl\nAfter threshold filter: 2075/2080\nAfter top_25%: 517 records from 260 documents\nTraining data → /root/autodl-tmp/rsft_scored_partial/rsft_train.jsonl (517 samples)\nReport → /root/autodl-tmp/rsft_scored_partial/rsft_report.json\n```\n\nThe output files were actually written successfully before the crash happened, so the scoring and filtering completed properly.\n\nNow I'm looking at the summary statistics from the selected samples - the combined scores average around 0.604 with reasonable distribution, and all 260 documents are represented in the final training set. The traceback at the end appears to be from a second run attempt, possibly a process I tried to kill earlier.\n\nLooking more carefully at the crash details, it's failing in the NLI model initialization, but the successful log shows the model already loaded and completed scoring. This traceback must be from a different process entirely - likely the original nohup wrapper spawned multiple Python processes that all wrote to the same log file, and when I killed one process, another one continued running and eventually crashed. The traceback at the end is from an earlier killed process since it references the model name instead of the local path I used in the third run. The third run's output files should have been written successfully, so let me verify they actually exist in the output directory.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "eedff788-3895-4b64-b315-1c9b3d16f734",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TMEhgjG3QknLLH6o5FTqbv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11345,
+                "cache_read_input_tokens": 86523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11345
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000216"
+        },
+        {
+          "source_line": 217,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "score_filter 完成了。日志末尾的报错是之前被 kill 的进程残留输出，与本次运行无关。核实输出文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "a1801351-e711-4bc8-8ea8-5e4a48761e14",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TMEhgjG3QknLLH6o5FTqbv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11345,
+                "cache_read_input_tokens": 86523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11345
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000217"
+        },
+        {
+          "source_line": 218,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sh8D3VvT25p9HYkp1ZDyW1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls -la /root/autodl-tmp/rsft_scored_partial/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "5fcb9ee2-f67b-4cd7-ab69-1829d371152c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TMEhgjG3QknLLH6o5FTqbv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11345,
+                "cache_read_input_tokens": 86523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11345
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000218"
+        },
+        {
+          "source_line": 219,
+          "timestamp": "2026-05-15T01:29:37.443Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Sh8D3VvT25p9HYkp1ZDyW1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8496\\\\ndrwxr-xr-x  2 root root      95 May 15 09:28 .\\\\ndrwxr-xr-x 38 root root    4096 May 15 09:20 ..\\\\n-rw-r--r--  1 root root    2027 May 15 09:28 rsft_report.json\\\\n-rw-r--r--  1 root root 7006605 May 15 09:28 rsft_scores.jsonl\\\\n-rw-r--r--  1 root root 1679619 May 15 09:28 rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "96f24bd9-9b1c-400b-bc9e-4a91b047c3d3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8496\\\\ndrwxr-xr-x  2 root root      95 May 15 09:28 .\\\\ndrwxr-xr-x 38 root root    4096 May 15 09:20 ..\\\\n-rw-r--r--  1 root root    2027 May 15 09:28 rsft_report.json\\\\n-rw-r--r--  1 root root 7006605 May 15 09:28 rsft_scores.jsonl\\\\n-rw-r--r--  1 root root 1679619 May 15 09:28 rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 8496\\ndrwxr-xr-x  2 root root      95 May 15 09:28 .\\ndrwxr-xr-x 38 root root    4096 May 15 09:20 ..\\n-rw-r--r--  1 root root    2027 May 15 09:28 rsft_report.json\\n-rw-r--r--  1 root root 7006605 May 15 09:28 rsft_scores.jsonl\\n-rw-r--r--  1 root root 1679619 May 15 09:28 rsft_train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000219"
+        },
+        {
+          "source_line": 220,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个输出文件全部生成。读取报告和验证格式。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "94ab52af-33c9-4bbf-98f8-023477710c18",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013tvti1CkKsgtyKmcDEJ49j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2088,
+                "cache_read_input_tokens": 97868,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2088
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000220"
+        },
+        {
+          "source_line": 221,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019EoBaeyJT3yiPNW8My8wEA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/rsft_scored_partial/rsft_report.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "6285315c-8cf9-4f0a-b8e1-5eaed0ec0cd1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013tvti1CkKsgtyKmcDEJ49j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2088,
+                "cache_read_input_tokens": 97868,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2088
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000221"
+        },
+        {
+          "source_line": 222,
+          "timestamp": "2026-05-15T01:29:46.087Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019EoBaeyJT3yiPNW8My8wEA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_records\\\\\\\": 2080,\\\\n  \\\\\\\"selected_records\\\\\\\": 517,\\\\n  \\\\\\\"filtered_records\\\\\\\": 1563,\\\\n  \\\\\\\"selection_rate\\\\\\\": 0.2485576923076923,\\\\n  \\\\\\\"unique_docs_total\\\\\\\": 260,\\\\n  \\\\\\\"unique_docs_selected\\\\\\\": 260,\\\\n  \\\\\\\"format_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.9975961538461539,\\\\n    \\\\\\\"std\\\\\\\": 0.04897006920063307,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 1.0,\\\\n    \\\\\\\"median\\\\\\\": 1.0,\\\\n    \\\\\\\"p25\\\\\\\": 1.0,\\\\n    \\\\\\\"p75\\\\\\\": 1.0\\\\n  },\\\\n  \\\\\\\"f1_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.49783848333989056,\\\\n    \\\\\\\"std\\\\\\\": 0.23309316011233155,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 1.0,\\\\n    \\\\\\\"median\\\\\\\": 0.5,\\\\n    \\\\\\\"p25\\\\\\\": 0.3333333333333333,\\\\n    \\\\\\\"p75\\\\\\\": 0.6666666666666666\\\\n  },\\\\n  \\\\\\\"ced_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5143475716411456,\\\\n    \\\\\\\"std\\\\\\\": 0.2504197805349589,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 0.9966415762901306,\\\\n    \\\\\\\"median\\\\\\\": 0.5243351028753573,\\\\n    \\\\\\\"p25\\\\\\\": 0.3558497681180077,\\\\n    \\\\\\\"p75\\\\\\\": 0.6912613254599274\\\\n  },\\\\n  \\\\\\\"combined_score_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6043936527616454,\\\\n    \\\\\\\"std\\\\\\\": 0.1585233421222944,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 0.9986566305160524,\\\\n    \\\\\\\"median\\\\\\\": 0.6133300448661632,\\\\n    \\\\\\\"p25\\\\\\\": 0.51467877421716,\\\\n    \\\\\\\"p75\\\\\\\": 0.7049854688731942\\\\n  },\\\\n  \\\\\\\"selected_stats\\\\\\\": {\\\\n    \\\\\\\"format_reward\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 1.0,\\\\n      \\\\\\\"std\\\\\\\": 0.0,\\\\n      \\\\\\\"min\\\\\\\": 1.0,\\\\n      \\\\\\\"max\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"f1_reward\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6092314145592189,\\\\n      \\\\\\\"std\\\\\\\": 0.209316850415849,\\\\n      \\\\\\\"min\\\\\\\": 0.0,\\\\n      \\\\\\\"max\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"ced_reward\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6456982934105019,\\\\n      \\\\\\\"std\\\\\\\": 0.2193165073655987,\\\\n      \\\\\\\"min\\\\\\\": 0.0,\\\\n      \\\\\\\"max\\\\\\\": 0.9966415762901306\\\\n    },\\\\n    \\\\\\\"combined_score\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.7019718831878884,\\\\n      \\\\\\\"std\\\\\\\": 0.12400007171312315,\\\\n      \\\\\\\"min\\\\\\\": 0.2,\\\\n      \\\\\\\"max\\\\\\\": 0.9986566305160524\\\\n    }\\\\n  },\\\\n  \\\\\\\"args\\\\\\\": {\\\\n    \\\\\\\"input_dir\\\\\\\": \\\\\\\"/tmp/rsft_partial_input\\\\\\\",\\\\n    \\\\\\\"output_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_scored_partial\\\\\\\",\\\\n    \\\\\\\"nli_model_path\\\\\\\": \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n    \\\\\\\"nli_device\\\\\\\": \\\\\\\"cuda:0\\\\\\\",\\\\n    \\\\\\\"tau\\\\\\\": 0.5,\\\\n    \\\\\\\"format_weight\\\\\\\": 0.2,\\\\n    \\\\\\\"f1_weight\\\\\\\": 0.4,\\\\n    \\\\\\\"ced_weight\\\\\\\": 0.4,\\\\n    \\\\\\\"format_threshold\\\\\\\": 0.5,\\\\n    \\\\\\\"f1_threshold\\\\\\\": 0.0,\\\\n    \\\\\\\"ced_threshold\\\\\\\": 0.0,\\\\n    \\\\\\\"selection_strategy\\\\\\\": \\\\\\\"top_pct\\\\\\\",\\\\n    \\\\\\\"top_k\\\\\\\": 2,\\\\n    \\\\\\\"top_pct\\\\\\\": 25\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "9a2157d8-f176-484f-be89-a0c7da74babe",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_records\\\\\\\": 2080,\\\\n  \\\\\\\"selected_records\\\\\\\": 517,\\\\n  \\\\\\\"filtered_records\\\\\\\": 1563,\\\\n  \\\\\\\"selection_rate\\\\\\\": 0.2485576923076923,\\\\n  \\\\\\\"unique_docs_total\\\\\\\": 260,\\\\n  \\\\\\\"unique_docs_selected\\\\\\\": 260,\\\\n  \\\\\\\"format_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.9975961538461539,\\\\n    \\\\\\\"std\\\\\\\": 0.04897006920063307,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 1.0,\\\\n    \\\\\\\"median\\\\\\\": 1.0,\\\\n    \\\\\\\"p25\\\\\\\": 1.0,\\\\n    \\\\\\\"p75\\\\\\\": 1.0\\\\n  },\\\\n  \\\\\\\"f1_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.49783848333989056,\\\\n    \\\\\\\"std\\\\\\\": 0.23309316011233155,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 1.0,\\\\n    \\\\\\\"median\\\\\\\": 0.5,\\\\n    \\\\\\\"p25\\\\\\\": 0.3333333333333333,\\\\n    \\\\\\\"p75\\\\\\\": 0.6666666666666666\\\\n  },\\\\n  \\\\\\\"ced_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5143475716411456,\\\\n    \\\\\\\"std\\\\\\\": 0.2504197805349589,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 0.9966415762901306,\\\\n    \\\\\\\"median\\\\\\\": 0.5243351028753573,\\\\n    \\\\\\\"p25\\\\\\\": 0.3558497681180077,\\\\n    \\\\\\\"p75\\\\\\\": 0.6912613254599274\\\\n  },\\\\n  \\\\\\\"combined_score_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6043936527616454,\\\\n    \\\\\\\"std\\\\\\\": 0.1585233421222944,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 0.9986566305160524,\\\\n    \\\\\\\"median\\\\\\\": 0.6133300448661632,\\\\n    \\\\\\\"p25\\\\\\\": 0.51467877421716,\\\\n    \\\\\\\"p75\\\\\\\": 0.7049854688731942\\\\n  },\\\\n  \\\\\\\"selected_stats\\\\\\\": {\\\\n    \\\\\\\"format_reward\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 1.0,\\\\n      \\\\\\\"std\\\\\\\": 0.0,\\\\n      \\\\\\\"min\\\\\\\": 1.0,\\\\n      \\\\\\\"max\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"f1_reward\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6092314145592189,\\\\n      \\\\\\\"std\\\\\\\": 0.209316850415849,\\\\n      \\\\\\\"min\\\\\\\": 0.0,\\\\n      \\\\\\\"max\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"ced_reward\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6456982934105019,\\\\n      \\\\\\\"std\\\\\\\": 0.2193165073655987,\\\\n      \\\\\\\"min\\\\\\\": 0.0,\\\\n      \\\\\\\"max\\\\\\\": 0.9966415762901306\\\\n    },\\\\n    \\\\\\\"combined_score\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.7019718831878884,\\\\n      \\\\\\\"std\\\\\\\": 0.12400007171312315,\\\\n      \\\\\\\"min\\\\\\\": 0.2,\\\\n      \\\\\\\"max\\\\\\\": 0.9986566305160524\\\\n    }\\\\n  },\\\\n  \\\\\\\"args\\\\\\\": {\\\\n    \\\\\\\"input_dir\\\\\\\": \\\\\\\"/tmp/rsft_partial_input\\\\\\\",\\\\n    \\\\\\\"output_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_scored_partial\\\\\\\",\\\\n    \\\\\\\"nli_model_path\\\\\\\": \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n    \\\\\\\"nli_device\\\\\\\": \\\\\\\"cuda:0\\\\\\\",\\\\n    \\\\\\\"tau\\\\\\\": 0.5,\\\\n    \\\\\\\"format_weight\\\\\\\": 0.2,\\\\n    \\\\\\\"f1_weight\\\\\\\": 0.4,\\\\n    \\\\\\\"ced_weight\\\\\\\": 0.4,\\\\n    \\\\\\\"format_threshold\\\\\\\": 0.5,\\\\n    \\\\\\\"f1_threshold\\\\\\\": 0.0,\\\\n    \\\\\\\"ced_threshold\\\\\\\": 0.0,\\\\n    \\\\\\\"selection_strategy\\\\\\\": \\\\\\\"top_pct\\\\\\\",\\\\n    \\\\\\\"top_k\\\\\\\": 2,\\\\n    \\\\\\\"top_pct\\\\\\\": 25\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"total_records\\\": 2080,\\n  \\\"selected_records\\\": 517,\\n  \\\"filtered_records\\\": 1563,\\n  \\\"selection_rate\\\": 0.2485576923076923,\\n  \\\"unique_docs_total\\\": 260,\\n  \\\"unique_docs_selected\\\": 260,\\n  \\\"format_reward_stats\\\": {\\n    \\\"mean\\\": 0.9975961538461539,\\n    \\\"std\\\": 0.04897006920063307,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 1.0,\\n    \\\"median\\\": 1.0,\\n    \\\"p25\\\": 1.0,\\n    \\\"p75\\\": 1.0\\n  },\\n  \\\"f1_reward_stats\\\": {\\n    \\\"mean\\\": 0.49783848333989056,\\n    \\\"std\\\": 0.23309316011233155,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 1.0,\\n    \\\"median\\\": 0.5,\\n    \\\"p25\\\": 0.3333333333333333,\\n    \\\"p75\\\": 0.6666666666666666\\n  },\\n  \\\"ced_reward_stats\\\": {\\n    \\\"mean\\\": 0.5143475716411456,\\n    \\\"std\\\": 0.2504197805349589,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 0.9966415762901306,\\n    \\\"median\\\": 0.5243351028753573,\\n    \\\"p25\\\": 0.3558497681180077,\\n    \\\"p75\\\": 0.6912613254599274\\n  },\\n  \\\"combined_score_stats\\\": {\\n    \\\"mean\\\": 0.6043936527616454,\\n    \\\"std\\\": 0.1585233421222944,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 0.9986566305160524,\\n    \\\"median\\\": 0.6133300448661632,\\n    \\\"p25\\\": 0.51467877421716,\\n    \\\"p75\\\": 0.7049854688731942\\n  },\\n  \\\"selected_stats\\\": {\\n    \\\"format_reward\\\": {\\n      \\\"mean\\\": 1.0,\\n      \\\"std\\\": 0.0,\\n      \\\"min\\\": 1.0,\\n      \\\"max\\\": 1.0\\n    },\\n    \\\"f1_reward\\\": {\\n      \\\"mean\\\": 0.6092314145592189,\\n      \\\"std\\\": 0.209316850415849,\\n      \\\"min\\\": 0.0,\\n      \\\"max\\\": 1.0\\n    },\\n    \\\"ced_reward\\\": {\\n      \\\"mean\\\": 0.6456982934105019,\\n      \\\"std\\\": 0.2193165073655987,\\n      \\\"min\\\": 0.0,\\n      \\\"max\\\": 0.9966415762901306\\n    },\\n    \\\"combined_score\\\": {\\n      \\\"mean\\\": 0.7019718831878884,\\n      \\\"std\\\": 0.12400007171312315,\\n      \\\"min\\\": 0.2,\\n      \\\"max\\\": 0.9986566305160524\\n    }\\n  },\\n  \\\"args\\\": {\\n    \\\"input_dir\\\": \\\"/tmp/rsft_partial_input\\\",\\n    \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_scored_partial\\\",\\n    \\\"nli_model_path\\\": \\\"cross-encoder/nli-deberta-v3-base\\\",\\n    \\\"nli_device\\\": \\\"cuda:0\\\",\\n    \\\"tau\\\": 0.5,\\n    \\\"format_weight\\\": 0.2,\\n    \\\"f1_weight\\\": 0.4,\\n    \\\"ced_weight\\\": 0.4,\\n    \\\"format_threshold\\\": 0.5,\\n    \\\"f1_threshold\\\": 0.0,\\n    \\\"ced_threshold\\\": 0.0,\\n    \\\"selection_strategy\\\": \\\"top_pct\\\",\\n    \\\"top_k\\\": 2,\\n    \\\"top_pct\\\": 25\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000222"
+        },
+        {
+          "source_line": 223,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UGragVLt9w2cXFznSuYmRZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "head -1 /root/autodl-tmp/rsft_scored_partial/rsft_train.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "4e9f3d57-6da5-4549-a059-feb188e45d91",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013tvti1CkKsgtyKmcDEJ49j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2088,
+                "cache_read_input_tokens": 97868,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2088
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000223"
+        },
+        {
+          "source_line": 224,
+          "timestamp": "2026-05-15T01:29:47.022Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UGragVLt9w2cXFznSuYmRZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"input\\\\\\\": \\\\\\\"Extract all relation triples from the document. For each triple, provide the head entity, relation, tail entity, and the sentence IDs that serve as evidence. Output as a JSON list.\\\\\\\\n\\\\\\\\nDocument:\\\\\\\\n[0] Zest Airways, Inc. operated as AirAsia Zest ( formerly Asian Spirit and Zest Air), was a low - cost airline based at the Ninoy Aquino International Airport in Pasay City, Metro Manila in the Philippines.\\\\\\\\n[1] It operated scheduled domestic and international tourist services, mainly feeder services linking Manila and Cebu with 24 domestic destinations in support of the trunk route operations of other airlines.\\\\\\\\n[2] In 2013, the airline became an affiliate of Philippines AirAsia operating their brand separately.\\\\\\\\n[3] Its main base was Ninoy Aquino International Airport, Manila.\\\\\\\\n[4] The airline was founded as Asian Spirit, the first airline in the Philippines to be run as a cooperative.\\\\\\\\n[5] On August 16, 2013, the Civil Aviation Authority of the Philippines ( CAAP), the regulating body of the Government of the Republic of the Philippines for civil aviation, suspended Zest Air flights until further notice because of safety issues.\\\\\\\\n[6] Less than a year after AirAsia and Zest Air's strategic alliance, the airline has been rebranded as AirAsia Zest.\\\\\\\\n[7] The airline was merged into AirAsia Philippines in January 2016.\\\\\\\\n\\\\\\\\nEntities: Asian Spirit (ORG), Manila (LOC), Metro Manila (LOC), Ninoy Aquino International Airport (LOC), Pasay City (LOC), Philippines (LOC), Zest Air (ORG), Zest Airways, Inc. (ORG)\\\\\\\", \\\\\\\"output\\\\\\\": \\\\\\\"[{\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Ninoy Aquino International Airport\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"located in the administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"located in the administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"contains administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Asian Spirit\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 1, 2, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"owned by\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Air\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 1, 2, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Air\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 2, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Air\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"owned by\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 1, 2, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"located in the administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 3]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"contains administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"contains administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"contains administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 3]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Asian Spirit\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Asian Spirit\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Asian Spirit\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 4]}]\\\\\\\", \\\\\\\"ced_score\\\\\\\": 0.6601945286633314, \\\\\\\"doc_id\\\\\\\": \\\\\\\"AirAsia Zest\\\\\\\", \\\\\\\"generation_idx\\\\\\\": 5, \\\\\\\"format_reward\\\\\\\": 1.0, \\\\\\\"f1_reward\\\\\\\": 0.6875, \\\\\\\"combined_score\\\\\\\": 0.7390778114653326}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "f0304297-a01d-4bea-925f-468ee9c52a9c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"input\\\\\\\": \\\\\\\"Extract all relation triples from the document. For each triple, provide the head entity, relation, tail entity, and the sentence IDs that serve as evidence. Output as a JSON list.\\\\\\\\n\\\\\\\\nDocument:\\\\\\\\n[0] Zest Airways, Inc. operated as AirAsia Zest ( formerly Asian Spirit and Zest Air), was a low - cost airline based at the Ninoy Aquino International Airport in Pasay City, Metro Manila in the Philippines.\\\\\\\\n[1] It operated scheduled domestic and international tourist services, mainly feeder services linking Manila and Cebu with 24 domestic destinations in support of the trunk route operations of other airlines.\\\\\\\\n[2] In 2013, the airline became an affiliate of Philippines AirAsia operating their brand separately.\\\\\\\\n[3] Its main base was Ninoy Aquino International Airport, Manila.\\\\\\\\n[4] The airline was founded as Asian Spirit, the first airline in the Philippines to be run as a cooperative.\\\\\\\\n[5] On August 16, 2013, the Civil Aviation Authority of the Philippines ( CAAP), the regulating body of the Government of the Republic of the Philippines for civil aviation, suspended Zest Air flights until further notice because of safety issues.\\\\\\\\n[6] Less than a year after AirAsia and Zest Air's strategic alliance, the airline has been rebranded as AirAsia Zest.\\\\\\\\n[7] The airline was merged into AirAsia Philippines in January 2016.\\\\\\\\n\\\\\\\\nEntities: Asian Spirit (ORG), Manila (LOC), Metro Manila (LOC), Ninoy Aquino International Airport (LOC), Pasay City (LOC), Philippines (LOC), Zest Air (ORG), Zest Airways, Inc. (ORG)\\\\\\\", \\\\\\\"output\\\\\\\": \\\\\\\"[{\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Ninoy Aquino International Airport\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"located in the administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"located in the administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"contains administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Asian Spirit\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 1, 2, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"owned by\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Air\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 1, 2, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Air\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 2, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Air\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"owned by\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 1, 2, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"located in the administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 3]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"contains administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"contains administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"contains administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 3]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Asian Spirit\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Asian Spirit\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 4]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Asian Spirit\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 4]}]\\\\\\\", \\\\\\\"ced_score\\\\\\\": 0.6601945286633314, \\\\\\\"doc_id\\\\\\\": \\\\\\\"AirAsia Zest\\\\\\\", \\\\\\\"generation_idx\\\\\\\": 5, \\\\\\\"format_reward\\\\\\\": 1.0, \\\\\\\"f1_reward\\\\\\\": 0.6875, \\\\\\\"combined_score\\\\\\\": 0.7390778114653326}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"input\\\": \\\"Extract all relation triples from the document. For each triple, provide the head entity, relation, tail entity, and the sentence IDs that serve as evidence. Output as a JSON list.\\\\n\\\\nDocument:\\\\n[0] Zest Airways, Inc. operated as AirAsia Zest ( formerly Asian Spirit and Zest Air), was a low - cost airline based at the Ninoy Aquino International Airport in Pasay City, Metro Manila in the Philippines.\\\\n[1] It operated scheduled domestic and international tourist services, mainly feeder services linking Manila and Cebu with 24 domestic destinations in support of the trunk route operations of other airlines.\\\\n[2] In 2013, the airline became an affiliate of Philippines AirAsia operating their brand separately.\\\\n[3] Its main base was Ninoy Aquino International Airport, Manila.\\\\n[4] The airline was founded as Asian Spirit, the first airline in the Philippines to be run as a cooperative.\\\\n[5] On August 16, 2013, the Civil Aviation Authority of the Philippines ( CAAP), the regulating body of the Government of the Republic of the Philippines for civil aviation, suspended Zest Air flights until further notice because of safety issues.\\\\n[6] Less than a year after AirAsia and Zest Air's strategic alliance, the airline has been rebranded as AirAsia Zest.\\\\n[7] The airline was merged into AirAsia Philippines in January 2016.\\\\n\\\\nEntities: Asian Spirit (ORG), Manila (LOC), Metro Manila (LOC), Ninoy Aquino International Airport (LOC), Pasay City (LOC), Philippines (LOC), Zest Air (ORG), Zest Airways, Inc. (ORG)\\\", \\\"output\\\": \\\"[{\\\\\\\"head\\\\\\\": \\\\\\\"Ninoy Aquino International Airport\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"located in the administrative territorial entity\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Pasay City\\\\\\\", \\\\\\\"evidence\\\\\\\": [0]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Pasay City\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"located in the administrative territorial entity\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Metro Manila\\\\\\\", \\\\\\\"evidence\\\\\\\": [0]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Metro Manila\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"contains administrative territorial entity\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Pasay City\\\\\\\", \\\\\\\"evidence\\\\\\\": [0]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Metro Manila\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Philippines\\\\\\\", \\\\\\\"evidence\\\\\\\": [0]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Asian Spirit\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Philippines\\\\\\\", \\\\\\\"evidence\\\\\\\": [0, 4]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Zest Airways, Inc.\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"headquarters location\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Pasay City\\\\\\\", \\\\\\\"evidence\\\\\\\": [0]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Zest Airways, Inc.\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Philippines\\\\\\\", \\\\\\\"evidence\\\\\\\": [0]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Zest Airways, Inc.\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"headquarters location\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Metro Manila\\\\\\\", \\\\\\\"evidence\\\\\\\": [0]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Zest Airways, Inc.\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Philippines\\\\\\\", \\\\\\\"evidence\\\\\\\": [0, 1, 2, 4]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Zest Airways, Inc.\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"owned by\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Zest Air\\\\\\\", \\\\\\\"evidence\\\\\\\": [0, 1, 2, 4]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Zest Air\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Philippines\\\\\\\", \\\\\\\"evidence\\\\\\\": [0, 2, 4]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Zest Air\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"owned by\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Zest Airways, Inc.\\\\\\\", \\\\\\\"evidence\\\\\\\": [0, 1, 2, 4]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Pasay City\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Philippines\\\\\\\", \\\\\\\"evidence\\\\\\\": [0]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Pasay City\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"located in the administrative territorial entity\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Metro Manila\\\\\\\", \\\\\\\"evidence\\\\\\\": [0]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Manila\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Philippines\\\\\\\", \\\\\\\"evidence\\\\\\\": [0, 3]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Philippines\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"contains administrative territorial entity\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Metro Manila\\\\\\\", \\\\\\\"evidence\\\\\\\": [0]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Philippines\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"contains administrative territorial entity\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Pasay City\\\\\\\", \\\\\\\"evidence\\\\\\\": [0]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Philippines\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"contains administrative territorial entity\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Manila\\\\\\\", \\\\\\\"evidence\\\\\\\": [0, 3]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Asian Spirit\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"headquarters location\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Pasay City\\\\\\\", \\\\\\\"evidence\\\\\\\": [0, 4]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Asian Spirit\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"headquarters location\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Metro Manila\\\\\\\", \\\\\\\"evidence\\\\\\\": [0, 4]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Asian Spirit\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"headquarters location\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Manila\\\\\\\", \\\\\\\"evidence\\\\\\\": [0, 4]}]\\\", \\\"ced_score\\\": 0.6601945286633314, \\\"doc_id\\\": \\\"AirAsia Zest\\\", \\\"generation_idx\\\": 5, \\\"format_reward\\\": 1.0, \\\"f1_reward\\\": 0.6875, \\\"combined_score\\\": 0.7390778114653326}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000224"
+        },
+        {
+          "source_line": 225,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F6zhCaB5seaaUuAyvnonLD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "wc -l /root/autodl-tmp/rsft_scored_partial/rsft_train.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "372cd018-cf3f-4004-9ed0-4a80723e201f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013tvti1CkKsgtyKmcDEJ49j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2088,
+                "cache_read_input_tokens": 97868,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2088
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000225"
+        },
+        {
+          "source_line": 226,
+          "timestamp": "2026-05-15T01:29:47.536Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F6zhCaB5seaaUuAyvnonLD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"517 /root/autodl-tmp/rsft_scored_partial/rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+            "uuid": "6f7b0202-60f8-4252-b09d-c18fdfc7d30d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"517 /root/autodl-tmp/rsft_scored_partial/rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"517 /root/autodl-tmp/rsft_scored_partial/rsft_train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000226"
+        }
+      ]
+    }
+  ]
+}

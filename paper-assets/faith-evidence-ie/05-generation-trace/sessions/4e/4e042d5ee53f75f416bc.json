@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e042d5ee53f75f416bc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval rsft r2b result",
+  "task_key": "worker_eval_rsft_r2b_result_20260515T114356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_rsft_r2b_result_20260515T114356_result.json",
+    "occurrence": 1,
+    "bytes": 1055,
+    "sha256": "bba909da22f7822b2f675f45cf4b34556ffb4f9fd5c87c88b5a7da58546fa887"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## mvp2_eval_rsft_r2b 结果\n\n**Pass** — 两项核心指标均超过 SFT baseline。\n\n| 指标 | r2b (本次) | r1 (3ep, seed=42) | SFT baseline | r2b vs r1 |\n|------|-----------|-------------------|-------------|-----------|\n| rel_f1 | **0.4493** | 0.4449 | 0.4057 | +0.44pp |\n| evi_f1 | **0.8128** | 0.8187 | 0.7979 | -0.59pp |\n| edcr | 0.6609 | — | — | — |\n| pred_count | 14829 | — | — | — |\n| format_ok | 983/985 (99.8%) | — | — | — |\n| truncated | 179/985 | — | — | — |\n\n### 对比分析\n\nr2b（1 epoch, alpha=32, lr=1e-5, clean data）vs r1（3 epoch, seed=42）：\n\n- **rel_f1**: r2b 略优 (+0.44pp)，说明保守 LoRA scaling (alpha=32) + 低学习率在关系抽取上不仅没有退化，反而略好\n- **evi_f1**: r2b 略低 (-0.59pp)，差距很小，可能是 1 epoch 训练不足导致证据定位能力稍弱\n- 总体来看，r2b 用 1/3 的训练量达到了与 r1 接近甚至略好的效果，保守配置是有效的\n\nRegistry 已更新为 DONE/success，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-rsft-r2b-result.md"
+}

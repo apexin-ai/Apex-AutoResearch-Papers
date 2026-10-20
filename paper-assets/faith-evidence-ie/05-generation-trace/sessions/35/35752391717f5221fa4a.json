@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0",
+  "id": "35752391717f5221fa4a",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "exp rsft ced topk3 scoring",
+  "task_key": "worker_exp_rsft-ced-topk3-scoring_20260515T061123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_rsft-ced-topk3-scoring_20260515T061123.log",
+    "occurrence": 1,
+    "bytes": 3948415,
+    "sha256": "4b2dd2a4328eaffbbd329ebf8b78243b6729f54512525bf15c71cb9c4c4fbc33"
+  },
+  "statistics": {
+    "messages": 3520,
+    "user_turns": 3,
+    "tool_calls": 1613,
+    "roles": {
+      "log": 1,
+      "system": 18,
+      "record": 5,
+      "assistant": 264,
+      "tool_call": 1613,
+      "tool_result": 1613,
+      "user": 3,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1263,
+      "chunks": [
+        {
+          "path": "35752391717f5221fa4a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0008.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 928,
+      "chunks": [
+        {
+          "path": "35752391717f5221fa4a-part-0008.json",
+          "message_count": 177
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0013.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 1015,
+      "chunks": [
+        {
+          "path": "35752391717f5221fa4a-part-0013.json",
+          "message_count": 149
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0014.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0015.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0016.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0017.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0018.json",
+          "message_count": 146
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 314,
+      "chunks": [
+        {
+          "path": "35752391717f5221fa4a-part-0018.json",
+          "message_count": 34
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0019.json",
+          "message_count": 180
+        },
+        {
+          "path": "35752391717f5221fa4a-part-0020.json",
+          "message_count": 100
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-rsft-ced-topk3-scoring.md"
+}

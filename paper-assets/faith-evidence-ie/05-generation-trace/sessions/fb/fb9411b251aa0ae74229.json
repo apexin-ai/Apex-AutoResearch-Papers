@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb9411b251aa0ae74229",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis ced s43 directory check",
+  "task_key": "worker_analysis_ced_s43_directory_check_20260516T000646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ced_s43_directory_check_20260516T000646_result.json",
+    "occurrence": 1,
+    "bytes": 1086,
+    "sha256": "ec86a1f0d40ccf52b8e9f2c03a0eb060403796f9a16674c05e7b1f55d7d62fc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. rsft_output_s43 真实状态\n\n**存在**，但**不是 CED 数据**。它是标准 RSFT（非 CED-filtered）seed=43 训练产物：\n- Base model: Qwen3-4B, LoRA r=64/alpha=128\n- Checkpoints: 350, 400, 450, 500, 510（训练已完成）\n- 与 `rsft_output_s44` 同系列，属于原始 RSFT seed 扩展实验\n- CED-filtered RSFT 的输出目录应为 `rsft_output_ced_s43`，该目录**不存在**\n\n### 2. rsft_ced_s43_train 启动状态\n\n**未在运行**。GPU 1 完全空闲（0MiB）。Registry 中 `rsft_ced_s43_train` 状态为 DONE/failed（~8小时前标记）。之前 worker 报告的\"已提交\"实际未成功启动。\n\n### 3. 当前 GPU 占用\n\n| GPU | 占用 | 进程 |\n|-----|------|------|\n| 0 | 10.8GB | eval flat_nli_s44 |\n| 1 | **空闲** | - |\n| 2 | 19.9GB | eval rsft_topk3 reeval |\n| 3 | 10.8GB | eval flat_nli_s45 |\n\n### 4. rsft_ced_s45_train_r2\n\n已创建，状态 PREPARING。\n\n**下一步**：GPU 1 空闲，可立即提交 CED RSFT s43 训练（需重新提交），s45 等后续 GPU 释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ced-s43-directory-check.md"
+}

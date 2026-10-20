@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc853b8dbc4f1fd56899",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "reviewer / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_13.md",
+    "occurrence": 1,
+    "bytes": 4649,
+    "sha256": "beea1dde14c18eb7ae67cab52f46c8e5db366c30e43cc4d6c9e2a88306eda385"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_wall_time\nupdated: '2026-05-17T08:05:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: rtx5090-4x 的 cuda:0-3（物理卡 0/1/2/3），越界即 critical\n- D076 eval 协议: batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024, seed=42\n- D077: plan_006 系列必须用 bf16 LoRA，禁止 QLoRA\n- 3-param loading pattern: `--model_path <rsft_ckpt> --base_model <base> --sft_adapter <sft_output>`\n- **磁盘已满** `/dev/md0 250G 100%` — 任何新 checkpoint/eval 写入都会失败，清理前不可重提交训练\n\n### 2. 🖥️ 基础设施快照\n- 服务器: rtx5090-4x (root)，代码根: `/root/autodl-tmp/freige`\n- Python: `/root/miniconda3/bin/python`，conda base\n- 模型路径: `/root/autodl-tmp/models/Qwen/Qwen3-{1.7B,4B,8B}`, `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`\n- SFT outputs: `sft_output`(4B), `sft_output_qwen3_1_7b_bf16`, `sft_output_qwen3_8b_bf16`, `sft_output_llama_3_1_8b`\n- RSFT outputs: `rsft_output_s44`(4B best), `rsft_output_qwen3_1_7b`, `rsft_output_llama_3_1_8b_r3/checkpoint-3312`, `rsft_output_qwen3_8b/checkpoint-100`(8B 崩溃前最后好 ckpt)\n- Merged model: `/root/autodl-tmp/merged_sft_rsft_ced_s43` (4B, lead2 用)\n- NLI model: `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`\n- 数据: `/root/autodl-tmp/data/docred/` (train_annotated.json, dev.json, test.json)\n- 活跃进程 (last known): GPU 0 PID 414837 (rsft_s44_dev_eval_preds), GPU 1 PID 420018 (1.7B eval)\n- GPU 2/3: 空闲（两个训练都因磁盘满崩溃）\n- HF 离线模式: 需设 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- Logs: `/root/runs/faith-evidence-ie/` 和 `/root/autodl-tmp/logs/`\n\n### 3. 📊 当前状态\n**刚发生**: 磁盘 100% 满导致 GPU 2 (lead2_r2 GRPO) 和 GPU 3 (8B RSFT) 同时崩溃于 torch.save() checkpoint。已报 critical 给 Director。\n\n**Registry RUNNING（可能 stale）**:\n- `rsft_s44_dev_eval_preds` (GPU 0) — 4B dev 推理，为线索1 CED filtering 准备 predictions。跑了 >3h，可能因磁盘满无法写结果\n- `plan_006_qwen3_1_7b_rsft_eval` (GPU 1) — 1.7B RSFT dev eval，scaling study 数据点\n- `lead2_rsft_grpo_ced_r2` (GPU 2) — 已崩溃 step 30/50，registry 可能未更新\n- `plan_006_qwen3_8b_rsft_train` (GPU 3) — 已崩溃 step 1000/3393，registry 可能未更新\n\n**已完成未更新 registry**:\n- `plan_016_llama_rsft_train_r3` — LLaMA 8B RSFT 训练完成 3312/3312 steps，output 在 `rsft_output_llama_3_1_8b_r3/`\n\n**等待**: Director 决策磁盘清理策略\n\n### 4. 📋 待办\n- 磁盘清理完成 → 验证 df 有足够空间 → 8B RSFT 可从 checkpoint-100 resume\n- 磁盘清理完成 → lead2_r2 可从 checkpoint-20 resume（加 `--resume_from_checkpoint`），或直接用 ckpt-20 做 eval（只差 20 steps 且已证明 CED reward 上升）\n- rsft_s44_dev_eval_preds 完成（或因磁盘满失败）→ 检查 `/root/autodl-tmp/eval_results/rsft_s44_dev_with_preds/` 是否有 predictions.jsonl\n- 1.7B eval 完成 → 验证 metrics，对比 SFT baseline（D083 数据），填入 scaling study\n- LLaMA r3 eval 需要提交（训练已完成但 eval 未跑）\n- **GRPO data_dir bug**: `grpo_trainer.py` 必须传 `--data_dir /root/autodl-tmp/data/docred`，否则 fallback Hub 下载失败\n- **可删 checkpoint 释放空间**: LLaMA r3 的 checkpoint-3150/3200/3250 各 1.9GB（保留 3300+3312 即可）\n\n### 5. 🎯 战略上下文\n- **Paper framing**: FaithExtract — 用 CED (NLI-based scoring) 进行 evidence-aware RE 训练。Core claims: C1(feasibility), C2(decoupling spectrum), C3(NLI scoring), C4(EDCR diagnostic), C5(scaling)\n- **Scaling study (C5)**: 1.7B/4B/8B × SFT/RSFT 矩阵。4B 数据完整；1.7B RSFT 训练完、eval 进行中；8B RSFT 崩溃在 29%\n- **Evidence Tax pattern**: 1.7B 受益(+6.2pp), 4B 付出代价(-7.5pp), 8B 预期 neutral\n- **Decoupling Spectrum (C2)**: GRPO-QLoRA 灾难性 > GRPO-bf16 轻微 > DPO 渐进 > RSFT 无\n- **lead2 关键发现**: RSFT→short GRPO 的 CED reward 30 步内从 0.438→0.540 (+23%)，KL 极低，证实线索2 可行性。即使只有 30 steps 数据，这已是有价值的 evidence for C2\n- **易错点**:\n  - 不要以为 registry RUNNING 就代表进程活着——磁盘满后进程已死但 registry 未更新\n  - `docred_processor.py` 有 Hub fallback（line 135），GRPO 路径必须传 `--data_dir`\n  - 8B RSFT VRAM 97.9% 很紧张，但 OOM 不是崩溃原因（是磁盘满）\n  - Tokenizer Mistral regex 警告是 cosmetic，不影响功能\n  - DocRED test 是 blind eval（需 CodaLab 提交），不能本地算 F1\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-copy-2.md"
+}

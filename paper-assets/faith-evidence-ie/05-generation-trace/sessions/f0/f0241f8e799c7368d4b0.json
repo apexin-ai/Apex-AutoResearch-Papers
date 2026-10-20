@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0241f8e799c7368d4b0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops submit 8b candidates r2",
+  "task_key": "worker_ops_submit_8b_candidates_r2_20260517T015455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_8b_candidates_r2_20260517T015455_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "10ff14f6d64186062c099a086b05c801b29f7963da13a435655d300e3cb27381"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成。\n\n---\n\n## 任务 1 结果\n\n**plan_006_qwen3_8b_rsft_candidates_r2** 已提交到 cuda:3，PID 400132，18.1GB 显存已载入。\n- tmux session: `plan_006_8b_cand_r2`\n- 从 idx 2701 resume（已完成 2701/3027 docs）\n- output_dir: `/root/autodl-tmp/freige/outputs/rsft_candidates_8b`（已修正，原命令中的路径不存在）\n- Registry 已更新为 RUNNING\n\n## 任务 2 结果\n\n**PID 390436** 是正在运行的 eval 推理：\n- 实验：`plan_002_test_rsft_s43`\n- 模型：`/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510` (Qwen3-4B)\n- GPU：cuda:1，占用 11.4GB\n- 已运行 ~141 分钟\n- split: test, batch_size: 4"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-8b-candidates-r2.md"
+}

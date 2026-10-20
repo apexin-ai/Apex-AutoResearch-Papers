@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a108b03b3acc43029df",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor eval progress check",
+  "task_key": "worker_monitor_eval_progress_check_20260516T033014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_eval_progress_check_20260516T033014_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "032c9f8c83c6b05f33c803082856abf01e8cf9c13d917e0bb88cf6c69c1cb113"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 eval 全部正常运行，无异常。\n\n| Eval | 进度 | 速度 | 预计完成 (UTC) |\n|------|------|------|----------------|\n| eval_plan_014_no_evidence_r2 | 143/247 (58%) | ~27s/it | ~12:17 |\n| eval_rsft_ced_s45 | 173/247 (70%) | ~42s/it | ~12:22 |\n| eval_rsft_ced_s43 | 105/247 (43%) | ~44s/it | ~13:14 |\n| reeval_flat_nli_s43_r2 | 35/247 (14%) | ~43s/it | ~14:02 |\n\nGPU 利用率 48-57%，显存 ~10-11GB/32GB，headroom 充足。`plan_014_no_evidence_r2` 因无 evidence 生成更短，速度最快。报告已写入 `artifacts/eval_progress_20260516.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-eval-progress-check-copy-2.md"
+}

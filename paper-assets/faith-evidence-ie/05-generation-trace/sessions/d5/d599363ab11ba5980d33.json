@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d599363ab11ba5980d33",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval plan 002 test eval",
+  "task_key": "worker_eval_plan_002_test_eval_20260516T174147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_002_test_eval_20260516T174147_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "cb08abd803ae923dcd17042b645a91e17b3d198003a6d0681108eff9b7a3129c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已部署完成。\n\n**状态总结：**\n- `plan_002_test_rsft_s43` 已在 tmux 会话 `plan_002_test` 中启动\n- 脚本正在轮询等待 cuda:1 空闲（当前 10291 MiB，需 < 2000 MiB）\n- cuda:1 上的 re-docred dev eval (PID 368368) 已跑约 5 分钟，预计 15-30 分钟内完成\n- 一旦 cuda:1 释放，eval 自动启动\n- DocRED test set 无标注，产出为 `codalab_submission.json`（需提交 CodaLab 获取分数）\n\n**参数确认：**\n- Base model: `/root/autodl-tmp/models/Qwen3-4B` ✓\n- Adapter: `/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510` ✓\n- D076 统一协议: batch_size=4, max_new_tokens=1024, seed=42, --no-quantize ✓\n- CUDA_VISIBLE_DEVICES=1 ✓ (C002)\n\n**监控：**\n- 日志: `tail -f /root/autodl-tmp/eval_results/plan_002_test_rsft_s43.log`\n- 产出目录: `/root/autodl-tmp/eval_results/plan_002_test_rsft_s43/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-002-test-eval.md"
+}

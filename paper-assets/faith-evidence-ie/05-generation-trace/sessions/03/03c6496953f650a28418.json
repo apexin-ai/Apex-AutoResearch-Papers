@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03c6496953f650a28418",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code llama sft s44 withevi 2048 launch",
+  "task_key": "worker_code_llama-sft-s44-withevi-2048-launch_20260521T004503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-sft-s44-withevi-2048-launch_20260521T004503_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "17e9d37e34299a2a8c376da62546c0aa87eebd1a5c8f691972269b8cba83a9d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动。\n\n- **PID**: 64023\n- **GPU**: cuda:3, 18879 MiB 占用\n- **Adapter**: `/root/autodl-tmp/sft_output_llama_3_1_8b_s44`\n- **Output**: `/root/autodl-tmp/eval_results/eval_llama_sft_s44_with_evidence_2048`\n- **Log**: `/tmp/eval_llama_sft_s44_with_evidence_2048.log`\n- **完整命令**:\n```\nCUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference \\\n  --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B \\\n  --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_s44 \\\n  --data_path /root/autodl-tmp/data/docred \\\n  --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s44_with_evidence_2048 \\\n  --batch_size 1 --max_new_tokens 2048 --no-quantize --split dev --seed 42\n```\n- **Registry**: `eval_llama_sft_s44_with_evidence_2048` → RUNNING, parent=llama_sft_s44_train_eval_r3"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-sft-s44-withevi-2048-launch.md"
+}

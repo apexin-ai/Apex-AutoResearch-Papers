@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3826d59d15358848f77",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose register d112 shard crons",
+  "task_key": "worker_diagnose_register_d112_shard_crons_20260518T234636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_register_d112_shard_crons_20260518T234636_result.json",
+    "occurrence": 1,
+    "bytes": 398,
+    "sha256": "0f1bccb5d17753c6fefcfd1df510197fc16ecab223a8d8691fa7d363aef5e214"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已注册。当前 D112 各 shard 状态：\n\n| Shard | GPU | PID | 进度 | 每 doc 速度 |\n|-------|-----|-----|------|------------|\n| 0 (全量) | cuda:3 | 584466 | 206/3027 (7%) | ~18s/it |\n| 1 | cuda:1 | 587729 | 10/756 (1%) | ~15s/it |\n| 2 | cuda:2 | 587819 | 13/756 (2%) | ~13s/it |\n\nShard 1 和 shard 2 刚启动约 3 分钟，cron 监控已注册（120s 间隔）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-register-d112-shard-crons.md"
+}

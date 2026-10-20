@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1a96125758a3682515e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit d111 4b s42 reeval and harvest s44",
+  "task_key": "worker_submit_d111_4b_s42_reeval_and_harvest_s44_20260518T220428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_d111_4b_s42_reeval_and_harvest_s44_20260518T220428_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "e1aad4e55aa4520d7a478649e5eda7d4e186f161b87408e2501f5ff170289df7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n### 产出 1: wave1_sft_4b_s44_eval_r2 结果\n\n| Metric | Value |\n|---|---|\n| **F1** | **0.4838** |\n| **Ign F1** | **0.4734** |\n| Precision | 0.4898 |\n| Recall | 0.4780 |\n| Evi F1 | 0.7875 |\n| Evi F1 Joint | 0.3820 |\n| EDCR | 0.6581 |\n| Format Compliance | 99.7% |\n| Field Compliance | 74.6% |\n| Truncated | 249/985 |\n\nRegistry: DONE (success)\n\n### 产出 2: d111_4b_sft_s42_reeval 提交确认\n\n- PID: **579965**\n- GPU: cuda:0\n- tmux session: `d111_4b_sft_s42_reeval`\n- Registry: RUNNING\n- 预计运行 ~1.8h（参考 s44 eval 6669s）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-d111-4b-s42-reeval-and-harvest-s44.md"
+}

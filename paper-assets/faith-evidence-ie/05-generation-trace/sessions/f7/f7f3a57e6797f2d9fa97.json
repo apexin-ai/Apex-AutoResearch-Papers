@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "f7f3a57e6797f2d9fa97",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ssh rsft early scorefilter validation",
+  "task_key": "worker_ssh_rsft-early-scorefilter-validation_20260515T011950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rsft-early-scorefilter-validation_20260515T011950.log",
+    "occurrence": 1,
+    "bytes": 594761,
+    "sha256": "cecd45715bce38237d827545892d408a4a43b412393a1c72e856aad159d1e423"
+  },
+  "statistics": {
+    "messages": 226,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 84,
+      "tool_result": 84
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 226,
+      "chunks": [
+        {
+          "path": "f7f3a57e6797f2d9fa97-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f7f3a57e6797f2d9fa97-part-0002.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-rsft-early-scorefilter-validation.md"
+}

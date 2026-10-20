@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28b9433b77f9ac7a22e9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check download status",
+  "task_key": "worker_check_download_status_20260516T072755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_download_status_20260516T072755_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "508f89901e552db09644cb102f3cd766f684a59c25f89f108ebc81b3131d0ee4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D077 资源下载状态\n\n| 资源 | 状态 | 路径 | 说明 |\n|------|------|------|------|\n| **Qwen3-8B** | ✅ 已完成 | `/root/autodl-tmp/models/Qwen/Qwen3-8B/` | 16GB，5 个 shard 齐全 |\n| **LLaMA-3.1-8B** | ⏳ 下载中 | `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/` | 11GB/~15GB，shard 1,2,4 完成，shard 3 正在下载（148MB/~5GB）。有两个下载进程在跑（PID 311976 + 313132） |\n| **Re-DocRED** | ✅ 已完成 | `/root/autodl-tmp/data/re-docred/` | train_annotated.json + dev.json + test.json 齐全 |\n\n**磁盘空间**: `/root/autodl-tmp/` 250GB 已用 242GB，剩余 **8.3GB (97%)**。LLaMA shard 3 还需 ~4.7GB，下载完后只剩 ~3.6GB，空间极其紧张。\n\n**注意**: Qwen3-8B 实际路径是 `/root/autodl-tmp/models/Qwen/Qwen3-8B/`（不是 `/root/autodl-tmp/models/Qwen3-8B/`），实验代码引用时需注意。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-download-status.md"
+}

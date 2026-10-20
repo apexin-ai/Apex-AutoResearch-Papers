@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54f8399fc6f08c19364b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose plan 006 qwen3 8b rsft candidates",
+  "task_key": "worker_diagnose_plan_006_qwen3_8b_rsft_candidates_20260517T015305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan_006_qwen3_8b_rsft_candidates_20260517T015305_result.json",
+    "occurrence": 1,
+    "bytes": 343,
+    "sha256": "475b351bd4c3ef713ccb1cc90463f8488c8601feeeae774b96ed2316b2b87ce9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告在 `artifacts/diagnose_8b_timeout.md`。\n\n核心结论：**8B 完成了 89%（2701/3027），因 12h timeout 不够被 kill。** progress.json 已保存断点，推荐直接重提交同样命令（timeout 设 4h），脚本会自动跳过已完成的 2701 docs，只跑剩余 326 个（预估 1h43m）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-006-qwen3-8b-rsft-candidates.md"
+}

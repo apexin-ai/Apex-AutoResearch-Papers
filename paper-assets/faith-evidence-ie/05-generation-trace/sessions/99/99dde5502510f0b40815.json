@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99dde5502510f0b40815",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops registry fix completed experiments",
+  "task_key": "worker_ops_registry_fix_completed_experiments_20260516T083143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_fix_completed_experiments_20260516T083143_result.json",
+    "occurrence": 1,
+    "bytes": 329,
+    "sha256": "8239c55b0d5befabe3e89eab8fcf72fb7bbc35e43eff7e46b3c4e4f8eea1e1f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验 registry 均已更新为 DONE + success。\n\n| 实验 | 关键指标 |\n|------|---------|\n| **plan_006_qwen3_1_7b_sft_bf16** | train_loss=0.6884, eval_loss=0.8031, token_accuracy=0.8238, 570 steps, 41min |\n| **reeval_sft_baseline_d076** | rel_F1=0.4049, ign_F1=0.3974, evi_F1=0.7986, EDCR=0.6982 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-fix-completed-experiments.md"
+}

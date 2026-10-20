@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e79e53023b37f7d0ee5c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code rsft generation scoring",
+  "task_key": "worker_code_rsft-generation-scoring_20260514T231542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rsft-generation-scoring_20260514T231542_result.json",
+    "occurrence": 1,
+    "bytes": 1417,
+    "sha256": "4e0ff65fbb80a26c89f38d3f7703df3490710ed7b4f3fc38788b4f481ac1d1b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已完成并部署到服务器 `/root/autodl-tmp/freige/training/`:\n\n**`rsft_generate.py`** — 批量生成候选输出\n- 加载 base model + SFT adapter (merge & unload)，与 inference.py 一致\n- 对每个 DocRED 文档生成 N 个候选 (temperature sampling)\n- 支持 batch 推理 + OOM 自动降级到单条\n- 断点续传 (progress.json 记录已完成 doc_id)\n- 输出 JSONL 含 parsed_triples、format_ok、gold_triples、sents（供 score_filter 直接使用）\n\n**`rsft_score_filter.py`** — CED 打分 + 筛选\n- 三种 reward 完全复用现有逻辑：format_reward (grpo_trainer)、f1_reward (grpo_trainer)、ced_reward (CEDRewardWrapper 的逐 triple 打分逻辑)\n- combined_score = 0.2×format + 0.4×f1 + 0.4×ced\n- 三种筛选策略：threshold / top_k / top_pct（默认 top_pct=25%，按 doc 分组）\n- 输出 rsft_train.json (SFT messages 格式) + rsft_scores.jsonl + rsft_report.json\n\n运行示例:\n```bash\n# Step 1: 生成\npython -m freige.training.rsft_generate \\\n    --data_path /root/autodl-tmp/data/docred \\\n    --output_dir /root/autodl-tmp/rsft_generations \\\n    --num_generations 8 --batch_size 2\n\n# Step 2: 打分筛选\npython -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/rsft_generations \\\n    --output_path /root/autodl-tmp/rsft_filtered \\\n    --selection_strategy top_pct --top_pct 25\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rsft-generation-scoring.md"
+}

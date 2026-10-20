@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00f40eb008f23dc8c4f8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit test eval 8b rsft s42 no evi",
+  "task_key": "worker_submit_test_eval_8b_rsft_s42_no_evi_20260522T115950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_test_eval_8b_rsft_s42_no_evi_20260522T115950_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "8daf4df51948f925b4aa4d7ce70e50c9e7c60e7d1a0bbe72097f7a311f29f18c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并运行中。\n\n- **RSFT adapter**: `/root/autodl-tmp/rsft_output_qwen3_8b_k1`\n- **GPU**: cuda:3，当前占用 ~16GB（模型加载中）\n- **tmux session**: `test_eval_8b_rsft_s42_no_evi`\n- **日志**: `~/runs/faith-evidence-ie/test_eval_8b_rsft_s42_no_evi.log`\n- **输出目录**: `/root/autodl-tmp/eval_results/test_eval_8b_rsft_s42_no_evi`\n\n注意：第一次提交因缺少 `--no-quantize` 参数失败（`quantize` 默认 `True`），已补上重新提交。with-evi eval 的 batch_size=16，这里用了 batch_size=1（按任务要求），预计耗时会更长。参考 with-evi eval 用时 ~45min（batch_size=16），batch_size=1 可能需要数小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-test-eval-8b-rsft-s42-no-evi.md"
+}

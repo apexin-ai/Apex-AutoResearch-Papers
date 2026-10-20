@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab70f9ef502620a8ed4a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose urgent cuda2 cuda3 check",
+  "task_key": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929_result.json",
+    "occurrence": 1,
+    "bytes": 1005,
+    "sha256": "856282f0e3c8134e75393eed66e58a92696f435b5840b88bea249d8df035d24f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出汇总\n\n### GPU 状态\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| 0 | 94% | 27.2/97.9 GB | PID 231549 运行中 |\n| 1 | 92% | 32.5/97.9 GB | PID 194682 运行中 |\n| 2 | 0% | 0 GB | **空闲 → 已提交 DPO 3ep** |\n| 3 | 0% | 0 GB | **空闲 → 已提交 1.7B no-evi** |\n\n### 1. 1.7B s43 with-evi ✅ DONE\n- **ign_f1 = 28.70%** (s42 = 29.33%, Δ = -0.63pp)\n- Registry → DONE/success\n\n### 2. 1.7B s43 no-evi → 已提交\n- PID **234597**, cuda:3, `--no_evidence` 已传\n- 预计 ~6h (1.7B batch_size=1 单卡)\n\n### 3. DPO rebuilt 1ep eval ✅ DONE\n- **ign_f1 = 32.23%** (原始 38.9% → **下降 6.67pp**)\n- rel_f1 = 33.38%\n- Registry → DONE/success\n- 注：重建 eval 显著低于原始，可能原始 eval 用了不同 protocol (truncation/max_new_tokens)\n\n### 4. DPO 3ep 训练 → 已提交\n- PID **234741**, cuda:2, timeout 2h\n- 超参与 1ep 完全一致，仅 num_epochs=3\n- wandb: freige-dpo / dpo_rebuilt_3ep"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-urgent-cuda2-cuda3-check.md"
+}

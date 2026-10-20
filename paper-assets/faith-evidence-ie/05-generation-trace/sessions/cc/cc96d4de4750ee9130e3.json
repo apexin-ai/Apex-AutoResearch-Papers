@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc96d4de4750ee9130e3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops prep 14b rsft generate",
+  "task_key": "worker_ops_prep_14b_rsft_generate_20260519T173059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep_14b_rsft_generate_20260519T173059_result.json",
+    "occurrence": 1,
+    "bytes": 1869,
+    "sha256": "efa8c15efee048afe14df16690cad3cd83d5cea00dfec6c5acb586463bf45eef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n### 1. 14B SFT adapter 路径\n`/root/autodl-tmp/sft_output_14b/adapter_config.json` — LoRA r=64, alpha=128, base_model 指向 `/root/autodl-tmp/models/Qwen/Qwen3-14B`\n\n### 2. 14B 基座模型路径\n`/root/autodl-tmp/models/Qwen/Qwen3-14B`\n\n### 3. 单卡 32GB 能否做 bf16 generation？\n**N** — 14B bf16 ≈ 28GB 模型权重，加上 KV cache + batch 推理开销会超过 32GB。`rsft_generate.py` 使用 `device_map=\"auto\"`，设 `CUDA_VISIBLE_DEVICES=X,Y` 分两卡即可（每卡 ~14GB 模型 + KV cache 余量充足）。也可用 `--quantize`（4bit NF4，~7GB），单卡即可但生成质量可能下降。\n\n**推荐：2 卡 bf16**，与 eval_14b.sh 一致。\n\n### 4. 前置步骤：需先合并 adapter\n`rsft_14b.sh` 里的 RSFT 训练依赖合并后的模型 `/root/autodl-tmp/models/Qwen3-14B-sft-merged`，**该目录不存在**。但 generation 阶段 `rsft_generate.py` 支持 `--sft_adapter` 参数，可运行时 merge，无需预合并。合并步骤留到 RSFT 训练前执行即可。\n\n### 5. 建议 generation 命令\n\n```bash\n# 先确认 GPU 0,2 空闲 (当前 GPU1 占 11GB, GPU3 占 6.6GB)\nCUDA_VISIBLE_DEVICES=0,2 python -m freige.training.rsft_generate \\\n    --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B \\\n    --sft_adapter /root/autodl-tmp/sft_output_14b \\\n    --data_path /root/autodl-tmp/data/docred \\\n    --output_dir /root/autodl-tmp/rsft_generations_14b \\\n    --num_generations 8 \\\n    --temperature 0.7 \\\n    --batch_size 2 \\\n    --max_new_tokens 1024 \\\n    --seed 42\n```\n\n### 6. 磁盘空间\n65GB 可用，充足。\n\n### GPU 当前状态\n| GPU | 占用 | 空闲 |\n|-----|------|------|\n| 0 | 0 MB | 32GB ✓ |\n| 1 | 11.3 GB | 20.7GB |\n| 2 | 0 MB | 32GB ✓ |\n| 3 | 6.6 GB | 25.5GB |\n\n**GPU 0+2 完全空闲，适合做 14B generation。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-14b-rsft-generate.md"
+}

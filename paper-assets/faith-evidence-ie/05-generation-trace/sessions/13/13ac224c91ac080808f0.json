@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13ac224c91ac080808f0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp d158 1 7b rsft s44 train",
+  "task_key": "worker_exp_d158_1_7b_rsft_s44_train_20260524T225311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_d158_1_7b_rsft_s44_train_20260524T225311_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "87cf48a65a10ad3f283b9b3802d0bec757cae82f6f921ba8c23789c764648cdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D158 A3 已成功提交：\n\n- **PID**: 337228\n- **GPU**: cuda:0（76.2 GB 占用，正常）\n- **状态**: RUNNING，567 total steps，~2.5s/it\n- **预计训练时间**: 567 × 2.5s ≈ 23 分钟（比 d102 的 15 分钟略长，可能因 step 数不同）\n- **输出**: `/root/autodl-tmp/rsft_output_1_7b_s44`\n- **日志**: `~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log`\n- **W&B**: `freige-rsft / rsft_qwen3_1_7b_k1_s44`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d158-1-7b-rsft-s44-train.md"
+}

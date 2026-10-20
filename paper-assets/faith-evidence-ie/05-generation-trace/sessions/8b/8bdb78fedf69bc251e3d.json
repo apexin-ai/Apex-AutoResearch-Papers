@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bdb78fedf69bc251e3d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval grpo g8 bf16 analysis",
+  "task_key": "worker_eval_grpo_g8_bf16_analysis_20260515T175617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grpo_g8_bf16_analysis_20260515T175617_result.json",
+    "occurrence": 1,
+    "bytes": 1281,
+    "sha256": "a9a9f38195f78979759466a04d33e028dc4c22cc0a196b7bcd389e582e69fa86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完成。汇总如下：\n\n## eval_grpo_g8_bf16 全部结果\n\n| Metric | ckpt80 | ckpt90 | ckpt100 | 趋势 |\n|--------|--------|--------|---------|------|\n| **rel_f1** | 0.4456 | 0.4523 | **0.4549** | ↑ 单调递增 |\n| ign_f1 | 0.4456 | 0.4523 | 0.4549 | ↑ |\n| **evi_f1** | 0.8034 | 0.8052 | **0.8086** | ↑ 单调递增 |\n| edcr | 0.6409 | 0.6414 | 0.6318 | ≈ 平稳 (微降) |\n| format_ok | 984/985 | 983/985 | 985/985 | ✓ |\n| truncated | 50 | 60 | 61 | - |\n| pred_count | - | 10756 | 10701 | - |\n\n## Forgetting Dynamics 结论\n\n| 方法 | rel_f1 | vs SFT baseline |\n|------|--------|-----------------|\n| SFT baseline | 0.4057 | - |\n| QLoRA GRPO (G=8) | 0.2167 | -46.6% (**catastrophic forgetting**) |\n| **bf16 LoRA GRPO ckpt80** | 0.4456 | +9.8% |\n| **bf16 LoRA GRPO ckpt90** | 0.4523 | +11.5% |\n| **bf16 LoRA GRPO ckpt100** | 0.4549 | **+12.1%** |\n\n**结论：success。** bf16 LoRA GRPO 三个 checkpoint rel_f1 单调递增，无任何 forgetting 迹象。step 80→100 不仅没有衰退，反而持续改善。这与 QLoRA GRPO 的 catastrophic forgetting (rel_f1 从 0.4057 暴跌至 0.2167) 形成鲜明对比，确认 forgetting 是 QLoRA 4-bit quantization 导致的，非 GRPO 算法本身的问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grpo-g8-bf16-analysis.md"
+}

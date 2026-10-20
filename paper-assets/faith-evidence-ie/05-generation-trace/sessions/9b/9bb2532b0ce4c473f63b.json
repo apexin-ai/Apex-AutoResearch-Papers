@@ -1,0 +1,989 @@
+{
+  "schema_version": "1.0",
+  "id": "9bb2532b0ce4c473f63b",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ops test eval 1 7b s44 no evi check",
+  "task_key": "worker_ops_test_eval_1_7b_s44_no_evi_check_20260525T053650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_test_eval_1_7b_s44_no_evi_check_20260525T053650.log",
+    "occurrence": 1,
+    "bytes": 43168,
+    "sha256": "7f090ddadef79730c3d8a3b2790ede87e01005db6d83957beed788fe127922b1"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "799e6870-adae-4914-8457-832620c804e0",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779700200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "58927bd4-8b91-4d64-a92c-de2b20564dee",
+                "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the eval results on the server.",
+              "signature": "EvEBCmMIDhgCKkDGLsnUHJNFoQokV2UFPTqay08yrCfZQLegh1iOI8QvILviJxRaNo6+KZMhljw9kbfQxg9RLD209RnvKGAZ5H9+Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDM1aSM5kHx0ixUqpRhoMB7zB4nM3OeO+zrNvIjAHOMrbgbZUHCVlfE+efqCajKLDbwK8j3yJBZryfKkb10zgf4HsK3uQl1N2aBeZdJsqPKtcsG9KSWGUKNh/dP6uj3eDnOpPJaqd/otAPUB4/aEOsbk9/Y3FhYuUF7ilurTaOjtZ2mha8FvVpwnSuRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "92f90b5a-fabc-4726-a1c0-d646dbed23c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014dWda1rCMV8HMGPjoeQvud",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13909,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13909
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L6kxBijLHTNCtQo4fmfMso",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "2943154c-29ed-4ba1-83e9-476af737e976",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014dWda1rCMV8HMGPjoeQvud",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13909,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13909
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T05:37:04.014Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01L6kxBijLHTNCtQo4fmfMso",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "417f7747-2d9e-4b80-9b8d-3d3ca05f0521",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DCMhiXGyaiCu4MSyR5mQqe",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "87fb8696-f817-47ac-93d8-eb04a4603227",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HZ9PXntZxrkJvY8EwbLjcg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 451,
+                "cache_read_input_tokens": 25356,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 451
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T05:37:09.051Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DCMhiXGyaiCu4MSyR5mQqe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"codalab_submission.json\\\\npredictions.json\\\\ntest_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "5bc57bba-4ada-4fe6-942d-4dd7b506f3e5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"codalab_submission.json\\\\npredictions.json\\\\ntest_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"codalab_submission.json\\npredictions.json\\ntest_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KrJg39nLCgDsxhy5UJFQ87",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi/test_summary.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "97301f07-7160-4989-9056-c60517cb3242",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012mcf55UxKXxisfRTP8q4w4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 234,
+                "cache_read_input_tokens": 25807,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 234
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T05:37:12.873Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KrJg39nLCgDsxhy5UJFQ87",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_documents\\\\\\\": 500,\\\\n  \\\\\\\"n_predictions\\\\\\\": 28631,\\\\n  \\\\\\\"n_truncated\\\\\\\": 393,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 491,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.982,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 2354.4,\\\\n  \\\\\\\"codalab_stats\\\\\\\": {\\\\n    \\\\\\\"converted\\\\\\\": 5619,\\\\n    \\\\\\\"skipped_rel\\\\\\\": 149,\\\\n    \\\\\\\"skipped_entity\\\\\\\": 1018\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/re-docred-repo/data\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"seed\\\\\\\": 44,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"test_revised\\\\\\\",\\\\n    \\\\\\\"no_evidence\\\\\\\": true,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.39709115508202264,\\\\n    \\\\\\\"recall\\\\\\\": 0.13533141210374638,\\\\n    \\\\\\\"f1\\\\\\\": 0.2018656235223316,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.39709115508202264,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.13533141210374638,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.2018656235223316,\\\\n    \\\\\\\"tp\\\\\\\": 2348,\\\\n    \\\\\\\"pred_count\\\\\\\": 5913,\\\\n    \\\\\\\"gold_count\\\\\\\": 17350,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.4144736842105263,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.006205062543090712,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.012227074235807859,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 386,\\\\n    \\\\\\\"edcr\\\\\\\": 0.9059701492537313,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 607,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 670,\\\\n    \\\\\\\"evi_joint_precision\\\\\\\": 0.07909604519774012,\\\\n    \\\\\\\"evi_joint_recall\\\\\\\": 0.001109438148823203,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.002188183807439825,\\\\n    \\\\\\\"evi_tp\\\\\\\": 14,\\\\n    \\\\\\\"evi_pred_total\\\\\\\": 177,\\\\n    \\\\\\\"evi_gold_total\\\\\\\": 12619,\\\\n    \\\\\\\"format_compliance_rate\\\\\\\": 0.98,\\\\n    \\\\\\\"field_compliance_rate\\\\\\\": 0.016,\\\\n    \\\\\\\"evidence_format_rate\\\\\\\": 0.016,\\\\n    \\\\\\\"n_total\\\\\\\": 500,\\\\n    \\\\\\\"n_parseable\\\\\\\": 490,\\\\n    \\\\\\\"n_field_complete\\\\\\\": 8,\\\\n    \\\\\\\"n_evidence_valid\\\\\\\": 8\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "fd6650f7-a793-4cd6-9f32-0b1316cdd4ce",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_documents\\\\\\\": 500,\\\\n  \\\\\\\"n_predictions\\\\\\\": 28631,\\\\n  \\\\\\\"n_truncated\\\\\\\": 393,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 491,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.982,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 2354.4,\\\\n  \\\\\\\"codalab_stats\\\\\\\": {\\\\n    \\\\\\\"converted\\\\\\\": 5619,\\\\n    \\\\\\\"skipped_rel\\\\\\\": 149,\\\\n    \\\\\\\"skipped_entity\\\\\\\": 1018\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/re-docred-repo/data\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"seed\\\\\\\": 44,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"test_revised\\\\\\\",\\\\n    \\\\\\\"no_evidence\\\\\\\": true,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.39709115508202264,\\\\n    \\\\\\\"recall\\\\\\\": 0.13533141210374638,\\\\n    \\\\\\\"f1\\\\\\\": 0.2018656235223316,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.39709115508202264,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.13533141210374638,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.2018656235223316,\\\\n    \\\\\\\"tp\\\\\\\": 2348,\\\\n    \\\\\\\"pred_count\\\\\\\": 5913,\\\\n    \\\\\\\"gold_count\\\\\\\": 17350,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.4144736842105263,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.006205062543090712,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.012227074235807859,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 386,\\\\n    \\\\\\\"edcr\\\\\\\": 0.9059701492537313,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 607,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 670,\\\\n    \\\\\\\"evi_joint_precision\\\\\\\": 0.07909604519774012,\\\\n    \\\\\\\"evi_joint_recall\\\\\\\": 0.001109438148823203,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.002188183807439825,\\\\n    \\\\\\\"evi_tp\\\\\\\": 14,\\\\n    \\\\\\\"evi_pred_total\\\\\\\": 177,\\\\n    \\\\\\\"evi_gold_total\\\\\\\": 12619,\\\\n    \\\\\\\"format_compliance_rate\\\\\\\": 0.98,\\\\n    \\\\\\\"field_compliance_rate\\\\\\\": 0.016,\\\\n    \\\\\\\"evidence_format_rate\\\\\\\": 0.016,\\\\n    \\\\\\\"n_total\\\\\\\": 500,\\\\n    \\\\\\\"n_parseable\\\\\\\": 490,\\\\n    \\\\\\\"n_field_complete\\\\\\\": 8,\\\\n    \\\\\\\"n_evidence_valid\\\\\\\": 8\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_documents\\\": 500,\\n  \\\"n_predictions\\\": 28631,\\n  \\\"n_truncated\\\": 393,\\n  \\\"n_format_ok\\\": 491,\\n  \\\"format_ok_rate\\\": 0.982,\\n  \\\"inference_time_seconds\\\": 2354.4,\\n  \\\"codalab_stats\\\": {\\n    \\\"converted\\\": 5619,\\n    \\\"skipped_rel\\\": 149,\\n    \\\"skipped_entity\\\": 1018\\n  },\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"seed\\\": 44,\\n    \\\"split\\\": \\\"test_revised\\\",\\n    \\\"no_evidence\\\": true,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.39709115508202264,\\n    \\\"recall\\\": 0.13533141210374638,\\n    \\\"f1\\\": 0.2018656235223316,\\n    \\\"ign_precision\\\": 0.39709115508202264,\\n    \\\"ign_recall\\\": 0.13533141210374638,\\n    \\\"ign_f1\\\": 0.2018656235223316,\\n    \\\"tp\\\": 2348,\\n    \\\"pred_count\\\": 5913,\\n    \\\"gold_count\\\": 17350,\\n    \\\"evi_precision\\\": 0.4144736842105263,\\n    \\\"evi_recall\\\": 0.006205062543090712,\\n    \\\"evi_f1\\\": 0.012227074235807859,\\n    \\\"n_evaluated\\\": 386,\\n    \\\"edcr\\\": 0.9059701492537313,\\n    \\\"n_distractor_citations\\\": 607,\\n    \\\"n_total_citations\\\": 670,\\n    \\\"evi_joint_precision\\\": 0.07909604519774012,\\n    \\\"evi_joint_recall\\\": 0.001109438148823203,\\n    \\\"evi_f1_joint\\\": 0.002188183807439825,\\n    \\\"evi_tp\\\": 14,\\n    \\\"evi_pred_total\\\": 177,\\n    \\\"evi_gold_total\\\": 12619,\\n    \\\"format_compliance_rate\\\": 0.98,\\n    \\\"field_compliance_rate\\\": 0.016,\\n    \\\"evidence_format_rate\\\": 0.016,\\n    \\\"n_total\\\": 500,\\n    \\\"n_parseable\\\": 490,\\n    \\\"n_field_complete\\\": 8,\\n    \\\"n_evidence_valid\\\": 8\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me extract the key metrics:\n\n- ign_f1: 0.2018656235223316 = 20.19%\n- precision: 0.39709115508202264 = 39.71%\n- recall: 0.13533141210374638 = 13.53%\n\nNow let me update the registry and calculate the evidence tax.\n\nWith-evidence ign_f1 = 22.46%\nNo-evidence ign_f1 = 20.19%\nEvidence tax = 22.46 - 20.19 = 2.27%\n\nWait, actually - the evidence tax is usually defined as the performance drop from NOT having evidence. \n\nSo the with-evidence model actually performs better at 22.46% compared to 20.19% without evidence, which means evidence is helping rather than hurting performance. I'll just report both numbers directly.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "03ba5253-08f9-4eb1-9086-c0297f0ffbe6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016qhpRdCypkP7NUxXWP1oCm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1280,
+                "cache_read_input_tokens": 26041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1280
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验成功完成。关键指标：\n\n| Metric | Value |\n|--------|-------|\n| ign_f1 | **20.19%** |\n| precision | 39.71% |\n| recall | 13.53% |\n| format_ok_rate | 98.2% |\n| no_evidence | true |\n\n现在更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "96b854d5-3d32-46eb-bb52-1236b43695fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016qhpRdCypkP7NUxXWP1oCm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1280,
+                "cache_read_input_tokens": 26041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1280
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JGkgqEFW6VzgvkZYLvvv59",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__update_registry",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "19a4902c-b4e2-46da-bf67-427edf883933",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016qhpRdCypkP7NUxXWP1oCm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1280,
+                "cache_read_input_tokens": 26041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1280
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T05:37:26.233Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01JGkgqEFW6VzgvkZYLvvv59",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "4033961f-8753-43d5-850e-c045485ffa65",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__update_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01151VEXzbQWwc1By4kjPSCQ",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "test_eval_1_7b_rsft_s44_no_evi",
+                "field": "metrics",
+                "value": {
+                  "ign_f1": 20.19,
+                  "precision": 39.71,
+                  "recall": 13.53,
+                  "evi_f1": 1.22,
+                  "edcr": 90.6,
+                  "format_ok_rate": 98.2
+                },
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "92bf8d4d-499a-4593-b12e-d98f7628f839",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ForZCX7q2tR4ZJFHFM6dBo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 27321,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1104
+                },
+                "output_tokens": 48,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T05:37:32.932Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01151VEXzbQWwc1By4kjPSCQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_1_7b_rsft_s44_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T04:56:00.551Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:37:32.227Z\\\", \\\"hypothesis\\\": \\\"RSFT-trained 1.7B model (seed 44) without evidence output should show higher recall/ign_f1 than with-evi variant by avoiding token waste on evidence fields, testing whether evidence generation hurts RE performance\\\", \\\"parent\\\": \\\"test_eval_1_7b_rsft_s44_with_evi\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi --max_new_tokens 2048 --no-quantize --no_evidence --seed 44\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\", \\\"eval_data\\\": \\\"test_revised\\\", \\\"tmux_session\\\": \\\"test_eval_1_7b_rsft_s44_no_evi\\\"}, \\\"metrics\\\": {\\\"ign_f1\\\": 20.19, \\\"precision\\\": 39.71, \\\"recall\\\": 13.53, \\\"evi_f1\\\": 1.22, \\\"edcr\\\": 90.6, \\\"format_ok_rate\\\": 98.2}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.718}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "fdfcf752-d546-420c-9e08-52ca7ed0fe2e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_1_7b_rsft_s44_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T04:56:00.551Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:37:32.227Z\\\", \\\"hypothesis\\\": \\\"RSFT-trained 1.7B model (seed 44) without evidence output should show higher recall/ign_f1 than with-evi variant by avoiding token waste on evidence fields, testing whether evidence generation hurts RE performance\\\", \\\"parent\\\": \\\"test_eval_1_7b_rsft_s44_with_evi\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi --max_new_tokens 2048 --no-quantize --no_evidence --seed 44\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\", \\\"eval_data\\\": \\\"test_revised\\\", \\\"tmux_session\\\": \\\"test_eval_1_7b_rsft_s44_no_evi\\\"}, \\\"metrics\\\": {\\\"ign_f1\\\": 20.19, \\\"precision\\\": 39.71, \\\"recall\\\": 13.53, \\\"evi_f1\\\": 1.22, \\\"edcr\\\": 90.6, \\\"format_ok_rate\\\": 98.2}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.718}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_1_7b_rsft_s44_no_evi\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T04:56:00.551Z\", \"updated_at\": \"2026-05-25T05:37:32.227Z\", \"hypothesis\": \"RSFT-trained 1.7B model (seed 44) without evidence output should show higher recall/ign_f1 than with-evi variant by avoiding token waste on evidence fields, testing whether evidence generation hurts RE performance\", \"parent\": \"test_eval_1_7b_rsft_s44_with_evi\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi --max_new_tokens 2048 --no-quantize --no_evidence --seed 44\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-1.7B\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_1_7b_s44\", \"eval_data\": \"test_revised\", \"tmux_session\": \"test_eval_1_7b_rsft_s44_no_evi\"}, \"metrics\": {\"ign_f1\": 20.19, \"precision\": 39.71, \"recall\": 13.53, \"evi_f1\": 1.22, \"edcr\": 90.6, \"format_ok_rate\": 98.2}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.718}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015jhn92BWZYzCHE2Hk6uy6W",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "test_eval_1_7b_rsft_s44_no_evi",
+                "field": "conclusion",
+                "value": "success",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "checkpoint_path": "/root/autodl-tmp/rsft_output_1_7b_s44",
+                  "log_path": "/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi/test_summary.json"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "bfb9e55e-ceaa-4264-a443-c6a1c5c7f1a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019AwALLuiudffqRowDuxW63",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 857,
+                "cache_read_input_tokens": 28425,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 857
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-25T05:37:49.197Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015jhn92BWZYzCHE2Hk6uy6W",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_1_7b_rsft_s44_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T04:56:00.551Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:37:48.480Z\\\", \\\"hypothesis\\\": \\\"RSFT-trained 1.7B model (seed 44) without evidence output should show higher recall/ign_f1 than with-evi variant by avoiding token waste on evidence fields, testing whether evidence generation hurts RE performance\\\", \\\"parent\\\": \\\"test_eval_1_7b_rsft_s44_with_evi\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi --max_new_tokens 2048 --no-quantize --no_evidence --seed 44\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\", \\\"eval_data\\\": \\\"test_revised\\\", \\\"tmux_session\\\": \\\"test_eval_1_7b_rsft_s44_no_evi\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi/test_summary.json\\\"}, \\\"metrics\\\": {\\\"ign_f1\\\": 20.19, \\\"precision\\\": 39.71, \\\"recall\\\": 13.53, \\\"evi_f1\\\": 1.22, \\\"edcr\\\": 90.6, \\\"format_ok_rate\\\": 98.2}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7047}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "e0228557-f122-482d-8d7b-b89256121b04",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_1_7b_rsft_s44_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T04:56:00.551Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:37:48.480Z\\\", \\\"hypothesis\\\": \\\"RSFT-trained 1.7B model (seed 44) without evidence output should show higher recall/ign_f1 than with-evi variant by avoiding token waste on evidence fields, testing whether evidence generation hurts RE performance\\\", \\\"parent\\\": \\\"test_eval_1_7b_rsft_s44_with_evi\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi --max_new_tokens 2048 --no-quantize --no_evidence --seed 44\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\", \\\"eval_data\\\": \\\"test_revised\\\", \\\"tmux_session\\\": \\\"test_eval_1_7b_rsft_s44_no_evi\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi/test_summary.json\\\"}, \\\"metrics\\\": {\\\"ign_f1\\\": 20.19, \\\"precision\\\": 39.71, \\\"recall\\\": 13.53, \\\"evi_f1\\\": 1.22, \\\"edcr\\\": 90.6, \\\"format_ok_rate\\\": 98.2}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7047}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_1_7b_rsft_s44_no_evi\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T04:56:00.551Z\", \"updated_at\": \"2026-05-25T05:37:48.480Z\", \"hypothesis\": \"RSFT-trained 1.7B model (seed 44) without evidence output should show higher recall/ign_f1 than with-evi variant by avoiding token waste on evidence fields, testing whether evidence generation hurts RE performance\", \"parent\": \"test_eval_1_7b_rsft_s44_with_evi\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi --max_new_tokens 2048 --no-quantize --no_evidence --seed 44\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-1.7B\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_1_7b_s44\", \"eval_data\": \"test_revised\", \"tmux_session\": \"test_eval_1_7b_rsft_s44_no_evi\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_1_7b_s44\", \"log_path\": \"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi/test_summary.json\"}, \"metrics\": {\"ign_f1\": 20.19, \"precision\": 39.71, \"recall\": 13.53, \"evi_f1\": 1.22, \"edcr\": 90.6, \"format_ok_rate\": 98.2}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7047}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ay13KTn5Cpj3wqTcPv3xe2",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "test_eval_1_7b_rsft_s44_no_evi",
+                "field": "status",
+                "value": "DONE",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "290845af-5d6c-483a-82d8-31bbe66ce6fa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N3VXgqtTdcRwVSiegCc8Si",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 963,
+                "cache_read_input_tokens": 29282,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 963
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T05:37:54.774Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ay13KTn5Cpj3wqTcPv3xe2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_1_7b_rsft_s44_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T04:56:00.551Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:37:52.774Z\\\", \\\"hypothesis\\\": \\\"RSFT-trained 1.7B model (seed 44) without evidence output should show higher recall/ign_f1 than with-evi variant by avoiding token waste on evidence fields, testing whether evidence generation hurts RE performance\\\", \\\"parent\\\": \\\"test_eval_1_7b_rsft_s44_with_evi\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi --max_new_tokens 2048 --no-quantize --no_evidence --seed 44\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\", \\\"eval_data\\\": \\\"test_revised\\\", \\\"tmux_session\\\": \\\"test_eval_1_7b_rsft_s44_no_evi\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi/test_summary.json\\\"}, \\\"metrics\\\": {\\\"ign_f1\\\": 20.19, \\\"precision\\\": 39.71, \\\"recall\\\": 13.53, \\\"evi_f1\\\": 1.22, \\\"edcr\\\": 90.6, \\\"format_ok_rate\\\": 98.2}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-25T05:37:52.775Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0146}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "e49190fd-265b-48e1-8382-9db94d8f7d36",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_1_7b_rsft_s44_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T04:56:00.551Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:37:52.774Z\\\", \\\"hypothesis\\\": \\\"RSFT-trained 1.7B model (seed 44) without evidence output should show higher recall/ign_f1 than with-evi variant by avoiding token waste on evidence fields, testing whether evidence generation hurts RE performance\\\", \\\"parent\\\": \\\"test_eval_1_7b_rsft_s44_with_evi\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi --max_new_tokens 2048 --no-quantize --no_evidence --seed 44\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\", \\\"eval_data\\\": \\\"test_revised\\\", \\\"tmux_session\\\": \\\"test_eval_1_7b_rsft_s44_no_evi\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi/test_summary.json\\\"}, \\\"metrics\\\": {\\\"ign_f1\\\": 20.19, \\\"precision\\\": 39.71, \\\"recall\\\": 13.53, \\\"evi_f1\\\": 1.22, \\\"edcr\\\": 90.6, \\\"format_ok_rate\\\": 98.2}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-25T05:37:52.775Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0146}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_1_7b_rsft_s44_no_evi\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T04:56:00.551Z\", \"updated_at\": \"2026-05-25T05:37:52.774Z\", \"hypothesis\": \"RSFT-trained 1.7B model (seed 44) without evidence output should show higher recall/ign_f1 than with-evi variant by avoiding token waste on evidence fields, testing whether evidence generation hurts RE performance\", \"parent\": \"test_eval_1_7b_rsft_s44_with_evi\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi --max_new_tokens 2048 --no-quantize --no_evidence --seed 44\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-1.7B\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_1_7b_s44\", \"eval_data\": \"test_revised\", \"tmux_session\": \"test_eval_1_7b_rsft_s44_no_evi\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_1_7b_s44\", \"log_path\": \"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s44_no_evi/test_summary.json\"}, \"metrics\": {\"ign_f1\": 20.19, \"precision\": 39.71, \"recall\": 13.53, \"evi_f1\": 1.22, \"edcr\": 90.6, \"format_ok_rate\": 98.2}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T05:37:52.775Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.0146}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## Evidence Tax（1.7B RSFT, seed 44, test_revised）\n\n| Condition | ign_f1 | precision | recall |\n|-----------|--------|-----------|--------|\n| **With evidence** | 22.46% | 40.07% | 15.76% |\n| **No evidence** | 20.19% | 39.71% | 13.53% |\n| **Δ (tax)** | **+2.27 pp** | +0.36 pp | +2.23 pp |\n\n**结论**：假设被否定。No-evidence 模型的 ign_f1 反而**低了 2.27 个百分点**，说明 evidence 生成并未构成 performance tax——相反，要求模型输出 evidence 反而略微提升了关系抽取性能（可能因为 evidence reasoning 起到了 chain-of-thought 的作用）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "uuid": "e329868b-5a76-4909-9038-41e461282a2d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EEo4TqZRhXrL2HZeQhsPTX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 936,
+                "cache_read_input_tokens": 30245,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 936
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## Evidence Tax（1.7B RSFT, seed 44, test_revised）\n\n| Condition | ign_f1 | precision | recall |\n|-----------|--------|-----------|--------|\n| **With evidence** | 22.46% | 40.07% | 15.76% |\n| **No evidence** | 20.19% | 39.71% | 13.53% |\n| **Δ (tax)** | **+2.27 pp** | +0.36 pp | +2.23 pp |\n\n**结论**：假设被否定。No-evidence 模型的 ign_f1 反而**低了 2.27 个百分点**，说明 evidence 生成并未构成 performance tax——相反，要求模型输出 evidence 反而略微提升了关系抽取性能（可能因为 evidence reasoning 起到了 chain-of-thought 的作用）。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 62955,
+            "duration_api_ms": 56410,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "b733b047-6b76-45ab-a125-f87afc05bdec",
+            "total_cost_usd": 0.2721865,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 19734,
+              "cache_read_input_tokens": 203924,
+              "output_tokens": 1798,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 19734,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 253,
+                  "cache_read_input_tokens": 30245,
+                  "cache_creation_input_tokens": 936,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 936
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1722,
+                "outputTokens": 29,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001867,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 1798,
+                "cacheReadInputTokens": 203924,
+                "cacheCreationInputTokens": 19734,
+                "webSearchRequests": 0,
+                "costUSD": 0.2703195,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "3251d87a-4f48-47eb-bfe4-9b4b3d254719"
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-test-eval-1-7b-s44-no-evi-check.md"
+}

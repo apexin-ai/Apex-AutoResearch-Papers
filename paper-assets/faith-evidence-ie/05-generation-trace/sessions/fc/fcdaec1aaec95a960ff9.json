@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcdaec1aaec95a960ff9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose plan 001 flat nli scoring",
+  "task_key": "worker_diagnose_plan_001_flat_nli_scoring_20260515T151804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan_001_flat_nli_scoring_20260515T151804_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "73bf2bbd7e867d17b0da710e566ff54985a447d169331ee663b3b0f124b4f978"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 `artifacts/diagnose_plan_001.md`。\n\n**根因**：启动命令有两个错误——模块路径 `freige.training.rsft_score_filter` 不存在（正确路径是 `training.rsft_score_filter`），且缺少 `--input_dir` 和 `--output_path` 必选参数。进程启动即 `ModuleNotFoundError` 崩溃，无日志文件被创建。\n\n**好消息**：评分任务已通过分 shard 方式完成（s0-s3 共 2719 条训练数据），无需重跑，合并 4 个 `rsft_train.jsonl` 即可使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-001-flat-nli-scoring.md"
+}

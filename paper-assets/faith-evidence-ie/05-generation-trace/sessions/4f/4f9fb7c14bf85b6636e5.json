@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f9fb7c14bf85b6636e5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops d158 post restart check",
+  "task_key": "worker_ops_d158_post_restart_check_20260524T111703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d158_post_restart_check_20260524T111703_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "1359b44e075729556f077fd5588f0db47807c814089453ffbac2a43cd96355c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程均存活，GPU 服务器未重启。\n\n## 状态汇总\n\n| 实验 | PID | 状态 | 进度 | GPU | 运行时间 |\n|------|-----|------|------|-----|---------|\n| d158_1_7b_rsft_s44_generate | 302254 | **存活** | 821/3027 (27%) | cuda:0, 7.2GB, 75% util | 2h25m |\n| d158_14b_rsft_s44_generate | 306172 | **存活** | 193/3027 (6.4%) | cuda:2, 32.5GB, 93% util | 1h06m |\n\n**输出文件行数：**\n- 1.7B: 6568 行 (821 docs × 8 generations)\n- 14B: 1544 行 (193 docs × 8 generations)\n\n**质量指标（最近 100 docs 批次）：**\n- 1.7B: format_ok 100%, truncation 22.4%, diversity 7.5/8\n- 14B: format_ok 100%, truncation 8.4%, diversity 7.3/8\n\n**预计剩余时间：**\n- 1.7B: ~7-8h（~10s/doc 均速）\n- 14B: ~15-16h（~20s/doc 均速）\n\n**磁盘：** /root/autodl-tmp 102GB 可用 (72% used)\n\n**注意：** 1.7B truncation_rate 22.4% 偏高，日志持续报 warning 建议 max_new_tokens=3072。14B 的 8.4% 在可接受范围。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d158-post-restart-check.md"
+}

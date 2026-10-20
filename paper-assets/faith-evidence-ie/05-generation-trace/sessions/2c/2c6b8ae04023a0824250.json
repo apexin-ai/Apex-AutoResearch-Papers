@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c6b8ae04023a0824250",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnostic cuda3 conflict",
+  "task_key": "worker_diagnostic_cuda3_conflict_20260515T162018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnostic_cuda3_conflict_20260515T162018_result.json",
+    "occurrence": 1,
+    "bytes": 459,
+    "sha256": "8783e2280590e76a030b23f73b43b7b8e685d21d9044df77ca1243667a55fca8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/cuda3_diagnostic.md`。\n\n**结论**：两个进程都活着，GPU 3 显存 87.5% (28548/32607 MiB)，确实存在争用——eval 推理速度从 ~50s/batch 退化到 ~90s/batch（train 启动后）。但没有 OOM，建议不杀进程，让 eval 自然跑完（预计 ~1-1.5h），之后训练速度会恢复。\n\n额外信息：ckpt-80 评估已出结果，F1=0.4456, Evi-F1=0.8034, EDCR=0.6409。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnostic-cuda3-conflict.md"
+}

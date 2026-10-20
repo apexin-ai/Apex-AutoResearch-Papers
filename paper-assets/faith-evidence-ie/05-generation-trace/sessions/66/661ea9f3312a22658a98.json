@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "661ea9f3312a22658a98",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose sft adapter recovery",
+  "task_key": "worker_diagnose_sft-adapter-recovery_20260520T160314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_sft-adapter-recovery_20260520T160314_result.json",
+    "occurrence": 1,
+    "bytes": 1354,
+    "sha256": "dc7721a672262288162528dceb1aac1afcc6a5157816f6c8496c14dc4473caaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### rsync 状态\n**仍在运行**，3 个 rsync 进程活跃。从 16:31 开始已跑约 7.5 小时，当前进度：\n\n| 时间 | 已传输 | 占比 |\n|------|--------|------|\n| 16:31 | 14G | 4% |\n| 00:01 (最新) | 206G | 59% |\n\nbjb2 源头总量 **208G**，但 westd 已显示 206G——看起来 rsync 快完成 autodl-tmp 的传输了，不过 59% 是占磁盘总容量 350G 的比例，实际数据传输可能接近完成。\n\n### 源头 bjb2-12179：4 个 adapter 目录**完好**\n\n| 目录 | 大小 | 核心文件 |\n|------|------|---------|\n| sft_output_qwen3_8b_bf16 | 4.6G | adapter_model.safetensors (698MB) + checkpoint-190/570 |\n| sft_output_qwen3_8b_s43 | 4.6G | 同上 |\n| sft_output_qwen3_8b_s44 | 4.6G | 同上 |\n| sft_output_qwen3_8b_no_evidence | 4.6G | 同上 |\n\n### 目标 westd-37389：4 个目录**全空**（0 字节）\n\n目录已创建（rsync 先建目录结构），但文件尚未传输到位。\n\n### 结论\n\n**rsync 还没传到这些目录。** 源头文件完好，无需重训。当前 rsync 已传 206G / 208G，接近完成。\n\n**建议：等 rsync 自然完成。** 按当前速率（约 26G/h），剩余量很小，预计 1-2 小时内完成。完成后检查 4 个目录是否填充即可。如果急需，可以单独 rsync 这 4 个目录优先传输。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-sft-adapter-recovery.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "478c75b57e8142a6f3b4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research rsft literature check",
+  "task_key": "worker_research_rsft-literature-check_20260515T102836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_rsft-literature-check_20260515T102836_result.json",
+    "occurrence": 1,
+    "bytes": 1433,
+    "sha256": "bb2393825e002140fcb1af475c9bdec0d9937e14f304117520b52b5c9289d7ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 文献对标报告\n\n**直接竞争者：无。** 在 DocRED 文档级关系抽取上，没有找到使用 rejection sampling / self-training + NLI-based reward 的已发表工作。RSFT 在 math reasoning 领域成熟（ReST, RFT），但迁移到 IE 任务属于本项目的新贡献。\n\n**结果定位：**\n- LLM-based DocRE 近期最佳改进幅度：[RelPrior](https://arxiv.org/html/2511.08143v1)（2025）在 LLaMA3-8B 上比 AutoRE 提升 +2.06–2.38pp F1；[LMRC](https://arxiv.org/html/2408.13889v2)（2024）缩小了 LLM 与 BERT-based 方法的差距但未给出绝对提升数字\n- 我们的 **+5.98pp rel_f1** 显著超过同类 LLM-based DocRE 方法的改进幅度（约 2-3x）\n- Self-distillation for DocRE（[Progressive Self-distillation](https://dl.acm.org/doi/10.1145/3656168), 2024）是最接近的 self-training 思路，但用 knowledge distillation 而非 rejection sampling，且无 evidence-based reward\n\n**CED/NLI reward 的独特性：** 文献中 NLI 用于 RE 的方式是间接监督（[NLI as Indirect Supervision](https://github.com/luka-group/NLI_as_Indirect_Supervision), ACL 2023）或事后过滤，无人将其作为 rejection sampling 的打分函数。CED 作为 reward signal 驱动数据筛选是本项目的方法论贡献点。\n\n**结论：无直接竞争者，+5.98pp 提升在 LLM-based DocRE 改进中处于领先水平，CED-as-reward 是新颖的。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-rsft-literature-check.md"
+}

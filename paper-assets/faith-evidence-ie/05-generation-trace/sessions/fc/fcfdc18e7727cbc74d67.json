@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "fcfdc18e7727cbc74d67",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "audit table registry trace final",
+  "task_key": "worker_audit_table-registry-trace-final_20260523T191624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_table-registry-trace-final_20260523T191624.log",
+    "occurrence": 1,
+    "bytes": 847900,
+    "sha256": "364dcc6b3bf74b68baa5064bf7f7eacac0aea361ec62609632addef2bc3e8b2d"
+  },
+  "statistics": {
+    "messages": 151,
+    "user_turns": 1,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 55,
+      "tool_result": 55,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 147,
+      "chunks": [
+        {
+          "path": "fcfdc18e7727cbc74d67-part-0001.json",
+          "message_count": 91
+        },
+        {
+          "path": "fcfdc18e7727cbc74d67-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "fcfdc18e7727cbc74d67-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-table-registry-trace-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdb6d485d765edb7854f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "status loop6 check",
+  "task_key": "worker_status_loop6-check_20260515T011131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_loop6-check_20260515T011131_result.json",
+    "occurrence": 1,
+    "bytes": 2358,
+    "sha256": "8ab3bb0cef14274f7f5fadb6a5d847d3f9a1b79556f0ef65143b58f470a03834"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态汇报\n\n### GPU 占用\n\n| GPU | 进程 | 显存 | 利用率 |\n|-----|------|------|--------|\n| GPU 0 | GRPO trainer (pid 90085) — `grpo-s3-ced-lr5e6-r1` | 13.6G / 32.6G | 58% |\n| GPU 1 | RSFT generate (pid 122149) — `rsft_generate` | 23.2G / 32.6G | 88% |\n| GPU 2 | **空闲** | 0 / 32.6G | 0% |\n| GPU 3 | Eval ckpt-100 (pid 117640) — `inference ckpt-100` | 11.2G / 32.6G | 82% |\n\n另有 `rsft_ced_analysis.py` (pid 126986) 在 CPU 上运行。\n\n### RSFT Generate 进度\n\n- **运行中**，113/1514 batches（~7%），已跑 ~1 小时\n- 平均 ~33s/batch，预计还需 **~13 小时**\n- 已生成 **1824 行** JSONL（17.5MB），覆盖 ~228 个 doc（progress.json 有 228 个 completed_doc_ids）\n- 每 100 docs 输出一次 monitor 日志：format_ok_rate 99.8%，truncation_rate 9.9%，mean_diversity 1.0/8\n\n**输出格式**（generations.jsonl 每行）：\n```\n{doc_id, generation_idx, prompt, output, raw_text, format_ok, truncated, gold_triples, sents}\n```\n每个 doc 生成 8 个候选（num_generations=8），batch_size=2。\n\n### Eval ckpt-100 进度\n\n- **运行中**，57/62 batches（~92%），还剩 5 个 batch\n- 预计 **~8 分钟后完成**\n- 输出目录 `/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/` **目前为空**（结果应在推理全部完成后写入）\n\n### NLI 模型\n\n**已下载**，路径：`/root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/`，包含 blobs/refs/snapshots。\n\n### RSFT 代码输入输出格式\n\n**rsft_score_filter.py**（Step 2: 打分+筛选）：\n- **输入**：`generations.jsonl`（rsft_generate 的输出）\n- **输出**：\n  - `rsft_train.json` — 筛选后的 SFT 训练数据\n  - `rsft_scores.jsonl` — 带分数的完整记录\n  - `rsft_report.json` — 统计报告\n- 计算 3 种奖励：format_reward、f1_reward、ced_reward\n- 策略：top_pct 25%\n\n**rsft_trainer.py**（Step 3: 训练）：\n- **输入**：JSONL，每行 `{doc_id, input, output, ced_score, ...}`\n- **输出**：QLoRA adapter checkpoint\n- 基于 `input` 和 `output` 字段构建 chat template，用 SFTTrainer 训练\n\n**格式差异**：rsft_generate 输出的字段是 `prompt` + `output`，而 rsft_trainer 期望的是 `input` + `output`。rsft_score_filter 负责做这个字段转换。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-loop6-check.md"
+}

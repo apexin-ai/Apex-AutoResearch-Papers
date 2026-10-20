@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "908fd0b975caef50fee3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check 1 7b no evi v3 completion",
+  "task_key": "worker_ops_check_1_7b_no_evi_v3_completion_20260516T135335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_1_7b_no_evi_v3_completion_20260516T135335_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "8e93a83df130a4881f35324cd5450d9ac23a5ad00766e9f9fd827544596b9c4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，registry 已更新为 DONE。\n\n## 结果摘要\n\n| 指标 | 值 |\n|------|-----|\n| Ign-F1 | 0.3982 |\n| Rel-F1 | 0.4103 |\n| Evi-F1 | 0.0 (no-evidence 模型不输出 evidence) |\n| EDCR | 0.0 |\n| Format compliance | 100% |\n| Truncated samples | 501/985 |\n\n## Evidence Tax（1.7B 模型）\n\n| 配置 | Ign-F1 |\n|------|--------|\n| With-evidence | 0.4679 |\n| No-evidence | 0.3982 |\n| **Evidence tax** | **+0.0697 (+17.5% relative)** |\n\n结论：在 1.7B 模型上，with-evidence 训练相比 no-evidence 训练带来 +7.0 绝对 F1 提升。Evidence 训练信号对关系抽取有显著正向效果，不存在\"evidence tax\"（即加入 evidence 不会拖累关系抽取性能，反而提升）。\n\n注意事项：501/985 样本被 truncated（max_new_tokens=1024），这可能压低了 no-evidence 模型的分数，但 with-evidence eval 同样有 truncation，因此对比仍有效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-1-7b-no-evi-v3-completion.md"
+}

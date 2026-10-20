@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f105931d6028e78e7b36",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops nli large download",
+  "task_key": "worker_ops_nli_large_download_20260518T052631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_nli_large_download_20260518T052631_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "1616a8da45f8bec00bf906a8b07df9b3d8ca2d52948ce96a706d2bfc6b20be2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n| 项目 | 结果 |\n|------|------|\n| 下载状态 | 成功 |\n| 模型类型 | deberta-v2 |\n| 参数量 | **435.1M**（符合预期） |\n| 磁盘占用 | **1.7GB** |\n| 离线加载 | 通过（HF_HUB_OFFLINE=1 验证成功） |\n| `rsft_score_filter.py` | **不存在**。但 `--nli_model` 参数在 `rewards/ced_reward.py`、`training/grpo_trainer.py`、`analysis/ced_signal_validation.py` 中均支持，默认值为 `cross-encoder/nli-deberta-v3-base`。使用 large 版本时传 `--nli_model cross-encoder/nli-deberta-v3-large` 即可。 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-nli-large-download.md"
+}

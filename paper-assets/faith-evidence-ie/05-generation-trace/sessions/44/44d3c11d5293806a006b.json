@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44d3c11d5293806a006b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose urgent status v2",
+  "task_key": "worker_diagnose_urgent-status-v2_20260520T111916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_urgent-status-v2_20260520T111916_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "765a4265324a5dd70edc54a3b50e5101b045e2b833a424261b4bbbe01d0fe323"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 迁移状态汇总\n\n| 项目 | 状态 |\n|------|------|\n| **磁盘** | 86G / 350G 已用（25%），剩余 265G，充裕 |\n| **Llama-3.1-8B** | 4 shards 全齐 — shard3 = **4.6G** ✅ ≥4G |\n| **Llama-3.1-8B-Instruct** | 不存在 |\n| **Qwen3-14B** | 8/8 shards，28G，完整 ✅ |\n| **14B adapter** | ❌ 缺失 |\n| **14B generations** | ❌ 缺失 |\n| **8B SFT adapter** | ❌ 缺失 |\n| **Milestone A** | `MILESTONE_A_READY` ✅ |\n| **传输进程** | 无活跃 rsync/scp（ps 命令格式报错，但 milestone 已 ready 且无新文件写入） |\n| **GPU** | 0,1 空闲（0 MiB）；2,3 利用率 100% 但显存 0 MiB（可能刚释放或驱动状态延迟） |\n\n**结论**：基座模型（8B + 14B）就绪，可以开始 8B 实验。14B 的 adapter 和 generations 未迁移，8B SFT adapter 也缺失——如果实验依赖这些产物需要先补传。GPU 0/1 可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-urgent-status-v2.md"
+}

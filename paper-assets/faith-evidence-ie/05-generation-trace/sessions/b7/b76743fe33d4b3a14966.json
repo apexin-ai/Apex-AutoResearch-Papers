@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b76743fe33d4b3a14966",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code verify unified eval",
+  "task_key": "worker_code_verify_unified_eval_20260514T145338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify_unified_eval_20260514T145338_result.json",
+    "occurrence": 1,
+    "bytes": 746,
+    "sha256": "0e8fb18d02f72626d07e68458dee4ab47e2d9441d379caba0fbd561ea8ca51f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/eval_script_audit.md`。\n\n核心结论：\n\n**eval 脚本不能直接评估 GRPO checkpoint。** 原因：`grpo_trainer.py` 先将 SFT adapter merge 进 base model，再训练新 LoRA。GRPO checkpoint 保存的是相对于 (Qwen3-4B + SFT merged) 的 delta，但 `inference.py` 只支持加载单个 adapter，会直接把 GRPO delta 应用到裸 Qwen3-4B 上，缺失 SFT 贡献。\n\n其他方面没问题：\n- Evi-F1、EDCR、Ign-F1 都已实现\n- parse_model_output 统一解析逻辑全模型通用\n- GRPO checkpoint 格式（LoRA adapter）与 SFT 一致\n\n修复方案：给 `inference.py` 加一个 `--sft_adapter` 参数，加载时先 merge SFT 再叠 GRPO adapter，约 15 行改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-unified-eval.md"
+}

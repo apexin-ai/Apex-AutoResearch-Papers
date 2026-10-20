@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e4867d74baf2a42e14f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research citation crosscheck",
+  "task_key": "worker_research_citation-crosscheck_20260516T005937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation-crosscheck_20260516T005937_result.json",
+    "occurrence": 1,
+    "bytes": 831,
+    "sha256": "098cee0a6b95ab8b709f2be3925d9e2bc43904e3d5a89cafaf162a49d7c07edc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册 (`art_20260516_19360a`)。\n\n**核心发现** (11 issues):\n\n- **Q-BLoRA (`seo2024qblora`)** 在 related_work 中引用但 literature_map 中无条目 — 需补录\n- **6 篇 literature_map 中的 direct-competitor/method-component 未在 related_work 引用**：OREO (direct-competitor)、DocGNRE、Posterior-GRPO、Inference-Aware BoN FT、FaithLens、PrefixNLI (method-component)\n- **4 处角色不一致**：qerl2025 和 rift2026 被标为 direct-competitor 但实际描述并非 DocRE 竞争系统；autore2024 和 glidre2025 标为 background 但描述更像 related_method\n\n无重大遗漏（direct-competitor 仅缺 1 篇 OREO，未达 >3 篇红线）。优先处理：补录 Q-BLoRA 到 literature_map，在 related_work 中补引 FaithLens/PrefixNLI/Inference-Aware BoN FT。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-crosscheck.md"
+}

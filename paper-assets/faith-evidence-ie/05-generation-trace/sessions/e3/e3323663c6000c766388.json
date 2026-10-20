@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3323663c6000c766388",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "reviewer / loop_14.md",
+  "task_key": "loop_14",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_14.md",
+    "occurrence": 1,
+    "bytes": 5262,
+    "sha256": "bd6cb9bd326c0a9ec34594c7e781c7664b8d2ccde66bd9b4f4239f968ed0f493"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: max_wall_time\nupdated: '2026-05-17T16:44:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-3（rtx5090-4x 四卡全可用），越界即 CRITICAL\n- 提交任务必须 CUDA_VISIBLE_DEVICES=X 显式指定，禁止 device_map=\"auto\"（C002/C003）\n- no-evidence 模型 eval 必须传 --no_evidence 参数（C005），否则结果全部作废\n- LLaMA base_model 路径是 `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`（注意 meta-llama/ 子目录），本轮已因漏掉子目录导致 eval 崩溃一次\n- Registry 标记 killed 时必须 kill -9 + ps 验证（C004）\n- D076 eval 协议：batch_size=4, --no-quantize, max_new_tokens=1024, seed=42（seed variance 实验用 seed=43）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x (root)，备用 bjb2-12179 (root)\n- 工作目录：`/root/autodl-tmp/freige`\n- Python：`/root/miniconda3/bin/python`，conda base 环境\n- 模型路径：`/root/autodl-tmp/models/` 下 Qwen/Qwen3-{1.7B,4B,8B} 和 meta-llama/Meta-Llama-3.1-8B\n- 数据集：`/root/autodl-tmp/data/docred/`（dev.json 998 docs → 985 eval docs，test.json）\n- SFT checkpoints：`/root/autodl-tmp/sft_output_{qwen3_1_7b,qwen3_4b,qwen3_8b,llama_3_1_8b}_bf16`（或无 _bf16 后缀）\n- RSFT checkpoints：`/root/autodl-tmp/rsft_output_{qwen3_1_7b,qwen3_4b→rsft_ced_s43,qwen3_8b,llama_3_1_8b_r3}/checkpoint-*`\n- HF cache：`/root/autodl-tmp/.hf_cache`，离线模式 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- 活跃进程（截至 handoff）：\n  - 1.7B seed43 eval: PID 455637, cuda:2, nohup（221/247, ~15 min 完成）\n  - LLaMA seed43 eval r2: PID 463080, cuda:0, tmux（刚启动 ~5 min）\n  - 8B RSFT test eval: PID 460590, cuda:1, nohup\n  - LLaMA RSFT test eval: PID 460164, cuda:3, nohup\n\n### 3. 📊 当前状态\n**本轮完成的审查（共 6 份报告）：**\n1. lead2_ckpt20_eval [WARNING] — GRPO ckpt-20 rel_f1=0.4617 仅比 RSFT +0.16pp，噪声范围，不宜作正面证据\n2. ROADMAP D094 [WARNING] — 4B \"+6.1pp\" 数据错误，实际 +5.52pp（上轮遗留）\n3. fig_scaling.pdf [WARNING] — 8B no-evidence 数据占位符过时（上轮遗留）\n4. fig_overview.png [WARNING] — \"Select Top-1\" 应为 \"Top-K\"（上轮遗留）\n5. Scaling study 完整表 [PASS] — 4 模型全部核实\n6. LLaMA seed43 eval [CRITICAL] — base_model 路径缺 meta-llama/ 子目录导致崩溃，已修复为 r2\n\n**RUNNING 实验：**\n- `plan_006_qwen3_1_7b_rsft_seed43_eval` — 1.7B seed variance 检查，221/247 (89%)，~15 min\n- `plan_006_llama_rsft_seed43_eval_r2` — LLaMA seed variance 检查，刚启动，~2.5h\n- `plan_006_qwen3_8b_rsft_test` — 8B test 预测（CodaLab 提交用）\n- `plan_006_llama_rsft_test` — LLaMA test 预测（CodaLab 提交用）\n- `plan_006_llama_rsft_seed43` — 训练已完成但 registry 仍标 RUNNING（需 Agent 关闭）\n\n**Paper writing workers 已完成但未审查**（非实验，文献/写作类 worker，不需要实验审查）：\n- worker_paper_writing_experiments, worker_paper_writing_method, worker_paper_research_*\n\n### 4. 📋 待办（条件触发式）\n- 1.7B seed43 eval 完成 → 读 metrics.json，对比 seed42 rel_f1=0.5219（期望 ±1pp 即 0.51-0.53），报告 seed robustness 结论\n- LLaMA seed43 eval r2 完成 → 读 metrics.json，对比 seed42 rel_f1=0.5674（期望 ±1.5pp），报告跨架构 seed robustness\n- 两个 test eval 完成 → 确认 predictions.json 存在（test 无 gold label 无 metrics），提醒 Director CodaLab 手动提交\n- Paper 章节审查请求到达 → 按 §5 写作审查维度审查（claim 可信度 / 叙事逻辑 / 审稿人攻击面），先检查 Agent 是否遵循了 paper-writing-norms skill\n- 所有 seed variance 完成 → 汇总 seed robustness 表给 Director（2 模型 × 2 seeds）\n\n### 5. 🎯 战略上下文\n**核心发现（Scaling Study C5，已验证完整表）：**\n\n| Model | SFT rel_f1 | RSFT rel_f1 | Δ |\n|-------|-----------|------------|------|\n| Qwen3-1.7B | 0.4945 | 0.5219 | +2.74pp |\n| Qwen3-4B | 0.4049 | 0.4601 | +5.52pp |\n| Qwen3-8B | 0.5262 | 0.5606 | +3.44pp |\n| LLaMA-8B | 0.5514 | 0.5674 | +1.60pp |\n\n**关键叙事点：**\n- Evidence Tax 非单调：1.7B 受益 +8.0pp，4B 付出 -7.5pp，8B ≈0，LLaMA -0.7pp\n- RSFT gain 与 SFT baseline 强度负相关：弱模型获益更大\n- 1.7B RSFT (0.5050 ign_f1) ≈ 8B SFT (0.5051 ign_f1) — \"小模型+RSFT 追平大模型 SFT\"\n- Qwen 家族 1.7B > 4B 非单调——4B 是异常点，论文需谨慎处理\n- GRPO 在 RSFT 之上仅 +0.16pp（噪声），当前只能作 future work\n- BM25 post-hoc baseline 已验证：RSFT joint generation EDCR 比 oracle-k post-hoc 好 7.9pp\n\n**易错点：**\n- argparse default bug：inference.py line 382 hardcodes `--base_model` default 为 Qwen3-4B，当 model_path 是 full model 时无害（被忽略），但当 model_path 是 adapter 时会错用 base_model——LLaMA eval 必须显式传 `--base_model`\n- Registry 中 ROADMAP 写的 4B gain \"+6.1pp\" 无法从任何数据复现，实际是 +5.52pp（rel_f1）或 +5.38pp（ign_f1），已报告但不确定是否已修正\n- evi_f1 有两个定义：evi_f1（TP-only，~0.80+）和 evi_f1_joint（DREEAM protocol，含 FP/FN，~0.36-0.46），论文引用时必须区分\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-copy-2.md"
+}

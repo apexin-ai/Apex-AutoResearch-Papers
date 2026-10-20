@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7c50bb4e2fa9a22eb03",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit 8b rsft s44 eval cuda3",
+  "task_key": "worker_submit_8b_rsft_s44_eval_cuda3_20260519T020928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_8b_rsft_s44_eval_cuda3_20260519T020928_result.json",
+    "occurrence": 1,
+    "bytes": 331,
+    "sha256": "877dfaa1a83409104de3b8d477d62df96abb9c4bf74608f83d47b806ca13b588"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **exp_id**: `plan019_8b_rsft_s44_eval`\n- **PID**: 598905\n- **GPU**: cuda:3（18141 MiB 已占用）\n- **状态**: RUNNING\n- **parent**: `plan019_8b_rsft_s44`\n- **日志**: `/root/autodl-tmp/eval_results/rsft_8b_k1_s44_eval.log`\n- **预计耗时**: ~2h（参考 8B SFT s44 eval 耗时 6951s）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-8b-rsft-s44-eval-cuda3.md"
+}

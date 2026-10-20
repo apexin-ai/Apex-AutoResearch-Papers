@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1306084064d1cb4a0f0e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis 14b ced scoring done",
+  "task_key": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_14b-ced-scoring-done_20260523T132656_result.json",
+    "occurrence": 1,
+    "bytes": 688,
+    "sha256": "16f01f04bed16aefe142b74d749f36615b39e1ec0c44c5654ce82593a39b3941"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**14B s43 CED scoring 成功完成。**\n\n| 项目 | 值 |\n|------|------|\n| 状态 | 成功 |\n| 输出目录 | `/root/autodl-tmp/rsft_scored_14b_s43/` |\n| 全部打分条数 | 24,216 条 |\n| top_k=1 筛选后 | **3,017 条**（覆盖 3,017/3,027 个 doc，12.5% 选择率） |\n| `rsft_scores.jsonl` | 77.7 MB |\n| `rsft_train.jsonl` | 9.4 MB |\n| `rsft_report.json` | 4.6 KB |\n\n**筛选后数据质量（selected_stats）：**\n- combined_score: mean=0.766, median=0.767\n- F1 reward: mean=0.718, median=0.732\n- CED reward: mean=0.696, median=0.711\n- format reward: 100% 通过\n\n**cuda:1 已释放**（0 MiB 占用）。cuda:2 和 cuda:3 各约 12GB 在用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-14b-ced-scoring-done.md"
+}

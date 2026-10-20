@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0d941844d525ffe30a6",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_8_1778861905.md",
+  "task_key": "loop_8_1778861905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778861905.md",
+    "occurrence": 1,
+    "bytes": 5124,
+    "sha256": "c47d18dcbf3b53f4523cd1e1324ffe4177f6a4b3a6b3d4ee7bbd203d8df60a62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T14:38:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **仅 rtx5090-4x cuda:0,1,2,3**，不可用其他服务器/GPU\n- RTX 5090 **禁止 --quantize**（CUBLAS 错误），bf16 即可（Qwen3-4B ~8GB）\n- inference.py **必须传完整 model stack**：`--base_model + --sft_adapter + --model_path`，缺任一个结果不可用（D041 教训）\n- 工作目录必须 `cd /root/autodl-tmp/`，不能 cd 进 freige/ 子目录（import 会找到内层空包）\n- Python 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，**没有 .venv**\n- plan_011 (GRPO G=8) 是 **publishability 必要条件**——decoupling 不复现则 scope 大幅缩减，处理优先级最高\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），account=root\n- **工作目录**: `/root/autodl-tmp/freige`（代码），`/root/autodl-tmp/` 为运行目录\n- **Python**: `/root/miniconda3/bin/python`（conda base）\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（base），`/root/autodl-tmp/sft_output`（SFT adapter），`/root/autodl-tmp/rsft_output_r2b`（RSFT r2b adapter）\n- **数据**: `/root/autodl-tmp/data/docred`（DocRED），`/root/autodl-tmp/baselines/dreeam/dataset/docred`（DREEAM 格式）\n- **RSFT 候选数据**: topk1=2718 samples, topk3=8037 samples（已生成就绪）\n- **活跃进程**:\n  - `mvp2_ced_reranker_poc`: PID 178050, tmux, cuda:0（985 docs × N=8 CED reranker）\n  - `mvp2_eval_rsft_r2b_maxtok1536_r2`: PID 197381, tmux, cuda:1（truncation diagnosis）\n  - `plan_004_dreeam_baseline`: PID 213006, tmux, cuda:2（DREEAM RoBERTa-large 30ep）\n- **Cron**: 3 个活跃，分别监控上述 3 个 RUNNING 实验\n- **备用服务器**: bjb2-12179（account=root），未使用\n\n### 3. 📊 当前状态\n**刚完成**: plan_011 GRPO G=8 训练已结束（ANALYZING 状态），exit_code=0，reward_final=1.795，100 steps 完成。**这是本 session 最重要的待处理项**——需要 spawn worker 做 eval（检查 rel_f1 是否仍 catastrophic forget）。\n\n**RUNNING（3 个）**:\n- `mvp2_ced_reranker_poc`（cuda:0）— CED reranker PoC，985 docs，预计运行 ~6h\n- `mvp2_eval_rsft_r2b_maxtok1536_r2`（cuda:1）— truncation 诊断，max_new_tokens=1536\n- `plan_004_dreeam_baseline`（cuda:2）— DREEAM 复现，30 epoch RoBERTa-large\n\n**PREPARING（2 个）**:\n- `plan_001_flat_nli_scoring` — flat-NLI 数据准备（P0，阻塞 plan_012 DPO）\n- `mvp2_eval_rsft_s44` — s44 全量 eval（低优先级，已有 s44 数据）\n\n**等待中**:\n- plan_011 eval 结果 → 决定 C2 decoupling claim 是否成立\n- 3 个 cron 回调（上述 RUNNING 实验完成时触发）\n- Re-dream 结果（验证 reframe 后 Dream 分数是否达标 best≥3.5）\n- cuda:3 空闲，ROADMAP 计划分配给 plan_008 topk3_ced_filtered\n\n**Worker 池 = 0**（违反 L1 红线\"Worker 池 < 2 = 失职\"，需立即 spawn）\n\n### 4. 📋 待办（条件触发式）\n- **立即**: spawn worker eval plan_011 GRPO G=8 checkpoints（跑 inference + 计算 rel_f1/evi_f1/EDCR）→ decoupling 仍在 = 加强 C2；decoupling 消失 = 需修改论文结论，通知 Director\n- **立即**: cuda:3 空闲 → 启动 plan_008 topk3 变体之一（或 plan_001 flat-NLI scoring 数据准备，后者是 CPU 任务不占 GPU）\n- `mvp2_ced_reranker_poc` cron 回调 → 分析 reranker rel_f1 vs SFT baseline 0.4057；若 > 0.4057 → 作为论文 complementary contribution\n- `mvp2_eval_rsft_r2b_maxtok1536_r2` cron 回调 → 比较 EDCR 变化（从 0.6609）；若显著提升 → truncation 是 EDCR 低的主因；若不变 → distractor citation 是 RSFT 真实行为\n- `plan_004_dreeam_baseline` cron 回调 → 对比 dev Evi-F1（预期 ~54.15），建立 encoder baseline 参照\n- Re-dream 结果达标（best≥3.5）→ 全面启动 P0 实验队列（plan_001 flat-NLI, plan_012 DPO）\n- Re-dream 不达标 → 通知 Director 需进一步 reframe\n\n### 5. 🎯 战略上下文\n- **项目核心**: FREIGE = LLM evidence-grounded DocRE 新范式。核心发现是 GRPO 的 evidence-extraction decoupling。\n- **决策链**: D031(GRPO判死) → D038(RSFT实际成功) → D039(MVP-2 PASS) → D040(进入Research) → D044(Dream v1 reframe) → D045(DPO升P0) → D046(GRPO G=8 首批)\n- **投稿目标**: EMNLP 2026 Main（ARR July cycle, ~7月15-25），fallback AAAI 2027\n- **最易判断错的事**:\n  1. plan_011 GRPO G=8 的 eval 解读——reward_final=1.795 看起来不错，但**必须看 rel_f1**。GRPO 历史上 reward 上升但 rel_f1 崩塌是常态。不要被 reward 数字误导。\n  2. Evi-F1 对比需注意 conditional vs joint 协议差异（D041）——我们的 conditional Evi-F1 和 DREEAM 的 joint Evi-F1 不可直接比较。\n  3. CED 可能不显著优于 flat-NLI（Dream p=0.08/0.38/0.12），如果 plan_001 证实这点 → CED 降级为 \"one possible scoring function\"，不是 failure。\n  4. topk3 数据（8037 samples）含 ced_reward=0 的样本，双变体实验（全量 vs 过滤 CED=0）目的是区分数据量效应 vs 信号稀释。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778861905.md"
+}

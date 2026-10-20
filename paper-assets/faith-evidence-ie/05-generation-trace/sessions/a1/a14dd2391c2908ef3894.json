@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a14dd2391c2908ef3894",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 012 dpo ced",
+  "task_key": "worker_ops_plan_012_dpo_ced_20260515T155054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_012_dpo_ced_20260515T155054_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "cd13d031d1b6cc00f0b635f24fba719f943dec41a0cd8f3430f6790781ef46f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan_012 DPO+CED 实验已成功启动。\n\n**总结：**\n- **DPO pairs**: 2,666 pairs 构建完成（从 21,952 scored generations，按 CED reward top-1 vs bottom-1）\n  - Chosen CED mean: 0.721, Rejected CED mean: 0.286, margin mean: 0.435\n- **训练配置**: Qwen3-4B + SFT adapter merge → 新 LoRA (r=64, α=128), β=0.1, lr=2e-5, bs=1×16, 3 epochs, sigmoid loss\n- **运行状态**: GPU 2 (RTX 5090), 29.1/32.6 GB, ~12.5s/step, 501 steps total\n- **预计完成时间**: ~1.7h\n- **修复**: TRL 1.1.0 不支持 `max_prompt_length` 参数，已从 DPOConfig 中移除\n- **日志**: `~/runs/faith-evidence-ie/plan_012_dpo_ced.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-012-dpo-ced.md"
+}

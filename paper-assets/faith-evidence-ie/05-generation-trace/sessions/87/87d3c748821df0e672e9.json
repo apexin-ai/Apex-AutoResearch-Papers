@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87d3c748821df0e672e9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 003 edcr diagnostic",
+  "task_key": "worker_analysis_plan_003_edcr_diagnostic_20260515T180758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_003_edcr_diagnostic_20260515T180758_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "238c95860a149e26c22d8d46c6d5cd9397d332c61c6c376f0465a3bf022569d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个产出已生成并注册：\n\n**edcr_diagnostic_table.md** — 8 个方法的完整指标表（按 rel_f1 降序），附 RSFT 3-seed 汇总和 GRPO checkpoint 轨迹。DPO 和 SFT-no-evidence 标注为 pending。\n\n**edcr_analysis.md** — 核心发现：\n- **EDCR 悖论**：rel_f1 与 EDCR 强负相关（Spearman ρ = −0.905），本质是 prediction count 驱动的 quality-quantity trade-off\n- **三个机制区间**：under-prediction（QLoRA GRPO, 高 EDCR 但 catastrophic）、calibrated（SFT baseline）、over-prediction（RSFT/CED reranker, 低 EDCR 但高 F1）\n- **EDCR 独特诊断价值**：evi_f1 衡量 evidence 是否被 recall，EDCR 衡量 evidence 是否被正确 *配对* 到对应 relation\n- **GRPO checkpoint 动态**：ckpt-90 → ckpt-100 出现 Pareto 退化（rel_f1 微升但 EDCR 下降），可指导 early stopping\n- **5 条 paper-ready claims**，含应披露的 limitation"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-003-edcr-diagnostic.md"
+}

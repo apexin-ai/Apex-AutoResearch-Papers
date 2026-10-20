@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "db07f0fbb6781d919874",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "analysis seed coverage audit",
+  "task_key": "worker_analysis_seed_coverage_audit_20260518T100136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_seed_coverage_audit_20260518T100136.log",
+    "occurrence": 1,
+    "bytes": 655196,
+    "sha256": "f1746f065f6a62935940f926cf428bc2f60e4ae97ed818b129951a4e8e5e3acf"
+  },
+  "statistics": {
+    "messages": 253,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 253,
+      "chunks": [
+        {
+          "path": "db07f0fbb6781d919874-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "db07f0fbb6781d919874-part-0002.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-seed-coverage-audit.md"
+}

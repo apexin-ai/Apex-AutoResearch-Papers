@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8d6860aa8c0e040a1fb7",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "analysis plan 009 forgetting figure",
+  "task_key": "worker_analysis_plan_009_forgetting_figure_20260515T175822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_009_forgetting_figure_20260515T175822.log",
+    "occurrence": 1,
+    "bytes": 675736,
+    "sha256": "03ede4fee936822b5afb23f6015a9fa38eb4205b9f53e2eb39af3ac08275c999"
+  },
+  "statistics": {
+    "messages": 168,
+    "user_turns": 0,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 63,
+      "tool_result": 63,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 168,
+      "chunks": [
+        {
+          "path": "8d6860aa8c0e040a1fb7-part-0001.json",
+          "message_count": 147
+        },
+        {
+          "path": "8d6860aa8c0e040a1fb7-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-plan-009-forgetting-figure-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd89f2d27a2ad5caf5d4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit test eval 14b 8b sft",
+  "task_key": "worker_submit_test_eval_14b_8b_sft_20260521T183120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_test_eval_14b_8b_sft_20260521T183120_result.json",
+    "occurrence": 1,
+    "bytes": 478,
+    "sha256": "afcf113ad74904942a4a4fcbb04c8a2b05c23e33dc4da5f1e792fb0985d4e856"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 test eval 已提交并运行，registry 已更新：\n\n| 实验 | PID | GPU | Base Model | SFT Adapter | Status |\n|------|-----|-----|------------|-------------|--------|\n| `test_eval_14b_sft_s42` | 125321 | cuda:1 | Qwen3-14B | `sft_output_14b/checkpoint-144` | RUNNING |\n| `test_eval_8b_sft_s42` | 125615 | cuda:2 | Qwen3-8B | `sft_output_qwen3_8b_bf16` | RUNNING |\n\n日志路径：`/root/autodl-tmp/eval_results/test_eval_{14b,8b}_sft_s42/log.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-test-eval-14b-8b-sft.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23d3c3302f45a461409b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze test eval llama rsft s43 with evi",
+  "task_key": "worker_analyze_test_eval_llama_rsft_s43_with_evi_20260523T091042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_test_eval_llama_rsft_s43_with_evi_20260523T091042_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "b89092abc6259b7ab06c7fd528e59336a10a03f3efeb067a5320abbd3e626b8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已有 conclusion=success。更新完成。\n\n## 分析总结\n\n**核心指标（s43 with-evi）：**\n\n| 指标 | s43 | s42 | 差异 |\n|------|-----|-----|------|\n| ign_f1 | 0.3488 | 0.3599 | -1.11pp |\n| f1 | 0.3488 | 0.3599 | -1.11pp |\n| precision | 0.4834 | 0.4790 | +0.44pp |\n| recall | 0.2728 | 0.2882 | -1.54pp |\n| evi_f1 (DREEAM) | 0.2514 | 0.2509 | +0.05pp |\n| edcr | 0.8425 | 0.8391 | +0.34pp |\n\n**与 s42 对比：** ign_f1 差 -1.11pp，在 ±3pp 范围内，结论 success。s43 precision 略高但 recall 明显低，导致 f1 下降。Evidence 相关指标（evi_f1, edcr）两个 seed 几乎一致。\n\n**LLaMA 8B multi-seed variance（s42, s43）：**\n- ign_f1: **mean = 0.3544 ± 0.0056**（std）\n- f1: mean = 0.3544 ± 0.0056\n- evi_f1: mean = 0.2512 ± 0.0003\n\n两 seed 方差较小（std ~0.56pp），LLaMA 8B RSFT with-evi 在 test set 上表现稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-test-eval-llama-rsft-s43-with-evi.md"
+}

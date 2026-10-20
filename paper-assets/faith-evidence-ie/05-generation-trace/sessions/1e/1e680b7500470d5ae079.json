@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e680b7500470d5ae079",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "prep 14b eval and grpo step100",
+  "task_key": "worker_prep_14b_eval_and_grpo_step100_20260518T133200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_14b_eval_and_grpo_step100_20260518T133200_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "9cea8240ea8a2f2c052673eca15d1ba35b4134c3dae1024314d153f673ef1412"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本均通过语法验证。\n\n## 产出总结\n\n### 脚本就绪\n- **`/root/autodl-tmp/freige/scripts/eval_14b.sh`** — 14B eval，支持环境变量配置 `MODEL_PATH`/`SFT_ADAPTER`/`OUTPUT_DIR`/`SPLIT`，默认 model_path=sft_output_14b，batch_size=4\n- **`/root/autodl-tmp/freige/scripts/eval_grpo_step100.sh`** — GRPO step 100 eval，硬编码 checkpoint-100 路径，含 checkpoint 存在检查，batch_size=4\n\n两个脚本均需在运行时加 `CUDA_VISIBLE_DEVICES=X` 前缀（遵循 C002）。\n\n### GRPO 训练进度\n| 指标 | 值 |\n|---|---|\n| 当前进度 | step 22/200 |\n| checkpoint 保存频率 | 每 20 步（save_steps=20） |\n| 平均步耗时 | ~126s/step |\n| 训练开始时间 | 20:45 (May 18) |\n| **step 100 预计时间** | **~00:15 (May 19)**，距现在约 2h45m |\n| reward 趋势 | 1.37 → 1.60（step 5→20，上升中） |\n\ncheckpoint-100 会自动保存（100 是 20 的倍数）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-14b-eval-and-grpo-step100.md"
+}

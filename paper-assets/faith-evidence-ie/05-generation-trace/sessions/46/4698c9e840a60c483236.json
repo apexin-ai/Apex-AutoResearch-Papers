@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4698c9e840a60c483236",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research codalab precheck",
+  "task_key": "worker_research_codalab-precheck_20260522T010732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_codalab-precheck_20260522T010732_result.json",
+    "occurrence": 1,
+    "bytes": 1621,
+    "sha256": "722d3c72e8daf436739d18a758b228defab5baf6e2cc9e54e6d800e429e15c9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CodaLab 预检结果\n\n### 提交格式\n\nRe-DocRED `evaluation.py` 期望**扁平 list** 格式：\n```json\n[{\"title\": \"...\", \"h_idx\": 0, \"t_idx\": 1, \"r\": \"P27\", \"evidence\": [0, 1]}, ...]\n```\n\n### 已有 codalab_submission.json — 两种格式共存\n\n| 格式 | 目录 | 结构 | 与 CodaLab 兼容 |\n|------|------|------|:-:|\n| **新格式 (list)** — 5 个 | `plan_002_test_rsft_s43/s44`, `plan_006_*_test` (3个), `test_rsft_ced_s44` | `[{title, h_idx, t_idx, r, evidence}]` | ✅ |\n| **旧格式 (dict)** — 8 个 | `test_eval_14b_rsft_s42`, `test_eval_14b_sft_s42`, `test_eval_1_7b_rsft_s42`, `test_eval_4b_sft_s42`, `test_eval_8b_rsft_s42`, `test_eval_8b_sft_s42`, `test_eval_llama_rsft_s42`, `test_eval_llama_sft_s42` | `{title: [{r, h, t, evidence}]}` | ❌ key 名 `h/t` ≠ `h_idx/t_idx`，且是 dict 非 list |\n\n### 缺 codalab_submission.json 的 test eval 目录\n\n| 目录 | 状态 |\n|------|------|\n| `test_eval_14b_sft_s42_no_evi` | 空目录 |\n| `test_eval_1_7b_sft_s42` | 空目录 |\n| `test_eval_1_7b_sft_s42_no_evi` | 仅有 log.txt |\n| `test_eval_4b_rsft_s42` | 空目录 |\n| `test_eval_4b_rsft_s42_v2` | 空目录 |\n| `test_rsft_s44` | 仅有 metrics.json |\n\n### 需要做的事\n\n1. **格式转换**：8 个旧格式文件需要 `dict{title→[{r,h,t}]}` → `list[{title,h_idx,t_idx,r}]` 转换（`h`→`h_idx`, `t`→`t_idx`）\n2. **缺失实验**：上述 6 个目录要么 eval 未完成、要么未生成 codalab 文件，需重跑 test inference\n3. **提交流程**：手动提交——Re-DocRED CodaLab 网页上传 JSON 文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-codalab-precheck.md"
+}

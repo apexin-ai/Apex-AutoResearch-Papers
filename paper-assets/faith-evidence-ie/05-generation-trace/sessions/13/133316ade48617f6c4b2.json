@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "133316ade48617f6c4b2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "prep no evi test eval commands",
+  "task_key": "worker_prep_no_evi_test_eval_commands_20260521T225528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_no_evi_test_eval_commands_20260521T225528_result.json",
+    "occurrence": 1,
+    "bytes": 313,
+    "sha256": "c07ad73d3d00ce0088ee75a2610ae9aa327383d198b2f3432f0e6cc6f7eb36a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "命令已写入 `artifacts/no_evi_test_commands.md`。\n\n关键点：\n- `--base_model` 必须显式指定（默认是 Qwen3-4B，不适用于 14B/1.7B）\n- 提交时把 `CUDA_VISIBLE_DEVICES=X` 的 X 替换为空闲 GPU 编号\n- 提交前先 `nvidia-smi` 确认目标 GPU 显存 < 2GB（C001）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-no-evi-test-eval-commands.md"
+}

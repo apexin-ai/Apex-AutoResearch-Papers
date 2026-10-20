@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33ab0ca675927cac8562",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_5_1778806590.md",
+  "task_key": "loop_5_1778806590",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778806590.md",
+    "occurrence": 1,
+    "bytes": 4039,
+    "sha256": "54c494e9ee9f3bfb5d62c42b6ee0b9a8dfc3f1c99911432edf9d54571c8542b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-15T00:56:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3（rtx5090-4x 上的 4 张卡，物理上同一台机器）\n- RSFT 代码有 3 个已知 bug **必须先修再跑**: (1) rsft_generate.py `--quantize` 默认=True 导致 RTX 5090 CUBLAS 错误，必须传 `--no-quantize`; (2) rsft_score_filter 输出 JSON 但 rsft_trainer 期望 JSONL + field name 不一致; (3) NLI 模型未预下载\n- 模型/数据/HF cache 全放 `/root/autodl-tmp/`，根分区 30GB 不够\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不是 venv）\n- 网络: `source /etc/network_turbo` + `HF_HUB_DISABLE_XET=1` + SSL 证书变量\n- D031 已判定 GRPO+QLoRA 方向死亡——禁止再跑 GRPO 变体（即使 ckpt-100 出奇迹也不改）\n\n### 2. 🖥️ 基础设施快照\n- 服务器: rtx5090-4x（4× RTX 5090 32GB，2 个 SSH endpoint 指向同一台）\n- 工作目录: `/root/autodl-tmp/`（代码 `/root/autodl-tmp/freige/`）\n- Python: `/root/miniconda3/bin/python`（conda base 环境）\n- 模型路径: `/root/autodl-tmp/models/Qwen3-4B`（基座）, `/root/autodl-tmp/sft_output`（SFT checkpoint）\n- 数据路径: `/root/autodl-tmp/data/docred`（train 3027, dev 985）\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- FREIGE 代码: `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/`（本地 6 模块 1831 行）\n- 活跃进程: lr5e6_r1 训练 (step ~114/200, cuda:0), ckpt-60/80/100 eval + SFT baseline eval（散布 cuda:1-3，均接近完成）\n- Cron: 18+ 个告警（多数是已终止的 GRPO 变体残留，应 reconcile 清理）\n\n### 3. 📊 当前状态\n**刚完成**: D031 pivot 决策（GRPO 判死→离线 RL），diversity_probe 验证通过（RSFT 可行性确认），RSFT 代码 dry-run 审计（发现 3 个 bug）\n\n**正在运行（收尾阶段）**:\n- `mvp2_grpo_ced_lr5e6_r1`: GRPO 训练 step ~114/200, cuda:0, ~2.7h 释放\n- `mvp2_eval_lr5e6_r1_ckpt100`: 决定性 eval（f1_reward 在 step 100 有 5.8x 跳升，看 eval F1 能否 >0.15）\n- `mvp2_eval_lr5e6_r1_ckpt80`: 轨迹数据收集\n- `mvp2_rsft_generate`: PLANNED 状态，等 GPU 释放\n\n**等待中**: ckpt-100 eval 和 SFT baseline eval 的 cron 回调\n\n### 4. 📋 待办（条件触发式）\n- ckpt-100 eval 完成 → 记录结果到 registry（rel_f1>0.15=训练 signal 真实但不改 pivot 决策; <0.05=确认 false signal）→ 更新 report.md → 汇报 Director\n- 所有收尾 eval 完成 + GPU 释放 → **立即启动 RSFT Phase 1**: 先修 3 个 bug（spawn worker 改代码），然后 `mvp2_rsft_generate` 用 4 卡并行生成 N=8 候选\n- RSFT 生成完成 → Phase 2: rsft_score_filter（CED 打分 + F1 gating）→ Phase 3: rsft_trainer\n- RSFT 训练完成 → eval same protocol → 与 SFT baseline 对比（pass: Evi-F1 > SFT+2pp）\n- RSFT 也失败 → Contingency: 全参微调（非 QLoRA）或 CED 作为 reranker 重定义 MVP\n\n### 5. 🎯 战略上下文\n- **核心结论链**: CED reward 信号有效(D002) → GRPO+QLoRA 在结构化生成中 catastrophic forgetting 不可修复(D031) → Offline RL (RSFT/DPO) 是唯一剩余路径\n- **Paper framing 仍为 DRAFT**——pivot 后 RSFT 若成功，claim 从\"GRPO+CED\"变为\"CED as offline reward signal\"，story 更稳（不依赖在线 RL 稳定性）\n- **易错点 1**: 不要把 ckpt-100 eval 结果（无论好坏）当作重启 GRPO 的理由——D031 是基于 6+ 次系统性失败的结论，单点不翻盘\n- **易错点 2**: RSFT 生成阶段 format_reward 只有 50%（diversity probe 发现），需要在 score_filter 阶段做 format gating，否则训练数据含大量 malformed output\n- **易错点 3**: SFT baseline 数字有 37% 输出被 1024 token 截断——RSFT 生成时考虑 max_new_tokens 设大一些\n- **目标 venue**: EMNLP 2026 (ARR May 25) / AAAI 2027 (Aug 1)\n- **GPU 预算**: GRPO 已烧 60+ hours; RSFT 预估 8-16h 生成 + 4-8h 训练，预算可控\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778806590.md"
+}

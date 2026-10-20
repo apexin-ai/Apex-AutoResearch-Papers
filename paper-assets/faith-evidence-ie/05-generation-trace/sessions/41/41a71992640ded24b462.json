@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41a71992640ded24b462",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze reeval rsft topk3",
+  "task_key": "worker_analyze_reeval_rsft_topk3_20260516T001310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_reeval_rsft_topk3_20260516T001310_result.json",
+    "occurrence": 1,
+    "bytes": 288,
+    "sha256": "91556bd188ddee3701ab5e96ff16f97578ea219c26010118a8fe841b5d9ee572"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。结论：**negative** — RSFT top_k=3 的 rel_f1=0.4454 虽超过 SFT baseline (+0.04)，但低于 CED RSFT top_k=1 (~0.46)，说明增大 top_k 引入了更多噪声样本，反而损害关系抽取性能。top_k=1 的 CED 过滤策略更优。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-reeval-rsft-topk3.md"
+}

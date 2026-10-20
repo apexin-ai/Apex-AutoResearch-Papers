@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dfe7a74b10e58ed5216",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check 8b rsft eval result",
+  "task_key": "worker_ops_check_8b_rsft_eval_result_20260517T145810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_8b_rsft_eval_result_20260517T145810_result.json",
+    "occurrence": 1,
+    "bytes": 833,
+    "sha256": "70d882cba0e00c487a056759aacedb592529fe856a1b59c7c02e0c7f530df89f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated, cron deleted. Here's the complete **Scaling Study** summary:\n\n## Scaling Study: SFT → CED-RSFT (Ign-F1)\n\n| Model | SFT | RSFT | Δ |\n|-------|-----|------|---|\n| Qwen3-1.7B | 0.4945 | 0.5219 | **+2.7pp** |\n| Qwen3-4B | 0.4049 | 0.4655 | **+6.1pp** |\n| LLaMA-3.1-8B | 0.5514 | 0.5674 | **+1.6pp** |\n| Qwen3-8B | 0.5262 | 0.5606 | **+3.4pp** |\n\n**Qwen3-8B Ign-F1: 0.5079 → 0.5433 (+3.5pp)**\n\nKey observations:\n- RSFT consistently improves over SFT across all 4 models (100% win rate)\n- Largest relative gain at 4B scale (+6.1pp), smallest at LLaMA-8B (+1.6pp)\n- LLaMA-3.1-8B RSFT (0.5674) achieves highest absolute F1, not Qwen3-8B (0.5606) — hypothesis partially disconfirmed on the \"highest absolute\" claim\n- Qwen3-8B shows strong evidence quality: Evi-F1=0.8052, EDCR=0.6377"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-8b-rsft-eval-result.md"
+}

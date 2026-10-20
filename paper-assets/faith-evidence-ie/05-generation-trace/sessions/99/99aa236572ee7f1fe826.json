@@ -1,0 +1,1636 @@
+{
+  "schema_version": "1.0",
+  "id": "99aa236572ee7f1fe826",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "analysis ced reranker results",
+  "task_key": "worker_analysis_ced_reranker_results_20260515T145044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ced_reranker_results_20260515T145044.log",
+    "occurrence": 1,
+    "bytes": 140331,
+    "sha256": "839bd18a79428f44199d3590aaf7643cdae80d8e75ff58ae1dc8d75ef02fcc40"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 13,
+      "tool_result": 13,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "4fb39fbc-59da-4b82-a916-d223c0be04bb",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778874000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "921eaa8e-14d3-4ecd-872f-9c74d9a66826",
+                "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by finding the result files on the server.",
+              "signature": "EvIBClkIDRgCKkDBGdQ44KFkFbAwCkn+GmETRiPZnuZDtiaR9937828T+jVRUDqYbAWBFyPjcs7fwE27SErOtWhrGRdeKLHv5+3KMg9jbGF1ZGUtb3B1cy00LTY4ABIMC1qraBXguFGjTM5vGgwahbG+fo6FlxuP8eAiMBKGcAZw/3MdKEzNsR52XHmFw+1dV9aGagorpIdxiQA8R0Nxl+qgwH7PcRIsGHX3qCpHZNctgjF6c/a7n0BZUH6DsvlIA+z6fuFnrN/tnVdi3JqP4tat4hOpED7WTW/TVG8hJ0WftYSATlEou0ILf/RDMcx2ZowFu/oYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "097086f2-fb59-48b5-8c8d-2e192fc57c79",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L4nd1hG77jdYeExWyKnvqd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11916,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11916
+                },
+                "output_tokens": 48,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L5DqBucsqmE2cPmbj5obP2",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "7b986cd4-101c-4a38-b8f6-adedf3d6d4a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L4nd1hG77jdYeExWyKnvqd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11916,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11916
+                },
+                "output_tokens": 48,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T14:50:54.211Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01L5DqBucsqmE2cPmbj5obP2",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "2a7c9cb1-0b08-413c-b175-889126e9be92",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01McFXK9mwVZzoYpiLQva69N",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "find /root/autodl-tmp/ -maxdepth 3 -name \"*.json\" -path \"*reranker*\" -ls 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "223ce700-9a4a-4129-a75e-cc78fa539137",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CkvvDV46uAN7wF75D4SuQe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1207,
+                "cache_read_input_tokens": 23363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1207
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T14:50:58.010Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01McFXK9mwVZzoYpiLQva69N",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "40e84954-e31a-400c-bd8e-dafeb7f7290c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JZGb2pwtBj1CxHi1RtQiJU",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls -lhR /root/autodl-tmp/eval_results/ 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "190e8495-4167-4add-a257-2b832eb786b9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CkvvDV46uAN7wF75D4SuQe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1207,
+                "cache_read_input_tokens": 23363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1207
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T14:50:58.979Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JZGb2pwtBj1CxHi1RtQiJU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "fd75834f-dc1a-4915-9a0b-ce74066d6467",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017yrMeuipg3eWnyfqoEMF3T",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "tail -50 /root/runs/faith-evidence-ie/mvp2_ced_reranker_poc.log 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "0717f3e1-d2be-4e6b-b873-ea857708f578",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CkvvDV46uAN7wF75D4SuQe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1207,
+                "cache_read_input_tokens": 23363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1207
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T14:51:00.055Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017yrMeuipg3eWnyfqoEMF3T",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "999ed97a-314c-4b94-af0e-8bdfdad42b30",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0196DShdUczgNzyc72b8Xbza",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "filters": {
+                  "exp_id": "mvp2_ced_reranker_poc"
+                },
+                "project": "faith-evidence-ie",
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "6161b2a9-79d1-4ee4-b2c0-8309b69ba283",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CkvvDV46uAN7wF75D4SuQe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1207,
+                "cache_read_input_tokens": 23363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1207
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T14:51:00.836Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0196DShdUczgNzyc72b8Xbza",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3003}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "6023b976-7053-4a46-becd-128ecb5179c4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3003}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3003}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `2>/dev/null` redirect contains `>` which is blocked. Let me retry without the redirects. Also the registry filter didn't find it - let me try without the exp_id filter to find the actual experiment.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "d1d95031-0c58-4f45-8a32-1bc0c9b9e940",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014kMx8p1E12KEFCi3D6zGXW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 938,
+                "cache_read_input_tokens": 24570,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 938
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell metacharacters blocked. Let me retry without redirects."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "25c283ae-80e4-46f2-9f4a-a2c89655251f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014kMx8p1E12KEFCi3D6zGXW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 938,
+                "cache_read_input_tokens": 24570,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 938
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WC2rdNViCooNtkXCHLo8dd",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "find /root/autodl-tmp/ -maxdepth 3 -name \"*.json\" -path \"*reranker*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "5508783c-f31b-4acf-a816-94a85ead0d0c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014kMx8p1E12KEFCi3D6zGXW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 938,
+                "cache_read_input_tokens": 24570,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 938
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T14:51:06.288Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WC2rdNViCooNtkXCHLo8dd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/ced_reranker_poc_dryrun/results.json\\\\n/root/autodl-tmp/eval_results/ced_reranker_poc/results.json\\\\n/root/autodl-tmp/eval_results/ced_reranker_dryrun/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "711f6ae4-1893-4d08-94c3-88b1765b572a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/ced_reranker_poc_dryrun/results.json\\\\n/root/autodl-tmp/eval_results/ced_reranker_poc/results.json\\\\n/root/autodl-tmp/eval_results/ced_reranker_dryrun/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/ced_reranker_poc_dryrun/results.json\\n/root/autodl-tmp/eval_results/ced_reranker_poc/results.json\\n/root/autodl-tmp/eval_results/ced_reranker_dryrun/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018mb4KRtFz4VXsHaUAkHEFN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls -lhR /root/autodl-tmp/eval_results/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "7b071b05-694b-47cf-881e-d79d349452c9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014kMx8p1E12KEFCi3D6zGXW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 938,
+                "cache_read_input_tokens": 24570,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 938
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T14:51:07.005Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018mb4KRtFz4VXsHaUAkHEFN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/:\\\\ntotal 52K\\\\n-rw-r--r-- 1 root root 1.6K May 15 19:59 3seed_summary.json\\\\ndrwxr-xr-x 2 root root  127 May 15 17:52 ced_reranker_dryrun\\\\ndrwxr-xr-x 2 root root   95 May 15 22:44 ced_reranker_poc\\\\ndrwxr-xr-x 2 root root   95 May 15 16:02 ced_reranker_poc_dryrun\\\\n-rw-r--r-- 1 root root 9.2K May 15 19:59 edcr_analysis.json\\\\n-rw-r--r-- 1 root root  25K May 15 19:57 edcr_analysis_r2b.md\\\\n-rw-r--r-- 1 root root 1.7K May 15 21:19 evi_f1_joint_comparison.json\\\\ndrwxr-xr-x 9 root root 4.0K May 15 05:05 grpo_ced_kl001\\\\ndrwxr-xr-x 3 root root   60 May 15 03:35 grpo_ced_kl001_step100\\\\ndrwxr-xr-x 4 root root   84 May 15 05:30 grpo_ced_lr5e6\\\\ndrwxr-xr-x 2 root root   62 May 15 08:05 grpo_ced_lr5e6_ckpt60\\\\ndrwxr-xr-x 3 root root   59 May 15 06:06 grpo_ced_lr5e6_rp\\\\ndrwxr-xr-x 4 root root   61 May 15 22:43 grpo_g8_bf16\\\\ndrwxr-xr-x 2 root root    6 May 15 22:45 grpo_g8_bf16_ckpt100\\\\ndrwxr-xr-x 3 root root   36 May 15 07:39 lr5e6_r1_ckpt100\\\\ndrwxr-xr-x 3 root root   59 May 15 07:08 lr5e6_r1_ckpt40\\\\ndrwxr-xr-x 3 root root   47 May 15 06:30 lr5e6_r1_ckpt60\\\\ndrwxr-xr-x 3 root root   59 May 15 08:54 lr5e6_r1_ckpt80\\\\ndrwxr-xr-x 2 root root   82 May 15 19:22 rsft_r1\\\\ndrwxr-xr-x 2 root root   82 May 15 19:43 rsft_r2a\\\\ndrwxr-xr-x 2 root root  112 May 15 19:55 rsft_r2b\\\\ndrwxr-xr-x 2 root root    6 May 15 19:51 rsft_r2b_maxtok1536\\\\ndrwxr-xr-x 2 root root   62 May 15 21:15 rsft_s43\\\\ndrwxr-xr-x 2 root root   82 May 15 17:17 rsft_s44\\\\ndrwxr-xr-x 2 root root    6 May 14 19:47 sft\\\\n\\\\n/root/autodl-tmp/eval_results/ced_reranker_dryrun:\\\\ntotal 80K\\\\n-rw-r--r-- 1 root root  57K May 15 17:51 generations.jsonl\\\\n-rw-r--r-- 1 root root  12K May 15 17:51 greedy_outputs.jsonl\\\\n-rw-r--r-- 1 root root  400 May 15 17:52 per_doc_scores.jsonl\\\\n-rw-r--r-- 1 root root 2.9K May 15 17:52 results.json\\\\n\\\\n/root/autodl-tmp/eval_results/ced_reranker_poc:\\\\ntotal 28M\\\\n-rw-r--r-- 1 root root  28M May 15 21:51 generations.jsonl\\\\n-rw-r--r-- 1 root root 186K May 15 22:44 per_doc_scores.jsonl\\\\n-rw-r--r-- 1 root root 2.6K May 15 22:44 results.json\\\\n\\\\n/root/autodl-tmp/eval_results/ced_reranker_poc_dryrun:\\\\ntotal 120K\\\\n-rw-r--r-- 1 root root 110K May 15 16:02 generations.jsonl\\\\n-rw-r--r-- 1 root root  392 May 15 16:02 per_doc_scores.jsonl\\\\n-rw-r--r-- 1 root root 2.4K May 15 16:02 results.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root  62 May 15 03:10 checkpoint-10\\\\ndrwxr-xr-x 2 root root  62 May 15 04:07 checkpoint-20\\\\ndrwxr-xr-x 2 root root  62 May 15 05:05 checkpoint-30\\\\ndrwxr-xr-x 2 root root  10 May 15 05:05 checkpoint-40\\\\ndrwxr-xr-x 2 root root  62 May 15 02:28 checkpoint-50\\\\ndrwxr-xr-x 2 root root  62 May 15 03:38 checkpoint-60\\\\ndrwxr-xr-x 2 root root  62 May 15 03:56 checkpoint-90\\\\n-rw-r--r-- 1 root root 200 May 15 03:56 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10:\\\\ntotal 5.8M\\\\n-rw-r--r-- 1 root root 1.3K May 15 03:10 metrics.json\\\\n-rw-r--r-- 1 root root 5.8M May 15 03:10 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20:\\\\ntotal 4.2M\\\\n-rw-r--r-- 1 root root 1.3K May 15 04:07 metrics.json\\\\n-rw-r--r-- 1 root root 4.2M May 15 04:07 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30:\\\\ntotal 4.6M\\\\n-rw-r--r-- 1 root root 1.3K May 15 05:05 metrics.json\\\\n-rw-r--r-- 1 root root 4.6M May 15 05:05 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-40:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50:\\\\ntotal 5.1M\\\\n-rw-r--r-- 1 root root 1.3K May 15 02:28 metrics.json\\\\n-rw-r--r-- 1 root root 5.1M May 15 02:28 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60:\\\\ntotal 5.4M\\\\n-rw-r--r-- 1 root root 1.3K May 15 03:38 metrics.json\\\\n-rw-r--r-- 1 root root 5.4M May 15 03:38 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90:\\\\ntotal 5.6M\\\\n-rw-r--r-- 1 root root 1.3K May 15 03:56 metrics.json\\\\n-rw-r--r-- 1 root root 5.6M May 15 03:56 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root  62 May 15 03:35 checkpoint-100\\\\n-rw-r--r-- 1 root root 204 May 15 03:35 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100:\\\\ntotal 5.6M\\\\n-rw-r--r-- 1 root root 1.3K May 15 03:35 metrics.json\\\\n-rw-r--r-- 1 root root 5.6M May 15 03:35 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root  62 May 15 06:09 checkpoint-20\\\\ndrwxr-xr-x 2 root root  10 May 15 05:12 checkpoint-40\\\\n-rw-r--r-- 1 root root 218 May 15 06:09 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20:\\\\ntotal 8.5M\\\\n-rw-r--r-- 1 root root 1.3K May 15 06:09 metrics.json\\\\n-rw-r--r-- 1 root root 8.5M May 15 06:09 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-40:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60:\\\\ntotal 7.7M\\\\n-rw-r--r-- 1 root root 1.3K May 15 08:05 metrics.json\\\\n-rw-r--r-- 1 root root 7.7M May 15 08:05 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_rp:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root 10 May 15 05:41 checkpoint-20\\\\n-rw-r--r-- 1 root root  2 May 15 06:06 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_rp/checkpoint-20:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16:\\\\ntotal 0\\\\ndrwxr-xr-x 2 root root 10 May 15 22:43 checkpoint-100\\\\ndrwxr-xr-x 2 root root 10 May 15 22:41 checkpoint-80\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-80:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100:\\\\ntotal 0\\\\ndrwxr-xr-x 2 root root 62 May 15 09:18 checkpoint-100\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100:\\\\ntotal 6.9M\\\\n-rw-r--r-- 1 root root 1.4K May 15 09:18 metrics.json\\\\n-rw-r--r-- 1 root root 6.9M May 15 09:18 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root  62 May 15 07:08 checkpoint-40\\\\n-rw-r--r-- 1 root root 219 May 15 07:08 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40:\\\\ntotal 8.0M\\\\n-rw-r--r-- 1 root root 1.3K May 15 07:08 metrics.json\\\\n-rw-r--r-- 1 root root 8.0M May 15 07:08 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt60:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root 6 May 15 06:29 checkpoint-60\\\\n-rw-r--r-- 1 root root 2 May 15 06:30 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt60/checkpoint-60:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root  62 May 15 08:54 checkpoint-80\\\\n-rw-r--r-- 1 root root 219 May 15 08:54 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80:\\\\ntotal 7.2M\\\\n-rw-r--r-- 1 root root 1.3K May 15 08:54 metrics.json\\\\n-rw-r--r-- 1 root root 7.1M May 15 08:54 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/rsft_r1:\\\\ntotal 6.6M\\\\n-rw-r--r-- 1 root root  11K May 15 19:22 eval.log\\\\n-rw-r--r-- 1 root root 1.3K May 15 19:22 metrics.json\\\\n-rw-r--r-- 1 root root 6.5M May 15 19:22 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/rsft_r2a:\\\\ntotal 6.6M\\\\n-rw-r--r-- 1 root root  12K May 15 19:43 eval.log\\\\n-rw-r--r-- 1 root root 1.3K May 15 19:43 metrics.json\\\\n-rw-r--r-- 1 root root 6.6M May 15 19:43 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/rsft_r2b:\\\\ntotal 6.5M\\\\n-rw-r--r-- 1 root root  41K May 15 19:55 edcr_analysis.json\\\\n-rw-r--r-- 1 root root  12K May 15 19:42 eval.log\\\\n-rw-r--r-- 1 root root 1.3K May 15 19:42 metrics.json\\\\n-rw-r--r-- 1 root root 6.4M May 15 19:42 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/rsft_s43:\\\\ntotal 6.4M\\\\n-rw-r--r-- 1 root root 1.3K May 15 21:15 metrics.json\\\\n-rw-r--r-- 1 root root 6.4M May 15 21:15 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/rsft_s44:\\\\ntotal 6.5M\\\\n-rw-r--r-- 1 root root  12K May 15 17:17 eval.log\\\\n-rw-r--r-- 1 root root 1.3K May 15 17:17 metrics.json\\\\n-rw-r--r-- 1 root root 6.5M May 15 17:17 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/sft:\\\\ntotal 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "aace230a-48a7-4bb9-a001-106428d3f11a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/:\\\\ntotal 52K\\\\n-rw-r--r-- 1 root root 1.6K May 15 19:59 3seed_summary.json\\\\ndrwxr-xr-x 2 root root  127 May 15 17:52 ced_reranker_dryrun\\\\ndrwxr-xr-x 2 root root   95 May 15 22:44 ced_reranker_poc\\\\ndrwxr-xr-x 2 root root   95 May 15 16:02 ced_reranker_poc_dryrun\\\\n-rw-r--r-- 1 root root 9.2K May 15 19:59 edcr_analysis.json\\\\n-rw-r--r-- 1 root root  25K May 15 19:57 edcr_analysis_r2b.md\\\\n-rw-r--r-- 1 root root 1.7K May 15 21:19 evi_f1_joint_comparison.json\\\\ndrwxr-xr-x 9 root root 4.0K May 15 05:05 grpo_ced_kl001\\\\ndrwxr-xr-x 3 root root   60 May 15 03:35 grpo_ced_kl001_step100\\\\ndrwxr-xr-x 4 root root   84 May 15 05:30 grpo_ced_lr5e6\\\\ndrwxr-xr-x 2 root root   62 May 15 08:05 grpo_ced_lr5e6_ckpt60\\\\ndrwxr-xr-x 3 root root   59 May 15 06:06 grpo_ced_lr5e6_rp\\\\ndrwxr-xr-x 4 root root   61 May 15 22:43 grpo_g8_bf16\\\\ndrwxr-xr-x 2 root root    6 May 15 22:45 grpo_g8_bf16_ckpt100\\\\ndrwxr-xr-x 3 root root   36 May 15 07:39 lr5e6_r1_ckpt100\\\\ndrwxr-xr-x 3 root root   59 May 15 07:08 lr5e6_r1_ckpt40\\\\ndrwxr-xr-x 3 root root   47 May 15 06:30 lr5e6_r1_ckpt60\\\\ndrwxr-xr-x 3 root root   59 May 15 08:54 lr5e6_r1_ckpt80\\\\ndrwxr-xr-x 2 root root   82 May 15 19:22 rsft_r1\\\\ndrwxr-xr-x 2 root root   82 May 15 19:43 rsft_r2a\\\\ndrwxr-xr-x 2 root root  112 May 15 19:55 rsft_r2b\\\\ndrwxr-xr-x 2 root root    6 May 15 19:51 rsft_r2b_maxtok1536\\\\ndrwxr-xr-x 2 root root   62 May 15 21:15 rsft_s43\\\\ndrwxr-xr-x 2 root root   82 May 15 17:17 rsft_s44\\\\ndrwxr-xr-x 2 root root    6 May 14 19:47 sft\\\\n\\\\n/root/autodl-tmp/eval_results/ced_reranker_dryrun:\\\\ntotal 80K\\\\n-rw-r--r-- 1 root root  57K May 15 17:51 generations.jsonl\\\\n-rw-r--r-- 1 root root  12K May 15 17:51 greedy_outputs.jsonl\\\\n-rw-r--r-- 1 root root  400 May 15 17:52 per_doc_scores.jsonl\\\\n-rw-r--r-- 1 root root 2.9K May 15 17:52 results.json\\\\n\\\\n/root/autodl-tmp/eval_results/ced_reranker_poc:\\\\ntotal 28M\\\\n-rw-r--r-- 1 root root  28M May 15 21:51 generations.jsonl\\\\n-rw-r--r-- 1 root root 186K May 15 22:44 per_doc_scores.jsonl\\\\n-rw-r--r-- 1 root root 2.6K May 15 22:44 results.json\\\\n\\\\n/root/autodl-tmp/eval_results/ced_reranker_poc_dryrun:\\\\ntotal 120K\\\\n-rw-r--r-- 1 root root 110K May 15 16:02 generations.jsonl\\\\n-rw-r--r-- 1 root root  392 May 15 16:02 per_doc_scores.jsonl\\\\n-rw-r--r-- 1 root root 2.4K May 15 16:02 results.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root  62 May 15 03:10 checkpoint-10\\\\ndrwxr-xr-x 2 root root  62 May 15 04:07 checkpoint-20\\\\ndrwxr-xr-x 2 root root  62 May 15 05:05 checkpoint-30\\\\ndrwxr-xr-x 2 root root  10 May 15 05:05 checkpoint-40\\\\ndrwxr-xr-x 2 root root  62 May 15 02:28 checkpoint-50\\\\ndrwxr-xr-x 2 root root  62 May 15 03:38 checkpoint-60\\\\ndrwxr-xr-x 2 root root  62 May 15 03:56 checkpoint-90\\\\n-rw-r--r-- 1 root root 200 May 15 03:56 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10:\\\\ntotal 5.8M\\\\n-rw-r--r-- 1 root root 1.3K May 15 03:10 metrics.json\\\\n-rw-r--r-- 1 root root 5.8M May 15 03:10 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20:\\\\ntotal 4.2M\\\\n-rw-r--r-- 1 root root 1.3K May 15 04:07 metrics.json\\\\n-rw-r--r-- 1 root root 4.2M May 15 04:07 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30:\\\\ntotal 4.6M\\\\n-rw-r--r-- 1 root root 1.3K May 15 05:05 metrics.json\\\\n-rw-r--r-- 1 root root 4.6M May 15 05:05 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-40:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50:\\\\ntotal 5.1M\\\\n-rw-r--r-- 1 root root 1.3K May 15 02:28 metrics.json\\\\n-rw-r--r-- 1 root root 5.1M May 15 02:28 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60:\\\\ntotal 5.4M\\\\n-rw-r--r-- 1 root root 1.3K May 15 03:38 metrics.json\\\\n-rw-r--r-- 1 root root 5.4M May 15 03:38 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90:\\\\ntotal 5.6M\\\\n-rw-r--r-- 1 root root 1.3K May 15 03:56 metrics.json\\\\n-rw-r--r-- 1 root root 5.6M May 15 03:56 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root  62 May 15 03:35 checkpoint-100\\\\n-rw-r--r-- 1 root root 204 May 15 03:35 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100:\\\\ntotal 5.6M\\\\n-rw-r--r-- 1 root root 1.3K May 15 03:35 metrics.json\\\\n-rw-r--r-- 1 root root 5.6M May 15 03:35 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root  62 May 15 06:09 checkpoint-20\\\\ndrwxr-xr-x 2 root root  10 May 15 05:12 checkpoint-40\\\\n-rw-r--r-- 1 root root 218 May 15 06:09 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20:\\\\ntotal 8.5M\\\\n-rw-r--r-- 1 root root 1.3K May 15 06:09 metrics.json\\\\n-rw-r--r-- 1 root root 8.5M May 15 06:09 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-40:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60:\\\\ntotal 7.7M\\\\n-rw-r--r-- 1 root root 1.3K May 15 08:05 metrics.json\\\\n-rw-r--r-- 1 root root 7.7M May 15 08:05 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_rp:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root 10 May 15 05:41 checkpoint-20\\\\n-rw-r--r-- 1 root root  2 May 15 06:06 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_rp/checkpoint-20:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16:\\\\ntotal 0\\\\ndrwxr-xr-x 2 root root 10 May 15 22:43 checkpoint-100\\\\ndrwxr-xr-x 2 root root 10 May 15 22:41 checkpoint-80\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-80:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100:\\\\ntotal 0\\\\ndrwxr-xr-x 2 root root 62 May 15 09:18 checkpoint-100\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100:\\\\ntotal 6.9M\\\\n-rw-r--r-- 1 root root 1.4K May 15 09:18 metrics.json\\\\n-rw-r--r-- 1 root root 6.9M May 15 09:18 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root  62 May 15 07:08 checkpoint-40\\\\n-rw-r--r-- 1 root root 219 May 15 07:08 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40:\\\\ntotal 8.0M\\\\n-rw-r--r-- 1 root root 1.3K May 15 07:08 metrics.json\\\\n-rw-r--r-- 1 root root 8.0M May 15 07:08 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt60:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root 6 May 15 06:29 checkpoint-60\\\\n-rw-r--r-- 1 root root 2 May 15 06:30 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt60/checkpoint-60:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80:\\\\ntotal 4.0K\\\\ndrwxr-xr-x 2 root root  62 May 15 08:54 checkpoint-80\\\\n-rw-r--r-- 1 root root 219 May 15 08:54 summary.json\\\\n\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80:\\\\ntotal 7.2M\\\\n-rw-r--r-- 1 root root 1.3K May 15 08:54 metrics.json\\\\n-rw-r--r-- 1 root root 7.1M May 15 08:54 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/rsft_r1:\\\\ntotal 6.6M\\\\n-rw-r--r-- 1 root root  11K May 15 19:22 eval.log\\\\n-rw-r--r-- 1 root root 1.3K May 15 19:22 metrics.json\\\\n-rw-r--r-- 1 root root 6.5M May 15 19:22 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/rsft_r2a:\\\\ntotal 6.6M\\\\n-rw-r--r-- 1 root root  12K May 15 19:43 eval.log\\\\n-rw-r--r-- 1 root root 1.3K May 15 19:43 metrics.json\\\\n-rw-r--r-- 1 root root 6.6M May 15 19:43 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/rsft_r2b:\\\\ntotal 6.5M\\\\n-rw-r--r-- 1 root root  41K May 15 19:55 edcr_analysis.json\\\\n-rw-r--r-- 1 root root  12K May 15 19:42 eval.log\\\\n-rw-r--r-- 1 root root 1.3K May 15 19:42 metrics.json\\\\n-rw-r--r-- 1 root root 6.4M May 15 19:42 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536:\\\\ntotal 0\\\\n\\\\n/root/autodl-tmp/eval_results/rsft_s43:\\\\ntotal 6.4M\\\\n-rw-r--r-- 1 root root 1.3K May 15 21:15 metrics.json\\\\n-rw-r--r-- 1 root root 6.4M May 15 21:15 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/rsft_s44:\\\\ntotal 6.5M\\\\n-rw-r--r-- 1 root root  12K May 15 17:17 eval.log\\\\n-rw-r--r-- 1 root root 1.3K May 15 17:17 metrics.json\\\\n-rw-r--r-- 1 root root 6.5M May 15 17:17 predictions.json\\\\n\\\\n/root/autodl-tmp/eval_results/sft:\\\\ntotal 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/:\\ntotal 52K\\n-rw-r--r-- 1 root root 1.6K May 15 19:59 3seed_summary.json\\ndrwxr-xr-x 2 root root  127 May 15 17:52 ced_reranker_dryrun\\ndrwxr-xr-x 2 root root   95 May 15 22:44 ced_reranker_poc\\ndrwxr-xr-x 2 root root   95 May 15 16:02 ced_reranker_poc_dryrun\\n-rw-r--r-- 1 root root 9.2K May 15 19:59 edcr_analysis.json\\n-rw-r--r-- 1 root root  25K May 15 19:57 edcr_analysis_r2b.md\\n-rw-r--r-- 1 root root 1.7K May 15 21:19 evi_f1_joint_comparison.json\\ndrwxr-xr-x 9 root root 4.0K May 15 05:05 grpo_ced_kl001\\ndrwxr-xr-x 3 root root   60 May 15 03:35 grpo_ced_kl001_step100\\ndrwxr-xr-x 4 root root   84 May 15 05:30 grpo_ced_lr5e6\\ndrwxr-xr-x 2 root root   62 May 15 08:05 grpo_ced_lr5e6_ckpt60\\ndrwxr-xr-x 3 root root   59 May 15 06:06 grpo_ced_lr5e6_rp\\ndrwxr-xr-x 4 root root   61 May 15 22:43 grpo_g8_bf16\\ndrwxr-xr-x 2 root root    6 May 15 22:45 grpo_g8_bf16_ckpt100\\ndrwxr-xr-x 3 root root   36 May 15 07:39 lr5e6_r1_ckpt100\\ndrwxr-xr-x 3 root root   59 May 15 07:08 lr5e6_r1_ckpt40\\ndrwxr-xr-x 3 root root   47 May 15 06:30 lr5e6_r1_ckpt60\\ndrwxr-xr-x 3 root root   59 May 15 08:54 lr5e6_r1_ckpt80\\ndrwxr-xr-x 2 root root   82 May 15 19:22 rsft_r1\\ndrwxr-xr-x 2 root root   82 May 15 19:43 rsft_r2a\\ndrwxr-xr-x 2 root root  112 May 15 19:55 rsft_r2b\\ndrwxr-xr-x 2 root root    6 May 15 19:51 rsft_r2b_maxtok1536\\ndrwxr-xr-x 2 root root   62 May 15 21:15 rsft_s43\\ndrwxr-xr-x 2 root root   82 May 15 17:17 rsft_s44\\ndrwxr-xr-x 2 root root    6 May 14 19:47 sft\\n\\n/root/autodl-tmp/eval_results/ced_reranker_dryrun:\\ntotal 80K\\n-rw-r--r-- 1 root root  57K May 15 17:51 generations.jsonl\\n-rw-r--r-- 1 root root  12K May 15 17:51 greedy_outputs.jsonl\\n-rw-r--r-- 1 root root  400 May 15 17:52 per_doc_scores.jsonl\\n-rw-r--r-- 1 root root 2.9K May 15 17:52 results.json\\n\\n/root/autodl-tmp/eval_results/ced_reranker_poc:\\ntotal 28M\\n-rw-r--r-- 1 root root  28M May 15 21:51 generations.jsonl\\n-rw-r--r-- 1 root root 186K May 15 22:44 per_doc_scores.jsonl\\n-rw-r--r-- 1 root root 2.6K May 15 22:44 results.json\\n\\n/root/autodl-tmp/eval_results/ced_reranker_poc_dryrun:\\ntotal 120K\\n-rw-r--r-- 1 root root 110K May 15 16:02 generations.jsonl\\n-rw-r--r-- 1 root root  392 May 15 16:02 per_doc_scores.jsonl\\n-rw-r--r-- 1 root root 2.4K May 15 16:02 results.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_kl001:\\ntotal 4.0K\\ndrwxr-xr-x 2 root root  62 May 15 03:10 checkpoint-10\\ndrwxr-xr-x 2 root root  62 May 15 04:07 checkpoint-20\\ndrwxr-xr-x 2 root root  62 May 15 05:05 checkpoint-30\\ndrwxr-xr-x 2 root root  10 May 15 05:05 checkpoint-40\\ndrwxr-xr-x 2 root root  62 May 15 02:28 checkpoint-50\\ndrwxr-xr-x 2 root root  62 May 15 03:38 checkpoint-60\\ndrwxr-xr-x 2 root root  62 May 15 03:56 checkpoint-90\\n-rw-r--r-- 1 root root 200 May 15 03:56 summary.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10:\\ntotal 5.8M\\n-rw-r--r-- 1 root root 1.3K May 15 03:10 metrics.json\\n-rw-r--r-- 1 root root 5.8M May 15 03:10 predictions.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20:\\ntotal 4.2M\\n-rw-r--r-- 1 root root 1.3K May 15 04:07 metrics.json\\n-rw-r--r-- 1 root root 4.2M May 15 04:07 predictions.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30:\\ntotal 4.6M\\n-rw-r--r-- 1 root root 1.3K May 15 05:05 metrics.json\\n-rw-r--r-- 1 root root 4.6M May 15 05:05 predictions.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-40:\\ntotal 0\\n\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50:\\ntotal 5.1M\\n-rw-r--r-- 1 root root 1.3K May 15 02:28 metrics.json\\n-rw-r--r-- 1 root root 5.1M May 15 02:28 predictions.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60:\\ntotal 5.4M\\n-rw-r--r-- 1 root root 1.3K May 15 03:38 metrics.json\\n-rw-r--r-- 1 root root 5.4M May 15 03:38 predictions.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90:\\ntotal 5.6M\\n-rw-r--r-- 1 root root 1.3K May 15 03:56 metrics.json\\n-rw-r--r-- 1 root root 5.6M May 15 03:56 predictions.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100:\\ntotal 4.0K\\ndrwxr-xr-x 2 root root  62 May 15 03:35 checkpoint-100\\n-rw-r--r-- 1 root root 204 May 15 03:35 summary.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100:\\ntotal 5.6M\\n-rw-r--r-- 1 root root 1.3K May 15 03:35 metrics.json\\n-rw-r--r-- 1 root root 5.6M May 15 03:35 predictions.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6:\\ntotal 4.0K\\ndrwxr-xr-x 2 root root  62 May 15 06:09 checkpoint-20\\ndrwxr-xr-x 2 root root  10 May 15 05:12 checkpoint-40\\n-rw-r--r-- 1 root root 218 May 15 06:09 summary.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20:\\ntotal 8.5M\\n-rw-r--r-- 1 root root 1.3K May 15 06:09 metrics.json\\n-rw-r--r-- 1 root root 8.5M May 15 06:09 predictions.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-40:\\ntotal 0\\n\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60:\\ntotal 7.7M\\n-rw-r--r-- 1 root root 1.3K May 15 08:05 metrics.json\\n-rw-r--r-- 1 root root 7.7M May 15 08:05 predictions.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_rp:\\ntotal 4.0K\\ndrwxr-xr-x 2 root root 10 May 15 05:41 checkpoint-20\\n-rw-r--r-- 1 root root  2 May 15 06:06 summary.json\\n\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_rp/checkpoint-20:\\ntotal 0\\n\\n/root/autodl-tmp/eval_results/grpo_g8_bf16:\\ntotal 0\\ndrwxr-xr-x 2 root root 10 May 15 22:43 checkpoint-100\\ndrwxr-xr-x 2 root root 10 May 15 22:41 checkpoint-80\\n\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100:\\ntotal 0\\n\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-80:\\ntotal 0\\n\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100:\\ntotal 0\\n\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100:\\ntotal 0\\ndrwxr-xr-x 2 root root 62 May 15 09:18 checkpoint-100\\n\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100:\\ntotal 6.9M\\n-rw-r--r-- 1 root root 1.4K May 15 09:18 metrics.json\\n-rw-r--r-- 1 root root 6.9M May 15 09:18 predictions.json\\n\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40:\\ntotal 4.0K\\ndrwxr-xr-x 2 root root  62 May 15 07:08 checkpoint-40\\n-rw-r--r-- 1 root root 219 May 15 07:08 summary.json\\n\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40:\\ntotal 8.0M\\n-rw-r--r-- 1 root root 1.3K May 15 07:08 metrics.json\\n-rw-r--r-- 1 root root 8.0M May 15 07:08 predictions.json\\n\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt60:\\ntotal 4.0K\\ndrwxr-xr-x 2 root root 6 May 15 06:29 checkpoint-60\\n-rw-r--r-- 1 root root 2 May 15 06:30 summary.json\\n\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt60/checkpoint-60:\\ntotal 0\\n\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80:\\ntotal 4.0K\\ndrwxr-xr-x 2 root root  62 May 15 08:54 checkpoint-80\\n-rw-r--r-- 1 root root 219 May 15 08:54 summary.json\\n\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80:\\ntotal 7.2M\\n-rw-r--r-- 1 root root 1.3K May 15 08:54 metrics.json\\n-rw-r--r-- 1 root root 7.1M May 15 08:54 predictions.json\\n\\n/root/autodl-tmp/eval_results/rsft_r1:\\ntotal 6.6M\\n-rw-r--r-- 1 root root  11K May 15 19:22 eval.log\\n-rw-r--r-- 1 root root 1.3K May 15 19:22 metrics.json\\n-rw-r--r-- 1 root root 6.5M May 15 19:22 predictions.json\\n\\n/root/autodl-tmp/eval_results/rsft_r2a:\\ntotal 6.6M\\n-rw-r--r-- 1 root root  12K May 15 19:43 eval.log\\n-rw-r--r-- 1 root root 1.3K May 15 19:43 metrics.json\\n-rw-r--r-- 1 root root 6.6M May 15 19:43 predictions.json\\n\\n/root/autodl-tmp/eval_results/rsft_r2b:\\ntotal 6.5M\\n-rw-r--r-- 1 root root  41K May 15 19:55 edcr_analysis.json\\n-rw-r--r-- 1 root root  12K May 15 19:42 eval.log\\n-rw-r--r-- 1 root root 1.3K May 15 19:42 metrics.json\\n-rw-r--r-- 1 root root 6.4M May 15 19:42 predictions.json\\n\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536:\\ntotal 0\\n\\n/root/autodl-tmp/eval_results/rsft_s43:\\ntotal 6.4M\\n-rw-r--r-- 1 root root 1.3K May 15 21:15 metrics.json\\n-rw-r--r-- 1 root root 6.4M May 15 21:15 predictions.json\\n\\n/root/autodl-tmp/eval_results/rsft_s44:\\ntotal 6.5M\\n-rw-r--r-- 1 root root  12K May 15 17:17 eval.log\\n-rw-r--r-- 1 root root 1.3K May 15 17:17 metrics.json\\n-rw-r--r-- 1 root root 6.5M May 15 17:17 predictions.json\\n\\n/root/autodl-tmp/eval_results/sft:\\ntotal 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BBvzSZD16JqiynGuCK27sU",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "tail -80 /root/runs/faith-evidence-ie/mvp2_ced_reranker_poc.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "dd12e421-c609-4797-939c-7669b83132ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014kMx8p1E12KEFCi3D6zGXW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 938,
+                "cache_read_input_tokens": 24570,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 938
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tn6i2zYaSjWDTSh4B5czyM",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "faith-evidence-ie",
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "23da2619-b940-4733-9ce2-2e0054ca601c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014kMx8p1E12KEFCi3D6zGXW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 938,
+                "cache_read_input_tokens": 24570,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 938
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T14:51:07.964Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BBvzSZD16JqiynGuCK27sU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/runs/faith-evidence-ie/mvp2_ced_reranker_poc.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "ee47d48e-c14a-4e19-b786-249f1ea9f02b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/runs/faith-evidence-ie/mvp2_ced_reranker_poc.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/runs/faith-evidence-ie/mvp2_ced_reranker_poc.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T14:51:08.226Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tn6i2zYaSjWDTSh4B5czyM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_011_grpo_g8_bf16_eval\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"created_at\\\": \\\"2026-05-15T14:43:48.481Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:47:35.821Z\\\"}, \\\"mvp2_ced_reranker_poc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T07:55:03.414Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:47:24.899Z\\\", \\\"hypothesis\\\": \\\"CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_011_eval_g8_bf16_ckpt100\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T14:43:24.143Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:43:24.143Z\\\"}, \\\"eval_grpo_g8_bf16\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T14:41:07.474Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:41:49.896Z\\\", \\\"hypothesis\\\": \\\"Eval GRPO G=8 bf16 checkpoints 80/90/100 on full dev set (985 docs). 验证 catastrophic forgetting 是否在 bf16 LoRA 下复现。rel_f1>0.30 → forgetting 不复现 (QLoRA-specific); rel_f1<0.05 → 复现 (C2 加强)。对比: SFT rel_f1=0.4057, QLoRA GRPO rel_f1=0.2167 (catastrophic).\\\"}, \\\"plan_011_grpo_g8_bf16\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"created_at\\\": \\\"2026-05-15T13:59:50.014Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:38:21.634Z\\\", \\\"hypothesis\\\": \\\"GRPO G=8 bf16 LoRA: 验证 catastrophic forgetting 是否在 bf16（非 QLoRA 4-bit）下仍复现。CED reward + kl_coef=0.01, 100 steps。如仍 fail → 加强 Claim 3\\\", \\\"metrics\\\": {\\\"final_step\\\": 100, \\\"train_runtime_s\\\": 554, \\\"reward_final\\\": 1.795, \\\"f1_reward_final\\\": 1.002, \\\"ced_reward_final\\\": 0.494, \\\"format_reward_final\\\": 0.3, \\\"frac_zero_std_final\\\": 0, \\\"kl_final\\\": 0.022, \\\"best_reward_step\\\": 85, \\\"best_reward\\\": 2.858, \\\"best_f1_reward\\\": 1.85, \\\"mode_collapse\\\": false, \\\"lora_config\\\": \\\"r=64, alpha=128, dropout=0.05, bf16\\\", \\\"checkpoints\\\": \\\"10 checkpoints (step 10-100)\\\"}, \\\"notes\\\": \\\"训练完成 (100/100 steps, EXIT_CODE=0, 554s/9.2min)。无 mode collapse (frac_zero_std=0.0 全程)。KL 极低 (0.005-0.052)。训练 metrics 比 QLoRA 更好 (reward 1.795 vs 1.195, 无 frac_zero_std 升高)。但 QLoRA 训练 metrics 也不差，问题在 eval。必须 eval 才能判断 catastrophic forgetting 是算法层面还是量化问题。\\\"}, \\\"plan_001_flat_nli_scoring\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T14:36:56.213Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:37:37.903Z\\\", \\\"hypothesis\\\": \\\"flat-NLI scoring 前置步骤：用 flat_nli 模式（p_pos 概率，无 contrastive margin）对 RSFT 生成候选打分并筛选训练数据。\\\"}, \\\"plan_004_dreeam_baseline\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T13:47:01.947Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:32:04.028Z\\\", \\\"hypothesis\\\": \\\"Phase A: 复现 DREEAM fully-supervised teacher (RoBERTa-large) DocRED dev Evi-F1≈54.15, RE-F1≈63.49。论文报告的57.34是student model在test set的结果，需4阶段self-training pipeline。\\\"}, \\\"mvp2_eval_rsft_s43_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T11:29:17.551Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:54:26.023Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798. Retry of mvp2_eval_rsft_s43 (fixed arg names).\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1_s43\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4683, \\\"ign_f1\\\": 0.4683, \\\"evi_f1\\\": 0.8156, \\\"evi_f1_joint\\\": 0.3711, \\\"evi_f1_joint_P\\\": 0.3747, \\\"evi_f1_joint_R\\\": 0.3675, \\\"edcr\\\": 0.6388, \\\"precision\\\": 0.4817, \\\"recall\\\": 0.4556, \\\"evi_precision\\\": 0.8142, \\\"evi_recall\\\": 0.817, \\\"n_predictions\\\": 14970, \\\"n_truncated\\\": 171, \\\"format_ok_rate\\\": 1, \\\"inference_time_s\\\": 6316.7, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0626, \\\"delta_evi_f1\\\": 0.0177, \\\"delta_evi_f1_joint\\\": 0.0594, \\\"mvp2_pass\\\": true}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"3rd seed PASS. rel_f1=0.4683 (+6.26pp vs SFT), evi_f1=0.8156 (+1.77pp), EDCR=0.6388. 3-seed 完整表: mean rel_f1=0.4596±0.0127, mean evi_f1=0.8143±0.0051. 三个 seed 均稳定超过 SFT baseline。cuda:2 已释放。\\\"}, \\\"mvp2_rsft_ced_scoring_topk3_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T12:12:38.363Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:53:08.461Z\\\", \\\"hypothesis\\\": \\\"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\\\", \\\"parent\\\": \\\"mvp2_rsft_ced_scoring\\\", \\\"metrics\\\": {\\\"input_generations\\\": 21728, \\\"selected_samples\\\": 8037, \\\"unique_docs\\\": 2691, \\\"selection_rate\\\": 0.37, \\\"mean_f1\\\": 0.5761, \\\"mean_ced\\\": 0.6205, \\\"mean_combined\\\": 0.6787, \\\"f1_range_p25\\\": 0.444, \\\"f1_range_p75\\\": 0.717, \\\"ced_range_p25\\\": 0.487, \\\"ced_range_p75\\\": 0.774, \\\"truncated_samples\\\": 1924, \\\"truncated_pct\\\": 8.9, \\\"selection_strategy\\\": \\\"top_k=3\\\", \\\"f1_threshold\\\": 0.1, \\\"topk1_samples\\\": 2718, \\\"data_multiplier\\\": 2.96}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"top_k=3 scoring 完成。8037 samples (vs top_k=1 的 2718, 2.96x)。质量下降可控: mean_f1 -0.04, mean_ced -0.048。输出: /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl (24.8MB)。可用于 plan_008 RSFT 训练 ablation。\\\"}, \\\"mvp2_rsft_train_r1_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T05:36:26.321Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:27:38.819Z\\\", \\\"hypothesis\\\": \\\"RSFT training seed=44 variance estimate. Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples). Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1\\\", \\\"wandb_run_id\\\": \\\"rsft-ced-r1-s44\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4655, \\\"evi_f1\\\": 0.8087, \\\"evi_f1_joint\\\": 0.3713, \\\"evi_f1_joint_P\\\": 0.3775, \\\"evi_f1_joint_R\\\": 0.3653, \\\"edcr\\\": 0.635, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0598, \\\"delta_evi_f1\\\": 0.0108, \\\"delta_evi_f1_joint\\\": 0.0596, \\\"mvp2_pass\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_eval_rsft_r2b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T09:42:58.437Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:27:35.580Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_r2b\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"ign_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"evi_f1_joint\\\": 0.349, \\\"evi_f1_joint_P\\\": 0.3455, \\\"evi_f1_joint_R\\\": 0.3526, \\\"edcr\\\": 0.6609, \\\"precision\\\": 0.4566, \\\"recall\\\": 0.4424, \\\"evi_precision\\\": 0.8201, \\\"evi_recall\\\": 0.8056, \\\"pred_count\\\": 14829, \\\"format_ok\\\": \\\"983/985\\\", \\\"truncated\\\": 179, \\\"inference_time_s\\\": 5862, \\\"delta_evi_f1_joint\\\": 0.0373}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_eval_rsft_r2a\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T09:42:57.684Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:27:32.756Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of r2a (1 epoch, alpha=128, clean data). Ablation: 1 epoch vs 3 epoch (r1). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_r2a\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4494, \\\"ign_f1\\\": 0.4494, \\\"evi_f1\\\": 0.8108, \\\"evi_f1_joint\\\": 0.3509, \\\"evi_f1_joint_P\\\": 0.3423, \\\"evi_f1_joint_R\\\": 0.3599, \\\"edcr\\\": 0.6641, \\\"precision\\\": 0.4512, \\\"recall\\\": 0.4475, \\\"evi_precision\\\": 0.8143, \\\"evi_recall\\\": 0.8073, \\\"format_ok_rate\\\": 1, \\\"n_predictions\\\": 15482, \\\"n_truncated\\\": 208, \\\"inference_time_s\\\": 5967.2, \\\"delta_evi_f1_joint\\\": 0.0392}, \\\"notes\\\": \\\"RSFT r2a (1ep, alpha=128/r=64, lr=2e-5, clean 2548 samples). rel_f1=0.4494 (+0.0045 vs r1, +0.0001 vs r2b), evi_f1=0.8108 (-0.0079 vs r1, -0.0020 vs r2b), edcr=0.6641 (+0.0032 vs r2b). 1 epoch with clean data matches r1's 3-epoch rel_f1 while being cheaper. r2a vs r2b (alpha=128 vs 32): nearly identical rel_f1, marginal edcr advantage for higher alpha. All RSFT variants beat SFT baseline on rel_f1/evi_f1 but lose on edcr (0.66-0.66 vs 0.71).\\\"}, \\\"mvp2_eval_rsft_r1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T09:40:47.529Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:27:31.402Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of RSFT r1 (seed=42). Same pipeline as s44 eval (985 docs, no-quantize). Need 3-seed data for complete_mvp. s44 PASS: rel_f1=0.4655, evi_f1=0.8087.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4449, \\\"evi_f1\\\": 0.8187, \\\"evi_f1_joint\\\": 0.3468, \\\"evi_f1_joint_P\\\": 0.3515, \\\"evi_f1_joint_R\\\": 0.3423, \\\"edcr\\\": 0.6565, \\\"num_preds\\\": 15307, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0392, \\\"delta_evi_f1\\\": 0.0208, \\\"delta_evi_f1_joint\\\": 0.0351, \\\"mvp2_pass\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_eval_sft_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:47:41.356Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:27:26.236Z\\\", \\\"hypothesis\\\": \\\"SFT baseline eval using identical eval protocol as GRPO evals (eval_lr5e6_ckpt20.sh). Required for MVP-2 core comparison: CED_Evi-F1 − SFT_Evi-F1 ≥ 2pp. Prior SFT eval (r3) used different eval path; this ensures apple-to-apple comparison.\\\", \\\"parent\\\": \\\"mvp2_sft_warmup\\\", \\\"notes\\\": \\\"[2026-05-15 07:39] Eval 正常完成。结果与 r2/r3 完全一致 (rel_f1=0.4057, evi_f1=0.7979)，apple-to-apple 对比协议复现成功。结果路径: /root/autodl-tmp/sft_baseline_eval_results/metrics.json。cuda:3 已释放。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4057, \\\"evi_f1\\\": 0.7979, \\\"evi_f1_joint\\\": 0.3117, \\\"evi_f1_joint_P\\\": 0.3037, \\\"evi_f1_joint_R\\\": 0.32, \\\"edcr\\\": 0.7118, \\\"pred_count\\\": 12234, \\\"gold_count\\\": 12151, \\\"format_ok_rate\\\": 0.998, \\\"format_compliance_rate\\\": 0.998, \\\"field_compliance_rate\\\": 0.6264, \\\"n_truncated\\\": 367, \\\"inference_time_seconds\\\": 6138.5}}, \\\"mvp2_eval_rsft_r2b_maxtok1536\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T11:49:48.849Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:23:59.642Z\\\", \\\"hypothesis\\\": \\\"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). If EDCR improves significantly (from 0.6609 toward 0.71+), current EDCR gap is truncation artifact, not model issue. If EDCR unchanged, distractor citation is genuine RSFT behavior.\\\", \\\"parent\\\": \\\"mvp2_eval_rsft_r2b\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Reviewer CRITICAL: 命令缺少 --base_model 和 --sft_adapter，模型 stack 是 Base+RSFT LoRA 而非 Base+SFT+RSFT LoRA，结果不可用。PID 196700 已 kill。重试为 mvp2_eval_rsft_r2b_maxtok1536_r2。\\\"}, \\\"mvp2_rsft_ced_scoring_topk3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T07:35:23.225Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:20:42.443Z\\\", \\\"hypothesis\\\": \\\"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Answers: does CED filtering strictness affect RSFT training quality?\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"NLI 模型加载失败 (HuggingFace Network unreachable)。命令缺少 HF_HOME/HF_HUB_OFFLINE/TRANSFORMERS_OFFLINE 环境变量。重试为 mvp2_rsft_ced_scoring_topk3_r2。\\\"}, \\\"mvp2_rsft_r2b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T08:57:46.813Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:14:23.368Z\\\", \\\"hypothesis\\\": \\\"RSFT r2b: data fix + training dynamics fix (1 epoch + filter truncated + LoRA alpha=32/r=64 scaling 0.5 + lr=1e-5). Isolates: is conservative LoRA scaling the key factor? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1\\\", \\\"wandb_run_id\\\": \\\"rsft-r2b\\\", \\\"notes\\\": \\\"训练完成 (160 steps, 33.7min, eval_loss=0.7545)。TaskEvalCallback rel_f1=0.0504 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"edcr\\\": 0.6609, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0436, \\\"delta_evi_f1\\\": 0.0149, \\\"mvp2_pass\\\": true}}, \\\"mvp2_rsft_r2a\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T08:57:46.140Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:14:22.509Z\\\", \\\"hypothesis\\\": \\\"RSFT r2a: data fix only (1 epoch + filter 170 truncated JSON → 2548 samples). Same LoRA alpha=128/r=64, lr=2e-5 as r1. Isolates: does 1 epoch + clean data alone fix the ontology collapse? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1\\\", \\\"wandb_run_id\\\": \\\"rsft-r2a\\\", \\\"notes\\\": \\\"训练完成 (160 steps, 35.5min, eval_loss=0.7547)。TaskEvalCallback rel_f1=0.0509 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4494, \\\"evi_f1\\\": 0.8108, \\\"edcr\\\": 0.6641, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0437, \\\"delta_evi_f1\\\": 0.0129, \\\"mvp2_pass\\\": true}}, \\\"mvp2_rsft_diagnosis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T07:55:04.100Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:09:32.257Z\\\", \\\"hypothesis\\\": \\\"RSFT failure root cause: rel_f1=0.0483 vs SFT 0.4057. Diagnose: training data distribution (relation count), step-170 checkpoint output analysis, SFT vs RSFT data comparison.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"root_cause\\\": \\\"overfitting_plus_sft_knowledge_overwrite\\\", \\\"truncated_json_samples\\\": 170, \\\"truncated_pct\\\": 6.3, \\\"epoch1_eval_loss\\\": 0.756, \\\"epoch2_eval_loss\\\": 0.759, \\\"lora_scaling\\\": 2, \\\"rsft_zero_relation_samples\\\": 170, \\\"sft_zero_relation_docs\\\": 26, \\\"rsft_mean_relations\\\": 11.2, \\\"sft_mean_relations\\\": 12.5}}, \\\"mvp2_eval_ced_kl001_r4_last\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:10:05.820Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:09:21.004Z\\\", \\\"notes\\\": \\\"已被拆分为独立 eval：ckpt-90 → mvp2_eval_ced_kl001_r4_ckpt90 (cuda:3)，ckpt-100 → mvp2_eval_ced_kl001_r4_step100 (cuda:0)。此条目作废。\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 20, \\\"total\\\": 80, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2485}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "fe9e917b-0254-420e-8f19-04331a4cd608",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_011_grpo_g8_bf16_eval\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"created_at\\\": \\\"2026-05-15T14:43:48.481Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:47:35.821Z\\\"}, \\\"mvp2_ced_reranker_poc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T07:55:03.414Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:47:24.899Z\\\", \\\"hypothesis\\\": \\\"CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_011_eval_g8_bf16_ckpt100\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T14:43:24.143Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:43:24.143Z\\\"}, \\\"eval_grpo_g8_bf16\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T14:41:07.474Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:41:49.896Z\\\", \\\"hypothesis\\\": \\\"Eval GRPO G=8 bf16 checkpoints 80/90/100 on full dev set (985 docs). 验证 catastrophic forgetting 是否在 bf16 LoRA 下复现。rel_f1>0.30 → forgetting 不复现 (QLoRA-specific); rel_f1<0.05 → 复现 (C2 加强)。对比: SFT rel_f1=0.4057, QLoRA GRPO rel_f1=0.2167 (catastrophic).\\\"}, \\\"plan_011_grpo_g8_bf16\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"created_at\\\": \\\"2026-05-15T13:59:50.014Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:38:21.634Z\\\", \\\"hypothesis\\\": \\\"GRPO G=8 bf16 LoRA: 验证 catastrophic forgetting 是否在 bf16（非 QLoRA 4-bit）下仍复现。CED reward + kl_coef=0.01, 100 steps。如仍 fail → 加强 Claim 3\\\", \\\"metrics\\\": {\\\"final_step\\\": 100, \\\"train_runtime_s\\\": 554, \\\"reward_final\\\": 1.795, \\\"f1_reward_final\\\": 1.002, \\\"ced_reward_final\\\": 0.494, \\\"format_reward_final\\\": 0.3, \\\"frac_zero_std_final\\\": 0, \\\"kl_final\\\": 0.022, \\\"best_reward_step\\\": 85, \\\"best_reward\\\": 2.858, \\\"best_f1_reward\\\": 1.85, \\\"mode_collapse\\\": false, \\\"lora_config\\\": \\\"r=64, alpha=128, dropout=0.05, bf16\\\", \\\"checkpoints\\\": \\\"10 checkpoints (step 10-100)\\\"}, \\\"notes\\\": \\\"训练完成 (100/100 steps, EXIT_CODE=0, 554s/9.2min)。无 mode collapse (frac_zero_std=0.0 全程)。KL 极低 (0.005-0.052)。训练 metrics 比 QLoRA 更好 (reward 1.795 vs 1.195, 无 frac_zero_std 升高)。但 QLoRA 训练 metrics 也不差，问题在 eval。必须 eval 才能判断 catastrophic forgetting 是算法层面还是量化问题。\\\"}, \\\"plan_001_flat_nli_scoring\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T14:36:56.213Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:37:37.903Z\\\", \\\"hypothesis\\\": \\\"flat-NLI scoring 前置步骤：用 flat_nli 模式（p_pos 概率，无 contrastive margin）对 RSFT 生成候选打分并筛选训练数据。\\\"}, \\\"plan_004_dreeam_baseline\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T13:47:01.947Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:32:04.028Z\\\", \\\"hypothesis\\\": \\\"Phase A: 复现 DREEAM fully-supervised teacher (RoBERTa-large) DocRED dev Evi-F1≈54.15, RE-F1≈63.49。论文报告的57.34是student model在test set的结果，需4阶段self-training pipeline。\\\"}, \\\"mvp2_eval_rsft_s43_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T11:29:17.551Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:54:26.023Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798. Retry of mvp2_eval_rsft_s43 (fixed arg names).\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1_s43\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4683, \\\"ign_f1\\\": 0.4683, \\\"evi_f1\\\": 0.8156, \\\"evi_f1_joint\\\": 0.3711, \\\"evi_f1_joint_P\\\": 0.3747, \\\"evi_f1_joint_R\\\": 0.3675, \\\"edcr\\\": 0.6388, \\\"precision\\\": 0.4817, \\\"recall\\\": 0.4556, \\\"evi_precision\\\": 0.8142, \\\"evi_recall\\\": 0.817, \\\"n_predictions\\\": 14970, \\\"n_truncated\\\": 171, \\\"format_ok_rate\\\": 1, \\\"inference_time_s\\\": 6316.7, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0626, \\\"delta_evi_f1\\\": 0.0177, \\\"delta_evi_f1_joint\\\": 0.0594, \\\"mvp2_pass\\\": true}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"3rd seed PASS. rel_f1=0.4683 (+6.26pp vs SFT), evi_f1=0.8156 (+1.77pp), EDCR=0.6388. 3-seed 完整表: mean rel_f1=0.4596±0.0127, mean evi_f1=0.8143±0.0051. 三个 seed 均稳定超过 SFT baseline。cuda:2 已释放。\\\"}, \\\"mvp2_rsft_ced_scoring_topk3_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T12:12:38.363Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:53:08.461Z\\\", \\\"hypothesis\\\": \\\"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\\\", \\\"parent\\\": \\\"mvp2_rsft_ced_scoring\\\", \\\"metrics\\\": {\\\"input_generations\\\": 21728, \\\"selected_samples\\\": 8037, \\\"unique_docs\\\": 2691, \\\"selection_rate\\\": 0.37, \\\"mean_f1\\\": 0.5761, \\\"mean_ced\\\": 0.6205, \\\"mean_combined\\\": 0.6787, \\\"f1_range_p25\\\": 0.444, \\\"f1_range_p75\\\": 0.717, \\\"ced_range_p25\\\": 0.487, \\\"ced_range_p75\\\": 0.774, \\\"truncated_samples\\\": 1924, \\\"truncated_pct\\\": 8.9, \\\"selection_strategy\\\": \\\"top_k=3\\\", \\\"f1_threshold\\\": 0.1, \\\"topk1_samples\\\": 2718, \\\"data_multiplier\\\": 2.96}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"top_k=3 scoring 完成。8037 samples (vs top_k=1 的 2718, 2.96x)。质量下降可控: mean_f1 -0.04, mean_ced -0.048。输出: /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl (24.8MB)。可用于 plan_008 RSFT 训练 ablation。\\\"}, \\\"mvp2_rsft_train_r1_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T05:36:26.321Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:27:38.819Z\\\", \\\"hypothesis\\\": \\\"RSFT training seed=44 variance estimate. Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples). Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1\\\", \\\"wandb_run_id\\\": \\\"rsft-ced-r1-s44\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4655, \\\"evi_f1\\\": 0.8087, \\\"evi_f1_joint\\\": 0.3713, \\\"evi_f1_joint_P\\\": 0.3775, \\\"evi_f1_joint_R\\\": 0.3653, \\\"edcr\\\": 0.635, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0598, \\\"delta_evi_f1\\\": 0.0108, \\\"delta_evi_f1_joint\\\": 0.0596, \\\"mvp2_pass\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_eval_rsft_r2b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T09:42:58.437Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:27:35.580Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_r2b\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"ign_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"evi_f1_joint\\\": 0.349, \\\"evi_f1_joint_P\\\": 0.3455, \\\"evi_f1_joint_R\\\": 0.3526, \\\"edcr\\\": 0.6609, \\\"precision\\\": 0.4566, \\\"recall\\\": 0.4424, \\\"evi_precision\\\": 0.8201, \\\"evi_recall\\\": 0.8056, \\\"pred_count\\\": 14829, \\\"format_ok\\\": \\\"983/985\\\", \\\"truncated\\\": 179, \\\"inference_time_s\\\": 5862, \\\"delta_evi_f1_joint\\\": 0.0373}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_eval_rsft_r2a\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T09:42:57.684Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:27:32.756Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of r2a (1 epoch, alpha=128, clean data). Ablation: 1 epoch vs 3 epoch (r1). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_r2a\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4494, \\\"ign_f1\\\": 0.4494, \\\"evi_f1\\\": 0.8108, \\\"evi_f1_joint\\\": 0.3509, \\\"evi_f1_joint_P\\\": 0.3423, \\\"evi_f1_joint_R\\\": 0.3599, \\\"edcr\\\": 0.6641, \\\"precision\\\": 0.4512, \\\"recall\\\": 0.4475, \\\"evi_precision\\\": 0.8143, \\\"evi_recall\\\": 0.8073, \\\"format_ok_rate\\\": 1, \\\"n_predictions\\\": 15482, \\\"n_truncated\\\": 208, \\\"inference_time_s\\\": 5967.2, \\\"delta_evi_f1_joint\\\": 0.0392}, \\\"notes\\\": \\\"RSFT r2a (1ep, alpha=128/r=64, lr=2e-5, clean 2548 samples). rel_f1=0.4494 (+0.0045 vs r1, +0.0001 vs r2b), evi_f1=0.8108 (-0.0079 vs r1, -0.0020 vs r2b), edcr=0.6641 (+0.0032 vs r2b). 1 epoch with clean data matches r1's 3-epoch rel_f1 while being cheaper. r2a vs r2b (alpha=128 vs 32): nearly identical rel_f1, marginal edcr advantage for higher alpha. All RSFT variants beat SFT baseline on rel_f1/evi_f1 but lose on edcr (0.66-0.66 vs 0.71).\\\"}, \\\"mvp2_eval_rsft_r1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T09:40:47.529Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:27:31.402Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of RSFT r1 (seed=42). Same pipeline as s44 eval (985 docs, no-quantize). Need 3-seed data for complete_mvp. s44 PASS: rel_f1=0.4655, evi_f1=0.8087.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4449, \\\"evi_f1\\\": 0.8187, \\\"evi_f1_joint\\\": 0.3468, \\\"evi_f1_joint_P\\\": 0.3515, \\\"evi_f1_joint_R\\\": 0.3423, \\\"edcr\\\": 0.6565, \\\"num_preds\\\": 15307, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0392, \\\"delta_evi_f1\\\": 0.0208, \\\"delta_evi_f1_joint\\\": 0.0351, \\\"mvp2_pass\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_eval_sft_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:47:41.356Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:27:26.236Z\\\", \\\"hypothesis\\\": \\\"SFT baseline eval using identical eval protocol as GRPO evals (eval_lr5e6_ckpt20.sh). Required for MVP-2 core comparison: CED_Evi-F1 − SFT_Evi-F1 ≥ 2pp. Prior SFT eval (r3) used different eval path; this ensures apple-to-apple comparison.\\\", \\\"parent\\\": \\\"mvp2_sft_warmup\\\", \\\"notes\\\": \\\"[2026-05-15 07:39] Eval 正常完成。结果与 r2/r3 完全一致 (rel_f1=0.4057, evi_f1=0.7979)，apple-to-apple 对比协议复现成功。结果路径: /root/autodl-tmp/sft_baseline_eval_results/metrics.json。cuda:3 已释放。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4057, \\\"evi_f1\\\": 0.7979, \\\"evi_f1_joint\\\": 0.3117, \\\"evi_f1_joint_P\\\": 0.3037, \\\"evi_f1_joint_R\\\": 0.32, \\\"edcr\\\": 0.7118, \\\"pred_count\\\": 12234, \\\"gold_count\\\": 12151, \\\"format_ok_rate\\\": 0.998, \\\"format_compliance_rate\\\": 0.998, \\\"field_compliance_rate\\\": 0.6264, \\\"n_truncated\\\": 367, \\\"inference_time_seconds\\\": 6138.5}}, \\\"mvp2_eval_rsft_r2b_maxtok1536\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T11:49:48.849Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:23:59.642Z\\\", \\\"hypothesis\\\": \\\"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). If EDCR improves significantly (from 0.6609 toward 0.71+), current EDCR gap is truncation artifact, not model issue. If EDCR unchanged, distractor citation is genuine RSFT behavior.\\\", \\\"parent\\\": \\\"mvp2_eval_rsft_r2b\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Reviewer CRITICAL: 命令缺少 --base_model 和 --sft_adapter，模型 stack 是 Base+RSFT LoRA 而非 Base+SFT+RSFT LoRA，结果不可用。PID 196700 已 kill。重试为 mvp2_eval_rsft_r2b_maxtok1536_r2。\\\"}, \\\"mvp2_rsft_ced_scoring_topk3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T07:35:23.225Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:20:42.443Z\\\", \\\"hypothesis\\\": \\\"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Answers: does CED filtering strictness affect RSFT training quality?\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"NLI 模型加载失败 (HuggingFace Network unreachable)。命令缺少 HF_HOME/HF_HUB_OFFLINE/TRANSFORMERS_OFFLINE 环境变量。重试为 mvp2_rsft_ced_scoring_topk3_r2。\\\"}, \\\"mvp2_rsft_r2b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T08:57:46.813Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:14:23.368Z\\\", \\\"hypothesis\\\": \\\"RSFT r2b: data fix + training dynamics fix (1 epoch + filter truncated + LoRA alpha=32/r=64 scaling 0.5 + lr=1e-5). Isolates: is conservative LoRA scaling the key factor? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1\\\", \\\"wandb_run_id\\\": \\\"rsft-r2b\\\", \\\"notes\\\": \\\"训练完成 (160 steps, 33.7min, eval_loss=0.7545)。TaskEvalCallback rel_f1=0.0504 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"edcr\\\": 0.6609, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0436, \\\"delta_evi_f1\\\": 0.0149, \\\"mvp2_pass\\\": true}}, \\\"mvp2_rsft_r2a\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T08:57:46.140Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:14:22.509Z\\\", \\\"hypothesis\\\": \\\"RSFT r2a: data fix only (1 epoch + filter 170 truncated JSON → 2548 samples). Same LoRA alpha=128/r=64, lr=2e-5 as r1. Isolates: does 1 epoch + clean data alone fix the ontology collapse? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1\\\", \\\"wandb_run_id\\\": \\\"rsft-r2a\\\", \\\"notes\\\": \\\"训练完成 (160 steps, 35.5min, eval_loss=0.7547)。TaskEvalCallback rel_f1=0.0509 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4494, \\\"evi_f1\\\": 0.8108, \\\"edcr\\\": 0.6641, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0437, \\\"delta_evi_f1\\\": 0.0129, \\\"mvp2_pass\\\": true}}, \\\"mvp2_rsft_diagnosis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T07:55:04.100Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:09:32.257Z\\\", \\\"hypothesis\\\": \\\"RSFT failure root cause: rel_f1=0.0483 vs SFT 0.4057. Diagnose: training data distribution (relation count), step-170 checkpoint output analysis, SFT vs RSFT data comparison.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"root_cause\\\": \\\"overfitting_plus_sft_knowledge_overwrite\\\", \\\"truncated_json_samples\\\": 170, \\\"truncated_pct\\\": 6.3, \\\"epoch1_eval_loss\\\": 0.756, \\\"epoch2_eval_loss\\\": 0.759, \\\"lora_scaling\\\": 2, \\\"rsft_zero_relation_samples\\\": 170, \\\"sft_zero_relation_docs\\\": 26, \\\"rsft_mean_relations\\\": 11.2, \\\"sft_mean_relations\\\": 12.5}}, \\\"mvp2_eval_ced_kl001_r4_last\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:10:05.820Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:09:21.004Z\\\", \\\"notes\\\": \\\"已被拆分为独立 eval：ckpt-90 → mvp2_eval_ced_kl001_r4_ckpt90 (cuda:3)，ckpt-100 → mvp2_eval_ced_kl001_r4_step100 (cuda:0)。此条目作废。\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 20, \\\"total\\\": 80, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2485}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan_011_grpo_g8_bf16_eval\": {\"status\": \"PENDING\", \"created_at\": \"2026-05-15T14:43:48.481Z\", \"updated_at\": \"2026-05-15T14:47:35.821Z\"}, \"mvp2_ced_reranker_poc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:55:03.414Z\", \"updated_at\": \"2026-05-15T14:47:24.899Z\", \"hypothesis\": \"CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound.\", \"conclusion\": \"success\"}, \"plan_011_eval_g8_bf16_ckpt100\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T14:43:24.143Z\", \"updated_at\": \"2026-05-15T14:43:24.143Z\"}, \"eval_grpo_g8_bf16\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T14:41:07.474Z\", \"updated_at\": \"2026-05-15T14:41:49.896Z\", \"hypothesis\": \"Eval GRPO G=8 bf16 checkpoints 80/90/100 on full dev set (985 docs). 验证 catastrophic forgetting 是否在 bf16 LoRA 下复现。rel_f1>0.30 → forgetting 不复现 (QLoRA-specific); rel_f1<0.05 → 复现 (C2 加强)。对比: SFT rel_f1=0.4057, QLoRA GRPO rel_f1=0.2167 (catastrophic).\"}, \"plan_011_grpo_g8_bf16\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-15T13:59:50.014Z\", \"updated_at\": \"2026-05-15T14:38:21.634Z\", \"hypothesis\": \"GRPO G=8 bf16 LoRA: 验证 catastrophic forgetting 是否在 bf16（非 QLoRA 4-bit）下仍复现。CED reward + kl_coef=0.01, 100 steps。如仍 fail → 加强 Claim 3\", \"metrics\": {\"final_step\": 100, \"train_runtime_s\": 554, \"reward_final\": 1.795, \"f1_reward_final\": 1.002, \"ced_reward_final\": 0.494, \"format_reward_final\": 0.3, \"frac_zero_std_final\": 0, \"kl_final\": 0.022, \"best_reward_step\": 85, \"best_reward\": 2.858, \"best_f1_reward\": 1.85, \"mode_collapse\": false, \"lora_config\": \"r=64, alpha=128, dropout=0.05, bf16\", \"checkpoints\": \"10 checkpoints (step 10-100)\"}, \"notes\": \"训练完成 (100/100 steps, EXIT_CODE=0, 554s/9.2min)。无 mode collapse (frac_zero_std=0.0 全程)。KL 极低 (0.005-0.052)。训练 metrics 比 QLoRA 更好 (reward 1.795 vs 1.195, 无 frac_zero_std 升高)。但 QLoRA 训练 metrics 也不差，问题在 eval。必须 eval 才能判断 catastrophic forgetting 是算法层面还是量化问题。\"}, \"plan_001_flat_nli_scoring\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T14:36:56.213Z\", \"updated_at\": \"2026-05-15T14:37:37.903Z\", \"hypothesis\": \"flat-NLI scoring 前置步骤：用 flat_nli 模式（p_pos 概率，无 contrastive margin）对 RSFT 生成候选打分并筛选训练数据。\"}, \"plan_004_dreeam_baseline\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T13:47:01.947Z\", \"updated_at\": \"2026-05-15T14:32:04.028Z\", \"hypothesis\": \"Phase A: 复现 DREEAM fully-supervised teacher (RoBERTa-large) DocRED dev Evi-F1≈54.15, RE-F1≈63.49。论文报告的57.34是student model在test set的结果，需4阶段self-training pipeline。\"}, \"mvp2_eval_rsft_s43_r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T11:29:17.551Z\", \"updated_at\": \"2026-05-15T13:54:26.023Z\", \"hypothesis\": \"Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798. Retry of mvp2_eval_rsft_s43 (fixed arg names).\", \"parent\": \"mvp2_rsft_train_r1_s43\", \"metrics\": {\"rel_f1\": 0.4683, \"ign_f1\": 0.4683, \"evi_f1\": 0.8156, \"evi_f1_joint\": 0.3711, \"evi_f1_joint_P\": 0.3747, \"evi_f1_joint_R\": 0.3675, \"edcr\": 0.6388, \"precision\": 0.4817, \"recall\": 0.4556, \"evi_precision\": 0.8142, \"evi_recall\": 0.817, \"n_predictions\": 14970, \"n_truncated\": 171, \"format_ok_rate\": 1, \"inference_time_s\": 6316.7, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0626, \"delta_evi_f1\": 0.0177, \"delta_evi_f1_joint\": 0.0594, \"mvp2_pass\": true}, \"conclusion\": \"success\", \"notes\": \"3rd seed PASS. rel_f1=0.4683 (+6.26pp vs SFT), evi_f1=0.8156 (+1.77pp), EDCR=0.6388. 3-seed 完整表: mean rel_f1=0.4596±0.0127, mean evi_f1=0.8143±0.0051. 三个 seed 均稳定超过 SFT baseline。cuda:2 已释放。\"}, \"mvp2_rsft_ced_scoring_topk3_r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:12:38.363Z\", \"updated_at\": \"2026-05-15T13:53:08.461Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\", \"parent\": \"mvp2_rsft_ced_scoring\", \"metrics\": {\"input_generations\": 21728, \"selected_samples\": 8037, \"unique_docs\": 2691, \"selection_rate\": 0.37, \"mean_f1\": 0.5761, \"mean_ced\": 0.6205, \"mean_combined\": 0.6787, \"f1_range_p25\": 0.444, \"f1_range_p75\": 0.717, \"ced_range_p25\": 0.487, \"ced_range_p75\": 0.774, \"truncated_samples\": 1924, \"truncated_pct\": 8.9, \"selection_strategy\": \"top_k=3\", \"f1_threshold\": 0.1, \"topk1_samples\": 2718, \"data_multiplier\": 2.96}, \"conclusion\": \"success\", \"notes\": \"top_k=3 scoring 完成。8037 samples (vs top_k=1 的 2718, 2.96x)。质量下降可控: mean_f1 -0.04, mean_ced -0.048。输出: /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl (24.8MB)。可用于 plan_008 RSFT 训练 ablation。\"}, \"mvp2_rsft_train_r1_s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T05:36:26.321Z\", \"updated_at\": \"2026-05-15T13:27:38.819Z\", \"hypothesis\": \"RSFT training seed=44 variance estimate. Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples). Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"wandb_run_id\": \"rsft-ced-r1-s44\", \"metrics\": {\"rel_f1\": 0.4655, \"evi_f1\": 0.8087, \"evi_f1_joint\": 0.3713, \"evi_f1_joint_P\": 0.3775, \"evi_f1_joint_R\": 0.3653, \"edcr\": 0.635, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0598, \"delta_evi_f1\": 0.0108, \"delta_evi_f1_joint\": 0.0596, \"mvp2_pass\": true}, \"conclusion\": \"success\"}, \"mvp2_eval_rsft_r2b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T13:27:35.580Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"evi_f1_joint\": 0.349, \"evi_f1_joint_P\": 0.3455, \"evi_f1_joint_R\": 0.3526, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862, \"delta_evi_f1_joint\": 0.0373}, \"conclusion\": \"success\"}, \"mvp2_eval_rsft_r2a\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T09:42:57.684Z\", \"updated_at\": \"2026-05-15T13:27:32.756Z\", \"hypothesis\": \"Full dev eval of r2a (1 epoch, alpha=128, clean data). Ablation: 1 epoch vs 3 epoch (r1). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2a\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4494, \"ign_f1\": 0.4494, \"evi_f1\": 0.8108, \"evi_f1_joint\": 0.3509, \"evi_f1_joint_P\": 0.3423, \"evi_f1_joint_R\": 0.3599, \"edcr\": 0.6641, \"precision\": 0.4512, \"recall\": 0.4475, \"evi_precision\": 0.8143, \"evi_recall\": 0.8073, \"format_ok_rate\": 1, \"n_predictions\": 15482, \"n_truncated\": 208, \"inference_time_s\": 5967.2, \"delta_evi_f1_joint\": 0.0392}, \"notes\": \"RSFT r2a (1ep, alpha=128/r=64, lr=2e-5, clean 2548 samples). rel_f1=0.4494 (+0.0045 vs r1, +0.0001 vs r2b), evi_f1=0.8108 (-0.0079 vs r1, -0.0020 vs r2b), edcr=0.6641 (+0.0032 vs r2b). 1 epoch with clean data matches r1's 3-epoch rel_f1 while being cheaper. r2a vs r2b (alpha=128 vs 32): nearly identical rel_f1, marginal edcr advantage for higher alpha. All RSFT variants beat SFT baseline on rel_f1/evi_f1 but lose on edcr (0.66-0.66 vs 0.71).\"}, \"mvp2_eval_rsft_r1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T09:40:47.529Z\", \"updated_at\": \"2026-05-15T13:27:31.402Z\", \"hypothesis\": \"Full dev eval of RSFT r1 (seed=42). Same pipeline as s44 eval (985 docs, no-quantize). Need 3-seed data for complete_mvp. s44 PASS: rel_f1=0.4655, evi_f1=0.8087.\", \"parent\": \"mvp2_rsft_train_r1\", \"metrics\": {\"rel_f1\": 0.4449, \"evi_f1\": 0.8187, \"evi_f1_joint\": 0.3468, \"evi_f1_joint_P\": 0.3515, \"evi_f1_joint_R\": 0.3423, \"edcr\": 0.6565, \"num_preds\": 15307, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0392, \"delta_evi_f1\": 0.0208, \"delta_evi_f1_joint\": 0.0351, \"mvp2_pass\": true}, \"conclusion\": \"success\"}, \"mvp2_eval_sft_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:47:41.356Z\", \"updated_at\": \"2026-05-15T13:27:26.236Z\", \"hypothesis\": \"SFT baseline eval using identical eval protocol as GRPO evals (eval_lr5e6_ckpt20.sh). Required for MVP-2 core comparison: CED_Evi-F1 − SFT_Evi-F1 ≥ 2pp. Prior SFT eval (r3) used different eval path; this ensures apple-to-apple comparison.\", \"parent\": \"mvp2_sft_warmup\", \"notes\": \"[2026-05-15 07:39] Eval 正常完成。结果与 r2/r3 完全一致 (rel_f1=0.4057, evi_f1=0.7979)，apple-to-apple 对比协议复现成功。结果路径: /root/autodl-tmp/sft_baseline_eval_results/metrics.json。cuda:3 已释放。\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4057, \"evi_f1\": 0.7979, \"evi_f1_joint\": 0.3117, \"evi_f1_joint_P\": 0.3037, \"evi_f1_joint_R\": 0.32, \"edcr\": 0.7118, \"pred_count\": 12234, \"gold_count\": 12151, \"format_ok_rate\": 0.998, \"format_compliance_rate\": 0.998, \"field_compliance_rate\": 0.6264, \"n_truncated\": 367, \"inference_time_seconds\": 6138.5}}, \"mvp2_eval_rsft_r2b_maxtok1536\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T11:49:48.849Z\", \"updated_at\": \"2026-05-15T13:23:59.642Z\", \"hypothesis\": \"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). If EDCR improves significantly (from 0.6609 toward 0.71+), current EDCR gap is truncation artifact, not model issue. If EDCR unchanged, distractor citation is genuine RSFT behavior.\", \"parent\": \"mvp2_eval_rsft_r2b\", \"conclusion\": \"killed\", \"notes\": \"Reviewer CRITICAL: 命令缺少 --base_model 和 --sft_adapter，模型 stack 是 Base+RSFT LoRA 而非 Base+SFT+RSFT LoRA，结果不可用。PID 196700 已 kill。重试为 mvp2_eval_rsft_r2b_maxtok1536_r2。\"}, \"mvp2_rsft_ced_scoring_topk3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:35:23.225Z\", \"updated_at\": \"2026-05-15T13:20:42.443Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Answers: does CED filtering strictness affect RSFT training quality?\", \"conclusion\": \"killed\", \"notes\": \"NLI 模型加载失败 (HuggingFace Network unreachable)。命令缺少 HF_HOME/HF_HUB_OFFLINE/TRANSFORMERS_OFFLINE 环境变量。重试为 mvp2_rsft_ced_scoring_topk3_r2。\"}, \"mvp2_rsft_r2b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T08:57:46.813Z\", \"updated_at\": \"2026-05-15T13:14:23.368Z\", \"hypothesis\": \"RSFT r2b: data fix + training dynamics fix (1 epoch + filter truncated + LoRA alpha=32/r=64 scaling 0.5 + lr=1e-5). Isolates: is conservative LoRA scaling the key factor? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"wandb_run_id\": \"rsft-r2b\", \"notes\": \"训练完成 (160 steps, 33.7min, eval_loss=0.7545)。TaskEvalCallback rel_f1=0.0504 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0436, \"delta_evi_f1\": 0.0149, \"mvp2_pass\": true}}, \"mvp2_rsft_r2a\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T08:57:46.140Z\", \"updated_at\": \"2026-05-15T13:14:22.509Z\", \"hypothesis\": \"RSFT r2a: data fix only (1 epoch + filter 170 truncated JSON → 2548 samples). Same LoRA alpha=128/r=64, lr=2e-5 as r1. Isolates: does 1 epoch + clean data alone fix the ontology collapse? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"wandb_run_id\": \"rsft-r2a\", \"notes\": \"训练完成 (160 steps, 35.5min, eval_loss=0.7547)。TaskEvalCallback rel_f1=0.0509 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4494, \"evi_f1\": 0.8108, \"edcr\": 0.6641, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0437, \"delta_evi_f1\": 0.0129, \"mvp2_pass\": true}}, \"mvp2_rsft_diagnosis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:55:04.100Z\", \"updated_at\": \"2026-05-15T12:09:32.257Z\", \"hypothesis\": \"RSFT failure root cause: rel_f1=0.0483 vs SFT 0.4057. Diagnose: training data distribution (relation count), step-170 checkpoint output analysis, SFT vs RSFT data comparison.\", \"conclusion\": \"success\", \"metrics\": {\"root_cause\": \"overfitting_plus_sft_knowledge_overwrite\", \"truncated_json_samples\": 170, \"truncated_pct\": 6.3, \"epoch1_eval_loss\": 0.756, \"epoch2_eval_loss\": 0.759, \"lora_scaling\": 2, \"rsft_zero_relation_samples\": 170, \"sft_zero_relation_docs\": 26, \"rsft_mean_relations\": 11.2, \"sft_mean_relations\": 12.5}}, \"mvp2_eval_ced_kl001_r4_last\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:10:05.820Z\", \"updated_at\": \"2026-05-15T12:09:21.004Z\", \"notes\": \"已被拆分为独立 eval：ckpt-90 → mvp2_eval_ced_kl001_r4_ckpt90 (cuda:3)，ckpt-100 → mvp2_eval_ced_kl001_r4_step100 (cuda:0)。此条目作废。\", \"conclusion\": \"killed\"}}, \"count\": 20, \"total\": 80, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2485}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Found the results file at `/root/autodl-tmp/eval_results/ced_reranker_poc/results.json`. Let me read it. Also found the registry entry for `mvp2_ced_reranker_poc` - it has status DONE, conclusion success, but no metrics.\n\nLet me read the results.json file.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "9db1dbed-5637-4968-a41a-11bced7bbb39",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014U6p5cSVUayUAR4oKSc1v4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12187,
+                "cache_read_input_tokens": 25508,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12187
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到结果文件 `/root/autodl-tmp/eval_results/ced_reranker_poc/results.json`。读取内容。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "c92ab1c4-7d19-4e1a-be9c-2bbb4c488f33",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014U6p5cSVUayUAR4oKSc1v4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12187,
+                "cache_read_input_tokens": 25508,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12187
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EgKo4BPFKPAQZy4xZo6Cw2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/eval_results/ced_reranker_poc/results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "beedcbeb-e69e-4f66-ac78-aec505fff811",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014U6p5cSVUayUAR4oKSc1v4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12187,
+                "cache_read_input_tokens": 25508,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12187
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T14:51:15.394Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EgKo4BPFKPAQZy4xZo6Cw2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ced_reranker\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.49130909396254935,\\\\n    \\\\\\\"recall\\\\\\\": 0.48152415439058516,\\\\n    \\\\\\\"f1\\\\\\\": 0.4863674147963425,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.49130909396254935,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.48152415439058516,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.4863674147963425,\\\\n    \\\\\\\"tp\\\\\\\": 5851,\\\\n    \\\\\\\"pred_count\\\\\\\": 11909,\\\\n    \\\\\\\"gold_count\\\\\\\": 12151,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.8015752032520326,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.8367220650636492,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8187716262975778,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 14635,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6155564581640942,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 15155,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 24620,\\\\n    \\\\\\\"n_docs\\\\\\\": 985,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14782,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 1.0\\\\n  },\\\\n  \\\\\\\"oracle_reranker\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.6211033132038518,\\\\n    \\\\\\\"recall\\\\\\\": 0.626368200148136,\\\\n    \\\\\\\"f1\\\\\\\": 0.6237246465888138,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.6211033132038518,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.626368200148136,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.6237246465888138,\\\\n    \\\\\\\"tp\\\\\\\": 7611,\\\\n    \\\\\\\"pred_count\\\\\\\": 12254,\\\\n    \\\\\\\"gold_count\\\\\\\": 12151,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.8042586750788644,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.7844615384615384,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7942367601246105,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 13249,\\\\n    \\\\\\\"edcr\\\\\\\": 0.5262253193960511,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 11327,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 21525,\\\\n    \\\\\\\"n_docs\\\\\\\": 985,\\\\n    \\\\\\\"n_predictions\\\\\\\": 13418,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 1.0\\\\n  },\\\\n  \\\\\\\"random_baseline\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.43477605187754487,\\\\n    \\\\\\\"recall\\\\\\\": 0.4745288453625216,\\\\n    \\\\\\\"f1\\\\\\\": 0.4537834966355802,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.43477605187754487,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.4745288453625216,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.4537834966355802,\\\\n    \\\\\\\"tp\\\\\\\": 5766,\\\\n    \\\\\\\"pred_count\\\\\\\": 13262,\\\\n    \\\\\\\"gold_count\\\\\\\": 12151,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.8097686375321337,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.7960730948678072,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8028624644642682,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 15271,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6762845849802371,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 17110,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 25300,\\\\n    \\\\\\\"n_docs\\\\\\\": 985,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15642,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 0.9979695431472081\\\\n  },\\\\n  \\\\\\\"ced_f1_correlation\\\\\\\": {\\\\n    \\\\\\\"spearman_r\\\\\\\": 0.3235,\\\\n    \\\\\\\"p_value\\\\\\\": 2.46e-191,\\\\n    \\\\\\\"n_samples\\\\\\\": 7880\\\\n  },\\\\n  \\\\\\\"sft_baseline_reference\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.4057,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7979,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7118,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"greedy decode baseline\\\\\\\"\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/ced_reranker_poc\\\\\\\",\\\\n    \\\\\\\"nli_model\\\\\\\": \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n    \\\\\\\"num_generations\\\\\\\": 8,\\\\n    \\\\\\\"temperature\\\\\\\": 0.7,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"tau\\\\\\\": 0.5,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"max_docs\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"generation_time_seconds\\\\\\\": 20872.6\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "95b46461-a736-4376-b506-8f29a3f704c7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ced_reranker\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.49130909396254935,\\\\n    \\\\\\\"recall\\\\\\\": 0.48152415439058516,\\\\n    \\\\\\\"f1\\\\\\\": 0.4863674147963425,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.49130909396254935,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.48152415439058516,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.4863674147963425,\\\\n    \\\\\\\"tp\\\\\\\": 5851,\\\\n    \\\\\\\"pred_count\\\\\\\": 11909,\\\\n    \\\\\\\"gold_count\\\\\\\": 12151,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.8015752032520326,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.8367220650636492,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8187716262975778,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 14635,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6155564581640942,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 15155,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 24620,\\\\n    \\\\\\\"n_docs\\\\\\\": 985,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14782,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 1.0\\\\n  },\\\\n  \\\\\\\"oracle_reranker\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.6211033132038518,\\\\n    \\\\\\\"recall\\\\\\\": 0.626368200148136,\\\\n    \\\\\\\"f1\\\\\\\": 0.6237246465888138,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.6211033132038518,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.626368200148136,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.6237246465888138,\\\\n    \\\\\\\"tp\\\\\\\": 7611,\\\\n    \\\\\\\"pred_count\\\\\\\": 12254,\\\\n    \\\\\\\"gold_count\\\\\\\": 12151,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.8042586750788644,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.7844615384615384,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7942367601246105,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 13249,\\\\n    \\\\\\\"edcr\\\\\\\": 0.5262253193960511,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 11327,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 21525,\\\\n    \\\\\\\"n_docs\\\\\\\": 985,\\\\n    \\\\\\\"n_predictions\\\\\\\": 13418,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 1.0\\\\n  },\\\\n  \\\\\\\"random_baseline\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.43477605187754487,\\\\n    \\\\\\\"recall\\\\\\\": 0.4745288453625216,\\\\n    \\\\\\\"f1\\\\\\\": 0.4537834966355802,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.43477605187754487,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.4745288453625216,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.4537834966355802,\\\\n    \\\\\\\"tp\\\\\\\": 5766,\\\\n    \\\\\\\"pred_count\\\\\\\": 13262,\\\\n    \\\\\\\"gold_count\\\\\\\": 12151,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.8097686375321337,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.7960730948678072,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8028624644642682,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 15271,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6762845849802371,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 17110,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 25300,\\\\n    \\\\\\\"n_docs\\\\\\\": 985,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15642,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 0.9979695431472081\\\\n  },\\\\n  \\\\\\\"ced_f1_correlation\\\\\\\": {\\\\n    \\\\\\\"spearman_r\\\\\\\": 0.3235,\\\\n    \\\\\\\"p_value\\\\\\\": 2.46e-191,\\\\n    \\\\\\\"n_samples\\\\\\\": 7880\\\\n  },\\\\n  \\\\\\\"sft_baseline_reference\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.4057,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7979,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7118,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"greedy decode baseline\\\\\\\"\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/ced_reranker_poc\\\\\\\",\\\\n    \\\\\\\"nli_model\\\\\\\": \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n    \\\\\\\"num_generations\\\\\\\": 8,\\\\n    \\\\\\\"temperature\\\\\\\": 0.7,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"tau\\\\\\\": 0.5,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"max_docs\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"generation_time_seconds\\\\\\\": 20872.6\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ced_reranker\\\": {\\n    \\\"precision\\\": 0.49130909396254935,\\n    \\\"recall\\\": 0.48152415439058516,\\n    \\\"f1\\\": 0.4863674147963425,\\n    \\\"ign_precision\\\": 0.49130909396254935,\\n    \\\"ign_recall\\\": 0.48152415439058516,\\n    \\\"ign_f1\\\": 0.4863674147963425,\\n    \\\"tp\\\": 5851,\\n    \\\"pred_count\\\": 11909,\\n    \\\"gold_count\\\": 12151,\\n    \\\"evi_precision\\\": 0.8015752032520326,\\n    \\\"evi_recall\\\": 0.8367220650636492,\\n    \\\"evi_f1\\\": 0.8187716262975778,\\n    \\\"n_evaluated\\\": 14635,\\n    \\\"edcr\\\": 0.6155564581640942,\\n    \\\"n_distractor_citations\\\": 15155,\\n    \\\"n_total_citations\\\": 24620,\\n    \\\"n_docs\\\": 985,\\n    \\\"n_predictions\\\": 14782,\\n    \\\"format_ok_rate\\\": 1.0\\n  },\\n  \\\"oracle_reranker\\\": {\\n    \\\"precision\\\": 0.6211033132038518,\\n    \\\"recall\\\": 0.626368200148136,\\n    \\\"f1\\\": 0.6237246465888138,\\n    \\\"ign_precision\\\": 0.6211033132038518,\\n    \\\"ign_recall\\\": 0.626368200148136,\\n    \\\"ign_f1\\\": 0.6237246465888138,\\n    \\\"tp\\\": 7611,\\n    \\\"pred_count\\\": 12254,\\n    \\\"gold_count\\\": 12151,\\n    \\\"evi_precision\\\": 0.8042586750788644,\\n    \\\"evi_recall\\\": 0.7844615384615384,\\n    \\\"evi_f1\\\": 0.7942367601246105,\\n    \\\"n_evaluated\\\": 13249,\\n    \\\"edcr\\\": 0.5262253193960511,\\n    \\\"n_distractor_citations\\\": 11327,\\n    \\\"n_total_citations\\\": 21525,\\n    \\\"n_docs\\\": 985,\\n    \\\"n_predictions\\\": 13418,\\n    \\\"format_ok_rate\\\": 1.0\\n  },\\n  \\\"random_baseline\\\": {\\n    \\\"precision\\\": 0.43477605187754487,\\n    \\\"recall\\\": 0.4745288453625216,\\n    \\\"f1\\\": 0.4537834966355802,\\n    \\\"ign_precision\\\": 0.43477605187754487,\\n    \\\"ign_recall\\\": 0.4745288453625216,\\n    \\\"ign_f1\\\": 0.4537834966355802,\\n    \\\"tp\\\": 5766,\\n    \\\"pred_count\\\": 13262,\\n    \\\"gold_count\\\": 12151,\\n    \\\"evi_precision\\\": 0.8097686375321337,\\n    \\\"evi_recall\\\": 0.7960730948678072,\\n    \\\"evi_f1\\\": 0.8028624644642682,\\n    \\\"n_evaluated\\\": 15271,\\n    \\\"edcr\\\": 0.6762845849802371,\\n    \\\"n_distractor_citations\\\": 17110,\\n    \\\"n_total_citations\\\": 25300,\\n    \\\"n_docs\\\": 985,\\n    \\\"n_predictions\\\": 15642,\\n    \\\"format_ok_rate\\\": 0.9979695431472081\\n  },\\n  \\\"ced_f1_correlation\\\": {\\n    \\\"spearman_r\\\": 0.3235,\\n    \\\"p_value\\\": 2.46e-191,\\n    \\\"n_samples\\\": 7880\\n  },\\n  \\\"sft_baseline_reference\\\": {\\n    \\\"f1\\\": 0.4057,\\n    \\\"evi_f1\\\": 0.7979,\\n    \\\"edcr\\\": 0.7118,\\n    \\\"note\\\": \\\"greedy decode baseline\\\"\\n  },\\n  \\\"config\\\": {\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_dir\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/ced_reranker_poc\\\",\\n    \\\"nli_model\\\": \\\"cross-encoder/nli-deberta-v3-base\\\",\\n    \\\"num_generations\\\": 8,\\n    \\\"temperature\\\": 0.7,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"tau\\\": 0.5,\\n    \\\"seed\\\": 42,\\n    \\\"max_docs\\\": null\\n  },\\n  \\\"generation_time_seconds\\\": 20872.6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016wKao3g4ycqgnfCC2JzTwL",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "head -5 /root/autodl-tmp/eval_results/ced_reranker_poc/per_doc_scores.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "4c2aef21-915a-43f6-a7e9-ee7c475f0d9b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014U6p5cSVUayUAR4oKSc1v4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12187,
+                "cache_read_input_tokens": 25508,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12187
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T14:51:15.789Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016wKao3g4ycqgnfCC2JzTwL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"ced_scores\\\\\\\": [0.1528, 0.2676, 0.2114, 0.1762, 0.4724, 0.4394, 0.3227, 0.255], \\\\\\\"oracle_f1_scores\\\\\\\": [0.6154, 0.7273, 0.8333, 0.7692, 0.5882, 0.6154, 0.6154, 0.5714]}\\\\n{\\\\\\\"doc_id\\\\\\\": \\\\\\\"Washington Place (West Virginia)\\\\\\\", \\\\\\\"ced_scores\\\\\\\": [0.4722, 0.5345, 0.2448, 0.6542, 0.2299, 0.3318, 0.2891, 0.3916], \\\\\\\"oracle_f1_scores\\\\\\\": [0.5128, 0.5283, 0.4286, 0.5116, 0.5882, 0.6667, 0.9375, 0.8125]}\\\\n{\\\\\\\"doc_id\\\\\\\": \\\\\\\"IBM Research – Brazil\\\\\\\", \\\\\\\"ced_scores\\\\\\\": [0.3287, 0.3434, 0.3939, 0.2265, 0.2886, 0.3356, 0.1023, 0.1301], \\\\\\\"oracle_f1_scores\\\\\\\": [0.4, 0.5263, 0.4167, 0.4, 0.3704, 0.3125, 0.4, 0.24]}\\\\n{\\\\\\\"doc_id\\\\\\\": \\\\\\\"Lookin Ass\\\\\\\", \\\\\\\"ced_scores\\\\\\\": [0.4764, 0.485, 0.2373, 0.3123, 0.4116, 0.4853, 0.3238, 0.4889], \\\\\\\"oracle_f1_scores\\\\\\\": [0.7273, 0.8, 0.8, 0.8333, 0.8333, 0.6, 0.8, 0.8333]}\\\\n{\\\\\\\"doc_id\\\\\\\": \\\\\\\"Conrad O. Johnson\\\\\\\", \\\\\\\"ced_scores\\\\\\\": [0.0499, 0.1322, 0.1777, 0.1645, 0.139, 0.2453, 0.1396, 0.2205], \\\\\\\"oracle_f1_scores\\\\\\\": [0.4103, 0.5556, 0.4828, 0.4727, 0.4906, 0.5333, 0.3077, 0.5366]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "6c8bde80-7145-4317-96a2-27d79b7b55ae",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"ced_scores\\\\\\\": [0.1528, 0.2676, 0.2114, 0.1762, 0.4724, 0.4394, 0.3227, 0.255], \\\\\\\"oracle_f1_scores\\\\\\\": [0.6154, 0.7273, 0.8333, 0.7692, 0.5882, 0.6154, 0.6154, 0.5714]}\\\\n{\\\\\\\"doc_id\\\\\\\": \\\\\\\"Washington Place (West Virginia)\\\\\\\", \\\\\\\"ced_scores\\\\\\\": [0.4722, 0.5345, 0.2448, 0.6542, 0.2299, 0.3318, 0.2891, 0.3916], \\\\\\\"oracle_f1_scores\\\\\\\": [0.5128, 0.5283, 0.4286, 0.5116, 0.5882, 0.6667, 0.9375, 0.8125]}\\\\n{\\\\\\\"doc_id\\\\\\\": \\\\\\\"IBM Research – Brazil\\\\\\\", \\\\\\\"ced_scores\\\\\\\": [0.3287, 0.3434, 0.3939, 0.2265, 0.2886, 0.3356, 0.1023, 0.1301], \\\\\\\"oracle_f1_scores\\\\\\\": [0.4, 0.5263, 0.4167, 0.4, 0.3704, 0.3125, 0.4, 0.24]}\\\\n{\\\\\\\"doc_id\\\\\\\": \\\\\\\"Lookin Ass\\\\\\\", \\\\\\\"ced_scores\\\\\\\": [0.4764, 0.485, 0.2373, 0.3123, 0.4116, 0.4853, 0.3238, 0.4889], \\\\\\\"oracle_f1_scores\\\\\\\": [0.7273, 0.8, 0.8, 0.8333, 0.8333, 0.6, 0.8, 0.8333]}\\\\n{\\\\\\\"doc_id\\\\\\\": \\\\\\\"Conrad O. Johnson\\\\\\\", \\\\\\\"ced_scores\\\\\\\": [0.0499, 0.1322, 0.1777, 0.1645, 0.139, 0.2453, 0.1396, 0.2205], \\\\\\\"oracle_f1_scores\\\\\\\": [0.4103, 0.5556, 0.4828, 0.4727, 0.4906, 0.5333, 0.3077, 0.5366]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"Skai TV\\\", \\\"ced_scores\\\": [0.1528, 0.2676, 0.2114, 0.1762, 0.4724, 0.4394, 0.3227, 0.255], \\\"oracle_f1_scores\\\": [0.6154, 0.7273, 0.8333, 0.7692, 0.5882, 0.6154, 0.6154, 0.5714]}\\n{\\\"doc_id\\\": \\\"Washington Place (West Virginia)\\\", \\\"ced_scores\\\": [0.4722, 0.5345, 0.2448, 0.6542, 0.2299, 0.3318, 0.2891, 0.3916], \\\"oracle_f1_scores\\\": [0.5128, 0.5283, 0.4286, 0.5116, 0.5882, 0.6667, 0.9375, 0.8125]}\\n{\\\"doc_id\\\": \\\"IBM Research – Brazil\\\", \\\"ced_scores\\\": [0.3287, 0.3434, 0.3939, 0.2265, 0.2886, 0.3356, 0.1023, 0.1301], \\\"oracle_f1_scores\\\": [0.4, 0.5263, 0.4167, 0.4, 0.3704, 0.3125, 0.4, 0.24]}\\n{\\\"doc_id\\\": \\\"Lookin Ass\\\", \\\"ced_scores\\\": [0.4764, 0.485, 0.2373, 0.3123, 0.4116, 0.4853, 0.3238, 0.4889], \\\"oracle_f1_scores\\\": [0.7273, 0.8, 0.8, 0.8333, 0.8333, 0.6, 0.8, 0.8333]}\\n{\\\"doc_id\\\": \\\"Conrad O. Johnson\\\", \\\"ced_scores\\\": [0.0499, 0.1322, 0.1777, 0.1645, 0.139, 0.2453, 0.1396, 0.2205], \\\"oracle_f1_scores\\\": [0.4103, 0.5556, 0.4828, 0.4727, 0.4906, 0.5333, 0.3077, 0.5366]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Excellent! I have all the results. Let me analyze them:\n\n**CED Reranker:**\n- rel_f1 = 0.4864 (vs SFT 0.4057, +8.07pp; vs RSFT mean 0.4596, +2.68pp)\n- evi_f1 = 0.8188 (vs SFT 0.7979, +2.09pp)\n- edcr = 0.6156 (vs SFT 0.7118, -9.62pp — worse)\n\n\n- pred_count = 14782, format_ok_rate = 1.0\n\nThe Oracle reranker shows what's theoretically possible with rel_f1 reaching 0.6237, while the random baseline at 0.4538 confirms that selecting from multiple samples helps. Now I'm looking at the CED-F1 correlation metrics to see how well the model's confidence scores align with actual performance.\n\nThe CED reranker achieves 0.4864 rel_f1 with just N=8 generations and no additional training, outperforming both the base SFT model and the mean of the resampled approach. The correlation between CED scores and F1 is modest at 0.3235 but statistically significant, though there's a tradeoff where the evidence F1 metric drops slightly compared to the SFT baseline.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "0fd7162d-ca6f-4190-9f25-162e50e56c1f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0187vVWqvoyzq2B95WNS9wmW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2904,
+                "cache_read_input_tokens": 37695,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2904
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果非常好。CED reranker rel_f1=0.4864，大幅超过 SFT (0.4057, +8.07pp) 并超过 RSFT mean (0.4596, +2.68pp)。更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "a5c56af9-ad81-47e1-98ea-d80cbfb3754a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0187vVWqvoyzq2B95WNS9wmW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2904,
+                "cache_read_input_tokens": 37695,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2904
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RX6J2RrUjkdrqtUau6fbDn",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "mvp2_ced_reranker_poc",
+                "field": "metrics",
+                "value": {
+                  "ced_reranker_rel_f1": 0.4864,
+                  "ced_reranker_evi_f1": 0.8188,
+                  "ced_reranker_edcr": 0.6156,
+                  "ced_reranker_precision": 0.4913,
+                  "ced_reranker_recall": 0.4815,
+                  "ced_reranker_pred_count": 14782,
+                  "ced_reranker_format_ok_rate": 1,
+                  "oracle_rel_f1": 0.6237,
+                  "oracle_evi_f1": 0.7942,
+                  "oracle_edcr": 0.5262,
+                  "oracle_pred_count": 13418,
+                  "random_rel_f1": 0.4538,
+                  "random_evi_f1": 0.8029,
+                  "random_edcr": 0.6763,
+                  "ced_f1_spearman_r": 0.3235,
+                  "ced_f1_spearman_p": 2.46e-191,
+                  "sft_baseline_rel_f1": 0.4057,
+                  "sft_baseline_evi_f1": 0.7979,
+                  "sft_baseline_edcr": 0.7118,
+                  "rsft_mean_rel_f1": 0.4596,
+                  "delta_vs_sft_rel_f1": 0.0807,
+                  "delta_vs_rsft_rel_f1": 0.0268,
+                  "delta_vs_sft_evi_f1": 0.0209,
+                  "oracle_ceiling_rel_f1": 0.218,
+                  "num_generations": 8,
+                  "temperature": 0.7,
+                  "generation_time_s": 20872.6,
+                  "n_docs": 985
+                },
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "0ab349c5-3fac-439a-ba4f-90854cf31b00",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0187vVWqvoyzq2B95WNS9wmW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2904,
+                "cache_read_input_tokens": 37695,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2904
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T14:51:35.059Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RX6J2RrUjkdrqtUau6fbDn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_ced_reranker_poc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:55:03.414Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:51:34.836Z\\\", \\\"hypothesis\\\": \\\"CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound.\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/autodl-tmp/freige/eval/ced_reranker.py (N=8, CED scoring, 985 docs)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT (greedy N=8 + CED reranker)\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"178050\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_ced_reranker_poc.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T14:47:24.899Z\\\", \\\"metrics\\\": {\\\"ced_reranker_rel_f1\\\": 0.4864, \\\"ced_reranker_evi_f1\\\": 0.8188, \\\"ced_reranker_edcr\\\": 0.6156, \\\"ced_reranker_precision\\\": 0.4913, \\\"ced_reranker_recall\\\": 0.4815, \\\"ced_reranker_pred_count\\\": 14782, \\\"ced_reranker_format_ok_rate\\\": 1, \\\"oracle_rel_f1\\\": 0.6237, \\\"oracle_evi_f1\\\": 0.7942, \\\"oracle_edcr\\\": 0.5262, \\\"oracle_pred_count\\\": 13418, \\\"random_rel_f1\\\": 0.4538, \\\"random_evi_f1\\\": 0.8029, \\\"random_edcr\\\": 0.6763, \\\"ced_f1_spearman_r\\\": 0.3235, \\\"ced_f1_spearman_p\\\": 2.46e-191, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"sft_baseline_edcr\\\": 0.7118, \\\"rsft_mean_rel_f1\\\": 0.4596, \\\"delta_vs_sft_rel_f1\\\": 0.0807, \\\"delta_vs_rsft_rel_f1\\\": 0.0268, \\\"delta_vs_sft_evi_f1\\\": 0.0209, \\\"oracle_ceiling_rel_f1\\\": 0.218, \\\"num_generations\\\": 8, \\\"temperature\\\": 0.7, \\\"generation_time_s\\\": 20872.6, \\\"n_docs\\\": 985}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5004}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "18fb0ffb-4649-44e6-989a-160a14f8b52a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_ced_reranker_poc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:55:03.414Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:51:34.836Z\\\", \\\"hypothesis\\\": \\\"CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound.\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/autodl-tmp/freige/eval/ced_reranker.py (N=8, CED scoring, 985 docs)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT (greedy N=8 + CED reranker)\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"178050\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_ced_reranker_poc.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T14:47:24.899Z\\\", \\\"metrics\\\": {\\\"ced_reranker_rel_f1\\\": 0.4864, \\\"ced_reranker_evi_f1\\\": 0.8188, \\\"ced_reranker_edcr\\\": 0.6156, \\\"ced_reranker_precision\\\": 0.4913, \\\"ced_reranker_recall\\\": 0.4815, \\\"ced_reranker_pred_count\\\": 14782, \\\"ced_reranker_format_ok_rate\\\": 1, \\\"oracle_rel_f1\\\": 0.6237, \\\"oracle_evi_f1\\\": 0.7942, \\\"oracle_edcr\\\": 0.5262, \\\"oracle_pred_count\\\": 13418, \\\"random_rel_f1\\\": 0.4538, \\\"random_evi_f1\\\": 0.8029, \\\"random_edcr\\\": 0.6763, \\\"ced_f1_spearman_r\\\": 0.3235, \\\"ced_f1_spearman_p\\\": 2.46e-191, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"sft_baseline_edcr\\\": 0.7118, \\\"rsft_mean_rel_f1\\\": 0.4596, \\\"delta_vs_sft_rel_f1\\\": 0.0807, \\\"delta_vs_rsft_rel_f1\\\": 0.0268, \\\"delta_vs_sft_evi_f1\\\": 0.0209, \\\"oracle_ceiling_rel_f1\\\": 0.218, \\\"num_generations\\\": 8, \\\"temperature\\\": 0.7, \\\"generation_time_s\\\": 20872.6, \\\"n_docs\\\": 985}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5004}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_ced_reranker_poc\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:55:03.414Z\", \"updated_at\": \"2026-05-15T14:51:34.836Z\", \"hypothesis\": \"CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"python /root/autodl-tmp/freige/eval/ced_reranker.py (N=8, CED scoring, 985 docs)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT (greedy N=8 + CED reranker)\", \"seed\": 42, \"pid\": \"178050\", \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_ced_reranker_poc.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:47:24.899Z\", \"metrics\": {\"ced_reranker_rel_f1\": 0.4864, \"ced_reranker_evi_f1\": 0.8188, \"ced_reranker_edcr\": 0.6156, \"ced_reranker_precision\": 0.4913, \"ced_reranker_recall\": 0.4815, \"ced_reranker_pred_count\": 14782, \"ced_reranker_format_ok_rate\": 1, \"oracle_rel_f1\": 0.6237, \"oracle_evi_f1\": 0.7942, \"oracle_edcr\": 0.5262, \"oracle_pred_count\": 13418, \"random_rel_f1\": 0.4538, \"random_evi_f1\": 0.8029, \"random_edcr\": 0.6763, \"ced_f1_spearman_r\": 0.3235, \"ced_f1_spearman_p\": 2.46e-191, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"sft_baseline_edcr\": 0.7118, \"rsft_mean_rel_f1\": 0.4596, \"delta_vs_sft_rel_f1\": 0.0807, \"delta_vs_rsft_rel_f1\": 0.0268, \"delta_vs_sft_evi_f1\": 0.0209, \"oracle_ceiling_rel_f1\": 0.218, \"num_generations\": 8, \"temperature\": 0.7, \"generation_time_s\": 20872.6, \"n_docs\": 985}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5004}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BJQiXruA5iYa3XXQYSYeV5",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "mvp2_ced_reranker_poc",
+                "field": "notes",
+                "value": "CED reranker (N=8, no training) rel_f1=0.4864, 超过 SFT greedy (+8.07pp) 和 RSFT 3-seed mean (+2.68pp)。Oracle 上界 rel_f1=0.6237 (+21.8pp vs SFT)，CED reranker 实现了 oracle ceiling 的 37% (0.0807/0.218)。CED-F1 Spearman r=0.3235 (p≈0)，相关性显著但中等——说明 CED 不是完美的 proxy 但有信号。Random baseline rel_f1=0.4538 说明 sampling diversity 本身就有 +4.8pp 收益，CED 在此基础上再加 +3.3pp。EDCR 下降 (0.6156 vs SFT 0.7118)，N=8 sampling 引入更多 distractor citations。推理耗时 5.8h (N=8 生成主导)。结论：CED 作为 inference-time reranker 有明确论文价值——零训练成本超越 RSFT，且 oracle ceiling 表明更好的 reward model 还有大幅空间。",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "263e6b89-edd2-4dbf-94ba-fc8ecef32536",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dwh9CQhybzif4251cSTjXh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2132,
+                "cache_read_input_tokens": 40599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2132
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T14:51:47.119Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BJQiXruA5iYa3XXQYSYeV5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_ced_reranker_poc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:55:03.414Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:51:46.913Z\\\", \\\"hypothesis\\\": \\\"CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound.\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/autodl-tmp/freige/eval/ced_reranker.py (N=8, CED scoring, 985 docs)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT (greedy N=8 + CED reranker)\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"178050\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_ced_reranker_poc.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T14:47:24.899Z\\\", \\\"metrics\\\": {\\\"ced_reranker_rel_f1\\\": 0.4864, \\\"ced_reranker_evi_f1\\\": 0.8188, \\\"ced_reranker_edcr\\\": 0.6156, \\\"ced_reranker_precision\\\": 0.4913, \\\"ced_reranker_recall\\\": 0.4815, \\\"ced_reranker_pred_count\\\": 14782, \\\"ced_reranker_format_ok_rate\\\": 1, \\\"oracle_rel_f1\\\": 0.6237, \\\"oracle_evi_f1\\\": 0.7942, \\\"oracle_edcr\\\": 0.5262, \\\"oracle_pred_count\\\": 13418, \\\"random_rel_f1\\\": 0.4538, \\\"random_evi_f1\\\": 0.8029, \\\"random_edcr\\\": 0.6763, \\\"ced_f1_spearman_r\\\": 0.3235, \\\"ced_f1_spearman_p\\\": 2.46e-191, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"sft_baseline_edcr\\\": 0.7118, \\\"rsft_mean_rel_f1\\\": 0.4596, \\\"delta_vs_sft_rel_f1\\\": 0.0807, \\\"delta_vs_rsft_rel_f1\\\": 0.0268, \\\"delta_vs_sft_evi_f1\\\": 0.0209, \\\"oracle_ceiling_rel_f1\\\": 0.218, \\\"num_generations\\\": 8, \\\"temperature\\\": 0.7, \\\"generation_time_s\\\": 20872.6, \\\"n_docs\\\": 985}, \\\"notes\\\": \\\"CED reranker (N=8, no training) rel_f1=0.4864, 超过 SFT greedy (+8.07pp) 和 RSFT 3-seed mean (+2.68pp)。Oracle 上界 rel_f1=0.6237 (+21.8pp vs SFT)，CED reranker 实现了 oracle ceiling 的 37% (0.0807/0.218)。CED-F1 Spearman r=0.3235 (p≈0)，相关性显著但中等——说明 CED 不是完美的 proxy 但有信号。Random baseline rel_f1=0.4538 说明 sampling diversity 本身就有 +4.8pp 收益，CED 在此基础上再加 +3.3pp。EDCR 下降 (0.6156 vs SFT 0.7118)，N=8 sampling 引入更多 distractor citations。推理耗时 5.8h (N=8 生成主导)。结论：CED 作为 inference-time reranker 有明确论文价值——零训练成本超越 RSFT，且 oracle ceiling 表明更好的 reward model 还有大幅空间。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4843}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "71d87167-5678-4548-b9c4-7ebdc93e0bd0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_ced_reranker_poc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:55:03.414Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:51:46.913Z\\\", \\\"hypothesis\\\": \\\"CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound.\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/autodl-tmp/freige/eval/ced_reranker.py (N=8, CED scoring, 985 docs)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT (greedy N=8 + CED reranker)\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"178050\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_ced_reranker_poc.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T14:47:24.899Z\\\", \\\"metrics\\\": {\\\"ced_reranker_rel_f1\\\": 0.4864, \\\"ced_reranker_evi_f1\\\": 0.8188, \\\"ced_reranker_edcr\\\": 0.6156, \\\"ced_reranker_precision\\\": 0.4913, \\\"ced_reranker_recall\\\": 0.4815, \\\"ced_reranker_pred_count\\\": 14782, \\\"ced_reranker_format_ok_rate\\\": 1, \\\"oracle_rel_f1\\\": 0.6237, \\\"oracle_evi_f1\\\": 0.7942, \\\"oracle_edcr\\\": 0.5262, \\\"oracle_pred_count\\\": 13418, \\\"random_rel_f1\\\": 0.4538, \\\"random_evi_f1\\\": 0.8029, \\\"random_edcr\\\": 0.6763, \\\"ced_f1_spearman_r\\\": 0.3235, \\\"ced_f1_spearman_p\\\": 2.46e-191, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"sft_baseline_edcr\\\": 0.7118, \\\"rsft_mean_rel_f1\\\": 0.4596, \\\"delta_vs_sft_rel_f1\\\": 0.0807, \\\"delta_vs_rsft_rel_f1\\\": 0.0268, \\\"delta_vs_sft_evi_f1\\\": 0.0209, \\\"oracle_ceiling_rel_f1\\\": 0.218, \\\"num_generations\\\": 8, \\\"temperature\\\": 0.7, \\\"generation_time_s\\\": 20872.6, \\\"n_docs\\\": 985}, \\\"notes\\\": \\\"CED reranker (N=8, no training) rel_f1=0.4864, 超过 SFT greedy (+8.07pp) 和 RSFT 3-seed mean (+2.68pp)。Oracle 上界 rel_f1=0.6237 (+21.8pp vs SFT)，CED reranker 实现了 oracle ceiling 的 37% (0.0807/0.218)。CED-F1 Spearman r=0.3235 (p≈0)，相关性显著但中等——说明 CED 不是完美的 proxy 但有信号。Random baseline rel_f1=0.4538 说明 sampling diversity 本身就有 +4.8pp 收益，CED 在此基础上再加 +3.3pp。EDCR 下降 (0.6156 vs SFT 0.7118)，N=8 sampling 引入更多 distractor citations。推理耗时 5.8h (N=8 生成主导)。结论：CED 作为 inference-time reranker 有明确论文价值——零训练成本超越 RSFT，且 oracle ceiling 表明更好的 reward model 还有大幅空间。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4843}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_ced_reranker_poc\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:55:03.414Z\", \"updated_at\": \"2026-05-15T14:51:46.913Z\", \"hypothesis\": \"CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"python /root/autodl-tmp/freige/eval/ced_reranker.py (N=8, CED scoring, 985 docs)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT (greedy N=8 + CED reranker)\", \"seed\": 42, \"pid\": \"178050\", \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_ced_reranker_poc.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:47:24.899Z\", \"metrics\": {\"ced_reranker_rel_f1\": 0.4864, \"ced_reranker_evi_f1\": 0.8188, \"ced_reranker_edcr\": 0.6156, \"ced_reranker_precision\": 0.4913, \"ced_reranker_recall\": 0.4815, \"ced_reranker_pred_count\": 14782, \"ced_reranker_format_ok_rate\": 1, \"oracle_rel_f1\": 0.6237, \"oracle_evi_f1\": 0.7942, \"oracle_edcr\": 0.5262, \"oracle_pred_count\": 13418, \"random_rel_f1\": 0.4538, \"random_evi_f1\": 0.8029, \"random_edcr\": 0.6763, \"ced_f1_spearman_r\": 0.3235, \"ced_f1_spearman_p\": 2.46e-191, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"sft_baseline_edcr\": 0.7118, \"rsft_mean_rel_f1\": 0.4596, \"delta_vs_sft_rel_f1\": 0.0807, \"delta_vs_rsft_rel_f1\": 0.0268, \"delta_vs_sft_evi_f1\": 0.0209, \"oracle_ceiling_rel_f1\": 0.218, \"num_generations\": 8, \"temperature\": 0.7, \"generation_time_s\": 20872.6, \"n_docs\": 985}, \"notes\": \"CED reranker (N=8, no training) rel_f1=0.4864, 超过 SFT greedy (+8.07pp) 和 RSFT 3-seed mean (+2.68pp)。Oracle 上界 rel_f1=0.6237 (+21.8pp vs SFT)，CED reranker 实现了 oracle ceiling 的 37% (0.0807/0.218)。CED-F1 Spearman r=0.3235 (p≈0)，相关性显著但中等——说明 CED 不是完美的 proxy 但有信号。Random baseline rel_f1=0.4538 说明 sampling diversity 本身就有 +4.8pp 收益，CED 在此基础上再加 +3.3pp。EDCR 下降 (0.6156 vs SFT 0.7118)，N=8 sampling 引入更多 distractor citations。推理耗时 5.8h (N=8 生成主导)。结论：CED 作为 inference-time reranker 有明确论文价值——零训练成本超越 RSFT，且 oracle ceiling 表明更好的 reward model 还有大幅空间。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4843}}"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总分析：\n\n## CED Reranker PoC 结果\n\n| 方法 | rel_f1 | evi_f1 | EDCR |\n|------|--------|--------|------|\n| SFT greedy | 0.4057 | 0.7979 | 0.7118 |\n| Random (N=8) | 0.4538 | 0.8029 | 0.6763 |\n| **CED reranker (N=8)** | **0.4864** | **0.8188** | 0.6156 |\n| RSFT 3-seed mean | 0.4596 | 0.8143 | — |\n| Oracle reranker (N=8) | 0.6237 | 0.7942 | 0.5262 |\n\n**关键发现：**\n\n1. **CED reranker rel_f1=0.4864，超过 SFT +8.07pp，超过 RSFT mean +2.68pp**——零训练成本击败了需要训练的 RSFT\n2. **Oracle ceiling rel_f1=0.6237** (+21.8pp vs SFT)——N=8 候选中蕴含的信息量巨大，CED 目前只捕获了 37%\n3. **CED-F1 Spearman r=0.3235**——相关性显著但中等，CED 是有效但不完美的 proxy\n4. Random baseline 0.4538 说明 sampling diversity 本身贡献 +4.8pp，CED 在此基础上再加 +3.3pp\n5. EDCR 下降（0.6156 vs 0.7118）——N=8 sampling 引入更多 distractor citations\n\n**结论：CED 作为 inference-time reranker 有明确论文价值。** 零训练成本超越 RSFT，且 oracle ceiling 表明更好的 reward model 还有大幅提升空间。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "uuid": "4886d5a5-aba8-4974-b729-5b09c7b7a07e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LfEhPxj1myFGP5bNUsuRNW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1724,
+                "cache_read_input_tokens": 42731,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1724
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总分析：\n\n## CED Reranker PoC 结果\n\n| 方法 | rel_f1 | evi_f1 | EDCR |\n|------|--------|--------|------|\n| SFT greedy | 0.4057 | 0.7979 | 0.7118 |\n| Random (N=8) | 0.4538 | 0.8029 | 0.6763 |\n| **CED reranker (N=8)** | **0.4864** | **0.8188** | 0.6156 |\n| RSFT 3-seed mean | 0.4596 | 0.8143 | — |\n| Oracle reranker (N=8) | 0.6237 | 0.7942 | 0.5262 |\n\n**关键发现：**\n\n1. **CED reranker rel_f1=0.4864，超过 SFT +8.07pp，超过 RSFT mean +2.68pp**——零训练成本击败了需要训练的 RSFT\n2. **Oracle ceiling rel_f1=0.6237** (+21.8pp vs SFT)——N=8 候选中蕴含的信息量巨大，CED 目前只捕获了 37%\n3. **CED-F1 Spearman r=0.3235**——相关性显著但中等，CED 是有效但不完美的 proxy\n4. Random baseline 0.4538 说明 sampling diversity 本身贡献 +4.8pp，CED 在此基础上再加 +3.3pp\n5. EDCR 下降（0.6156 vs 0.7118）——N=8 sampling 引入更多 distractor citations\n\n**结论：CED 作为 inference-time reranker 有明确论文价值。** 零训练成本超越 RSFT，且 oracle ceiling 表明更好的 reward model 还有大幅提升空间。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 65644,
+            "duration_api_ms": 64739,
+            "num_turns": 14,
+            "stop_reason": "end_turn",
+            "session_id": "4ce1d199-3ba8-45f9-8864-7f0ce3f729bc",
+            "total_cost_usd": 0.4047065,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 33008,
+              "cache_read_input_tokens": 205913,
+              "output_tokens": 3759,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 33008,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 539,
+                  "cache_read_input_tokens": 42731,
+                  "cache_creation_input_tokens": 1724,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1724
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1335,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001425,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 3759,
+                "cacheReadInputTokens": 205913,
+                "cacheCreationInputTokens": 33008,
+                "webSearchRequests": 0,
+                "costUSD": 0.4032815,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "3b58efaf-f737-458c-8de8-9ea301e784d8"
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-ced-reranker-results.md"
+}

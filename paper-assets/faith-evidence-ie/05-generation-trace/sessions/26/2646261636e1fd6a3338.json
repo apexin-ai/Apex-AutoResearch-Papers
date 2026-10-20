@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2646261636e1fd6a3338",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check eval progress",
+  "task_key": "worker_ops_check-eval-progress_20260515T113109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eval-progress_20260515T113109_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "08dfda90aeb59232b842c3f12713d48ce8579c5e6592e5c897e28bb056a1f07c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/eval_progress_check_0515.md`。\n\n**摘要：**\n\n| 实验 | 进度 | ETA |\n|------|------|-----|\n| rsft_r1 | ✅ 完成 | F1=0.4449 (比 s44 低 2pp) |\n| rsft_r2a | 88% (109/124) | ~12 min |\n| rsft_r2b | 89% (110/124) | ~11 min |\n| ced_reranker_poc | 60% (591/985) | ~2.5h |\n\n**s43 eval 命令已准备好**，参数基于 s44 成功 config 确认（`--model_path` / `--sft_adapter` / `--data_path` / `--no-quantize`）。建议用 GPU 2（rsft_r1 已完成），但需先检查是否有残留进程占显存。\n\n**异常：** GPU 2 显示 11.9GB 显存占用但 rsft_r1 PID 已死，提交 s43 前需 `nvidia-smi --query-compute-apps=pid` 检查并 kill 残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-progress.md"
+}

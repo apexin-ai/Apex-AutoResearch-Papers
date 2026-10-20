@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65322e01ffc9317a0234",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "migration rsync bjb2 to westd",
+  "task_key": "worker_migration_rsync-bjb2-to-westd_20260520T075129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_migration_rsync-bjb2-to-westd_20260520T075129_result.json",
+    "occurrence": 1,
+    "bytes": 295,
+    "sha256": "c3c5a5ce51e07843056aa5414ae633721ccd3d3e3274fbc59f0d6f32aaaa0591"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "rsync 迁移已启动：\n- **PID**: 4910，后台运行中\n- **源**: bjb2-12179:/root/autodl-tmp/ (~207G)\n- **目标**: westd-37389:/root/autodl-tmp/ (350G 可用)\n- **认证**: 通过临时 ed25519 密钥（Phase 2b 方案）\n\n约 5 分钟后自动检查第一次进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/migration-rsync-bjb2-to-westd.md"
+}

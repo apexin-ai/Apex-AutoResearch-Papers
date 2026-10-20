@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "a84fe4399a9de1b35bde",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 001 flat nli seed43",
+  "task_key": "worker_analysis_plan_001_flat_nli_seed43_20260515T202143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_001_flat_nli_seed43_20260515T202143_result.json",
+    "occurrence": 1,
+    "bytes": 3320,
+    "sha256": "cbe5a3eccf8928a08e33afbf0d65b952b0c1f7f216258454ba8414265e03f0b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"train_loss_avg\": 0.6248,\n    \"train_loss_min_observed\": 0.5895,\n    \"train_loss_min_step\": 400,\n    \"train_runtime_seconds\": 6880,\n    \"train_samples_per_second\": 1.173,\n    \"total_steps\": 507,\n    \"epochs\": 3,\n    \"num_train_samples\": 2691,\n    \"train_mean_token_accuracy_final\": 0.8473,\n    \"train_mean_token_accuracy_max_observed\": 0.8553,\n    \"eval_loss_epoch1\": 0.7529,\n    \"eval_loss_epoch2\": 0.7535,\n    \"eval_loss_epoch3\": 0.7567,\n    \"eval_mean_token_accuracy_epoch1\": 0.8297,\n    \"eval_mean_token_accuracy_epoch2\": 0.8300,\n    \"eval_mean_token_accuracy_epoch3\": 0.8298\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_flat_nli_s43\",\n  \"checkpoints\": [\"checkpoint-350\", \"checkpoint-400\", \"checkpoint-450\", \"checkpoint-500\", \"checkpoint-507\"],\n  \"adapter_model_size_mb\": 504,\n  \"comparison_with_seed42\": {\n    \"train_loss_avg\": \"0.6248 vs 0.6238 (delta +0.001, 几乎一致)\",\n    \"train_loss_min\": \"0.5895 vs 0.5803 (seed43 略高)\",\n    \"train_accuracy\": \"~0.855 vs 0.8528 (范围一致)\",\n    \"total_steps\": \"507 vs 507 (相同)\",\n    \"num_samples\": \"2691 vs 2691 (相同)\",\n    \"runtime\": \"6880s vs 2946s (seed43 含 per-epoch eval，seed42 可能未含)\",\n    \"verdict\": \"两个 seed 训练指标高度一致，loss 和 accuracy 均在正常波动范围内\"\n  },\n  \"notes\": \"训练正常完成(EXIT_CODE=0)。eval_loss 三个 epoch 基本持平(0.753-0.757)，无明显过拟合。最终模型已保存至输出目录，含 adapter_model.safetensors(504MB)。\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "conclusion": "success",
+              "metrics": {
+                "train_loss_avg": 0.6248,
+                "train_loss_min_observed": 0.5895,
+                "train_loss_min_step": 400,
+                "train_runtime_seconds": 6880,
+                "train_samples_per_second": 1.173,
+                "total_steps": 507,
+                "epochs": 3,
+                "num_train_samples": 2691,
+                "train_mean_token_accuracy_final": 0.8473,
+                "train_mean_token_accuracy_max_observed": 0.8553,
+                "eval_loss_epoch1": 0.7529,
+                "eval_loss_epoch2": 0.7535,
+                "eval_loss_epoch3": 0.7567,
+                "eval_mean_token_accuracy_epoch1": 0.8297,
+                "eval_mean_token_accuracy_epoch2": 0.83,
+                "eval_mean_token_accuracy_epoch3": 0.8298
+              },
+              "checkpoint_path": "/root/autodl-tmp/rsft_output_flat_nli_s43",
+              "checkpoints": [
+                "checkpoint-350",
+                "checkpoint-400",
+                "checkpoint-450",
+                "checkpoint-500",
+                "checkpoint-507"
+              ],
+              "adapter_model_size_mb": 504,
+              "comparison_with_seed42": {
+                "train_loss_avg": "0.6248 vs 0.6238 (delta +0.001, 几乎一致)",
+                "train_loss_min": "0.5895 vs 0.5803 (seed43 略高)",
+                "train_accuracy": "~0.855 vs 0.8528 (范围一致)",
+                "total_steps": "507 vs 507 (相同)",
+                "num_samples": "2691 vs 2691 (相同)",
+                "runtime": "6880s vs 2946s (seed43 含 per-epoch eval，seed42 可能未含)",
+                "verdict": "两个 seed 训练指标高度一致，loss 和 accuracy 均在正常波动范围内"
+              },
+              "notes": "训练正常完成(EXIT_CODE=0)。eval_loss 三个 epoch 基本持平(0.753-0.757)，无明显过拟合。最终模型已保存至输出目录，含 adapter_model.safetensors(504MB)。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-001-flat-nli-seed43.md"
+}

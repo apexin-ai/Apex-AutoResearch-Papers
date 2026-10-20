@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fe9960dc5f8af814edc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "train wave1 sft s44",
+  "task_key": "worker_train_wave1_sft_s44_20260518T124312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_wave1_sft_s44_20260518T124312_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "f7ba6ac37185e6f100ae2a281d33215e2bb0f5d037d04f40f117e4149c7023d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功提交并注册。\n\n**汇总：**\n\n| 项目 | 值 |\n|---|---|\n| exp_id | `wave1_sft_4b_s44` |\n| PID | 540984 |\n| GPU | cuda:1 (11 GB / 32 GB) |\n| 状态 | RUNNING |\n| 总步数 | 144 (3 epochs × 48 steps) |\n| 输出目录 | `/root/autodl-tmp/sft_output_seed44/` |\n| 日志 | `/root/autodl-tmp/sft_output_seed44/train.log` |\n| W&B | `freige-sft / sft-4b-seed44` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-wave1-sft-s44.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3732cac5312345963e79",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check llama s43 completion",
+  "task_key": "worker_check_llama_s43_completion_20260518T124253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_llama_s43_completion_20260518T124253_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "d87de5707343e8997381bc702d2f01eb17184f97057b3edb0dfa62e0e2873ccd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**训练结果：完成**\n- Checkpoint: `/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43/` (final checkpoint-1107)\n- 1107 steps, 3 epochs, loss 0.4447, mean_token_accuracy 0.8912\n- 与 s42 对比（d102_llama_rsft_k1_s42）参数一致\n\n**Eval 已提交**\n- PID 541949，cuda:3（17883 MiB 已占用）\n- 输出: `/root/autodl-tmp/eval_results/d102_llama_k1_s43/`\n- 日志: `/root/autodl-tmp/eval_results/d102_llama_k1_s43.log`\n- 进度: 1/247 batches, ~27.8s/batch, 预计 ~1.9 小时完成\n- 参考 s42 eval 耗时 8667s (~2.4h)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-llama-s43-completion.md"
+}

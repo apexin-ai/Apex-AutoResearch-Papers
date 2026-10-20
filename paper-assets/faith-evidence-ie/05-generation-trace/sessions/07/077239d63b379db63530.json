@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "077239d63b379db63530",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops dreeam global fix rerun",
+  "task_key": "worker_ops_dreeam-global-fix-rerun_20260515T140649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_dreeam-global-fix-rerun_20260515T140649_result.json",
+    "occurrence": 1,
+    "bytes": 438,
+    "sha256": "e1ed63f52fd44c57cccd7413fa264be1a11b7ff2733eb2fcd79be5023e3d184b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，正在加载数据。\n\n**完成摘要：**\n1. `evaluation.py` 中 line 140 (`cand != []`) 和 line 211 (`evi_preds != []`) 已全局替换为 `len(x) > 0`，现在零残留\n2. Teacher training 已通过 `submit_training_job` 提交到 cuda:2，tmux session `plan_004_dreeam_baseline`，PID 211231\n3. 训练参数以 `train_teacher.sh` 为准（包含 eval 阶段），预计 ~15-17 小时完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-dreeam-global-fix-rerun.md"
+}

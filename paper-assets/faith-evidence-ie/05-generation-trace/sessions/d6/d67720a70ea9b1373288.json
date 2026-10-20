@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d67720a70ea9b1373288",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d145 4b sft s44 with evi 2048",
+  "task_key": "worker_analysis_d145_4b_sft_s44_with_evi_2048_20260521T182643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d145_4b_sft_s44_with_evi_2048_20260521T182643_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "57c4bb542a2ccb139073b8042d3515c25b04b0169b408b947f2891a27d56d613"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## d145_4b_sft_s44_with_evi_2048 实验结果\n\n**模型**: Qwen3-4B + SFT adapter (sft_output_seed44), with evidence, max_new_tokens=2048\n\n### RE Metrics\n| Metric | Value |\n|--------|-------|\n| **Ign-F1** | **0.4665** |\n| F1 | 0.4778 |\n| Precision | 0.4684 |\n| Recall | 0.4874 |\n| Ign-Precision | 0.4460 |\n| Ign-Recall | 0.4889 |\n| TP / Pred / Gold | 5923 / 12644 / 12151 |\n\n### Evidence Metrics\n| Metric | Value |\n|--------|-------|\n| **Evi-F1 (DREEAM/Joint)** | **0.3751** |\n| Evi-F1 (TP-only) | 0.7769 |\n| Evi Precision (TP) | 0.8139 |\n| Evi Recall (TP) | 0.7431 |\n| Evi Joint Precision | 0.3692 |\n| Evi Joint Recall | 0.3811 |\n| **EDCR** | **0.7076** |\n| Distractor / Total Citations | 24685 / 34884 |\n\n### Format & Inference\n| Metric | Value |\n|--------|-------|\n| Format OK | 983/985 (99.8%) |\n| Truncated | 198/985 (20.1%) |\n| n_predictions | 22679 |\n| Inference Time | 8239.7s (8.37 s/doc) |\n\n无 fair comparison 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d145-4b-sft-s44-with-evi-2048.md"
+}

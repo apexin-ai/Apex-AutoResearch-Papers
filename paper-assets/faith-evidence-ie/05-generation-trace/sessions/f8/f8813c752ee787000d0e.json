@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8813c752ee787000d0e",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778799368.md",
+  "task_key": "loop_4_1778799368",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778799368.md",
+    "occurrence": 1,
+    "bytes": 4796,
+    "sha256": "8690995cda3493a95ccc4d9a3f3a12187f3ad51457b4c7ee4e86e711143ccac4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T22:42:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0,1,2,3 on rtx5090-4x（gpu-5090-4x-1 是同一台机器的另一个 SSH endpoint）\n- submit_training_job 命令必须自带环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`\n- 不要创建 venv——服务器用 conda base 环境（aml-train 镜像）\n- CED reward 有 recall shortcut（D029）——非匹配 triple 的 p_neg=0，CED 退化为 flat NLI。lr=5e-5 下已确认灾难性遗忘。下一轮必须用 lr=5e-6\n- kill_job 后必须验证子进程终止（ps -p + nvidia-smi），tmux wrapper 死了不代表 python 子进程死了（硬规则，三次教训）\n- 不能从 kl_coef=0 的 checkpoint 恢复加 KL penalty——必须从 SFT 重新训练\n\n### 2. 🖥️ 基础设施快照\n- 服务器: rtx5090-4x（= gpu-5090-4x-1），4× RTX 5090 32GB\n- 工作目录: /root/autodl-tmp/freige\n- Python: /root/miniconda3/bin/python（conda base）\n- 模型: /root/autodl-tmp/models/Qwen3-4B（ModelScope 下载）\n- SFT adapter: /root/autodl-tmp/sft_output\n- GRPO ced_kl001 checkpoints: /root/autodl-tmp/grpo_ced_kl001/checkpoint-{10..100}\n- 数据: /root/autodl-tmp/data/docred（dev 985 docs）\n- NLI 预计算: /root/autodl-tmp/data/docred/nli_cache/\n- Eval 结果: /root/autodl-tmp/eval_results/\n- HF cache: /root/autodl-tmp/.hf_cache\n- wandb: entity=xiaoyucorynne-，project=freige-grpo（MCP list_wandb_runs 有 bug，用 fetch_wandb_run_history + 已知 run_id）\n- 活跃进程:\n  - mvp2_eval_ced_kl001_r4_step90 (PID 83207, cuda:1)\n  - mvp2_eval_ced_kl001_r4_high (PID 81962, cuda:3, checkpoints 60,70,80,90)\n  - mvp2_eval_ced_kl001_r4_multi (PID 78850, cuda:2, checkpoints 10,20,30,40,60,70,80)\n- Worker: ops:verify-ced-fix-remote (running)\n\n### 3. 📊 当前状态\n刚完成 mvp2_eval_ced_kl001_r4_step100 分析（DONE/negative）。已向 Director 汇报。\n\n**step100 结果**: F1=0.217（SFT 0.406, -18.9pp），Evi-F1=0.575（SFT 0.798, -22.3pp）。MVP-2 核心指标全部 FAIL。\n\n**checkpoint 轨迹**: ckpt-10 F1=0.003 → ckpt-50 F1=0.156 → ckpt-100 F1=0.217。持续改善但远未恢复 SFT 水平。确认 D029: lr=5e-5 灾难性遗忘。\n\n**仍在 RUNNING 的 eval（3 个，占 cuda:1,2,3）**:\n- step90 (cuda:1) — best-reward checkpoint, reward=1.370, **最关键判定点**\n- high (cuda:3) — steps 60,70,80,90 批量 eval\n- multi (cuda:2) — steps 10,20,30,40,60,70,80 批量 eval\n\n**PREPARING**: mvp2_grpo_ced_lr5e6_r1 (D030/P0), mvp2_grpo_ced_lr5e6_p1_r1, mvp2_grpo_ced_kl001_r2/r3, mvp2_eval_ced_kl001_r4_last\n\n**cuda:0 空闲**，等全部 eval 完成后可用于 lr=5e-6 训练。\n\n### 4. 📋 待办\n- step90 eval cron 回调 → 这是 MVP-2 最终判定点。F1 ≥ 0.356 且 Evi-F1 ≥ 0.818 才 PASS（几乎不可能，但必须走完流程）。大概率 negative → 产出完整 Framing 提案（含所有 checkpoint 轨迹数据），提交 Director\n- high / multi eval 完成 → 提取所有 checkpoint metrics，建完整 reward↔eval F1 相关性表。这是论文\"reward hacking under high lr\"的核心 evidence\n- 全部 eval 完成 + Director 决策后 → cuda:0,1,2,3 全部释放，立即启动 D030 P0 (lr=5e-6 from SFT scratch)。代码已就绪（grpo_trainer.py 里改 --learning_rate 即可），不需要额外准备\n- Director 审批 lr=5e-6 实验 → submit_on_allocated，命令模板: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u -m freige.grpo_trainer --learning_rate 5e-6 --kl_coef 0.01 --num_generations 8 --save_steps 10 ...`\n\n### 5. 🎯 战略上下文\n**决策链**: D008(QLoRA+kl_coef不兼容) → D020(kl=0.01+gen=8统一配置) → D024(CED有anti-collapse作用,extract/flatnli collapse) → D029(lr=5e-5太激进+CED recall shortcut) → D030(P0=lr 5e-6)\n\n**核心发现（论文价值）**: D024 证明 CED reward 通道通过提供额外 reward variance 防止 GRPO mode collapse（extract-only 和 flat-NLI 在相同配置下 collapse）。这是 CED 的双重作用：evidence 质量改善 + 训练稳定性。\n\n**最容易判断错的事**:\n1. step90 eval 即使 F1 比 step100 好一些，大概率仍然远低于 SFT。不要被\"best reward checkpoint\"的期望误导——训练 F1 reward=0.72 不等于 eval F1=0.72（train/eval 分布不匹配）\n2. 当前 ced_kl001_r4 的所有 checkpoint 都不会通过 MVP-2。真正的希望在 lr=5e-6 重训练（D030）\n3. 但当前 eval 数据不是浪费——完整的 checkpoint 轨迹是证明\"高 lr 下 reward hacking\"的 evidence，论文可用\n4. flash_attn 未装，脚本用 attn_implementation=\"sdpa\"\n5. pip install 前必须 `source /etc/network_turbo`（AutoDL 代理），HF 下载设 HF_HUB_DISABLE_XET=1\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778799368.md"
+}

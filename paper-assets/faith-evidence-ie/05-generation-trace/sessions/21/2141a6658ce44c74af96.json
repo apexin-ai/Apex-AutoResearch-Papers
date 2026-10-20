@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2141a6658ce44c74af96",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "knowledge update experiment plan 8b rsft",
+  "task_key": "worker_knowledge_update_experiment_plan_8b_rsft_20260519T051036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_update_experiment_plan_8b_rsft_20260519T051036_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "1eb68004ddb65575b993f066a75b0f0e0c79fc0278309df42177d82bcfb22d76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "memory.md 已包含完整的 8B RSFT s44 数据和 2-seed 统计，无需再更新。\n\nplan_019 已更新完成：\n\n**plan_019 更新内容：**\n- description 中 \"8B-Qwen 需补 s44\" → \"8B-Qwen 2-seed 已完成（s42+s44）\"\n- 剩余缺口缩减为：1.7B s43/s44, LLaMA s43/s44\n- 新增 notes 字段，记录 8B-Qwen 完整统计\n\n**8B RSFT 2-seed 统计：**\n\n| | SFT ign_f1 | RSFT ign_f1 | gain |\n|---|---|---|---|\n| s42 | 0.5051 | 0.5376 | +3.25pp |\n| s44 | 0.4681 | 0.5451 | +7.70pp |\n| **mean** | 0.4866 | **0.5414** | +5.48pp |\n| **sample std** | 2.62pp | **0.53pp** | — |\n\nRSFT 将 8B seed variance 压缩 ~5x（2.62pp → 0.53pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-update-experiment-plan-8b-rsft.md"
+}

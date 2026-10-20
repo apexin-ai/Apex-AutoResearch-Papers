@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "11b16db49e9b5570c818",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "research evidence cost literature",
+  "task_key": "worker_research_evidence-cost-literature_20260516T041839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_evidence-cost-literature_20260516T041839.log",
+    "occurrence": 1,
+    "bytes": 814315,
+    "sha256": "df47cd7dab1c16447375d6f82e5ff7691391e147db629e0e2dd142d6799d8ce5"
+  },
+  "statistics": {
+    "messages": 124,
+    "user_turns": 0,
+    "tool_calls": 45,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 45,
+      "tool_result": 45,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 124,
+      "chunks": [
+        {
+          "path": "11b16db49e9b5570c818-part-0001.json",
+          "message_count": 116
+        },
+        {
+          "path": "11b16db49e9b5570c818-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-evidence-cost-literature.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71223f3b549b7821d902",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 015 correct submit",
+  "task_key": "worker_ops_plan_015_correct_submit_20260515T160608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_015_correct_submit_20260515T160608_result.json",
+    "occurrence": 1,
+    "bytes": 400,
+    "sha256": "3083c67244ff348b396d6363e2a84cce7d3b0179e20ab9fbf40fce6989c53c52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**`plan_015_grpo_g4_bf16_v2`** 已提交到 rtx5090-4x cuda:3，PID 223970，状态 RUNNING。\n\n注意：cuda:3 上还有 eval PID 220202（checkpoint-90 推理）在跑，两个进程共享 GPU。如果显存不够会 OOM——`submit_training_job` 的 collision detection 没拦截说明系统允许共存，但建议关注初始日志确认模型加载正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-015-correct-submit.md"
+}

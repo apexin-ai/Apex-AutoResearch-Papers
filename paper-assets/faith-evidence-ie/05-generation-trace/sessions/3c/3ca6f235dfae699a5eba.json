@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ca6f235dfae699a5eba",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops analyze plan 001 done",
+  "task_key": "worker_ops_analyze_plan_001_done_20260515T202613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_analyze_plan_001_done_20260515T202613_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "9efed2033693a31fe09caf17df699bfe1e03cd494e7f6c4d16abd618ae849005"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 摘要\n\n**plan_001_flat_nli_seed43 训练成功完成**\n\n| 指标 | 值 |\n|------|-----|\n| 状态 | EXIT_CODE=0, 正常完成 |\n| 总步数 | 507 (3 epochs) |\n| 训练样本 | 2,691 (flat-NLI scoring) |\n| train_loss | 0.6751 → 0.6257 (min 0.5895) |\n| token_accuracy | 0.8473 |\n| Checkpoint | `/root/autodl-tmp/rsft_output_flat_nli_s43` (504MB LoRA adapter) |\n| 基座模型 | Qwen3-4B, LoRA r=64 α=128 |\n\n**与 seed=42 对比（训练指标）：**\n- seed=42: final_loss=0.6238, token_acc=0.8528\n- seed=43: final_loss=0.6257, token_acc=0.8473\n- 高度一致，差异在噪声范围内\n\n**尚无 eval 结果。** seed=42 的 eval 已有 rel_f1=0.4539。seed=43 需要单独跑 eval 才能得到 rel_f1/evi_f1，与 CED RSFT 3-seed mean (0.4596, σ=0.0127) 做统计对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-analyze-plan-001-done.md"
+}

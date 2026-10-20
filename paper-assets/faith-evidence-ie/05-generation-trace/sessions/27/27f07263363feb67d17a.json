@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27f07263363feb67d17a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper figure fig overview",
+  "task_key": "worker_paper_figure_fig_overview_20260517T144242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_overview_20260517T144242_result.json",
+    "occurrence": 1,
+    "bytes": 321,
+    "sha256": "299919ab2798c2d2d11df037328cc79234d4f6c7d9086a06fad3a3908ce48273"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成 `fig_overview.pdf` 和 `fig_overview.png`。\n\n图表包含 4 个阶段：Document（带实体高亮） → LLM → 输出对比（Standard DocRE 灰色虚线框 vs Evidence-Grounded DocRE 蓝色实线框） → 底部 RSFT Pipeline 流程条。脚本路径：`figures/paper/plot_overview.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-overview.md"
+}

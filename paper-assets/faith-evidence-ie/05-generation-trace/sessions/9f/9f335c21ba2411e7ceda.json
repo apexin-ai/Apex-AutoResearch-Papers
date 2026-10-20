@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f335c21ba2411e7ceda",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops d158 14b s44 test evi diag",
+  "task_key": "worker_ops_d158_14b_s44_test_evi_diag_20260525T105435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d158_14b_s44_test_evi_diag_20260525T105435_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "e3b81e88d9fc161a68aab862eea53f0f512281de3e903b09e6f12383b782e779"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。总结：\n\n**d158_14b_rsft_s44_test_with_evi** — 成功完成，status=DONE。\n\n| Metric | s42 | s43 | **s44** |\n|--------|-----|-----|---------|\n| ign_f1 | 0.3849 | 0.3767 | **0.3716** |\n| precision | — | — | 0.4267 |\n| recall | — | — | 0.3292 |\n| evi_f1_tp | — | — | 0.6081 |\n| evi_f1_joint | — | — | 0.2396 |\n| edcr | — | — | 0.8169 |\n| format_ok | — | — | 99.8% |\n| truncated | — | — | 277/500 |\n\ns44 ign_f1=0.3716，三个 seed 中最低（s42 > s43 > s44），三 seed 均值约 0.3777。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d158-14b-s44-test-evi-diag.md"
+}

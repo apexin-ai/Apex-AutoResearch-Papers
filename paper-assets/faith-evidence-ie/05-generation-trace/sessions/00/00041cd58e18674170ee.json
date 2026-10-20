@@ -1,0 +1,2172 @@
+{
+  "schema_version": "1.0",
+  "id": "00041cd58e18674170ee",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "exp ced evidence reranking cuda0",
+  "task_key": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_exp_ced_evidence_reranking_cuda0_20260517T045906.jsonl",
+    "occurrence": 1,
+    "bytes": 120728,
+    "sha256": "c3f4111bd7c8a4296afb986314cade436c9ce458da1bcfa7d7efba0f576e6f9a"
+  },
+  "statistics": {
+    "messages": 109,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "tool_call": 54,
+      "tool_result": 54,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T05:04:55.273551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Explore codebase interfaces",
+              "subagent_type": "Explore",
+              "prompt": "I need to understand the following files in /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/ and the remote project at /root/autodl-tmp/freige/:\n\nSince the code is on a remote server, I can't read it directly. Instead, search for any local copies or artifacts that contain information about:\n\n1. Look in /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ for any files that describe the project structure, especially:\n   - How CEDRewardModel is initialized and its nli_entailment_prob() interface\n   - How the eval/inference.py works (does it save predictions?)\n   - How DocREDEvaluator or metrics work\n   - What verbalize_by_name() does in ced_reranker.py\n\nSearch breadth: very thorough. Look in artifacts/, any .md files, any cached code copies, memory files, etc."
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T05:04:55.273957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T05:04:55.274149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T05:04:55.274327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie -type f -name \"*.md\" -o -name \"*.txt\" -o -name \"*.json\" | head -50"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T05:04:55.274494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/IDEA_BRIEF.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_monitor_ced-training-progress_20260516T004756_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_analyze_mvp2_rsft_train_r1_s44_20260515T073356_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_check_cuda2_stuck_eval_20260516T093532_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_verify-cuda2-and-p0-step60_20260514T212901_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_check_sft_baseline_status_20260514T222705_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_code_plan_003_edcr_pipeline_20260515T210707_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_plan_011_eval_g8_bf16_ckpt100_20260515T144139_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_submit_8b_ced_scoring_cuda3_20260517T034726_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_check_mvp2_all_status_20260514T145214_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_kill-zombie-maxtok1536_20260515T132559_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_diagnose_plan_011_bf16_g8_step_eval_20260515T195026_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_experiment_plan_002_test_eval_20260516T081231_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/l\n…[truncated 5532 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T05:04:55.274665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/ 2>/dev/null | head -50"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T05:04:55.274806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 964\ndrwxr-xr-x 24 ubuntu ubuntu   4096 May 17 03:57 .\ndrwxr-xr-x  9 ubuntu ubuntu   4096 May 17 04:57 ..\ndrwxr-xr-x  7 ubuntu ubuntu   4096 May 16 00:47 _project\n-rw-r--r--  1 ubuntu ubuntu   2284 May 16 00:40 ced_eval_commands.md\n-rw-r--r--  1 ubuntu ubuntu   3346 May 14 18:43 ced_stabilizer_literature_survey.md\n-rw-r--r--  1 ubuntu ubuntu   1827 May 15 16:21 cuda3_diagnostic.md\n-rw-r--r--  1 ubuntu ubuntu  18324 May 14 18:43 d024_literature_survey.md\n-rw-r--r--  1 ubuntu ubuntu   2637 May 16 05:22 d076_seed_status.md\n-rw-r--r--  1 ubuntu ubuntu   1874 May 14 15:15 diag_mvp2_grpo_flatnli_r3.md\n-rw-r--r--  1 ubuntu ubuntu   4469 May 16 17:47 diag_redocred_rsft_r2.md\n-rw-r--r--  1 ubuntu ubuntu   1702 May 17 01:54 diagnose_8b_timeout.md\n-rw-r--r--  1 ubuntu ubuntu   2765 May 15 15:21 diagnose_plan_001.md\n-rw-r--r--  1 ubuntu ubuntu  16718 May 14 23:37 diversity_probe.py\n-rw-r--r--  1 ubuntu ubuntu   4532 May 14 23:51 diversity_probe_results.md\ndrwxr-xr-x  6 ubuntu ubuntu   4096 May 16 16:31 dream_reports\n-rw-r--r--  1 ubuntu ubuntu  10601 May 16 03:36 dreeam_evif1_alignment_report.md\n-rw-r--r--  1 ubuntu ubuntu   6178 May 15 18:12 edcr_analysis.md\n-rw-r--r--  1 ubuntu ubuntu   4468 May 15 11:56 edcr_analysis_r2b.md\n-rw-r--r--  1 ubuntu ubuntu   9886 May 15 19:55 edcr_diagnostic_table.md\n-rw-r--r--  1 ubuntu ubuntu   2421 May 16 04:16 eval_plan_014_no_evidence_r2_analysis.md\n-rw-r--r--  1 ubuntu ubuntu   1165 May 16 03:31 eval_progress_20260516.md\n-rw-r--r--  1 ubuntu ubuntu   3222 May 15 11:33 eval_progress_check_0515.md\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 16 05:18 eval_rsft_ced_s43\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 16 04:23 eval_rsft_ced_s45\n-rw-r--r--  1 ubuntu ubuntu   5541 May 14 14:56 eval_script_audit.md\n-rw-r--r--  1 ubuntu ubuntu   3489 May 14 19:05 eval_status_check.md\n-rw-r--r--  1 ubuntu ubuntu   6864 May 16 04:23 evidence_cost_literature_scan.md\n-rw-r--r--  1 ubuntu ubuntu   6298 May 16 01:06 experiment_summary_table.md\ndrwxr-xr-x  9 ubuntu \n…[truncated 1468 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T05:04:55.274958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T05:04:55.275079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 36\ndrwxr-xr-x  9 ubuntu ubuntu 4096 May 14 04:59 .\ndrwxr-xr-x 24 ubuntu ubuntu 4096 May 17 03:57 ..\n-rw-r--r--  1 ubuntu ubuntu    0 May 14 04:28 __init__.py\ndrwxr-xr-x  2 ubuntu ubuntu 4096 May 14 04:59 __pycache__\ndrwxr-xr-x  3 ubuntu ubuntu 4096 May 14 05:48 analysis\ndrwxr-xr-x  2 ubuntu ubuntu 4096 May 14 07:16 configs\ndrwxr-xr-x  3 ubuntu ubuntu 4096 May 14 04:34 data\ndrwxr-xr-x  3 ubuntu ubuntu 4096 May 14 15:05 eval\ndrwxr-xr-x  3 ubuntu ubuntu 4096 May 14 04:34 rewards\ndrwxr-xr-x  3 ubuntu ubuntu 4096 May 16 10:08 training"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T05:04:55.275220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige -type f -name \"*.py\" | sort"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T05:04:55.275458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/analysis/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/analysis/ced_signal_validation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/data/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/data/docred_processor.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/eval/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/eval/batch_eval.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/eval/evaluator.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/eval/find_best_checkpoint.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/rewards/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/rewards/ced_reward.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/training/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/training/grpo_trainer.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/training/merge_shards.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/training/rsft_generate.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/training/rsft_score_filter.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/training/rsft_trainer.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/pr\n…[truncated 180 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T05:04:55.275640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie -type f \\( -name \"inference.py\" -o -name \"ced_reranker.py\" -o -name \"*reranker*\" \\) 2>/dev/null"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T05:04:55.275782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_research_ced_reranker_ignf1_20260516T033143_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_analysis_ced_reranker_results_20260515T145044.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_exp_ced-reranker-poc_20260515T075539.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_research_ced_reranker_ignf1_20260516T033143.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_code_ced_reranker_poc_20260515T093913.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_fix_ced_reranker_ignf1_recalc_20260516T034324.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_analysis_ced_reranker_results_20260515T145044_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_check_ced-reranker-poc-status_20260515T101326_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_exp_ced-reranker-poc_20260515T075539_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_check_ced-reranker-poc-status_20260515T101326.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_code_ced_reranker_poc_20260515T093913_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_fix_ced_reranker_ignf1_recalc_20260516T034324_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/chats/worker_check_ced-reranker-poc-status_20260515T101326.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/chats/worker_research_ced\n…[truncated 1560 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T05:04:55.275931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/rewards/ced_reward.py"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T05:04:55.276120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"CED（Contrastive Evidence Discrimination）对比证据判别奖励。\n2\t\n3\t核心公式:\n4\t  p_pos = NLI_entail(concat(cited_evidence), claim)\n5\t  p_neg = max_j NLI_entail(neg_sent_j, claim)\n6\t  R_CED = max(0, p_pos - p_neg) * I(p_pos > tau)\n7\t\n8\t输入: 关系三元组 + gold evidence 句子 + hard negative 句子\n9\t输出: CED 奖励值 ∈ [0, 1]\n10\t依赖: transformers, torch\n11\t\"\"\"\n12\t\n13\timport logging\n14\tfrom typing import Optional\n15\t\n16\timport torch\n17\timport torch.nn.functional as F\n18\tfrom transformers import AutoModelForSequenceClassification, AutoTokenizer\n19\t\n20\tlogger = logging.getLogger(__name__)\n21\t\n22\tDEFAULT_NLI_MODEL = \"cross-encoder/nli-deberta-v3-base\"\n23\t\n24\tVERBALIZATION_TEMPLATES = {\n25\t    \"P6\": \"The head of government of {head} is {tail}.\",\n26\t    \"P17\": \"{head} is located in the country {tail}.\",\n27\t    \"P19\": \"{head} was born in {tail}.\",\n28\t    \"P20\": \"{head} died in {tail}.\",\n29\t    \"P22\": \"The father of {head} is {tail}.\",\n30\t    \"P25\": \"The mother of {head} is {tail}.\",\n31\t    \"P26\": \"{head} is married to {tail}.\",\n32\t    \"P27\": \"{head} is a citizen of {tail}.\",\n33\t    \"P30\": \"{head} is located in the continent of {tail}.\",\n34\t    \"P31\": \"{head} is an instance of {tail}.\",\n35\t    \"P35\": \"The head of state of {head} is {tail}.\",\n36\t    \"P36\": \"The capital of {head} is {tail}.\",\n37\t    \"P37\": \"The official language of {head} is {tail}.\",\n38\t    \"P39\": \"{head} held the position of {tail}.\",\n39\t    \"P40\": \"{head} has a child named {tail}.\",\n40\t    \"P50\": \"The author of {head} is {tail}.\",\n41\t    \"P54\": \"{head} is a member of the sports team {tail}.\",\n42\t    \"P57\": \"The director of {head} is {tail}.\",\n43\t    \"P58\": \"The screenwriter of {head} is {tail}.\",\n44\t    \"P69\": \"{head} was educated at {tail}.\",\n45\t    \"P86\": \"The composer of {head} is {tail}.\",\n46\t    \"P102\": \"{head} is a member of the political party {tail}.\",\n47\t    \"P108\": \"{head} is employed by {tail}.\",\n48\t    \"P112\": \"{head} was founded by {tail}.\",\n49\t    \"P118\": \"{head} plays in the league {tail}.\",\n50\t    \"P123\": \"The publisher of \n…[truncated 10882 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T05:04:55.276331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/eval/evaluator.py"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T05:04:55.276570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"DocRED 关系抽取评测模块。\n2\t\n3\t指标:\n4\t  - F1 / Ign-F1: 关系三元组级别 micro-F1，Ign-F1 排除训练集中出现的三元组\n5\t  - Evi-F1: 对正确预测的三元组，计算 evidence 句子级 F1\n6\t  - EDCR: Evidence Distractor Citation Rate，预测 evidence 中非 gold 的比例\n7\t\n8\t输入: 预测列表 + gold 标注列表（每个元素为文档级标注）\n9\t输出: 指标字典\n10\t\"\"\"\n11\t\n12\timport json\n13\timport logging\n14\tfrom collections import defaultdict\n15\tfrom typing import Optional\n16\t\n17\tlogger = logging.getLogger(__name__)\n18\t\n19\t\n20\tdef _triple_key(doc_id: str, head: str, tail: str, relation: str) -> tuple:\n21\t    return (doc_id, head.lower().strip(), tail.lower().strip(), relation)\n22\t\n23\t\n24\tclass DocREDEvaluator:\n25\t    \"\"\"DocRED 评测器。\n26\t\n27\t    Args:\n28\t        train_triples: 训练集中的三元组集合，用于计算 Ign-F1。\n29\t                       每个元素为 (doc_title, head_name, tail_name, relation)。\n30\t                       为 None 时 Ign-F1 = F1。\n31\t    \"\"\"\n32\t\n33\t    def __init__(self, train_triples: Optional[set[tuple]] = None):\n34\t        self.train_triples = train_triples or set()\n35\t\n36\t    @classmethod\n37\t    def from_train_file(cls, train_path: str) -> \"DocREDEvaluator\":\n38\t        \"\"\"从训练集 JSON 文件构建 evaluator，自动提取训练集三元组。\"\"\"\n39\t        from freige.data.docred_processor import DOCRED_REL_INFO\n40\t\n41\t        with open(train_path) as f:\n42\t            train_data = json.load(f)\n43\t\n44\t        train_triples = set()\n45\t        for doc in train_data:\n46\t            doc_id = doc.get(\"title\", \"\")\n47\t            vertex_set = doc[\"vertexSet\"]\n48\t            for label in doc.get(\"labels\", []):\n49\t                h_name = vertex_set[label[\"h\"]][0][\"name\"]\n50\t                t_name = vertex_set[label[\"t\"]][0][\"name\"]\n51\t                rel_name = DOCRED_REL_INFO.get(label[\"r\"], label[\"r\"])\n52\t                train_triples.add(\n53\t                    _triple_key(doc_id, h_name, t_name, rel_name)\n54\t                )\n55\t\n56\t        logger.info(\"Loaded %d training triples for Ign-F1\", len(train_triples))\n57\t        return cls(train_triples=train_triples)\n58\t\n59\t    def compute_f1(\n60\t        self,\n61\t        predict\n…[truncated 11793 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T05:04:55.276767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/eval/batch_eval.py"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T05:04:55.276955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"批量评估: 遍历 {实验}×{checkpoint} 组合，调用 inference.py 并汇总 metrics。\n2\t\n3\t用法:\n4\t    python -m freige.eval.batch_eval \\\n5\t        --experiments /root/autodl-tmp/grpo_ced_r5,/root/autodl-tmp/grpo_extract_r3 \\\n6\t        --base_model /root/autodl-tmp/models/Qwen3-4B \\\n7\t        --sft_adapter /root/autodl-tmp/sft_output \\\n8\t        --data_path /root/autodl-tmp/data/docred \\\n9\t        --output_dir /root/autodl-tmp/eval_results/batch \\\n10\t        --checkpoints best,last\n11\t\"\"\"\n12\t\n13\timport argparse\n14\timport csv\n15\timport json\n16\timport subprocess\n17\timport sys\n18\tfrom pathlib import Path\n19\t\n20\tfrom freige.eval.find_best_checkpoint import find_best_checkpoint\n21\t\n22\t\n23\tSUMMARY_METRICS = [\"f1\", \"ign_f1\", \"evi_f1\", \"edcr\", \"format_ok_rate\", \"n_predictions\", \"n_truncated\"]\n24\t\n25\t\n26\tdef discover_checkpoints(exp_dir: Path) -> list[Path]:\n27\t    dirs = sorted(exp_dir.glob(\"checkpoint-*\"), key=lambda p: int(p.name.split(\"-\")[-1]))\n28\t    return dirs\n29\t\n30\t\n31\tdef resolve_checkpoints(exp_dir: Path, mode: str) -> list[Path]:\n32\t    \"\"\"根据 --checkpoints 参数解析要评估的 checkpoint 列表。\"\"\"\n33\t    all_ckpts = discover_checkpoints(exp_dir)\n34\t    if not all_ckpts:\n35\t        print(f\"WARNING: no checkpoints in {exp_dir}\", file=sys.stderr)\n36\t        return []\n37\t\n38\t    if mode == \"all\":\n39\t        return all_ckpts\n40\t\n41\t    tokens = [t.strip() for t in mode.split(\",\")]\n42\t    result = []\n43\t    seen = set()\n44\t\n45\t    for tok in tokens:\n46\t        if tok == \"last\":\n47\t            path = all_ckpts[-1]\n48\t            if path not in seen:\n49\t                result.append(path)\n50\t                seen.add(path)\n51\t        elif tok == \"best\":\n52\t            info = find_best_checkpoint(str(exp_dir))\n53\t            if info:\n54\t                path = Path(info[\"path\"])\n55\t                if path not in seen:\n56\t                    result.append(path)\n57\t                    seen.add(path)\n58\t            else:\n59\t                print(f\"WARNING: could not find best checkpoint for {exp_dir}\", file=sys.st\n…[truncated 7322 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T05:04:55.277125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/IDEA_BRIEF.md"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T05:04:55.277338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Idea Brief: FREIGE: Faithfulness-Rewarded Evidence-Grounded Information Extraction via Contrastive Evidence Discrimination\n2\t\n3\t\n4\t- **Idea ID**: `idea_006`\n5\t- **Created**: 2026-05-14\n6\t- **Approved**: 2026-05-14\n7\t- **Source**: foreign:be-idea-gen-0509-6\n8\t- **Level**: top-tier\n9\t- **Target Venues**: EMNLP 2026 (ARR deadline: May 25, 2026 — tight but feasible with auto_research mode and DocRED-only scope), AACL-IJCNLP 2026 (ARR deadline: May 25, 2026), AAAI 2027 (abstract: July 25, paper: August 1, 2026 — comfortable for manual/human-in-loop, allows Re-DocRED extension)\n10\t\n11\t## Seed Topic\n12\t\n13\tTarget: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Information Extraction.\n14\t\n15\tDirection: Structured information extraction — named entity recognition, relation extraction, event extraction, document-level IE, end-to-end extraction pipelines. Both LLM-based and non-LLM approaches welcome. In-scope: schema-guided extraction, zero-shot/few-shot IE, cross-document extraction, multimodal IE (text + layout + images), temporal/causal relation extraction.\n16\t\n17\tContribution type: METHOD ONLY. New extraction architectures, training strategies, or inference algorithms. Not a new dataset or annotation guideline.\n18\t\n19\tHARD CONSTRAINTS:\n20\t1. Compute: ≤200 H100-hours total. IE work is typically lightweight — most experiments are fine-tuning or in-context learning.\n21\t2. Time: ≤16 days. Use existing IE frameworks (GoLLIE, UniNER, USM) or build on open LLMs with structured output.\n22\t3. Eval: ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS.\n23\t\n24\tLook for: schema-guided extraction that generalizes across domains, efficient document-level IE beyond sliding windows, extraction with faithful provenance/citation, structured extraction from semi-structured sources (tables, forms, code). Avoid: basic NER fine-tuning, prompt-only extraction without architectural insight.\n25\t\n26\tTag: direction=information_extractio\n…[truncated 29513 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T05:04:55.277509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts -type f -name \"*.py\" | grep -E \"(inference|reranker)\" | head -20"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T05:04:55.277636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T05:04:55.277768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"nli_entailment_prob\\|verbalize_by_name\\|inference.py\" /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts --include=\"*.md\" --include=\"*.txt\" 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T05:04:55.277907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/intermediate/test_inference_info.md:`/root/autodl-tmp/freige/eval/test_inference.py`\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/rsft_pipeline_commands.md:| inference.py (eval) | `freige/eval/inference.py` | ✅ 存在 |\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/rsft_pipeline_commands.md:### inference.py (eval)\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/rsft_pipeline_commands.md:3. **inference.py quantize 默认 True**：必须显式传 `--no-quantize`。\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_007_redocred_rsft_eval_r2/report/diag_redocred_rsft_r2.md:inference.py 有检查:\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_007_redocred_rsft_eval_r2/report/diag_redocred_rsft_r2.md:2. **防御性改进**: 在 inference.py 增加额外检查——当 `sft_adapter` 路径的 `adapter_config.json` 中 `base_model_name_or_path` 与 `model_path/base_model` 一致时，warn 用户可能混淆了参数顺序。或者增加 `--rsft_adapter` 专用参数避免歧义。\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_commands.md:### 2.1 `eval/inference.py`：新增 `prepare_test_data()`\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_commands.md:### 2.2 `eval/inference.py`：新增 `convert_to_codalab()`\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_commands.md:### 2.3 `eval/inference.py` `main()` 修改\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/eval_script_audit.md:`inference.py` 当前加载逻辑：\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/eval_script_audit.md:### inference.py 需要的改动\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/eval_script_audit.md:| inference.\n…[truncated 659 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T05:04:55.278056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/rsft_pipeline_commands.md"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T05:04:55.278197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# RSFT 下游流水线预验证报告\n2\t\n3\t## 1. 脚本存在性确认\n4\t\n5\t| 脚本 | 实际路径 | 状态 |\n6\t|------|---------|------|\n7\t| merge_shards.py | `freige/training/merge_shards.py` | ✅ 存在 |\n8\t| rsft_score_filter.py | `freige/training/rsft_score_filter.py` | ✅ 存在 |\n9\t| rsft_trainer.py | `freige/training/rsft_trainer.py` | ✅ 存在 |\n10\t| inference.py (eval) | `freige/eval/inference.py` | ✅ 存在 |\n11\t| batch_eval.py | `freige/eval/batch_eval.py` | ✅ 存在（多checkpoint批量评测用） |\n12\t\n13\t**注意**: 脚本在 `freige/training/` 和 `freige/eval/` 下，不在 `freige/freige/` 下。\n14\t\n15\t## 2. Shard 数据现状\n16\t\n17\t| 文件 | 行数 |\n18\t|------|------|\n19\t| shard_0/generations.jsonl | 4,464 |\n20\t| shard_1/generations.jsonl | 4,800 |\n21\t| shard_2/generations.jsonl | 4,832 |\n22\t| shard_3/generations.jsonl | 4,104 |\n23\t| root generations.jsonl（旧单卡） | 2,416 |\n24\t| **总计** | **20,616** |\n25\t\n26\t## 3. 输入/输出格式对齐验证\n27\t\n28\t### generations.jsonl 字段\n29\t```\n30\tdoc_id, generation_idx, prompt, output, raw_text, format_ok, truncated, gold_triples, sents, parsed_triples\n31\t```\n32\t\n33\t### rsft_score_filter.py\n34\t- **输入**: `--input_dir` 目录，内部 `load_generations()` 自动合并 root + shard_*/generations.jsonl（last-wins 去重）\n35\t- **需要字段**: parsed_triples, gold_triples, sents, format_ok, prompt, output, doc_id, generation_idx → ✅ 全部对齐\n36\t- **输出**: `rsft_train.jsonl`，字段: input, output, ced_score, doc_id, generation_idx, format_reward, f1_reward, combined_score\n37\t\n38\t### rsft_trainer.py\n39\t- **输入**: `--rsft_data_path` JSONL\n40\t- **需要字段**: input, output, ced_score → ✅ 与 score_filter 输出对齐\n41\t\n42\t### inference.py (eval)\n43\t- **输入**: adapter 路径 + base model + SFT adapter\n44\t- **输出**: metrics.json (F1, Ign-F1, Evi-F1, EDCR) + predictions.json\n45\t\n46\t## 4. 依赖确认\n47\t\n48\t| 依赖 | 状态 |\n49\t|------|------|\n50\t| NLI 模型 (cross-encoder/nli-deberta-v3-base) | ✅ 已缓存于 `/root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base` |\n51\t| SFT adapter | ✅ `/root/autodl-tmp/sft_output/` (adapter_config.json + adapter_model.safetensors) |\n52\t| Qwen3-4B base model | ✅ `/root/autodl-tmp/models\n…[truncated 2651 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T05:04:55.278390+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/eval_script_audit.md"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T05:04:55.278541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Eval 脚本审计报告：GRPO Checkpoint 兼容性\n2\t\n3\t## 1. eval 脚本当前能力\n4\t\n5\t### 支持的功能\n6\t| 功能 | 状态 | 说明 |\n7\t|------|------|------|\n8\t| LoRA adapter 自动检测 | OK | 检查 `adapter_config.json` 存在性，自动切换 adapter/full-model 模式 |\n9\t| 4-bit QLoRA 推理 | OK | 默认开启 NF4 量化，`--no-quantize` 可关闭 |\n10\t| parse_model_output 统一解析 | OK | JSON 解析 + 截断修复，所有模型共用 |\n11\t| F1 / Ign-F1 | OK | micro-F1，Ign-F1 排除训练集三元组 |\n12\t| Evi-F1 | OK | 对正确预测的三元组，计算 evidence 句子级 F1 |\n13\t| EDCR | OK | Evidence Distractor Citation Rate |\n14\t| format_compliance_rate | OK | JSON 格式合规率 |\n15\t| 批量推理 | OK | 支持 batch_size 参数 |\n16\t\n17\t### 不支持的功能\n18\t| 功能 | 状态 | 影响 |\n19\t|------|------|------|\n20\t| **双 adapter 加载（SFT + GRPO）** | MISSING | **阻断性问题**，详见下文 |\n21\t\n22\t## 2. GRPO Checkpoint 格式分析\n23\t\n24\t### Checkpoint 结构\n25\t所有 GRPO checkpoint（CED/extraction/flat-NLI）结构一致：\n26\t\n27\t```\n28\tcheckpoint-N/\n29\t  adapter_config.json          # LoRA 配置，base_model = Qwen3-4B\n30\t  adapter_model.safetensors    # LoRA adapter 权重\n31\t  tokenizer.json + tokenizer_config.json + ...\n32\t  trainer_state.json\n33\t  training_args.bin\n34\t  optimizer.pt / scheduler.pt / rng_state.pth\n35\t```\n36\t\n37\t与 SFT 输出格式完全相同（都是 PEFT LoRA adapter）。\n38\t\n39\t### 已有 Checkpoint 清单\n40\t| 模型 | 目录 | Checkpoint |\n41\t|------|------|-----------|\n42\t| SFT baseline | `/root/autodl-tmp/sft_output/` | checkpoint-96, checkpoint-144 |\n43\t| GRPO CED | `/root/autodl-tmp/grpo_ced_r5/` | checkpoint-400 ~ 480 (步长20) |\n44\t| GRPO extraction-only | `/root/autodl-tmp/grpo_extract_r3/` | checkpoint-400 ~ 480 (步长20) |\n45\t| GRPO flat-NLI | `/root/autodl-tmp/grpo_flatnli_r3/` | checkpoint-20 ~ 80 (步长20) |\n46\t\n47\t## 3. 阻断性问题：双 adapter 加载\n48\t\n49\t### 问题根因\n50\t\n51\t`grpo_trainer.py` 的训练流程：\n52\t```python\n53\t# 1. 加载 base model\n54\tmodel = AutoModelForCausalLM.from_pretrained(args.model_name)\n55\t# 2. 加载 SFT adapter 并 merge 到 base\n56\tmodel = PeftModel.from_pretrained(model, args.sft_adapter)\n57\tmodel = model.merge_and_unload()  # SFT 权重融合进 base\n58\t# 3. 在 merged 模型上训练新的 LoRA\n59\ttrainer = GRPOTrainer(model=model, peft_config=lora_c\n…[truncated 3061 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T05:04:55.278703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts -name \"*analysis*\" -o -name \"*diagnostic*\" | grep -E \"\\.md$\""
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T05:04:55.278833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_003/report/plan_003_edcr_diagnostic.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_003_edcr_diagnostic.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/related_work_gap_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/report/edcr_diagnostic_table_3bd92e.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/report/edcr_analysis_r2b.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/report/1_7b_non_truncated_subset_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/report/edcr_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/report/edcr_diagnostic_table_8b91f9.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/report/edcr_diagnostic_table.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/gap_analysis_w3.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_001_flat_nli_seed45/report/plan_001_flat_nli_seed45_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/edcr_analysis_r2b.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/edcr_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/cuda3_diagnostic.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/reeval_ced_s42/report/reeval_ced_s42_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/kl_analysis_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/fait\n…[truncated 586 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T05:04:55.278973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/edcr_diagnostic_table.md"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T05:04:55.279123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# EDCR Cross-Method Diagnostic Table (plan_003)\n2\t\n3\tGenerated: 2026-05-15 | Source: `/root/autodl-tmp/eval_results/` on rtx5090-4x\n4\t\n5\t## 1. Complete Cross-Method Table\n6\t\n7\tSorted by EDCR ascending (lower = fewer distractor citations).\n8\t\n9\t| # | Method | rel_f1 | P | R | evi_f1 | EDCR | format_ok | evi_format | n_pred | n_trunc | Δrel_f1 | ΔEDCR |\n10\t|---|--------|--------|------|------|--------|------|-----------|------------|--------|---------|---------|-------|\n11\t| 1 | CED-reranker oracle | 0.6237 | 0.6211 | 0.6264 | 0.7942 | 0.5262 | 1.000 | — | 13418 | — | +0.2180 | −0.1856 |\n12\t| 2 | CED-reranker (N=8) | 0.4864 | 0.4913 | 0.4815 | 0.8188 | 0.6156 | 1.000 | — | 14782 | — | +0.0807 | −0.0962 |\n13\t| 3 | bf16 GRPO ckpt-100 | 0.4549 | 0.5042 | 0.4145 | 0.8086 | 0.6318 | 1.000 | 0.938 | 10701 | 61 | +0.0492 | −0.0800 |\n14\t| 4 | RSFT-CED s44 | 0.4655 | 0.4798 | 0.4521 | 0.8087 | 0.6350 | 1.000 | 0.801 | 15202 | 189 | +0.0598 | −0.0768 |\n15\t| 5 | RSFT-CED s43 | 0.4683 | 0.4817 | 0.4556 | 0.8156 | 0.6388 | 1.000 | 0.814 | 14970 | 171 | +0.0626 | −0.0730 |\n16\t| 6 | bf16 GRPO ckpt-80 | 0.4456 | — | — | 0.8034 | 0.6409 | 0.999 | — | — | — | +0.0399 | −0.0709 |\n17\t| 7 | bf16 GRPO ckpt-90 | 0.4523 | — | — | 0.8052 | 0.6414 | 0.998 | — | — | — | +0.0466 | −0.0704 |\n18\t| 8 | RSFT-flatNLI | 0.4539 | 0.4671 | 0.4414 | 0.8043 | 0.6431 | 1.000 | 0.789 | 15294 | 199 | +0.0482 | −0.0687 |\n19\t| 9 | RSFT-CED s42 | 0.4449 | 0.4607 | 0.4302 | 0.8187 | 0.6565 | 1.000 | 0.782 | 15307 | 213 | +0.0392 | −0.0553 |\n20\t| 10 | RSFT-CED r2b (a=32) | 0.4493 | 0.4566 | 0.4424 | 0.8128 | 0.6609 | 0.998 | 0.818 | 14829 | 179 | +0.0436 | −0.0509 |\n21\t| 11 | RSFT-CED r2a (1ep) | 0.4494 | 0.4512 | 0.4475 | 0.8108 | 0.6641 | 1.000 | 0.790 | 15482 | 208 | +0.0437 | −0.0477 |\n22\t| 12 | CED-reranker random | 0.4538 | 0.4348 | 0.4745 | 0.8029 | 0.6763 | 0.998 | — | 15642 | — | +0.0481 | −0.0355 |\n23\t| 13 | **SFT baseline** | **0.4106** | **0.4198** | **0.4019** | **0.7979** | **0.7039** | **0.998** \n…[truncated 8201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T05:04:55.279302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/eval/inference.py",
+              "limit": "200"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T05:04:55.279429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie."
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T05:04:55.279555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige -type f -name \"inference.py\" -o -type f -name \"*inference*\""
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T05:04:55.279669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T05:04:55.279792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"predictions.json\\|output_dir\\|metrics.json\" /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts --include=\"*.md\" | head -30"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T05:04:55.279931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/intermediate/test_inference_info.md:  --output_dir /root/autodl-tmp/eval_results/test_rsft_s43 \\\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/intermediate/test_inference_info.md:- predictions.json: 1000 docs 预测结果\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/intermediate/reeval_commands.md:- **output_dir**: `eval_results/rsft_ced_s44_reeval`\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/intermediate/reeval_commands.md:cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES={GPU} HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 /root/miniconda3/bin/python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 44 --output_dir /root/autodl-tmp/eval_results/rsft_ced_s44_reeval --no-quantize\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/intermediate/reeval_commands.md:- **output_dir**: `eval_results/rsft_ced_s42_reeval`\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/intermediate/reeval_commands.md:cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES={GPU} HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 /root/miniconda3/bin/python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_ced_s42_reeval --no-q\n…[truncated 6215 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T05:04:55.280082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/_project/intermediate/test_inference_info.md"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T05:04:55.280207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Plan_002: Test Set Inference Script\n2\t\n3\t## 部署位置\n4\t`/root/autodl-tmp/freige/eval/test_inference.py`\n5\t\n6\t## 运行命令 (from /root/autodl-tmp/)\n7\t```bash\n8\tCUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference \\\n9\t  --model_path /root/autodl-tmp/rsft_output_s43 \\\n10\t  --base_model /root/autodl-tmp/models/Qwen3-4B \\\n11\t  --sft_adapter /root/autodl-tmp/sft_output \\\n12\t  --data_path /root/autodl-tmp/data/docred \\\n13\t  --output_dir /root/autodl-tmp/eval_results/test_rsft_s43 \\\n14\t  --no-quantize --batch_size 16 --max_new_tokens 1024\n15\t```\n16\t\n17\t## 输出\n18\t- predictions.json: 1000 docs 预测结果\n19\t- codalab_submission.json: CodaLab 提交格式\n20\t- test_summary.json: 统计摘要\n21\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T05:04:55.280373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige -type f -name \"*.py\" | xargs grep -l \"def verbalize\" 2>/dev/null"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T05:04:55.280491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/rewards/ced_reward.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T05:04:55.280612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/analysis/ced_signal_validation.py"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T05:04:55.280822+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"MVP-1: CED 信号可行性离线验证。\n2\t\n3\t在 DocRED dev set 上对所有关系实例计算 CED margin，验证 DeBERTa NLI\n4\t模型能否区分 gold evidence 和 entity-cooccurrence distractors。\n5\t\n6\tPass 条件:\n7\t  - mean(p_pos - p_neg) > 0.1\n8\t  - DeBERTa 判别准确率 > 70% (即 p_pos > p_neg 的比例)\n9\t  - Pearson r(CED margin, Jaccard diff) < 0.7（排除词汇重叠主导判别）\n10\t\n11\t输出: 汇总统计 + margin 分布直方图 + CED margin vs Jaccard diff scatter\n12\t\"\"\"\n13\t\n14\timport argparse\n15\timport json\n16\timport logging\n17\timport re\n18\timport sys\n19\tfrom pathlib import Path\n20\t\n21\timport numpy as np\n22\tfrom scipy import stats\n23\t\n24\tlogging.basicConfig(\n25\t    level=logging.INFO,\n26\t    format=\"%(asctime)s %(levelname)s %(message)s\",\n27\t)\n28\tlogger = logging.getLogger(__name__)\n29\t\n30\t_TOKENIZE_RE = re.compile(r\"\\w+\")\n31\t\n32\t\n33\tdef _tokenize(text: str) -> set[str]:\n34\t    return set(_TOKENIZE_RE.findall(text.lower()))\n35\t\n36\t\n37\tdef _token_jaccard(text_a: str, text_b: str) -> float:\n38\t    tokens_a = _tokenize(text_a)\n39\t    tokens_b = _tokenize(text_b)\n40\t    if not tokens_a or not tokens_b:\n41\t        return 0.0\n42\t    return len(tokens_a & tokens_b) / len(tokens_a | tokens_b)\n43\t\n44\t\n45\tdef run_validation(\n46\t    data_dir: str = None,\n47\t    split: str = \"dev\",\n48\t    nli_model: str = \"cross-encoder/nli-deberta-v3-base\",\n49\t    tau: float = 0.5,\n50\t    batch_size: int = 32,\n51\t    output_dir: str = \".\",\n52\t    max_samples: int = 0,\n53\t):\n54\t    from freige.data.docred_processor import DocREDProcessor\n55\t    from freige.rewards.ced_reward import CEDRewardModel, verbalize_triple\n56\t\n57\t    processor = DocREDProcessor(data_dir=data_dir)\n58\t    samples = processor.process(split)\n59\t    logger.info(\"Total relation samples: %d\", len(samples))\n60\t\n61\t    samples_with_negs = [s for s in samples if s.hard_negative_sent_ids]\n62\t    logger.info(\n63\t        \"Samples with hard negatives: %d (%.1f%%)\",\n64\t        len(samples_with_negs),\n65\t        len(samples_with_negs) / len(samples) * 100 if samples else 0,\n66\t    )\n67\t\n68\t    if max_samples > 0:\n69\t        samples_wit\n…[truncated 10748 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T05:04:55.281004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/data/docred_processor.py",
+              "limit": "150"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T05:04:55.281175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"DocRED 数据预处理模块。\n2\t\n3\t加载 DocRED 数据集（train_annotated / dev / test），解析实体、关系、\n4\tevidence 标注，构建含 hard negatives 的训练样本。\n5\t\n6\t输入: DocRED JSON 文件目录或 HuggingFace dataset\n7\t输出: List[RelationSample]，每个样本包含 gold evidence 和 hard negative 句子\n8\t依赖: datasets (可选，用于 HF 加载)\n9\t\"\"\"\n10\t\n11\timport json\n12\timport logging\n13\tfrom dataclasses import dataclass, field\n14\tfrom pathlib import Path\n15\tfrom typing import Optional\n16\t\n17\tlogger = logging.getLogger(__name__)\n18\t\n19\tDOCRED_REL_INFO = {\n20\t    \"P6\": \"head of government\", \"P17\": \"country\", \"P19\": \"place of birth\",\n21\t    \"P20\": \"place of death\", \"P22\": \"father\", \"P25\": \"mother\",\n22\t    \"P26\": \"spouse\", \"P27\": \"country of citizenship\", \"P30\": \"continent\",\n23\t    \"P31\": \"instance of\", \"P35\": \"head of state\", \"P36\": \"capital\",\n24\t    \"P37\": \"official language\", \"P39\": \"position held\", \"P40\": \"child\",\n25\t    \"P50\": \"author\", \"P54\": \"member of sports team\", \"P57\": \"director\",\n26\t    \"P58\": \"screenwriter\", \"P69\": \"educated at\", \"P86\": \"composer\",\n27\t    \"P102\": \"member of political party\", \"P108\": \"employer\",\n28\t    \"P112\": \"founded by\", \"P118\": \"league\", \"P123\": \"publisher\",\n29\t    \"P127\": \"owned by\",\n30\t    \"P131\": \"located in the administrative territorial entity\",\n31\t    \"P136\": \"genre\", \"P137\": \"operator\", \"P140\": \"religion\",\n32\t    \"P150\": \"contains administrative territorial entity\",\n33\t    \"P155\": \"follows\", \"P156\": \"followed by\",\n34\t    \"P159\": \"headquarters location\", \"P161\": \"cast member\",\n35\t    \"P162\": \"producer\", \"P166\": \"award received\", \"P170\": \"creator\",\n36\t    \"P171\": \"parent taxon\", \"P172\": \"ethnic group\", \"P175\": \"performer\",\n37\t    \"P176\": \"manufacturer\", \"P178\": \"developer\", \"P179\": \"series\",\n38\t    \"P190\": \"sister city\", \"P194\": \"legislative body\",\n39\t    \"P205\": \"basin country\",\n40\t    \"P206\": \"located in or next to body of water\",\n41\t    \"P241\": \"military branch\", \"P264\": \"record label\",\n42\t    \"P272\": \"production company\", \"P276\": \"location\",\n43\t    \"P279\": \"subclass of\", \"P355\": \"subsidiary\", \"P361\": \"part of\n…[truncated 3887 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T05:04:55.281365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/training/rsft_score_filter.py",
+              "limit": "150"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T05:04:55.281520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"RSFT Step 2: CED 打分 + 筛选。\n2\t\n3\t读取 rsft_generate.py 生成的 JSONL，对每个候选输出计算三种奖励:\n4\t  - format_reward: JSON 格式合规性\n5\t  - f1_reward: 与 gold triples 的 micro-F1\n6\t  - ced_reward: CED 对比证据判别奖励\n7\t\n8\t按组合阈值筛选高质量样本，输出 SFT 训练兼容格式。\n9\t\n10\t输入:\n11\t  - generations.jsonl (rsft_generate.py 的输出)\n12\t\n13\t输出 (保存到 --output_path):\n14\t  - rsft_train.json: 筛选后的 SFT 训练数据\n15\t  - rsft_scores.jsonl: 带分数的完整记录（供分析）\n16\t  - rsft_report.json: 统计报告\n17\t\n18\t依赖: transformers, torch, freige.rewards.ced_reward\n19\t\n20\t用法:\n21\t  python -m freige.training.rsft_score_filter \\\n22\t      --input_dir /root/autodl-tmp/rsft_generations \\\n23\t      --output_path /root/autodl-tmp/rsft_filtered \\\n24\t      --selection_strategy top_pct --top_pct 25 \\\n25\t      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\n26\t\"\"\"\n27\t\n28\timport argparse\n29\timport json\n30\timport logging\n31\timport os\n32\tfrom collections import defaultdict\n33\tfrom pathlib import Path\n34\t\n35\timport numpy as np\n36\t\n37\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n38\tlogger = logging.getLogger(__name__)\n39\t\n40\tSYSTEM_PROMPT = (\n41\t    \"You are an information extraction model. Given a document with numbered sentences \"\n42\t    \"and a list of entities, extract all relation triples. For each triple, provide the \"\n43\t    \"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \"\n44\t    \"Output as a JSON list.\"\n45\t)\n46\t\n47\t\n48\t# ---------------------------------------------------------------------------\n49\t# Reward functions — 复用 grpo_trainer 中的逻辑\n50\t# ---------------------------------------------------------------------------\n51\t\n52\tdef compute_format_reward(parsed_triples, format_ok):\n53\t    \"\"\"格式奖励，复用 grpo_trainer.format_reward_fn 的逻辑。\"\"\"\n54\t    if not format_ok:\n55\t        return 0.0\n56\t    if not parsed_triples:\n57\t        return 0.1\n58\t    valid = 0\n59\t    for item in parsed_triples:\n60\t        if (isinstance(item, dict) and \"head\" in item\n61\t                and \"relation\" in ite\n…[truncated 3208 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-17T05:04:55.281673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/training/rsft_trainer.py",
+              "limit": "150"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-17T05:04:55.281842+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"RSFT (Rejection Sampling Fine-Tuning) 训练脚本。\n2\t\n3\t从 SFT warmup checkpoint 继续训练，使用经 CED 打分筛选的高质量生成数据。\n4\t流程: base model → merge SFT adapter → 新 QLoRA → 在 RSFT 数据上训练。\n5\t\n6\t输入: JSONL，每行 {\"doc_id\": ..., \"input\": ..., \"output\": ..., \"ced_score\": ..., ...}\n7\t输出: QLoRA adapter checkpoint\n8\t依赖: transformers, trl, peft, bitsandbytes, datasets\n9\t\n10\t单卡:   python -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\n11\t多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\n12\t            -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\n13\t\"\"\"\n14\t\n15\timport argparse\n16\timport json\n17\timport logging\n18\timport os\n19\t\n20\timport torch\n21\tfrom datasets import Dataset\n22\tfrom peft import LoraConfig, PeftModel, TaskType, get_peft_model\n23\tfrom torch.utils.data import WeightedRandomSampler\n24\tfrom transformers import (\n25\t    AutoModelForCausalLM,\n26\t    AutoTokenizer,\n27\t    BitsAndBytesConfig,\n28\t    TrainerCallback,\n29\t)\n30\tfrom trl import SFTConfig, SFTTrainer\n31\t\n32\tfrom freige.training import LLAMA3_CHAT_TEMPLATE\n33\tfrom freige.training.sft_trainer import SYSTEM_PROMPT\n34\t\n35\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n36\tlogger = logging.getLogger(__name__)\n37\t\n38\tDEFAULT_BASE_MODEL = \"/root/autodl-tmp/models/Qwen3-4B\"\n39\tDEFAULT_SFT_ADAPTER = \"/root/autodl-tmp/sft_output\"\n40\t\n41\t\n42\tdef load_rsft_data(data_path: str, tokenizer, max_length: int = 2048):\n43\t    \"\"\"加载 CED 筛选后的 RSFT 数据，格式化为 chat template 文本。\n44\t\n45\t    每行 JSONL 的 input 字段作为 user message，output 字段作为 assistant response，\n46\t    经 apply_chat_template 拼接后用于 SFT 训练。超过 max_length 的样本被跳过\n47\t    而非截断，避免训练在不完整 JSON 输出上。\n48\t\n49\t    Returns:\n50\t        (Dataset, list[float]): 训练数据集和对应的 CED scores\n51\t    \"\"\"\n52\t    samples = []\n53\t    with open(data_path) as f:\n54\t        for line in f:\n55\t            if line.strip():\n56\t                samples.append(json.loads(line))\n57\t\n58\t    logger.info(\"Loade\n…[truncated 3779 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-17T05:04:55.282082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me create a comprehensive summary document based on all the information I've gathered. Let me compile my findings:\n\n## Summary of Project Code Structure and Components\n\nBased on my thorough exploration of the local artifacts directory (`/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/`), I've found comprehensive documentation and code for the FREIGE project. Here are the key findings:\n\n### 1. **CEDRewardModel Initialization and Interface**\n\n**Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/freige/rewards/ced_reward.py`\n\n**CEDRewardModel Class:**\n- **Initialization parameters:**\n  - `model_name`: HuggingFace model ID (default: `\"cross-encoder/nli-deberta-v3-base\"`)\n  - `device`: torch device (auto-detects CUDA or CPU)\n  - `max_length`: tokenizer max length (default: 512)\n\n- **Key interface method: `nli_entailment_prob(premises: list[str], hypotheses: list[str]) -> torch.Tensor`**\n  - Computes batch NLI entailment probabilities\n  - Returns shape `(batch_size,)` tensor with entailment scores\n  - Uses softmax over logits, extracts entailment class index\n  - Supports efficient batching to reduce GPU kernel launch overhead\n\n- **Other key methods:**\n  - `compute_ced_reward()`: Single sample CED reward computation\n  - `compute_ced_reward_batch()`: Batch computation with merged positive/negative passes for efficiency\n  - `compute_flat_nli_reward()`: Simplified NLI reward without contrastive signal (used in curriculum stage 2b)\n\n**Verbalization interface: `verbalize_triple(head: str, relation: str, tail: str) -> str`**\n- Converts (head, relation, tail) triples to natural language claims\n- Uses `VERBALIZATION_TEMPLATES` dict with 120+ Wikidata property IDs (P6, P17, P19, etc.)\n- Template format example: `\"P17\"` → `\"{head} is located in the country {tail}.\"`\n- Falls back to `DOCRED_REL_INFO` mapping for DocRED relations if template not found\n- Returns a natural language claim\n…[truncated 9036 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "Agent",
+            "elapsed_ms": 8
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-17T05:04:55.282297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-17T05:04:55.282444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 32607 MiB\\\\n1, 29569 MiB, 32607 MiB\\\\n2, 22985 MiB, 32607 MiB\\\\n3, 1539 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-17T05:04:55.282572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -100 /root/autodl-tmp/freige/eval/inference.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-17T05:04:55.282693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -80 /root/autodl-tmp/freige/rewards/ced_reward.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-17T05:04:55.282874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"推理+评测完整流程: 加载 Qwen3-4B + LoRA adapter → 批量推理 → 解析输出 → 计算 F1/Evi-F1/EDCR。\\\\n\\\\n输入:\\\\n  - base model (Qwen3-4B) + 可选 LoRA adapter (SFT/GRPO checkpoint)\\\\n  - DocRED JSON 数据目录 (含 dev.json, train_annotated.json)\\\\n\\\\n输出 (保存到 --output_dir):\\\\n  - metrics.json: F1, Ign-F1, Evi-F1, EDCR, format_compliance_rate, n_truncated 等\\\\n  - predictions.json: 每个文档的详细预测 (doc_id, raw_output, parsed_triples, gold_triples, truncated, format_ok)\\\\n\\\\n依赖: transformers, peft, bitsandbytes, torch, tqdm\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\nfrom tqdm import tqdm\\\\n\\\\nfrom freige.data.docred_processor import DocREDProcessor, SPLIT_FILENAMES\\\\nfrom freige.training import LLAMA3_CHAT_TEMPLATE\\\\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    \\\\\\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\\\\\"\\\\n    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n)\\\\n\\\\n\\\\nNO_EVIDENCE_SYSTEM_PROMPT = (\\\\n    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    \\\\\\\"head entity, relation type, and tail entity. \\\\\\\"\\\\n    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# A. 模型加载\\\\n# ----------------------------------\n…[truncated 2007 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-17T05:04:55.283114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"CED（Contrastive Evidence Discrimination）对比证据判别奖励。\\\\n\\\\n核心公式:\\\\n  p_pos = NLI_entail(concat(cited_evidence), claim)\\\\n  p_neg = max_j NLI_entail(neg_sent_j, claim)\\\\n  R_CED = max(0, p_pos - p_neg) * I(p_pos > tau)\\\\n\\\\n输入: 关系三元组 + gold evidence 句子 + hard negative 句子\\\\n输出: CED 奖励值 ∈ [0, 1]\\\\n依赖: transformers, torch\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport logging\\\\nfrom typing import Optional\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModelForSequenceClassification, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nDEFAULT_NLI_MODEL = \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\"\\\\n\\\\nVERBALIZATION_TEMPLATES = {\\\\n    \\\\\\\"P6\\\\\\\": \\\\\\\"The head of government of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P17\\\\\\\": \\\\\\\"{head} is located in the country {tail}.\\\\\\\",\\\\n    \\\\\\\"P19\\\\\\\": \\\\\\\"{head} was born in {tail}.\\\\\\\",\\\\n    \\\\\\\"P20\\\\\\\": \\\\\\\"{head} died in {tail}.\\\\\\\",\\\\n    \\\\\\\"P22\\\\\\\": \\\\\\\"The father of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P25\\\\\\\": \\\\\\\"The mother of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P26\\\\\\\": \\\\\\\"{head} is married to {tail}.\\\\\\\",\\\\n    \\\\\\\"P27\\\\\\\": \\\\\\\"{head} is a citizen of {tail}.\\\\\\\",\\\\n    \\\\\\\"P30\\\\\\\": \\\\\\\"{head} is located in the continent of {tail}.\\\\\\\",\\\\n    \\\\\\\"P31\\\\\\\": \\\\\\\"{head} is an instance of {tail}.\\\\\\\",\\\\n    \\\\\\\"P35\\\\\\\": \\\\\\\"The head of state of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P36\\\\\\\": \\\\\\\"The capital of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P37\\\\\\\": \\\\\\\"The official language of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P39\\\\\\\": \\\\\\\"{head} held the position of {tail}.\\\\\\\",\\\\n    \\\\\\\"P40\\\\\\\": \\\\\\\"{head} has a child named {tail}.\\\\\\\",\\\\n    \\\\\\\"P50\\\\\\\": \\\\\\\"The author of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P54\\\\\\\": \\\\\\\"{head} is a member of the sports team {tail}.\\\\\\\",\\\\n    \\\\\\\"P57\\\\\\\": \\\\\\\"The director of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P58\\\\\\\": \\\\\\\"The screenwriter of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P69\\\\\\\": \\\\\\\"{head} was educated at {tail}.\\\\\\\",\\\\n    \\\\\\\"P86\\\\\\\":\n…[truncated 2424 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-17T05:04:55.283331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"def \\|class \\|argparse\\|add_argument\\|predictions\\|save\" /root/autodl-tmp/freige/eval/inference.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-17T05:04:55.283476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-17T05:04:55.283600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"def \\|class \" /root/autodl-tmp/freige/eval/evaluator.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-17T05:04:55.283723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-17T05:04:55.283841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"def \\|class \\|nli_entailment\" /root/autodl-tmp/freige/rewards/ced_reward.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-17T05:04:55.283960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-17T05:04:55.284089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"def \\|class \\|add_argument\\|predictions\\|save\" /root/autodl-tmp/freige/eval/inference.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-17T05:04:55.284206+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-17T05:04:55.284346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"def \\|class \" /root/autodl-tmp/freige/eval/evaluator.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-17T05:04:55.284464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-17T05:04:55.284577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"def \\|class \\|nli_entailment\" /root/autodl-tmp/freige/rewards/ced_reward.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-17T05:04:55.284722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-17T05:04:55.284882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"add_argument\" /root/autodl-tmp/freige/eval/inference.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-17T05:04:55.285021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"380:    parser.add_argument(\\\\\\\"--model_path\\\\\\\", required=True,\\\\n382:    parser.add_argument(\\\\\\\"--base_model\\\\\\\", default=\\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n384:    parser.add_argument(\\\\\\\"--sft_adapter\\\\\\\", default=None,\\\\n386:    parser.add_argument(\\\\\\\"--data_path\\\\\\\", required=True,\\\\n388:    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True)\\\\n389:    parser.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=8)\\\\n390:    parser.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=1024)\\\\n391:    parser.add_argument(\\\\\\\"--split\\\\\\\", default=\\\\\\\"dev\\\\\\\", choices=[\\\\\\\"dev\\\\\\\", \\\\\\\"test\\\\\\\"])\\\\n392:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n393:    parser.add_argument(\\\\\\\"--no_evidence\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=False,\\\\n395:    parser.add_argument(\\\\\\\"--quantize\\\\\\\", action=argparse.BooleanOptionalAction,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-17T05:04:55.285147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"class \\|def \" /root/autodl-tmp/freige/eval/evaluator.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-17T05:04:55.285286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-17T05:04:55.285409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"nli_entailment_prob\" /root/autodl-tmp/freige/rewards/ced_reward.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-17T05:04:55.285533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"169:    def nli_entailment_prob(\\\\n193:        p_pos = self.nli_entailment_prob(\\\\n200:            neg_probs = self.nli_entailment_prob(\\\\n226:        pos_probs = self.nli_entailment_prob(pos_premises, claims)\\\\n238:            all_neg_probs = self.nli_entailment_prob(all_neg_premises, all_neg_hyps)\\\\n271:        p_pos = self.nli_entailment_prob(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-17T05:04:55.285658+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -n 100 /root/autodl-tmp/freige/eval/inference.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-17T05:04:55.285868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            args.data_path, args.split, tokenizer,\\\\n            include_evidence=_include_evi, system_prompt=_sys_prompt,\\\\n        )\\\\n\\\\n    t0 = time.time()\\\\n    raw_results = run_inference(\\\\n        model, tokenizer, eval_items, args.batch_size, args.max_new_tokens\\\\n    )\\\\n    elapsed = time.time() - t0\\\\n    logger.info(\\\\\\\"Inference: %.1fs (%.2f s/doc)\\\\\\\", elapsed, elapsed / max(len(eval_items), 1))\\\\n\\\\n    # 展平为 evaluator 格式\\\\n    all_predictions = []\\\\n    raw_outputs_for_eval = []\\\\n    for r in raw_results:\\\\n        doc_id = r[\\\\\\\"doc_id\\\\\\\"]\\\\n        for triple in r[\\\\\\\"parsed_triples\\\\\\\"]:\\\\n            all_predictions.append({\\\\n                \\\\\\\"doc_id\\\\\\\": doc_id,\\\\n                \\\\\\\"head\\\\\\\": triple[\\\\\\\"head\\\\\\\"],\\\\n                \\\\\\\"tail\\\\\\\": triple[\\\\\\\"tail\\\\\\\"],\\\\n                \\\\\\\"relation\\\\\\\": triple[\\\\\\\"relation\\\\\\\"],\\\\n                \\\\\\\"evidence\\\\\\\": triple.get(\\\\\\\"evidence\\\\\\\", []),\\\\n            })\\\\n        raw_outputs_for_eval.append({\\\\\\\"doc_id\\\\\\\": doc_id, \\\\\\\"raw_text\\\\\\\": r[\\\\\\\"raw_output\\\\\\\"]})\\\\n\\\\n    if args.split == \\\\\\\"test\\\\\\\":\\\\n        metrics = {\\\\\\\"note\\\\\\\": \\\\\\\"test split - submit to CodaLab for evaluation\\\\\\\"}\\\\n        codalab_preds = convert_to_codalab(raw_results, raw_docs)\\\\n        codalab_path = output_dir / \\\\\\\"codalab_submission.json\\\\\\\"\\\\n        with open(codalab_path, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(codalab_preds, f, ensure_ascii=False)\\\\n        logger.info(\\\\\\\"CodaLab submission \\\\\\\\u2192 %s (%d predictions)\\\\\\\", codalab_path, len(codalab_preds))\\\\n    else:\\\\n        metrics = evaluate(all_predictions, gold, raw_outputs_for_eval, args.data_path, args.split)\\\\n\\\\n    n_truncated = sum(1 for r in raw_results if r[\\\\\\\"truncated\\\\\\\"])\\\\n    n_format_ok = sum(1 for r in raw_results if r[\\\\\\\"format_ok\\\\\\\"])\\\\n    n_total = len(raw_results)\\\\n    metrics[\\\\\\\"n_documents\\\\\\\"] = n_total\\\\n    metrics[\\\\\\\"n_predictions\\\\\\\"] = len(all_pr\n…[truncated 2796 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-17T05:04:55.286019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat -n /root/autodl-tmp/freige/rewards/ced_reward.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-17T05:04:55.286310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t\\\\\\\"\\\\\\\"\\\\\\\"CED（Contrastive Evidence Discrimination）对比证据判别奖励。\\\\n     2\\\\t\\\\n     3\\\\t核心公式:\\\\n     4\\\\t  p_pos = NLI_entail(concat(cited_evidence), claim)\\\\n     5\\\\t  p_neg = max_j NLI_entail(neg_sent_j, claim)\\\\n     6\\\\t  R_CED = max(0, p_pos - p_neg) * I(p_pos > tau)\\\\n     7\\\\t\\\\n     8\\\\t输入: 关系三元组 + gold evidence 句子 + hard negative 句子\\\\n     9\\\\t输出: CED 奖励值 ∈ [0, 1]\\\\n    10\\\\t依赖: transformers, torch\\\\n    11\\\\t\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    12\\\\t\\\\n    13\\\\timport logging\\\\n    14\\\\tfrom typing import Optional\\\\n    15\\\\t\\\\n    16\\\\timport torch\\\\n    17\\\\timport torch.nn.functional as F\\\\n    18\\\\tfrom transformers import AutoModelForSequenceClassification, AutoTokenizer\\\\n    19\\\\t\\\\n    20\\\\tlogger = logging.getLogger(__name__)\\\\n    21\\\\t\\\\n    22\\\\tDEFAULT_NLI_MODEL = \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\"\\\\n    23\\\\t\\\\n    24\\\\tVERBALIZATION_TEMPLATES = {\\\\n    25\\\\t    \\\\\\\"P6\\\\\\\": \\\\\\\"The head of government of {head} is {tail}.\\\\\\\",\\\\n    26\\\\t    \\\\\\\"P17\\\\\\\": \\\\\\\"{head} is located in the country {tail}.\\\\\\\",\\\\n    27\\\\t    \\\\\\\"P19\\\\\\\": \\\\\\\"{head} was born in {tail}.\\\\\\\",\\\\n    28\\\\t    \\\\\\\"P20\\\\\\\": \\\\\\\"{head} died in {tail}.\\\\\\\",\\\\n    29\\\\t    \\\\\\\"P22\\\\\\\": \\\\\\\"The father of {head} is {tail}.\\\\\\\",\\\\n    30\\\\t    \\\\\\\"P25\\\\\\\": \\\\\\\"The mother of {head} is {tail}.\\\\\\\",\\\\n    31\\\\t    \\\\\\\"P26\\\\\\\": \\\\\\\"{head} is married to {tail}.\\\\\\\",\\\\n    32\\\\t    \\\\\\\"P27\\\\\\\": \\\\\\\"{head} is a citizen of {tail}.\\\\\\\",\\\\n    33\\\\t    \\\\\\\"P30\\\\\\\": \\\\\\\"{head} is located in the continent of {tail}.\\\\\\\",\\\\n    34\\\\t    \\\\\\\"P31\\\\\\\": \\\\\\\"{head} is an instance of {tail}.\\\\\\\",\\\\n    35\\\\t    \\\\\\\"P35\\\\\\\": \\\\\\\"The head of state of {head} is {tail}.\\\\\\\",\\\\n    36\\\\t    \\\\\\\"P36\\\\\\\": \\\\\\\"The capital of {head} is {tail}.\\\\\\\",\\\\n    37\\\\t    \\\\\\\"P37\\\\\\\": \\\\\\\"The official language of {head} is {tail}.\\\\\\\",\\\\n    38\\\\t    \\\\\\\"P39\\\\\\\": \\\\\\\"{head} held the position of {tail}.\\\\\\\",\\\\n    39\\\\t    \\\\\\\"P40\\\\\\\": \\\\\\\"{head} has a child named {\n…[truncated 7748 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-17T05:04:55.286490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -80 /root/autodl-tmp/freige/eval/evaluator.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-17T05:04:55.286676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"DocRED 关系抽取评测模块。\\\\n\\\\n指标:\\\\n  - F1 / Ign-F1: 关系三元组级别 micro-F1，Ign-F1 排除训练集中出现的三元组\\\\n  - Evi-F1: 对正确预测的三元组，计算 evidence 句子级 F1\\\\n  - EDCR: Evidence Distractor Citation Rate，预测 evidence 中非 gold 的比例\\\\n\\\\n输入: 预测列表 + gold 标注列表（每个元素为文档级标注）\\\\n输出: 指标字典\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nfrom collections import defaultdict\\\\nfrom typing import Optional\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef _triple_key(doc_id: str, head: str, tail: str, relation: str) -> tuple:\\\\n    return (doc_id, head.lower().strip(), tail.lower().strip(), relation.lower().strip())\\\\n\\\\n\\\\nclass DocREDEvaluator:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"DocRED 评测器。\\\\n\\\\n    Args:\\\\n        train_triples: 训练集中的三元组集合，用于计算 Ign-F1。\\\\n                       每个元素为 (doc_title, head_name, tail_name, relation)。\\\\n                       为 None 时 Ign-F1 = F1。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, train_triples: Optional[set[tuple]] = None, train_facts: Optional[set[tuple]] = None):\\\\n        self.train_triples = train_triples or set()\\\\n        self.train_facts = train_facts or set()\\\\n\\\\n    @classmethod\\\\n    def from_train_file(cls, train_path: str) -> \\\\\\\"DocREDEvaluator\\\\\\\":\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"从训练集 JSON 文件构建 evaluator，自动提取训练集三元组。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        from freige.data.docred_processor import DOCRED_REL_INFO\\\\n\\\\n        with open(train_path) as f:\\\\n            train_data = json.load(f)\\\\n\\\\n        train_triples = set()\\\\n        train_facts = set()\\\\n        for doc in train_data:\\\\n            doc_id = doc.get(\\\\\\\"title\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            vertex_set = doc[\\\\\\\"vertexSet\\\\\\\"]\\\\n            for label in doc.get(\\\\\\\"labels\\\\\\\", []):\\\\n                h_name = vertex_set[label[\\\\\\\"h\\\\\\\"]][0][\\\\\\\"name\\\\\\\"]\\\\n                t_name = vertex_set[label[\\\\\\\"t\\\\\\\"]][0][\\\\\\\"name\\\\\\\"]\\\\n                rel_name = DOCRED_REL_INFO.get(label[\\\\\\\"r\\\\\\\"], label[\\\\\\\"r\\\\\\\"])\\\\n                train_triples.add(\\\\n                    \n…[truncated 1104 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-17T05:04:55.286871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -n +100 /root/autodl-tmp/freige/rewards/ced_reward.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-17T05:04:55.287106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"P676\\\\\\\": \\\\\\\"The lyrics of {head} were written by {tail}.\\\\\\\",\\\\n    \\\\\\\"P706\\\\\\\": \\\\\\\"{head} is located on the terrain {tail}.\\\\\\\",\\\\n    \\\\\\\"P710\\\\\\\": \\\\\\\"{head} participated in {tail}.\\\\\\\",\\\\n    \\\\\\\"P737\\\\\\\": \\\\\\\"{head} was influenced by {tail}.\\\\\\\",\\\\n    \\\\\\\"P740\\\\\\\": \\\\\\\"{head} was formed in {tail}.\\\\\\\",\\\\n    \\\\\\\"P749\\\\\\\": \\\\\\\"The parent organization of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P800\\\\\\\": \\\\\\\"The notable work of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P807\\\\\\\": \\\\\\\"{head} was separated from {tail}.\\\\\\\",\\\\n    \\\\\\\"P840\\\\\\\": \\\\\\\"The narrative of {head} is set in {tail}.\\\\\\\",\\\\n    \\\\\\\"P937\\\\\\\": \\\\\\\"{head} worked in {tail}.\\\\\\\",\\\\n    \\\\\\\"P1001\\\\\\\": \\\\\\\"{head} applies to the jurisdiction of {tail}.\\\\\\\",\\\\n    \\\\\\\"P1056\\\\\\\": \\\\\\\"{head} produces {tail}.\\\\\\\",\\\\n    \\\\\\\"P1198\\\\\\\": \\\\\\\"The unemployment rate of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P1336\\\\\\\": \\\\\\\"{head} is claimed by {tail}.\\\\\\\",\\\\n    \\\\\\\"P1344\\\\\\\": \\\\\\\"{head} participated in {tail}.\\\\\\\",\\\\n    \\\\\\\"P1365\\\\\\\": \\\\\\\"{head} replaces {tail}.\\\\\\\",\\\\n    \\\\\\\"P1366\\\\\\\": \\\\\\\"{head} was replaced by {tail}.\\\\\\\",\\\\n    \\\\\\\"P1376\\\\\\\": \\\\\\\"{head} is the capital of {tail}.\\\\\\\",\\\\n    \\\\\\\"P1412\\\\\\\": \\\\\\\"{head} speaks the language {tail}.\\\\\\\",\\\\n    \\\\\\\"P1441\\\\\\\": \\\\\\\"{head} is present in the work {tail}.\\\\\\\",\\\\n    \\\\\\\"P3373\\\\\\\": \\\\\\\"{head} is a sibling of {tail}.\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef verbalize_triple(head: str, relation: str, tail: str) -> str:\\\\n    template = VERBALIZATION_TEMPLATES.get(relation)\\\\n    if template:\\\\n        return template.format(head=head, tail=tail)\\\\n    from freige.data.docred_processor import DOCRED_REL_INFO\\\\n    rel_name = DOCRED_REL_INFO.get(relation, relation)\\\\n    return f\\\\\\\"{head} {rel_name} {tail}.\\\\\\\"\\\\n\\\\n\\\\nclass CEDRewardModel:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"CED 对比证据判别奖励模型。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        model_name: str = DEFAULT_NLI_MODEL,\\\\n        device: Optional[str] = None,\\\\n        max_length:\n…[truncated 4776 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-17T05:04:55.287290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"def evaluate\" /root/autodl-tmp/freige/eval/evaluator.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-17T05:04:55.287429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"318:    def evaluate(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-17T05:04:55.287565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -n +310 /root/autodl-tmp/freige/eval/evaluator.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-17T05:04:55.287760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                try:\\\\n                    obj = json.loads(text[start:end])\\\\n                    if isinstance(obj, list):\\\\n                        return obj\\\\n                except json.JSONDecodeError:\\\\n                    pass\\\\n        return None\\\\n\\\\n    def evaluate(\\\\n        self,\\\\n        predictions: list[dict],\\\\n        gold: list[dict],\\\\n        raw_outputs: Optional[list[dict]] = None,\\\\n    ) -> dict:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"运行所有评测指标。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        f1_metrics = self.compute_f1(predictions, gold)\\\\n        evi_metrics = self.compute_evi_f1(predictions, gold)\\\\n        edcr_metrics = self.compute_edcr(predictions, gold)\\\\n        result = {**f1_metrics, **evi_metrics, **edcr_metrics}\\\\n        result.update(self.compute_evi_f1_joint(predictions, gold))\\\\n        if raw_outputs is not None:\\\\n            result.update(self.compute_format_compliance(raw_outputs))\\\\n        return result\\\\n\\\\n\\\\n\\\\n\\\\ndef _try_parse_json_list(text):\\\\n    try:\\\\n        obj = json.loads(text)\\\\n        if isinstance(obj, list):\\\\n            return obj\\\\n    except json.JSONDecodeError:\\\\n        pass\\\\n    return None\\\\n\\\\n\\\\ndef _repair_truncated_json(text):\\\\n    stripped = text.rstrip().rstrip(\\\\\\\",\\\\\\\")\\\\n    for suffix in [\\\\\\\"]\\\\\\\", \\\\\\\"}]\\\\\\\", '\\\\\\\"' + '}' + ']', \\\\\\\"null}]\\\\\\\"]:\\\\n        result = _try_parse_json_list(stripped + suffix)\\\\n        if result is not None:\\\\n            return result\\\\n\\\\n    last_brace = text.rfind(\\\\\\\"}\\\\\\\")\\\\n    if last_brace > 0:\\\\n        result = _try_parse_json_list(text[: last_brace + 1] + \\\\\\\"]\\\\\\\")\\\\n        if result is not None:\\\\n            return result\\\\n\\\\n    return None\\\\n\\\\n\\\\ndef _get_field(d, *keys):\\\\n    for k in keys:\\\\n        if k in d:\\\\n            return d[k]\\\\n    return None\\\\n\\\\n\\\\ndef _normalize_triples(triples):\\\\n    results = []\\\\n    for t in triples:\\\\n        if not isinstance(t, dict):\\\\n            continue\\\\n        head \n…[truncated 2295 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-17T05:04:55.287919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"def gold_from_docred\" /root/autodl-tmp/freige/eval/evaluator.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-17T05:04:55.288051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"411:def gold_from_docred(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-17T05:04:55.288213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -n +340 /root/autodl-tmp/freige/eval/inference.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-17T05:04:55.288378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"DOCRED_REL_INFO\" /root/autodl-tmp/freige/data/docred_processor.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-17T05:04:55.288744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            parsed, format_ok = parse_model_output(generated_text)\\\\n            results.append({\\\\n                \\\\\\\"doc_id\\\\\\\": item[\\\\\\\"doc_id\\\\\\\"],\\\\n                \\\\\\\"raw_output\\\\\\\": generated_text,\\\\n                \\\\\\\"parsed_triples\\\\\\\": parsed,\\\\n                \\\\\\\"truncated\\\\\\\": truncated,\\\\n                \\\\\\\"format_ok\\\\\\\": format_ok,\\\\n            })\\\\n\\\\n    logger.info(\\\\n        \\\\\\\"Inference done. %d/%d truncated, %d errors.\\\\\\\",\\\\n        n_truncated, len(eval_items), n_errors,\\\\n    )\\\\n    return results\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# E. 评测\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef evaluate(predictions_flat, gold, raw_outputs, data_dir, split=\\\\\\\"dev\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"调用 DocREDEvaluator 计算指标。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    train_path = Path(data_dir) / \\\\\\\"train_annotated.json\\\\\\\"\\\\n    if train_path.exists():\\\\n        evaluator = DocREDEvaluator.from_train_file(str(train_path))\\\\n    else:\\\\n        logger.warning(\\\\\\\"train_annotated.json not found, Ign-F1 = F1\\\\\\\")\\\\n        evaluator = DocREDEvaluator()\\\\n\\\\n    return evaluator.evaluate(predictions_flat, gold, raw_outputs)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# F. 完整报告\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"FREIGE 推理+评测: model → predict → evaluate\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", required=True,\\\\n                        help=\\\\\\\"Base model 路径，或 LoRA adapter 路径（需配合 --base_model）\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--base_model\\\\\\\", default=\\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n                        help=\\\\\\\"Base model（当 model_path 是 adapter 时需要）\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--sft_adapter\\\\\\\", default=None,\\\\n                \n…[truncated 7301 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-17T05:04:55.288959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"19:DOCRED_REL_INFO = {\\\\n208:                    relation_name=DOCRED_REL_INFO.get(relation, relation),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-17T05:04:55.289135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -60 /root/autodl-tmp/freige/data/docred_processor.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-17T05:04:55.289395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"DocRED 数据预处理模块。\\\\n\\\\n加载 DocRED 数据集（train_annotated / dev / test），解析实体、关系、\\\\nevidence 标注，构建含 hard negatives 的训练样本。\\\\n\\\\n输入: DocRED JSON 文件目录或 HuggingFace dataset\\\\n输出: List[RelationSample]，每个样本包含 gold evidence 和 hard negative 句子\\\\n依赖: datasets (可选，用于 HF 加载)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nfrom dataclasses import dataclass, field\\\\nfrom pathlib import Path\\\\nfrom typing import Optional\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nDOCRED_REL_INFO = {\\\\n    \\\\\\\"P6\\\\\\\": \\\\\\\"head of government\\\\\\\", \\\\\\\"P17\\\\\\\": \\\\\\\"country\\\\\\\", \\\\\\\"P19\\\\\\\": \\\\\\\"place of birth\\\\\\\",\\\\n    \\\\\\\"P20\\\\\\\": \\\\\\\"place of death\\\\\\\", \\\\\\\"P22\\\\\\\": \\\\\\\"father\\\\\\\", \\\\\\\"P25\\\\\\\": \\\\\\\"mother\\\\\\\",\\\\n    \\\\\\\"P26\\\\\\\": \\\\\\\"spouse\\\\\\\", \\\\\\\"P27\\\\\\\": \\\\\\\"country of citizenship\\\\\\\", \\\\\\\"P30\\\\\\\": \\\\\\\"continent\\\\\\\",\\\\n    \\\\\\\"P31\\\\\\\": \\\\\\\"instance of\\\\\\\", \\\\\\\"P35\\\\\\\": \\\\\\\"head of state\\\\\\\", \\\\\\\"P36\\\\\\\": \\\\\\\"capital\\\\\\\",\\\\n    \\\\\\\"P37\\\\\\\": \\\\\\\"official language\\\\\\\", \\\\\\\"P39\\\\\\\": \\\\\\\"position held\\\\\\\", \\\\\\\"P40\\\\\\\": \\\\\\\"child\\\\\\\",\\\\n    \\\\\\\"P50\\\\\\\": \\\\\\\"author\\\\\\\", \\\\\\\"P54\\\\\\\": \\\\\\\"member of sports team\\\\\\\", \\\\\\\"P57\\\\\\\": \\\\\\\"director\\\\\\\",\\\\n    \\\\\\\"P58\\\\\\\": \\\\\\\"screenwriter\\\\\\\", \\\\\\\"P69\\\\\\\": \\\\\\\"educated at\\\\\\\", \\\\\\\"P86\\\\\\\": \\\\\\\"composer\\\\\\\",\\\\n    \\\\\\\"P102\\\\\\\": \\\\\\\"member of political party\\\\\\\", \\\\\\\"P108\\\\\\\": \\\\\\\"employer\\\\\\\",\\\\n    \\\\\\\"P112\\\\\\\": \\\\\\\"founded by\\\\\\\", \\\\\\\"P118\\\\\\\": \\\\\\\"league\\\\\\\", \\\\\\\"P123\\\\\\\": \\\\\\\"publisher\\\\\\\",\\\\n    \\\\\\\"P127\\\\\\\": \\\\\\\"owned by\\\\\\\",\\\\n    \\\\\\\"P131\\\\\\\": \\\\\\\"located in the administrative territorial entity\\\\\\\",\\\\n    \\\\\\\"P136\\\\\\\": \\\\\\\"genre\\\\\\\", \\\\\\\"P137\\\\\\\": \\\\\\\"operator\\\\\\\", \\\\\\\"P140\\\\\\\": \\\\\\\"religion\\\\\\\",\\\\n    \\\\\\\"P150\\\\\\\": \\\\\\\"contains administrative territorial entity\\\\\\\",\\\\n    \\\\\\\"P155\\\\\\\": \\\\\\\"follows\\\\\\\", \\\\\\\"P156\\\\\\\": \\\\\\\"followed by\\\\\\\",\\\\n    \\\\\\\"P159\\\\\\\": \\\\\\\"headquarters location\\\\\\\", \\\\\\\"P161\\\\\\\": \\\\\\\"cast member\\\\\\\",\\\\n    \\\\\\\"P162\\\\\\\": \\\\\\\"producer\\\\\\\", \\\\\\\"P166\\\\\\\": \\\\\\\"award rece\n…[truncated 2222 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-17T05:04:55.289604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "gpu_ids": "['cuda:0']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/rsft_s44_dev_with_preds\"",
+              "exp_id": "rsft_s44_dev_eval_preds",
+              "account": "root",
+              "project": "faith-evidence-ie",
+              "timeout_hours": "3"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-17T05:04:55.289760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"414832\\\", \\\"log_file\\\": \\\"~/runs/faith-evidence-ie/rsft_s44_dev_eval_preds.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"rtx5090-4x\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"rsft_s44_dev_eval_preds\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-17T05:04:55.289951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat > /root/autodl-tmp/freige/eval/ced_evidence_filter.py << 'SCRIPT_EOF'\n\"\"\"CED Evidence Filtering: inference-time per-sentence NLI filtering of evidence citations.\n\nInput: predictions.json (from inference.py) + dev.json (for document sentences)\nOutput: For each tau, filtered predictions + metrics (Evi-F1, EDCR, F1)\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nfrom pathlib import Path\n\nimport torch\n\nsys.path.insert(0, \"/root/autodl-tmp\")\n\nfrom freige.rewards.ced_reward import CEDRewardModel, VERBALIZATION_TEMPLATES, verbalize_triple\nfrom freige.data.docred_processor import DOCRED_REL_INFO\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\nlogger = logging.getLogger(__name__)\n\n# Reverse map: human-readable relation name -> P-code (for better verbalization)\nREL_NAME_TO_PCODE = {v.lower().strip(): k for k, v in DOCRED_REL_INFO.items()}\n\n\ndef load_predictions(pred_path):\n    with open(pred_path) as f:\n        return json.load(f)\n\n\ndef load_doc_sents(data_dir, split=\"dev\"):\n    \"\"\"Load document sentences from DocRED JSON. Returns {title: [sent_str, ...]}\"\"\"\n    path = Path(data_dir) / f\"{split}.json\"\n    with open(path) as f:\n        data = json.load(f)\n    return {doc[\"title\"]: [\" \".join(s) for s in doc[\"sents\"]] for doc in data}\n\n\ndef verbalize_for_nli(head, relation, tail):\n    \"\"\"Verbalize a triple for NLI. Maps human-readable relation back to P-code for templates.\"\"\"\n    pcode = REL_NAME_TO_PCODE.get(relation.lower().strip())\n    if pcode:\n        return verbalize_triple(head, pcode, tail)\n    return verbalize_triple(head, relation, tail)\n\n\ndef filter_evidence_for_triple(triple, sents, ced_model, tau):\n    \"\"\"Score each evidence sentence independently and keep those >= tau.\"\"\"\n    evi_ids = triple.get(\"evidence\", [])\n    if not evi_ids:\n        return triple\n\n    valid_evi = [i for i in evi_ids if isinstance(i, int) and 0 <= i < len(sents)]\n    if not valid_evi:\n        return {**triple, \"evidence\": []}\n\n    claim = verbalize_for_nli(triple[\"head\"], triple[\"relation\"], triple[\"tail\"])\n    premises = [sents[i] for i in valid_evi]\n    hypotheses = [claim] * len(valid_evi)\n\n    scores = ced_model.nli_entailment_prob(premises, hypotheses).tolist()\n\n    kept_ids = [idx for idx, s in zip(valid_evi, scores) if s >= tau]\n\n    if not kept_ids:\n        # Keep the highest-scoring sentence as fallback\n        best_idx = valid_evi[scores.index(max(scores))]\n        kept_ids = [best_idx]\n\n    return {**triple, \"evidence\": kept_ids}\n\n\ndef filter_all(predictions, doc_sents, ced_model, tau):\n    \"\"\"Filter evidence for all documents.\"\"\"\n    filtered = []\n    n_total_evi = 0\n    n_kept_evi = 0\n\n    for doc_pred in predictions:\n        doc_id = doc_pred.get(\"doc_id\", \"\")\n        sents = doc_sents.get(doc_id, [])\n\n        if not sents:\n            filtered.append(doc_pred)\n            continue\n\n        new_triples = []\n        for triple in doc_pred.get(\"parsed_triples\", []):\n            n_total_evi += len(triple.get(\"evidence\", []))\n            new_triple = filter_evidence_for_triple(triple, sents, ced_model, tau)\n            n_kept_evi += len(new_triple.get(\"evidence\", []))\n            new_triples.append(new_triple)\n\n        filtered.append({**doc_pred, \"parsed_triples\": new_triples})\n\n    logger.info(\n        \"tau=%.2f: %d/%d evidence sentences kept (%.1f%%)\",\n        tau, n_kept_evi, n_total_evi,\n        100 * n_kept_evi / max(n_total_evi, 1)\n    )\n    return filtered\n\n\ndef evaluate_filtered(filtered_preds, gold, evaluator):\n    \"\"\"Flatten filtered predictions and compute metrics.\"\"\"\n    flat_preds = []\n    for doc_pred in filtered_preds:\n        doc_id = doc_pred[\"doc_id\"]\n        for triple in doc_pred.get(\"parsed_triples\", []):\n            flat_preds.append({\n                \"doc_id\": doc_id,\n                \"head\": triple[\"head\"],\n                \"tail\": triple[\"tail\"],\n                \"relation\": triple[\"relation\"],\n                \"evidence\": triple.get(\"evidence\", []),\n            })\n    return evaluator.evaluate(flat_preds, gold)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"CED Evidence Filtering\")\n    parser.add_argument(\"--predictions\", required=True, help=\"Path to predictions.json\")\n    parser.add_argument(\"--data_dir\", default=\"/root/autodl-tmp/data/docred\")\n    parser.add_argument(\"--nli_model\", default=\"/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\")\n    parser.add_argument(\"--nli_device\", default=\"cuda:0\")\n    parser.add_argument(\"--taus\", nargs=\"+\", type=float, default=[0.3, 0.5, 0.7])\n    parser.add_argument(\"--output_dir\", required=True)\n    args = parser.parse_args()\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    # Load data\n    logger.info(\"Loading predictions from %s\", args.predictions)\n    predictions = load_predictions(args.predictions)\n    logger.info(\"Loaded %d documents\", len(predictions))\n\n    logger.info(\"Loading document sentences from %s\", args.data_dir)\n    doc_sents = load_doc_sents(args.data_dir, \"dev\")\n    logger.info(\"Loaded sentences for %d documents\", len(doc_sents))\n\n    # Load gold\n    dev_path = Path(args.data_dir) / \"dev.json\"\n    with open(dev_path) as f:\n        dev_data = json.load(f)\n    gold = gold_from_docred(dev_data)\n    logger.info(\"Loaded %d gold triples\", len(gold))\n\n    # Build evaluator\n    train_path = Path(args.data_dir) / \"train_annotated.json\"\n    if train_path.exists():\n        evaluator = DocREDEvaluator.from_train_file(str(train_path))\n    else:\n        evaluator = DocREDEvaluator()\n\n    # Compute baseline metrics (unfiltered)\n    logger.info(\"Computing baseline metrics (no filtering)...\")\n    baseline_metrics = evaluate_filtered(predictions, gold, evaluator)\n    print(\"\\n\" + \"=\" * 60)\n    print(\"BASELINE (no filtering)\")\n    print(f\"  F1:      {baseline_metrics['f1']:.4f}\")\n    print(f\"  Ign-F1:  {baseline_metrics['ign_f1']:.4f}\")\n    print(f\"  Evi-F1:  {baseline_metrics['evi_f1']:.4f}\")\n    print(f\"  EDCR:    {baseline_metrics.get('edcr', 0):.4f}\")\n    print(\"=\" * 60)\n\n    with open(output_dir / \"metrics_baseline.json\", \"w\") as f:\n        json.dump(baseline_metrics, f, indent=2)\n\n    # Load NLI model\n    logger.info(\"Loading NLI model from %s\", args.nli_model)\n    ced_model = CEDRewardModel(model_name=args.nli_model, device=args.nli_device)\n\n    # Filter for each tau\n    all_results = {\"baseline\": baseline_metrics}\n    for tau in args.taus:\n        logger.info(\"Filtering with tau=%.2f...\", tau)\n        filtered = filter_all(predictions, doc_sents, ced_model, tau)\n\n        # Save filtered predictions\n        out_path = output_dir / f\"filtered_tau{tau}.json\"\n        with open(out_path, \"w\") as f:\n            json.dump(filtered, f, indent=2, ensure_ascii=False)\n\n        # Compute metrics\n        metrics = evaluate_filtered(filtered, gold, evaluator)\n        all_results[f\"tau={tau}\"] = metrics\n\n        print(f\"\\n{'=' * 60}\")\n        print(f\"tau={tau}\")\n        print(f\"  F1:      {metrics['f1']:.4f} (delta: {metrics['f1'] - baseline_metrics['f1']:+.4f})\")\n        print(f\"  Ign-F1:  {metrics['ign_f1']:.4f} (delta: {metrics['ign_f1'] - baseline_metrics['ign_f1']:+.4f})\")\n        print(f\"  Evi-F1:  {metrics['evi_f1']:.4f} (delta: {metrics['evi_f1'] - baseline_metrics['evi_f1']:+.4f})\")\n        print(f\"  EDCR:    {metrics.get('edcr', 0):.4f} (delta: {metrics.get('edcr', 0) - baseline_metrics.get('edcr', 0):+.4f})\")\n        print(f\"={'=' * 59}\")\n\n        with open(output_dir / f\"metrics_tau{tau}.json\", \"w\") as f:\n            json.dump(metrics, f, indent=2)\n\n    # Summary table\n    with open(output_dir / \"summary.json\", \"w\") as f:\n        json.dump(all_results, f, indent=2)\n\n    print(f\"\\nAll results saved to {output_dir}/\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+              "account": "root"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-17T05:04:55.290158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-17T05:04:55.290335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7/",
+              "account": "root"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-17T05:04:55.290475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"added_tokens.json\\\\nconfig.json\\\\nmodel.safetensors\\\\nspecial_tokens_map.json\\\\nspm.model\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-17T05:04:55.290597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -5 /root/runs/faith-evidence-ie/rsft_s44_dev_eval_preds.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-17T05:04:55.290728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-17 13:03:00,870 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_s44/checkpoint-510\\\\n2026-05-17 13:03:02,417 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-17 13:03:02,498 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-17 13:03:02,942 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-17T05:04:55.290900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -c 'import ast; ast.parse(open(\\\"freige/eval/ced_evidence_filter.py\\\").read()); print(\\\"Syntax OK\\\")'\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-17T05:04:55.291034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Syntax OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-17T05:04:55.291216+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "checking rsft_s44_dev_eval inference progress (~247 batches, checking at ~5 min mark for early issues",
+              "prompt": "## 任务：线索 1 — 推理时 CED 逐句 Evidence Filtering 实验\n\n在 cuda:0 上执行完整 pipeline：重跑 RSFT s44 dev eval → 实现 CED evidence filtering → 评估。\n\n### 环境\n- 服务器: rtx5090-4x (SSH)\n- GPU: cuda:0 (空闲)\n- 项目代码: /root/autodl-tmp/freige/\n- Python 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 离线模式: `HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n\n### Step 1: 重跑 RSFT s44 dev eval (保存 predictions)\n\n```bash\ncd /root/autodl-tmp\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -m freige.eval.inference \\\n  --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 \\\n  --base_model /root/autodl-tmp/models/Qwen3-4B \\\n  --sft_adapter /root/autodl-tmp/sft_output \\\n  --data_path /root/autodl-tmp/data/docred \\\n  --split dev \\\n  --batch_size 4 \\\n  --max_new_tokens 1024 \\\n  --seed 42 \\\n  --no-quantize \\\n  --output_dir /root/autodl-tmp/eval_results/rsft_s44_dev_with_preds\n```\n\n检查 inference.py 是否默认保存 predictions.json。如果不保存，加 `--save_predictions` 参数。如果没有这个参数，检查代码看如何启用（可能需要查看 `freige/eval/inference.py` 的 argparse）。\n\n**重要**: 确认输出目录有 predictions.json（包含 parsed_triples + evidence indices）。\n\n预计耗时 ~1h。\n\n### Step 2: 实现 CED Evidence Filtering 脚本\n\n在 `/root/autodl-tmp/freige/eval/ced_evidence_filter.py` 创建脚本：\n\n```python\n\"\"\"\nCED Evidence Filtering: 推理时逐句 NLI 过滤 distractor evidence citations.\n输入: predictions.json (RSFT eval 输出) + dev.json (获取原始句子)\n输出: 对每个 tau 生成 filtered_predictions.json 并重新计算 metrics\n\"\"\"\nimport json\nimport argparse\nimport sys\nsys.path.insert(0, '/root/autodl-tmp')\n\nfrom freige.rewards.ced_reward import CEDRewardModel\n\ndef load_predictions(pred_path):\n    with open(pred_path) as f:\n        return json.load(f)\n\ndef load_doc_sents(data_dir, split=\"dev\"):\n    \"\"\"从 DocRED 数据中按 title 建立 doc_id → sents 映射\"\"\"\n    with open(f\"{data_dir}/{split}.json\") as f:\n        data = json.load(f)\n    # sents 是 list of list of tokens, 需要 join\n    return {doc[\"title\"]: [\" \".join(s) for s in doc[\"sents\"]] for doc in data}\n\ndef verbalize_triple(head, relation, tail):\n    \"\"\"将 triple 转为自然语言 claim\"\"\"\n    return f\"{head} has the relation '{relation}' with {tail}.\"\n\ndef filter_evidence_for_doc(doc_pred, sents, ced_model, tau):\n    \"\"\"对单个 doc 的所有 triples 做 evidence filtering\"\"\"\n    filtered_triples = []\n    for triple in doc_pred.get(\"parsed_triples\", []):\n        evi_ids = triple.get(\"evidence\", [])\n        if not evi_ids:\n            filtered_triples.append(triple)\n            continue\n        \n        # 过滤无效 index\n        valid_evi = [i for i in evi_ids if 0 <= i < len(sents)]\n        if not valid_evi:\n            filtered_triples.append({**triple, \"evidence\": []})\n            continue\n        \n        # NLI scoring: 每句独立评分\n        claim = verbalize_triple(triple[\"head\"], triple[\"relation\"], triple[\"tail\"])\n        premises = [sents[i] for i in valid_evi]\n        hypotheses = [claim] * len(valid_evi)\n        scores = ced_model.nli_entailment_prob(premises, hypotheses).tolist()\n        \n        # 保留 score >= tau 的\n        kept_ids = [idx for idx, s in zip(valid_evi, scores) if s >= tau]\n        \n        filtered_triples.append({\n            **triple,\n            \"evidence\": kept_ids if kept_ids else valid_evi[:1],  # 至少保留一条\n        })\n    \n    return {**doc_pred, \"parsed_triples\": filtered_triples}\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--predictions\", required=True)\n    parser.add_argument(\"--data_dir\", default=\"/root/autodl-tmp/data/docred\")\n    parser.add_argument(\"--nli_model\", default=\"/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\")\n    parser.add_argument(\"--nli_device\", default=\"cuda:0\")\n    parser.add_argument(\"--taus\", nargs=\"+\", type=float, default=[0.3, 0.5, 0.7])\n    parser.add_argument(\"--output_dir\", required=True)\n    args = parser.parse_args()\n    \n    # Load data\n    predictions = load_predictions(args.predictions)\n    doc_sents = load_doc_sents(args.data_dir, \"dev\")\n    \n    # Load NLI model\n    ced_model = CEDRewardModel(args.nli_model, device=args.nli_device)\n    \n    # 先检查 CEDRewardModel 的实际接口和初始化参数!\n    # 如果接口不同，参考 freige/rewards/ced_reward.py 调整\n    \n    for tau in args.taus:\n        filtered = []\n        for doc_pred in predictions:\n            doc_id = doc_pred.get(\"doc_id\", doc_pred.get(\"title\", \"\"))\n            sents = doc_sents.get(doc_id, [])\n            if not sents:\n                filtered.append(doc_pred)\n                continue\n            filtered.append(filter_evidence_for_doc(doc_pred, sents, ced_model, tau))\n        \n        # Save\n        out_path = f\"{args.output_dir}/filtered_tau{tau}.json\"\n        with open(out_path, \"w\") as f:\n            json.dump(filtered, f, indent=2)\n        print(f\"tau={tau}: saved to {out_path}\")\n    \n    # 对每个 tau 计算 metrics\n    # 使用现有 evaluator\n    from freige.eval.evaluator import DocREDEvaluator\n    evaluator = DocREDEvaluator(args.data_dir)\n    \n    for tau in args.taus:\n        out_path = f\"{args.output_dir}/filtered_tau{tau}.json\"\n        with open(out_path) as f:\n            filtered = json.load(f)\n        metrics = evaluator.evaluate(filtered)\n        print(f\"\\n=== tau={tau} ===\")\n        for k, v in metrics.items():\n            print(f\"  {k}: {v}\")\n        # Save metrics\n        with open(f\"{args.output_dir}/metrics_tau{tau}.json\", \"w\") as f:\n            json.dump(metrics, f, indent=2)\n\nif __name__ == \"__main__\":\n    main()\n```\n\n**关键注意事项**:\n1. 先读 `freige/rewards/ced_reward.py` 确认 `CEDRewardModel` 的真实初始化参数和 `nli_entailment_prob()` 接口\n2. 先读 `freige/eval/ced_reranker.py` 看 `verbalize_by_name()` 的实现，用它替代简单的 verbalize_triple\n3. 检查 predictions.json 的真实 key names（可能是 \"doc_id\" 或 \"title\"）\n4. 检查 `DocREDEvaluator` 是否存在以及如何调用。如果不存在，用 `freige/eval/metrics.py` 中的函数手动计算\n5. **NLI 模型本地路径**: 先检查 `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/` 是否存在。之前 8B CED scoring 用的路径是 `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`\n\n### Step 3: 运行 Evidence Filtering\n\n等 Step 1 的 predictions.json 生成后：\n\n```bash\ncd /root/autodl-tmp\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -m freige.eval.ced_evidence_filter \\\n  --predictions /root/autodl-tmp/eval_results/rsft_s44_dev_with_preds/predictions.json \\\n  --data_dir /root/autodl-tmp/data/docred \\\n  --nli_device cuda:0 \\\n  --taus 0.3 0.5 0.7 \\\n  --output_dir /root/autodl-tmp/eval_results/ced_evidence_filter_s44\n```\n\n### Step 4: 如果 evaluator 不能直接用\n\n手动计算 metrics 方案：\n1. 读 filtered predictions\n2. 对比 gold triples 的 evidence（从 dev.json 获取）\n3. 计算 Evi-F1 和 EDCR\n\n参考现有 eval 代码的 metric 计算方式（grep \"evi_f1\\|edcr\\|evidence\" in freige/eval/）。\n\n### 预期结果\n- tau=0.3: 轻微过滤，EDCR 提升 2-5pp\n- tau=0.5: 中度过滤，EDCR 提升 5-10pp，Evi-F1 可能略降\n- tau=0.7: 激进过滤，EDCR 大幅提升但可能丢失正确 evidence\n\n**Baseline 对比**: RSFT s44 dev 原始 EDCR=0.6350, Evi-F1=0.8087\n\n### 输出\n完成后报告：\n1. 各 tau 的 Evi-F1, EDCR, rel_F1 变化\n2. 脚本路径\n3. 是否有 bug 需要修复\n\n### 提交方式\n用 `submit_training_job` 提交 Step 1 (dev eval inference)。Step 2-4 在 inference 完成后手动执行。\n\n等等——如果 inference 预计 1h，你可以：\n1. 先实现脚本 (Step 2)\n2. 同时用 submit_training_job 提交 inference\n3. inference 完成后立即运行 filtering\n\n这样并行省时间。"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-17T05:04:55.291460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 05:09:00 (in 250s)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-17T05:04:55.291628+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度：\n- **Step 1 (Inference)**: 已提交，PID 414832，247 batches 运行中\n- **Step 2 (Script)**: 已完成，`/root/autodl-tmp/freige/eval/ced_evidence_filter.py` 已写入并通过 syntax check\n- NLI 模型路径已确认存在\n\n等待 inference 完成后执行 Step 3 filtering。5 分钟后检查进度。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ced_evidence_reranking_cuda0_20260517T045906"
+          },
+          "id": "event-000109"
+        }
+      ],
+      "message_count": 109
+    }
+  ],
+  "readable_path": "readable/conversations/exp-ced-evidence-reranking-cuda0.md"
+}

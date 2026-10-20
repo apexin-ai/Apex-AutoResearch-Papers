@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "464974e9d70bd61a8526",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose plan010 nli large failure",
+  "task_key": "worker_diagnose_plan010-nli-large-failure_20260522T154939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan010-nli-large-failure_20260522T154939_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "1fd2f04f1ad15e01ef4c19fe35d5aafef4f7f8db7c474c9c17da89b5793278d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全貌清楚了。\n\n## 诊断结果\n\n**`plan010_nli_large_eval`（failed）**：Registry 中只有一个空 spec `{\"pid\": \"733763\"}`，没有 error_msg。从 `plan010_nli_large_ablation` 的 note 字段可以看到根因：\n\n> \"Step 3 eval failed due to **inode bug** (`--data_dir` not replaced). Eval resubmitted as `plan010_nli_large_eval`.\"\n\n**`plan010_nli_large_eval_r2`（success）**：已经用正确的命令重跑并成功完成。结果：\n\n| 指标 | 值 |\n|------|-----|\n| F1 | 0.4636 |\n| ign_F1 | 0.4533 |\n| evi_f1_joint | 0.3606 |\n| evi_f1_tp | 0.8194 |\n| EDCR | 0.653 |\n| format_compliance | 1.0 |\n| n_truncated | 180 |\n| inference_time | ~2.8h |\n\n**结论**：`plan010_nli_large_eval` 的失败原因是命令中 `--data_dir` 参数没有被正确替换（inode bug）。这个问题已在 r2 中修复并成功完成，**无需再重跑**。DeBERTa-v3-large NLI CED scoring + RSFT 的完整 pipeline 结果已可用，存储在 `/root/autodl-tmp/eval_results/plan010_nli_large_ablation`。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "pid": "733763"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan010-nli-large-failure.md"
+}

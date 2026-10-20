@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cf0bbfaafe8caf5565e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis test eval 4b rsft s44 with evi",
+  "task_key": "worker_analysis_test_eval_4b_rsft_s44_with_evi_20260523T104602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_test_eval_4b_rsft_s44_with_evi_20260523T104602_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "bf5501cdd05e588f064f082190effa6e1c98821fa56155aa66fd88d18a8c39da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**汇总：**\n\ns44 with-evi: **ign_f1=0.2525**, evi_f1_tp=0.6155, edcr=0.8324\n\n3-seed with-evidence 对比：\n\n| seed | ign_f1 | evi_f1_tp | edcr |\n|------|--------|-----------|------|\n| s42 | 0.2501 | 0.6237 | 0.8288 |\n| s43 | 0.2503 | 0.6127 | 0.8425 |\n| s44 | 0.2525 | 0.6155 | 0.8324 |\n| **mean** | **0.2516** | **0.6173** | **0.8346** |\n| std | 0.0014 | 0.0057 | 0.0069 |\n\ns44 ign_f1 略高于 s42/s43（+0.22-0.24pp），三 seed 方差很小（std=0.0014），结果稳定。对应 no-evi s42=0.2652, s43=0.2702，待 s44 no-evi 完成后可计算 3-seed mean evidence tax。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-test-eval-4b-rsft-s44-with-evi.md"
+}

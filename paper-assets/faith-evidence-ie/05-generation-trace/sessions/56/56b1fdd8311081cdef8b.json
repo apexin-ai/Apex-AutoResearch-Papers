@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56b1fdd8311081cdef8b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "harvest eval llama sft s44 no evidence",
+  "task_key": "worker_harvest_eval-llama-sft-s44-no-evidence_20260520T170140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_eval-llama-sft-s44-no-evidence_20260520T170140_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "4ce3ea87b9147949ef6dc8069138188e2b43cbd9b3e198202555681bf37f1f57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron job（可能在之前的 session 中已清理或过期）。Registry 已更新为 DONE。\n\n```\n状态: success\nMetrics: ign_f1=0.3326, f1=0.3348, format_ok=931/985 (94.5%), truncated=411/985\nFair Comparison: raw_tax=-14.76pp, fair_tax=-12.62pp, fair_subset=931 docs\n  With-evi: ign_f1=0.4802 (full) / 0.4742 (fair)\n  No-evi:   ign_f1=0.3326 (full) / 0.3481 (fair)\n```\n\n注意：s44 的 evidence tax 远大于 s42 的 -1.65pp，主要原因是 no-evidence 模型 format_ok 只有 94.5%（54 docs 失败，其中 52 是 truncation），recall 大幅下降（0.2648 vs 0.4915）。no-evidence 模型在没有 evidence 约束后 precision 反而没有提升（0.4346 vs 0.4695），recall 却腰斩，说明 evidence 作为结构化约束对模型输出质量有正面作用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-llama-sft-s44-no-evidence.md"
+}

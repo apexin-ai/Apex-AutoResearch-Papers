@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb6a75b9a8d3fb626324",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops persist scripts",
+  "task_key": "worker_ops_persist_scripts_20260518T073436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_persist_scripts_20260518T073436_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "c98d7226e7cc171a705dcbf1a7c8f9ebf0434e8f5e1c0fd3798733d9f52be979"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部复制成功。\n\n**持久化结果：**\n\n| 文件 | 目标路径 |\n|------|----------|\n| `grpo_bf16_g4.sh` | `/root/autodl-tmp/freige/scripts/d102_next_batch/` |\n| `random_rsft.sh` | `/root/autodl-tmp/freige/scripts/d102_next_batch/` |\n| `random_rsft_select.py` | `/root/autodl-tmp/freige/scripts/d102_next_batch/` |\n| `sft_seed43.sh` | `/root/autodl-tmp/freige/scripts/d102_next_batch/` |\n| `sft_seed44.sh` | `/root/autodl-tmp/freige/scripts/d102_next_batch/` |\n| `fair_eval.py` | `/root/autodl-tmp/freige/scripts/` |\n\n共 6 个文件，均已从 `/tmp/` 复制到持久化目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-persist-scripts.md"
+}

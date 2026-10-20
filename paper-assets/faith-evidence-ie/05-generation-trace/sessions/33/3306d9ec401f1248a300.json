@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3306d9ec401f1248a300",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260517T160613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_20260517T160613_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "0e8bd1745a26846facd07d6b15310ad890f5e98cc4da18fda9234ce597c78c14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`experiments.tex` 已写入并注册（`art_20260517_2f5e45`）。\n\n结构概要：\n- **5.1 Setup**: 数据集/模型/训练/指标定义（含两版 Evi-F1 区分）\n- **5.2 Main Results**: Table 1, RSFT CED +4.92pp, evidence tax 量化\n- **5.3 Decoupling Spectrum**: Table 2 + fig:spectrum, GRPO QLoRA 灾难性/bf16 温和/DPO 渐进/RSFT 无解耦\n- **5.4 Scaling**: Table 3 + fig:scaling, 1.7B 反向受益/4B 重税/8B 吸收, RSFT 全尺度有效\n- **5.5 Evidence Strategy**: Table 4, joint vs post-hoc vs rerank 对比\n- **5.6 Generalization**: 跨架构/跨数据集/与 DREEAM 对比\n\n待填数据：LLaMA RSFT 和 CED reranker 用 `\\texttt{TBD}` 占位。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

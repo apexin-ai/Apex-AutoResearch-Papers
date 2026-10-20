@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "407f8ef4c8fb96623004",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose remaining 3 evals",
+  "task_key": "worker_diagnose_remaining-3-evals_20260522T013439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_remaining-3-evals_20260522T013439_result.json",
+    "occurrence": 1,
+    "bytes": 929,
+    "sha256": "efeb02d6e0c06d111dc7fb18e11d6f2bc6172e167f07cb3747d27666341c24b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Conversion works. Output is a flat list with `title`, `h_idx`, `t_idx`, `r`, `evidence` — correct CodaLab format, 8049 triples.\n\n---\n\n## 实验状态\n\n| Status | Experiment | Progress | GPU | ETA |\n|--------|-----------|----------|-----|-----|\n| RUNNING | test_eval_1_7b_sft_s42 | 410/500 (82%) | GPU 0, 6GB | ~40 min |\n| RUNNING | test_eval_1_7b_sft_s42_no_evi | 180/500 (36%) | GPU 1, 6GB | ~2h22m |\n| RUNNING | test_eval_14b_sft_s42_no_evi | 218/500 (44%) | GPU 3, 32GB | ~3.5h |\n\n额外发现：GPU 2 上跑着 `test_eval_4b_rsft_s42_v2` (PID 151222, 9.5GB, 18min)。\n\n## Registry 更新\n- 三个实验均未完成，无结果可写入\n\n## CodaLab 脚本\n- 状态: 已创建 `/root/autodl-tmp/freige/scripts/convert_codalab.py`\n- 验证: 对 `test_eval_8b_rsft_s42/codalab_submission.json` 转换成功，输出 8049 triples，格式正确（list of `{title, h_idx, t_idx, r, evidence}`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-remaining-3-evals.md"
+}

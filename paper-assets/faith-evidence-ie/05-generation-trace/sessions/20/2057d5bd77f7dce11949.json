@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2057d5bd77f7dce11949",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code mvp2 chain script",
+  "task_key": "worker_code_mvp2-chain-script_20260514T084119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp2-chain-script_20260514T084119_result.json",
+    "occurrence": 1,
+    "bytes": 1086,
+    "sha256": "6fd2fef9f42c2b2dbe71155cb1123bf2fd1d62de63a5ae6ecbb9e27652236cab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法检查通过。脚本已写入 `/root/autodl-tmp/run_mvp2_chain.sh` 并设为可执行。\n\n### 参数验证总结\n\n**grpo_trainer.py 参数**（已对齐）：\n- `--model_name`, `--sft_adapter`, `--data_dir`, `--output_dir`, `--stage`\n- `--tau_start`, `--tau_end`, `--reward_device` — stage≥2 时使用，stage 1 不需要\n- `--num_generations`, `--per_device_batch_size`, `--gradient_accumulation_steps`, `--num_epochs`, `--learning_rate`, `--seed`, `--wandb_run_name`\n\n**inference.py 参数**（已对齐）：\n- `--model_path`（必填）, `--base_model`（默认 Qwen3-4B）, `--data_path`（必填）, `--output_dir`（必填）\n- `--batch_size`, `--max_new_tokens`, `--split`（默认 dev）, `--seed`, `--quantize`\n\n### 6 个 Phase\n\n| Phase | 类型 | 输出 |\n|-------|------|------|\n| 1 | SFT Eval | `eval_sft/` |\n| 2 | CED Eval | `eval_ced/` |\n| 3 | flat-NLI Train (stage 2) | `grpo_s2/` |\n| 4 | flat-NLI Eval | `eval_flatnli/` |\n| 5 | extraction-only Train (stage 1) | `grpo_s1/` |\n| 6 | extraction-only Eval | `eval_extract/` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp2-chain-script.md"
+}

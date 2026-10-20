@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95340263f86e71234439",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "experiment plan 002 test eval",
+  "task_key": "worker_experiment_plan_002_test_eval_20260516T081231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_plan_002_test_eval_20260516T081231_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "f812b914ea494272fa50215f939b5f99cc137648a17ab05331df916dadb8efef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **exp_id**: `plan_002_test_eval_s44_r2`\n- **GPU**: cuda:1（15.1GB 占用，模型已加载）\n- **PID**: 319632\n- **状态**: RUNNING，推理进行中（250 batches / 1000 docs）\n- **输出目录**: `/root/autodl-tmp/eval_results/test_rsft_ced_s44/`\n- **日志**: `/root/autodl-tmp/eval_results/test_rsft_ced_s44/eval.log`\n\ntest split 无 gold labels，完成后产出 `codalab_submission.json` 用于 CodaLab 官方评测，不会有 F1 输出。预估 ~2.5-3h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-plan-002-test-eval.md"
+}

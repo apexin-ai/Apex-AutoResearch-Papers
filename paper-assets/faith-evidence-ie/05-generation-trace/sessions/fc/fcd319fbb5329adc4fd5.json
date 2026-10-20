@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fcd319fbb5329adc4fd5",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "research find 4b rsft s42 canonical",
+  "task_key": "worker_research_find_4b_rsft_s42_canonical_20260519T135415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_find_4b_rsft_s42_canonical_20260519T135415.log",
+    "occurrence": 1,
+    "bytes": 799344,
+    "sha256": "7cac8fafe702bac0f507d3ec30c009fca206216d0a2fbda1282f616bd147f895"
+  },
+  "statistics": {
+    "messages": 94,
+    "user_turns": 0,
+    "tool_calls": 33,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 33,
+      "tool_result": 33,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 94,
+      "chunks": [
+        {
+          "path": "fcd319fbb5329adc4fd5-part-0001.json",
+          "message_count": 47
+        },
+        {
+          "path": "fcd319fbb5329adc4fd5-part-0002.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-find-4b-rsft-s42-canonical.md"
+}

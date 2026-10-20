@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7db1e4c912f677ef44dc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval status check",
+  "task_key": "worker_analysis_eval-status-check_20260514T190309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval-status-check_20260514T190309_result.json",
+    "occurrence": 1,
+    "bytes": 967,
+    "sha256": "9a53a789811210e8c21cc9383af77bd56ad77c073df866c64daf144b926a73db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `artifacts/eval_status_check.md`。\n\n**关键发现：**\n\n1. **5 个 PID 全部存活**，4 张 GPU 满载，**cuda:2 未空闲**（正在跑 ckpt-10，92% 即将完成）\n\n2. **唯一已完成的结果是 checkpoint-50**，指标很差：\n   - F1=0.1563（SFT baseline 0.4057，下降 61%）\n   - Evi-F1=0.5643（baseline 0.7979，下降 29%）\n   - EDCR=0.8858（baseline 0.7118，提升 24%）\n   - GRPO 训练在 step 50 严重损害了关系抽取能力，只换来 distractor citation 的改善\n\n3. **近期将出结果**：ckpt-60（~33min）、step-100（~30min）、step-90（~53min）\n\n4. **multi batch_eval 还需 ~6 小时**完成剩余 checkpoints（20,30,40,70,80）\n\n5. **两个早期任务失败**（last, ckpt90），原因是 `No module named freige.eval.batch_eval`，已被后续正确的任务替代\n\n6. **Step 90 状态**：PID 83207 在 GPU 1 上运行中（35%），约 53 分钟后出结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-status-check.md"
+}

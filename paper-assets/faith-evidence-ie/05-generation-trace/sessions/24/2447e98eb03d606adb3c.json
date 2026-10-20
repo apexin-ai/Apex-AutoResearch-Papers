@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2447e98eb03d606adb3c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check cuda1 submit 1 7b v2",
+  "task_key": "worker_ops_check_cuda1_submit_1_7b_v2_20260517T030836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_cuda1_submit_1_7b_v2_20260517T030836_result.json",
+    "occurrence": 1,
+    "bytes": 236,
+    "sha256": "96d1e8bf113e888e725aeac2460a816b8391c4d1c820dfe74f26151174b3f33b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s43 eval (PID 390436) 仍在 cuda:1 上运行（11415 MiB，已跑 215 分钟）。输出目录尚无结果文件。已设置 2 分钟后重新检查，等 cuda:1 释放后立即收集结果并提交 1.7B RSFT training。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-cuda1-submit-1-7b-v2.md"
+}

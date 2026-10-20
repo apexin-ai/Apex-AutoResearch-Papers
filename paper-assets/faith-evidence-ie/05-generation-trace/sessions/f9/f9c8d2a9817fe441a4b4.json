@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9c8d2a9817fe441a4b4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor rsync completion",
+  "task_key": "worker_monitor_rsync-completion_20260520T075819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_rsync-completion_20260520T075819_result.json",
+    "occurrence": 1,
+    "bytes": 61,
+    "sha256": "630226058b07c94b3f4869c343e43d9acc0373456da7fce4b7058c884b067dff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下次检查：约 4.5 分钟后（08:04）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-rsync-completion.md"
+}

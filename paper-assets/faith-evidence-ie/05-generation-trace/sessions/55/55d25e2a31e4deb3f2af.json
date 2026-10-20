@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "55d25e2a31e4deb3f2af",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose plan 011 bf16 g8 step eval",
+  "task_key": "worker_diagnose_plan_011_bf16_g8_step_eval_20260515T195026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan_011_bf16_g8_step_eval_20260515T195026_result.json",
+    "occurrence": 1,
+    "bytes": 1827,
+    "sha256": "5aee3255828a5b38040dcbd503143c7d9bc5548b1d8dc49a49d76b34d462a1cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。PID 246051 已死，GPU 1 完全空闲（32.6GB）。\n\n**诊断结论**：\n\n- 日志尾行：`Terminated` → `EXIT_CODE=143`（SIGTERM）\n- 推理代码 `device_map=\"auto\"` 无 `CUDA_VISIBLE_DEVICES` 限制，模型自动加载到 GPU 0\n- GPU 0 已被 plan_001 训练（PID 236779）占用 16.3GB，eval 加载后双进程共占 31.4/32.6GB\n- 完成 1/62 batch 后被 SIGTERM kill\n- GPU 1 完全空闲，32.6GB 可用\n\n**重提交命令**（添加 `CUDA_VISIBLE_DEVICES=1`）：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 bash /root/autodl-tmp/freige/scripts/eval_plan_011_steps.sh\"\n```\n\n无需修改脚本代码——`device_map=\"auto\"` 会尊重 `CUDA_VISIBLE_DEVICES`。\n\n```json\n{\"root_cause\":\"SIGTERM (EXIT_CODE=143) at inference 1/62. device_map='auto' placed model on GPU 0 alongside plan_001 training (PID 236779, 16.3GB). Two processes shared 31.4/32.6GB, process was killed.\",\"error_type\":\"resource\",\"fix_steps\":[\"重提交时设 CUDA_VISIBLE_DEVICES=1（GPU 1 空闲 32.6GB）\",\"清理空产物目录: rm -rf /root/autodl-tmp/eval_results/plan_011_bf16_g8_step30\"],\"can_auto_fix\":true,\"script_gpu_mode\":\"env_var\",\"resubmit_ready\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "SIGTERM (EXIT_CODE=143) at inference 1/62. device_map='auto' placed model on GPU 0 alongside plan_001 training (PID 236779, 16.3GB). Two processes shared 31.4/32.6GB, process was killed.",
+              "error_type": "resource",
+              "fix_steps": [
+                "重提交时设 CUDA_VISIBLE_DEVICES=1（GPU 1 空闲 32.6GB）",
+                "清理空产物目录: rm -rf /root/autodl-tmp/eval_results/plan_011_bf16_g8_step30"
+              ],
+              "can_auto_fix": true,
+              "script_gpu_mode": "env_var",
+              "resubmit_ready": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-011-bf16-g8-step-eval.md"
+}

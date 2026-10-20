@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32b6f45f3294ad44ddd6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose 1 7b sft check",
+  "task_key": "worker_diagnose_1_7b-sft-check_20260522T015908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_1_7b-sft-check_20260522T015908_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "5d13d0795d04dc118a2c639d2a87f1fa84996a8b4f9e5a24b6836f586df74cd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部仍在运行，进度如下：\n\n```\n[RUNNING] test_eval_1_7b_sft_s42      | 469/500 | ~27s/it | ETA ~14 min\n[RUNNING] test_eval_1_7b_sft_s42_no_evi | 235/500 | ~23s/it | ETA ~1.7h\n[RUNNING] test_eval_14b_sft_s42_no_evi  | 260/500 | ~40s/it | ETA ~2.7h\n```\n\nGPU 状态：\n| GPU | 占用 | 进程 |\n|-----|------|------|\n| 0 | 6071/97887 MiB | PID 140534 (1.7B SFT) |\n| 1 | 6071/97887 MiB | PID 147596 (1.7B no-evi) |\n| 2 | 19599/97887 MiB | PID 152873 (8B no-evi, 额外发现) |\n| 3 | 32503/97887 MiB | PID 143166 (14B no-evi) |\n\n1.7B SFT 马上完成（~14分钟），其他两个还需要数小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-1-7b-sft-check.md"
+}

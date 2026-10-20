@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "384e977a1d6839801b12",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check test eval s44 completion",
+  "task_key": "worker_ops_check_test_eval_s44_completion_20260516T120513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_test_eval_s44_completion_20260516T120513_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "de238a0897a9bc9491ceeacd43ed55b570c934fcbf6e2af34704270928120475"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**plan_002_test_eval_s44_r2 — 成功完成 ✓**\n\n| 项目 | 结果 |\n|------|------|\n| 状态 | DONE (success) |\n| Test docs | 1000 |\n| Predictions | 26,925 |\n| CodaLab entries | 25,553 |\n| Format OK | 99.6% |\n| Truncated | 626/1000 |\n| 推理时间 | 3h51m |\n\n**F1 指标**：本地无（test set 没有 ground truth）。需要将 `/root/autodl-tmp/eval_results/test_rsft_ced_s44/codalab_submission.json` 提交到 CodaLab 获取官方 Ign-F1 / Rel-F1 / Evi-F1。\n\n**cuda:1 状态**：已释放（5.4GB 残余，可用）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-test-eval-s44-completion.md"
+}

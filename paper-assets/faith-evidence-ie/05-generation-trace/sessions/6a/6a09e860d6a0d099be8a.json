@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a09e860d6a0d099be8a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh submit test eval 4b rsft",
+  "task_key": "worker_ssh_submit-test-eval-4b-rsft_20260521T100059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit-test-eval-4b-rsft_20260521T100059_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "5b4c7aee6715972c153c2f07499ed00a3e84052095a824bb21b2f0f4aed33b8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Fallback：4B RSFT s42 adapter 不存在。**\n\n已确认的环境状态：\n- `test_inference.py` 存在 ✓\n- `test_revised.json` 在 `/root/autodl-tmp/data/re-docred-repo/data/test_revised.json` ✓（注意：不在 `docred/` 下）\n- `SPLIT_FILENAMES` 支持 `test_revised` ✓\n- cuda:1 空闲（0 MiB）✓\n- SFT s42 adapter：`/root/autodl-tmp/sft_output` ✓\n- Base model：`/root/autodl-tmp/models/Qwen3-4B` ✓\n\n**缺失**：4B RSFT s42 adapter。旧路径 `rsft_output_r2b` 已被删除。服务器上现有的 RSFT adapter：\n\n| 路径 | 说明 |\n|------|------|\n| `rsft_output_ced_s43` | CED-filtered, SFT seed 43 |\n| `rsft_output_4b_sft_s44` | SFT seed 44 |\n| `rsft_output_nli_large` | NLI large filtered |\n| `rsft_output_random_k1` | random baseline |\n| `rsft_output_14b` | 14B 模型 |\n\n**建议**：\n1. 如果训练数据 `rsft_filtered/rsft_train.jsonl` 仍可用，需要重新训练 4B RSFT s42\n2. 或者指定一个现有 adapter（如 `rsft_output_ced_s43`）来跑 Re-DocRED test eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-test-eval-4b-rsft.md"
+}

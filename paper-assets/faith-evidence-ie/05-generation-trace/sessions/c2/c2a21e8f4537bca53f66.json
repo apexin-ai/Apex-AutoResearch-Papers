@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2a21e8f4537bca53f66",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval llama rsft test predictions",
+  "task_key": "worker_eval_llama_rsft_test_predictions_20260517T153005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama_rsft_test_predictions_20260517T153005_result.json",
+    "occurrence": 1,
+    "bytes": 279,
+    "sha256": "f9b93e2588e6af3013947660e43eb60001f94278fa90dd30761c06a4538cfef5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交：\n\n- **exp_id**: `plan_006_llama_rsft_test`\n- **PID**: 460159\n- **GPU**: cuda:3（rtx5090-4x）\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test`\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama-rsft-test-predictions.md"
+}

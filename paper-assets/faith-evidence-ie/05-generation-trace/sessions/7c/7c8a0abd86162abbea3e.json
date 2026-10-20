@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c8a0abd86162abbea3e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 001 flatnli rsft train",
+  "task_key": "worker_ops_plan_001_flatnli_rsft_train_20260515T145109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_001_flatnli_rsft_train_20260515T145109_result.json",
+    "occurrence": 1,
+    "bytes": 126,
+    "sha256": "eab19fce4505effa8a5f858497abd2dd3c232a071d8562654fcd3d4ff98a8480"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Scoring 进程仍在运行（已 54 分钟），输出文件尚未生成。已设置 2 分钟后自动检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-001-flatnli-rsft-train.md"
+}

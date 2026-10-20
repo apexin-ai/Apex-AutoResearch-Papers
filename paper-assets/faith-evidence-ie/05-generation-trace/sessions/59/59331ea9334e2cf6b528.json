@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59331ea9334e2cf6b528",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research qwen3 14b feasibility",
+  "task_key": "worker_research_qwen3_14b_feasibility_20260518T100058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_qwen3_14b_feasibility_20260518T100058_result.json",
+    "occurrence": 1,
+    "bytes": 5036,
+    "sha256": "001a02aa273f815e0c06e29259958d8c094d38e4ec11edf71e046a4427118b70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== Qwen3-14B 可行性报告 ===\n\n模型: Qwen/Qwen3-14B / 14.8B params (13.2B non-embedding) / bf16 ~29.5GB\n\n架构:\n  hidden_size: 5120\n  num_layers: 40\n  num_attention_heads: 40 (Q), 8 (KV, GQA)\n  intermediate_size: 17408\n  vocab_size: 151936\n  head_dim: 128\n\n─────────────────────────────────────────────\n\nLoRA 参数量估算 (rank=64, 7 target modules per layer):\n  q_proj:    (5120+5120)×64  = 655K\n  k_proj:    (5120+1024)×64  = 393K\n  v_proj:    (5120+1024)×64  = 393K\n  o_proj:    (5120+5120)×64  = 655K\n  gate_proj: (5120+17408)×64 = 1442K\n  up_proj:   (5120+17408)×64 = 1442K\n  down_proj: (17408+5120)×64 = 1442K\n  ──────────────────────────────\n  Per layer: 6.42M → 40 layers → ~257M LoRA params\n\n─────────────────────────────────────────────\n\n显存估算 1: bf16 LoRA (不量化)\n  Base model (bf16):     14.8B × 2B = 29.6 GB\n  LoRA adapters (bf16):  257M × 2B  = 0.5 GB\n  Optimizer (fp32, AdamW): 257M × 12B = 3.1 GB\n  Gradients (bf16):      257M × 2B  = 0.5 GB\n  Activations (GC, bs=1, seq=4096): ~3-5 GB\n  CUDA overhead:         ~1 GB\n  ──────────────────────────────\n  总计: ~38-40 GB\n  32GB 单卡: ❌ 不可行 (模型权重本身已 29.6GB，几乎填满显存)\n\n─────────────────────────────────────────────\n\n显存估算 2: QLoRA 4-bit (NF4)\n  Base model (4-bit):    14.8B × 0.5B = 7.4 GB\n  量化 overhead:         ~0.5 GB\n  LoRA adapters (bf16):  257M × 2B   = 0.5 GB\n  Optimizer (fp32, AdamW): 257M × 12B = 3.1 GB\n  Gradients (bf16):      257M × 2B   = 0.5 GB\n  Activations (GC, bs=1, seq=4096): ~3-5 GB\n  CUDA overhead:         ~1 GB\n  ──────────────────────────────\n  总计: ~16-18 GB\n  32GB 单卡: ✅ 可行，余量充足 (~14GB headroom)\n\n  可尝试 bs=2: 额外 ~3-4 GB activations → ~20-22 GB，仍可行\n\n─────────────────────────────────────────────\n\nGradient Checkpointing 影响:\n  关闭: activations 可达 10-15 GB (bs=1, seq=4096, 40 layers)\n  开启: 降至 ~3-5 GB (只存层边界 activations，重算中间值)\n  代价: 训练速度慢 ~30%\n  QLoRA 场景下必须开启（已是项目默认配置）\n\n─────────────────────────────────────────────\n\n推荐配置:\n  量化: QLoRA 4-bit (NF4, double_quant=True)\n  batch_size: 1-2 (per_device)\n  gradient_accumulation: 8 (有效 bs=8-16)\n  gradient_checkpointing: True\n  LoRA: rank=64, alpha=128 (与现有配置一致)\n  precision: bf16 compute dtype\n  flash_attention: 开启 (attn_implementation=\"flash_attention_2\")\n\n─────────────────────────────────────────────\n\n预估训练时间:\n  参考: Qwen3-8B bf16 LoRA, 3018 samples, 3 epochs, 1134 steps\n  14B vs 8B: ~1.8x FLOPs (层数 40 vs 36, hidden 5120 vs 4096)\n  QLoRA 额外开销: dequant ~10-15%, GC recompute ~30%\n  综合: 每 step 约 2-2.5x 慢于 8B bf16 LoRA\n\n  SFT (3000 samples, 3 epochs, ~1125 steps):  ~3-5h\n  RSFT (3000 samples, 3 epochs, ~1125 steps): ~3-5h\n  (实际取决于 seq_len 分布，DocRED 样本较短则更快)\n\n─────────────────────────────────────────────\n\n与现有 pipeline 兼容性:\n  ✅ TRL SFTTrainer + PEFT LoRA: 完全兼容，同架构家族\n  ✅ target_modules 名称一致: q/k/v/o_proj, gate/up/down_proj\n  ✅ BitsAndBytesConfig 4-bit: 直接可用\n  ✅ tokenizer/chat_template: Qwen3 系列通用\n  ✅ 单卡训练: QLoRA 无需 model parallelism\n  ✅ 代码改动: 只需改 model_name 路径\n  ⚠️ 建议加 attn_implementation=\"flash_attention_2\" 省显存+加速\n\n─────────────────────────────────────────────\n\n风险/注意事项:\n  1. bf16 LoRA 不可行，必须用 QLoRA 4-bit\n  2. 4-bit 量化会引入精度损失，可能影响 IE 任务细粒度输出质量\n     → 需要实验验证 14B-QLoRA vs 8B-bf16 的质量权衡\n  3. 推理/eval 同样需要 QLoRA 加载，单卡 ~8-9GB\n     → eval 不会有显存压力 (C001 约束仍应遵守)\n  4. 模型下载: bf16 safetensors ~29.5GB，需确认服务器磁盘空间\n  5. Qwen3-14B 的 thinking mode (</think> tokens) 需在训练数据中处理\n     → 建议用 chat_template 的 enable_thinking=False\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-qwen3-14b-feasibility.md"
+}

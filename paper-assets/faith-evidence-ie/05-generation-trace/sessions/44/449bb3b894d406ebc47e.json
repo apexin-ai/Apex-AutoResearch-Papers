@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "449bb3b894d406ebc47e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "experiment qwen3 8b no evidence sft",
+  "task_key": "worker_experiment_qwen3_8b_no_evidence_sft_20260516T092923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_qwen3_8b_no_evidence_sft_20260516T092923_result.json",
+    "occurrence": 1,
+    "bytes": 388,
+    "sha256": "001ac6130222dce590fa8e4783ccf41747fff44c496ddc6e787c2ada9c0238d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n**训练状态**:\n- **exp_id**: `plan_006_qwen3_8b_no_evidence_sft`\n- **PID**: 325491 on cuda:0\n- **进度**: 570 steps, ~6.5s/step → 预估 ~62min\n- **配置**: bf16 LoRA (rank=64, alpha=128), `--no_evidence`, `--no-quantize`, seed=42\n- **日志**: `/root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log`\n- **W&B**: `qwen3_8b_no_evidence_sft`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-qwen3-8b-no-evidence-sft.md"
+}

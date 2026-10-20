@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18bb71fadf612d2e2c3f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp d102 llama k1 s42 eval",
+  "task_key": "worker_exp_d102_llama_k1_s42_eval_20260524T223100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_d102_llama_k1_s42_eval_20260524T223100_result.json",
+    "occurrence": 1,
+    "bytes": 335,
+    "sha256": "12da7f296b46ee9d5d4860f205f4a240a760a2cc7dc9882d3894cf4ad16c2842"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果已存在，无需重跑。** Registry 已更新为 DONE。\n\nMetrics（5月18日已完成的结果）：\n\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | 0.5714 |\n| rel_f1 | 0.5839 |\n| evi_f1 | 0.8238 |\n| evi_f1_joint | 0.4701 |\n| edcr | 0.5799 |\n| format_compliance | 99.9% |\n| inference_time | 8667.7s |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d102-llama-k1-s42-eval.md"
+}

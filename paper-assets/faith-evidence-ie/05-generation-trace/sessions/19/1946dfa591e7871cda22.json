@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1946dfa591e7871cda22",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops verify cuda2 and p0 step60",
+  "task_key": "worker_ops_verify-cuda2-and-p0-step60_20260514T212901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-cuda2-and-p0-step60_20260514T212901_result.json",
+    "occurrence": 1,
+    "bytes": 1590,
+    "sha256": "55b5e97ad564e3ab123a677d468be0def23f93bc9a95ab57ab3ae165ed0b1552"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志中实际只有 step 5-40 的 metric 条目（8条，每5步），step 45+ 的指标尚未刷新到日志文件（Python stdout 缓冲）。当前进度 step 59/200。\n\n## cuda:2 状态\n- PID 100549 (nohup): **KILLED** — 已有标准 tmux 监控版本\n- PID 100555 (100549 的子进程): 随父进程终止，已释放 9710 MiB\n- PID 101831 (submit_training_job): **ALIVE** — 保留\n- PID 101842 (101831 的子进程): **ALIVE** — 9060 MiB\n- 结论: cuda:2 现在只有一个 eval 进程\n\n## P0 (lr5e6_r1) Step 5-40 指标\n\n| Step | f1_reward | ced_reward | format | reward_mean | frac_zero_std | KL |\n|------|-----------|------------|--------|-------------|---------------|-----|\n| 5 | 0.0185 | 0.0114 | 0.057 | 0.087 | 0.2 | **2.4e9** |\n| 10 | 0.0 | 0.0 | 0.068 | 0.068 | 0.1 | 0.002 |\n| 15 | 0.0109 | 0.0036 | 0.141 | 0.155 | 0.2 | 0.002 |\n| 20 | *(truncated)* | | | | | |\n| 25 | 0.0 | 0.0 | 0.176 | 0.176 | 0.2 | 0.004 |\n| 30 | 0.0023 | 0.0015 | 0.128 | 0.131 | 0.1 | **7.0e13** |\n| 35 | 0.0101 | 0.0154 | 0.168 | 0.193 | 0.1 | 0.157 |\n| 40 | **0.0381** | **0.0786** | 0.201 | **0.318** | 0.3 | 0.006 |\n\n当前 step: **59/200** (~30%)\nStep 45-55 指标: **不可用**（metric dict 仍在 Python stdout 缓冲中，未刷新到日志文件。无 wandb。）\n\n**趋势判断**: 上升。step 40 是目前最优（reward 0.318, f1 0.038, ced 0.079），步步新高。两次 KL spike（step 5 和 30）均快速恢复。f1 和 ced 在 step 35-40 出现加速增长信号。但 step 45-55 数据缺失，无法确认趋势是否延续。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-cuda2-and-p0-step60.md"
+}

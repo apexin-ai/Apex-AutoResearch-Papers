@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca20278ddf774d13e219",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code rsft parallel support",
+  "task_key": "worker_code_rsft-parallel-support_20260515T010837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rsft-parallel-support_20260515T010837_result.json",
+    "occurrence": 1,
+    "bytes": 327,
+    "sha256": "9464fe0728d55065b09bd3665a74e549ca910c74a6f9be03db97fcb9a3d9b3f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个修改全部完成：\n\n1. **新参数** `--start_idx`、`--end_idx`、`--shard_id` 已添加并在 `--help` 中可见\n2. **diversity 显示 bug** 已修复：`mean_div:.1f` → `mean_div * args.num_generations:.1f`\n3. **`--quantize` 默认值**确认已是 `store_true`（默认 False），无需修改"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rsft-parallel-support.md"
+}

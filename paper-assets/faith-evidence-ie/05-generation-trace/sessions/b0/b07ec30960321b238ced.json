@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b07ec30960321b238ced",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260517T162426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260517T162426_result.json",
+    "occurrence": 1,
+    "bytes": 868,
+    "sha256": "65c1d012a6ceb59877919a462cb3018d85c53fbbb4d812bf47baa030e6f1e401"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section 写入 `docs/paper/sections/method.tex`，~1243 words，5 个子节：\n\n- **3.1 Task** — 形式化定义 evidence-grounded DocRE，区分 encoder-based 方法（SAIS/DREEAM 无生成开销）与 LLM 生成式方法（scale-dependent cost）\n- **3.2 SFT Baseline** — LoRA r=64/α=128，含 no-evidence upper bound 变体\n- **3.3 Optimization Paradigms** — GRPO (QLoRA G=4, bf16 G=8)、DPO (1ep/3ep)、RSFT (N=8, top-k=1, 9042/24216=37.3%)\n- **3.4 CED** — NLI entailment + entity-sharing hard negatives 对比评分，含 flat-NLI baseline 对比（p=0.44），`\\label{sec:ced}` 已设置\n- **3.5 EDCR** — 诊断指标定义 Evi-Recall\\_TP / Rel-Recall，method-level ρ=-0.965，per-relation ρ=-0.064，阈值 0.70/0.65\n\n所有参数与 experiments.tex 一致。无 em-dash、无 -ing 短语结尾、无黑名单词。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method.md"
+}

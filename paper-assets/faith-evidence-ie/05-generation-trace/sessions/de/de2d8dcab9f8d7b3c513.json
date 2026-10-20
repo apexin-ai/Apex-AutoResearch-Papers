@@ -1,0 +1,935 @@
+{
+  "schema_version": "1.0",
+  "id": "de2d8dcab9f8d7b3c513",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "analyze plan019 1 7b rsft s43 r2 eval",
+  "task_key": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109.jsonl",
+    "occurrence": 1,
+    "bytes": 35300,
+    "sha256": "925e380a9a2301abc97e0b74da6bf490713d5a975a6da7ab86ea19fcfdb5f68a"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "tool_call": 22,
+      "tool_result": 22,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T08:42:35.341723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__list_wandb_runs,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__update_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T08:42:35.342092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T08:42:35.342308+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'plan019_1_7b_rsft_s43_r2_eval'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T08:42:35.342467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8241}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T08:42:35.342597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/freige/freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T08:42:35.342727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T08:42:35.342854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/freige/freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T08:42:35.342996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 288004\\\\ndrwxr-xr-x  4 root root      4096 May 19 13:38 .\\\\ndrwxr-xr-x 72 root root      8192 May 19 13:44 ..\\\\n-rw-r--r--  1 root root      1502 May 19 13:38 README.md\\\\n-rw-r--r--  1 root root      1119 May 19 13:38 adapter_config.json\\\\n-rw-r--r--  1 root root 278973888 May 19 13:38 adapter_model.safetensors\\\\n-rw-r--r--  1 root root       707 May 19 13:38 added_tokens.json\\\\n-rw-r--r--  1 root root      4168 May 19 13:38 chat_template.jinja\\\\ndrwxr-xr-x  2 root root      4096 May 19 13:37 checkpoint-550\\\\ndrwxr-xr-x  2 root root      4096 May 19 13:38 checkpoint-567\\\\n-rw-r--r--  1 root root   1671853 May 19 13:38 merges.txt\\\\n-rw-r--r--  1 root root       499 May 19 13:38 special_tokens_map.json\\\\n-rw-r--r--  1 root root  11422654 May 19 13:38 tokenizer.json\\\\n-rw-r--r--  1 root root      5431 May 19 13:38 tokenizer_config.json\\\\n-rw-r--r--  1 root root      6353 May 19 13:38 training_args.bin\\\\n-rw-r--r--  1 root root   2776833 May 19 13:38 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T08:42:35.343143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_wandb_runs"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'display_name': {'$regex': 's43.*eval'}}",
+              "limit": "5"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T08:42:35.343289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T08:42:35.343450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/freige/scripts -name \"*s43*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T08:42:35.343585+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/scripts/seed_expansion/train_1_7b_s43.sh\\\\n/root/autodl-tmp/freige/scripts/seed_expansion/train_llama_s43.sh\\\\n/root/autodl-tmp/freige/scripts/seed_expansion/sft_1_7b_s43.sh\\\\n/root/autodl-tmp/freige/scripts/seed_expansion/eval_sft_1_7b_s43.sh\\\\n/root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T08:42:35.343711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 -name \"*eval*\" -o -name \"*result*\" -o -name \"*metric*\" -o -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T08:42:35.343853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-550/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-550/tokenizer_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-550/special_tokens_map.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-550/added_tokens.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-550/vocab.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-550/tokenizer.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-550/trainer_state.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-567/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-567/tokenizer_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-567/special_tokens_map.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-567/added_tokens.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-567/vocab.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-567/tokenizer.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-567/trainer_state.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/tokenizer_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/special_tokens_map.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/added_tokens.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/vocab.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/tokenizer.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T08:42:35.343993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/logs -name \"*s43*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T08:42:35.344118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T08:42:35.344253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_wandb_runs"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'display_name': {'$regex': 's43'}}",
+              "limit": "10"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T08:42:35.344384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T08:42:35.344499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "fields": "['*']",
+              "limit": "5"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T08:42:35.344802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan019_1_7b_rsft_s43_r2_eval\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T06:15:45.750Z\\\", \\\"updated_at\\\": \\\"2026-05-19T08:39:43.855Z\\\", \\\"hypothesis\\\": \\\"D076 eval for 1.7B RSFT s43_r2 (Method A: s42 SFT adapter + s42 CED k=1 data, RSFT seed=43). 预期 ign_f1 接近 s42 RSFT (0.5122)，验证 1.7B RSFT 跨 seed 稳健性。\\\", \\\"parent\\\": \\\"plan019_1_7b_rsft_s43_r2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 620725, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T08:39:41.408Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T08:39:48.337300+00:00\\\"}]}}, \\\"d112_rsft_s44_eval\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T07:34:55.266Z\\\", \\\"updated_at\\\": \\\"2026-05-19T07:57:19.032Z\\\", \\\"hypothesis\\\": \\\"D112 step 4: D076 eval for RSFT trained on SFT s44 base with CED k=1 scored data. 验证 RSFT 在最强 SFT seed (s44, ign_f1=0.4734) 上的泛化效果。预期 ign_f1 > 0.4734 (SFT s44 baseline)。\\\", \\\"parent\\\": \\\"d112_rsft_s44_train\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/d112/step4_eval.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 627505, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_4b_sft_s44/\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}}, \\\"d112_rsft_s44_train\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T04:33:11.623Z\\\", \\\"updated_at\\\": \\\"2026-05-19T07:34:22.591Z\\\", \\\"hypothesis\\\": \\\"D112 step 3: RSFT \n…[truncated 2483 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T08:42:35.345040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T08:42:35.345197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# D076 eval for 1.7B RSFT s43_r2 (Method A)\\\\n# Model: Qwen3-1.7B + SFT s42 adapter + RSFT s43 adapter\\\\nset -euo pipefail\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\ncd /root/autodl-tmp/freige\\\\n\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_OFFLINE=1\\\\nexport TRANSFORMERS_OFFLINE=1\\\\n\\\\npython -m freige.eval.inference \\\\\\\\\\\\n    --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 \\\\\\\\\\\\n    --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B \\\\\\\\\\\\n    --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 \\\\\\\\\\\\n    --data_path /root/autodl-tmp/data/docred \\\\\\\\\\\\n    --output_dir /root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval \\\\\\\\\\\\n    --batch_size 4 \\\\\\\\\\\\n    --max_new_tokens 1024 \\\\\\\\\\\\n    --no-quantize \\\\\\\\\\\\n    --seed 42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T08:42:35.345361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp -maxdepth 3 -name \"*s43*eval*\" -o -name \"*eval*s43*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T08:42:35.345497+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2\\\\n/root/autodl-tmp/eval_results/rsft_s43_dev_eval_preds\\\\n/root/autodl-tmp/eval_results/sft_4b_s43_eval\\\\n/root/autodl-tmp/eval_results/wave1_sft_4b_s43_eval_r2\\\\n/root/autodl-tmp/eval_results/plan019_1_7b_sft_s43_eval\\\\n/root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval\\\\n/root/autodl-tmp/eval_8b_s43.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T08:42:35.345624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 -name \"eval_*\" -o -name \"*predictions*\" -o -name \"*result*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T08:42:35.345751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T08:42:35.345878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_wandb_runs"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{\"display_name\": {\"$regex\": \"1_7b.*s43\"}}}",
+              "limit": "10"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T08:42:35.346001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool list_wandb_runs: 1 validation error for list_wandb_runsArguments\nfilters\n  Input should be a valid dictionary [type=dict_type, input_value='{\"display_name\": {\"$regex\": \"1_7b.*s43\"}}}', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/dict_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T08:42:35.346151+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval/",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T08:42:35.346295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_wandb_runs"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{\"display_name\": {\"$regex\": \"1_7b.*s43\"}",
+              "limit": "10"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T08:42:35.346428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 6856\\\\ndrwxr-xr-x   2 root root      50 May 19 16:37 .\\\\ndrwxr-xr-x 103 root root    8192 May 19 15:35 ..\\\\n-rw-r--r--   1 root root    1557 May 19 16:37 metrics.json\\\\n-rw-r--r--   1 root root 7002858 May 19 16:37 predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T08:42:35.346548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool list_wandb_runs: 1 validation error for list_wandb_runsArguments\nfilters\n  Input should be a valid dictionary [type=dict_type, input_value='{\"display_name\": {\"$regex\": \"1_7b.*s43\"}', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/dict_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T08:42:35.346679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T08:42:35.346797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_wandb_runs"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "limit": "20"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T08:42:35.346964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5444181355783566,\\\\n  \\\\\\\"recall\\\\\\\": 0.5109044523084519,\\\\n  \\\\\\\"f1\\\\\\\": 0.52712915003821,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.5185608223872074,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.5034654837815359,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5109016739344494,\\\\n  \\\\\\\"tp\\\\\\\": 6208,\\\\n  \\\\\\\"pred_count\\\\\\\": 11403,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8217756000332198,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8339654445849136,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8278256504643186,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15864,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6244924291298243,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 16456,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 26351,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.43358395989974935,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.4221483827423291,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.42778976166675436,\\\\n  \\\\\\\"evi_tp\\\\\\\": 8131,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 18753,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.750253807106599,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.750253807106599,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 984,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 739,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 739,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15967,\\\\n  \\\\\\\"n_truncated\\\\\\\": 244,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 984,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 8498.2,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"\n…[truncated 133 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T08:42:35.347116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__list_wandb_runs",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T08:42:35.347304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan019_1_7b_rsft_s43_r2_eval",
+              "field": "metrics",
+              "value": "{'ign_f1': 0.5109, 'ign_precision': 0.5186, 'ign_recall': 0.5035, 'f1': 0.5271, 'precision': 0.5444, 'recall': 0.5109, 'evi_precision': 0.8218, 'evi_recall': 0.834, 'evi_f1': 0.8278, 'edcr': 0.6245, 'evi_joint_precision': 0.4336, 'evi_joint_recall': 0.4221, 'evi_f1_joint': 0.4278, 'format_compliance_rate': 0.999, 'field_compliance_rate': 0.7503, 'n_truncated': 244, 'inference_time_seconds': 8498.2}",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T08:42:35.347506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan019_1_7b_rsft_s43_r2_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T06:15:45.750Z\\\", \\\"updated_at\\\": \\\"2026-05-19T08:42:12.243Z\\\", \\\"hypothesis\\\": \\\"D076 eval for 1.7B RSFT s43_r2 (Method A: s42 SFT adapter + s42 CED k=1 data, RSFT seed=43). 预期 ign_f1 接近 s42 RSFT (0.5122)，验证 1.7B RSFT 跨 seed 稳健性。\\\", \\\"parent\\\": \\\"plan019_1_7b_rsft_s43_r2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 620725, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T08:39:41.408Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T08:39:48.337300+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.5109, \\\"ign_precision\\\": 0.5186, \\\"ign_recall\\\": 0.5035, \\\"f1\\\": 0.5271, \\\"precision\\\": 0.5444, \\\"recall\\\": 0.5109, \\\"evi_precision\\\": 0.8218, \\\"evi_recall\\\": 0.834, \\\"evi_f1\\\": 0.8278, \\\"edcr\\\": 0.6245, \\\"evi_joint_precision\\\": 0.4336, \\\"evi_joint_recall\\\": 0.4221, \\\"evi_f1_joint\\\": 0.4278, \\\"format_compliance_rate\\\": 0.999, \\\"field_compliance_rate\\\": 0.7503, \\\"n_truncated\\\": 244, \\\"inference_time_seconds\\\": 8498.2}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2417}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T08:42:35.347666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan019_1_7b_rsft_s43_r2_eval",
+              "field": "spec",
+              "value": "{'command': 'bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh', 'server': 'rtx5090-4x', 'gpu': 'cuda:3', 'pid': 620725, 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 998, 'model_name': 'Qwen3-1.7B', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/', 'eval_data': '/root/autodl-tmp/data/docred/dev.json', 'checkpoint_path': '/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/', 'log_path': '/root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval/metrics.json'}",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T08:42:35.347850+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan019_1_7b_rsft_s43_r2_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T06:15:45.750Z\\\", \\\"updated_at\\\": \\\"2026-05-19T08:42:15.757Z\\\", \\\"hypothesis\\\": \\\"D076 eval for 1.7B RSFT s43_r2 (Method A: s42 SFT adapter + s42 CED k=1 data, RSFT seed=43). 预期 ign_f1 接近 s42 RSFT (0.5122)，验证 1.7B RSFT 跨 seed 稳健性。\\\", \\\"parent\\\": \\\"plan019_1_7b_rsft_s43_r2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 620725, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval/metrics.json\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T08:39:41.408Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T08:39:48.337300+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.5109, \\\"ign_precision\\\": 0.5186, \\\"ign_recall\\\": 0.5035, \\\"f1\\\": 0.5271, \\\"precision\\\": 0.5444, \\\"recall\\\": 0.5109, \\\"evi_precision\\\": 0.8218, \\\"evi_recall\\\": 0.834, \\\"evi_f1\\\": 0.8278, \\\"edcr\\\": 0.6245, \\\"evi_joint_precision\\\": 0.4336, \\\"evi_joint_recall\\\": 0.4221, \\\"evi_f1_joint\\\": 0.4278, \\\"format_compliance_rate\\\": 0.999, \\\"field_compliance_rate\\\": 0.7503, \\\"n_truncated\\\": 244, \\\"inference_time_seconds\\\": 8498.2}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1054}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T08:42:35.348003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan019_1_7b_rsft_s43_r2_eval",
+              "field": "conclusion",
+              "value": "success",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T08:42:35.348173+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan019_1_7b_rsft_s43_r2_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T06:15:45.750Z\\\", \\\"updated_at\\\": \\\"2026-05-19T08:42:19.954Z\\\", \\\"hypothesis\\\": \\\"D076 eval for 1.7B RSFT s43_r2 (Method A: s42 SFT adapter + s42 CED k=1 data, RSFT seed=43). 预期 ign_f1 接近 s42 RSFT (0.5122)，验证 1.7B RSFT 跨 seed 稳健性。\\\", \\\"parent\\\": \\\"plan019_1_7b_rsft_s43_r2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 620725, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval/metrics.json\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T08:39:41.408Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T08:39:48.337300+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.5109, \\\"ign_precision\\\": 0.5186, \\\"ign_recall\\\": 0.5035, \\\"f1\\\": 0.5271, \\\"precision\\\": 0.5444, \\\"recall\\\": 0.5109, \\\"evi_precision\\\": 0.8218, \\\"evi_recall\\\": 0.834, \\\"evi_f1\\\": 0.8278, \\\"edcr\\\": 0.6245, \\\"evi_joint_precision\\\": 0.4336, \\\"evi_joint_recall\\\": 0.4221, \\\"evi_f1_joint\\\": 0.4278, \\\"format_compliance_rate\\\": 0.999, \\\"field_compliance_rate\\\": 0.7503, \\\"n_truncated\\\": 244, \\\"inference_time_seconds\\\": 8498.2}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1403}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T08:42:35.348344+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan019_1_7b_rsft_s43_r2_eval",
+              "field": "status",
+              "value": "DONE",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T08:42:35.348537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan019_1_7b_rsft_s43_r2_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T06:15:45.750Z\\\", \\\"updated_at\\\": \\\"2026-05-19T08:42:24.182Z\\\", \\\"hypothesis\\\": \\\"D076 eval for 1.7B RSFT s43_r2 (Method A: s42 SFT adapter + s42 CED k=1 data, RSFT seed=43). 预期 ign_f1 接近 s42 RSFT (0.5122)，验证 1.7B RSFT 跨 seed 稳健性。\\\", \\\"parent\\\": \\\"plan019_1_7b_rsft_s43_r2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 620725, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval/metrics.json\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T08:39:41.408Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T08:39:48.337300+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.5109, \\\"ign_precision\\\": 0.5186, \\\"ign_recall\\\": 0.5035, \\\"f1\\\": 0.5271, \\\"precision\\\": 0.5444, \\\"recall\\\": 0.5109, \\\"evi_precision\\\": 0.8218, \\\"evi_recall\\\": 0.834, \\\"evi_f1\\\": 0.8278, \\\"edcr\\\": 0.6245, \\\"evi_joint_precision\\\": 0.4336, \\\"evi_joint_recall\\\": 0.4221, \\\"evi_f1_joint\\\": 0.4278, \\\"format_compliance_rate\\\": 0.999, \\\"field_compliance_rate\\\": 0.7503, \\\"n_truncated\\\": 244, \\\"inference_time_seconds\\\": 8498.2}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T08:42:24.182Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2982}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T08:42:35.348766+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。结果摘要：\n\n## plan019_1_7b_rsft_s43_r2_eval 结果\n\n### 核心指标\n\n| 指标 | s43 (本次) | s42 (canonical) | SFT mean | Δ vs s42 | Δ vs SFT |\n|------|-----------|-----------------|----------|----------|----------|\n| **ign_f1** | **0.5109** | 0.5122 | 0.4464 | **-0.13pp** | **+6.45pp** |\n| ign_precision | 0.5186 | — | — | — | — |\n| ign_recall | 0.5035 | — | — | — | — |\n\n### Evidence 指标\n\n| 指标 | 值 |\n|------|-----|\n| evi_precision | 0.8218 |\n| evi_recall | 0.8340 |\n| evi_f1 | 0.8278 |\n| EDCR | 0.6245 |\n| evi_f1_joint | 0.4278 |\n\n### 格式 & 推理\n\n| 指标 | 值 |\n|------|-----|\n| format_compliance | 99.9% |\n| field_compliance | 75.0% |\n| n_truncated | 244/985 |\n| inference_time | 8498s (~2.4h) |\n\n### 结论\n\n**Success.** ign_f1 = 0.5109 与 s42 canonical (0.5122) 仅差 0.13pp，显著高于 SFT baseline (+6.45pp)。1.7B RSFT 跨 seed 稳健性得到验证。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_plan019_1_7b_rsft_s43_r2_eval_20260519T084109"
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-plan019-1-7b-rsft-s43-r2-eval.md"
+}

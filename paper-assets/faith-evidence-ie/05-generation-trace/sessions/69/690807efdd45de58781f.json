@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "690807efdd45de58781f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "writing related work draft",
+  "task_key": "worker_writing_related-work-draft_20260516T003933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_related-work-draft_20260516T003933_result.json",
+    "occurrence": 1,
+    "bytes": 1281,
+    "sha256": "9964a75e22724e284c75904f72aade5d33d1bd0c41c4eaef79827743ee9c6208"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work 初稿已写入 `artifacts/paper/sections/related_work.md`（961 词，在 800-1200 目标范围内）。\n\n结构如下：\n\n1. **Document-Level Relation Extraction** — 从 encoder 方法（DREEAM, EIDER, CDER, EAAGRE）到 LLM 方法（AutoRE, RelPrior, LMRC, DocKS-RAG, GLiDRE），指出无方法同时输出证据\n2. **Evidence-Based Information Extraction** — DocRE 中的 evidence grounding（DREEAM, Evidence-aware DocRE, GEGA, COREX, KnowRA），以及 faithfulness-performance trade-off 的广泛文献支撑（Mind Your Step, Performance-Explanation Trade-off, Correctness≠Faithfulness），引出 \"evidence generation tax\" 概念\n3. **Rejection Sampling and Reward-Based Fine-Tuning** — RAFT 框架、RSFT=PPO 理论联系、AdaSTaR/TrajFusion/RIFT 扩展、BoN 推理时选择及其 reward hacking 问题，连接到 FREIGE 的 CED-based RSFT + reranker 方案\n4. **RL for Structured Generation** — GRPO 及其变体（DAPO, Dr. GRPO, REINFORCE++）、IE 领域应用（R1-RE, R2GRPO, E-GRPO, ReasoningNER）、QLoRA artifacts 文献（QeRL, LoRA vs FFT, Q-BLoRA），支撑 decoupling 发现和 QLoRA-as-amplifier 论点\n\n所有引用均来自 `literature_map.yaml`，覆盖 32 个 category 中的 ~50 篇关键论文。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-related-work-draft.md"
+}

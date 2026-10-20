@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15fe15c68e1465abbc6a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code prep eval commands batch2",
+  "task_key": "worker_code_prep-eval-commands-batch2_20260515T232114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-eval-commands-batch2_20260515T232114_result.json",
+    "occurrence": 1,
+    "bytes": 959,
+    "sha256": "a731cda0b7da21ee06a0a034ac630d78ed8743f22335b3b9f0138d392d8c9180"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 命令已准备完毕，脚本已写入服务器，registry 已更新。\n\n## 总结\n\n| # | exp_id | checkpoint | 关键差异 |\n|---|--------|-----------|---------|\n| 1 | `eval_flat_nli_s44` | `rsft_output_flat_nli_s44/checkpoint-507` | `--sft_adapter` + `--seed 44` |\n| 2 | `eval_flat_nli_seed45` | `rsft_output_flat_nli_s45/checkpoint-507` | `--sft_adapter` + `--seed 45` |\n| 3 | `eval_plan_014_no_evidence` | `sft_no_evidence_output` | **无** `--sft_adapter`，加 `--no_evidence`，`--seed 42` |\n\n所有命令统一使用 `--batch_size 4 --no-quantize`，目标 GPU `cuda:0`。\n\n- 脚本路径：`/root/autodl-tmp/scripts/next_eval_commands.sh`\n- 3 个 registry 条目均已更新 `spec.command`，状态 PREPARING\n- eval 脚本原生支持 `--no_evidence`（inference.py:273），无需改代码\n- 注意：seed44 训练仍在 RUNNING，目录中尚无最终 adapter 文件，但 `checkpoint-507` 已存在可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-eval-commands-batch2.md"
+}

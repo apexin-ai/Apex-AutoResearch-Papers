@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11c1d7ed1e9f692c0862",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_14_1778952970.md",
+  "task_key": "loop_14_1778952970",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778952970.md",
+    "occurrence": 1,
+    "bytes": 5015,
+    "sha256": "1534f7b628635a7d092f06716a49992c2a7678fd9fbde5f01c1db31abc79b89a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T16:40:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（rtx5090-4x）。无其他服务器 GPU 分配\n- 服务器只有 rtx5090-4x（主）和 bjb2-12179（备），account=root\n- GRPO QLoRA 已确认 catastrophic decoupling（D084/D085），不要再跑 QLoRA GRPO——bf16 GRPO 才是有效路径\n- 1.7B evidence tax 必须用**非截断子集**（442 docs）分析，全集数据被截断污染（D081/D083）\n- C3 (CED vs flat-NLI) 已降级——统计不可区分 (D078 paired t-test)，不要再花 GPU 验证\n- RSFT generate 用 `freige.training.rsft_generate`（不是 freige.rsft.generate_candidates），参数名见 memory.md\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x, 4× RTX 5090 32GB\n- **工作目录**: `/root/autodl-tmp/freige`（代码）, `/root/autodl-tmp/` (模型/数据/输出)\n- **Python**: `/root/miniconda3/bin/python`, conda base env（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型路径**: `/root/autodl-tmp/models/Qwen/Qwen3-4B`, `Qwen3-8B`, `Qwen3-1.7B`, `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`\n- **SFT adapters**: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`, `sft_output_qwen3_8b_bf16`, `sft_output_llama_3_1_8b`, `rsft_output_ced_s43/checkpoint-510`\n- **数据**: `/root/autodl-tmp/data/docred`, `/root/autodl-tmp/data/re-docred`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **NLI 模型** (CED scoring): `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`\n- **活跃进程**:\n  - cuda:0 — plan_006_qwen3_1_7b_rsft_candidates (PID 349794)\n  - cuda:1 — plan_007_redocred_rsft_eval_r2 (PID 363317)\n  - cuda:2 — plan_016_llama_rsft_candidates_r3 (PID 360970)\n  - cuda:3 — plan_006_qwen3_8b_rsft_candidates (PID 349382)\n- **Cron 监控**: 3 个 active cron（plan_006_qwen3_8b_rsft_candidates, plan_006_qwen3_1_7b_rsft_candidates, plan_016_llama_rsft_candidates_r3）\n\n### 3. 📊 当前状态\n4 GPU 全满，正在跑 RSFT 阶段：\n\n| GPU | 实验 | 进度估算 | ETA |\n|-----|------|---------|-----|\n| 0 | 1.7B RSFT candidate gen | ~17% → 预计 May 17 08:30 | ~8h |\n| 1 | Re-DocRED RSFT eval r2 | 刚提交 | ~2-3h |\n| 2 | LLaMA-3.1-8B RSFT candidate gen r3 (start_idx=64 resume) | 刚恢复 | ~10h |\n| 3 | 8B RSFT candidate gen | ~14% → 预计 May 17 11:20 | ~11h |\n\n**上一轮完成的关键结果**:\n- D082: LLaMA-3.1-8B evidence tax = +0.68pp ≈ 0，跨家族验证成功\n- D083: 1.7B 非截断子集分析 evidence benefit +6.2pp（小模型正则化效应）\n- D080: Re-DocRED cross-dataset Ign-F1 下降 3.15pp 但 Evi-F1 保持\n- D084/D085: LLaMA GRPO QLoRA 复现 catastrophic decoupling → 已 kill\n- D078: paired t-test 最终确认 CED vs flat-NLI 不可区分\n\n**等待中**:\n- 3 个 cron 回调（RSFT candidate gen 完成时自动触发）\n- plan_007_redocred_rsft_eval_r2 完成回调\n\n### 4. 📋 待办（条件触发式）\n- plan_006_qwen3_1_7b_rsft_candidates 完成 → spawn Worker 做 CED scoring（命令在 memory.md） → RSFT train → eval\n- plan_006_qwen3_8b_rsft_candidates 完成 → spawn Worker 做 CED scoring → RSFT train → eval\n- plan_016_llama_rsft_candidates_r3 完成 → CED scoring → RSFT train → eval（验证 CED-RSFT 跨家族）\n- plan_007_redocred_rsft_eval_r2 完成 → 对比 SFT baseline Ign-F1=0.3659（D080）, 计算 RSFT gain on Re-DocRED\n- **所有 RSFT 管线完成后** → 汇总 scaling table（1.7B/4B/8B/LLaMA-8B × SFT/RSFT/GRPO），更新 paper claims\n- 若 Re-DocRED RSFT > SFT → cross-dataset transferability claim 成立\n- 若 1.7B RSFT gain 显著 → 强化 \"small model benefit\" narrative (D083)\n\n### 5. 🎯 战略上下文\n**项目核心**: FREIGE — LLM-based evidence-grounded DocRE 的系统性研究。目标 EMNLP 2026 Main (ARR July, DDL ~July 15-25)。\n\n**已确立的 claims**:\n- C1: Evidence generation 有代价，但代价随模型 scale 非线性变化（1.7B benefit → 4B cost → 8B neutral）\n- C2: QLoRA GRPO causes catastrophic decoupling（跨家族复现 ✓），bf16 GRPO mild\n- C3: 已降级（CED≈flat-NLI）\n- C4: EDCR 双层诊断（方法级 + per-relation）\n\n**当前阶段**: D077 scope 扩展的 RSFT 管线。4 GPU 全在跑 candidate generation，是最耗时的步骤。完成后的 scoring → train → eval 相对快（各几小时）。\n\n**易错点**:\n- 1.7B 分析必须用 442 docs 非截断子集，不能用全集（截断率 50.9% 严重混淆结果）\n- RSFT generate 的 CLI 参数名容易搞错（`--base_model` 不是 `--model_path`，`--num_generations` 不是 `--n_candidates`）\n- LLaMA RSFT candidate gen 用了 start_idx=64 resume（前两次 r1/r2 失败后从断点恢复）\n- CED scoring 用 DeBERTa NLI 模型，显存需求极小（~400MB），可以和大模型共享 GPU\n- Re-DocRED eval 用的是 4B RSFT adapter (`rsft_output_ced_s43/checkpoint-510`)，不是 8B\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778952970.md"
+}

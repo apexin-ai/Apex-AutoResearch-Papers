@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c44301ed7058f3a1d719",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check sft baseline status",
+  "task_key": "worker_check_sft_baseline_status_20260514T222705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_sft_baseline_status_20260514T222705_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "34e130c89f51a5f6f5d89c3340d99e5b7f66529c33b8ed7bbc2cb2c0ef33a3e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **进程状态**: 存活，PID 104979，运行 ~35 分钟\n- **当前进度**: **19/62 batches (31%)**\n- **实际速度**: ~96.3s/batch（比预估的 146s 快很多）\n- **GPU 3**: 9713 MiB 显存，66% 利用率\n- **剩余**: 43 batches × 96.3s ≈ 69 分钟\n- **预计完成时间**: ~UTC 07:37（约 1 小时 9 分钟后）\n\n注意：日志文件 `/root/autodl-tmp/logs/mvp2_eval_sft_baseline.log` 写入失败（目录不存在），但不影响推理执行，输出仍会写入 `sft_baseline_eval_results/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-sft-baseline-status.md"
+}

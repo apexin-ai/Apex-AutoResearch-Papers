@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e870ecda5a0076fa6dc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval 1 7b rsft test predictions",
+  "task_key": "worker_eval_1_7b_rsft_test_predictions_20260517T164956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_1_7b_rsft_test_predictions_20260517T164956_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "8c22542e0b28596c88f25d9c1095c2290d8a6e949688f60b7ed75728d8b100d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理已启动，正在处理 1000 个 test 文档（250 batches）。\n\n**汇报：**\n- PID: 466508\n- GPU 2 显存: 4805 MiB / 32607 MiB\n- 模型已加载（base → SFT merge → RSFT LoRA），正在 batch 推理\n- test set 共 1000 文档，batch_size=4，预计 ~2.5h 完成（参考 dev 985 文档耗时 9464s）\n- 输出目录: `/root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_test`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-1-7b-rsft-test-predictions.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7ea9c2a4a5d6f9525ad",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check dpo 1ep and bf16 source",
+  "task_key": "worker_ops_check-dpo-1ep-and-bf16-source_20260515T225719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-dpo-1ep-and-bf16-source_20260515T225719_result.json",
+    "occurrence": 1,
+    "bytes": 1360,
+    "sha256": "deaced36a024a7844869adf18165cdf81b6076a77dba1355dc13fd6b7251680b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### A: DPO 1ep eval 状态\n\n**正在运行，约 50% 完成。**\n\n- 第一次 (r1) OOM 失败——被提交到 GPU 0（PID 258508 占用 ~28GB），全部 batch 都 OOM。\n- 第二次 (r2) 在 cuda:3 上运行中：PID 262080，已运行 ~59 min，显存 14468 MiB。\n- 进度：**31/62 batches (50%)**，~113s/it，预计还需 ~58 min 完成。\n- 输出目录 `dpo_ced_1ep_fixed/` 已创建但为空，尚无结果。\n- cuda:3 上还跑着另一个 eval（PID 261622, rsft_s44, 15282 MiB），两个进程共享该卡。\n\n### B: rel_f1=0.4549 来源\n\n**0.4549 来自 checkpoint-100，不是 checkpoint-70。**\n\n| 项目 | ckpt-100 (0.4549) | ckpt-70 (0.4341) |\n|------|-------------------|-------------------|\n| 路径 | `grpo_ced_g8_bf16/checkpoint-100` | `grpo_ced_g8_bf16/checkpoint-70` |\n| F1 | 0.4549 | 0.4341 |\n| Evi-F1 | 0.8086 | 0.8099 |\n| EDCR | 0.6318 | 0.6685 |\n| eval 配置 | batch=16, seed=42, no quantize, full dev (985 docs) | 完全相同 |\n\n**差异原因：纯粹是 checkpoint 不同。** eval 条件完全一致（同 batch_size、同 seed、同数据集全量、无量化）。plan_009 报告的 0.4549 用的是 step-100，plan_011 用的是 step-70。\n\n训练轨迹：step30=0.434 → step50=0.428 → step70=0.434 → step80=0.446 → step100=0.455，step 70 之后持续爬升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-dpo-1ep-and-bf16-source.md"
+}

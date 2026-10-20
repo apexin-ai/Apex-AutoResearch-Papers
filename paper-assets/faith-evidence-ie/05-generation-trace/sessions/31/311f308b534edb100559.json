@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "311f308b534edb100559",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose cuda2 cuda3 progress",
+  "task_key": "worker_diagnose_cuda2-cuda3-progress_20260523T091211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cuda2-cuda3-progress_20260523T091211_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "febd964e0dd32bdae9ece70b59b4ca19171dcd1e5b0c09ee9943f4b9eb394b5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都在运行中：\n\n| | cuda:2 — DPO 3ep | cuda:3 — RSFT CED s44 |\n|---|---|---|\n| PID | 234741 | 238227 |\n| 进度 | **443/561 (79%)** | **451/510 (88%)** |\n| 当前 epoch | ~2.14 | — |\n| 最新 loss | 0.3552 | — |\n| 速度 | ~11s/step | ~4.2s/step |\n| 预计剩余 | **~22 min** | **~4 min** |\n| 显存 | 80383/97887 MiB (82%) | 34531/97887 MiB (35%) |\n| GPU 利用率 | 99% | 95% |\n\nDPO 训练趋势正常：loss 从 epoch 1 的 ~0.46 降到 epoch 2 的 ~0.35，rewards/margins 从 ~1.2 扩大到 ~2.2，rewards/accuracies 从 ~0.78 升至 ~0.86。\n\nRSFT CED s44 预计 ~4 分钟内完成。\n\n**其他 GPU：** GPU 0 (21.3GB, 95%), GPU 1 (32.5GB, 92%) 也在使用中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cuda2-cuda3-progress.md"
+}

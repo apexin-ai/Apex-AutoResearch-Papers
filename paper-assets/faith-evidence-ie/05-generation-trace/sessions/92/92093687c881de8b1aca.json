@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92093687c881de8b1aca",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh fix f1 threshold",
+  "task_key": "worker_ssh_fix-f1-threshold_20260515T043430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-f1-threshold_20260515T043430_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "e6eb300d2645a708b6906831e1b2a4c0d95692feaaed6f6bdbdd9934f23ba353"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改验证完成：\n\n**rsft_report.json 包含:**\n- `f1_filter_stats`: `{\"gens_dropped_by_f1\": 0, \"docs_dropped_by_f1\": 0}`（这批数据 f1 最低 0.19，无需过滤）\n- `truncation_analysis`: `{\"truncated_count\": 8, \"non_truncated_count\": 42, \"truncated_mean_f1\": 0.5308, \"non_truncated_mean_f1\": 0.5985, \"f1_gap\": 0.0677, \"gap_significant\": false}`\n- `args.f1_threshold`: 0.1\n\n**rsft_train.jsonl 中所有样本 f1 ≥ 0.67**，无 f1=0.0 样本。\n\n**已完成的修改汇总:**\n1. `--f1_threshold` 默认值 0.0 → 0.1\n2. `filter_records` 分离 f1 过滤步骤，独立追踪 `gens_dropped_by_f1` 和 `docs_dropped_by_f1`，返回 `(selected, filter_stats)` 元组\n3. `score_all_records` 传递 `truncated` 字段\n4. `main()` 中 scoring 后、filtering 前添加截断-F1 相关性分析\n5. `rsft_report.json` 写入 `f1_filter_stats` 和 `truncation_analysis`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-f1-threshold.md"
+}

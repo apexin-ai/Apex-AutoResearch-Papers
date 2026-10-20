@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53b035bc89081a4295b8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh check reeval progress",
+  "task_key": "worker_ssh_check_reeval_progress_20260516T052109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_reeval_progress_20260516T052109_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "2b3a60198c6c5f5ab192b7817395e28795964be52d5659399f3a4c80d5bec417"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Re-eval 进度汇总\n\n| 实验 | PID | GPU | 进度 (batch) | 进度 (docs≈) | 状态 | 预计剩余 |\n|------|-----|-----|-------------|-------------|------|---------|\n| reeval_flat_nli_s43_r2 | 291003 | cuda:3 | 191/247 | ~764/985 (77%) | 运行中 | ~40 min |\n| reeval_ced_s44 | 297190 | cuda:0 | 76/247 | ~304/985 (31%) | 运行中 | ~2h20m |\n| reeval_ced_s42 | 298018 | cuda:2 | 84/247 | ~336/985 (34%) | 运行中 | ~1h50m |\n| reeval_flat_nli_s42 | 296732 | cuda:0 | 76/247 | ~304/985 (31%) | 运行中 | ~2h20m |\n\n4 个进程全部存活，无 metrics.json 输出（均未完成）。\n\n**GPU 显存:**\n| GPU | 已用 / 总量 | 利用率 |\n|-----|------------|--------|\n| cuda:0 | 21.7GB / 32GB | 83% (跑 2 个 eval) |\n| cuda:1 | 0 MB / 32GB | 0% |\n| cuda:2 | 10.9GB / 32GB | 49% |\n| cuda:3 | 11.1GB / 32GB | 49% |\n\n**cuda:1 空闲可用**，显存占用 0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-reeval-progress.md"
+}

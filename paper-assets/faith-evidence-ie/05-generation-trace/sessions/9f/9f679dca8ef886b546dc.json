@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9f679dca8ef886b546dc",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "analysis test table compilation",
+  "task_key": "worker_analysis_test-table-compilation_20260522T014235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_test-table-compilation_20260522T014235.log",
+    "occurrence": 1,
+    "bytes": 701673,
+    "sha256": "f6ee4a2544b61985ee521238f7adcc27efbfb0b5d50bfa176e2bf4f6ea0f3e99"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 13,
+      "tool_result": 13,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 43,
+      "chunks": [
+        {
+          "path": "9f679dca8ef886b546dc-part-0001.json",
+          "message_count": 18
+        },
+        {
+          "path": "9f679dca8ef886b546dc-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-test-table-compilation.md"
+}

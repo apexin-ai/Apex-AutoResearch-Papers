@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c79db9f0d42614dc885b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code redraw fig spectrum",
+  "task_key": "worker_code_redraw-fig-spectrum_20260523T140419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_redraw-fig-spectrum_20260523T140419_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "bef8e8a2933d8bf183dc325901641496db366c595490bf7d5e06730191ef170c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fig_spectrum 重绘完成。所有标签清晰无重叠，数据点正确。\n\n输出文件已保存到：\n- `artifacts/fig_spectrum.pdf` / `.png`\n- `figures/paper/fig_spectrum.pdf` / `.png`\n- 服务器 `/root/autodl-tmp/freige/artifacts/fig_spectrum.pdf` / `.png`\n\n变更要点：\n- 坐标轴交换：x=Rel-F1, y=Evi-F1 (TP)\n- DPO 1ep (33.38, 80.90) 和 DPO 3ep (31.45, 84.84) 均为实心标记，无 \"†\"\n- \"gradual decay\" 箭头从 DPO 1ep 指向 DPO 3ep（Rel-F1 单调下降）\n- RSFT CED 改为 3-seed mean 单点\n- GRPO bf16 改为 step 100 单点（移除 trajectory）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-redraw-fig-spectrum.md"
+}

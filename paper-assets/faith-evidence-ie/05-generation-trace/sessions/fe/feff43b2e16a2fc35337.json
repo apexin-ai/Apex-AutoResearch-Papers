@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "feff43b2e16a2fc35337",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code prepare plan 002 003",
+  "task_key": "worker_code_prepare_plan_002_003_20260515T195611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_plan_002_003_20260515T195611_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "3c08206b249da357a1b86a2d5752f9c06adfcda3547f8ea0d2cf4d4966199b3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### plan_002: `scripts/eval_test_set.sh`\n- 使用 RSFT best config: **rsft_s43** (dev rel_f1=0.4683, 三 seed 中最佳)\n- 调用 `freige.eval.test_inference`，生成 `predictions.json` + `codalab_submission.json`\n- bf16 推理（`--no-quantize`），batch_size=16, max_new_tokens=1024\n- 输出到 `/root/autodl-tmp/eval_results/test_set/`\n\n### plan_003: `scripts/edcr_diagnostic.sh`\n- 调用已有 `freige.eval.cross_method_table`，覆盖 11 种方法配置\n- Dry-run 验证通过，当前结果：\n\n| Method | rel_f1 | evi_f1 | EDCR | ΔEDCR |\n|--------|--------|--------|------|-------|\n| SFT baseline (quant) | 0.4057 | 0.7979 | 0.7118 | +0.00p |\n| CED-reranker (N=8) | 0.4864 | 0.8188 | 0.6156 | -9.62p |\n| RSFT-CED 3-seed mean | 0.4596±0.013 | 0.8144±0.005 | 0.6434±0.011 | -6.83p |\n| GRPO bf16 (ckpt100) | 0.4549 | 0.8086 | 0.6318 | -8.00p |\n| DPO-CED | MISSING | — | — | — |\n\nDPO 的 eval 结果尚未生成（`dpo_ced/metrics.json` 不存在），脚本会自动跳过并打印 MISSING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-plan-002-003.md"
+}

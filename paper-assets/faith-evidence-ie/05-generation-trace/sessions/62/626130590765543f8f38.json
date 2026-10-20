@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "626130590765543f8f38",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code rsft training script",
+  "task_key": "worker_code_rsft-training-script_20260514T231604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rsft-training-script_20260514T231604_result.json",
+    "occurrence": 1,
+    "bytes": 1222,
+    "sha256": "0959b27261a05784787a8c0303b2d824a7764bb1413078e829220ec4fc30e478"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`rsft_trainer.py` 已完成，全链路 dry-run 验证通过。\n\n**脚本位置**:\n- 本地: `artifacts/freige/training/rsft_trainer.py`\n- 服务器: `/root/autodl-tmp/freige/training/rsft_trainer.py`\n\n**关键设计**:\n- 流程: base model (bf16) → merge SFT adapter → 新 LoRA (r=64, alpha=128) → SFT on RSFT 数据\n- 数据: 读 JSONL，每行 `input`/`output` 经 chat template 格式化，超 max_length 的跳过（避免截断不完整 JSON）\n- 加权采样: `--weighted_sampling` 启用 `WeightedRandomSampler`，按 CED score 权重\n- 与 sft_trainer.py 复用: import `SYSTEM_PROMPT`，chat template 配置一致（`enable_thinking=False`）\n\n**dry-run 结果** (3 samples, 1 epoch, GPU 2):\n- train_loss: 0.309, mean_token_accuracy: 91.9%\n- adapter_config.json 输出正确（LoRA r=64, alpha=128, 7 target modules）\n- checkpoint 保存正常\n\n**注意事项**:\n- `--quantize` (4-bit) + merge_and_unload 在 RTX 5090 上有 CUBLAS 错误，建议不用 quantize（bf16 Qwen3-4B 仅 ~8GB）\n- 运行目录需要是 `/root/autodl-tmp/`（`freige` 不是 pip 安装的包）\n- 当前 4 张 GPU 各有 ~10-13GB 被其他进程占用，实际训练时需确认 GPU 可用性"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rsft-training-script.md"
+}

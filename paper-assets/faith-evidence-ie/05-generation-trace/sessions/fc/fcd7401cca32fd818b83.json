@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcd7401cca32fd818b83",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval ced kl001 r4 multi checkpoint",
+  "task_key": "worker_eval_ced-kl001-r4-multi-checkpoint_20260514T174126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ced-kl001-r4-multi-checkpoint_20260514T174126_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "1c0b79fceb74bd2f792d1709e760479f3fcb322319edf1a4fe62d1068b590585"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已成功启动并在运行中：\n\n- **PID**: 78850 (GPU进程 78857)\n- **GPU**: cuda:2，已占用 6924 MiB\n- **当前状态**: 正在评估 checkpoint-10，模型已加载，inference 进行中 (0/62 batches)\n\n**提交的 checkpoint 列表**: 10, 20, 30, 40, 60, 70, 80（共 7 个，排除了 cuda:1 正在跑的 checkpoint-50）\n\n**预计耗时**: 每个 checkpoint ~1.5-2h，7 个 checkpoint 共 ~10.5-14h\n\n**日志位置**: `~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_multi.log`\n\n**待对比 baseline** (eval 完成后):\n| 指标 | SFT baseline | MVP-2 pass 条件 |\n|------|-------------|----------------|\n| rel_f1 | 0.4057 | ≥ 0.3557 (不退化 -5pp) |\n| evi_f1 | 0.7979 | ≥ 0.8179 (+2pp) |\n| edcr | 0.7118 | - |\n\n训练还在跑（~step 80/100），完成后 checkpoint-90/100 需要再单独跑 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ced-kl001-r4-multi-checkpoint.md"
+}

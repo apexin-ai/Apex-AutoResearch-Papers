@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70fd7055dce7982fd25b",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_5_1778806564.md",
+  "task_key": "loop_5_1778806564",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778806564.md",
+    "occurrence": 1,
+    "bytes": 5863,
+    "sha256": "83635449fd92e5a1aee2c7dc5a7b74409dd9fa0c7aace5cd981b24cfed8efae1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-15T00:56:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: 只能用 rtx5090-4x 上的 cuda:0/1/2/3（`get_project_status` 的 `execution.gpu_ids`）。不要在未分配 GPU 上启动实验\n- **运行目录必须是 `/root/autodl-tmp/`**，不能 cd 到 `/root/autodl-tmp/freige/` — freige 不是 pip 安装的包，cd 到子目录会导致 Python import 找到内层空 `freige/freige/` 包（多次踩坑）\n- **RSFT 训练禁止 `--quantize`**（4-bit + `merge_and_unload` 在 RTX 5090 上触发 CUBLAS 错误）。bf16 Qwen3-4B 仅 ~8GB 无需量化\n- **GRPO+QLoRA 方向已判死 (D031)**，不要再启动新 GRPO 实验。仅跑完遗留 eval 收数据\n- **rsft_score_filter.py → rsft_trainer.py 数据格式不兼容**：filter 输出 JSON array + messages/scores 字段，trainer 期望 JSONL + input/output/ced_score 字段。运行前必须修复\n- **rsft_generate.py `--quantize` 默认 True** — 必须传 `--no-quantize` 或先改代码 default\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB，同一台机器有两个 SSH endpoint: `rtx5090-4x` 和 `gpu-5090-4x-1`）\n- **工作目录**: `/root/autodl-tmp/`（AutoDL，根分区仅 30GB）\n- **Python**: `/root/miniconda3/bin/python`（conda base，不是 venv）。激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`\n- **SFT adapter**: `/root/autodl-tmp/sft_output` (LoRA r=64, α=128, QLoRA 4-bit)\n- **数据**: `/root/autodl-tmp/data/docred` (train=3027, dev=985)\n- **NLI 模型**: `cross-encoder/nli-deberta-v3-base`（HF cache `/root/autodl-tmp/.hf_cache`，可能需先 `source /etc/network_turbo` 下载）\n- **NLI cache**: `/root/autodl-tmp/nli_cache/`\n- **GRPO ckpts**: `/root/autodl-tmp/grpo_ced_kl001/`（100 steps, lr=5e-5）、`/root/autodl-tmp/grpo_ced_lr5e6/`（200 steps, lr=5e-6）\n- **Eval 结果**: `/root/autodl-tmp/eval_results/`\n- **RSFT 生成**: `/root/autodl-tmp/rsft_generations/`（写入中）\n- **W&B**: 有 wandb 配置，run names 如 `grpo-s3-ced-lr5e6-r1`\n- **活跃进程**（截至 handoff 写入时，需验证存活性）:\n  - cuda:0: mvp2_grpo_ced_lr5e6_r1 训练 (PID 90080, tmux=mvp2_grpo_ced_lr5e6_r1, 200 步, ~step 113-150 估计)\n  - cuda:1: mvp2_rsft_generate (PID 122144, tmux=mvp2_rsft_generate, 3027×8 个生成)\n  - cuda:2: mvp2_eval_lr5e6_r1_ckpt80 (PID 111731)\n  - cuda:3: mvp2_eval_lr5e6_r1_ckpt100 (PID 117635)\n- **Cron**: 有 120s 轮询监控上述进程，需 `reconcile_crons` 确认\n\n### 3. 📊 当前状态\n**我刚完成 D031 pivot 全流程**: 确认 GRPO+QLoRA 全线失败，获 Director 批准 pivot 到 RSFT (Rejection Sampling Fine-Tuning)，代码就绪性验证完成（3 个 RSFT 文件: generate/score_filter/trainer），diversity probe 通过 (7-8/8 unique)，RSFT generation 已启动。\n\n**Registry 共 43 实验**: 成功 9 / 负向 9 / 失败 10 / killed 若干。\n\n**RUNNING（4 个，需验证存活）**:\n| exp_id | GPU | 摘要 | 预计完成 |\n|--------|-----|------|----------|\n| mvp2_grpo_ced_lr5e6_r1 | cuda:0 | 遗留 GRPO 训练 200 步（收轨迹数据） | 数小时 |\n| mvp2_rsft_generate | cuda:1 | **RSFT 关键路径**: SFT 模型 N=8 生成 3027 个训练样本 | 数小时 |\n| mvp2_eval_lr5e6_r1_ckpt80 | cuda:2 | lr5e6 ckpt-80 eval（收轨迹数据点） | ~100min |\n| mvp2_eval_lr5e6_r1_ckpt100 | cuda:3 | lr5e6 ckpt-100 eval（拐点验证，判定线 rel_f1>0.15） | ~100min |\n\n**等待中**:\n- 4 个 cron 回调（上述 4 个 RUNNING 实验完成时触发）\n- 无 Director 待决策项（D031 pivot 已批准）\n\n### 4. 📋 待办（条件触发式）\n- **mvp2_rsft_generate 完成** → 修复 score_filter/trainer 数据格式不兼容 → 运行 rsft_score_filter.py (CED 打分筛选) → 运行 rsft_trainer.py (RSFT 训练)。这是 **MVP-2 pivot 关键路径**\n- **mvp2_eval_lr5e6_r1_ckpt100 完成** → 如 rel_f1>0.15 说明 step-100 拐点真实（但 GRPO 方向仍判死，仅用于 paper negative narrative）；如 <0.05 确认 format hacking\n- **mvp2_eval_lr5e6_r1_ckpt80 完成** → 记录轨迹数据点，更新 registry\n- **mvp2_grpo_ced_lr5e6_r1 训练完成 (200步)** → 跑 ckpt-120/140/160/180/200 eval 收完整轨迹（可选，取决于 GPU 释放优先级）\n- **所有遗留 eval 完成** → 4 张 GPU 全部转投 RSFT pipeline\n- **RSFT 训练完成** → eval 对比 SFT baseline，MVP-2 pass criteria: evi_f1 ≥ 0.7979 + 2pp = 0.8179 且 rel_f1 ≥ 0.4057 - 5pp = 0.3557\n\n### 5. 🎯 战略上下文\n- **核心结论**: CED reward signal 有效（MVP-1 验证 margin=0.48, accuracy=81.5%），但 GRPO+QLoRA 在线 RL 会导致 catastrophic forgetting（6+ 次训练 × 2 种 lr 均失败）。问题不在 reward 设计，在训练方法论\n- **D031 pivot 方向**: RSFT = SFT 模型生成多候选 → CED 打分筛选 → 在高质量样本上 SFT。完全避免在线 RL 的梯度/KL 问题\n- **SFT baseline 已锁定**: rel_f1=0.4057, evi_f1=0.7979, edcr=0.7118（r2/r3/baseline 三次完全一致）\n- **GRPO best result**: ced_kl001_r4 step-90, eval rel_f1=0.211（仅 SFT 的 52%）。lr=5e-6 更差 (ckpt-20~60 全 <0.01)\n- **易踩坑**:\n  1. 不要把不同 eval 路径的 SFT baseline 数字混用（r2/r3 用了统一 eval 脚本验证一致性）\n  2. `submit_training_job` 命令必须自带完整环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），且用 `bash -c \"...\"` 包裹\n  3. AutoDL 网络操作前必须 `source /etc/network_turbo` + 设 `HF_HUB_DISABLE_XET=1` + SSL 证书环境变量\n  4. RSFT score_filter 和 trainer 之间的数据格式问题是 **已知未修复 bug**，不要直接串起来跑\n  5. 43 个实验 registry 已很大（1.2k+ 行），很多 PREPARING/killed 条目是历史残留\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778806564.md"
+}

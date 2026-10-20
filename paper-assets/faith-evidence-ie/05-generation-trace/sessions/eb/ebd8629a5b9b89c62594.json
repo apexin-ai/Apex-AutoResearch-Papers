@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebd8629a5b9b89c62594",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze test eval 8b sft s42",
+  "task_key": "worker_analyze_test_eval_8b_sft_s42_20260521T230350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_test_eval_8b_sft_s42_20260521T230350_result.json",
+    "occurrence": 1,
+    "bytes": 681,
+    "sha256": "7386cd000bfb5199096e0e6c33aa75b2a782c4c371073b17aa603dda8cfc54ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已清除或未以该 ID 注册），无需处理。\n\n## 诊断结果\n\n**状态：成功** — 500/500 文档推理完成，耗时 4h29m。\n\n### Metrics\n\n| 指标 | 值 |\n|------|-----|\n| F1 / Ign-F1 | 0.3106 |\n| Evi-F1 (DREEAM) | 0.2279 |\n| Evi-F1 (TP) | 0.5949 |\n| EDCR | 0.8432 |\n| Precision | 0.4543 |\n| Recall | 0.2359 |\n| Format OK | 498/500 (99.6%) |\n| Truncated | 410/500 |\n\n### GPU 状态\n\n| GPU | 显存占用 |\n|-----|---------|\n| cuda:0 | 6,071 MiB |\n| cuda:1 | 32,503 MiB |\n| **cuda:2** | **0 MiB** ✓ 已释放 |\n| cuda:3 | 18,879 MiB |\n\nRegistry 已更新为 DONE/success。cuda:2 已完全释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-test-eval-8b-sft-s42.md"
+}

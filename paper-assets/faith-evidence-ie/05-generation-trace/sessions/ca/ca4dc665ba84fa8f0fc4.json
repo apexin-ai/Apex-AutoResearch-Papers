@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "ca4dc665ba84fa8f0fc4",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "analyze plan017 14b sft no evidence eval r2",
+  "task_key": "worker_analyze_plan017_14b_sft_no_evidence_eval_r2_20260519T125654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_plan017_14b_sft_no_evidence_eval_r2_20260519T125654.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/analyze-plan017-14b-sft-no-evidence-eval-r2.md"
+}

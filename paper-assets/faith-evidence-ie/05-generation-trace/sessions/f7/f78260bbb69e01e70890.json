@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f78260bbb69e01e70890",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit 14b sft and fix d112 scripts",
+  "task_key": "worker_submit_14b_sft_and_fix_d112_scripts_20260519T040209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_14b_sft_and_fix_d112_scripts_20260519T040209_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "99ed3b6c39ff3709e1d85323a65823bcdbfb84aee5862cb68e8ceb4036e4e601"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成。\n\n### 任务 A：D112 step3/step4 脚本修复 ✅\n- `step3_k1_filter_and_train.sh` 和 `step4_eval.sh` 均已在 `export HF_HOME=` 后加入 `HF_HUB_OFFLINE=1` 和 `TRANSFORMERS_OFFLINE=1`\n\n### 任务 B：14B SFT 训练提交 ✅\n- **exp_id**: `plan017_14b_sft`\n- **GPU**: cuda:1 (14.6GB) + cuda:2 (11.9GB)，DeepSpeed ZeRO-3 + CPU offload\n- **PID**: 611578, 611579\n- **tmux**: `plan017_14b_sft`\n- **总步数**: 144 步（3 epoch）\n- **修复的问题**:\n  1. 从脚本中移除了硬编码的 `CUDA_VISIBLE_DEVICES=2,3`\n  2. 创建了 `deepspeed_zero3_14b.json`（14B 专用配置）\n  3. 在 sft_trainer.py 中添加 `unset_hf_deepspeed_config()` 解决 ZeRO-3 init 与 \"auto\" config 值的冲突（模型先加载到 CPU，Trainer 再处理 ZeRO-3 分区）\n\n**注意**: 脚本中 `max_length=4096`（任务说明提到 2048），保持原值未修改。如需调整请告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-14b-sft-and-fix-d112-scripts.md"
+}

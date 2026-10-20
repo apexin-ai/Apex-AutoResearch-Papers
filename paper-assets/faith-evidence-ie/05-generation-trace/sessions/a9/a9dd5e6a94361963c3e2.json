@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9dd5e6a94361963c3e2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 006 qwen3 1 7b no evidence eval v3",
+  "task_key": "worker_analysis_plan_006_qwen3_1_7b_no_evidence_eval_v3_20260516T135316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_006_qwen3_1_7b_no_evidence_eval_v3_20260516T135316_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "4e753c6ae070539a9fb9d4ed9b6e86eb3e14e9ff7c4aa26bf7e380c1cc51cb8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 指标 | 值 |\n|------|-----|\n| **ign_f1** | **0.3982** |\n| f1 | 0.4103 |\n| precision / recall | 0.4464 / 0.3796 |\n| evi_f1 | 0.0（符合预期） |\n| edcr | 0.0 |\n| format_ok_rate | 100% (985/985) |\n| **n_truncated** | **501/985 (50.9%)** |\n| inference_time | 7465s (~2h4m) |\n| W&B | 无 |\n\n### 关键发现\n\n**截断仍然严重**：v1 → v3 仅从 531 降到 501，bash-c wrapping 修复效果微弱。根本原因是 max_new_tokens=1024 对 1.7B 不够用。\n\n**Evidence tax 假设不成立（但有 confound）**：\n- 1.7B no-evidence: ign_f1 = 0.3982\n- 1.7B with-evidence: ign_f1 = 0.4786\n- 差值 = **-0.0804**（no-evidence 更差）\n\n与 4B 上的结论相反。但 50.9% 截断率严重污染结果——截断直接导致预测丢失压低 recall（0.3776），真实性能可能更高。结论标记为 `negative_but_confounded`，需增大 max_new_tokens 重跑才能定论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-006-qwen3-1-7b-no-evidence-eval-v3.md"
+}

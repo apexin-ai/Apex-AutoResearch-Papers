@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffbdca5ec0b5e0b946dc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu progress check",
+  "task_key": "worker_ops_gpu_progress_check_20260519T181651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_progress_check_20260519T181651_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "d42703e65a27705b0ebc6aae0e78bbfc81b82104f77fa4ec07c5f532a4a121b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n| GPU | 显存 | 利用率 | 状态 |\n|-----|------|--------|------|\n| cuda:0 | 16641/32607 MiB (51%) | 28% | 占用 (14b generate) |\n| cuda:1 | 11639/32607 MiB (36%) | 42% | 占用 (4b eval) |\n| cuda:2 | 18839/32607 MiB (58%) | 36% | 占用 (14b generate) |\n| cuda:3 | 6773/32607 MiB (21%) | 42% | 占用 (1.7b eval) |\n\n## 实验进度\n\n- **plan017_14b_rsft_generate**: ALIVE | 43min | 115/3027 docs (3.8%) | ~23s/it | ETA ~18.5h | 输出 9.6M (generations.jsonl + progress.json)\n  - Monitor@100: format_ok=100%, truncation=6.7%, diversity=7.2/8 ✓\n\n- **d112_rsft_no_evidence_eval_r3**: ALIVE | 2h30m | 240/247 batches (97%) | ~40s/it | **ETA ~5min，即将完成**\n\n- **plan019_1_7b_rsft_no_evidence_eval_2048**: ALIVE | 3h28m | 162/247 batches (66%) | ~75s/it | ETA ~1h46m\n\n## 空闲 GPU\n无。d112 eval 约 5 分钟后完成，届时 cuda:1 将释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-progress-check.md"
+}

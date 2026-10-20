@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3c9d57315e906c86b99",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor test eval progress",
+  "task_key": "worker_monitor_test_eval_progress_20260522T000307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_test_eval_progress_20260522T000307_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "769a2f68110143e2eccd2e66dd01ab2271746de1080dae0e02c2a9d537ca713a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| exp_id | 进度 | 预估剩余 | 状态 |\n|--------|------|----------|------|\n| test_eval_14b_sft_s42 | 485/500 | ~10 min | 正常，即将完成 |\n| test_eval_1_7b_sft_s42 | 178/500 | ~2h10m | 正常，~24s/it |\n| test_eval_14b_sft_s42_no_evi | 75/500 | ~5h | 正常，~42s/it |\n\n14B SFT 马上跑完，完成后 cuda:1 会释放。1.7B 预计下午3点左右完成，14B no-evi 预计晚上1点左右。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-test-eval-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e48174d5d0ea37101244",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan 011 grpo g8",
+  "task_key": "worker_code_plan_011_grpo_g8_20260515T135227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_011_grpo_g8_20260515T135227_result.json",
+    "occurrence": 1,
+    "bytes": 546,
+    "sha256": "baae58b59b2d76f62d9e9760d71a684bbf3d48315c2547853e86cbe5c48628f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `plan_011_grpo_g8_bf16` 已提交并正在运行。\n\n**总结：**\n- 服务器：rtx5090-4x, GPU cuda:3 (32GB RTX 5090)\n- 修复了 TRL 的 `generation_batch_size` 约束（设为 `num_generations`）\n- Dry-run 验证通过：~32s/step，GPU 峰值 25.9GB/32GB，无 OOM\n- 训练已通过 tmux 提交，100 steps 预估 ~53 分钟\n- 输出目录：`/root/autodl-tmp/grpo_ced_g8_bf16`\n- 日志：`/root/runs/faith-evidence-ie/plan_011_grpo_g8_bf16.log`\n- Registry exp_id: `plan_011_grpo_g8_bf16`, plan_id: `plan_011`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-011-grpo-g8.md"
+}

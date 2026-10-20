@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97da3e516c16d248a744",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops submit dpo 1ep fixed cuda3",
+  "task_key": "worker_ops_submit-dpo-1ep-fixed-cuda3_20260515T215903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-dpo-1ep-fixed-cuda3_20260515T215903_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "25c065a19cc006d6a654dd779236861262a8a949ac45b450fbc43a105e09d384"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:3 显存占用 27400 MiB，远超 2GB 阈值。停止，不提交。**\n\n当前 GPU 状态：\n| GPU | 显存占用 |\n|-----|---------|\n| 0 | 14597 MiB |\n| 1 | 15813 MiB |\n| 2 | 15167 MiB |\n| 3 | 27400 MiB |\n\n所有 4 张卡都在高负载，无空闲 GPU 可用。需要等当前任务完成后再提交 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-dpo-1ep-fixed-cuda3.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "270f627ad5a3f802e13d",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ops plan 012 dpo ced",
+  "task_key": "worker_ops_plan_012_dpo_ced_20260515T155054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_012_dpo_ced_20260515T155054.log",
+    "occurrence": 1,
+    "bytes": 600073,
+    "sha256": "ebc393534cb87fe2fda25cee04b6bc8b63b77aa29fd963ce21bf19b9414e0d16"
+  },
+  "statistics": {
+    "messages": 209,
+    "user_turns": 0,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 72,
+      "tool_result": 72,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 209,
+      "chunks": [
+        {
+          "path": "270f627ad5a3f802e13d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "270f627ad5a3f802e13d-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-plan-012-dpo-ced.md"
+}

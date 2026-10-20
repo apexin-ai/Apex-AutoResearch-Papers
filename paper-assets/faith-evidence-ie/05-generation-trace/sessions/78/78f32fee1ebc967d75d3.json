@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78f32fee1ebc967d75d3",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_8_1778867702.md",
+  "task_key": "loop_8_1778867702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778867702.md",
+    "occurrence": 1,
+    "bytes": 6172,
+    "sha256": "bdde44e223f1c1004d4d3361feef85c56cac8711912c8dba2b460e8c1da2414c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T17:54:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0,1,2,3 on rtx5090-4x，无其他服务器/GPU 可用\n- RTX 5090 上 `--quantize` (4-bit) + `merge_and_unload` 有 CUBLAS 错误——所有训练/推理必须 `--no-quantize`\n- inference.py 必须传完整 model stack：`--base_model` + `--sft_adapter` + `--model_path`，缺任一导致结果不可用（maxtok1536 事故教训）\n- SFT-no-evidence 推理加 `--no_evidence` flag（输出格式不含 evidence sentences）\n- 运行目录必须 `cd /root/autodl-tmp` 再执行 `python -m freige.*`，不能 cd 到 freige/ 子目录（空包 import 问题）\n- plan_015 (bf16 G=4 GRPO) 已被 D052 确认不需要——plan_011 vs mvp2_grpo_ced_kl001_r4 已是 clean quantization ablation，不要重新启动\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），account=root\n- **工作目录**: `/root/autodl-tmp/freige`（代码），`/root/autodl-tmp`（运行根目录）\n- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: base=`/root/autodl-tmp/models/Qwen3-4B`，SFT adapter=`/root/autodl-tmp/sft_output`\n- **RSFT checkpoints**: CED=`/root/autodl-tmp/rsft_output/`(r1), `/root/autodl-tmp/rsft_output_s43/`(s43), `/root/autodl-tmp/rsft_output_s44/`(s44)；flat-NLI=`/root/autodl-tmp/rsft_output_flat_nli/`\n- **SFT-no-evidence**: `/root/autodl-tmp/sft_no_evidence_output`\n- **DPO**: `/root/autodl-tmp/dpo_output`\n- **GRPO bf16**: `/root/autodl-tmp/grpo_ced_g8_bf16`\n- **数据**: `/root/autodl-tmp/data/docred`，HF cache=`/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - eval_grpo_g8_bf16: PID 214552, tmux=eval_grpo_g8_bf16, cuda:3（ckpt80 done, ckpt90 进行中）\n  - eval_plan_001_flat_nli: PID 228508, tmux=eval_plan_001_flat_nli, cuda:0\n  - eval_plan_014_sft_no_evidence: PID 230804, tmux=eval_plan_014_sft_no_evidence, cuda:1\n- **Cron 监控**: eval_grpo_g8_bf16 + eval_plan_001_flat_nli 各有 active cron\n\n### 3. 📊 当前状态\n本 session 处理了大量工作：plan_011 bf16 GRPO eval 分析（发现 forgetting 是 QLoRA-specific，D051/D052/D053/D054）、plan_015 kill（D052 确认不需要）、plan_001 flat-NLI RSFT 训练完成并启动 eval、plan_014 SFT-no-evidence 训练完成并启动 eval、plan_012 DPO 训练完成等待分析、plan_009 forgetting figure 生成、3-seed RSFT 统计汇总。\n\n**RUNNING (3)**:\n| exp_id | GPU | 内容 | 预计 |\n|--------|-----|------|------|\n| eval_grpo_g8_bf16 | cuda:3 | bf16 GRPO ckpt 80/90/100 全量 dev eval。ckpt80 done (rel_f1=0.4456)，ckpt90 进行中 | 每 ckpt ~1h |\n| eval_plan_001_flat_nli | cuda:0 | flat-NLI RSFT 全量 dev eval (985 docs) | ~1.5h |\n| eval_plan_014_sft_no_evidence | cuda:1 | SFT-no-evidence 全量 dev eval | ~1.5h |\n\n**ANALYZING (3)**:\n- plan_012_dpo_ced: DPO 训练完成（cuda:2 已释放），worker_eval_plan_012_dpo_ced 正在分析\n- plan_014_sft_no_evidence: 训练完成，eval 已启动（见 RUNNING）\n- plan_001_rsft_flat_nli: 训练完成 (success, 2691 samples, 3ep, loss=0.62)，eval 已启动\n\n**活跃 Workers (2)**:\n- worker_eval_plan_012_dpo_ced: 分析 DPO 训练结果\n- worker_research_quantization-rl-interaction: 文献调研 quantization-RL interaction\n\n**cuda:2 空闲**——plan_012 DPO 训练已完成释放，尚未分配新任务。\n\n### 4. 📋 待办（条件触发式）\n- worker_eval_plan_012_dpo_ced 完成 → 读取 DPO 训练 metrics，判断是否需要 DPO eval（如 loss 收敛良好 → 启动 eval 到 cuda:2；如训练发散 → 标 negative + 汇报 Director）\n- worker_research_quantization-rl-interaction 完成 → 将文献发现写入 literature_map.yaml + memory.md，为论文 related work 储备素材\n- eval_plan_001_flat_nli cron 回调 → spawn worker 提取 metrics，对比 CED RSFT 3-seed mean (rel_f1=0.4596)。flat-NLI ≈ CED → CED contrastive margin 无增益（需 reframe C3）；CED >> flat-NLI → margin 关键（C3 加强）\n- eval_plan_014_sft_no_evidence cron 回调 → 提取 rel_f1，计算 evidence tax = SFT(0.4057) - SFT-no-evi(X)。tax 大 → 解释 vs LMRC gap；tax 小 → gap 来自其他因素\n- eval_grpo_g8_bf16 cron 回调（ckpt90+100 完成）→ 汇总 3 个 checkpoint 的 forgetting dynamics，确认 bf16 全程无 forgetting。数据补充 plan_009 forgetting figure\n- cuda:2 空闲 → 如 DPO eval 需要则用，否则考虑 plan_002 multi-seed test eval 或其他 P0 任务\n- 所有 eval 完成后 → 向 Director 汇报全景结果 + 建议启动论文写作（paper agent retitle + reframe + related work）\n\n### 5. 🎯 战略上下文\n**项目核心**：FREIGE — LLM-based evidence-grounded DocRE。Qwen3-4B 在 DocRED 上做 SFT → RSFT/GRPO/DPO 对比。\n\n**核心发现链**：\n- D031: GRPO+QLoRA catastrophic forgetting（rel_f1 从 0.41 崩到 0.22），pivot 到 RSFT\n- D038: RSFT 实际成功（eval bug 修复后 rel_f1=0.47），3-seed mean=0.4596 稳健超 SFT +5.4pp\n- D051: bf16 GRPO 无 forgetting (rel_f1=0.4549)，证明是 QLoRA-specific 而非 GRPO 本身\n- D052/D054: C2 reframe——\"GRPO causes decoupling\" 收窄为 \"QLoRA quantization causes catastrophic forgetting in GRPO for structured IE\"\n\n**论文定位（Dream v2 后）**：analysis paper，核心卖点是 (1) decoupling 发现 (2) QLoRA forgetting 机制 (3) RSFT+CED 作为实用方案。Dream v2 评分 best=3.0/median=2.5，目标 best≥3.5/median≥3.0，仍需补实验+reframe。\n\n**易踩的坑**：\n1. 不要重启 plan_015——已被 D052 确认不需要，plan_011 vs mvp2_grpo_ced_kl001_r4 已是 clean ablation\n2. EDCR 悖论是 genuine behavior（RSFT/GRPO 增加 pred_count → 更多 distractor citation → EDCR↓），不是 bug，不要试图\"修复\"\n3. eval callback 的 metrics 可能有 bug（D038 教训），关键结论必须基于全量 dev eval 交叉验证\n4. CED reranker (rel_f1=0.4864) 是 best single method 但推理成本 8x，论文中定位为 upper-bound reference\n5. mvp2_eval_rsft_s44 (PREPARING) 是历史遗留，已被 3-seed 全量 eval 覆盖，可忽略\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778867702.md"
+}

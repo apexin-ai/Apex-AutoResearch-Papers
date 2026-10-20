@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85a04ed0b36a3860c944",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu audit loop14",
+  "task_key": "worker_ops_gpu_audit_loop14_20260516T113517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_audit_loop14_20260516T113517_result.json",
+    "occurrence": 1,
+    "bytes": 1712,
+    "sha256": "26956451b6b416dc021c59c75f89ac4e5c6c8c756877515a392ffb66109ef84e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态审计结果\n\n### GPU → 进程映射\n\n| GPU | 显存占用 | 进程 | 实验 | 运行时间 |\n|-----|---------|------|------|---------|\n| cuda:0 | **0 MiB** | — | — | — |\n| cuda:1 | 11406 MiB / 32607 MiB | PID 319638 `freige.eval.inference` | plan_002_test_eval_s44_r2 (test split, rsft_s44/ckpt-510) | 3h22m |\n| cuda:2 | 18412 MiB / 32607 MiB | PID 335357 `freige.eval.inference` | plan_006_qwen3_8b_no_evidence_eval_v2 | 18m |\n| cuda:3 | 23728 MiB / 32607 MiB | PID 333916 `freige.training.sft_trainer` | plan_016_llama_3_1_8b_no_evidence_sft | 29m |\n\n### 空闲 GPU\n\n**cuda:0** — 完全空闲，可用于新实验。\n\n### 实验状态确认\n\n| 实验 | 状态 | 备注 |\n|------|------|------|\n| plan_002_test_eval_s44_r2 (PID 319632) | ✅ 运行中 | GPU 1，test split eval |\n| plan_016_llama_3_1_8b_sft (PID 331871) | ❌ 已死 | 进程不存在 |\n| plan_016_llama_3_1_8b_no_evidence_sft (PID 333911) | ✅ 运行中 | GPU 3，Llama-3.1-8B no-evidence SFT |\n| plan_006_qwen3_8b_no_evidence_eval_v2 | ✅ 运行中 | GPU 2，PID 335357 (PPID=1 孤儿进程)，进度 43/247 batches (17%)，~25s/batch，预计剩余 ~85min。正确传了 `--no_evidence` 参数 |\n\n### 异常发现\n\n1. **plan_016_llama_3_1_8b_sft (PID 331871) 已死** — registry 中若仍标记为 RUNNING 则状态不一致，需更新。\n2. **plan_006_qwen3_8b_no_evidence_eval_v2 的 PID 335357 是孤儿进程** (PPID=1) — 父进程已退出，但推理进程本身仍正常运行，不影响结果。\n3. **plan_002_test_eval_s44_r2 已运行 3.5 小时** — test split eval 时间较长，可能正常（test split 比 dev 大），但值得关注是否卡住。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-audit-loop14.md"
+}

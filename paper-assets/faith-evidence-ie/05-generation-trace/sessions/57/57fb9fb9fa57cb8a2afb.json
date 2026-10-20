@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57fb9fb9fa57cb8a2afb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research negative experiment review",
+  "task_key": "worker_research_negative_experiment_review_20260517T035208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_negative_experiment_review_20260517T035208_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "5c7e4309a139f5f0c7863db50c7b2477a0183ae6b3df9b5f1d59d9118ae79595"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/negative_review.md` 并注册 (art_20260517_c9070e)。\n\n核心发现：\n- **Group 1-3 (GRPO)**: 全线失败的真正根因是 QLoRA quantization（D052 最终确认，bf16 vs QLoRA Δ=+23.8pp），当时 lr sweep 浪费了约 12h\n- **Group 4 (DPO)**: 1ep 中性 / 3ep 退化，pair 构造策略（基于 CED 而非 rel_f1）可能是根因\n- **Group 2**: 三路 reward ablation 证明 CED 是 GRPO 唯一可用的 reward signal\n\n3 条被忽视的改进线索：\n1. **推理时 CED Reranking** — 无训练成本，直接过滤 distractor citations 提升 EDCR\n2. **RSFT → bf16 GRPO 两阶段** — RSFT 稳 rel_f1 基础 + GRPO 在线优化 evidence 质量\n3. **rel_f1-based DPO pair 构造** — 当前 CED pairs 只教 evidence 偏好，改用 F1 pairs 可能使 DPO 直接提升关系抽取"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-negative-experiment-review.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "008d2a3bd3877a07ac56",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops registry rebuild critical",
+  "task_key": "worker_ops_registry-rebuild-critical_20260522T221047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry-rebuild-critical_20260522T221047_result.json",
+    "occurrence": 1,
+    "bytes": 2449,
+    "sha256": "63642f929e898f8c65a39a2024b850f7c827ec7240ef28956569837e5f5acdce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已完整恢复，无需额外操作。\n\n## 汇报\n\n**Registry 现状：336 条记录（远超预期的 229 条）。所有任务列出的关键实验均已存在且 metrics 正确。**\n\n### P0: test_eval_* 系列 — 全部 ✓\n\n| exp_id | registry ign_f1 | 已知值 | 状态 |\n|---|---|---|---|\n| test_eval_8b_rsft_s42 | 0.3353 | 0.3353 | ✓ |\n| test_eval_8b_rsft_s42_no_evi | 0.3319 | 0.3319 | ✓ |\n| test_eval_14b_rsft_s42_no_evi | 0.3926 | 0.3926 | ✓ |\n| test_eval_8b_sft_s42 | 0.3106 | 0.3106 | ✓ |\n| test_eval_8b_sft_s42_no_evi | 0.2935 | 0.2935 | ✓ |\n| test_eval_4b_sft_s42 | 0.2232 | 0.2232 | ✓ |\n| test_eval_4b_rsft_s42_v2 | 0.2501 | 0.2501 | ✓ |\n| test_eval_4b_rsft_s42_v2_reeval | 0.2501 | 0.2501 | ✓ |\n| test_eval_1_7b_rsft_s42 | 0.2933 | 0.2933 | ✓ |\n| test_eval_14b_sft_s42 | 0.3886 | 0.3886 | ✓ |\n| test_eval_llama_sft_s42 | 0.3420 | 0.3420 | ✓ |\n| test_eval_llama_rsft_s42 | 0.3599 | 0.3599 | ✓ |\n| test_eval_14b_rsft_s42 | 0.3849 | — | ✓ |\n\n### P1: plan017_* 系列 — 全部 ✓\n\n| exp_id | ign_f1 | 状态 |\n|---|---|---|\n| plan017_14b_sft | N/A (training) | success ✓ |\n| plan017_14b_sft_s43 | N/A (training) | success ✓ |\n| plan017_14b_ced_scoring | N/A (scoring) | success ✓ |\n| plan017_14b_rsft_train | N/A (training) | success ✓ |\n| plan017_14b_rsft_eval | 0.5886 | success ✓ |\n| plan017_14b_rsft_no_evidence_eval | 0.5432 | success ✓ |\n\n### P2: d102_* 系列\n\n已有：d102_8b_rsft_k1_s42, d102_8b_rsft_k1_s43 (ign_f1=0.5471), d102_1_7b_rsft_k1_s42, d102_llama_rsft_k1_s42 — 全部 success ✓\n\n**缺失但服务器上无数据：** d102_8b_rsft_k1_s44, d102_1_7b_rsft_k1_s43, d102_1_7b_rsft_k1_s44 → 服务器 `/root/autodl-tmp/eval_results/` 下无对应目录，无法恢复。\n\n### P3: plan_006 — ✓\n\nplan_006_qwen3_8b_rsft_eval: ign_f1=0.5433, success ✓\n\n### 4 个 RUNNING 条目\n\n均为今天提交的活跃任务，进程在运行中：\n- `test_eval_1_7b_rsft_s42_no_evi` — PID 189480, 运行 6h\n- `test_eval_4b_rsft_s42_no_evi` — PID 194600, 运行 4h\n- `test_eval_llama_rsft_s42_no_evi` — PID 196512, 运行 3.5h\n- `plan017_14b_rsft_s43_generate` — PID 194682, 运行 4h\n\n**结论：恢复 0 条新条目。Registry 已完整，所有论文关键实验的 metrics 与已知值完全匹配。缺失的 3 个 d102 multi-seed 条目（s44/s43）在服务器上没有结果文件。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-rebuild-critical.md"
+}

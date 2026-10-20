@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51dbe4f30b223837af8d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose stale registry and dpo",
+  "task_key": "worker_diagnose_stale-registry-and-dpo_20260523T034459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_stale-registry-and-dpo_20260523T034459_result.json",
+    "occurrence": 1,
+    "bytes": 2316,
+    "sha256": "f6ed8428bd665e8264b385c59416c07ee39e17258da615ea3201cb928bcf2151"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. 6 个 stale 实验 — 全部已完成，registry 已标记 DONE\n\n| 实验 | ign_f1 | 关键指标 | 状态 |\n|------|--------|---------|------|\n| test_eval_14b_rsft_s42 | 0.3849 | evi_f1_joint=0.2688, edcr=0.7865 | success |\n| eval_llama_rsft_s42_no_evi_2048 | 0.5559 | fair_tax_pp=+2.17 | success |\n| d140_4b_sft_s42_with_evi_2048 | 0.3946 | evi_f1_dreeam=0.3129, fair_tax_pp=+0.73 | success |\n| d140_8b_sft_s42_no_evi_2048_fix | 0.5019 | fair_tax_pp=+0.04 | success |\n| d140_1_7b_sft_s42_no_evi_2048_fix | 0.4233 | fair_tax_pp=-5.63 | success |\n| d140_4b_sft_s42_no_evi_2048_fix | 0.4016 | fair_tax_pp=+0.73 | success |\n\n所有结果文件（metrics.json + predictions.json）完整存在，PID 均已终止。Registry 此前已更新为 DONE，无需处理。\n\n### 2. DPO 训练 — 已完成\n\n- **路径**: `/root/autodl-tmp/dpo_output_rebuilt_1ep/`\n- **Base model**: Qwen3-4B (`/root/autodl-tmp/models/Qwen3-4B`)\n- **SFT adapter**: `/root/autodl-tmp/sft_output` (merged into base)\n- **配置**: LoRA r=64, alpha=128, dropout=0.05, beta=0.1, sigmoid loss, lr=5e-6, bs=2×8 grad_accum, 1 epoch\n- **数据**: 2977 DPO pairs\n- **训练指标**: loss=0.5932, rewards_accuracy=81.6%, rewards_margins=1.008, runtime=34min\n- **输出文件**: adapter_model.safetensors (528MB), checkpoint-100, checkpoint-187\n\n### 3. DPO eval — 已在运行\n\n- **exp_id**: `dpo_rebuilt_1ep_eval`\n- **PID**: 221951, **GPU**: cuda:2 (11.7GB/96GB)\n- **进度**: 18/247 batches (~7%), 已运行 ~15min，预计总耗时 ~3.5h\n- **命令**: `python -m freige.eval.inference --model_path dpo_output_rebuilt_1ep --base_model Qwen3-4B --sft_adapter sft_output --max_new_tokens 2048 --seed 42`\n- **输出**: `/root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval`\n\n### 4. 当前 4 个活跃进程\n\n| GPU | PID | 运行时间 | 任务 | 进度 |\n|-----|-----|---------|------|------|\n| 0 | 220069 | 52min | test_eval_8b_rsft_s43_no_evi | 运行中 |\n| 1 | 194682 | 9h29m | plan017_14b_rsft_s43_generate | 13144 行 (~54% of 24216) |\n| 2 | 221951 | 15min | dpo_rebuilt_1ep_eval | 18/247 (7%) |\n| 3 | 214028 | 2h37m | test_eval_1_7b_rsft_s43_with_evi | 运行中 |\n\n4 卡全在工作，无需额外操作。DPO eval 已由之前的 session 提交，不需要重复启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-stale-registry-and-dpo.md"
+}

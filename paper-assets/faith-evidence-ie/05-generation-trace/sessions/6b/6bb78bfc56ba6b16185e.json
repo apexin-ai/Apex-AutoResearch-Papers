@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bb78bfc56ba6b16185e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "audit registry maintenance",
+  "task_key": "worker_audit_registry-maintenance_20260524T053309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_registry-maintenance_20260524T053309_result.json",
+    "occurrence": 1,
+    "bytes": 1997,
+    "sha256": "dd076da414c90fbd229caa4727660945b15f6d8037e1bcd2bafe2cd2c35a7cd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 registry 更新完成。汇总结果：\n\n---\n\n## 汇总\n\n### 1. d102 k=1 eval 注册\n\n| exp_id | ign_f1 | rel_f1 | evi_f1 | edcr | 操作 |\n|--------|--------|--------|--------|------|------|\n| d102_1_7b_rsft_k1_s42 | 0.5122 | 0.5290 | 0.8243 | 0.6224 | 补录 eval metrics ✓ |\n| d102_8b_rsft_k1_s42 | 0.5376 | 0.5549 | 0.8136 | 0.6231 | 补录 eval metrics ✓ |\n| d102_8b_rsft_k1_s43 | 0.5471 | 0.5651 | 0.8180 | 0.6094 | 已有，无需更新 |\n| d102_llama_rsft_k1_s42 | 0.5714 | 0.5839 | 0.8238 | 0.5799 | 补录 eval metrics ✓ |\n| seed_llama_rsft_k1_s43_eval | 0.5662 | 0.5780 | 0.8287 | 0.5783 | 补录 eval metrics ✓ |\n\n### 2. plan_006 SUPERSEDED 标记\n\n| exp_id | 旧 ign_f1 (k=3) | 替代 entry |\n|--------|-----------------|------------|\n| plan_006_qwen3_1_7b_rsft_eval_r2 | 0.505 | d102_1_7b_rsft_k1_s42 |\n| plan_006_llama_rsft_r3_eval | 0.5563 | d102_llama_rsft_k1_s42 |\n| plan_006_qwen3_8b_rsft_eval | 0.5433 | d102_8b_rsft_k1_s42 |\n| plan_006_qwen3_1_7b_rsft_seed43_eval | 0.5024 | d102 k=1 series |\n| plan_006_llama_rsft_seed43_eval_r2 | 0.5619 | seed_llama_rsft_k1_s43_eval |\n\nconclusion 字段不支持 \"superseded\"（仅 failed/killed/negative/success），已通过 notes 前缀 `[SUPERSEDED]` 标记。\n\n### 3. DPO 3ep Rel-F1\n\n- 源文件：`/root/autodl-tmp/eval_results/dpo_rebuilt_3ep_eval/metrics.json`\n- **rel_f1 = 0.3145**（f1 字段），ign_f1 = 0.3076\n- Registry 已有 `rel_f1: 0.3145`，与论文 31.45% 完全一致，无需补录\n\n### 4. 8B RSFT Evi-F1\n\n| seed | 来源 | evi_f1 |\n|------|------|--------|\n| s42 | d102_8b_k1_s42 | 0.8136 |\n| s43 | d102_8b_k1_s43 | 0.8180 |\n| s44 | rsft_8b_k1_s44_eval | 0.8145 |\n| **3-seed mean** | | **0.8154 (81.54%)** |\n\n**论文值 81.54% 完全匹配 d102 k=1 三种子均值。** 旧 registry 的 81.16% 来自 plan_006 k=3 值（plan_006_qwen3_8b_rsft_eval evi_f1=0.8052 等），已被 d102 k=1 取代。差异来源：k=3 → k=1 方法修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-registry-maintenance.md"
+}

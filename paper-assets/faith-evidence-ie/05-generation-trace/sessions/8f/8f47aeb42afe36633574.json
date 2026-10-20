@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f47aeb42afe36633574",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis reeval ced s42",
+  "task_key": "worker_analysis_reeval_ced_s42_20260516T072811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reeval_ced_s42_20260516T072811_result.json",
+    "occurrence": 1,
+    "bytes": 1267,
+    "sha256": "d4cd6cca4b23d100047967b3348fe89c02e3ee22345d839a30fbf775c8e414e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## reeval_ced_s42 结果\n\n日志无 error/traceback，EXIT_CODE=0，正常完成。\n\n### 核心指标\n\n```\nF1:        0.4517\nIgn-F1:    0.4423\nPrecision: 0.4657\nRecall:    0.4385\nEvi-F1:    0.8174\nEDCR:      0.6569\n```\n\n### 三 seed 对比（统一协议，checkpoint-510, lora_alpha=128）\n\n| 指标 | s42 | s43 | s45 | 均值 | 标准差 |\n|------|-----|-----|-----|------|--------|\n| **F1** | 0.4517 | **0.4601** | 0.4514 | 0.4544 | 0.0050 |\n| **Ign-F1** | 0.4423 | **0.4512** | 0.4416 | 0.4450 | 0.0054 |\n| **Evi-F1** | **0.8174** | 0.8063 | **0.8174** | 0.8137 | 0.0064 |\n| **EDCR** | **0.6569** | 0.6542 | 0.6550 | 0.6554 | 0.0014 |\n| Evi-F1-Joint | 0.3518 | **0.3605** | 0.3558 | 0.3560 | 0.0044 |\n| Precision | 0.4657 | 0.4696 | **0.4718** | 0.4690 | 0.0031 |\n| Recall | 0.4385 | **0.4509** | 0.4326 | 0.4407 | 0.0093 |\n| Truncated | 214 | 184 | 206 | 201 | — |\n| Predictions | 15436 | 15051 | 15307 | 15265 | — |\n\n**结论**：s42 与 s43/s45 高度一致，三 seed 标准差极小（F1 σ=0.005, Evi-F1 σ=0.006）。s43 的 F1/Ign-F1 略高（+0.8pp），主要来自更高的 recall（0.4509 vs 0.4385/0.4326）。Evi-F1 和 EDCR 三 seed 几乎无差异。\n\nArtifact 已注册：`art_20260516_ee2f95`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-reeval-ced-s42-copy-3.md"
+}

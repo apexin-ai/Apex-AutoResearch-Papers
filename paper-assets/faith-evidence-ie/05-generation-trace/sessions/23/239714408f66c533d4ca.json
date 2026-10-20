@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "239714408f66c533d4ca",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops prep plan010 nli ablation",
+  "task_key": "worker_ops_prep_plan010_nli_ablation_20260519T182044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep_plan010_nli_ablation_20260519T182044_result.json",
+    "occurrence": 1,
+    "bytes": 2408,
+    "sha256": "d3c1f90d02aa69557a6d51a04366c270287ca80bb77fcf507b454d94a5916ebf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "探测完成。\n\n---\n\n## 探测结果\n\n### 1. 当前 CED scoring 用的 NLI 模型\n**`cross-encoder/nli-deberta-v3-base`** — 这是代码中唯一的默认值：\n- `ced_reward.py:22`: `DEFAULT_NLI_MODEL = \"cross-encoder/nli-deberta-v3-base\"`\n- `rsft_score_filter.py:490`: `default=\"cross-encoder/nli-deberta-v3-base\"`\n- 所有已有 `rsft_report.json`（s0-s3, s44, topk3, flat_nli）均记录 `nli_model_path: \"cross-encoder/nli-deberta-v3-base\"`\n- scripts 目录中**没有任何脚本**引用过 v3-large\n\n**结论：canonical CED s42 baseline (ign_f1=0.4517) 用的就是 v3-base，不是 v3-large。**\n\n### 2. 原始 4B 候选路径\n- `/root/autodl-tmp/rsft_generations/generations.jsonl` (207MB, 21952 records, 4 shards)\n- Canonical scoring 将其拆分为 `rsft_score_input_s0` ~ `s3`，各自打分后合并到 `/root/autodl-tmp/rsft_filtered/`\n- Canonical scoring 参数：`top_k=1, tau=0.5, f1_threshold=0.1`\n\n### 3. NLI 模型下载状态\nHF cache 中**两个模型都已下载**：\n- `models--cross-encoder--nli-deberta-v3-base` ✓\n- `models--cross-encoder--nli-deberta-v3-large` ✓\n\n（本地 `/root/autodl-tmp/models/` 目录没有 NLI 模型，但 HF cache 够用）\n\n### 4. rsft_score_filter.py 关键参数\n| 参数 | 默认值 | 说明 |\n|---|---|---|\n| `--nli_model_path` | `cross-encoder/nli-deberta-v3-base` | NLI 模型路径 |\n| `--nli_device` | None (auto) | GPU device |\n| `--selection_strategy` | `top_pct` | `top_k` 或 `top_pct` |\n| `--top_k` | 2 | k=1 for canonical |\n| `--tau` | 0.5 | CED 阈值 |\n| `--scoring_mode` | `ced` | `ced` 或 `flat_nli` |\n\n### 5. **关键问题：ablation 方向需要反转**\n\n任务描述假设 canonical 用的是 v3-large，ablation 用 v3-base。但实际情况是：\n- **Canonical = v3-base**（已确认）\n- **Ablation 应该用 v3-large** 重新打分\n\n建议的 scoring 命令：\n\n```bash\ncd /root/autodl-tmp/freige && \\\nCUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/rsft_generations \\\n    --output_path /root/autodl-tmp/rsft_scored_v3_large \\\n    --nli_model_path cross-encoder/nli-deberta-v3-large \\\n    --nli_device cuda:0 \\\n    --selection_strategy top_k --top_k 1 \\\n    --tau 0.5 --f1_threshold 0.1\n```\n\n### 6. 磁盘\n`/root/autodl-tmp/`: 186G used / 250G total, **65GB free** — 足够。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-plan010-nli-ablation.md"
+}

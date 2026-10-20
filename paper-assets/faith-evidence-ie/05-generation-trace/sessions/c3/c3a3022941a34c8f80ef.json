@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3a3022941a34c8f80ef",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "maintenance restart file transfer",
+  "task_key": "worker_maintenance_restart-file-transfer_20260520T112144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_maintenance_restart-file-transfer_20260520T112144_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "acd3d64ba836c187905d8a2a200d9d4c97b1d72c3fffa8f09b3cca7c0f2c0c64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输无需重启——进程一直在运行。当前进度：\n\n| 文件 | 状态 | 大小 |\n|------|------|------|\n| `sft_output_llama_3_1_8b/` | **已完成** | 4.5G |\n| `rsft_generations_14b/` | **已完成** | 133M |\n| `sft_output_14b/` | **传输中** (18:56 开始，已传 5.5G/~7G) | 5.5G → ~7G |\n\n三个缺失文件中两个已传完，`sft_output_14b` 正在传输中，预计还需几分钟完成。rsync 全量同步也在并行运行。不需要任何干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/maintenance-restart-file-transfer.md"
+}

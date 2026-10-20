@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaf28c62d3b0e023f4fc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit 1 7b rsft s43 cuda2",
+  "task_key": "worker_submit_1_7b_rsft_s43_cuda2_20260519T024940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_1_7b_rsft_s43_cuda2_20260519T024940_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "1ad05dcd6ea506ca21861b65985b56a90f1b144388ad8d760ec0900e9c8253f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已注册为 RUNNING。\n\n**汇报：**\n\n| 项目 | 值 |\n|---|---|\n| exp_id | `plan019_1_7b_rsft_s43` |\n| PID | 601718 |\n| GPU | cuda:2 (24088MiB / 32607MiB) |\n| tmux session | `plan019_1_7b_rsft_s43` |\n| 数据 | 3021 条 RSFT samples |\n| 输出 | `/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43` |\n| 预估训练时间 | ~20-30 分钟（1.7B 模型 + 3021 samples × 3 epochs, batch 4 × grad_accum 4） |\n\n注意：tee 日志写入失败（logs 目录当时不存在），但训练本身正常运行。可通过 `tmux attach -t plan019_1_7b_rsft_s43` 查看实时输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-1-7b-rsft-s43-cuda2.md"
+}

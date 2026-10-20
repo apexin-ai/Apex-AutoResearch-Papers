@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa90bfb49d44e571aee1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "verify ced s42 s44 checkpoints",
+  "task_key": "worker_verify_ced_s42_s44_checkpoints_20260516T023959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_ced_s42_s44_checkpoints_20260516T023959_result.json",
+    "occurrence": 1,
+    "bytes": 1481,
+    "sha256": "2c31e12c5f45008b71b5190c643e74ccbe83350cc552b072f41c1d991a73aad9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n## Checkpoint 路径验证\n\n### 标准化路径\n- `rsft_output_ced_s42/` — **不存在**\n- `rsft_output_ced_s44/` — **不存在**\n- `rsft_output_ced_s43/checkpoint-510` — 存在 ✓\n- `rsft_output_ced_s45/checkpoint-510` — 存在 ✓\n\n### 旧路径分析\n\n| 目录 | 最大 checkpoint | lora_alpha | 完整训练? |\n|------|----------------|------------|----------|\n| `rsft_output/` | **510** | 128 | ✓ |\n| `rsft_output_s44/` | **510** | 128 | ✓ |\n| `rsft_output_r2b/` | 160 | **32** | ✗ |\n| `rsft_output_r2a/` | 160 | 128 | ✗ |\n\n### 结论\n\n**CED s42 正确路径：`/root/autodl-tmp/rsft_output/checkpoint-510`**\n- seed 42（脚本默认值），lora_alpha=128，完整 510 步训练\n- 旧 eval 用的 `rsft_output_r2b` **是错的**：lora_alpha=32 且只训了 160 步，是不同超参的 round 2 实验\n\n**CED s44 正确路径：`/root/autodl-tmp/rsft_output_s44/checkpoint-510`**\n- lora_alpha=128，完整 510 步训练，与 ced_s43/ced_s45 配置一致\n- 旧 eval 用的路径和这个一致，只是缺 `checkpoint-510` 后缀（用的是根目录 adapter）\n\n### 四个 seed 的完整路径\n\n| Seed | Checkpoint 路径 |\n|------|----------------|\n| 42 | `/root/autodl-tmp/rsft_output/checkpoint-510` |\n| 43 | `/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510` |\n| 44 | `/root/autodl-tmp/rsft_output_s44/checkpoint-510` |\n| 45 | `/root/autodl-tmp/rsft_output_ced_s45/checkpoint-510` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-ced-s42-s44-checkpoints.md"
+}

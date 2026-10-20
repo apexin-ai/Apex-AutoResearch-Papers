@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "152b291188bd938aaedb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix cuda visible devices r3",
+  "task_key": "worker_fix_cuda_visible_devices_r3_20260516T002708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cuda_visible_devices_r3_20260516T002708_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "dffa35c2c4cf477bab259d6aa4a745646d0d705c128624a39e6fdb01f0227fb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s45 训练已正常启动，正在训练中（2/510 steps）。\n\n## 汇报\n\n**1. 诊断结果**\n- s43 (PID 277315) **只在 GPU 1**，占 28332MiB，99% 利用率 — 正常\n- GPU 2 上的 PID 276148（崩溃的 s45）已退出，GPU 内存已自动释放\n\n**2. 决策：情况 A**\n- s43 未跨 GPU，不需要 kill，继续运行\n\n**3. 重提交 PID**\n- s45 新 PID: **278776**（nvidia-smi 可见），从 nohup 启动的 wrapper PID 是 278771\n\n**4. 验证结果 — 无跨 GPU 泄漏**\n\n| GPU | PID | 进程 | 显存占用 | 利用率 |\n|-----|-----|------|---------|--------|\n| 0 | 270467 | eval_flat_nli_s44 | 10846 MiB / 32607 MiB | 44% |\n| 1 | 277315 | rsft_ced_s43_train_r3 | 28332 MiB / 32607 MiB | 99% |\n| 2 | 278776 | rsft_ced_s45_train_r3 | 27562 MiB / 32607 MiB | 99% |\n| 3 | 272169 | eval_flat_nli_s45 | 10850 MiB / 32607 MiB | 43% |\n\n每个进程各占一张卡，所有命令均带 `CUDA_VISIBLE_DEVICES` 前缀，符合 C002 约束。s45 训练日志确认 510 steps 已开始（~4.6s/step）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cuda-visible-devices-r3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e10be8b2b1d7064c1c0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose gpu utilization check",
+  "task_key": "worker_diagnose_gpu-utilization-check_20260522T201507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu-utilization-check_20260522T201507_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "64ec5690deca1e21d17b87870c7cf8e429ebae0495bc6151393504050a5df882"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | 利用率 | 显存占用 | PID | 状态 |\n|-----|--------|----------|-----|------|\n| 0 | 56% | 9.6 / 98 GB | 194600 | 活跃 |\n| 1 | 90% | 32.5 / 98 GB | 194682 | 高负载 |\n| 2 | 47% | 6.1 / 98 GB | 189485 | 活跃 |\n| 3 | 68% | 18.9 / 98 GB | 196512 | 活跃 |\n\n4 张卡全部被 python 进程占用，无空闲卡。GPU 1 负载最重（90% 利用率，32.5GB 显存）。如需提交 eval 任务（C001），当前没有满足 <2GB 显存的卡。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-utilization-check.md"
+}

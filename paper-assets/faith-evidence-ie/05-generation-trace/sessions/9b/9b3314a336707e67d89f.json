@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b3314a336707e67d89f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper figure fig edcr relations",
+  "task_key": "worker_paper_figure_fig_edcr_relations_20260517T183627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_edcr_relations_20260517T183627_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "8b5728a743b81934f59e88274213b8f53c0b5c56672f0c151ebf0ba0cb73a2cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n**产出**：`artifacts/fig_edcr_relations.pdf`（已注册 `art_20260517_bc35fb`）\n\n**数据概览**：\n- 93 个 relation types（比预期的 76 个多，来自 RSFT-CED s44 dev predictions）\n- EDCR >= 0.70 的有 **45 个** relation（严重 decoupling，红色区域）\n- EDCR < 0.30 的有 **13 个** relation（健康，绿色区域）\n- 7 个 relation EDCR = 1.0（全为 distractor citations，tp=0）：capital of, chairperson, end time, instance of, original language of work, parent organization, work location\n- 底部 EDCR = 0.0 的 relation（如 influenced by, location of formation 等）同样 tp=0，说明模型完全未预测这些 relation"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-edcr-relations.md"
+}

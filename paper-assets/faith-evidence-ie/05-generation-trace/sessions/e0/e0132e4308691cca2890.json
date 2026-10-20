@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0132e4308691cca2890",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose gpu status and collect metrics",
+  "task_key": "worker_diagnose_gpu_status_and_collect_metrics_20260518T163031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu_status_and_collect_metrics_20260518T163031_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "f5a99543c2de5cbcbca4aa2ff13c1b2323cd84a124841ad2ca02c03a491fa85f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== GPU Status ===\ncuda:0: 空闲 (0MiB / 32607MiB)\ncuda:1: 空闲 (0MiB / 32607MiB)\ncuda:2: 占用 (16631MiB / 32607MiB) — PID 542126, grpo_trainer (grpo-bf16-g4-kl0)\ncuda:3: 空闲 (0MiB / 32607MiB)\n\n=== plan019_1_7b_sft_s44 ===\n状态: 已完成\n输出目录: /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44/\ntmux session: 无（已退出）\nmetrics:\n  - train_loss: 0.5783 (final step)\n  - eval_loss: 0.8037\n  - eval_mean_token_accuracy: 0.8238\n  - global_steps: 570\n  - epochs: 3.0\n  - best_metric: 0.7875 (eval_loss at step 380)\ncheckpoints: checkpoint-380 (best), checkpoint-570 (final)\n最终 adapter: adapter_model.safetensors (278MB)\n\n=== random_rsft_k1_baseline ===\n状态: 已完成\n输出目录: /root/autodl-tmp/rsft_output_random_k1/\ntmux session: 无（已退出）\nmetrics:\n  - train_loss: 0.5780 (final step)\n  - mean_token_accuracy: 0.8552\n  - global_steps: 1020\n  - epochs: 3.0\ncheckpoints: checkpoint-1000, checkpoint-1020 (final)\n最终 adapter: adapter_model.safetensors (528MB)\n\n=== random_rsft.sh fix ===\n修复状态: 已修复\n变更: `export CUDA_VISIBLE_DEVICES=${GPU:-0}` → 已注释掉\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-status-and-collect-metrics.md"
+}

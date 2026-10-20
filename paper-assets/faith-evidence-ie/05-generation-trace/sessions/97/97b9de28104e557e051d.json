@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97b9de28104e557e051d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code fix grpo eval loading",
+  "task_key": "worker_code_fix-grpo-eval-loading_20260514T150037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-grpo-eval-loading_20260514T150037_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "1e394be153d557c28a258e84d45947c4d1f04a7f95977fdb17d77639ed4a74c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Smoke test 通过。加载流程正确执行：\n\n1. Base model (Qwen3-4B) 4-bit 量化加载\n2. SFT adapter 加载并 merge_and_unload()\n3. GRPO adapter (checkpoint-480) 加载到 merged model 上\n4. `model.generate()` 正常输出\n\n修改完成。`inference.py` 新增 `--sft_adapter` 参数，评估 GRPO checkpoint 时用法：\n\n```bash\npython -m freige.eval.inference \\\n  --model_path /root/autodl-tmp/grpo_ced_r5/checkpoint-480 \\\n  --sft_adapter /root/autodl-tmp/sft_output \\\n  --data_path <data_dir> --output_dir <output_dir>\n```\n\n不传 `--sft_adapter` 时行为与之前完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-grpo-eval-loading.md"
+}

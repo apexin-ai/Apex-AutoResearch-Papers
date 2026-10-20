@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09dc5a841f4f17c6da41",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze grpo bf16 g4 ckpt200 eval",
+  "task_key": "worker_analyze_grpo_bf16_g4_ckpt200_eval_20260518T225559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_grpo_bf16_g4_ckpt200_eval_20260518T225559_result.json",
+    "occurrence": 1,
+    "bytes": 1010,
+    "sha256": "720c6e8dc9521289da15e6795b2063924522d6bdbff3f794bb62df46a0f547fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常完成，EXIT_CODE=0。\n\n## 结果\n\n| 指标 | ckpt-200 | ckpt-100 | Δ |\n|------|----------|----------|---|\n| ign_f1 | **0.4446** | 0.4431 | **+0.15pp** |\n| f1 | **0.4513** | 0.4511 | **+0.02pp** |\n| evi_f1 | **0.8053** | 0.8010 | **+0.43pp** |\n| evi_f1_joint | **0.3562** | 0.3532 | **+0.30pp** |\n| EDCR | **0.6489** | 0.6453 | **+0.36pp** |\n\n## 与 SFT baseline 对比\n- ign_f1 vs SFT baseline (0.4036): **+4.10pp**\n\n## 其他指标\n- Format OK: 984/985 (99.9%)\n- Truncated: 204/985\n- Predictions: 15733\n- field_compliance_rate: 79.2%\n\n## 判断\n- **学习曲线：轻微改善。** ckpt-200 相比 ckpt-100 所有指标均有小幅提升，但增量很小（ign_f1 仅 +0.15pp），说明 step 100→200 阶段模型接近收敛。\n- **vs SFT baseline：显著提升。** GRPO ign_f1 比 SFT baseline 高 4.1pp，证据质量指标（evi_f1、EDCR）也处于较高水平。\n- **完成状态：正常。** EXIT_CODE=0，无 error，0 errors in inference。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-grpo-bf16-g4-ckpt200-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "555401351450d464b5fe",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check eval step100 step90 progress",
+  "task_key": "worker_ops_check-eval-step100-step90-progress_20260514T193424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eval-step100-step90-progress_20260514T193424_result.json",
+    "occurrence": 1,
+    "bytes": 968,
+    "sha256": "e2735a07227616f5b56d856f50a8979167e903af035c1ec5721005a17cd2e379"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Eval 状态汇报\n\n### Step-100 eval (PID 80789, cuda:0)\n- **状态**: 运行中，elapsed 1h26m\n- **进度**: **98%** (61/62 batches)，正在处理最后 1 个 batch\n- **预计剩余**: ~1-2 分钟完成 inference，之后还有 metrics 计算\n- 输出目录 `checkpoint-100/` 目前为空（inference 完成后才写入）\n\n### Step-90 eval (PID 83207, cuda:1)\n- **状态**: 运行中，elapsed 1h02m\n- **进度**: **73%** (45/62 batches)\n- **预计剩余**: ~22 分钟完成 inference + metrics 计算\n- 输出目录 `checkpoint-90/` 目前为空\n\n### GPU 使用情况\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 11,243 / 32,607 MiB (34%) | 55% |\n| 1 | 10,005 / 32,607 MiB (31%) | 68% |\n| 2 | 8,773 / 32,607 MiB (27%) | 56% |\n| 3 | 11,157 / 32,607 MiB (34%) | 74% |\n\nGPU 2/3 也有显存占用和计算负载，可能有其他任务在跑。两个 eval 均正常推进中，step-100 即将完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-step100-step90-progress.md"
+}

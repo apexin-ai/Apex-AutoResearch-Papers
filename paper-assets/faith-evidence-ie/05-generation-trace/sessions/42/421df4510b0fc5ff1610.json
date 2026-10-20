@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "421df4510b0fc5ff1610",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research next batch planning",
+  "task_key": "worker_research_next-batch-planning_20260521T061905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_next-batch-planning_20260521T061905_result.json",
+    "occurrence": 1,
+    "bytes": 967,
+    "sha256": "2873f717d3a1d44ed94b5ee43bd2870a673e9d0dae5297fe4d67c59040676781"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册。核心发现：\n\n**截断审计:**\n- **Qwen 8B SFT**: 31.8% vs 22.8% (9pp 不对称) — D139 确认，@1024 tax 不可信\n- **Qwen 1.7B SFT**: 32-48% with-evi vs 51% no-evi — 两边都极高，@2048 刚完成 s42：ign_f1=0.4806, trunc 降至 27.1%\n- **14B RSFT**: 10.7% vs 10.8% — 完美对称，@1024 tax=-4.54pp 可信\n- **LLaMA RSFT**: 16-17% vs 18-19% — 2pp 小不对称，@1024 tax=-1.14pp 可信\n- **1.7B RSFT**: 24-25%，显著低于 SFT (32-48%)\n\n**Matched@2048 状态:**\n- LLaMA SFT 3-seed: ✅ 全完成，fair_tax 全负 (evidence helps)\n- 1.7B SFT s42: ✅ 刚完成，tax=-8.81pp\n- 14B RSFT @2048: 🔄 ~30min\n- LLaMA RSFT s42 @2048: 🔄 ~25min\n- 8B Qwen SFT @2048: 🔄 ~2.5h (with-evi)，**no-evi 缺失**\n\n**立即可做:**\n- cuda:2 已空闲 → 可提交 **8B SFT no-evi@2048**（Tier 1 最高优先）\n- cuda:0/1 约 30min 后释放 → 可提交 LLaMA RSFT s43/s44 with-evi@2048"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-next-batch-planning.md"
+}

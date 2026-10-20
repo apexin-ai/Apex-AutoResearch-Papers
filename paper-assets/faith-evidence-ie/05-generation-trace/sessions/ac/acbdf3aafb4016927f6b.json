@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acbdf3aafb4016927f6b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh find 4b sft adapter",
+  "task_key": "worker_ssh_find-4b-sft-adapter_20260521T073041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_find-4b-sft-adapter_20260521T073041_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "3008fc9462d63ccd9d9ae2178cd1c38f0f9ad0f8ff1bf9bfaa8a112625444051"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Confirmed.\n\n| Adapter | num_tokens @ step 10 | Total steps | Total tokens (~) |\n|---|---|---|---|\n| `sft_output_qwen3_8b_bf16` (standard 8B) | **141,227** | 570 | ~8.05M |\n| `sft_output_qwen3_1_7b_bf16` (standard 1.7B) | **141,227** | 570 | ~8.05M |\n| **`sft_output`** (Qwen3-4B candidate) | 555,730 | 144 | **~8.00M** |\n| `sft_no_evidence_output` (no-evidence 4B) | **119,651** | 570 | ~6.82M |\n\n**结论：`/root/autodl-tmp/sft_output/` 是 Qwen3-4B 的标准 SFT adapter（含 evidence）。**\n\n- `base_model_name_or_path` = `/root/autodl-tmp/models/Qwen3-4B`\n- 总训练 token 数 ~8.0M，与 8B/1.7B 标准 SFT (~8.05M) 一致\n- no-evidence 版本 (`sft_no_evidence_output`) 仅 ~6.82M tokens（少了 evidence 字段的 token），与预期匹配\n- 该 adapter 使用了更大 batch size（~4x），因此 steps 少（144 vs 570）但每步 token 多，总数据量一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-find-4b-sft-adapter.md"
+}

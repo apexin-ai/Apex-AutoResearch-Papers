@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c6ee21c038888492020",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code d102 eval prep",
+  "task_key": "worker_code_d102_eval_prep_20260518T085116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d102_eval_prep_20260518T085116_result.json",
+    "occurrence": 1,
+    "bytes": 742,
+    "sha256": "23f8fa69e68d654f4534cb94c00fadd99747e65cb6d9a6b73711eac0a62f1b9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已注册（`art_20260518_9c5f1a`）。\n\n**4 个 eval 命令已准备完毕：**\n\n| exp_id | 模型 | Checkpoint | GPU |\n|--------|------|-----------|-----|\n| `d102_1_7b_k1_eval` | Qwen3-1.7B k1 s42 | checkpoint-567 | cuda:0 |\n| `d102_8b_k1_s42_eval` | Qwen3-8B k1 s42 | checkpoint-1134 | cuda:1 |\n| `d102_8b_k1_s43_eval` | Qwen3-8B k1 s43 | checkpoint-1134 | cuda:2 |\n| `d102_llama_k1_eval` | LLaMA-3.1-8B k1 s42 | checkpoint-1107 | cuda:3 |\n\n命令格式参照 `plan_006_qwen3_1_7b_rsft_eval_r2` 和 `plan_006_llama_rsft_r3_eval` 两个成功实验。每个命令已包含 `CUDA_VISIBLE_DEVICES`（C002）。提交前需 `nvidia-smi` 确认 4 卡空闲（C001）。预计每个 eval ~2.5h，4 个可并行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d102-eval-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e64efa28edd8f6387a8a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit test eval 1 7b rsft s42 no evi",
+  "task_key": "worker_submit_test_eval_1_7b_rsft_s42_no_evi_20260522T161209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_test_eval_1_7b_rsft_s42_no_evi_20260522T161209_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "df1bcbe794d2b5a78ae32253861b617c4ec2456a06141cdd6ba9c0ac7a2b867a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。\n\n- **exp_id**: `test_eval_1_7b_rsft_s42_no_evi`\n- **PID**: 189480\n- **GPU**: cuda:2（当前占用 6071 MiB，模型加载中）\n- **RSFT adapter**: `/root/autodl-tmp/rsft_output_qwen3_1_7b_k1`\n- **日志**: `/root/runs/faith-evidence-ie/test_eval_1_7b_rsft_s42_no_evi.log`\n- **参数**: `--no_evidence --no-quantize`，seed 42，test_revised split\n- **预计耗时**: ~6h（参考 with-evi 用了 5h52m）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-test-eval-1-7b-rsft-s42-no-evi.md"
+}

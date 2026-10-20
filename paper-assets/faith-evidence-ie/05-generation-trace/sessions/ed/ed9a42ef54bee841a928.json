@@ -1,0 +1,773 @@
+{
+  "schema_version": "1.0",
+  "id": "ed9a42ef54bee841a928",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "analysis seed comparison prep",
+  "task_key": "worker_analysis_seed_comparison_prep_20260516T023404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_seed_comparison_prep_20260516T023404.jsonl",
+    "occurrence": 1,
+    "bytes": 39623,
+    "sha256": "84de9500119277fab97e7d22f72e62e4f63482106536ed5cc5faad7ec4425b61"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T02:36:08.225469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T02:36:08.226006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T02:36:08.227426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/scripts/seed_comparison.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T02:36:08.227740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 9495 May 16 10:21 /root/autodl-tmp/scripts/seed_comparison.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T02:36:08.227971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/eval_results/rsft*",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T02:36:08.228213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s43\\\\n/root/autodl-tmp/eval_results/rsft_ced_s45\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45\\\\n/root/autodl-tmp/eval_results/rsft_r1\\\\n/root/autodl-tmp/eval_results/rsft_r2a\\\\n/root/autodl-tmp/eval_results/rsft_r2b\\\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\\n/root/autodl-tmp/eval_results/rsft_s43\\\\n/root/autodl-tmp/eval_results/rsft_s44\\\\n/root/autodl-tmp/eval_results/rsft_topk3\\\\n/root/autodl-tmp/eval_results/rsft_topk3_fixed\\\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T02:36:08.228476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results -name \"metrics*.json\" -path \"*rsft*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T02:36:08.228742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s44/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r1/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s43/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics.json\\\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T02:36:08.229046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli/metrics_v2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T02:36:08.231479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.46711958888598554,\\\\n  \\\\\\\"recall\\\\\\\": 0.4413628507941733,\\\\n  \\\\\\\"f1\\\\\\\": 0.4538761002031144,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.44525682554372975,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.44459846594584607,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4449274022010543,\\\\n  \\\\\\\"tp\\\\\\\": 5363,\\\\n  \\\\\\\"pred_count\\\\\\\": 11481,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8143277542762553,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.7944554100125606,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.804268846503179,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15173,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6430730783183523,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 15954,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 24809,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3581005882664688,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.35081252271429314,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.35441909257802257,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6757,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 18869,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7888324873096447,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7888324873096447,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 777,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 777,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15294,\\\\n  \\\\\\\"n_truncated\\\\\\\": 199,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 3630.6,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_flat_nli\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free train\n…[truncated 119 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T02:36:08.231863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics_v2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T02:36:08.232178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.00196078431372549,\\\\n  \\\\\\\"recall\\\\\\\": 0.002633528104682742,\\\\n  \\\\\\\"f1\\\\\\\": 0.002247901373327245,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.0018996262025859428,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.002864799926069679,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.002284450994841562,\\\\n  \\\\\\\"tp\\\\\\\": 32,\\\\n  \\\\\\\"pred_count\\\\\\\": 16320,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 1.0,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.7441860465116279,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8533333333333333,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 17230,\\\\n  \\\\\\\"edcr\\\\\\\": 0.9981751824817519,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 17504,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 17536,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.0019154794684544474,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.0016613882975961788,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.0017794089026051659,\\\\n  \\\\\\\"evi_tp\\\\\\\": 32,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 16706,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9959390862944163,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 981,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 0,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 17285,\\\\n  \\\\\\\"n_truncated\\\\\\\": 251,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 981,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9959390862944163,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 3669.3,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_flat_nli_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": null,\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s43\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free \n…[truncated 124 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T02:36:08.233401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics_v2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T02:36:08.233662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics_v2.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T02:36:08.233906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/rsft_s43/metrics_v2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T02:36:08.234187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.4816845036108936,\\\\n  \\\\\\\"recall\\\\\\\": 0.4556003621101144,\\\\n  \\\\\\\"f1\\\\\\\": 0.46827947893757405,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.45885402203091735,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4580907494686258,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.45847206807251206,\\\\n  \\\\\\\"tp\\\\\\\": 5536,\\\\n  \\\\\\\"pred_count\\\\\\\": 11493,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.814248656661108,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8170493632053547,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8156466057259524,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 14872,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6388181145722035,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 15545,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 24334,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8142131979695432,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8142131979695432,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 802,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 802,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 14970,\\\\n  \\\\\\\"n_truncated\\\\\\\": 171,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6316.7,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_s43\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3747485442032822,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.3675302424588547,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.3711042960866032,\\\\n  \\\\\\\"evi_tp\\\\\\\": 7079,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 18890,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\\\\\"\\\\\n…[truncated 106 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T02:36:08.236607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/rsft_s44/metrics_v2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T02:36:08.236957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.47977989344047517,\\\\n  \\\\\\\"recall\\\\\\\": 0.452061558719447,\\\\n  \\\\\\\"f1\\\\\\\": 0.46550847457627126,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.45628542228003344,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.45383975602994175,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4550593031875463,\\\\n  \\\\\\\"tp\\\\\\\": 5493,\\\\n  \\\\\\\"pred_count\\\\\\\": 11449,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8117551462621885,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8057173581862174,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8087249831346974,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15125,\\\\n  \\\\\\\"edcr\\\\\\\": 0.635046273745738,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 15645,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 24636,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8010152284263959,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8010152284263959,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 789,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 789,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15202,\\\\n  \\\\\\\"n_truncated\\\\\\\": 189,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6011.5,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_s44\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_s44\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3775214592274678,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.3653496703182597,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.37133584865834673,\\\\n  \\\\\\\"evi_tp\\\\\\\": 7037,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 18640,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\\\\\"\\\n…[truncated 107 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T02:36:08.237257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/scripts/seed_comparison.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T02:36:08.237740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Seed-level comparison: flat-NLI RSFT vs CED RSFT.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, os, sys, time, argparse, math\\\\nfrom pathlib import Path\\\\nfrom datetime import datetime\\\\n\\\\n\\\\nclass NanSafeEncoder(json.JSONEncoder):\\\\n    def encode(self, o):\\\\n        text = super().encode(o)\\\\n        return text.replace(\\\\\\\"NaN\\\\\\\", \\\\\\\"null\\\\\\\").replace(\\\\\\\"Infinity\\\\\\\", '\\\\\\\"Inf\\\\\\\"')\\\\n\\\\n\\\\nEVAL_ROOT = Path(\\\\\\\"/root/autodl-tmp/eval_results\\\\\\\")\\\\nOUT_DIR = EVAL_ROOT\\\\n\\\\nMETHODS = {\\\\n    \\\\\\\"CED_RSFT\\\\\\\": {\\\\n        \\\\\\\"s42\\\\\\\": \\\\\\\"rsft_r2b_maxtok1536\\\\\\\",\\\\n        \\\\\\\"s43\\\\\\\": [\\\\\\\"rsft_ced_s43\\\\\\\", \\\\\\\"rsft_s43\\\\\\\"],\\\\n        \\\\\\\"s44\\\\\\\": \\\\\\\"rsft_s44\\\\\\\",\\\\n        \\\\\\\"s45\\\\\\\": \\\\\\\"rsft_ced_s45\\\\\\\",\\\\n    },\\\\n    \\\\\\\"flatNLI_RSFT\\\\\\\": {\\\\n        \\\\\\\"s42\\\\\\\": \\\\\\\"rsft_flat_nli\\\\\\\",\\\\n        \\\\\\\"s43\\\\\\\": [\\\\\\\"rsft_flat_nli_s43_reeval\\\\\\\", \\\\\\\"rsft_flat_nli_s43\\\\\\\"],\\\\n        \\\\\\\"s44\\\\\\\": \\\\\\\"rsft_flat_nli_s44\\\\\\\",\\\\n        \\\\\\\"s45\\\\\\\": \\\\\\\"rsft_flat_nli_s45\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\nMETRICS_KEYS = [\\\\\\\"f1\\\\\\\", \\\\\\\"evi_f1\\\\\\\", \\\\\\\"edcr\\\\\\\"]\\\\nMETRIC_LABELS = {\\\\\\\"f1\\\\\\\": \\\\\\\"rel_f1\\\\\\\", \\\\\\\"evi_f1\\\\\\\": \\\\\\\"evi_f1\\\\\\\", \\\\\\\"edcr\\\\\\\": \\\\\\\"EDCR\\\\\\\"}\\\\n\\\\n\\\\ndef load_metrics(eval_dir_name):\\\\n    if isinstance(eval_dir_name, list):\\\\n        for name in eval_dir_name:\\\\n            result = load_metrics(name)\\\\n            if result is not None:\\\\n                return result\\\\n        return None\\\\n    p = EVAL_ROOT / eval_dir_name / \\\\\\\"metrics.json\\\\\\\"\\\\n    if not p.exists():\\\\n        return None\\\\n    with open(p) as f:\\\\n        m = json.load(f)\\\\n    if m.get(\\\\\\\"field_compliance_rate\\\\\\\", 0) == 0 or m.get(\\\\\\\"f1\\\\\\\", 0) < 0.01:\\\\n        return None\\\\n    return m\\\\n\\\\n\\\\ndef mean(vals):\\\\n    return sum(vals) / len(vals) if vals else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\ndef std(vals):\\\\n    if len(vals) < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    m = mean(vals)\\\\n    return math.\n…[truncated 7409 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T02:36:08.238020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/rsft_flat_nli_s45/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T02:36:08.240302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T02:36:08.240655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/rsft_ced_s43/",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T02:36:08.240927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T02:36:08.241134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/rsft_ced_s45/",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T02:36:08.241372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T02:36:08.241646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics_v2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T02:36:08.241937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.4672749605193894,\\\\n  \\\\\\\"recall\\\\\\\": 0.4383178339231339,\\\\n  \\\\\\\"f1\\\\\\\": 0.45233343241751245,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.44564710273397407,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.44136401441641254,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.44349521775466616,\\\\n  \\\\\\\"tp\\\\\\\": 5326,\\\\n  \\\\\\\"pred_count\\\\\\\": 11398,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8149522307763658,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8166186448554699,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8157845868152275,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15230,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6505449049399411,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 16356,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 25142,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3554714203081453,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.35096827786719276,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.353205496629918,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6760,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 19017,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7796954314720812,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7796954314720812,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 984,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 768,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 768,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15357,\\\\n  \\\\\\\"n_truncated\\\\\\\": 211,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 984,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 3515.8,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"qua\n…[truncated 213 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T02:36:08.242205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T02:36:08.244697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.47787766613784594,\\\\n  \\\\\\\"recall\\\\\\\": 0.4462184182371821,\\\\n  \\\\\\\"f1\\\\\\\": 0.4615057241349959,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.47787766613784594,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4462184182371821,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4615057241349959,\\\\n  \\\\\\\"tp\\\\\\\": 5422,\\\\n  \\\\\\\"pred_count\\\\\\\": 11346,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8186585702456528,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8076608877189797,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8131225440921136,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15149,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6458084547408646,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 16224,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 25122,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3621815118972415,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.35719848398317844,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.35967273962934887,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6880,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 18996,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.782741116751269,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.782741116751269,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 771,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 771,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15257,\\\\n  \\\\\\\"n_truncated\\\\\\\": 206,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 10580.1,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s44\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 44,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\n…[truncated 91 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T02:36:08.245007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics_v2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T02:36:08.245319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.4488311263691352,\\\\n  \\\\\\\"recall\\\\\\\": 0.4518969632129043,\\\\n  \\\\\\\"f1\\\\\\\": 0.4503588271478367,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.4273755070337447,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.45762868496442105,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4419850053552303,\\\\n  \\\\\\\"tp\\\\\\\": 5491,\\\\n  \\\\\\\"pred_count\\\\\\\": 12234,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8161612680909718,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.804381049414162,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8102283417429231,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 17160,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6740185115094794,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 19589,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 29063,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9979695431472081,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8517766497461929,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8517766497461929,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 983,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 839,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 839,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 17188,\\\\n  \\\\\\\"n_truncated\\\\\\\": 146,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 983,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9979695431472081,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 10676.8,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_r2b\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1536,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3362230891489669,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.3624422407974664,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.3488406955826504,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6981,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 20763,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixe\n…[truncated 146 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T02:36:08.245668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python3 scripts/seed_comparison.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T02:36:08.245939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# flat-NLI vs CED RSFT: Seed-Level Comparison\\\\nGenerated: 2026-05-16 10:35:30\\\\n\\\\n**CED RSFT**: 3/4 seeds (s42, s43, s44)\\\\n**flat-NLI RSFT**: 3/4 seeds (s42, s43, s44)\\\\n**Pending CED**: s45\\\\n**Pending flat-NLI**: s45\\\\n\\\\n## Per-Seed Results\\\\n\\\\n| Seed | CED rel_f1 | fNLI rel_f1 | Delta (fNLI-CED) | CED evi_f1 | fNLI evi_f1 |\\\\n|------|-----------|------------|------------------|-----------|------------|\\\\n| s42 | 0.4504 | 0.4539 | +0.0035 | 0.8102 | 0.8043 |\\\\n| s43 | 0.4683 | 0.4523 | -0.0159 | 0.8156 | 0.8158 |\\\\n| s44 | 0.4655 | 0.4615 | -0.0040 | 0.8087 | 0.8131 |\\\\n| s45 | — | — | — | — | — |\\\\n\\\\n## Summary Statistics\\\\n\\\\n**rel_f1**:\\\\n  - CED:  0.4614 ± 0.0096 (n=3)\\\\n  - fNLI: 0.4559 ± 0.0049 (n=3)\\\\n  - Delta (fNLI - CED): -0.0055\\\\n  - Paired t-test: t=0.967, p=0.4357, n=3\\\\n  - Cohen's d: -0.558\\\\n  - 95% CI (Delta): [-0.0299, 0.0189]\\\\n  - ⚠ N=3 < 4, waiting for more seeds\\\\n\\\\n**evi_f1**:\\\\n  - CED:  0.8115 ± 0.0036 (n=3)\\\\n  - fNLI: 0.8111 ± 0.0060 (n=3)\\\\n  - Delta (fNLI - CED): -0.0005\\\\n  - Paired t-test: t=0.158, p=0.8890, n=3\\\\n  - Cohen's d: -0.091\\\\n  - 95% CI (Delta): [-0.0134, 0.0125]\\\\n  - ⚠ N=3 < 4, waiting for more seeds\\\\n\\\\n**EDCR**:\\\\n  - CED:  0.6493 ± 0.0215 (n=3)\\\\n  - fNLI: 0.6465 ± 0.0038 (n=3)\\\\n  - Delta (fNLI - CED): -0.0028\\\\n  - Paired t-test: t=0.200, p=0.8597, n=3\\\\n  - Cohen's d: -0.116\\\\n  - 95% CI (Delta): [-0.0633, 0.0577]\\\\n  - ⚠ N=3 < 4, waiting for more seeds\\\\n\\\\n\\\\nWritten: /root/autodl-tmp/eval_results/seed_comparison.{md,json}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T02:36:08.248320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "seed_comparison_prep",
+              "field": "notes",
+              "value": "## Seed Comparison Pre-Analysis (2026-05-16)\n\n### Available Results (3/4 seeds each, s45 pending for both):\n\n**flat-NLI RSFT:**\n- s42: rel_f1=0.4539 (dir: rsft_flat_nli)\n- s43: rel_f1=0.4523 (dir: rsft_flat_nli_s43_reeval; original rsft_flat_nli_s43 was broken f1=0.002)\n- s44: rel_f1=0.4615 (dir: rsft_flat_nli_s44; NOTE: only metrics.json, no metrics_v2.json with fixed Ign-F1)\n- s45: PENDING (empty dir)\n- Mean: 0.4559 ± 0.0049\n\n**CED RSFT:**\n- s42: rel_f1=0.4504 (dir: rsft_r2b_maxtok1536)\n- s43: rel_f1=0.4683 (dir: rsft_s43)\n- s44: rel_f1=0.4655 (dir: rsft_s44)\n- s45: PENDING (empty dir)\n- Mean: 0.4614 ± 0.0096\n\n### Pre-comparison (N=3):\n- rel_f1 Delta (fNLI - CED): -0.0055 (CED slightly better)\n- Paired t-test: t=0.967, p=0.4357 (NOT significant)\n- 95% CI for delta: [-0.0299, +0.0189] (crosses zero)\n- Cohen's d: -0.558\n\n### seed_comparison.py status: WORKING\n- Auto-discovers all seeds, handles fallback dirs, filters broken results (f1<0.01)\n- Outputs to /root/autodl-tmp/eval_results/seed_comparison.{md,json}\n- Supports --watch mode for polling",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T02:36:08.248730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"seed_comparison_prep\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T02:35:52.694Z\\\", \\\"updated_at\\\": \\\"2026-05-16T02:35:52.694Z\\\", \\\"notes\\\": \\\"## Seed Comparison Pre-Analysis (2026-05-16)\\\\n\\\\n### Available Results (3/4 seeds each, s45 pending for both):\\\\n\\\\n**flat-NLI RSFT:**\\\\n- s42: rel_f1=0.4539 (dir: rsft_flat_nli)\\\\n- s43: rel_f1=0.4523 (dir: rsft_flat_nli_s43_reeval; original rsft_flat_nli_s43 was broken f1=0.002)\\\\n- s44: rel_f1=0.4615 (dir: rsft_flat_nli_s44; NOTE: only metrics.json, no metrics_v2.json with fixed Ign-F1)\\\\n- s45: PENDING (empty dir)\\\\n- Mean: 0.4559 ± 0.0049\\\\n\\\\n**CED RSFT:**\\\\n- s42: rel_f1=0.4504 (dir: rsft_r2b_maxtok1536)\\\\n- s43: rel_f1=0.4683 (dir: rsft_s43)\\\\n- s44: rel_f1=0.4655 (dir: rsft_s44)\\\\n- s45: PENDING (empty dir)\\\\n- Mean: 0.4614 ± 0.0096\\\\n\\\\n### Pre-comparison (N=3):\\\\n- rel_f1 Delta (fNLI - CED): -0.0055 (CED slightly better)\\\\n- Paired t-test: t=0.967, p=0.4357 (NOT significant)\\\\n- 95% CI for delta: [-0.0299, +0.0189] (crosses zero)\\\\n- Cohen's d: -0.558\\\\n\\\\n### seed_comparison.py status: WORKING\\\\n- Auto-discovers all seeds, handles fallback dirs, filters broken results (f1<0.01)\\\\n- Outputs to /root/autodl-tmp/eval_results/seed_comparison.{md,json}\\\\n- Supports --watch mode for polling\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8632}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T02:36:08.249053+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**3/4 seeds 已就绪**（双方都只缺 s45）：\n\n| Seed | flat-NLI rel_f1 | CED rel_f1 | Δ (fNLI-CED) |\n|------|----------------|-----------|---------------|\n| s42 | 0.4539 | 0.4504 | +0.0035 |\n| s43 | 0.4523 | 0.4683 | -0.0159 |\n| s44 | 0.4615 | 0.4655 | -0.0040 |\n| Mean | 0.4559±0.0049 | 0.4614±0.0096 | -0.0055 |\n\n**预比较 (N=3):** CED 略优 0.55 个点，但 p=0.4357 远未显著，95% CI [-0.030, +0.019] 跨零。s45 结果出来后用 `python3 scripts/seed_comparison.py` 即可得到完整 paired t-test。\n\n**注意事项：**\n- rsft_flat_nli_s44 缺 metrics_v2.json（无 Ign-F1 修正），脚本用 metrics.json 不影响 rel_f1，但 ign_f1 值不准\n- rsft_flat_nli_s43 原始结果是坏的（f1=0.002），脚本已正确回退到 reeval 版本"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_seed_comparison_prep_20260516T023404"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-seed-comparison-prep.md"
+}

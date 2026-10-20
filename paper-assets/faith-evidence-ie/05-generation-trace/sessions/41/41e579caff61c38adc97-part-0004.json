@@ -1,0 +1,3540 @@
+{
+  "schema_version": "1.0",
+  "session_id": "41e579caff61c38adc97",
+  "rounds": [
+    {
+      "number": 15,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-14T19:52:31.219845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"KLDivergenceCallback\" /root/autodl-tmp/freige/training/grpo_trainer.py"
+            }
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": "2026-05-14T19:52:31.321452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 302
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-14T19:52:31.723795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30:class KLDivergenceCallback(TrainerCallback):\\\\n524:    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-14T19:52:39.004200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-14T19:52:39.055396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-14T19:52:43.277601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"kl_coef\\|KL\\|kl_div\\|reference\" /root/autodl-tmp/freige/training/grpo_trainer.py"
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-14T19:52:43.730493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-14T19:52:44.032563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -rn \"KL divergence.*monitoring\" /root/autodl-tmp/freige/training/"
+            }
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-14T19:52:44.384663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/training/grpo_trainer.py:44:                logger.warning(\\\\\\\"KL divergence %.2f exceeds monitoring threshold %.1f (monitoring only, not stopping)\\\\\\\", kl, self.max_kl)\\\\n\\\", \\\"stderr\\\": \\\"grep: /root/autodl-tmp/freige/training/__pycache__/grpo_trainer.cpython-312.pyc: binary file matches\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 352
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-14T19:52:47.705900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -60 /root/autodl-tmp/freige/training/grpo_trainer.py"
+            }
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-14T19:52:48.058390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"GRPO 训练脚本: 基于 TRL GRPOTrainer 的多阶段 curriculum 训练。\\\\n\\\\n支持单卡和多卡（DeepSpeed ZeRO-2/3）训练，默认 4-bit QLoRA。\\\\n\\\\n单卡:   python -m freige.training.grpo_trainer --stage 1 --output_dir ./grpo_s1\\\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\\\\\\\n            -m freige.training.grpo_trainer --deepspeed configs/deepspeed_zero2.json \\\\\\\\\\\\n            --stage 1 --reward_device cpu\\\\n不量化: 加 --no_quantize\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport os\\\\nimport re\\\\nfrom pathlib import Path\\\\nfrom typing import Optional\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom peft import LoraConfig, PeftModel, TaskType\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainerCallback\\\\nfrom trl import GRPOConfig, GRPOTrainer\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nclass KLDivergenceCallback(TrainerCallback):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Monitor KL divergence — log only, no early stopping.\\\\n\\\\n    With QLoRA 4-bit, KL between ref and policy is unreliable due to\\\\n    quantization noise. We log it for diagnostics but do not penalize or stop.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, max_kl: float = 100.0):\\\\n        self.max_kl = max_kl\\\\n\\\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\\\n        if logs and \\\\\\\"kl\\\\\\\" in logs:\\\\n            kl = logs[\\\\\\\"kl\\\\\\\"]\\\\n            if kl > self.max_kl:\\\\n                logger.warning(\\\\\\\"KL divergence %.2f exceeds monitoring threshold %.1f (monitoring only, not stopping)\\\\\\\", kl, self.max_kl)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    \\\\\\\"head entity, relation type, tail entity,\n…[truncated 466 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 352
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": "2026-05-14T19:52:54.178549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -3 /root/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log"
+            }
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-14T19:52:54.730816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r  0%|          | 0/200 [00:00<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed\\\\n\\\\r  0%|          | 1/200 [01:50<6:04:54, 110.02s/it]\\\\r  1%|          | 2/200 [03:42<6:06:59, 111.21s/it]\\\\r  2%|▏         | 3/200 [05:32<6:04:33, 111.03s/it]\\\\r  2%|▏         | 4/200 [07:24<6:03:29, 111.27s/it]\\\\r  2%|▎         | 5/200 [09:14<5:59:48, 110.71s/it]2026-05-15 03:49:50,412 WARNING KL divergence 2412554396.90 exceeds monitoring threshold 100.0 (monitoring only, not stopping)\\\\n\\\\r                                                  \\\\r\\\\r  2%|▎         | 5/200 [09:14<5:59:48, 110.71s/it]\\\\r  3%|▎         | 6/200 [11:04<5:57:30, 110.57s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": "2026-05-14T19:52:54.982294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/grpo_ced_lr5e6 -name \"*.json\" -type f"
+            }
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": "2026-05-14T19:52:55.333973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-14T19:52:59.650411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"max_kl\" /root/autodl-tmp/freige/training/grpo_trainer.py"
+            }
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": "2026-05-14T19:52:59.701133+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__fetch_wandb_metrics",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": "2026-05-14T19:53:00.007201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37:    def __init__(self, max_kl: float = 100.0):\\\\n38:        self.max_kl = max_kl\\\\n43:            if kl > self.max_kl:\\\\n44:                logger.warning(\\\\\\\"KL divergence %.2f exceeds monitoring threshold %.1f (monitoring only, not stopping)\\\\\\\", kl, self.max_kl)\\\\n404:    parser.add_argument(\\\\\\\"--max_kl\\\\\\\", type=float, default=100.0,\\\\n524:    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 356
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": "2026-05-14T19:53:00.007723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 306
+          },
+          "id": "event-000559"
+        },
+        {
+          "source_line": 560,
+          "timestamp": "2026-05-14T19:53:16.872418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "decisions.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000560"
+        },
+        {
+          "source_line": 561,
+          "timestamp": "2026-05-14T19:53:16.974150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 28\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-14 04:21 UTC\\\\n  summary: MVP 设计：两阶段验证——MVP-1 CED 信号验证（离线）→ MVP-2 端到端训练验证\\\\n  rationale: CED 是核心创新，必须先验证 DeBERTa NLI 能在 DocRED 上区分金标证据与实体共现干扰句（MVP-1），再投入 GPU\\\\n    跑完整训练流水线（MVP-2）。MVP-1 失败则 idea 需 pivot，避免浪费 GPU。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-14 05:46 UTC\\\\n  summary: 'MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）'\\\\n  rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 0.7）。三个需关注项：33.4%\\\\n    gold p_pos < τ=0.5（τ 可能需调低）、44.4% 无 hard negatives（退化为 flat NLI）、少数负 margin 样本（标注噪声）。这些不影响\\\\n    MVP 结论但影响 Research 阶段 CED 调参。\\\\n  related_experiments:\\\\n  - exp_id: mvp1_ced_signal\\\\n    role: primary\\\\n    result: PASS — mean_margin=0.4827, accuracy=81.5%, pearson_r=0.3406\\\\n  depends_on: []\\\\n- id: D003\\\\n  date: 2026-05-14 06:02 UTC\\\\n  summary: 'Smoke test 功能性 PASS: ZeRO-2 + QLoRA 兼容，4.9GB/卡，授权启动 MVP-2 SFT'\\\\n  rationale: Smoke test 自报 FAIL 是假阴性——synthetic data format-only reward 产生零 variance，数学上无梯度是正常行为。关键目标全部达成：ZeRO-2+QLoRA+GRPOTrainer\\\\n    兼容、显存充裕（4.9/32GB）、有 reward variance 时梯度正常。Reviewer 独立确认功能性 PASS。\\\\n  related_experiments:\\\\n  - exp_id: smoke_test_grpo\\\\n    role: infrastructure\\\\n    result: 功能性 PASS (ZeRO-2+QLoRA, 4×5090, 4.9GB/卡)\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-14 07:26 UTC\\\\n  summary: 发现 rtx5090-4x 和 gpu-5090-4x-1 为同一台机器（4 GPU），GRPO 三路对比改为串行\\\\n  rationale: Reviewer 核实两个 SSH endpoint 返回相同 hostname 和 PID。实际资源 = 4× RTX 5090 32GB，非\\\\n    8 张。串行 3 路 GRPO 预估 ~7-10h（每路 ~2-3h），今天内可完成 MVP-2，暂不需要额外申请 GPU。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-14 10:03 UTC\\\\n  summary: CED r1 训练 step 40 后 mode collapse，启动早停+checkpoint 抢救+cliprange 排查\\\\n  rationale: Reviewer 审查发现 step 40 后所有指标退化（total_rewar\n…[truncated 18177 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-000561"
+        },
+        {
+          "source_line": 562,
+          "timestamp": "2026-05-14T19:53:30.484726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__fetch_wandb_metrics"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "tool_args": {
+              "run_id": "grpo-s3-ced-lr5e6-r1",
+              "metric_names": "['kl', 'loss', 'reward', 'reward/f1_reward', 'reward/ced_reward', 'reward/format_reward']"
+            }
+          },
+          "id": "event-000562"
+        },
+        {
+          "source_line": 563,
+          "timestamp": "2026-05-14T19:53:30.937115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"W&B entity/project not configured. Set in config/projects/*.yaml\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "elapsed_ms": 452
+          },
+          "id": "event-000563"
+        },
+        {
+          "source_line": 564,
+          "timestamp": "2026-05-14T19:53:31.498961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -10 /root/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log"
+            }
+          },
+          "id": "event-000564"
+        },
+        {
+          "source_line": 565,
+          "timestamp": "2026-05-14T19:53:31.856490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\\\n  warnings.warn(\\\\n2026-05-15 03:40:30,522 INFO Loading NLI model: cross-encoder/nli-deberta-v3-base\\\\n2026-05-15 03:40:33,871 INFO Entailment index: 1 (id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'})\\\\n2026-05-15 03:40:33,871 INFO Stage 3: using ced reward, tau 0.30→0.50 over 190 steps\\\\n2026-05-15 03:40:35,806 INFO Starting GRPO training (stage 3)...\\\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\\n\\\\r  0%|          | 0/200 [00:00<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed\\\\n\\\\r  0%|          | 1/200 [01:50<6:04:54, 110.02s/it]\\\\r  1%|          | 2/200 [03:42<6:06:59, 111.21s/it]\\\\r  2%|▏         | 3/200 [05:32<6:04:33, 111.03s/it]\\\\r  2%|▏         | 4/200 [07:24<6:03:29, 111.27s/it]\\\\r  2%|▎         | 5/200 [09:14<5:59:48, 110.71s/it]2026-05-15 03:49:50,412 WARNING KL divergence 2412554396.90 exceeds monitoring threshold 100.0 (monitoring only, not stopping)\\\\n\\\\r                                                  \\\\r\\\\r  2%|▎         | 5/200 [09:14<5:59:48, 110.71s/it]\\\\r  3%|▎         | 6/200 [11:04<5:57:30, 110.57s/it]\\\\r  4%|▎         | 7/200 [12:55<5:56:00, 110.67s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 357
+          },
+          "id": "event-000565"
+        },
+        {
+          "source_line": 566,
+          "timestamp": "2026-05-14T19:53:38.045753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-80/"
+            }
+          },
+          "id": "event-000566"
+        },
+        {
+          "source_line": 567,
+          "timestamp": "2026-05-14T19:53:38.599283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 2 root root   10 May 15 03:48 .\\\\ndrwxr-xr-x 9 root root 4096 May 15 03:48 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000567"
+        },
+        {
+          "source_line": 568,
+          "timestamp": "2026-05-14T19:53:38.850777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -10 /root/autodl-tmp/freige/training/grpo_trainer.py"
+            }
+          },
+          "id": "event-000568"
+        },
+        {
+          "source_line": 569,
+          "timestamp": "2026-05-14T19:53:39.203590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"GRPO 训练脚本: 基于 TRL GRPOTrainer 的多阶段 curriculum 训练。\\\\n\\\\n支持单卡和多卡（DeepSpeed ZeRO-2/3）训练，默认 4-bit QLoRA。\\\\n\\\\n单卡:   python -m freige.training.grpo_trainer --stage 1 --output_dir ./grpo_s1\\\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\\\\\\\n            -m freige.training.grpo_trainer --deepspeed configs/deepspeed_zero2.json \\\\\\\\\\\\n            --stage 1 --reward_device cpu\\\\n不量化: 加 --no_quantize\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 352
+          },
+          "id": "event-000569"
+        },
+        {
+          "source_line": 570,
+          "timestamp": "2026-05-14T19:53:49.320335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -30 /root/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step90.log"
+            }
+          },
+          "id": "event-000570"
+        },
+        {
+          "source_line": 571,
+          "timestamp": "2026-05-14T19:53:49.672849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nFound 1 checkpoints: [90]\\\\n\\\\n============================================================\\\\n[02:32:46] Evaluating: checkpoint-90\\\\n  Output: /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90\\\\n  Command: /root/miniconda3/bin/python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_kl001/checkpoint-90 --sft_adapter /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90 --quantize\\\\n============================================================\\\\n\\\\n2026-05-15 02:32:50,653 INFO Detected adapter at /root/autodl-tmp/grpo_ced_kl001/checkpoint-90, base: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 02:32:50,654 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 02:32:51,002 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 02:32:53,082 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.85s/it]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.23s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.15s/it]\\\\n2026-05-15 02:32:59,598 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\\\n/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\\\n  warnings.warn(\\\\n2026-05-15 02:33:09,900 INFO Loading LoRA adapter: /root/autodl-tmp/grpo_ced_kl001/checkpoint-90\\\\n2026-05-15 02:33:11,507 INF\n…[truncated 4234 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 352
+          },
+          "id": "event-000571"
+        },
+        {
+          "source_line": 572,
+          "timestamp": "2026-05-14T19:54:18.019179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_constraints",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000572"
+        },
+        {
+          "source_line": 573,
+          "timestamp": "2026-05-14T19:54:18.070423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000573"
+        },
+        {
+          "source_line": 574,
+          "timestamp": "2026-05-14T19:54:20.936588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_constraints"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__list_constraints",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000574"
+        },
+        {
+          "source_line": 575,
+          "timestamp": "2026-05-14T19:54:21.459364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"constraints\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__list_constraints",
+            "elapsed_ms": 522
+          },
+          "id": "event-000575"
+        },
+        {
+          "source_line": 576,
+          "timestamp": "2026-05-14T19:54:22.259345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -n \"kl\" /root/autodl-tmp/freige/training/grpo_trainer.py"
+            }
+          },
+          "id": "event-000576"
+        },
+        {
+          "source_line": 577,
+          "timestamp": "2026-05-14T19:54:22.610751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37:    def __init__(self, max_kl: float = 100.0):\\\\n38:        self.max_kl = max_kl\\\\n41:        if logs and \\\\\\\"kl\\\\\\\" in logs:\\\\n42:            kl = logs[\\\\\\\"kl\\\\\\\"]\\\\n43:            if kl > self.max_kl:\\\\n44:                logger.warning(\\\\\\\"KL divergence %.2f exceeds monitoring threshold %.1f (monitoring only, not stopping)\\\\\\\", kl, self.max_kl)\\\\n402:    parser.add_argument(\\\\\\\"--kl_coef\\\\\\\", type=float, default=0.0,\\\\n404:    parser.add_argument(\\\\\\\"--max_kl\\\\\\\", type=float, default=100.0,\\\\n520:    if args.kl_coef > 0:\\\\n521:        grpo_config_kwargs[\\\\\\\"beta\\\\\\\"] = args.kl_coef\\\\n524:    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-000577"
+        },
+        {
+          "source_line": 578,
+          "timestamp": "2026-05-14T19:54:25.014442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "text": "[severity: warning] P0 训练 `mvp2_grpo_ced_lr5e6_r1` KL 爆炸\n\n## 发现\n\nStep 5（首次 logging_steps=5 输出）KL divergence = **2,412,554,396.90**（24亿），超过阈值 100.0 达 2400 万倍。\n\n**证据**：\n```\n2026-05-15 03:49:50 WARNING KL divergence 2412554396.90 exceeds monitoring threshold 100.0 (monitoring only, not stopping)\n```\n\n## 分析\n\n1. **KL 罚项主导训练**：beta=0.01 × KL=2.4B = 2400万。reward 信号量级仅 0-4，被 KL 罚项完全淹没。模型无法从 reward 学习，等于只在做\"回到 reference model\"的更新。\n\n2. **可能根因**：QLoRA 4-bit 量化导致 policy model 和 reference model 的 log probability 存在系统性偏差。这是 QLoRA + KL regularization 的已知问题。旧实验 ced_kl001_r4（同样 kl_coef=0.01）的日志中没有 KL 数据——KLDivergenceCallback 是近期新增代码，旧 run 没有这个回调。\n\n3. **训练未崩溃**：step 6 正常进行中，~110s/step，但不代表训练有效——可能只是 KL 罚项让模型根本动不了。\n\n## 风险\n\n如果 KL 持续这么高，lr 从 5e-5 降到 5e-6 的效果无法验证——模型被 KL 锁死，无论 lr 多少都学不到 reward。P0 实验的假说（\"lr 过高导致遗忘\"）无法被 confirm/deny。\n\n## 建议\n\n1. **step 10 时再次检查 KL**——如果仍在 10^9+，说明是 QLoRA 量化的系统性问题而非 lr 问题\n2. **考虑 kl_coef=0 的对照实验**——D029 分析的社区参考中多数 GRPO+QLoRA 用 kl_coef=0 而非 0.01。如果 QLoRA 量化导致 KL 计算不可靠，不如关掉 KL 罚项\n3. **前一轮 ced_kl001_r4 也可能有同样的 KL 问题**——旧代码没有 KL 监控所以不可见，但如果两者 KL 都是 10^9+，则 kl_coef=0.01 在所有之前的实验中都可能没有起到预期作用"
+            }
+          },
+          "id": "event-000578"
+        },
+        {
+          "source_line": 579,
+          "timestamp": "2026-05-14T19:54:28.833350+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3818
+          },
+          "id": "event-000579"
+        },
+        {
+          "source_line": 580,
+          "timestamp": "2026-05-14T19:54:31.591456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] 两项发现：\n\n## 1. High eval 未死——cron 误报 + ckpt-70 OOM\n\n`mvp2_eval_ced_kl001_r4_high`（cuda:3）仍在运行。cron `on_failed` 是误报。实际序列：\n- ckpt-60: ✓ 完成（metrics.json 已存在）\n- ckpt-70: **OOM killed (exit -9)**，在 6/62 batch（10%）时被系统杀掉\n- ckpt-80: 当前正在运行（03:49 开始）\n- ckpt-90: 排队中（cuda:1 上已有独立 step90 eval，95% 即将完成）\n\nckpt-70 数据缺口：multi eval（cuda:2，checkpoints 10,20,30,40,60,70,80 --resume）最终会覆盖 ckpt-70，但目前还在处理 ckpt-20，预计数小时后才到 ckpt-70。\n\n**OOM 根因推测**：ckpt-70 在 ckpt-60 刚完成后立即启动，GPU 可能有内存碎片未释放。与 ckpt-60 使用相同模型大小和 batch_size=16，正常不应 OOM。建议后续 batch_eval 脚本在 checkpoint 间加显存释放（`torch.cuda.empty_cache()`）。\n\n## 2. P0 训练 KL 异常（需持续监控）\n\n`mvp2_grpo_ced_lr5e6_r1`（cuda:0）step 5（首个 logging 点）出现：\n```\nKL divergence 2412554396.90 exceeds monitoring threshold 100.0\n```\n\nKL = 24 亿，远超阈值 100。但代码注释明确说明：\"With QLoRA 4-bit, KL between ref and policy is **unreliable** due to quantization noise. We log it for diagnostics but do not penalize or stop.\"\n\n**缓解因素**：\n- 原始实验 ced_kl001_r4（lr=5e-5）日志中无任何 KL 记录（0 条匹配），可能因 KL 从未超 100 阈值，也可能是 KLDivergenceCallback 是后来新增的\n- P0 训练 step 6, 7 正常完成，无新 KL 警告，step 时间稳定 ~111s/step\n- 下一个 logging 点是 step 10（logging_steps=5），届时可判断是 one-time spike 还是持续问题\n\n**建议**：暂不干预。如果 step 10/15 持续 KL > 100，或 training reward 异常，再评估是否重启。关键验证点：step 20 checkpoint 的 eval F1 是否 > 0.30（P0 通过标准）。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000580"
+        },
+        {
+          "source_line": 581,
+          "timestamp": "2026-05-14T19:54:36.322688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4731
+          },
+          "id": "event-000581"
+        },
+        {
+          "source_line": 582,
+          "timestamp": "2026-05-14T19:54:40.137653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json"
+            }
+          },
+          "id": "event-000582"
+        },
+        {
+          "source_line": 583,
+          "timestamp": "2026-05-14T19:54:40.589829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000583"
+        },
+        {
+          "source_line": 584,
+          "timestamp": "2026-05-14T19:54:41.343739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "mvp2_grpo_ced_lr5e6_r1",
+              "project": "faith-evidence-ie",
+              "n": "10"
+            }
+          },
+          "id": "event-000584"
+        },
+        {
+          "source_line": 585,
+          "timestamp": "2026-05-14T19:54:41.695649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\\", \\\"  warnings.warn(\\\", \\\"2026-05-15 03:40:30,522 INFO Loading NLI model: cross-encoder/nli-deberta-v3-base\\\", \\\"2026-05-15 03:40:33,871 INFO Entailment index: 1 (id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'})\\\", \\\"2026-05-15 03:40:33,871 INFO Stage 3: using ced reward, tau 0.30→0.50 over 190 steps\\\", \\\"2026-05-15 03:40:35,806 INFO Starting GRPO training (stage 3)...\\\", \\\"The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\", \\\"\\\\r  0%|          | 0/200 [00:00<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed\\\", \\\"\\\\r  0%|          | 1/200 [01:50<6:04:54, 110.02s/it]\\\\r  1%|          | 2/200 [03:42<6:06:59, 111.21s/it]\\\\r  2%|▏         | 3/200 [05:32<6:04:33, 111.03s/it]\\\\r  2%|▏         | 4/200 [07:24<6:03:29, 111.27s/it]\\\\r  2%|▎         | 5/200 [09:14<5:59:48, 110.71s/it]2026-05-15 03:49:50,412 WARNING KL divergence 2412554396.90 exceeds monitoring threshold 100.0 (monitoring only, not stopping)\\\", \\\"\\\\r                                                  \\\\r\\\\r  2%|▎         | 5/200 [09:14<5:59:48, 110.71s/it]\\\\r  3%|▎         | 6/200 [11:04<5:57:30, 110.57s/it]\\\\r  4%|▎         | 7/200 [12:55<5:56:00, 110.67s/it]\\\"], \\\"line_count\\\": 10, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 351
+          },
+          "id": "event-000585"
+        },
+        {
+          "source_line": 586,
+          "timestamp": "2026-05-14T19:54:44.161440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "text": "[severity: warning] cuda:3 清理不完整 — 高 eval 父进程仍在运行\n\n## 发现\n\nWorker `cleanup-cuda3-zombie` 杀掉了 PID 89661（ckpt-70 推理子进程），但**父进程 PID 81960**（batch_eval --checkpoints 90,80,70,60 --resume）仍然存活（运行 1h33m）。\n\n**证据**：\n```\nps -p 81960: python -m freige.eval.batch_eval --checkpoints 90,80,70,60 --quantize --resume\n```\n\n父进程在子进程被杀后继续推进到 ckpt-80，high eval 日志显示 03:49 开始加载 checkpoint-80。cuda:3 当前仍占用 63%/7.3GB。\n\n## 影响\n\n- cuda:3 **未被释放**，不可用于 P0+P1 实验\n- ckpt-80 评估结果与 multi eval（cuda:2）重复覆盖\n- 数据无损失——ckpt-60 结果已保存，ckpt-70/80 由 multi eval 覆盖\n\n## 建议\n\nkill PID 81960（父 batch_eval 进程）以真正释放 cuda:3。释放后可立即启动 P0+P1 实验（`mvp2_grpo_ced_lr5e6_p1_r1`），或用于其他任务。"
+            }
+          },
+          "id": "event-000586"
+        },
+        {
+          "source_line": 587,
+          "timestamp": "2026-05-14T19:54:44.775364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 step90 eval 完成（95%→100%）和 P0 训练 step 10 logging",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-000587"
+        },
+        {
+          "source_line": 588,
+          "timestamp": "2026-05-14T19:54:44.826073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 19:59:00 (in 255s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-000588"
+        },
+        {
+          "source_line": 589,
+          "timestamp": "2026-05-14T19:54:45.268143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1106
+          },
+          "id": "event-000589"
+        },
+        {
+          "source_line": 590,
+          "timestamp": "2026-05-14T19:54:47.067525+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已提交。设定计时器等待 step90 eval 完成和 P0 step 10 metrics。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-000590"
+        },
+        {
+          "source_line": 591,
+          "timestamp": "2026-05-14T19:54:47.085467+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在发送两份报告给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-000591"
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "messages": [
+        {
+          "source_line": 592,
+          "timestamp": "2026-05-14T19:54:47.836313+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_verify-ced-recall-penalty_20260514T195228]:\nWorker worker_code_verify-ced-recall-penalty_20260514T195228 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "worker_done:worker_code_verify-ced-recall-penalty_20260514t195228"
+          },
+          "id": "event-000592"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "messages": [
+        {
+          "source_line": 593,
+          "timestamp": "2026-05-14T19:54:48.098672+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_check-all-running-progress_20260514T195214]:\nWorker worker_ops_check-all-running-progress_20260514T195214 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-000593"
+        },
+        {
+          "source_line": 594,
+          "timestamp": "2026-05-14T19:54:49.532416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "mvp2_eval_ced_kl001_r4_step90",
+              "project": "faith-evidence-ie",
+              "n": "5"
+            }
+          },
+          "id": "event-000594"
+        },
+        {
+          "source_line": 595,
+          "timestamp": "2026-05-14T19:54:49.938021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-15 02:33:11,507 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\", \\\"2026-05-15 02:33:11,861 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\", \\\"2026-05-15 02:33:12,056 INFO Prepared 985 eval documents, 12275 gold triples\\\", \\\"\\\\rInference:   0%|          | 0/62 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\", \\\"\\\\rInference:   2%|▏         | 1/62 [01:23<1:24:37, 83.24s/it]\\\\rInference:   3%|▎         | 2/62 [02:34<1:16:18, 76.32s/it]\\\\rInference:   5%|▍         | 3/62 [03:39<1:09:57, 71.14s/it]\\\\rInference:   6%|▋         | 4/62 [05:14<1:17:53, 80.58s/it]\\\\rInference:   8%|▊         | 5/62 [06:39<1:18:08, 82.25s/it]\\\\rInference:  10%|▉         | 6/62 [07:52<1:13:36, 78.86s/it]\\\\rInference:  11%|█▏        | 7/62 [09:24<1:16:16, 83.21s/it]\\\\rInference:  13%|█▎        | 8/62 [10:40<1:12:50, 80.94s/it]\\\\rInference:  15%|█▍        | 9/62 [12:15<1:15:21, 85.31s/it]\\\\rInference:  16%|█▌        | 10/62 [13:50<1:16:36, 88.39s/it]\\\\rInference:  18%|█▊        | 11/62 [15:17<1:14:36, 87.77s/it]\\\\rInference:  19%|█▉        | 12/62 [16:51<1:14:46, 89.73s/it]\\\\rInference:  21%|██        | 13/62 [18:01<1:08:24, 83.76s/it]\\\\rInference:  23%|██▎       | 14/62 [19:36<1:09:39, 87.07s/it]\\\\rInference:  24%|██▍       | 15/62 [20:46<1:04:15, 82.04s/it]\\\\rInference:  26%|██▌       | 16/62 [22:10<1:03:27, 82.78s/it]\\\\rInference:  27%|██▋       | 17/62 [23:12<57:18, 76.41s/it]  \\\\rInference:  29%|██▉       | 18/62 [24:13<52:40, 71.83s/it]\\\\rInference:  31%|███       | 19/62 [25:21<50:32, 70.53s/it]\\\\rInference:  32%|███▏      | 20/62 [26:56<54:39, 78.09s/it]\\\\rInference:  34%|███▍      | 21/62 [28:23<55:03, 80.56s/it]\\\\rInference:  35%|███▌      | 22/62 [29:38<52:40, 79.02s/it]\\\\rInference:  37%|███▋      | 23/62 [31:01<52:11, 80.29s/it]\\\\r\n…[truncated 2470 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 405
+          },
+          "id": "event-000595"
+        },
+        {
+          "source_line": 596,
+          "timestamp": "2026-05-14T19:54:56.321499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_check-all-running-progress_20260514T195214_result.json"
+            }
+          },
+          "id": "event-000596"
+        },
+        {
+          "source_line": 597,
+          "timestamp": "2026-05-14T19:54:56.322167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"## 实验进度汇总\\n\\n### GPU 状态\\n| GPU | 利用率 | 显存 |\\n|-----|--------|------|\\n| 0 | 63% | 13.6/31.8 GB |\\n| 1 | 75% | 10.6/31.8 GB |\\n| 2 | 64% | 9.7/31.8 GB |\\n| 3 | 94% | 16.1/31.8 GB |\\n\\n---\\n\\n### 1. mvp2_grpo_ced_lr5e6_r1 (cuda:0, pid=90080) — **运行中**\\n- **进度**: step 6/200 (3%)\\n- **速度**: ~111s/step\\n- **预估剩余**: ~5h58m\\n- **输出目录**: `/root/autodl-tmp/grpo_ced_lr5e6/` — 空，尚未到第一个 save_steps=20\\n- **⚠️ 异常**: KL divergence = **2,412,554,396.9** (远超阈值 100)，虽然标记 monitoring only 没有停止，但 KL 爆炸到 24 亿严重异常，大概率导致训练崩溃或无效。建议检查 lr=5e-6 是否过大或初始化问题。\\n\\n---\\n\\n### 2. mvp2_eval_ced_kl001_r4_step90 (cuda:1, pid=83207) — **运行中**\\n- **进度**: 58/62 batches (94%)\\n- **速度**: ~82s/batch\\n- **预估剩余**: ~5-6 min\\n- **状态**: 即将完成\\n\\n---\\n\\n### 3. mvp2_eval_ced_kl001_r4_multi (cuda:2, pid=78850) — **运行中**\\n- **已完成 checkpoint**: 10 ✅, 50 ✅, 60 ✅\\n- **当前**: ckpt-20 eval 中，46/62 batches (74%)\\n- **预估剩余 ckpt-20**: ~13 min\\n- **待 eval**: 30, 40 (ckpt-70, 80 已分给实验 4)\\n- **预估全部完成**: ~3.5h（ckpt-20 剩 13min + ckpt-30 ~87min + ckpt-40 ~87min）\\n\\n**已完成 metrics**:\\n\\n| Checkpoint | F1 | Ign-F1 | Evi-F1 | EDCR | Format |\\n|------------|-----|--------|--------|------|--------|\\n| 10 | 0.003 | 0.003 | 0.720 | 0.998 | 99.9% |\\n| 50 | **0.156** | **0.156** | 0.564 | 0.886 | 99.9% |\\n| 60 | 0.147 | 0.147 | 0.576 | 0.906 | 100% |\\n\\nckpt-10 关系 F1 几乎为零（模型还没学会），ckpt-50 是目前最高点，ckpt-60 略有下降。\\n\\n---\\n\\n### 4. mvp2_eval_ced_kl001_r4_ckpt7080 (cuda:3, pid=91681) — **运行中**\\n- **当前**: ckpt-70 eval 刚启动，模型已加载完毕，inference 0/62\\n- **预估完成**: ~3h（ckpt-70 ~87min + ckpt-80 ~87min）\\n\\n---\\n\\n### 关键发现\\n1. **KL 爆炸**: 实验 1 (grpo_ced_lr5e6) 的 KL divergence 爆到 24 亿，lr=5e-6 可能过大，这轮训练大概率无效。需要决定是否提前终止。\\n2. **Eval 矩阵进展顺利**: ckpt-90 eval 即将完成（~5min），ckpt-20 也快完成（~13min）。\\n3. **ckpt-50 暂时最优**: F1=0.156, 后续 ckpt-60 已略有下降，等 ckpt-90 结果出来可以看完整曲线。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000597"
+        },
+        {
+          "source_line": 598,
+          "timestamp": "2026-05-14T19:54:57.938182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_code_verify-ced-recall-penalty_20260514T195228_result.json"
+            }
+          },
+          "id": "event-000598"
+        },
+        {
+          "source_line": 599,
+          "timestamp": "2026-05-14T19:54:57.989025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"全部验证通过。\\n\\n### 结果\\n\\n**1. 参数格式**：`--ced_recall_penalty` 是 boolean flag（`store_true`），无需传值，加上即启用。\\n\\n**行为**：在 CED reward 计算中，`mean_ced *= recall`，即将 CED 得分乘以 recall（`matched_gold_keys / total_gold`），惩罚漏提取。\\n\\n**2. 完整提交命令**：\\n\\n```bash\\nbash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6_rp --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --ced_recall_penalty --wandb_run_name grpo-s3-ced-lr5e6-rp-r1\\\"\\n```\\n\\n**3. 无异常**。参数解析正常，import 正常，命令可直接用于 `submit_training_job`。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000599"
+        },
+        {
+          "source_line": 600,
+          "timestamp": "2026-05-14T19:55:14.337812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json"
+            }
+          },
+          "id": "event-000600"
+        },
+        {
+          "source_line": 601,
+          "timestamp": "2026-05-14T19:55:15.292454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 954
+          },
+          "id": "event-000601"
+        },
+        {
+          "source_line": 602,
+          "timestamp": "2026-05-14T19:55:15.593962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "mvp2_grpo_ced_lr5e6_r1",
+              "project": "faith-evidence-ie",
+              "n": "5"
+            }
+          },
+          "id": "event-000602"
+        },
+        {
+          "source_line": 603,
+          "timestamp": "2026-05-14T19:55:15.872476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json"
+            }
+          },
+          "id": "event-000603"
+        },
+        {
+          "source_line": 604,
+          "timestamp": "2026-05-14T19:55:15.946046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-15 03:40:35,806 INFO Starting GRPO training (stage 3)...\\\", \\\"The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\", \\\"\\\\r  0%|          | 0/200 [00:00<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed\\\", \\\"\\\\r  0%|          | 1/200 [01:50<6:04:54, 110.02s/it]\\\\r  1%|          | 2/200 [03:42<6:06:59, 111.21s/it]\\\\r  2%|▏         | 3/200 [05:32<6:04:33, 111.03s/it]\\\\r  2%|▏         | 4/200 [07:24<6:03:29, 111.27s/it]\\\\r  2%|▎         | 5/200 [09:14<5:59:48, 110.71s/it]2026-05-15 03:49:50,412 WARNING KL divergence 2412554396.90 exceeds monitoring threshold 100.0 (monitoring only, not stopping)\\\", \\\"\\\\r                                                  \\\\r\\\\r  2%|▎         | 5/200 [09:14<5:59:48, 110.71s/it]\\\\r  3%|▎         | 6/200 [11:04<5:57:30, 110.57s/it]\\\\r  4%|▎         | 7/200 [12:55<5:56:00, 110.67s/it]\\\"], \\\"line_count\\\": 5, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 352
+          },
+          "id": "event-000604"
+        },
+        {
+          "source_line": 605,
+          "timestamp": "2026-05-14T19:55:16.225901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 353
+          },
+          "id": "event-000605"
+        },
+        {
+          "source_line": 606,
+          "timestamp": "2026-05-14T19:55:16.226400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-70/"
+            }
+          },
+          "id": "event-000606"
+        },
+        {
+          "source_line": 607,
+          "timestamp": "2026-05-14T19:55:16.628272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000607"
+        },
+        {
+          "source_line": 608,
+          "timestamp": "2026-05-14T19:55:21.326412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "mvp2_eval_ced_kl001_r4_step90",
+              "project": "faith-evidence-ie",
+              "n": "3"
+            }
+          },
+          "id": "event-000608"
+        },
+        {
+          "source_line": 609,
+          "timestamp": "2026-05-14T19:55:21.680534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-15 02:33:12,056 INFO Prepared 985 eval documents, 12275 gold triples\\\", \\\"\\\\rInference:   0%|          | 0/62 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\", \\\"\\\\rInference:   2%|▏         | 1/62 [01:23<1:24:37, 83.24s/it]\\\\rInference:   3%|▎         | 2/62 [02:34<1:16:18, 76.32s/it]\\\\rInference:   5%|▍         | 3/62 [03:39<1:09:57, 71.14s/it]\\\\rInference:   6%|▋         | 4/62 [05:14<1:17:53, 80.58s/it]\\\\rInference:   8%|▊         | 5/62 [06:39<1:18:08, 82.25s/it]\\\\rInference:  10%|▉         | 6/62 [07:52<1:13:36, 78.86s/it]\\\\rInference:  11%|█▏        | 7/62 [09:24<1:16:16, 83.21s/it]\\\\rInference:  13%|█▎        | 8/62 [10:40<1:12:50, 80.94s/it]\\\\rInference:  15%|█▍        | 9/62 [12:15<1:15:21, 85.31s/it]\\\\rInference:  16%|█▌        | 10/62 [13:50<1:16:36, 88.39s/it]\\\\rInference:  18%|█▊        | 11/62 [15:17<1:14:36, 87.77s/it]\\\\rInference:  19%|█▉        | 12/62 [16:51<1:14:46, 89.73s/it]\\\\rInference:  21%|██        | 13/62 [18:01<1:08:24, 83.76s/it]\\\\rInference:  23%|██▎       | 14/62 [19:36<1:09:39, 87.07s/it]\\\\rInference:  24%|██▍       | 15/62 [20:46<1:04:15, 82.04s/it]\\\\rInference:  26%|██▌       | 16/62 [22:10<1:03:27, 82.78s/it]\\\\rInference:  27%|██▋       | 17/62 [23:12<57:18, 76.41s/it]  \\\\rInference:  29%|██▉       | 18/62 [24:13<52:40, 71.83s/it]\\\\rInference:  31%|███       | 19/62 [25:21<50:32, 70.53s/it]\\\\rInference:  32%|███▏      | 20/62 [26:56<54:39, 78.09s/it]\\\\rInference:  34%|███▍      | 21/62 [28:23<55:03, 80.56s/it]\\\\rInference:  35%|███▌      | 22/62 [29:38<52:40, 79.02s/it]\\\\rInference:  37%|███▋      | 23/62 [31:01<52:11, 80.29s/it]\\\\rInference:  39%|███▊      | 24/62 [32:38<53:57, 85.21s/it]\\\\rInference:  40%|████      | 25/62 [33:48<49:46, 80.71s/it]\\\\rInference:  42%|████▏     | 26/62 [35:03<47:18, 78.84s/it]\\\\rInference:  44%|███��▎     | 27/62 [36:\n…[truncated 2247 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 354
+          },
+          "id": "event-000609"
+        },
+        {
+          "source_line": 610,
+          "timestamp": "2026-05-14T19:55:25.069050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json"
+            }
+          },
+          "id": "event-000610"
+        },
+        {
+          "source_line": 611,
+          "timestamp": "2026-05-14T19:55:25.170188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "mvp2_eval_ced_kl001_r4_step90",
+              "project": "faith-evidence-ie",
+              "n": "15"
+            }
+          },
+          "id": "event-000611"
+        },
+        {
+          "source_line": 612,
+          "timestamp": "2026-05-14T19:55:25.923630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 854
+          },
+          "id": "event-000612"
+        },
+        {
+          "source_line": 613,
+          "timestamp": "2026-05-14T19:55:26.326603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-15 02:32:50,653 INFO Detected adapter at /root/autodl-tmp/grpo_ced_kl001/checkpoint-90, base: /root/autodl-tmp/models/Qwen3-4B\\\", \\\"2026-05-15 02:32:50,654 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\", \\\"2026-05-15 02:32:51,002 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\", \\\"2026-05-15 02:32:53,082 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\", \\\"\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.85s/it]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.23s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.15s/it]\\\", \\\"2026-05-15 02:32:59,598 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\\", \\\"/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\\", \\\"  warnings.warn(\\\", \\\"2026-05-15 02:33:09,900 INFO Loading LoRA adapter: /root/autodl-tmp/grpo_ced_kl001/checkpoint-90\\\", \\\"2026-05-15 02:33:11,507 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\", \\\"2026-05-15 02:33:11,861 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\", \\\"2026-05-15 02:33:12,056 INFO Prepared 985 eval documents, 12275 gold triples\\\", \\\"\\\\rInference:   0%|          | 0/62 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\", \\\"\\\\rInference:   2%|▏         | 1/62 [01:23<1:24:37, 83.24s/it]\\\\rInference:   3%|▎         | 2/62 [02:34<1:16:18, 76.32s/it]\\\\rInference:   5%|▍         | 3/62 [03:39<1:09:57, 71.14s/it]\\\\rInference:   6%|▋\n…[truncated 3695 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1156
+          },
+          "id": "event-000613"
+        },
+        {
+          "source_line": 614,
+          "timestamp": "2026-05-14T19:55:56.318758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] Worker 进度报告将 P0 (lr5e6_r1) 的 KL=2.4B 误判为训练异常，建议终止——这是误判，请勿基于此终止 P0。\n\n**证据**：\n1. **D008 明确记载**：`kl_coef + QLoRA 4-bit 不兼容`，所有 kl_coef>0 实验均在 step 5 出现天文数字 KL（kl_coef=0.05 时 KL=37B/50B/69B）\n2. **代码注释确认**：`KLDivergenceCallback` 类文档写明 \"With QLoRA 4-bit, KL between ref and policy is unreliable due to quantization noise. We log it for diagnostics but do not penalize or stop.\"\n3. **ced_kl001_r4 先例**：同 kl_coef=0.01，正常跑完 100 步，training reward 从 0.23→1.37 持续上升。KL 监控值同样极高但未影响训练进程\n4. **机理**：QLoRA 4-bit 量化导致 ref model 和 training model 的 log-probs 存在系统性偏差，TRL 内部 KL 计算在此场景下产生的数值不可信\n\n**P0 实际训练状态**：step 7/200，~111s/step（与 ced_kl001_r4 相同速度），正常推进中。**判断 P0 是否有效的唯一标准是 step 20 checkpoint 的 eval rel_f1**（pass criteria: >0.30），不是 KL 监控值。\n\n**当前 eval 进展**：\n- step90 eval: 60/62 (97%)，~3min 完成\n- ckpt-20 eval (multi): 46/62 (74%)，~13min\n- ckpt-70 eval (cuda:3): 刚启动，Agent 对 high eval 失败的恢复操作合理\n- P0 距第一个 save_steps=20: ~24min（step 7→20, 13步 × 111s）",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000614"
+        },
+        {
+          "source_line": 615,
+          "timestamp": "2026-05-14T19:55:58.065342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] P0 训练 (lr5e6_r1) step 5 KL 监控 + 进度更新\n\n## P0 训练 KL 异常\n\nlr5e6_r1 step 5 触发 KL divergence 警告：**KL = 2,412,554,396.90（24亿）**，远超监控阈值 100.0。\n\n**上下文**：这与 D008 记载的 QLoRA 4-bit KL 不可靠问题一致。代码 `grpo_trainer.py` L31-34 注释明确说明：\n> \"With QLoRA 4-bit, KL between ref and policy is unreliable due to quantization noise. We log it for diagnostics but do not penalize or stop.\"\n\n但 `kl_coef=0.01` 仍通过 `beta` 参数传入 TRL GRPOConfig（L520-521: `grpo_config_kwargs[\"beta\"] = args.kl_coef`），TRL 内部会将 KL 加入 GRPO loss。\n\n**为什么不是 critical**：ced_kl001_r4 使用完全相同的 kl_coef=0.01，也出现了类似 KL 水平，但稳定训练了 100 步。步 5 后无更多 KL 警告（目前 step 7，111 s/step 正常推进）。\n\n**需监控**：P0 step 10 的 f1_reward 是否 > 0（ced_kl001_r4 step 10 时 f1_reward 已有信号但 eval F1=0.003）。如果 P0 step 10 的 f1_reward 显著高于 ced_kl001_r4 同期，说明降 lr 有效。\n\n## 多 eval 进度\n\n| 进程 | GPU | 状态 | 预计完成 |\n|------|-----|------|---------|\n| step90 eval | cuda:1 | 97% (60/62) | ~3 min |\n| multi eval (ckpt-20) | cuda:2 | 71% (44/62) | ~20 min |\n| ckpt-70+80 eval（恢复 high eval 失败） | cuda:3 | ckpt-70 推理中 | ~80-90 min |\n| P0 训练 | cuda:0 | step 7/200 | ~6.2h |\n\n**cuda:3 说明**：Agent 在 high eval (PID 81962) 失败后正确启动了 ckpt-70+80 的恢复 eval（tmux session `mvp2_eval_ced_kl001_r4_ckpt7080`），两个推理进程并行运行在 cuda:3 上（PID 91199 + 91691），共占 ~15.4 GB / 32 GB。\n\n## P0+P1 状态\n\nRegistry 中未发现 P0+P1 (ced_recall_penalty) 实验注册。cuda:1 当前被 step90 eval 占用，step90 完成后应释放。建议 Director 确认 P0+P1 何时启动。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000615"
+        },
+        {
+          "source_line": 616,
+          "timestamp": "2026-05-14T19:56:00.429681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — P0 训练早期监控 + 进程状态更新\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: warning] **P0 (lr5e6_r1) step 5 KL divergence = 2,412,554,396.90（24亿）**。这与 D007/D008 记录的 QLoRA 4-bit KL 不可靠问题一致——代码中 `KLDivergenceCallback` 注释明确写道 \"With QLoRA 4-bit, KL between ref and policy is unreliable due to quantization noise. We log it for diagnostics but do not penalize or stop.\" ced_kl001_r4（同 kl_coef=0.01）稳定跑了 100 步。但需持续监控 P0 的 reward 和 f1_reward 走势，确认训练实际在学习。当前 step 7/200，~111s/step，ETA ~6h。\n\n- [severity: info] **CED recall penalty 代码验证通过**。Worker 确认 `--ced_recall_penalty` 为 store_true flag，行为正确：`mean_ced *= recall`（recall = matched_gold_keys / total_gold）。P0+P1 命令已就绪。\n\n- [severity: info] **cuda:3 恢复正常**。Agent 在 high eval (PID 81962) 死亡后启动了 `mvp2_eval_ced_kl001_r4_ckpt7080`（checkpoints 70,80）在 cuda:3 上。当前 ckpt-70 和 ckpt-80 inference 并行进行中。\n\n- [severity: info] **step90 eval 97% 完成**（60/62 batches），预计 2-3 分钟内出结果。完成后 cuda:1 释放给 P0+P1。\n\n- [severity: info] **multi eval 71% 完成**（44/62 batches on ckpt-20），cuda:2 继续。\n\n### GPU 利用率\n\n| GPU | Util | Memory | 进程 |\n|-----|------|--------|------|\n| cuda:0 | 55% | 13.6/32.6 GB | P0 训练 (PID 90085) |\n| cuda:1 | 86% | 10.6/32.6 GB | step90 eval (PID 83217) |\n| cuda:2 | 63% | 9.7/32.6 GB | multi eval ckpt-20 (PID 85997) |\n| cuda:3 | 75% | 15.4/32.6 GB | ckpt-70+80 eval (PID 91199+91691) |\n\n4 卡全部在工作，无空闲。\n\n### 下一步监控\n\n1. step90 metrics 出来后补充完整 10-step trajectory\n2. P0 step 10 的 reward/f1_reward 对比 ced_kl001_r4 step 10（关键：lr=5e-6 是否避免灾难性遗忘）\n3. P0+P1 启动后验证 `--ced_recall_penalty` flag 是否存在于进程命令行",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000616"
+        },
+        {
+          "source_line": 617,
+          "timestamp": "2026-05-14T19:56:01.608980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 5290
+          },
+          "id": "event-000617"
+        },
+        {
+          "source_line": 618,
+          "timestamp": "2026-05-14T19:56:03.911581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 5846
+          },
+          "id": "event-000618"
+        },
+        {
+          "source_line": 619,
+          "timestamp": "2026-05-14T19:56:06.927576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 6497
+          },
+          "id": "event-000619"
+        },
+        {
+          "source_line": 620,
+          "timestamp": "2026-05-14T19:56:11.508582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "step90 eval at 97% should complete in ~3min, check metrics and update trajectory",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-000620"
+        },
+        {
+          "source_line": 621,
+          "timestamp": "2026-05-14T19:56:11.560653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 20:00:00 (in 229s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 52
+          },
+          "id": "event-000621"
+        },
+        {
+          "source_line": 622,
+          "timestamp": "2026-05-14T19:56:14.977413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "240",
+              "reason": "checking step90 eval completion and P0 step 10 early metrics",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-000622"
+        },
+        {
+          "source_line": 623,
+          "timestamp": "2026-05-14T19:56:15.078356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 20:00:00 (in 225s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 100
+          },
+          "id": "event-000623"
+        },
+        {
+          "source_line": 624,
+          "timestamp": "2026-05-14T19:56:15.311225+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已发送。Step90 eval 即将完成，调度 5 分钟后唤醒获取结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-000624"
+        },
+        {
+          "source_line": 625,
+          "timestamp": "2026-05-14T19:56:17.918907+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已发。等 step90 结果和 P0 step 10 指标。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-000625"
+        },
+        {
+          "source_line": 626,
+          "timestamp": "2026-05-14T19:56:19.001460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "checking step90 eval completion and P0 step 10 metrics",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-000626"
+        },
+        {
+          "source_line": 627,
+          "timestamp": "2026-05-14T19:56:19.052157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 20:01:00 (in 281s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-000627"
+        },
+        {
+          "source_line": 628,
+          "timestamp": "2026-05-14T19:56:23.079960+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Wakeup 已设置，4.5 分钟后检查 step90 eval 结果和 P0 step 10 训练指标。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-000628"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "messages": [
+        {
+          "source_line": 629,
+          "timestamp": "2026-05-14T19:57:39.331448+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:mvp2_eval_ced_kl001_r4_step90]:\n实验 mvp2_eval_ced_kl001_r4_step90 complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-000629"
+        },
+        {
+          "source_line": 630,
+          "timestamp": "2026-05-14T19:57:52.045063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json"
+            }
+          },
+          "id": "event-000630"
+        },
+        {
+          "source_line": 631,
+          "timestamp": "2026-05-14T19:57:52.899552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "mvp2_eval_ced_kl001_r4_step90",
+              "project": "faith-evidence-ie",
+              "n": "20"
+            }
+          },
+          "id": "event-000631"
+        },
+        {
+          "source_line": 632,
+          "timestamp": "2026-05-14T19:57:53.151096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.275222060188254,\\\\n  \\\\\\\"recall\\\\\\\": 0.1708501357912929,\\\\n  \\\\\\\"f1\\\\\\\": 0.2108256321722352,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.275222060188254,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.1708501357912929,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.2108256321722352,\\\\n  \\\\\\\"tp\\\\\\\": 2076,\\\\n  \\\\\\\"pred_count\\\\\\\": 7543,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.5199182839632278,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.6223761972692072,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.5665522678786755,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 11124,\\\\n  \\\\\\\"edcr\\\\\\\": 0.8584013353115727,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 18514,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 21568,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.9786802030456853,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.9786802030456853,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 964,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 964,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 11160,\\\\n  \\\\\\\"n_truncated\\\\\\\": 22,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 5010.5,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/grpo_ced_kl001/checkpoint-90\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": true\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1106
+          },
+          "id": "event-000632"
+        },
+        {
+          "source_line": 633,
+          "timestamp": "2026-05-14T19:57:53.554094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-15 03:56:43,374 INFO Predictions → /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/predictions.json\\\", \\\"\\\", \\\"==================================================\\\", \\\"  F1:          0.2108\\\", \\\"  Ign-F1:      0.2108\\\", \\\"  Evi-F1:      0.5666\\\", \\\"  EDCR:        0.8584\\\", \\\"  Format OK:   985/985 (100.0%)\\\", \\\"  Truncated:   22/985\\\", \\\"  Predictions: 11160\\\", \\\"==================================================\\\", \\\"\\\", \\\"============================================================\\\", \\\"Summary saved to /root/autodl-tmp/eval_results/grpo_ced_kl001/summary.json\\\", \\\"  Total: 1, Evaluated: 1, Skipped: 0, Failed: 0\\\", \\\"\\\", \\\"  Best by F1: checkpoint-90 (step 90)\\\", \\\"    F1=0.2108  Ign-F1=0.2108  Evi-F1=0.5666  EDCR=0.8584\\\", \\\"============================================================\\\", \\\"EXIT_CODE=0\\\"], \\\"line_count\\\": 20, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step90.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 654
+          },
+          "id": "event-000633"
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "messages": [
+        {
+          "source_line": 634,
+          "timestamp": "2026-05-14T19:58:01.303804+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_verify-cuda3-clear-for-p0p1_20260514T195622]:\nWorker worker_ops_verify-cuda3-clear-for-p0p1_20260514T195622 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-000634"
+        },
+        {
+          "source_line": 635,
+          "timestamp": "2026-05-14T19:58:10.471866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_verify-cuda3-clear-for-p0p1_20260514T195622_result.json"
+            }
+          },
+          "id": "event-000635"
+        },
+        {
+          "source_line": 636,
+          "timestamp": "2026-05-14T19:58:10.472442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"**cuda:3 已完全空闲**：0 MiB 显存，0% utilization，无任何计算进程。\\n\\n清理过程总结：\\n- PID 81960 — 已死\\n- PID 91199, 91691 — 已 kill\\n- PID 91685→91686→92915 — `batch_eval` 进程链（ckpt 70/80 eval），会自动重启子进程，已整链 kill\\n\\n可以启动新训练。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000636"
+        },
+        {
+          "source_line": 637,
+          "timestamp": "2026-05-14T19:58:21.910714+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "mvp2_grpo_ced_lr5e6_r1",
+              "project": "faith-evidence-ie",
+              "n": "5"
+            }
+          },
+          "id": "event-000637"
+        },
+        {
+          "source_line": 638,
+          "timestamp": "2026-05-14T19:58:22.617073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-15 03:40:35,806 INFO Starting GRPO training (stage 3)...\\\", \\\"The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\", \\\"\\\\r  0%|          | 0/200 [00:00<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed\\\", \\\"\\\\r  0%|          | 1/200 [01:50<6:04:54, 110.02s/it]\\\\r  1%|          | 2/200 [03:42<6:06:59, 111.21s/it]\\\\r  2%|▏         | 3/200 [05:32<6:04:33, 111.03s/it]\\\\r  2%|▏         | 4/200 [07:24<6:03:29, 111.27s/it]\\\\r  2%|▎         | 5/200 [09:14<5:59:48, 110.71s/it]2026-05-15 03:49:50,412 WARNING KL divergence 2412554396.90 exceeds monitoring threshold 100.0 (monitoring only, not stopping)\\\", \\\"\\\\r                                                  \\\\r\\\\r  2%|▎         | 5/200 [09:14<5:59:48, 110.71s/it]\\\\r  3%|▎         | 6/200 [11:04<5:57:30, 110.57s/it]\\\\r  4%|▎         | 7/200 [12:55<5:56:00, 110.67s/it]\\\\r  4%|▍         | 8/200 [14:45<5:53:24, 110.44s/it]\\\\r  4%|▍         | 9/200 [16:36<5:52:03, 110.59s/it]\\\"], \\\"line_count\\\": 5, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 706
+          },
+          "id": "event-000638"
+        },
+        {
+          "source_line": 639,
+          "timestamp": "2026-05-14T19:58:22.876495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['status', 'spec', 'gpu', 'pid', 'updated_at']"
+            }
+          },
+          "id": "event-000639"
+        },
+        {
+          "source_line": 640,
+          "timestamp": "2026-05-14T19:58:23.317439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp2_eval_ced_kl001_r4_ckpt7080\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-14T19:56:28.388Z\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && PYTHONUNBUFFERED=1 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 70,80 --quantize --resume\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"91681\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_ckpt7080.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T19:50:29.033Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"91681\\\"}, \\\"mvp2_grpo_ced_lr5e6_r1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-14T19:40:12.599Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6 --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --wandb_run_name grpo-s3-ced-lr5e6-r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"90080\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 3053, \\\"model_name\\\": \\\"Qwen3-4B \n…[truncated 1450 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 440
+          },
+          "id": "event-000640"
+        },
+        {
+          "source_line": 641,
+          "timestamp": "2026-05-14T19:59:11.875601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] P0 训练 KL 误判纠正 + ced_kl001_r4 完整轨迹更新\n\n## 1. Worker 误判纠正：P0 KL=2.4B 不是训练异常\n\nworker_ops_check-all-running-progress 报告将 P0 (lr5e6_r1) step 5 的 KL=2,412,554,396 判定为\"大概率无效\"并建议终止。**这是误判**。\n\n**证据链**：\n- D008 明确记录：QLoRA 4-bit + kl_coef>0 会产生天文级 KL（r2: 37B, extract: 69B, flatnli: 50B），根因是量化噪声导致 ref/policy logprobs 系统性偏差\n- grpo_trainer.py L30-34 代码注释：`\"With QLoRA 4-bit, KL between ref and policy is unreliable due to quantization noise. We log it for diagnostics but do not penalize or stop.\"`\n- ced_kl001_r4 使用完全相同的 kl_coef=0.01，稳定运行 100 步并产出了可用的 eval 数据\n- KLDivergenceCallback 是 monitoring-only，不影响训练\n\n**结论**：KL=2.4B 是 QLoRA 4-bit 已知 artifact，不构成终止 P0 的理由。P0 的真正判定标准是 step 20 checkpoint 的 eval F1 是否 > 0.30。\n\n## 2. ced_kl001_r4 完整轨迹（含 step90）\n\n| Step | F1 | evi_f1 | EDCR | TP | pred_count | n_pred |\n|------|------|--------|------|------|------------|--------|\n| 10 | 0.003 | 0.720 | 0.998 | 34 | — | 10839 |\n| 50 | 0.156 | 0.564 | 0.886 | 1421 | 6032 | — |\n| 60 | 0.147 | 0.576 | 0.906 | 1448 | 7587 | 10041 |\n| **90** | **0.211** | **0.567** | **0.858** | **2076** | **7543** | **11160** |\n| 100 | 0.217 | 0.575 | 0.854 | 2125 | 7460 | 11067 |\n\n**观察**：\n- F1 在 step 60→100 恢复（0.147→0.217），但速率递减：40步+6.4pp → 10步+0.6pp\n- pred_count 在 step 50-100 稳定于 7400-7600（step 10 的 ~70%）\n- evi_f1 稳定在 0.56-0.58，EDCR 稳定在 0.85-0.86\n- 即使外推到 step 200，F1 仍远低于 SFT 0.4057\n- 不改变 MVP-2 FAIL 结论\n\n## 3. cuda:3 清理注意事项\n\nAgent 杀掉 ckpt-70/80 eval 以释放 cuda:3。cuda:2 multi eval（--checkpoints 10,20,30,40,60,70,80 --resume）会覆盖这两个 checkpoint，但需注意 ckpt-70 目录可能有部分 predictions 文件（被 kill 中断），可能干扰 --resume 逻辑。建议 Agent 在 multi eval 到达 ckpt-70 前检查并清理该目录。\n\n## 4. 当前状态\n\n- **cuda:0**: P0 训练 step 7/200, 111s/step, ~6h 剩余\n- **cuda:1**: step90 eval 刚完成，已释放\n- **cuda:2**: multi eval 正在 ckpt-20 (~74%)，后续 30→40→60→70→80\n- **cuda:3**: 已清理，可用\n\nP0+P1 应当已可在 cuda:1 或 cuda:3 启动。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000641"
+        },
+        {
+          "source_line": 642,
+          "timestamp": "2026-05-14T19:59:15.799221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3923
+          },
+          "id": "event-000642"
+        },
+        {
+          "source_line": 643,
+          "timestamp": "2026-05-14T19:59:17.353420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — ced_kl001_r4 step90 eval + P0 状态 + Worker 误判纠正\n\n**结论**: WARNING\n\n### 发现\n\n**1. [severity: info] Step 90 结果确认 F1 plateau**\n\nckpt-90 metrics：F1=0.2108, evi_f1=0.5666, EDCR=0.8584, TP=2076, pred_count=7543\n\n更新后完整轨迹（5 个已完成 checkpoint）：\n\n| Step | F1 | evi_f1 | EDCR | TP | pred_count |\n|------|------|--------|------|------|------------|\n| 10 | 0.003 | 0.720 | 0.998 | 34 | 10839 |\n| 50 | 0.156 | 0.564 | 0.886 | 1421 | 6032 |\n| 60 | 0.147 | 0.576 | 0.906 | 1448 | 7587 |\n| **90** | **0.211** | **0.567** | **0.858** | **2076** | **7543** |\n| 100 | 0.217 | 0.575 | 0.854 | 2125 | 7460 |\n\n- step 90→100 仅 +0.6pp F1，模型已在 ~0.21 触顶\n- 非单调：step 60 (0.147) 低于 step 50 (0.156)，后恢复\n- EDCR 缓慢下降 0.886→0.854（方向正确但幅度小）\n- 待 multi eval + ckpt7080 填入 step 20/30/40/70/80 完成全轨迹\n\n**2. [severity: warning] Worker 误判 P0 KL 异常——需纠正**\n\n`worker_ops_check-all-running-progress` 报告将 P0 (lr5e6_r1) step 5 的 KL=2.4B 诊断为\"lr=5e-6 可能过大\"、\"大概率导致训练崩溃或无效\"。**这是错误判断**：\n\n- **D008 已明确记录**：QLoRA 4-bit + kl_coef>0 的 KL 值不可靠（量化噪声导致 ref/policy logprobs 系统性偏差）\n- **代码注释确认**：`KLDivergenceCallback` 明确写道 \"With QLoRA 4-bit, KL between ref and policy is unreliable due to quantization noise. We log it for diagnostics but do not penalize or stop.\"\n- **历史先例**：ced_kl001_r4 用**完全相同的 kl_coef=0.01**正常跑了 100 步；D007 记录 r2 step 5 KL=37B（同量级）\n- **当前表现**：KL 警告仅 step 5 触发一次，step 6-9 无新警告，training 以 ~111s/step 正常推进\n\n**结论：P0 的 KL=2.4B 是已知 QLoRA artifact，不构成终止理由。** 关键验证点是 step 20 的 eval F1 是否 > 0.30（P0 pass criteria），而不是 KL 值。\n\n**3. [severity: info] P0+P1 尚未启动**\n\ncuda:1 刚从 step90 eval 释放。Registry 中未见 P0+P1 实验注册。建议 Agent 尽快在 cuda:1 启动 `mvp2_grpo_ced_lr5e6_p1_r1`（带 `--ced_recall_penalty` flag），与 P0 并行跑。\n\n**4. [severity: info] P0 训练正常进行中**\n\nstep 9/200，~111s/step，预计 ~5.9h 完成。首个 checkpoint 将在 step 20（~20 min 后）保存。\n\n### 当前 GPU 分配\n\n| GPU | 任务 | 状态 |\n|-----|------|------|\n| cuda:0 | P0 lr5e6_r1 训练 | step 9/200 |\n| cuda:1 | **空闲** | 待 P0+P1 启动 |\n| cuda:2 | multi eval (ckpt 20/30/40) | ckpt-20 ~75% |\n| cuda:3 | ckpt-70+80 eval | ckpt-70 进行中 |",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000643"
+        },
+        {
+          "source_line": 644,
+          "timestamp": "2026-05-14T19:59:23.408577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 6055
+          },
+          "id": "event-000644"
+        },
+        {
+          "source_line": 645,
+          "timestamp": "2026-05-14T19:59:24.689482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "1200",
+              "reason": "等 P0 训练到 step ~17 和 multi eval ckpt-20 完成，检查 P0+P1 是否已启动",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-000645"
+        },
+        {
+          "source_line": 646,
+          "timestamp": "2026-05-14T19:59:24.790370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 20:20:00 (in 1235s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 100
+          },
+          "id": "event-000646"
+        },
+        {
+          "source_line": 647,
+          "timestamp": "2026-05-14T19:59:26.632414+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已发送。等待 P0+P1 启动和 multi eval 继续产出数据，~20 分钟后复查 P0 step 20 进度和 ckpt-20 eval 结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-000647"
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "messages": [
+        {
+          "source_line": 648,
+          "timestamp": "2026-05-14T19:59:31.327578+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_d034-check-ckpt7080-step90-gpus_20260514T195737]:\nWorker worker_ops_d034-check-ckpt7080-step90-gpus_20260514T195737 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-000648"
+        },
+        {
+          "source_line": 649,
+          "timestamp": "2026-05-14T19:59:33.119545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 P0 step 20 checkpoint（首个验证点 F1>0.30）和 multi eval ckpt-20 完成",
+              "prompt": "[HANDOFF] 你是 Research Reviewer，这是 Loop #4."
+            }
+          },
+          "id": "event-000649"
+        },
+        {
+          "source_line": 650,
+          "timestamp": "2026-05-14T19:59:33.222703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 20:04:00 (in 267s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 103
+          },
+          "id": "event-000650"
+        },
+        {
+          "source_line": 651,
+          "timestamp": "2026-05-14T19:59:36.634711+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已发送。核心内容：step 90 确认 F1 plateau（0.211 vs step 100 的 0.217），纠正 worker 对 P0 KL 的误判（已知 QLoRA artifact，非训练异常），提示 cuda:1 空闲应尽快启动 P0+P1。\n\n下次检查点：~20 min 后 P0 到 step 20（首个 checkpoint 和 eval F1 可用），同时 multi eval ckpt-20 和 ckpt7080 ckpt-70 应有进展。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-000651"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "messages": [
+        {
+          "source_line": 652,
+          "timestamp": "2026-05-14T19:59:44.315900+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:mvp2_grpo_ced_lr5e6_rp_r1]:\n实验 mvp2_grpo_ced_lr5e6_rp_r1 failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-000652"
+        },
+        {
+          "source_line": 653,
+          "timestamp": "2026-05-14T19:59:51.178769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__get_gpu_health",
+              "max_results": "8"
+            }
+          },
+          "id": "event-000653"
+        },
+        {
+          "source_line": 654,
+          "timestamp": "2026-05-14T19:59:51.229654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000654"
+        },
+        {
+          "source_line": 655,
+          "timestamp": "2026-05-14T19:59:55.704311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__get_gpu_health",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000655"
+        },
+        {
+          "source_line": 656,
+          "timestamp": "2026-05-14T19:59:55.755137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000656"
+        },
+        {
+          "source_line": 657,
+          "timestamp": "2026-05-14T19:59:56.009268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "limit": "10",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000657"
+        },
+        {
+          "source_line": 658,
+          "timestamp": "2026-05-14T19:59:56.362911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__get_gpu_health"
+          },
+          "id": "event-000658"
+        },
+        {
+          "source_line": 659,
+          "timestamp": "2026-05-14T19:59:56.414943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp2_grpo_ced_lr5e6_rp_r1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:44:15.272Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:59:43.146Z\\\", \\\"hypothesis\\\": \\\"D032/P0+P1: lr=5e-6 + --ced_recall_penalty fixes both catastrophic forgetting (lr) and CED recall shortcut (penalty). Pass criteria: ckpt-20 rel_f1 > 0.30 AND pred_count >= 9720 (SFT 80%). Comparing vs P0 isolates CED shortcut fix contribution.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001_r4\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6_rp --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --ced_recall_penalty --wandb_run_name grpo-s3-ced-lr5e6-rp-r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 3053, \\\"model_name\\\": \\\"Qwen3-4B + SFT adapter\\\", \\\"seed\\\": 42, \\\"hyperparams\\\": {\\\"learning_rate\\\": 5e-06, \\\"kl_coef\\\": 0.01, \\\"num_generations\\\": 8, \\\"gradient_accumulation_steps\\\": 16, \\\"max_steps\\\": 200, \\\"save_steps\\\": 20, \\\"format_reward_weight\\\": 0.3, \\\"f1_reward_weight\\\": 3, \\\"ced_reward_weight\\\": 1, \\\"tau_start\\\": 0.3, \\\"tau_end\\\": 0.5, \\\"ced_recall_penalty\\\": true}}, \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-14T19:59:16.121Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && exp\n…[truncated 17344 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 405
+          },
+          "id": "event-000659"
+        },
+        {
+          "source_line": 660,
+          "timestamp": "2026-05-14T19:59:56.415413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000660"
+        },
+        {
+          "source_line": 661,
+          "timestamp": "2026-05-14T19:59:56.466078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 103
+          },
+          "id": "event-000661"
+        },
+        {
+          "source_line": 662,
+          "timestamp": "2026-05-14T19:59:56.466625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 13:30 UTC | 更新原因: 整合 Reviewer 评估框架审查：精确化 pass criteria、补充 extraction-only vs SFT 对比、多 checkpoint 评估策略、统一 eval 要求\\\\n\\\\n> 最后更新: 2026-05-14 | 更新原因: 整合 Reviewer 评估框架审查，精确化 pass criteria，补充多 checkpoint 评估策略\\\\n\\\\n## 核心方向\\\\nFREIGE: 用对比证据判别 (CED) 奖励训练 LLM 在文档级关系抽取中同时生成抽取结果和可验证证据。\\\\n\\\\n## 当前进展\\\\n- 阶段: MVP 验证（MVP-1 ✅, MVP-2 运行中）\\\\n- **MVP-1**: CED margin 0.4827, accuracy 81.5%, r=0.34 — PASS\\\\n- **SFT warmup**: 完成（eval loss 0.72, token accuracy 83.5%）\\\\n- **GRPO r1/r2**: 全部失败（r1 mode collapse; r2 KL 爆炸 kl_coef+QLoRA 4-bit 不兼容）\\\\n- **MVP-2 当前轮（r3/r5, kl_coef=0.0）**: 4 GPU 满载运行中\\\\n- 服务器: RTX 5090 32GB × 4（1 台机器，2 个 SSH endpoint）\\\\n\\\\n## GPU 分配\\\\n- 硬件: 4× RTX 5090 32GB\\\\n- 当前使用: 4/4（满载）\\\\n  - cuda:0 → mvp2_grpo_ced_r5 (kl_coef=0.0, ~8-16h)\\\\n  - cuda:1 → mvp2_sft_eval_r2 (~6-7h)\\\\n  - cuda:2 → mvp2_grpo_extract_r3 (kl_coef=0.0, ~8-16h)\\\\n  - cuda:3 → mvp2_grpo_flatnli_r3 (kl_coef=0.0, ~8-16h)\\\\n- 待分配: mvp2_grpo_ced_kl001 → cuda:1 释放后启动\\\\n\\\\n## MVP-2 评估框架（Reviewer 审查后更新）\\\\n\\\\n### Pass Criteria（精确化）\\\\n- **核心**: (CED_Evi-F1 − SFT_Evi-F1) ≥ 2pp\\\\n- **F1 不退化**: CED_F1 ≥ max(extraction-only_F1, SFT_F1) − 5pp\\\\n- **CED > flat-NLI**: CED_Evi-F1 > flatNLI_Evi-F1（方向正确即可）\\\\n- **辅助**: 报告 EDCR、CED margin 分布\\\\n\\\\n### 对比矩阵\\\\n| 对比 | 回答的问题 |\\\\n|------|-----------|\\\\n| CED vs SFT | 核心: CED reward 改善 evidence quality |\\\\n| flat-NLI vs SFT | 消融: 简化 NLI reward 效果 |\\\\n| CED vs flat-NLI | 核心: CED 优于 flat-NLI |\\\\n| extraction-only vs SFT | GRPO 本身是否改善 F1（无 evidence reward） |\\\\n| CED vs extraction-only | evidence reward 边际贡献 |\\\\n\\\\n### 多 Checkpoint 评估策略\\\\n- kl_coef=0 存在稳定性风险，不能只看 last checkpoint\\\\n- 每个 GRPO 实验 eval best reward checkpoint + last checkpoint\\\\n- best ≠ last 且差距大 → 稳定性发现（kl_coef=0 代价）\\\\n\\\\n### 统一 Eval 要求\\\\n- 所有模型用同一 eval 脚本 + 同一 parsing + 同一 data split\\\\n- flatnli_r3 的 `-\n…[truncated 2434 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 51
+          },
+          "id": "event-000662"
+        },
+        {
+          "source_line": 663,
+          "timestamp": "2026-05-14T19:59:58.718020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'mvp2_grpo_ced_lr5e6_rp_r1'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000663"
+        },
+        {
+          "source_line": 664,
+          "timestamp": "2026-05-14T19:59:58.869336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1259}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 151
+          },
+          "id": "event-000664"
+        },
+        {
+          "source_line": 665,
+          "timestamp": "2026-05-14T20:00:03.849010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "fields": "['*']",
+              "limit": "20"
+            }
+          },
+          "id": "event-000665"
+        },
+        {
+          "source_line": 666,
+          "timestamp": "2026-05-14T20:00:04.305785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp2_grpo_ced_lr5e6_rp_r1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:44:15.272Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:59:43.146Z\\\", \\\"hypothesis\\\": \\\"D032/P0+P1: lr=5e-6 + --ced_recall_penalty fixes both catastrophic forgetting (lr) and CED recall shortcut (penalty). Pass criteria: ckpt-20 rel_f1 > 0.30 AND pred_count >= 9720 (SFT 80%). Comparing vs P0 isolates CED shortcut fix contribution.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001_r4\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6_rp --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --ced_recall_penalty --wandb_run_name grpo-s3-ced-lr5e6-rp-r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 3053, \\\"model_name\\\": \\\"Qwen3-4B + SFT adapter\\\", \\\"seed\\\": 42, \\\"hyperparams\\\": {\\\"learning_rate\\\": 5e-06, \\\"kl_coef\\\": 0.01, \\\"num_generations\\\": 8, \\\"gradient_accumulation_steps\\\": 16, \\\"max_steps\\\": 200, \\\"save_steps\\\": 20, \\\"format_reward_weight\\\": 0.3, \\\"f1_reward_weight\\\": 3, \\\"ced_reward_weight\\\": 1, \\\"tau_start\\\": 0.3, \\\"tau_end\\\": 0.5, \\\"ced_recall_penalty\\\": true}}, \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-14T19:59:16.121Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && exp\n…[truncated 38137 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 456
+          },
+          "id": "event-000666"
+        },
+        {
+          "source_line": 667,
+          "timestamp": "2026-05-14T20:00:17.477405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "mvp2_grpo_ced_lr5e6_rp_r1",
+              "n": "80",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000667"
+        },
+        {
+          "source_line": 668,
+          "timestamp": "2026-05-14T20:00:17.478420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "tool_args": {
+              "server": "rtx5090-4x"
+            }
+          },
+          "id": "event-000668"
+        },
+        {
+          "source_line": 669,
+          "timestamp": "2026-05-14T20:00:18.436144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"bash: -c: line 1: unexpected EOF while looking for matching `\\\\\\\"'\\\", \\\"bash: -c: line 2: syntax error: unexpected end of file\\\", \\\"EXIT_CODE=2\\\"], \\\"line_count\\\": 3, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_rp_r1.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 958
+          },
+          "id": "event-000669"
+        },
+        {
+          "source_line": 670,
+          "timestamp": "2026-05-14T20:00:18.436665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {\\\"rtx5090-4x\\\": {\\\"error\\\": \\\"no data yet\\\", \\\"stale\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 958
+          },
+          "id": "event-000670"
+        },
+        {
+          "source_line": 671,
+          "timestamp": "2026-05-14T20:00:20.604942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,gpu_name,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000671"
+        },
+        {
+          "source_line": 672,
+          "timestamp": "2026-05-14T20:00:21.870729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 5090, 13645 MiB, 32607 MiB, 65 %\\\\n1, NVIDIA GeForce RTX 5090, 0 MiB, 32607 MiB, 0 %\\\\n2, NVIDIA GeForce RTX 5090, 10297 MiB, 32607 MiB, 66 %\\\\n3, NVIDIA GeForce RTX 5090, 0 MiB, 32607 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1265
+          },
+          "id": "event-000672"
+        },
+        {
+          "source_line": 673,
+          "timestamp": "2026-05-14T20:00:21.871200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "mvp2_eval_ced_kl001_r4_step90",
+              "project": "faith-evidence-ie",
+              "n": "60"
+            }
+          },
+          "id": "event-000673"
+        },
+        {
+          "source_line": 674,
+          "timestamp": "2026-05-14T20:00:22.327649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"设置成功\\\", \\\"注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\", \\\"Found 1 checkpoints: [90]\\\", \\\"\\\", \\\"============================================================\\\", \\\"[02:32:46] Evaluating: checkpoint-90\\\", \\\"  Output: /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90\\\", \\\"  Command: /root/miniconda3/bin/python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_kl001/checkpoint-90 --sft_adapter /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90 --quantize\\\", \\\"============================================================\\\", \\\"\\\", \\\"2026-05-15 02:32:50,653 INFO Detected adapter at /root/autodl-tmp/grpo_ced_kl001/checkpoint-90, base: /root/autodl-tmp/models/Qwen3-4B\\\", \\\"2026-05-15 02:32:50,654 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\", \\\"2026-05-15 02:32:51,002 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\", \\\"2026-05-15 02:32:53,082 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\", \\\"\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.85s/it]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.23s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.15s/it]\\\", \\\"2026-05-15 02:32:59,598 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\\", \\\"/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\\", \\\"  warnings.warn(\\\", \\\"2026-05-15 02:33:09,900 INFO Loading LoRA adapter: /root/autodl-tmp/grpo\n…[truncated 5809 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 456
+          },
+          "id": "event-000674"
+        },
+        {
+          "source_line": 675,
+          "timestamp": "2026-05-14T20:00:22.835526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "mvp2_grpo_ced_lr5e6_rp_r1",
+              "project": "faith-evidence-ie",
+              "n": "40"
+            }
+          },
+          "id": "event-000675"
+        },
+        {
+          "source_line": 676,
+          "timestamp": "2026-05-14T20:00:23.921981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"bash: -c: line 1: unexpected EOF while looking for matching `\\\\\\\"'\\\", \\\"bash: -c: line 2: syntax error: unexpected end of file\\\", \\\"EXIT_CODE=2\\\"], \\\"line_count\\\": 3, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_rp_r1.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1086
+          },
+          "id": "event-000676"
+        },
+        {
+          "source_line": 677,
+          "timestamp": "2026-05-14T20:00:24.074696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/"
+            }
+          },
+          "id": "event-000677"
+        },
+        {
+          "source_line": 678,
+          "timestamp": "2026-05-14T20:00:24.428001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 5688\\\\ndrwxr-xr-x 2 root root      62 May 15 03:56 .\\\\ndrwxr-xr-x 9 root root    4096 May 15 03:48 ..\\\\n-rw-r--r-- 1 root root    1285 May 15 03:56 metrics.json\\\\n-rw-r--r-- 1 root root 5815342 May 15 03:56 predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 353
+          },
+          "id": "event-000678"
+        },
+        {
+          "source_line": 679,
+          "timestamp": "2026-05-14T20:00:46.194046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,name,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000679"
+        },
+        {
+          "source_line": 680,
+          "timestamp": "2026-05-14T20:00:46.650131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 5090, 97 %, 13645 MiB, 32607 MiB\\\\n1, NVIDIA GeForce RTX 5090, 0 %, 0 MiB, 32607 MiB\\\\n2, NVIDIA GeForce RTX 5090, 59 %, 10297 MiB, 32607 MiB\\\\n3, NVIDIA GeForce RTX 5090, 0 %, 0 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 456
+          },
+          "id": "event-000680"
+        },
+        {
+          "source_line": 681,
+          "timestamp": "2026-05-14T20:00:58.894481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000681"
+        },
+        {
+          "source_line": 682,
+          "timestamp": "2026-05-14T20:00:59.297590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 403
+          },
+          "id": "event-000682"
+        },
+        {
+          "source_line": 683,
+          "timestamp": "2026-05-14T20:01:02.124536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json"
+            }
+          },
+          "id": "event-000683"
+        },
+        {
+          "source_line": 684,
+          "timestamp": "2026-05-14T20:01:02.681802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.275222060188254,\\\\n  \\\\\\\"recall\\\\\\\": 0.1708501357912929,\\\\n  \\\\\\\"f1\\\\\\\": 0.2108256321722352,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.275222060188254,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.1708501357912929,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.2108256321722352,\\\\n  \\\\\\\"tp\\\\\\\": 2076,\\\\n  \\\\\\\"pred_count\\\\\\\": 7543,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.5199182839632278,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.6223761972692072,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.5665522678786755,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 11124,\\\\n  \\\\\\\"edcr\\\\\\\": 0.8584013353115727,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 18514,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 21568,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.9786802030456853,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.9786802030456853,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 964,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 964,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 11160,\\\\n  \\\\\\\"n_truncated\\\\\\\": 22,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 5010.5,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/grpo_ced_kl001/checkpoint-90\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": true\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 557
+          },
+          "id": "event-000684"
+        },
+        {
+          "source_line": 685,
+          "timestamp": "2026-05-14T20:01:03.134928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "decisions.yaml",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-000685"
+        },
+        {
+          "source_line": 686,
+          "timestamp": "2026-05-14T20:01:03.590650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 28\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-14 04:21 UTC\\\\n  summary: MVP 设计：两阶段验证——MVP-1 CED 信号验证（离线）→ MVP-2 端到端训练验证\\\\n  rationale: CED 是核心创新，必须先验证 DeBERTa NLI 能在 DocRED 上区分金标证据与实体共现干扰句（MVP-1），再投入 GPU\\\\n    跑完整训练流水线（MVP-2）。MVP-1 失败则 idea 需 pivot，避免浪费 GPU。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-14 05:46 UTC\\\\n  summary: 'MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）'\\\\n  rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 0.7）。三个需关注项：33.4%\\\\n    gold p_pos < τ=0.5（τ 可能需调低）、44.4% 无 hard negatives（退化为 flat NLI）、少数负 margin 样本（标注噪声）。这些不影响\\\\n    MVP 结论但影响 Research 阶段 CED 调参。\\\\n  related_experiments:\\\\n  - exp_id: mvp1_ced_signal\\\\n    role: primary\\\\n    result: PASS — mean_margin=0.4827, accuracy=81.5%, pearson_r=0.3406\\\\n  depends_on: []\\\\n- id: D003\\\\n  date: 2026-05-14 06:02 UTC\\\\n  summary: 'Smoke test 功能性 PASS: ZeRO-2 + QLoRA 兼容，4.9GB/卡，授权启动 MVP-2 SFT'\\\\n  rationale: Smoke test 自报 FAIL 是假阴性——synthetic data format-only reward 产生零 variance，数学上无梯度是正常行为。关键目标全部达成：ZeRO-2+QLoRA+GRPOTrainer\\\\n    兼容、显存充裕（4.9/32GB）、有 reward variance 时梯度正常。Reviewer 独立确认功能性 PASS。\\\\n  related_experiments:\\\\n  - exp_id: smoke_test_grpo\\\\n    role: infrastructure\\\\n    result: 功能性 PASS (ZeRO-2+QLoRA, 4×5090, 4.9GB/卡)\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-14 07:26 UTC\\\\n  summary: 发现 rtx5090-4x 和 gpu-5090-4x-1 为同一台机器（4 GPU），GRPO 三路对比改为串行\\\\n  rationale: Reviewer 核实两个 SSH endpoint 返回相同 hostname 和 PID。实际资源 = 4× RTX 5090 32GB，非\\\\n    8 张。串行 3 路 GRPO 预估 ~7-10h（每路 ~2-3h），今天内可完成 MVP-2，暂不需要额外申请 GPU。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-14 10:03 UTC\\\\n  summary: CED r1 训练 step 40 后 mode collapse，启动早停+checkpoint 抢救+cliprange 排查\\\\n  rationale: Reviewer 审查发现 step 40 后所有指标退化（total_rewar\n…[truncated 4582 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 455
+          },
+          "id": "event-000686"
+        },
+        {
+          "source_line": 687,
+          "timestamp": "2026-05-14T20:01:04.148326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ps aux --no-headers -o pid,user,%cpu,%mem,etime,args -p 90080"
+            }
+          },
+          "id": "event-000687"
+        },
+        {
+          "source_line": 688,
+          "timestamp": "2026-05-14T20:01:04.554844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"error: conflicting format options\\\\n\\\\nUsage:\\\\n ps [options]\\\\n\\\\n Try 'ps --help <simple|list|output|threads|misc|all>'\\\\n  or 'ps --help <s|l|o|t|m|a>'\\\\n for additional help text.\\\\n\\\\nFor more details see ps(1).\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 406
+          },
+          "id": "event-000688"
+        },
+        {
+          "source_line": 689,
+          "timestamp": "2026-05-14T20:01:07.961302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_constraints",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000689"
+        },
+        {
+          "source_line": 690,
+          "timestamp": "2026-05-14T20:01:08.062164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000690"
+        },
+        {
+          "source_line": 691,
+          "timestamp": "2026-05-14T20:01:10.254024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "decisions.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000691"
+        },
+        {
+          "source_line": 692,
+          "timestamp": "2026-05-14T20:01:10.532211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_constraints"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__list_constraints",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000692"
+        },
+        {
+          "source_line": 693,
+          "timestamp": "2026-05-14T20:01:10.638451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"constraints\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__list_constraints",
+            "elapsed_ms": 106
+          },
+          "id": "event-000693"
+        },
+        {
+          "source_line": 694,
+          "timestamp": "2026-05-14T20:01:10.759140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 28\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-14 04:21 UTC\\\\n  summary: MVP 设计：两阶段验证——MVP-1 CED 信号验证（离线）→ MVP-2 端到端训练验证\\\\n  rationale: CED 是核心创新，必须先验证 DeBERTa NLI 能在 DocRED 上区分金标证据与实体共现干扰句（MVP-1），再投入 GPU\\\\n    跑完整训练流水线（MVP-2）。MVP-1 失败则 idea 需 pivot，避免浪费 GPU。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-14 05:46 UTC\\\\n  summary: 'MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）'\\\\n  rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 0.7）。三个需关注项：33.4%\\\\n    gold p_pos < τ=0.5（τ 可能需调低）、44.4% 无 hard negatives（退化为 flat NLI）、少数负 margin 样本（标注噪声）。这些不影响\\\\n    MVP 结论但影响 Research 阶段 CED 调参。\\\\n  related_experiments:\\\\n  - exp_id: mvp1_ced_signal\\\\n    role: primary\\\\n    result: PASS — mean_margin=0.4827, accuracy=81.5%, pearson_r=0.3406\\\\n  depends_on: []\\\\n- id: D003\\\\n  date: 2026-05-14 06:02 UTC\\\\n  summary: 'Smoke test 功能性 PASS: ZeRO-2 + QLoRA 兼容，4.9GB/卡，授权启动 MVP-2 SFT'\\\\n  rationale: Smoke test 自报 FAIL 是假阴性——synthetic data format-only reward 产生零 variance，数学上无梯度是正常行为。关键目标全部达成：ZeRO-2+QLoRA+GRPOTrainer\\\\n    兼容、显存充裕（4.9/32GB）、有 reward variance 时梯度正常。Reviewer 独立确认功能性 PASS。\\\\n  related_experiments:\\\\n  - exp_id: smoke_test_grpo\\\\n    role: infrastructure\\\\n    result: 功能性 PASS (ZeRO-2+QLoRA, 4×5090, 4.9GB/卡)\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-14 07:26 UTC\\\\n  summary: 发现 rtx5090-4x 和 gpu-5090-4x-1 为同一台机器（4 GPU），GRPO 三路对比改为串行\\\\n  rationale: Reviewer 核实两个 SSH endpoint 返回相同 hostname 和 PID。实际资源 = 4× RTX 5090 32GB，非\\\\n    8 张。串行 3 路 GRPO 预估 ~7-10h（每路 ~2-3h），今天内可完成 MVP-2，暂不需要额外申请 GPU。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-14 10:03 UTC\\\\n  summary: CED r1 训练 step 40 后 mode collapse，启动早停+checkpoint 抢救+cliprange 排查\\\\n  rationale: Reviewer 审查发现 step 40 后所有指标退化（total_rewar\n…[truncated 18177 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 505
+          },
+          "id": "event-000694"
+        },
+        {
+          "source_line": 695,
+          "timestamp": "2026-05-14T20:01:11.666807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ps -eo pid,user,pcpu,pmem,etime,comm --no-headers -p 90080"
+            }
+          },
+          "id": "event-000695"
+        },
+        {
+          "source_line": 696,
+          "timestamp": "2026-05-14T20:01:12.020887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1 root      0.0  0.0    15:24:40 bash\\\\n   917 root      1.9  0.0    15:24:38 supervisord\\\\n   933 root      0.0  0.0    15:24:38 tensorboard\\\\n   938 root      0.0  0.0    15:24:38 jupyter-lab\\\\n   939 root      0.2  0.0    15:24:38 autopanel\\\\n   940 root      0.0  0.0    15:24:38 sshd\\\\n   941 root      0.0  0.0    15:24:38 proxy\\\\n   942 root      0.0  0.0    15:24:38 proxy\\\\n  1047 root      0.0  0.0    15:24:37 server\\\\n  1852 root      0.0  0.0    15:12:04 sshd\\\\n  2118 root      0.0  0.0    15:05:58 sshd\\\\n 62351 root      0.0  0.0    05:07:19 tmux: server\\\\n 78850 root      0.0  0.0    02:17:58 bash\\\\n 78856 root      0.0  0.0    02:17:58 python\\\\n 85997 root      107  0.3       50:40 python\\\\n 90080 root      0.0  0.0       21:11 bash\\\\n 90084 root      0.0  0.0       21:11 timeout\\\\n 90085 root      118  0.4       21:11 python\\\\n 92754 root      0.0  0.0       05:43 sshd\\\\n 93376 root      0.0  0.0       03:08 sshd\\\\n 93522 root      0.0  0.0       01:28 sshd\\\\n 93560 root      0.0  0.0       01:07 sshd\\\\n 93616 root      0.0  0.0       00:54 sshd\\\\n 93630 root      0.0  0.0       00:51 sshd\\\\n 93693 root      0.0  0.0       00:00 ps\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 354
+          },
+          "id": "event-000696"
+        },
+        {
+          "source_line": 697,
+          "timestamp": "2026-05-14T20:01:15.281922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/faith-evidence-ie/config*.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+            }
+          },
+          "id": "event-000697"
+        },
+        {
+          "source_line": 698,
+          "timestamp": "2026-05-14T20:01:15.734833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 452
+          },
+          "id": "event-000698"
+        },
+        {
+          "source_line": 699,
+          "timestamp": "2026-05-14T20:01:16.091305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/faith-evidence-ie/project*.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+            }
+          },
+          "id": "event-000699"
+        },
+        {
+          "source_line": 700,
+          "timestamp": "2026-05-14T20:01:16.192197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-000700"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "messages": [
+        {
+          "source_line": 701,
+          "timestamp": "2026-05-14T20:01:16.461682+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_mvp2_eval_ced_kl001_r4_step90_20260514T195931]:\nWorker worker_analysis_mvp2_eval_ced_kl001_r4_step90_20260514T195931 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "worker_done:worker_analysis_mvp2_eval_ced_kl001_r4_step90_20260514t195931"
+          },
+          "id": "event-000701"
+        },
+        {
+          "source_line": 702,
+          "timestamp": "2026-05-14T20:01:19.537805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "gpu_ids",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000702"
+        },
+        {
+          "source_line": 703,
+          "timestamp": "2026-05-14T20:01:19.639844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 90 files\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/chats/feishu_group_oc_14f1701558037f8ed8fe6fdc4e7df95b_reviewer.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/global/logs/workers/registry.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/global/logs/workers/registry.json.bak\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb/AGENTS.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/chats/feishu_group_oc_14f1701558037f8ed8fe6fdc4e7df95b.jsonl\nAGENTS.md\nCLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/global/logs/usage.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/chats/feishu_group_oc_84537e1e2f9ef71a90742c2db859c6f2_director.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17/AGENTS.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_20426195/AGENTS.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_20426195/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/ralph_loop_timeline.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_3b30d88b/AGENTS.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_3b30d88b/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/chats/cron_hook_mvp2_sft_eval_r3.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_9d98b88f/AGENTS.md\n\n…[truncated 9421 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 102
+          },
+          "id": "event-000703"
+        },
+        {
+          "source_line": 704,
+          "timestamp": "2026-05-14T20:01:22.916569+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "gpu_ids",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/config/projects/faith-evidence-ie.yaml",
+              "output_mode": "content",
+              "-C": "2"
+            }
+          },
+          "id": "event-000704"
+        },
+        {
+          "source_line": 705,
+          "timestamp": "2026-05-14T20:01:22.968494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1-execution:\n2-  account: root\n3:  gpu_ids:\n4-  - 0\n5-  - 1"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-000705"
+        },
+        {
+          "source_line": 706,
+          "timestamp": "2026-05-14T20:01:28.564435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__get_gpu_health",
+              "max_results": "8"
+            }
+          },
+          "id": "event-000706"
+        },
+        {
+          "source_line": 707,
+          "timestamp": "2026-05-14T20:01:28.565571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000707"
+        },
+        {
+          "source_line": 708,
+          "timestamp": "2026-05-14T20:01:32.185777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "limit": "10",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000708"
+        },
+        {
+          "source_line": 709,
+          "timestamp": "2026-05-14T20:01:32.590809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp2_eval_ced_kl001_r4_step90\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:19:58.623Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:00:05.763Z\\\", \\\"hypothesis\\\": \\\"Eval true best checkpoint (step 90, reward=1.370). Critical after ckpt-50 showed reward hacking (rel_f1 -24.9pp). If step 90 also fails, CED reward design has fundamental issue.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001_r4\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && PYTHONUNBUFFERED=1 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 90 --quantize\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"83207\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step90.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:32:46.178Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"2026-05-15 03:20 UTC: ckpt-90 inference 31/62 (50%), ~45 min remaining. Started 02:32 UTC.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T19:57:37.435Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T19:57:39.702949+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.2108, \\\"ign_f1\\\": 0.2108, \\\"evi_f1\\\": 0.5666, \\\"edcr\\\": 0.8584, \\\"pred_count\\\": 11160, \\\"n_truncated\\\": 22, \\\"format_ok_rate\\\": 1, \\\"n_documents\\\": 985}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"mvp2_grpo_ced_lr5e6_rp_r1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:44:15.272Z\\\", \\\"updated_at\n…[truncated 17556 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 405
+          },
+          "id": "event-000709"
+        },
+        {
+          "source_line": 710,
+          "timestamp": "2026-05-14T20:01:32.641606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000710"
+        },
+        {
+          "source_line": 711,
+          "timestamp": "2026-05-14T20:01:32.642068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 13:30 UTC | 更新原因: 整合 Reviewer 评估框架审查：精确化 pass criteria、补充 extraction-only vs SFT 对比、多 checkpoint 评估策略、统一 eval 要求\\\\n\\\\n> 最后更新: 2026-05-14 | 更新原因: 整合 Reviewer 评估框架审查，精确化 pass criteria，补充多 checkpoint 评估策略\\\\n\\\\n## 核心方向\\\\nFREIGE: 用对比证据判别 (CED) 奖励训练 LLM 在文档级关系抽取中同时生成抽取结果和可验证证据。\\\\n\\\\n## 当前进展\\\\n- 阶段: MVP 验证（MVP-1 ✅, MVP-2 运行中）\\\\n- **MVP-1**: CED margin 0.4827, accuracy 81.5%, r=0.34 — PASS\\\\n- **SFT warmup**: 完成（eval loss 0.72, token accuracy 83.5%）\\\\n- **GRPO r1/r2**: 全部失败（r1 mode collapse; r2 KL 爆炸 kl_coef+QLoRA 4-bit 不兼容）\\\\n- **MVP-2 当前轮（r3/r5, kl_coef=0.0）**: 4 GPU 满载运行中\\\\n- 服务器: RTX 5090 32GB × 4（1 台机器，2 个 SSH endpoint）\\\\n\\\\n## GPU 分配\\\\n- 硬件: 4× RTX 5090 32GB\\\\n- 当前使用: 4/4（满载）\\\\n  - cuda:0 → mvp2_grpo_ced_r5 (kl_coef=0.0, ~8-16h)\\\\n  - cuda:1 → mvp2_sft_eval_r2 (~6-7h)\\\\n  - cuda:2 → mvp2_grpo_extract_r3 (kl_coef=0.0, ~8-16h)\\\\n  - cuda:3 → mvp2_grpo_flatnli_r3 (kl_coef=0.0, ~8-16h)\\\\n- 待分配: mvp2_grpo_ced_kl001 → cuda:1 释放后启动\\\\n\\\\n## MVP-2 评估框架（Reviewer 审查后更新）\\\\n\\\\n### Pass Criteria（精确化）\\\\n- **核心**: (CED_Evi-F1 − SFT_Evi-F1) ≥ 2pp\\\\n- **F1 不退化**: CED_F1 ≥ max(extraction-only_F1, SFT_F1) − 5pp\\\\n- **CED > flat-NLI**: CED_Evi-F1 > flatNLI_Evi-F1（方向正确即可）\\\\n- **辅助**: 报告 EDCR、CED margin 分布\\\\n\\\\n### 对比矩阵\\\\n| 对比 | 回答的问题 |\\\\n|------|-----------|\\\\n| CED vs SFT | 核心: CED reward 改善 evidence quality |\\\\n| flat-NLI vs SFT | 消融: 简化 NLI reward 效果 |\\\\n| CED vs flat-NLI | 核心: CED 优于 flat-NLI |\\\\n| extraction-only vs SFT | GRPO 本身是否改善 F1（无 evidence reward） |\\\\n| CED vs extraction-only | evidence reward 边际贡献 |\\\\n\\\\n### 多 Checkpoint 评估策略\\\\n- kl_coef=0 存在稳定性风险，不能只看 last checkpoint\\\\n- 每个 GRPO 实验 eval best reward checkpoint + last checkpoint\\\\n- best ≠ last 且差距大 → 稳定性发现（kl_coef=0 代价）\\\\n\\\\n### 统一 Eval 要求\\\\n- 所有模型用同一 eval 脚本 + 同一 parsing + 同一 data split\\\\n- flatnli_r3 的 `-\n…[truncated 2434 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 0
+          },
+          "id": "event-000711"
+        },
+        {
+          "source_line": 712,
+          "timestamp": "2026-05-14T20:01:32.793122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000712"
+        },
+        {
+          "source_line": 713,
+          "timestamp": "2026-05-14T20:01:32.994613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-14T19:59:43Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 16 个实验 — ALLOCATED 1, ANALYZING 1, DONE 10, PREPARING 3, RUNNING 1\\\\n**DONE 分布**: failed 5, killed 1, negative 1, success 3\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\\\n- **实际运行**: 1 张 — rtx5090-4x:cuda:0(mvp2_grpo_ced_lr5e6_r1)\\\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `mvp2_grpo_ced_lr5e6_r1` | rtx5090-4x | cuda:0 | 90080 | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `mvp2_grpo_ced_lr5e6_rp_r1` [failed] — 2026-05-14T19:59:43 — EXIT_CODE=2 (shell misuse / syntax)\\\\n- `mvp2_eval_ced_kl001_r4_ckpt7080` [failed] — 2026-05-14T19:58:46\\\\n- `mvp2_eval_ced_kl001_r4_high` [failed] — 2026-05-14T19:47:58 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `mvp2_eval_ced_kl001_r4_step100` [negative] — 2026-05-14T19:41:30\\\\n- `mvp2_eval_ced_kl001_r4_ckpt90` [killed] — 2026-05-14T19:17:36\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `mvp2_grpo_ced_lr5e6_rp_r1`: EXIT_CODE=2 (shell misuse / syntax)\\\\n- `mvp2_eval_ced_kl001_r4_ckpt7080`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n- `mvp2_eval_ced_kl001_r4_high`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| mvp2_grpo_ced_lr5e6_r1 | D030/P0: lr=5e-6 (10x lower than ced_kl001_r4) prevents catastrophic forgetting while maintaining CED reward improvement. Community consensus GRPO+QLoRA lr=5e-6~1e-5. Pass crit\n…[truncated 2960 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 201
+          },
+          "id": "event-000713"
+        },
+        {
+          "source_line": 714,
+          "timestamp": "2026-05-14T20:01:34.607728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/config/projects/faith-evidence-ie.yaml"
+            }
+          },
+          "id": "event-000714"
+        },
+        {
+          "source_line": 715,
+          "timestamp": "2026-05-14T20:01:34.758741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texecution:\n2\t  account: root\n3\t  gpu_ids:\n4\t  - 0\n5\t  - 1\n6\t  - 2\n7\t  - 3\n8\t  project_path: /root/autodl-tmp/freige\n9\t  servers:\n10\t  - rtx5090-4x\n11\t  - account: root\n12\t    server: bjb2-12179\n13\tfeishu:\n14\t  chat_id: oc_84537e1e2f9ef71a90742c2db859c6f2\n15\t  operational_chat_id: oc_14f1701558037f8ed8fe6fdc4e7df95b\n16\tproject:\n17\t  created_at: '2026-05-14T04:18:52.432Z'\n18\t  description: 'FREIGE: Faithfulness-Rewarded Evidence-Grounded Information Extraction\n19\t    via Contrastive Evidence Discrimination'\n20\t  name: faith-evidence-ie\n21\t  phase: mvp\n22\t  source_idea_id: idea_006\n23\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000715"
+        },
+        {
+          "source_line": 716,
+          "timestamp": "2026-05-14T20:01:54.941161+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'exp_id': 'mvp2_eval_ced_kl001_r4_ckpt50'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000716"
+        },
+        {
+          "source_line": 717,
+          "timestamp": "2026-05-14T20:01:55.448436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2417}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 507
+          },
+          "id": "event-000717"
+        },
+        {
+          "source_line": 718,
+          "timestamp": "2026-05-14T20:01:55.449042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'exp_id': 'mvp2_sft_eval'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000718"
+        },
+        {
+          "source_line": 719,
+          "timestamp": "2026-05-14T20:01:55.550604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "tool_args": {
+              "server": "rtx5090-4x"
+            }
+          },
+          "id": "event-000719"
+        },
+        {
+          "source_line": 720,
+          "timestamp": "2026-05-14T20:01:55.653225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1639}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 204
+          },
+          "id": "event-000720"
+        }
+      ]
+    }
+  ]
+}

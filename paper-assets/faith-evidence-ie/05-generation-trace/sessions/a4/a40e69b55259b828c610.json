@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a40e69b55259b828c610",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops fix plan010 script bug",
+  "task_key": "worker_ops_fix_plan010_script_bug_20260519T193451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_plan010_script_bug_20260519T193451_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "4c4bdfe2c250267b5b566d308155ff4e31ad17b7103d08022a9ce795ab1bdd4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，验证结果：\n\n| 行号 | 修复项 | 修复后内容 | 状态 |\n|------|--------|-----------|------|\n| 55 | `--data_dir` → `--data_path` | `--data_path /root/autodl-tmp/data/docred` | OK |\n| 33, 55 | `--base_model` 补全路径 | `--base_model /root/autodl-tmp/models/Qwen3-4B` | OK |\n\n注意：第 44 行有一个 `--eval_data_dir`，这不是 `--data_dir`，sed 未替换（因为匹配的是 `--data_dir` 不是 `--eval_data_dir`）——这是正确行为，`eval_data_dir` 是独立参数。无残留 `--data_dir` 或裸 `Qwen3-4B`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-plan010-script-bug.md"
+}

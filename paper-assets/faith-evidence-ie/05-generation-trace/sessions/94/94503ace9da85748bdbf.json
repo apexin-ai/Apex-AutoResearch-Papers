@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94503ace9da85748bdbf",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose d140 4b sft s42 no evi 2048",
+  "task_key": "worker_diagnose_d140_4b_sft_s42_no_evi_2048_20260521T073628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_d140_4b_sft_s42_no_evi_2048_20260521T073628_result.json",
+    "occurrence": 1,
+    "bytes": 792,
+    "sha256": "aada65af2f3b14e6cf15dcd7657514b1a079883171b744a4c9bb4335c107e0e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**根因：进程被 SIGKILL 终止（无 traceback），最可能是 GPU 资源竞争导致的 CUDA OOM。**\n\n关键事实：\n- 日志在 inference 13%（31/247）处截断，无任何错误信息\n- 同时段至少有 8B no-evi eval 在运行（14:28–15:36），与 4B 进程（15:06–15:24）完全重叠\n- 无法从日志确认是否设置了 `CUDA_VISIBLE_DEVICES`\n- Adapter 配置正确，非代码/配置 bug\n\n**可以直接重试**，条件：\n1. `CUDA_VISIBLE_DEVICES=1`（当前 GPU 1 空闲 0MiB）\n2. 提交前 `nvidia-smi` 确认 GPU 1 仍空闲（C001）\n3. 必须传 `--no_evidence`（C005）\n4. stderr 重定向到日志（`2>&1`）以捕获 CUDA 错误\n\n诊断已写入 `artifacts/d140_4b_sft_s42_no_evi_2048_diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d140-4b-sft-s42-no-evi-2048.md"
+}

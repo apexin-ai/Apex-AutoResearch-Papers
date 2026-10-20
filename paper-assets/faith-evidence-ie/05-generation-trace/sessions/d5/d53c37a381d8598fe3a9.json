@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d53c37a381d8598fe3a9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 008 rsft topk3",
+  "task_key": "worker_analysis_plan_008_rsft_topk3_20260515T210752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_008_rsft_topk3_20260515T210752_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "77e1bb5f9f577ce1f29b44978c96d0636472bf36c19b8a315e2ede55f0c4501d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常运行中，已加载模型并开始推理（985 docs, 62 batches）。\n\n---\n\n**训练 metrics 摘要（plan_008_rsft_topk3）：**\n\n| 指标 | 值 |\n|------|-----|\n| train_loss | 0.5543 |\n| eval_loss | 0.8297 |\n| token_accuracy | 82.28% |\n| 训练时长 | 3h02m (1509 steps, 3 epochs) |\n| RSFT 样本 | 8037 条 (CED mean=0.621) |\n| GPU hours | 3.11h |\n\n训练曲线正常：loss 从 ~0.6+ 稳步下降到 0.554，无异常波动。\n\n**Eval 提交状态：**\n- 实验 ID: `eval_plan_008_rsft_topk3`\n- PID: **255523**\n- GPU: cuda:3 @ rtx5090-4x\n- 日志: `~/runs/faith-evidence-ie/eval_plan_008_rsft_topk3.log`\n- 已在推理中（985 docs, batch_size=16, 62 batches）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-008-rsft-topk3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac270f0ec61567587add",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code fix llama template remaining",
+  "task_key": "worker_code_fix_llama_template_remaining_20260516T100135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_llama_template_remaining_20260516T100135_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "6479f4bc1ea773c034dab538f6a5981d05d2cfdb540469db39ec909261c29d26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`tokenizer.apply_chat_template` 仅存在于各文件 `_apply_chat_template` 函数内部的 return 行。所有外部调用均已改为 `_apply_chat_template(tokenizer, ...)`。\n\n**修改摘要**：\n\n| 文件 | 修改 |\n|------|------|\n| `grpo_trainer.py` | +函数(L28-32)，替换 1 处调用(L338) |\n| `rsft_trainer.py` | +函数(L35-39)，替换 3 处调用(L76, L117, L139) |\n| `rsft_generate.py` | +函数(L42-46)，替换 1 处调用(L109) |\n| `dpo_trainer.py` | +函数(L34-38)，替换 3 处调用(L75, L81, L85) |\n| `smoke_test.py` | +函数(L24-28)，替换 1 处调用(L157) |\n\n所有 `enable_thinking` 现在只出现在 `_apply_chat_template` 定义内部和调用参数中，不再直接传给 `tokenizer.apply_chat_template`。非 Qwen3 模板的 tokenizer 会自动忽略该参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-llama-template-remaining.md"
+}

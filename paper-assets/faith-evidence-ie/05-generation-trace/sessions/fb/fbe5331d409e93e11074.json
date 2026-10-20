@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbe5331d409e93e11074",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "probe bjb2 data integrity",
+  "task_key": "worker_probe_bjb2-data-integrity_20260520T070810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_probe_bjb2-data-integrity_20260520T070810_result.json",
+    "occurrence": 1,
+    "bytes": 2863,
+    "sha256": "37e2810ac75e5376f1c29bf1bd81c0209c5e9db41925e3166f1c652b22247664"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb2-12179 数据完整性报告\n\n### 磁盘总览\n- **总量**: 208G / 250G (83%)\n- **剩余**: 43G\n\n### Adapter 完整性 — 全部完好\n\n所有 30 个 adapter 目录均含有效 `adapter_model.safetensors`（非 0B）：\n\n| 目录 | 大小 | adapter | 状态 |\n|------|------|---------|------|\n| **SFT — LLaMA 3.1 8B** ||||\n| sft_output_llama_3_1_8b/ | 4.5G | 641M | ✓ |\n| sft_output_llama_3_1_8b_no_evidence/ | 4.5G | 641M | ✓ |\n| sft_output_llama_3_1_8b_s43/ | 4.5G | 641M | ✓ |\n| sft_output_llama_3_1_8b_s44/ | 4.5G | 641M | ✓ |\n| **SFT — Qwen3 8B** ||||\n| sft_output_qwen3_8b_bf16/ | 4.6G | 666M | ✓ |\n| sft_output_qwen3_8b_no_evidence/ | 4.6G | 666M | ✓ |\n| sft_output_qwen3_8b_s43/ | 4.6G | 666M | ✓ |\n| sft_output_qwen3_8b_s44/ | 4.6G | 666M | ✓ |\n| **SFT — Qwen3 1.7B** ||||\n| sft_output_qwen3_1_7b_bf16/ | 1.9G | 266M | ✓ |\n| sft_output_qwen3_1_7b_bf16_seed43/ | 1.9G | 266M | ✓ |\n| sft_output_qwen3_1_7b_bf16_seed44/ | 1.9G | 266M | ✓ |\n| sft_output_qwen3_1_7b_no_evidence/ | 1.9G | 266M | ✓ |\n| **SFT — Qwen3 4B** ||||\n| sft_output/ (s42) | 5.8G | 253M | ✓ |\n| sft_output_seed43/ | 2.1G | 504M | ✓ |\n| sft_output_seed44/ | 2.1G | 504M | ✓ |\n| **SFT — 14B** ||||\n| sft_output_14b/ | 7.3G | 491M | ✓ |\n| **RSFT — LLaMA 3.1 8B** ||||\n| rsft_output_llama_3_1_8b_k1/ | 4.5G | 641M | ✓ |\n| rsft_output_llama_3_1_8b_k1_s43/ | 4.5G | 641M | ✓ |\n| rsft_output_llama_3_1_8b_k1_s44/ | 4.5G | 641M | ✓ |\n| **RSFT — Qwen3 8B** ||||\n| rsft_output_qwen3_8b_k1/ | 4.6G | 666M | ✓ |\n| rsft_output_qwen3_8b_k1_s43/ | 4.6G | 666M | ✓ |\n| rsft_output_qwen3_8b_k1_s44/ | 4.6G | 666M | ✓ |\n| **RSFT — Qwen3 1.7B** ||||\n| rsft_output_qwen3_1_7b_k1/ | 1.9G | 266M | ✓ |\n| rsft_output_qwen3_1_7b_k1_s43/ | 1.9G | 266M | ✓ |\n| rsft_output_qwen3_1_7b_k1_s44/ | 1.9G | 266M | ✓ |\n| **RSFT — 其他** ||||\n| rsft_output_4b_sft_s44/ | 4.1G | 252M | ✓ |\n| rsft_output_4b_sft_s44_bf16/ | 7.5G | symlink→ckpt-567 | ⚠️ |\n| rsft_output_ced_s43/ | 8.0G | 504M | ✓ |\n| rsft_output_nli_large/ | 8.0G | 504M | ✓ |\n| rsft_output_random_k1/ | 3.5G | 504M | ✓ |\n\n### 其他数据\n\n| 类别 | 大小 |\n|------|------|\n| models/ (base 模型) | 70G |\n| baselines/ | 3.0G |\n| eval_results/ | 370M |\n| freige/ (代码) | 586M |\n| data/ | 497M |\n| rsft_scored_*/ (8 dirs) | ~490M |\n| rsft_filtered_*/ (5 dirs) | ~245M |\n| rsft_generations_*/ (3 dirs) | ~748M |\n\n### 总结\n\n- **29/30 adapter 完好**，均含有效 safetensors 文件\n- **1 个异常**: `rsft_output_4b_sft_s44_bf16/adapter_model.safetensors` 是 symlink 指向 `checkpoint-567/`，需确认该 checkpoint 目录是否存在且完整\n- SFT+RSFT adapter 合计 ~130G，base models 70G，数据/中间文件 ~5G\n- 数据盘完好可用，适合作为迁移源"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/probe-bjb2-data-integrity.md"
+}

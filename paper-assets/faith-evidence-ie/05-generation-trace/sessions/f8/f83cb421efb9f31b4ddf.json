@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f83cb421efb9f31b4ddf",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix flat nli s44 s45 ignf1 recompute",
+  "task_key": "worker_fix_flat_nli_s44_s45_ignf1_recompute_20260516T034724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_flat_nli_s44_s45_ignf1_recompute_20260516T034724_result.json",
+    "occurrence": 1,
+    "bytes": 666,
+    "sha256": "ecd5be324c68823aadc0705e62d60a62856843d5cc16ec618f70ab39cbc389c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "重算完成，metrics_v2.json 已写入。汇总：\n\n## rsft_flat_nli_s44\n\n| 指标 | 值 |\n|------|------|\n| rel_f1 | 0.461506 |\n| **ign_f1** | **0.452126** |\n| evi_f1 | 0.813123 |\n| edcr | 0.645808 |\n| evi_f1_joint | 0.359673 |\n| Δ(ign_f1 - rel_f1) | **-0.0094** |\n\n## rsft_flat_nli_s45\n\n| 指标 | 值 |\n|------|------|\n| rel_f1 | 0.455052 |\n| **ign_f1** | **0.446181** |\n| evi_f1 | 0.815399 |\n| edcr | 0.652133 |\n| evi_f1_joint | 0.355612 |\n| Δ(ign_f1 - rel_f1) | **-0.0089** |\n\n两个实验的 ign_f1 现在均低于 rel_f1 约 0.9pp，符合预期（train facts 被正确排除）。rel_f1 / evi_f1 / edcr 均未变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-flat-nli-s44-s45-ignf1-recompute.md"
+}

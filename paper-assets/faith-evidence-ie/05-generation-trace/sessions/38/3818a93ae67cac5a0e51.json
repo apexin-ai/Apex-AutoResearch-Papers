@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3818a93ae67cac5a0e51",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose 8b rsft k1 metrics",
+  "task_key": "worker_diagnose_8b-rsft-k1-metrics_20260522T224050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_8b-rsft-k1-metrics_20260522T224050_result.json",
+    "occurrence": 1,
+    "bytes": 2510,
+    "sha256": "4af8aea6eaeda8c97cdca07572ec5a870c7dc9c91ef3ff361402cb37f9d734d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Test eval 没有 metrics.json，但日志已包含所有信息。结果如下：\n\n---\n\n## seed 42 (d102_8b_k1_s42) — Dev\n路径: `/root/autodl-tmp/eval_results/d102_8b_k1_s42/metrics.json`\nmodel_path: `/root/autodl-tmp/rsft_output_qwen3_8b_k1`\n\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | 0.5376 |\n| f1 | 0.5549 |\n| evi_f1 | 0.8136 |\n| evi_f1_joint | 0.4401 |\n| edcr | 0.6231 |\n| precision | 0.5529 |\n| recall | 0.5569 |\n| ign_precision | 0.5275 |\n| ign_recall | 0.5482 |\n| field_compliance_rate | 0.7492 |\n| n_truncated | 242 |\n\n## seed 43 (d102_8b_k1_s43) — Dev\n路径: `/root/autodl-tmp/eval_results/d102_8b_k1_s43/metrics.json`\nmodel_path: `/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43`\n\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | 0.5471 |\n| f1 | 0.5651 |\n| evi_f1 | 0.8180 |\n| evi_f1_joint | 0.4544 |\n| edcr | 0.6094 |\n| precision | 0.5640 |\n| recall | 0.5663 |\n| ign_precision | 0.5385 |\n| ign_recall | 0.5560 |\n| field_compliance_rate | 0.7533 |\n| n_truncated | 231 |\n\n## seed 44 (rsft_8b_k1_s44_eval) — Dev\n路径: `/root/autodl-tmp/eval_results/rsft_8b_k1_s44_eval/metrics.json`\nmodel_path: `/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44`\n\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | 0.5451 |\n| f1 | 0.5620 |\n| evi_f1 | 0.8145 |\n| evi_f1_joint | 0.4472 |\n| edcr | 0.6233 |\n| precision | 0.5607 |\n| recall | 0.5632 |\n| ign_precision | 0.5360 |\n| ign_recall | 0.5545 |\n| field_compliance_rate | 0.7614 |\n| n_truncated | 230 |\n\n## 3-seed 汇总\n\n| 指标 | s42 | s43 | s44 | mean | std |\n|------|-----|-----|-----|------|-----|\n| ign_f1 | 0.5376 | 0.5471 | 0.5451 | 0.5433 | 0.0050 |\n| f1 | 0.5549 | 0.5651 | 0.5620 | 0.5607 | 0.0052 |\n| evi_f1_joint | 0.4401 | 0.4544 | 0.4472 | 0.4472 | 0.0072 |\n| edcr | 0.6231 | 0.6094 | 0.6233 | 0.6186 | 0.0080 |\n\n## test_eval_8b_rsft_s42 模型确认\n日志路径: `~/runs/faith-evidence-ie/test_eval_8b_rsft_s42.log`\nadapter: `/root/autodl-tmp/rsft_output_qwen3_8b_k1`\nbase: `/root/autodl-tmp/models/Qwen/Qwen3-8B`\nsft_adapter: `/root/autodl-tmp/sft_output_qwen3_8b_bf16`\n**结论: k=1 模型（正确），不是 k=3**\n\nTest 结果: F1=0.3353, Evi-F1(DREEAM)=0.2526, EDCR=0.7993\n\n## test_eval_8b_rsft_s42_no_evi 模型确认\n日志路径: `~/runs/faith-evidence-ie/test_eval_8b_rsft_s42_no_evi.log`\nadapter: `/root/autodl-tmp/rsft_output_qwen3_8b_k1`（同一模型）\n**结论: k=1 模型（正确）**\n\nTest 结果: F1=0.3319, Evi-F1(DREEAM)=0.0707, EDCR=0.7424"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-8b-rsft-k1-metrics.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b79c5b88406fa670f6d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "train llama rsft seed43",
+  "task_key": "worker_train_llama_rsft_seed43_20260517T130444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_llama_rsft_seed43_20260517T130444_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "cdfda0f8674f578b7a3c6ff6b1d4e1cb3e7e412441bbd535dc1dd023b8eb6d19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并开始迭代。\n\n**总结：**\n\n| 项目 | 值 |\n|------|------|\n| exp_id | `plan_006_llama_rsft_seed43` |\n| PID | 450239 |\n| GPU | cuda:0 (17.9GB / 32.6GB) |\n| 训练数据 | 8829 samples |\n| 总步数 | 3312 (3 epochs × 1104) |\n| 速度 | ~2.95 s/step |\n| 预计时长 | ~2.7 小时 |\n| 日志 | `/root/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log` |\n| 输出 | `/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43` |\n\n首个 log 点：loss=0.7125, mean_token_accuracy=0.8528，与 r3 相当，训练正常进行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-llama-rsft-seed43.md"
+}

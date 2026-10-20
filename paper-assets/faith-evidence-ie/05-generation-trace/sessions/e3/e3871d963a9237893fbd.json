@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3871d963a9237893fbd",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check bjb2 4b rsft backup",
+  "task_key": "worker_check_bjb2_4b_rsft_backup_20260521T185014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bjb2_4b_rsft_backup_20260521T185014_result.json",
+    "occurrence": 1,
+    "bytes": 688,
+    "sha256": "735d1ff7803c29957950c5c851530efd53f60ffa56726dccbc89d8e07a75e582"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**bjb2-12179 可连接。**\n\n**4B RSFT s42 adapter（`rsft_output`、`rsft_output_r2b`）：未找到。** 该服务器上没有这两个目录，也没有任何包含 `s42` 的目录。\n\n**bjb2-12179 上现有的 4B 相关目录：**\n- `/root/autodl-tmp/rsft_output_4b_sft_s44` — 完整的 LoRA adapter（有 `adapter_config.json` + `adapter_model.safetensors`，以及 checkpoint-400/450/500/550/567）\n- `/root/autodl-tmp/rsft_output_4b_sft_s44_bf16`\n- `/root/autodl-tmp/rsft_generations_4b_sft_s44`\n- `/root/autodl-tmp/rsft_scored_4b_sft_s44`\n\n这些都是 **s44** 的，不是 s42。s42 的 4B RSFT checkpoint 在 bjb2-12179 上没有备份。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bjb2-4b-rsft-backup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cae769f8f218166884e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper figure fig spectrum",
+  "task_key": "worker_paper_figure_fig_spectrum_20260517T140456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_spectrum_20260517T140456_result.json",
+    "occurrence": 1,
+    "bytes": 224,
+    "sha256": "960f183004709811b9c0e9dcae9b0b3661394ead021b1b6f25fbbecc122776f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`fig_spectrum.pdf` / `.png` 已生成并注册（`art_20260517_984c0b`）。脚本在 `figures/paper/plot_spectrum.py`，需要微调标注位置可直接修改 `label_cfg` 字典中的偏移量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-spectrum.md"
+}

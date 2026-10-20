@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67b435838380baaa053d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research related work expansion",
+  "task_key": "worker_research_related-work-expansion_20260515T233120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related-work-expansion_20260515T233120_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "0c09780960086d54ae0b651fc5c7792df6c2465006a6aaca6432078c3b9ff5f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**新增 17 篇论文**（68 → 85），覆盖 5 个方向：\n\n| 方向 | 新增 | 代表论文 |\n|------|------|---------|\n| Evidence-based DocRE | 3 | EAAGRE, GEGA, KnowRA (IJCAI'25) |\n| Faithfulness Structured Output | 4 | G&O, Structural Failures (2026), APIE (AAAI'26) |\n| GRPO for Structured Tasks | 4 | E-GRPO (ICLR'26), GRPO-LEAD (EMNLP'25), SFT vs RL |\n| QLoRA vs FFT | 2 | RandLoRA (ICLR'25), LoRA Rank Trade-offs |\n| MTL Trade-offs in IE | 4 | C-LoRAE, Ortho-LoRA, Proactive Gradient Conflict + Survey |\n\n**对 FREIGE novelty 的影响**：新文献巩固了三个核心贡献的独特性。E-GRPO (ICLR'26) 是 CED reward 最近的 prior work，但它用 entity match 而非 NLI-based evidence quality；Ortho-LoRA 和 RandLoRA 从理论层面支持 QLoRA task decoupling 发现；G&O 和 Structural Failures 独立佐证 faithfulness tax 现象。\n\n**产出**：\n- `literature_map.yaml` 已更新（85 papers）\n- 调研报告已注册为 artifact `art_20260515_25a2d5`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-expansion.md"
+}

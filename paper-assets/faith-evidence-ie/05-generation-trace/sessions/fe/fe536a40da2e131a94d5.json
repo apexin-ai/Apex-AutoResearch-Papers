@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe536a40da2e131a94d5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check 1 7b sft eval completion",
+  "task_key": "worker_ops_check_1_7b_sft_eval_completion_20260516T100745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_1_7b_sft_eval_completion_20260516T100745_result.json",
+    "occurrence": 1,
+    "bytes": 362,
+    "sha256": "907a832578bdbae5bb9d8413662081c2c8666d6375483464c1aab9979802552a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan_006_qwen3_1_7b_sft_eval — 成功完成** ✓\n\n| 指标 | 值 |\n|------|-----|\n| F1 | 0.4945 |\n| Ign-F1 | 0.4786 |\n| Evi-F1 | 0.8316 |\n| EDCR | 0.6704 |\n| Format OK | 985/985 (100%) |\n| Truncated | 314/985 |\n| Predictions | 17,184 |\n| 推理耗时 | 6848.7s (~1h54m) |\n\ncuda:1 已释放。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-1-7b-sft-eval-completion.md"
+}

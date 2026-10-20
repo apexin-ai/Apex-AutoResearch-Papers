@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b7570d31efc8397ef82",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778909841.md",
+  "task_key": "loop_12_1778909841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778909841.md",
+    "occurrence": 1,
+    "bytes": 5338,
+    "sha256": "47b970450ea95ec793ef20e6a982c123c0674433e916b0b1d389e7cecb5b5a07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T05:37:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0/1/2/3（rtx5090-4x），提交前必须 nvidia-smi 确认目标 GPU 显存 < 2GB，上一轮因 cuda:0 双进程共跑踩过坑\n- cwd 必须 `cd /root/autodl-tmp`，**不是** `/root/autodl-tmp/freige`（多次失败教训）\n- `rsft_output_r2b/` 是旧实验（lora_alpha=32, 160 步），**不是** CED s42。CED s42 正确路径: `rsft_output/checkpoint-510`\n- flat-NLI 全系列最终 checkpoint 是 **507**（非 510）\n- Eval 统一协议: batch_size=4, max_new_tokens=1024, --no-quantize, --sft_adapter, 正确 seed, 显式 CUDA_VISIBLE_DEVICES。偏离协议的 eval 数据不可用于 paired t-test\n- reeval_ced_s44 (cuda:0, PID 297190) 与 reeval_flat_nli_s42 (cuda:0, PID 296732) 存在 GPU 冲突——可能其中一个已完成让位，需 Worker SSH 验证实际状态\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x (4× RTX 5090 32GB)，账户 root\n- **工作目录**: `/root/autodl-tmp`\n- **Python**: `/root/miniconda3/bin/python`（conda base，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`\n- **SFT adapter**: `/root/autodl-tmp/sft_output`\n- **数据**: `/root/autodl-tmp/data/docred`（dev 985 docs）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1）\n- **RSFT checkpoints**: 见 memory.md 路径映射表（8 个 checkpoint, CED 4 seeds × 510 步, flat-NLI 4 seeds × 507 步）\n- **活跃进程（5 个 cron 监控中）**:\n  - reeval_flat_nli_s43_r2: PID 291003, tmux=reeval_flat_nli_s43_r2, cuda:3\n  - reeval_ced_s44: PID 297190, cuda:0\n  - reeval_ced_s42: PID 298018, cuda:2\n  - reeval_flat_nli_s42: PID 296732, cuda:0（与 ced_s44 冲突，需验证）\n  - reeval_sft_baseline_d076: PID 303065, cuda:1\n\n### 3. 📊 当前状态\n上一轮核心工作：D076 eval 协议审计发现旧 eval 混用 batch_size/max_new_tokens/seed，提交了 5 个统一协议 re-eval（4 个 RSFT + 1 个 SFT baseline）。这 5 个 re-eval 全部 RUNNING，cron 监控中。\n\n**RUNNING (5)**:\n| exp_id | GPU | 目的 |\n|--------|-----|------|\n| reeval_flat_nli_s42 | cuda:0 | flat-NLI s42 统一协议重跑 |\n| reeval_ced_s44 | cuda:0 | CED s44 统一协议重跑（GPU冲突待查） |\n| reeval_sft_baseline_d076 | cuda:1 | SFT baseline 统一协议重跑 |\n| reeval_ced_s42 | cuda:2 | CED s42 统一协议重跑 |\n| reeval_flat_nli_s43_r2 | cuda:3 | flat-NLI s43 统一协议重跑 |\n\n**PREPARING (1)**: seed_comparison_prep（等上述 re-eval 全部完成后运行 paired t-test）\n\n**不需要等的 Worker 回调** — 上轮 20 个 Worker 全部 done。\n\n**已完成的关键实验**: plan_003 EDCR diagnostic ✅, plan_004 DREEAM baseline ✅, plan_009 dynamics figure ✅, plan_011 bf16 GRPO G=8 ✅, plan_014 no-evidence ablation ✅, CED reranker ✅\n\n### 4. 📋 待办（条件触发式）\n- **5 个 reeval cron 回调到达** → 逐个 spawn Worker 分析结果、update_registry。cuda:0 冲突必须先 SSH 验证（可能一个已排队等另一个完成）\n- **5 个 reeval 全部 DONE + success** → spawn Worker 跑 `/root/autodl-tmp/scripts/seed_comparison.py`，做 CED vs flat-NLI paired t-test（4 seeds matched pairs）+ SFT baseline 对比表 → 更新 seed_comparison_prep → 汇报 Director\n- **paired t-test p<0.05** → CED 有统计显著优势，C3 可恢复部分叙事\n- **paired t-test p≥0.05** → 维持 D056 结论（CED≈flat-NLI），C3 保持降级\n- **GPU 释放后** → 按 ROADMAP 优先级铺: eval_flat_nli_seed44 (PREPARING), eval_flat_nli_seed45 (PREPARING), plan_003_edcr_diagnostic (已 DONE 跳过), plan_002 test set eval (需 plan_001 完成)\n- **所有 dev eval 收齐** → plan_002 test set eval (CodaLab 提交) + Paper Agent retitle + related work 扩展\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D056: CED vs flat-NLI 统计不可区分 → C3（CED 独立贡献）降级\n- D054/D065/D066: decoupling 是 QLoRA-specific（bf16 下不复现）\n- D068/D069: RL optimization pressure 与 decoupling severity 正相关（spectrum: GRPO QLoRA > GRPO bf16 > DPO > RSFT）\n- D070/D072/D073: EDCR 从跨方法诊断指标降级为双层诊断（方法级识别病理模型 + per-relation 难度诊断）\n- D076: eval 协议统一（当前 5 个 re-eval 就是为了这个）\n\n**论文四大 claim**: (1) evidence tax ~8pp; (2) CED scoring 对 RSFT 有效但不优于 flat-NLI; (3) QLoRA+GRPO task decoupling 是 QLoRA-specific; (4) EDCR 双层诊断指标\n\n**最容易判断错的事**:\n- reeval_ced_s44 和 reeval_flat_nli_s42 都标记 cuda:0，很可能是串行（一个先跑完另一个才开始），但 cron 都显示 still running——必须 SSH 实查进程状态，不要假设都在跑\n- 当前 reeval 是为了 paired t-test 的数据质量——不是重跑实验，是统一协议后的 re-evaluation。如果某个 reeval 失败，不需要重新训练，只需修命令重跑 eval\n- ROADMAP 里 reeval_rsft_topk3 标记\"Worker 检查/重提交中\"但 registry 里已 DONE (negative)，ROADMAP 未更新，以 registry 为准\n- plan_015 (bf16 LoRA GRPO clean control) 已 killed，不要重启——D065 的 plan_011 结果已确认 bf16 下无 catastrophic decoupling\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778909841.md"
+}

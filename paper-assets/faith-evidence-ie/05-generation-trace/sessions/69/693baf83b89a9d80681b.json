@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "693baf83b89a9d80681b",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778799743.md",
+  "task_key": "loop_4_1778799743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778799743.md",
+    "occurrence": 1,
+    "bytes": 4737,
+    "sha256": "a5849f00f4ae4d877340102eb297eee9c381eeeb433f858217b2f22c7a746b20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T22:56:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`gpu_ids=[0,1,2,3]`，服务器 `rtx5090-4x`。第二台 `bjb2-12179` 也在配置中但当前所有实验都跑在 rtx5090-4x\n- `submit_on_allocated` 的 cd 路径必须是 `/root/autodl-tmp`（不是 `/root/autodl-tmp/freige`），否则 Python import 会找到内层空 `freige/freige/` 包导致 eval 脚本失败——这个 bug 已被踩过两次\n- `mvp2_eval_lr5e6_r1_ckpt60` 和 `mvp2_eval_lr5e6_r1_ckpt60_r2` 两个实验同时挂在 cuda:1 上，ckpt60_r2 的 conclusion 已标 killed，真正在跑的是 ckpt60（PID 108025）。不要对 ckpt60_r2 做任何操作\n- 当前 lr=5e-6 训练（mvp2_grpo_ced_lr5e6_r1, PID 90080, cuda:0）是 P0 唯一活跃训练，不可 kill\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：rtx5090-4x（RTX 5090 32GB × 4），账号 root\n- **工作目录**：`/root/autodl-tmp/freige`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **环境激活**：`source /root/miniconda3/bin/activate && cd /root/autodl-tmp && python ...`\n- **Eval 脚本**：`/root/autodl-tmp/scripts/eval_lr5e6_ckpt*.sh`\n- **活跃进程**：\n  - PID 90080 — mvp2_grpo_ced_lr5e6_r1（cuda:0，训练，step ~68/200）\n  - PID 101842 — mvp2_eval_lr5e6_r1_ckpt40_r2（cuda:2，ckpt-40 eval）\n  - PID 108025 — mvp2_eval_lr5e6_r1_ckpt60（cuda:1，ckpt-60 eval）\n  - PID 104979 — mvp2_eval_sft_baseline（cuda:3，SFT baseline eval）\n- **活跃 Cron**：3 个（监控上述 PID 90080 / 101842 / 104979），ckpt60 的 cron 未见（可能需要补注册）\n- **W&B**：项目 `faith-evidence-ie`\n\n### 3. 📊 当前状态\n**刚做完**：lr5e6 vs kl001_r4 的轨迹对比分析（结论写入 memory.md）；ckpt-20 eval negative（rel_f1=0.0077）；kill 了 rp_r2 训练线和 ckpt-60_r2 重复实验。\n\n**4 卡全忙**：\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| cuda:0 | mvp2_grpo_ced_lr5e6_r1 | 训练 step ~68/200，预计 3-4h 完成 |\n| cuda:1 | mvp2_eval_lr5e6_r1_ckpt60 | ckpt-60 eval 运行中 |\n| cuda:2 | mvp2_eval_lr5e6_r1_ckpt40_r2 | ckpt-40 eval 运行中 |\n| cuda:3 | mvp2_eval_sft_baseline | SFT baseline eval 运行中 |\n\n**等待回调**：3 个 cron 监控中（PID 90080/101842/104979）。ckpt-60 eval（PID 108025）可能没有 cron 监控——接手后需确认并补注册。\n\n**Worker 池**：0 个 running worker——因为 4 卡全忙且无非 GPU 任务待执行，但接手后应考虑是否有文献/代码准备类 CPU 任务可以并行。\n\n### 4. 📋 待办（条件触发式）\n- **ckpt-40 eval 完成（PID 101842 退出）** → 读结果；rel_f1 > 0.30 → P0 PASS 该 checkpoint，汇报 Director；rel_f1 < 0.05 → lr=5e-6 基本判定失败趋势\n- **ckpt-60 eval 完成（PID 108025 退出）** → 同上。注意确认 cron 是否存在，不存在则手动 spawn worker 读结果\n- **SFT baseline eval 完成（PID 104979 退出）** → 读 rel_f1，作为 apple-to-apple 对比基线。之前 SFT eval r3 用了不同 eval path\n- **训练 step 80 到达** → 准备 ckpt-80 eval（mvp2_eval_lr5e6_r1_ckpt80 已 PREPARING），分配空出的 GPU 提交\n- **全 trajectory 出齐（ckpt-20/40/60/80 + SFT baseline 全部 DONE）** → 做 MVP-2 最终判定：任一 > 0.30 = PASS；全 < 0.30 但上升 = 延长训练；全 < 0.30 且 plateau = FAIL → pivot 到 DPO/rejection sampling（contingency 见 ROADMAP）\n- **训练完成（PID 90080 退出，step 200）** → 做最终 checkpoint eval；汇报 Director 全 trajectory\n\n### 5. 🎯 战略上下文\n**核心问题**：CED reward 信号在 MVP-1 验证有效（margin 0.4827, acc 81.5%），但 GRPO+QLoRA 训练方法论失败——lr=5e-5 全系列 mode collapse/遗忘，lr=5e-6 前 80 步几乎不学习（f1_reward 在 0-0.04 随机波动，88% reward 来自 format hacking）。\n\n**当前赌注**：lr=5e-6 的 ckpt-40/60 是否出现迟到的上升拐点。kl001_r4（lr=5e-5）的 step 40 才出现拐点，所以 lr=5e-6 可能更晚。但 memory.md 的分析结论偏悲观：lr5e6 到 step 80 仍无拐点迹象。\n\n**最易判断错的事**：\n1. 不要把 ckpt-40 eval 的 mvp2_eval_lr5e6_r1_ckpt40（DONE/failed，PID auto-fail）和 mvp2_eval_lr5e6_r1_ckpt40_r2（RUNNING，重新追踪同一 PID 101842）混淆——后者才是真正在跑的\n2. 最优 LR 在 1e-5 到 2e-5 之间（memory.md 结论），5e-5 太高 5e-6 太低，但当前没有中间值的实验。如果全 trajectory FAIL，下一步不是再调 LR，而是换训练方法论（DPO/rejection sampling）\n3. kl001_r4 的 best eval（step 90）rel_f1=0.211，仍低于 0.30 阈值——lr=5e-5 系列整体 FAIL 已确认（D027）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778799743.md"
+}

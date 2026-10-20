@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3384d1b78d84f76c418",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "prep 14b scripts",
+  "task_key": "worker_prep_14b_scripts_20260518T124600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_14b_scripts_20260518T124600_result.json",
+    "occurrence": 1,
+    "bytes": 1561,
+    "sha256": "1751c5fa29f8383098493dd5482eed208bca46fd23690f31ec16720e50f8f68c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部语法验证通过。总结：\n\n## 产出\n\n### 14B 模型下载状态\n**完整** — `/root/autodl-tmp/models/Qwen/Qwen3-14B/`，28GB，8 个 shard 文件齐全。\n\n### 创建的文件\n\n| 文件 | 说明 |\n|------|------|\n| `configs/accelerate_2gpu_zero3.yaml` | 2-GPU DeepSpeed ZeRO-3 accelerate 配置 |\n| `scripts/sft_14b.sh` | 14B SFT 训练脚本（cuda:2,3） |\n| `scripts/rsft_14b.sh` | 14B RSFT 训练脚本模板（cuda:2,3） |\n| `scripts/merge_sft_adapter_14b.py` | SFT adapter 合并脚本（RSFT 前置步骤） |\n\n### 代码补丁（向后兼容）\n- `training/sft_trainer.py` — 添加 `HfDeepSpeedConfig` 提前初始化（L136-139），`device_map` 改为仅在非 DeepSpeed 模式设置（L183）\n- `training/rsft_trainer.py` — 同上（L296-299, L331）\n\n### 关键参数对比（4B → 14B）\n\n| 参数 | 4B (单卡) | 14B (2卡 ZeRO-3) |\n|------|-----------|-------------------|\n| quantize | QLoRA 4-bit | bf16 LoRA (`--no-quantize`) |\n| GPU | CUDA_VISIBLE_DEVICES=0 | CUDA_VISIBLE_DEVICES=2,3 |\n| per_device_batch | 1 | 1 |\n| grad_accum | 64 | 32 |\n| effective batch | 64 | 2×1×32=64 |\n| DeepSpeed | 无 | ZeRO-3 (param+optimizer+grad 分片) |\n\n### Dry-run 状态\n所有 GPU 都在使用中，无法执行 dry-run。等 Wave 1 释放 cuda:2+3 后可直接运行 `bash scripts/sft_14b.sh`。\n\n### RSFT 14B 依赖链\nSFT 14B 训练完成 → `python scripts/merge_sft_adapter_14b.py` 合并 adapter → 14B 生成 + CED 打分 → RSFT 数据就绪 → `bash scripts/rsft_14b.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-14b-scripts.md"
+}

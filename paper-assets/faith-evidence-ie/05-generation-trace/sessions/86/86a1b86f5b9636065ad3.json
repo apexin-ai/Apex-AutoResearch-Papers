@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86a1b86f5b9636065ad3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix cuda3 cleanup llama",
+  "task_key": "worker_fix_cuda3-cleanup-llama_20260522T185823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cuda3-cleanup-llama_20260522T185823_result.json",
+    "occurrence": 1,
+    "bytes": 262,
+    "sha256": "bdfbcd9e0e09fe3d5b75c883cd3ebe0dd3f3cf7dcce74d77912c7e632be9123e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:3 状态正常：**\n- 只有 PID 196512 在运行（18870 MiB），旧进程 194437 已被清理\n- 命令确认是正确的 eval：`max_new_tokens=2048`、`--no_evidence`、输出到 `test_eval_llama_rsft_s42_no_evi`\n- 无需额外操作"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cuda3-cleanup-llama.md"
+}

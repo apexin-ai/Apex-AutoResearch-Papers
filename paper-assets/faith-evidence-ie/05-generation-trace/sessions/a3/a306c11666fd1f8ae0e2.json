@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a306c11666fd1f8ae0e2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "read d102 1 7b results",
+  "task_key": "worker_read_d102_1_7b_results_20260518T104239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_read_d102_1_7b_results_20260518T104239_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "d1a6f002f4bea4592740375e7612ba60e019d3da26af6553d0361727c8291953"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D102 1.7B k=1 s42 eval 结果：\n\n| 指标 | k=1 (D102) | k=3 (旧) | 差异 |\n|------|-----------|----------|------|\n| **rel_f1** | 0.5290 | 0.5219 | **+0.71** |\n| **ign_f1** | 0.5122 | 0.5050 | **+0.72** |\n| **evi_f1** | 0.8243 | 0.8309 | -0.66 |\n| **edcr** | 0.6224 | 0.6297 | -0.73 |\n\n其他关键数据：\n- n_predictions: 16154, n_truncated: 249, n_format_ok: 984/985\n- field_compliance_rate: 74.4%（evidence_format_rate 同）\n- 推理耗时: 8836s\n- 模型: `rsft_output_qwen3_1_7b_k1/checkpoint-567`\n\n**结论**: k=1 的 rel_f1/ign_f1 略优于 k=3（+0.7pp），但 evi_f1 和 edcr 略低（-0.7pp）。总体差异很小，k=1 和 k=3 性能基本持平。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/read-d102-1-7b-results.md"
+}

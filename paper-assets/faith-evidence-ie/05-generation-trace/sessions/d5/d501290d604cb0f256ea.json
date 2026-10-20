@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d501290d604cb0f256ea",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose extract r4 ckpt30 decision",
+  "task_key": "worker_diagnose_extract-r4-ckpt30-decision_20260514T173324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_extract-r4-ckpt30-decision_20260514T173324_result.json",
+    "occurrence": 1,
+    "bytes": 123,
+    "sha256": "0ee98b2e2f41b834900cbfaab6a8a6819cd1eb788fd414801f92b717bab19508"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台轮询也确认 checkpoint-30 已就绪。判定结论不变：**KILL — mode collapse confirmed**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-extract-r4-ckpt30-decision.md"
+}

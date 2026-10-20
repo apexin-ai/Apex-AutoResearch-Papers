@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60e03d87b1207bba523f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval qwen3 8b rsft eval",
+  "task_key": "worker_eval_qwen3_8b_rsft_eval_20260517T115854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen3_8b_rsft_eval_20260517T115854_result.json",
+    "occurrence": 1,
+    "bytes": 331,
+    "sha256": "4e81e223352de97966d9fc9258c50b3a918deb116bfc07715bec36882b2b6899"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册。\n\n| 项目 | 值 |\n|---|---|\n| exp_id | `plan_006_qwen3_8b_rsft_eval` |\n| checkpoint | `checkpoint-3393` |\n| GPU | cuda:3 |\n| PID | 442383 |\n| 日志 | `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_eval.log` |\n| parent | `plan_006_qwen3_8b_rsft_train_r2` |\n| 状态 | RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen3-8b-rsft-eval.md"
+}

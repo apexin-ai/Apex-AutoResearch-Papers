@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90772f2dc07661560ce9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research related work expansion",
+  "task_key": "worker_research_related-work-expansion_20260515T230258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related-work-expansion_20260515T230258_result.json",
+    "occurrence": 1,
+    "bytes": 1245,
+    "sha256": "425fde688012c5eb54c00b6fc6a14eedbbcc437c44d9b707ba75eb9781a64905"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`literature_map.yaml` 更新为 25 个类别共 53 篇论文，新增 15 篇覆盖 5 个调研方向：\n\n| 方向 | 新增论文 | 关键文献 |\n|------|---------|---------|\n| **1. Evidence-based DocRE** | 4 篇 | DREEAM (EACL'23), DocGNRE (EMNLP'23), CDER (2025), Evidence-aware DocRE (CIKM'22) |\n| **2. Faithfulness cost** | 3 篇 | \"Faithfulness vs Plausibility\" (2024), \"Does Faithfulness Conflict...\" (2024), \"Measuring CoT Faithfulness\" (EMNLP'25) |\n| **3. LoRA/QLoRA artifacts** | 4 篇 | \"Illusion of Equivalence\" (2024), LoRA phase transition (2024), QeRL (NVIDIA'25), Quantization impact on RL (NeurIPS'25 WS) |\n| **4. GRPO beyond RLHF** | 2 篇 | ReasoningNER (2025), Posterior-GRPO (2025) |\n| **5. RSFT / Offline RL** | 4 篇 (新增2已有3) | OREO (2024), PCL-Reasoner (2026), RS-DPO (NAACL'24), RAFT (TMLR'24) |\n\n核心发现对论文 positioning 的影响：\n- **C2 (QLoRA decoupling)** 现在有\"Illusion of Equivalence\"的 intruder dimensions 和 LoRA phase transition 理论支撑\n- **C1 (evidence tax)** 有 DREEAM/EIDER 作为 DocRE evidence 先驱 + faithfulness cost 量化文献\n- **RSFT 优于 GRPO** 有 PCL-Reasoner (math) 和 OREO 作为跨领域 converging evidence"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-expansion-copy-2.md"
+}

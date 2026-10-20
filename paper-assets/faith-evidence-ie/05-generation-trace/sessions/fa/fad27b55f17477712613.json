@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fad27b55f17477712613",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research paper main table draft",
+  "task_key": "worker_research_paper_main_table_draft_20260516T033151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper_main_table_draft_20260516T033151_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "e7364c41807db87419fb2568bc3218c277ae69a23613fc49744f716b28cb39a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出文件: `artifacts/paper_main_tables_draft.md` (art_20260516_bc261a)\n\n编译了 4 张表:\n\n- **Table 1 (Main Results)**: 8 行，含 SFT no-evidence (Ign-F1=47.36), SFT baseline (40.36), RSFT flat-NLI best/mean, RSFT CED best/mean, CED reranker (F1=48.64), DREEAM。Evidence tax = −7.00pp，CED reranker 恢复 97%。\n- **Table 2 (Decoupling Spectrum)**: 9 行，从 catastrophic (GRPO QLoRA F1=1.38) 到 none (RSFT CED F1=46.83)。附带 GRPO bf16 6-step 和 QLoRA 5-step 轨迹补充表。\n- **Table 3 (Seed Comparison)**: CED 3 seed + flat-NLI 4 seed，Head-to-head 对比 (Δ=+0.39pp, not significant)，top_k ablation (k=1 > k=3)，D076 unified reeval status。\n- **Cross-Table EDCR**: 17 个方法排序，含 plan_003 相关性统计。\n\n5 项 critical PENDING: CED reranker Ign-F1、D076 reevals (×4)、CED s45 eval、多项 Ign-F1 修正、test set evaluation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-main-table-draft.md"
+}

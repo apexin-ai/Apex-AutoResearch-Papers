@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d26caa5059047dbe974",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze plan019 8b sft s44",
+  "task_key": "worker_analyze_plan019_8b_sft_s44_20260518T203015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_plan019_8b_sft_s44_20260518T203015_result.json",
+    "occurrence": 1,
+    "bytes": 1026,
+    "sha256": "86fd9010d543f1e6e4b67ecfc0426d6756e08fd376b6ca7bafc606856ebff2f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nconclusion: success\ntrain_loss: 0.5691\neval_loss: epoch1=0.6805 / epoch2=0.6861 / epoch3=0.7196\neval_mean_token_accuracy: epoch1=0.8399 / epoch2=0.8405 / epoch3=0.8379\ntraining_runtime_s: 3823.9\nepochs: 3\ntotal_steps: 570\ncheckpoint_path: /root/autodl-tmp/sft_output_qwen3_8b_s44\ntrainable_params: 174,587,904 (2.09% of 8.37B)\ncheckpoints_saved: checkpoint-190, checkpoint-570, + final adapter\n\nnotes: 与 s42 对比:\n  - train_loss: 0.5691 vs 0.5705 (略低，几乎一致)\n  - eval_loss (epoch3): 0.7196 vs 0.7186 (几乎一致)\n  - eval_mean_token_accuracy (epoch3): 0.8379 vs 0.8377 (几乎一致)\n  - training_runtime: 3824s vs 3932s (快 ~108s)\n  - 两个 seed 的指标高度一致，训练稳定可复现\n  - eval_loss 从 epoch1→3 呈上升趋势 (0.6805→0.7196)，说明 epoch2 后开始轻微过拟合（与 s42 模式一致）\n  - best eval_loss 在 epoch1 (0.6805)，但 token accuracy 在 epoch2 最高 (0.8405)\n  - EXIT_CODE=0，final model + adapter 正常保存\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-plan019-8b-sft-s44.md"
+}

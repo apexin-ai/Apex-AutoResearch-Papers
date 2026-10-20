@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37954668a91fc5682a97",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "harvest test eval 14b rsft s42",
+  "task_key": "worker_harvest_test_eval_14b_rsft_s42_20260521T155025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_test_eval_14b_rsft_s42_20260521T155025_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "cb6ade67e41aba7d4fd751b35daf7881f6d4b2947d7b605650154a650dd64cc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ntest_eval_14b_rsft_s42:\n  pid_alive: false\n  completed: true\n  metrics:\n    ign_f1:      0.3849\n    f1:          0.3849\n    precision:   0.4805\n    recall:      0.3210\n    evi_f1_joint (DREEAM): 0.2688\n    evi_f1_tp:   0.6025\n    edcr:        0.7865\n    truncated:   67/500\n    format_ok:   499/500\n    field_compliance: 0.36 (180/500)\n    n_predictions: 15835\n  codalab_json: exists (11235 converted, 225 skipped rel, 349 skipped entity)\n  inference_time: 5h18m (38.17 s/doc)\n\nOther test evals:\n  llama (PID 98968): ALIVE\n  1.7b (PID 102815): ALIVE\n```\n\nfield_compliance 只有 36%（180/500），比 8B 的 14.8% 好但仍然很低——64% 的文档 evidence 字段不完整。ign_f1=f1 因为 test split 没有 train_annotated.json 做 ignore 过滤。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-test-eval-14b-rsft-s42.md"
+}

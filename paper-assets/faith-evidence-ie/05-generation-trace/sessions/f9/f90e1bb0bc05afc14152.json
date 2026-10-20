@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f90e1bb0bc05afc14152",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d076 paired ttest",
+  "task_key": "worker_analysis_d076_paired_ttest_20260516T113418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d076_paired_ttest_20260516T113418_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "fc3530acde92c8c21e3d113574f06f28836fd28cbce9ac4dfd70a74976d9e2a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**CED vs flat-NLI: 统计不可区分** (t=-0.754, p=0.506, d=-0.38)\n\n| 比较 | F1 差异 | p-value | 结论 |\n|------|---------|---------|------|\n| CED RSFT vs SFT | +0.0514 | 0.0003 | **显著** |\n| flat-NLI RSFT vs SFT | +0.0522 | 0.0001 | **显著** |\n| CED vs flat-NLI | -0.0009 | 0.5059 | 不显著 |\n\n两种 RSFT 方法都显著优于 SFT baseline（p<0.001, Cohen's d > 9），但彼此之间在所有指标上均无显著差异（所有 p>0.2）。\n\n这为 C3（CED ≈ flat-NLI，降级有定量依据）和 C1（evidence tax 通过 RSFT 恢复 +5 F1）提供了统计支持。\n\n局限：n=4 seeds 统计功效较低；SFT baseline 只有单次测量；per-document paired test 因 reeval 未保存 predictions.json 而无法实施。\n\n结果已保存到服务器 `/root/autodl-tmp/eval_results/d076_paired_ttest_results.{json,md}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d076-paired-ttest.md"
+}

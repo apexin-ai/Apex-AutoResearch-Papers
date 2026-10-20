@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "ba999cf84379c47360cd",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "research literature scan",
+  "task_key": "worker_research_literature-scan_20260516T012004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan_20260516T012004.log",
+    "occurrence": 1,
+    "bytes": 760293,
+    "sha256": "5990dec7ea5b1d495a8e44a10d984c1be7c58698c9e97ce34ce1e32d81705368"
+  },
+  "statistics": {
+    "messages": 199,
+    "user_turns": 1,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "record": 2,
+      "assistant": 30,
+      "tool_call": 71,
+      "tool_result": 71,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 132,
+      "chunks": [
+        {
+          "path": "ba999cf84379c47360cd-part-0001.json",
+          "message_count": 132
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 67,
+      "chunks": [
+        {
+          "path": "ba999cf84379c47360cd-part-0001.json",
+          "message_count": 30
+        },
+        {
+          "path": "ba999cf84379c47360cd-part-0002.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-literature-scan.md"
+}

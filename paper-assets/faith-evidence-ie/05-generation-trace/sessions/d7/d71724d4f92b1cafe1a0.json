@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d71724d4f92b1cafe1a0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check plan 009 flatnli r2 results",
+  "task_key": "worker_check_plan_009_flatnli_r2_results_20260515T203004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_plan_009_flatnli_r2_results_20260515T203004_result.json",
+    "occurrence": 1,
+    "bytes": 785,
+    "sha256": "7e6a83c66c23e86a3e3e833df6f540fcd4be4dae06051769796957bbf289932a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n实际完成状态: 失败\n\nCheckpoint 评估结果:\n  checkpoint-20: OOM killed (exit -9), inference 仅完成 2% (1/62 batches), 输出目录为空\n  checkpoint-40: 同样 OOM killed, inference 阶段日志截断, 输出目录为空\n  checkpoint-60: 未执行 (脚本在 checkpoint-40 挂掉后终止)\n  checkpoint-80: 未执行\n  checkpoint-100: 未执行\n\n缺失 checkpoints: 全部 5 个 (20, 40, 60, 80, 100)\n```\n\n**原因**: `--no-quantize` + `batch_size 16` + `max_new_tokens 1024` 在单张 RTX 5090 (32GB) 上 OOM。日志显示只用了 device 0，虽然机器有 4 张卡。\n\n**修复选项**:\n1. 降 batch_size（如 4 或 2）\n2. 去掉 `--no-quantize` 改用 4-bit 量化\n3. 用多卡分摊显存\n\n需要我用哪种方式重跑？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-plan-009-flatnli-r2-results.md"
+}

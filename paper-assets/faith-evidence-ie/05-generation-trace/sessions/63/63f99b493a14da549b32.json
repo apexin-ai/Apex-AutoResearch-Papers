@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63f99b493a14da549b32",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis reeval flat nli s42",
+  "task_key": "worker_analysis_reeval_flat_nli_s42_20260516T080058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reeval_flat_nli_s42_20260516T080058_result.json",
+    "occurrence": 1,
+    "bytes": 1208,
+    "sha256": "6f8867379d2839438d0d1fbadc6a3b657f964ad925a00f42d7b0c55d8cae93b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果总结\n\n### reeval_flat_nli_s42 核心指标\n\n| 指标 | 值 |\n|------|-----|\n| F1 | 0.4535 |\n| Ign-F1 | 0.4448 |\n| Evi-F1 | 0.8039 |\n| EDCR | 0.6458 |\n| Precision | 0.4670 |\n| Recall | 0.4408 |\n\n### flat-NLI 两个 seed 一致性\n\n| | s42 | s43 | Δ |\n|--|-----|-----|---|\n| F1 | 0.4535 | 0.4523 | +0.0012 |\n| Ign-F1 | 0.4448 | 0.4435 | +0.0013 |\n| Evi-F1 | 0.8039 | 0.8158 | -0.0119 |\n| EDCR | 0.6458 | 0.6505 | -0.0047 |\n\n两个 seed 高度一致，F1/Ign-F1 差异 < 0.2%。\n\n### CED vs flat-NLI 对比趋势\n\n| 指标 | flat-NLI avg | CED avg | Δ(CED - flat-NLI) |\n|------|-------------|---------|-----|\n| F1 | 0.4529 | 0.4569 | **+0.0040** |\n| Ign-F1 | 0.4442 | 0.4467 | **+0.0025** |\n| Evi-F1 | 0.8099 | 0.8112 | +0.0013 |\n| EDCR | 0.6482 | 0.6459 | -0.0023 |\n\nCED 在 F1/Ign-F1 上略优于 flat-NLI（~0.3-0.4%），Evi-F1 基本持平，EDCR 略低。差异非常小。\n\n### Paired t-test 状态\n\n**Not ready.** 没有 per-document score 文件——需要从 4 个 `predictions.json` 计算每个 doc 的 F1 才能做 paired t-test。此外 CED s43 reeval 缺失（当前只有 CED s42 + s44），如需完整 3-seed 对比需补跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-reeval-flat-nli-s42.md"
+}

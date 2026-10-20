@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f29c6f7a35d812d33e92",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis test table compilation",
+  "task_key": "worker_analysis_test-table-compilation_20260522T014235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_test-table-compilation_20260522T014235_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "0dc81e21ef5e396ceec0568728ebfd89541bf65e35f72e1263bc4a21703bdc61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。表格写入 `artifacts/test_table_compilation.md` 并注册为 `art_20260522_2b6be9`。\n\n汇总：\n- **Table 1** 覆盖 5 个 scale，4B/8B/14B/LLaMA 数据完整，1.7B SFT 仍在跑（⏳）\n- **Table 2** 三个 spot-check（1.7B/8B/14B）的 no-evidence test eval 全部 RUNNING，待完成后填入 test tax 并与 dev tax 对比一致性\n- 8B RSFT 截断率异常低（1.8% vs SFT 82%），14B RSFT 略低于 SFT（−0.37pp）——均在表内备注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-test-table-compilation.md"
+}

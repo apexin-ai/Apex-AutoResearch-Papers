@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6e5932a7a99712f87e1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code dpo trainer prep",
+  "task_key": "worker_code_dpo-trainer-prep_20260515T011036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dpo-trainer-prep_20260515T011036_result.json",
+    "occurrence": 1,
+    "bytes": 1979,
+    "sha256": "bf647a2b0dcac265a2f4bad440d37473a69c91b655781eaf58918646c3ef84c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本均通过 `--help` 验证，CLI 正常。\n\n---\n\n### 产出汇报\n\n**文件位置**:\n- `/root/autodl-tmp/freige/training/dpo_data_builder.py` — 偏好对构建\n- `/root/autodl-tmp/freige/training/dpo_trainer.py` — DPO 训练\n\n**dpo_data_builder.py CLI 参数**:\n| 参数 | 说明 |\n|---|---|\n| `--input_dir` (必填) | rsft_generate 输出目录（含 generations.jsonl）|\n| `--scores_path` | 预计算 rsft_scores.jsonl，不提供则内部调 CED 打分 |\n| `--output_dir` (必填) | 输出目录 |\n| `--rank_by` | 排序依据：ced_reward / f1_reward / combined_score（默认 ced_reward）|\n| `--pair_k` | 每个 doc 取 top-k vs bottom-k（默认 1）|\n| `--min_margin` | 最小分数差过滤（默认 0.05）|\n| `--require_format_ok` / `--no_require_format_ok` | 是否过滤格式不合规的生成（默认 True）|\n| `--nli_model_path`, `--nli_device`, `--tau` | 内部 CED 计算参数（仅在无 scores_path 时使用）|\n\n**dpo_trainer.py CLI 参数**:\n| 参数 | 说明 |\n|---|---|\n| `--dpo_data_path` (必填) | dpo_pairs.jsonl |\n| `--output_dir` (必填) | LoRA adapter 输出 |\n| `--base_model` | 默认 Qwen3-4B |\n| `--sft_adapter` | 默认 sft_output，设 '' 跳过 |\n| `--beta` | KL penalty（默认 0.1）|\n| `--loss_type` | sigmoid / hinge / ipo / kto_pair（默认 sigmoid）|\n| `--learning_rate` | 默认 5e-6（比 SFT 低）|\n| LoRA 参数 | rank=64, alpha=128, dropout=0.05，target 与 SFT/RSFT 一致 |\n| `--deepspeed` | 多卡 DeepSpeed 配置 |\n\n**与现有代码兼容性**:\n- 复用 `rsft_score_filter.py` 的 `_extract_user_content`、`compute_*_reward` 逻辑\n- 复用 `sft_trainer.py` 的 `SYSTEM_PROMPT`\n- 模型加载流程（base → merge SFT → new LoRA）与 `rsft_trainer.py` 一致\n- LoRA target modules 与所有训练脚本一致\n- bf16 全精度，无 4-bit 量化\n- DPO 数据流: `rsft_generate → rsft_score_filter → dpo_data_builder → dpo_trainer`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dpo-trainer-prep.md"
+}

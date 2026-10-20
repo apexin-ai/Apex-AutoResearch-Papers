@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56f563a66b7d284a807b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops download redocred",
+  "task_key": "worker_ops_download_redocred_20260516T063511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_redocred_20260516T063511_result.json",
+    "occurrence": 1,
+    "bytes": 1214,
+    "sha256": "e2794ea3d8a470cf2fb7bc8ee0d8331dda25ea9dc75fbafee9abbd9b6b1e5b25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 结果\n\n**数据已下载并转换到** `/root/autodl-tmp/data/re-docred/`\n\n### 统计\n\n| Split | 文档数 | 总 Triples | 有 Evidence 的 Triples（保留） |\n|-------|--------|------------|-------------------------------|\n| train | 3,053 | 85,932 | 47,260 (55%) |\n| dev | 500 | 17,284 | 7,473 (43%) |\n| test | 500 | 17,448 | 7,547 (43%) |\n\n关系类型：96 种（与 DocRED 完全一致）\n\n### 兼容性\n\n**直接兼容**，无需修改 `DocREDProcessor`。Re-DocRED JSON 结构（`title`, `vertexSet`, `labels[{r, h, t, evidence}]`, `sents`）与 DocRED 完全一致。\n\n唯一差异：\n1. **文件名**：`*_revised.json` vs DocRED 的 `train_annotated.json`/`dev.json` — 转换脚本已处理\n2. **空 evidence**：约 55% 的 triples evidence 为空（Re-DocRED 修正了 false negative 但未标注 evidence）— 脚本 `evidence_only` 模式已过滤\n3. **vertexSet 多余字段**（`global_pos`, `index`）— 已清除\n\n### 产出文件\n- 数据：`/root/autodl-tmp/data/re-docred/{train_annotated,dev,test}.json`\n- 脚本：`/root/autodl-tmp/freige/scripts/convert_redocred.py`（支持 `--mode full` 保留全部 triples）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-redocred.md"
+}

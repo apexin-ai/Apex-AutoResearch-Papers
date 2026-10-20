@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e6b5dfef5c3c2fbfde8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops submit llama ced scoring",
+  "task_key": "worker_ops_submit_llama_ced_scoring_20260517T013924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_llama_ced_scoring_20260517T013924_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "5c52997b7f44606831dd2f901d4624d9d57b51a4a3f632fee145f14565f97682"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务正常运行中（PID 398949，CPU 129%，已运行 1:36）。CED scoring 是 CPU 密集型的 NLI 推理过程，23704 条记录处理需要一段时间，日志可能在批量打分完成后才输出进度。\n\n**总结**：\n- cuda:2 空闲已确认 ✓\n- 候选文件 23704 行 ✓\n- NLI 模型加载成功（cuda:2, 1425MB）✓\n- tmux session `plan_016_llama_ced_scoring` 正在运行\n- 参数：`--scoring_mode ced --tau 0.5 --selection_strategy top_k --top_k 3`\n- 输出路径：`/root/autodl-tmp/rsft_scored_llama_3_1_8b`\n- 日志：`/root/autodl-tmp/plan_016_llama_ced_scoring.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-llama-ced-scoring.md"
+}

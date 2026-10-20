@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d2a38a8eaa5cd965209",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval test eval 8b rsft s42",
+  "task_key": "worker_eval_test_eval_8b_rsft_s42_20260521T114555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_test_eval_8b_rsft_s42_20260521T114555_result.json",
+    "occurrence": 1,
+    "bytes": 1202,
+    "sha256": "0aff2a3d938585ea243ade0d457c8b35f4ef7d9da492ff3806cc82fd9d06694c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1.7B eval (PID 102820) 仍在运行，已 8.5 分钟。1.7B 模型处理 500 docs 可能还需 20-40 分钟。\n\n**当前状态汇总：**\n- 所有路径已验证 OK\n- Registry 条目 `test_eval_8b_rsft_s42` 已创建（PREPARING）\n- Base model: `/root/autodl-tmp/models/Qwen/Qwen3-8B`\n- **阻塞**：cuda:3 被 1.7B test eval 占用（6062 MiB），C001 约束要求 < 2GB 才能提交\n\n命令已准备好，等 cuda:3 空闲即可提交：\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 42 --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s42\"\n```\n\n要我设置轮询等 1.7B 完成后自动提交，还是你手动告诉我什么时候提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-test-eval-8b-rsft-s42-copy-2.md"
+}

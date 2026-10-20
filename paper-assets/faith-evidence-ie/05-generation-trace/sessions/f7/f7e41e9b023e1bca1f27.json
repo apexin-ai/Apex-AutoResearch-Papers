@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7e41e9b023e1bca1f27",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops status check 3exp",
+  "task_key": "worker_ops_status_check_3exp_20260519T213712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status_check_3exp_20260519T213712_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "65ab00131099e192d4d4fc502b93ab1d16531089fff186b8977a965a04069c02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验 | GPU | 进度 | ETA | 备注 |\n|------|-----|------|-----|------|\n| plan010_nli_large_ablation | cuda:1 | 45% (229/507) | ~25min | Step 1 CED scoring 进行中，Step 2 未启动 |\n| eval_llama_rsft_k1_s43 | cuda:3 | 58% (143/247) | ~57min | Inference 进行中，未完成 |\n| plan017_14b_rsft_generate | cuda:0+2 | 21% (621/3027) | ~15.4h | format_ok 100%, truncation 8%, diversity 7.4/8 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-3exp.md"
+}

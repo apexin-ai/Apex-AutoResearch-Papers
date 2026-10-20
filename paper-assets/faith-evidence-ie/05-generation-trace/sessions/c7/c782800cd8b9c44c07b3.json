@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c782800cd8b9c44c07b3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor rsft gen progress",
+  "task_key": "worker_monitor_rsft_gen_progress_20260515T040402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_rsft_gen_progress_20260515T040402_result.json",
+    "occurrence": 1,
+    "bytes": 438,
+    "sha256": "c9ea7b82cebaa53502f22cf6ad7fff6935cd6383c349b77d454d1eeb3ed17ed0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 RSFT generation shard 状态：\n\n- **总进度 82.2%**（2219/2701 docs），18,112 行已生成\n- Shard 1/2 最快（~86%），Shard 3 最慢（77%，总数 657 而非 681）\n- **预计全部完成：~12:49 UTC**（约 45 分钟后）\n- GPU 利用率 54-58%，温度 49-60°C，正常\n- mean_diversity 7.5-7.6/8，质量优秀\n- **无任何错误**\n\n报告已写入 `artifacts/rsft_gen_progress_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-rsft-gen-progress-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38d7196ee2f4c82ff386",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "write dev test gap paragraph",
+  "task_key": "worker_write_dev_test_gap_paragraph_20260521T210833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_dev_test_gap_paragraph_20260521T210833_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "34a0648516f680888c2202e3fdaec20f445154f6f06b53f6a8e58337fabf1bdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具不可用，但段落已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dev_test_gap_paragraph.md`。\n\n段落覆盖了全部要求：gold density 差异（12.3 vs 34.7, 2.82×）作为 gap 来源、跨 4 scale + 2 architecture 的一致性（20.4–21.9pp, spread 1.5pp）、ranking 完全保持（Spearman ρ=1.0）、以及 dataset property 而非 model deficiency 的结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-dev-test-gap-paragraph.md"
+}

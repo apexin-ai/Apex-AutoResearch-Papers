@@ -1,0 +1,694 @@
+{
+  "schema_version": "1.0",
+  "id": "bb9db78780cad5bb4559",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "cron hook d112 rsft no evidence eval",
+  "task_key": "cron_hook_d112_rsft_no_evidence_eval",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_d112_rsft_no_evidence_eval.jsonl",
+    "occurrence": 1,
+    "bytes": 29169,
+    "sha256": "ef6356d23f6eea33516d86e776ad78f994f29eaba68e27a9e54547db90e11d99"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 1,
+    "tool_calls": 16,
+    "roles": {
+      "user": 1,
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T13:40:02.792758+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: d112_rsft_no_evidence_eval\n- project: faith-evidence-ie\n- server: rtx5090-4x\n- log_path: ~/runs/faith-evidence-ie/d112_rsft_no_evidence_eval.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T13:40:17.346329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T13:40:17.397033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T13:40:20.214199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T13:40:20.717895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T13:40:21.072409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T13:40:21.123283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T13:40:21.477990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (145,725 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-7d437525/7ff8a22b-d40e-4907-8390-58d632f8211d/tool-results/mcp-agent-ml-research-read_registry-1779198021433.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-7d437525/7ff8a22b-d40e-4907-8390-58d632f8211d/tool-results/mcp-agent-ml-research-read_registry-1779198021433.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1263
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T13:40:34.766438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 4, \\\"results\\\": [{\\\"exp_id\\\": \\\"plan017_14b_sft_eval_r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=633106)\\\"]}, {\\\"exp_id\\\": \\\"plan019_1_7b_rsft_no_evidence_eval\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=679713)\\\"]}, {\\\"exp_id\\\": \\\"plan019_8b_sft_s43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=683937)\\\"]}, {\\\"exp_id\\\": \\\"plan019_8b_rsft_no_evidence_eval\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=695127)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 14048
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T13:40:34.819935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-19T13:40:00Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 226 个实验 — DONE 221, RUNNING 5\\\\n**DONE 分布**: failed 47, killed 31, negative 15, success 128\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\\\n- **实际运行**: 5 张 — rtx5090-4x:cuda:1(plan017_14b_sft_eval_r2), rtx5090-4x:cuda:3(plan019_1_7b_rsft_no_evidence_eval), rtx5090-4x:cuda:3(plan019_8b_sft_s43), rtx5090-4x:cuda:2(d112_rsft_s44_eval_bf16), rtx5090-4x:cuda:2(plan019_8b_rsft_no_evidence_eval)\\\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:0\\\\n\\\\n### 💾 磁盘余量\\\\n- **rtx5090-4x**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 418G/879G 可用（已用 50%）\\\\n- **bjb2-12179**: ❌ 连接失败\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `plan017_14b_sft_eval_r2` | rtx5090-4x | cuda:1 | 633106 | `—` |\\\\n| `plan019_1_7b_rsft_no_evidence_eval` | rtx5090-4x | cuda:3 | 679713 | `—` |\\\\n| `plan019_8b_sft_s43` | rtx5090-4x | cuda:3 | 683937 | `~/runs/faith-evidence-ie/plan019_8b_sft_s43.log` |\\\\n| `d112_rsft_s44_eval_bf16` | rtx5090-4x | cuda:2 | 693535 | `~/runs/faith-evidence-ie/d112_rsft_s44_eval_bf16.log` |\\\\n| `plan019_8b_rsft_no_evidence_eval` | rtx5090-4x | cuda:2 | 695127 | `…runs/faith-evidence-ie/plan019_8b_rsft_no_evidence_eval.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `d112_rsft_no_evidence_eval` [failed] — 2026-05-19T13:39:56 — EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\\\\n- `d112_rsft_s44_train_bf16` [success] — 2026-05-19T13:04:56\\\\n- `plan017_14b_sft_no_evidence_eval_r2` [success] — 2026-05-19T12:57:54\\\\n- `d112_rsft_s44_eval` [failed] — 2026-05-19T12:02:10 — QLoRA confound: a\n…[truncated 6617 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 13747
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T13:40:34.820539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 05:43 UTC | 更新原因: D115 8B RSFT 完成 + D114 1.7B Method A 裁决 + D112 进展 + 14B SFT 启动 + Wave 1 全部完成\\\\n\\\\n## 核心方向\\\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\\\\n- **Wave 1**: ✅ 全部完成（SFT s43/s44, GRPO bf16 G=4, Random RSFT）\\\\n- **Scaling seeds (plan_019)**: 8B 2-seed RSFT 完成（D115: s44=0.5451, variance 0.53pp）；1.7B s43/s44 重跑中（D114 Method A）\\\\n- **D112 full pipeline**: Step 3 RSFT 训练中 cuda:0（验证 RSFT 在强 SFT base s44 上的泛化性）\\\\n- **14B SFT (plan_017)**: cuda:1+2 运行中（2-GPU ZeRO-3, D108）\\\\n- **关键数值汇总**:\\\\n\\\\n| Scale | SFT mean (seeds) | RSFT mean (seeds) | Δ ign_f1 | SFT std | RSFT std |\\\\n|-------|-------------------|--------------------|----------|---------|----------|\\\\n| 1.7B | 0.4464 (3) | 0.5122 (1, s42 base) | +6.58pp | 2.79pp | — |\\\\n| 4B | 0.4358 (3) | 0.4482 (3, Method A) | +1.24pp | 3.80pp | 0.51pp |\\\\n| 8B | 0.4866 (2) | 0.5414 (2, Method A) | +5.48pp | 2.62pp | 0.53pp |\\\\n\\\\n- **RSFT 稳定化效应**: 4B variance 3.80→0.51pp (7.5x)，8B variance 2.62→0.53pp (5x)\\\\n- **CED 价值**: CED RSFT (0.4482) > Random RSFT (0.4114) > SFT (0.3974)，+3.68pp gap\\\\n- **GRPO**: bf16 ckpt-100 ign_f1=0.4431 无 catastrophic forgetting（D110），QLoRA 是 confound\\\\n\\\\n## 投稿目标\\\\n- **EMNLP 2026 Main** (ARR July cycle, ~July 15-25, **~57 天**)\\\\n\\\\n## 实验路线（3 层优先级）\\\\n\\\\n### Tier 1 — Main 必要条件\\\\n| 实验 | Plan ID | 状态 |\\\\n|------|---------|------|\\\\n| D102 k=1 方法论修正 | D102 | ✅ 完成 |\\\\n| SFT 4B s43 + s44 + s42 reeval | plan_w3_sft_seeds | ✅ 完成 (D111) |\\\\n| GRPO bf16 G=4 clean control | plan_015 | ✅ 完成 (D110/D113) |\\\\n| Random k=1 RSFT baseline | plan_w18_random | ✅ 完成 (D109) |\\\\n| 8B RSFT s44 seed expansion | plan_019 (8B) | ✅\n…[truncated 3461 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 13697
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T13:40:45.292479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T13:40:45.695462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_7d437525."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T13:40:46.224581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'exp_id': 'd112_rsft_no_evidence_eval'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T13:40:46.931535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6799}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 706
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T13:40:50.847109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T13:40:52.152096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "Glob",
+            "elapsed_ms": 1304
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T13:40:52.553854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml | python3 -c \"\nimport sys, yaml\ndata = yaml.safe_load(sys.stdin)\nfor exp in data.get('experiments', []):\n    if exp.get('exp_id') == 'd112_rsft_no_evidence_eval':\n        import json\n        print(json.dumps(exp, indent=2, default=str))\n        break\n\"",
+              "description": "Extract d112_rsft_no_evidence_eval from registry"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T13:40:53.657114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n    if exp.get('exp_id') == 'd112_rsft_no_evidence_eval':\n       ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "Bash",
+            "elapsed_ms": 1103
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T13:40:58.882452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport yaml, json\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml') as f:\n    data = yaml.safe_load(f)\nexps = data if isinstance(data, list) else data.get('experiments', data)\nif isinstance(exps, dict):\n    for k,v in exps.items():\n        if k == 'd112_rsft_no_evidence_eval' or (isinstance(v, dict) and v.get('exp_id') == 'd112_rsft_no_evidence_eval'):\n            print(json.dumps(v if isinstance(v, dict) else {k: v}, indent=2, default=str))\n            break\nelif isinstance(exps, list):\n    for exp in exps:\n        if isinstance(exp, dict) and exp.get('exp_id') == 'd112_rsft_no_evidence_eval':\n            print(json.dumps(exp, indent=2, default=str))\n            break\n\"",
+              "description": "Extract d112_rsft_no_evidence_eval from registry (dict format)"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T13:40:59.334680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed*",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T13:40:59.686561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-19T13:19:08.763Z\",\n  \"updated_at\": \"2026-05-19T13:39:56.193Z\",\n  \"hypothesis\": \"4B RSFT no-evidence eval (D112 bf16 SFT s44 base): \\u79fb\\u9664 evidence \\u8f93\\u51fa\\u540e\\u6d4b\\u91cf 4B RSFT \\u7684 evidence tax\\u3002\\u5bf9\\u6bd4 with-evidence \\u7684 canonical 4B RSFT ign_f1\\uff0c\\u9a8c\\u8bc1 evidence \\u751f\\u6210\\u5bf9 4B RE \\u6027\\u80fd\\u7684\\u4ee3\\u4ef7\\u3002\\u4e0e 1.7B/8B/14B no-evidence eval \\u914d\\u5408\\u6784\\u5efa\\u8de8\\u5c3a\\u5ea6 evidence tax scaling curve (Claim 3)\\u3002\",\n  \"parent\": \"d112_rsft_s44_eval_bf16\",\n  \"plan_id\": \"plan_019\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && GPU=0 bash scripts/d112/eval_4b_rsft_no_evidence.sh\\\"\",\n    \"server\": \"rtx5090-4x\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"unknown\",\n    \"log_path\": \"~/runs/faith-evidence-ie/d112_rsft_no_evidence_eval.log\",\n    \"submitted_at\": \"2026-05-19T13:39:39.027Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"wall_clock_seconds\": 17.2,\n    \"gpu_hours\": 0.0\n  },\n  \"server\": \"rtx5090-4x\",\n  \"gpu\": \"cuda:0\",\n  \"account\": \"root\",\n  \"pid\": \"unknown\",\n  \"log_path\": \"~/runs/faith-evidence-ie/d112_rsft_no_evidence_eval.log\",\n  \"reproduce\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && GPU=0 bash scripts/d112/eval_4b_rsft_no_evidence.sh\\\"\",\n    \"finished_at\": \"2026-05-19T13:39:51.875Z\"\n  },\n  \"failure_reason\": \"EXIT_CODE=127 (command not found \\u2014 check bash -c wrapping / env activate)\",\n  \"conclusion\": \"failed\",\n  \"completed_at\": \"2026-05-19T13:39:56.193Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-19T13:40:01.802847+00:00\"\n      }\n    ]\n  }\n}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "Bash",
+            "elapsed_ms": 804
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T13:40:59.939313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "Glob",
+            "elapsed_ms": 604
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T13:41:07.784116+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T13:41:07.835504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: on-experiment-failed\n3\tdescription: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。\n4\tscope: global\n5\ttags:\n6\t- workflow\n7\t- diagnosis\n8\t- cron-hook\n9\ttools:\n10\t- read_registry\n11\t- tail_training_logs\n12\t- update_registry\n13\t- append_idea\n14\t- feishu_send_result_card\n15\t- spawn_worker\n16\t- check_job_status\n17\tversion: 4\n18\theavy: true\n19\troles:\n20\t- agent\n21\t---\n22\t\n23\t# 实验失败诊断工作流\n24\t\n25\t## 触发方式\n26\t由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。\n27\t\n28\t## 步骤\n29\t\n30\t### Step 0: 读取项目上下文（诊断前必须执行）\n31\t先读文档，再看日志——否则诊断方向可能完全错误：\n32\t\n33\t- `read_project_file(\"memory.md\")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案\n34\t- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构\n35\t\n36\t读完后检查：\n37\t- memory.md 里有没有\"此类实验曾失败，原因是 X\"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程\n38\t- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）\n39\t\n40\t### Step 1: 了解失败背景\n41\t- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path\n42\t\n43\t### Step 2: 浅层日志诊断\n44\t有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)\n45\t- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback\n46\t- 没找到 → 增加行数再查\n47\t\n48\t### Step 2.5: 深查（满足以下任一条件时 spawn_worker）\n49\t- 运行时长 < 5 分钟（初始化阶段崩溃）\n50\t- tail 日志中未见明确 Traceback 或错误行\n51\t- 同类实验连续失败 ≥ 2 次\n52\t\n53\t```python\n54\tspawn_worker(\n55\t    task_type=\"diagnose:{exp_id}\",\n56\t    task_prompt=\"\"\"SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。\n57\t\n58\t项目路径：{project_path}（绝对路径）\n59\t日志路径：{log_path}（可能为空）\n60\t\n61\t执行步骤（按顺序，有结论就停）：\n62\t\n63\t1. 如果有日志路径：\n64\t   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）\n65\t   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）\n66\t   - 日志文件不存在：说明任务启动即失败，跳到步骤 2\n67\t\n68\t2. 日志无错误或无日志时，检查基础设施：\n69\t   - 入口文件是否存在\n70\t   - 激活环境并验证 import\n71\t   - 检查 configs/ 目录\n72\t\n73\t3. 检查磁盘/内存（OOM 类）\n74\t\n75\t最后输出一行 JSON：\n76\t{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true}\"\"\",\n77\t    tool_groups=[\"ssh\"],\n78\t)\n79\t```\n80\t\n81\tWorker 返回后，以其结论作为 Step 3 的诊断依据。\n82\t\n83\t### \n…[truncated 1766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T13:41:14.218691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T13:41:14.269627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## RSFT 方差压缩效应 (2026-05-19)\\\\n\\\\n**发现**: RSFT 在所有尺度显著压缩跨 seed 方差，且压缩倍数随模型容量递减：\\\\n\\\\n| Scale | SFT std | RSFT std | 压缩倍数 | SFT n | RSFT n |\\\\n|-------|---------|----------|---------|-------|--------|\\\\n| 1.7B | 2.79pp | 0.09pp | **31x** | 3 | 3 |\\\\n| 4B | 3.80pp | 0.51pp | **7.5x** | 3 | 3 |\\\\n| 8B | 2.62pp | 0.53pp | **5x** | 2 | 2 |\\\\n\\\\n**解释**: RSFT 的 CED 筛选过程相当于对训练数据施加 quality filter，减少了因随机种子导致的训练轨迹分歧。小模型更容易受数据噪声影响，所以压缩效应最强(31x)。大模型本身已较稳定(SFT std 较低)，RSFT 仍能进一步压缩(5x)。\\\\n\\\\n**论文意义**: 这是 RSFT 独立于 ign_f1 提升的第二个贡献维度——训练稳定性。可作为 Claim 1 的补充叙事：\\\\\\\"RSFT not only improves performance but dramatically stabilizes training outcomes across random seeds.\\\\\\\"\\\\n\\\\n**注意**: 1.7B RSFT 所有 3 seeds 使用 Method A（s42 SFT base + s42 CED data，仅变 RSFT seed），压缩效应测量的是 RSFT 训练过程本身的稳定性，不含 SFT base 变异。8B RSFT 使用相同方法（s42 SFT base），但仅 2 seeds。\\\\n\\\\n## plan_021: Deep Error Analysis — RSFT vs SFT (2026-05-19)\\\\n\\\\n**Files**: `scripts/analysis/deep_error_analysis.py` → `scripts/analysis/results/`\\\\n\\\\n**Models compared** (all dev set, seed 42 eval):\\\\n- 4B SFT: `d111_4b_sft_s42_reeval` (ign_f1=0.397)\\\\n- 4B RSFT: `rsft_s43_dev_eval_preds` (train seed 43, ign_f1=0.451) — NOTE: s42 predictions unavailable, used s43 model\\\\n- 8B SFT: `qwen3_8b_sft_eval` (ign_f1=0.505)\\\\n- 8B RSFT: `d102_8b_k1_s42` (ign_f1=0.538)\\\\n\\\\n### Key Findings\\\\n\\\\n**Per-Relation F1 (171 unique relations in predictions)**:\\\\n- 4B largest gains: original network (+0.32, gold=38), award received (+0.16, gold=66), cast member (+0.14, gold=225), performer (+0.13, gold=320)\\\\n- 4B largest losses: chairperson (-0.16, gold=21), screenwriter (-0.09, gold=35), genre (-0.09, gold=14)\\\\n- Pattern: RSFT helps most on mid-frequency entertainment/media relations where SFT under-performs. Losses concentrated on low-frequency relations (gold < 40).\\\\n- 8B gains are mor\n…[truncated 7306 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T13:41:24.737084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T13:41:24.839396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "ToolSearch",
+            "elapsed_ms": 102
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T13:41:38.015632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diagnose:d112_rsft_no_evidence_eval",
+              "project": "faith-evidence-ie",
+              "task_prompt": "SSH 到服务器 rtx5090-4x，诊断实验 d112_rsft_no_evidence_eval 的失败原因。\n\n**背景**: 实验在 17 秒内以 EXIT_CODE=127 (command not found) 退出。\n\n**提交命令**:\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && GPU=0 bash scripts/d112/eval_4b_rsft_no_evidence.sh\"\n```\n\n**日志路径**: ~/runs/faith-evidence-ie/d112_rsft_no_evidence_eval.log\n\n**诊断步骤**（按顺序，有结论就停）：\n\n1. 检查日志文件：\n   - `cat ~/runs/faith-evidence-ie/d112_rsft_no_evidence_eval.log`（可能很短或为空）\n   - 看结尾和开头，找具体报错行\n\n2. 检查脚本是否存在：\n   - `ls -la /root/faith-evidence-ie/scripts/d112/eval_4b_rsft_no_evidence.sh`\n   - 如果不存在，检查 `ls /root/faith-evidence-ie/scripts/d112/` 看有哪些脚本\n   - 项目路径可能是 `/root/faith-evidence-ie` 或其他，先 `find /root -maxdepth 2 -name \"faith-evidence-ie\" -type d` 确认\n\n3. 如果脚本存在，检查脚本内容：\n   - `cat` 脚本内容，看是否引用了不存在的命令或路径\n\n4. 检查 conda 环境：\n   - `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python`\n\n**输出**: 一行 JSON：\n{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true}",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T13:41:41.686807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_d112_rsft_no_evidence_eval_20260519T134139\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_diagnose_d112_rsft_no_evidence_eval_20260519T134139.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diagnose_d112_rsft_no_evidence_eval_20260519T134139 started. Use get_worker_status('worker_diagnose_d112_rsft_no_evidence_eval_20260519T134139') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3671
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T13:41:48.187423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_no_evidence_eval",
+              "field": "notes",
+              "value": "EXIT_CODE=127 (command not found), wall_clock=17s. fix_worker_id: worker_diagnose_d112_rsft_no_evidence_eval_20260519T134139. 诊断中。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T13:41:49.498598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T13:19:08.763Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:41:48.937Z\\\", \\\"hypothesis\\\": \\\"4B RSFT no-evidence eval (D112 bf16 SFT s44 base): 移除 evidence 输出后测量 4B RSFT 的 evidence tax。对比 with-evidence 的 canonical 4B RSFT ign_f1，验证 evidence 生成对 4B RE 性能的代价。与 1.7B/8B/14B no-evidence eval 配合构建跨尺度 evidence tax scaling curve (Claim 3)。\\\", \\\"parent\\\": \\\"d112_rsft_s44_eval_bf16\\\", \\\"plan_id\\\": \\\"plan_019\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && GPU=0 bash scripts/d112/eval_4b_rsft_no_evidence.sh\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/d112_rsft_no_evidence_eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T13:39:39.027Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 17.2, \\\"gpu_hours\\\": 0.0}, \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/d112_rsft_no_evidence_eval.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && GPU=0 bash scripts/d112/eval_4b_rsft_no_evidence.sh\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-19T13:39:51.875Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-19T13:39:56.193Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T13:40:01.802847+00:00\\\"}]}, \\\"notes\\\": \\\"EXIT_CODE=127 (command not found), wall_clock=17s. fix_worker_id: worker_diagnose_d112_rsft_no_evidence_eval_20260519T134139. 诊断中。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.298}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1311
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T13:41:57.064834+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。等待 Worker 诊断回调。\n\n当前状态总览：\n- **4 个实验 RUNNING**: `plan017_14b_sft_eval_r2` (cuda:1), `plan019_1_7b_rsft_no_evidence_eval` (cuda:3), `plan019_8b_sft_s43` (cuda:3), `plan019_8b_rsft_no_evidence_eval` (cuda:2)\n- **1 个实验 RUNNING 待确认**: `d112_rsft_s44_eval_bf16` (cuda:2) — reconcile 未检测到其 cron，可能已完成但未更新\n- **d112_rsft_no_evidence_eval** (cuda:0): failed，Worker 诊断中，预计几分钟内返回结果\n- **cuda:0 空闲**: 等诊断完成后重提交"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:d112_rsft_no_evidence_eval"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-d112-rsft-no-evidence-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b1ca5d937af156c2048",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_18_1779363398.md",
+  "task_key": "loop_18_1779363398",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779363398.md",
+    "occurrence": 1,
+    "bytes": 4061,
+    "sha256": "bd45ee3644420dfc333dad6e019b71cf84d863b6eec180f0b9a844bb0c67fbed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-21T10:32:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0, cuda:1, cuda:2, cuda:3（共 4 张）\n- 14B 模型路径：`/root/autodl-tmp/models/Qwen/Qwen3-14B`，SFT adapter：`/root/autodl-tmp/sft_output_14b/checkpoint-144`\n- Evidence tax 必须用 fair comparison（format-OK 子集），不能用全集 ign_f1 直接相减（D134）\n- LLaMA 升级为 co-primary evidence（D133），不是辅助验证\n- bjb2-12179 标记为不可用（cuda:0），数据迁移到 rtx5090-4x / westd-37389 进行中\n\n### 2. 🖥️ 基础设施快照\n- **主服务器**：rtx5090-4x，工作目录 `/root/autodl-tmp/freige`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型路径：`/root/autodl-tmp/models/` 下各模型，HF cache 在 `/root/autodl-tmp/.hf_cache`\n- 数据集：`/root/autodl-tmp/data/docred/`\n- RSFT 生成输出：`/root/autodl-tmp/rsft_generations_14b/`\n- W&B 项目：faith-evidence-ie\n- 活跃进程（reconcile 确认）：\n  - `eval_llama_sft_s43_no_evidence_r2` PID=36398 cuda:1\n  - `eval_llama_sft_s44_no_evidence_2048` PID=40255 cuda:2\n  - `eval_llama_sft_s42_no_evidence_2048` PID=42346 cuda:3\n  - `migration_bjb2_to_westd` PID=6660（数据迁移，非 GPU）\n\n### 3. 📊 当前状态\n- **刚收到 cron 回调**：`plan017_14b_rsft_generate_r4`（14B RSFT 候选生成，从 doc 2553/3027 resume，2.55h）正常退出，状态 ANALYZING\n- **已派 Worker 分析**：`worker_analyze_plan017_14b_rsft_generate_r4_20260520T180958`（检查生成完成度、数据质量、doc 覆盖率）——**等待回调**\n- **3 个 eval 实验 RUNNING**（cuda:1/2/3）：LLaMA SFT 3-seed no-evidence eval（s42/s43/s44 的 2048 版或重试版），用于计算 evidence tax\n- **cuda:0 空闲**：14B 生成刚结束释放出来，等 Worker 分析结果确认后可铺下一步（CED scoring → RSFT train）\n- **尚未向 Director 汇报本次回调**——等 Worker 分析结果回来后一并汇报\n\n### 4. 📋 待办\n- Worker `analyze_plan017_14b_rsft_generate_r4` 回调 → 确认 3027 docs 全部生成完成 → update_registry(status=DONE, conclusion=success) → 刷新 report.md → 向 Director 汇报\n- 14B 生成确认完成 → cuda:0 立即铺 14B RSFT 下一步：CED scoring（用 NLI 模型对 8 candidates 评分选 top-k）→ RSFT 训练数据构建 → RSFT 训练\n- eval_llama_sft_s43_no_evidence_r2 完成 → 与 s42/s44 合并计算 LLaMA SFT 3-seed evidence tax mean±std\n- eval_llama_sft_s44_no_evidence_2048 完成 → 确认截断修复后 ign_f1 是否恢复到 ~0.47-0.52（D136 诊断）\n- eval_llama_sft_s42_no_evidence_2048 完成 → 与 s44 2048 版 matched comparison\n- 3 个 LLaMA eval 全部完成 → 汇总 LLaMA SFT evidence tax（fair comparison, format-OK 子集）→ 更新 ROADMAP 表格 → 论文数据就绪\n\n### 5. 🎯 战略上下文\n- **核心方向**：FREIGE，3 个贡献：(1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression\n- **投稿目标**：EMNLP 2026 Main（ARR July，~56 天），Round 1 得 3.0 Findings，目标 4.0 Main\n- **14B 是最后一个 scale**：1.7B/4B/8B/LLaMA-8B 都已完成，14B RSFT 生成是关键瓶颈（r1-r3 反复失败），r4 如果成功就能推进到 CED scoring → train → eval，补齐 ROADMAP 表格最后一行\n- **D136 重要发现**：LLaMA SFT evidence tax 高度 seed-dependent（s42 tax=-1.65pp vs s44 截断问题导致 ign_f1=0.3326），当前 3 个 2048 版 eval 就是为了排除截断伪影\n- **D135**：LLaMA RSFT 3-seed evidence tax 已完成：-1.14pp±0（非常稳定），与 SFT 的高 variance 形成对比——这是 variance compression 叙事的关键证据\n- **易错点**：不要混淆 \"全集 ign_f1\" 和 \"format-OK 子集 ign_f1\"——evidence tax 必须在 format-OK 子集上算（D134）。不要用 1024 版 no-evidence 结果，截断率差异大会引入伪影\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779363398.md"
+}

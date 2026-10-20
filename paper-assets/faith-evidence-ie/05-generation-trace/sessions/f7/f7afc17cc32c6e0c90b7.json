@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7afc17cc32c6e0c90b7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research verify evi f1 joint code",
+  "task_key": "worker_research_verify-evi-f1-joint-code_20260515T132427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verify-evi-f1-joint-code_20260515T132427_result.json",
+    "occurrence": 1,
+    "bytes": 2417,
+    "sha256": "5a32dc07916410006a5fb1af64631566f096c5fc272005ce7e7faed1138f64a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，汇报结果：\n\n---\n\n## Part 1: `compute_evi_f1_joint()` — ✅ 已部署\n\n**代码位置**: `/root/autodl-tmp/freige/eval/evaluator.py:149`\n\n**逻辑正确**：\n- 构建 `pred_map`（所有 predicted triples）和 `gold_map`（所有 gold triples）\n- 遍历所有 predicted triples 的 evidence，FP triple 的 evidence 与 gold 无交集 → 贡献 0 TP 但增加 `evi_pred_total`（precision 分母）\n- `evi_gold_total` 统计所有 gold triples 的 evidence，FN triple 的 evidence 自然计入 recall 分母\n- 符合 DREEAM 协议\n\n**注意**: `evaluate()` 方法（L315）**没有**调用 `compute_evi_f1_joint`，只调了 `compute_f1` + `compute_evi_f1`（conditional）+ `compute_edcr`。如果需要在常规 evaluate pipeline 中自动包含 joint 指标，需要将其加入 `evaluate()`。\n\n**重算结果已存在**: `/root/autodl-tmp/eval_results/evi_f1_joint_comparison.json`\n\n| Experiment | Evi-F1 (cond) | Evi-F1 (joint) | Delta |\n|---|---|---|---|\n| SFT baseline | 0.7979 | 0.3117 | -0.4862 |\n| RSFT r1 | 0.8187 | 0.3468 | -0.4719 |\n| RSFT r2a | 0.8108 | 0.3509 | -0.4599 |\n| RSFT r2b | 0.8128 | 0.3490 | -0.4638 |\n| RSFT s44 | 0.8087 | 0.3713 | -0.4374 |\n\nJoint 指标显著低于 conditional（~0.44-0.49 gap），符合预期——FP/FN penalties 拉低了分数。RSFT s44 的 joint 最高 (0.3713)。\n\n---\n\n## Part 2: `--scoring_mode flat_nli` — ✅ 已部署\n\n**代码位置**: `rsft_score_filter.py:496-498`（argparse 定义，choices=[\"ced\", \"flat_nli\"]）\n\n**数据流**: `args.scoring_mode` → `score_all_records()` (L535) → `compute_ced_reward_for_record()` (L97) → L159 分支判断：\n- `flat_nli` 模式调用 `ced_model.compute_flat_nli_reward(claim, cited_sents, tau=tau)`\n- `ced` 模式走原 contrastive 逻辑\n\n**`compute_flat_nli_reward` 实现** (`rewards/ced_reward.py:264`): 拼接 evidence 句子 → `nli_entailment_prob()` 获取 `p_pos` → `reward = p_pos * float(p_pos > tau)`。逻辑正确，使用纯 entailment probability 而非 contrastive margin。\n\n**`--help` 未执行**（需要 `ssh_execute`），但代码结构完整：argparse 定义、参数传递链、实际计算逻辑均已到位，无缺失。\n\n---\n\n## 总结\n\n两个实现均已成功部署且逻辑正确。唯一可改进点：`evaluate()` 方法未自动包含 `evi_f1_joint`，当前需单独调用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-verify-evi-f1-joint-code.md"
+}

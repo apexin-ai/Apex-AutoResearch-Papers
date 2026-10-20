@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f22eab3fc98f010ac393",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose rsft ced s43 train r2",
+  "task_key": "worker_diagnose_rsft_ced_s43_train_r2_20260516T002202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_rsft_ced_s43_train_r2_20260516T002202_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "5bd4c8df7963a6a295335f9c0d18b424d0a7262410a536774d35b6851eca85f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**根因：外部 SIGTERM，非 OOM/磁盘满。**\n\nr2 在 step 95/510 (epoch 0.53) 训练正常时被 SIGTERM 杀死（exit code 143），loss=0.63，metrics 全部正常。\n\n**时间线**：\n- 08:10 r2 启动 → 08:19 r2 被 kill → 08:21 r3 在同一 GPU 上启动\n\n**r3 已在运行**，PID 277315，GPU 1 占用 28GB/99% util。r3 参数与 r2 不同：`batch=4, grad_accum=4`（有效 batch 不变=16，但单步吞吐更高）。\n\n**不需要重试**——r3 就是 r2 的替代品，当前正常训练中。监控 r3 进度即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-rsft-ced-s43-train-r2.md"
+}

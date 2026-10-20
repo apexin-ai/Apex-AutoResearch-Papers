@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8867dc2909f394306d64",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis 4b duplication truncation",
+  "task_key": "worker_analysis_4b_duplication_truncation_20260518T133445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_4b_duplication_truncation_20260518T133445_result.json",
+    "occurrence": 1,
+    "bytes": 1498,
+    "sha256": "53be9b5208880ae948c0e075cc65a6070d9b936e825f0847708ffa5384119274"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，artifact 已注册 (`art_20260518_c36f7f`)。核心结果总结：\n\n### 1. Duplication Rate (Table 2 补充)\n| Model | Condition | Raw | Unique | Dup rate | Docs w/dups |\n|-------|-----------|-----|--------|----------|-------------|\n| 4B | With-Evi | 16,880 | 11,626 | 31.1% | N/A* |\n| 4B | No-Evi | 21,181 | 12,025 | 43.2% | 345 |\n\n*with-evi 无 predictions.json，从 metrics 的 n_predictions vs pred_count 计算。\n\n### 2. Truncation Crossover (Table 3.2)\n4B with-evidence 缺 per-doc predictions.json，仅有聚合数据：\n- With-evi truncated: 288/985 (29.2%)\n- No-evi truncated: 307/985 (31.2%)\n\n**需要重跑 4B with-evidence eval 并保存 predictions.json 才能做完整 crossover 分析。**\n\n### 3. Doc Complexity (4B No-Evidence)\n| Bin | Docs | Truncated | Rate |\n|-----|------|-----------|------|\n| 0-5 | 154 | 15 | 9.7% |\n| 6-10 | 323 | 52 | 16.1% |\n| 11-20 | 370 | 154 | 41.6% |\n| 21+ | 138 | 86 | 62.3% |\n\n### 4. Capacity Valley 验证\n**4B 的 evidence tax (+7.47pp) 是所有模型中最高的**，完美符合 capacity valley 叙事：\n- 1.7B: -8.04pp（evidence 起正则化作用，防止退化）\n- **4B: +7.47pp**（evidence 是纯开销，容量不够但不至于退化）\n- 8B: +0.28pp（容量充足，evidence 影响微乎其微）\n\n### 5. Config 修正\n确认 1.7B eval 的 `base_model` 字段误写为 `Qwen3-4B`，`model_path` 正确是 `Qwen3-1.7B`（仅元数据错误，不影响实际推理）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-4b-duplication-truncation.md"
+}

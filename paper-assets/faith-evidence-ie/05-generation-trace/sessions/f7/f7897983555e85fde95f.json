@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7897983555e85fde95f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval plan 014 results",
+  "task_key": "worker_analysis_eval_plan_014_results_20260515T183729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_plan_014_results_20260515T183729_result.json",
+    "occurrence": 1,
+    "bytes": 827,
+    "sha256": "ed589d9834c38db5c79d3e280bd7c6db6272613b6acd300bb299d3e776b7461d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。完整对比：\n\n| 指标 | SFT baseline (with evidence) | SFT no-evidence | 差异 |\n|------|-----|------|------|\n| **rel_f1** | 0.4057 | **0.4893** | **+0.0836 (+20.6%)** |\n| rel_precision | — | 0.4884 | — |\n| rel_recall | — | 0.4902 | — |\n| evi_f1 | 0.7979 | 0.0000 | (设计如此) |\n| format_ok_rate | — | 99.2% | — |\n| n_truncated | — | 298/985 | — |\n| inference_time | — | 4103.8s | — |\n\n**结论：evidence 生成显著拖累了关系抽取性能。** 去掉 evidence 后 rel_f1 从 0.4057 跃升到 0.4893，提升 20.6%。这说明在当前 SFT 框架下，让模型同时学习关系抽取和证据生成两个任务存在明显的 multi-task interference——生成证据句子消耗了模型容量，反而损害了核心的关系抽取能力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-plan-014-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1ee6ba37d718469c631",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops cuda1 wait submit 1 7b rsft",
+  "task_key": "worker_ops_cuda1_wait_submit_1_7b_rsft_20260517T030637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda1_wait_submit_1_7b_rsft_20260517T030637_result.json",
+    "occurrence": 1,
+    "bytes": 92,
+    "sha256": "199f182360f467ccdfb1ce23256b450ad142ad52766180588c564fd37b6aad6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动后台等待，5 分钟后回来检查 PID 390436 是否已退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda1-wait-submit-1-7b-rsft.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74cab1228b2947029651",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops ckpt40 results and ckpt80 launch",
+  "task_key": "worker_ops_ckpt40-results-and-ckpt80-launch_20260514T231059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ckpt40-results-and-ckpt80-launch_20260514T231059_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "da74c645573c138e1080fe284f836a835bede5661edb9d496d9594a20ab3f7ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n### ckpt-40 eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| **rel_f1** | **0.0071** (FAIL, 阈值 0.30) |\n| precision | 0.0066 |\n| recall | 0.0078 |\n| tp / pred / gold | 95 / 14434 / 12151 |\n| evi_f1 | 0.7584 |\n| evi_precision | 0.9113 |\n| evi_recall | 0.6494 |\n| edcr | 0.9942 |\n| format_ok_rate | 0.9939 |\n| field_compliance_rate | 0.5675 |\n| n_truncated | 424 / 985 (43%) |\n| inference_time | 6152s (~102min) |\n\n**结论**：negative。模型预测了 14434 个关系但仅 95 个 TP，precision/recall 均极低。evidence 质量尚可（evi_f1=0.76），但关系抽取本身几乎失败。43% 截断率也是问题。\n\n### ckpt-80 eval\n\n- **PID**: 111731\n- **GPU**: cuda:2\n- **Log**: `/tmp/eval_lr5e6_ckpt80.log`\n- **Cron 监控**: 已注册，120s 轮询\n- **预计耗时**: ~100min（参考 ckpt-40）\n\n### 异常\n\n无异常。ckpt-40 日志显示有两次 eval 运行（一次成功写入 `lr5e6_r1_ckpt40/`，另一次写入 `grpo_ced_lr5e6/` 但被 SIGTERM kill），最终结果来自成功的那次。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ckpt40-results-and-ckpt80-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "845e8e21b38e36563796",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose eval llama sft s42 no evi r2",
+  "task_key": "worker_diagnose_eval-llama-sft-s42-no-evi-r2_20260520T143838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval-llama-sft-s42-no-evi-r2_20260520T143838_result.json",
+    "occurrence": 1,
+    "bytes": 419,
+    "sha256": "158e4d212fb57f1030e1c8bccf46c500d06ec4e1709b2fe7a51bb0d5e2a2bd9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**诊断结果：实验成功完成，进程正常退出 (EXIT_CODE=0)。**\n\n| 指标 | 值 |\n|------|-----|\n| Ign-F1 | **0.5219** |\n| F1 | 0.5311 |\n| Format OK | 88.7% |\n| Truncated | 219/985 |\n\n**Evidence Tax (LLaMA SFT s42)**：with-evidence ign_f1=0.5384 → no-evidence ign_f1=0.5219，差值 **0.0165 (3.1% relative drop)**。cuda:3 现已空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-llama-sft-s42-no-evi-r2.md"
+}

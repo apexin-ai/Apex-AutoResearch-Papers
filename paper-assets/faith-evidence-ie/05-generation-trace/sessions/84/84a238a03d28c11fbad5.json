@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84a238a03d28c11fbad5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 001 monitor scoring",
+  "task_key": "worker_ops_plan_001_monitor_scoring_20260515T142856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_001_monitor_scoring_20260515T142856_result.json",
+    "occurrence": 1,
+    "bytes": 65,
+    "sha256": "d4a075621a087fcefd9a2c57611a93b181fe140d229d29b51f50ef04119ab786"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已启动，3 分钟后检查进程状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-001-monitor-scoring.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d677b32198c4e5f01ddf",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze test eval 8b rsft s42",
+  "task_key": "worker_analyze_test_eval_8b_rsft_s42_20260521T145621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_test_eval_8b_rsft_s42_20260521T145621_result.json",
+    "occurrence": 1,
+    "bytes": 1288,
+    "sha256": "711f3685831047e4c836d6e15e287fa22b3300350a1636eb70f85586c10f5216"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Metrics\n\n| Metric | Value |\n|--------|-------|\n| **F1 / Ign-F1** | **0.3353** |\n| Precision | 0.5149 |\n| Recall | 0.2486 |\n| Evi-F1 (DREEAM) | 0.2526 |\n| Evi-F1 (TP) | 0.6037 |\n| EDCR | 0.7993 |\n| format_ok | 499/500 (99.8%) |\n| field_compliance | 74/500 (**14.8%**) |\n| Truncated | 9/500 |\n\n### Dev→Test Gap\n\n- Dev ign_f1 = 0.5376 → Test F1 = 0.3353 → **gap = -20.2pp**\n\n### 异常\n\n1. **field_compliance_rate 仅 14.8%** — 85% 文档的 evidence 字段格式不合规。JSON 解析正常 (99.8%)，问题出在 evidence 字段的具体格式。这是 recall 极低 (0.2486) 的主因。\n\n2. **train_annotated.json 缺失** — log 有 WARNING: `train_annotated.json not found, Ign-F1 = F1`。本地计算的 ign_f1 就是 f1，**非官方分数**。需要将 `codalab_submission.json` 提交 CodaLab 获取权威 test ign_f1。\n\n3. **CodaLab submission 已生成** — 8049 triples converted，315 skipped (rel)，301 skipped (entity)。文件路径：`/root/autodl-tmp/eval_results/test_eval_8b_rsft_s42/codalab_submission.json`。\n\n### 已完成操作\n- Registry: status→DONE, conclusion→success, metrics 和 checkpoint_path 已写入\n- memory.md: 添加了 test eval 结果和异常分析\n- Artifact: 已注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-test-eval-8b-rsft-s42.md"
+}

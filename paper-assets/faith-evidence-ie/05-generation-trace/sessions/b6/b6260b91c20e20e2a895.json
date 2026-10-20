@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6260b91c20e20e2a895",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "audit final text numbers",
+  "task_key": "worker_audit_final-text-numbers_20260524T042713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_final-text-numbers_20260524T042713_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "3a59372753f49f4f602af60836a1269686ad2d6f1219323ace8870e5e3e0b2bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入并注册。\n\n**审计结果概要：**\n\n- **~150+ 定量声明** 全部追溯到 registry experiment ID 或 table cell\n- **0 个错误**\n- **2 个 ⚠️ 轻微 rounding 问题**（均为 0.01pp）：\n  - DPO 1ep Rel-F1: 论文写 33.37，registry 值 0.33375 标准四舍五入应为 33.38\n  - tab:ablation_full RSFT CED s42 Evi-F1: 表中 81.74，registry 值 81.75\n- **3 个 ❓ 无法从 registry 完整验证**（不一定有误）：\n  - 8B RSFT dev inference-time tax (−0.78pp)：s42 k=1 with-evi eval 未在 registry 中找到\n  - LLaMA RSFT dev inference-time tax (−2.17±0.76pp)：std 匹配但 mean 无法从可用数据重建\n  - tab:cross_detail 14B 混用 @1024/@2048 protocol（数值正确但未在表注说明）\n- **跨位置一致性**：所有在 abstract/intro/experiments/conclusion 中重复出现的数字完全一致\n- **小数位数**：全篇统一（Ign-F1 2位、EDCR 4位等）\n- **最近修改值**（1.7B test tax −5.01±0.59pp、14B +0.43±0.49pp、8B Evi-F1 81.54）均已正确更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-final-text-numbers.md"
+}

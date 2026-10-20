@@ -1,0 +1,332 @@
+{
+  "schema_version": "1.0",
+  "id": "ac5a229aafbe8656018c",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "analysis 14b ced scoring done",
+  "task_key": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_14b-ced-scoring-done_20260523T132656.jsonl",
+    "occurrence": 1,
+    "bytes": 13751,
+    "sha256": "f3faa8d142955f3181137babc56be3b2f51e023953936c666fcf284a82d92ffc"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T13:27:28.644388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T13:27:28.644846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T13:27:28.645111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/rsft_scored_14b_s43/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T13:27:28.645347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T13:27:28.645564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 89196\\\\ndrwxr-xr-x  2 root root       95 May 23 20:46 .\\\\ndrwxr-xr-x 93 root root     8192 May 23 20:50 ..\\\\n-rw-r--r--  1 root root     4666 May 23 20:46 rsft_report.json\\\\n-rw-r--r--  1 root root 81492381 May 23 20:46 rsft_scores.jsonl\\\\n-rw-r--r--  1 root root  9820634 May 23 20:46 rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T13:27:28.645769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 97887 MiB, 0 %\\\\n1, 0 MiB, 97887 MiB, 0 %\\\\n2, 12309 MiB, 97887 MiB, 90 %\\\\n3, 12703 MiB, 97887 MiB, 87 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T13:27:28.645974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "wc -l /root/autodl-tmp/rsft_scored_14b_s43/rsft_scores.jsonl /root/autodl-tmp/rsft_scored_14b_s43/rsft_train.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T13:27:28.646165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   24216 /root/autodl-tmp/rsft_scored_14b_s43/rsft_scores.jsonl\\\\n    3017 /root/autodl-tmp/rsft_scored_14b_s43/rsft_train.jsonl\\\\n   27233 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T13:27:28.646373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -2 /root/autodl-tmp/rsft_scored_14b_s43/rsft_scores.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T13:27:28.646876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": \\\\\\\"AirAsia Zest\\\\\\\", \\\\\\\"generation_idx\\\\\\\": 0, \\\\\\\"output\\\\\\\": \\\\\\\"[{\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"located in the administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"contains administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 1]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 1]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Philippines\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Zest Airways, Inc.\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Ninoy Aquino International Airport\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0, 3]}, {\\\\\\\\\\\\\\\"head\\\\\\\n…[truncated 8400 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T13:27:28.647135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -2 /root/autodl-tmp/rsft_scored_14b_s43/rsft_train.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T13:27:28.647348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/rsft_scored_14b_s43/rsft_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T13:27:28.647704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"input\\\\\\\": \\\\\\\"Extract all relation triples from the document. For each triple, provide the head entity, relation, tail entity, and the sentence IDs that serve as evidence. Output as a JSON list.\\\\\\\\n\\\\\\\\nDocument:\\\\\\\\n[0] Zest Airways, Inc. operated as AirAsia Zest ( formerly Asian Spirit and Zest Air), was a low - cost airline based at the Ninoy Aquino International Airport in Pasay City, Metro Manila in the Philippines.\\\\\\\\n[1] It operated scheduled domestic and international tourist services, mainly feeder services linking Manila and Cebu with 24 domestic destinations in support of the trunk route operations of other airlines.\\\\\\\\n[2] In 2013, the airline became an affiliate of Philippines AirAsia operating their brand separately.\\\\\\\\n[3] Its main base was Ninoy Aquino International Airport, Manila.\\\\\\\\n[4] The airline was founded as Asian Spirit, the first airline in the Philippines to be run as a cooperative.\\\\\\\\n[5] On August 16, 2013, the Civil Aviation Authority of the Philippines ( CAAP), the regulating body of the Government of the Republic of the Philippines for civil aviation, suspended Zest Air flights until further notice because of safety issues.\\\\\\\\n[6] Less than a year after AirAsia and Zest Air's strategic alliance, the airline has been rebranded as AirAsia Zest.\\\\\\\\n[7] The airline was merged into AirAsia Philippines in January 2016.\\\\\\\\n\\\\\\\\nEntities: Asian Spirit (ORG), Manila (LOC), Metro Manila (LOC), Ninoy Aquino International Airport (LOC), Pasay City (LOC), Philippines (LOC), Zest Air (ORG), Zest Airways, Inc. (ORG)\\\\\\\", \\\\\\\"output\\\\\\\": \\\\\\\"[{\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"located in the administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Metro Manila\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"evidence\\\\\\\\\\\\\\\": [0]}, {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Pasay City\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"relation\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\n…[truncated 4897 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T13:27:28.648092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_records\\\\\\\": 24216,\\\\n  \\\\\\\"selected_records\\\\\\\": 3017,\\\\n  \\\\\\\"filtered_records\\\\\\\": 21199,\\\\n  \\\\\\\"selection_rate\\\\\\\": 0.12458704988437397,\\\\n  \\\\\\\"unique_docs_total\\\\\\\": 3027,\\\\n  \\\\\\\"unique_docs_selected\\\\\\\": 3017,\\\\n  \\\\\\\"format_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.9993847043277172,\\\\n    \\\\\\\"std\\\\\\\": 0.024722470193688655,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 1.0,\\\\n    \\\\\\\"median\\\\\\\": 1.0,\\\\n    \\\\\\\"p5\\\\\\\": 1.0,\\\\n    \\\\\\\"p10\\\\\\\": 1.0,\\\\n    \\\\\\\"p25\\\\\\\": 1.0,\\\\n    \\\\\\\"p75\\\\\\\": 1.0,\\\\n    \\\\\\\"p90\\\\\\\": 1.0,\\\\n    \\\\\\\"p95\\\\\\\": 1.0,\\\\n    \\\\\\\"histogram\\\\\\\": {\\\\n      \\\\\\\"counts\\\\\\\": [\\\\n        14,\\\\n        1,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        24201\\\\n      ],\\\\n      \\\\\\\"bin_edges\\\\\\\": [\\\\n        0.0,\\\\n        0.1,\\\\n        0.2,\\\\n        0.3,\\\\n        0.4,\\\\n        0.5,\\\\n        0.6,\\\\n        0.7,\\\\n        0.8,\\\\n        0.9,\\\\n        1.0\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"f1_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6044862537914382,\\\\n    \\\\\\\"std\\\\\\\": 0.2082644001734127,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 1.0,\\\\n    \\\\\\\"median\\\\\\\": 0.625,\\\\n    \\\\\\\"p5\\\\\\\": 0.22857142857142856,\\\\n    \\\\\\\"p10\\\\\\\": 0.3333333333333333,\\\\n    \\\\\\\"p25\\\\\\\": 0.4761904761904762,\\\\n    \\\\\\\"p75\\\\\\\": 0.75,\\\\n    \\\\\\\"p90\\\\\\\": 0.8571428571428571,\\\\n    \\\\\\\"p95\\\\\\\": 0.923076923076923,\\\\n    \\\\\\\"histogram\\\\\\\": {\\\\n      \\\\\\\"counts\\\\\\\": [\\\\n        496,\\\\n        419,\\\\n        1102,\\\\n        1723,\\\\n        2688,\\\\n        4756,\\\\n        4651,\\\\n        4138,\\\\n        2708,\\\\n        1535\\\\n      ],\\\\n      \\\\\\\"bin_edges\\\\\\\": [\\\\n        0.0,\\\\n        0.1,\\\\n        0.2,\\\\n        0.3,\\\\n        0.4,\\\\n        0.5,\\\\n        0.6,\\\\n        0.7,\\\\n        0.8,\\\\n        0.9,\\\\n        1.0\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"ced_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5702291555263143,\\\\n    \\\\\\\"std\\\\\\\": 0.24364850543040253,\\\\n\n…[truncated 4074 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T13:27:28.648423+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**14B s43 CED scoring 成功完成。**\n\n| 项目 | 值 |\n|------|------|\n| 状态 | 成功 |\n| 输出目录 | `/root/autodl-tmp/rsft_scored_14b_s43/` |\n| 全部打分条数 | 24,216 条 |\n| top_k=1 筛选后 | **3,017 条**（覆盖 3,017/3,027 个 doc，12.5% 选择率） |\n| `rsft_scores.jsonl` | 77.7 MB |\n| `rsft_train.jsonl` | 9.4 MB |\n| `rsft_report.json` | 4.6 KB |\n\n**筛选后数据质量（selected_stats）：**\n- combined_score: mean=0.766, median=0.767\n- F1 reward: mean=0.718, median=0.732\n- CED reward: mean=0.696, median=0.711\n- format reward: 100% 通过\n\n**cuda:1 已释放**（0 MiB 占用）。cuda:2 和 cuda:3 各约 12GB 在用。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_14b-ced-scoring-done_20260523T132656"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-14b-ced-scoring-done.md"
+}

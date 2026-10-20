@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "258c37596e98e77a3071",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh fix dedup strategy",
+  "task_key": "worker_ssh_fix-dedup-strategy_20260515T021941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-dedup-strategy_20260515T021941_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "313b1f29bd3586e8d1861dfe86c7aa468e1e7ebd8f14e460a1676ceffbaeb724"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改结果：\n\n- `merge_shards.py` 去重策略从 first-wins 改为 **last-wins**（`set` + `continue` → `dict` 覆盖）\n- `rsft_score_filter.py` 已确认是 last-wins，无需修改\n- 两个文件去重策略现已统一\n\n测试验证：120 条 root 记录被 shard 版本覆盖（shard_0 覆盖 104 条，shard_3 覆盖 16 条），合并后 7384 条记录、923 个 unique docs。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-dedup-strategy.md"
+}

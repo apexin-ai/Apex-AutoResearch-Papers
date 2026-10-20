@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4904549dcf129ccb3eb9",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_7_1778850726.md",
+  "task_key": "loop_7_1778850726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778850726.md",
+    "occurrence": 1,
+    "bytes": 3998,
+    "sha256": "f906456509f210d3447eb398b1fffcb2aaf84c10c3a0581f88ca743f56ef0bbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-15T11:32:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 on rtx5090-4x，全部已分配给本项目，不可用其他卡\n- inference.py 参数名：`--model_path`（adapter 路径）、`--data_path`（数据目录）、`--no-quantize`（RTX 5090 必须）。**不是** `--rsft_adapter`、`--data_dir`、`--gpu`——上一轮因此浪费了一次 s43 eval 提交\n- submit_on_allocated 命令必须用 `bash -c \"...\"` 包裹（tmux 用 /bin/sh，不支持 source）\n- RSFT 训练/eval 不要用 `--quantize`（RTX 5090 CUBLAS 错误），bf16 only\n- TaskEvalCallback 的 rel_f1 数字**不可信**（D038 bug：50-doc pred vs 12275 gold triples），只有全量 dev eval 数字才能用于决策\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x，工作目录 `/root/autodl-tmp/`，账号 root\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`（base）、`/root/autodl-tmp/sft_output`（SFT adapter）\n- RSFT checkpoints：`rsft_output`(r1/seed42)、`rsft_output_s43`(seed43)、`rsft_output_s44`(seed44)、`rsft_output_r2a`、`rsft_output_r2b`\n- Eval 结果目录：`/root/autodl-tmp/eval_results/rsft_{r1,s43,s44,r2a,r2b}/`\n- 数据：`/root/autodl-tmp/data/docred/`（dev.json 985 docs）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：\n  - PID 178050: CED reranker PoC (cuda:0, tmux=mvp2_ced_reranker_poc, cron 注册)\n  - PID 189488: r2a eval (cuda:1, cron 注册)\n  - PID 189855: r2b eval (cuda:3, cron 注册)\n  - PID 194837: s43_r2 eval (cuda:2, tmux=mvp2_eval_rsft_s43_r2, cron 注册)\n\n### 3. 📊 当前状态\n刚完成 r1 全量 eval（rel_f1=0.4449, MVP-2 PASS），修复 s43 eval 参数错误并重新提交为 s43_r2。\n\nRegistry RUNNING：\n- `mvp2_eval_rsft_s43_r2` — s43 seed=43 全量 eval，cuda:2，~1.5h\n- `mvp2_eval_rsft_r2a` — r2a ablation eval，cuda:1，~1h remaining\n- `mvp2_eval_rsft_r2b` — r2b ablation eval，cuda:3，~1h remaining\n- `mvp2_ced_reranker_poc` — CED reranker PoC，cuda:0，37% done，~4h remaining\n\n等待中：\n- 4 个 cron 回调（上述 4 个实验完成时触发）\n- Director 等 3-seed 完整数字判定 complete_mvp\n\n### 4. 📋 待办\n- s43_r2 eval 完成 → 读结果 + update_registry → 汇报 Director 3-seed 完整表（r1/s43/s44 均值±std）→ Director 判定 complete_mvp\n- r2a eval 完成 → 读结果 + update_registry → 与 r1 对比（ablation: 1 epoch + clean data vs 3 epoch）\n- r2b eval 完成 → 读结果 + update_registry → 与 r2a 对比（ablation: conservative LoRA scaling）\n- r2a/r2b 都完成 → 汇报 Director 完整 ablation 表（SFT / r1 / s43 / s44 / r2a / r2b）\n- CED reranker PoC 完成 → 读结果 → 与 RSFT 对比（如果 reranker ≈ RSFT，是论文 complementary contribution）\n- complete_mvp 通过后 → 进入 paper_framing.md + experiment_plan.yaml 阶段\n\n### 5. 🎯 战略上下文\n- **D038 是本项目转折点**：D037 错误宣布 RSFT 全线 FAIL（eval bug），D038 纠正后 RSFT 实际 PASS MVP-2\n- 已有 2/3 seed 通过：r1=0.4449, s44=0.4655（SFT baseline=0.4057）。s43 是最后一块拼图\n- r2a/r2b 是 ablation（1 epoch + clean data / conservative LoRA scaling），TaskEvalCallback 数字都是 ~0.05（buggy），全量 eval 数字待出\n- 文献对标：无直接竞争者，+3.9~6.0pp rel_f1 在 LLM-based DocRE 中领先，CED-as-reward 是新颖贡献\n- **易错点**：\n  1. 不要用 TaskEvalCallback 数字做任何决策（全是 bug 数字）\n  2. inference.py 参数名和 rsft_trainer.py 不同（`--model_path` vs `--rsft_data_path`）\n  3. memory.md 中 \"RSFT r1 灾难性失败根因\" 和 \"r2a/r2b 全部 NEGATIVE\" 已标注为 D038 撤回，不要据此做判断\n  4. EDCR 在 RSFT 后下降（r1: 0.6565 vs SFT: 0.7118）——可能是 num_preds 增加所致（r1: 15307），需关注但不是 blocker\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778850726.md"
+}

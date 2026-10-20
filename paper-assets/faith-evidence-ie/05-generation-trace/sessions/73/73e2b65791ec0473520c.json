@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73e2b65791ec0473520c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops test eval 1 7b s44 with evi check",
+  "task_key": "worker_ops_test_eval_1_7b_s44_with_evi_check_20260525T045339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_test_eval_1_7b_s44_with_evi_check_20260525T045339_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "0d72034da6cf96272860f3b941d20acc26bafe122b566f7d7ec926e5023a030c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "no-evi eval 已在 GPU 0 上启动（8.7GB 已占用，模型加载中）。\n\n## 结果汇总\n\n**with-evi (test_eval_1_7b_rsft_s44_with_evi)** — 完成 ✓\n\n| 指标 | 值 |\n|------|-----|\n| **ign_f1** | **22.46%** |\n| precision | 41.16% |\n| recall | 15.44% |\n| evi_f1 | 63.57% |\n| edcr | 84.62% |\n| evi_joint_f1 | 18.02% |\n| format_ok_rate | 100% |\n| truncated | 253/500 (50.6%) |\n\n⚠️ 严重的重复生成问题：超过一半的文档被截断，模型在重复输出相同的 triple（如 predictions 中可见的 Loud/Rihanna 重复），导致 recall 极低。\n\n**no-evi (test_eval_1_7b_rsft_s44_no_evi)** — 已在 GPU 0 上启动，预计 ~40 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-test-eval-1-7b-s44-with-evi-check.md"
+}

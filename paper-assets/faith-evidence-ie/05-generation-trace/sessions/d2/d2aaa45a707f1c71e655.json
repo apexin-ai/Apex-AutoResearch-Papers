@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d2aaa45a707f1c71e655",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ops download llama 3 1 8b",
+  "task_key": "worker_ops_download_llama_3_1_8b_20260516T061440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_llama_3_1_8b_20260516T061440.log",
+    "occurrence": 1,
+    "bytes": 518788,
+    "sha256": "f589d1dad7319b68d5a2b4206f6a202ef2fe24aad4604c5f0e5a5229f420be08"
+  },
+  "statistics": {
+    "messages": 411,
+    "user_turns": 0,
+    "tool_calls": 184,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 184,
+      "tool_result": 184,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 411,
+      "chunks": [
+        {
+          "path": "d2aaa45a707f1c71e655-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d2aaa45a707f1c71e655-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d2aaa45a707f1c71e655-part-0003.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-download-llama-3-1-8b.md"
+}

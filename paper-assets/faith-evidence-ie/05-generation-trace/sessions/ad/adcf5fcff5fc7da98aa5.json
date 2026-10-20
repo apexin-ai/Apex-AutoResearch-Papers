@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adcf5fcff5fc7da98aa5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops wait cuda1 long",
+  "task_key": "worker_ops_wait_cuda1_long_20260517T031227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_wait_cuda1_long_20260517T031227_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "3a5984b0668d8bcc3fac2ec83ca57e77934616d284da45405a2a0a5d5f8863eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Step 1 — s43 eval 完成**\n- PID 390436 已退出\n- 结果：1000 docs, 27119 predictions, format_ok 99.8%, 697 truncated\n- 输出在 `/root/autodl-tmp/eval_results/plan_002_test_rsft_s43/`（test split，需提交 CodaLab 获取分数）\n\n**Step 3 — 1.7B RSFT 训练已提交**\n- PID: 406515, tmux session: `rsft_1_7b`, GPU: cuda:1\n- 模型: Qwen3-1.7B, 数据: 9042 samples, 3 epochs, bf16\n- CED scores: min=0.000, max=0.998, mean=0.650\n- trainable params: 69.7M (3.9%)\n- Registry: `plan_006_qwen3_1_7b_rsft_train` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-wait-cuda1-long.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "674dca194cfe0c02f5ee",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops eval plan 014 sft no evidence",
+  "task_key": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_plan_014_sft_no_evidence_20260515T171645_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "6ebe188a6d54ef42a10acce22a9cc5f63b2e6f4eac890d0cbf1acf1246b7363d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。模型已检测到 adapter 并在加载中：\n- Base model: Qwen3-4B (bf16, no quantize)\n- LoRA adapter: sft_no_evidence_output\n- `--no_evidence` flag 已生效（使用 NO_EVIDENCE_SYSTEM_PROMPT + include_evidence=False）\n\n关键修改：给 inference.py 添加了 `--no_evidence` 参数，确保 system prompt 和 instruction 与训练时一致（不提 evidence）。rel_f1 计算不受影响，evi_f1 预期为 0（无 evidence 输出）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-plan-014-sft-no-evidence.md"
+}

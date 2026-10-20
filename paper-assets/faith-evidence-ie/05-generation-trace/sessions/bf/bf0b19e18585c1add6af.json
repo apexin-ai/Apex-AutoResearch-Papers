@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf0b19e18585c1add6af",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778904521.md",
+  "task_key": "loop_12_1778904521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778904521.md",
+    "occurrence": 1,
+    "bytes": 5177,
+    "sha256": "bbc911bd572dab4a39a3bc8cd8a2f8b16d8e436b21461b777f39d5fdc5f11d1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T04:08:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `gpu_ids=[0,1,2,3]`，服务器 `rtx5090-4x`，另有 `bjb2-12179`（account=root）但当前未分配 GPU\n- 所有 eval 命令 cwd 必须是 `/root/autodl-tmp`，**不是** `/root/autodl-tmp/freige`（多次踩坑）\n- Eval 统一协议（D076）：`batch_size=4, max_new_tokens=1024, --no-quantize, --sft_adapter`，偏离任何一项都会导致 paired t-test 数据不可比\n- `rsft_output_r2b/` 是旧实验（lora_alpha=32/160 步），**不是** CED s42。正确路径见 memory.md 的 checkpoint 映射表\n- flat-NLI 最终 checkpoint 是 `checkpoint-507`（非 510），CED 是 `checkpoint-510`\n- 论文主表报 Ign-F1（用 `metrics_v2.json`），旧 `metrics.json` 的 Ign-F1 有 bug（doc_id 混入导致过滤无效）\n- submit_training_job 命令必须自带环境激活（如 `source /root/miniconda3/bin/activate && ...`），不能依赖 shell profile\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），account=root\n- **工作目录**: `/root/autodl-tmp/freige`（代码），`/root/autodl-tmp/`（eval 结果、模型输出）\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境）\n- **模型路径**: `/root/autodl-tmp/Qwen3-4B`（底座），RSFT checkpoints 见 memory.md 映射表\n- **Eval 结果目录**: `/root/autodl-tmp/eval_results/`（子目录按方法命名）\n- **脚本**: `/root/autodl-tmp/scripts/seed_comparison.py`，`artifacts/paired_ttest_analysis.py`\n- **活跃进程**:\n  - `eval_rsft_ced_s45`: PID 283838（~28% done, ETA ~04:18 UTC）\n  - `eval_rsft_ced_s43`: PID 286587（~2% done, ETA ~05:19 UTC）\n  - `eval_plan_014_no_evidence_r2`: PID 288109\n  - `reeval_flat_nli_s43_r2`: PID 291003\n- **Cron**: 4 个活跃 cron 分别监控上述 4 个 RUNNING 实验\n\n### 3. 📊 当前状态\n4 个 eval 实验全部 RUNNING，占满 cuda:0-3。0 个 Worker 在线。\n\n**RUNNING (4)**:\n| exp_id | GPU | 内容 | 进度 |\n|--------|-----|------|------|\n| eval_rsft_ced_s45 | cuda:? | CED s45 全量 dev eval | 28%, ETA ~04:18 UTC |\n| eval_rsft_ced_s43 | cuda:? | CED s43 全量 dev eval | 2%, ETA ~05:19 UTC |\n| eval_plan_014_no_evidence_r2 | cuda:? | no-evidence SFT ablation 重试 | 进度未知 |\n| reeval_flat_nli_s43_r2 | cuda:? | flat-NLI s43 统一协议重跑 | 刚启动 |\n\n**PREPARING (4，等 GPU 释放)**:\n- `reeval_ced_s42`、`reeval_ced_s44`、`reeval_flat_nli_s42`：D076 批准的协议统一重跑\n- `seed_comparison_prep`：seed 对比分析准备（CPU 任务）\n\n**等待中**: 4 个 cron 回调（实验完成后自动触发）。无 pending Worker 回调。无等待 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- **任一 RUNNING eval 完成回调** → 读 metrics_v2.json 提取 rel_f1/evi_f1/Ign-F1 → update_registry → 释放的 GPU 立即提交对应 PREPARING eval（优先级：reeval_ced_s42 > reeval_ced_s44 > reeval_flat_nli_s42）\n- **4 个 CED seeds 全部出齐**（s42/s43/s44/s45）→ spawn Worker 跑 `seed_comparison.py` 生成 paired t-test → 更新 seed_comparison_prep → 汇报 Director\n- **4 个 flat-NLI seeds 全部出齐** → 同上，CED vs flat-NLI paired t-test 最终结论\n- **eval_plan_014_no_evidence_r2 完成** → 验证 rel_f1 是否复现 0.4893（C1 ablation 确认）\n- **所有 8 个 reeval 完成** → 全面 seed comparison 含 bootstrap CI → 最终 C3 结论（CED ≈ flat-NLI 统计不可区分，或发现差异）→ 更新 paper_framing.md\n- **GPU 全空闲时** → 提交 plan_003_edcr_diagnostic（Claim 4，~2h）→ 提交 plan_002 test set eval（需先诊断 D057 失败原因）\n\n### 5. 🎯 战略上下文\n**项目**: FREIGE — LLM-based evidence-grounded DocRE 系统性研究。目标 EMNLP 2026 Main（ARR July, ~7/15-25）。\n\n**四个 Claims**:\n- C1: Evidence generation 代价 ~8pp rel_f1（faithfulness tax）✅ 已确认\n- C2: QLoRA GRPO 导致 evidence-extraction decoupling（QLoRA-specific，bf16 不复现）✅ 已确认\n- C3: CED vs flat-NLI **降级**（D056: 统计不可区分），不再作为独立贡献。当前正在重跑统一协议 eval 做最终 paired t-test\n- C4: EDCR 诊断指标——方法级 + per-relation 双层（D070/D072/D073）\n\n**当前关键路径**: 统一协议 reeval（D076）→ paired t-test → C3 最终结论 → paper framing 最终定稿 → 写论文。\n\n**易错点**:\n- 不要把旧 eval（batch_size=16/8, max_new_tokens=1536）的数值与新 eval（batch_size=4, max_new_tokens=1024）直接对比——协议不同，数值不可比\n- `seed_comparison_prep` 的 notes 里有旧的 pre-comparison 数据（N=3），但 CED s42 用的是 `rsft_r2b_maxtok1536` 目录的结果（旧协议），reeval 后数值会变\n- Decoupling spectrum 中 0.4549 是 plan_011 ckpt-100 训练前起点，不是 GRPO bf16 训练后结果\n- DPO 1ep 是\"中性/轻度退化\"（D067/D068），不是\"失败\"——叙事已从\"RL fails\"修正为\"RL pressure 与 decoupling 正相关\"\n- Worker 池当前 = 0，GPU 全满跑 eval 是合理的，但 eval 回调到来时必须立即 spawn Worker 处理结果 + 提交下一个\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778904521.md"
+}

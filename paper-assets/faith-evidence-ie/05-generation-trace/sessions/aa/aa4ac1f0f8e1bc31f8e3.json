@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa4ac1f0f8e1bc31f8e3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "experiment qwen3 1 7b no evidence eval",
+  "task_key": "worker_experiment_qwen3_1_7b_no_evidence_eval_20260516T092432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_qwen3_1_7b_no_evidence_eval_20260516T092432_result.json",
+    "occurrence": 1,
+    "bytes": 326,
+    "sha256": "bfea649048d944a82f04b3650886c5fe9d3e4e577b4f276061716f52049bcc0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并正常运行。\n\n- **exp_id**: `plan_006_qwen3_1_7b_no_evidence_eval`\n- **PID**: 324679，cuda:2\n- **状态**: RUNNING，推理进行中（247 batches，~25s/it）\n- **预估时间**: ~1.7h（247 × 25s ≈ 6175s）\n- **日志**: `/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-qwen3-1-7b-no-evidence-eval.md"
+}

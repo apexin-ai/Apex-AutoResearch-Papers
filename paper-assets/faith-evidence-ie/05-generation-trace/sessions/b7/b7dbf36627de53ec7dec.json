@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7dbf36627de53ec7dec",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "gpu check cuda3 seed45",
+  "task_key": "worker_gpu_check_cuda3_seed45_20260515T235146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_check_cuda3_seed45_20260515T235146_result.json",
+    "occurrence": 1,
+    "bytes": 528,
+    "sha256": "2553d042e46467104c301922ba7c9b98ff6c53ef597c93f55e3bcfc1681371b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 任务 | GPU | 进度 | 预计剩余 | 状态 |\n|------|-----|------|---------|------|\n| eval_flat_nli_seed45 | cuda:3 (10.6GB) | 10/247 (4%) | ~2.6h | RUNNING ✓ (registry 已更新) |\n| reeval_rsft_topk3 | cuda:2 (18.8GB) | 43/62 (69%) | ~18min | RUNNING |\n\n- PID 272164 是 eval_flat_nli_seed45 的 wrapper bash，实际 Python 进程 PID 272169 在 GPU 3 上正常运行\n- 已注册 12 分钟间隔的监控 cron（job 60e09269），任务完成后自动提取 metrics 并更新 registry"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-check-cuda3-seed45.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9bbbe30f2f60e87acaa",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix wave1 scripts v2",
+  "task_key": "worker_fix_wave1_scripts_v2_20260518T093012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_wave1_scripts_v2_20260518T093012_result.json",
+    "occurrence": 1,
+    "bytes": 1393,
+    "sha256": "d7c8a45601bca4bfa5633b8a42c1dba732970986bd904f1207c9a420b36a882d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== Wave1 脚本修复验证 ===\n\nsft_seed43.sh:\n  GPU: CUDA_VISIBLE_DEVICES=0 ✓\n  训练方式: accelerate+DeepSpeed → 单卡 python -m ✓\n  deepspeed参数: 已移除 ✓\n  save_total_limit: 2 (trainer硬编码L214, 无需CLI参数) ✓\n  effective_batch_size: 1×1×64=64 (canonical=1×4×16=64) ✓\n  output_dir: /root/autodl-tmp/sft_output_seed43 (不存在, 无覆盖风险) ✓\n  paths: all exist ✓\n\nsft_seed44.sh:\n  GPU: CUDA_VISIBLE_DEVICES=1 ✓\n  训练方式: accelerate+DeepSpeed → 单卡 python -m ✓\n  deepspeed参数: 已移除 ✓\n  save_total_limit: 2 (trainer硬编码L214) ✓\n  effective_batch_size: 1×1×64=64 (canonical=64) ✓\n  output_dir: /root/autodl-tmp/sft_output_seed44 (不存在) ✓\n  paths: all exist ✓\n\ngrpo_bf16_g4.sh:\n  GPU: CUDA_VISIBLE_DEVICES=2 (was 0) ✓\n  save_total_limit: 2 (was 10) ✓\n  output_dir: /root/autodl-tmp/grpo_bf16_g4 (不存在) ✓\n  paths: all exist ✓\n\nrandom_rsft.sh:\n  GPU: CUDA_VISIBLE_DEVICES=3 (was 1) ✓\n  save_total_limit: 2 (was 5) ✓\n  random_select_path: /tmp/... → /root/autodl-tmp/freige/scripts/d102_next_batch/random_rsft_select.py ✓\n  output_dir: /root/autodl-tmp/rsft_output_random_k1 (不存在) ✓\n  paths: all exist ✓\n\n环境激活: 全部4个脚本已统一为 source /root/miniconda3/bin/activate + cd /root/autodl-tmp/freige ✓\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-wave1-scripts-v2.md"
+}

@@ -1,0 +1,1694 @@
+{
+  "schema_version": "1.0",
+  "id": "d3663a126af39fde0a12",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "exp d158 1 7b rsft s44 eval",
+  "task_key": "worker_exp_d158_1_7b_rsft_s44_eval_20260525T002220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_d158_1_7b_rsft_s44_eval_20260525T002220.log",
+    "occurrence": 1,
+    "bytes": 63659,
+    "sha256": "9706da4b4e2b0d05a31466b907e11f954ad85573d20baa13732a041484ad02aa"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 14,
+      "tool_result": 14,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "13c19630-8314-40ac-94a3-488abf7505ab",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779682200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "fbef2409-f57b-44db-9974-48792ba82d96",
+                "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to run a dev eval on the rtx5090-4x server. Let me follow the steps:\n\n1. Check the checkpoint exists\n2. Check cuda:0 is free\n3. Submit the eval job\n\nLet me start by checking the checkpoint and GPU status.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "4e4d9f26-4a72-426b-b4da-814f9a51b791",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PdgYq7WsZDxXgZZaFfgPqm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14406,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14406
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先检查 checkpoint 和 GPU 状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "d60d8b63-7ad3-4a15-a51a-ba179300d15f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PdgYq7WsZDxXgZZaFfgPqm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14406,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14406
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N7PMwpmMkBgvzPHNPKCEEp",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "a0127ead-9f2c-4511-8d6a-670bd87e7332",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PdgYq7WsZDxXgZZaFfgPqm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14406,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14406
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T00:22:36.196Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01N7PMwpmMkBgvzPHNPKCEEp",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "cf2b3039-99b3-4b59-b2da-5e766f2001bd",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__update_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01StxMSmKcnHitSwgXXhDkkn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls /root/autodl-tmp/rsft_output_1_7b_s44/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "b2b4b8d1-d109-45be-a451-71110880b7d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012Ux3JwPEUFHPR4jcg6ZsfZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1254,
+                "cache_read_input_tokens": 25853,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1254
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A4L2CjS6HaRNLd11hpv7c7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "nvidia-smi",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "2acb3424-3354-47cf-8937-3319a2ec840d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012Ux3JwPEUFHPR4jcg6ZsfZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1254,
+                "cache_read_input_tokens": 25853,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1254
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T00:22:40.943Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01StxMSmKcnHitSwgXXhDkkn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nchat_template.jinja\\\\ncheckpoint-550\\\\ncheckpoint-567\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "e1b7e7ee-061b-4625-9abf-176bf7828016",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nchat_template.jinja\\\\ncheckpoint-550\\\\ncheckpoint-567\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\ncheckpoint-550\\ncheckpoint-567\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T00:22:41.734Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A4L2CjS6HaRNLd11hpv7c7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 25 08:22:41 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\\\n| N/A   29C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\\\n| N/A   28C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   53C    P0            292W /  600W |   32479MiB /  97887MiB |     92%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\\\n| N/A   30C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    2   N/A  N/A          306177      C   python                                32470MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "1057bf82-8800-41db-9447-caaa769a46af",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 25 08:22:41 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\\\n| N/A   29C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\\\n| N/A   28C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   53C    P0            292W /  600W |   32479MiB /  97887MiB |     92%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\\\n| N/A   30C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    2   N/A  N/A          306177      C   python                                32470MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Mon May 25 08:22:41 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\n| N/A   29C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\n| N/A   28C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\n| N/A   53C    P0            292W /  600W |   32479MiB /  97887MiB |     92%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\n| N/A   30C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    2   N/A  N/A          306177      C   python                                32470MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Checkpoint 存在（最终 adapter 在根目录，还有 checkpoint-550 和 checkpoint-567）。cuda:0 空闲（0MiB），可以提交。\n\n提交 eval 任务。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "615c83b1-7355-4abe-a4a2-006c3c6c48ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H9yaVHKqpDNXoiieVoaYfc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1166,
+                "cache_read_input_tokens": 27107,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1166
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012kgzp3Xh3fAUCgUdFCs9sj",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44' > /root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log 2>&1 & echo $!",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "4277227f-676d-4507-93de-468fd35e76be",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H9yaVHKqpDNXoiieVoaYfc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1166,
+                "cache_read_input_tokens": 27107,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1166
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T00:23:21.930Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012kgzp3Xh3fAUCgUdFCs9sj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44' > /root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log 2>&1 & echo $!\\\\\\\"\\\\n\\\\nStdout:\\\\n\\\\n342049\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "ce23d33f-6f7c-42e7-946a-4be0150778f4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44' > /root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log 2>&1 & echo $!\\\\\\\"\\\\n\\\\nStdout:\\\\n\\\\n342049\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44' > /root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log 2>&1 & echo $!\\\"\\n\\nStdout:\\n\\n342049\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已启动，PID 342049。超时只是 SSH 连接超时，后台进程正常运行。确认一下进程状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "1a32f9f4-e066-4c1c-aa40-d58aa3596e41",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QvQDEawAMUyyAX8ZBkoX2j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 868,
+                "cache_read_input_tokens": 28273,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 868
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017GpGAsfjfNL3A6qw6cCUJa",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ps -p 342049 -o pid,cmd",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "7e1bd4c5-213a-4140-bb1d-2587d19447ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QvQDEawAMUyyAX8ZBkoX2j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 868,
+                "cache_read_input_tokens": 28273,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 868
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T00:23:28.770Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017GpGAsfjfNL3A6qw6cCUJa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID CMD\\\\n342049 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44' > /root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log 2>&1 & echo $!\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "764ae34f-237d-4574-ae48-db067f246abb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID CMD\\\\n342049 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44' > /root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log 2>&1 & echo $!\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID CMD\\n342049 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44' > /root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log 2>&1 & echo $!\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程确认运行中。注册到 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "d105d7a8-100f-45e4-93ea-a0705e78a301",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gdxjuo1cPF4CFHgQ7A33sT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 550,
+                "cache_read_input_tokens": 29141,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 550
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X8fcRqsjKc5v4sZkHoKPU5",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d158_1_7b_rsft_s44_eval",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44",
+                  "server": "rtx5090-4x",
+                  "gpu_id": "cuda:0",
+                  "data_path": "/root/autodl-tmp/data/docred",
+                  "data_count": null,
+                  "model_name": "Qwen3-1.7B",
+                  "seed": 44,
+                  "checkpoint_source": "/root/autodl-tmp/rsft_output_1_7b_s44",
+                  "eval_data": "docred-dev",
+                  "pid": 342049,
+                  "log_path": "/root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "03c95e56-9f83-4179-b790-1a7349445a28",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gdxjuo1cPF4CFHgQ7A33sT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 550,
+                "cache_read_input_tokens": 29141,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 550
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T00:23:41.450Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X8fcRqsjKc5v4sZkHoKPU5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1064}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "8c2f33ac-6b03-41fe-9f12-417a5b66f3cd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1064}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.1064}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014RjnYF8eTSdT5XduvTb7LF",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d158_1_7b_rsft_s44_eval",
+                "field": "hypothesis",
+                "value": "1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "38045104-c823-4987-91fd-e72a713ffb3e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FwFf486F2DXMRyfNq7to4e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 675,
+                "cache_read_input_tokens": 29691,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 675
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EvJWj5ps5UgMM4ZBZtGDLe",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d158_1_7b_rsft_s44_eval",
+                "field": "parent",
+                "value": "d158_1_7b_rsft_s44_train",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "b3a96145-6a9e-43d1-b008-95114aa2253c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FwFf486F2DXMRyfNq7to4e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 675,
+                "cache_read_input_tokens": 29691,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 675
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-25T00:23:48.649Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014RjnYF8eTSdT5XduvTb7LF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T00:23:47.893Z\\\", \\\"updated_at\\\": \\\"2026-05-25T00:23:47.893Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7679}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "c526bd1d-bfa2-44d5-b4ea-17e73d5b091b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T00:23:47.893Z\\\", \\\"updated_at\\\": \\\"2026-05-25T00:23:47.893Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7679}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d158_1_7b_rsft_s44_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T00:23:47.893Z\", \"updated_at\": \"2026-05-25T00:23:47.893Z\", \"hypothesis\": \"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7679}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-25T00:23:50.519Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EvJWj5ps5UgMM4ZBZtGDLe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T00:23:47.893Z\\\", \\\"updated_at\\\": \\\"2026-05-25T00:23:49.666Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_train\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8488}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "92a246d5-5bd3-4b2d-a707-b906c8cc5067",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T00:23:47.893Z\\\", \\\"updated_at\\\": \\\"2026-05-25T00:23:49.666Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_train\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8488}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d158_1_7b_rsft_s44_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T00:23:47.893Z\", \"updated_at\": \"2026-05-25T00:23:49.666Z\", \"hypothesis\": \"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\", \"parent\": \"d158_1_7b_rsft_s44_train\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8488}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WndHQiaJch48EVQ8igUSTP",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d158_1_7b_rsft_s44_eval",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44",
+                  "server": "rtx5090-4x",
+                  "gpu_id": "cuda:0",
+                  "data_path": "/root/autodl-tmp/data/docred",
+                  "data_count": null,
+                  "model_name": "Qwen3-1.7B",
+                  "seed": 44,
+                  "checkpoint_source": "/root/autodl-tmp/rsft_output_1_7b_s44",
+                  "eval_data": "docred-dev",
+                  "pid": 342049,
+                  "log_path": "/root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "91877197-6cc3-4f1e-9bc9-117f772bd153",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G15i4CAEGd2Cv8jHzHWnhG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 952,
+                "cache_read_input_tokens": 30366,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 952
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-25T00:24:00.434Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WndHQiaJch48EVQ8igUSTP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0773}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "76abb55e-36c6-4215-a7ed-a6379fe29972",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0773}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.0773}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UX7Zssso4bJzq1911SxRXt",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d158_1_7b_rsft_s44_eval",
+                "field": "status",
+                "value": "PENDING",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "3018915b-ce2d-4a90-a700-ba698a48426b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R5BaGpdX92w723AWM8KVMP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 557,
+                "cache_read_input_tokens": 31318,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 557
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-25T00:24:06.066Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UX7Zssso4bJzq1911SxRXt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T00:23:47.893Z\\\", \\\"updated_at\\\": \\\"2026-05-25T00:24:03.976Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_train\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1138}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "9a74ea2f-b9db-4464-8b72-b4315c061ab7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T00:23:47.893Z\\\", \\\"updated_at\\\": \\\"2026-05-25T00:24:03.976Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_train\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1138}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d158_1_7b_rsft_s44_eval\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T00:23:47.893Z\", \"updated_at\": \"2026-05-25T00:24:03.976Z\", \"hypothesis\": \"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\", \"parent\": \"d158_1_7b_rsft_s44_train\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.1138}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PS8R4nNjRnQovmGd6GzN3j",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d158_1_7b_rsft_s44_eval",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44",
+                  "server": "rtx5090-4x",
+                  "gpu_id": "cuda:0",
+                  "data_path": "/root/autodl-tmp/data/docred",
+                  "data_count": null,
+                  "model_name": "Qwen3-1.7B",
+                  "seed": 44,
+                  "checkpoint_source": "/root/autodl-tmp/rsft_output_1_7b_s44",
+                  "eval_data": "docred-dev",
+                  "pid": 342049,
+                  "log_path": "/root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "6949797b-f5f4-4e9d-89da-8fd9a18fff0a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DWiEwxz6QkZDEyMFW4CxeK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 411,
+                "cache_read_input_tokens": 31875,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 411
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-25T00:24:12.539Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PS8R4nNjRnQovmGd6GzN3j",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9419}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "6d3536ea-ca94-4d29-823e-e54ad73c69db",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9419}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.9419}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017uu8C6CwtZfxjiXs4s4naG",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d158_1_7b_rsft_s44_eval",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "8e2b4d4b-4576-4ab4-93d9-8cf7df0a589c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VYPASjwJzHnZ4UtEwjtnGT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 557,
+                "cache_read_input_tokens": 32286,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 557
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-25T00:24:18.468Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017uu8C6CwtZfxjiXs4s4naG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T00:23:47.893Z\\\", \\\"updated_at\\\": \\\"2026-05-25T00:24:16.265Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_train\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.6486}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "ba6f08bb-e291-4f8c-b1bf-be70082dbdd2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T00:23:47.893Z\\\", \\\"updated_at\\\": \\\"2026-05-25T00:24:16.265Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_train\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.6486}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d158_1_7b_rsft_s44_eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-25T00:23:47.893Z\", \"updated_at\": \"2026-05-25T00:24:16.265Z\", \"hypothesis\": \"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\", \"parent\": \"d158_1_7b_rsft_s44_train\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.6486}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R3vdy5vpuATDwDiAVuXvMa",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d158_1_7b_rsft_s44_eval",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44",
+                  "server": "rtx5090-4x",
+                  "gpu_id": "cuda:0",
+                  "data_path": "/root/autodl-tmp/data/docred",
+                  "data_count": null,
+                  "model_name": "Qwen3-1.7B",
+                  "seed": 44,
+                  "checkpoint_source": "/root/autodl-tmp/rsft_output_1_7b_s44",
+                  "eval_data": "docred-dev",
+                  "pid": 342049,
+                  "log_path": "/root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "9d50f813-d313-4f8e-832b-02ca14c5280a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9LfX8SEgsZbMoAF6VVXht",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 413,
+                "cache_read_input_tokens": 32843,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 413
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-25T00:24:26.248Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R3vdy5vpuATDwDiAVuXvMa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T00:23:47.893Z\\\", \\\"updated_at\\\": \\\"2026-05-25T00:24:24.099Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_train\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": null, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"pid\\\": 342049, \\\"log_path\\\": \\\"/root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1998}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "43629127-c05b-49ea-bc7a-ba50b59d58e5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T00:23:47.893Z\\\", \\\"updated_at\\\": \\\"2026-05-25T00:24:24.099Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_train\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": null, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"pid\\\": 342049, \\\"log_path\\\": \\\"/root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1998}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d158_1_7b_rsft_s44_eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T00:23:47.893Z\", \"updated_at\": \"2026-05-25T00:24:24.099Z\", \"hypothesis\": \"1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。\", \"parent\": \"d158_1_7b_rsft_s44_train\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44\", \"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:0\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": null, \"model_name\": \"Qwen3-1.7B\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_1_7b_s44\", \"eval_data\": \"docred-dev\", \"pid\": 342049, \"log_path\": \"/root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.1998}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册。快速确认进程已加载到 GPU。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "8cb4e200-d788-4212-82b4-eb9f1231d2ff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TKNwcfGfGD42NqKjbVm9Gc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1118,
+                "cache_read_input_tokens": 33256,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1118
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MookuUN4b7naQzWSSTxmP2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "tail -5 /root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "97d07c7a-0cc4-45b1-9a0b-95ff9e0d1c32",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TKNwcfGfGD42NqKjbVm9Gc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1118,
+                "cache_read_input_tokens": 33256,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1118
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-25T00:24:31.873Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MookuUN4b7naQzWSSTxmP2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-25 08:22:58,297 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_1_7b_s44\\\\n2026-05-25 08:22:59,222 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-25 08:22:59,457 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-25 08:22:59,614 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]\\\\rInference:   0%|          | 1/247 [00:28<1:56:04, 28.31s/it]\\\\rInference:   1%|          | 2/247 [00:56<1:54:30, 28.04s/it]\\\\rInference:   1%|          | 3/247 [01:24<1:53:40, 27.95s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "ebdbdc18-1ffa-45bc-8c5a-17258ac2bc42",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-25 08:22:58,297 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_1_7b_s44\\\\n2026-05-25 08:22:59,222 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-25 08:22:59,457 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-25 08:22:59,614 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]\\\\rInference:   0%|          | 1/247 [00:28<1:56:04, 28.31s/it]\\\\rInference:   1%|          | 2/247 [00:56<1:54:30, 28.04s/it]\\\\rInference:   1%|          | 3/247 [01:24<1:53:40, 27.95s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-25 08:22:58,297 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_1_7b_s44\\n2026-05-25 08:22:59,222 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-25 08:22:59,457 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-25 08:22:59,614 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]\\rInference:   0%|          | 1/247 [00:28<1:56:04, 28.31s/it]\\rInference:   1%|          | 2/247 [00:56<1:54:30, 28.04s/it]\\rInference:   1%|          | 3/247 [01:24<1:53:40, 27.95s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 正常运行中：\n\n- **PID**: 342049，cuda:0\n- **进度**: 3/247 batches，约 28s/batch，预计约 **1 小时 54 分**完成\n- **Registry**: `d158_1_7b_rsft_s44_eval` → RUNNING\n- **日志**: `/root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log`\n- **输出**: `/root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval/`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "uuid": "80208d32-7a24-4050-8b73-1918ecd8ba4f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RH54gZubwVxXBWM57eFzQi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 518,
+                "cache_read_input_tokens": 34374,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 518
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 正常运行中：\n\n- **PID**: 342049，cuda:0\n- **进度**: 3/247 batches，约 28s/batch，预计约 **1 小时 54 分**完成\n- **Registry**: `d158_1_7b_rsft_s44_eval` → RUNNING\n- **日志**: `/root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log`\n- **输出**: `/root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval/`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 125293,
+            "duration_api_ms": 76427,
+            "num_turns": 15,
+            "stop_reason": "end_turn",
+            "session_id": "0808d453-846f-4790-a39c-6ec11ad2ca7c",
+            "total_cost_usd": 0.43664525000000004,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 23445,
+              "cache_read_input_tokens": 377830,
+              "output_tokens": 3951,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 23445,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 155,
+                  "cache_read_input_tokens": 34374,
+                  "cache_creation_input_tokens": 518,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 518
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2219,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002339,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 17,
+                "outputTokens": 3951,
+                "cacheReadInputTokens": 377830,
+                "cacheCreationInputTokens": 23445,
+                "webSearchRequests": 0,
+                "costUSD": 0.43430625000000006,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "875febac-9d80-4669-be35-70c3c835f6df"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-d158-1-7b-rsft-s44-eval.md"
+}

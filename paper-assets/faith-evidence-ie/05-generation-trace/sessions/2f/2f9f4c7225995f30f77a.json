@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f9f4c7225995f30f77a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops download nli model",
+  "task_key": "worker_ops_download_nli_model_20260516T124520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_nli_model_20260516T124520_result.json",
+    "occurrence": 1,
+    "bytes": 323,
+    "sha256": "fc70907cdf308a8a1eb8d7ffeb9bf10632ec53c57c9e018762e4bbef035fa25e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成。\n\n**结果：**\n- 下载成功\n- 模型缓存路径：`/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7/`\n- 文件列表：`config.json`, `model.safetensors`, `spm.model`, `tokenizer_config.json`\n- 总大小：706MB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-nli-model.md"
+}

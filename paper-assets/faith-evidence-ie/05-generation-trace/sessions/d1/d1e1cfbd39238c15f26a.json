@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1e1cfbd39238c15f26a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research prep ced s43 s45",
+  "task_key": "worker_research_prep_ced_s43_s45_20260515T235511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_prep_ced_s43_s45_20260515T235511_result.json",
+    "occurrence": 1,
+    "bytes": 2365,
+    "sha256": "69e159111407cc5b1b78dfd39ae58d94fc84ecf64fd25c1e5c82884df2319bed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。汇总报告：\n\n---\n\n## CED RSFT 训练报告\n\n### 现有状态\n\n| 目录 | seed | 状态 |\n|------|------|------|\n| `rsft_output/` | 42 | 完成 |\n| `rsft_output_s43/` | 43 | **已完成** (exit_code=0, 1h56m) |\n| `rsft_output_s44/` | 44 | 完成 |\n| `rsft_output_s45/` | 45 | **不存在，需补跑** |\n\n**注意：s43 已经训练完成。** 如果确认 s43 无问题，只需跑 s45。\n\n### 训练数据\n- 路径：`/root/autodl-tmp/rsft_filtered/rsft_train.jsonl`\n- 样本数：2718\n- CED scores: min=0.000, max=0.997, mean=0.668\n\n### 超参数（从 s43/s44 log 和 adapter_config.json 复原）\n\n| 参数 | 值 |\n|------|----|\n| base_model | /root/autodl-tmp/models/Qwen3-4B |\n| sft_adapter | /root/autodl-tmp/sft_output |\n| lr | 2e-5 |\n| epochs | 3 |\n| per_device_batch | 4 |\n| grad_accum | 4 |\n| warmup_steps | 100 |\n| save_steps | 50 |\n| save_total_limit | 5 |\n| max_length | 2048 |\n| lora_rank | 64 |\n| lora_alpha | 128 |\n| lora_dropout | 0.05 |\n| bf16 | True |\n| weighted_sampling | True |\n| eval_data_dir | /root/autodl-tmp/data/docred |\n| eval_max_docs | 50 |\n| quantize | 未使用 |\n\n### 训练命令\n\n**CED RSFT s45**（只需跑这一个）：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer \\\n  --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl \\\n  --output_dir /root/autodl-tmp/rsft_output_s45 \\\n  --seed 45 \\\n  --weighted_sampling \\\n  --eval_data_dir /root/autodl-tmp/data/docred \\\n  --wandb_run_name rsft_ced_s45 \\\n  --bf16\"\n```\n\n**CED RSFT s43**（如需重跑）：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer \\\n  --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl \\\n  --output_dir /root/autodl-tmp/rsft_output_s43 \\\n  --seed 43 \\\n  --weighted_sampling \\\n  --eval_data_dir /root/autodl-tmp/data/docred \\\n  --wandb_run_name rsft_ced_s43 \\\n  --bf16\"\n```\n\n### 预计训练时间\n~2小时/run（s43 耗时 1h56m，s44 耗时 1h53m），单 GPU。\n\n### 输出目录命名\n沿用现有模式：`rsft_output_s45`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-prep-ced-s43-s45.md"
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9a64d7f1ff74f701630b",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "research literature related work",
+  "task_key": "worker_research_literature-related-work_20260516T021630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-related-work_20260516T021630.log",
+    "occurrence": 1,
+    "bytes": 571960,
+    "sha256": "37a46c683453e59afa6d11e232e38786d0c42c49bfa9fe11bc04bd0a14442694"
+  },
+  "statistics": {
+    "messages": 162,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 64,
+      "tool_result": 64,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 162,
+      "chunks": [
+        {
+          "path": "9a64d7f1ff74f701630b-part-0001.json",
+          "message_count": 162
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-literature-related-work.md"
+}

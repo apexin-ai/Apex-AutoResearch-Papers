@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "335995e931f9198bdcef",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code flat nli scoring mode",
+  "task_key": "worker_code_flat_nli_scoring_mode_20260515T131633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_flat_nli_scoring_mode_20260515T131633_result.json",
+    "occurrence": 1,
+    "bytes": 504,
+    "sha256": "eb28453edfc6557b64239017c6c33c18c516dd0c7225583079867708a4fa81ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。7 处改动全部到位：\n\n| 行 | 改动 |\n|---|---|\n| 6 | docstring 注明 flat_nli 模式 |\n| 97 | `compute_ced_reward_for_record` 签名加 `scoring_mode` |\n| 159 | flat_nli 分支：调 `compute_flat_nli_reward`，跳过 hard_neg 查找 |\n| 278 | `score_all_records` 签名加 `scoring_mode` |\n| 284 | 透传 `scoring_mode` 到 `compute_ced_reward_for_record` |\n| 496 | argparser 新增 `--scoring_mode {ced, flat_nli}` |\n| 535 | `main()` 传 `args.scoring_mode` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-flat-nli-scoring-mode.md"
+}

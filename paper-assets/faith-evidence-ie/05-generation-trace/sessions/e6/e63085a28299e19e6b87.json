@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e63085a28299e19e6b87",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "prep d112 rsft no evidence eval r3",
+  "task_key": "worker_prep_d112_rsft_no_evidence_eval_r3_20260519T154416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_d112_rsft_no_evidence_eval_r3_20260519T154416_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "f9beceeec1705dfe78399b1a998aa74e4f126485261bc0f32f0b7613adaa8947"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Ready to submit.** 全部验证通过：\n\n- 脚本存在：`scripts/seed_expansion/eval_4b_rsft_no_evidence.sh`\n- 4 个依赖路径（RSFT adapter、SFT adapter、base model、data）全部存在\n- `--no_evidence` 参数已设置（C005）\n- cuda:1 显存 0 MiB，完全空闲（C001）\n- 磁盘 65G 可用\n\n提交命令：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=1 bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_4b_rsft_no_evidence.sh\n```\n\n报告已写入 `artifacts/d112_rsft_no_evidence_eval_r3_prep.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-d112-rsft-no-evidence-eval-r3.md"
+}

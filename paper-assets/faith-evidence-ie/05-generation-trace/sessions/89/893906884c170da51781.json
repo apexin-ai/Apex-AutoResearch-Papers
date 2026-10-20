@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "893906884c170da51781",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh rsft parallel 4shard",
+  "task_key": "worker_ssh_rsft-parallel-4shard_20260515T013659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rsft-parallel-4shard_20260515T013659_result.json",
+    "occurrence": 1,
+    "bytes": 449,
+    "sha256": "cc3d2ea95981a4a007a7cd2b0b7b62088ef35e064e75d374c39aaaf546a17ddb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个分片全部正常运行，无 OOM：\n\n| Shard | GPU | Docs | 速度 | 预计耗时 |\n|-------|-----|------|------|---------|\n| s0 | cuda:0 | 756 | ~14s/doc | ~3h |\n| s1 | cuda:1 | 756 | ~19s/doc | ~4h |\n| s2 | cuda:2 | 756 | ~12.5s/doc | ~2.6h |\n| s3 | cuda:3 | 759 | ~18s/doc | ~3.8h |\n\n总计 3027 文档 × 8 generations，batch_size=1，输出到 `/root/autodl-tmp/rsft_generations/shard_{0-3}/generations.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rsft-parallel-4shard.md"
+}

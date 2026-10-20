@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac9c2e039cb825835467",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan 002 003 prep",
+  "task_key": "worker_code_plan_002_003_prep_20260515T180127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_002_003_prep_20260515T180127_result.json",
+    "occurrence": 1,
+    "bytes": 2989,
+    "sha256": "c3fd34e827c95a7c2aa8fdd98c75c597d857623af091c5b361b74653a95a89f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出汇总\n\n### Plan_002: Test Set Evaluation — 可行性报告\n\n**结论：test set 无 gold labels，必须提交 CodaLab 评测。**\n\n- `test.json`: 1000 docs, keys=`[sents, title, vertexSet]`, **无 labels 字段**\n- 原 `inference.py --split test` 不可用（`prepare_eval_data` 依赖 labels 构造 prompt，test split 返回 0 docs）。已有失败记录：`test_rsft_s44/` 产出 0 条预测\n- 已部署 `test_inference.py`，从 vertexSet 直接构造 prompt，绕过 labels 依赖，附带 CodaLab 格式转换（relation name → Pxxx code, entity name → vertexSet index）\n\n**推荐方案：用 RSFT best seed (s43, rel_f1=0.4683) 跑 test**\n\nDry-run 命令：\n```bash\ncd /root/autodl-tmp && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nCUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference \\\n  --model_path /root/autodl-tmp/rsft_output_s43 \\\n  --base_model /root/autodl-tmp/models/Qwen3-4B \\\n  --sft_adapter /root/autodl-tmp/sft_output \\\n  --data_path /root/autodl-tmp/data/docred \\\n  --output_dir /root/autodl-tmp/eval_results/test_rsft_s43 \\\n  --no-quantize --batch_size 16 --max_new_tokens 1024\n```\n预计时长：~1h（1000 docs, 参照 dev 985 docs ~3600s）。产出 `codalab_submission.json` 可直接提交。\n\n---\n\n### Plan_003: EDCR Cross-Method Table — 已完成\n\n脚本和数据均已就绪。完整表格：\n\n```\nMethod                       rel_f1   delta  evi_f1    EDCR   delta  preds  trunc\n──────────────────────────────────────────────────────────────────────────────────\nSFT baseline                 0.4057   +0.0p  0.7979  0.7118   +0.0p  18815    367\nRSFT-CED (s42, 3ep)          0.4449   +3.9p  0.8187  0.6565   -5.5p  15307    213\nRSFT-CED (s43, 3ep)          0.4683   +6.3p  0.8156  0.6388   -7.3p  14970    171\nRSFT-CED (s44, 3ep)          0.4655   +6.0p  0.8087  0.6350   -7.7p  15202    189\nRSFT-CED (r2a, 1ep)          0.4494   +4.4p  0.8108  0.6641   -4.8p  15482    208\nRSFT-CED (r2b, α=32)         0.4493   +4.4p  0.8128  0.6609   -5.1p  14829    179\nRSFT-flatNLI (3ep)           0.4539   +4.8p  0.8043  0.6431   -6.9p  15294    199\nCED-reranker (N=8)           0.4864   +8.1p  0.8188  0.6156   -9.6p  14782      -\nbf16 GRPO (G=8)              0.4549   +4.9p  0.8086  0.6318   -8.0p  10701     61\n\nRSFT-CED 3-seed: 0.4596±0.0128 | 0.8144±0.0051 | 0.6434±0.0114\n```\n\n**关键观察**：所有改进方法 EDCR 均低于 SFT（0.71→0.61-0.66），rel_f1 提升越大 EDCR 下降越多。这是 recall-oriented training 的固有 trade-off：更多预测 → 更多 distractor citations。EDCR 数据跨方法一致，均由同一 evaluator.py 计算，无需重跑。\n\n重新生成表格：`cd /root/autodl-tmp && python -m freige.eval.cross_method_table`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-002-003-prep.md"
+}

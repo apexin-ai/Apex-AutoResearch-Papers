@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ef6868ed68e529b0a96",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "verify 4b s44 adapter path",
+  "task_key": "worker_verify_4b_s44_adapter_path_20260521T171133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_4b_s44_adapter_path_20260521T171133_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "e9b665cbc109e757782d3666695f8f4c4a9a985dc8f30dc5e9601d3a67d9e0ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nsft_output_seed44: EXISTS (Qwen3-4B, LoRA r=64, alpha=128, created May 18)\nsft_output_qwen3_4b_bf16_s44: MISSING\ncorrect_adapter_for_s44_pair: /root/autodl-tmp/sft_output_seed44\nwith_evi_experiment_using: /root/autodl-tmp/sft_output_seed44 (d145 log line: \"Loading & merging SFT adapter: /root/autodl-tmp/sft_output_seed44\")\ntest_eval_1_7b: ALIVE (elapsed 5h32m), progress: 473/500 (95%) — 约20分钟完成\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-4b-s44-adapter-path.md"
+}

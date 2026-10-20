@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c84bf6ca8e9c94d9dd4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp rsft ced topk3 scoring",
+  "task_key": "worker_exp_rsft-ced-topk3-scoring_20260515T061123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_rsft-ced-topk3-scoring_20260515T061123_result.json",
+    "occurrence": 1,
+    "bytes": 105,
+    "sha256": "4cb5c0be6d0cd846972d337c792cd2ca59e603e4469d2769d0f501a2cf655910"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Background watcher set — I'll be notified when PID 167921 exits. Waiting for completion."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-rsft-ced-topk3-scoring.md"
+}

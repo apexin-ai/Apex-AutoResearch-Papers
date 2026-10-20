@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2115cc0497c43109a904",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis edcr diagnostic",
+  "task_key": "worker_analysis_edcr_diagnostic_20260515T234346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_edcr_diagnostic_20260515T234346_result.json",
+    "occurrence": 1,
+    "bytes": 857,
+    "sha256": "84b959ae21def1b3c15e00ff5edb355ae9d89e4a0f3178ac72848bdcecbfb27e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "EDCR diagnostic 完成。14 个方法全部成功分析，registry 已更新为 DONE。\n\n**结果摘要（viable methods, rel_f1>0.4）：**\n\n| Method | rel_f1 | evi_f1 | EDCR |\n|---|---|---|---|\n| **GRPO bf16 ckpt100** | 0.4549 | 0.8086 | **0.6318** (最低) |\n| RSFT-CED s44 | 0.4655 | 0.8087 | 0.6350 |\n| RSFT-CED s43 | 0.4683 | 0.8156 | 0.6388 |\n| RSFT-flatNLI s42 | 0.4539 | 0.8043 | 0.6431 |\n| RSFT-CED s42 | 0.4449 | 0.8187 | 0.6565 |\n| SFT baseline (quant) | 0.4057 | 0.7979 | 0.7118 (最高) |\n\nGRPO bf16 ckpt100 的 EDCR 最低（0.6318）且 per-doc std 最小（0.2743），evidence 质量最稳定。SFT no-evidence 的 EDCR=0 符合预期（无 evidence 输出）。DPO-CED 1ep / RSFT-flatNLI s43 / GRPO QLoRA lr5e6 的 EDCR≈1.0 是因为 rel_f1<0.02，模型退化导致几乎所有 citation 都是 distractor。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-edcr-diagnostic.md"
+}

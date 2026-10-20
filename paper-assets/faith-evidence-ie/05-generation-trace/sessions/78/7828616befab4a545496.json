@@ -1,0 +1,372 @@
+{
+  "schema_version": "1.0",
+  "id": "7828616befab4a545496",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "analysis llama sft s43 train eval r3",
+  "task_key": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644.jsonl",
+    "occurrence": 1,
+    "bytes": 13282,
+    "sha256": "aaaeef63dff2b2be505e6b2d2bdad15bc7b5728c7a1f8820bd3ffe13cf846922"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T14:07:46.676020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T14:07:46.676441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T14:07:46.676626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -100 /root/runs/faith-evidence-ie/llama_sft_s43_train_eval_r3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T14:07:46.676870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/sft_output_llama_3_1_8b_s43/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T14:07:46.677138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 88%|████████▊ | 869/985 [01:03<00:07, 15.26it/s]\\\\u001b[A\\\\n\\\\r 88%|████████▊ | 871/985 [01:03<00:07, 14.57it/s]\\\\u001b[A\\\\n\\\\r 89%|████████▊ | 873/985 [01:03<00:07, 14.57it/s]\\\\u001b[A\\\\n\\\\r 89%|████████▉ | 875/985 [01:04<00:07, 13.81it/s]\\\\u001b[A\\\\n\\\\r 89%|████████▉ | 877/985 [01:04<00:07, 13.76it/s]\\\\u001b[A\\\\n\\\\r 89%|████████▉ | 879/985 [01:04<00:08, 13.21it/s]\\\\u001b[A\\\\n\\\\r 89%|████████▉ | 881/985 [01:04<00:08, 12.51it/s]\\\\u001b[A\\\\n\\\\r 90%|████████▉ | 883/985 [01:04<00:07, 13.05it/s]\\\\u001b[A\\\\n\\\\r 90%|████████▉ | 885/985 [01:04<00:07, 13.44it/s]\\\\u001b[A\\\\n\\\\r 90%|█████████ | 887/985 [01:05<00:07, 13.26it/s]\\\\u001b[A\\\\n\\\\r 90%|█████████ | 889/985 [01:05<00:07, 13.47it/s]\\\\u001b[A\\\\n\\\\r 90%|█████████ | 891/985 [01:05<00:06, 13.84it/s]\\\\u001b[A\\\\n\\\\r 91%|█████████ | 893/985 [01:05<00:06, 13.30it/s]\\\\u001b[A\\\\n\\\\r 91%|█████████ | 895/985 [01:05<00:06, 14.51it/s]\\\\u001b[A\\\\n\\\\r 91%|█████████ | 897/985 [01:05<00:06, 14.49it/s]\\\\u001b[A\\\\n\\\\r 91%|█████████▏| 899/985 [01:05<00:06, 13.25it/s]\\\\u001b[A\\\\n\\\\r 91%|█████████▏| 901/985 [01:06<00:06, 13.62it/s]\\\\u001b[A\\\\n\\\\r 92%|█████████▏| 903/985 [01:06<00:06, 13.61it/s]\\\\u001b[A\\\\n\\\\r 92%|█████████▏| 905/985 [01:06<00:07, 11.36it/s]\\\\u001b[A\\\\n\\\\r 92%|█████████▏| 907/985 [01:06<00:06, 11.55it/s]\\\\u001b[A\\\\n\\\\r 92%|█████████▏| 909/985 [01:06<00:07, 10.37it/s]\\\\u001b[A\\\\n\\\\r 92%|█████████▏| 911/985 [01:06<00:06, 11.57it/s]\\\\u001b[A\\\\n\\\\r 93%|█████████▎| 913/985 [01:07<00:06, 11.24it/s]\\\\u001b[A\\\\n\\\\r 93%|█████████▎| 915/985 [01:07<00:05, 12.22it/s]\\\\u001b[A\\\\n\\\\r 93%|█████████▎| 917/985 [01:07<00:05, 12.53it/s]\\\\u001b[A\\\\n\\\\r 93%|█████████▎| 919/985 [01:07<00:04, 13.90it/s]\\\\u001b[A\\\\n\\\\r 94%|█████████▎| 921/985 [01:07<00:04, 14.56it/s]\\\\u001b[A\\\\n\\\\r 94%|████████��▎| 923/985 [01:07<00:04, 12.82it/s]\\\\u001b[A\\\\n\\\\r 94%|█████████▍| 925/985 [01:07<00:04, 13.06it/s]\\\\u001b[A\\\\n\\\\r 94%|█████████▍| 927/985 [01:08<00:04, 14.18it/s]\\\\u001b[A\\\\n\\\\r 94%|█████████▍| 929\n…[truncated 6984 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T14:07:46.677361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 672276\\\\ndrwx------  4 root root      4096 May 20 20:06 .\\\\ndrwxr-xr-x 80 root root      8192 May 20 12:32 ..\\\\n-rw-r--r--  1 root root      1522 May 20 20:06 README.md\\\\n-rw-r--r--  1 root root      1132 May 20 20:06 adapter_config.json\\\\n-rw-r--r--  1 root root 671149168 May 20 20:06 adapter_model.safetensors\\\\n-rw-r--r--  1 root root       384 May 20 20:06 chat_template.jinja\\\\ndrwxr-xr-x  2 root root      4096 May 20 19:38 checkpoint-190\\\\ndrwxr-xr-x  2 root root      4096 May 20 20:06 checkpoint-570\\\\n-rw-r--r--  1 root root  17209920 May 20 20:06 tokenizer.json\\\\n-rw-r--r--  1 root root       389 May 20 20:06 tokenizer_config.json\\\\n-rw-r--r--  1 root root      5777 May 20 20:06 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T14:07:46.677560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/sft_llama_s43_eval/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T14:07:46.677749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5168863583183839,\\\\n  \\\\\\\"recall\\\\\\\": 0.5453872109291417,\\\\n  \\\\\\\"f1\\\\\\\": 0.5307544449783758,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.49165261382799325,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.5388596248036226,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5141748600149906,\\\\n  \\\\\\\"tp\\\\\\\": 6627,\\\\n  \\\\\\\"pred_count\\\\\\\": 12821,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8761566501542201,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.7786360993437993,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8245228252264931,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15504,\\\\n  \\\\\\\"edcr\\\\\\\": 0.5865566973933753,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 13299,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 22673,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.42544993930437536,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.4185140958413374,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.42195351758793975,\\\\n  \\\\\\\"evi_tp\\\\\\\": 8061,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 18947,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8071065989847716,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8060913705583757,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 795,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 794,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15548,\\\\n  \\\\\\\"n_truncated\\\\\\\": 190,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6971.8,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_llama_3_1_8b_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": null,\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/sft_llama_s43_eval\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\n…[truncated 69 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T14:07:46.677920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -i \"wandb\\|run_id\\|run_name\" /root/runs/faith-evidence-ie/llama_sft_s43_train_eval_r3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T14:07:46.678055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T14:07:46.678185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep \"train_loss\\|training_loss\\|'loss'\" /root/runs/faith-evidence-ie/llama_sft_s43_train_eval_r3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T14:07:46.678352+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T14:07:46.678508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -i \"wandb\" /root/runs/faith-evidence-ie/llama_sft_s43_train_eval_r3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T14:07:46.678642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T14:07:46.678763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep \"train_loss\" /root/runs/faith-evidence-ie/llama_sft_s43_train_eval_r3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T14:07:46.678887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'train_runtime': '2577', 'train_samples_per_second': '3.524', 'train_steps_per_second': '0.221', 'train_loss': '0.521', 'epoch': '3'}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T14:07:46.679051+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 wandb 记录。所有数据已收集完毕。\n\n## 结果\n\n- **conclusion**: success\n- **ign_f1**: 0.5142\n- **evi_f1**: 0.4220 (joint) / 0.8245 (TP)\n- **edcr**: 0.5866\n- **re_p** (ign_precision): 0.4917\n- **re_r** (ign_recall): 0.5389\n- **train_loss_final**: 0.521\n- **checkpoint_path**: `/root/autodl-tmp/sft_output_llama_3_1_8b_s43/` (adapter_model.safetensors 640MB, checkpoint-190, checkpoint-570)\n- **log_path**: `~/runs/faith-evidence-ie/llama_sft_s43_train_eval_r3.log`\n- **wandb_run_id**: 无（未启用 wandb）\n\n## 对比\n\n| Seed | ign_f1 | evi_f1 (joint) | edcr |\n|------|--------|----------------|------|\n| s42 (SFT) | 0.5384 | — | — |\n| **s43 (SFT)** | **0.5142** | **0.4220** | **0.5866** |\n| RSFT 3-seed mean | 0.5654 ± 0.0052 | — | — |\n\ns43 ign_f1 = 0.5142，比 s42 (0.5384) 低 **0.0242**（-4.5%）。两个 SFT seed 目前 mean = 0.5263，与 RSFT mean 0.5654 差距 0.0391。\n\nSFT 两个 seed 之间的差异 (0.0242) 已经明显大于 RSFT 3-seed 的 std (0.0052)，初步支持 \"SFT variance > RSFT variance\" 的 claim。还需要 s44 完成 3-seed 统计才能做正式对比。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_sft_s43_train_eval_r3_20260520T140644"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-llama-sft-s43-train-eval-r3.md"
+}

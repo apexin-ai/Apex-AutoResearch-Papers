@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7654544ffdac692eb8f6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check llama seed43 result",
+  "task_key": "worker_ops_check_llama_seed43_result_20260517T155759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_llama_seed43_result_20260517T155759_result.json",
+    "occurrence": 1,
+    "bytes": 343,
+    "sha256": "2df2999160eca0772854a06d6b07eaf3155c64f0ac3f7677192a68ac0a963992"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：训练成功完成。**\n\n| 指标 | 值 |\n|------|-----|\n| Final loss | 0.3715 |\n| Mean token accuracy | 94.18% |\n| 训练时长 | 2h 49m |\n| Epochs | 3 (3312 steps) |\n| Checkpoint | `/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/` |\n\nRegistry 已更新为 success，cron 已删除。可以开始 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-llama-seed43-result.md"
+}

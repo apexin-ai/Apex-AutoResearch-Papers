@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c093a6f1620ca469b48",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval reeval rsft topk3",
+  "task_key": "worker_eval_reeval_rsft_topk3_20260515T220115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_reeval_rsft_topk3_20260515T220115_result.json",
+    "occurrence": 1,
+    "bytes": 775,
+    "sha256": "4180a2e06e934172f420d73cf448cb5729693ead814bf9e8dcf6d9efed9c05c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 `--gpu` 参数，使用 `device_map=\"auto\"`，由 `CUDA_VISIBLE_DEVICES` 控制（submit_training_job 自动设置）。\n\n**C001 约束阻止提交：GPU 3 显存占用 31134 MiB >> 2GB。** 所有 4 张卡都在跑任务，没有空闲卡。\n\nGPU 3 上两个 eval 进程：\n- PID 261622: `rsft_s44` eval，已跑 4h24m\n- PID 262080: `dpo_ced_1ep_fixed` eval，已跑 2h55m\n\n其他准备工作已完成：\n- Checkpoint 确认：`/root/autodl-tmp/rsft_topk3_output/`（有 adapter_model.safetensors）\n- 模块路径：`python -m freige.eval.inference`（不是 `freige/inference.py`）\n- 完整命令已就绪，等 GPU 空闲即可提交\n\n需要等 GPU 3 的两个 eval 跑完，或你决定 kill 其中一个/换卡。要怎么处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-reeval-rsft-topk3.md"
+}

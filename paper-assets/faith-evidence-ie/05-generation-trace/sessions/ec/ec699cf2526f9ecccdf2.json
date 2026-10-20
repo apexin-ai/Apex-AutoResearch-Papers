@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec699cf2526f9ecccdf2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose d158 14b rsft s44 ced score",
+  "task_key": "worker_diagnose_d158_14b_rsft_s44_ced_score_20260525T040254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_d158_14b_rsft_s44_ced_score_20260525T040254_result.json",
+    "occurrence": 1,
+    "bytes": 1506,
+    "sha256": "8ab44b776072c5dbd20561c0c8b8aa7c2698049fd80b4e0dfc6f359e2da4f311"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 根本原因\n\n**网络不可达 + HF_HOME 未设置。**\n\n运行命令中没有设置 `HF_HOME=/root/autodl-tmp/.hf_cache`，导致 transformers 使用默认缓存路径 (`/root/.cache/huggingface/`，该目录不存在)。找不到本地缓存后尝试从 HuggingFace Hub 下载，但 AutoDL 网络不通（`[Errno 101] Network is unreachable`），重试耗尽后报错：\n\n```\nOSError: Can't load the configuration of 'cross-encoder/nli-deberta-v3-base'\n```\n\n模型文件实际完整存在于 `/root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7/`。\n\n### 是否可以直接重试\n\n**可以重试**，但必须在命令中加 `HF_HOME=/root/autodl-tmp/.hf_cache`。不需要修改代码。\n\n### 修复方案\n\n在运行命令前加环境变量：\n\n```bash\nHF_HOME=/root/autodl-tmp/.hf_cache CUDA_VISIBLE_DEVICES=2 python -m freige.training.rsft_score_filter ...\n```\n\n或者也可以用本地路径直接指定模型（跳过 Hub 解析）：\n\n```bash\n--nli_model_path /root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\n```\n\n### 补充信息\n\n- 输入数据 `/root/autodl-tmp/rsft_generations_14b_s44/generations.jsonl`（225MB, 24216 records）正常\n- 输出目录 `/root/autodl-tmp/rsft_scored_14b_s44/` 已创建但为空\n- 4 张 GPU 全部空闲（0 MiB 占用），无资源问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d158-14b-rsft-s44-ced-score.md"
+}

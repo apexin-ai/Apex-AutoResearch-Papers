@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcf83462a992965681c6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research test set eval prep",
+  "task_key": "worker_research_test-set-eval-prep_20260521T053550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_test-set-eval-prep_20260521T053550_result.json",
+    "occurrence": 1,
+    "bytes": 2840,
+    "sha256": "1cfc2e70ff7dd7c9afdb3258fefd1ae8443069fd5371bd504443cb29b7424aa6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。汇报如下：\n\n---\n\n## Test Set Eval 前置准备调研结果\n\n### 1. SFT/RSFT Adapter 可用性 — 全部 ✅\n\n| Adapter | 路径 | 状态 |\n|---------|------|------|\n| Qwen3-1.7B SFT | `sft_output_qwen3_1_7b_bf16/` | ✅ May 16 |\n| Qwen3-4B SFT | `sft_output/` | ✅ May 14 |\n| Qwen3-8B SFT | `sft_output_qwen3_8b_bf16/` | ✅ May 16 |\n| Qwen3-14B SFT | `sft_output_14b/checkpoint-144/` | ✅ May 19 |\n| LLaMA-3.1-8B SFT | `sft_output_llama_3_1_8b/` | ✅ May 16 |\n| LLaMA-3.1-8B RSFT | `rsft_output_llama_3_1_8b_k1/` | ✅ May 18 |\n| Qwen3-14B RSFT | `rsft_output_14b/` | ✅ May 21 |\n\n### 2. Test Set 数据文件 — ✅\n\n- **DocRED** `test.json`: 存在，**无 labels**（keys: vertexSet, title, sents）→ 需 CodaLab 提交\n- **Re-DocRED** `test_revised.json`: 存在（`/root/autodl-tmp/data/re-docred-repo/data/`），**有 labels** → 可本地评测\n\n### 3. CodaLab 提交流程 — ⚠️ 有问题\n\n**DocRED CodaLab** (`competitions.codalab.org/competitions/20717`):\n- 平台返回 **502**，疑似已关闭。CodaLab 于 2025-12-31 停止接受新提交。\n- GitHub Issue #65 也报告过 \"Invalid file type (application/json)\" 错误\n- 提交格式（如果能用的话）：JSON array of `{title, h_idx, t_idx, r, evidence}`\n\n**Re-DocRED**:\n- **无需 CodaLab**，test_revised.json 自带 labels，可本地评测\n- Leaderboard 在 [PapersWithCode](https://paperswithcode.com/sota/relation-extraction-on-redocred)\n\n### 4. 代码准备 — ✅ 基本就绪\n\n`freige/eval/test_inference.py` 已有完整流程：\n- 加载模型 + adapter → 对 test.json 做推理（不需要 gold labels）\n- 输出 `predictions.json` + `codalab_submission.json`\n- 支持 `--no_evidence` 参数\n- 自动做 entity name → vertexSet index 映射\n- 有 `--sft_adapter` 参数支持 stacked adapter\n\n**但有一个问题**：`prepare_test_data()` 硬编码读 `SPLIT_FILENAMES[\"test\"]` = `test.json`，如果要跑 Re-DocRED 的 `test_revised.json`，需要传不同的 `--data_path` 指向 `re-docred-repo/data/` 目录，且 SPLIT_FILENAMES 中没有 `test_revised` 的映射，代码会 fallback 到 `test.json`。需要小改代码或加参数。\n\n### 5. 需要用户确认的事项\n\n1. **DocRED CodaLab 已死，怎么办？**\n   - 选项 A：放弃 DocRED test eval，只报 Re-DocRED test 结果\n   - 选项 B：尝试联系 thunlp 作者获取 test labels\n   - 选项 C：论文中只报 dev set 结果（DocRED），test 结果只报 Re-DocRED\n   \n2. **哪些模型需要跑 test set？** 全部 7 个 adapter？还是只跑 best models（如 RSFT-14B、RSFT-LLaMA-8B）？\n\n3. **Re-DocRED test_inference 代码适配**：需要改 `test_inference.py` 支持 `test_revised.json`，或者手动把文件 rename/symlink。是否现在改？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-test-set-eval-prep.md"
+}

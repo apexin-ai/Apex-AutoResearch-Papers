@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c79a8af620a2069fea4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code 14b ced scoring prep",
+  "task_key": "worker_code_14b-ced-scoring-prep_20260520T170537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-ced-scoring-prep_20260520T170537_result.json",
+    "occurrence": 1,
+    "bytes": 2193,
+    "sha256": "d73872a3ccaf1ab615e05594870cdaee7434e56590dcd3febfd61804caeea136"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。汇报如下：\n\n---\n\n## 1. 当前 generation 数据状态\n\n| 文件 | 行数 | unique docs | 说明 |\n|------|------|-------------|------|\n| `generations.jsonl` | 22,688 | 2,836 | 主文件，r4 --resume 持续追加 |\n| `generations_old.jsonl` | 14,976 | 1,872 | 旧备份，完全被 generations.jsonl 包含 |\n| progress.json | — | 2,836 completed | 剩余 191 docs |\n\n每 doc 8 个候选样本。完成后预计 3027 × 8 = 24,216 行（与 4B 的 24,216 一致）。\n\n## 2. 数据合并方案\n\n**不需要合并**。`generations_old.jsonl` 的 1,872 docs 全部已在 `generations.jsonl` 中（overlap=1872, only_old=0）。r4 --resume 直接往 `generations.jsonl` 追加，是单一数据源。\n\n## 3. CED scoring 脚本\n\n已有现成脚本：`/root/autodl-tmp/freige/scripts/plan017/step2_ced_score_14b.sh`\n\n```bash\n#!/bin/bash\nset -euo pipefail\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/freige\n\nexport CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-0}}\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_OFFLINE=1\nexport TRANSFORMERS_OFFLINE=1\n\npython -m freige.training.rsft_score_filter \\\n    --input_dir \"/root/autodl-tmp/rsft_generations_14b\" \\\n    --output_path \"/root/autodl-tmp/rsft_scored_14b\" \\\n    --nli_model_path \"cross-encoder/nli-deberta-v3-base\" \\\n    --selection_strategy top_k \\\n    --top_k 1 \\\n    --scoring_mode ced\n```\n\n参数与 4B scoring 完全一致。NLI 模型已缓存在 HF_HOME。脚本无需修改。\n\n运行方式（遵守 C001/C002）：\n```bash\n# 先 nvidia-smi 确认目标 GPU 空闲\nGPU=X bash /root/autodl-tmp/freige/scripts/plan017/step2_ced_score_14b.sh\n```\n\n## 4. 预估运行时间\n\nCED scoring 瓶颈是 NLI DeBERTa 推理，与 generation 模型大小无关。14B 和 4B 数据量相同（~24K records），预估 **15-30 分钟**（单 GPU，DeBERTa-base 推理 24K 条文本对）。\n\n## 5. 参考：4B CED scoring 结果\n\n- 24,216 records → 选出 3,014 docs（top_k=1，12 docs 因 f1 < 0.1 被过滤）\n- selected 平均 f1: 0.676, ced: 0.676, combined: 0.741"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-14b-ced-scoring-prep.md"
+}

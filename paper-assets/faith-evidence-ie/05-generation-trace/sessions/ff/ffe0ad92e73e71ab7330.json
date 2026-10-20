@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffe0ad92e73e71ab7330",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_19_1779403943.md",
+  "task_key": "loop_19_1779403943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19_1779403943.md",
+    "occurrence": 1,
+    "bytes": 4427,
+    "sha256": "3e3d2f6afa3c59015cfa8a0fae9ea51973a7aa915c8b96442a253456a084da96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-21T19:41:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 rtx5090-4x 的 cuda:0/1/2/3（gpu_ids 白名单），bjb2-12179 已废弃\n- rtx5090-4x 用 conda 环境，激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- LLaMA SFT 脚本用 `GPU=X` 环境变量传物理 GPU 编号（脚本内部 `export CUDA_VISIBLE_DEVICES=${GPU:-...}` 会覆盖框架注入）\n- LLaMA SFT s42 的 ign_f1 是 0.5384（不是 0.5514，那是 re_f1），D130 已审计确认\n- LLaMA RSFT s42 的 ign_f1 是 0.5714（不是 0.5839），D129 已修正\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（SSH: `rtx5090-4x`，connect.westd.seetacloud.com:37389），4× RTX PRO 6000, 96GB VRAM/卡\n- 工作目录：`/root/autodl-tmp/freige`\n- Python：`/root/miniconda3/bin/python`（conda base env）\n- 数据集：`/root/autodl-tmp/data/docred`（train_annotated.json 3027 docs, dev.json ~1000 docs）\n- 14B 模型：`/root/autodl-tmp/models/Qwen/Qwen3-14B`，SFT adapter `/root/autodl-tmp/sft_output_14b`\n- LLaMA 模型：`/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`，SFT adapter `/root/autodl-tmp/sft_output_llama_3_1_8b`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程（均由 cron 监控）：\n  - eval_llama_rsft_s42_with_evidence_2048: PID 70706, cuda:0\n  - plan017_14b_rsft_eval_2048: PID 70388, cuda:1\n  - eval_llama_sft_s43_with_evidence_2048: PID 64391, cuda:2\n  - eval_llama_sft_s44_with_evidence_2048: PID 64023, cuda:3\n\n### 3. 📊 当前状态\nSession #19 刚完成启动初始化：read_registry + reconcile_crons + 读 report/ROADMAP，向 Director 汇报了状态。**未做任何实质操作**——4 GPU 全部饱和运行 matched@2048 eval，等待 cron 回调。\n\nRUNNING 实验（4/4 GPU）：\n| exp_id | GPU | 目标 |\n|--------|-----|------|\n| eval_llama_rsft_s42_with_evidence_2048 | cuda:0 | RSFT s42 with-evi@2048，验证 budget 对 RSFT 影响 |\n| plan017_14b_rsft_eval_2048 | cuda:1 | 14B RSFT with-evi@2048，验证无截断下 budget 无影响 |\n| eval_llama_sft_s43_with_evidence_2048 | cuda:2 | SFT s43 with-evi@2048，配对 no-evi@2048 算 matched tax |\n| eval_llama_sft_s44_with_evidence_2048 | cuda:3 | SFT s44 with-evi@2048，配对 no-evi@2048 算 matched tax |\n\n等待：4 个 cron 回调。无 pending Worker 或 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- eval_llama_sft_s43_with_evidence_2048 完成 → 记录 ign_f1 → 配对 s43 no-evi@2048 计算 matched SFT tax\n- eval_llama_sft_s44_with_evidence_2048 完成 → 记录 ign_f1 → 配对 s44 no-evi@2048(0.4373) 计算 matched SFT tax\n- s42/s43/s44 matched SFT tax 三组齐 → 计算 3-seed mean±std → 与 RSFT tax(-1.14pp±0.13pp) 对比 → 向 Director 汇报完整 matched evidence tax narrative\n- eval_llama_rsft_s42_with_evidence_2048 完成 → 与 @1024(0.5714) 对比 → 预期 delta 类似 s42 SFT 的 +2.65pp，确认 RSFT 也受截断影响\n- plan017_14b_rsft_eval_2048 完成 → 与 @1024(0.5886) 对比 → 预期 delta 极小（@1024 已无截断）\n- 全部 matched@2048 数据齐 → ROADMAP 下一步：Qwen with-evi 截断率检查（决定是否需 Qwen matched@2048）→ Paper Agent patch evidence tax 数字 → Reviewer 系统性审查\n\n### 5. 🎯 战略上下文\n- **论文核心**：FREIGE 系统性研究，3 贡献：(1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression\n- **投稿**：EMNLP 2026 Main（ARR July cycle，~55 天）\n- **D137 关键转折**：evidence tax 必须用 matched@2048 methodology，D136 的\"方向不稳定\"被推翻为截断伪影。当前 4 个实验就是在补这个 matched 数据\n- **已知数据点**：s42 SFT with-evi@2048 已完成（tax=-4.39pp，@1024→2048 delta=+2.65pp 证明截断伪影存在）\n- **SFT no-evi@2048 已有**：s42=0.4996, s43=0.4902, s44=0.4373（方差大 7.44pp，对比 RSFT 的 0.13pp 就是 variance compression 故事）\n- **易错点**：\n  - s43/s44 的 no-evi@2048 已有数据但 with-evi@2048 正在跑——不要混淆 @1024 和 @2048 的数字\n  - D139 发现 Qwen 8B evidence tax @1024 不可信（截断不对称 31.8%），matched@2048 完成后需检查 Qwen 是否也要重做\n  - 14B RSFT @1024 已无截断（truncated=0），所以 @2048 预期 delta 极小——如果出现大 delta 说明有 bug\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1779403943.md"
+}

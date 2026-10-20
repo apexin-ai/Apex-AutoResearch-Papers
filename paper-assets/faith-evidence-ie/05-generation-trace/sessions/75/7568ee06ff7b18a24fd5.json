@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7568ee06ff7b18a24fd5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code ced reranker poc",
+  "task_key": "worker_code_ced_reranker_poc_20260515T093913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ced_reranker_poc_20260515T093913_result.json",
+    "occurrence": 1,
+    "bytes": 1682,
+    "sha256": "ea9f1d24b4f02f185d0897a9129f18d1166ccc10b2a56858431abfa5586461cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完全成功。结果：\n\n```\n  Strategy               rel_f1   evi_f1     EDCR     prec   recall   ign_f1  preds\n  Greedy baseline        0.4267   0.7500   0.6970   0.3137   0.6667   0.4267     51\n  Random (N=8)           0.5600   0.7037   0.6042   0.5385   0.5833   0.5600     26\n  CED reranker           0.5333   0.7077   0.7356   0.4444   0.6667   0.5333     41\n  Oracle (upper)         0.9091   0.7368   0.0345   1.0000   0.8333   0.9091     25\n  CED vs Greedy: Δrel_f1=+0.1067\n  Oracle headroom: Δrel_f1=+0.4824\n```\n\n**报告：**\n\n- **脚本路径**：`/root/autodl-tmp/freige/eval/ced_reranker.py`\n- **功能验证**：2 docs dry-run 通过，全流程正常（sampled gen → greedy gen → CED scoring → eval → results.json + console summary）\n- **已有 full run (PID 178055)**：旧版脚本在 GPU 0 上跑全部 985 docs，已完成 ~30%（294/985），预估 ~4h 后完成。旧版的 `generations.jsonl` 格式兼容新脚本，可直接 resume\n- **速度估算**（单卡 RTX 5090）：\n  - Sampled generation (N=8): ~20s/doc → 50 docs ≈ 17min，985 docs ≈ 5.5h\n  - Greedy generation: ~6s/doc → 50 docs ≈ 5min\n  - CED scoring: ~3s/doc → 50 docs ≈ 2.5min\n  - **50 docs 总计 ≈ 25 min 单卡**\n- **GPU 需求**：1 张卡足够（Qwen3-4B bf16 ≈ 8GB，deberta-base ≈ 0.5GB）。多卡可通过 `CUDA_VISIBLE_DEVICES` 隔离\n- **NLI 模型**：使用已缓存的 `cross-encoder/nli-deberta-v3-base`（任务指定的 `deberta-v3-large-zeroshot-v2.0` 服务器上不存在）\n- **注意**：greedy 生成时 transformers 会打 warning（`top_p, top_k` not valid for greedy），不影响结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ced-reranker-poc.md"
+}

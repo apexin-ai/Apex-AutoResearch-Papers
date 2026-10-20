@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b62ef99850ff77b7424",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_10_1778880784.md",
+  "task_key": "loop_10_1778880784",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778880784.md",
+    "occurrence": 1,
+    "bytes": 4705,
+    "sha256": "540236b603b71367e524840e2794f754dc249e9178e5f1c4c7683602f1ed5122"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T21:21:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `gpu_ids=[0,1,2,3]`，仅限 rtx5090-4x 服务器。bjb2-12179 是备用服务器但当前无 GPU 分配\n- CED vs flat-NLI 统计不可区分（D056），CED 不再作为独立贡献。论文中 CED 定位为 \"one possible scoring function\"，不可声称 CED 显著优于 flat-NLI\n- GRPO decoupling 边界收窄为 \"GRPO fails for DocRE\"（非 \"online RL fails for structured IE\"）——D054 确认是 QLoRA-specific\n- plan_014 no-evidence ablation 数据（rel_f1=0.4893）是 C1 核心证据，已入 paper_framing，不可遗漏\n- submit_training_job 的命令必须自带环境激活（`source /root/miniconda3/bin/activate && python ...`），服务器用 conda 不是 venv\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x，account=root，工作目录 `/root/autodl-tmp/freige`\n- **Python**: conda base 环境，`/root/miniconda3/bin/python`\n- **4× RTX 5090 32GB**，全部占满（见 GPU 分配表）\n- **Cron 监控中**（4 个活跃）:\n  - eval_plan_001_flat_nli_s43 (pid 252179, cuda:0)\n  - plan_011_bf16_g8_step_eval (cuda:1)\n  - eval_plan_012_dpo_ced_1ep (cuda:2)\n  - eval_plan_008_rsft_topk3 (pid 255523, cuda:3)\n- **活跃 Worker**（3 个）:\n  - `worker_research_evidence-cost-literature` — 文献调研（CPU）\n  - `worker_ops_investigate-cuda2-dpo-1ep` — 查 DPO 1ep 进度\n  - `worker_ops_check-eval001-progress` — 查 eval001 进度\n\n### 3. 📊 当前状态\n上一个 session 完成了大量 reframe 工作（D054-D060），核心进展：plan_014 no-evidence ablation 确认 ~8pp evidence tax（C1）、plan_011 bf16 GRPO 确认 decoupling 是 QLoRA-specific（C2）、SFT no-quant 排除量化 confound、plan_009 forgetting dynamics 3-panel figure 已生成。\n\n**RUNNING 实验**（4 GPU 全满）:\n| GPU | exp_id | 说明 |\n|-----|--------|------|\n| cuda:0 | eval_plan_001_flat_nli_s43 | flat-NLI seed43 dev eval，完成后解锁 plan_002 test eval + plan_003 EDCR diagnostic |\n| cuda:1 | plan_011_bf16_g8_step_eval | bf16 GRPO G=8 step 30/50/70 eval，验证 C2 decoupling 在大 G 下是否复现 |\n| cuda:2 | eval_plan_012_dpo_ced_1ep | DPO+CED 1ep eval（3ep 过拟合 rel_f1=0.3429），验证 DPO 是否可行 |\n| cuda:3 | eval_plan_008_rsft_topk3 | RSFT top_k=3 dev eval，对比 top_k=1 (rel_f1≈0.46) |\n\n**QUEUED**: plan_001_flat_nli_seed45（等 GPU 释放）\n**PREPARING**: mvp2_eval_rsft_s44, plan_011_eval_g8_bf16_ckpt100\n\n等待 3 个 Worker 回调 + 4 个 cron 回调。无 Director 待决策项。\n\n### 4. 📋 待办（条件触发式）\n- eval_plan_001_flat_nli_s43 完成 → 释放 cuda:0 → 启动 plan_002 test set eval（P0）+ 启动 plan_001_flat_nli_seed45（已 QUEUED）\n- plan_011_bf16_g8_step_eval 完成 → 分析 step 30/50/70 的 rel_f1/evi_f1 曲线。若 decoupling 复现 → C2 confirmed；若不复现 → C2 scope 大幅缩减，必须向 Director 汇报 pivot\n- eval_plan_012_dpo_ced_1ep 完成 → rel_f1 > 0.40 → DPO 写入论文作为 offline preference baseline；rel_f1 < 0.35 → DPO 也 fail，加强 \"RL for DocRE is hard\" narrative\n- eval_plan_008_rsft_topk3 完成 → 对比 top_k=1 (rel_f1≈0.46)。若 top_k=3 更好 → 更新 best config；若无提升 → top_k 不是关键因素，写 null result\n- worker_research_evidence-cost-literature 完成 → 整合到 literature_map.yaml，看 evidence cost 文献是否有竞品\n- 所有 eval 收齐后 → Paper Agent retitle + related work 扩展 + plan_003 EDCR cross-method diagnostic table\n\n### 5. 🎯 战略上下文\n**核心论文定位**: \"task definition + cost of faithfulness + decoupling finding + EDCR metric\"。EMNLP ARR July（~7/15-25），剩 ~2 个月。\n\n**决策链关键节点**:\n- D056: CED vs flat-NLI 不显著 → C3 降级为 ablation，不再是独立贡献\n- D054: decoupling 是 QLoRA-specific（bf16 GRPO rel_f1=0.4549 正常），需要 plan_011 G=8 数据最终确认\n- D060: no-evidence ablation (rel_f1=0.4893) 量化了 evidence tax ~8pp，CED reranker 恢复 97%\n\n**最容易判断错的事**:\n1. plan_011 G=8 step eval 是关键分叉点——如果 bf16 G=8 下 decoupling 不出现，C2 的 scope 从 \"GRPO decoupling\" 变成 \"QLoRA + GRPO decoupling\"，论文 novelty 大打折扣。不要在结果出来前假设 C2 已确认\n2. DPO 3ep 过拟合（rel_f1=0.3429）不代表 DPO 彻底失败——1ep 可能恢复。等 eval_plan_012 结果\n3. memory.md 目前是 placeholder，所有关键信息在 paper_framing.md + ROADMAP.md + registry\n4. 报告中大量 mvp2_* 实验显示 failed/killed（告警区），这些是历史 QLoRA GRPO 系列实验的残留，不需要处理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778880784.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "392180fec0827d84c7f0",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_7_1778855642.md",
+  "task_key": "loop_7_1778855642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778855642.md",
+    "occurrence": 1,
+    "bytes": 4082,
+    "sha256": "d09f36ac8aaa8e5556866e7545156c9285b1dcde3d8fce8c6702762e32a84954"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-15T14:32:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（rtx5090-4x），其他 GPU 编号禁止使用\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，服务器无 .venv\n- RSFT eval 的 `--gpu 0` 是逻辑 GPU（框架自动映射物理 GPU），不要改成物理编号\n- D038 已撤回 D037 的 \"RSFT 全线 FAIL\" 结论——rel_f1=0.0483 是 eval bug（TaskEvalCallback 未限制 gold triples 到 eval_max_docs 子集），全量 eval 已证明 RSFT 有效（s44: rel_f1=0.4655）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x，account=root，4× RTX 5090 32GB\n- 工作目录：/root/autodl-tmp\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 代码：/root/autodl-tmp/freige/（`python -m freige.*` 调用）\n- 模型：/root/autodl-tmp/models/Qwen3-4B（base），/root/autodl-tmp/sft_output（SFT adapter）\n- RSFT adapters：/root/autodl-tmp/rsft_output（r1/seed42），rsft_output_s43（seed43），rsft_output_s44（seed44）\n- 数据：/root/autodl-tmp/data/docred，/root/autodl-tmp/rsft_filtered/rsft_train.jsonl（2718 samples）\n- HF cache：/root/autodl-tmp/.hf_cache\n- 活跃进程（reconcile 确认）：\n  - mvp2_ced_reranker_poc: PID 178050, cuda:0\n  - mvp2_eval_rsft_r1: PID 186329, cuda:2\n  - mvp2_eval_rsft_r2a: PID 189488, cuda:1\n  - mvp2_eval_rsft_r2b: PID 189855, cuda:3\n\n### 3. 📊 当前状态\n**刚做完**：收到 mvp2_eval_rsft_s43 失败回调（EXIT_CODE=2, shell syntax, 仅 18.9s），已派诊断 Worker `worker_diag_mvp2_eval_rsft_s43_20260515T112747` 去读日志，**Worker 回调尚未返回**。\n\n**RUNNING（4 个，4 卡全占满）**：\n| exp_id | GPU | 任务 |\n|--------|-----|------|\n| mvp2_ced_reranker_poc | cuda:0 | CED-as-reranker POC（N=8 候选推理时重排） |\n| mvp2_eval_rsft_r1 | cuda:2 | RSFT r1 seed=42 全量 dev eval（985 docs） |\n| mvp2_eval_rsft_r2a | cuda:1 | RSFT r2a eval（3 epoch, alpha=128） |\n| mvp2_eval_rsft_r2b | cuda:3 | RSFT r2b eval（1 epoch, alpha=32, lr=1e-5） |\n\n**等待中**：\n- 诊断 Worker 回调 → 修复后重新提交 mvp2_eval_rsft_s43（需等 GPU 空出）\n- 4 个 RUNNING eval 的 cron 完成回调\n- mvp2_rsft_ced_scoring_topk3: PENDING 等人工审批\n- Director 尚未收到 s43 失败通知（诊断完再报）\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 返回 → 根据根因修复命令 → 等 GPU 空出后重新提交 mvp2_eval_rsft_s43（seed=43 是 3-seed 方差估计的第 3 个点）\n- mvp2_eval_rsft_r1 完成 → 对比 s44 (rel_f1=0.4449) 和 r1 预期，更新 registry，汇报 Director\n- mvp2_eval_rsft_r2a / r2b 完成 → 与 r1 对比（ablation: epoch 数 + LoRA scaling + lr），判断哪组超参最优\n- mvp2_ced_reranker_poc 完成 → 对比 reranker vs fine-tuning 路线，如果 reranker rel_f1 > 0.4057 则 CED 有推理时价值\n- 3 seed eval 全部完成（r1 + s44 + s43）→ 计算均值/方差 → 可触发 complete_mvp() 进入论文阶段\n- topk3 审批通过 → 提交 CED scoring ablation 实验\n\n### 5. 🎯 战略上下文\n- **核心结论链**：MVP-1 PASS（CED margin 0.4827）→ GRPO+QLoRA 全线 FAIL（D031/D033, catastrophic forgetting）→ pivot 到离线 RL → RSFT 生成 diversity OK（D036 撤销 D034/D035）→ RSFT 训练 success → s44 eval PASS（rel_f1=0.4655 > SFT 0.4057）\n- **当前位置**：MVP-2 离线 RL 验证的最后一英里——跑 3-seed eval + ablation 确认鲁棒性\n- **最易判断错的事**：D037 声称 \"RSFT 全线 FAIL\" 但已被 D038 撤回（eval bug），实际 RSFT 是 work 的。不要因为 registry 里 mvp2_rsft_train_r1 的 metrics.rel_f1=0.0483 就认为失败，那是 TaskEvalCallback 的 bug 数字\n- **s43 失败是 shell 问题不是方法问题**：EXIT_CODE=2 + 18.9s = 命令根本没跑起来，修复后重提即可\n- **Post-MVP 路径**：3-seed eval 全 PASS → complete_mvp() → paper_framing.md → experiment_plan.yaml → 全面实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778855642.md"
+}

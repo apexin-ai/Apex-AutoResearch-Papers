@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5be438b1d67dd552c03",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix plan 009 csv sync",
+  "task_key": "worker_fix_plan_009_csv_sync_20260515T190642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_plan_009_csv_sync_20260515T190642_result.json",
+    "occurrence": 1,
+    "bytes": 723,
+    "sha256": "0ae3435ca2f3e8b9d6708b01ffc00bfb9ac40515c65bf9aa25c1168e5ad0c7fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三件事全部完成：\n\n1. **修 CSV `group_size`**：两份本地 CSV（`plan_009_forgetting_data.csv` 和 `_v5.csv`）中 `qlora_ced_lr5e6` 的 `group_size` 已从 `4` 改为 `8`。服务器端 `training_logs_grpo.json` 新增 `_metadata` 段记录各实验的 `group_size`，plot 脚本标签统一添加了 `G=8`，并重新生成了 PDF/PNG。\n\n2. **同步图表 + 注册 artifact**：`grpo_forgetting_dynamics.pdf` 和 `.png` 已 SCP 到本地 artifacts 目录，注册为 `art_20260515_8df0cd`（PDF）和 `art_20260515_6847e6`（PNG）。\n\n3. **memory.md 已更新**：添加了 \"Figure Notes\" 段，记录 caption 需注明\"仅展示 CED reward 变体\"以及 `group_size` 修正记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-plan-009-csv-sync.md"
+}

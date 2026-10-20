@@ -1,0 +1,645 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f594ee38a7bec77afe15",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本的 Module E 都用的 `ign_f1`（439 docs = -6.12pp，442 docs = -6.16pp）。artifact 中 4.9pp 来自 Truncation Crossover Analysis 中 \"Neither truncated\" 类别（442 docs），但用的是不同的 F1 计算。让我写验证脚本确定 64.28%/59.38% 是哪种 F1。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "d934f98f-df80-46a7-87de-a19e278b8e43",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XoprcdsKCdmLz2MLKv5fiY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3623,
+                "cache_read_input_tokens": 79590,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3623
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DzMeJo2MaTRoAJwBskmZQn",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/freige && python -c \"\nimport json, sys\nsys.path.insert(0, '.')\nfrom eval.evaluator import DocREDEvaluator\n\nTRAIN_PATH = '/root/autodl-tmp/data/docred/train_annotated.json'\nevaluator = DocREDEvaluator.from_train_file(TRAIN_PATH)\n\n# Load predictions\nwith open('/root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval/predictions.json') as f:\n    we = json.load(f)\nwith open('/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3/predictions.json') as f:\n    ne = json.load(f)\n\n# Get neither-truncated docs (trunc-only definition)\nwe_trunc = set(p['doc_id'] for p in we if p['truncated'])\nne_trunc = set(p['doc_id'] for p in ne if p['truncated'])\nunion_trunc = we_trunc | ne_trunc\nall_ids = [p['doc_id'] for p in ne]\nfair_trunc = [d for d in all_ids if d not in union_trunc]\nprint(f'Fair trunc-only: {len(fair_trunc)} docs')\n\n# Method 1: Aggregate ign_f1 (official evaluator)\ndef agg_eval(preds, doc_ids):\n    ids = set(doc_ids)\n    sp, sg = [], []\n    for p in preds:\n        if p['doc_id'] not in ids: continue\n        for t in p['parsed_triples']:\n            if isinstance(t, dict):\n                sp.append({'doc_id': p['doc_id'], 'head': t.get('head',''), 'tail': t.get('tail',''), 'relation': t.get('relation','')})\n        for t in p['gold_triples']:\n            if isinstance(t, dict):\n                sg.append({'doc_id': p['doc_id'], 'head': t.get('head',''), 'tail': t.get('tail',''), 'relation': t.get('relation','')})\n    return evaluator.compute_f1(sp, sg)\n\nwe_m = agg_eval(we, fair_trunc)\nne_m = agg_eval(ne, fair_trunc)\nprint(f'Aggregate ign_f1: WE={we_m[\\\"ign_f1\\\"]:.4f} NE={ne_m[\\\"ign_f1\\\"]:.4f} Tax={(ne_m[\\\"ign_f1\\\"]-we_m[\\\"ign_f1\\\"])*100:+.2f}pp')\nprint(f'Aggregate f1:     WE={we_m[\\\"f1\\\"]:.4f} NE={ne_m[\\\"f1\\\"]:.4f} Tax={(ne_m[\\\"f1\\\"]-we_m[\\\"f1\\\"])*100:+.2f}pp')\n\n# Method 2: Per-doc F1 average\ndef per_doc_f1(preds, doc_ids):\n    ids = set(doc_ids)\n    doc_f1s = []\n    for p in preds:\n        if p['doc_id'] not in ids: continue\n        pred_set = set()\n        gold_set = set()\n        for t in p['parsed_triples']:\n            if isinstance(t, dict):\n                pred_set.add((t.get('head','').lower().strip(), t.get('tail','').lower().strip(), t.get('relation','').lower().strip()))\n        for t in p['gold_triples']:\n            if isinstance(t, dict):\n                gold_set.add((t.get('head','').lower().strip(), t.get('tail','').lower().strip(), t.get('relation','').lower().strip()))\n        if not gold_set:\n            continue\n        tp = len(pred_set & gold_set)\n        p_val = tp / len(pred_set) if pred_set else 0\n        r_val = tp / len(gold_set) if gold_set else 0\n        f1 = 2*p_val*r_val/(p_val+r_val) if (p_val+r_val) > 0 else 0\n        doc_f1s.append(f1)\n    return sum(doc_f1s)/len(doc_f1s) if doc_f1s else 0\n\nwe_pdf = per_doc_f1(we, fair_trunc)\nne_pdf = per_doc_f1(ne, fair_trunc)\nprint(f'Per-doc avg F1:   WE={we_pdf:.4f} NE={ne_pdf:.4f} Tax={(ne_pdf-we_pdf)*100:+.2f}pp')\n\" 2>&1\n",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "80c879a0-9531-4e8c-9f24-bbaab88afba0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XoprcdsKCdmLz2MLKv5fiY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3623,
+                "cache_read_input_tokens": 79590,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3623
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-18T13:40:26.356Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DzMeJo2MaTRoAJwBskmZQn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fair trunc-only: 442 docs\\\\nAggregate ign_f1: WE=0.6319 NE=0.5704 Tax=-6.16pp\\\\nAggregate f1:     WE=0.6455 NE=0.5843 Tax=-6.12pp\\\\nPer-doc avg F1:   WE=0.6426 NE=0.5938 Tax=-4.87pp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "59ba73b9-abf6-4876-bcdd-cad5349d91c2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fair trunc-only: 442 docs\\\\nAggregate ign_f1: WE=0.6319 NE=0.5704 Tax=-6.16pp\\\\nAggregate f1:     WE=0.6455 NE=0.5843 Tax=-6.12pp\\\\nPer-doc avg F1:   WE=0.6426 NE=0.5938 Tax=-4.87pp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Fair trunc-only: 442 docs\\nAggregate ign_f1: WE=0.6319 NE=0.5704 Tax=-6.16pp\\nAggregate f1:     WE=0.6455 NE=0.5843 Tax=-6.12pp\\nPer-doc avg F1:   WE=0.6426 NE=0.5938 Tax=-4.87pp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+              }
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all three calculations:\n\n| Method | WE F1 | NE F1 | Tax |\n|---|---|---|---|\n| Aggregate ign_f1 | 0.6319 | 0.5704 | -6.16pp |\n| Aggregate f1 | 0.6455 | 0.5843 | -6.12pp |\n| Per-doc avg F1 | 0.6426 | 0.5938 | -4.87pp |\n\nThe artifact reports: WE=64.28%, NE=59.38%, tax=-4.90pp.\n\n\nThe per-doc average F1 matches the artifact almost exactly (64.26% vs 64.28%), so I've found the discrepancy: fair_eval.py uses aggregate ign_f1 while the crossover analysis uses per-doc averaging, which explains the -6.16pp versus -4.87pp difference in the tax calculation.\n\nThe paper should stick with ign_f1 since that's the standard DocRED metric used everywhere else, making D083's -6.16pp the correct number. The artifact's per-doc approach is inconsistent with the rest of the evaluation methodology.\n\nBetween the strict and trunc-only definitions, D083 went with trunc-only (442 docs, -6.16pp), though the strict variant (439 docs, -6.12pp) is more conservative—the difference is negligible either way.\n\nFor the paper, trunc-only makes more sense because it isolates the truncation confounder specifically, while repetition is its own separate mechanism, and keeping those repetitive-only docs preserves closer alignment with the full dataset.\n\nSo the authoritative numbers are: 442 docs in the fair subset, with-evidence ign-F1 of 0.6319, no-evidence at 0.5704, giving a residual evidence benefit of 6.16pp.\n\nLet me verify this against the calculation—0.6319 minus 0.5704 equals 0.0615, which rounds to 6.15pp, so the magnitude is solidly around 6.2pp when accounting for rounding variation.\n\nNow checking what memory.md says about this same mechanism—it shows 1.7B with evidence helping by 4.9pp, which is notably different from the 6.2pp I'm seeing here.\n\nI need to correct that entry and then double-check the 8B model numbers as well, since the artifact showed different values for per-doc F1 versus ign_f1 across both Qwen3 and LLaMA.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "be9eb6c1-ac53-4ee4-8f00-a36ff454142e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017AMVqRNSSw2CqAX4WWBKnf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2716,
+                "cache_read_input_tokens": 83213,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2716
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**根因确认。** 三种 F1 计算对比（442 docs, trunc-only）：\n\n| 方法 | WE | NE | Tax |\n|---|---|---|---|\n| **Aggregate ign_f1**（标准 DocRED 指标） | 63.19% | 57.04% | **-6.16pp** |\n| Aggregate f1 | 64.55% | 58.43% | -6.12pp |\n| **Per-doc avg F1**（artifact 使用的） | 64.26% | 59.38% | **-4.87pp** |\n\n- **D083** 使用 aggregate ign_f1 → 442 docs, **-6.16pp** ✅\n- **art_20260518_cc2048** 使用 per-doc avg F1 → 442 docs, **-4.9pp** ❌（指标不一致）\n\nartifact 的 crossover analysis 表格用了 per-doc average F1 而非 ign_f1，导致与 D083 不一致。\n\n现在验证 8B 的数字也同样受影响。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "88c59951-40e9-40a1-9f99-db01d22dd468",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017AMVqRNSSw2CqAX4WWBKnf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2716,
+                "cache_read_input_tokens": 83213,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2716
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WVx1TGj9ur1oas82gSAuyT",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/freige && python -c \"\nimport json, sys\nsys.path.insert(0, '.')\nfrom eval.evaluator import DocREDEvaluator\n\nTRAIN_PATH = '/root/autodl-tmp/data/docred/train_annotated.json'\nevaluator = DocREDEvaluator.from_train_file(TRAIN_PATH)\n\npairs = {\n    'Qwen3-8B': {\n        'we': '/root/autodl-tmp/eval_results/qwen3_8b_sft_eval/predictions.json',\n        'ne': '/root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/predictions.json',\n    },\n    'LLaMA-8B': {\n        'we': '/root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval/predictions.json',\n        'ne': '/root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval/predictions.json',\n    },\n}\n\ndef agg_eval(preds, doc_ids, evaluator):\n    ids = set(doc_ids)\n    sp, sg = [], []\n    for p in preds:\n        if p['doc_id'] not in ids: continue\n        for t in p['parsed_triples']:\n            if isinstance(t, dict):\n                sp.append({'doc_id': p['doc_id'], 'head': t.get('head',''), 'tail': t.get('tail',''), 'relation': t.get('relation','')})\n        for t in p['gold_triples']:\n            if isinstance(t, dict):\n                sg.append({'doc_id': p['doc_id'], 'head': t.get('head',''), 'tail': t.get('tail',''), 'relation': t.get('relation','')})\n    return evaluator.compute_f1(sp, sg)\n\nfor name, paths in pairs.items():\n    with open(paths['we']) as f: we = json.load(f)\n    with open(paths['ne']) as f: ne = json.load(f)\n    \n    we_trunc = set(p['doc_id'] for p in we if p['truncated'])\n    ne_trunc = set(p['doc_id'] for p in ne if p['truncated'])\n    fair = [p['doc_id'] for p in ne if p['doc_id'] not in (we_trunc | ne_trunc)]\n    \n    we_m = agg_eval(we, fair, evaluator)\n    ne_m = agg_eval(ne, fair, evaluator)\n    \n    # per-doc avg F1\n    f1s_we, f1s_ne = [], []\n    ids = set(fair)\n    for label_preds, f1s in [(we, f1s_we), (ne, f1s_ne)]:\n        for p in label_preds:\n            if p['doc_id'] not in ids: continue\n            ps = set()\n            gs = set()\n            for t in p['parsed_triples']:\n                if isinstance(t, dict):\n                    ps.add((t.get('head','').lower().strip(), t.get('tail','').lower().strip(), t.get('relation','').lower().strip()))\n            for t in p['gold_triples']:\n                if isinstance(t, dict):\n                    gs.add((t.get('head','').lower().strip(), t.get('tail','').lower().strip(), t.get('relation','').lower().strip()))\n            if not gs: continue\n            tp = len(ps & gs)\n            pr = tp/len(ps) if ps else 0\n            rc = tp/len(gs) if gs else 0\n            f1 = 2*pr*rc/(pr+rc) if (pr+rc) > 0 else 0\n            f1s.append(f1)\n    \n    pdf_we = sum(f1s_we)/len(f1s_we)\n    pdf_ne = sum(f1s_ne)/len(f1s_ne)\n    \n    print(f'{name} ({len(fair)} docs):')\n    print(f'  ign_f1:      WE={we_m[\\\"ign_f1\\\"]:.4f} NE={ne_m[\\\"ign_f1\\\"]:.4f} Tax={(ne_m[\\\"ign_f1\\\"]-we_m[\\\"ign_f1\\\"])*100:+.2f}pp')\n    print(f'  per-doc F1:  WE={pdf_we:.4f} NE={pdf_ne:.4f} Tax={(pdf_ne-pdf_we)*100:+.2f}pp')\n\" 2>&1\n",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "827e1deb-6a2b-4378-b851-1410c188ea89",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017AMVqRNSSw2CqAX4WWBKnf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2716,
+                "cache_read_input_tokens": 83213,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2716
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-18T13:41:11.407Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WVx1TGj9ur1oas82gSAuyT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen3-8B (615 docs):\\\\n  ign_f1:      WE=0.6147 NE=0.6116 Tax=-0.31pp\\\\n  per-doc F1:  WE=0.6359 NE=0.6357 Tax=-0.02pp\\\\nLLaMA-8B (694 docs):\\\\n  ign_f1:      WE=0.6134 NE=0.6161 Tax=+0.27pp\\\\n  per-doc F1:  WE=0.6202 NE=0.6304 Tax=+1.02pp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "f1f2d977-ac8a-4e72-ad19-a50ee0c0bebc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen3-8B (615 docs):\\\\n  ign_f1:      WE=0.6147 NE=0.6116 Tax=-0.31pp\\\\n  per-doc F1:  WE=0.6359 NE=0.6357 Tax=-0.02pp\\\\nLLaMA-8B (694 docs):\\\\n  ign_f1:      WE=0.6134 NE=0.6161 Tax=+0.27pp\\\\n  per-doc F1:  WE=0.6202 NE=0.6304 Tax=+1.02pp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Qwen3-8B (615 docs):\\n  ign_f1:      WE=0.6147 NE=0.6116 Tax=-0.31pp\\n  per-doc F1:  WE=0.6359 NE=0.6357 Tax=-0.02pp\\nLLaMA-8B (694 docs):\\n  ign_f1:      WE=0.6134 NE=0.6161 Tax=+0.27pp\\n  per-doc F1:  WE=0.6202 NE=0.6304 Tax=+1.02pp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.64}}"
+              }
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the full picture. Comparing artifact numbers with the ign_f1 numbers:\n\n**Qwen3-8B \"Neither truncated\":**\n- Artifact: 615 docs, evi=63.6%, noevi=63.6%, tax=0.0pp (per-doc F1)\n- ign_f1: 615 docs, evi=61.47%, noevi=61.16%, tax=-0.31pp\n\nWait, the artifact says 615 docs for 8B-Q but Module E showed 613 docs for 8B strict. Let me check:\n- fair_eval.py trunc-only for 8B: would be different\n\n\n- Module E strict for 8B: 613 docs\n\nThe artifact says \"Neither truncated\" which is the trunc-only definition. My script just computed trunc-only for 8B = 615 docs, matching the artifact.\n\n**LLaMA-8B \"Neither truncated\":**\n- Artifact: 694 docs, evi=62.0%, noevi=63.0%, tax=+1.0pp (per-doc F1)\n- ign_f1: 694 docs, evi=61.34%, noevi=61.61%, tax=+0.27pp\n\nThe per-doc F1 numbers in the artifact are matching up with my calculations.\n\nNow I'm comparing the per-doc F1 tax across models in the \"Neither truncated\" subset. Looking at the numbers, Qwen3-8B shows a -0.02pp difference (artifact says 0.0pp) and LLaMA-8B shows +1.02pp (artifact says +1.0pp). When I look at the full picture with ign_f1 corrections, the tax values shift noticeably—Qwen3-1.7B drops to -6.16pp instead of -4.9pp, Qwen3-8B becomes -0.31pp instead of 0.0pp, and LLaMA-8B adjusts to +0.27pp instead of +1.0pp. The per-doc F1 metric is showing larger discrepancies than expected.\n\nSince the paper's main results use ign_f1 as the standard metric, I should stick with that for consistency in the fair subset analysis. The authoritative numbers are clear: 1.7B gets a 6.16pp benefit from evidence on the fair subset, while both 8B models hover near zero with effects under 0.3pp in magnitude. This actually makes the paper's argument stronger—the evidence benefit is substantial for smaller models but negligible for larger ones.\n\nNow I need to update memory.md and clarify that while the per-doc F1 analysis in the artifact is valid and informative, the fair subset comparison should use ign_f1 to match the rest of the paper. The difference between the two metrics comes down to how they weight documents—per-doc F1 treats each document equally, whereas ign_f1 handles the weighting differently.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "b64ca08f-9da6-4a6c-b8b0-fe533833952a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MsWVMDYZsZzjMPStSjcXE6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3103,
+                "cache_read_input_tokens": 85929,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3103
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数字已验证。完整对比：\n\n**\"Neither truncated\" 子集（trunc-only exclusion）：**\n\n| Model | docs | per-doc avg F1 tax (artifact 用的) | **ign_f1 tax（标准指标）** |\n|---|---|---|---|\n| Qwen3-1.7B | 442 | -4.9pp | **-6.16pp** |\n| Qwen3-8B | 615 | -0.02pp (≈0) | **-0.31pp** |\n| LLaMA-8B | 694 | +1.0pp | **+0.27pp** |\n\n## 根因总结\n\n**差异来源：F1 计算方法不同，不是子集定义不同。**\n\n1. **D083**（fair_eval.py）：使用 `evaluator.compute_f1()` → **aggregate ign_f1**（标准 DocRED 指标）→ 442 docs, **-6.16pp**\n2. **art_20260518_cc2048** crossover 表格：使用 **per-doc average F1**（每篇文档独立算 F1 再取平均）→ 442 docs, **-4.9pp**\n\nPer-doc avg F1 给每篇文档等权重；ign_f1 是 micro F1（按三元组数加权）。三元组多的文档受 evidence 帮助更大，所以 micro F1 差距更大。\n\n## 权威数字\n\n论文全文使用 ign_f1，fair subset 必须保持一致。\n\n| | 值 |\n|---|---|\n| 定义 | trunc-only exclusion（排除任一条件下截断的文档） |\n| 文档数 | **442 / 985** |\n| WE Ign-F1 | **0.6319** |\n| NE Ign-F1 | **0.5704** |\n| Residual evidence benefit | **6.2pp**（精确 6.15-6.16pp） |\n| 8B Qwen (615 docs) | **-0.3pp**（~0） |\n| 8B LLaMA (694 docs) | **+0.3pp**（~0） |\n\n现在更新 memory.md。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "d843dfa0-63bb-41e0-b7ca-6ed9655c3d7c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MsWVMDYZsZzjMPStSjcXE6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3103,
+                "cache_read_input_tokens": 85929,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3103
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MTGSBVYLpM2isrC6AsVgky",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "faith-evidence-ie",
+                "file": "memory.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "31c1a379-302c-45c1-980f-f0340bd85817",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MsWVMDYZsZzjMPStSjcXE6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3103,
+                "cache_read_input_tokens": 85929,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3103
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-18T13:41:42.182Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MTGSBVYLpM2isrC6AsVgky",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## plan_017 14B 设计决策 (2026-05-18, Director D104)\\\\n\\\\n**14B 必须用 2-GPU tensor parallelism + bf16 LoRA，禁止 QLoRA。**\\\\n\\\\n原因：scaling study 其他尺度（1.7B/4B/8B）全部 bf16 LoRA，14B 换 QLoRA 引入量化 confound。\\\\n技术：2×RTX 5090 (64GB)，accelerate + tensor_parallel 或 FSDP。enable_thinking=False。\\\\n\\\\n## EDCR 论文数字决策 (2026-05-18)\\\\n\\\\n**论文使用 ρ=-0.89 (n=7, p=0.007) + per-relation ρ=-0.79 (n=76, p<0.0001)，不使用 ρ=-1.0。**\\\\n\\\\n## D102 k=3 vs k=1 baseline 对照表 (2026-05-18, CORRECTED)\\\\n\\\\n⚠️ k=3 baseline 必须从 registry 溯源，不使用 memory 中的旧数据。\\\\n\\\\n| Model | k=3 ign_f1 (Reviewer 核实) | k=1 ign_f1 | Δ |\\\\n|---|---|---|---|\\\\n| Qwen3-1.7B s42 | 50.50 | 51.22 | +0.72 |\\\\n| LLaMA-3.1-8B s42 | 55.63 | 57.14 | +1.51 |\\\\n| Qwen3-8B s42 | 待出 | 待出 | — |\\\\n| Qwen3-8B s43 | — (新seed) | 待出 | — |\\\\n\\\\n**数据诚信红线**：之前 memory.md 中 LLaMA k=3 baseline (rel_f1=0.3936, ign_f1=0.3801) 是错误数据（可能是 SFT baseline 而非 RSFT k=3）。所有写入论文的数字必须经 registry 溯源验证。\\\\n\\\\n## CDR/GDA 降级 P2 (2026-05-18, Director D104)\\\\n\\\\nCDR/GDA 无 evidence 标注，只能 RE-only。无跨领域+evidence 标注的 DocRE 数据集存在。降为 P2 锦上添花。\\\\n\\\\n## Wave1 SFT 改单卡 (2026-05-18, Director 已审批)\\\\n\\\\ngrad_accum=64 保持 effective batch size=64。\\\\n\\\\n## Evidence Tax Mechanistic Analysis (2026-05-18, plan_020)\\\\n\\\\n三层机制解释 evidence tax 的 scale-dependent 非单调模式：\\\\n\\\\n**核心数据**:\\\\n- 1.7B: -8.04pp (evidence helps), 4B: +6.15pp (hurts), 8B: +0.28~0.68pp (neutral)\\\\n\\\\n**Mechanism 1 — Duplication Regularization**:\\\\n- 1.7B no-evidence 生成 60.5% 重复三元组 (26,157 raw → 10,343 unique)\\\\n- Evidence 将重复率降至 33.0% 并产生更多 unique predictions (11,511 vs 10,343)\\\\n- 8B 重复率差距仅 3.7-8.4pp，对 F1 无显著影响\\\\n\\\\n**Mechanism 2 — Truncation Asymmetry**:\\\\n- 1.7B: no-evidence 截断率 50.9% vs evidence 31.9% (小模型无 evidence 时 overflow)\\\\n- 8B: evidence 截断率反而更高 (31.8% vs 22.8%)，因为 evidence tokens 占用了本可用于更多正确 relation 的 budget\\\\n- 229/985 docs 仅在 no-evidence 条件下截断 → evidence F1 高 20.7pp\\\\n\\\\n**Mechanism 3 — Fair Comparison (neither truncated)**:\\\\n- 1.7B: evidence 仍帮助 4.9pp (reasoning scaffold 效应，非截断解释)\\\\n- 8B Qwen: 0.0pp，8B LLaMA: +1.0pp → 证明 8B 的 tax 完全由截断开销解释\\\\n\\\\n**4B \\\\\\\"capacity valley\\\\\\\"**: 输出足够干净不需要正则化 (31.2% 截断)，但容量不足以同时处理 evidence + RE，丢失 1,011 TPs。\\\\n\\\\n**Per-relation**: \\\\\\\"sibling\\\\\\\" 等推理密集型关系在所有 scale 受益于 evidence (1.7B: -27.6pp)。\\\\n\\\\n完整报告: artifact art_20260518_cc2048\\\\n\\\", \\\"total_chars\\\": 2133, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "9bd9abd1-7f7b-4fb5-bf1b-bc51481883bc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## plan_017 14B 设计决策 (2026-05-18, Director D104)\\\\n\\\\n**14B 必须用 2-GPU tensor parallelism + bf16 LoRA，禁止 QLoRA。**\\\\n\\\\n原因：scaling study 其他尺度（1.7B/4B/8B）全部 bf16 LoRA，14B 换 QLoRA 引入量化 confound。\\\\n技术：2×RTX 5090 (64GB)，accelerate + tensor_parallel 或 FSDP。enable_thinking=False。\\\\n\\\\n## EDCR 论文数字决策 (2026-05-18)\\\\n\\\\n**论文使用 ρ=-0.89 (n=7, p=0.007) + per-relation ρ=-0.79 (n=76, p<0.0001)，不使用 ρ=-1.0。**\\\\n\\\\n## D102 k=3 vs k=1 baseline 对照表 (2026-05-18, CORRECTED)\\\\n\\\\n⚠️ k=3 baseline 必须从 registry 溯源，不使用 memory 中的旧数据。\\\\n\\\\n| Model | k=3 ign_f1 (Reviewer 核实) | k=1 ign_f1 | Δ |\\\\n|---|---|---|---|\\\\n| Qwen3-1.7B s42 | 50.50 | 51.22 | +0.72 |\\\\n| LLaMA-3.1-8B s42 | 55.63 | 57.14 | +1.51 |\\\\n| Qwen3-8B s42 | 待出 | 待出 | — |\\\\n| Qwen3-8B s43 | — (新seed) | 待出 | — |\\\\n\\\\n**数据诚信红线**：之前 memory.md 中 LLaMA k=3 baseline (rel_f1=0.3936, ign_f1=0.3801) 是错误数据（可能是 SFT baseline 而非 RSFT k=3）。所有写入论文的数字必须经 registry 溯源验证。\\\\n\\\\n## CDR/GDA 降级 P2 (2026-05-18, Director D104)\\\\n\\\\nCDR/GDA 无 evidence 标注，只能 RE-only。无跨领域+evidence 标注的 DocRE 数据集存在。降为 P2 锦上添花。\\\\n\\\\n## Wave1 SFT 改单卡 (2026-05-18, Director 已审批)\\\\n\\\\ngrad_accum=64 保持 effective batch size=64。\\\\n\\\\n## Evidence Tax Mechanistic Analysis (2026-05-18, plan_020)\\\\n\\\\n三层机制解释 evidence tax 的 scale-dependent 非单调模式：\\\\n\\\\n**核心数据**:\\\\n- 1.7B: -8.04pp (evidence helps), 4B: +6.15pp (hurts), 8B: +0.28~0.68pp (neutral)\\\\n\\\\n**Mechanism 1 — Duplication Regularization**:\\\\n- 1.7B no-evidence 生成 60.5% 重复三元组 (26,157 raw → 10,343 unique)\\\\n- Evidence 将重复率降至 33.0% 并产生更多 unique predictions (11,511 vs 10,343)\\\\n- 8B 重复率差距仅 3.7-8.4pp，对 F1 无显著影响\\\\n\\\\n**Mechanism 2 — Truncation Asymmetry**:\\\\n- 1.7B: no-evidence 截断率 50.9% vs evidence 31.9% (小模型无 evidence 时 overflow)\\\\n- 8B: evidence 截断率反而更高 (31.8% vs 22.8%)，因为 evidence tokens 占用了本可用于更多正确 relation 的 budget\\\\n- 229/985 docs 仅在 no-evidence 条件下截断 → evidence F1 高 20.7pp\\\\n\\\\n**Mechanism 3 — Fair Comparison (neither truncated)**:\\\\n- 1.7B: evidence 仍帮助 4.9pp (reasoning scaffold 效应，非截断解释)\\\\n- 8B Qwen: 0.0pp，8B LLaMA: +1.0pp → 证明 8B 的 tax 完全由截断开销解释\\\\n\\\\n**4B \\\\\\\"capacity valley\\\\\\\"**: 输出足够干净不需要正则化 (31.2% 截断)，但容量不足以同时处理 evidence + RE，丢失 1,011 TPs。\\\\n\\\\n**Per-relation**: \\\\\\\"sibling\\\\\\\" 等推理密集型关系在所有 scale 受益于 evidence (1.7B: -27.6pp)。\\\\n\\\\n完整报告: artifact art_20260518_cc2048\\\\n\\\", \\\"total_chars\\\": 2133, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# Project Memory\\n\\n## plan_017 14B 设计决策 (2026-05-18, Director D104)\\n\\n**14B 必须用 2-GPU tensor parallelism + bf16 LoRA，禁止 QLoRA。**\\n\\n原因：scaling study 其他尺度（1.7B/4B/8B）全部 bf16 LoRA，14B 换 QLoRA 引入量化 confound。\\n技术：2×RTX 5090 (64GB)，accelerate + tensor_parallel 或 FSDP。enable_thinking=False。\\n\\n## EDCR 论文数字决策 (2026-05-18)\\n\\n**论文使用 ρ=-0.89 (n=7, p=0.007) + per-relation ρ=-0.79 (n=76, p<0.0001)，不使用 ρ=-1.0。**\\n\\n## D102 k=3 vs k=1 baseline 对照表 (2026-05-18, CORRECTED)\\n\\n⚠️ k=3 baseline 必须从 registry 溯源，不使用 memory 中的旧数据。\\n\\n| Model | k=3 ign_f1 (Reviewer 核实) | k=1 ign_f1 | Δ |\\n|---|---|---|---|\\n| Qwen3-1.7B s42 | 50.50 | 51.22 | +0.72 |\\n| LLaMA-3.1-8B s42 | 55.63 | 57.14 | +1.51 |\\n| Qwen3-8B s42 | 待出 | 待出 | — |\\n| Qwen3-8B s43 | — (新seed) | 待出 | — |\\n\\n**数据诚信红线**：之前 memory.md 中 LLaMA k=3 baseline (rel_f1=0.3936, ign_f1=0.3801) 是错误数据（可能是 SFT baseline 而非 RSFT k=3）。所有写入论文的数字必须经 registry 溯源验证。\\n\\n## CDR/GDA 降级 P2 (2026-05-18, Director D104)\\n\\nCDR/GDA 无 evidence 标注，只能 RE-only。无跨领域+evidence 标注的 DocRE 数据集存在。降为 P2 锦上添花。\\n\\n## Wave1 SFT 改单卡 (2026-05-18, Director 已审批)\\n\\ngrad_accum=64 保持 effective batch size=64。\\n\\n## Evidence Tax Mechanistic Analysis (2026-05-18, plan_020)\\n\\n三层机制解释 evidence tax 的 scale-dependent 非单调模式：\\n\\n**核心数据**:\\n- 1.7B: -8.04pp (evidence helps), 4B: +6.15pp (hurts), 8B: +0.28~0.68pp (neutral)\\n\\n**Mechanism 1 — Duplication Regularization**:\\n- 1.7B no-evidence 生成 60.5% 重复三元组 (26,157 raw → 10,343 unique)\\n- Evidence 将重复率降至 33.0% 并产生更多 unique predictions (11,511 vs 10,343)\\n- 8B 重复率差距仅 3.7-8.4pp，对 F1 无显著影响\\n\\n**Mechanism 2 — Truncation Asymmetry**:\\n- 1.7B: no-evidence 截断率 50.9% vs evidence 31.9% (小模型无 evidence 时 overflow)\\n- 8B: evidence 截断率反而更高 (31.8% vs 22.8%)，因为 evidence tokens 占用了本可用于更多正确 relation 的 budget\\n- 229/985 docs 仅在 no-evidence 条件下截断 → evidence F1 高 20.7pp\\n\\n**Mechanism 3 — Fair Comparison (neither truncated)**:\\n- 1.7B: evidence 仍帮助 4.9pp (reasoning scaffold 效应，非截断解释)\\n- 8B Qwen: 0.0pp，8B LLaMA: +1.0pp → 证明 8B 的 tax 完全由截断开销解释\\n\\n**4B \\\"capacity valley\\\"**: 输出足够干净不需要正则化 (31.2% 截断)，但容量不足以同时处理 evidence + RE，丢失 1,011 TPs。\\n\\n**Per-relation**: \\\"sibling\\\" 等推理密集型关系在所有 scale 受益于 evidence (1.7B: -27.6pp)。\\n\\n完整报告: artifact art_20260518_cc2048\\n\", \"total_chars\": 2133, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PzEBm1YiaGUmataH3sk6pF",
+              "name": "mcp__agent-ml-research__save_project_file",
+              "input": {
+                "project": "faith-evidence-ie",
+                "file": "memory.md",
+                "content": "# Project Memory\n\n## plan_017 14B 设计决策 (2026-05-18, Director D104)\n\n**14B 必须用 2-GPU tensor parallelism + bf16 LoRA，禁止 QLoRA。**\n\n原因：scaling study 其他尺度（1.7B/4B/8B）全部 bf16 LoRA，14B 换 QLoRA 引入量化 confound。\n技术：2×RTX 5090 (64GB)，accelerate + tensor_parallel 或 FSDP。enable_thinking=False。\n\n## EDCR 论文数字决策 (2026-05-18)\n\n**论文使用 ρ=-0.89 (n=7, p=0.007) + per-relation ρ=-0.79 (n=76, p<0.0001)，不使用 ρ=-1.0。**\n\n## D102 k=3 vs k=1 baseline 对照表 (2026-05-18, CORRECTED)\n\n⚠️ k=3 baseline 必须从 registry 溯源，不使用 memory 中的旧数据。\n\n| Model | k=3 ign_f1 (Reviewer 核实) | k=1 ign_f1 | Δ |\n|---|---|---|---|\n| Qwen3-1.7B s42 | 50.50 | 51.22 | +0.72 |\n| LLaMA-3.1-8B s42 | 55.63 | 57.14 | +1.51 |\n| Qwen3-8B s42 | 待出 | 待出 | — |\n| Qwen3-8B s43 | — (新seed) | 待出 | — |\n\n**数据诚信红线**：之前 memory.md 中 LLaMA k=3 baseline (rel_f1=0.3936, ign_f1=0.3801) 是错误数据（可能是 SFT baseline 而非 RSFT k=3）。所有写入论文的数字必须经 registry 溯源验证。\n\n## CDR/GDA 降级 P2 (2026-05-18, Director D104)\n\nCDR/GDA 无 evidence 标注，只能 RE-only。无跨领域+evidence 标注的 DocRE 数据集存在。降为 P2 锦上添花。\n\n## Wave1 SFT 改单卡 (2026-05-18, Director 已审批)\n\ngrad_accum=64 保持 effective batch size=64。\n\n## Evidence Tax Mechanistic Analysis (2026-05-18, plan_020)\n\n三层机制解释 evidence tax 的 scale-dependent 非单调模式：\n\n**核心数据**:\n- 1.7B: -8.04pp (evidence helps), 4B: +6.15pp (hurts), 8B: +0.28~0.68pp (neutral)\n\n**Mechanism 1 — Duplication Regularization**:\n- 1.7B no-evidence 生成 60.5% 重复三元组 (26,157 raw → 10,343 unique)\n- Evidence 将重复率降至 33.0% 并产生更多 unique predictions (11,511 vs 10,343)\n- 8B 重复率差距仅 3.7-8.4pp，对 F1 无显著影响\n\n**Mechanism 2 — Truncation Asymmetry**:\n- 1.7B: no-evidence 截断率 50.9% vs evidence 31.9% (小模型无 evidence 时 overflow)\n- 8B: evidence 截断率反而更高 (31.8% vs 22.8%)，因为 evidence tokens 占用了本可用于更多正确 relation 的 budget\n- 229/985 docs 仅在 no-evidence 条件下截断 → evidence F1 高 20.7pp\n\n**Mechanism 3 — Fair Comparison (neither truncated) [CORRECTED 2026-05-18]**:\n- ⚠️ art_20260518_cc2048 crossover 表格错误使用 per-doc avg F1（非标准指标），导致数字偏低\n- **权威数字（aggregate ign_f1，与论文一致）**:\n  - 1.7B (442 docs): WE ign_f1=0.6319, NE ign_f1=0.5704, **evidence helps 6.2pp**\n  - 8B Qwen (615 docs): **-0.3pp** (~0)\n  - 8B LLaMA (694 docs): **+0.3pp** (~0)\n- 子集定义: trunc-only exclusion（排除任一条件下截断的文档，不过滤 repetitive-only）\n- 来源脚本: `/root/autodl-tmp/freige/scripts/fair_eval.py`\n- 旧错误数字: 4.9pp（per-doc avg F1）/ 0.0pp / +1.0pp — 这些是 per-doc F1，不是 ign_f1\n\n**4B \"capacity valley\"**: 输出足够干净不需要正则化 (31.2% 截断)，但容量不足以同时处理 evidence + RE，丢失 1,011 TPs。\n\n**Per-relation**: \"sibling\" 等推理密集型关系在所有 scale 受益于 evidence (1.7B: -27.6pp)。\n\n完整报告: artifact art_20260518_cc2048（注意: 其 Section 3.2/3.3 crossover 表格中的 F1 是 per-doc avg F1，非 ign_f1）\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "ee8ca620-c5a6-4843-b355-6bba4c6989e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011cH6ocSZCxkRsdYfEPGajF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3205,
+                "cache_read_input_tokens": 89032,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3205
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-18T13:42:00.263Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PzEBm1YiaGUmataH3sk6pF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "cb8e3327-5ae8-4653-bd7d-0643ed4c5412",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "memory.md 已更新。总结：\n\n---\n\n## 调查结论\n\n### 根因\n**F1 计算方法不一致**，不是子集定义不同。\n\n- D083 / `fair_eval.py`：使用 **aggregate ign_f1**（标准 DocRED 指标）\n- art_20260518_cc2048 crossover 表格：使用 **per-doc average F1**（每篇文档独立算 F1 再取平均）\n\n两者都用 442 docs（trunc-only exclusion），但 per-doc avg F1 给每篇文档等权重，而 ign_f1 按三元组数加权（micro F1）。三元组多的文档受 evidence 帮助更大，所以 ign_f1 差距更大。\n\n### 权威数字（论文使用）\n\n| 指标 | 值 |\n|---|---|\n| 子集定义 | trunc-only exclusion（任一条件下截断即排除） |\n| 文档数 | **442 / 985** (44.9%) |\n| 1.7B WE Ign-F1 | 0.6319 |\n| 1.7B NE Ign-F1 | 0.5704 |\n| **1.7B residual evidence benefit** | **6.2pp** |\n| 8B Qwen (615 docs) | ~0pp (-0.3pp) |\n| 8B LLaMA (694 docs) | ~0pp (+0.3pp) |\n\n### 需修正\n- art_20260518_cc2048 Section 3.2/3.3 crossover 表格中的 per-doc F1 数字（4.9pp/0.0pp/+1.0pp）不应直接用于论文\n- 论文中引用 fair subset 结果时统一使用 ign_f1：**442 docs, evidence helps 6.2pp at 1.7B, ~0pp at 8B**"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "uuid": "94facc65-953c-42b9-a1e0-d6b06832be2c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DcFaGkQC2DQLJLg34CVapc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1824,
+                "cache_read_input_tokens": 92237,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1824
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "memory.md 已更新。总结：\n\n---\n\n## 调查结论\n\n### 根因\n**F1 计算方法不一致**，不是子集定义不同。\n\n- D083 / `fair_eval.py`：使用 **aggregate ign_f1**（标准 DocRED 指标）\n- art_20260518_cc2048 crossover 表格：使用 **per-doc average F1**（每篇文档独立算 F1 再取平均）\n\n两者都用 442 docs（trunc-only exclusion），但 per-doc avg F1 给每篇文档等权重，而 ign_f1 按三元组数加权（micro F1）。三元组多的文档受 evidence 帮助更大，所以 ign_f1 差距更大。\n\n### 权威数字（论文使用）\n\n| 指标 | 值 |\n|---|---|\n| 子集定义 | trunc-only exclusion（任一条件下截断即排除） |\n| 文档数 | **442 / 985** (44.9%) |\n| 1.7B WE Ign-F1 | 0.6319 |\n| 1.7B NE Ign-F1 | 0.5704 |\n| **1.7B residual evidence benefit** | **6.2pp** |\n| 8B Qwen (615 docs) | ~0pp (-0.3pp) |\n| 8B LLaMA (694 docs) | ~0pp (+0.3pp) |\n\n### 需修正\n- art_20260518_cc2048 Section 3.2/3.3 crossover 表格中的 per-doc F1 数字（4.9pp/0.0pp/+1.0pp）不应直接用于论文\n- 论文中引用 fair subset 结果时统一使用 ign_f1：**442 docs, evidence helps 6.2pp at 1.7B, ~0pp at 8B**"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 452352,
+            "duration_api_ms": 442482,
+            "num_turns": 64,
+            "stop_reason": "end_turn",
+            "session_id": "831cfbdd-2f9e-46a1-983a-f7e3cfe74a35",
+            "total_cost_usd": 2.187666,
+            "usage": {
+              "input_tokens": 40,
+              "cache_creation_input_tokens": 82220,
+              "cache_read_input_tokens": 2113942,
+              "output_tokens": 24572,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 82220,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 538,
+                  "cache_read_input_tokens": 92237,
+                  "cache_creation_input_tokens": 1824,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1824
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2235,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00232,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 40,
+                "outputTokens": 24572,
+                "cacheReadInputTokens": 2113942,
+                "cacheCreationInputTokens": 82220,
+                "webSearchRequests": 0,
+                "costUSD": 2.185346,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "90b8153f-96ad-4998-a323-f75b2d3a2963"
+          },
+          "id": "event-000167"
+        }
+      ]
+    }
+  ]
+}

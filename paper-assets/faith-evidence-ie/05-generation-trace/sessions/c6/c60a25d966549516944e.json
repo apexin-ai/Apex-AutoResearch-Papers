@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c60a25d966549516944e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit eval flat nli seed44",
+  "task_key": "worker_submit_eval_flat_nli_seed44_20260515T232545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_eval_flat_nli_seed44_20260515T232545_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "906e63001ed84df5ec3466a8a02f712dc952945f7b71bf11a2c8a0411f82c0da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已在 cuda:0 上启动，模型加载中。\n\n**总结：**\n- **C001**: cuda:0 显存 0 MiB，通过\n- **Checkpoint**: `/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507` (528MB adapter)\n- **Registry**: `eval_flat_nli_seed44` → QUEUED, parent=plan_001_flat_nli_seed44\n- **Job**: PID 270056, tmux session `eval_flat_nli_seed44`, 日志 `~/runs/faith-evidence-ie/eval_flat_nli_seed44.log`\n- **命令**: 含 `--sft_adapter` + `--no-quantize`，seed=44，output → `eval_results/rsft_flat_nli_s44/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-eval-flat-nli-seed44.md"
+}

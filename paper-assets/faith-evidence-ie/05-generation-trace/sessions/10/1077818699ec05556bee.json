@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1077818699ec05556bee",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778796493.md",
+  "task_key": "loop_4_1778796493",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778796493.md",
+    "occurrence": 1,
+    "bytes": 4823,
+    "sha256": "ad48bb47f37d2d18b47518d722cccceb717719655188a0e369d24dd0a932c896"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T21:59:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0,1,2,3（config gpu_ids=[0,1,2,3]），两个 SSH endpoint（rtx5090-4x / bjb2-12179）指向**同一台物理机**，不要当两台用\n- 训练提交**禁止 bash -c 内联引号**（D035，4+ 次失败）：必须先写 .sh 脚本到 `/root/autodl-tmp/scripts/`，再 `bash /path/to/script.sh` 提交\n- kill_job 后**必须 SSH 验证子进程终止**（`ps -p <PID>` + `nvidia-smi -i <GPU>`），tmux wrapper 死了不代表 python 子进程死了\n- 启动任何 GPU 任务前**必须 `nvidia-smi -i <GPU>` 确认无占用**\n- SFT adapter merge 是 eval 必需步骤：inference.py 需要 `--sft_adapter` 参数\n- mvp2_eval_sft_baseline 在 registry 中 RUNNING 但**无 PID 无 cron**——可能是 zombie entry，接手后第一件事 SSH 查证\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：rtx5090-4x（= gpu-5090-4x-1），4×RTX 5090 32GB，account=root\n- **工作目录**：`/root/autodl-tmp/freige`\n- **Python**：`/root/miniconda3/bin/python`，conda base 环境（不是 venv）\n- **模型**：Qwen3-4B 在 `/root/autodl-tmp/models/Qwen3-4B`（7.6GB，ModelScope 下载）\n- **SFT checkpoint**：有 SFT adapter（路径在 spec 中，grpo_trainer 用 `--sft_adapter`）\n- **wandb**：entity=`xiaoyucorynne-`，project=`freige-grpo`，API key 在 `~/.netrc`。注意 `list_wandb_runs` MCP 工具有 bug，用 `fetch_wandb_run_history` + run_id\n- **HF cache**：`/root/autodl-tmp/.hf_cache`\n- **活跃进程**（cron 确认）：\n  - mvp2_grpo_ced_lr5e6_r1：PID 90080，cuda:0（P0 训练主体）\n  - mvp2_eval_lr5e6_r1_ckpt20：PID 96500，cuda:1\n  - mvp2_eval_lr5e6_r1_ckpt40_r2：PID 101842，cuda:2\n  - mvp2_eval_lr5e6_rp_r2_ckpt20：PID 103831，cuda:3\n- **无运行中 Worker**（pool=0）\n\n### 3. 📊 当前状态\n4 张卡满载，全部在跑 lr=5e-6 系列实验：\n- **cuda:0**：P0 训练 mvp2_grpo_ced_lr5e6_r1（lr=5e-6 CED GRPO，200 steps，~5h 剩余）\n- **cuda:1**：P0 ckpt-20 eval mvp2_eval_lr5e6_r1_ckpt20（关键 MVP gate，pass=rel_f1>0.30）\n- **cuda:2**：P0 ckpt-40 eval mvp2_eval_lr5e6_r1_ckpt40_r2（orphan PID 重新追踪）\n- **cuda:3**：P0+P1 ckpt-20 eval mvp2_eval_lr5e6_rp_r2_ckpt20（rp_r2 训练已 killed，只 eval 已有 ckpt）\n\nPREPARING 但不会跑的实验（历史遗留）：mvp2_eval_ced_kl001_r4_last, mvp2_grpo_ced_kl001_r2, mvp2_grpo_ced_kl001_r3——这些是 lr=5e-5 时代的，方向已废弃。\n\nmvp2_eval_sft_baseline 标 RUNNING 但无 PID/cron——**需要立即 SSH 验证是否真在跑**。这是 MVP-2 核心对比所需的 apple-to-apple SFT baseline。\n\n前一个 session 已完成所有 eval 提交和 cron 注册，当前纯等回调。\n\n### 4. 📋 待办（条件触发式）\n- mvp2_eval_lr5e6_r1_ckpt20 完成 → **MVP-2 P0 判定**：rel_f1 > 0.30 = PASS（不再灾难性遗忘），< 0.30 = FAIL → 需要 Framing 提案\n- mvp2_eval_lr5e6_r1_ckpt40_r2 完成 → 与 ckpt-20 对比，判断训练后半段是否继续改善（Director D框架：ckpt-20 FAIL + ckpt-40 PASS → P0 仍判 PASS）\n- mvp2_eval_lr5e6_rp_r2_ckpt20 完成 → P0+P1 vs P0 对比，隔离 recall_penalty 贡献（注意 rp_r2 训练已 killed，此 eval 只是收尾数据点）\n- mvp2_eval_sft_baseline 确认完成 → 拿到 apple-to-apple SFT metrics，计算 CED_Evi-F1 − SFT_Evi-F1 ≥ 2pp\n- P0 训练 mvp2_grpo_ced_lr5e6_r1 完成（~200 steps）→ eval best reward ckpt + last ckpt\n- **所有 eval 完成后** → 汇总 MVP-2 判定表（核心: CED−SFT ≥ 2pp, F1 不退化 ≤ 5pp, CED > flat-NLI），向 Director 汇报\n\n### 5. 🎯 战略上下文\n**项目**：FREIGE——用 CED (Contrastive Evidence Discrimination) reward 训练 LLM 做文档级关系抽取 + 可验证证据生成。\n\n**核心发现链**：\n- D024: CED reward 有双重作用——改善证据质量 + 防止 GRPO mode collapse（通过 reward variance 维持梯度流）\n- D029: lr=5e-5 全灭（灾难性遗忘），社区共识 GRPO+QLoRA 应 lr=5e-6\n- D032: CED 有 recall shortcut（少预测→高 CED score），recall_penalty fix 已部署但 + kl_coef=0.01 导致 loss 爆炸\n\n**最容易判断错的事**：\n1. **不要把 PREPARING 的 kl001 系列当成待跑任务**——那些是 lr=5e-5 废弃方向的遗留，不要 submit\n2. **rp_r2 训练已 killed**（loss divergence），但 ckpt-20 eval 仍在跑。这个 eval 结果有价值（隔离 recall_penalty），不要因为训练 killed 就忽略\n3. **SFT baseline 数字**：F1=0.4057, Evi-F1=0.7979, EDCR=0.7118——这是 apple-to-apple 比对的锚点\n4. **flash_attn 不可用**，训练脚本用 `attn_implementation=\"sdpa\"`\n5. **recall penalty + kl_coef>0 → loss 爆炸**（已验证），如果要重试需 kl_coef=0.001 或 gradient clipping\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778796493.md"
+}

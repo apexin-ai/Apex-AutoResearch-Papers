@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f101d466f69b9aac0fe4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh submit test eval llama rsft",
+  "task_key": "worker_ssh_submit-test-eval-llama-rsft_20260521T103223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit-test-eval-llama-rsft_20260521T103223_result.json",
+    "occurrence": 1,
+    "bytes": 188,
+    "sha256": "1954ae9c5a962ab5701ae7d204c1b7478315e1c0a8b6913a72925054c3b24f54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册监控：\n- **exp_id**: test_eval_llama_rsft_s42\n- **PID**: 98968\n- **GPU**: cuda:2\n- **日志**: ~/runs/faith-evidence-ie/test_eval_llama_rsft_s42.log"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-test-eval-llama-rsft.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48c83fb3cac51cbd07ca",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops eval queue prep",
+  "task_key": "worker_ops_eval-queue-prep_20260514T210747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-queue-prep_20260514T210747_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "4fb184960a0e794aee2a93219a56c3192b7b56de98157097ebdc333c91d4f196"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "kl001 multi-eval 已完全停止。\n\n**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| **脚本 1** | `/root/autodl-tmp/scripts/eval_lr5e6_rp_ckpt20.sh` ✓ |\n| **脚本 2** | `/root/autodl-tmp/scripts/eval_lr5e6_ckpt40.sh` ✓ |\n| **Watcher** | PID 100154，已完成执行。额外手动 kill 了孤儿进程 PID 99616（kl001 ckpt-40 inference） |\n| **rp_r2 当前 step** | **27/200**（~1:01:08 elapsed，约 112s/step） |\n| **P0 ckpt-40** | **EXISTS** ✓ |\n\n当前 GPU 占用：\n- **cuda:0** — rp_r2 训练（PID 94758，step 27/200）\n- **cuda:1** — P0 ckpt-20 eval 正在运行（PID 96500）\n- **cuda:2** — 空闲（kl001 已被停止）\n- **cuda:3** — 空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-queue-prep.md"
+}

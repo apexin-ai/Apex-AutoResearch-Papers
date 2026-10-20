@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d2981fa72b21bed1bfa",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_11_1778899199.md",
+  "task_key": "loop_11_1778899199",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778899199.md",
+    "occurrence": 1,
+    "bytes": 5263,
+    "sha256": "a896e7b3bfc4676b3300cdee7ad4c39790290ffadd295b6c85d9462e7b8e1628"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T02:35:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **只有 cuda:0/1/2/3 on rtx5090-4x**，无其他服务器/GPU 可用\n- 工作目录必须 `cd /root/autodl-tmp`，**不是** `/root/autodl-tmp/freige`（后者导致 module import 失败，见 memory.md 失败模式）\n- Eval 命令必须带 `--sft_adapter /root/autodl-tmp/sft_output --no-quantize --batch_size 4 --max_new_tokens 1024`——batch_size=16 或缺 --sft_adapter 会导致协议不一致，结果不可比（reeval_flat_nli_s43 就是因 batch_size=16 作废的）\n- **flat-NLI s43 原始 eval 数据作废**（协议不一致），必须用 reeval_flat_nli_s43_r2 的结果\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，**没有 .venv**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x, account=root, 4× RTX 5090 32GB\n- **工作目录**: `/root/autodl-tmp`，代码包 `freige` 在 `/root/autodl-tmp/freige/`\n- **Python**: `/root/miniconda3/bin/python`（conda base）\n- **模型**: Qwen3-4B → `/root/autodl-tmp/models/Qwen3-4B`\n- **Adapters**: SFT → `/root/autodl-tmp/sft_output`; SFT-no-evidence → `/root/autodl-tmp/sft_no_evidence_output`\n- **RSFT checkpoints**: CED seeds → `/root/autodl-tmp/rsft_output_ced_s{42,43,44,45}/checkpoint-510`; flat-NLI seeds → `/root/autodl-tmp/rsft_output_flat_nli_s{42,43,44,45}/checkpoint-507`\n- **数据**: `/root/autodl-tmp/data/docred`（dev 12275 条）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（HF_HUB_OFFLINE=1）\n- **Eval 产出**: `/root/autodl-tmp/eval_results/` 下各子目录\n- **Seed comparison 脚本**: `/root/autodl-tmp/scripts/seed_comparison.py`\n- **活跃进程（4 crons 监控中）**:\n  - eval_flat_nli_seed45: PID 272164, cuda:3, ~79%, ETA ~03:03 UTC\n  - eval_rsft_ced_s45: PID 283838, cuda:2, ~28%, ETA ~04:18 UTC\n  - eval_rsft_ced_s43: PID 286587, cuda:1, ~2%, ETA ~05:19 UTC\n  - eval_plan_014_no_evidence_r2: PID 288109, cuda:0, 刚启动\n- **运行中 Workers**: diagnose:ced_s42_s44_eval_protocol, analysis:seed_comparison_prep（两个都快完成）\n\n### 3. 📊 当前状态\n4 张 GPU 全部在跑 eval，无空闲。上一轮的主要产出：CED s43/s45 训练均成功完成（分别 r3/r4 重试后），立即提交了 eval。plan_003 EDCR diagnostic 已完成（Spearman ρ=-0.9648，确认 EDCR 诊断价值）。\n\n**Registry 快照**:\n- RUNNING (4): eval_flat_nli_seed45 (cuda:3), eval_rsft_ced_s45 (cuda:2), eval_rsft_ced_s43 (cuda:1), eval_plan_014_no_evidence_r2 (cuda:0)\n- PREPARING (1): reeval_flat_nli_s43_r2（等 GPU 释放）\n- 成功 49 / 负向 17 / 失败 22 / 共 121\n\n**等待中**:\n- 4 个 cron 回调（对应 4 个 RUNNING eval）\n- 2 个 Worker 回调（诊断 + seed comparison prep）\n- Director 无 pending 决策\n\n### 4. 📋 待办（条件触发式）\n- **eval_flat_nli_seed45 完成（~03:03 UTC）** → 更新 registry，cuda:3 释放 → 立即提交 reeval_flat_nli_s43_r2（PREPARING，flat-NLI s43 用统一协议重跑）\n- **eval_plan_014_no_evidence_r2 完成** → 提取 no-evidence rel_f1（预期 ~0.4893 确认 C1 evidence tax ~8pp），更新 plan_014 metrics\n- **eval_rsft_ced_s45 完成（~04:18 UTC）** → CED s45 eval 入库，现在有 CED s42/s44/s45 三个 seed\n- **eval_rsft_ced_s43 完成（~05:19 UTC）** → CED 全 4 seed eval 齐全（s42/s43/s44/s45）\n- **reeval_flat_nli_s43_r2 完成** → flat-NLI 全 4 seed eval 齐全（s42 已有 0.4539，s43 本次，s44 0.4590，s45 待本轮结果）\n- **CED 4 seeds + flat-NLI 4 seeds 全部齐全** → 运行 `/root/autodl-tmp/scripts/seed_comparison.py` 执行 paired t-test → 汇报 Director C3 统计结论 → 进入 plan_002 test set eval\n- **plan_002 test set eval** → 需要先确定 best config（基于 seed comparison 结果），提交 CodaLab\n\n### 5. 🎯 战略上下文\n**项目**: FREIGE，投 EMNLP 2026 ARR July（~7月15-25），剩 ~2 个月。\n\n**核心 claims 状态**:\n- C1 (evidence tax ~8pp): ✅ 数据齐全（SFT 0.4106, no-evidence 0.4893, CED reranker 0.4864 恢复 97%）\n- C2 (QLoRA-specific decoupling): ✅ 已确认（D054/D065/D066），bf16 下不复现。Spectrum: QLoRA GRPO catastrophic > bf16 GRPO mild > DPO gradual > RSFT none\n- C3 (CED vs flat-NLI): ⚠️ **已降级**（D056），统计不可区分，不再作为独立贡献。当前 seed eval 是为 paired t-test 补数据\n- C4 (EDCR diagnostic): ✅ plan_003 done，双层诊断（方法级 + per-relation）\n\n**易错点**:\n1. **不要用 reeval_flat_nli_s43 的老结果**——batch_size=16 协议不一致，必须等 reeval_flat_nli_s43_r2\n2. **DPO 不是\"失败\"而是\"中性/轻度退化\"**（D067/D068/D069），rel_f1=0.3429 是 3ep 过拟合，1ep=0.4034。论文叙事是 RL spectrum，不是 \"RL fails\"\n3. **0.4549 是 GRPO bf16 的训练前起点**（ckpt-100），不是训练后结果。训练后 best=step_70 0.4341（-2pp mild decline）\n4. **EDCR 定义有 by-construction 混淆**（D071）：方法级 EDCR ≈ f(1/rel_f1)，论文正文用 distractor count ratio ∈[0,1]，per-relation 才是真正独立的诊断价值\n5. **Q-BLoRA (TACL 2025) + QuRL (arXiv 2026)** 是支撑 QLoRA decoupling 理论的关键文献，Discussion 必须引用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778899199.md"
+}

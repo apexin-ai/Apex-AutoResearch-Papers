@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2fe3d105200b3c39ad6",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "reviewer / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_10.md",
+    "occurrence": 1,
+    "bytes": 4231,
+    "sha256": "57076f562ef71dc9dd949a57c359a64b62df78c4c5f7113064659dcad22c4115"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_wall_time\nupdated: '2026-05-16T03:12:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **Eval 标准协议**：batch_size=4, max_new_tokens=1024, --no-quantize, --sft_adapter, 正确 seed。任何偏离此协议的 eval 结果不可用于 paired t-test\n- **CUDA_VISIBLE_DEVICES 必设**（C002/C003）：每次 submit_training_job 命令前必须显式设置，禁止依赖 device_map=\"auto\"\n- **GPU 占用检查**（C001）：提交 eval 前 nvidia-smi 确认目标 GPU 显存 < 2GB\n- **Kill 必验证**（C004）：registry 标 killed 时必须 kill -9 + ps 确认进程终止\n- **CED s42 checkpoint 路径是 `/root/autodl-tmp/rsft_output/checkpoint-510`**，不是 rsft_output_r2b（r2b 是 alpha=32 的消融实验，不是 CED s42）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x (root)，工作目录 `/root/autodl-tmp/freige`\n- Python：`/root/miniconda3/bin/python`（conda base）\n- 模型底座：`/root/autodl-tmp/models/Qwen3-4B`\n- SFT adapter：`/root/autodl-tmp/sft_output`\n- 数据：`/root/autodl-tmp/data/docred`（dev=985 docs）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- Checkpoint 路径（CED RSFT）：s42=`rsft_output/checkpoint-510`, s43=`rsft_output_ced_s43/checkpoint-510`, s44=`rsft_output_s44/checkpoint-510`（注意无 _ced 前缀）, s45=`rsft_output_ced_s45/checkpoint-510`\n- Checkpoint 路径（flat-NLI RSFT）：s42=`rsft_output_flat_nli/checkpoint-507`, s43=对应目录/checkpoint-507, s44=`rsft_output_flat_nli_s44/checkpoint-507`, s45=`rsft_output_flat_nli_s45/checkpoint-507`\n- 活跃进程（截至 handoff）：eval_rsft_ced_s43 (PID 286587, cuda:1), eval_rsft_ced_s45 (PID 283838, cuda:2), eval_plan_014_no_evidence_r2 (PID 288109, cuda:0)\n\n### 3. 📊 当前状态\n**刚完成的审查**：\n- eval_flat_nli_s44 (DONE, rel_f1=0.4615) — PASS\n- eval_flat_nli_seed45 (DONE, rel_f1=0.4551) — PASS\n- 发现并上报 critical：**6 个 seed-level eval 中仅 2 个协议有效**（flat-NLI s44/s45）。CED s42/s44 + flat-NLI s42/s43 全部有 batch_size 或 seed 偏差\n- 发现并上报 critical：paired_ttest_analysis.py 将错误的 rsft_r2b（alpha=32 消融）映射为 CED s42，脚本不可运行\n- checkpoint 验证 Worker 已确认 reeval_ced_s42/s44/flat_nli_s42 的路径\n\n**RUNNING**：\n- eval_rsft_ced_s43 — CED s43 标准协议 eval (cuda:1)\n- eval_rsft_ced_s45 — CED s45 标准协议 eval (cuda:2)\n- eval_plan_014_no_evidence_r2 — SFT no-evidence 重试 (cuda:0)\n\n**待 Director 决策**：提交 reeval_ced_s42 + reeval_ced_s44 + reeval_flat_nli_s42（+ 可选 reeval_flat_nli_s43），等 GPU 释放\n\n### 4. 📋 待办\n- eval_rsft_ced_s43 完成 → 审查协议合规 + metrics，确认 CED s43 有效数据点\n- eval_rsft_ced_s45 完成 → 同上，确认 CED s45 有效数据点\n- eval_plan_014_no_evidence_r2 完成 → 审查 SFT no-evidence 结果（Claim 1 evidence tax 数据）\n- reeval_ced_s42/s44/flat_nli_s42 提交后 → 逐个审查协议，确认 CUDA_VISIBLE_DEVICES 已设\n- 所有 re-eval 完成后 → 审查 paired_ttest_analysis.py 的目录映射是否已更新为正确路径，然后审查 t-test 结果\n- Director 转发 paper 章节 → 按模式 B 审查（评分模板 + checklist）\n\n### 5. 🎯 战略上下文\n- **核心瓶颈是 Claim 3 (CED vs flat-NLI paired t-test)**：需要 ≥3 matched pairs 标准协议 eval。目前有效配对数 = 0（CED 侧 0 个有效）。s43/s45 跑完后 CED 有 2 个，还需 reeval s42 和 s44\n- **最容易判断错的事**：不要信 metrics_summary_table.md 和 paper_metrics_table.md 中的 CED mean (0.4596±0.0128) 和 flat-NLI mean (0.4531±0.0011)——这些基于协议不一致的旧数据，不可引用。必须等全部 re-eval 完成后重算\n- **CED s42 checkpoint 陷阱**：命名混乱——`rsft_output/` 才是 CED s42（seed 42 默认），`rsft_output_r2b/` 是 alpha=32 消融。Worker 已混淆过一次，t-test 脚本也用错了\n- **flat-NLI checkpoint 是 507 步**（不是 510），因训练数据量不同\n- **literature_map 29 类 (RL vs Forgetting)** 与 Claim 2 \"通用梯度压力\" framing 有叙事张力，论文需显式讨论\n- 项目目标：EMNLP 2026 Main (ARR July)，paper_framing.md 有 4 个 Core Claims\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-copy-3.md"
+}

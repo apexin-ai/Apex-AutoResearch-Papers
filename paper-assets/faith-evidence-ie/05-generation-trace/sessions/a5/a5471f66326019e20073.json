@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5471f66326019e20073",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis seed comparison prep",
+  "task_key": "worker_analysis_seed_comparison_prep_20260516T021842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_seed_comparison_prep_20260516T021842_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "973ea5bc3260d59fd54860aa3ac8d2dd0b59dcb9572cdd065c620be5efe284fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行正常。汇总：\n\n## 脚本修复项（已完成）\n1. **CED s42**：`rsft_r2b` → `rsft_r2b_maxtok1536`（f1=0.4504，匹配你给的数据）\n2. **CED s43**：添加 fallback `[\"rsft_ced_s43\", \"rsft_s43\"]`，优先用新 eval\n3. **CED s45**：`rsft_s45` → `rsft_ced_s45`\n4. **`all_complete`**：`== 3` → `== 4`（4 seeds）\n5. **missing 状态**：分开追踪 CED/flat-NLI 缺失的 seeds\n6. **Per-seed 表格**：改为 markdown table 格式\n\n## 当前已有 metrics\n\n| 方法 | s42 | s43 | s44 | s45 |\n|------|-----|-----|-----|-----|\n| CED RSFT | 0.4504 ✓ | 0.4683 ✓ | 0.4655 ✓ | 空（pending） |\n| flat-NLI RSFT | 0.4539 ✓ | 0.4523 ✓ | 空（pending） | 空（pending） |\n\n## 还缺什么\n- **CED s45** (`rsft_ced_s45`)：目录空，eval 未产出\n- **flat-NLI s44** (`rsft_flat_nli_s44`)：目录空\n- **flat-NLI s45** (`rsft_flat_nli_s45`)：目录空\n\n5/8 已完成，还差 3 个 eval 结果。当前 2 个 matched pairs 的初步统计 p=0.638，不显著——但 n=2 完全不够，等 4 seeds 齐了才有意义。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-seed-comparison-prep-copy-3.md"
+}

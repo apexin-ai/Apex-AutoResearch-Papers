@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5be0bc83e7472c77edf",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops harvest llama rsft s43 eval",
+  "task_key": "worker_ops_harvest_llama_rsft_s43_eval_20260519T223453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_harvest_llama_rsft_s43_eval_20260519T223453_result.json",
+    "occurrence": 1,
+    "bytes": 683,
+    "sha256": "3a57282ee9bdd5d6374b650210b0996bd44d0d47dfca9ebd83bda5ca23cb4722"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron job，无需删除。\n\n---\n\n## eval_llama_rsft_k1_s43 结果摘要\n\n| 指标 | 值 |\n|---|---|\n| **Ign-F1** | **0.5662** |\n| F1 | 0.5780 |\n| Evi-F1 (DREEAM) | 0.4644 |\n| Evi-F1 (TP) | 0.8287 |\n| EDCR | 0.5783 |\n| Format compliance | 985/985 (100%) |\n| Truncated | 173/985 |\n\n### Baseline 对比\n\n| 对比 | ign_f1 | delta |\n|---|---|---|\n| SFT baseline | 0.5514 | — |\n| RSFT s42 | 0.5839 | — |\n| **RSFT s43** | **0.5662** | — |\n| RSFT gain (s43 vs SFT) | — | **+0.0148** |\n| Seed variance (s43 vs s42) | — | **0.0177** |\n\ns43 相比 SFT 有 +1.48 的提升，但比 s42 低 1.77 个点，seed 间方差较大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-llama-rsft-s43-eval.md"
+}

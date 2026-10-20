@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92dfb0f0f64224112f8a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check training health all",
+  "task_key": "worker_check_training-health-all_20260514T180219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_training-health-all_20260514T180219_result.json",
+    "occurrence": 1,
+    "bytes": 1808,
+    "sha256": "b6f086f9ce9f7f185c88f22945ee987dbad995acf4ca5d184fa2c89f652b7e36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇总 (2026-05-14 18:04 UTC)\n\n### GPU 总览\n| GPU | 显存 | 利用率 | 任务 |\n|-----|------|--------|------|\n| cuda:0 | 13649/32607 MiB | 42% | ced_kl001_r4 训练 |\n| cuda:1 | 10439/32607 MiB | 56% | eval ckpt50 |\n| cuda:2 | 9409/32607 MiB | 0% | eval ckpt10 (multi) |\n| cuda:3 | 13647/32607 MiB | 46% | flatnli_r6 训练 |\n\n### 1. ced_kl001_r4 (cuda:0) — ✅ 即将完成\n- **进度**: 99/100 steps，预计几分钟内结束\n- **健康**: 全程无 collapse，KL=0.148 受控\n- **最终指标** (step 85): reward=0.843, f1=0.358, ced=0.196, frac_zero_std=0.2\n- **结论**: 训练成功，等待完成后进入 eval 阶段\n\n### 2. flatnli_r6 (cuda:3) — ⚠️ 需关注\n- **进度**: 21/100 steps，预计 ~2h 完成\n- **风险**: frac_zero_std 持续上升 0.4→0.6→0.7，逼近 0.8 警戒线\n- **问题**: task reward 极低（f1=0.012, flat_nli=0.023），reward 几乎全来自 format（0.29/0.325）\n- Step 5 出现 KL 爆炸 (1.2亿) 后回落，当前 KL=0.036 稳定\n- grad_norm=0.037 极低，loss 为负值，模型可能在 exploit format\n- **建议**: 暂不 kill，继续观察到 step 30-40。若 frac_zero_std 破 0.8 且 task reward 无起色则终止\n\n### 3. eval_ced_kl001_r4_early / ckpt50 (cuda:1) — 🔄 正常推进\n- Inference 41/62 batches (~66%)，预计 ~25 min 完成推理\n\n### 4. cuda:2 双 eval — ✅ 无冲突\n- **实际状态**: 只有一个 Python 进程在跑（PID 78857，inference ckpt-10）\n- multi eval (78850) 是 bash wrapper 处于 sleep 状态，78857 是其子进程\n- ckpt10 独立 eval 的日志文件不存在，可能未实际独立运行\n- multi eval 进度: 14/62 batches on checkpoint-10 (~23%)，7 个 checkpoint 全部完成预计数小时\n- 显存 9409 MiB，无 OOM 风险"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-training-health-all.md"
+}

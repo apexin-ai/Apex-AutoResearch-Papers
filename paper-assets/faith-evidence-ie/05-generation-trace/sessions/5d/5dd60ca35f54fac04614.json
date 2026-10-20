@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5dd60ca35f54fac04614",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code rsft train config",
+  "task_key": "worker_code_rsft-train-config_20260515T022446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rsft-train-config_20260515T022446_result.json",
+    "occurrence": 1,
+    "bytes": 4160,
+    "sha256": "02dc6da1c33b854e9626d85e2f3a16a15bae4d8b7c2215aa1e1c7aba33450d19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法和导入均通过。下面是汇总结果。\n\n---\n\n## 验证结果\n\n### 已满足项\n\n| 项目 | 状态 |\n|------|------|\n| SFT 训练框架复用 | ✅ 相同 SFTConfig/SFTTrainer, chat template, SYSTEM_PROMPT |\n| LoRA 结构一致 | ✅ r=64, alpha=128, dropout=0.05, 7 target modules 完全一致 |\n| SFT adapter merge | ✅ base → PeftModel.from_pretrained → merge_and_unload → 新 LoRA |\n| CED 数据加载 | ✅ JSONL 格式，ced_score 加权采样 |\n| 多 GPU 支持 | ✅ accelerate_4gpu.yaml + deepspeed_zero2.json 已配置，`--deepspeed` 参数已有 |\n| bf16 / gradient checkpointing | ✅ |\n\n### 新增修改\n\n| 修改 | 内容 |\n|------|------|\n| `TrainerCallback` import | 新增 |\n| `prepare_eval_data()` | 加载 DocRED dev set，构建 task eval prompts + gold + loss-based eval dataset |\n| `TaskEvalCallback` | 每个 epoch 结束时：generate on dev subset → parse → 计算 F1/Ign-F1/Evi-F1/EDCR → log to W&B |\n| eval_loss 支持 | `eval_strategy=\"epoch\"`, `eval_dataset` 传入 trainer |\n| 新 CLI 参数 | `--eval_data_dir`, `--eval_max_docs`(50), `--max_new_tokens`(1024) |\n\n### SFT vs RSFT 超参对比\n\n| 参数 | SFT warmup | RSFT 默认 | 说明 |\n|------|-----------|----------|------|\n| learning_rate | 2e-4 | **2e-5** | 10x 低，合理——从 warmup checkpoint 继续 |\n| per_device_batch_size | 1 | **4** | RSFT 样本更短 (max_length=2048 vs 4096) |\n| gradient_accumulation | 16 | **4** | effective bs: SFT=16, RSFT=16 (4×4) |\n| warmup | ratio=0.05 | **steps=100** | |\n| max_length | 4096 | **2048** | RSFT 生成数据一般更短 |\n| epochs | 3 | 3 | 相同 |\n\n### 显存估算 (单卡 RTX 5090 32GB)\n\n- Qwen3-4B bf16: ~8GB\n- LoRA trainable: ~250MB\n- Optimizer (AdamW): ~500MB\n- Activations (bs=4, seq=2048, grad ckpt): ~8-10GB\n- 总计: ~17-19GB → **单卡可行**，4 GPU 更从容\n\n### 完整训练命令\n\n**单卡：**\n```bash\ncd /root/autodl-tmp && \\\nHF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -m freige.training.rsft_trainer \\\n    --base_model /root/autodl-tmp/models/Qwen3-4B \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl \\\n    --output_dir /root/autodl-tmp/rsft_output \\\n    --learning_rate 2e-5 \\\n    --num_epochs 3 \\\n    --per_device_batch_size 4 \\\n    --gradient_accumulation_steps 4 \\\n    --lora_rank 64 --lora_alpha 128 \\\n    --weighted_sampling \\\n    --eval_data_dir /root/autodl-tmp/data/docred \\\n    --eval_max_docs 50 \\\n    --wandb_run_name rsft-ced-r1 \\\n    --seed 42\n```\n\n**4 GPU (accelerate + DeepSpeed ZeRO-2)：**\n```bash\ncd /root/autodl-tmp && \\\nHF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\naccelerate launch --config_file freige/configs/accelerate_4gpu.yaml \\\n    -m freige.training.rsft_trainer \\\n    --base_model /root/autodl-tmp/models/Qwen3-4B \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl \\\n    --output_dir /root/autodl-tmp/rsft_output \\\n    --learning_rate 2e-5 \\\n    --num_epochs 3 \\\n    --per_device_batch_size 4 \\\n    --gradient_accumulation_steps 1 \\\n    --lora_rank 64 --lora_alpha 128 \\\n    --weighted_sampling \\\n    --eval_data_dir /root/autodl-tmp/data/docred \\\n    --eval_max_docs 50 \\\n    --deepspeed freige/configs/deepspeed_zero2.json \\\n    --wandb_run_name rsft-ced-r1-4gpu \\\n    --seed 42\n```\n\n注意：4 GPU 时 `gradient_accumulation_steps=1`（effective bs = 4×4=16，与单卡一致）。WeightedRandomSampler 在 DDP 下不生效，Accelerate 会替换 sampler。\n\n### 预估训练时间\n\n假设 ~3000 RSFT 样本，effective bs=16:\n- ~188 steps/epoch × 3 epochs = ~564 steps\n- 单卡 RTX 5090: ~2-3 min/epoch → **~10 min total**\n- 4 GPU: ~1 min/epoch → **~5 min total**\n- Task eval (50 docs generate): ~3-5 min/epoch\n\n### 待完成前置\n\n`/root/autodl-tmp/rsft_filtered/rsft_train.jsonl` 尚不存在，需先完成 CED score → filter 流程生成训练数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rsft-train-config.md"
+}

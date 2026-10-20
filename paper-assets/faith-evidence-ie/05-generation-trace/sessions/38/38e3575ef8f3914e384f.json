@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38e3575ef8f3914e384f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 007 r2 metrics",
+  "task_key": "worker_analysis_plan_007_r2_metrics_20260516T133725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_007_r2_metrics_20260516T133725_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "b668749e8e5d90f27faf2499ea6a45ded17e44f13570612a1548058238e3c3a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**Re-DocRED cross-dataset 4B SFT eval 结果摘要：**\n\n- **Ign-F1: 36.59%** — 相比 DocRED in-domain eval（D080 提到的基线）确实有明显下降，符合 cross-dataset 泛化预期\n- **Evi-F1: 81.70%** — evidence 质量保持很高，说明模型学到了可泛化的 evidence 定位能力\n- **EDCR: 66.74%** — 2/3 的 citation 指向非 distractor 句子\n- **Format compliance: 99.6%** — 几乎无格式错误\n- **Truncated: 139/493 (28.2%)** — 较高的截断率，Re-DocRED 文档较长，max_new_tokens=1024 可能不够\n\n关键观察：Evi-F1 在 cross-dataset 上仍达 81.7%，说明 evidence-grounded 训练的泛化性良好。Ign-F1 下降主要因为 relation recall 低（32.8%），可能与 Re-DocRED 的 relation schema 差异有关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-007-r2-metrics.md"
+}

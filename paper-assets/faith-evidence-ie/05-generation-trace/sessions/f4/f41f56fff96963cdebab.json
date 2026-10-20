@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f41f56fff96963cdebab",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260517T171715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_20260517T171715_result.json",
+    "occurrence": 1,
+    "bytes": 200,
+    "sha256": "d0b6c3b9e118714a4292b16e3bcc9e3a7c9ccebae624c08896fa0eb241243e97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `limitations.tex`。4 段分别覆盖 dev-set evaluation、exact-match F1 低估、EDCR 人工验证缺失、单算法覆盖。无 em-dash、无 -ing 结尾、约 195 words。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-copy-4.md"
+}

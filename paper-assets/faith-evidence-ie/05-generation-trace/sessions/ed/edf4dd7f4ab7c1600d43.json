@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edf4dd7f4ab7c1600d43",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code d112 eval bf16 submit",
+  "task_key": "worker_code_d112_eval_bf16_submit_20260519T130122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d112_eval_bf16_submit_20260519T130122_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "2ad55c9b5ce25a139958e23e5af2952ba9ba3aa53019201d4fb76f4bc528d837"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常运行：模型加载完成，SFT adapter 已合并，RSFT LoRA adapter 已加载，998 文档 / 12275 gold triples 准备就绪，推理已开始（0/247 batches）。\n\n完成总结：\n\n- **Symlinks 已创建**：`rsft_output_4b_sft_s44_bf16/adapter_config.json` → `checkpoint-567/adapter_config.json`\n- **Eval 已提交**：`d112_rsft_s44_eval_bf16`，PID 693522，**cuda:2**（cuda:0 仍被训练进程占用 27GB，不满足 C001，改用 cuda:2）\n- **Registry 已更新**：\n  - `d112_rsft_s44_train_bf16` → DONE/success，checkpoint_path 已设置\n  - `d112_rsft_s44_eval_bf16` → PREPARING，hypothesis 和 parent 已设置\n- **Eval 预计 ~2h**（247 batches）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d112-eval-bf16-submit.md"
+}

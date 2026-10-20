@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9796f628b2bcecaa30b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check running progress",
+  "task_key": "worker_ops_check_running_progress_20260515T195558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_running_progress_20260515T195558_result.json",
+    "occurrence": 1,
+    "bytes": 1521,
+    "sha256": "ba0b32d3be476412369fab9531dd085c590e58d8edff6422077f87dfcc33ac54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### GPU 状态\n| GPU | 显存占用 | 利用率 | 占用进程 |\n|-----|---------|--------|---------|\n| 0 | 16287/32607 MiB | 1% | PID 236779 (plan_001) |\n| 1 | 29260/32607 MiB | 93% | PID 246982 + 247244 (plan_011 eval) |\n| 2 | 28825/32607 MiB | 99% | PID 245108 (plan_012 DPO) |\n| 3 | 20093/32607 MiB | 40% | PID 234494 (plan_008) |\n\n### 各实验进度\n\n| 实验 | 状态 | 进度 | Loss | ETA |\n|------|------|------|------|-----|\n| **plan_001_flat_nli_seed43** | 运行中 (1h32m) | 503/507 (99.2%) | 0.625 (ep2.96) | **~20s，即将完成** |\n| **plan_008_rsft_topk3** | 运行中 (1h53m) | 1006/1509 (66.7%) | 0.502 (ep1.99) | **~36 min** |\n| **plan_011_bf16_g8_step_eval** | 运行中 (刚启动) | 1/62 batch (2%) | — (eval推理) | **~1h50m** |\n| **plan_012_dpo_ced_1ep** | 运行中 (13m) | 64/167 (38%) | 0.668 (ep0.36) | **~21 min** |\n| **plan_009_extract_reward_eval** | **OOM 失败** | — | — | CUDA out of memory on GPU 0 |\n\n### 备注\n- **plan_001** 马上完成，loss 在 0.60-0.63 波动，epoch 接近 3.0\n- **plan_008** 刚过 epoch 2，loss 从 0.55 降到 0.50，训练正常\n- **plan_012** DPO loss 从 0.693 稳步降至 0.668，rewards/accuracies 从 0.41 升到 0.68，训练趋势良好\n- **plan_011** 加载了 `grpo_ced_g8_bf16/checkpoint-30` 的 LoRA，正在跑 dev set eval，111s/batch\n- **plan_009** 因 GPU 0 显存被 plan_001 和 plan_011 eval 子进程占满导致 OOM 崩溃，需要等 plan_001 完成后重跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-running-progress.md"
+}

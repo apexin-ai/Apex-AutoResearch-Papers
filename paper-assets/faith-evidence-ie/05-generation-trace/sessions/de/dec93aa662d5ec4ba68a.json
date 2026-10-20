@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dec93aa662d5ec4ba68a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis fair subset reconciliation",
+  "task_key": "worker_analysis_fair_subset_reconciliation_20260518T133428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fair_subset_reconciliation_20260518T133428_result.json",
+    "occurrence": 1,
+    "bytes": 1209,
+    "sha256": "50243a40a1352421e3ba2a77c8863eac7afe18d497fbdb7f1bacf5f404385f85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "memory.md 已更新。总结：\n\n---\n\n## 调查结论\n\n### 根因\n**F1 计算方法不一致**，不是子集定义不同。\n\n- D083 / `fair_eval.py`：使用 **aggregate ign_f1**（标准 DocRED 指标）\n- art_20260518_cc2048 crossover 表格：使用 **per-doc average F1**（每篇文档独立算 F1 再取平均）\n\n两者都用 442 docs（trunc-only exclusion），但 per-doc avg F1 给每篇文档等权重，而 ign_f1 按三元组数加权（micro F1）。三元组多的文档受 evidence 帮助更大，所以 ign_f1 差距更大。\n\n### 权威数字（论文使用）\n\n| 指标 | 值 |\n|---|---|\n| 子集定义 | trunc-only exclusion（任一条件下截断即排除） |\n| 文档数 | **442 / 985** (44.9%) |\n| 1.7B WE Ign-F1 | 0.6319 |\n| 1.7B NE Ign-F1 | 0.5704 |\n| **1.7B residual evidence benefit** | **6.2pp** |\n| 8B Qwen (615 docs) | ~0pp (-0.3pp) |\n| 8B LLaMA (694 docs) | ~0pp (+0.3pp) |\n\n### 需修正\n- art_20260518_cc2048 Section 3.2/3.3 crossover 表格中的 per-doc F1 数字（4.9pp/0.0pp/+1.0pp）不应直接用于论文\n- 论文中引用 fair subset 结果时统一使用 ign_f1：**442 docs, evidence helps 6.2pp at 1.7B, ~0pp at 8B**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fair-subset-reconciliation.md"
+}

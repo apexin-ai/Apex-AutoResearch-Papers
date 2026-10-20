@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b47173683b0f77ee6a4f",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "code d102 next batch scripts",
+  "task_key": "worker_code_d102_next_batch_scripts_20260518T070828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d102_next_batch_scripts_20260518T070828.log",
+    "occurrence": 1,
+    "bytes": 612212,
+    "sha256": "a82cddddedfe02e254cf15aa39eb9a55e2d77508bbe4156d7f25ebadb1707f41"
+  },
+  "statistics": {
+    "messages": 198,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 44,
+      "record": 1,
+      "tool_call": 75,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 198,
+      "chunks": [
+        {
+          "path": "b47173683b0f77ee6a4f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b47173683b0f77ee6a4f-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d102-next-batch-scripts.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1db453226ea47af35da",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops post restart status check",
+  "task_key": "worker_ops_post_restart_status_check_20260520T030428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post_restart_status_check_20260520T030428_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "89f8bfe88106848b4ac8fb1e34aa6564d94836ebfe63679691b460981d0e6586"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验 | GPU | PID状态 | 进度 | ETA | 关键信息 |\n|------|-----|---------|------|-----|----------|\n| eval_llama_rsft_s43_no_evidence | cuda:1 (18.4/32.6 GB) | 745299 R, 53min | 103/247 (42%) | ~1h15m | ~31s/it, inference进行中 |\n| llama_rsft_s44_pipeline | cuda:3 (18.4/32.6 GB) | eval阶段 | 117/247 (47%) | ~1h07m | train已完成(loss=0.489, 3ep), 进入Step2 eval |\n| plan017_14b_rsft_generate | cuda:0+2 (17.4+19.6 GB) | 712685 S, 9h31m | 1478/3027 (49%) | ~9.5h | ~22s/it, 生成进行中 |\n\nGPU 总览：4 卡全在用，利用率 32%/67%/44%/79%。三个任务均正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-status-check-copy-2.md"
+}

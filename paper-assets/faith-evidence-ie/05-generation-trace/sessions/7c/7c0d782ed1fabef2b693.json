@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c0d782ed1fabef2b693",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8.md",
+    "occurrence": 1,
+    "bytes": 5927,
+    "sha256": "8ce6ec82140d524420caad2b8b85dc2b775bf7a755508430bc381bc641c8aad2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T14:34:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（rtx5090-4x），不得使用其他 GPU\n- 服务器只有 rtx5090-4x 和 bjb2-12179（后者无 GPU 实验用途）\n- inference.py **必须传完整模型 stack**（--base_model + --sft_adapter + --model_path），缺任何一个出的结果不可用（D038/maxtok1536 教训，被 Reviewer CRITICAL 打回过）\n- RSFT 训练禁止 --quantize（RTX 5090 CUBLAS 错误），bf16 即可\n- 运行目录必须是 `/root/autodl-tmp/`（不能 cd 到 freige/ 子目录，会导致 import 空包）\n- Qwen3 的 generation_config.json 会静默覆盖 temperature/top_k，生成前必须显式覆盖\n- GRPO 路线已判死（D031），不要尝试任何 GRPO+QLoRA 变体；plan_011 是 bf16 LoRA（非 QLoRA）验证 G=8 decoupling，唯一例外\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB）\n- **工作目录**: `/root/autodl-tmp/freige`（项目根）；`/root/autodl-tmp/` 运行目录\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型路径**: `/root/autodl-tmp/models/Qwen3-4B`（base）；`/root/autodl-tmp/sft_output`（SFT adapter）\n- **RSFT checkpoints**: `/root/autodl-tmp/rsft_output/`（r1/r2a/r2b/s43/s44 等子目录）\n- **数据**: `/root/autodl-tmp/data/docred`；RSFT 训练数据 `/root/autodl-tmp/rsft_scored/`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（必须设 HF_HOME）\n- **W&B project**: faith-evidence-ie（需确认，memory.md 未显式记录 project name）\n- **活跃进程**:\n  - mvp2_ced_reranker_poc: PID 178050, cuda:0, CED reranker N=8 985 docs（预计~6h，已运行数小时）\n  - mvp2_eval_rsft_r2b_maxtok1536_r2: PID 197381, cuda:1, truncation 诊断 eval\n  - plan_011_grpo_g8_bf16: PID 210099, cuda:3, GRPO G=8 bf16 100 steps\n  - plan_004_dreeam_baseline: PID 213001, cuda:2, QUEUED（DREEAM 复现，可能需检查是否实际在跑）\n- **Cron 监控**: mvp2_ced_reranker_poc + mvp2_eval_rsft_r2b_maxtok1536_r2 两个 cron 活跃\n\n### 3. 📊 当前状态\n本 session 处理了大量工作：MVP 通过（D040）→ Dream v1 不达标（best=2.5）→ paper_framing.md 重大 reframe（D044）→ DPO 升 P0（D045）→ 启动 Research 阶段首批 P0 实验。\n\n**RUNNING (3)**:\n- `plan_011_grpo_g8_bf16` (cuda:3): GRPO G=8 bf16 LoRA，验证 decoupling 是否在 bf16 下复现。C2 publishability 必要条件。\n- `mvp2_eval_rsft_r2b_maxtok1536_r2` (cuda:1): r2b 用 max_new_tokens=1536 重新 eval，诊断 EDCR 低于 SFT 是否因 truncation。\n- `mvp2_ced_reranker_poc` (cuda:0): CED-as-reranker PoC，N=8 candidates，985 docs。\n\n**QUEUED (1)**:\n- `plan_004_dreeam_baseline` (cuda:2): DREEAM fully-supervised teacher 复现。PID 213001 存在但状态仍 QUEUED，需检查是否实际已启动（可能 submit 后 cron 未更新状态）。\n\n**PREPARING (1)**:\n- `mvp2_eval_rsft_s44`: s44 全量 dev eval，等 GPU 空出。\n\n**等待中**:\n- Re-dream 运行中（dream_20260515T132059），验证 reframe 后论文分数是否达标（目标 best≥3.5, median≥3.0）\n- 无 running Worker（全部已完成）\n- 无待处理的 Director 决策\n\n### 4. 📋 待办（条件触发式）\n- `mvp2_ced_reranker_poc` cron 回调 → 分析 reranker rel_f1 vs SFT 0.4057：≥0.4057 → 有价值的 complementary contribution；<0.4057 → 记录 negative，CED reranker 不写入论文\n- `mvp2_eval_rsft_r2b_maxtok1536_r2` cron 回调 → 比较 EDCR：显著提升（→0.71+）= truncation 是原因 → 后续 eval 全部用 1536；无变化 = distractor citation 是 RSFT 真实行为 → 接受 EDCR 下降，paper 中讨论\n- `plan_011_grpo_g8_bf16` cron 回调 → **最关键判断**：rel_f1 < 0.05 = decoupling 在 G=8 下复现 → C2 成立，加强 paper；rel_f1 > 0.2 = G=4 confound → C2 需要重写边界条件，向 Director 报 Framing 调整\n- `plan_004_dreeam_baseline` 完成 → 对比 DREEAM Evi-F1≈54.15 vs 我们的 joint evi_f1，建立 C1 evidence 对比基准\n- Re-dream 结果回来 → best≥3.5 = reframe 成功，继续 P0 实验；best<3.0 = 需要进一步调整 framing\n- cuda:0 或 cuda:1 空出 → 立即启动 plan_008 topk3 双变体之一（topk3_all / topk3_ced_filtered），代码已由 Worker 准备就绪\n- plan_011 + plan_004 完成后 cuda:2/3 空出 → 启动 plan_012 DPO+CED（P0，C2 叙事关键）和 plan_001 flat-NLI RSFT ablation（P0，C3）\n\n### 5. 🎯 战略上下文\n**项目核心**: FREIGE = evidence-grounded DocRE 新任务范式。4 个 Claims: C1(可行性), C2(GRPO decoupling), C3(NLI ablation), C4(EDCR)。\n\n**决策链关键节点**:\n- D031: GRPO+QLoRA 判死 → pivot to RSFT\n- D038: RSFT \"失败\"实为 eval bug（TaskEvalCallback 用全量 gold 算 subset pred 的 F1）→ 撤回 D037\n- D040: MVP 正式通过\n- D044: Dream v1 不达标 → reframe（CED 降级、Claims 重构）\n- D045: DPO 升 P0（C2 叙事需要 offline preference baseline）\n\n**最容易判断错的事**:\n1. plan_011 GRPO G=8 结果解读——这不是\"再试一次 GRPO\"，而是**排除 G=4 confound**。如果 G=8 下 decoupling 不复现，C2 的 scope 必须从\"GRPO fails\"收窄到\"GRPO with small G fails\"，publishability 受严重威胁。\n2. EDCR 低于 SFT 不是 bug——RSFT 增加 pred_count 导致更多 distractor citation，这可能是方法的 trade-off 而非缺陷。maxtok1536 实验正在验证是否 truncation 是另一个因素。\n3. CED vs flat-NLI 的差异可能不显著（Dream 报告 p=0.08/0.38/0.12）——如果 5+ seeds 统计检验仍不显著，CED 必须降级为\"one possible scoring function\"，不能硬撑。\n4. 投稿目标 EMNLP 2026 Main（ARR July cycle，~July 15-25）。还有 2 个月，但 P0 实验有 ~75 GPU-hours，4 卡并行约 19h 计算时间。真正的瓶颈是实验分析→论文写作→re-dream 迭代。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-2.md"
+}

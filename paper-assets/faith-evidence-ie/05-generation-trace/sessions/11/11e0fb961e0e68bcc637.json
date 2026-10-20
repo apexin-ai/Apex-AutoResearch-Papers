@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11e0fb961e0e68bcc637",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis ckpt10 eval result",
+  "task_key": "worker_analysis_ckpt10-eval-result_20260514T191250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ckpt10-eval-result_20260514T191250_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "11a666ec22324d1199a8cba7c8be06b21be29a786a72725d8d0422c37bb6afbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被其他 worker 清除或未在本 session 创建）。\n\n## 对比简表\n\n| 指标 | SFT baseline | ckpt-10 | ckpt-50 | 趋势 |\n|------|-------------|---------|---------|------|\n| **rel_f1** | **0.4057** | 0.0030 | 0.1563 | ckpt-10 最差，ckpt-50 稍恢复但仍远低于 SFT |\n| rel_precision | — | 0.0031 | — | — |\n| rel_recall | — | 0.0028 | — | — |\n| **evi_f1** | **0.7979** | 0.7200 | 0.5643 | ckpt-10 > ckpt-50，两者都低于 SFT |\n| evi_precision | — | 0.6429 | — | — |\n| evi_recall | — | 0.8182 | — | — |\n| **edcr** | **0.7118** | 0.9983 | 0.8858 | GRPO 越早越\"保守\"（几乎全引 distractor） |\n| n_parseable | — | 984/985 | — | 格式正常 |\n| n_truncated | — | 24 | — | — |\n\n**结论**: ckpt-10 的 rel_f1=0.003 是灾难性的（仅 34 TP / 10839 predictions），比 ckpt-50 还差一个数量级。edcr=0.998 说明模型几乎把所有 citation 都指向 distractor。GRPO (ced_kl001_r4) 从第 10 步起就严重损害 relation 抽取能力，随训练推进 relation 略有恢复但远未达 SFT 水平。该配置确认 negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ckpt10-eval-result.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb891084ef03ac205508",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor rsft gen progress",
+  "task_key": "worker_monitor_rsft_gen_progress_20260516T174200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_rsft_gen_progress_20260516T174200_result.json",
+    "occurrence": 1,
+    "bytes": 1897,
+    "sha256": "c31b4c73d574bb8528389b110d1a8536b908996de0270255740a1a8eedef3103"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 PID 全部存活。计算进度：\n\n## 进度报告\n\n| 任务 | 行数 | 已完成 docs | 总 docs | 进度 | 运行时间 |\n|------|------|------------|---------|------|---------|\n| **1.7B** (PID 349794, cuda:0) | 8680 | 1085 | 3027 | 35.8% | 3h51m |\n| **8B** (PID 349382, cuda:3) | 7000 | 875 | 3027 | 28.9% | 3h51m |\n| **LLaMA 8B** (PID 360970, cuda:2) | 4496 | 562 | 2963 | 19.0% | 1h52m |\n\n## 速率与 ETA\n\n| 任务 | 速率 | 剩余 docs | 预计剩余时间 | ETA (UTC) |\n|------|------|-----------|-------------|-----------|\n| **1.7B** | ~282 docs/h | 1942 | ~6.9h | ~May 16 23:30 |\n| **8B** | ~227 docs/h | 2152 | ~9.5h | ~May 17 02:00 |\n| **LLaMA 8B** | ~300 docs/h | 2401 | ~8.0h | ~May 17 00:30 |\n\n注：上次记录 (~6h 前) 1.7B=531 docs, 8B=428 docs。按差值计算增量速率：\n- 1.7B: (1085-531)/3.85h ≈ 144 docs/h — 比全程均值低，说明前期有加载/warmup 时间拉高了均值，实际稳态速率可能更接近这个数\n- 8B: (875-428)/3.85h ≈ 116 docs/h\n\n用增量速率修正：\n\n| 任务 | 增量速率 | 剩余 | 修正 ETA (UTC) |\n|------|---------|------|---------------|\n| **1.7B** | ~144 docs/h | 1942 | ~13.5h → May 17 06:00 |\n| **8B** | ~116 docs/h | 2152 | ~18.5h → May 17 11:00 |\n| **LLaMA 8B** | ~300 docs/h (仅1.9h数据) | 2401 | ~8h → May 17 00:30 |\n\n## GPU 状态\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 (1.7B) | 40% | 13.5/32.6 GB |\n| cuda:1 (空闲) | 56% | 10.3/32.6 GB |\n| cuda:2 (LLaMA) | 88% | 24.0/32.6 GB |\n| cuda:3 (8B) | 76% | 28.1/32.6 GB |\n\nGPU 1 有 10GB 占用和 56% 利用率但不属于这 3 个任务，可能有其他进程。三个目标任务均正常运行。\n\n**总结**：LLaMA 最快预计明天凌晨完成，1.7B 明天早上，8B 明天中午。如果增量速率稳定的话，三个任务都还需要 8-18 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-rsft-gen-progress-copy-3.md"
+}

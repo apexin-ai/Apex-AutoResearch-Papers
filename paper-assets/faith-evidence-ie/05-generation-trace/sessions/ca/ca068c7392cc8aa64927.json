@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca068c7392cc8aa64927",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops verify ckpt60 and training progress",
+  "task_key": "worker_ops_verify_ckpt60_and_training_progress_20260514T222054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_ckpt60_and_training_progress_20260514T222054_result.json",
+    "occurrence": 1,
+    "bytes": 1312,
+    "sha256": "142fef5d789d1549e038a39ad43b9875be52c0690878cf6264574997a40569b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇报\n\n### 进程状态\n- **存活**，PID 90080，已运行 2h41m，GPU 0 占用 13636 MiB\n- **当前 step: 86/200** (43%)，日志最后一行显示 step 86 正在处理\n\n### Checkpoint 列表\n| Checkpoint | 状态 |\n|---|---|\n| checkpoint-20 | ✓ 存在 |\n| checkpoint-40 | ✓ 存在 |\n| checkpoint-60 | ✓ 存在且完整 |\n| checkpoint-80 | ✓ 存在 |\n\n### checkpoint-60 完整性\n完整，包含：\n- `adapter_model.safetensors` (252MB)\n- `adapter_config.json`\n- `optimizer.pt` (504MB)\n- `trainer_state.json` + tokenizer 文件齐全\n\n### 训练指标（最近几步 ~step 78-80）\n- reward: 0.24 → 0.28（缓慢上升）\n- format_reward: ~0.22 → 0.25\n- f1_reward: 极低 (~0.005-0.016)\n- ced_reward: 极低 (~0.008-0.018)\n- KL: 已从早期爆炸值（2.4×10⁹）降至正常范围（~0.01）\n- 平均 step 时间: ~100-110s/step\n\n### 预计完成时间\n剩余 114 步 × ~105s/step ≈ 3h20m，预计 **UTC 2026-05-15 ~09:40**（北京时间 ~17:40）完成。\n\n### 注意事项\n- KL 在 step 5 和 step 30 出现过爆炸（2.4×10⁹ 和 7×10¹³），但仅告警未停止，后续已恢复正常\n- f1_reward 和 ced_reward 仍然很低，模型在实际 IE 任务上的提升有限，format compliance 是主要得分来源"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-ckpt60-and-training-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "479cb66ac29b7189d3bf",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose gpu status and phase1 launch",
+  "task_key": "worker_diagnose_gpu-status-and-phase1-launch_20260521T035357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu-status-and-phase1-launch_20260521T035357_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "092657a928a03c9206aa171fde8bf091b30e05eb59a0574722ff872e33e54ad8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n**GPU 状态**\n\n| GPU | 显存占用 | 进程 | 状态 |\n|-----|---------|------|------|\n| cuda:0 | 18879 MiB | PID 70706 — LLaMA RSFT s42 with-evi@2048 | 运行 1h07m |\n| cuda:1 | 32503 MiB | PID 70388 — 14B RSFT with-evi@2048 | 运行 1h08m |\n| cuda:2 | 18879 MiB | PID 64391 — LLaMA SFT s43 with-evi@2048 | 运行 3h07m |\n| cuda:3 | 6071 MiB | PID 74712 — **D140 1.7B no-evi@2048** | **刚启动** |\n\n**s43 harvest**: 未完成，metrics.json 不存在，仍在运行。\n\n**D140 Phase 1 启动**:\n- **Phase 1b** (1.7B SFT s42 no-evi@2048): **已启动** on cuda:3, PID 74712, registry RUNNING\n- **Phase 1a** (1.7B SFT s42 with-evi@2048): **等待 cuda:2** — s43 仍占用，待其完成后启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-status-and-phase1-launch.md"
+}

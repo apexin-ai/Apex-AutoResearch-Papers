@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0465acaf3ac0149ae716",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 001 status check",
+  "task_key": "worker_ops_plan_001_status_check_20260515T144149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_001_status_check_20260515T144149_result.json",
+    "occurrence": 1,
+    "bytes": 1091,
+    "sha256": "0bdcb6f8ecf532c7196b13f9233690763e38c983b8d3197ced9f96378cbc316c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### Flat-NLI Scoring (PID 208148/208155)\n- **仍在运行**，已 45 分钟\n- 进度：**17000/21728 (78.2%)**，最新日志 22:40:58\n- 速率：~500 条/70 秒，剩余 4728 条，**预计 ~11 分钟后完成 (~22:52)**\n- 输出目录 `/root/autodl-tmp/rsft_filtered_flat_nli/` 已创建但还是空的（scoring 完成后才写入）\n- 占用 GPU 3，1458 MiB\n\n### GPU 占用\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| 0 | 1737/32607 MiB (5%) | 43% | PID 178055 (未知) |\n| 1 | 14675/32607 MiB (45%) | 80% | PID 197386 (未知) |\n| 2 | 24899/32607 MiB (76%) | 86% | PID 213006 (未知) |\n| 3 | 14574/32607 MiB (45%) | 93% | PID 208155 (flat-NLI scoring, 1458 MiB) + PID 214562 (eval inference grpo_ced_g8_bf16/ckpt-80, 13102 MiB) |\n\n### 注意\n- **GPU 3 不空闲**：flat-NLI scoring + eval inference 同时跑，利用率 93%\n- GPU 0 显存几乎空闲（仅 1.7GB），可用于新任务\n- PID 214562 是刚启动 1 分钟的 eval inference（grpo_ced_g8_bf16 checkpoint-80 on DocRE dev set）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-001-status-check.md"
+}

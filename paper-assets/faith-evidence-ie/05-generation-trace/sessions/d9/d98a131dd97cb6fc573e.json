@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d98a131dd97cb6fc573e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose urgent gpu status r2",
+  "task_key": "worker_diagnose_urgent-gpu-status-r2_20260520T204754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_urgent-gpu-status-r2_20260520T204754_result.json",
+    "occurrence": 1,
+    "bytes": 1350,
+    "sha256": "def9f6880995e935ca3ed64122c12cbeabc9f503d43e978cceca9e42d0c0ea09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进程状态\n- PID 48806 (14B RSFT train): **dead — 成功完成** ✓\n- PID 45587 (s43 2048 eval): **alive** — 143/247 (58%), 已运行 2h21m, 预估剩余 ~1h36m (CUDA:1)\n- PID 40255 (s44 2048 eval): **alive** — 236/247 (96%), 已运行 3h40m, 预估剩余 ~12min (CUDA:2)\n- PID 42346 (s42 2048 eval): **alive** — 222/247 (90%), 已运行 3h07m, 预估剩余 ~26min (CUDA:3)\n\n## GPU 状态\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 0 MiB | 0% — **空闲** |\n| 1 | 18879 MiB | 92% — s43 eval |\n| 2 | 18879 MiB | 91% — s44 eval |\n| 3 | 18879 MiB | 92% — s42 eval |\n\n## 14B RSFT Train 结果\n- Checkpoint: `/root/autodl-tmp/rsft_output_14b/adapter_model.safetensors`（已确认存在）\n- train_loss: **0.5005**, mean_token_accuracy: **0.8783**\n- 3 epochs, 1131 steps, runtime 3958s (~66min)\n\n## Eval 预计完成时间\n- s44: ~12 分钟后\n- s42: ~26 分钟后\n- s43: ~1.5 小时后\n\n## Rsync 状态\n路径 `/root/autodl-tmp/sft_output_8b_*/` 无匹配 — 找到 0 个 adapter 文件（14B 的在 `sft_output_14b/` 下，路径 pattern 不匹配）\n\n## 异常/需要注意\n- GPU 0 空闲，14B 训练已完成。可用于后续任务。\n- s43 eval 比另外两个慢很多（58% vs 90%/96%），可能是启动更晚或 batch 间有波动，但进程正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-urgent-gpu-status-r2.md"
+}

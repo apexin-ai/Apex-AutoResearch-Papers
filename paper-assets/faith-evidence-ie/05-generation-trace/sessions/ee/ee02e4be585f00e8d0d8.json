@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee02e4be585f00e8d0d8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis edcr partial correlation",
+  "task_key": "worker_analysis_edcr_partial_correlation_20260525T012215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_edcr_partial_correlation_20260525T012215_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "409335f065f33502f9ae49bd728ca082d8f7c6e8da06eeed215a362f33aad651"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果清晰。关键发现：\n\n**EDCR ↔ F1 partial correlation（控制 relation frequency 后）全部显著：**\n\n| Model | Raw r | Partial r (ctrl freq) | p-value |\n|-------|------:|-----:|------:|\n| Qwen3-8B RSFT | -0.712 | **-0.675** | 3.9e-13 *** |\n| Qwen3-1.7B RSFT | -0.664 | **-0.636** | 2.2e-11 *** |\n| Llama-3.1-8B RSFT | -0.601 | **-0.562** | 1.0e-08 *** |\n\n控制 frequency + avg_evi_count 后仍然显著（r ∈ [-0.65, -0.51], 全部 p < 1e-7）。\n\n**Robustness checks：**\n- 排除 F1=0 的 relation 后仍高度显著（r ∈ [-0.66, -0.52]）\n- EDCR_tp（仅 TP 三元组的 evidence）控制 freq 后变弱（r ≈ -0.13 ~ -0.25），8B 模型 p=0.02 显著，其余两个 n.s.。说明 EDCR 的预测力主要来自整体 evidence 模式（含 FP 预测），而非仅 TP 子集\n\n**结论**：EDCR 在控制 relation frequency 后仍与 per-relation F1 强负相关，支持论文声称 EDCR 是 evidence grounding 质量的可靠指标。脚本和结果已保存到服务器。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-edcr-partial-correlation-copy-2.md"
+}

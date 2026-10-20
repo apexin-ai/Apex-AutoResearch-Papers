@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f536300bf2ac32d97df",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "maintenance fix milestone checker",
+  "task_key": "worker_maintenance_fix-milestone-checker_20260520T100349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_maintenance_fix-milestone-checker_20260520T100349_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "725708ffd01c89dabaca65a99c390dce04f5fa74609ace1c5adb330b1c080417"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 项目 | 结果 |\n|------|------|\n| 旧 milestone_checker | 已不存在（无需杀） |\n| 新等待脚本 PID | **11648**，运行中 |\n| 正确模型路径 | `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/` (PATH_A ✓, Instruct 不存在) |\n| 当前 shard3 大小 | **989 MB**（~1.04GB / 需 >4GB 触发 Milestone A） |\n\n脚本每 2 分钟检查一次 shard3，达到 4GB+ 后写 `/tmp/milestone_a.flag`，然后转入 Milestone B 检测（14B adapter + generations + Qwen3 shards）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/maintenance-fix-milestone-checker.md"
+}

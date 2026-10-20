@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "932357b35708b5ebc970",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code 14b rsft no evi eval launch",
+  "task_key": "worker_code_14b-rsft-no-evi-eval-launch_20260520T211810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-rsft-no-evi-eval-launch_20260520T211810_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "21a879cb7067e7a5af63fdcf2659d61a24f51fc9c6a02e0367152d3de632f71a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n- **PID**: 55039\n- **GPU**: cuda:2，占用 32503 MiB / 97887 MiB\n- **日志**: `/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_no_evidence_eval.log`\n- **Registry**: `plan017_14b_rsft_no_evidence_eval` → RUNNING\n- **预估时间**: ~1.5-2h（参考 with-evidence eval 同规模）\n\n当前 GPU 分布：\n| GPU | 占用 | 用途 |\n|-----|------|------|\n| 0 | 32503 MiB | 14B RSFT with-evidence eval (PID 53413) |\n| 1 | 18879 MiB | 其他任务 |\n| 2 | 32503 MiB | 14B RSFT no-evidence eval (PID 55039) |\n| 3 | 空闲 | — |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-14b-rsft-no-evi-eval-launch.md"
+}

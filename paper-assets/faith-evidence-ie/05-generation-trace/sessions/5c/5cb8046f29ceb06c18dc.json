@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cb8046f29ceb06c18dc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose gpu status and eval progress",
+  "task_key": "worker_diagnose_gpu-status-and-eval-progress_20260523T014341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu-status-and-eval-progress_20260523T014341_result.json",
+    "occurrence": 1,
+    "bytes": 1203,
+    "sha256": "cef6e4db9227a5cd24167eb3edb356d1e3132109e6de8196589c9e018d82a582"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n\n| GPU | 利用率 | 显存占用 | PID | 任务 |\n|-----|--------|---------|-----|------|\n| 0 | 95% | 26.8 / 95.6 GB | 212762 | 8B s43 with-evi eval |\n| 1 | 80% | 32.5 / 95.6 GB | 194682 | 14B s43 generation |\n| 2 | 94% | 21.3 / 95.6 GB | 213753 | 4B s43 with-evi eval |\n| 3 | 43% | 6.1 / 95.6 GB | 214028 | 1.7B s43 with-evi eval |\n\n## Eval 进度\n\n| Eval | PID | 运行时间 | 进度 | 预估剩余 |\n|------|-----|---------|------|---------|\n| **8B s43 with-evi** | 212762 | 53min | 31/32 batches (97%) | ~1min |\n| **4B s43 with-evi** | 213753 | 36min | 16/32 batches (50%) | ~35min |\n| **1.7B s43 with-evi** | 214028 | 35min | 47/500 docs (9.4%) | ~5.5h |\n| **14B s43 generation** | 194682 | 7h27m | 1280/3027 (42%) | ~10h |\n\n**备注**：\n- 8B eval 即将完成（剩最后 1 个 batch）\n- 4B eval 进度一半，batch 粒度推理（32 batches），约 35 min 完成\n- 1.7B eval 用 doc 粒度推理（500 docs），速度 ~45s/doc，预估还需 ~5.5h\n- 14B generation 40% 完成，~20s/sample，预估还需 ~10h\n- 三个 eval 输出目录（`test_eval_*_rsft_s43_with_evi/`）暂无 predictions jsonl，结果可能在最后一次性写入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-status-and-eval-progress.md"
+}

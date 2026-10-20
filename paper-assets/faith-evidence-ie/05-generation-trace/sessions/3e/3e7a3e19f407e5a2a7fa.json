@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e7a3e19f407e5a2a7fa",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor plan 008 check",
+  "task_key": "worker_monitor_plan_008_check_20260515T184154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_plan_008_check_20260515T184154_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "2f91a52aaae134f0ca571b206c8bba9f56c3020bffef02551816fe80de40dc16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已注册 (job `e57c044c`，每 15 分钟检查一次)。\n\n**plan_008_rsft_topk3 状态汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | **运行中** |\n| PID | 234494 (父: 234489) |\n| GPU | cuda:3 (RTX 5090), 15504 MiB |\n| 进度 | step 434/1509 (28.8%), epoch 0.86/3.0 |\n| 速度 | ~5.3 s/step |\n| 预计剩余 | **~1h39m** (约 03:52 UTC 完成) |\n| 最新 loss | 0.6132 (step 430) |\n| token accuracy | 0.8499 |\n| 输出目录 | `/root/autodl-tmp/rsft_topk3_output/` |\n| 已保存 checkpoint | 200, 250, 300, 350, 400 |\n| 日志 | `/root/runs/faith-evidence-ie/plan_008_rsft_topk3.log` |\n| cron 监控 | `e57c044c`，每 15 分钟轮询 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-plan-008-check.md"
+}

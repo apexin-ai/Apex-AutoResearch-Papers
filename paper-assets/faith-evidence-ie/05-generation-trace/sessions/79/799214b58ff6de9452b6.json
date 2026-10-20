@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "799214b58ff6de9452b6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh rsft diversity diagnosis d032",
+  "task_key": "worker_ssh_rsft-diversity-diagnosis-d032_20260515T010821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rsft-diversity-diagnosis-d032_20260515T010821_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "b3c7ed978f573d1664159a4019ac352d6c2279e54700df9ce0f3d7a1e9f0e31b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**VERDICT: VIABLE** — RSFT 可行，继续跑生成。\n\n| 指标 | 值 | 判断阈值 |\n|------|------|---------|\n| mean_std(ced_score) | **0.1189** | >0.05 ✓ |\n| median_std(ced_score) | 0.0992 | — |\n| top2-bottom2 gap | **0.2736** | >0.1 ✓ |\n| median top2-bot2 gap | 0.2364 | — |\n| mean evidence Jaccard | 0.8680 | (高=evidence重叠多) |\n\n**CED 分布**: min=0.00, p25=0.35, median=0.57, p75=0.78, max=1.00\n\n**关键发现**：\n\n- 虽然 triple-set diversity 很低（Jaccard 0.87 = evidence 句子高度重叠），但 **CED score 方差足够大**（std=0.12, top2-bot2 gap=0.27）\n- 这意味着即使 8 个 generation 提取的 triple 集合相似，它们选择的 evidence 质量有明显差异\n- RSFT 用 CED score 做 top-k 筛选是有效的——每个 doc 的 best 和 worst generation 平均 CED 差 0.27\n\n**结论**：diversity 危机只存在于 triple-set 层面，CED score 维度仍有充足选择信号。继续跑 RSFT 生成，后续用 top-25% CED 筛选即可。\n\n（236 docs 已生成，详细 per-doc 结果存在 `/root/autodl-tmp/rsft_diversity_diag_results.json`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rsft-diversity-diagnosis-d032.md"
+}

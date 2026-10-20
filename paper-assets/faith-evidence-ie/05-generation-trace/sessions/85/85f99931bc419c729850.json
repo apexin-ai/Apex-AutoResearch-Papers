@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85f99931bc419c729850",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_17_1779334228.md",
+  "task_key": "loop_17_1779334228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779334228.md",
+    "occurrence": 1,
+    "bytes": 4323,
+    "sha256": "6e4da43208075718bc3dbc8483513f65fca57164aca3e9bc03074d62f2b87895"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-19T12:32:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x cuda:0/1/2/3，共 4 张。不得使用白名单外 GPU\n- bjb2-12179 连接失败，不要往这台提交任务\n- 8B k=1 (53.76) < k=3 (54.33)，论文不能说 \"k=1 consistently outperforms k=3\"，framing 为 \"methodological correction yields comparable results\"\n- 1.7B surpasses 8B claim 脆弱：51.22 vs 50.51 = +0.71pp，8B seed variance 0.95pp > gap，需更多 seeds 加固才能写强 claim\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x，账号 root，工作目录 /root/autodl-tmp/freige\n- Python：source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n- 模型路径：/root/autodl-tmp/models/Qwen/Qwen3-{1.7B,4B,8B}\n- 数据集：/root/autodl-tmp/data/docred（train 3027, dev 985/12275 triples）\n- HF cache：/root/autodl-tmp/.hf_cache\n- 无 W&B 配置（训练日志分析靠 SSH 读 log）\n- 磁盘：/usr/bin/nvidia-smi 分区 431G/879G 可用（49%），尚有余量\n- Eval 命令模板：`python -m freige.eval.inference --model_path <base> --sft_adapter <adapter> --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir <output>`\n\n### 3. 📊 当前状态\n**我刚做完**：收到 plan019_8b_sft_s44（8B SFT seed44 训练）的 CRON 完成回调，已派 Worker `worker_analyze_plan019_8b_sft_s44_20260518T203015` SSH 分析训练日志，**Worker 尚未回调**。\n\n**RUNNING 实验**（3 个，均为 eval）：\n| exp_id | GPU | 内容 |\n|--------|-----|------|\n| wave1_sft_4b_s43_eval_r2 | cuda:2, PID 568649 | 4B SFT s43 eval（corrected D076 command）|\n| wave1_sft_4b_s44_eval_r2 | cuda:1, PID 571192 | 4B SFT s44 eval（corrected D076 command）|\n| grpo_bf16_g4_ckpt200_eval | cuda:3, PID 571115 | GRPO bf16 G=4 ckpt-200 eval（D106 learning curve）|\n\n**ANALYZING**（1 个）：\n- plan019_8b_sft_s44（cuda:0 已释放）——等 Worker 回调后需：更新 registry → 提交 eval job 到 cuda:0\n\n### 4. 📋 待办\n- Worker analyze_plan019_8b_sft_s44 回调 → 读取训练指标（对比 s42: train_loss=0.5705, eval_acc=0.8377）→ update_registry conclusion=success → 立即提交 `plan019_8b_sft_s44_eval` 到 cuda:0（eval 命令用 D076 协议：--model_path=base --sft_adapter=adapter）→ checkpoint 路径可能是 `/root/autodl-tmp/sft_output_qwen3_8b_bf16_seed44` 或日志中的实际路径，Worker 会确认\n- wave1_sft_4b_s43_eval_r2 完成 → 提取 ign_f1 → 与 s42 canonical 4B SFT (ign_f1 ~0.4106) 对比 → 更新 registry\n- wave1_sft_4b_s44_eval_r2 完成 → 同上\n- grpo_bf16_g4_ckpt200_eval 完成 → 与 ckpt-100 (ign_f1=0.4431) 对比 → 若 ckpt-200 > ckpt-100 则 GRPO 在 improving → Claim 2 支撑；若下降则 GRPO 过拟合\n- 全部 4B eval + 8B s44 eval 完成 → 汇总 scaling seeds 数据（每 scale 3 seeds mean±std）→ 汇报 Director\n- 1.7B s43 eval 也待提交（plan019_1_7b_sft_s43_r2 训练 success，checkpoint /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed43）\n\n### 5. 🎯 战略上下文\n- **项目**：FREIGE，LLM evidence-grounded DocRE。3 个 Claim：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax\n- **目标**：EMNLP 2026 Main（ARR July cycle ~July 15-25，~58 天）。Round 1 得分 3.0 (Findings)，目标 4.0 (Main)\n- **当前阶段**：D104 进攻性扩展 + Wave 1。核心在做 scaling seeds（每 scale 3+ seeds for mean±std）以加固统计力\n- **关键决策链**：D102 k=1 方法论修正完成 → D104 进攻性扩展 → D106 GRPO bf16 条件终止 → D108 14B 方案修正（TP 不可行，改 DeepSpeed ZeRO-3）→ D109 Random RSFT 确证 CED scoring → D110 GRPO bf16 ckpt-100 无 catastrophic forgetting\n- **易错点**：\n  - 8B SFT eval 用 D076 统一协议（`--model_path=base --sft_adapter=adapter --no-quantize`），不要用旧的 `--model_path=adapter` 格式\n  - 1.7B 三 seed 目前：s42 ign_f1=0.4786, s44 ign_f1=0.4321，方差 4.65pp 极大，s43 结果将决定 outlier 判断\n  - GRPO bf16 G=4 是 clean control（无 int4 quantization），如果 ckpt-200 eval 低于 ckpt-100，说明过拟合而非持续改进\n  - plan019 系列是 scaling seeds，训练完都需要紧接 eval 才有指标价值\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779334228.md"
+}

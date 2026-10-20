@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c6a084ad3c22526c1e6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d145 4b sft s43 with evi 2048",
+  "task_key": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143_result.json",
+    "occurrence": 1,
+    "bytes": 1103,
+    "sha256": "fc42541db287f22e8fb52bc5e2dd0f499a56b31f2af532e361338014d6c0fdc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## 结果汇总\n\n### d145_4b_sft_s43_with_evi_2048 Metrics\n\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | **0.4367** |\n| f1 | 0.4431 |\n| precision / recall | 0.4531 / 0.4335 |\n| ign_precision / ign_recall | 0.4333 / 0.4402 |\n| evi_f1 (TP-only) | 0.7888 |\n| evi_f1_joint | 0.3465 |\n| edcr | 0.7234 |\n| format_ok | 983/985 |\n| truncated | 271/985 |\n| inference_time | 9203s |\n\n### s43 Pair Matched Fair Tax\n\n| 条件 | Fair subset ign_f1 |\n|------|-----|\n| with-evidence | 0.4375 |\n| no-evidence | 0.4355 |\n| **fair_tax_pp** | **-0.20pp** |\n| fair subset size | 982/985 docs |\n\n### 与 s42 比较\n\n| Seed | fair_tax_pp |\n|------|-------------|\n| s42 | **+0.73pp** (no-evi 优于 with-evi) |\n| s43 | **-0.20pp** (with-evi 略优于 no-evi) |\n\ns43 的 fair tax 方向与 s42 相反——s42 显示 no-evidence 更好 (+0.73pp)，s43 显示 with-evidence 略好 (-0.20pp)。两个 seed 的 fair tax 绝对值都很小（<1pp），且方向不一致，暗示 4B SFT 的 evidence tax 接近零且不稳定，需要 s44 来确认趋势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d145-4b-sft-s43-with-evi-2048.md"
+}

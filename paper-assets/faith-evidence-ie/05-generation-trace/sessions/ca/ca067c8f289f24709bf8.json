@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca067c8f289f24709bf8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "knowledge topk ablation framing",
+  "task_key": "worker_knowledge_topk_ablation_framing_20260516T003141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_topk_ablation_framing_20260516T003141_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "aaffa409965337f07db973cabb7e527f226f560c107a056f04a55701c4c9624c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。改动点：\n\n**Claim 3 新增 top_k selection ablation 子节**：\n- k=1 (3 seeds 均值) vs k=3 (1 seed) 完整 metrics 对比\n- k=3 在所有指标上劣于 k=1 均值：Ign-F1 -1.36pp, rel_f1 -1.42pp, evi_f1 -0.55pp\n- 训练数据质量溯源：k=3 的 mean_f1 从 0.6157 降至 0.5761，mean_ced 从 0.6683 降至 0.6205（数据量 ×2.96 但质量下降抵消数量优势）\n- 叙事定位：CED scoring precision 随 k 增大下降，关键在 scoring precision 而非数据量\n- 诚实标注 k=3 仅 1 seed，定位为 ablation table 辅助行\n\n**MVP Evidence Summary 表**新增 `RSFT CED k=3` 行（Ign-F1=43.64, F1=44.54, Evi-F1=80.88, EDCR=0.6635），附注标明数据来源。\n\nexperiment_plan.yaml 不在可写文件白名单中，无法更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-topk-ablation-framing.md"
+}

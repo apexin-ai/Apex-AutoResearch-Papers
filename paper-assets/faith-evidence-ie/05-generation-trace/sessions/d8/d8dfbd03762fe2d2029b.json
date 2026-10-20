@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8dfbd03762fe2d2029b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "prep eval dpo ckpt400",
+  "task_key": "worker_prep_eval_dpo_ckpt400_20260515T203353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_eval_dpo_ckpt400_20260515T203353_result.json",
+    "occurrence": 1,
+    "bytes": 1426,
+    "sha256": "756245b43a40817b69f6699fd9f992328c0de40a34ccf145fee428fa1a4f5e78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**Checkpoint-400**: 完整。`adapter_model.safetensors` 528MB，tokenizer、adapter_config 等全部存在。\n\n**Plan_008 进度**: 1371/1509 步 (91%)，剩余 138 步，约 ~4.3s/step，预计 **~10 分钟完成**。cuda:3 占用 20093/32607 MiB。\n\n**GPU 状态**: 4 卡全部占用：\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 15557/32607 MiB | 87% |\n| 1 | 18793/32607 MiB | 86% |\n| 2 | 16469/32607 MiB | 91% |\n| 3 | 20093/32607 MiB | 85% |\n\n**残留清理**: `eval_results/dpo_ced_ckpt400/` 目录为空或不存在，无需清理。\n\n**Eval 命令就绪**，但有一个问题：命令未指定 `CUDA_VISIBLE_DEVICES`，之前 OOM 就是因为抢到了已被占用的 GPU。建议加上 `CUDA_VISIBLE_DEVICES=3`，等 plan_008 跑完（~10 分钟后）再提交：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output/checkpoint-400 --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_ced_ckpt400 --no-quantize\"\n```\n\n等你确认 plan_008 完成后我再提交执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-eval-dpo-ckpt400.md"
+}

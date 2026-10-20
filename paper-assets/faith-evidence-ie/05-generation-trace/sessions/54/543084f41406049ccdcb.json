@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "543084f41406049ccdcb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops status check",
+  "task_key": "worker_ops_status-check_20260514T220234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status-check_20260514T220234_result.json",
+    "occurrence": 1,
+    "bytes": 1195,
+    "sha256": "c3c9173a2730a1286c4e435017923fb9900795b43b5c5cae267d3f177b1d3cf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n| 实验 | GPU | PID | 进度 | ETA | 状态 |\n|------|-----|-----|------|-----|------|\n| **mvp2_grpo_ced_lr5e6_r1** (训练) | cuda:0 | 90085 | 76/200 (38%) | ~4h | 正常，KL divergence 告警但未停止 |\n| **mvp2_eval_lr5e6_r1_ckpt20** | cuda:1 | 96500 | 58/62 (94%) | **~7min** | 即将完成 |\n| **mvp2_eval_lr5e6_r1_ckpt40_r2** | cuda:2 | 101842 | 22/62 (35%) | ~1h5m | 正常（05:25 重启，首次 run 被 SIGTERM） |\n| **mvp2_eval_lr5e6_rp_r2_ckpt20** | cuda:3 | 103831 | 11/62 (18%) | ~1h50m | 正常，但与 sft_baseline 共享 GPU 3，速度受影响 |\n| **mvp2_eval_sft_baseline** | cuda:3 | 104979 | 4/62 (6.5%) | ~2h20m | **正在跑**，tee 日志写入失败（logs 目录不存在），进度仅 tmux 可见 |\n\n**P0 训练 checkpoints**: checkpoint-20, checkpoint-40, checkpoint-60 已保存。\n\n**注意事项**:\n- GPU 3 同时跑两个 eval（rp_ckpt20 + sft_baseline），各占 ~9.7GB，合计 ~19.4GB/32GB，显存够但互相争抢算力，推理速度明显比单卡慢\n- ckpt20 eval 约 7 分钟后完成，完成后 cuda:1 空闲\n- sft_baseline 的 tee 日志失败不影响推理本身，结果会写到 output_dir"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check.md"
+}

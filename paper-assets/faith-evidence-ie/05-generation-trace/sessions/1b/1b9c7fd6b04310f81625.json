@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b9c7fd6b04310f81625",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code test set eval prep",
+  "task_key": "worker_code_test-set-eval-prep_20260520T153719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_test-set-eval-prep_20260520T153719_result.json",
+    "occurrence": 1,
+    "bytes": 1843,
+    "sha256": "b473fee23e15a1045bea34507940a3a5023b72f5d59e99e0227d0f5be8372c1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个脚本已创建。汇报如下：\n\n---\n\n## 汇报\n\n### 1. 代码支持情况\n\n`inference.py` 原生支持 `--split test`：\n- 使用 `prepare_test_data()` 构建推理输入（无需 gold labels）\n- 自动生成 `codalab_submission.json`（CodaLab 提交格式）\n- 不计算 metrics（test set 无 gold labels）\n- 另有独立的 `test_inference.py`，功能类似但更早期\n\n### 2. 脚本已创建\n\n| 脚本 | 模型 | Dev ign_f1 | SFT Adapter |\n|------|------|-----------|-------------|\n| `test_8b_rsft_best.sh` | RSFT k=1 s43 | 0.5471 | `sft_output_qwen3_8b_bf16` |\n| `test_8b_sft_best.sh` | SFT s43 | 0.5324 | `sft_output_qwen3_8b_s43` |\n| `test_8b_sft_no_evidence_best.sh` | SFT no-evidence | 0.5079 | `sft_output_qwen3_8b_no_evidence` |\n\n路径：`/root/autodl-tmp/freige/scripts/test_eval/`\n\n运行方式：`GPU=0 bash scripts/test_eval/test_8b_rsft_best.sh`\n\n### 3. 🚨 关键阻塞：所有 Qwen3-8B SFT adapter 目录为空\n\n以下 4 个目录均只有 `.` 和 `..`（May 20 15:52 创建的空目录）：\n- `/root/autodl-tmp/sft_output_qwen3_8b_bf16/`\n- `/root/autodl-tmp/sft_output_qwen3_8b_s43/`\n- `/root/autodl-tmp/sft_output_qwen3_8b_s44/`\n- `/root/autodl-tmp/sft_output_qwen3_8b_no_evidence/`\n\n**影响**：全部 3 个 test eval 都无法运行——RSFT eval 需要先 merge SFT adapter 再加载 RSFT adapter，SFT eval 直接依赖 SFT adapter。需要恢复或重新训练 8B SFT adapters。\n\nRSFT adapter 本身（`rsft_output_qwen3_8b_k1_s43/`，698MB）完好。\n\n### 4. 8B SFT best seed 确认\n\n| Seed | ign_f1 |\n|------|--------|\n| s42 (default) | 0.5051 |\n| **s43** | **0.5324** |\n| s44 | 0.4681 |\n\nBest seed = s43。\n\n### 5. CodaLab 提交\n\ntest set eval 产出 `codalab_submission.json`，需手动提交到 DocRED CodaLab 获取分数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-test-set-eval-prep.md"
+}

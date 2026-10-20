@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41ac075b63a5e2f28d49",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze mvp2 eval rsft r2b maxtok1536 r2",
+  "task_key": "worker_analyze_mvp2_eval_rsft_r2b_maxtok1536_r2_20260515T152002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_mvp2_eval_rsft_r2b_maxtok1536_r2_20260515T152002_result.json",
+    "occurrence": 1,
+    "bytes": 763,
+    "sha256": "7c3868c32f75a6617722e14a2c3e3a6a51b560ed18919cb4c6fd91e0306b756d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验分析完成。\n\n**结果摘要**：\n\n| Metric | RSFT r2b (1024) | RSFT r2b (1536) | Delta |\n|--------|-----------------|-----------------|-------|\n| **EDCR** | **0.6609** | **0.6740** | **+0.013** |\n| rel_f1 | — | 0.4504 | — |\n| evi_f1 | — | 0.8102 | — |\n| Truncated | — | 146/985 | — |\n\n**结论：Negative。** EDCR 仅从 0.6609 提升到 0.6740（+0.013），远未达到 0.71+ 阈值。67.4% 的 citations 是 distractor（19,589/29,063）。Distractor citation 是 RSFT r2b 的固有行为，非 truncation 导致。问题根源在训练信号——reward 对 spurious citations 的惩罚不足。\n\nRegistry 已更新：status=DONE, conclusion=negative, metrics 已记录。分析报告已注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-mvp2-eval-rsft-r2b-maxtok1536-r2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59d8e0bc2e31d9ceb02a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix d112 step2 ced offline restart",
+  "task_key": "worker_fix_d112_step2_ced_offline_restart_20260519T031916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d112_step2_ced_offline_restart_20260519T031916_result.json",
+    "occurrence": 1,
+    "bytes": 504,
+    "sha256": "014ee7dece97ead658da832f2542c84cc5e4d2685068c7fce0fe8df4df99967c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报：\n\n- **旧进程 PID 603844**：已 kill 确认终止\n- **新进程 PID 604576**：运行在 GPU 0，占用 1399MiB\n- **NLI 模型加载成功**：`cross-encoder/nli-deberta-v3-base` 从本地缓存加载，无网络错误\n- **数据**：24216 条记录（3027 unique docs）从 4 个 shard 加载完成\n- **修复内容**：脚本中加入 `HF_HUB_OFFLINE=1` + `TRANSFORMERS_OFFLINE=1`，确保离线加载\n- **日志**：`/root/autodl-tmp/logs/d112_ced_score.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d112-step2-ced-offline-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa37b98411912c1eded9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "maintenance report cleanup",
+  "task_key": "worker_maintenance_report-cleanup_20260520T033258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_maintenance_report-cleanup_20260520T033258_result.json",
+    "occurrence": 1,
+    "bytes": 123,
+    "sha256": "18ab33585b3e1c1a9a4804203fd25625d0f9998a7a53e170b723d9e443f06203"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。清除 95 条历史告警，资源状态已更新为当前 3 个运行中任务的 GPU 分配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/maintenance-report-cleanup.md"
+}

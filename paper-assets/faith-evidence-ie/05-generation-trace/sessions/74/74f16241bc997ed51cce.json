@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "74f16241bc997ed51cce",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ssh rsft parallel recon",
+  "task_key": "worker_ssh_rsft-parallel-recon_20260515T012741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rsft-parallel-recon_20260515T012741.log",
+    "occurrence": 1,
+    "bytes": 5689247,
+    "sha256": "d114ede979078c6a32a3fe5e13df4ec8e82e9c38045ecca049ad7a53f3f9e028"
+  },
+  "statistics": {
+    "messages": 67,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 28,
+      "tool_result": 28
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 67,
+      "chunks": [
+        {
+          "path": "74f16241bc997ed51cce-part-0001.json",
+          "message_count": 37
+        },
+        {
+          "path": "74f16241bc997ed51cce-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "74f16241bc997ed51cce-part-0003.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-rsft-parallel-recon.md"
+}

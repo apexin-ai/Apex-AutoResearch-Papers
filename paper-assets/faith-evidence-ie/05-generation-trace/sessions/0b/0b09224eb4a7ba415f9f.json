@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b09224eb4a7ba415f9f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu cleanup urgent",
+  "task_key": "worker_ops_gpu-cleanup-urgent_20260514T114457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-cleanup-urgent_20260514T114457_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "62184d04a68970fd15433ba1f028c4a00a597417a4e499e6e7d03f34b7b9ccd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果清晰：\n\n1. **PIDs 39719-39722, 42536** — 全部已不存在（`ps -p` 返回空，exit code 1）\n2. **GPU 计算进程** — 无任何 compute apps\n3. **GPU 状态** — 4 卡全部 0% utilization, 0 MiB memory used\n4. **系统进程** — 只有 AutoDL 平台服务（supervisord, jupyter, tensorboard, proxy, sshd），无任何 python 训练进程\n\n**结论：GPU 全部释放，可以启动 r3。**\n\n残留进程已在之前被清理掉，当前 4 张 RTX 5090（各 32GB）完全空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-cleanup-urgent.md"
+}

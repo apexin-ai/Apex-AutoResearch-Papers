@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd3a8639c897c656318d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis edcr dedup fix",
+  "task_key": "worker_analysis_edcr_dedup_fix_20260518T084728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_edcr_dedup_fix_20260518T084728_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "62331195b4611a96c89c6e701772967333433906b09eb199f85ddf90ccd800c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果出来了。\n\n## 7 个独立方法数据表\n\n| Method | Rel-F1 | Evi-F1 | EDCR |\n|---|---|---|---|\n| SFT_baseline | 0.4049 | 0.7986 | 0.6982 |\n| RSFT_CED (s44) | 0.4621 | 0.8050 | 0.6350 |\n| RSFT_flatNLI | 0.4561 | 0.8076 | 0.6505 |\n| RSFT_topk3 | 0.4454 | 0.8088 | 0.6635 |\n| DPO_1ep | 0.4034 | 0.8088 | 0.7139 |\n| SFT_no_evidence | 0.4893 | 0.0000 | 0.0000 |\n| CED_reranker | 0.4864 | 0.8188 | 0.6156 |\n\n## Spearman 相关\n\n**EDCR vs Rel-F1 (n=7): ρ = -1.0000, p = 0.000**\n\n比预期的 ρ=-0.8929 更强 — 7 个方法的 EDCR 排名与 Rel-F1 排名完全单调反序：EDCR 越低，Rel-F1 越高，无一例外。\n\n同时 EDCR vs Evi-F1 相关性很弱 (ρ=0.25, p=0.59)，说明 EDCR 捕捉的信息与 Evi-F1 正交。\n\n脚本已更新到 `/root/autodl-tmp/scripts/edcr_dedup_correlation.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-edcr-dedup-fix.md"
+}

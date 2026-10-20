@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cd7b040e63636205de9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan019 8b sft s43 eval",
+  "task_key": "worker_analysis_plan019_8b_sft_s43_eval_20260519T154301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan019_8b_sft_s43_eval_20260519T154301_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "c2c89b31f162a936166b7b22c7e914696ffddbe591c053132faabd40c85ee69d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**8B SFT s43 Ign-F1 = 0.5324**（三 seed 最高）\n\n**3-seed 8B SFT: mean = 0.5019 ± 0.0372**\n\n关键影响：\n\n- **Claim 3 \"1.7B RSFT surpasses 8B SFT\" 统计上不成立。** 差值仅 +0.0103，t=0.48, p≈0.34。1.7B RSFT 的 0.5122 甚至低于 8B SFT 最佳 seed（0.5324）。建议弱化为 \"comparable / on par with\"。\n- **8B RSFT vs 8B SFT (+0.0395)** 更有说服力，但因 SFT 方差过大（0.037），Welch's t=1.81 仍只 p≈0.10。建议补 RSFT s43 凑齐 3-seed。\n- **稳定性是可独立 claim 的发现：** SFT std=0.037 vs RSFT std=0.005，方差比约 50:1。RSFT 的 reward filtering 显著降低了 seed 敏感性。\n\n报告已写入 `artifacts/plan019_8b_sft_s43_eval_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan019-8b-sft-s43-eval.md"
+}

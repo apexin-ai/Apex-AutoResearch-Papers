@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f8cf234402c995dab72",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh check gen progress",
+  "task_key": "worker_ssh_check-gen-progress_20260515T023247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-gen-progress_20260515T023247_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "c97286fa2a22cb14fe3550399cc4b6aba934bf074f55af0de5013e0a7f610414"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| Shard | 进度 | 百分比 | 速度 |\n|-------|------|--------|------|\n| shard_0 | 202/682 | **29.6%** | ~13s/it |\n| shard_1 | 214/681 | **31.4%** | ~15s/it |\n| shard_2 | 213/681 | **31.3%** | ~15s/it |\n| shard_3 | 26/681 | **3.8%** | ~17s/it (刚启动不久) |\n\n- 总计约 2725 docs，全局 ~655/2725 ≈ **24%**\n- 4 个 GPU 进程均在运行（16-19GB 显存占用）\n- shard_3 明显落后——日志显示它 09:42 才启动，且之前只有 9 条 resume 记录\n- shard_1/2 有 truncation_rate ~11% 的警告（建议提高 max_new_tokens=3072）\n- 按当前速度，shard_0/1/2 剩余 ~480 docs × ~14s ≈ **1.9 小时**；shard_3 剩余 ~655 docs × ~17s ≈ **3.1 小时**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-gen-progress.md"
+}

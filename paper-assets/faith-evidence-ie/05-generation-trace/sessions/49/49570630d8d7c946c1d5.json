@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49570630d8d7c946c1d5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops d158 b1 progress check",
+  "task_key": "worker_ops_d158_b1_progress_check_20260524T092951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d158_b1_progress_check_20260524T092951_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "8e9957b0105d11d78be939d30e37e80652292a7c51d188ac7fa968f1359fa50c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **B1 (14B SFT)**: 仍在跑。进度 **55% (79/144 steps)**，已运行 38 分钟，~27s/step，预估还需 ~30 分钟完成。\n- **A1 (1.7B generate)**: 仍在跑。进度 **7% (216/3027 docs)**，已运行 38 分钟，~10-13s/doc，预估还需 **~8-9 小时**。truncation_rate 约 20%，format_ok_rate 100%，diversity 7.5/8。\n- **磁盘**: 106GB 可用 (70% used)，空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d158-b1-progress-check.md"
+}

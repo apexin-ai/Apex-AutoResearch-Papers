@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eef0bc9983f34b5f3e5f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "audit trace dpo 3ep",
+  "task_key": "worker_audit_trace-dpo-3ep_20260524T053134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_trace-dpo-3ep_20260524T053134_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "5279fa919e7d48354b0d183bfd504dbd4955d4f33a986ef7cc00ff01df88b35e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**源文件确认**：`/root/autodl-tmp/eval_results/dpo_rebuilt_3ep_eval/metrics.json`（2026-05-23 21:37 修改）\n- `f1` = 0.31446 → **31.45**（paper 值正确）\n\n**完整 metrics**：\n\n| 指标 | 值 |\n|------|-----|\n| Rel-F1 | 31.45 |\n| Ign-F1 | 30.76 |\n| Evi-F1 (TP) | 84.84 |\n| Evi-F1 (Joint) | 24.51 |\n| EDCR | 75.03 |\n| Precision | 29.39 |\n| Recall | 33.81 |\n\n**Registry 补录**：已在 `dpo_rebuilt_3ep_eval` 的 metrics 中添加 `rel_f1: 0.3145`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-trace-dpo-3ep.md"
+}

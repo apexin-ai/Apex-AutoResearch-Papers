@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "9c7b749900bf0e5e54f2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops verify plan002 and prep ced",
+  "task_key": "worker_ops_verify_plan002_and_prep_ced_20260516T180150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_plan002_and_prep_ced_20260516T180150_result.json",
+    "occurrence": 1,
+    "bytes": 384,
+    "sha256": "3f62c4bff59cc370df6f55ee0c206d5dc4774e74d77b99861be2a5928908e2f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: {\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"api_error\",\"message\":\"Internal server error\"},\"request_id\":\"req_011Cb6gndHNJJvgxpkNWVK6M\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "details": null,
+                "type": "api_error",
+                "message": "Internal server error"
+              },
+              "request_id": "req_011Cb6gndHNJJvgxpkNWVK6M"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-plan002-and-prep-ced.md"
+}

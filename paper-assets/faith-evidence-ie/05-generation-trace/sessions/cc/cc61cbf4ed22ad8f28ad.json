@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc61cbf4ed22ad8f28ad",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose d112 shard1 and shard3 status",
+  "task_key": "worker_diagnose_d112_shard1_and_shard3_status_20260519T025945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_d112_shard1_and_shard3_status_20260519T025945_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "c97b13bcddecccc671416880c9e7bf587ce2759c5950ca6f8e21699fd7bd1467"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| Shard | 行数 | 状态 |\n|-------|------|------|\n| 0 | 6048 | 完成 |\n| 1 | 6048 | 完成 (registry 已更新 success) |\n| 2 | 6048 | 完成 |\n| 3 | 5696/6048 | 进行中 (94.2%) |\n\n**总行数**: 23840 / 24192，还差 shard 3 的 352 行（44 docs）。\n\n**GPU 状态**:\n\n| GPU | 显存 | 状态 |\n|-----|------|------|\n| cuda:0 | 18132/32607 MiB | 占用 (PID 590568) |\n| **cuda:1** | **0/32607 MiB** | **空闲** (shard 1 完成已释放) |\n| cuda:2 | 29110/32607 MiB | 占用 (PID 601718) |\n| cuda:3 | 18882/32607 MiB | 占用 (PID 598911) |\n\n**Step 2 CED scoring 脚本**已就绪，通过 `GPU=X bash step2_ced_score.sh` 启动，使用 NLI-DeBERTa 打分 + top_k=1 筛选。shard 3 完成后即可在 cuda:1 上启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d112-shard1-and-shard3-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16dce13bb516cc2b9194",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "infra verify reeval checkpoints",
+  "task_key": "worker_infra_verify-reeval-checkpoints_20260516T030954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify-reeval-checkpoints_20260516T030954_result.json",
+    "occurrence": 1,
+    "bytes": 1461,
+    "sha256": "edb54d6e9a096d1b9775ee76807f7126473a52f9d756791dbbfea6e7b8199391"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "命令文件已写入。汇总：\n\n### Checkpoint 验证\n\n| Re-eval | 预期路径 | 状态 | 文件大小 |\n|---------|---------|------|---------|\n| reeval_ced_s42 | `rsft_output/checkpoint-510` | ✓ 存在 | 528MB |\n| reeval_ced_s44 | `rsft_output_s44/checkpoint-510` | ✓ 存在 | 528MB |\n| reeval_flat_nli_s42 | `rsft_output_flat_nli/checkpoint-510` | **✗ 不存在** | — |\n\n### 问题：reeval_flat_nli_s42 的 checkpoint\n\n`rsft_output_flat_nli/` 最大 checkpoint 是 **507**（非 510）。该目录的 checkpoint 列表：350, 400, 450, 500, **507**。checkpoint-507 的 adapter_model.safetensors 存在（528MB）。命令文件中已改用 checkpoint-507。\n\n### 命令模板修正\n\n任务模板与实际运行命令有 4 处差异（已按实际修正）：\n\n| 项 | 模板（错误） | 实际 |\n|----|------------|------|\n| 模块 | `freige.evaluation.evaluate_docred` | `freige.eval.inference` |\n| RSFT adapter 参数 | `--rsft_adapter` | `--model_path`（adapter checkpoint 路径） |\n| 底座模型参数 | 无 | `--base_model /root/autodl-tmp/models/Qwen3-4B` |\n| 数据路径参数 | `--data_dir` | `--data_path` |\n\n### 3 条完整 eval 命令\n\n已写入 `/root/autodl-tmp/reeval_commands_d076.txt`。`CUDA_VISIBLE_DEVICES={GPU}` 需在提交时替换为实际空闲 GPU 编号。当前 4 张 GPU 全部被占用（cuda:0/1/2/3 各有 eval 在跑），需等现有 eval 完成后才能提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-reeval-checkpoints-copy-2.md"
+}

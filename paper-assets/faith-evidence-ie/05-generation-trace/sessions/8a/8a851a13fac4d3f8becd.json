@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a851a13fac4d3f8becd",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit d112 step2 ced scoring cuda0",
+  "task_key": "worker_submit_d112_step2_ced_scoring_cuda0_20260519T031134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_d112_step2_ced_scoring_cuda0_20260519T031134_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "d8890c5126afd8d371667e3279292990cf66bddcd233c492565506d25948d091"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n**4 shard 总行数**：24216 行（shard 0/1/2 各 6048，shard 3 为 6072，多 24 行）\n\n**Step 2 CED scoring**：已启动成功\n- PID: 603844\n- tmux session: `d112_ced_score`\n- GPU: cuda:0（脚本默认）\n- Registry: `d112_rsft_s44_ced_score` → RUNNING\n\n**预估完成时间**：NLI-DeBERTa 对 24216 条做 NLI 推理，RTX 5090 上约 15-25 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-d112-step2-ced-scoring-cuda0.md"
+}

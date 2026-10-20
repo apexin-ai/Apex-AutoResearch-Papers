@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdee87c7b9c85e7a4712",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops registry plan sync",
+  "task_key": "worker_ops_registry_plan_sync_20260519T221007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_plan_sync_20260519T221007_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "d318b7aa58ce149d7b7555c9e9f136b8754acbfe5441239503ce73de00eb0598"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### Part 1: Registry 补全\n\n| 新建 registry | exp_id | status | conclusion |\n|---|---|---|---|\n| plan_020 | `plan_020_mechanistic_analysis` | DONE | success |\n| plan_021 | `plan_021_deep_error_analysis` | DONE | success |\n\n### Part 2: experiment_plan.yaml 同步\n\n**所有 31 个条目均新增了 `status` 字段**（之前没有此字段），与 registry 对齐：\n\n| status | 数量 | 条目 |\n|---|---|---|\n| done | 25 | plan_001-009, 011-012, 014-016, 019-021, mvp1/sft/rsft/grpo, w3/d112/w18 |\n| running | 2 | plan_010 (nli_large_ablation), plan_017 (14b_rsft_generate) |\n| planned | 3 | plan_018, plan_022, plan_023 (无 registry) |\n| cancelled | 1 | plan_013 (D104 取消) |\n\n**plan_020/021 额外修改**: `registry_id` 从 `null` 更新为新创建的 exp_id。\n\n**无不一致**：所有有 registry_id 的条目，其 registry 状态与预期匹配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-plan-sync.md"
+}

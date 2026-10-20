@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cc1a71ff71ae572c31d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code push anon repo v6",
+  "task_key": "worker_code_push-anon-repo-v6_20260524T051122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_push-anon-repo-v6_20260524T051122_result.json",
+    "occurrence": 1,
+    "bytes": 344,
+    "sha256": "bd920e15e21e47a9a8ff6981a55da875b79551f95dd44815bacfd8cb67df756f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推送完成。\n\n- **Commit**: `dfaf7be`\n- **Push**: `73bbe67..dfaf7be main → main` (anonymous-nlp-2026-2/faith-evidence-ie)\n- **Author 检查**: 全部为 `Anonymous <anon@example.com>`，无泄露\n- **变更文件**: 8 个（fig_scaling.pdf/png, main.pdf/aux/fdb_latexmk, references.bib, appendix.tex, experiments.tex）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-push-anon-repo-v6.md"
+}

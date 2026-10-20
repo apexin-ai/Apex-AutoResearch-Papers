@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adaac45ac7d6b75a0b55",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnosis 14b eval progress",
+  "task_key": "worker_diagnosis_14b-eval-progress_20260523T154523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_14b-eval-progress_20260523T154523_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "8f2f145b37ede279fe266cd64bf1efc76cab48c089cb5b96cbd5ec4a444cf0a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个进程全部在运行，无已完成的 eval。汇总：\n\n| 任务 | GPU | PID | 运行时长 | 进度 | 速度 | 预估剩余 |\n|------|-----|-----|---------|------|------|---------|\n| dev with-evi | cuda:0 (32GB/98GB, 79%) | 260780 | 49min | **146/985** (15%) | ~20s/doc | ~4.7h |\n| dev no-evi | cuda:2 (32GB/98GB, 82%) | 260930 | 49min | **171/985** (17%) | ~17s/doc | ~3.8h |\n| test with-evi | cuda:1 (41GB/98GB, 96%) | 261715 | 44min | **12/32** batch (38%) | ~205s/batch | ~1.1h |\n| test no-evi | cuda:3 (41GB/98GB, 97%) | 261858 | 44min | **12/32** batch (38%) | ~205s/batch | ~1.1h |\n\n**预计完成顺序**：test 两个 eval 约 1 小时后完成，dev no-evi 约 4 小时后，dev with-evi 约 5 小时后（dev 集 985 docs 远多于 test 的 32 batch）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-14b-eval-progress.md"
+}

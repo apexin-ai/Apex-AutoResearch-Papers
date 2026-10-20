@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6de2bfccbcf4f7dd2f3b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval reeval flat nli s43",
+  "task_key": "worker_eval_reeval_flat_nli_s43_20260515T220105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_reeval_flat_nli_s43_20260515T220105_result.json",
+    "occurrence": 1,
+    "bytes": 1223,
+    "sha256": "9ad35d0ea8184a27759a1cf81a9c89c87eea7fea8f325cfa3daa2db6a9809a7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**C001 约束阻塞：所有 GPU 显存占用都远超 2GB，无法提交 eval。**\n\n当前 GPU 状态：\n| GPU | 占用 | 进程 |\n|-----|------|------|\n| 0 | 14597 MiB | seed44 训练 |\n| 1 | 16716 MiB | plan_011 step eval |\n| 2 | 15158 MiB | seed45 训练 |\n| 3 | 31134 MiB | 两个进程 |\n\n已确认的修复命令（准备就绪，等 GPU 空闲即可提交）：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 43 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval --no-quantize\"\n```\n\n修复点：添加了 `--sft_adapter /root/autodl-tmp/sft_output`，使用具体 checkpoint 路径 `checkpoint-507`。\n\n选项：\n1. 等某个训练完成后提交到空闲 GPU\n2. 你指定一个可以中断的进程，腾出 GPU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-reeval-flat-nli-s43.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a98983ac9b565ea56b43",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "reviewer / loop_11.md",
+  "task_key": "loop_11",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_11.md",
+    "occurrence": 1,
+    "bytes": 3957,
+    "sha256": "fa550252ad17e5a3bee91be2ef07e3d18a1d34666dd52472c3e47649b6b1e5f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_wall_time\nupdated: '2026-05-16T10:11:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3（rtx5090-4x，4× RTX 5090 32GB）。越界立即 critical。\n- 所有 D077 scale 实验必须使用 bf16 LoRA（--no-quantize），不得用 QLoRA。原因：Paper Claim 2 论证 QLoRA 放大 decoupling，scale 对比如果混入 QLoRA 则 confounded。\n- D076 统一 eval 协议：batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024, 正确 seed。违反者结果无效。\n- 磁盘操作：大文件只存 `/root/autodl-tmp/`，根分区 30GB 禁存模型。\n- LLaMA cross-family 实验：代码已修复 `enable_thinking` 兼容（7 个文件），但尚未实际跑过 LLaMA SFT/eval，首次提交需 dry-run 验证。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x (root) + bjb2-12179 (root)\n- 工作目录：`/root/autodl-tmp/freige`（代码）、`/root/autodl-tmp/`（模型/数据/输出）\n- Python：`/root/miniconda3/bin/python`（conda base）\n- 模型路径：`/root/autodl-tmp/models/Qwen/Qwen3-1.7B`���`Qwen3-4B`、`Qwen3-8B`、`Meta-Llama-3.1-8B`\n- 数据集：`/root/autodl-tmp/data/docred/`（dev.json 998 docs）\n- SFT 输出：`sft_output_qwen3_1_7b_bf16`、`sft_output_qwen3_8b_bf16`、`sft_output_qwen3_1_7b_no_evidence`\n- 磁盘：清理后 49GB 可用 / 250GB（81%）\n- W&B project：freige-sft\n- 活跃进程（截至 handoff）：\n  - cuda:0: 8B no_evidence SFT (PID 325491, ~85/570 步, ETA ~48min)\n  - cuda:1: 已释放（1.7B SFT eval 完成）\n  - cuda:2: 1.7B no_evidence eval (PID 324679, 29/247 batches, ETA ~1.5h)\n  - cuda:3: 8B SFT eval（running）\n\n### 3. 📊 当前状态\n刚完成：\n- Review #17：LLaMA 模板兼容阻塞（已被 Agent 修复，7 个文件统一）、cuda:2 进程健康确认、GPU 全卡利用率核查\n- 1.7B SFT eval 完成：ign_f1=0.4786（bf16 LoRA, seed=42）\n- D076 paired t-test 定论：CED vs flat-NLI p=0.22, 不显著\n- 磁盘清理完成：释放 42GB（删除旧 GRPO/DPO 输出）\n- LLaMA template 修复：sft_trainer/inference/grpo_trainer/rsft_trainer/rsft_generate/dpo_trainer/smoke_test 全部兼容\n\n等待中：\n- cuda:0: 8B no_evidence SFT 训练完成 → 需要 eval\n- cuda:2: 1.7B no_evidence eval 完成 → 计算 1.7B evidence tax\n- cuda:3: 8B SFT eval 完成 → 获取 8B with-evidence baseline\n- plan_002_test_eval (cuda:1 已释放，可能已完成或需重查)\n\n### 4. 📋 待办（条件触发式）\n- 1.7B no_evidence eval 完成 → 计算 1.7B evidence tax = (no_evi ign_f1) - 0.4786，对比 4B 的 7.47pp\n- 8B SFT eval 完成 → 记录 8B with-evidence baseline ign_f1\n- 8B no_evidence SFT 完成 → 提交 8B no_evidence eval（cuda 空出时）\n- 8B no_evidence eval 完成 → 计算 8B evidence tax，三点趋势（1.7B/4B/8B）\n- 三组 evidence tax 数据齐全 → 审查 D077 multi-scale claim 是否成立（tax 随 scale 变化趋势）\n- LLaMA SFT 首次提交 → 要求 dry-run 验证模板兼容修复有效\n- Agent 提 registry 修正（8B SFT 从 failed→success）→ 核实修正合理性\n\n### 5. 🎯 战略上下文\n- **核心结论链**：D056 确认 CED≈flat-NLI（p=0.22）→ D077 扩展 multi-scale + cross-family 验证 evidence tax 普遍性\n- **Paper 三大 Claim**：(1) Evidence tax 存在且显著，(2) QLoRA 放大 decoupling，(3) RSFT 部分恢复 evidence 质量\n- **1.7B bf16 SFT ign_f1=0.4786 远超 4B QLoRA baseline 0.3974** — 这不是 bug，是 bf16 vs QLoRA 的差距（支持 Claim 2）。不要误判为\"1.7B 比 4B 强\"——它们训练方式不同。公平对比必须同 regime（bf16 vs bf16 或 QLoRA vs QLoRA）。\n- **易错点**：(1) 不要拿 bf16 LoRA 模型和 QLoRA 模型直接比绝对值得出\"小模型更强\"；(2) worker_ops 报告有时 PID/elapsed 信息错误（本轮已发现两次），始终独立 ssh 验证；(3) eval 输出目录为空是正常的（完成后才写），不要误判为卡死。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-copy-3.md"
+}

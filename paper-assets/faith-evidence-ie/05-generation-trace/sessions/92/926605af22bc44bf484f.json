@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "926605af22bc44bf484f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan 006 8b rsft prep",
+  "task_key": "worker_code_plan_006_8b_rsft_prep_20260516T091443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_006_8b_rsft_prep_20260516T091443_result.json",
+    "occurrence": 1,
+    "bytes": 3277,
+    "sha256": "a04b8a62138d30af58dd372bc6deb00949f1e7e191d23d3d324d0e24dc5b2db8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息齐全，输出 JSON 摘要：\n\n```json\n{\n  \"checkpoint_valid\": true,\n  \"checkpoint_size_mb\": 666,\n  \"rsft_gen_script\": \"/root/autodl-tmp/freige/training/rsft_generate.py\",\n  \"rsft_gen_supports_8b\": true,\n  \"rsft_gen_command\": \"cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=2 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_8b --num_generations 8 --temperature 0.7 --batch_size 1 --max_new_tokens 1024\",\n  \"no_evidence_sft_command\": \"cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=2 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --lora_rank 64 --lora_alpha 128 --max_length 4096 --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 3 --learning_rate 2e-4 --bf16 --wandb_project freige-sft --wandb_run_name qwen3_8b_no_evidence_sft\",\n  \"gpu_status\": \"GPU0: 10.6/32.6GB used | GPU1: 15.9/32.6GB used | GPU2: 0/32.6GB (FREE) | GPU3: 18.0/32.6GB used\",\n  \"estimated_vram_8b_inference_gb\": 20,\n  \"blockers\": []\n}\n```\n\n**说明：**\n\n- **Checkpoint**：`adapter_model.safetensors` 666MB，LoRA r=64 alpha=128，基模型 `Qwen/Qwen3-8B`，完整有效。\n- **rsft_generate.py** 通过 `--base_model` / `--sft_adapter` 参数接受任意模型路径，无 hardcoded 大小限制，batch_size 默认 1，支持 8B。\n- **GPU 选择**：GPU 2 完全空闲（32GB），8B bf16 推理约需 20GB（16GB 权重 + 4GB KV cache/overhead），富余充足。命令已设置 `CUDA_VISIBLE_DEVICES=2`（遵守 C002/C003）。\n- **No-evidence SFT**：`sft_trainer.py` 支持 `--no_evidence` 标志，默认启用 QLoRA 量化（4-bit 下 8B 仅占 ~5GB），单卡可训练。\n- **无阻塞问题**。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "checkpoint_valid": true,
+              "checkpoint_size_mb": 666,
+              "rsft_gen_script": "/root/autodl-tmp/freige/training/rsft_generate.py",
+              "rsft_gen_supports_8b": true,
+              "rsft_gen_command": "cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=2 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_8b --num_generations 8 --temperature 0.7 --batch_size 1 --max_new_tokens 1024",
+              "no_evidence_sft_command": "cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=2 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --lora_rank 64 --lora_alpha 128 --max_length 4096 --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 3 --learning_rate 2e-4 --bf16 --wandb_project freige-sft --wandb_run_name qwen3_8b_no_evidence_sft",
+              "gpu_status": "GPU0: 10.6/32.6GB used | GPU1: 15.9/32.6GB used | GPU2: 0/32.6GB (FREE) | GPU3: 18.0/32.6GB used",
+              "estimated_vram_8b_inference_gb": 20,
+              "blockers": []
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-006-8b-rsft-prep.md"
+}

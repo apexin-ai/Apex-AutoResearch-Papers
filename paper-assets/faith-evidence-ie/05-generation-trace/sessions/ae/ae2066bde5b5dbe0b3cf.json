@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae2066bde5b5dbe0b3cf",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops sync experiment plan",
+  "task_key": "worker_ops_sync_experiment_plan_20260519T165209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_experiment_plan_20260519T165209_result.json",
+    "occurrence": 1,
+    "bytes": 469,
+    "sha256": "b1704a6e73a33c5bf5578503e0da34503d3e29f144cfa9d506ac352537a2538e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新 3 处：\n\n| 实验 | 变更 |\n|------|------|\n| **plan_017** | 添加 notes: 14B SFT/eval/no-evidence 全部 DONE，evidence tax = -0.03pp |\n| **plan_019** | 更新 notes: 1.7B 3-seed 完成 (mean=0.5119)，8B SFT s43 eval DONE (0.5324)，no-evidence eval 状态同步 |\n| **plan_d112** | registry_id 从 `d112_rsft_s44_eval` (failed) 改为 `d112_rsft_s44_eval_bf16` (RUNNING)，添加 notes 记录 QLoRA confound 和 bf16 重跑进度 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-experiment-plan.md"
+}

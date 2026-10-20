@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2633bd9dac5f58c1309",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research evidence annotated docre",
+  "task_key": "worker_research_evidence_annotated_docre_20260518T104347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_evidence_annotated_docre_20260518T104347_result.json",
+    "occurrence": 1,
+    "bytes": 1594,
+    "sha256": "c88c2ddfff414b159309c51e92450093b79fc52bf505ed8c3d5e7eb48d321ec6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== Evidence-Annotated DocRE 数据集调研 ===\n\n| 数据集 | 领域 | Evidence 标注 | 规模 | 与 DocRED 跨领域 | 推荐 |\n|--------|------|--------------|------|-----------------|------|\n| BioRED | 生物医学 (PubMed) | 无。标注了 intra/cross-sentence 及 novelty，但无 supporting sentence 标注 | 600 篇摘要，10.8 rel/doc | 是 | - |\n| SciREX | 科学论文 (CS) | 无。仅有 salient entity + N-ary relation | 438 篇全文 | 是 | - |\n| DWIE | 新闻 (Deutsche Welle) | 无。有 relation + coref + entity linking，无 evidence sentence | 802 篇新闻 | 是 | - |\n| DialogRE | 对话 (Friends) | 部分。49.6% triple 有 trigger span（非完整 evidence sentence） | 1,788 段对话 | 是 | - |\n| CDR | 生物医学 | 无 | 1,500 篇 | 是 | - |\n| CodRED | Wikipedia（跨文档） | 无 | ~30K doc pairs | 否 | - |\n| JacRED | Wikipedia（日语） | 有 evidence sentence 标注 | 日语 Wikipedia | 否（同 Wikipedia 领域） | - |\n\n结论: **未找到**同时满足\"跨领域 + evidence sentence 标注\"的数据集。\n\n- DocRED/Re-DocRED 的 evidence 标注设计在现有 DocRE 数据集中几乎是独有的\n- BioRED 领域最合适但无 evidence 标注（600 篇摘要，补标工作量可控）\n- DialogRE 有 trigger span 但粒度不同且覆盖率仅半数\n- JacRED 有 evidence 标注但仍是 Wikipedia 领域，不算跨领域\n\n推荐: **无现成合适选项**。如需跨领域验证，最可行路线是对 BioRED 补标 evidence sentence（摘要短，每篇约 12 句，600 篇规模可控）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-evidence-annotated-docre.md"
+}

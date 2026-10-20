@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27778e4fc1b5afca5dd9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code smoke test and eval",
+  "task_key": "worker_code_smoke-test-and-eval_20260514T045135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_smoke-test-and-eval_20260514T045135_result.json",
+    "occurrence": 1,
+    "bytes": 1059,
+    "sha256": "d059e1940461fd55d9a74b82d471e619b0d4e2ef5032520fd37f4df61e9b6f87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件编译通过。\n\n**创建/修改的文件：**\n\n1. **`training/smoke_test.py`** — 自包含 smoke test 脚本\n   - 20 个合成样本（5 个文档模板循环 + 随机采样 triples）\n   - Qwen3-4B + QLoRA 4-bit (nf4, double quant, bf16 compute)\n   - LoRA r=64, 7 个 target modules\n   - GRPOTrainer: num_generations=4, max_completion_length=256\n   - DeepSpeed ZeRO-3 内联配置（CPU offload optimizer+param）\n   - 仅用 `format_reward_fn`，无 NLI 模型依赖\n   - 10 步训练后打印：每步 loss、梯度范数、4 卡峰值显存、总用时、PASS/FAIL 判定\n   - enable_thinking=False\n   - 零 freige import\n\n2. **`eval/evaluator.py`** — 新增 `compute_format_compliance` 方法\n   - `format_compliance_rate`: JSON list 可解析比例\n   - `field_compliance_rate`: 每个 triple 含 head/relation/tail/evidence 的比例\n   - `evidence_format_rate`: evidence 为 `list[int]`（非负）的比例\n   - `evaluate()` 新增可选参数 `raw_outputs`，传入时自动包含格式合规指标"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-smoke-test-and-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30281bc7c3e9502affeb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "setup westd ml deps",
+  "task_key": "worker_setup_westd-ml-deps_20260520T073405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_westd-ml-deps_20260520T073405_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "c153269af60597f98ca24c11adc9ace5ab2ecffbde8b0df6c211ea50f2111efc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。安装结果汇总：\n\n### 已安装的包\n\n| 包 | 版本 |\n|---|---|\n| torch | 2.8.0+cu128 |\n| transformers | 5.8.1 |\n| datasets | 4.8.5 |\n| accelerate | 1.13.0 |\n| peft | 0.19.1 |\n| trl | 1.4.0 |\n| wandb | 0.27.0 |\n| einops | 0.8.2 |\n| sentencepiece | 0.2.1 |\n| protobuf | 6.31.1 (已有) |\n| flash-attn | 2.8.3 (编译成功) |\n\n### GPU\n\n4× NVIDIA RTX PRO 6000 Blackwell Server Edition, 每卡 94GB VRAM\n\n### 磁盘\n\n- 数据盘 `/root/autodl-tmp/`: 350GB 可用 (几乎空)\n- conda 环境 `/root/miniconda3/`: 8.9GB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-westd-ml-deps.md"
+}

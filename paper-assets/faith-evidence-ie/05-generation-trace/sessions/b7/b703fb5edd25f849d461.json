@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b703fb5edd25f849d461",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit d112 shards cuda1 cuda2",
+  "task_key": "worker_submit_d112_shards_cuda1_cuda2_20260518T234240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_d112_shards_cuda1_cuda2_20260518T234240_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "8f1a62a4f76b5801bd58a8a755d51d5be78c900244d56640a626dd9ba2cf7d3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## D112 Generation 状态总结\n\n| Shard | GPU | 文档范围 | 进度 | 速度 | 预估剩余 |\n|-------|-----|---------|------|------|---------|\n| **0** | cuda:3 | [0:756] → 3027 全量 (无 shard) | 191/3027 (6%) | ~12s/doc | ~9.5h |\n| **1** | cuda:1 | [756:1512] → 756 docs | 刚启动 1/756 | ~18s/doc | ~3.8h |\n| **2** | cuda:2 | [1512:2268] → 756 docs | 刚启动 1/756 | ~10s/doc | ~2.1h |\n\n**注意**: Shard 0 跑的是全量 3027 docs（未分片），shard 1/2 各 756 docs。看起来脚本在有 SHARD 环境变量时才做 4 分片，shard 0 当时没传 SHARD 所以跑了全量。shard 1 和 shard 2 会覆盖 shard 0 的中间段，最终需要根据实际完成情况合并去重。\n\nShard 1/2 预计 2-4 小时完成，shard 0 按当前速度还需约 9 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-d112-shards-cuda1-cuda2.md"
+}

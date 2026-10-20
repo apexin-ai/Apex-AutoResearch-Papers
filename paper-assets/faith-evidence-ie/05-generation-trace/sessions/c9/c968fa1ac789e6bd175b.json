@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c968fa1ac789e6bd175b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose 14b no evi failure",
+  "task_key": "worker_diagnose_14b-no-evi-failure_20260521T004242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_14b-no-evi-failure_20260521T004242_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "54387acab0315354aaa9ef46ead39cd57540c244d46604f691635c39e501e035"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Eval 没有失败——它已成功完成。**\n\n日志显示推理跑完了全部 247 batch（耗时 2h37m），结果已写入：\n\n```\n/root/autodl-tmp/eval_results/plan017_14b_rsft_no_evidence_eval/metrics.json\n/root/autodl-tmp/eval_results/plan017_14b_rsft_no_evidence_eval/predictions.json\n```\n\n## 结果\n\n| 指标 | 值 |\n|------|-----|\n| F1 | 0.5536 |\n| Ign-F1 | 0.5432 |\n| Evi-F1 | 0.0000 (预期，no-evidence 不输出 evidence) |\n| Format OK | 953/985 (96.8%) |\n| Truncated | 106/985 |\n\n## 为什么看起来\"失败\"\n\n输出目录路径不匹配：\n- 你检查的路径：`/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_no_evidence_eval/`\n- 实际输出路径：`/root/autodl-tmp/eval_results/plan017_14b_rsft_no_evidence_eval/`\n\n脚本用的是 `eval_results/` 而非 `eval_outputs/`。PID 55039 正常退出（进程完成后自然消失），cuda:2 空闲也符合预期。\n\n**结论：eval 成功完成，无需重跑。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-14b-no-evi-failure.md"
+}

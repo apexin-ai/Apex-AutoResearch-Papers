@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdeb8a1ed863e5c6075f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops verify ced fix remote",
+  "task_key": "worker_ops_verify-ced-fix-remote_20260514T193500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-ced-fix-remote_20260514T193500_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "bc7be30a5fe5cf319636f0822cccdb665c011cb8ecd29965c529e3fd5f29c6dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**VERIFIED: `--ced_recall_penalty` flag exists on remote.**\n\n完整逻辑链路确认：\n- **L406**: `argparse` 定义 `--ced_recall_penalty`（`store_true`, 默认 `False`）\n- **L475**: 传递给 `CEDRewardWrapper` 的 `recall_penalty` 参数\n- **L157/L165**: 构造函数接收并存储为 `self.recall_penalty`\n- **L283-285**: 实际逻辑——当 `recall_penalty=True` 且有 gold_map 时，`mean_ced *= recall`，即用 recall 乘以 CED 得分来惩罚 under-prediction"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-ced-fix-remote.md"
+}

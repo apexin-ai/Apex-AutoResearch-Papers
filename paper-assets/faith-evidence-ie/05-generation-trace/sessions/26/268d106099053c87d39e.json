@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "268d106099053c87d39e",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_8_1778862212.md",
+  "task_key": "loop_8_1778862212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778862212.md",
+    "occurrence": 1,
+    "bytes": 6560,
+    "sha256": "7ae68cfe737e998d024ba6b0430d15687529b8fd757f33987b4fd91578698244"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T16:18:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`gpu_ids=[0,1,2,3]`，服务器 `rtx5090-4x`，4× RTX 5090 32GB。无云 GPU 实例。\n- `--no-quantize` 必须：RTX 5090 上 QLoRA 4-bit merge_and_unload 有 CUBLAS 错误，所有 RSFT/eval 训练用 bf16，不量化。\n- inference.py 必须传完整模型 stack：`--base_model` + `--sft_adapter` + `--model_path`，漏任何一个结果不可用（maxtok1536 eval 因此被 CRITICAL 打回过）。\n- 运行目录必须是 `/root/autodl-tmp/`（不能 cd 到 freige/ 子目录，import 会找到内层空包）。\n- Qwen3 `generation_config.json` 会静默覆盖 temperature/top_k，生成前必须显式覆盖 `model.generation_config`。\n- plan_015 第一版（G=4, kl=0, lr=5e-6）已被 killed（与原 QLoRA 参数不完全匹配），**v2 已在跑**，不要重复提交。\n- GRPO forgetting 的 claim 边界：plan_011 bf16 GRPO **成功**（rel_f1=0.4549），forgetting 只在 QLoRA 4-bit 下复现。但 plan_011 同时改了 quantization + G=4→G=8，plan_015_v2 正在隔离 quantization 变量。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x，账户 root\n- **工作目录**: `/root/autodl-tmp/freige`（代码），`/root/autodl-tmp/` 为运行根目录\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（base），`/root/autodl-tmp/sft_output`（SFT adapter）\n- **数据**: `/root/autodl-tmp/data/docred`（DocRED），`/root/autodl-tmp/rsft_filtered_flat_nli/`（flat-NLI RSFT 数据）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **W&B**: 项目内实验均有 wandb_run_name 对应 exp_id\n- **活跃进程 & Cron**:\n  - `eval_grpo_g8_bf16` — PID 214552, cuda:3, tmux session, 有 cron（batch_eval ckpt 80/90/100，可能已跑完大部分，plan_015_v2 也占 cuda:3 — 注意冲突）\n  - `plan_001_rsft_flat_nli` — PID 219556, cuda:0, tmux, 有 cron\n  - `plan_014_sft_no_evidence` — PID 222207, cuda:1, tmux, 有 cron\n  - `plan_012_dpo_ced` — PID 221962, cuda:2, tmux, 有 cron\n  - `plan_015_grpo_g4_bf16_v2` — PID 223970, cuda:3, tmux（注意与 eval_grpo_g8_bf16 共用 cuda:3，后者可能已完成让出）\n\n### 3. 📊 当前状态\n**刚做完**: session-start 初始化（reconcile crons 确认 4 个实验 RUNNING，读取 registry/roadmap/memory/paper_framing）。收到 WRITE HANDOFF 指令，未执行其他操作。\n\n**RUNNING 实验（5 个）**:\n| exp_id | GPU | 内容 |\n|--------|-----|------|\n| eval_grpo_g8_bf16 | cuda:3 | GRPO G=8 bf16 ckpt 80/90/100 full dev eval（plan_011 后续） |\n| plan_001_rsft_flat_nli | cuda:0 | flat-NLI scoring RSFT 训练（CED vs flat-NLI ablation 核心） |\n| plan_014_sft_no_evidence | cuda:1 | SFT-without-evidence ablation（量化 evidence 负担） |\n| plan_012_dpo_ced | cuda:2 | DPO+CED 训练（offline preference learning baseline） |\n| plan_015_grpo_g4_bf16_v2 | cuda:3 | bf16 GRPO G=4 kl=0 控制实验（隔离 QLoRA confound） |\n\n**PREPARING（2 个，未提交）**:\n- `plan_011_eval_g8_bf16_ckpt100` — 可能已被 eval_grpo_g8_bf16 覆盖（都是 ckpt-100 eval），需确认是否冗余\n- `mvp2_eval_rsft_s44` — RSFT s44 全量 dev eval，等 GPU 空出\n\n**Worker 池**: 0 个 running worker（全部是 cron 监控的训练任务，无 CPU worker 在跑）\n\n**等待**: 4 个 cron 回调（实验完成时自动触发）；无待处理的 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- **plan_001_rsft_flat_nli 完成** → spawn worker 做 full dev eval → 对比 CED RSFT (rel_f1=0.4449~0.4655) vs flat-NLI RSFT → 如差异 <1pp 则 CED 降级为 \"one possible scoring function\"；如 >2pp 则 CED 有增益 → 更新 paper_framing Claim 3 → 汇报 Director\n- **plan_014_sft_no_evidence 完成** → eval no-evidence SFT 的 rel_f1 → 如 >0.50 则 evidence 负担解释成立（0.4057 vs >0.50 的 gap = evidence 代价）→ 写入 paper 论证 → 汇报 Director\n- **plan_012_dpo_ced 完成** → eval → 如 rel_f1 不崩（>0.35）→ DPO 避免 decoupling，证明 decoupling 是 on-policy GRPO 特有；如崩 → decoupling 扩展到 preference learning → 更强 claim\n- **plan_015_grpo_g4_bf16_v2 完成** → eval → **关键分叉点**: 如 rel_f1 崩（<0.10）→ forgetting 在 bf16+G=4+kl=0 下复现 → QLoRA 不是唯一原因，G 和 kl 也是必要条件 → Claim 2 需要三变量 ablation table；如 rel_f1 不崩（>0.30）→ QLoRA 是唯一 confound → Claim 2 scope 为 \"QLoRA-specific\"\n- **eval_grpo_g8_bf16 完成** → 可能是 ckpt-80/90 的补充数据（ckpt-100 已有 rel_f1=0.4549）→ 记录多 checkpoint 轨迹用于 plan_009 forgetting figure\n- **所有 P0 训练完成 + eval 完成** → plan_009 forgetting dynamics figure（数据已有，spawn worker 画图）→ plan_002 test set eval → 准备 re-dream v3\n- **Worker 池 < 2 时** → 立即 spawn CPU worker 做：plan_009 画图 / literature scan / paper section 起草\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 Main, ARR July cycle (~July 15-25)，剩余 ~2 个月\n- **Dream v2 未达标** (best=3.0/median=2.5/worst=2.5, 目标 best≥3.5/median≥3.0)。结构性问题：CED≈flat-NLI 标题错配、QLoRA confound、related work 缺口、缺 forgetting figure、DPO 细节不足\n- **论文定位已 pivot**: 从 CED-centric → \"task definition (evidence-grounded DocRE) + decoupling finding + EDCR metric\"。CED 降级为 \"one scoring option\"\n- **核心决策链**: D031 GRPO判死 → D038 RSFT实际成功 → D044 reframe → D049 dream v2 未达标 → D050 pivot to analysis paper → D051 bf16 GRPO 无 forgetting (plan_011 rel_f1=0.4549)\n- **最易判断错的事**:\n  1. plan_015_v2 结果决定 Claim 2 的精确边界——不要在结果出来前就写死 claim 措辞\n  2. eval_grpo_g8_bf16 和 plan_011_eval_g8_bf16_ckpt100 可能有重叠，确认后清理冗余 registry 条目\n  3. CED reranker 已完成 (rel_f1=0.4864, +8.07pp vs SFT)，这是目前最强单点结果但需要 N=8 生成开销，论文中定位为 complementary contribution\n  4. RSFT 所有变体的 EDCR 都低于 SFT (0.66 vs 0.71)——RSFT 增加 pred_count 导致更多 distractor citation，这是论文需要诚实讨论的 limitation\n  5. cuda:3 上 eval_grpo_g8_bf16 (PID 214552) 和 plan_015_v2 (PID 223970) 可能冲突——如果前者已完成则无问题，否则需要确认 GPU 争用情况\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778862212.md"
+}

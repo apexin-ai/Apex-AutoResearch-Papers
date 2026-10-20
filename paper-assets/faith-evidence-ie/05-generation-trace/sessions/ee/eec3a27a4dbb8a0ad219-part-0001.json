@@ -1,0 +1,965 @@
+{
+  "schema_version": "1.0",
+  "session_id": "eec3a27a4dbb8a0ad219",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "82eddc85-fab4-4217-b94d-0ce22736c6d3",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779682200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "f74f767f-b6a0-4502-abe8-b230db91bf2a",
+                "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to verify the source of variance data in their paper. Let me follow the steps:\n\n1. Read the tex files to extract values from Table 1 and Table 6\n2. Query the registry for matching experiments\n3. Cross-reference the values\n4. Report findings\n\nLet me start by reading the relevant tex files and querying the registry in parallel.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "d24d5b0f-27b0-4a6d-b730-45dacaba19f3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WmW4i42UH8RSE75FDAHBrM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14411,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14411
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "开始验证论文 variance 数据来源。先并行读取 tex 文件和 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "6e7f53b4-5653-4ae6-b20d-26eb76738deb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WmW4i42UH8RSE75FDAHBrM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14411,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14411
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UA83Ad5DdUmvtJsoBHL6ZZ",
+              "name": "Grep",
+              "input": {
+                "pattern": "tab:scaling",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "0f29c8b3-43cc-49cd-bbb1-4e488730d6cb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WmW4i42UH8RSE75FDAHBrM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14411,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14411
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T23:41:47.490Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UA83Ad5DdUmvtJsoBHL6ZZ",
+              "type": "tool_result",
+              "content": "Found 2 files\ndocs/paper/sections/appendix.tex\ndocs/paper/sections/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "25dd903e-f540-4c76-b070-2ebe5f52eb86",
+            "tool_use_result": {
+              "mode": "files_with_matches",
+              "filenames": [
+                "docs/paper/sections/appendix.tex",
+                "docs/paper/sections/experiments.tex"
+              ],
+              "numFiles": 2
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SLxkk5a4FMtUtcpSB1pidV",
+              "name": "Grep",
+              "input": {
+                "pattern": "tab:variance_ci",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "b30a764d-3449-43de-9463-eb3c85ab557e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WmW4i42UH8RSE75FDAHBrM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14411,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14411
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T23:41:48.422Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SLxkk5a4FMtUtcpSB1pidV",
+              "type": "tool_result",
+              "content": "Found 1 file\ndocs/paper/sections/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "8f3286ae-c20a-4c43-94fe-866ea4ba7654",
+            "tool_use_result": {
+              "mode": "files_with_matches",
+              "filenames": [
+                "docs/paper/sections/appendix.tex"
+              ],
+              "numFiles": 1
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013KSrPrniLwypCqBCY25yzs",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_registry",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "88a359e4-2103-4b5a-b3ac-ffb292de262e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WmW4i42UH8RSE75FDAHBrM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14411,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14411
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T23:41:49.096Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_013KSrPrniLwypCqBCY25yzs",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "2c52e22e-8da4-40e1-b371-5e28256fc0b8",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me read the relevant sections of the tex files to find the tables, and query the registry.",
+              "signature": "EqcCCmMIDhgCKkC2k4kaCQv4sEXi6UwJN84GAV12S+sTeX/gpTvDYWrx99HWXwHY2FT3WF10Z/guZoleukkpjGHoOFcukdP73gTFMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDO+QrTnxn8hsIcj1lBoMejUYtK2BLgRKSFoUIjAxAF27jGjTpaEoQ/L7dGBUxKQhrA7z1w5DNh0EzuyWLmHvuCVZneqQtBIg74BGToUqcsO+1qN6C3Y09SXMAVzG9fUX2WBPQUbQasb4LODlHBqGA2tRLJgFdnYpDBx3fBvGBoc9HrwmKHfImwkYxfgKWBRmNu0KryyF/+1e0ok1EDcQFReR7B1T+Pdys/JSlXg1MzL7TECuSmkXjT8w+ghwjJlUexgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "76889c43-fa83-4618-9faf-52b909bcb90a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015oF8YKRtgjUp9L6WBamsoU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 900,
+                "cache_read_input_tokens": 25858,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 900
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019eBU4uK9fEDAYP1sznEgf9",
+              "name": "Grep",
+              "input": {
+                "pattern": "tab:scaling",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+                "output_mode": "content",
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "fee39af3-8292-455d-a6cf-f2f2a3c25e44",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015oF8YKRtgjUp9L6WBamsoU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 900,
+                "cache_read_input_tokens": 25858,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 900
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T23:41:55.541Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019eBU4uK9fEDAYP1sznEgf9",
+              "type": "tool_result",
+              "content": "66:[Omitted long matching line]\n68:RSFT navigates this capacity landscape through quality-based data selection rather than gradient pressure. Mean Ign-F1 improves across tested scales: +6.55pp at 1.7B, +1.24pp at 4B, +4.14pp at 8B, and +3.44pp at 14B (Table~\\ref{tab:scaling}).\n75:\\label{tab:scaling}\n111:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "d2d2c36f-4eef-47eb-805f-1652fa3c4c37",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "66:[Omitted long matching line]\n68:RSFT navigates this capacity landscape through quality-based data selection rather than gradient pressure. Mean Ign-F1 improves across tested scales: +6.55pp at 1.7B, +1.24pp at 4B, +4.14pp at 8B, and +3.44pp at 14B (Table~\\ref{tab:scaling}).\n75:\\label{tab:scaling}\n111:[Omitted long matching line]",
+              "numLines": 4
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017KdX85sRESqARhbx9noMbg",
+              "name": "Grep",
+              "input": {
+                "pattern": "tab:variance_ci",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+                "output_mode": "content",
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "068e0e20-932a-4221-af24-432e78c11e1c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015oF8YKRtgjUp9L6WBamsoU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 900,
+                "cache_read_input_tokens": 25858,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 900
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T23:41:56.499Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017KdX85sRESqARhbx9noMbg",
+              "type": "tool_result",
+              "content": "128:[Omitted long matching line]\n133:\\label{tab:variance_ci}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "9efeb42c-eed3-43ae-9f74-a33b39f2f707",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "128:[Omitted long matching line]\n133:\\label{tab:variance_ci}",
+              "numLines": 2
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BBVPJurZcKAjPCp7hq6LC6",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+                "offset": 65,
+                "limit": 60
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "e30d7e85-7442-4906-b018-8dd26efd98f6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JdTjiWFQNBFLgt1NFveBU8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 508,
+                "cache_read_input_tokens": 26758,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 508
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T23:41:59.853Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BBVPJurZcKAjPCp7hq6LC6",
+              "type": "tool_result",
+              "content": "65\t\n66\tThe evidence tax---Ign-F1(no-evidence) minus Ign-F1(with-evidence), so positive values indicate cost and negative values indicate benefit---is scale-dependent. Under matched evaluation (\\texttt{max\\_new\\_tokens}$=$2048, format-compliant intersection; Appendix~\\ref{sec:training_tax}), the training-time tax reveals a within-family capacity threshold: evidence generation benefits 1.7B ($-$5.63pp), where it also halves the output duplication rate (60.5\\%$\\to$33.0\\%; Table~\\ref{tab:mechanistic} in Appendix~\\ref{sec:fair_subset}), but is approximately neutral at $\\geq$4B (+0.25$\\pm$0.47pp at 4B, $n{=}3$; +0.04pp at 8B; +0.03pp at 14B). The 1.7B and 8B no-evidence baselines use a single seed (s42); the 1.7B s42 is the strongest SFT seed (+3.22pp above the three-seed mean), so the 1.7B benefit may be amplified relative to the population mean. Table~\\ref{tab:scaling} and Figure~\\ref{fig:evidence_tax} present RSFT performance and inference-time evidence tax across five models (Figure~\\ref{fig:scaling}).\n67\t\n68\tRSFT navigates this capacity landscape through quality-based data selection rather than gradient pressure. Mean Ign-F1 improves across tested scales: +6.55pp at 1.7B, +1.24pp at 4B, +4.14pp at 8B, and +3.44pp at 14B (Table~\\ref{tab:scaling}).\n69\t\n70\tWe observe lower cross-seed variance under RSFT at all four tested configurations (SFT std $>$ RSFT std; Appendix~\\ref{sec:variance_ci}), though the effect reaches statistical significance only at 1.7B (non-overlapping $\\chi^2$ CIs). Each RSFT seed starts from its corresponding independently trained SFT checkpoint (\\S\\ref{sec:paradigms}), so the variance reduction reflects data quality filtering rather than shared initialization. Nevertheless, interpretation is limited by $n{=}3$ seeds and the two-stage nature of RSFT (SFT then filtered retraining) versus single-stage SFT. The 1.7B RSFT model (51.19 Ign-F1, std 0.09pp) approaches 8B SFT performance (50.19, std 3.23pp) at 4.7$\\times$ fewer parameters.\n71\t\n72\t\\begin{table}[t]\n73\t\\centering\n74\t\\caption{RSFT performance and inference-time evidence tax across model scales (DocRED dev Ign-F1). LLaMA-3.1-8B included for cross-family validation. Mean $\\pm$ std$^{(\\text{seeds})}$.}\n75\t\\label{tab:scaling}\n76\t\\small\n77\t\\resizebox{\\columnwidth}{!}{%\n78\t\\begin{tabular}{lcccc}\n79\t\\toprule\n80\t\\textbf{Model} & \\textbf{SFT w/ evi} & \\textbf{RSFT} & \\textbf{RSFT Tax}$^\\dagger$ & \\textbf{RSFT Gain} \\\\\n81\t\\midrule\n82\tQwen3-1.7B & 44.64{\\scriptsize$\\pm$2.79}$^{(3)}$ & 51.19{\\scriptsize$\\pm$0.09}$^{(3)}$ & $-$7.75 & +6.55 \\\\\n83\tQwen3-4B & 43.58{\\scriptsize$\\pm$3.80}$^{(3)}$ & 44.82{\\scriptsize$\\pm$0.51}$^{(3)}$ & +0.94 & +1.24 \\\\\n84\tQwen3-8B & 50.19{\\scriptsize$\\pm$3.23}$^{(3)}$ & 54.33{\\scriptsize$\\pm$0.50}$^{(3)}$ & $-$0.78 & +4.14 \\\\\n85\tQwen3-14B & 55.07$^{(1)}$ & 58.51{\\scriptsize$\\pm$0.50}$^{(2)}$ & $-$2.78{\\scriptsize$\\pm$2.49}$^{(2)}$ & +3.44 \\\\\n86\tLLaMA-3.1-8B & 51.09{\\scriptsize$\\pm$2.92}$^{(3)}$ & 56.54{\\scriptsize$\\pm$0.64}$^{(3)}$ & $-$2.17{\\scriptsize$\\pm$0.76}$^{(3)}$ & +5.45 \\\\\n87\t\\bottomrule\n88\t\\end{tabular}%\n89\t}\n90\t\\vspace{1mm}\n91\t{\\raggedright\\footnotesize $^\\dagger$Inference-time: same RSFT model with/without evidence. No-evi uses @2048; with-evi uses @1024 (1.7B: @2048). Tax $=$ no-evi $-$ with-evi; positive $=$ cost. Training-time tax in Appendix~\\ref{sec:training_tax}.\\par}\n92\t\\end{table}\n93\t\n94\t\\begin{figure}[t]\n95\t\\centering\n96\t\\includegraphics[width=\\columnwidth]{fig_evidence_tax.pdf}\n97\t\\vspace{-2mm}\n98\t\\caption{Inference-time evidence tax across model scales (RSFT models, Re-DocRED test). Positive $=$ cost, negative $=$ benefit. Error bars: $\\pm$1 std (all scales $\\geq$2 seeds).}\n99\t\\label{fig:evidence_tax}\n100\t\\end{figure}\n101\t\n102\t\\subsection{Evidence Strategy Comparison}\n103\t\\label{sec:evidence_strategy}\n104\t\n105\tWe compare joint generation against post-hoc BM25 retrieval (entity-constrained, $k{=}2$, matching the median gold evidence count per triple in DocRED), using Evi-F1 (joint) with the DREEAM-protocol denominator~\\citep{ma2023dreeam}. Post-hoc retrieval achieves higher Rel-F1 (48.76) by avoiding the evidence tax but lower Evi-F1 (joint) of 34.7 (EDCR 0.766). RSFT CED reaches 36.1 (EDCR 0.6487), a 1.4-point evidence advantage. CED reranking at inference (best-of-$N{=}8$ by CED score) achieves Rel-F1 48.64 and Evi-F1 81.88 (TP-only), approaching no-evidence extraction quality while preserving evidence.\n106\t\n107\t\n108\t\\subsection{Generalization}\n109\t\\label{sec:generalization}\n110\t\n111\tCross-architecture validation on LLaMA-3.1-8B (Table~\\ref{tab:scaling}) shows the largest RSFT gain (+5.45pp) with complete pairwise seed separation (\\S\\ref{sec:scaling}). The RSFT improvement transfers across datasets: on Re-DocRED~\\citep{tan2022redocred}, RSFT achieves 41.45 Ign-F1 (+4.86pp over SFT 36.59), matching the DocRED gain (+5.08pp). Our best joint Evi-F1 (36.1, DREEAM-protocol) falls below supervised DREEAM (54.15\\%~\\citep{ma2023dreeam}), a gap driven by extraction performance rather than evidence quality (TP-only Evi-F1 exceeds 80\\%). On the Re-DocRED test set, RSFT Ign-F1 drops approximately 20pp relative to dev across all evaluated scales (e.g., 14B: 58.5$\\to$38.5), attributable to 2.82$\\times$ higher annotation density in test (34.7 vs.\\ 12.3 gold triples per document); model ranking is perfectly preserved (Spearman $\\rho{=}1.0$; Table~\\ref{tab:test_results} in Appendix). Full results appear in Appendix~\\ref{sec:generalization_full}.\n112\t\n113\t\n114\t\\subsection{Discussion}\n115\t\\label{sec:analysis}\n116\t\n117\tEDCR validates at both cross-method ($\\rho = -0.96$, $p < 0.001$) and per-relation ($\\rho = -0.79$, $n = 76$, $p < 0.001$) levels, the latter orthogonal to Evi-F1 ($\\rho = -0.06$); partial correlations are virtually unchanged when controlling for shared components (Appendix~\\ref{sec:edcr_per_relation}). CED and flat-NLI produce comparable RSFT outcomes; stricter selection ($k{=}1$) outperforms $k{=}3$ (Appendix~\\ref{sec:ablation_full}). RSFT reduces truncation, hallucination, and duplication errors by 6--22\\% but does not improve evidence quality ($\\Delta < 0.4$pp; Appendix~\\ref{sec:error_analysis}): it improves \\emph{what} the model extracts, not \\emph{how well} it grounds extractions.\n118\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "467ac235-e241-4727-9219-50fc960c3e3e",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+                "content": "\nThe evidence tax---Ign-F1(no-evidence) minus Ign-F1(with-evidence), so positive values indicate cost and negative values indicate benefit---is scale-dependent. Under matched evaluation (\\texttt{max\\_new\\_tokens}$=$2048, format-compliant intersection; Appendix~\\ref{sec:training_tax}), the training-time tax reveals a within-family capacity threshold: evidence generation benefits 1.7B ($-$5.63pp), where it also halves the output duplication rate (60.5\\%$\\to$33.0\\%; Table~\\ref{tab:mechanistic} in Appendix~\\ref{sec:fair_subset}), but is approximately neutral at $\\geq$4B (+0.25$\\pm$0.47pp at 4B, $n{=}3$; +0.04pp at 8B; +0.03pp at 14B). The 1.7B and 8B no-evidence baselines use a single seed (s42); the 1.7B s42 is the strongest SFT seed (+3.22pp above the three-seed mean), so the 1.7B benefit may be amplified relative to the population mean. Table~\\ref{tab:scaling} and Figure~\\ref{fig:evidence_tax} present RSFT performance and inference-time evidence tax across five models (Figure~\\ref{fig:scaling}).\n\nRSFT navigates this capacity landscape through quality-based data selection rather than gradient pressure. Mean Ign-F1 improves across tested scales: +6.55pp at 1.7B, +1.24pp at 4B, +4.14pp at 8B, and +3.44pp at 14B (Table~\\ref{tab:scaling}).\n\nWe observe lower cross-seed variance under RSFT at all four tested configurations (SFT std $>$ RSFT std; Appendix~\\ref{sec:variance_ci}), though the effect reaches statistical significance only at 1.7B (non-overlapping $\\chi^2$ CIs). Each RSFT seed starts from its corresponding independently trained SFT checkpoint (\\S\\ref{sec:paradigms}), so the variance reduction reflects data quality filtering rather than shared initialization. Nevertheless, interpretation is limited by $n{=}3$ seeds and the two-stage nature of RSFT (SFT then filtered retraining) versus single-stage SFT. The 1.7B RSFT model (51.19 Ign-F1, std 0.09pp) approaches 8B SFT performance (50.19, std 3.23pp) at 4.7$\\times$ fewer parameters.\n\n\\begin{table}[t]\n\\centering\n\\caption{RSFT performance and inference-time evidence tax across model scales (DocRED dev Ign-F1). LLaMA-3.1-8B included for cross-family validation. Mean $\\pm$ std$^{(\\text{seeds})}$.}\n\\label{tab:scaling}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Model} & \\textbf{SFT w/ evi} & \\textbf{RSFT} & \\textbf{RSFT Tax}$^\\dagger$ & \\textbf{RSFT Gain} \\\\\n\\midrule\nQwen3-1.7B & 44.64{\\scriptsize$\\pm$2.79}$^{(3)}$ & 51.19{\\scriptsize$\\pm$0.09}$^{(3)}$ & $-$7.75 & +6.55 \\\\\nQwen3-4B & 43.58{\\scriptsize$\\pm$3.80}$^{(3)}$ & 44.82{\\scriptsize$\\pm$0.51}$^{(3)}$ & +0.94 & +1.24 \\\\\nQwen3-8B & 50.19{\\scriptsize$\\pm$3.23}$^{(3)}$ & 54.33{\\scriptsize$\\pm$0.50}$^{(3)}$ & $-$0.78 & +4.14 \\\\\nQwen3-14B & 55.07$^{(1)}$ & 58.51{\\scriptsize$\\pm$0.50}$^{(2)}$ & $-$2.78{\\scriptsize$\\pm$2.49}$^{(2)}$ & +3.44 \\\\\nLLaMA-3.1-8B & 51.09{\\scriptsize$\\pm$2.92}$^{(3)}$ & 56.54{\\scriptsize$\\pm$0.64}$^{(3)}$ & $-$2.17{\\scriptsize$\\pm$0.76}$^{(3)}$ & +5.45 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\vspace{1mm}\n{\\raggedright\\footnotesize $^\\dagger$Inference-time: same RSFT model with/without evidence. No-evi uses @2048; with-evi uses @1024 (1.7B: @2048). Tax $=$ no-evi $-$ with-evi; positive $=$ cost. Training-time tax in Appendix~\\ref{sec:training_tax}.\\par}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_evidence_tax.pdf}\n\\vspace{-2mm}\n\\caption{Inference-time evidence tax across model scales (RSFT models, Re-DocRED test). Positive $=$ cost, negative $=$ benefit. Error bars: $\\pm$1 std (all scales $\\geq$2 seeds).}\n\\label{fig:evidence_tax}\n\\end{figure}\n\n\\subsection{Evidence Strategy Comparison}\n\\label{sec:evidence_strategy}\n\nWe compare joint generation against post-hoc BM25 retrieval (entity-constrained, $k{=}2$, matching the median gold evidence count per triple in DocRED), using Evi-F1 (joint) with the DREEAM-protocol denominator~\\citep{ma2023dreeam}. Post-hoc retrieval achieves higher Rel-F1 (48.76) by avoiding the evidence tax but lower Evi-F1 (joint) of 34.7 (EDCR 0.766). RSFT CED reaches 36.1 (EDCR 0.6487), a 1.4-point evidence advantage. CED reranking at inference (best-of-$N{=}8$ by CED score) achieves Rel-F1 48.64 and Evi-F1 81.88 (TP-only), approaching no-evidence extraction quality while preserving evidence.\n\n\n\\subsection{Generalization}\n\\label{sec:generalization}\n\nCross-architecture validation on LLaMA-3.1-8B (Table~\\ref{tab:scaling}) shows the largest RSFT gain (+5.45pp) with complete pairwise seed separation (\\S\\ref{sec:scaling}). The RSFT improvement transfers across datasets: on Re-DocRED~\\citep{tan2022redocred}, RSFT achieves 41.45 Ign-F1 (+4.86pp over SFT 36.59), matching the DocRED gain (+5.08pp). Our best joint Evi-F1 (36.1, DREEAM-protocol) falls below supervised DREEAM (54.15\\%~\\citep{ma2023dreeam}), a gap driven by extraction performance rather than evidence quality (TP-only Evi-F1 exceeds 80\\%). On the Re-DocRED test set, RSFT Ign-F1 drops approximately 20pp relative to dev across all evaluated scales (e.g., 14B: 58.5$\\to$38.5), attributable to 2.82$\\times$ higher annotation density in test (34.7 vs.\\ 12.3 gold triples per document); model ranking is perfectly preserved (Spearman $\\rho{=}1.0$; Table~\\ref{tab:test_results} in Appendix). Full results appear in Appendix~\\ref{sec:generalization_full}.\n\n\n\\subsection{Discussion}\n\\label{sec:analysis}\n\nEDCR validates at both cross-method ($\\rho = -0.96$, $p < 0.001$) and per-relation ($\\rho = -0.79$, $n = 76$, $p < 0.001$) levels, the latter orthogonal to Evi-F1 ($\\rho = -0.06$); partial correlations are virtually unchanged when controlling for shared components (Appendix~\\ref{sec:edcr_per_relation}). CED and flat-NLI produce comparable RSFT outcomes; stricter selection ($k{=}1$) outperforms $k{=}3$ (Appendix~\\ref{sec:ablation_full}). RSFT reduces truncation, hallucination, and duplication errors by 6--22\\% but does not improve evidence quality ($\\Delta < 0.4$pp; Appendix~\\ref{sec:error_analysis}): it improves \\emph{what} the model extracts, not \\emph{how well} it grounds extractions.\n",
+                "numLines": 54,
+                "startLine": 65,
+                "totalLines": 118
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RQtZea2cRA2GDDb1CNPECp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+                "offset": 120,
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "3bf72865-1648-4afb-ab17-9395d8e51028",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JdTjiWFQNBFLgt1NFveBU8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 508,
+                "cache_read_input_tokens": 26758,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 508
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T23:42:00.477Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RQtZea2cRA2GDDb1CNPECp",
+              "type": "tool_result",
+              "content": "120\t\n121\t\\begin{figure}[t]\n122\t\\centering\n123\t\\includegraphics[width=\\columnwidth]{fig_variance_compression.pdf}\n124\t\\caption{Cross-seed standard deviation (Ign-F1) for SFT and RSFT across model scales ($N{=}3$ seeds per configuration). RSFT shows lower variance at all four configurations; CIs are non-overlapping only at 1.7B.}\n125\t\\label{fig:variance_compression}\n126\t\\end{figure}\n127\t\n128\tTable~\\ref{tab:variance_ci} reports 95\\% confidence intervals for SFT and RSFT standard deviations using the $\\chi^2$ distribution ($N{=}3$ seeds per configuration). At 1.7B, the confidence intervals are fully non-overlapping (SFT lower bound 1.45pp $>$ RSFT upper bound 0.54pp). At the remaining three scales, intervals overlap but point estimates are consistently in the same direction (SFT std $>$ RSFT std at all four scales; sign test $p = 0.0625$, one-sided binomial, $n = 4$, underpowered). Each RSFT seed starts from its corresponding independently trained SFT checkpoint, so the variance reduction reflects data quality filtering rather than shared initialization. However, the two-stage nature of RSFT (SFT then filtered retraining) versus single-stage SFT introduces a methodological asymmetry that limits direct comparison.\n129\t\n130\t\\begin{table}[t]\n131\t\\centering\n132\t\\caption{95\\% confidence intervals for SFT and RSFT training variance ($\\chi^2$ method, $N{=}3$ seeds).}\n133\t\\label{tab:variance_ci}\n134\t\\small\n135\t\\begin{tabular}{lcccc}\n136\t\\toprule\n137\t\\textbf{Scale} & \\textbf{SFT std} & \\textbf{SFT 95\\% CI} & \\textbf{RSFT std} & \\textbf{RSFT 95\\% CI} \\\\\n138\t\\midrule\n139\tQwen3-1.7B & 2.79 & [1.45, 17.55] & 0.09 & [0.04, 0.54] \\\\\n140\tQwen3-4B & 3.80 & [1.98, 23.89] & 0.51 & [0.27, 3.21] \\\\\n141\tQwen3-8B & 3.23 & [1.68, 20.31] & 0.50 & [0.26, 3.15] \\\\\n142\tLLaMA-3.1-8B & 2.92 & [1.52, 18.37] & 0.64 & [0.33, 4.01] \\\\\n143\t\\bottomrule\n144\t\\end{tabular}\n145\t\\vspace{1mm}\n146\t{\\raggedright\\footnotesize SFT std $>$ RSFT std at all four configurations (sign test $p{=}0.0625$, one-sided binomial). CIs are non-overlapping only at 1.7B. Each RSFT seed starts from its own independently trained SFT checkpoint; the variance reduction reflects data selection quality but should be interpreted cautiously given $n{=}3$ and the two-stage pipeline.\\par}\n147\t\\end{table}\n148\t\n149\t\n150\t\\section{Controlled Evaluation Subset}\n151\t\\label{sec:fair_subset}\n152\t\n153\tThe 1.7B evidence tax comparison (\\S\\ref{sec:scaling}) is confounded by differential truncation rates. At \\texttt{max\\_new\\_tokens}$=$1024, the no-evidence model truncates 50.9\\% of outputs (501/985 documents) versus 31.9\\% (314/985) for the evidence model. To address this, we adopt a matched@2048 fair evaluation: both configurations are evaluated at \\texttt{max\\_new\\_tokens}$=$2048, and the tax is computed on the intersection of documents where both produce format-compliant output. This yields 971/985 fair-subset documents, with a tax of $-$5.63pp (s42), confirming a genuine 1.7B evidence benefit. As additional validation, a stricter controlled subset at @1024 (excluding truncated or repetitive outputs; 442/985 documents) yields $-$6.2pp, with the stronger benefit attributable to the more aggressive filtering.\n154\t\n155\tTable~\\ref{tab:mechanistic} provides a mechanistic breakdown across three scales (evaluated at @1024). Output duplication rate (fraction of documents containing $\\geq$3 repeated triples or unique/total $< 0.5$) declines monotonically with scale for both training configurations, but the gap between no-evidence and with-evidence models narrows from 27.5pp at 1.7B to 3.7pp at 8B. Two mechanisms may explain this pattern. The parsimonious account is a structural output constraint: evidence formatting occupies token budget, leaving fewer tokens for triples, which reduces false positives and duplicates---a purely output-level effect. However, under matched@2048 evaluation where truncation is controlled, the 1.7B evidence benefit persists ($-$5.63pp), partially challenging a pure output-constraint explanation and suggesting a possible representation-level effect where evidence generation encourages the model to attend to supporting context. Notably, RSFT's error analysis (Appendix~\\ref{sec:error_analysis}) shows that evidence quality itself is unchanged ($\\Delta < 0.4$pp across scales), which argues against a strong representation-level improvement; if evidence generation substantively improved attention to supporting context, one would expect measurable evidence quality gains. Our data cannot distinguish the relative contributions of these two mechanisms; controlled experiments with fixed output length but varied evidence requirements would be needed. At 4B, duplication is already moderate (31.1\\% with evidence), so either mechanism's benefit diminishes; under matched@2048 evaluation, the 4B training-time tax is approximately neutral (+0.25$\\pm$0.47pp, three-seed mean). The truncation asymmetry reverses across scales: at 1.7B the no-evidence model truncates 19pp more often; at 8B the evidence model truncates 9pp more often due to the longer output format.\n156\t\n157\t\\begin{table}[t]\n158\t\\centering\n159\t\\caption{Mechanistic breakdown of output quality across scales. Duplication rate: fraction of documents with degenerate outputs. Truncation $\\Delta$: no-evidence rate minus with-evidence rate (positive means no-evidence truncates more).}\n160\t\\label{tab:mechanistic}\n161\t\\small\n162\t\\begin{tabular}{lccccc}\n163\t\\toprule\n164\t& \\multicolumn{3}{c}{\\textbf{Duplication Rate}} & \\multicolumn{2}{c}{\\textbf{Truncation}} \\\\\n165\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-6}\n166\t\\textbf{Scale} & \\textbf{w/ evi} & \\textbf{no-evi} & \\textbf{Gap} & \\textbf{$\\Delta$} & \\textbf{Pattern} \\\\\n167\t\\midrule\n168\t1.7B & 33.0 & 60.5 & 27.5 & +19 & no-evi worse \\\\\n169\t4B & 31.1 & 43.2 & 12.1 & +2 & neutral \\\\\n170\t8B & 29.2 & 32.9 & 3.7 & $-$9 & evi worse \\\\\n171\t\\bottomrule\n172\t\\end{tabular}\n173\t\\end{table}\n174\t\n175\t\n176\t\\section{Training-Time Evidence Tax}\n177\t\\label{sec:training_tax}\n178\t\n179\tThe evidence tax can be measured in two ways. The \\emph{training-time} tax compares separately trained models (SFT with evidence vs.\\ SFT without evidence in the training output format). The \\emph{inference-time} tax (reported in Table~\\ref{tab:scaling}) evaluates the same RSFT model with and without evidence at inference time.\n180\t\n181\tNa\\\"ive comparisons at \\texttt{max\\_new\\_tokens}$=$1024 are confounded by differential truncation rates (e.g., 50.9\\% vs.\\ 31.9\\% at 1.7B). To control for this, we adopt a \\emph{matched@2048 fair evaluation}: both configurations are evaluated at \\texttt{max\\_new\\_tokens}$=$2048, and the tax is computed on the intersection of documents where both models produce format-compliant output. Table~\\ref{tab:training_tax} reports the matched@2048 training-time tax across Qwen3 scales.\n182\t\n183\tThe tax reveals a within-family capacity threshold: evidence generation benefits 1.7B ($-$5.63pp on 971/985 fair-subset documents) but is approximately neutral at $\\geq$4B (+0.25$\\pm$0.47pp at 4B across three seeds, +0.04pp at 8B, +0.03pp at 14B). At 1.7B, s42 is the strongest SFT seed (47.86 Ign-F1, +3.22pp above the three-seed mean of 44.64), so the benefit may be amplified relative to the population mean. LLaMA-3.1-8B SFT training-time tax is consistently negative but with high magnitude variance ($-$1.53 to $-$11.20pp, mean $-$5.19$\\pm$5.25pp under matched@2048) and omitted from the table due to the s43 outlier (16.3\\% no-evidence format failure inflates its tax); cross-architecture patterns are addressed in \\S\\ref{sec:generalization_full}.\n184\t\n185\t\\begin{table}[t]\n186\t\\centering\n187\t\\caption{Training-time evidence tax under matched@2048 fair evaluation (DocRED dev Ign-F1). Tax $=$ no-evi $-$ with-evi; positive $=$ cost.}\n188\t\\label{tab:training_tax}\n189\t\\small\n190\t\\resizebox{\\columnwidth}{!}{%\n191\t\\begin{tabular}{lcccc}\n192\t\\toprule\n193\t\\textbf{Model} & \\textbf{Fair w/ evi} & \\textbf{Fair no-evi} & \\textbf{Evi Tax} & \\textbf{Subset} \\\\\n194\t\\midrule\n195\tQwen3-1.7B & 48.38 & 42.75 & $-$5.63 & 971 \\\\\n196\tQwen3-4B & -- & -- & +0.25{\\scriptsize$\\pm$0.47} & $\\geq$982 \\\\\n197\tQwen3-8B & 50.15 & 50.19 & +0.04 & 984 \\\\\n198\tQwen3-14B & 55.07 & 55.10 & +0.03 & 985$^\\dagger$ \\\\\n199\t\\bottomrule"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "30571bac-9b75-4362-a2f8-36b61229efb3",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+                "content": "\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_variance_compression.pdf}\n\\caption{Cross-seed standard deviation (Ign-F1) for SFT and RSFT across model scales ($N{=}3$ seeds per configuration). RSFT shows lower variance at all four configurations; CIs are non-overlapping only at 1.7B.}\n\\label{fig:variance_compression}\n\\end{figure}\n\nTable~\\ref{tab:variance_ci} reports 95\\% confidence intervals for SFT and RSFT standard deviations using the $\\chi^2$ distribution ($N{=}3$ seeds per configuration). At 1.7B, the confidence intervals are fully non-overlapping (SFT lower bound 1.45pp $>$ RSFT upper bound 0.54pp). At the remaining three scales, intervals overlap but point estimates are consistently in the same direction (SFT std $>$ RSFT std at all four scales; sign test $p = 0.0625$, one-sided binomial, $n = 4$, underpowered). Each RSFT seed starts from its corresponding independently trained SFT checkpoint, so the variance reduction reflects data quality filtering rather than shared initialization. However, the two-stage nature of RSFT (SFT then filtered retraining) versus single-stage SFT introduces a methodological asymmetry that limits direct comparison.\n\n\\begin{table}[t]\n\\centering\n\\caption{95\\% confidence intervals for SFT and RSFT training variance ($\\chi^2$ method, $N{=}3$ seeds).}\n\\label{tab:variance_ci}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Scale} & \\textbf{SFT std} & \\textbf{SFT 95\\% CI} & \\textbf{RSFT std} & \\textbf{RSFT 95\\% CI} \\\\\n\\midrule\nQwen3-1.7B & 2.79 & [1.45, 17.55] & 0.09 & [0.04, 0.54] \\\\\nQwen3-4B & 3.80 & [1.98, 23.89] & 0.51 & [0.27, 3.21] \\\\\nQwen3-8B & 3.23 & [1.68, 20.31] & 0.50 & [0.26, 3.15] \\\\\nLLaMA-3.1-8B & 2.92 & [1.52, 18.37] & 0.64 & [0.33, 4.01] \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1mm}\n{\\raggedright\\footnotesize SFT std $>$ RSFT std at all four configurations (sign test $p{=}0.0625$, one-sided binomial). CIs are non-overlapping only at 1.7B. Each RSFT seed starts from its own independently trained SFT checkpoint; the variance reduction reflects data selection quality but should be interpreted cautiously given $n{=}3$ and the two-stage pipeline.\\par}\n\\end{table}\n\n\n\\section{Controlled Evaluation Subset}\n\\label{sec:fair_subset}\n\nThe 1.7B evidence tax comparison (\\S\\ref{sec:scaling}) is confounded by differential truncation rates. At \\texttt{max\\_new\\_tokens}$=$1024, the no-evidence model truncates 50.9\\% of outputs (501/985 documents) versus 31.9\\% (314/985) for the evidence model. To address this, we adopt a matched@2048 fair evaluation: both configurations are evaluated at \\texttt{max\\_new\\_tokens}$=$2048, and the tax is computed on the intersection of documents where both produce format-compliant output. This yields 971/985 fair-subset documents, with a tax of $-$5.63pp (s42), confirming a genuine 1.7B evidence benefit. As additional validation, a stricter controlled subset at @1024 (excluding truncated or repetitive outputs; 442/985 documents) yields $-$6.2pp, with the stronger benefit attributable to the more aggressive filtering.\n\nTable~\\ref{tab:mechanistic} provides a mechanistic breakdown across three scales (evaluated at @1024). Output duplication rate (fraction of documents containing $\\geq$3 repeated triples or unique/total $< 0.5$) declines monotonically with scale for both training configurations, but the gap between no-evidence and with-evidence models narrows from 27.5pp at 1.7B to 3.7pp at 8B. Two mechanisms may explain this pattern. The parsimonious account is a structural output constraint: evidence formatting occupies token budget, leaving fewer tokens for triples, which reduces false positives and duplicates---a purely output-level effect. However, under matched@2048 evaluation where truncation is controlled, the 1.7B evidence benefit persists ($-$5.63pp), partially challenging a pure output-constraint explanation and suggesting a possible representation-level effect where evidence generation encourages the model to attend to supporting context. Notably, RSFT's error analysis (Appendix~\\ref{sec:error_analysis}) shows that evidence quality itself is unchanged ($\\Delta < 0.4$pp across scales), which argues against a strong representation-level improvement; if evidence generation substantively improved attention to supporting context, one would expect measurable evidence quality gains. Our data cannot distinguish the relative contributions of these two mechanisms; controlled experiments with fixed output length but varied evidence requirements would be needed. At 4B, duplication is already moderate (31.1\\% with evidence), so either mechanism's benefit diminishes; under matched@2048 evaluation, the 4B training-time tax is approximately neutral (+0.25$\\pm$0.47pp, three-seed mean). The truncation asymmetry reverses across scales: at 1.7B the no-evidence model truncates 19pp more often; at 8B the evidence model truncates 9pp more often due to the longer output format.\n\n\\begin{table}[t]\n\\centering\n\\caption{Mechanistic breakdown of output quality across scales. Duplication rate: fraction of documents with degenerate outputs. Truncation $\\Delta$: no-evidence rate minus with-evidence rate (positive means no-evidence truncates more).}\n\\label{tab:mechanistic}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{Duplication Rate}} & \\multicolumn{2}{c}{\\textbf{Truncation}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-6}\n\\textbf{Scale} & \\textbf{w/ evi} & \\textbf{no-evi} & \\textbf{Gap} & \\textbf{$\\Delta$} & \\textbf{Pattern} \\\\\n\\midrule\n1.7B & 33.0 & 60.5 & 27.5 & +19 & no-evi worse \\\\\n4B & 31.1 & 43.2 & 12.1 & +2 & neutral \\\\\n8B & 29.2 & 32.9 & 3.7 & $-$9 & evi worse \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Training-Time Evidence Tax}\n\\label{sec:training_tax}\n\nThe evidence tax can be measured in two ways. The \\emph{training-time} tax compares separately trained models (SFT with evidence vs.\\ SFT without evidence in the training output format). The \\emph{inference-time} tax (reported in Table~\\ref{tab:scaling}) evaluates the same RSFT model with and without evidence at inference time.\n\nNa\\\"ive comparisons at \\texttt{max\\_new\\_tokens}$=$1024 are confounded by differential truncation rates (e.g., 50.9\\% vs.\\ 31.9\\% at 1.7B). To control for this, we adopt a \\emph{matched@2048 fair evaluation}: both configurations are evaluated at \\texttt{max\\_new\\_tokens}$=$2048, and the tax is computed on the intersection of documents where both models produce format-compliant output. Table~\\ref{tab:training_tax} reports the matched@2048 training-time tax across Qwen3 scales.\n\nThe tax reveals a within-family capacity threshold: evidence generation benefits 1.7B ($-$5.63pp on 971/985 fair-subset documents) but is approximately neutral at $\\geq$4B (+0.25$\\pm$0.47pp at 4B across three seeds, +0.04pp at 8B, +0.03pp at 14B). At 1.7B, s42 is the strongest SFT seed (47.86 Ign-F1, +3.22pp above the three-seed mean of 44.64), so the benefit may be amplified relative to the population mean. LLaMA-3.1-8B SFT training-time tax is consistently negative but with high magnitude variance ($-$1.53 to $-$11.20pp, mean $-$5.19$\\pm$5.25pp under matched@2048) and omitted from the table due to the s43 outlier (16.3\\% no-evidence format failure inflates its tax); cross-architecture patterns are addressed in \\S\\ref{sec:generalization_full}.\n\n\\begin{table}[t]\n\\centering\n\\caption{Training-time evidence tax under matched@2048 fair evaluation (DocRED dev Ign-F1). Tax $=$ no-evi $-$ with-evi; positive $=$ cost.}\n\\label{tab:training_tax}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Fair w/ evi} & \\textbf{Fair no-evi} & \\textbf{Evi Tax} & \\textbf{Subset} \\\\\n\\midrule\nQwen3-1.7B & 48.38 & 42.75 & $-$5.63 & 971 \\\\\nQwen3-4B & -- & -- & +0.25{\\scriptsize$\\pm$0.47} & $\\geq$982 \\\\\nQwen3-8B & 50.15 & 50.19 & +0.04 & 984 \\\\\nQwen3-14B & 55.07 & 55.10 & +0.03 & 985$^\\dagger$ \\\\\n\\bottomrule",
+                "numLines": 80,
+                "startLine": 120,
+                "totalLines": 512
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the paper data. Let me extract the key values from Table 1 (tab:scaling):\n\n- Qwen3-1.7B: SFT 44.64±2.79 (3 seeds), RSFT 51.19±0.09 (3 seeds)\n- Qwen3-4B: SFT 43.58±3.80 (3 seeds), RSFT 44.82±0.51 (3 seeds)\n\n\n- Qwen3-8B: SFT 50.19±3.23 (3 seeds), RSFT 54.33±0.50 (3 seeds)\n- LLaMA-3.1-8B: SFT 51.09±2.92 (3 seeds), RSFT 56.54±0.64 (3 seeds)\n\nI'm also pulling the variance data from Table 6 to see how the standard deviations compare across models and training methods.\n\nNow I need to verify the claim that each RSFT seed starts from its corresponding independently trained SFT checkpoint. Looking at the individual seed values from Table 1, I can see the RSFT means and standard deviations for each model, but I need to find the actual individual seed values to confirm this relationship.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "d9266ff6-1adf-430f-8731-3baae7e7450d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013YNyM37QK7QC64uXwVsPkZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5551,
+                "cache_read_input_tokens": 27266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5551
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me query the registry for all experiments to find the RSFT runs with non-s42 seeds."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "639a77cb-cf35-4f2e-b2a9-51f04c722d1b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013YNyM37QK7QC64uXwVsPkZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5551,
+                "cache_read_input_tokens": 27266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5551
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LuzHMgAnnussbhAaPZcrq3",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "faith-evidence-ie",
+                "fields": [
+                  "*"
+                ],
+                "limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7fc0d3f3-d056-4d63-a50d-121e702265e9",
+            "uuid": "858d4039-e681-4568-b71d-8ab3a4324188",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013YNyM37QK7QC64uXwVsPkZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5551,
+                "cache_read_input_tokens": 27266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5551
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        }
+      ]
+    }
+  ]
+}

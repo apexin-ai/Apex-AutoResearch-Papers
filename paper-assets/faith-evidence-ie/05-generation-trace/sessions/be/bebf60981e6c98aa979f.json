@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bebf60981e6c98aa979f",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "director / loop_11.md",
+  "task_key": "loop_11",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_11.md",
+    "occurrence": 1,
+    "bytes": 4024,
+    "sha256": "5ee25627a6d325de4c1672dc7e1d8575f0021811dd6b7ea63fdb20f79bd7dfe0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_messages\nupdated: '2026-05-21T23:16:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：rtx5090-4x 的 cuda:0/1/2/3（4× RTX PRO 6000）。bjb2-12179 也在配置中但当前所有实验跑在 rtx5090-4x\n- M027 教训：所有 no-evidence eval 必须验证 adapter 路径指向正确的 SFT checkpoint + --no_evidence flag，不能用错 adapter（之前全部 Qwen no-evi 数据因 adapter 错误作废）\n- M028 教训：任何训练任务必须走 [APPROVAL NEEDED] 流程，Agent 不得自行启动训练\n- D147 约束：evidence tax threshold claim 仅限 observational（不做因果解释），cross-architecture variation 放 supplementary（不进 Abstract），evidence tax 标注为 dev-set finding\n- matched@2048：所有 evidence tax 对比必须用 matched@2048 protocol（with-evi 和 no-evi 同 2048 token budget）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x，工作目录 /root/autodl-tmp/faith-evidence-ie（推测，需确认）\n- SFT 模型路径：/root/autodl-tmp/sft_output_seed42, sft_output_seed43, sft_output_seed44（1.7B/4B/8B），sft_output_14b/checkpoint-144（14B），sft_output_llama/（LLaMA-8B）\n- RSFT 训练数据：rsft_train.jsonl（2718 CED k=1 samples，已存在）\n- 4B RSFT checkpoint：❌ 丢失（bjb2 备份确认缺失），retrain_4b_rsft_ced_s42_v2 已审批\n- Re-DocRED test set：500 docs，gold density 34.7 triples/doc（vs dev 12.3）\n- 活跃进程：需 Agent 重启后 SSH 确认（Agent idle 16h，进程状态未知）\n\n### 3. 📊 当前状态\n**刚完成**：paper_framing.md M027 数据修正（12+ edits）、Paper Agent 11-item LaTeX patch、D147 Reviewer framing pre-review\n\n**实验状态**（Agent idle 16h，以下为最后已知状态，需验证）：\n- cuda:0: test_eval_1_7b_sft_s42 — 可能已完成（16h+ 前 RUNNING）\n- cuda:1: test_eval_14b_sft_s42 — 可能已完成\n- cuda:2: retrain_4b_rsft_ced_s42_v2 — ALLOCATED 但 Agent idle 未启动\n- cuda:3: test_eval_llama_sft_s42 — 已完成（ign_f1=0.3420）；指令发了 14B no-evi test eval 但 Agent 未处理\n\n**Test table 进展**：\n| Scale | SFT test | RSFT test | Δ | SFT trunc% | RSFT trunc% |\n|-------|----------|-----------|---|------------|-------------|\n| 1.7B | pending confirm | 29.33 | — | — | 73.8% |\n| 4B | 22.32 | ❌ retrain needed | — | 64.6% | — |\n| 8B | 31.06 | 33.53 | +2.47 | 82.0% | 1.8% |\n| 14B | pending confirm | 38.49 | — | — | 13.4% |\n| LLaMA | 34.20 | 35.99 | +1.79 | 65.4% | 56.6% |\n\n### 4. 📋 待办\n- Agent 重启后 → 立即 SSH 检查 cuda:0/1/2/3 实际进程状态，确认哪些 test eval 已完成\n- 1.7B/14B SFT test 已完成 → 收集结果，更新 test table\n- retrain_4b_rsft_ced_s42_v2 未启动 → 重新指令 Agent 在 cuda:2 启动（已 ALLOCATED）\n- retrain 完成（~66min）→ 提交 4B RSFT test eval\n- 有空闲 GPU → 提交 D147 no-evi test spot-check：14B SFT no-evi test（最高优先），1.7B SFT no-evi test（次优先）\n- 全部 SFT test 完成 → Paper Agent patch 更新 test table SFT 列\n- 全部 test 完成 → CodaLab 提交获取 official ign_f1\n\n### 5. 🎯 战略上下文\n- 项目目标：EMNLP 2026 Main（ARR July，~55 天），empirical analysis paper 研究 RSFT 在 document-level IE 中的效果\n- 核心 narrative（D145 后）：3 贡献 = C1 RSFT framework + C2 NLI quality scoring + C3 evidence tax landscape + variance compression\n- C3 关键数据：within-family threshold（1.7B fair_tax=-5.63pp 受益，4B+ 趋零 mean=+0.25±0.47pp），cross-arch variation（Qwen 8B ~0 vs LLaMA 8B seed-dependent），RSFT variance compression 7.5-31×\n- 8B truncation 对比（SFT 82% vs RSFT 1.8%）是强 paper 证据，支持 RSFT format robustness 叙事\n- test vs dev gap ~20pp 是系统性的（gold density 差异），论文已有解释段落\n- 易错点：adapter 路径命名不规范（sft_output_seed42 vs sft_output_qwen3_4b_bf16_s44 不存在），提交前必须 ssh_read_only 验证实际路径\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11.md"
+}

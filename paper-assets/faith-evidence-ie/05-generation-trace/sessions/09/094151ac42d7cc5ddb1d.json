@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "094151ac42d7cc5ddb1d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code ced scoring readiness",
+  "task_key": "worker_code_ced_scoring_readiness_20260516T145621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ced_scoring_readiness_20260516T145621_result.json",
+    "occurrence": 1,
+    "bytes": 4122,
+    "sha256": "f914a8ffa50d44f9ab3c310440b435c8b52f3907e8a7c17412d9d2981b9b72de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据格式确认完毕。每个 doc 有多条 generation（每条一行 JSONL，包含 `generation_idx`）。候选生成仍在进行中（基于 train_annotated.json 的 3053 docs）。\n\n## CED Scoring Pipeline 就绪性报告\n\n### 1. CED scoring 模块\n\n**脚本**: `freige/training/rsft_score_filter.py` (604 行)\n- 模块导入和 `--help` 均通过 ✅\n- 三种奖励: format_reward, f1_reward, ced_reward\n- 输出: `rsft_train.jsonl`（SFT 训练数据）+ `rsft_scores.jsonl` + `rsft_report.json`\n\n### 2. 参数列表\n\n| 参数 | 类型 | 默认值 | 说明 |\n|------|------|--------|------|\n| `--input_dir` | str | **必填** | 含 generations.jsonl 的目录 |\n| `--output_path` | str | **必填** | 输出目录 |\n| `--nli_model_path` | str | `cross-encoder/nli-deberta-v3-base` | NLI 模型 |\n| `--nli_device` | str | auto | 设备 |\n| `--tau` | float | 0.5 | CED 阈值 |\n| `--scoring_mode` | str | `ced` | `ced` 或 `flat_nli` |\n| `--selection_strategy` | str | `top_pct` | `threshold`/`top_k`/`top_pct` |\n| `--top_k` | int | 2 | 每个 doc 取 top-K |\n| `--top_pct` | int | 25 | 每个 doc 取 top N% |\n| `--format/f1/ced_weight` | float | 0.2/0.4/0.4 | 组合分数权重 |\n| `--format/f1/ced_threshold` | float | 0.5/0.1/0.0 | 最低阈值 |\n\n### 3. NLI 模型\n✅ 完整: `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7/`（含 model.safetensors, tokenizer 等 7 个文件）\n\n### 4. 候选生成进度（基于 train_annotated 3053 docs）\n\n| 模型 | 完成 docs | generations 行数 | 文件大小 | 进度 |\n|------|-----------|-----------------|---------|------|\n| Qwen3-8B | 251 | 1992 | 20MB | ~8.2% |\n| Qwen3-1.7B | 319 | 2520 | 24MB | ~10.4% |\n| LLaMA-3.1-8B | 64 | 512 | 4.7MB | ~2.1% |\n\n每个 doc 约 8 条 generation（N=8 candidates）。**三个进程仍在运行中，距离完成还需较长时间。**\n\n### 5. 建议的完整命令（候选完成后执行）\n\n```bash\n# Qwen3-8B（需按 C002 约束设置 CUDA_VISIBLE_DEVICES）\nCUDA_VISIBLE_DEVICES=X source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp && python -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b \\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_8b \\\n    --nli_model_path /root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7 \\\n    --selection_strategy top_k --top_k 2\n\n# Qwen3-1.7B\nCUDA_VISIBLE_DEVICES=X source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp && python -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_1_7b \\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_1_7b \\\n    --nli_model_path /root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7 \\\n    --selection_strategy top_k --top_k 2\n\n# LLaMA-3.1-8B\nCUDA_VISIBLE_DEVICES=X source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp && python -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_llama_8b \\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_llama_8b \\\n    --nli_model_path /root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7 \\\n    --selection_strategy top_k --top_k 2\n```\n\n### 6. 潜在问题\n\n- **候选生成远未完成**：3 个模型分别只完成 8-10%，LLaMA 仅 2%。需要等待生成完成后才能启动 scoring。\n- **NLI 模型用 GPU**：DeBERTa-v3-base 很小（~400MB），可以和生成进程共享 GPU，但需注意显存。也可用 `--nli_device cpu` 避免 GPU 冲突。\n- **NLI 模型路径**：默认值是 HF hub ID `cross-encoder/nli-deberta-v3-base`，但建议传本地 snapshot 路径避免网络下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ced-scoring-readiness.md"
+}

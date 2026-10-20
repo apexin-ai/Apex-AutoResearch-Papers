@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3a8f72671893fb07c19",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze eval plan 014 sft no evidence",
+  "task_key": "worker_analyze_eval_plan_014_sft_no_evidence_20260515T183104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_plan_014_sft_no_evidence_20260515T183104_result.json",
+    "occurrence": 1,
+    "bytes": 1474,
+    "sha256": "eb29f9db551f195322a52f4ac03432a059b00ff2af3aee243dd57a585135b648"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Eval Plan 014: SFT No-Evidence 结果\n\n### 核心指标\n\n| Metric | SFT w/ Evidence | SFT No-Evidence | Delta |\n|--------|----------------|-----------------|-------|\n| **rel_f1** | 0.4057 | **0.4893** | **+0.0836 (+20.6%)** |\n| precision | — | 0.4884 | — |\n| recall | — | 0.4902 | — |\n| evi_f1 | 0.7979 | 0.0 | N/A (无 evidence 输出) |\n| EDCR | 0.7118 | 0.0 | N/A |\n| pred_count (dedup) | 12,234 | 12,196 | ~持平 |\n| format_ok | — | 99.2% | — |\n| truncated | — | 298/985 (30.3%) | — |\n\n### 跨方法对比 (rel_f1)\n\n| Method | rel_f1 |\n|--------|--------|\n| LMRC (纯抽取) | ~0.607 |\n| **SFT No-Evidence** | **0.4893** |\n| RSFT CED 3-seed | 0.4596±0.013 |\n| SFT w/ Evidence | 0.4057 |\n\n### 结论\n\n1. **Evidence generation 代价量化**: 去掉 evidence 后 rel_f1 提升 +0.0836（相对 +20.6%），确认 evidence 生成是显著性能负担。模型在有限 token budget 内同时做抽取+溯源，抽取质量被拖累。\n\n2. **SFT No-Evidence > RSFT CED**: 仅去掉 evidence（不用 reward shaping）就达 0.4893，超过 RSFT CED 的 0.4596。evidence 开销 > reward shaping 增益。\n\n3. **与 LMRC 差距 ~0.118**: 仍有不小差距，可能来源于 30.3% 截断率（max_new_tokens=1024 不足）和模型/数据差异。\n\n4. **Truncation 是瓶颈**: 近三分之一文档被截断，recall 可能被压低，增大 max_new_tokens 值得尝试。\n\n报告已存入 `memory.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-plan-014-sft-no-evidence.md"
+}

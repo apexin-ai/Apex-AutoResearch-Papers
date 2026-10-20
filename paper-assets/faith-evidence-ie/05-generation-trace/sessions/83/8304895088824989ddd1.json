@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8304895088824989ddd1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor flatnli r6 health",
+  "task_key": "worker_monitor_flatnli_r6_health_20260514T180832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_flatnli_r6_health_20260514T180832_result.json",
+    "occurrence": 1,
+    "bytes": 891,
+    "sha256": "ca7068d90bc933e6a4527fdb2614b1ba2c7913a9a44784636bd160addcda982f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## flatnli_r6 Health Check\n\n- **Current step**: 25/100 (running on cuda:3, PID 76958)\n- **frac_zero_std trend**: 0.6 → 0.7 → **0.9** — crossed 0.8 threshold, accelerating\n- **f1_reward trend**: 0.023 → 0.012 → **0.0** — extraction completely dead\n- **flat_nli_reward trend**: 0.018 → 0.023 → **0.0** — also dead\n- **KL trend**: 123M (step 5) → 0.043 → 0.036 → 0.056 (stable post-spike)\n- **grad_norm**: 0.037 → 0.271 (recovered, but irrelevant — nothing to learn)\n- **completion_length**: 773 → 586 → 399 (shrinking — model outputting less)\n- **Verdict**: **COLLAPSE_CONFIRMED**\n- **Recommendation**: Kill the run. The model abandoned extraction entirely — reward is 100% format-only. The initial KL explosion to 123M at step 5 likely caused irreversible policy damage. Registry notes updated. Awaiting your decision to terminate."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-flatnli-r6-health.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "446148a9df2c20c225d3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "prep plan017 14b model and scripts",
+  "task_key": "worker_prep_plan017_14b_model_and_scripts_20260518T171122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_plan017_14b_model_and_scripts_20260518T171122_result.json",
+    "occurrence": 1,
+    "bytes": 1634,
+    "sha256": "456cac4f0c543eee5d290deaf31f69eb918a865a188d64513b6c50163d2daab6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n```\n=== 模型状态 ===\n路径: /root/autodl-tmp/models/Qwen/Qwen3-14B/\n大小: 28GB (8 safetensors shards)\n状态: 已存在，文件完整 (config.json + 8 safetensors + tokenizer)\n\n=== 显存评估 ===\n实际参数量: ~14B (磁盘 28GB bf16)\n架构: 40 layers, hidden=5120, heads=40 (GQA kv_heads=8), intermediate=17408\n\n方案 A (2-GPU TP bf16): 不可行 — 项目代码不支持 tensor parallelism\n方案 B (单卡 QLoRA 4-bit): 可行, 预估 ~11GB (7GB base + 0.5GB LoRA + 3GB activations)\n方案 C (2-GPU ZeRO-3 bf16 LoRA): ✅ 可行, 预估每卡 ~18-20GB\n  - 参数分片: 14GB/卡\n  - LoRA + activations + buffers: 4-6GB\n  - 已有 accelerate_2gpu_zero3.yaml 配置直接可用\n\n已选方案: C (2-GPU DeepSpeed ZeRO-3)，用现有 accelerate_2gpu_zero3.yaml + deepspeed_zero3.json\n\n=== 脚本 ===\nSFT:  /root/autodl-tmp/freige/scripts/seed_expansion/sft_14b.sh — 已创建\nEval: /root/autodl-tmp/freige/scripts/seed_expansion/eval_14b.sh — 已创建\n\n=== 与 1.7B 脚本的关键差异 ===\n- accelerate launch + ZeRO-3 (非单卡直接运行)\n- --deepspeed configs/deepspeed_zero3.json\n- learning_rate: 1e-4 (降低，14B 模型更大)\n- gradient_accumulation_steps: 8 (2卡×1×8=effective 16)\n- max_length: 2048 (非 4096，节省显存)\n- CUDA_VISIBLE_DEVICES 默认 0,1\n\n=== Eval 注意 ===\n14B bf16 = 28GB，单卡放不下。Eval 也需 2-GPU (CUDA_VISIBLE_DEVICES=0,1)\ninference.py 用 device_map=\"auto\" 自动分片到可见 GPU\n\n=== Dry-run ===\n配置加载: ✅ 成功 (model_type=qwen3, 40 layers, hidden=5120)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-plan017-14b-model-and-scripts.md"
+}

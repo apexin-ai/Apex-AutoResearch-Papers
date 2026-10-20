@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fc663c070d7756db4fe",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "prep seed45 training commands",
+  "task_key": "worker_prep_seed45_training_commands_20260515T211123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_seed45_training_commands_20260515T211123_result.json",
+    "occurrence": 1,
+    "bytes": 2841,
+    "sha256": "f722eb4da55fb6c70894175c5c30c03b357d12607e96b1cd8596381556f4ffef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕，汇报如下。\n\n---\n\n## 确认结果\n\n| 项目 | 路径 | 样本数 | 状态 |\n|------|------|--------|------|\n| flat-NLI RSFT 数据 | `/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl` | 2691 | ✓ |\n| CED RSFT 数据 | `/root/autodl-tmp/rsft_filtered/rsft_train.jsonl` | 2718 | ✓ |\n| SFT adapter | `/root/autodl-tmp/sft_output/adapter_model.safetensors` | - | ✓ |\n| 输出目录 s45 | `rsft_output_flat_nli_s45` / `rsft_output_ced_s45` | - | 不存在 (CLEAN) |\n\nCED RSFT 参数来源：`mvp2_rsft_train_r1_s44` — \"Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples)\"。与 flat-NLI RSFT 超参完全一致，仅数据不同。\n\n---\n\n## 训练命令\n\n### flat-NLI RSFT seed=45\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_flat_nli_s45 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 1 --gradient_accumulation_steps 16 --lora_rank 64 --lora_alpha 128 --eval_data_dir /root/autodl-tmp/data/docred --wandb_run_name plan_001_flat_nli_seed45 --seed 45\"\n```\n\n### CED RSFT seed=45\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_ced_s45 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 1 --gradient_accumulation_steps 16 --lora_rank 64 --lora_alpha 128 --eval_data_dir /root/autodl-tmp/data/docred --wandb_run_name rsft_ced_seed45 --seed 45\"\n```\n\n---\n\n## 预计时间\n\n- flat-NLI RSFT seed=45: ~2h (2691 samples, 507 steps × 3ep，参考 seed=43 的 6880s)\n- CED RSFT seed=45: ~2h (2718 samples, ~510 steps × 3ep，样本量接近)\n\n---\n\n## GPU 状态（阻塞）\n\n4 卡全部在用：\n| GPU | 显存占用 | 当前任务 |\n|-----|---------|---------|\n| 0 | 18.3/32.6 GB | eval_plan_001_flat_nli_s43 |\n| 1 | 15.8/32.6 GB | plan_011_bf16_g8_step_eval |\n| 2 | 19.5/32.6 GB | eval_plan_012_dpo_ced_1ep |\n| 3 | 15.6/32.6 GB | eval_plan_008_rsft_topk3 |\n\nRSFT 训练需要 ~16-19GB 单卡，无法与现有任务共用。需等当前 eval 完成后才能提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-seed45-training-commands.md"
+}

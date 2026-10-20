@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e21bacc916e349f3f653",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan019 1 7b rsft no evidence eval",
+  "task_key": "worker_analysis_plan019_1_7b_rsft_no_evidence_eval_20260519T144541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan019_1_7b_rsft_no_evidence_eval_20260519T144541_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "e691235fc053185989d8c34c17488f24bc9637eff8435edfe497080c577073d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/negative。\n\n**总结：**\n\n| 条件 | 值 |\n|------|-----|\n| No-evidence ign_f1 | 0.4352 |\n| With-evidence ign_f1 | 0.5122 |\n| **差值** | **-7.70pp** |\n\nHypothesis rejected。1.7B RSFT 不存在 evidence tax，相反 evidence generation 对 RE 有 +7.70pp 的正面贡献。与 14B SFT 的 ~0.03pp evidence tax 对比，说明小模型更依赖 evidence chain-of-thought 来辅助关系抽取——这为跨尺度 scaling curve 提供了一个重要数据点。\n\n评估脚本确认 `--no_evidence` 正确传入，无错误，无 W&B run。唯一值得注意的是 truncation rate 59.2%，但 format compliance 97.1% 说明模型输出格式基本正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan019-1-7b-rsft-no-evidence-eval.md"
+}

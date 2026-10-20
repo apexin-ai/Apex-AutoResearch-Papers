@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d5896f2325b82eb27d0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code fix eval scripts batch",
+  "task_key": "worker_code_fix_eval_scripts_batch_20260519T130132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_eval_scripts_batch_20260519T130132_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "0e28e1360def261f867afdce18c65b3889ee17776df681c42dc82d7e8d1f73e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本修复完成，语法验证通过。\n\n### 修改汇总\n\n| 脚本 | 修改项 | 旧值 | 新值 |\n|------|--------|------|------|\n| `eval_4b_rsft_no_evidence.sh` | `--model_path` | `/root/autodl-tmp/rsft_output_4b_sft_s44` | `/root/autodl-tmp/rsft_output_4b_sft_s44_bf16` |\n| `eval_8b_sft_s43.sh` | `SFT_ADAPTER` | `sft_output_qwen3_8b_bf16_seed43` | `sft_output_qwen3_8b_s43` |\n\n### 路径验证\n\n- `/root/autodl-tmp/rsft_output_4b_sft_s44_bf16` — 存在\n- `/root/autodl-tmp/sft_output_seed44` — 存在（4B 脚本原有，未变）\n- `/root/autodl-tmp/sft_output_qwen3_8b_s43` — 存在\n\n4B 脚本已包含 `--no-quantize`、`--no_evidence`、`--batch_size 4`、`--max_new_tokens 1024`、`--seed 42`，符合要求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-eval-scripts-batch.md"
+}

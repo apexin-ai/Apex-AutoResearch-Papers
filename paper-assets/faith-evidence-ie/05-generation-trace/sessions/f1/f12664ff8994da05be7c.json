@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f12664ff8994da05be7c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu status check full",
+  "task_key": "worker_ops_gpu-status-check-full_20260515T215429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check-full_20260515T215429_result.json",
+    "occurrence": 1,
+    "bytes": 1348,
+    "sha256": "a12d1cca9adb0bca6fcbd296ff19aa07f368a3abdb1d22af8df93baf77c5a1b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态总览\n\n| GPU | 显存占用 | 利用率 | PID | 实验 |\n|-----|---------|--------|-----|------|\n| **0** | 14,597 / 32,607 MiB (45%) | 33% | 258508 | plan_001_flat_nli_seed44 (训练) |\n| **1** | 18,817 / 32,607 MiB (58%) | 87% | 254077 | plan_011_bf16_g8_step_eval (推理) |\n| **2** | 15,167 / 32,607 MiB (47%) | 34% | 257192 | plan_001_flat_nli_seed45 (训练) |\n| **3** | **0 / 32,607 MiB** | 0% | — | **空闲** |\n\n## 各实验状态\n\n### plan_011_bf16_g8_step_eval (GPU 1)\n- 对 `grpo_ced_g8_bf16/checkpoint-50` 跑 eval inference\n- 进度：**60/62 batches (97%)**，预计 ~2 分钟内完成\n\n### plan_001_flat_nli_seed45 (GPU 2)\n- RSFT 训练，seed=45\n- 进度：**169/507 steps (33%)**，epoch ≈ 0.95\n- 最近 loss=0.6376，token_accuracy=0.845\n- 刚触发 step eval（inference 已启动），eval 完成后继续训练\n- 预计剩余训练时间 ~30 min\n\n### plan_001_flat_nli_seed44 (GPU 0)\n- RSFT 训练，seed=44\n- 进度：**169/507 steps (33%)**，epoch ≈ 0.95\n- 最近 loss=0.6444，token_accuracy=0.839\n- 同样刚触发 step eval\n- 预计剩余训练时间 ~30 min\n\n### eval_plan_008_rsft_topk3\n- **无残留**，tmux session 不存在\n\n### 其他\n- `mvp2_eval_rsft_s43_r2` 有一个僵尸 tmux session（PID 194836），但无活跃 python 进程，可清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-full.md"
+}

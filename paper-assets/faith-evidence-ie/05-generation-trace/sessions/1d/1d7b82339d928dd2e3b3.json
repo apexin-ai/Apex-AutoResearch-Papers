@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d7b82339d928dd2e3b3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops prepare eval scripts batch",
+  "task_key": "worker_ops_prepare-eval-scripts-batch_20260514T210801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare-eval-scripts-batch_20260514T210801_result.json",
+    "occurrence": 1,
+    "bytes": 654,
+    "sha256": "e12ed2d17c48947df0c9306d148c06f3a293c93873c1dd3c673640b4926872ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**报告：**\n\n| 项目 | 结果 |\n|------|------|\n| 脚本 1 | `/root/autodl-tmp/scripts/eval_lr5e6_ckpt40.sh` ✓ 已写入 |\n| 脚本 2 | `/root/autodl-tmp/scripts/eval_lr5e6_rp_ckpt20.sh` ✓ 已写入 |\n| ckpt-40 (`grpo_ced_lr5e6`) | 存在，adapter_model.safetensors 252MB |\n| ckpt-20 (`grpo_ced_lr5e6_rp`) | 存在，adapter_model.safetensors 252MB |\n| rp_r2 当前进度 | **step 27/200** (~13.5%)，约 1h 已跑，预估还需 ~5h25m |\n| 语法验证 | 两个脚本均 SYNTAX_OK |\n\n注意：rp_r2 训练日志有多次 KL divergence 极端值警告（最高 39B），目前标记为 monitoring only 未中断训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-eval-scripts-batch.md"
+}

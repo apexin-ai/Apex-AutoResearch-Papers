@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "73042f59f614b838dafb",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "analysis d020 ablation wandb",
+  "task_key": "worker_analysis_d020_ablation_wandb_20260514T180226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d020_ablation_wandb_20260514T180226.log",
+    "occurrence": 1,
+    "bytes": 903593,
+    "sha256": "b59baaeae3fb1554e7b8a634008ea4f8efda8a99b7614abd0b5b59cf9c7525a0"
+  },
+  "statistics": {
+    "messages": 397,
+    "user_turns": 1,
+    "tool_calls": 125,
+    "roles": {
+      "log": 1,
+      "system": 102,
+      "record": 3,
+      "assistant": 39,
+      "tool_call": 125,
+      "tool_result": 125,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 107,
+      "chunks": [
+        {
+          "path": "73042f59f614b838dafb-part-0001.json",
+          "message_count": 107
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 290,
+      "chunks": [
+        {
+          "path": "73042f59f614b838dafb-part-0001.json",
+          "message_count": 73
+        },
+        {
+          "path": "73042f59f614b838dafb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "73042f59f614b838dafb-part-0003.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-d020-ablation-wandb.md"
+}

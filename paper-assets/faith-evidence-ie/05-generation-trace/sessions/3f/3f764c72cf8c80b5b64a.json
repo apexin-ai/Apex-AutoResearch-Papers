@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f764c72cf8c80b5b64a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops submit eval rsft s44",
+  "task_key": "worker_ops_submit-eval-rsft-s44_20260515T215650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-eval-rsft-s44_20260515T215650_result.json",
+    "occurrence": 1,
+    "bytes": 323,
+    "sha256": "191ab223b6ab7f397eaed026c551cfd8abd9a7d2199eb5908534ae170479927e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已正常启动：\n- **PID**: 261617\n- **tmux**: `mvp2_eval_rsft_s44`\n- **GPU**: cuda:3 (0 MiB → 独占)\n- **日志**: 已检测到 adapter，正在加载 tokenizer，启动正常\n\n日志前两行显示已识别 RSFT adapter 和 base model，tokenizer 加载中，SFT adapter 合并会紧随其后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-eval-rsft-s44.md"
+}

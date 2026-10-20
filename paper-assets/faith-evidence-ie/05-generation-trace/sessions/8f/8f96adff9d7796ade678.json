@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f96adff9d7796ade678",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis ced kl001 r4 health",
+  "task_key": "worker_analysis_ced-kl001-r4-health_20260514T153711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ced-kl001-r4-health_20260514T153711_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "56e387e153d9d2daf10d5e4668adee1a05008c608ecb32767ecc7ca399aca785"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验刚启动约 5 分钟，目前只到 step 2/100，还没有指标输出。\n\n**状态汇总**:\n\n| 检查项 | 结果 |\n|--------|------|\n| 进程 | 存活，PID 68084，运行 4m56s |\n| GPU | cuda:0 占用 13632MiB / 32607MiB，48% util |\n| 进度 | **2/100 steps** |\n| step_time | ~112s/step（符合 num_generations=8 预期） |\n| 指标 | **尚无输出**（太早，metrics 通常在几步后才打印） |\n\n**判断**: 启动正常，模型加载成功，NLI reward model 就绪，训练已开始跑。但 step 2 还没有 KL / grad_norm / reward 等指标可看。\n\n预计再跑 5-10 分钟（~step 5-7）后会有首批指标。需要我稍后再查一次吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ced-kl001-r4-health.md"
+}

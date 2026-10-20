@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "096f38e15cb81f4ca3f5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh rsft code verify",
+  "task_key": "worker_ssh_rsft-code-verify_20260514T235032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rsft-code-verify_20260514T235032_result.json",
+    "occurrence": 1,
+    "bytes": 1190,
+    "sha256": "2cb58fefaddc5d238c5b58e6b8b3d97f16e16512f6ab8501a707b21225521fc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## RSFT 代码就绪状态总结\n\n**3 个文件全部就位**，`--help` dry-run 全部通过，所有内部依赖 import 正常。\n\n### 需修复的问题（3 项）\n\n| 优先级 | 问题 | 说明 |\n|--------|------|------|\n| **CRITICAL** | `rsft_generate.py` `--quantize` 默认 True | 4-bit + `merge_and_unload()` 在 RTX 5090 上触发 CUBLAS 错误，必须改为默认 False |\n| **CRITICAL** | score_filter → trainer 数据格式不兼容 | score_filter 输出 JSON array + `{messages, scores.ced_reward}` 结构；trainer 期望 JSONL + `{input, output, ced_score}` 结构。**两处不兼容** |\n| **MODERATE** | NLI 模型未预下载 | `cross-encoder/nli-deberta-v3-base` 本地不存在，score_filter 需要它做 CED 打分 |\n\n### 正常的部分\n\n- 模型路径 (`Qwen3-4B`, `sft_output`) 均存在且有效\n- `rsft_trainer.py` 的 `--quantize` 正确默认 False\n- CED reward 模块、DocREDProcessor、parse_model_output 等依赖全部可导入\n- 参数设计合理（N=8, temperature=0.7, top_pct=25, LoRA r=64/α=128）\n\n### 当前 GPU 占用\n\n4 张卡全部被遗留 GRPO eval 和 diversity_probe 占用，RSFT 需等任务完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rsft-code-verify.md"
+}

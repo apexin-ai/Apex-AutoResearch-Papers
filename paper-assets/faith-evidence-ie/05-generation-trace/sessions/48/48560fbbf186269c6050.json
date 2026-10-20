@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48560fbbf186269c6050",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops cuda2 relay 8b no evidence eval",
+  "task_key": "worker_ops_cuda2_relay_8b_no_evidence_eval_20260516T111025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda2_relay_8b_no_evidence_eval_20260516T111025_result.json",
+    "occurrence": 1,
+    "bytes": 505,
+    "sha256": "b258f5417d54e4562a0a7061396831682b6066e2568c228477ebbea1e1037608"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Phase 1 结果 — 1.7B no-evidence eval (plan_006_qwen3_1_7b_no_evidence_eval)**:\n- Ign-F1 = **0.3786**, F1 = 0.3884, Evi-F1 ≈ 0 (符合预期，no-evidence 模型不生成证据)\n- Registry → DONE/success\n\n**Phase 3 — 8B no-evidence eval 已提交**:\n- PID 334598, cuda:2, 推理中 (247 batches, 预计 ~1.7h 基于 1.7B 的 25s/it，8B 会更慢)\n- Registry → RUNNING\n\n1.7B 模型在 25s/it 完成了推理；8B 模型加载成功并已开始 inference。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda2-relay-8b-no-evidence-eval.md"
+}

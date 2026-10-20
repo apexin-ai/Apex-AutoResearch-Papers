@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "026d57b9ccb00fa791ab",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose cuda0 conflict",
+  "task_key": "worker_diagnose_cuda0_conflict_20260521T184240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cuda0_conflict_20260521T184240_result.json",
+    "occurrence": 1,
+    "bytes": 1527,
+    "sha256": "63701a36964ba2e06f1abbc2bab3e87c267e19141d7e6dc0a80526bfb96d2cdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 进程状态\n\n| 任务 | 父 PID | 子 PID | 状态 | 运行时间 |\n|------|--------|--------|------|---------|\n| test_eval_4b_sft_s42 | 126048 | 126054 | **存活** | ~7.5 min |\n| retrain_4b_rsft_ced_s42 | 126855 | 126860 | **存活** | ~2 min |\n\n### cuda:0 占用情况\n\nGPU 0 (`GPU-37d3...`) 显存占用 **79,265 MiB / 97,887 MiB (81%)**，有 **3 个进程**同时在上面：\n\n| PID | 显存占用 | 归属 |\n|-----|---------|------|\n| 126054 | 9,400 MiB | test_eval_4b_sft_s42（eval 推理） |\n| 126539 | 34,944 MiB | **未知进程**（非这两个任务的子进程） |\n| 126860 | 34,902 MiB | retrain_4b_rsft_ced_s42（RSFT 训练） |\n\n### test_eval_4b_sft_s42 状态\n\n目前**正常运行中**，已完成 13/500 条推理（~3%），速度约 30-45s/it。但 cuda:0 已用 81%，显存压力极大——eval 目前只占 9.4GB，随着推理进行如果峰值显存增加，有 OOM 风险。\n\n### retrain_4b_rsft_ced_s42 状态\n\n**正在 cuda:0 上训练**，已完成 12/510 步（~2%），占用 34.9GB。这是未授权任务，且违反了 **C001**（eval 需要接近全部显存）和 **C002/C003**（未隔离 GPU）。\n\n### 结论\n\n- **cuda:0 被三个进程共享**，总占用 ~79GB/98GB，极度拥挤\n- retrain (PID 126860) 占 34.9GB，是 eval OOM 的最大风险源\n- PID 126539 也占 34.9GB，需要确认身份\n- **建议 kill retrain (PID 126855/126860)**，同时排查 PID 126539 的身份，释放 cuda:0 给 eval 使用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cuda0-conflict.md"
+}

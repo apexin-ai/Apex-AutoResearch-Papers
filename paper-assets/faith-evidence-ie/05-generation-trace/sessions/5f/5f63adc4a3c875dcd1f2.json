@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f63adc4a3c875dcd1f2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose qwen adapter paths audit",
+  "task_key": "worker_diagnose_qwen-adapter-paths-audit_20260521T031315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_qwen-adapter-paths-audit_20260521T031315_result.json",
+    "occurrence": 1,
+    "bytes": 3130,
+    "sha256": "437c81f5f947adb65bfd901be90e8e4895696eb6086e07dccfb97689fd78bbe7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Qwen Adapter 路径\n\n| Scale | Base model | SFT adapter (s42) | SFT s43 | SFT s44 | SFT no-evi | 全部存在? |\n|-------|-----------|-------------------|---------|---------|-------------|----------|\n| 1.7B | `/root/autodl-tmp/models/Qwen/Qwen3-1.7B` | `sft_output_qwen3_1_7b_bf16` | `..._seed43` | `..._seed44` | `sft_output_qwen3_1_7b_no_evidence` | ✅ |\n| 4B | `/root/autodl-tmp/models/Qwen3-4B` | `sft_output` (无后缀=s42) | `sft_output_seed43` | `sft_output_seed44` | `sft_no_evidence_output` | ✅ |\n| 8B | `/root/autodl-tmp/models/Qwen/Qwen3-8B` | `sft_output_qwen3_8b_bf16` | `..._s43` | `..._s44` | `sft_output_qwen3_8b_no_evidence` | ✅ |\n\nRSFT adapters 也全在：`rsft_output_qwen3_1_7b_k1{,_s43,_s44}`, `rsft_output_4b_sft_s44_bf16`, `rsft_output_qwen3_8b_k1{,_s43,_s44}`\n\n注意：4B base model 路径是 `/root/autodl-tmp/models/Qwen3-4B`（不在 `Qwen/` 子目录下）。\n\n## No-evi Eval 参考命令（@2048 模板）\n\n**1.7B** — 已有 2048 脚本 `scripts/seed_expansion/eval_1_7b_no_evidence_2048.sh`：\n```bash\nCUDA_VISIBLE_DEVICES=X python -m freige.eval.inference \\\n    --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1 \\\n    --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B \\\n    --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 \\\n    --data_path /root/autodl-tmp/data/docred \\\n    --output_dir /root/autodl-tmp/eval_outputs/eval_1_7b_rsft_no_evidence_2048 \\\n    --batch_size 4 --max_new_tokens 2048 --no-quantize --no_evidence --seed 42\n```\n\n**4B：**\n```bash\nCUDA_VISIBLE_DEVICES=X python -m freige.eval.inference \\\n    --model_path /root/autodl-tmp/rsft_output_4b_sft_s44_bf16 \\\n    --base_model /root/autodl-tmp/models/Qwen3-4B \\\n    --sft_adapter /root/autodl-tmp/sft_output_seed44/ \\\n    --data_path /root/autodl-tmp/data/docred \\\n    --output_dir /root/autodl-tmp/eval_outputs/eval_4b_rsft_s44_no_evidence_2048 \\\n    --batch_size 4 --max_new_tokens 2048 --no-quantize --no_evidence --seed 42\n```\n\n**8B：**\n```bash\nCUDA_VISIBLE_DEVICES=X python -m freige.eval.inference \\\n    --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1 \\\n    --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B \\\n    --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16/ \\\n    --data_path /root/autodl-tmp/data/docred \\\n    --output_dir /root/autodl-tmp/eval_outputs/eval_8b_rsft_s42_no_evidence_2048 \\\n    --batch_size 4 --max_new_tokens 2048 --no-quantize --no_evidence --seed 42\n```\n\n关键：所有 no-evi eval 必须传 `--no_evidence`（C005）。\n\n## GPU 进度\n\n| GPU | GPU PID | Parent PID | VRAM | GPU Util | Elapsed |\n|-----|---------|------------|------|----------|---------|\n| 0 | 70711 | 70706 | 18879 MiB | 68% | 26 min |\n| 1 | 70393 | 70388 | 32503 MiB | 83% | 27 min |\n| 2 | 64396 | 64391 | 18879 MiB | 90% | 2h 26m |\n| 3 | 64024 | 64023 | 18879 MiB | 90% | 2h 28m |\n\n4 卡全满，无空闲 GPU。GPU 1 占用 32.5GB（可能是 8B/14B 模型），其余 3 卡各 ~18.9GB。\n\n## 缺失/需要 rsync 的文件\n\n无。所有 Qwen SFT/RSFT adapter 和 base model 均已存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-qwen-adapter-paths-audit.md"
+}

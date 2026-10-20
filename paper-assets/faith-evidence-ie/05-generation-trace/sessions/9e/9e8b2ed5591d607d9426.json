@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e8b2ed5591d607d9426",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code verify ced recall penalty",
+  "task_key": "worker_code_verify-ced-recall-penalty_20260514T195228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-ced-recall-penalty_20260514T195228_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "ac50ef4f55cfcbb20d5d5bb62a4b708832dde3b4cfcd48790c96dec2bd359012"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n### 结果\n\n**1. 参数格式**：`--ced_recall_penalty` 是 boolean flag（`store_true`），无需传值，加上即启用。\n\n**行为**：在 CED reward 计算中，`mean_ced *= recall`，即将 CED 得分乘以 recall（`matched_gold_keys / total_gold`），惩罚漏提取。\n\n**2. 完整提交命令**：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6_rp --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --ced_recall_penalty --wandb_run_name grpo-s3-ced-lr5e6-rp-r1\"\n```\n\n**3. 无异常**。参数解析正常，import 正常，命令可直接用于 `submit_training_job`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-ced-recall-penalty.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f6539fcaf8f1540df85",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan 004 dreeam baseline",
+  "task_key": "worker_code_plan_004_dreeam_baseline_20260515T133326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_004_dreeam_baseline_20260515T133326_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "c502afa5570fdcfd880570e3cebbe5e96ab8ea95b43e4503f032127066a95b99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务提交完成。当前状态：\n\n**Phase A（运行中）**: DREEAM teacher model (RoBERTa-large) fully-supervised 训练\n- 正在 epoch 0 结束时做 dev 评估（98/125 batches）\n- GPU:2 使用 ~20.7GB/32GB，利用率 79%\n- 预计 3-5 小时完成 30 epochs + eval\n- 日志: `~/runs/faith-evidence-ie/plan_004_dreeam_baseline.log`\n\n**Phase B（已准备）**: Self-training pipeline 脚本已写好 (`train_student.sh`)\n- Step 2: Teacher inference on distant data（~2h）\n- Step 3: Student self-training 5 epochs on 101K docs（~9h）\n- Step 4: Fine-tune student 10 epochs（~1h）\n- Step 5: Final eval with ISF\n- `train_distant.json`（417MB, 101K docs）已下载就绪\n\n**关键发现**:\n- 论文报告的 Evi-F1=57.34 是 **student model 在 test set** 上的结果（dev 上是 57.55）\n- Phase A 的 teacher model 预期 dev Evi-F1 ≈ 54.15\n- 完整 pipeline（Phase A + B）总计约 15-17h GPU 时间，超出原始 8h 估计\n- Google Drive checkpoint 从 AutoDL 不可达，必须从头训练\n- 代码已修补：`AdamW` import 兼容 transformers 4.57.6\n\nPhase A 完成后需要手动提交 Phase B。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-004-dreeam-baseline.md"
+}

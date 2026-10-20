@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dba3c0b00685eec2366e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "investigate d076 4b sft full metrics",
+  "task_key": "worker_investigate_d076_4b_sft_full_metrics_20260518T135459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_d076_4b_sft_full_metrics_20260518T135459_result.json",
+    "occurrence": 1,
+    "bytes": 528,
+    "sha256": "55ca0e8b986db45ebe6685180317bc7e5d97415fae1af2f2b4773197b1ef6115"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Config 确认：两个 eval 均为 base+adapter, bs=4, quantize=false, seed=42。no-evidence 的 `metrics.json` 和 `metrics_v2.json` 数值一致（v2 仅多了 recomputed Ign-F1 备注），ign_f1 ≠ f1，非 buggy 版本。\n\n```\n4B SFT with-evidence (D076):\n  ign_f1: 39.74%\n  f1: 40.49%\n  evi_f1 (cond): 79.86%\n  evi_f1_joint: 31.47%\n  EDCR: 0.6982\n  format_compliance_rate: 0.998\n  field_compliance_rate: 0.707\n  n_truncated: 288\n\n4B SFT no-evidence (D076):\n  ign_f1: 47.21%\n  f1: 48.76%\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-d076-4b-sft-full-metrics.md"
+}

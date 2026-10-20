@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6eea7a51c5d52f9ffc13",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose disk integrity check",
+  "task_key": "worker_diagnose_disk-integrity-check_20260520T063112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_disk-integrity-check_20260520T063112_result.json",
+    "occurrence": 1,
+    "bytes": 5387,
+    "sha256": "9644988564e087438ed01d4a3971b759518dfa80318102de4f2b1d263e5f1903"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是完整报告。\n\n---\n\n## 磁盘状态\n\n```\n总容量: 50G | 已用: 50G | 剩余: 971M (99%)\n```\n\n## 空间占用 Top 7\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| models/Qwen/ | 39G | Qwen3-1.7B/8B/14B，唯一幸存的基础模型 |\n| grpo_bf16_g4/ | 3.5G | GRPO adapter，有 adapter_model.safetensors |\n| baselines/dreeam/ | 3.0G | DREEAM baseline |\n| .hf_cache/ | 2.4G | HF 缓存 |\n| freige/ | 586M | 项目代码 |\n| data/ | 497M | docred 数据集 |\n| eval_results/ | 370M | 评测结果（部分完整） |\n\n---\n\n## 1. 确认完整的关键资产\n\n| 目录 | 大小 | 状态 |\n|------|------|------|\n| models/Qwen/Qwen3-14B | 28G | **完整** |\n| models/Qwen/Qwen3-8B | 7.5G | **完整** |\n| models/Qwen/Qwen3-1.7B | 3.8G | **完整** |\n| grpo_bf16_g4/ | 3.5G | **完整** (adapter_model.safetensors 504MB) |\n| baselines/dreeam/ | 3.0G | **完整** |\n| data/docred/ | 451M | **完整** (5 json 文件) |\n| freige/ | 586M | **完整** (项目代码) |\n| eval_results/d102_llama_k1_s42 | 6.4M | **完整** (metrics.json 可读) |\n| eval_results/eval_llama_rsft_s42_no_evidence | 6.5M | **完整** (metrics.json 可读) |\n| eval_results/ (大部分有数据的子目录) | ~370M | **完整** — 约 60+ 个含 metrics.json 的结果目录 |\n\n---\n\n## 2. 确认丢失/清空的目录（严重）\n\n### LLaMA 基础模型 — **全部丢失**\n| 目录 | 状态 |\n|------|------|\n| models/meta-llama/Meta-Llama-3.1-8B/ | **空目录，无文件** |\n| models/Qwen3-4B/ | **空目录，无文件** |\n\n### 全部 SFT adapters — **全部丢失** (17 个目录)\n| 目录 | 状态 |\n|------|------|\n| sft_output_llama_3_1_8b/ | **空** — RSFT 的直接上游，最关键 |\n| sft_output_llama_3_1_8b_no_evidence/ | **空** |\n| sft_output_llama_3_1_8b_s43/ | **空** |\n| sft_output_llama_3_1_8b_s44/ | **空** |\n| sft_output_14b/ | **空** |\n| sft_output_qwen3_1_7b_bf16/ (s42/s43/s44) | **全空** |\n| sft_output_qwen3_8b_bf16/ (s42/s43/s44) | **全空** |\n| sft_output_qwen3_*_no_evidence/ | **全空** |\n| sft_no_evidence_output/ | **空** |\n| sft_output/, sft_output_seed43, sft_output_seed44 | **全空** |\n\n### 全部 RSFT adapters — **全部丢失** (13 个目录)\n| 目录 | 状态 |\n|------|------|\n| rsft_output_llama_3_1_8b_k1/ | **0B** — checkpoint-1100/1107 目录在但内容清空 |\n| rsft_output_llama_3_1_8b_k1_s43/ | **0B** — 同上 |\n| rsft_output_llama_3_1_8b_k1_s44/ | **0B** — 同上 |\n| rsft_output_qwen3_1_7b_k1/ (s42/s43/s44) | **全 0B** |\n| rsft_output_qwen3_8b_k1/ (s42/s43/s44) | **全 0B** |\n| rsft_output_random_k1/ | **0B** |\n| rsft_output_nli_large/ | **0B** |\n| rsft_output_ced_s43/ | **0B** |\n| rsft_output_4b_sft_s44/ | **0B** |\n\n### 全部 RSFT 中间数据 — **全部丢失**\n| 目录 | 状态 |\n|------|------|\n| rsft_scored_llama_3_1_8b_k1/ | **空** |\n| rsft_filtered/ | **空** (rsft_train.jsonl 不存在) |\n| rsft_scored_* (11 个目录) | **全空** |\n| rsft_filtered_* (4 个目录) | **全空** |\n| rsft_data/ (4 shards) | **全空** |\n| rsft_generations/ (4 shards) | **全空** |\n| rsft_generations_14b/ | **空** |\n| rsft_generations_4b_sft_s44/ | **空** |\n| rsft_candidates_llama_3_1_8b/ | **空** |\n\n### 空的 eval_results 子目录（~20 个）\nbf16_g8_step30/50, dpo_ced_ckpt400, grpo_extract_r4_step10, grpo_flatnli_r3, plan_006_llama_rsft_seed43_eval, plan_006_qwen3_1_7b_rsft_eval, qwen3_1_7b_no_evidence_eval_v2, qwen3_8b_no_evidence_eval, redocred_rsft_eval/_r3, rsft_flat_nli_s44_reeval, rsft_s44_dev_with_preds, rsft_topk3/_fixed, sft, sft_4b_s43/s44_eval, sft_llama_s43/s44_eval\n\n---\n\n## 3. 可安全清理的目录\n\n| 目录 | 说明 |\n|------|------|\n| 上述所有 0B 的空壳目录（~80+个） | 只剩目录结构，无任何文件，可全部删除回收 inode |\n| .hf_cache/ (2.4G) | 可清理，重新下载即可 |\n| .pytest_cache/ | 16K，无用 |\n| rsft_probe_d034/ | 空 |\n| scripts/ | 空 |\n| mvp1_results/ | 空 |\n\n---\n\n## 4. 不确定，需进一步检查\n\n| 目录 | 说明 |\n|------|------|\n| rsft_output_4b_sft_s44_bf16/ | du 显示 4K 但无文件（find 返回空），checkpoints 子目录在但可能空 |\n| eval_outputs/ (54M) | 有 7 个子目录有内容，未逐一验证 json 完整性 |\n| lead1_ced_filter_results/ (19M) | 未检查内容 |\n| logs/ (1.4M) | 未检查 |\n\n---\n\n## 诊断结论\n\n**AutoDL 重启后发生了大面积文件清空**。所有 safetensors/模型权重文件被删除，但目录结构和小文件（metrics.json、config）保留。这是典型的 AutoDL 磁盘满后自动清理或数据盘损坏的表现。\n\n**影响范围**：\n- **LLaMA 3.1-8B 基础模型** — 需重新下载 (~15GB)\n- **Qwen3-4B 基础模型** — 需重新下载 (~8GB)\n- **全部 30+ 个 SFT/RSFT adapter** — 需重新训练\n- **全部 RSFT 中间数据（生成/打分/筛选）** — 需重新生成\n- **eval_results 部分丢失** — 但主要结果（d102_*, plan_006_*, llama_rsft_*等）幸存\n\n**幸存的关键资产**：Qwen3 全系列基础模型（39G）、grpo_bf16_g4 adapter（3.5G）、全部 docred 数据、大部分 eval metrics、项目代码。\n\n**当前磁盘 99% 满**，主要被 Qwen3-14B (28G) 占据。重新训练前需先清理空目录和决定是否保留 Qwen3-14B。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-disk-integrity-check.md"
+}

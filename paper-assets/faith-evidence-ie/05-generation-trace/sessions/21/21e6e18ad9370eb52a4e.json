@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21e6e18ad9370eb52a4e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code fair comparison script",
+  "task_key": "worker_code_fair-comparison-script_20260520T160300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fair-comparison-script_20260520T160300_result.json",
+    "occurrence": 1,
+    "bytes": 947,
+    "sha256": "b9c9b267b5484a811065b5bcb4b410ce1541b74422efc2cefb544bea300c2869"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n\n| 指标 | 预期 | 实际 |\n|------|------|------|\n| Full set | 985 docs | 985 docs |\n| No-evi ign_f1 | 0.5219 | 0.5219 |\n| With-evi ign_f1 | 0.5384 | 0.5384 |\n| Raw tax | -1.65pp | -1.65pp |\n| No-evi format_ok | 874 | 874 |\n| Format failures | 46 trunc + 65 malformed | 46 + 65 |\n| Fair subset | ~874 docs | 873 docs (因 with-evi 也有5个failure，交集少1) |\n| Fair tax | ~+1.35pp | +1.34pp |\n\nFair subset 是 873 而非 874，因为有 1 个 doc 在 with-evidence 侧也 format failure 了，从交集中排除。fair tax +1.34pp 与预期 +1.35pp 几乎一致（四舍五入差异）。\n\n脚本位置：`/root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py`\n\n用法：\n```bash\npython fair_evidence_tax.py \\\n  --with-evi <with-evidence predictions.json> \\\n  --no-evi <no-evidence predictions.json> \\\n  [--train <train_annotated.json>] \\\n  [--json-out <output.json>]\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fair-comparison-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f2e956893662b56e93a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh ced score shard3 and merge",
+  "task_key": "worker_ssh_ced-score-shard3-and-merge_20260515T050014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_ced-score-shard3-and-merge_20260515T050014_result.json",
+    "occurrence": 1,
+    "bytes": 479,
+    "sha256": "f50072fd1dcdfcca0a0a6e627ade4aa203dcf141f62e028428f72f9d7dffdf51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shard 3 CED 打分已在 GPU 3 启动（5272 条记录，659 docs）。4 个 shard 全部在跑：\n\n| Shard | GPU | PID | 记录数 | 进度 |\n|-------|-----|-----|--------|------|\n| 0 | 0 | 160921 | 5560 | 刚启动 |\n| 1 | 1 | 156417 | 5552 | 2500/5552 (~45%) |\n| 2 | 2 | 156591 | 5568 | 2500/5568 (~45%) |\n| 3 | 3 | 新启动 | 5272 | NLI 模型已加载 |\n\nShard 1/2 预计 ~20 分钟完成，shard 0/3 预计 ~40 分钟。2.5 分钟后自动轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-ced-score-shard3-and-merge.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f95e075fa96553e2ac7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260517T174600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_sync_20260517T174600_result.json",
+    "occurrence": 1,
+    "bytes": 634,
+    "sha256": "583aaa238fe8109c4f51ee921c3532c70ef5a9571cfca49a4051b59e4d892987"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "20 个 BibTeX entries 已写入 `references.bib`。\n\n关键信息来源说明：\n- 14 个从 literature_map.yaml 获取了完整的 title/authors/venue/url\n- 4 个不在 lit map 中的知名论文（LoRA, DPO, DeepSeekMath, Scaling Laws）使用了任务补充信息 + 已知作者列表\n- 2 个 lit map 中 authors 为 Anonymous/Unknown 的（autore2024, zhao2025egrpo）保留 `{Anonymous}`\n- SAIS 和 EIDER 的 lit map 作者信息有误，已用任务补充信息修正\n- 年份/venue 均按 Director 指令修正（LMRC=2024, DocKS-RAG=ICML 2025, DREEAM=EACL 2023, Re-DocRED=EMNLP 2022, GenRES=NAACL 2024）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-bib-sync.md"
+}

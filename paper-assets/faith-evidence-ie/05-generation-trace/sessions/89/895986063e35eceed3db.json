@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "895986063e35eceed3db",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check d102 status all",
+  "task_key": "worker_check_d102_status_all_20260518T080846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d102_status_all_20260518T080846_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "333b2db738be11740cc45c2ab3eddb6593fd1a08deab2bcdfec8aeb2fdeb1771"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全了。\n\n```\nGPU 0: python PID 516610 (27.8GB) - 8B s42 训练  step 1106/1134 (98%), ETA ~1.5min\nGPU 1: python PID 516768 (30.6GB) - 8B s43 训练  step 1112/1134 (98%), ETA ~1.2min\nGPU 2: python PID 519811 (5.4GB)  - 1.7B k=1 eval 进行中（输出目录仍为空）\nGPU 3: 空闲 (0MB)\n\n磁盘: 41% used, 149GB available\n\n训练完成状态:\n  Qwen3-1.7B k=1 s42:  ✅ 完成 (checkpoint-567, adapter 已保存)\n  Qwen3-8B  k=1 s42:   🔄 98% (1106/1134), ~1.5min 后完成\n  Qwen3-8B  k=1 s43:   🔄 98% (1112/1134), ~1.2min 后完成\n  LLaMA-3.1-8B k=1 s42: ✅ 完成 (checkpoint-1107, adapter 已保存)\n\n1.7B k=1 eval: 仍在运行，输出目录 d102_1_7b_k1_s42/ 尚无结果文件。\n```\n\n两个 8B 训练马上完成（~1-2 分钟）。LLaMA 训练完成后 GPU 3 已释放，可用于后续 eval。1.7B eval 仍在 GPU 2 上运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d102-status-all.md"
+}

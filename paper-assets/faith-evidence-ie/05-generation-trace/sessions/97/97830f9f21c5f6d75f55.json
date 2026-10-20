@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97830f9f21c5f6d75f55",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze test eval 1 7b no evi completion",
+  "task_key": "worker_analyze_test_eval_1_7b_no_evi_completion_20260522T035601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_test_eval_1_7b_no_evi_completion_20260522T035601_result.json",
+    "occurrence": 1,
+    "bytes": 675,
+    "sha256": "b3644858559402d802b8e9b07c2c14018d2a7eb93382de4afbebdc9bad0f198f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。结果汇总：\n\n**test_eval_1_7b_sft_s42_no_evi — 成功**\n\n| 指标 | 值 |\n|------|-----|\n| **Ign-F1** | **0.2093** |\n| Precision | 0.3899 |\n| Recall | 0.1430 |\n| Format OK | 498/500 (99.6%) |\n| Truncated | 467/500 |\n| Predictions | 34,571 |\n| Inference time | 3h 36m |\n\n**Test set 1.7B evidence tax：**\n\n| 模型 | Test Ign-F1 |\n|------|------------|\n| with evidence (test_eval_1_7b_sft_s42) | 0.2579 |\n| no evidence (本次) | 0.2093 |\n| **Δ (evidence tax)** | **-4.86pp** |\n\n与 dev matched@2048 的 fair_tax -5.63pp 方向一致：evidence helps at 1.7B，test set 上差距略小（-4.86 vs -5.63）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-test-eval-1-7b-no-evi-completion.md"
+}

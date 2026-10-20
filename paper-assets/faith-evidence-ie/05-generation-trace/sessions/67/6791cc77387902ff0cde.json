@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6791cc77387902ff0cde",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops launch ckpt40 eval verify gpus",
+  "task_key": "worker_ops_launch-ckpt40-eval-verify-gpus_20260514T211139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch-ckpt40-eval-verify-gpus_20260514T211139_result.json",
+    "occurrence": 1,
+    "bytes": 1079,
+    "sha256": "8a7451ed5c673787b93ad2e2215b7623b143b2dcaa0166d2c14edac5e3c11cbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已成功启动，正在 cuda:2 上推理 (0/62 batches)。\n\n## GPU 全貌 (nvidia-smi)\n\n| GPU | PID | 任务 | 利用率 | 显存 |\n|-----|-----|------|--------|------|\n| cuda:0 | 90085 | P0 训练 (grpo-ced-lr5e6-r1) | 62% | 13645/32607 MiB |\n| cuda:1 | 96500 | ckpt-20 eval | 79% | 9719/32607 MiB |\n| cuda:2 | 100555 | **ckpt-40 eval (刚启动)** | loading→inference | 6924/32607 MiB |\n| cuda:3 | 94758 | rp_r2 训练 | 57% | 13645/32607 MiB |\n\n## P0 ckpt-40 eval\n- **状态: STARTED**\n- PID: 100549 (子进程 100555 在 GPU 上)\n- Log: `/tmp/eval_lr5e6_ckpt40.log`\n- 进度: Inference 0/62 batches, 模型加载完毕, 985 docs / 12275 gold triples\n\n## P0 训练 (PID 90085)\n- **状态: ALIVE** (Rl, 运行 1h31m55s)\n- 任务: grpo-s3-ced-lr5e6-r1, max_steps=200\n- GPU: cuda:0\n\n## rp_r2 (PID 94758)\n- **状态: ALIVE** (Rl, 运行 1h06m28s)\n- **实际 GPU: cuda:3**\n- 任务: grpo-s3-ced-lr5e6-rp-r2\n\n## ckpt-20 eval (PID 96500)\n- **状态: ALIVE** (Rl+, 运行 48m51s)\n- GPU: cuda:1\n\n4 张卡全部在用，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-ckpt40-eval-verify-gpus.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92690e7e9645b2c6b24b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose flatnli r6 step35 health",
+  "task_key": "worker_diagnose_flatnli-r6-step35-health_20260514T181041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_flatnli-r6-step35-health_20260514T181041_result.json",
+    "occurrence": 1,
+    "bytes": 937,
+    "sha256": "52ef741ac1a9caea4a4b3f345933faa03e938cd915c3916f4fa51b1964aa8912"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## flatnli_r6 健康检查 (step 26)\n\n- **状态: KILL_RECOMMENDED**\n- frac_zero_std 趋势: step 5=0.1 → step 15=0.6 → step 20=0.7 → **step 25=0.9**\n- f1_reward 趋势: step 5=0.007 → step 15=0.023 → step 20=0.012 → **step 25=0.0**\n- flat_nli_reward 趋势: step 5=0.021 → step 15=0.018 → step 20=0.023 → **step 25=0.0**\n- KL: 0.056 (step 5 曾爆到 1.2亿，后恢复正常)\n- grad_norm: 0.27\n- GPU 3: 65% util, 13647/32607 MiB\n\n**判断依据**：\n\nStep 25 已经完全 mode collapse — frac_zero_std=0.9 突破 0.8 阈值，f1_reward 和 flat_nli_reward 双双归零，模型只剩 format_reward (0.293)。走势与 extract_r4 一致（甚至更快崩溃）。\n\n严格来说需要等 step 30 确认第二个连续 checkpoint ≥ 0.8，但 f1=0 + flat_nli=0 的状态已不可能自行恢复，继续跑只是浪费 GPU 时间。\n\n**建议**: 立即 kill PID 76953，释放 cuda:3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-flatnli-r6-step35-health.md"
+}

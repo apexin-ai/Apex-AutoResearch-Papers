@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b888c2fb57d987c5124f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose urgent full gpu check and results",
+  "task_key": "worker_diagnose_urgent-full-gpu-check-and-results_20260523T032640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_urgent-full-gpu-check-and-results_20260523T032640_result.json",
+    "occurrence": 1,
+    "bytes": 1321,
+    "sha256": "8084d0885be1fbda3fdf927484ca4030b7d82ab358a3ff54168153ca5d536e0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n\n| GPU | 显存 | 利用率 | PID | 任务 | 状态 |\n|-----|------|--------|-----|------|------|\n| 0 | 26857/97887 MiB | 93% | 220069 | 8B s43 no-evi eval | 运行中 (33min) |\n| 1 | 32479/97887 MiB | 92% | 194682 | 14B gen s43 | 运行中 (9h10m) |\n| 2 | **0/97887 MiB** | **0%** | — | — | **空闲** |\n| 3 | 6071/97887 MiB | 46% | 214028 | 1.7B s43 with-evi eval | 运行中 (2h18m) |\n\n## DPO 1ep\n**状态: 已完成** ✓ cuda:2 已释放\n\n| 指标 | 值 |\n|------|-----|\n| train_loss | 0.5932 |\n| rewards/accuracies | 0.8163 |\n| rewards/margins | 1.008 |\n| train_runtime | 2043s (~34min) |\n| epoch | 1.0 |\n\n输出: `/root/autodl-tmp/dpo_output_rebuilt_1ep/`\n- `adapter_model.safetensors` (528MB)\n- checkpoints: 100, 187\n\n## 8B s43 no-evi eval\n**PID 220069: alive (33min)**\n进度: **14/32 batches (44%)**, ETA ~43min\n- 使用 `--no_evidence` 参数（从 log 看是正确加载了 8B rsft s43 adapter）\n- 输出目录存在但尚无 predictions 文件\n\n## 1.7B s43 with-evi eval\n**PID 214028: alive (2h18m)**\n进度: **189/500 docs (38%)**, 当前 ~39s/it, ETA ~3h20m\n\n## 14B gen s43\n**PID 194682: alive (9h10m)**\n进度: **12736 lines** in `generations.jsonl`\n\n## 空闲 GPU\n**cuda:2** — DPO 训练完成后已释放，可用于新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-urgent-full-gpu-check-and-results.md"
+}

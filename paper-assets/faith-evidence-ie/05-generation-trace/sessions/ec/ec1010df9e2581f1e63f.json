@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec1010df9e2581f1e63f",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "reviewer / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_4.md",
+    "occurrence": 1,
+    "bytes": 4027,
+    "sha256": "caf17d3e5490629adf98915b54c053fe0cdd3440cc3a5b7eef889093b64a24e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_wall_time\nupdated: '2026-05-14T23:46:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 分配为 rtx5090-4x 全部 4 卡 (cuda:0-3)，但需核对 registry 中每个实验声明的 gpu 字段与实际 CUDA_VISIBLE_DEVICES 是否一致\n- eval 脚本必须 `cd /root/autodl-tmp`（不是 `cd /root/autodl-tmp/freige`），后者会导致 Python path 找到内层空 `freige/freige/` 包，ckpt-60 已因此踩坑\n- GRPO+QLoRA 方向已判死 (D031)，剩余 ckpt eval 仅收集轨迹数据，不作为后续方向决策依据\n- cron 监控存在误判问题（PID 不匹配导致 5x dead 误判、conclusion 被误标 killed），审查时必须 SSH 独立验证进程状态，不能只信 registry status/conclusion\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x (root)，4× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/freige`（代码），`/root/autodl-tmp/` 下各子目录放模型/数据/输出\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`（base），`/root/autodl-tmp/sft_output`（SFT adapter）\n- GRPO checkpoints：`/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-{20,40,60,80,100,...}`\n- 数据：`/root/autodl-tmp/data/docred/`（train_annotated.json, dev.json）\n- NLI 模型：`/root/autodl-tmp/models/nli-deberta-v3-base`（CED 打分用）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- W&B run：`grpo-s3-ced-lr5e6-r1`（GRPO 训练）\n- RSFT 代码：`/root/autodl-tmp/freige/training/rsft_{generate,score_filter,trainer}.py`（已就绪，pyc 存在）\n\n### 3. 📊 当前状态\n**我刚完成的审查**：\n- ckpt-40 eval 结果核实 (rel_f1=0.0071, FAIL) ✓\n- ckpt-80 eval 启动核实 (cuda:2, PID 111739) ✓\n- RSFT 三阶段代码审查 (generate/score_filter/trainer) ✓\n- SFT baseline eval 结果核实 (rel_f1=0.4057, evi_f1=0.7979, edcr=0.7118) ✓\n\n**Registry RUNNING**：\n- `mvp2_grpo_ced_lr5e6_r1`：GRPO 训练 cuda:0, PID 90085, step ~113/200, ~2.5h 剩余\n- `mvp2_eval_lr5e6_r1_ckpt80`：ckpt-80 eval cuda:2, PID 111731/111739\n- `mvp2_eval_lr5e6_r1_ckpt60_r2`：ckpt-60 eval cuda:1, PID 108185（conclusion 被 cron 误标 killed，实际在跑）\n- `mvp2_eval_sft_baseline`：已完成但 status 未更新为 DONE（conclusion=success, metrics 已填充）\n\n**QUEUED**：`mvp2_eval_lr5e6_r1_ckpt100`（等 GPU 释放）\n\n### 4. 📋 待办\n- ckpt-60 _r2 完成 → 验证 metrics.json，核对 rel_f1 是否继续 flat (~0.007)\n- ckpt-80 完成 → 验证 metrics.json，**重点关注 reward-metric disconnect**：W&B 显示 step 80 reward=0.283 回升，如果 eval rel_f1 仍 < 0.05 则确认 reward hacking\n- ckpt-100 完成 → 关键验证点：W&B 显示 step 100 f1_reward 拐点 (0.016→0.093)，eval F1 > 0.15 说明拐点真实，< 0.05 则确认 reward hacking，写入 D031 补充证据\n- RSFT generation 启动 → 审查：数据用 train split（不是 dev）、CED 打分用正确的 tau、筛选比例合理\n- RSFT training 启动 → 审查：GPU 边界、lr 合理（默认 2e-5）、与 SFT baseline 用同一 eval 协议\n\n### 5. 🎯 战略上下文\n- **核心决策链**：MVP-1 PASS (CED margin 0.4827) → SFT warmup 完成 → GRPO+QLoRA 6 次全败 (D022-D031) → Pivot 到离线 RL (Rejection Sampling FT + DPO)\n- **SFT baseline 已锁定**：rel_f1=0.4057, evi_f1=0.7979, edcr=0.7118。RSFT pass criteria: evi_f1 ≥ 0.8179 (即 +2pp)\n- **最易判断错的事**：GRPO 训练 reward 在 step 80-100 回升，但这几乎确定是 reward hacking 而非真实能力恢复（ckpt-20/40 eval 已确认 catastrophic forgetting）。不要因为 reward 回升就对 GRPO 方向重燃希望\n- **RSFT 代码有一个 warning**：reward 函数在 rsft_score_filter.py 中是从 grpo_trainer 拷贝的而非 import，如果 grpo_trainer 的 reward 逻辑改了这边不会同步\n- **cron 误判是常态**：ckpt-40 被误判 5x dead、ckpt-60 被误标 killed，审查时务必 SSH 看 `ps -p <PID>` 和 `nvidia-smi`，不能只信 registry\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-copy-3.md"
+}

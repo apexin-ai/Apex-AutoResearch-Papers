@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04373c58591d15935484",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research redocred status check",
+  "task_key": "worker_research_redocred_status_check_20260518T024828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_redocred_status_check_20260518T024828_result.json",
+    "occurrence": 1,
+    "bytes": 2829,
+    "sha256": "75b4554725163f4abd76fc756e2ceebecca51bdae8b48f09b2cf8a70cee06789"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the summary:\n\n---\n\n## Plan_007 Re-DocRED Cross-Dataset 实验状态汇总\n\n### 1. Re-DocRED 数据就绪度\n\n| 文件 | 大小 | 文档数 | 过滤后三元组 |\n|------|------|--------|-------------|\n| train_annotated.json | 13.5 MB | 3,053 | 47,260 |\n| dev.json | 2.2 MB | 500 | 7,473 |\n| test.json | 2.2 MB | 500 | 7,547 |\n\n数据完备，eval 使用 dev split (493 docs evaluated)。\n\n### 2. SFT Eval (plan_007_redocred_4b_sft_eval_r2) — Registry: success\n\n| Metric | Value |\n|--------|-------|\n| **Ign-F1** | **0.3659** |\n| F1 | 0.3706 |\n| Precision | 0.4316 |\n| Recall | 0.3247 |\n| Evi-F1 | 0.8170 |\n| EDCR | 0.6674 |\n| Format compliance | 99.6% |\n| Truncated | 139/493 |\n\n模型：Qwen3-4B + SFT adapter (DocRED 训练)，直接 zero-shot 迁移到 Re-DocRED。\n\n### 3. RSFT Eval r2 (plan_007_redocred_rsft_eval_r2) — Registry: negative ⚠️ **实际是 BUG**\n\n| Metric | Value |\n|--------|-------|\n| F1 | **0.0025** |\n| Ign-F1 | 0.0026 |\n| field_compliance | **0%** |\n| evidence_format_rate | 0% |\n\n**原因**：model_path=Qwen3-4B + sft_adapter=rsft_checkpoint，缺少 SFT 中间层。模型输出格式完全错误（field_compliance=0），19/7431 triplets 偶然命中。这不是真实的 negative 结果，是加载 bug。\n\n### 4. RSFT Eval r4 (服务器有结果，未注册到 registry)\n\n| Metric | Value | vs SFT | Delta |\n|--------|-------|--------|-------|\n| **Ign-F1** | **0.4145** | 0.3659 | **+4.86pp** |\n| F1 | 0.4234 | 0.3706 | +5.28pp |\n| Precision | 0.4962 | 0.4316 | +6.46pp |\n| Recall | 0.3691 | 0.3247 | +4.44pp |\n| Evi-F1 | 0.8182 | 0.8170 | +0.12pp |\n| EDCR | 0.6210 | 0.6674 | -4.64pp |\n| Format compliance | 100% | 99.6% | — |\n| Truncated | 90/493 | 139/493 | fewer |\n\n**正确的 3-param loading**：base_model=Qwen3-4B, sft_adapter=sft_output, model_path=rsft_output_ced_s43/checkpoint-510。\n\n**RSFT 在 Re-DocRED 上显著优于 SFT (+4.86pp Ign-F1)**。\n\n### 5. 结论\n\n**plan_007 目标已达成**，但 registry 状态不一致：\n\n- ✅ Cross-dataset transfer 验证完成：SFT 和 RSFT 均能 zero-shot 迁移到 Re-DocRED\n- ✅ RSFT > SFT 在 Re-DocRED 上成立（Ign-F1: 0.4145 vs 0.3659, +4.86pp）\n- ⚠️ Registry 中 r2 的 \"negative\" 结论是错误的（加载 bug 导致）\n- ⚠️ r4 的正确结果未注册到 registry\n- ⚠️ experiment_plan.yaml 中 plan_007 status 仍为 \"planned\"\n\n**需要的修复操作**：\n1. 将 r4 结果注册到 registry（作为 plan_007_redocred_rsft_eval_r5 或更新 r4）\n2. 更新 r2 的 conclusion 为 \"invalid\"（加上 bug 说明）\n3. 将 experiment_plan.yaml 中 plan_007 status 更新为 \"done\"\n\n**不需要重做实验**——数据已齐全，SFT 和 RSFT 在 Re-DocRED 的对比结论明确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-redocred-status-check.md"
+}

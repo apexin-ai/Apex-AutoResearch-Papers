@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa618eeea7c7dc29ff6f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops find 4b model and adapter",
+  "task_key": "worker_ops_find_4b_model_and_adapter_20260516T123443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_find_4b_model_and_adapter_20260516T123443_result.json",
+    "occurrence": 1,
+    "bytes": 791,
+    "sha256": "37349ba6e34ed4277cf2040d20eed6e984b20a7fbb03646675feacddd9d5d02f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认完毕。结果如下：\n\n| 资源 | 正确路径 |\n|------|---------|\n| **Qwen3-4B base 模型** | `/root/autodl-tmp/models/Qwen3-4B` （注意：不在 `Qwen/` 子目录下，直接在 `models/` 下） |\n| **4B with-evidence SFT adapter** | `/root/autodl-tmp/sft_output` （无后缀，adapter_config.json 中 `base_model_name_or_path` 确认指向 `/root/autodl-tmp/models/Qwen3-4B`） |\n| **Re-DocRED 数据** | `/root/autodl-tmp/data/re-docred/` （含 dev.json, test.json, train_annotated.json） |\n\n补充说明：\n- `Qwen/` 子目录下只有 `Qwen3-1.7B` 和 `Qwen3-8B`，没有 4B\n- 4B 没有 no-evidence adapter（服务器上的 no-evidence adapter 只有 1.7B、8B、Llama-3.1-8B）\n- SFT adapter 配置：LoRA r=64, alpha=128, dropout=0.05"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-find-4b-model-and-adapter.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3ffc6335a254481aa61",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops d102 training diagnosis",
+  "task_key": "worker_ops_d102_training_diagnosis_20260518T071617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d102_training_diagnosis_20260518T071617_result.json",
+    "occurrence": 1,
+    "bytes": 1412,
+    "sha256": "d2ddd8eac7b6382d4020e90a19002af7528713a5a409e8f0c4e2f58f38148a3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 根因：磁盘空间 100% 满\n\n`/root/autodl-tmp` 250G 全部用完（Avail=140K），4 个任务全部在 **step 300 保存 checkpoint 时因磁盘满而崩溃**。\n\n### 各实验状态\n\n| 实验 | 进度 | Epoch | 错误 | 最新完整 checkpoint |\n|---|---|---|---|---|\n| **d102_8b_rsft_k1_s42** | 300/1134 (26%) | 0.80 | `No space left on device` | checkpoint-250 |\n| **d102_8b_rsft_k1_s43** | 300/1134 (26%) | 0.80 | `No space left on device` | checkpoint-250 |\n| **d102_1_7b_rsft_k1_s42** | 300/567 (53%) | 1.59 | `iostream error` (磁盘满导致写入损坏) | checkpoint-250 或 300（需验证完整性）|\n| **d102_llama_rsft_k1_s42** | 300/1107 (27%) | 0.81 | `No space left on device` | checkpoint-250 |\n\n### GPU 状态\n4 张 RTX 5090 全部空闲（0% 利用率，0 MiB 显存）。\n\n### 磁盘空间分布（rsft_output 目录）\n旧实验输出占大量空间，仅 `rsft_output_*` 就有 ~140G：\n- 旧的 k3 实验输出（`rsft_output_qwen3_8b`, `rsft_output_llama_3_1_8b_seed43` 等）各 4-11G\n- D102 新实验的部分 checkpoint 也占了 ~34G\n\n### 需要的操作\n1. **清理旧实验输出**释放磁盘空间——确认哪些旧的 `rsft_output_*` 可以删除\n2. 考虑删除 checkpoint-300 的损坏文件\n3. 清空后可从 checkpoint-250 resume 或重新训练\n\n需要我列出哪些旧目录可以安全删除吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d102-training-diagnosis.md"
+}

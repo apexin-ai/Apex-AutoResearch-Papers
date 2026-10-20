@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f6219e44cff25d6ee46",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor grpo training health check",
+  "task_key": "worker_monitor_grpo_training_health_check_20260514T145320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_grpo_training_health_check_20260514T145320_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "c96c31e46fe873e315dfcd3c291267117dc007f2ab693887ec6c352bd2a2f83e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/training_health_check.md`。\n\n**核心结论**:\n\n| 实验 | 状态 | 关键信号 |\n|------|------|---------|\n| **ced_r5** | ⛔ Mode Collapse | entropy=0.0005, F1=0, 固定34-token输出, grad_norm=0 |\n| **extract_r3** | ⚠️ 停滞 | grad_norm=0, entropy=0.01, F1=0.20 |\n| **flatnli_r3** | ✅ 健康 | entropy=0.087, 输出多样, 但仅完成10.7%, 预计还需23h |\n| **sft_eval_r2** | ✅ 完成 | F1=0.4057, Evi-F1=0.7979 |\n\n**ced_r5 是教科书级 reward hacking**：模型找到一个 34-token 固定输出，CED reward 拿到 0.995 但 F1=0。建议立即 kill 释放 GPU 0。\n\n**flatnli_r3 是唯一有希望的实验**，但很慢（~2min/step vs 坍缩实验的 12s/step，正因为它还在正常生成 400+ token 输出）。\n\nGPU 0 和 GPU 1 现在可用于新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-grpo-training-health-check.md"
+}

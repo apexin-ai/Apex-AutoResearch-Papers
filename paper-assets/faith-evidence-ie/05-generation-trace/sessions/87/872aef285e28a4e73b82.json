@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "872aef285e28a4e73b82",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "harvest llama sft s44 withevi 2048",
+  "task_key": "worker_harvest_llama-sft-s44-withevi-2048_20260521T035158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_llama-sft-s44-withevi-2048_20260521T035158_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "089c0ec434285e43a0d775989974586d874bdfd28e3a97642ba81d001f8e132c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**成功。** Registry 已更新为 DONE，cron 已清除。\n\n## 结果\n\n| 指标 | @1024 | @2048 | Delta |\n|------|-------|-------|-------|\n| **Ign-F1** | 0.4802 | **0.4655** | **-1.47pp** |\n| F1 | — | 0.4798 | — |\n| Evi-F1 (DREEAM) | — | 0.3719 | — |\n| Evi-F1 (TP) | — | 0.8393 | — |\n| EDCR | — | 0.7122 | — |\n| Format OK | — | 985/985 (100%) | — |\n| Truncated | — | 177/985 | — |\n| Predictions | — | 21,530 | — |\n\ns44 with-evidence @2048 的 ign_f1 反而比 @1024 **低 1.47pp**（0.4655 vs 0.4802），与 s42 control 的趋势相反（s42 @2048 比 @1024 高 2.65pp）。s44 模型在更大生成预算下未能受益，truncated 数从 @1024 的水平降到 177/985 但没有转化为更好的 RE 性能。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-llama-sft-s44-withevi-2048.md"
+}

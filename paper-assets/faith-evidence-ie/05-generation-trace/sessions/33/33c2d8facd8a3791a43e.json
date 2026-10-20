@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33c2d8facd8a3791a43e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis mvp2 eval rsft s43 r2",
+  "task_key": "worker_analysis_mvp2_eval_rsft_s43_r2_20260515T132104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp2_eval_rsft_s43_r2_20260515T132104_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "e74a1e007962cd5e8b99725f7617d8de3a775012b1f427c345d298e5138483cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## RSFT s43 Full Dev Eval 结果\n\n| 指标 | s43 | r1 (s42) | s44 | SFT baseline |\n|------|-----|----------|-----|--------------|\n| **rel_f1** | **0.4683** | 0.4449 | 0.4655 | 0.4057 |\n| **evi_f1** | **0.8156** | 0.8187 | 0.8087 | 0.7979 |\n| **EDCR** | **0.6388** | 0.6565 | — | 0.7118 |\n| pred_count | 14970 | — | — | — |\n| truncated | 171/985 | — | — | — |\n| format_ok | 985/985 | — | — | — |\n\n### 三 seed 汇总（方差估计）\n\n| 指标 | mean | std | min | max |\n|------|------|-----|-----|-----|\n| rel_f1 | **0.4596** | 0.0129 | 0.4449 | 0.4683 |\n| evi_f1 | **0.8143** | 0.0051 | 0.8087 | 0.8187 |\n\ns43 是三个 seed 中 rel_f1 最高的（0.4683），比 r1 高 +2.3pp。evi_f1 居中。EDCR 0.6388 是三个 seed 中最低的（r1=0.6565），说明 s43 的 distractor citation 比例更低。\n\n### 路径\n- Checkpoint: `/root/autodl-tmp/rsft_output_s43`\n- Eval 输出: `/root/autodl-tmp/eval_results/rsft_s43/`\n- Metrics: `/root/autodl-tmp/eval_results/rsft_s43/metrics.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp2-eval-rsft-s43-r2-copy-2.md"
+}

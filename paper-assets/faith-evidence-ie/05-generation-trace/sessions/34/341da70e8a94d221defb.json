@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "341da70e8a94d221defb",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778908632.md",
+  "task_key": "loop_12_1778908632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778908632.md",
+    "occurrence": 1,
+    "bytes": 3648,
+    "sha256": "fe6d5252e3de53304f41d5bbd298901cce6ba122b3d6e0b02d2d1a82156e1fdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T05:16:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: rtx5090-4x 的 cuda:0/1/2/3（共 4 张），不得用其他设备\n- `sft_no_evidence_output` 是 LoRA adapter 不是 merged model，eval 时必须用 `--sft_adapter` 传入（不是 `--model_path`）\n- CED RSFT 训练用 batch=4/grad_accum=4（不是 flat-NLI 的 batch=1/grad_accum=16），D074 教训\n- eval 脚本检测到 adapter_config.json 会强制要求 `--sft_adapter`，SFT-only adapter 也不例外\n- rsft_ced_s45_train_r4 处于 ANALYZING(success) 但缺 metrics，需要先 set metrics 才能转 DONE\n\n### 2. 🖥️ 基础设施快照\n- 服务器: rtx5090-4x, 工作目录 /root/autodl-tmp\n- Python: /root/miniconda3/bin/python (conda base)\n- 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型: /root/autodl-tmp/models/Qwen3-4B (base), /root/autodl-tmp/sft_output (SFT adapter), /root/autodl-tmp/sft_no_evidence_output (no-evidence SFT adapter)\n- RSFT checkpoints: /root/autodl-tmp/rsft_output_ced_s45/checkpoint-510 (s45), rsft_output_ced_s43 (s43 训练中), rsft_output_flat_nli_s44, rsft_output_flat_nli_s45\n- 数据: /root/autodl-tmp/data/docred, /root/autodl-tmp/rsft_filtered/rsft_train.jsonl\n- HF_HOME: /root/autodl-tmp/.hf_cache\n- 活跃进程: eval_flat_nli_seed45 (PID 272164, cuda:3), eval_flat_nli_s44 (PID 270462, cuda:0), rsft_ced_s43_train_r3 (PID 277310, cuda:1)\n- Cron 监控: 上述 3 个实验均有 cron\n\n### 3. 📊 当前状态\n刚收到 eval_plan_014_no_evidence 失败回调（LoRA adapter 参数错误）。已派 Worker `worker_diagnose_eval_plan_014_no_evidence_20260516T013029` 去 SSH 读 eval 代码确认正确命令。\n\nRegistry 状态:\n- RUNNING: eval_flat_nli_seed45 (cuda:3), eval_flat_nli_s44 (cuda:0), rsft_ced_s43_train_r3 (cuda:1)\n- ANALYZING: rsft_ced_s45_train_r4 (success, 需补 metrics 才能转 DONE)\n- cuda:2 空闲 — eval_plan_014_no_evidence 失败后释放\n\n等待中:\n- Worker 回调: diagnose Worker 诊断 eval 命令修复方案\n- rsft_ced_s45_train_r4: 需 spawn Worker SSH 读训练 log 提取 final loss/eval metrics → set metrics → DONE\n- 3 个 RUNNING 实验的 cron 完成回调\n\n### 4. 📋 待办\n- diagnose Worker 完成 → 拿修复命令 → 创建 eval_plan_014_no_evidence_r2 → ALLOCATED(cuda:2) → submit_on_allocated\n- rsft_ced_s45_train_r4 需补 metrics: spawn Worker SSH 读 /tmp/rsft_ced_s45_r4.log 提取 train_loss → update_registry metrics → 转 DONE → 排队 eval_ced_s45（等 GPU 释放）\n- rsft_ced_s43_train_r3 完成 → 提取 metrics → DONE → 排队 eval_ced_s43\n- eval_flat_nli_s44 / eval_flat_nli_seed45 完成 → on-experiment-done 流程 → 汇报 Director flat-NLI vs CED 对比\n- 所有 flat-NLI seeds eval 完成 + CED seeds eval 完成 → paired t-test → C3 最终结论\n\n### 5. 🎯 战略上下文\n- 论文: FREIGE, 投 EMNLP 2026 ARR July (~7月15-25)\n- C1: evidence tax ~8pp (no-evidence 0.4893 vs evidence-SFT 0.4106), CED reranker 恢复 97%\n- C2: QLoRA-specific decoupling (D054/D065/D066 确认), bf16 GRPO 无此问题\n- C3 已降级: CED≈flat-NLI 统计不可区分 (D056), 不再作为独立贡献\n- 当前焦点: 补齐 flat-NLI 4 seeds (s42-s45) 和 CED 4 seeds (s42-s45) 的 full eval，做 paired t-test 确认 C3 结论\n- 易错点: eval LoRA adapter 必须带 --sft_adapter；CED/flat-NLI 超参模板不同不要混用；plan_014 的 rel_f1=0.4893 是之前量化 eval 的结果，本次 no-quant 重 eval 是为排除量化 confound\n- D073/D072: EDCR 定义规范和 Claim 4 双层论述，plan_003 排在 flat-NLI/CED seeds 之后\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778908632.md"
+}

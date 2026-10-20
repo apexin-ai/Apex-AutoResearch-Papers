@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5e73d1e002072fc66f5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis mvp2 eval rsft r2b maxtok1536 r2",
+  "task_key": "worker_analysis_mvp2_eval_rsft_r2b_maxtok1536_r2_20260515T145704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp2_eval_rsft_r2b_maxtok1536_r2_20260515T145704_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "70eb042c2a6cf8bdbb628217b350d7f20d4c4253c5bba286c12a0d27660076ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "metrics.json 中没有 evi_f1_joint 字段，该指标未在本次 eval 中计算。\n\n```\nMETRICS_START\nrel_f1: 0.4504\nign_f1: 0.4504\nprecision: 0.4488\nrecall: 0.4519\nevi_f1: 0.8102\nevi_precision: 0.8162\nevi_recall: 0.8044\nevi_f1_joint: N/A\nevi_f1_joint_P: N/A\nevi_f1_joint_R: N/A\nedcr: 0.6740\npred_count: 17188\nformat_ok: 983/985\ntruncated: 146/985\ninference_time_s: 10676.8\nMETRICS_END\n\nCONCLUSION: negative\nANALYSIS: max_new_tokens 1536 vs 1024，truncated 从 179→146（减少 33 篇），EDCR 从 0.6609→0.6740（+0.0131），提升不显著（远未达到 0.71+）。rel_f1（0.4493→0.4504）和 evi_f1（0.8128→0.8102）基本持平。截断只是 EDCR 偏低的次要因素，distractor citation 是模型的真实行为而非截断伪影。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp2-eval-rsft-r2b-maxtok1536-r2.md"
+}

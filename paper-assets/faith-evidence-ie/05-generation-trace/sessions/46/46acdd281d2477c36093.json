@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46acdd281d2477c36093",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code prep eval scripts phase2",
+  "task_key": "worker_code_prep_eval_scripts_phase2_20260519T123920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_eval_scripts_phase2_20260519T123920_result.json",
+    "occurrence": 1,
+    "bytes": 1343,
+    "sha256": "117ef72d5791fee8f1cd557695ee673bed4f0f8066ff47c303dc8422bc4f6462"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本均已创建，语法检查通过。\n\n### 产出汇报\n\n**脚本 1**: `/root/autodl-tmp/freige/scripts/seed_expansion/eval_8b_sft_s43.sh`\n- Base model: `/root/autodl-tmp/models/Qwen/Qwen3-8B`\n- SFT adapter: `/root/autodl-tmp/sft_output_qwen3_8b_bf16_seed43` — **尚不存在**，脚本含 adapter_config.json 检查逻辑，训练未完成会报错退出\n- D076 协议: `--model_path` = base model, `--sft_adapter` = adapter\n\n**脚本 2**: `/root/autodl-tmp/freige/scripts/d112/eval_d112_rsft_bf16.sh`\n- Base model: `/root/autodl-tmp/models/Qwen3-4B`\n- SFT adapter (第一层): `/root/autodl-tmp/sft_output_seed44` — **已存在** (确认为 4B LoRA, base=Qwen3-4B)\n- RSFT adapter (第二层): `/root/autodl-tmp/rsft_output_4b_sft_s44_bf16` — 有 checkpoint-150~350，但根目录无 adapter_config.json（**训练未完成**），脚本含检查逻辑\n- RSFT eval 模式: `--model_path` = RSFT adapter (auto-detect), `--base_model` = Qwen3-4B, `--sft_adapter` = SFT s44\n\n**注意事项**:\n1. 两个训练均未完成，提交 eval 前需确认 adapter_config.json 存在\n2. 4B base model 路径是 `/root/autodl-tmp/models/Qwen3-4B`（无 `Qwen/` 前缀），与 8B 路径格式不同\n3. 提交时需 `GPU=X bash script.sh` 或 `CUDA_VISIBLE_DEVICES=X` 指定空闲 GPU（C001/C002 约束）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-eval-scripts-phase2.md"
+}

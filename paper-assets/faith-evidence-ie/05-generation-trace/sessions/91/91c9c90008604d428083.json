@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91c9c90008604d428083",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778908665.md",
+  "task_key": "loop_12_1778908665",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778908665.md",
+    "occurrence": 1,
+    "bytes": 3975,
+    "sha256": "d578f7881f498ef49007c595fab647bc8ff1fedecb34fed8c1b4b71dd68f87f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T05:17:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x cuda:0/1/2/3，无其他服务器可用\n- cwd 必须是 `/root/autodl-tmp`（不是 `/root/autodl-tmp/freige`）\n- 提交前必须 nvidia-smi 确认目标 GPU 显存 < 2GB（C001 教训：cuda:0 当前双进程共跑，已犯过一次）\n- RSFT checkpoint 路径有三代命名混乱，以 memory.md 映射表为准（如 CED s44 目录是 `rsft_output_s44/` 不带 `_ced`）\n- flat-NLI checkpoint 是 507（非 510），CED 是 510\n- Eval 标准协议（D076）：batch_size=4, max_new_tokens=1024, --no-quantize, --sft_adapter, 正确 seed\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（4× RTX 5090 32GB）\n- 工作目录：`/root/autodl-tmp`（项目代码在 `/root/autodl-tmp/freige`）\n- Python：`/root/miniconda3/bin/python`（conda base env，不用 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：`/root/autodl-tmp/rsft_output*/` 系列（见 memory.md 表）\n- 数据：DocRED dev/train 在 `/root/autodl-tmp/` 下\n- 活跃进程：\n  - reeval_flat_nli_s43_r2: PID 291003, cuda:3\n  - reeval_ced_s44: PID 297190, cuda:0\n  - reeval_flat_nli_s42: PID 296732, cuda:0（⚠️ 与上一个共享 cuda:0）\n  - reeval_ced_s42: PID 298018, cuda:2\n- Cron 监控：4 个活跃 cron 分别跟踪以上 4 个实验\n- Worker：worker_analysis_eval_rsft_ced_s43（running，分析 CED s43 eval 结果）\n\n### 3. 📊 当前状态\n正在执行 D076 协议统一 re-eval：4 个旧 eval 用新统一协议（batch_size=4 + max_new_tokens=1024 + --no-quantize）重跑，为 paired t-test 提供可比数据。cuda:1 空闲（report 标注空闲但未提交新任务）。\n\nRegistry 状态：\n- RUNNING 4：reeval_flat_nli_s43_r2 / reeval_ced_s42 / reeval_ced_s44 / reeval_flat_nli_s42\n- PREPARING 6：mvp2_eval_rsft_s44 / eval_plan_012_dpo_1ep_fixed_r2 / eval_plan_008_topk3_fixed / eval_plan_012_dpo_1ep_fixed / eval_plan_012_dpo_ced_1ep / plan_001_flat_nli_seed45（多数可能是历史残留）\n- Worker 回调等待：worker_analysis_eval_rsft_ced_s43 完成后需整合结果\n\n**cuda:1 空闲是当前失职点**——应提交 seed_comparison_prep 或其他 PREPARING 实验。\n\n### 4. 📋 待办（条件触发式）\n- 4 个 reeval cron 回调到达 → spawn Worker 提取 metrics_v2.json → 更新 registry → 运行 seed_comparison.py 做 paired t-test → 汇报 Director\n- worker_analysis_eval_rsft_ced_s43 完成 → 整合 CED s43 eval 结果到 registry\n- cuda:1 空闲 → 应立即提交可用实验（plan_003_edcr_diagnostic 或其他 PREPARING 中有效的）\n- 全部 reeval 完成 + paired t-test 结果出来 → 决定 C1 最终数字，推进论文主表更新\n- CED s43 训练完成确认 → 提交 eval（补齐 CED 第 3 个 seed）\n- 所有 seeds 收齐 → 运行 `artifacts/paired_ttest_analysis.py` 做 CED vs flat-NLI 统计检验\n\n### 5. 🎯 战略上下文\n**核心论文叙事 (FREIGE)**：\n1. C1: Evidence generation 代价 ~8pp rel_f1（evidence tax）— eval_plan_014 已确认\n2. C2: QLoRA+multi-task RL 导致 task decoupling（QLoRA-specific，bf16 无此问题）— D054/D065/D066 确认\n3. C3 已降级：CED vs flat-NLI 统计不可区分（D056）\n4. C4: EDCR 诊断指标（双层：方法级 decoupling 度量 + per-relation 难度诊断）— D070/D072/D073\n\n**当前关键路径**：D076 reeval 完成 → paired t-test → 确认 CED ≈ flat-NLI → 论文主表定稿。\n\n**易错点**：\n- 不要把 `rsft_output_r2b/` 当 CED s42（那是旧 lora_alpha=32 实验）\n- GRPO bf16 的 0.4549 是训练前起点（plan_011 ckpt-100），不是训练后结果\n- DPO 是\"中性/轻度退化\"而非\"失败\"（D067/D068/D069 修正）\n- cuda:0 当前有两个进程（已知问题，不要再往上加第三个）\n- PREPARING 列表中部分是历史残留（如 mvp2_eval_rsft_s44），不要盲目提交\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778908665.md"
+}

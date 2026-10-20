@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da22943fd7899af9e89c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor rsft gen progress",
+  "task_key": "worker_monitor_rsft_gen_progress_20260515T025444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_rsft_gen_progress_20260515T025444_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "9aa50689b8f070be8e06dff7146ec6a057914afac562affc860bac26c6ae06a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## RSFT 生成进度报告\n\n### 进程状态\n4 个进程全部存活，运行时间 1h05m ~ 1h14m。\n\n### 各 Shard 进度\n\n| Shard | 范围 | 已完成 | 总数 | 进度 | 输出行数 |\n|-------|------|--------|------|------|----------|\n| 0 | [302:984] | **289** | 682 | 42.4% | 2312 |\n| 1 | [984:1665] | **323** | 681 | 47.4% | 2584 |\n| 2 | [1665:2346] | **321** | 681 | 47.1% | 2568 |\n| 3 | [2346:3027] | **262** | 681 | 38.5% | 2096 |\n\n**总计**: 1195/2725 docs = **43.9%**（加上已完成的前 302 docs，全局 1497/3027 = **49.5%**）\n\n### GPU 利用率\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 57% | 17.9/32.6 GB |\n| 1 | 62% | 15.7/32.6 GB |\n| 2 | 62% | 19.4/32.6 GB |\n| 3 | 49% | 18.3/32.6 GB |\n\n### 质量指标（最近 100 docs batch）\n- format_ok_rate: **100%**\n- truncation_rate: **5.5~6.9%**\n- mean_diversity: **7.6~7.7/8**\n\n### 预计剩余时间\n基于 tqdm 平均速度 ~15-18 s/doc：\n- 瓶颈 shard（shard 3，419 docs remaining）≈ **2 小时**\n- 预计全部完成：约 **UTC 13:00**（即从现在起 ~2h）\n\n### 异常\n无 OOM、无报错、无卡死。一切正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-rsft-gen-progress-copy-4.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "13b185438d9d68d7527e",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "eval test eval 4b rsft s42 r2",
+  "task_key": "worker_eval_test_eval_4b_rsft_s42_r2_20260521T183419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_test_eval_4b_rsft_s42_r2_20260521T183419.log",
+    "occurrence": 1,
+    "bytes": 741334,
+    "sha256": "1a049c4f1271b1f31b8b0bca3f278ef65fdf656c6ee7043ecfbfd310a73bf7d8"
+  },
+  "statistics": {
+    "messages": 153,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 56,
+      "tool_result": 56,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 153,
+      "chunks": [
+        {
+          "path": "13b185438d9d68d7527e-part-0001.json",
+          "message_count": 142
+        },
+        {
+          "path": "13b185438d9d68d7527e-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-test-eval-4b-rsft-s42-r2.md"
+}

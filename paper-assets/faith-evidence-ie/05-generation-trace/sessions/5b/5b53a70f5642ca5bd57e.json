@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b53a70f5642ca5bd57e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval test eval 14b rsft s42",
+  "task_key": "worker_eval_test_eval_14b_rsft_s42_20260521T183005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_test_eval_14b_rsft_s42_20260521T183005_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "1fb05e45b02e47e8fb18d8754d393f495b313ed79dcee16ca98e9ec51973b0dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "该实验已经完成过了。Registry 显示 `test_eval_14b_rsft_s42` 状态为 **DONE (success)**，结果如下：\n\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | 0.3849 |\n| f1 | 0.3849 |\n| evi_f1 | 0.2688 |\n| evi_f1_tp | 0.6025 |\n| edcr | 0.7865 |\n| format_ok | 499/500 |\n| truncated | 67/500 |\n| inference_time | ~5.3h |\n\n之前在 cuda:1 上跑的，已于 2026-05-21T15:28 完成，wall clock 约 5.76 GPU-hours。CodaLab 提交文件也已生成。\n\n不需要重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-test-eval-14b-rsft-s42.md"
+}

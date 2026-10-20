@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93b920c501a6a40c55fd",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "harvest d140 1 7b no evi 2048",
+  "task_key": "worker_harvest_d140-1_7b-no-evi-2048_20260521T055943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_d140-1_7b-no-evi-2048_20260521T055943_result.json",
+    "occurrence": 1,
+    "bytes": 768,
+    "sha256": "76e6ab598e18908c9ef92ff1b8d3e40b3e16c76e49e3aea6aad1d687be7ad729"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被清理）。收割完成。\n\n## 结果：d140_1_7b_sft_s42_no_evi_2048 — **negative**\n\n| 指标 | @1024 | @2048 | delta |\n|------|-------|-------|-------|\n| **ign_f1** | 0.3982 | **0.3925** | **-0.57pp** |\n| truncated | 501 (50.9%) | 498 (50.6%) | -0.3pp |\n| format_ok | 100% | 100% | — |\n| predictions | — | 47,069 | — |\n| inference_time | — | 7394s | — |\n\n**关键发现：** 预期落空。@2048 不仅没提升，ign_f1 反而微降 0.57pp。截断率几乎不变（501→498），说明 1.7B no-evi 模型的截断输出绝大多数超过 2048 tokens，翻倍 budget 无法解决。模型本身生成控制能力不足，不是单纯的 budget 瓶颈。\n\nRegistry 已更新为 DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-d140-1-7b-no-evi-2048.md"
+}

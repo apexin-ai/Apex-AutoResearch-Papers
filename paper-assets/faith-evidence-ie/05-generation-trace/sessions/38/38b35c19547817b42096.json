@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38b35c19547817b42096",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops verify cuda3 clear for p0p1",
+  "task_key": "worker_ops_verify-cuda3-clear-for-p0p1_20260514T195622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-cuda3-clear-for-p0p1_20260514T195622_result.json",
+    "occurrence": 1,
+    "bytes": 331,
+    "sha256": "66eae2e8155b3282d59f85bce58cf75155783db58d0005cddbf9d8bdd9fff273"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:3 已完全空闲**：0 MiB 显存，0% utilization，无任何计算进程。\n\n清理过程总结：\n- PID 81960 — 已死\n- PID 91199, 91691 — 已 kill\n- PID 91685→91686→92915 — `batch_eval` 进程链（ckpt 70/80 eval），会自动重启子进程，已整链 kill\n\n可以启动新训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-cuda3-clear-for-p0p1.md"
+}

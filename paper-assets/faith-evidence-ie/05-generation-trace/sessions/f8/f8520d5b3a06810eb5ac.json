@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8520d5b3a06810eb5ac",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops cuda3 relay llama no evidence",
+  "task_key": "worker_ops_cuda3_relay_llama_no_evidence_20260516T110512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda3_relay_llama_no_evidence_20260516T110512_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "883ef0c5a95dcdbae609ddec399e9018eebbe4d6fc691e8af7511be1634f4a39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 结果汇总\n\n**Phase 1 — Qwen3-8B SFT Eval (plan_006)**：\n| 指标 | 值 |\n|------|-----|\n| Ign-F1 | 0.5051 |\n| F1 | 0.5262 |\n| Evi-F1 | 0.8188 |\n| EDCR | 0.6510 |\n| Format OK | 99.9% |\n| Truncated | 313/985 |\n\nRegistry 已更新为 DONE/success。\n\n**Phase 3 — LLaMA-3.1-8B no-evidence SFT (plan_016)**：\n- PID: 333911，cuda:3\n- 已开始训练，570 steps，~5.2s/it（预计约50分钟）\n- trainable params: 167M / 8.2B (2.05%)\n- Registry: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda3-relay-llama-no-evidence.md"
+}

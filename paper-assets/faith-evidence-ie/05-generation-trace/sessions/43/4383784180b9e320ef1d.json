@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4383784180b9e320ef1d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "harvest llama sft s43 withevi 2048",
+  "task_key": "worker_harvest_llama-sft-s43-withevi-2048_20260521T041453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_llama-sft-s43-withevi-2048_20260521T041453_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "5a775c8515f84d7a6e432c1def8a2a4342870fa3aec5c55c65a9412b09cb2b7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被清理）。Registry 已更新为 DONE。\n\n## 结果汇报\n\n**状态**: 成功\n\n**关键指标**:\n\n| 指标 | 值 |\n|------|------|\n| **Ign-F1** | **0.4954** |\n| F1 | 0.5105 |\n| Evi-F1 (DREEAM/joint) | 0.4001 |\n| Evi-F1 (TP) | 0.8015 |\n| EDCR | 0.6574 |\n| Format OK | 985/985 (100%) |\n| Truncated | 242/985 (24.6%) |\n| Predictions | 24,949 |\n| Inference time | 12,343s (3h26m) |\n\n**对比分析**:\n\n- **@2048 vs @1024 delta**: 0.4954 − 0.5142 = **−0.0188**（2048 token 反而降了 1.9 个点，可能是 truncated 242/985 导致部分文档输出被截断影响精度）\n- **s43 matched@2048 raw evidence tax**: no-evi@2048 (0.3389) − with-evi@2048 (0.4954) = **−0.1565**（with-evidence 反而高 15.65 个点，evidence tax 为负，说明 evidence 输出对 RE 性能有正向贡献而非负担）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-llama-sft-s43-withevi-2048.md"
+}

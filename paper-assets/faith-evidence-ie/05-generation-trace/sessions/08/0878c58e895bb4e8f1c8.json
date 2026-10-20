@@ -1,0 +1,1684 @@
+{
+  "schema_version": "1.0",
+  "id": "0878c58e895bb4e8f1c8",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "analysis 14b rsft s43 test eval pair",
+  "task_key": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542.log",
+    "occurrence": 1,
+    "bytes": 102461,
+    "sha256": "e0b6624cc108a9b3bcbc892b89218f1a6b38337ea8d866d26a55c8234910b7d3"
+  },
+  "statistics": {
+    "messages": 40,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 14,
+      "tool_result": 14,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "0d331fdf-9b26-4c54-aeb3-1cf439d85242",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779562800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "943c1781-b40f-411f-9f13-db14cf285d55",
+                "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll fetch the logs and metrics from both experiments on the server."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "5b637c59-5ffd-4e03-9447-fc2e9b180171",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rj7ji8DsYVFjPcgeHy53t4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12758,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12758
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QpGBez9nM7QhjLRvEfjPWH",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "b6d5588b-a6b5-45ba-90d8-02d3e34bc142",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rj7ji8DsYVFjPcgeHy53t4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12758,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12758
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T16:55:52.429Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01QpGBez9nM7QhjLRvEfjPWH",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "e8564e23-3b98-44e1-a178-28891b94ab90",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me fetch the logs and metrics from both experiments in parallel.",
+              "signature": "EokCCmMIDhgCKkBzIM6bDu5HVb9cmRCKTHmGTlG0UshBf0SgEX2M1NNy8soKdf32yAJNGS7unT8wy0MOVBmoaL3eww4bJM9RWcZvMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDKJ93dZsxyAZKZMsfxoMXLBT/ZwEiCzxrsFkIjD/DOysB+HHbxRu8NTKoQ3cNxUgO0s+fLwVqUNRNyoCm6cK+IrvNdI/6waWtssDd1gqVEzkuU5gCZ3jHTQYpT3axUmlXLCxXtdTe4bSds51o9XLZZOHqs9puv6RW5UgDiFgLbwJVpt6dwJZ713zyNe5c7jwo1mXqqd0WPJvI+lBRsXwf8CTyhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "a4d61bf1-5a5f-48ce-ab93-2e947a5e417e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016BoSdgK1dWvQn4abbGJQ5n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 441,
+                "cache_read_input_tokens": 24599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 441
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XnSngctoWM4J4LPnYGAnQC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "tail -80 ~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "21366c85-6acd-4029-b298-3f56fd2ec622",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016BoSdgK1dWvQn4abbGJQ5n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 441,
+                "cache_read_input_tokens": 24599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 441
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013jZaZ5r8g9J58Msc6w1nRe",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "tail -80 ~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "0f15519f-e6ea-40cc-a78d-9438bdf742ce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016BoSdgK1dWvQn4abbGJQ5n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 441,
+                "cache_read_input_tokens": 24599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 441
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T16:55:57.617Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XnSngctoWM4J4LPnYGAnQC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 23:01:45,965 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-23 23:01:45,965 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-23 23:01:46,436 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/443 [00:00<01:14,  5.91it/s]\\\\rLoading weights:   0%|          | 2/443 [00:00<01:21,  5.40it/s]\\\\rLoading weights:   3%|▎         | 15/443 [00:00<00:10, 42.00it/s]\\\\rLoading weights:   6%|▌         | 27/443 [00:00<00:06, 61.83it/s]\\\\rLoading weights:   8%|▊         | 37/443 [00:00<00:06, 66.76it/s]\\\\rLoading weights:  12%|█▏        | 53/443 [00:00<00:05, 66.48it/s]\\\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 117.22it/s]\\\\rLoading weights:  23%|██▎       | 100/443 [00:01<00:02, 128.57it/s]\\\\rLoading weights:  26%|█���▌       | 116/443 [00:01<00:03, 103.38it/s]\\\\rLoading weights:  31%|███       | 138/443 [00:01<00:02, 123.93it/s]\\\\rLoading weights:  35%|███▍      | 153/443 [00:01<00:02, 128.32it/s]\\\\rLoading weights:  38%|███▊      | 168/443 [00:01<00:02, 131.66it/s]\\\\rLoading weights:  41%|████▏     | 183/443 [00:01<00:02, 116.48it/s]\\\\rLoading weights:  44%|████▍     | 197/443 [00:02<00:02, 120.98it/s]\\\\rLoading weights:  47%|████▋     | 210/443 [00:02<00:01, 122.43it/s]\\\\rLoading weights:  50%|█████     | 223/443 [00:02<00:01, 116.00it/s]\\\\rLoading weights:  53%|█████▎    | 236/443 [00:02<00:01, 112.64it/s]\\\\rLoading weights:  56%|█████▌    | 248/443 [00:02<00:01, 108.39it/s]\\\\rLoading weights:  59%|█████▊    | 260/443 [00:02<00:01, 107.22it/s]\\\\rLoading weights:  63%|██████▎   | 279/443 [00:02<00:01, 121.21it/s]\\\\rLoading weights:  66%|██████▌   | 292/443 [00:02<00:01, 109.74it/s]\\\\rLoading weights:  69%|██████▉   | 307/443 [00:02<00:01, 117.75it/s]\\\\rLoading weights:  72%|███████▏  | 320/443 [00:03<00:01, 99.01it/s] \\\\rLoading weights:  76%|███████▌  | 336/443 [00:03<00:00, 109.16it/s]\\\\rLoading weights:  79%|███████▊  | 348/443 [00:03<00:00, 108.76it/s]\\\\rLoading weights:  81%|████████▏ | 360/443 [00:03<00:00, 110.18it/s]\\\\rLoading weights:  84%|████████▍ | 372/443 [00:03<00:00, 106.68it/s]\\\\rLoading weights:  86%|████████▋ | 383/443 [00:03<00:00, 104.97it/s]\\\\rLoading weights:  89%|████████▉ | 395/443 [00:03<00:00, 107.01it/s]\\\\rLoading weights:  92%|█████████▏| 406/443 [00:03<00:00, 101.23it/s]\\\\rLoading weights:  95%|█████████▍| 419/443 [00:04<00:00, 107.00it/s]\\\\rLoading weights:  97%|█████████▋| 430/443 [00:04<00:00, 84.49it/s] \\\\rLoading weights: 100%|██████████| 443/443 [00:04<00:00, 102.77it/s]\\\\n2026-05-23 23:01:51,743 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_14b_s43\\\\n2026-05-23 23:01:54,139 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_14b_s43\\\\n2026-05-23 23:01:57,199 INFO Prepared 500 test documents\\\\n\\\\rInference:   0%|          | 0/32 [00:00<?, ?it/s]\\\\rInference:   3%|▎         | 1/32 [03:28<1:47:32, 208.14s/it]\\\\rInference:   6%|▋         | 2/32 [06:58<1:44:36, 209.22s/it]\\\\rInference:   9%|▉         | 3/32 [10:30<1:41:54, 210.83s/it]\\\\rInference:  12%|█▎        | 4/32 [14:07<1:39:27, 213.13s/it]\\\\rInference:  16%|█▌        | 5/32 [17:30<1:34:19, 209.63s/it]\\\\rInference:  19%|█▉        | 6/32 [21:02<1:31:09, 210.37s/it]\\\\rInference:  22%|██▏       | 7/32 [24:23<1:26:20, 207.22s/it]\\\\rInference:  25%|██▌       | 8/32 [27:49<1:22:41, 206.73s/it]\\\\rInference:  28%|██▊       | 9/32 [31:14<1:19:06, 206.38s/it]\\\\rInference:  31%|███▏      | 10/32 [34:39<1:15:29, 205.90s/it]\\\\rInference:  34%|███▍      | 11/32 [38:02<1:11:42, 204.89s/it]\\\\rInference:  38%|███▊      | 12/32 [41:28<1:08:24, 205.22s/it]\\\\rInference:  41%|████      | 13/32 [44:56<1:05:15, 206.09s/it]\\\\rInference:  44%|████▍     | 14/32 [48:29<1:02:29, 208.30s/it]\\\\rInference:  47%|████▋     | 15/32 [51:58<59:05, 208.55s/it]  \\\\rInference:  50%|█████     | 16/32 [55:27<55:36, 208.50s/it]\\\\rInference:  53%|█████▎    | 17/32 [58:55<52:06, 208.45s/it]\\\\rInference:  56%|█████▋    | 18/32 [1:02:27<48:54, 209.59s/it]\\\\rInference:  59%|█████▉    | 19/32 [1:06:12<46:25, 214.27s/it]\\\\rInference:  62%|██████▎   | 20/32 [1:09:34<42:04, 210.41s/it]\\\\rInference:  66%|██████▌   | 21/32 [1:13:12<39:00, 212.78s/it]\\\\rInference:  69%|██████▉   | 22/32 [1:16:45<35:26, 212.66s/it]\\\\rInference:  72%|███████▏  | 23/32 [1:20:08<31:28, 209.80s/it]\\\\rInference:  75%|███████▌  | 24/32 [1:23:46<28:17, 212.21s/it]\\\\rInference:  78%|███████▊  | 25/32 [1:27:14<24:38, 211.15s/it]\\\\rInference:  81%|████████▏ | 26/32 [1:30:44<21:03, 210.66s/it]\\\\rInference:  84%|████████▍ | 27/32 [1:34:09<17:25, 209.04s/it]\\\\rInference:  88%|████████▊ | 28/32 [1:37:36<13:53, 208.37s/it]\\\\rInference:  91%|█████████ | 29/32 [1:41:00<10:21, 207.25s/it]\\\\rInference:  94%|█████████▍| 30/32 [1:44:26<06:53, 206.64s/it]\\\\rInference:  97%|█████████▋| 31/32 [1:47:49<03:25, 205.77s/it]\\\\rInference: 100%|██████████| 32/32 [1:49:43<00:00, 178.05s/it]\\\\rInference: 100%|██████████| 32/32 [1:49:43<00:00, 205.73s/it]\\\\n2026-05-24 00:51:40,437 INFO Inference done. 271/500 truncated, 0 errors.\\\\n2026-05-24 00:51:40,437 INFO Inference: 6583.2s (13.17 s/doc)\\\\n2026-05-24 00:51:40,549 INFO Predictions -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/predictions.json\\\\n2026-05-24 00:51:40,562 WARNING train_annotated.json not found, Ign-F1 = F1\\\\n2026-05-24 00:51:41,043 INFO CodaLab submission -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/codalab_submission.json\\\\n\\\\n==================================================\\\\n  F1:          0.3767\\\\n  Ign-F1:      0.3767\\\\n  Evi-F1(DREEAM): 0.2468\\\\n  Evi-F1(TP):     0.5836\\\\n  EDCR:        0.8340\\\\n  Documents:   500\\\\n  Predictions: 22861\\\\n  Format OK:   498/500\\\\n  Truncated:   271/500\\\\n  CodaLab:     13323 converted, 371 skipped (rel), 652 skipped (entity)\\\\n  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "e9831c74-b11e-4393-90e7-bcd5214789d8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 23:01:45,965 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-23 23:01:45,965 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-23 23:01:46,436 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/443 [00:00<01:14,  5.91it/s]\\\\rLoading weights:   0%|          | 2/443 [00:00<01:21,  5.40it/s]\\\\rLoading weights:   3%|▎         | 15/443 [00:00<00:10, 42.00it/s]\\\\rLoading weights:   6%|▌         | 27/443 [00:00<00:06, 61.83it/s]\\\\rLoading weights:   8%|▊         | 37/443 [00:00<00:06, 66.76it/s]\\\\rLoading weights:  12%|█▏        | 53/443 [00:00<00:05, 66.48it/s]\\\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 117.22it/s]\\\\rLoading weights:  23%|██▎       | 100/443 [00:01<00:02, 128.57it/s]\\\\rLoading weights:  26%|█���▌       | 116/443 [00:01<00:03, 103.38it/s]\\\\rLoading weights:  31%|███       | 138/443 [00:01<00:02, 123.93it/s]\\\\rLoading weights:  35%|███▍      | 153/443 [00:01<00:02, 128.32it/s]\\\\rLoading weights:  38%|███▊      | 168/443 [00:01<00:02, 131.66it/s]\\\\rLoading weights:  41%|████▏     | 183/443 [00:01<00:02, 116.48it/s]\\\\rLoading weights:  44%|████▍     | 197/443 [00:02<00:02, 120.98it/s]\\\\rLoading weights:  47%|████▋     | 210/443 [00:02<00:01, 122.43it/s]\\\\rLoading weights:  50%|█████     | 223/443 [00:02<00:01, 116.00it/s]\\\\rLoading weights:  53%|█████▎    | 236/443 [00:02<00:01, 112.64it/s]\\\\rLoading weights:  56%|█████▌    | 248/443 [00:02<00:01, 108.39it/s]\\\\rLoading weights:  59%|█████▊    | 260/443 [00:02<00:01, 107.22it/s]\\\\rLoading weights:  63%|██████▎   | 279/443 [00:02<00:01, 121.21it/s]\\\\rLoading weights:  66%|██████▌   | 292/443 [00:02<00:01, 109.74it/s]\\\\rLoading weights:  69%|██████▉   | 307/443 [00:02<00:01, 117.75it/s]\\\\rLoading weights:  72%|███████▏  | 320/443 [00:03<00:01, 99.01it/s] \\\\rLoading weights:  76%|███████▌  | 336/443 [00:03<00:00, 109.16it/s]\\\\rLoading weights:  79%|███████▊  | 348/443 [00:03<00:00, 108.76it/s]\\\\rLoading weights:  81%|████████▏ | 360/443 [00:03<00:00, 110.18it/s]\\\\rLoading weights:  84%|████████▍ | 372/443 [00:03<00:00, 106.68it/s]\\\\rLoading weights:  86%|████████▋ | 383/443 [00:03<00:00, 104.97it/s]\\\\rLoading weights:  89%|████████▉ | 395/443 [00:03<00:00, 107.01it/s]\\\\rLoading weights:  92%|█████████▏| 406/443 [00:03<00:00, 101.23it/s]\\\\rLoading weights:  95%|█████████▍| 419/443 [00:04<00:00, 107.00it/s]\\\\rLoading weights:  97%|█████████▋| 430/443 [00:04<00:00, 84.49it/s] \\\\rLoading weights: 100%|██████████| 443/443 [00:04<00:00, 102.77it/s]\\\\n2026-05-23 23:01:51,743 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_14b_s43\\\\n2026-05-23 23:01:54,139 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_14b_s43\\\\n2026-05-23 23:01:57,199 INFO Prepared 500 test documents\\\\n\\\\rInference:   0%|          | 0/32 [00:00<?, ?it/s]\\\\rInference:   3%|▎         | 1/32 [03:28<1:47:32, 208.14s/it]\\\\rInference:   6%|▋         | 2/32 [06:58<1:44:36, 209.22s/it]\\\\rInference:   9%|▉         | 3/32 [10:30<1:41:54, 210.83s/it]\\\\rInference:  12%|█▎        | 4/32 [14:07<1:39:27, 213.13s/it]\\\\rInference:  16%|█▌        | 5/32 [17:30<1:34:19, 209.63s/it]\\\\rInference:  19%|█▉        | 6/32 [21:02<1:31:09, 210.37s/it]\\\\rInference:  22%|██▏       | 7/32 [24:23<1:26:20, 207.22s/it]\\\\rInference:  25%|██▌       | 8/32 [27:49<1:22:41, 206.73s/it]\\\\rInference:  28%|██▊       | 9/32 [31:14<1:19:06, 206.38s/it]\\\\rInference:  31%|███▏      | 10/32 [34:39<1:15:29, 205.90s/it]\\\\rInference:  34%|███▍      | 11/32 [38:02<1:11:42, 204.89s/it]\\\\rInference:  38%|███▊      | 12/32 [41:28<1:08:24, 205.22s/it]\\\\rInference:  41%|████      | 13/32 [44:56<1:05:15, 206.09s/it]\\\\rInference:  44%|████▍     | 14/32 [48:29<1:02:29, 208.30s/it]\\\\rInference:  47%|████▋     | 15/32 [51:58<59:05, 208.55s/it]  \\\\rInference:  50%|█████     | 16/32 [55:27<55:36, 208.50s/it]\\\\rInference:  53%|█████▎    | 17/32 [58:55<52:06, 208.45s/it]\\\\rInference:  56%|█████▋    | 18/32 [1:02:27<48:54, 209.59s/it]\\\\rInference:  59%|█████▉    | 19/32 [1:06:12<46:25, 214.27s/it]\\\\rInference:  62%|██████▎   | 20/32 [1:09:34<42:04, 210.41s/it]\\\\rInference:  66%|██████▌   | 21/32 [1:13:12<39:00, 212.78s/it]\\\\rInference:  69%|██████▉   | 22/32 [1:16:45<35:26, 212.66s/it]\\\\rInference:  72%|███████▏  | 23/32 [1:20:08<31:28, 209.80s/it]\\\\rInference:  75%|███████▌  | 24/32 [1:23:46<28:17, 212.21s/it]\\\\rInference:  78%|███████▊  | 25/32 [1:27:14<24:38, 211.15s/it]\\\\rInference:  81%|████████▏ | 26/32 [1:30:44<21:03, 210.66s/it]\\\\rInference:  84%|████████▍ | 27/32 [1:34:09<17:25, 209.04s/it]\\\\rInference:  88%|████████▊ | 28/32 [1:37:36<13:53, 208.37s/it]\\\\rInference:  91%|█████████ | 29/32 [1:41:00<10:21, 207.25s/it]\\\\rInference:  94%|█████████▍| 30/32 [1:44:26<06:53, 206.64s/it]\\\\rInference:  97%|█████████▋| 31/32 [1:47:49<03:25, 205.77s/it]\\\\rInference: 100%|██████████| 32/32 [1:49:43<00:00, 178.05s/it]\\\\rInference: 100%|██████████| 32/32 [1:49:43<00:00, 205.73s/it]\\\\n2026-05-24 00:51:40,437 INFO Inference done. 271/500 truncated, 0 errors.\\\\n2026-05-24 00:51:40,437 INFO Inference: 6583.2s (13.17 s/doc)\\\\n2026-05-24 00:51:40,549 INFO Predictions -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/predictions.json\\\\n2026-05-24 00:51:40,562 WARNING train_annotated.json not found, Ign-F1 = F1\\\\n2026-05-24 00:51:41,043 INFO CodaLab submission -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/codalab_submission.json\\\\n\\\\n==================================================\\\\n  F1:          0.3767\\\\n  Ign-F1:      0.3767\\\\n  Evi-F1(DREEAM): 0.2468\\\\n  Evi-F1(TP):     0.5836\\\\n  EDCR:        0.8340\\\\n  Documents:   500\\\\n  Predictions: 22861\\\\n  Format OK:   498/500\\\\n  Truncated:   271/500\\\\n  CodaLab:     13323 converted, 371 skipped (rel), 652 skipped (entity)\\\\n  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.82}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 23:01:45,965 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:45,965 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:46,436 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/443 [00:00<01:14,  5.91it/s]\\rLoading weights:   0%|          | 2/443 [00:00<01:21,  5.40it/s]\\rLoading weights:   3%|▎         | 15/443 [00:00<00:10, 42.00it/s]\\rLoading weights:   6%|▌         | 27/443 [00:00<00:06, 61.83it/s]\\rLoading weights:   8%|▊         | 37/443 [00:00<00:06, 66.76it/s]\\rLoading weights:  12%|█▏        | 53/443 [00:00<00:05, 66.48it/s]\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 117.22it/s]\\rLoading weights:  23%|██▎       | 100/443 [00:01<00:02, 128.57it/s]\\rLoading weights:  26%|█���▌       | 116/443 [00:01<00:03, 103.38it/s]\\rLoading weights:  31%|███       | 138/443 [00:01<00:02, 123.93it/s]\\rLoading weights:  35%|███▍      | 153/443 [00:01<00:02, 128.32it/s]\\rLoading weights:  38%|███▊      | 168/443 [00:01<00:02, 131.66it/s]\\rLoading weights:  41%|████▏     | 183/443 [00:01<00:02, 116.48it/s]\\rLoading weights:  44%|████▍     | 197/443 [00:02<00:02, 120.98it/s]\\rLoading weights:  47%|████▋     | 210/443 [00:02<00:01, 122.43it/s]\\rLoading weights:  50%|█████     | 223/443 [00:02<00:01, 116.00it/s]\\rLoading weights:  53%|█████▎    | 236/443 [00:02<00:01, 112.64it/s]\\rLoading weights:  56%|█████▌    | 248/443 [00:02<00:01, 108.39it/s]\\rLoading weights:  59%|█████▊    | 260/443 [00:02<00:01, 107.22it/s]\\rLoading weights:  63%|██████▎   | 279/443 [00:02<00:01, 121.21it/s]\\rLoading weights:  66%|██████▌   | 292/443 [00:02<00:01, 109.74it/s]\\rLoading weights:  69%|██████▉   | 307/443 [00:02<00:01, 117.75it/s]\\rLoading weights:  72%|███████▏  | 320/443 [00:03<00:01, 99.01it/s] \\rLoading weights:  76%|███████▌  | 336/443 [00:03<00:00, 109.16it/s]\\rLoading weights:  79%|███████▊  | 348/443 [00:03<00:00, 108.76it/s]\\rLoading weights:  81%|████████▏ | 360/443 [00:03<00:00, 110.18it/s]\\rLoading weights:  84%|████████▍ | 372/443 [00:03<00:00, 106.68it/s]\\rLoading weights:  86%|████████▋ | 383/443 [00:03<00:00, 104.97it/s]\\rLoading weights:  89%|████████▉ | 395/443 [00:03<00:00, 107.01it/s]\\rLoading weights:  92%|█████████▏| 406/443 [00:03<00:00, 101.23it/s]\\rLoading weights:  95%|█████████▍| 419/443 [00:04<00:00, 107.00it/s]\\rLoading weights:  97%|█████████▋| 430/443 [00:04<00:00, 84.49it/s] \\rLoading weights: 100%|██████████| 443/443 [00:04<00:00, 102.77it/s]\\n2026-05-23 23:01:51,743 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_14b_s43\\n2026-05-23 23:01:54,139 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_14b_s43\\n2026-05-23 23:01:57,199 INFO Prepared 500 test documents\\n\\rInference:   0%|          | 0/32 [00:00<?, ?it/s]\\rInference:   3%|▎         | 1/32 [03:28<1:47:32, 208.14s/it]\\rInference:   6%|▋         | 2/32 [06:58<1:44:36, 209.22s/it]\\rInference:   9%|▉         | 3/32 [10:30<1:41:54, 210.83s/it]\\rInference:  12%|█▎        | 4/32 [14:07<1:39:27, 213.13s/it]\\rInference:  16%|█▌        | 5/32 [17:30<1:34:19, 209.63s/it]\\rInference:  19%|█▉        | 6/32 [21:02<1:31:09, 210.37s/it]\\rInference:  22%|██▏       | 7/32 [24:23<1:26:20, 207.22s/it]\\rInference:  25%|██▌       | 8/32 [27:49<1:22:41, 206.73s/it]\\rInference:  28%|██▊       | 9/32 [31:14<1:19:06, 206.38s/it]\\rInference:  31%|███▏      | 10/32 [34:39<1:15:29, 205.90s/it]\\rInference:  34%|███▍      | 11/32 [38:02<1:11:42, 204.89s/it]\\rInference:  38%|███▊      | 12/32 [41:28<1:08:24, 205.22s/it]\\rInference:  41%|████      | 13/32 [44:56<1:05:15, 206.09s/it]\\rInference:  44%|████▍     | 14/32 [48:29<1:02:29, 208.30s/it]\\rInference:  47%|████▋     | 15/32 [51:58<59:05, 208.55s/it]  \\rInference:  50%|█████     | 16/32 [55:27<55:36, 208.50s/it]\\rInference:  53%|█████▎    | 17/32 [58:55<52:06, 208.45s/it]\\rInference:  56%|█████▋    | 18/32 [1:02:27<48:54, 209.59s/it]\\rInference:  59%|█████▉    | 19/32 [1:06:12<46:25, 214.27s/it]\\rInference:  62%|██████▎   | 20/32 [1:09:34<42:04, 210.41s/it]\\rInference:  66%|██████▌   | 21/32 [1:13:12<39:00, 212.78s/it]\\rInference:  69%|██████▉   | 22/32 [1:16:45<35:26, 212.66s/it]\\rInference:  72%|███████▏  | 23/32 [1:20:08<31:28, 209.80s/it]\\rInference:  75%|███████▌  | 24/32 [1:23:46<28:17, 212.21s/it]\\rInference:  78%|███████▊  | 25/32 [1:27:14<24:38, 211.15s/it]\\rInference:  81%|████████▏ | 26/32 [1:30:44<21:03, 210.66s/it]\\rInference:  84%|████████▍ | 27/32 [1:34:09<17:25, 209.04s/it]\\rInference:  88%|████████▊ | 28/32 [1:37:36<13:53, 208.37s/it]\\rInference:  91%|█████████ | 29/32 [1:41:00<10:21, 207.25s/it]\\rInference:  94%|█████████▍| 30/32 [1:44:26<06:53, 206.64s/it]\\rInference:  97%|█████████▋| 31/32 [1:47:49<03:25, 205.77s/it]\\rInference: 100%|██████████| 32/32 [1:49:43<00:00, 178.05s/it]\\rInference: 100%|██████████| 32/32 [1:49:43<00:00, 205.73s/it]\\n2026-05-24 00:51:40,437 INFO Inference done. 271/500 truncated, 0 errors.\\n2026-05-24 00:51:40,437 INFO Inference: 6583.2s (13.17 s/doc)\\n2026-05-24 00:51:40,549 INFO Predictions -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/predictions.json\\n2026-05-24 00:51:40,562 WARNING train_annotated.json not found, Ign-F1 = F1\\n2026-05-24 00:51:41,043 INFO CodaLab submission -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/codalab_submission.json\\n\\n==================================================\\n  F1:          0.3767\\n  Ign-F1:      0.3767\\n  Evi-F1(DREEAM): 0.2468\\n  Evi-F1(TP):     0.5836\\n  EDCR:        0.8340\\n  Documents:   500\\n  Predictions: 22861\\n  Format OK:   498/500\\n  Truncated:   271/500\\n  CodaLab:     13323 converted, 371 skipped (rel), 652 skipped (entity)\\n  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/codalab_submission.json\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.82}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GbKUP9VdzX9KNrTJ4GGxKA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/metrics.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "4a7b5b17-db71-4e5c-998f-5f7733e14a01",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016BoSdgK1dWvQn4abbGJQ5n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 441,
+                "cache_read_input_tokens": 24599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 441
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T16:55:58.149Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013jZaZ5r8g9J58Msc6w1nRe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 23:01:49,187 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-23 23:01:49,188 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-23 23:01:49,586 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/443 [00:00<01:37,  4.54it/s]\\\\rLoading weights:   0%|          | 2/443 [00:00<01:45,  4.17it/s]\\\\rLoading weights:   3%|▎         | 12/443 [00:00<00:15, 28.43it/s]\\\\rLoading weights:   5%|▍         | 21/443 [00:00<00:09, 44.24it/s]\\\\rLoading weights:   6%|▋         | 28/443 [00:00<00:08, 50.81it/s]\\\\rLoading weights:   9%|▉         | 39/443 [00:00<00:06, 65.02it/s]\\\\rLoading weights:  11%|█▏        | 50/443 [00:01<00:05, 74.67it/s]\\\\rLoading weights:  14%|█▎        | 60/443 [00:01<00:04, 79.48it/s]\\\\rLoading weights:  16%|█▋        | 72/443 [00:01<00:04, 88.89it/s]\\\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 92.45it/s]\\\\rLoading weights:  21%|██        | 93/443 [00:01<00:03, 92.73it/s]\\\\rLoading weights:  24%|██▎       | 105/443 [00:01<00:03, 96.57it/s]\\\\rLoading weights:  26%|██▌       | 115/443 [00:01<00:03, 93.72it/s]\\\\rLoading weights:  29%|██▊       | 127/443 [00:01<00:03, 96.73it/s]\\\\rLoading weights:  31%|███       | 137/443 [00:01<00:03, 94.84it/s]\\\\rLoading weights:  34%|███▎      | 149/443 [00:02<00:02, 98.93it/s]\\\\rLoading weights:  36%|███▌      | 160/443 [00:02<00:02, 98.39it/s]\\\\rLoading weights:  39%|███▊      | 171/443 [00:02<00:02, 98.48it/s]\\\\rLoading weights:  41%|████      | 182/443 [00:02<00:02, 98.51it/s]\\\\rLoading weights:  44%|████▎     | 193/443 [00:02<00:02, 97.82it/s]\\\\rLoading weights:  46%|████▌     | 203/443 [00:02<00:02, 95.08it/s]\\\\rLoading weights:  49%|████▊     | 215/443 [00:02<00:02, 97.11it/s]\\\\rLoading weights:  51%|█████     | 226/443 [00:02<00:02, 96.87it/s]\\\\rLoading weights:  53%|█████▎    | 237/443 [00:02<00:02, 97.68it/s]\\\\rLoading weights:  56%|█████▌    | 248/443 [00:03<00:01, 98.75it/s]\\\\rLoading weights:  58%|█████▊    | 259/443 [00:03<00:01, 98.94it/s]\\\\rLoading weights:  61%|██████    | 270/443 [00:03<00:01, 99.05it/s]\\\\rLoading weights:  63%|██████▎   | 281/443 [00:03<00:01, 98.90it/s]\\\\rLoading weights:  66%|██████▌   | 292/443 [00:03<00:01, 98.81it/s]\\\\rLoading weights:  68%|██████▊   | 303/443 [00:03<00:01, 99.42it/s]\\\\rLoading weights:  71%|███████   | 314/443 [00:03<00:01, 99.03it/s]\\\\rLoading weights:  73%|███████▎  | 325/443 [00:03<00:01, 99.29it/s]\\\\rLoading weights:  76%|███████▌  | 336/443 [00:03<00:01, 99.64it/s]\\\\rLoading weights:  78%|███████▊  | 347/443 [00:04<00:00, 99.73it/s]\\\\rLoading weights:  81%|████████  | 358/443 [00:04<00:00, 102.38it/s]\\\\rLoading weights:  83%|████████▎ | 369/443 [00:04<00:00, 99.11it/s] \\\\rLoading weights:  86%|████████▌ | 381/443 [00:04<00:00, 104.91it/s]\\\\rLoading weights:  88%|████████▊ | 392/443 [00:04<00:00, 103.32it/s]\\\\rLoading weights:  91%|█████████ | 403/443 [00:04<00:00, 101.81it/s]\\\\rLoading weights:  93%|█████████▎| 414/443 [00:04<00:00, 100.67it/s]\\\\rLoading weights:  96%|█████████▌| 425/443 [00:04<00:00, 101.01it/s]\\\\rLoading weights:  98%|█████████▊| 436/443 [00:04<00:00, 101.46it/s]\\\\rLoading weights: 100%|██████████| 443/443 [00:04<00:00, 90.09it/s] \\\\n2026-05-23 23:01:55,680 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_14b_s43\\\\n2026-05-23 23:01:59,259 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_14b_s43\\\\n2026-05-23 23:02:01,583 INFO Prepared 500 test documents\\\\n\\\\rInference:   0%|          | 0/32 [00:00<?, ?it/s]\\\\rInference:   3%|▎         | 1/32 [03:27<1:46:58, 207.05s/it]\\\\rInference:   6%|▋         | 2/32 [06:56<1:44:08, 208.27s/it]\\\\rInference:   9%|▉         | 3/32 [10:28<1:41:28, 209.94s/it]\\\\rInference:  12%|█▎        | 4/32 [14:03<1:39:02, 212.24s/it]\\\\rInference:  16%|█▌        | 5/32 [17:26<1:33:55, 208.72s/it]\\\\rInference:  19%|█▉        | 6/32 [20:57<1:30:45, 209.45s/it]\\\\rInference:  22%|██▏       | 7/32 [24:16<1:25:57, 206.29s/it]\\\\rInference:  25%|██▌       | 8/32 [27:41<1:22:19, 205.80s/it]\\\\rInference:  28%|██▊       | 9/32 [31:06<1:18:45, 205.44s/it]\\\\rInference:  31%|███▏      | 10/32 [34:30<1:15:09, 204.96s/it]\\\\rInference:  34%|███▍      | 11/32 [37:51<1:11:22, 203.92s/it]\\\\rInference:  38%|███▊      | 12/32 [41:16<1:08:05, 204.25s/it]\\\\rInference:  41%|████      | 13/32 [44:44<1:04:57, 205.14s/it]\\\\rInference:  44%|████▍     | 14/32 [48:16<1:02:12, 207.35s/it]\\\\rInference:  47%|████▋     | 15/32 [51:44<58:49, 207.61s/it]  \\\\rInference:  50%|█████     | 16/32 [55:12<55:21, 207.58s/it]\\\\rInference:  53%|█████▎    | 17/32 [58:39<51:52, 207.51s/it]\\\\rInference:  56%|█████▋    | 18/32 [1:02:11<48:41, 208.69s/it]\\\\rInference:  59%|█████▉    | 19/32 [1:05:55<46:13, 213.37s/it]\\\\rInference:  62%|██████▎   | 20/32 [1:09:15<41:53, 209.49s/it]\\\\rInference:  66%|██████▌   | 21/32 [1:12:53<38:50, 211.86s/it]\\\\rInference:  69%|██████▉   | 22/32 [1:16:24<35:17, 211.73s/it]\\\\rInference:  72%|███████▏  | 23/32 [1:19:46<31:19, 208.88s/it]\\\\rInference:  75%|███████▌  | 24/32 [1:23:23<28:09, 211.25s/it]\\\\rInference:  78%|███████▊  | 25/32 [1:26:51<24:31, 210.20s/it]\\\\rInference:  81%|████████▏ | 26/32 [1:30:19<20:58, 209.73s/it]\\\\rInference:  84%|████████▍ | 27/32 [1:33:44<17:20, 208.17s/it]\\\\rInference:  88%|████████��� | 28/32 [1:37:10<13:50, 207.52s/it]\\\\rInference:  91%|█████████ | 29/32 [1:40:34<10:19, 206.43s/it]\\\\rInference:  94%|█████████▍| 30/32 [1:43:58<06:51, 205.79s/it]\\\\rInference:  97%|█████████▋| 31/32 [1:47:21<03:24, 204.92s/it]\\\\rInference: 100%|██████████| 32/32 [1:49:14<00:00, 177.37s/it]\\\\rInference: 100%|██████████| 32/32 [1:49:14<00:00, 204.83s/it]\\\\n2026-05-24 00:51:16,217 INFO Inference done. 292/500 truncated, 0 errors.\\\\n2026-05-24 00:51:16,217 INFO Inference: 6554.6s (13.11 s/doc)\\\\n2026-05-24 00:51:16,338 INFO Predictions -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/predictions.json\\\\n2026-05-24 00:51:16,351 WARNING train_annotated.json not found, Ign-F1 = F1\\\\n2026-05-24 00:51:16,796 INFO CodaLab submission -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/codalab_submission.json\\\\n\\\\n==================================================\\\\n  F1:          0.3775\\\\n  Ign-F1:      0.3775\\\\n  Evi-F1(DREEAM): 0.0000\\\\n  Evi-F1(TP):     0.0000\\\\n  EDCR:        0.0000\\\\n  Documents:   500\\\\n  Predictions: 31216\\\\n  Format OK:   499/500\\\\n  Truncated:   292/500\\\\n  CodaLab:     14066 converted, 405 skipped (rel), 831 skipped (entity)\\\\n  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "ce3b3aa8-e7d9-4d78-ad81-710cd07f8377",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 23:01:49,187 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-23 23:01:49,188 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-23 23:01:49,586 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/443 [00:00<01:37,  4.54it/s]\\\\rLoading weights:   0%|          | 2/443 [00:00<01:45,  4.17it/s]\\\\rLoading weights:   3%|▎         | 12/443 [00:00<00:15, 28.43it/s]\\\\rLoading weights:   5%|▍         | 21/443 [00:00<00:09, 44.24it/s]\\\\rLoading weights:   6%|▋         | 28/443 [00:00<00:08, 50.81it/s]\\\\rLoading weights:   9%|▉         | 39/443 [00:00<00:06, 65.02it/s]\\\\rLoading weights:  11%|█▏        | 50/443 [00:01<00:05, 74.67it/s]\\\\rLoading weights:  14%|█▎        | 60/443 [00:01<00:04, 79.48it/s]\\\\rLoading weights:  16%|█▋        | 72/443 [00:01<00:04, 88.89it/s]\\\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 92.45it/s]\\\\rLoading weights:  21%|██        | 93/443 [00:01<00:03, 92.73it/s]\\\\rLoading weights:  24%|██▎       | 105/443 [00:01<00:03, 96.57it/s]\\\\rLoading weights:  26%|██▌       | 115/443 [00:01<00:03, 93.72it/s]\\\\rLoading weights:  29%|██▊       | 127/443 [00:01<00:03, 96.73it/s]\\\\rLoading weights:  31%|███       | 137/443 [00:01<00:03, 94.84it/s]\\\\rLoading weights:  34%|███▎      | 149/443 [00:02<00:02, 98.93it/s]\\\\rLoading weights:  36%|███▌      | 160/443 [00:02<00:02, 98.39it/s]\\\\rLoading weights:  39%|███▊      | 171/443 [00:02<00:02, 98.48it/s]\\\\rLoading weights:  41%|████      | 182/443 [00:02<00:02, 98.51it/s]\\\\rLoading weights:  44%|████▎     | 193/443 [00:02<00:02, 97.82it/s]\\\\rLoading weights:  46%|████▌     | 203/443 [00:02<00:02, 95.08it/s]\\\\rLoading weights:  49%|████▊     | 215/443 [00:02<00:02, 97.11it/s]\\\\rLoading weights:  51%|█████     | 226/443 [00:02<00:02, 96.87it/s]\\\\rLoading weights:  53%|█████▎    | 237/443 [00:02<00:02, 97.68it/s]\\\\rLoading weights:  56%|█████▌    | 248/443 [00:03<00:01, 98.75it/s]\\\\rLoading weights:  58%|█████▊    | 259/443 [00:03<00:01, 98.94it/s]\\\\rLoading weights:  61%|██████    | 270/443 [00:03<00:01, 99.05it/s]\\\\rLoading weights:  63%|██████▎   | 281/443 [00:03<00:01, 98.90it/s]\\\\rLoading weights:  66%|██████▌   | 292/443 [00:03<00:01, 98.81it/s]\\\\rLoading weights:  68%|██████▊   | 303/443 [00:03<00:01, 99.42it/s]\\\\rLoading weights:  71%|███████   | 314/443 [00:03<00:01, 99.03it/s]\\\\rLoading weights:  73%|███████▎  | 325/443 [00:03<00:01, 99.29it/s]\\\\rLoading weights:  76%|███████▌  | 336/443 [00:03<00:01, 99.64it/s]\\\\rLoading weights:  78%|███████▊  | 347/443 [00:04<00:00, 99.73it/s]\\\\rLoading weights:  81%|████████  | 358/443 [00:04<00:00, 102.38it/s]\\\\rLoading weights:  83%|████████▎ | 369/443 [00:04<00:00, 99.11it/s] \\\\rLoading weights:  86%|████████▌ | 381/443 [00:04<00:00, 104.91it/s]\\\\rLoading weights:  88%|████████▊ | 392/443 [00:04<00:00, 103.32it/s]\\\\rLoading weights:  91%|█████████ | 403/443 [00:04<00:00, 101.81it/s]\\\\rLoading weights:  93%|█████████▎| 414/443 [00:04<00:00, 100.67it/s]\\\\rLoading weights:  96%|█████████▌| 425/443 [00:04<00:00, 101.01it/s]\\\\rLoading weights:  98%|█████████▊| 436/443 [00:04<00:00, 101.46it/s]\\\\rLoading weights: 100%|██████████| 443/443 [00:04<00:00, 90.09it/s] \\\\n2026-05-23 23:01:55,680 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_14b_s43\\\\n2026-05-23 23:01:59,259 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_14b_s43\\\\n2026-05-23 23:02:01,583 INFO Prepared 500 test documents\\\\n\\\\rInference:   0%|          | 0/32 [00:00<?, ?it/s]\\\\rInference:   3%|▎         | 1/32 [03:27<1:46:58, 207.05s/it]\\\\rInference:   6%|▋         | 2/32 [06:56<1:44:08, 208.27s/it]\\\\rInference:   9%|▉         | 3/32 [10:28<1:41:28, 209.94s/it]\\\\rInference:  12%|█▎        | 4/32 [14:03<1:39:02, 212.24s/it]\\\\rInference:  16%|█▌        | 5/32 [17:26<1:33:55, 208.72s/it]\\\\rInference:  19%|█▉        | 6/32 [20:57<1:30:45, 209.45s/it]\\\\rInference:  22%|██▏       | 7/32 [24:16<1:25:57, 206.29s/it]\\\\rInference:  25%|██▌       | 8/32 [27:41<1:22:19, 205.80s/it]\\\\rInference:  28%|██▊       | 9/32 [31:06<1:18:45, 205.44s/it]\\\\rInference:  31%|███▏      | 10/32 [34:30<1:15:09, 204.96s/it]\\\\rInference:  34%|███▍      | 11/32 [37:51<1:11:22, 203.92s/it]\\\\rInference:  38%|███▊      | 12/32 [41:16<1:08:05, 204.25s/it]\\\\rInference:  41%|████      | 13/32 [44:44<1:04:57, 205.14s/it]\\\\rInference:  44%|████▍     | 14/32 [48:16<1:02:12, 207.35s/it]\\\\rInference:  47%|████▋     | 15/32 [51:44<58:49, 207.61s/it]  \\\\rInference:  50%|█████     | 16/32 [55:12<55:21, 207.58s/it]\\\\rInference:  53%|█████▎    | 17/32 [58:39<51:52, 207.51s/it]\\\\rInference:  56%|█████▋    | 18/32 [1:02:11<48:41, 208.69s/it]\\\\rInference:  59%|█████▉    | 19/32 [1:05:55<46:13, 213.37s/it]\\\\rInference:  62%|██████▎   | 20/32 [1:09:15<41:53, 209.49s/it]\\\\rInference:  66%|██████▌   | 21/32 [1:12:53<38:50, 211.86s/it]\\\\rInference:  69%|██████▉   | 22/32 [1:16:24<35:17, 211.73s/it]\\\\rInference:  72%|███████▏  | 23/32 [1:19:46<31:19, 208.88s/it]\\\\rInference:  75%|███████▌  | 24/32 [1:23:23<28:09, 211.25s/it]\\\\rInference:  78%|███████▊  | 25/32 [1:26:51<24:31, 210.20s/it]\\\\rInference:  81%|████████▏ | 26/32 [1:30:19<20:58, 209.73s/it]\\\\rInference:  84%|████████▍ | 27/32 [1:33:44<17:20, 208.17s/it]\\\\rInference:  88%|████████��� | 28/32 [1:37:10<13:50, 207.52s/it]\\\\rInference:  91%|█████████ | 29/32 [1:40:34<10:19, 206.43s/it]\\\\rInference:  94%|█████████▍| 30/32 [1:43:58<06:51, 205.79s/it]\\\\rInference:  97%|█████████▋| 31/32 [1:47:21<03:24, 204.92s/it]\\\\rInference: 100%|██████████| 32/32 [1:49:14<00:00, 177.37s/it]\\\\rInference: 100%|██████████| 32/32 [1:49:14<00:00, 204.83s/it]\\\\n2026-05-24 00:51:16,217 INFO Inference done. 292/500 truncated, 0 errors.\\\\n2026-05-24 00:51:16,217 INFO Inference: 6554.6s (13.11 s/doc)\\\\n2026-05-24 00:51:16,338 INFO Predictions -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/predictions.json\\\\n2026-05-24 00:51:16,351 WARNING train_annotated.json not found, Ign-F1 = F1\\\\n2026-05-24 00:51:16,796 INFO CodaLab submission -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/codalab_submission.json\\\\n\\\\n==================================================\\\\n  F1:          0.3775\\\\n  Ign-F1:      0.3775\\\\n  Evi-F1(DREEAM): 0.0000\\\\n  Evi-F1(TP):     0.0000\\\\n  EDCR:        0.0000\\\\n  Documents:   500\\\\n  Predictions: 31216\\\\n  Format OK:   499/500\\\\n  Truncated:   292/500\\\\n  CodaLab:     14066 converted, 405 skipped (rel), 831 skipped (entity)\\\\n  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 23:01:49,187 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:49,188 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:49,586 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/443 [00:00<01:37,  4.54it/s]\\rLoading weights:   0%|          | 2/443 [00:00<01:45,  4.17it/s]\\rLoading weights:   3%|▎         | 12/443 [00:00<00:15, 28.43it/s]\\rLoading weights:   5%|▍         | 21/443 [00:00<00:09, 44.24it/s]\\rLoading weights:   6%|▋         | 28/443 [00:00<00:08, 50.81it/s]\\rLoading weights:   9%|▉         | 39/443 [00:00<00:06, 65.02it/s]\\rLoading weights:  11%|█▏        | 50/443 [00:01<00:05, 74.67it/s]\\rLoading weights:  14%|█▎        | 60/443 [00:01<00:04, 79.48it/s]\\rLoading weights:  16%|█▋        | 72/443 [00:01<00:04, 88.89it/s]\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 92.45it/s]\\rLoading weights:  21%|██        | 93/443 [00:01<00:03, 92.73it/s]\\rLoading weights:  24%|██▎       | 105/443 [00:01<00:03, 96.57it/s]\\rLoading weights:  26%|██▌       | 115/443 [00:01<00:03, 93.72it/s]\\rLoading weights:  29%|██▊       | 127/443 [00:01<00:03, 96.73it/s]\\rLoading weights:  31%|███       | 137/443 [00:01<00:03, 94.84it/s]\\rLoading weights:  34%|███▎      | 149/443 [00:02<00:02, 98.93it/s]\\rLoading weights:  36%|███▌      | 160/443 [00:02<00:02, 98.39it/s]\\rLoading weights:  39%|███▊      | 171/443 [00:02<00:02, 98.48it/s]\\rLoading weights:  41%|████      | 182/443 [00:02<00:02, 98.51it/s]\\rLoading weights:  44%|████▎     | 193/443 [00:02<00:02, 97.82it/s]\\rLoading weights:  46%|████▌     | 203/443 [00:02<00:02, 95.08it/s]\\rLoading weights:  49%|████▊     | 215/443 [00:02<00:02, 97.11it/s]\\rLoading weights:  51%|█████     | 226/443 [00:02<00:02, 96.87it/s]\\rLoading weights:  53%|█████▎    | 237/443 [00:02<00:02, 97.68it/s]\\rLoading weights:  56%|█████▌    | 248/443 [00:03<00:01, 98.75it/s]\\rLoading weights:  58%|█████▊    | 259/443 [00:03<00:01, 98.94it/s]\\rLoading weights:  61%|██████    | 270/443 [00:03<00:01, 99.05it/s]\\rLoading weights:  63%|██████▎   | 281/443 [00:03<00:01, 98.90it/s]\\rLoading weights:  66%|██████▌   | 292/443 [00:03<00:01, 98.81it/s]\\rLoading weights:  68%|██████▊   | 303/443 [00:03<00:01, 99.42it/s]\\rLoading weights:  71%|███████   | 314/443 [00:03<00:01, 99.03it/s]\\rLoading weights:  73%|███████▎  | 325/443 [00:03<00:01, 99.29it/s]\\rLoading weights:  76%|███████▌  | 336/443 [00:03<00:01, 99.64it/s]\\rLoading weights:  78%|███████▊  | 347/443 [00:04<00:00, 99.73it/s]\\rLoading weights:  81%|████████  | 358/443 [00:04<00:00, 102.38it/s]\\rLoading weights:  83%|████████▎ | 369/443 [00:04<00:00, 99.11it/s] \\rLoading weights:  86%|████████▌ | 381/443 [00:04<00:00, 104.91it/s]\\rLoading weights:  88%|████████▊ | 392/443 [00:04<00:00, 103.32it/s]\\rLoading weights:  91%|█████████ | 403/443 [00:04<00:00, 101.81it/s]\\rLoading weights:  93%|█████████▎| 414/443 [00:04<00:00, 100.67it/s]\\rLoading weights:  96%|█████████▌| 425/443 [00:04<00:00, 101.01it/s]\\rLoading weights:  98%|█████████▊| 436/443 [00:04<00:00, 101.46it/s]\\rLoading weights: 100%|██████████| 443/443 [00:04<00:00, 90.09it/s] \\n2026-05-23 23:01:55,680 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_14b_s43\\n2026-05-23 23:01:59,259 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_14b_s43\\n2026-05-23 23:02:01,583 INFO Prepared 500 test documents\\n\\rInference:   0%|          | 0/32 [00:00<?, ?it/s]\\rInference:   3%|▎         | 1/32 [03:27<1:46:58, 207.05s/it]\\rInference:   6%|▋         | 2/32 [06:56<1:44:08, 208.27s/it]\\rInference:   9%|▉         | 3/32 [10:28<1:41:28, 209.94s/it]\\rInference:  12%|█▎        | 4/32 [14:03<1:39:02, 212.24s/it]\\rInference:  16%|█▌        | 5/32 [17:26<1:33:55, 208.72s/it]\\rInference:  19%|█▉        | 6/32 [20:57<1:30:45, 209.45s/it]\\rInference:  22%|██▏       | 7/32 [24:16<1:25:57, 206.29s/it]\\rInference:  25%|██▌       | 8/32 [27:41<1:22:19, 205.80s/it]\\rInference:  28%|██▊       | 9/32 [31:06<1:18:45, 205.44s/it]\\rInference:  31%|███▏      | 10/32 [34:30<1:15:09, 204.96s/it]\\rInference:  34%|███▍      | 11/32 [37:51<1:11:22, 203.92s/it]\\rInference:  38%|███▊      | 12/32 [41:16<1:08:05, 204.25s/it]\\rInference:  41%|████      | 13/32 [44:44<1:04:57, 205.14s/it]\\rInference:  44%|████▍     | 14/32 [48:16<1:02:12, 207.35s/it]\\rInference:  47%|████▋     | 15/32 [51:44<58:49, 207.61s/it]  \\rInference:  50%|█████     | 16/32 [55:12<55:21, 207.58s/it]\\rInference:  53%|█████▎    | 17/32 [58:39<51:52, 207.51s/it]\\rInference:  56%|█████▋    | 18/32 [1:02:11<48:41, 208.69s/it]\\rInference:  59%|█████▉    | 19/32 [1:05:55<46:13, 213.37s/it]\\rInference:  62%|██████▎   | 20/32 [1:09:15<41:53, 209.49s/it]\\rInference:  66%|██████▌   | 21/32 [1:12:53<38:50, 211.86s/it]\\rInference:  69%|██████▉   | 22/32 [1:16:24<35:17, 211.73s/it]\\rInference:  72%|███████▏  | 23/32 [1:19:46<31:19, 208.88s/it]\\rInference:  75%|███████▌  | 24/32 [1:23:23<28:09, 211.25s/it]\\rInference:  78%|███████▊  | 25/32 [1:26:51<24:31, 210.20s/it]\\rInference:  81%|████████▏ | 26/32 [1:30:19<20:58, 209.73s/it]\\rInference:  84%|████████▍ | 27/32 [1:33:44<17:20, 208.17s/it]\\rInference:  88%|████████��� | 28/32 [1:37:10<13:50, 207.52s/it]\\rInference:  91%|█████████ | 29/32 [1:40:34<10:19, 206.43s/it]\\rInference:  94%|█████████▍| 30/32 [1:43:58<06:51, 205.79s/it]\\rInference:  97%|█████████▋| 31/32 [1:47:21<03:24, 204.92s/it]\\rInference: 100%|██████████| 32/32 [1:49:14<00:00, 177.37s/it]\\rInference: 100%|██████████| 32/32 [1:49:14<00:00, 204.83s/it]\\n2026-05-24 00:51:16,217 INFO Inference done. 292/500 truncated, 0 errors.\\n2026-05-24 00:51:16,217 INFO Inference: 6554.6s (13.11 s/doc)\\n2026-05-24 00:51:16,338 INFO Predictions -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/predictions.json\\n2026-05-24 00:51:16,351 WARNING train_annotated.json not found, Ign-F1 = F1\\n2026-05-24 00:51:16,796 INFO CodaLab submission -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/codalab_submission.json\\n\\n==================================================\\n  F1:          0.3775\\n  Ign-F1:      0.3775\\n  Evi-F1(DREEAM): 0.0000\\n  Evi-F1(TP):     0.0000\\n  EDCR:        0.0000\\n  Documents:   500\\n  Predictions: 31216\\n  Format OK:   499/500\\n  Truncated:   292/500\\n  CodaLab:     14066 converted, 405 skipped (rel), 831 skipped (entity)\\n  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/codalab_submission.json\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012NGPGw9Ht5p5ixUp7Sn8FK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/metrics.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "5caa498e-ad6d-4a1f-a401-d7d46719a26c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016BoSdgK1dWvQn4abbGJQ5n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 441,
+                "cache_read_input_tokens": 24599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 441
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T16:55:58.681Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GbKUP9VdzX9KNrTJ4GGxKA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/metrics.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "5f4b32b6-d71d-47ff-8012-ea9d69c1c34c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/metrics.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T16:55:59.217Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012NGPGw9Ht5p5ixUp7Sn8FK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/metrics.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "05c018b6-5545-4094-8bcf-3c62515166da",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/metrics.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Got all the data from the logs. No metrics.json files exist, but the log tails have all the metrics I need. Let me also check for eval_results.json files, and also look for precision/recall which might be in other files.\n\nLet me check the output directories for any other files that might have precision/recall.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "4b9a8711-e853-4def-b6c9-f4d88f657efa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhtTDoFpK9i1Ej58BXGs5n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7887,
+                "cache_read_input_tokens": 25040,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7887
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check for precision/recall in other output files."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "6c44f683-f651-4498-b526-7c0a1592441c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhtTDoFpK9i1Ej58BXGs5n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7887,
+                "cache_read_input_tokens": 25040,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7887
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RfiyGK48RghW44ntmPg3tB",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "500f1554-a8d5-4774-9220-4cfd75f13e3e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhtTDoFpK9i1Ej58BXGs5n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7887,
+                "cache_read_input_tokens": 25040,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7887
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RKXxLYCA48ATcjshML625T",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "abca4dc7-8a06-4403-b0ca-e0c8f261233e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhtTDoFpK9i1Ej58BXGs5n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7887,
+                "cache_read_input_tokens": 25040,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7887
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T16:56:06.278Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RfiyGK48RghW44ntmPg3tB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"codalab_submission.json\\\\npredictions.json\\\\ntest_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "680161b2-7db5-41f7-bdde-4d8453fa6d32",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"codalab_submission.json\\\\npredictions.json\\\\ntest_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"codalab_submission.json\\npredictions.json\\ntest_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T16:56:06.814Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RKXxLYCA48ATcjshML625T",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"codalab_submission.json\\\\npredictions.json\\\\ntest_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "50b0c024-254b-42a3-ba7c-8cc6b8ad056f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"codalab_submission.json\\\\npredictions.json\\\\ntest_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"codalab_submission.json\\npredictions.json\\ntest_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RdJjZvudyKqfbnYDb6LHkM",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/test_summary.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "be1df96f-3a38-406b-bb99-02038120660a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ch632ZncYi7qDJWPmitG9i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 601,
+                "cache_read_input_tokens": 32927,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 601
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T16:56:10.426Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RdJjZvudyKqfbnYDb6LHkM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_documents\\\\\\\": 500,\\\\n  \\\\\\\"n_predictions\\\\\\\": 22861,\\\\n  \\\\\\\"n_truncated\\\\\\\": 271,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 498,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.996,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6583.2,\\\\n  \\\\\\\"codalab_stats\\\\\\\": {\\\\n    \\\\\\\"converted\\\\\\\": 13323,\\\\n    \\\\\\\"skipped_rel\\\\\\\": 371,\\\\n    \\\\\\\"skipped_entity\\\\\\\": 652\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_14b_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_14b_s43\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/re-docred-repo/data\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"test_revised\\\\\\\",\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.4251757373722734,\\\\n    \\\\\\\"recall\\\\\\\": 0.3381556195965418,\\\\n    \\\\\\\"f1\\\\\\\": 0.37670551221548043,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.4251757373722734,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.3381556195965418,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.37670551221548043,\\\\n    \\\\\\\"tp\\\\\\\": 5867,\\\\n    \\\\\\\"pred_count\\\\\\\": 13799,\\\\n    \\\\\\\"gold_count\\\\\\\": 17350,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.44330312185297077,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.8538730117677487,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.5836132225561251,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 22507,\\\\n    \\\\\\\"edcr\\\\\\\": 0.8339745040356038,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 33168,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 39771,\\\\n    \\\\\\\"evi_joint_precision\\\\\\\": 0.1875953018751288,\\\\n    \\\\\\\"evi_joint_recall\\\\\\\": 0.36072588953165863,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.24682789285326975,\\\\n    \\\\\\\"evi_tp\\\\\\\": 4552,\\\\n    \\\\\\\"evi_pred_total\\\\\\\": 24265,\\\\n    \\\\\\\"evi_gold_total\\\\\\\": 12619,\\\\n    \\\\\\\"format_compliance_rate\\\\\\\": 0.996,\\\\n    \\\\\\\"field_compliance_rate\\\\\\\": 0.996,\\\\n    \\\\\\\"evidence_format_rate\\\\\\\": 0.982,\\\\n    \\\\\\\"n_total\\\\\\\": 500,\\\\n    \\\\\\\"n_parseable\\\\\\\": 498,\\\\n    \\\\\\\"n_field_complete\\\\\\\": 498,\\\\n    \\\\\\\"n_evidence_valid\\\\\\\": 491\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "b130cd79-78ad-4759-a641-7f793c2bbbf2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_documents\\\\\\\": 500,\\\\n  \\\\\\\"n_predictions\\\\\\\": 22861,\\\\n  \\\\\\\"n_truncated\\\\\\\": 271,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 498,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.996,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6583.2,\\\\n  \\\\\\\"codalab_stats\\\\\\\": {\\\\n    \\\\\\\"converted\\\\\\\": 13323,\\\\n    \\\\\\\"skipped_rel\\\\\\\": 371,\\\\n    \\\\\\\"skipped_entity\\\\\\\": 652\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_14b_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_14b_s43\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/re-docred-repo/data\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"test_revised\\\\\\\",\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.4251757373722734,\\\\n    \\\\\\\"recall\\\\\\\": 0.3381556195965418,\\\\n    \\\\\\\"f1\\\\\\\": 0.37670551221548043,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.4251757373722734,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.3381556195965418,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.37670551221548043,\\\\n    \\\\\\\"tp\\\\\\\": 5867,\\\\n    \\\\\\\"pred_count\\\\\\\": 13799,\\\\n    \\\\\\\"gold_count\\\\\\\": 17350,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.44330312185297077,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.8538730117677487,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.5836132225561251,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 22507,\\\\n    \\\\\\\"edcr\\\\\\\": 0.8339745040356038,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 33168,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 39771,\\\\n    \\\\\\\"evi_joint_precision\\\\\\\": 0.1875953018751288,\\\\n    \\\\\\\"evi_joint_recall\\\\\\\": 0.36072588953165863,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.24682789285326975,\\\\n    \\\\\\\"evi_tp\\\\\\\": 4552,\\\\n    \\\\\\\"evi_pred_total\\\\\\\": 24265,\\\\n    \\\\\\\"evi_gold_total\\\\\\\": 12619,\\\\n    \\\\\\\"format_compliance_rate\\\\\\\": 0.996,\\\\n    \\\\\\\"field_compliance_rate\\\\\\\": 0.996,\\\\n    \\\\\\\"evidence_format_rate\\\\\\\": 0.982,\\\\n    \\\\\\\"n_total\\\\\\\": 500,\\\\n    \\\\\\\"n_parseable\\\\\\\": 498,\\\\n    \\\\\\\"n_field_complete\\\\\\\": 498,\\\\n    \\\\\\\"n_evidence_valid\\\\\\\": 491\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_documents\\\": 500,\\n  \\\"n_predictions\\\": 22861,\\n  \\\"n_truncated\\\": 271,\\n  \\\"n_format_ok\\\": 498,\\n  \\\"format_ok_rate\\\": 0.996,\\n  \\\"inference_time_seconds\\\": 6583.2,\\n  \\\"codalab_stats\\\": {\\n    \\\"converted\\\": 13323,\\n    \\\"skipped_rel\\\": 371,\\n    \\\"skipped_entity\\\": 652\\n  },\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_14b_s43\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"seed\\\": 43,\\n    \\\"split\\\": \\\"test_revised\\\",\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.4251757373722734,\\n    \\\"recall\\\": 0.3381556195965418,\\n    \\\"f1\\\": 0.37670551221548043,\\n    \\\"ign_precision\\\": 0.4251757373722734,\\n    \\\"ign_recall\\\": 0.3381556195965418,\\n    \\\"ign_f1\\\": 0.37670551221548043,\\n    \\\"tp\\\": 5867,\\n    \\\"pred_count\\\": 13799,\\n    \\\"gold_count\\\": 17350,\\n    \\\"evi_precision\\\": 0.44330312185297077,\\n    \\\"evi_recall\\\": 0.8538730117677487,\\n    \\\"evi_f1\\\": 0.5836132225561251,\\n    \\\"n_evaluated\\\": 22507,\\n    \\\"edcr\\\": 0.8339745040356038,\\n    \\\"n_distractor_citations\\\": 33168,\\n    \\\"n_total_citations\\\": 39771,\\n    \\\"evi_joint_precision\\\": 0.1875953018751288,\\n    \\\"evi_joint_recall\\\": 0.36072588953165863,\\n    \\\"evi_f1_joint\\\": 0.24682789285326975,\\n    \\\"evi_tp\\\": 4552,\\n    \\\"evi_pred_total\\\": 24265,\\n    \\\"evi_gold_total\\\": 12619,\\n    \\\"format_compliance_rate\\\": 0.996,\\n    \\\"field_compliance_rate\\\": 0.996,\\n    \\\"evidence_format_rate\\\": 0.982,\\n    \\\"n_total\\\": 500,\\n    \\\"n_parseable\\\": 498,\\n    \\\"n_field_complete\\\": 498,\\n    \\\"n_evidence_valid\\\": 491\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DbaoTp6rniXBJob5TZBYEk",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/test_summary.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "a12f7d75-4a18-4397-b0f5-7085314bfc32",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ch632ZncYi7qDJWPmitG9i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 601,
+                "cache_read_input_tokens": 32927,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 601
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T16:56:11.061Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DbaoTp6rniXBJob5TZBYEk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_documents\\\\\\\": 500,\\\\n  \\\\\\\"n_predictions\\\\\\\": 31216,\\\\n  \\\\\\\"n_truncated\\\\\\\": 292,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 499,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.998,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6554.6,\\\\n  \\\\\\\"codalab_stats\\\\\\\": {\\\\n    \\\\\\\"converted\\\\\\\": 14066,\\\\n    \\\\\\\"skipped_rel\\\\\\\": 405,\\\\n    \\\\\\\"skipped_entity\\\\\\\": 831\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_14b_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_14b_s43\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/re-docred-repo/data\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"test_revised\\\\\\\",\\\\n    \\\\\\\"no_evidence\\\\\\\": true,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.4138310304530144,\\\\n    \\\\\\\"recall\\\\\\\": 0.34697406340057635,\\\\n    \\\\\\\"f1\\\\\\\": 0.37746496535724366,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.4138310304530144,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.34697406340057635,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.37746496535724366,\\\\n    \\\\\\\"tp\\\\\\\": 6020,\\\\n    \\\\\\\"pred_count\\\\\\\": 14547,\\\\n    \\\\\\\"gold_count\\\\\\\": 17350,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.0,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 0,\\\\n    \\\\\\\"edcr\\\\\\\": 0.0,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 0,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 0,\\\\n    \\\\\\\"evi_joint_precision\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_joint_recall\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_tp\\\\\\\": 0,\\\\n    \\\\\\\"evi_pred_total\\\\\\\": 0,\\\\n    \\\\\\\"evi_gold_total\\\\\\\": 12619,\\\\n    \\\\\\\"format_compliance_rate\\\\\\\": 0.998,\\\\n    \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"n_total\\\\\\\": 500,\\\\n    \\\\\\\"n_parseable\\\\\\\": 499,\\\\n    \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n    \\\\\\\"n_evidence_valid\\\\\\\": 0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "2fd60080-d68b-41ab-85d5-4376966b07fa",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_documents\\\\\\\": 500,\\\\n  \\\\\\\"n_predictions\\\\\\\": 31216,\\\\n  \\\\\\\"n_truncated\\\\\\\": 292,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 499,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.998,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6554.6,\\\\n  \\\\\\\"codalab_stats\\\\\\\": {\\\\n    \\\\\\\"converted\\\\\\\": 14066,\\\\n    \\\\\\\"skipped_rel\\\\\\\": 405,\\\\n    \\\\\\\"skipped_entity\\\\\\\": 831\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_14b_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_14b_s43\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/re-docred-repo/data\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"test_revised\\\\\\\",\\\\n    \\\\\\\"no_evidence\\\\\\\": true,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.4138310304530144,\\\\n    \\\\\\\"recall\\\\\\\": 0.34697406340057635,\\\\n    \\\\\\\"f1\\\\\\\": 0.37746496535724366,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.4138310304530144,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.34697406340057635,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.37746496535724366,\\\\n    \\\\\\\"tp\\\\\\\": 6020,\\\\n    \\\\\\\"pred_count\\\\\\\": 14547,\\\\n    \\\\\\\"gold_count\\\\\\\": 17350,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.0,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 0,\\\\n    \\\\\\\"edcr\\\\\\\": 0.0,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 0,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 0,\\\\n    \\\\\\\"evi_joint_precision\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_joint_recall\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_tp\\\\\\\": 0,\\\\n    \\\\\\\"evi_pred_total\\\\\\\": 0,\\\\n    \\\\\\\"evi_gold_total\\\\\\\": 12619,\\\\n    \\\\\\\"format_compliance_rate\\\\\\\": 0.998,\\\\n    \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"n_total\\\\\\\": 500,\\\\n    \\\\\\\"n_parseable\\\\\\\": 499,\\\\n    \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n    \\\\\\\"n_evidence_valid\\\\\\\": 0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_documents\\\": 500,\\n  \\\"n_predictions\\\": 31216,\\n  \\\"n_truncated\\\": 292,\\n  \\\"n_format_ok\\\": 499,\\n  \\\"format_ok_rate\\\": 0.998,\\n  \\\"inference_time_seconds\\\": 6554.6,\\n  \\\"codalab_stats\\\": {\\n    \\\"converted\\\": 14066,\\n    \\\"skipped_rel\\\": 405,\\n    \\\"skipped_entity\\\": 831\\n  },\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_14b_s43\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"seed\\\": 43,\\n    \\\"split\\\": \\\"test_revised\\\",\\n    \\\"no_evidence\\\": true,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.4138310304530144,\\n    \\\"recall\\\": 0.34697406340057635,\\n    \\\"f1\\\": 0.37746496535724366,\\n    \\\"ign_precision\\\": 0.4138310304530144,\\n    \\\"ign_recall\\\": 0.34697406340057635,\\n    \\\"ign_f1\\\": 0.37746496535724366,\\n    \\\"tp\\\": 6020,\\n    \\\"pred_count\\\": 14547,\\n    \\\"gold_count\\\": 17350,\\n    \\\"evi_precision\\\": 0.0,\\n    \\\"evi_recall\\\": 0.0,\\n    \\\"evi_f1\\\": 0.0,\\n    \\\"n_evaluated\\\": 0,\\n    \\\"edcr\\\": 0.0,\\n    \\\"n_distractor_citations\\\": 0,\\n    \\\"n_total_citations\\\": 0,\\n    \\\"evi_joint_precision\\\": 0.0,\\n    \\\"evi_joint_recall\\\": 0.0,\\n    \\\"evi_f1_joint\\\": 0.0,\\n    \\\"evi_tp\\\": 0,\\n    \\\"evi_pred_total\\\": 0,\\n    \\\"evi_gold_total\\\": 12619,\\n    \\\"format_compliance_rate\\\": 0.998,\\n    \\\"field_compliance_rate\\\": 0.0,\\n    \\\"evidence_format_rate\\\": 0.0,\\n    \\\"n_total\\\": 500,\\n    \\\"n_parseable\\\": 499,\\n    \\\"n_field_complete\\\": 0,\\n    \\\"n_evidence_valid\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the data. Let me compile the analysis.\n\n**with_evi (s43):**\n- ign_f1: 0.3767\n- f1: 0.3767\n- precision: 0.4252\n- recall: 0.3382\n- format_ok_rate: 0.996\n- n_truncated: 271/500\n- inference_time: 6583.2s\n- predictions: 22861\n- Evi-F1(DREEAM): 0.2468\n- Evi-F1(TP): 0.5836\n\n\n- EDCR: 0.8340\n\n**no_evi (s43):**\n- ign_f1: 0.3775\n- f1: 0.3775\n- precision: 0.4138\n- recall: 0.3470\n- format_ok_rate: 0.998\n- n_truncated: 292/500\n- inference_time: 6554.6s\n- predictions: 31216\n\nThe evidence actually costs us a tiny bit—the no_evi version edges out with_evi by 0.08 percentage points on F1 score, so there's a minimal evidence tax here.\n\nComparing across both seeds, s42 shows a much larger evidence tax of 0.77pp while s43 is nearly flat at 0.08pp. Averaging these together gives a mean tax of about 0.425pp with a standard deviation of 0.345pp, suggesting the evidence impact is pretty inconsistent across runs. I'm finishing the standard deviation calculation—with just two data points, the sample standard deviation comes out to about 0.49 pp, so I'll report the mean as 0.425 pp with that margin of error rather than getting too granular about which formula to use.\n\nNow I'm computing the means for the with_evi and no_evi conditions across both samples, which gives me around 0.381 and 0.385 respectively, and then I'll move into writing up the analysis with the key findings, starting with what happened in s43.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "b94c5719-0b3b-472f-abda-6bdbbdc53498",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FDpiUtJKUThwdJ3G9ND2mV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2641,
+                "cache_read_input_tokens": 33528,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2641
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Writing the analysis."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "27d9e8c3-9db1-4661-b9fe-2d6e37adb0dc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FDpiUtJKUThwdJ3G9ND2mV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2641,
+                "cache_read_input_tokens": 33528,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2641
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MbWj73Da4ssVhFmV6abjW8",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair/ 2>/dev/null || echo \"DIR_NOT_EXISTS\"",
+                "description": "Check if output directory exists"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "ea70a393-cd55-4b8b-a08d-1d7d1a57cde9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FDpiUtJKUThwdJ3G9ND2mV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2641,
+                "cache_read_input_tokens": 33528,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2641
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T16:56:42.762Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MbWj73Da4ssVhFmV6abjW8",
+              "type": "tool_result",
+              "content": "DIR_NOT_EXISTS",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "23c27e62-9eb8-4d3c-bf8e-a82acc830969",
+            "tool_use_result": {
+              "stdout": "DIR_NOT_EXISTS",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E23ShAkotJph26MfQbFh7N",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair",
+                "description": "Create output directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "b80dcef1-2948-429a-b7e8-329d47604979",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LfJKzapg4145ekBeZoyMfv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1506,
+                "cache_read_input_tokens": 36169,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1506
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T16:56:45.597Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E23ShAkotJph26MfQbFh7N",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "cc5ca7db-3750-4995-a3e2-13b131cc8453",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YGKJeUBxJHzmQf1TFWAtoa",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair/analysis.md",
+                "content": "# 14B RSFT s43 Test Eval — Evidence Tax Analysis\n\n## 1. 完整指标表\n\n| Metric | with_evi (s43) | no_evi (s43) |\n|--------|---------------|-------------|\n| **ign_f1** | **0.3767** | **0.3775** |\n| f1 | 0.3767 | 0.3775 |\n| precision | 0.4252 | 0.4138 |\n| recall | 0.3382 | 0.3470 |\n| format_ok_rate | 0.996 (498/500) | 0.998 (499/500) |\n| n_truncated | 271/500 | 292/500 |\n| n_predictions | 22,861 | 31,216 |\n| tp / gold | 5,867 / 17,350 | 6,020 / 17,350 |\n| inference_time | 6,583.2s (1h49m) | 6,554.6s (1h49m) |\n| Evi-F1 (DREEAM) | 0.2468 | N/A |\n| Evi-F1 (TP) | 0.5836 | N/A |\n| EDCR | 0.8340 | N/A |\n\n**Note:** `ign_f1 == f1` because `train_annotated.json` not found (test split, no train overlap filtering).\n\n## 2. Evidence Tax 计算\n\n```\nevidence_tax = no_evi_ign_f1 - with_evi_ign_f1\n             = 0.3775 - 0.3767\n             = +0.0008\n             = +0.08 pp  (正值 = no-evi 更好)\n```\n\n## 3. 与 s42 对比\n\n| Metric | s42 | s43 |\n|--------|-----|-----|\n| with_evi ign_f1 | 0.3849 | 0.3767 |\n| no_evi ign_f1 | 0.3926 | 0.3775 |\n| evidence_tax (pp) | **+0.77** | **+0.08** |\n\ns43 两个变体的 ign_f1 均低于 s42（约 -0.8pp ~ -1.5pp），seed 间存在方差。\n\n## 4. 14B 2-Seed Evidence Tax 汇总\n\n| Seed | with_evi | no_evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42 | 0.3849 | 0.3926 | +0.77 |\n| s43 | 0.3767 | 0.3775 | +0.08 |\n| **Mean** | **0.3808** | **0.3851** | **+0.43** |\n| **Std** | **0.0058** | **0.0107** | **±0.49** |\n\nEvidence tax mean = **+0.43 ± 0.49 pp** (sample std, n=2).\n\n方向一致（两个 seed 均为正，即 no-evi ≥ with-evi），但幅度小且 seed 间方差大，税值在统计意义上不显著。\n\n## 5. 结论判定\n\n| Experiment | Conclusion | 理由 |\n|-----------|-----------|------|\n| test_eval_14b_rsft_s43_with_evi | **success** | 完成推理，format_ok 99.6%，ign_f1=0.3767 合理 |\n| test_eval_14b_rsft_s43_no_evi | **success** | 完成推理，format_ok 99.8%，ign_f1=0.3775 合理 |\n\n**Evidence tax 整体判定：** 14B 模型的 evidence tax 为 +0.43±0.49pp，方向一致但幅度极小，evidence 输出对 RE 性能的负面影响可忽略。\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "e9b9d493-ca6d-4184-86ae-810c7222c94f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F9YRxrLBMRzPcUUDVpbzLo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 135,
+                "cache_read_input_tokens": 37675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 135
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T16:57:11.554Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YGKJeUBxJHzmQf1TFWAtoa",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair/analysis.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "f341e75f-af6d-400f-a016-45f2c29721b6",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair/analysis.md",
+              "content": "# 14B RSFT s43 Test Eval — Evidence Tax Analysis\n\n## 1. 完整指标表\n\n| Metric | with_evi (s43) | no_evi (s43) |\n|--------|---------------|-------------|\n| **ign_f1** | **0.3767** | **0.3775** |\n| f1 | 0.3767 | 0.3775 |\n| precision | 0.4252 | 0.4138 |\n| recall | 0.3382 | 0.3470 |\n| format_ok_rate | 0.996 (498/500) | 0.998 (499/500) |\n| n_truncated | 271/500 | 292/500 |\n| n_predictions | 22,861 | 31,216 |\n| tp / gold | 5,867 / 17,350 | 6,020 / 17,350 |\n| inference_time | 6,583.2s (1h49m) | 6,554.6s (1h49m) |\n| Evi-F1 (DREEAM) | 0.2468 | N/A |\n| Evi-F1 (TP) | 0.5836 | N/A |\n| EDCR | 0.8340 | N/A |\n\n**Note:** `ign_f1 == f1` because `train_annotated.json` not found (test split, no train overlap filtering).\n\n## 2. Evidence Tax 计算\n\n```\nevidence_tax = no_evi_ign_f1 - with_evi_ign_f1\n             = 0.3775 - 0.3767\n             = +0.0008\n             = +0.08 pp  (正值 = no-evi 更好)\n```\n\n## 3. 与 s42 对比\n\n| Metric | s42 | s43 |\n|--------|-----|-----|\n| with_evi ign_f1 | 0.3849 | 0.3767 |\n| no_evi ign_f1 | 0.3926 | 0.3775 |\n| evidence_tax (pp) | **+0.77** | **+0.08** |\n\ns43 两个变体的 ign_f1 均低于 s42（约 -0.8pp ~ -1.5pp），seed 间存在方差。\n\n## 4. 14B 2-Seed Evidence Tax 汇总\n\n| Seed | with_evi | no_evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42 | 0.3849 | 0.3926 | +0.77 |\n| s43 | 0.3767 | 0.3775 | +0.08 |\n| **Mean** | **0.3808** | **0.3851** | **+0.43** |\n| **Std** | **0.0058** | **0.0107** | **±0.49** |\n\nEvidence tax mean = **+0.43 ± 0.49 pp** (sample std, n=2).\n\n方向一致（两个 seed 均为正，即 no-evi ≥ with-evi），但幅度小且 seed 间方差大，税值在统计意义上不显著。\n\n## 5. 结论判定\n\n| Experiment | Conclusion | 理由 |\n|-----------|-----------|------|\n| test_eval_14b_rsft_s43_with_evi | **success** | 完成推理，format_ok 99.6%，ign_f1=0.3767 合理 |\n| test_eval_14b_rsft_s43_no_evi | **success** | 完成推理，format_ok 99.8%，ign_f1=0.3775 合理 |\n\n**Evidence tax 整体判定：** 14B 模型的 evidence tax 为 +0.43±0.49pp，方向一致但幅度极小，evidence 输出对 RE 性能的负面影响可忽略。\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "e3e7c38e-f262-4c3e-8897-c6a20fde2a7a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KXAiUyCcSRGoZFY5hQJ5ap",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1244,
+                "cache_read_input_tokens": 37810,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1244
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JW7N73UQB1r5DosA7Vf4uZ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "5bec9c4b-803f-4b6c-b6a9-f4359491ff33",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KXAiUyCcSRGoZFY5hQJ5ap",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1244,
+                "cache_read_input_tokens": 37810,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1244
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T16:57:14.932Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01JW7N73UQB1r5DosA7Vf4uZ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "15b88105-5b8f-45c2-8576-8f243ff790fc",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B7kD4X3p4aP3TtuuNjdHVE",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "test_eval_14b_rsft_s43_pair_analysis",
+                "type": "report",
+                "description": "14B RSFT s43 test eval paired analysis: with_evi vs no_evi evidence tax calculation, cross-seed (s42/s43) comparison",
+                "project": "faith-evidence-ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair/analysis.md",
+                "tags": [
+                  "14b",
+                  "rsft",
+                  "s43",
+                  "evidence-tax",
+                  "test-eval"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "64ab8b01-aa5b-4dd1-8fd2-4c5a83d8c682",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KgpdUf8uissjLfK2WYWduX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 718,
+                "cache_read_input_tokens": 39054,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 718
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T16:57:21.137Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B7kD4X3p4aP3TtuuNjdHVE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_65a66c\\\", \\\"name\\\": \\\"test_eval_14b_rsft_s43_pair_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"14B RSFT s43 test eval paired analysis: with_evi vs no_evi evidence tax calculation, cross-seed (s42/s43) comparison\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/_project/report/analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T16:57:20.956110+00:00\\\", \\\"tags\\\": [\\\"14b\\\", \\\"rsft\\\", \\\"s43\\\", \\\"evidence-tax\\\", \\\"test-eval\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "de59ce88-dce7-4c2f-a66b-406910465a8e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_65a66c\\\", \\\"name\\\": \\\"test_eval_14b_rsft_s43_pair_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"14B RSFT s43 test eval paired analysis: with_evi vs no_evi evidence tax calculation, cross-seed (s42/s43) comparison\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/_project/report/analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T16:57:20.956110+00:00\\\", \\\"tags\\\": [\\\"14b\\\", \\\"rsft\\\", \\\"s43\\\", \\\"evidence-tax\\\", \\\"test-eval\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_65a66c\", \"name\": \"test_eval_14b_rsft_s43_pair_analysis\", \"type\": \"report\", \"description\": \"14B RSFT s43 test eval paired analysis: with_evi vs no_evi evidence tax calculation, cross-seed (s42/s43) comparison\", \"path\": \"projects/faith-evidence-ie/artifacts/_project/report/analysis.md\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-23T16:57:20.956110+00:00\", \"tags\": [\"14b\", \"rsft\", \"s43\", \"evidence-tax\", \"test-eval\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**14B s43 evidence tax = +0.08pp**（with_evi 0.3767 vs no_evi 0.3775）\n\n**14B 2-seed 汇总：**\n- s42: +0.77pp, s43: +0.08pp\n- Mean: **+0.43 ± 0.49pp**\n- 方向一致（no-evi 略优），但幅度极小，evidence 输出对 RE 性能的负面影响可忽略\n\n两个实验均 conclusion=success。报告已写入 `artifacts/test_eval_14b_rsft_s43_pair/analysis.md`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "uuid": "848267dd-48d2-482c-908d-cc46c29ddb65",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LLqcbYjCWVPSBuS5qiH3ZR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 569,
+                "cache_read_input_tokens": 39772,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 569
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**14B s43 evidence tax = +0.08pp**（with_evi 0.3767 vs no_evi 0.3775）\n\n**14B 2-seed 汇总：**\n- s42: +0.77pp, s43: +0.08pp\n- Mean: **+0.43 ± 0.49pp**\n- 方向一致（no-evi 略优），但幅度极小，evidence 输出对 RE 性能的负面影响可忽略\n\n两个实验均 conclusion=success。报告已写入 `artifacts/test_eval_14b_rsft_s43_pair/analysis.md`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 98841,
+            "duration_api_ms": 97671,
+            "num_turns": 15,
+            "stop_reason": "end_turn",
+            "session_id": "e0cfb7be-bf2a-46d0-9fcc-ac7d00081adb",
+            "total_cost_usd": 0.4538005,
+            "usage": {
+              "input_tokens": 16,
+              "cache_creation_input_tokens": 28500,
+              "cache_read_input_tokens": 318415,
+              "output_tokens": 4573,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 28500,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 184,
+                  "cache_read_input_tokens": 39772,
+                  "cache_creation_input_tokens": 569,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 569
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1948,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002063,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 16,
+                "outputTokens": 4573,
+                "cacheReadInputTokens": 318415,
+                "cacheCreationInputTokens": 28500,
+                "webSearchRequests": 0,
+                "costUSD": 0.4517375,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "361de8d2-f7b1-49e4-bb40-686a2467e984"
+          },
+          "id": "event-000040"
+        }
+      ],
+      "message_count": 40
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-14b-rsft-s43-test-eval-pair.md"
+}

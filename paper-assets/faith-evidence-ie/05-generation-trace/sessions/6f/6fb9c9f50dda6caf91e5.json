@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fb9c9f50dda6caf91e5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d102 eval results all",
+  "task_key": "worker_analysis_d102_eval_results_all_20260518T090810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102_eval_results_all_20260518T090810_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "2be982d1ef2f20b1b1ef02d5f5d94c0e203dfbdaac562839c209318540e989cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 D102 k=1 eval **全部仍在运行**，尚无 metrics.json。\n\n当前进度：\n\n| 模型 | GPU | 进度 | 预计剩余 |\n|------|-----|------|----------|\n| 1.7B k=1 s42 | cuda:2 | 139/247 (56%) | ~1h |\n| 8B k=1 s42 | cuda:0 | 53/247 (21%) | ~2.5h |\n| 8B k=1 s43 | cuda:1 | 51/247 (21%) | ~2.5h |\n| LLaMA k=1 s42 | cuda:3 | 70/247 (28%) | ~2h |\n\n系统状态：\n- **磁盘**: 103G/250G used (41%)\n- **GPU 显存**: GPU0 18.9G, GPU1 18.7G, GPU2 5.5G, GPU3 18.4G\n\n1.7B 最快完成（预计 ~18:10），8B 两个最慢（预计 ~19:00+）。需要等完成后再读 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-eval-results-all.md"
+}

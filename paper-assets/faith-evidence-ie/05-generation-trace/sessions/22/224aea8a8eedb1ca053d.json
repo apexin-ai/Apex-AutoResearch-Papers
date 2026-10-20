@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "224aea8a8eedb1ca053d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu_status_check_20260519T165157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_20260519T165157_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "8caec77d9177fd14faefaf4c199b9eff955a2ee0886ff5281d74df2a345d4fc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总\n\n| GPU | 显存占用 | 利用率 | 实验 | 状态 | 详情 |\n|-----|---------|--------|------|------|------|\n| **cuda:0** | 18943/32607 MiB | 62% | 8B RSFT no-evidence eval r2 (PID 698772) | **RUNNING** | 228/247 batches (~92%), 运行 ~2h57m |\n| **cuda:1** | 10887/32607 MiB | 48% | d112 no-evidence eval r3 (PID 706326) | **RUNNING** | 108/247 batches (~44%), 运行 ~1h05m |\n| **cuda:2** | 0/32607 MiB | 0% | D112 bf16 eval (PID 693535) | **COMPLETED** | 进程已退出，EXIT_CODE=0 |\n| **cuda:3** | 6635/32607 MiB | 48% | 1.7B no-evidence eval 2048 (PID 702837) | **RUNNING** | 93/247 batches (~38%), 运行 ~2h02m |\n\n### D112 bf16 eval 结果 (COMPLETED)\n\n```\nF1:              0.5274\nIgn-F1:          0.5152\nEvi-F1(DREEAM):  0.4277\nEvi-F1(TP):      0.8175\nEDCR:            0.5987\nFormat OK:       984/985 (99.9%)\nTruncated:       182/985\nPredictions:     15050\n```\n\n### 预计剩余时间\n\n- **8B no-evidence (cuda:0)**: ~19 batches 剩余，约 15-16 分钟完成\n- **d112 no-evidence (cuda:1)**: ~139 batches 剩余，约 1h30m-1h40m\n- **1.7B 2048 (cuda:3)**: ~154 batches 剩余，约 3h20m（~80s/batch，速度较慢）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-copy-2.md"
+}

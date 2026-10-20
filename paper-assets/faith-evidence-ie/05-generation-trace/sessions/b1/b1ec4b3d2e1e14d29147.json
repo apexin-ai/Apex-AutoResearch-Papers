@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "b1ec4b3d2e1e14d29147",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "diagnose cron false failure root cause",
+  "task_key": "worker_diagnose_cron-false-failure-root-cause_20260522T023419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cron-false-failure-root-cause_20260522T023419.log",
+    "occurrence": 1,
+    "bytes": 647129,
+    "sha256": "6edc66cec4a2905f01eeeb756881c9a2f02bbadf7f62b71d2ed502c9032b1ad3"
+  },
+  "statistics": {
+    "messages": 199,
+    "user_turns": 2,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 67,
+      "tool_result": 67,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "b1ec4b3d2e1e14d29147-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 99,
+      "chunks": [
+        {
+          "path": "b1ec4b3d2e1e14d29147-part-0001.json",
+          "message_count": 99
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 82,
+      "chunks": [
+        {
+          "path": "b1ec4b3d2e1e14d29147-part-0001.json",
+          "message_count": 63
+        },
+        {
+          "path": "b1ec4b3d2e1e14d29147-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-cron-false-failure-root-cause.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a30ee5e422479315747a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code d112 rsft pipeline from sft s44",
+  "task_key": "worker_code_d112_rsft_pipeline_from_sft_s44_20260518T225112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d112_rsft_pipeline_from_sft_s44_20260518T225112_result.json",
+    "occurrence": 1,
+    "bytes": 1081,
+    "sha256": "90512b112ad10fb46d0049b3709f0985d26b7eee0ee1bd699476182040396081"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D112 pipeline 准备完成。\n\n**已创建 4 个脚本** (`/root/autodl-tmp/scripts/d112/`):\n\n| 步骤 | 脚本 | GPU | 预估时间 |\n|------|------|-----|----------|\n| Step 1 | `step1_generate_candidates.sh` | 4 GPU 并行 | ~3-4h |\n| Step 2 | `step2_ced_score.sh` | 1 GPU | ~30-60 min |\n| Step 3 | `step3_k1_filter_and_train.sh` | 1 GPU | ~1.5-2h |\n| Step 4 | `step4_eval.sh` | 1 GPU | ~20-30 min |\n\n**参数来源**: 完全复用 canonical s42 RSFT pipeline 的超参（从 `rsft_gen_shard0.sh` 和 `rsft_scored_s0/rsft_report.json` 提取），仅替换 SFT adapter 为 `sft_output_seed44`。\n\n**关键设计**:\n- Step 1 支持 `GPU=X SHARD=Y` 环境变量做 4-GPU 并行 sharding\n- Step 2 的 `load_generations` 自动合并 `shard_*/generations.jsonl`\n- Step 4 的 eval 正确处理双 adapter 加载链（base → merge SFT s44 → load RSFT）\n- 所有脚本 `bash -n` 语法检查通过，所有依赖路径已验证存在\n\n**总预估**: 4-GPU 并行全流程 ~6.5-7.5h。Pipeline plan 已保存至 `artifacts/d112_pipeline_plan.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d112-rsft-pipeline-from-sft-s44.md"
+}

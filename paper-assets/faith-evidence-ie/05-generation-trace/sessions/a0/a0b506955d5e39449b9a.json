@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0b506955d5e39449b9a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose all running experiments r2",
+  "task_key": "worker_diagnose_all-running-experiments-r2_20260521T232506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_all-running-experiments-r2_20260521T232506_result.json",
+    "occurrence": 1,
+    "bytes": 1836,
+    "sha256": "c97adc087a65eeca42fa9f909716a1e52de73c819cd29df962fef2d4a49d309a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器诊断 rtx5090-4x — 2026-05-22\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 53% | 6,071 / 97,887 MiB |\n| 1 | 91% | 32,503 / 97,887 MiB |\n| 2 | 99% | 94,453 / 97,887 MiB |\n| 3 | 91% | 32,503 / 97,887 MiB |\n\n### 实验状态\n| exp_id | GPU | PID | 运行时间 | 实际状态 | 进度 | ETA |\n|--------|-----|-----|----------|----------|------|-----|\n| retrain_4b_rsft_ced_s42_v2 | cuda:2 | 142867 | 11min | **RUNNING** | 143/510 (28%) | ~28min |\n| test_eval_14b_sft_s42 | cuda:1 | 125321 | 4h53m | **RUNNING** | 427/500 (85%) | ~63min |\n| test_eval_1_7b_sft_s42 | cuda:0 | 140534 | 35min | **RUNNING** | 未知（无日志） | 未知 |\n| test_eval_14b_sft_s42_no_evi | cuda:3 | 143161 | 11min | **RUNNING** | 16/500 (3%) | ~3.8h |\n\n### 详情\n\n**retrain_4b_rsft_ced_s42_v2** — 训练正常进行中。已保存 checkpoint-50 和 checkpoint-100（adapter_model.safetensors 528MB）。最新日志 step 100 指标：loss=0.629, token_accuracy=0.854, lr=1.98e-5。总 510 步（3 epochs），当前 ~4.5s/step。\n\n**test_eval_14b_sft_s42** — 推理 427/500，约 45-52s/doc。输出目录仅有 log.txt（34KB），尚无 metrics.json（应在全部完成后写入）。\n\n**test_eval_1_7b_sft_s42** — 进程存活，GPU 0 显存 6GB 符合 1.7B 模型。但输出目录为空且无日志文件重定向（命令未用 nohup 包装），无法判断进度。\n\n**test_eval_14b_sft_s42_no_evi** — 刚启动 11 分钟，模型加载完毕，推理 16/500，~28-35s/doc。已确认传了 `--no_evidence` 参数。\n\n### 异常\n- **1.7B eval 无可观测性**：PID 140534 未重定向日志，输出目录空，无法判断是否正常推理中。建议等待或检查 stdout 输出。\n- 无已完成实验，4 个全部仍在运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-all-running-experiments-r2.md"
+}

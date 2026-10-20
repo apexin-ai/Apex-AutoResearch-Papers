@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b70abd8d60432fa6bbe7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix mvp2 grpo ced",
+  "task_key": "worker_fix_mvp2_grpo_ced_20260514T075819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_mvp2_grpo_ced_20260514T075819_result.json",
+    "occurrence": 1,
+    "bytes": 763,
+    "sha256": "27caaef03f59eac031fa20c41eac1cb3c9853f68bb9daa1a52a55f4e8bc9762e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。\n\n## 修复摘要\n\n**文件**: `/root/autodl-tmp/freige/training/grpo_trainer.py`\n\n**改动 6 行**，2 处位置：\n\n| 行号 | 函数 | 修复 |\n|------|------|------|\n| 98-100 | `f1_reward_fn` gold_set 构造 | `g.get(\"head\", \"\").lower()` → `str(g.get(\"head\") or \"\").lower()` |\n| 199-201 | `CEDRewardWrapper.__call__` gold_map 构造 | 同上 |\n\n**根因**：`dict.get(key, default)` 在 key 存在但值为 `None` 时返回 `None` 而非 default。`or \"\"` 确保 `None` 被降级为空字符串，`str()` 兜底非字符串类型。\n\n**未改动**：`pred_set` 构造和 `verbalize` 调用已使用安全模式 `str(p.get(...) or \"\")`，`format_reward_fn` 不调用 `.lower()`——均无需修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-mvp2-grpo-ced.md"
+}

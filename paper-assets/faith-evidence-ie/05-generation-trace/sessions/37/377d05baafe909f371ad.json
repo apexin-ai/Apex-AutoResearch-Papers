@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "377d05baafe909f371ad",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh read ckpt40 results",
+  "task_key": "worker_ssh_read-ckpt40-results_20260514T230943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_read-ckpt40-results_20260514T230943_result.json",
+    "occurrence": 1,
+    "bytes": 1234,
+    "sha256": "e97be92b4573b312108cf5bca7e1ef12c17e2c5cb2550a1ac261e65b4c550584"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## ckpt-40 Eval 结果\n\n**进程状态**: 已完成，cuda:2 已释放 (0 MiB, 0% util)\n\n**结果文件**: `/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics.json`\n\n### 关键指标\n\n| 指标 | 值 |\n|------|-----|\n| **rel_f1 (ign_f1)** | **0.71%** |\n| precision | 0.66% |\n| recall | 0.78% |\n| **evi_f1** | **75.84%** |\n| evi_precision | 91.13% |\n| evi_recall | 64.94% |\n| **edcr** | **99.42%** |\n| **format_ok_rate** | **99.39%** |\n| pred_count | 14,434 |\n| gold_count | 12,151 |\n| tp | 95 |\n| n_truncated | 424 |\n| field_compliance_rate | 56.75% |\n| 推理耗时 | 6152s (~102min) |\n\n### 问题分析\n\nrel_f1 极低 (0.71%)，而 pred_count (14,434) 与 gold_count (12,151) 量级接近，说明模型生成了大量预测但几乎全部不正确（tp 仅 95）。evi_f1 = 75.84% 表明证据抽取能力尚可，但关系分类严重崩坏。field_compliance_rate 仅 56.75%，有 424 条被截断，说明输出格式也有问题。\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 13,645 MiB | 47% |\n| 1 | 9,719 MiB | 66% |\n| **2** | **0 MiB** | **0%** |\n| 3 | 9,713 MiB | 73% |\n\ncuda:2 空闲，可用于下一个 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-read-ckpt40-results.md"
+}

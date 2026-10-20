@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "id": "1d8797888c1a2fbabf49",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 016 llama sft eval",
+  "task_key": "worker_analysis_plan_016_llama_sft_eval_20260516T141254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_016_llama_sft_eval_20260516T141254_result.json",
+    "occurrence": 1,
+    "bytes": 3842,
+    "sha256": "d0f78f107db952d363bf8c0332db35fb56b2734882dcd0548e2a0fa274b32e96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"experiment\": \"plan_016_llama_3_1_8b_sft_eval\",\n  \"model\": \"Meta-Llama-3.1-8B + SFT adapter\",\n  \"mode\": \"with-evidence\",\n  \"split\": \"dev\",\n\n  \"core_metrics\": {\n    \"f1\": 0.5514,\n    \"ign_f1\": 0.5384,\n    \"evi_f1\": 0.8151,\n    \"evi_f1_joint\": 0.4317,\n    \"edcr\": 0.6280\n  },\n\n  \"precision_recall\": {\n    \"precision\": 0.5464,\n    \"recall\": 0.5565,\n    \"ign_precision\": 0.5239,\n    \"ign_recall\": 0.5537,\n    \"evi_precision\": 0.7799,\n    \"evi_recall\": 0.8537\n  },\n\n  \"format_quality\": {\n    \"format_compliance_rate\": 0.9949,\n    \"field_compliance_rate\": 0.7980,\n    \"evidence_format_rate\": 0.7980,\n    \"n_parseable\": 980,\n    \"n_field_complete\": 786,\n    \"n_format_ok\": 980\n  },\n\n  \"volume\": {\n    \"n_documents\": 985,\n    \"n_total\": 985,\n    \"n_predictions\": 15325,\n    \"n_truncated\": 197,\n    \"truncation_rate\": \"20.0%\"\n  },\n\n  \"performance\": {\n    \"inference_time_seconds\": 7331.3,\n    \"seconds_per_doc\": 7.44,\n    \"batch_size\": 4,\n    \"max_new_tokens\": 1024\n  },\n\n  \"comparison_vs_no_evidence\": {\n    \"no_evidence_ign_f1\": 0.5452,\n    \"with_evidence_ign_f1\": 0.5384,\n    \"no_evidence_rel_f1\": 0.5624,\n    \"with_evidence_rel_f1\": 0.5514,\n    \"evidence_tax_ign_f1\": 0.0068,\n    \"evidence_tax_rel_f1\": 0.0110\n  },\n\n  \"config\": {\n    \"model_path\": \"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\",\n    \"sft_adapter\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\",\n    \"no_evidence\": false,\n    \"quantize\": false,\n    \"seed\": 42\n  }\n}\n```\n\n**关键发现：**\n\n- **Evidence tax 很小**：rel_f1 仅下降 1.1%（0.5624→0.5514），ign_f1 下降 0.68%（0.5452→0.5384）。模型在输出 evidence 的同时几乎没有牺牲关系抽取性能。\n- **Evidence 质量高**：evi_f1=0.8151，证据召回 85.4%。\n- **截断问题显著**：197/985 (20%) 被截断，field_compliance 仅 79.8%（受截断影响，很多样本 evidence 字段不完整）。提高 max_new_tokens 可能进一步改善 evi_f1 和 field_compliance。\n- **EDCR=0.628**：约 63% 的 citation 是 distractor，说明模型还在引用大量无关证据句。\n- **无 W&B run ID**（日志中未出现）。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "experiment": "plan_016_llama_3_1_8b_sft_eval",
+              "model": "Meta-Llama-3.1-8B + SFT adapter",
+              "mode": "with-evidence",
+              "split": "dev",
+              "core_metrics": {
+                "f1": 0.5514,
+                "ign_f1": 0.5384,
+                "evi_f1": 0.8151,
+                "evi_f1_joint": 0.4317,
+                "edcr": 0.628
+              },
+              "precision_recall": {
+                "precision": 0.5464,
+                "recall": 0.5565,
+                "ign_precision": 0.5239,
+                "ign_recall": 0.5537,
+                "evi_precision": 0.7799,
+                "evi_recall": 0.8537
+              },
+              "format_quality": {
+                "format_compliance_rate": 0.9949,
+                "field_compliance_rate": 0.798,
+                "evidence_format_rate": 0.798,
+                "n_parseable": 980,
+                "n_field_complete": 786,
+                "n_format_ok": 980
+              },
+              "volume": {
+                "n_documents": 985,
+                "n_total": 985,
+                "n_predictions": 15325,
+                "n_truncated": 197,
+                "truncation_rate": "20.0%"
+              },
+              "performance": {
+                "inference_time_seconds": 7331.3,
+                "seconds_per_doc": 7.44,
+                "batch_size": 4,
+                "max_new_tokens": 1024
+              },
+              "comparison_vs_no_evidence": {
+                "no_evidence_ign_f1": 0.5452,
+                "with_evidence_ign_f1": 0.5384,
+                "no_evidence_rel_f1": 0.5624,
+                "with_evidence_rel_f1": 0.5514,
+                "evidence_tax_ign_f1": 0.0068,
+                "evidence_tax_rel_f1": 0.011
+              },
+              "config": {
+                "model_path": "/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B",
+                "sft_adapter": "/root/autodl-tmp/sft_output_llama_3_1_8b",
+                "no_evidence": false,
+                "quantize": false,
+                "seed": 42
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-016-llama-sft-eval.md"
+}

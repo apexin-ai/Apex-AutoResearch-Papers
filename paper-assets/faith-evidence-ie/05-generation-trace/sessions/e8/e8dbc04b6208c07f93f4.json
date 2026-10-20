@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8dbc04b6208c07f93f4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops kill cuda2 submit llama r3",
+  "task_key": "worker_ops_kill_cuda2_submit_llama_r3_20260517T032731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_cuda2_submit_llama_r3_20260517T032731_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "80b2eb92e370efd2d8dda9dc99fbfa33319689b0700141e1d71e7391476a01de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**总结：**\n- 死进程 405397 已清理（实际已不存在）\n- 第一次提交因 `rsft_data_path` 指向目录而非文件失败，残留进程 408764 占满 cuda:2 导致第二次 OOM\n- 已 kill 残留进程，第三次提交成功\n- **PID 409565** 在 cuda:2 上运行，占用 17883MiB，训练已开始（0/3312 steps）\n- 配置：bf16 + gradient_checkpointing（代码内硬编码） + batch_size=1 × grad_accum=8 = effective_batch=8\n- Registry 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-cuda2-submit-llama-r3.md"
+}

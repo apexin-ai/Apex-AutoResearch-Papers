@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a27faf2c8ad30338533e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check 1 7b ced scoring",
+  "task_key": "worker_ops_check_1_7b_ced_scoring_20260517T013800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_1_7b_ced_scoring_20260517T013800_result.json",
+    "occurrence": 1,
+    "bytes": 763,
+    "sha256": "0c196e074e5740e9161b654de3df6ac2ac73b31215f16b96105d142e863dafe7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**任务仍在运行中，尚未完成。**\n\n状态摘要：\n- **进度**: 8500/24216 records scored (~35%)，最后一条日志 09:38:08\n- **速率**: 约 500 records / 2.5 min，预计剩余 ~79 min（约 10:57 完成）\n- **进程**: PID 395619，正常运行，CPU 109%\n\n**GPU 使用情况**:\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|----------|--------|------|\n| cuda:0 | 12332/32607 MiB | 87% | CED scoring (PID 395619) + 另一进程 (PID 396338) |\n| cuda:1 | 11119/32607 MiB | 53% | 占用 (PID 390436) |\n| cuda:2 | 0/32607 MiB | 0% | **空闲** |\n| cuda:3 | 28067/32607 MiB | 72% | 占用 (PID 349387) |\n\n只有 **cuda:2 完全空闲**，其余均被占用。\n\n不更新 registry，等任务完成后再处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-1-7b-ced-scoring.md"
+}

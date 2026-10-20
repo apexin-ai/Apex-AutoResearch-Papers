@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5783cbf593a66de73fd4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops eval pipeline readiness",
+  "task_key": "worker_ops_eval-pipeline-readiness_20260514T170347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-pipeline-readiness_20260514T170347_result.json",
+    "occurrence": 1,
+    "bytes": 3498,
+    "sha256": "a5ced465ac638e6db3496073e02c375c44619b66396c9127b3a4b1bf4c85f762"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。\n\n## Eval Pipeline 就绪性报告\n\n### 脚本状态\n- `batch_eval.py`: ✅ 存在 (6378 bytes, 2025-05-14 23:56)\n- `find_best_checkpoint.py`: ✅ 存在 (5239 bytes, 2025-05-14 23:57)\n\n### batch_eval.py 参数\n| 参数 | 必需 | 默认值 |\n|------|------|--------|\n| `--exp_dir` | ✅ | - |\n| `--sft_adapter` | ✅ | - |\n| `--output_dir` | ✅ | - |\n| `--base_model` | | `/root/autodl-tmp/models/Qwen3-4B` |\n| `--data_path` | | `/root/autodl-tmp/data/docred` |\n| `--split` | | `dev` |\n| `--batch_size` | | `16` |\n| `--max_new_tokens` | | `1024` |\n| `--quantize` | | `True` |\n| `--resume` | | 跳过已有 metrics.json 的 checkpoint |\n| `--checkpoints` | | 指定 step，逗号分隔 |\n\n### Checkpoint 状态\n| 实验 | 状态 | Checkpoints |\n|------|------|-------------|\n| ced_kl001 | 6 checkpoints | 10, 20, 30, 40, 50, 60 |\n| extract_r4 | ❌ 目录空 | 训练尚未产出 checkpoint |\n| flatnli_r5 | ❌ 目录空 | 训练尚未产出 checkpoint |\n\n### SFT Baseline\n- ✅ `/root/autodl-tmp/sft_eval_r3_results/` 存在 (metrics.json, predictions.json)\n- SFT adapter: `/root/autodl-tmp/sft_output`\n\n### 预备 Eval 命令\n\n**ced_kl001 — 可立即执行：**\n\n```bash\n# 找 best checkpoint\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/freige\npython -m freige.eval.find_best_checkpoint --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sort_by total_reward --top_k 5\n\n# best checkpoint eval（将 BEST_STEP 替换为上面输出的 step）\npython -m freige.eval.batch_eval \\\n    --exp_dir /root/autodl-tmp/grpo_ced_kl001 \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 \\\n    --checkpoints BEST_STEP \\\n    --quantize\n\n# last checkpoint eval\npython -m freige.eval.batch_eval \\\n    --exp_dir /root/autodl-tmp/grpo_ced_kl001 \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 \\\n    --checkpoints 60 \\\n    --quantize\n```\n\n**extract_r4 — 等待 checkpoint 产出后执行：**\n\n```bash\npython -m freige.eval.find_best_checkpoint --exp_dir /root/autodl-tmp/grpo_extract_r4 --sort_by total_reward --top_k 5\n\npython -m freige.eval.batch_eval \\\n    --exp_dir /root/autodl-tmp/grpo_extract_r4 \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --output_dir /root/autodl-tmp/eval_results/grpo_extract_r4 \\\n    --checkpoints BEST_STEP,LAST_STEP \\\n    --quantize\n```\n\n**flatnli_r5 — 等待 checkpoint 产出后执行：**\n\n```bash\npython -m freige.eval.find_best_checkpoint --exp_dir /root/autodl-tmp/grpo_flatnli_r5 --sort_by total_reward --top_k 5\n\npython -m freige.eval.batch_eval \\\n    --exp_dir /root/autodl-tmp/grpo_flatnli_r5 \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --output_dir /root/autodl-tmp/eval_results/grpo_flatnli_r5 \\\n    --checkpoints BEST_STEP,LAST_STEP \\\n    --quantize\n```\n\n### 注意事项\n\n1. **extract_r4 和 flatnli_r5 目录已创建但为空**——训练可能刚启动或尚未保存第一个 checkpoint，需确认训练进程是否在运行\n2. **ced_kl001 已有 60 step**，`trainer_state.json` 存在于 checkpoint-60，`find_best_checkpoint` 可直接使用\n3. **如果 best == last (step 60)**，只需跑一次 eval，不用重复\n4. `batch_eval.py` 的 `--resume` 参数可跳过已评测的 checkpoint，适合中断后继续"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-pipeline-readiness.md"
+}

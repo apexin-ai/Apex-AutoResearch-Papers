@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19a758b2b056ef1b3f62",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops comprehensive eval status",
+  "task_key": "worker_ops_comprehensive_eval_status_20260516T123535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_comprehensive_eval_status_20260516T123535_result.json",
+    "occurrence": 1,
+    "bytes": 1659,
+    "sha256": "7c350601f97f629fde4ae9003f0095967d28f77407131fc776ac02ab4235b8a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 0 / 32607 MiB | 0% | **空闲** |\n| 1 | 23292 / 32607 MiB | 89% | 2个进程 (PID 337844 + 340116) |\n| 2 | 18475 / 32607 MiB | 66% | 1个进程 (PID 335357) |\n| 3 | 17883 / 32607 MiB | 62% | 1个进程 (PID 339692) |\n\n### 各 Eval 状态\n\n| # | 实验 | GPU | 状态 | 进度 | 预计剩余 |\n|---|------|-----|------|------|---------|\n| 1 | plan_006_qwen3_1_7b_no_evidence_eval_v3 | cuda:1 (PID 337844) | **运行中** | 105/247 (43%) | ~71 min |\n| 2 | plan_006_qwen3_8b_no_evidence_eval_v2 | cuda:2 (PID 335357) | **运行中** | 186/247 (75%) | ~28 min |\n| 3 | plan_016_llama_3_1_8b_no_evidence_eval | cuda:3 (PID 339692) | **运行中** | 93/247 (38%) | ~51 min |\n| 4 | plan_016_llama_3_1_8b_sft_eval | cuda:1 (PID 340116) | **运行中** | 52/247 (21%) | ~110 min |\n| 5 | plan_007_redocred_4b_sft_eval | — | **失败** | — | — |\n\n### 失败详情\n\n**plan_007_redocred_4b_sft_eval**: `HFValidationError` — tokenizer 加载时把本地路径 `/root/autodl-tmp/models/Qwen/Qwen3-4B` 当成 HuggingFace repo id 校验，导致报错。可能是 `huggingface_hub` 版本升级后对本地路径的处理变了，需要在 `from_pretrained` 调用时确保传入的是合法本地路径格式（或设置 `local_files_only=True`）。\n\n### 备注\n- 所有运行中的 eval 尚未产出 metrics（结果目录为空，推理阶段尚未完成）\n- GPU 0 完全空闲，可用于重跑 redocred eval\n- cuda:1 上同时跑了 1.7B (5.4GB) 和 llama-8B (17.9GB)，合计 23.3GB / 32.6GB，利用率 89%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-comprehensive-eval-status.md"
+}

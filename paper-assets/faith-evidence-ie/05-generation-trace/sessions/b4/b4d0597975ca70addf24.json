@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4d0597975ca70addf24",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp d158 14b rsft s44 no evi evals",
+  "task_key": "worker_exp_d158_14b_rsft_s44_no_evi_evals_20260525T105215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_d158_14b_rsft_s44_no_evi_evals_20260525T105215_result.json",
+    "occurrence": 1,
+    "bytes": 352,
+    "sha256": "fbccd0f6c9061c03b35b9b3b7df5b378d31ec8dea43391020d2c4b936299b3d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 已提交：\n\n| 实验 | GPU | PID | tmux session |\n|------|-----|-----|-------------|\n| d158_14b_rsft_s44_dev_no_evi | cuda:2 | 371138 | d158_14b_rsft_s44_dev_no_evi |\n| d158_14b_rsft_s44_test_no_evi | cuda:3 | 371282 | d158_14b_rsft_s44_test_no_evi |\n\n`--no_evidence` 已传入（C005）。cron 监控自动注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d158-14b-rsft-s44-no-evi-evals.md"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "1dc38746c6676cce9a60",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "research qualitative case study",
+  "task_key": "worker_research_qualitative_case_study_20260518T034656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_qualitative_case_study_20260518T034656.log",
+    "occurrence": 1,
+    "bytes": 869592,
+    "sha256": "034330f856e305854ed367794ae87a4dbdfa7350ada49a469d7bb07efdbe7289"
+  },
+  "statistics": {
+    "messages": 611,
+    "user_turns": 0,
+    "tool_calls": 267,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 267,
+      "tool_result": 267,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 611,
+      "chunks": [
+        {
+          "path": "1dc38746c6676cce9a60-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1dc38746c6676cce9a60-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1dc38746c6676cce9a60-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1dc38746c6676cce9a60-part-0004.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-qualitative-case-study.md"
+}

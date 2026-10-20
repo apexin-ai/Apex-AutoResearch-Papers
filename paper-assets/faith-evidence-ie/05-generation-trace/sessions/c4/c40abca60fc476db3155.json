@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c40abca60fc476db3155",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research prep next eval batch",
+  "task_key": "worker_research_prep_next_eval_batch_20260516T001834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_prep_next_eval_batch_20260516T001834_result.json",
+    "occurrence": 1,
+    "bytes": 2854,
+    "sha256": "fc5a3b7910624bb4e3bc94fc52e424e9ef2b9d8973714a78028fc470d5e3fb59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。汇总如下：\n\n---\n\n## 训练进度\n\n| Seed | Step | ETA | Output Dir |\n|------|------|-----|------------|\n| s43 | 87/510 (17%) | ~44 min | `/root/autodl-tmp/rsft_output_ced_s43/` |\n| s45 | 18/510 (4%) | ~50 min | `/root/autodl-tmp/rsft_output_ced_s45/` |\n\n训练 max_steps=510, save_steps=50, save_total_limit=5。完成后 final adapter 在根目录（如 s44 的 `rsft_output_s44/`）。\n\n## GPU 状态\n\n| GPU | Used/Total | 状态 |\n|-----|-----------|------|\n| 0 | 10855/32607 MiB | 训练占用 |\n| 1 | **0/32607 MiB** | **空闲，可用于 eval** |\n| 2 | 31631/32607 MiB | 重度占用 |\n| 3 | 10859/32607 MiB | 训练占用 |\n\n## CED Eval 命令模板\n\n基于 s44 成功 eval 的配置（`batch_size=8`, `--seed 42`, `--no-quantize`, final adapter 非特定 checkpoint）：\n\n**s43:**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && \\\nCUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 \\\npython -m freige.eval.inference \\\n  --model_path /root/autodl-tmp/rsft_output_ced_s43 \\\n  --base_model /root/autodl-tmp/models/Qwen3-4B \\\n  --sft_adapter /root/autodl-tmp/sft_output \\\n  --data_path /root/autodl-tmp/data/docred \\\n  --split dev --batch_size 8 --max_new_tokens 1024 --seed 42 \\\n  --output_dir /root/autodl-tmp/eval_results/rsft_ced_s43 \\\n  --no-quantize\n```\n\n**s45:** 同上，将 `ced_s43` 替换为 `ced_s45`。\n\n## seed_comparison.py 状态\n\n脚本存在于 `/root/autodl-tmp/scripts/seed_comparison.py`，已包含 s45 slot。但当前 METHODS 映射：\n\n```python\n\"CED_RSFT\": {\n    \"s42\": \"rsft_r2b\",\n    \"s43\": \"rsft_s43\",      # 旧训练 rsft_output_s43 的 eval\n    \"s44\": \"rsft_s44\",\n    \"s45\": \"rsft_s45\",      # 不存在\n}\n```\n\n**需要决策：** 新 eval 结果目录用 `rsft_ced_s43` / `rsft_ced_s45`（需更新脚本映射），还是覆盖到 `rsft_s43` / `rsft_s45`（脚本无需改，但会覆盖旧 s43 eval）？\n\n考虑到旧 `rsft_output_s43` 和新 `rsft_output_ced_s43` 是不同训练 run，建议用 `rsft_ced_s43` / `rsft_ced_s45` 命名并更新脚本：\n\n```python\n\"CED_RSFT\": {\n    \"s42\": \"rsft_r2b\",\n    \"s43\": [\"rsft_ced_s43\", \"rsft_s43\"],  # 优先新 eval\n    \"s44\": \"rsft_s44\",\n    \"s45\": \"rsft_ced_s45\",\n}\n```\n\n## 发现的问题\n\n1. **旧 s43 eval 是基于 `rsft_output_s43`（旧训练 run），新训练输出在 `rsft_output_ced_s43`** — 命名不同，需明确 eval 结果放哪\n2. **GPU 1 当前空闲**，但训练完成后 GPU 0/3 会释放，届时需重新 `nvidia-smi` 确认（C001 约束）\n3. **eval 耗时约 ~100 min/run**（s44 用了 6012s），两个 seed 串行需 ~3.3h，或者用两张 GPU 并行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-prep-next-eval-batch.md"
+}

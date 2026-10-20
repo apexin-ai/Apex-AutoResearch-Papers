@@ -1,0 +1,579 @@
+{
+  "schema_version": "1.0",
+  "id": "bb8d259e56737849edd1",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "eval test eval 8b rsft s43 with evi",
+  "task_key": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017.jsonl",
+    "occurrence": 1,
+    "bytes": 16527,
+    "sha256": "174641735fdac4f3865dc64e371f4fca79a49c6db56240e6f67f3c6d11aa637c"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T00:51:41.510346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T00:51:41.510787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T00:51:41.511029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__kill_job",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T00:51:41.511212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T00:51:41.511432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "test_eval_8b_rsft_s43_with_evi",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T00:51:41.511616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_with_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:50:42.882Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:50:42.882Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.823}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T00:51:41.511792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "test_eval_8b_rsft_s43_with_evi",
+              "field": "hypothesis",
+              "value": "8B RSFT k1 s43 with-evidence test eval on Re-DocRED test_revised (500 docs). Multi-seed rebuttal: 对比 s42 test ign_f1=0.3353，量化 seed variance。3-seed mean±std 支撑 variance compression claim。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T00:51:41.511972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "test_eval_8b_rsft_s43_with_evi",
+              "field": "parent",
+              "value": "test_eval_8b_rsft_s42",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T00:51:41.512163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_with_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:50:42.882Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:50:46.636Z\\\", \\\"hypothesis\\\": \\\"8B RSFT k1 s43 with-evidence test eval on Re-DocRED test_revised (500 docs). Multi-seed rebuttal: 对比 s42 test ign_f1=0.3353，量化 seed variance。3-seed mean±std 支撑 variance compression claim。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5262}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T00:51:41.512386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_with_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:50:42.882Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:50:48.166Z\\\", \\\"hypothesis\\\": \\\"8B RSFT k1 s43 with-evidence test eval on Re-DocRED test_revised (500 docs). Multi-seed rebuttal: 对比 s42 test ign_f1=0.3353，量化 seed variance。3-seed mean±std 支撑 variance compression claim。\\\", \\\"parent\\\": \\\"test_eval_8b_rsft_s42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5284}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T00:51:41.512582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43/adapter_config.json /root/autodl-tmp/models/Qwen/Qwen3-8B/config.json /root/autodl-tmp/sft_output_qwen3_8b_bf16/adapter_config.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T00:51:41.512756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T00:51:41.512951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  728 May 16 14:39 /root/autodl-tmp/models/Qwen/Qwen3-8B/config.json\\\\n-rw-r--r-- 1 root root 1117 May 18 16:11 /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43/adapter_config.json\\\\n-rw-r--r-- 1 root root 1117 May 16 16:55 /root/autodl-tmp/sft_output_qwen3_8b_bf16/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T00:51:41.513123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 97887 MiB\\\\n1, 32479 MiB, 97887 MiB\\\\n2, 0 MiB, 97887 MiB\\\\n3, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T00:51:41.513336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "bash -c \"CUDA_VISIBLE_DEVICES=0 nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi --batch_size 16 --seed 42' > /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi.log 2>&1 & echo \\$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T00:51:41.513526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"212762\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T00:51:41.513737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "test_eval_8b_rsft_s43_with_evi",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "faith-evidence-ie",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi --batch_size 16 --seed 42', 'server': 'rtx5090-4x', 'data_path': '/root/autodl-tmp/data/re-docred-repo/data', 'data_count': 500, 'model_name': 'Qwen3-8B + SFT + RSFT-k1-s43 (with-evidence)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43', 'eval_data': 'test_revised', 'pid': 212762, 'log_path': '/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi.log', 'gpu': 'cuda:0'}"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T00:51:41.513936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ps -p 212762 -o pid,cmd --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T00:51:41.514100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T00:51:41.514290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6782}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T00:51:41.514474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"212762 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi --batch_size 16 --seed 42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T00:51:41.514645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2754 May 23 08:51 /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T00:51:41.514832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "test_eval_8b_rsft_s43_with_evi",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T00:51:41.515026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_with_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:50:42.882Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:51:21.930Z\\\", \\\"hypothesis\\\": \\\"8B RSFT k1 s43 with-evidence test eval on Re-DocRED test_revised (500 docs). Multi-seed rebuttal: 对比 s42 test ign_f1=0.3353，量化 seed variance。3-seed mean±std 支撑 variance compression claim。\\\", \\\"parent\\\": \\\"test_eval_8b_rsft_s42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7612}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T00:51:41.515214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "test_eval_8b_rsft_s43_with_evi",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "faith-evidence-ie",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi --batch_size 16 --seed 42', 'server': 'rtx5090-4x', 'data_path': '/root/autodl-tmp/data/re-docred-repo/data', 'data_count': 500, 'model_name': 'Qwen3-8B + SFT + RSFT-k1-s43 (with-evidence)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43', 'eval_data': 'test_revised', 'pid': 212762, 'log_path': '/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi.log', 'gpu': 'cuda:0'}"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T00:51:41.515477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_with_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:50:42.882Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:51:32.693Z\\\", \\\"hypothesis\\\": \\\"8B RSFT k1 s43 with-evidence test eval on Re-DocRED test_revised (500 docs). Multi-seed rebuttal: 对比 s42 test ign_f1=0.3353，量化 seed variance。3-seed mean±std 支撑 variance compression claim。\\\", \\\"parent\\\": \\\"test_eval_8b_rsft_s42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi --batch_size 16 --seed 42\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-8B + SFT + RSFT-k1-s43 (with-evidence)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43\\\", \\\"eval_data\\\": \\\"test_revised\\\", \\\"pid\\\": 212762, \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi.log\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.1701}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T00:51:41.515738+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交完成。\n\n**摘要：**\n- **exp_id**: `test_eval_8b_rsft_s43_with_evi`\n- **PID**: 212762，进程运行中\n- **GPU**: cuda:0 (0 MiB → 已开始加载)\n- **日志**: `/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi.log`\n- **输出目录**: `/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi/`\n- **预估耗时**: ~45min"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_test_eval_8b_rsft_s43_with_evi_20260523T005017"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/eval-test-eval-8b-rsft-s43-with-evi.md"
+}

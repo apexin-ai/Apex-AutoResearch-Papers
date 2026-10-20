@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d700cbff7b64705e1f76",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research rsft candidate gen compat",
+  "task_key": "worker_research_rsft_candidate_gen_compat_20260516T124116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_rsft_candidate_gen_compat_20260516T124116_result.json",
+    "occurrence": 1,
+    "bytes": 2578,
+    "sha256": "d80c9fab9e3ca06eca9b9b450151228730656f978034c45d5a373a99b453db14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。汇报如下：\n\n---\n\n## rsft_generate.py 兼容性验证结果\n\n### CLI 参数\n\n| 参数 | 默认值 | 说明 |\n|------|--------|------|\n| `--base_model` | `/root/autodl-tmp/models/Qwen3-4B` | base model 路径 |\n| `--sft_adapter` | `/root/autodl-tmp/sft_output` | SFT adapter 路径 |\n| `--data_path` | None | DocRED 数据目录 |\n| `--split` | `train` | 数据集 split |\n| `--output_dir` | `/root/autodl-tmp/rsft_generations` | 输出目录 |\n| `--num_generations` | 8 | N=8 candidates |\n| `--temperature` | 0.7 | |\n| `--top_p` | 0.95 | |\n| `--batch_size` | 1 | |\n| `--max_new_tokens` | 1024 | |\n| `--seed` | 42 | |\n| `--quantize` | store_true | 4bit QLoRA 量化 |\n| `--start_idx` / `--end_idx` | 0 / -1 | 数据范围 |\n| `--shard_id` / `--num_shards` | 0 / 1 | 多卡分片 |\n| `--repetition_penalty` | 1.0 | |\n\n### _apply_chat_template 兼容性：✅ 已就绪\n\n- L43-47: `_apply_chat_template()` 已实现，正确处理 `enable_thinking` 参数兼容\n- L39: 已导入 `LLAMA3_CHAT_TEMPLATE`\n- L69-70: tokenizer 无 chat_template 时 fallback 到 `LLAMA3_CHAT_TEMPLATE`（LLaMA 兼容）\n\n### Adapter 目录存在性：✅ 全部存在\n\n**With-evidence:**\n- `sft_output/` — Qwen3-4B ✅\n- `sft_output_qwen3_1_7b_bf16/` — Qwen3-1.7B ✅\n- `sft_output_qwen3_8b_bf16/` — Qwen3-8B ✅\n- `sft_output_llama_3_1_8b/` — LLaMA-3.1-8B ✅\n\n**No-evidence:**\n- `sft_no_evidence_output/` — Qwen3-4B ✅\n- `sft_output_qwen3_1_7b_no_evidence/` — Qwen3-1.7B ✅\n- `sft_output_qwen3_8b_no_evidence/` — Qwen3-8B ✅\n- `sft_output_llama_3_1_8b_no_evidence/` — LLaMA-3.1-8B ✅\n\n**Base models:**\n- `/root/autodl-tmp/models/Qwen3-4B` ✅\n- `/root/autodl-tmp/models/Qwen/Qwen3-1.7B` ✅\n- `/root/autodl-tmp/models/Qwen/Qwen3-8B` ✅\n- `/root/autodl-tmp/models/Meta-Llama-3.1-8B` ✅\n\n### 需要额外适配的问题\n\n1. **❌ 缺少 `--no_evidence` 参数** — 脚本只有硬编码的 with-evidence `SYSTEM_PROMPT`，没有 `NO_EVIDENCE_SYSTEM_PROMPT` 切换逻辑。如果要为 no-evidence adapter 生成 RSFT candidates，必须添加此支持（参照 C005 约束）。\n\n2. **⚠️ `device_map=\"auto\"`（L73）** — 按 C002/C003 约束，运行时必须设 `CUDA_VISIBLE_DEVICES=X` 限制到单卡，否则模型会跨 GPU 分布。\n\n3. **base_model 路径不同** — 1.7B/8B 路径是 `/root/autodl-tmp/models/Qwen/Qwen3-{1.7B,8B}`，LLaMA 是 `/root/autodl-tmp/models/Meta-Llama-3.1-8B`，均需通过 `--base_model` 显式指定（默认值只适用于 4B）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-rsft-candidate-gen-compat.md"
+}

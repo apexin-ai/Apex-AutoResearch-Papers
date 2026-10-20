@@ -1,0 +1,927 @@
+{
+  "schema_version": "1.0",
+  "id": "72e3c0b885132dfea6a4",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "eval lr5e6 r1 ckpt20",
+  "task_key": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_lr5e6_r1_ckpt20_20260514T200650.jsonl",
+    "occurrence": 1,
+    "bytes": 26630,
+    "sha256": "b95ae322e44173dbe13e585ac7c1100f350a7cb4e411c5e80ab34104d1590427"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "tool_call": 22,
+      "tool_result": 22,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T20:09:24.485871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T20:09:24.486618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T20:09:24.486881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/grpo_ced_lr5e6/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T20:09:24.487039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 03:40 .\\\\ndrwxr-xr-x 33 root root 4096 May 15 04:04 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T20:09:24.487169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__fetch_wandb_metrics"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "tool_args": {
+              "run_id": "grpo-s3-ced-lr5e6-r1",
+              "metric_names": "['f1_reward', 'frac_zero_std', 'reward', 'train/global_step', 'kl', 'loss']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T20:09:24.487344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"W&B entity/project not configured. Set in config/projects/*.yaml\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T20:09:24.487590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ps -p 90080 -o pid,etime,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T20:09:24.487781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED CMD\\\\n 90080       27:18 bash -c rm -f /tmp/agent-ml-exit/mvp2_grpo_ced_lr5e6_r1.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/mvp2_grpo_ced_lr5e6_r1.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=0 && timeout 43200 env bash -c 'bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6 --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --wandb_run_name grpo-s3-ced-lr5e6-r1\\\\\\\"'; } > ~/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T20:09:24.487935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/grpo_ced_lr5e6",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T20:09:24.488313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 15 03:40 .\\\\ndrwxr-xr-x 33 root root 4096 May 15 04:04 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T20:09:24.488926+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -80 /root/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T20:09:24.489164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n2026-05-15 03:40:11,113 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 03:40:11,416 INFO Preparing dataset...\\\\n2026-05-15 03:40:11,595 INFO Loaded 3053 documents from /root/autodl-tmp/data/docred/train_annotated.json\\\\n2026-05-15 03:40:12,272 INFO Processed 38180 relation samples from 3053 documents (17312 samples without hard negatives)\\\\n2026-05-15 03:40:12,694 INFO Prepared 3027 GRPO prompts\\\\n2026-05-15 03:40:12,792 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 03:40:12,793 INFO Using 4-bit QLoRA quantization\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.92s/it]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.22s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.15s/it]\\\\n2026-05-15 03:40:19,514 INFO Loading SFT adapter from /root/autodl-tmp/sft_output\\\\n/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.p\n…[truncated 2098 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T20:09:24.489385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -E \"wandb|reward|f1_reward|frac_zero|loss|kl\" /root/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T20:09:24.489533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T20:09:24.489697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'mvp2_grpo_ced_lr5e6_r1'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T20:09:24.489998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1742}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T20:09:24.490169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -E \"wandb|reward|f1_reward|frac_zero|loss|kl\" /root/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T20:09:24.490323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T20:09:24.490443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep \"reward\" /root/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T20:09:24.490574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 03:40:33,871 INFO Stage 3: using ced reward, tau 0.30→0.50 over 190 steps\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T20:09:24.490785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep \"wandb\" /root/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T20:09:24.490958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T20:09:24.491119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -30 /root/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T20:09:24.491332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n2026-05-15 03:40:11,113 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 03:40:11,416 INFO Preparing dataset...\\\\n2026-05-15 03:40:11,595 INFO Loaded 3053 documents from /root/autodl-tmp/data/docred/train_annotated.json\\\\n2026-05-15 03:40:12,272 INFO Processed 38180 relation samples from 3053 documents (17312 samples without hard negatives)\\\\n2026-05-15 03:40:12,694 INFO Prepared 3027 GRPO prompts\\\\n2026-05-15 03:40:12,792 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 03:40:12,793 INFO Using 4-bit QLoRA quantization\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.92s/it]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.22s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.15s/it]\\\\n2026-05-15 03:40:19,514 INFO Loading SFT adapter from /root/autodl-tmp/sft_output\\\\n/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.p\n…[truncated 2098 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T20:09:24.491608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/projects/faith-evidence-ie/**/*.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T20:09:24.491745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T20:09:24.491911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/faith-evidence-ie*.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/config"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T20:09:24.492040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/config/projects/faith-evidence-ie.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T20:09:24.492157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/config/projects/faith-evidence-ie.yaml"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T20:09:24.492309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texecution:\n2\t  account: root\n3\t  gpu_ids:\n4\t  - 0\n5\t  - 1\n6\t  - 2\n7\t  - 3\n8\t  project_path: /root/autodl-tmp/freige\n9\t  servers:\n10\t  - rtx5090-4x\n11\t  - account: root\n12\t    server: bjb2-12179\n13\tfeishu:\n14\t  chat_id: oc_84537e1e2f9ef71a90742c2db859c6f2\n15\t  operational_chat_id: oc_14f1701558037f8ed8fe6fdc4e7df95b\n16\tproject:\n17\t  created_at: '2026-05-14T04:18:52.432Z'\n18\t  description: 'FREIGE: Faithfulness-Rewarded Evidence-Grounded Information Extraction\n19\t    via Contrastive Evidence Discrimination'\n20\t  name: faith-evidence-ie\n21\t  phase: mvp\n22\t  source_idea_id: idea_006\n23\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T20:09:24.492461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/freige -name \"*.py\" -path \"*grpo*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T20:09:24.492753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/training/grpo_trainer.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T20:09:24.492889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/freige/wandb_config.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T20:09:24.493013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/freige/wandb_config.txt: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T20:09:24.493134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep \"wandb\" /root/autodl-tmp/freige/training/grpo_trainer.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T20:09:24.493310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    parser.add_argument(\\\\\\\"--wandb_project\\\\\\\", type=str, default=\\\\\\\"freige-grpo\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--wandb_run_name\\\\\\\", type=str, default=None)\\\\n    if args.wandb_project and \\\\\\\"WANDB_API_KEY\\\\\\\" in os.environ:\\\\n        os.environ[\\\\\\\"WANDB_PROJECT\\\\\\\"] = args.wandb_project\\\\n        if args.wandb_run_name:\\\\n            os.environ[\\\\\\\"WANDB_NAME\\\\\\\"] = args.wandb_run_name\\\\n        report_to=\\\\\\\"wandb\\\\\\\" if \\\\\\\"WANDB_API_KEY\\\\\\\" in os.environ else \\\\\\\"none\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T20:09:24.493514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/grpo_ced_lr5e6 -name \"wandb*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T20:09:24.493840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T20:09:24.494145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp -maxdepth 2 -name \"wandb\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T20:09:24.494432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T20:09:24.495030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -5 /root/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T20:09:24.495215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 03:40:35,806 INFO Starting GRPO training (stage 3)...\\\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\\n\\\\r  0%|          | 0/200 [00:00<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed\\\\n\\\\r  0%|          | 1/200 [01:50<6:04:54, 110.02s/it]\\\\r  1%|          | 2/200 [03:42<6:06:59, 111.21s/it]\\\\r  2%|▏         | 3/200 [05:32<6:04:33, 111.03s/it]\\\\r  2%|▏         | 4/200 [07:24<6:03:29, 111.27s/it]\\\\r  2%|▎         | 5/200 [09:14<5:59:48, 110.71s/it]2026-05-15 03:49:50,412 WARNING KL divergence 2412554396.90 exceeds monitoring threshold 100.0 (monitoring only, not stopping)\\\\n\\\\r                                                  \\\\r\\\\r  2%|▎         | 5/200 [09:14<5:59:48, 110.71s/it]\\\\r  3%|▎         | 6/200 [11:04<5:57:30, 110.57s/it]\\\\r  4%|▎         | 7/200 [12:55<5:56:00, 110.67s/it]\\\\r  4%|▍         | 8/200 [14:45<5:53:24, 110.44s/it]\\\\r  4%|▍         | 9/200 [16:36<5:52:03, 110.59s/it]\\\\r  5%|▌         | 10/200 [18:26<5:50:02, 110.54s/it]\\\\r                                                   \\\\r\\\\r  5%|▌         | 10/200 [18:26<5:50:02, 110.54s/it]\\\\r  6%|▌         | 11/200 [20:13<5:45:02, 109.54s/it]\\\\r  6%|▌         | 12/200 [22:06<5:46:24, 110.55s/it]\\\\r  6%|▋         | 13/200 [23:58<5:45:50, 110.96s/it]\\\\r  7%|▋         | 14/200 [25:51<5:45:14, 111.37s/it]\\\\r  8%|▊         | 15/200 [27:43<5:44:36, 111.76s/it]\\\\r                                                   \\\\r\\\\r  8%|▊         | 15/200 [27:43<5:44:36, 111.76s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T20:09:24.495673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 ckpt-20 保存（约 9 分钟后），在 cache TTL 内检查",
+              "prompt": "## 任务：检查 P0 (lr5e6_r1) 训练进度并 eval ckpt-20\n\n### 背景\n- P0 实验 `mvp2_grpo_ced_lr5e6_r1` 在 cuda:0 上运行（PID 90080），output_dir=/root/autodl-tmp/grpo_ced_lr5e6\n- 训练配置：max_steps=200, save_steps=20, lr=5e-6, kl_coef=0.01\n- 实验约 45 分钟前启动\n- Pass criteria: ckpt-20 rel_f1 > 0.30\n\n### 你的任务\n\n1. **SSH 到 rtx5090-4x（account: root）检查训练进度**：\n   - `ls /root/autodl-tmp/grpo_ced_lr5e6/` 看哪些 checkpoint 已保存\n   - 读 W&B 日志或训练 log 看当前 step 和 metrics（特别关注 f1_reward, frac_zero_std, reward）\n   - 如果 ckpt-20 还没保存，报告当前进度并等待\n\n2. **如果 ckpt-20 已保存，在 cuda:1 上启动 eval**：\n   - 使用 `submit_training_job` 提交 eval，命令模板：\n   ```\n   bash -c 'source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_lr5e6 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_lr5e6 --checkpoints 20 --quantize'\n   ```\n   - exp_id: `mvp2_eval_lr5e6_r1_ckpt20`\n   - server: rtx5090-4x\n   - gpu_ids: [\"cuda:1\"]\n   - 用 `update_registry` 创建 eval 实验条目（status 从 PREPARING → QUEUED → ALLOCATED → RUNNING，带 spec）\n   - hypothesis: \"Early checkpoint eval of P0 (lr=5e-6). Pass criteria: rel_f1 > 0.30. If pass, lr=5e-6 fixes catastrophic forgetting.\"\n   - parent: mvp2_grpo_ced_lr5e6_r1\n\n3. **检查 W&B 训练曲线**：用 `fetch_wandb_metrics` 查看 wandb_run_id=grpo-s3-ced-lr5e6-r1 的训练趋势，报告 f1_reward、frac_zero_std、reward 的趋势\n\n4. **如果 ckpt-20 不存在**：只报告训练进度和 W&B metrics，不做 eval\n\n### 注意\n- 用 ssh_read_only 检查文件和日志，不要用 ssh_execute 做只读操作\n- 用 submit_training_job 提交 eval，不要用 nohup\n- 用单引号包裹 bash -c '...' 命令（之前双引号出了 quoting 问题）"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T20:09:24.496263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 20:14:00 (in 279s)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T20:09:24.499017+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待 ~4.5 分钟后再次检查 ckpt-20 是否已保存。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_lr5e6_r1_ckpt20_20260514T200650"
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ],
+  "readable_path": "readable/conversations/eval-lr5e6-r1-ckpt20.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62e5c9a3565b885bd684",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_11_1778900774.md",
+  "task_key": "loop_11_1778900774",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778900774.md",
+    "occurrence": 1,
+    "bytes": 4535,
+    "sha256": "6b0ef7368a24082f1566eac03f8aceaaa8e864eef3ef7640c05fdffe88f69ef2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T02:41:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：只能用 rtx5090-4x 的 cuda:0/1/2/3（`get_project_status` 的 `execution.gpu_ids`）\n- D064 教训：所有 eval 命令必须带 `--sft_adapter` + `--no-quantize`，缺 --sft_adapter 会导致 rel_f1≈0.002 的无效结果（已有 3 个实验因此被 killed 重跑）\n- CED vs flat-NLI 统计不显著（D056），CED 不再作为独立贡献声称，只是 \"one possible scoring function\"\n- C3 已降级：不要在汇报中声称 CED 显著优于 flat-NLI\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x，工作目录 ~/faith-evidence-ie/\n- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 模型路径：/root/autodl-tmp/ 下（HF_HOME=/root/autodl-tmp/.hf_cache）\n- 数据：/root/autodl-tmp/data/docred\n- W&B：项目配置中有 entity/project，用 fetch_wandb_metrics 查询\n- 活跃进程（截至 handoff 时刻）：\n  - reeval_flat_nli_s43: PID 266178, cuda:1\n  - reeval_rsft_topk3: PID 268485, cuda:2\n  - eval_flat_nli_s44: PID 270462, cuda:0\n  - eval_plan_012_dpo_1ep_fixed_r2: cuda:3, 已完成进入 ANALYZING\n\n### 3. 📊 当前状态\n**刚做完**：收到 eval_plan_012_dpo_1ep_fixed_r2 的 CRON 完成回调，已 spawn Worker（worker_analysis_eval_plan_012_dpo_1ep_fixed_r2_20260515T233756）分析日志和 W&B 指标，但 **Worker 尚未回调**——这是最紧急的待处理项。\n\n**RUNNING (3)**：\n- reeval_flat_nli_s43 (cuda:1)：D064 bug fix 重跑 flat-NLI s43 eval，对比 s42 (0.4539)\n- reeval_rsft_topk3 (cuda:2)：D064 bug fix 重跑 RSFT top_k=3 eval\n- eval_flat_nli_s44 (cuda:0)：flat-NLI s44 全量 dev eval\n\n**ANALYZING (1)**：\n- eval_plan_012_dpo_1ep_fixed_r2 (cuda:3)：DPO 1ep eval，Worker 分析中未回调\n\n**PREPARING (3)**：\n- eval_flat_nli_seed44：等 cuda:0 释放\n- eval_flat_nli_seed45：等 cuda:1/2 释放\n- plan_003_edcr_diagnostic：等 cuda:3 释放（需先完成 DPO 分析推进到 DONE）\n\n**QUEUED (1)**：\n- eval_flat_nli_seed44（等 GPU）\n\n### 4. 📋 待办（条件触发式）\n- **Worker 回调 eval_plan_012_dpo_1ep_fixed_r2 到达** → 读取指标 → update_registry(conclusion=success/negative) → 释放 cuda:3 → 立即提交 plan_003_edcr_diagnostic 到 cuda:3 → 向 Director 汇报 DPO 论文定位决策\n  - DPO 1ep rel_f1 > SFT baseline (0.4057) → success，DPO 作为 offline preference baseline 保留\n  - DPO 1ep rel_f1 ≤ 0.4057 → negative，DPO 只作为 negative evidence 证明 preference optimization 不适合此任务\n  - 关键判断：DPO 3ep 过拟合 (0.3429)，1ep 如果也不行 → RC7 回复 \"DPO tried, confirms RSFT superiority\"\n- **reeval_flat_nli_s43 完成** → 对比 s42 (0.4539) + CED mean (0.4596) → 更新 C3 统计检验数据\n- **reeval_rsft_topk3 完成** → 对比 CED RSFT top_k=1 (rel_f1≈0.46) 和 SFT baseline (0.4057)\n- **eval_flat_nli_s44 完成** → 与 s42/s43/s45 汇总，计算 flat-NLI 4-seed mean/std\n- **三个 flat-NLI seeds eval 全部收齐 (s43/s44/s45)** → 汇总 flat-NLI vs CED RSFT 完整 seed-level 对比 → 向 Director 汇报 C3 最终结论\n- **cuda:3 释放后** → 立即提交 plan_003_edcr_diagnostic（EDCR cross-method diagnostic，plan_id=plan_003, claim=4, ~2h GPU）\n\n### 5. 🎯 战略上下文\n- **论文定位**：FREIGE = evidence-grounded DocRE 系统性研究。四个 Claims：C1(evidence tax + CED reranker), C2(GRPO decoupling 是 QLoRA-specific), C3(NLI scoring 降级), C4(EDCR 诊断指标)\n- **投稿目标**：EMNLP 2026 Main (ARR July, ~7/15-25)，剩 ~2 个月\n- **关键决策链**：D054→D065→D066 确认 decoupling 是 QLoRA-specific；D056 CED≈flat-NLI 降级 C3；D060 CED reranker 恢复 97% evidence tax；D064 --sft_adapter bug 导致 3 个 eval 无效重跑\n- **DPO 分叉点（本次实验的核心意义）**：DPO 3ep 过拟合 rel_f1=0.3429，1ep 结果决定 DPO 在论文中的角色——是 \"offline preference optimization also struggles\" (strengthens C2) 还是 \"DPO works at 1ep but overfits at 3ep\" (weakens narrative)。D061 之前关闭了 DPO 线，D063 发现是 bug 后重开\n- **易错点**：\n  - 不要混淆 conditional evi_f1（只算 TP triples）和 joint evi_f1（DREEAM protocol），paper_framing.md 表格注释有说明\n  - paired t-test 需要 matched seeds：CED 只有 s42/s44 两个 3ep seeds，flat-NLI 将有 s42-s45 四个——配对不足是风险\n  - cuda:3 释放后要立即填上 plan_003，不能让 GPU 空闲\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778900774.md"
+}

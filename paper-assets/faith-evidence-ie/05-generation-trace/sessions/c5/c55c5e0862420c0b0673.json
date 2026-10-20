@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c55c5e0862420c0b0673",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "train plan 001 flat nli seed43",
+  "task_key": "worker_train_plan_001_flat_nli_seed43_20260515T184301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan_001_flat_nli_seed43_20260515T184301_result.json",
+    "occurrence": 1,
+    "bytes": 215,
+    "sha256": "15d028e0a48b71731f1a27c1379c045789cdb1fe1caeff27e33ccfa527c299c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 上已经在运行 **完全相同的** flat-NLI RSFT seed=43 训练（PID 236779，已运行 19 分 31 秒），命令和参数完全一致。\n\n无需重复提交。该任务已在执行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan-001-flat-nli-seed43-copy-2.md"
+}

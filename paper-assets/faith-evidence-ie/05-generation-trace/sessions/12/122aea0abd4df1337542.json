@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "122aea0abd4df1337542",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval plan 012 dpo ced ckpt400",
+  "task_key": "worker_eval_plan_012_dpo_ced_ckpt400_20260515T193207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_012_dpo_ced_ckpt400_20260515T193207_result.json",
+    "occurrence": 1,
+    "bytes": 463,
+    "sha256": "aa799973d48029db2db6b63a4ae059c26c523c01a504cfeb5a60a40ef4317370"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已在运行，进度 0/62 batches。\n\n**状态汇总：**\n- 实验 ID: `eval_plan_012_dpo_ced_ckpt400`\n- PID: **242796**\n- GPU: cuda:3 (rtx5090-4x)\n- 模型已加载，LoRA adapter 已挂载，985 个 eval 文档准备就绪\n- 正在推理中 (62 batches)\n\n| Checkpoint | rel_f1 | 说明 |\n|---|---|---|\n| ckpt-501 (3ep) | 0.3429 | 过拟合版本 |\n| ckpt-400 (~2.4ep) | 待出 | 本次 eval |\n| SFT baseline | 0.4057 | 基准 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-012-dpo-ced-ckpt400.md"
+}

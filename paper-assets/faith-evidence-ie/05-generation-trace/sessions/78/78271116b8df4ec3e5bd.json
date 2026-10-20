@@ -1,0 +1,1092 @@
+{
+  "schema_version": "1.0",
+  "id": "78271116b8df4ec3e5bd",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "probe bjb2 old data",
+  "task_key": "worker_probe_bjb2-old-data_20260520T071025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_probe_bjb2-old-data_20260520T071025.jsonl",
+    "occurrence": 1,
+    "bytes": 32869,
+    "sha256": "07ae03211e5507bf3cc1fc8153f2490ce966275f7859a4214fdd959a8c650701"
+  },
+  "statistics": {
+    "messages": 53,
+    "user_turns": 0,
+    "tool_calls": 26,
+    "roles": {
+      "tool_call": 26,
+      "tool_result": 26,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T07:11:50.323591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T07:11:50.324068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T07:11:50.324333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "df -h /root/autodl-tmp/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T07:11:50.324525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  208G   43G  83% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T07:11:50.324659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "ls -lh /root/autodl-tmp/sft_output_llama_3_1_8b/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T07:11:50.324916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 657M\\\\n-rw-r--r-- 1 root root 1.5K May 16 19:33 README.md\\\\n-rw-r--r-- 1 root root 1.2K May 16 19:33 adapter_config.json\\\\n-rw-r--r-- 1 root root 641M May 16 19:33 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root  384 May 16 19:33 chat_template.jinja\\\\ndrwxr-xr-x 2 root root 4.0K May 16 18:54 checkpoint-190\\\\ndrwxr-xr-x 2 root root 4.0K May 16 19:33 checkpoint-570\\\\n-rw-r--r-- 1 root root  335 May 16 19:33 special_tokens_map.json\\\\n-rw-r--r-- 1 root root  17M May 16 19:33 tokenizer.json\\\\n-rw-r--r-- 1 root root  50K May 16 19:33 tokenizer_config.json\\\\n-rw-r--r-- 1 root root 6.3K May 16 19:33 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T07:11:50.325052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "du -sh /root/autodl-tmp/sft_output_llama_3_1_8b/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T07:11:50.325178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4.5G\\\\t/root/autodl-tmp/sft_output_llama_3_1_8b/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T07:11:50.325475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "ls -lh /root/autodl-tmp/rsft_output_llama_3_1_8b_k1/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T07:11:50.325632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 657M\\\\n-rw-r--r-- 1 root root 1.5K May 18 16:06 README.md\\\\n-rw-r--r-- 1 root root 1.2K May 18 16:06 adapter_config.json\\\\n-rw-r--r-- 1 root root 641M May 18 16:06 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root  384 May 18 16:06 chat_template.jinja\\\\ndrwxr-xr-x 2 root root 4.0K May 18 16:06 checkpoint-1100\\\\ndrwxr-xr-x 2 root root 4.0K May 18 16:06 checkpoint-1107\\\\n-rw-r--r-- 1 root root  335 May 18 16:06 special_tokens_map.json\\\\n-rw-r--r-- 1 root root  17M May 18 16:06 tokenizer.json\\\\n-rw-r--r-- 1 root root  50K May 18 16:06 tokenizer_config.json\\\\n-rw-r--r-- 1 root root 6.3K May 18 16:06 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T07:11:50.325895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "du -sh /root/autodl-tmp/rsft_output_llama_3_1_8b_k1/",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T07:11:50.326050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4.5G\\\\t/root/autodl-tmp/rsft_output_llama_3_1_8b_k1/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T07:11:50.326171+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "ls -lh /root/autodl-tmp/sft_output_14b/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T07:11:50.326464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 506M\\\\n-rw-r--r-- 1 root root 1.5K May 19 15:17 README.md\\\\n-rw-r--r-- 1 root root 1.1K May 19 15:17 adapter_config.json\\\\n-rw-r--r-- 1 root root 491M May 19 15:17 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root  707 May 19 15:17 added_tokens.json\\\\n-rw-r--r-- 1 root root 4.1K May 19 15:17 chat_template.jinja\\\\ndrwxr-xr-x 3 root root 4.0K May 19 15:17 checkpoint-144\\\\ndrwxr-xr-x 3 root root 4.0K May 19 14:17 checkpoint-96\\\\n-rw-r--r-- 1 root root 1.6M May 19 15:17 merges.txt\\\\n-rw-r--r-- 1 root root  499 May 19 15:17 special_tokens_map.json\\\\n-rw-r--r-- 1 root root  11M May 19 15:17 tokenizer.json\\\\n-rw-r--r-- 1 root root 5.4K May 19 15:17 tokenizer_config.json\\\\n-rw-r--r-- 1 root root 8.2K May 19 15:17 training_args.bin\\\\n-rw-r--r-- 1 root root 2.7M May 19 15:17 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T07:11:50.326606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "du -sh /root/autodl-tmp/sft_output_14b/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T07:11:50.326731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"7.3G\\\\t/root/autodl-tmp/sft_output_14b/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T07:11:50.326849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "ls -lh /root/autodl-tmp/sft_output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T07:11:50.327005+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 268M\\\\n-rw-r--r-- 1 root root 1.5K May 14 14:43 README.md\\\\n-rw-r--r-- 1 root root 1.1K May 14 14:43 adapter_config.json\\\\n-rw-r--r-- 1 root root 253M May 14 14:43 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root  707 May 14 14:43 added_tokens.json\\\\n-rw-r--r-- 1 root root 4.1K May 14 14:43 chat_template.jinja\\\\ndrwxr-xr-x 3 root root 4.0K May 14 14:43 checkpoint-144\\\\ndrwxr-xr-x 3 root root 4.0K May 14 14:36 checkpoint-96\\\\n-rw-r--r-- 1 root root 1.6M May 14 14:43 merges.txt\\\\n-rw-r--r-- 1 root root  499 May 14 14:43 special_tokens_map.json\\\\n-rw-r--r-- 1 root root  11M May 14 14:43 tokenizer.json\\\\n-rw-r--r-- 1 root root 5.4K May 14 14:43 tokenizer_config.json\\\\n-rw-r--r-- 1 root root 7.9K May 14 14:43 training_args.bin\\\\n-rw-r--r-- 1 root root 2.7M May 14 14:43 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T07:11:50.327275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "du -sh /root/autodl-tmp/sft_output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T07:11:50.327412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5.8G\\\\t/root/autodl-tmp/sft_output/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T07:11:50.327702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "du -sh /root/autodl-tmp/sft_output*/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T07:11:50.327846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5.8G\\\\t/root/autodl-tmp/sft_output/\\\\n7.3G\\\\t/root/autodl-tmp/sft_output_14b/\\\\n4.5G\\\\t/root/autodl-tmp/sft_output_llama_3_1_8b/\\\\n4.5G\\\\t/root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence/\\\\n4.5G\\\\t/root/autodl-tmp/sft_output_llama_3_1_8b_s43/\\\\n4.5G\\\\t/root/autodl-tmp/sft_output_llama_3_1_8b_s44/\\\\n1.9G\\\\t/root/autodl-tmp/sft_output_qwen3_1_7b_bf16/\\\\n1.9G\\\\t/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed43/\\\\n1.9G\\\\t/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44/\\\\n1.9G\\\\t/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence/\\\\n4.6G\\\\t/root/autodl-tmp/sft_output_qwen3_8b_bf16/\\\\n4.6G\\\\t/root/autodl-tmp/sft_output_qwen3_8b_no_evidence/\\\\n4.6G\\\\t/root/autodl-tmp/sft_output_qwen3_8b_s43/\\\\n4.6G\\\\t/root/autodl-tmp/sft_output_qwen3_8b_s44/\\\\n2.1G\\\\t/root/autodl-tmp/sft_output_seed43/\\\\n2.1G\\\\t/root/autodl-tmp/sft_output_seed44/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T07:11:50.327976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "du -sh /root/autodl-tmp/rsft_output*/",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T07:11:50.328123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4.1G\\\\t/root/autodl-tmp/rsft_output_4b_sft_s44/\\\\n7.5G\\\\t/root/autodl-tmp/rsft_output_4b_sft_s44_bf16/\\\\n8.0G\\\\t/root/autodl-tmp/rsft_output_ced_s43/\\\\n4.5G\\\\t/root/autodl-tmp/rsft_output_llama_3_1_8b_k1/\\\\n4.5G\\\\t/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43/\\\\n4.5G\\\\t/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44/\\\\n8.0G\\\\t/root/autodl-tmp/rsft_output_nli_large/\\\\n1.9G\\\\t/root/autodl-tmp/rsft_output_qwen3_1_7b_k1/\\\\n1.9G\\\\t/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/\\\\n1.9G\\\\t/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44/\\\\n4.6G\\\\t/root/autodl-tmp/rsft_output_qwen3_8b_k1/\\\\n4.6G\\\\t/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43/\\\\n4.6G\\\\t/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44/\\\\n3.5G\\\\t/root/autodl-tmp/rsft_output_random_k1/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T07:11:50.328267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "du -sh /root/autodl-tmp/models/",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T07:11:50.328537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"70G\\\\t/root/autodl-tmp/models/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T07:11:50.328673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "ls /root/autodl-tmp/models/",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T07:11:50.328825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Meta-Llama-3.1-8B\\\\nQwen\\\\nQwen3-4B\\\\nmeta-llama\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T07:11:50.328944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "du -sh /root/autodl-tmp/data/",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T07:11:50.329063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"497M\\\\t/root/autodl-tmp/data/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T07:11:50.329176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "wc -l /root/autodl-tmp/rsft_scored_llama_3_1_8b_k1/rsft_train.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T07:11:50.329320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2952 /root/autodl-tmp/rsft_scored_llama_3_1_8b_k1/rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T07:11:50.329449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "wc -l /root/autodl-tmp/rsft_filtered/rsft_train.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T07:11:50.329568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2718 /root/autodl-tmp/rsft_filtered/rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T07:11:50.329681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "du -sh /root/autodl-tmp/eval_results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T07:11:50.329800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"370M\\\\t/root/autodl-tmp/eval_results/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T07:11:50.329922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "ls /root/autodl-tmp/eval_results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T07:11:50.330260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3seed_summary.json\\\\n8b_sft_s43\\\\nbf16_g8_step30\\\\nbf16_g8_step50\\\\nced_reranker_dryrun\\\\nced_reranker_poc\\\\nced_reranker_poc_dryrun\\\\ncross_method_table.json\\\\nd076_paired_ttest_report.json\\\\nd076_paired_ttest_results.json\\\\nd076_paired_ttest_results.md\\\\nd076_seed_summary.json\\\\nd102_1_7b_k1_s42\\\\nd102_1_7b_k1_s42.log\\\\nd102_8b_k1_s42\\\\nd102_8b_k1_s43\\\\nd102_llama_k1_s42\\\\nd102_llama_k1_s42.log\\\\nd102_llama_k1_s43\\\\nd102_llama_k1_s43.log\\\\nd111_4b_sft_s42_reeval\\\\nd112_rsft_bf16\\\\nd112_rsft_from_sft_s44\\\\ndpo_ced_1ep\\\\ndpo_ced_1ep_fixed\\\\ndpo_ced_ckpt400\\\\nedcr_analysis.json\\\\nedcr_analysis_r2b.md\\\\nedcr_diagnostic.json\\\\nedcr_diagnostic.tex\\\\nedcr_diagnostic_table.csv\\\\nedcr_diagnostic_table.md\\\\nedcr_diagnostic_v2.json\\\\nedcr_diagnostic_v2.tex\\\\nedcr_per_relation_analysis.json\\\\nedcr_per_relation_analysis.md\\\\neval_llama_rsft_k1_s43\\\\neval_llama_rsft_s42_no_evidence\\\\neval_llama_rsft_s43_no_evidence\\\\nevi_f1_joint_comparison.json\\\\nfig_edcr_relations.pdf\\\\nfig_edcr_relations.png\\\\ngrpo_bf16_g4_ckpt100_eval\\\\ngrpo_bf16_g4_ckpt200_eval\\\\ngrpo_ced_kl001\\\\ngrpo_ced_kl001_step100\\\\ngrpo_ced_lr5e6\\\\ngrpo_ced_lr5e6_ckpt60\\\\ngrpo_ced_lr5e6_rp\\\\ngrpo_extract_r4_step10\\\\ngrpo_flatnli_r3\\\\ngrpo_g8_bf16\\\\ngrpo_g8_bf16_ckpt100\\\\nllama_3_1_8b_no_evidence_eval\\\\nllama_3_1_8b_sft_eval\\\\nlr5e6_r1_ckpt100\\\\nlr5e6_r1_ckpt40\\\\nlr5e6_r1_ckpt60\\\\nlr5e6_r1_ckpt80\\\\npaper_metrics_corrected.md\\\\npaper_table_data.json\\\\nplan010_nli_large_ablation\\\\nplan019_1_7b_sft_s43_eval\\\\nplan019_1_7b_sft_s44_eval\\\\nplan019_8b_sft_s44_eval\\\\nplan019_8b_sft_s44_eval.log\\\\nplan_002_test_rsft_s43\\\\nplan_002_test_rsft_s43.log\\\\nplan_002_test_rsft_s44\\\\nplan_006_llama_rsft_r3_eval\\\\nplan_006_llama_rsft_seed43_eval\\\\nplan_006_llama_rsft_seed43_eval_r2\\\\nplan_006_llama_rsft_test\\\\nplan_006_llama_rsft_test.log\\\\nplan_006_qwen3_1_7b_rsft_eval\\\\nplan_006_qwen3_1_7b_rsft_eval_r2\\\\nplan_006_qwen3_1_7b_rsft_seed43_eval\\\\nplan_006_qwen3_1_7b_rsft_seed43_eval.\n…[truncated 1888 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T07:11:50.330438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "du -sh /root/autodl-tmp/rsft_generations_14b/",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T07:11:50.330723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"133M\\\\t/root/autodl-tmp/rsft_generations_14b/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T07:11:50.330932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "ls /root/autodl-tmp/rsft_generations_14b/",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T07:11:50.331252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"generations.jsonl\\\\nprogress.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T07:11:50.331425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "du -sh /root/autodl-tmp/freige/",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T07:11:50.331694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"586M\\\\t/root/autodl-tmp/freige/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T07:11:50.331838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "du -h --max-depth=1 /root/autodl-tmp/",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T07:11:50.332026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6.4M\\\\t/root/autodl-tmp/.autodl\\\\n497M\\\\t/root/autodl-tmp/data\\\\n586M\\\\t/root/autodl-tmp/freige\\\\n70G\\\\t/root/autodl-tmp/models\\\\n3.9M\\\\t/root/autodl-tmp/mvp1_results\\\\n5.8G\\\\t/root/autodl-tmp/sft_output\\\\n370M\\\\t/root/autodl-tmp/eval_results\\\\n2.1G\\\\t/root/autodl-tmp/sft_output_seed43\\\\n3.5G\\\\t/root/autodl-tmp/grpo_bf16_g4\\\\n4.6G\\\\t/root/autodl-tmp/sft_output_qwen3_8b_s44\\\\n1.9G\\\\t/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\\n4.1G\\\\t/root/autodl-tmp/rsft_output_4b_sft_s44\\\\n7.5M\\\\t/root/autodl-tmp/sft_eval_results\\\\n7.5M\\\\t/root/autodl-tmp/sft_eval_r3_results\\\\n133M\\\\t/root/autodl-tmp/rsft_generations_14b\\\\n76M\\\\t/root/autodl-tmp/rsft_scored_v3_large\\\\n16K\\\\t/root/autodl-tmp/.pytest_cache\\\\n9.9M\\\\t/root/autodl-tmp/rsft_scored_qwen3_8b_k1\\\\n4.5G\\\\t/root/autodl-tmp/rsft_output_llama_3_1_8b_k1\\\\n7.5G\\\\t/root/autodl-tmp/rsft_output_4b_sft_s44_bf16\\\\n256K\\\\t/root/autodl-tmp/scripts\\\\n7.5M\\\\t/root/autodl-tmp/sft_baseline_eval_results\\\\n1.4M\\\\t/root/autodl-tmp/logs\\\\n1.1M\\\\t/root/autodl-tmp/artifacts\\\\n399M\\\\t/root/autodl-tmp/rsft_generations\\\\n8.3M\\\\t/root/autodl-tmp/rsft_scored_partial\\\\n4.0K\\\\t/root/autodl-tmp/rsft_probe_d034\\\\n0\\\\t/root/autodl-tmp/rsft_data\\\\n0\\\\t/root/autodl-tmp/rsft_score_input_s1\\\\n20M\\\\t/root/autodl-tmp/rsft_scored_s1\\\\n0\\\\t/root/autodl-tmp/rsft_score_input_s2\\\\n20M\\\\t/root/autodl-tmp/rsft_scored_s2\\\\n25M\\\\t/root/autodl-tmp/rsft_filtered\\\\n0\\\\t/root/autodl-tmp/rsft_score_input_s3\\\\n19M\\\\t/root/autodl-tmp/rsft_scored_s3\\\\n0\\\\t/root/autodl-tmp/rsft_score_input_s0\\\\n20M\\\\t/root/autodl-tmp/rsft_scored_s0\\\\n8.5M\\\\t/root/autodl-tmp/rsft_random_k1\\\\n216M\\\\t/root/autodl-tmp/rsft_generations_4b_sft_s44\\\\n93M\\\\t/root/autodl-tmp/rsft_filtered_topk3\\\\n1.9G\\\\t/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed43\\\\n3.0G\\\\t/root/autodl-tmp/baselines\\\\n25M\\\\t/root/autodl-tmp/rsft_filtered_topk3_ced_filtered\\\\n76M\\\\t/root/autodl-tmp/rsft_filtered_flat_nli\\\\n26M\\\\t/root/autodl-tmp/rsft_filtered_topk3_random\\\\n2.1G\n…[truncated 1788 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T07:11:50.332204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "ls -lh /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T07:11:50.332377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 15G\\\\n-rw-r--r-- 1 root root 7.5K May 16 14:51 LICENSE\\\\n-rw-r--r-- 1 root root  40K May 16 14:51 README.md\\\\n-rw-r--r-- 1 root root 4.6K May 16 14:48 USE_POLICY.md\\\\n-rw-r--r-- 1 root root  826 May 16 14:48 config.json\\\\n-rw-r--r-- 1 root root   73 May 16 14:48 configuration.json\\\\n-rw-r--r-- 1 root root  185 May 16 14:48 generation_config.json\\\\n-rw-r--r-- 1 root root 4.7G May 16 14:59 model-00001-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4.7G May 16 15:25 model-00002-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4.6G May 16 16:03 model-00003-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 1.1G May 16 14:50 model-00004-of-00004.safetensors\\\\n-rw-r--r-- 1 root root  24K May 16 14:48 model.safetensors.index.json\\\\n-rw-r--r-- 1 root root   73 May 16 14:48 special_tokens_map.json\\\\n-rw-r--r-- 1 root root 8.7M May 16 14:49 tokenizer.json\\\\n-rw-r--r-- 1 root root  50K May 16 14:48 tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T07:11:50.332512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "ls -lh /root/autodl-tmp/models/Qwen3-4B/",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T07:11:50.332645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 7.6G\\\\n-rw-r--r-- 1 root root  12K May 14 13:25 LICENSE\\\\n-rw-r--r-- 1 root root  17K May 14 13:25 README.md\\\\n-rw-r--r-- 1 root root  726 May 14 13:25 config.json\\\\n-rw-r--r-- 1 root root   73 May 14 13:25 configuration.json\\\\n-rw-r--r-- 1 root root  239 May 14 13:25 generation_config.json\\\\n-rw-r--r-- 1 root root 1.6M May 14 13:25 merges.txt\\\\n-rw-r--r-- 1 root root 3.7G May 14 13:38 model-00001-of-00003.safetensors\\\\n-rw-r--r-- 1 root root 3.8G May 14 13:33 model-00002-of-00003.safetensors\\\\n-rw-r--r-- 1 root root  96M May 14 13:26 model-00003-of-00003.safetensors\\\\n-rw-r--r-- 1 root root  33K May 14 13:25 model.safetensors.index.json\\\\n-rw-r--r-- 1 root root  11M May 14 13:25 tokenizer.json\\\\n-rw-r--r-- 1 root root 9.6K May 14 13:25 tokenizer_config.json\\\\n-rw-r--r-- 1 root root 2.7M May 14 13:26 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T07:11:50.333007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-12179",
+              "command": "du -sh /root/autodl-tmp/models/*/",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T07:11:50.333260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"47G\\\\t/root/autodl-tmp/models/Qwen/\\\\n7.6G\\\\t/root/autodl-tmp/models/Qwen3-4B/\\\\n15G\\\\t/root/autodl-tmp/models/meta-llama/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T07:11:50.333485+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb2-12179 数据完整性报告\n\n### 磁盘总览\n- 总容量 250G，已用 208G (83%)，剩余 43G\n\n---\n\n### 1. 完整资产（有 safetensors，大小正常）\n\n**Adapter 模型（16 个 SFT + 14 个 RSFT = 30 个）：**\n\n| 目录 | 大小 | safetensors |\n|------|------|-------------|\n| `sft_output_llama_3_1_8b` (s42) | 4.5G | 641M ✓ |\n| `sft_output_llama_3_1_8b_s43` | 4.5G | ✓ |\n| `sft_output_llama_3_1_8b_s44` | 4.5G | ✓ |\n| `sft_output_llama_3_1_8b_no_evidence` | 4.5G | ✓ |\n| `sft_output_14b` | 7.3G | 491M ✓ |\n| `sft_output` (4B s42) | 5.8G | 253M ✓ |\n| `sft_output_seed43` | 2.1G | ✓ |\n| `sft_output_seed44` | 2.1G | ✓ |\n| `sft_output_qwen3_1_7b_bf16` | 1.9G | ✓ |\n| `sft_output_qwen3_1_7b_bf16_seed43` | 1.9G | ✓ |\n| `sft_output_qwen3_1_7b_bf16_seed44` | 1.9G | ✓ |\n| `sft_output_qwen3_1_7b_no_evidence` | 1.9G | ✓ |\n| `sft_output_qwen3_8b_bf16` | 4.6G | ✓ |\n| `sft_output_qwen3_8b_s43` | 4.6G | ✓ |\n| `sft_output_qwen3_8b_s44` | 4.6G | ✓ |\n| `sft_output_qwen3_8b_no_evidence` | 4.6G | ✓ |\n| `rsft_output_llama_3_1_8b_k1` (s42) | 4.5G | 641M ✓ |\n| `rsft_output_llama_3_1_8b_k1_s43` | 4.5G | ✓ |\n| `rsft_output_llama_3_1_8b_k1_s44` | 4.5G | ✓ |\n| `rsft_output_qwen3_1_7b_k1` | 1.9G | ✓ |\n| `rsft_output_qwen3_1_7b_k1_s43` | 1.9G | ✓ |\n| `rsft_output_qwen3_1_7b_k1_s44` | 1.9G | ✓ |\n| `rsft_output_qwen3_8b_k1` | 4.6G | ✓ |\n| `rsft_output_qwen3_8b_k1_s43` | 4.6G | ✓ |\n| `rsft_output_qwen3_8b_k1_s44` | 4.6G | ✓ |\n| `rsft_output_4b_sft_s44` | 4.1G | ✓ |\n| `rsft_output_4b_sft_s44_bf16` | 7.5G | ✓ |\n| `rsft_output_ced_s43` | 8.0G | ✓ |\n| `rsft_output_nli_large` | 8.0G | ✓ |\n| `rsft_output_random_k1` | 3.5G | ✓ |\n\n**基座模型（3 个，70G）：**\n| 目录 | 大小 | 状态 |\n|------|------|------|\n| `models/meta-llama/Meta-Llama-3.1-8B` | 15G | 4 shards, 完整 ✓ |\n| `models/Qwen3-4B` | 7.6G | 3 shards, 完整 ✓ |\n| `models/Qwen/` | 47G | (含 Qwen3-8B / 14B 等) ✓ |\n\n**数据集：**\n| 资产 | 大小/行数 | 状态 |\n|------|-----------|------|\n| `data/` | 497M | ✓ |\n| `rsft_scored_llama_3_1_8b_k1/rsft_train.jsonl` | 2952 行 | ✓ |\n| `rsft_filtered/rsft_train.jsonl` | 2718 行 | ✓ |\n| `rsft_generations_14b/` | 133M | ✓ |\n| `eval_results/` | 370M, ~130 个结果目录/文件 | ✓ |\n\n---\n\n### 2. 空目录（0 字节，已清空）\n\n| 目录 | 说明 |\n|------|------|\n| `rsft_data/` | 0 |\n| `rsft_score_input_s0/` | 0 |\n| `rsft_score_input_s1/` | 0 |\n| `rsft_score_input_s2/` | 0 |\n| `rsft_score_input_s3/` | 0 |\n\n这些是中间产物（scoring pipeline 的临时输入），已被清理，不影响最终数据。\n\n---\n\n### 3. 可迁移数据量估算\n\n| 类别 | 大小 |\n|------|------|\n| Adapter 模型 (30个) | ~117G |\n| 基座模型 (3个) | ~70G |\n| 数据集 + scored/filtered | ~1.5G |\n| eval_results | ~370M |\n| 生成数据 (14b + 4b + llama) | ~750M |\n| 其它 (baselines, GRPO, freige, misc) | ~18G |\n| **合计** | **~208G** |\n\n基座模型如果新服务器已有则不需迁移，实际需迁移约 **138G**（adapter + 数据 + eval）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_probe_bjb2-old-data_20260520T071025"
+          },
+          "id": "event-000053"
+        }
+      ],
+      "message_count": 53
+    }
+  ],
+  "readable_path": "readable/conversations/probe-bjb2-old-data.md"
+}

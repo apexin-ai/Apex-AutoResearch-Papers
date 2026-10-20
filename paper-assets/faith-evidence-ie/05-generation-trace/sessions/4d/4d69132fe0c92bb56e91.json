@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d69132fe0c92bb56e91",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code rsft pipeline precheck",
+  "task_key": "worker_code_rsft_pipeline_precheck_20260515T040427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rsft_pipeline_precheck_20260515T040427_result.json",
+    "occurrence": 1,
+    "bytes": 2885,
+    "sha256": "e6ba253a5b981af9d6975807776ffb86e29873bc538e3cf12f1c9d983fdc4575"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。以下是汇总：\n\n---\n\n## RSFT 下游 Pipeline 就绪性报告\n\n### 1. 脚本存在性\n\n| 脚本 | 路径 | 状态 |\n|------|------|------|\n| merge_shards.py | `freige/training/merge_shards.py` | **就绪** |\n| rsft_score_filter.py | `freige/training/rsft_score_filter.py` | **就绪** |\n| rsft_trainer.py | `freige/training/rsft_trainer.py` | **就绪** |\n| ced_reward.py | `freige/rewards/ced_reward.py` | **就绪** |\n\n### 2. 格式对齐（生成→打分→训练）\n\n**生成输出字段** (每行 JSONL):\n`doc_id`, `generation_idx`, `prompt`, `output`, `raw_text`, `parsed_triples`, `format_ok`, `truncated`, `gold_triples`, `sents`\n\n**打分脚本 `load_generations`**:\n- 自带 shard 合并逻辑（根目录 + `shard_*/generations.jsonl`，last-wins 去重）\n- 读取 `doc_id`, `generation_idx`, `parsed_triples`, `gold_triples`, `sents`, `prompt`, `output`, `format_ok` — **全部匹配**\n\n**打分输出 → 训练输入**:\n- `format_sft_training_data` 输出 `{input, output, ced_score, doc_id, ...}`\n- `rsft_trainer.load_rsft_data` 读取 `input`（user message）、`output`（assistant response）、`ced_score`（加权采样）— **完全对齐**\n\n### 3. 关键发现\n\n**merge_shards.py 可选**：`rsft_score_filter.py` 的 `load_generations` 已内置 shard 合并 + 去重，可以跳过 merge_shards 直接打分：\n```bash\ncd /root/autodl-tmp && python -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/rsft_generations \\\n    --output_path /root/autodl-tmp/rsft_filtered \\\n    --nli_model_path cross-encoder/nli-deberta-v3-base\n```\n\n**NLI 模型**：`/root/autodl-tmp/models/nli-deberta-v3-base` 不存在，但 HF cache 中有（`/root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base`）。只要 `HF_HOME=/root/autodl-tmp/.hf_cache`，用默认名 `cross-encoder/nli-deberta-v3-base` 即可自动加载。docstring 里的路径示例是过时的。\n\n**rsft_trainer 关键超参**:\n- base model: `/root/autodl-tmp/models/Qwen3-4B`\n- SFT adapter: `/root/autodl-tmp/sft_output`（默认值，已存在）\n- QLoRA: r=32, alpha=64, dropout=0.05, 4bit nf4\n- lr=1e-4, epochs=3, batch=2, grad_accum=8, warmup=50\n- 支持 CED score 加权采样（`--weighted_sampling`）\n- wandb 集成（有 WANDB_API_KEY 时自动开启）\n- 支持 accelerate 多卡\n\n### 4. Dry-run 结果\n\n无法在 `ssh_read_only` 中执行 import 测试（需 cwd 为 `/root/autodl-tmp` 且要激活 conda）。但生成任务当前正在运行并成功使用 `freige` 包，说明包结构和依赖已就绪。\n\n### 5. 问题清单\n\n**无阻塞性问题。** Pipeline 代码完整，格式对齐，可直接执行。\n\n唯一注意事项：打分时确保 `HF_HOME=/root/autodl-tmp/.hf_cache` 环境变量已设置，否则 NLI 模型会尝试重新下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rsft-pipeline-precheck.md"
+}

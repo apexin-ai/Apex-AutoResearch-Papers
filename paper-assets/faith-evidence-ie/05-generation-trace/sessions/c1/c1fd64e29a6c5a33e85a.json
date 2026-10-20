@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1fd64e29a6c5a33e85a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diag mvp2 eval lr5e6 r1 ckpt40",
+  "task_key": "worker_diag_mvp2_eval_lr5e6_r1_ckpt40_20260514T213807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_mvp2_eval_lr5e6_r1_ckpt40_20260514T213807_result.json",
+    "occurrence": 1,
+    "bytes": 1724,
+    "sha256": "41c9deda91bc23818547b97e6e0daca8854b6d3f9a868cfb4c66e7a0e9ae4da2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n### 根因：被监控系统误杀（SIGTERM）\n\n进程 **不是 OOM、不是脚本错误、不是 checkpoint 问题**。\n\n**证据链：**\n\n1. **exit -15 = SIGTERM**：进程被外部信号终止，非 Python 崩溃（无 traceback）、非 OOM killer（OOM 是 SIGKILL/-9）\n2. **推理正常进行中被杀**：日志显示 inference 已完成 10/62 batches（16%），每 batch 约 93-122s，运行约 17 分钟后被终止\n3. **任务描述确认**：`process dead 5× with no sentinel/W&B — auto-resolved as failed` — 监控系统检测到进程没有产出 sentinel 文件或 W&B 心跳信号，连续 5 次判定为\"死亡\"，自动发送 SIGTERM 杀掉了进程\n4. **checkpoint-40 完整**：adapter_model.safetensors (264MB) + 全部配置文件齐全\n5. **cuda:2 当前状态**：9.7GB / 32.6GB，显存充裕\n6. **日志无任何 Python error/traceback/OOM**\n\n### 本质问题\n\neval 任务预计总运行时间 ~100 分钟（62 batches × ~100s），但 eval 脚本（`batch_eval`）不产生 W&B 日志或 sentinel 文件，监控系统误认为进程已死。\n\n### 建议修复方案\n\n**可以直接重试**，但需要绕开监控系统的误杀机制。两个选项：\n\n1. **推荐：在 tmux 中直接运行**，不通过会被监控的调度方式启动：\n   ```bash\n   tmux new -s eval_lr5e6_ckpt40\n   CUDA_VISIBLE_DEVICES=2 bash /root/autodl-tmp/scripts/eval_lr5e6_ckpt40.sh\n   ```\n\n2. **如果必须用监控调度**：给 eval 脚本加 sentinel/心跳输出，或调大监控的超时阈值，使其能容忍 ~2 小时无 W&B 信号的 eval 任务。\n\n**无需改任何模型/数据/batch_size 参数**，eval 本身运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-mvp2-eval-lr5e6-r1-ckpt40.md"
+}

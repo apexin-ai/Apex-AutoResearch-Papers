@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b0c5f8df1955cab2d05",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 001 rsft flat nli done",
+  "task_key": "worker_analysis_plan_001_rsft_flat_nli_done_20260515T163208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_001_rsft_flat_nli_done_20260515T163208_result.json",
+    "occurrence": 1,
+    "bytes": 664,
+    "sha256": "3bca165e9ec5dbfd2995eedec72cc0ad90b20d72701c6f063e3b84a7fb16b006"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**plan_001_rsft_flat_nli 训练完成汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| 状态 | SUCCESS |\n| 样本数 | 2691 (flat-NLI scoring) |\n| Epochs/Steps | 3 / 507 |\n| 最终 train loss | 0.6238 |\n| 最低 train loss | 0.5803 (step 480) |\n| Token accuracy | 85.28% |\n| 训练时间 | ~49 min |\n| 最终模型 | `/root/autodl-tmp/rsft_output_flat_nli/` |\n| 最终 checkpoint | `checkpoint-507` |\n\n**下一步：** 需要对 `/root/autodl-tmp/rsft_output_flat_nli/` 做 dev eval，然后与 CED scoring RSFT（mean rel_f1=0.4596）对比，验证 contrastive margin 是否是关键因素。Eval 需要 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-001-rsft-flat-nli-done.md"
+}

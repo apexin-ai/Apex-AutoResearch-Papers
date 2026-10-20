@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d046432bfd2653d0d098",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops kill cuda2 duplicate",
+  "task_key": "worker_ops_kill-cuda2-duplicate_20260514T212936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-cuda2-duplicate_20260514T212936_result.json",
+    "occurrence": 1,
+    "bytes": 414,
+    "sha256": "fdf6005e7e9a1f164add4a64530a29b27d3975a8e99b0b704d2fb0b62a477a30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果**:\n\n| 项目 | 状态 |\n|------|------|\n| PID 100555 | **KILLED** ✓ (重复 ckpt-40 eval，已运行 17:55) |\n| PID 101842 | **ALIVE** ✓ (正常 ckpt-40 eval，运行 5:19，状态 Rl) |\n| cuda:2 显存 | **9069 MiB** (从之前两个进程共占降到单进程，符合预期) |\n\n全部 GPU 显存：GPU0 13645M, GPU1 10653M, GPU2 9069M, GPU3 13645M。cuda:2 已恢复正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-cuda2-duplicate.md"
+}

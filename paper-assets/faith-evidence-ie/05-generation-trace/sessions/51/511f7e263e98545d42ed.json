@@ -1,0 +1,696 @@
+{
+  "schema_version": "1.0",
+  "id": "511f7e263e98545d42ed",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "cron hook test eval 1 7b sft s42 20260522T183537 070416",
+  "task_key": "cron_hook_test_eval_1_7b_sft_s42_20260522T183537_070416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_test_eval_1_7b_sft_s42_20260522T183537_070416.jsonl",
+    "occurrence": 1,
+    "bytes": 30731,
+    "sha256": "f1020bcfad10a441be0fb14dc6d8b34f1cf9392eea48b167f905acb09c332b5d"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 2,
+    "tool_calls": 15,
+    "roles": {
+      "user": 2,
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T02:23:44.999982+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: test_eval_1_7b_sft_s42\n- project: faith-evidence-ie\n- server: rtx5090-4x"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T02:23:58.030819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "7"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T02:23:58.037249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 6
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T02:24:01.903491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T02:24:02.361598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T02:24:02.713492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T02:24:02.713979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T02:24:03.720414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (576,800 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-abf536f9/0ee927b5-790f-4147-933f-99fb6672b1c3/tool-results/mcp-agent-ml-research-read_registry-1779416643609.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-abf536f9/0ee927b5-790f-4147-933f-99fb6672b1c3/tool-results/mcp-agent-ml-research-read_registry-1779416643609.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1816
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T02:24:14.737647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 3, \\\"results\\\": [{\\\"exp_id\\\": \\\"test_eval_14b_sft_s42_no_evi\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=143166)\\\"]}, {\\\"exp_id\\\": \\\"test_eval_1_7b_sft_s42_no_evi\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=147596)\\\"]}, {\\\"exp_id\\\": \\\"test_eval_8b_sft_s42_no_evi\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=152873)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 12376
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T02:24:14.738512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-22T02:23:41Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 301 个实验 — DONE 298, RUNNING 3\\\\n**DONE 分布**: failed 61, killed 35, negative 19, success 183\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\\\n- **实际运行**: 3 张 — rtx5090-4x:cuda:3(test_eval_14b_sft_s42_no_evi), rtx5090-4x:cuda:1(test_eval_1_7b_sft_s42_no_evi), rtx5090-4x:cuda:2(test_eval_8b_sft_s42_no_evi)\\\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:0\\\\n\\\\n### 💾 磁盘余量\\\\n- **rtx5090-4x**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 815G/879G 可用（已用 3%）\\\\n- **bjb2-12179**:\\\\n  - `/autodl-pub`: 8.4T/14T 可用（已用 41%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `test_eval_14b_sft_s42_no_evi` | rtx5090-4x | cuda:3 | 143161 | `/tmp/test_eval_14b_sft_s42_no_evi.log` |\\\\n| `test_eval_1_7b_sft_s42_no_evi` | rtx5090-4x | cuda:1 | 147596 | `…todl-tmp/eval_results/test_eval_1_7b_sft_s42_no_evi/log.txt` |\\\\n| `test_eval_8b_sft_s42_no_evi` | rtx5090-4x | cuda:2 | 152868 | `~/runs/faith-evidence-ie/test_eval_8b_sft_s42_no_evi.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `test_eval_1_7b_sft_s42` [failed] — 2026-05-22T02:23:36 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `test_eval_4b_rsft_s42_v3` [killed] — 2026-05-22T01:36:25\\\\n- `test_eval_4b_rsft_s42_v2` [success] — 2026-05-22T01:34:11 — EXIT_CODE=2 (shell misuse / syntax)\\\\n- `test_eval_14b_sft_s42` [success] — 2026-05-22T00:17:39\\\\n- `retrain_4b_rsft_ced_s42_v2` [success] — 2026-05-21T23:56:36\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `test_eval_1_7b_sft_s42`: process dead 5× with no sentinel/W&B — a\n…[truncated 7308 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 12025
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T02:24:14.791097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 20:36 UTC | 更新原因: D147: Reviewer framing 预审采纳，GPU 调度更新，补 no-evidence test spot-check\\\\n\\\\n## 核心方向\\\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：(1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Evidence tax landscape + variance compression。详见 paper_framing.md（D145/D146 修正完成）。\\\\n\\\\n## 当前进展\\\\n- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\\\\n- **服务器**: rtx5090-4x (4× RTX PRO 6000, 96GB/卡)\\\\n- **D146**: 4B 3-seed matched@2048 tax = +0.25±0.47pp (neutral confirmed)\\\\n- **D147**: Reviewer framing 预审采纳——threshold claim observational, cross-arch supplementary, 补 no-evi test spot-check\\\\n- **Narrative 稳定**: within-family threshold (1.7B helps, 4B+ neutral) + cross-architecture variation + variance compression (核心)\\\\n\\\\n| Scale | SFT Tax (matched@2048 fair) | RSFT Test ign_f1 | SFT Test ign_f1 |\\\\n|-------|----------------------------|-----------------|----------------|\\\\n| 1.7B | **-5.63pp** ✅ | 0.2933 (trunc 73.8%) | ⏳ pending |\\\\n| 4B | **≈0** (+0.25±0.47, 3-seed) ✅ | ❌ adapter lost | ⏳ running |\\\\n| 8B Qwen | **+0.04pp** ✅ | 0.3353 (trunc 1.8%) | ⏳ running |\\\\n| 14B | **+0.03pp** ✅ | 0.3849 (trunc 13.4%) | ⏳ running |\\\\n| LLaMA-8B | unstable / RSFT -2.17pp | 0.3599 (trunc 56.6%) | ⏳ running |\\\\n\\\\n## 投稿目标\\\\n- **EMNLP 2026 Main** (ARR July cycle, **~55 天**)\\\\n\\\\n## 正在运行\\\\n| GPU | 实验 | 预计完成 (UTC) |\\\\n|-----|------|---------------|\\\\n| cuda:0 | test_eval_4b_sft_s42 | ~06:45 |\\\\n| cuda:1 | test_eval_14b_sft_s42 | ~08:44 |\\\\n| cuda:2 | test_eval_8b_sft_s42 | ~06:15 |\\\\n| cuda:3 | test_eval_llama_sft_s42 | ~12:00 |\\\\n\\\\n## 近期任务（GPU 释放后，按优先级）\\\\n- [ ] cuda:2 释放 (~06:15) → **1.7B SFT test eval**（test table 最后一个 SFT 缺口）\\\\n- [ ] cuda:0 释放 (~06:45) → **14B SFT no-evidence test eval**（evidence tax spot-check, D147）\\\\n- [ ] 第 3 个 GPU 释放 → **1.7B \n…[truncated 2539 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 12077
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T02:24:22.037510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-abf536f9/0ee927b5-790f-4147-933f-99fb6672b1c3/tool-results/mcp-agent-ml-research-read_registry-1779416643609.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor e in exps:\n    if e['exp_id'] == 'test_eval_1_7b_sft_s42':\n        print(json.dumps(e, indent=2, ensure_ascii=False))\n        break\n\"",
+              "description": "Extract failed experiment details from registry dump"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T02:24:22.493446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    if e['exp_id'] == 'test_eval_1_7b_sft_s42':\n       ~^^^^^^^^^^\nTypeError: string indices must be integers, not 'str'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Bash",
+            "elapsed_ms": 455
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T02:24:25.759082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "test_eval_1_7b_sft_s42",
+              "path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-abf536f9/0ee927b5-790f-4147-933f-99fb6672b1c3/tool-results/mcp-agent-ml-research-read_registry-1779416643609.txt",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T02:24:25.860006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T02:24:28.673210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'exp_id': 'test_eval_1_7b_sft_s42'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T02:24:29.626943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9117}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 953
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T02:24:34.363552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'status': 'DONE', 'conclusion': 'failed'}",
+              "fields": "['*']",
+              "limit": "5"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T02:24:35.875732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"test_eval_1_7b_sft_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:46:40.933Z\\\", \\\"updated_at\\\": \\\"2026-05-22T02:23:36.614Z\\\", \\\"hypothesis\\\": \\\"Re-DocRED test set eval: Qwen3-1.7B SFT s42 on test_revised.json (500 docs)。补全 test table 最后一个 SFT 缺口。1.7B RSFT test=0.2933，需要 SFT baseline 配对。1.7B SFT dev ign_f1=0.4464 (3-seed mean)。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-1.7B + SFT adapter s42\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\\", \\\"eval_data\\\": \\\"re-docred test_revised\\\", \\\"pid\\\": 140534, \\\"gpu\\\": \\\"cuda:0\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T02:23:31.126Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-22T02:23:36.614Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T02:23:44.022371+00:00\\\"}]}}, \\\"test_eval_4b_rsft_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T15:00:13.024Z\\\", \\\"updated_at\\\": \\\"2026-05-21T15:16:49.242Z\\\", \\\"hypothesis\\\": \\\"Re-DocRED test set eval: Qwen3-4B RSFT s42 (CED k=1, dev ign_f1=0.4423)。验证 dev set 性能是否泛化到 test set。填充 test set scaling table 4B 数据点，完成 5-scale test eval batch。\\\", \\\"spec\\\": {\\\"model_name\\\": \\\"Qwen3-4B + SFT + RSFT-CED-s42-k1\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\n…[truncated 5941 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1512
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T02:24:52.264663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T02:24:52.366452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_abf536f9."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T02:24:55.637797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T02:24:55.688497+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T02:24:58.254415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T02:24:58.305689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Directory does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_abf536f9.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Glob",
+            "elapsed_ms": 51
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T02:25:00.618784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed*\"",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T02:25:00.770961+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Glob",
+            "elapsed_ms": 152
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T02:25:17.235908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T02:25:17.764903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "Read",
+            "elapsed_ms": 528
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T02:25:28.571103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diagnose:test_eval_1_7b_sft_s42",
+              "project": "faith-evidence-ie",
+              "task_prompt": "## 任务：诊断实验 test_eval_1_7b_sft_s42 失败原因\n\n### 背景\n实验 `test_eval_1_7b_sft_s42` 在 rtx5090-4x 服务器上失败。\n- **failure_reason**: \"process dead 5× with no sentinel/W&B — auto-resolved as failed\"\n- **GPU**: cuda:0\n- **PID**: 140534\n- **命令**: `CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised`\n- **创建时间**: 2026-05-21T19:46:40\n- **失败时间**: 2026-05-22T02:23:36\n\n### 你要做的事\n\n用 ssh_read_only 连接 rtx5090-4x，依次检查：\n\n1. **日志文件**（按优先级查找）:\n   - `~/runs/faith-evidence-ie/test_eval_1_7b_sft_s42.log`\n   - `/tmp/test_eval_1_7b_sft_s42.log`\n   - `/root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42/log.txt`\n   - 在 tmux 中: `tmux capture-pane -t test_eval_1_7b_sft_s42 -p 2>/dev/null || echo \"no tmux session\"`\n   \n2. **输出目录**: `ls -la /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42/` 看是否有部分输出\n\n3. **模型/adapter 路径是否存在**:\n   - `/root/autodl-tmp/models/Qwen/Qwen3-1.7B`\n   - `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\n\n4. **系统级错误**: `dmesg | tail -50` 查看 OOM killer，`nvidia-smi` 看 GPU 状态\n\n5. **进程痕迹**: `ps aux | grep test_eval_1_7b_sft_s42` 和 `ps aux | grep 140534`\n\n### 产出\n\n简洁报告：\n- 根因（Root cause）：一句话\n- 证据：关键日志片段\n- 是否有部分输出可用\n- 建议：是否可以直接重跑，需要修改什么",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T02:25:31.851654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_test_eval_1_7b_sft_s42_20260522T022529\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_diagnose_test_eval_1_7b_sft_s42_20260522T022529.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diagnose_test_eval_1_7b_sft_s42_20260522T022529 started. Use get_worker_status('worker_diagnose_test_eval_1_7b_sft_s42_20260522T022529') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3280
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T02:25:54.931346+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断 Worker 已派出。当前状态：\n\n- **失败实验**: `test_eval_1_7b_sft_s42`（1.7B SFT test eval，test table 最后一个 SFT 缺口）\n- **cuda:0 空闲** — 诊断完成后立即重跑\n- **3 个实验仍在跑**: cuda:1/2/3 分别跑 no-evidence test eval（1.7B/8B/14B）\n\n等 Worker 回调后根据诊断结果决定重跑策略并汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42"
+          },
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 32
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T18:34:44.761457+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T18:35:37.068630+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x cuda:0/1/2/3，共 4 张。不得用其他服务器或卡号\n- test_eval 系列是 Re-DocRED test_revised (500 docs) 评估，split 必须是 `test_revised`，不是 `test` 或 `dev`\n- 4B RSFT s42 adapter 已丢失（/root/autodl-tmp/rsft_output/checkpoint-510 被删），不可直接重跑 4B RSFT eval，需要先用 retrain_4b_rsft_ced_s42_v2 的 checkpoint\n- no-evidence eval 必须与 with-evidence eval 配对使用同一 max_new_tokens=2048，否则截断不对称导致 tax 计算不可信（D139/D140 教训）\n- Framing: threshold claim 仅限 observational + Qwen family specific；cross-arch 仅放 Discussion（D147）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x (4× RTX PRO 6000, 96GB/卡)\n- **工作目录**: `/root/autodl-tmp/freige`（代码），`/root/autodl-tmp/eval_results/`（eval 输出）\n- **Python**: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**:\n  - Qwen3-1.7B: `/root/autodl-tmp/models/Qwen/Qwen3-1.7B`\n  - Qwen3-4B: `/root/autodl-tmp/models/Qwen3-4B`（注意不是 `/models/Qwen/Qwen3-4B`）\n  - Qwen3-8B: `/root/autodl-tmp/models/Qwen/Qwen3-8B`\n  - Qwen3-14B: `/root/autodl-tmp/models/Qwen/Qwen3-14B`\n  - LLaMA-3.1-8B: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`\n- **SFT adapters**: `sft_output_qwen3_1_7b_bf16`, `sft_output`(4B), `sft_output_qwen3_8b_bf16`, `sft_output_qwen3_14b_bf16`, `sft_output_llama_3_1_8b` (均在 `/root/autodl-tmp/` 下)\n- **数据**: `/root/autodl-tmp/data/re-docred-repo/data`（test_revised, 500 docs）\n- **活跃进程**（reconcile_crons 确认）:\n  - test_eval_14b_sft_s42_no_evi: PID 143166, cuda:3\n  - test_eval_1_7b_sft_s42_no_evi: PID 147596, cuda:1\n  - test_eval_8b_sft_s42_no_evi: PID 152873, cuda:2\n- **空闲**: cuda:0（test_eval_1_7b_sft_s42 失败后释放）\n\n### 3. 📊 当前状态\n**刚做完**: 收到 `test_eval_1_7b_sft_s42` 失败 cron 回调（failure_reason: \"process dead 5× with no sentinel/W&B — auto-resolved as failed\"）。已 spawn 诊断 Worker (`worker_diagnose_test_eval_1_7b_sft_s42_20260522T022529`)，**尚未收到回调**。\n\n**RUNNING (3)**:\n| exp_id | GPU | 用途 |\n|--------|-----|------|\n| test_eval_14b_sft_s42_no_evi | cuda:3 | D147 no-evi test spot-check: 14B |\n| test_eval_1_7b_sft_s42_no_evi | cuda:1 | D147 no-evi test spot-check: 1.7B |\n| test_eval_8b_sft_s42_no_evi | cuda:2 | D147 no-evi test spot-check: 8B |\n\n**cuda:0 空闲 = 失职状态**。test_eval_1_7b_sft_s42 是 test table 最后一个 SFT 缺口（1.7B SFT test eval），必须诊断完立即重跑。\n\n**等待中**:\n- Worker 回调: `worker_diagnose_test_eval_1_7b_sft_s42_20260522T022529`（诊断 1.7B SFT test eval 失败原因）\n- 尚未向 Director 汇报（等诊断结果后一并汇报）\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 读根因 → update_registry failure_reason → 修复后立即在 cuda:0 重跑 test_eval_1_7b_sft_s42（命令需要加 conda activate，参考其他成功实验的格式）\n- test_eval_14b_sft_s42_no_evi / test_eval_1_7b_sft_s42_no_evi / test_eval_8b_sft_s42_no_evi 任一完成 → on-experiment-done 流程（更新 registry、report.md、汇报 Director evidence tax test-set 结果）\n- 全部 test eval 完成 → 编译 test table → 派 Paper Worker patch 论文表格\n- 4B RSFT retrain 需要 Director 审批（在近期任务列表中）\n\n### 5. 🎯 战略上下文\n- **核心结论**: FREIGE 系统在 DocRE 上验证了 (1) RSFT+NLI 有效性 (2) evidence tax 随 scale 变化的 landscape：1.7B evidence helps (-5.63pp tax)，4B+ neutral (~0)，LLaMA unstable。Variance compression 是核心贡献\n- **当前阶段**: test set eval 收尾 + D147 reviewer framing 预审的 no-evidence spot-check。距 EMNLP 2026 ARR July ~55 天\n- **决策链关键**: D140 截断审计 → D143 @2048 confirmed → D144 3-scale tax → D145 paper_framing C3 修正 → D146 4B 3-seed neutral → D147 reviewer 预审采纳\n- **易错点**:\n  1. submit_on_allocated 的命令必须自带 conda 激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），裸 python 可能找不到依赖\n  2. 4B 模型路径是 `/root/autodl-tmp/models/Qwen3-4B` 不是 `/root/autodl-tmp/models/Qwen/Qwen3-4B`（历次失败教训）\n  3. test_eval 用 `--split test_revised` 不是 `--split test`\n  4. 1.7B 截断率很高（test RSFT trunc 73.8%），test SFT 也会类似，这是已知行为不是 bug\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:test_eval_1_7b_sft_s42"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-test-eval-1-7b-sft-s42-20260522t183537-070416.md"
+}

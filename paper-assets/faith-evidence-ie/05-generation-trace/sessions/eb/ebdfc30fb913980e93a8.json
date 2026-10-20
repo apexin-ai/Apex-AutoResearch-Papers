@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebdfc30fb913980e93a8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis mvp2 grpo extract",
+  "task_key": "worker_analysis_mvp2_grpo_extract_20260514T120455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp2_grpo_extract_20260514T120455_result.json",
+    "occurrence": 1,
+    "bytes": 1248,
+    "sha256": "4141d20dada21f21fad288fd858869a184483f01197604b7c6da45ebbe647dbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已有记录，且已标记为 `failed`。汇总如下：\n\n## mvp2_grpo_extract 实验结果\n\n**结论：failed** — KL 爆炸导致训练在 step 5/756 提前终止。\n\n### 关键指标（step 5 时）\n| 指标 | 值 |\n|------|-----|\n| KL divergence | 69,496,242,176（阈值 100） |\n| Loss | 4,048,864,460.8 |\n| Reward (total) | 0.186 |\n| Format reward | 0.132 |\n| F1 reward | 0.054 |\n| Entropy | 0.086 |\n| Completion clipped ratio | 26.25% |\n| 训练步数 | 5/756 (0.01 epoch) |\n| 训练时间 | ~14 分钟 |\n\n### 根因分析（已记录在 registry）\n**QLoRA 4-bit + kl_coef=0.05 不兼容**。4-bit 量化噪声使 reference model 与 policy 的 log-prob 差值不可靠，KL 值在训练开始后迅速爆炸到 10^8-10^11 量级。同一根因也影响了 r3 和 flatnli 实验。\n\n### Checkpoint\n- 路径：`/root/autodl-tmp/grpo_extract/`（5 步后保存的权重，不可用）\n\n### 修复方向\nRegistry notes 中已记录：**r2 重试时使用 kl_coef=0.0** 规避 QLoRA 量化噪声导致的 KL 计算失真。\n\n### 与 SFT baseline 对比\n无法对比——训练未完成，指标无意义。SFT baseline（eval_loss=0.72, accuracy=0.835）仍是当前最好的参考点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp2-grpo-extract.md"
+}

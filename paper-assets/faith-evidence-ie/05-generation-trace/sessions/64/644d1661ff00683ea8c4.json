@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "644d1661ff00683ea8c4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops cleanup ckpt70 residual and verify p0p1",
+  "task_key": "worker_ops_cleanup-ckpt70-residual-and-verify-p0p1_20260514T200102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-ckpt70-residual-and-verify-p0p1_20260514T200102_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "70f51072ad6f17ed5e937224990e9bc0d06beb300fe7b02c85426184bf69e00f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n---\n\n### 任务 1: ckpt-70/80 清理\n\n- `checkpoint-70/` 和 `checkpoint-80/` 都是空目录（无 predictions.json、无 metrics.json）\n- 已删除两个空目录，不会干扰 multi eval `--resume`\n\n### 任务 2: P0+P1 启动状态 — **启动失败**\n\n`mvp2_grpo_ced_lr5e6_rp_r1.log` 内容仅有 bash 语法错误：\n```\nbash: -c: line 1: unexpected EOF while looking for matching `\"'\nbash: -c: line 2: syntax error: unexpected end of file\nEXIT_CODE=2\n```\n**启动脚本引号不匹配，P0+P1 训练从未开始。cuda:3 空闲。**\n\n当前 GPU 占用：\n\n| GPU | 显存 | 进程 |\n|-----|------|------|\n| 0 | 13645/32607 MiB | PID 90085 — `grpo_trainer` **无** `--ced_recall_penalty`，output_dir=`grpo_ced_lr5e6`，step 11/200，~110s/step |\n| 1 | 0 MiB | 空闲 |\n| 2 | 10297/32607 MiB | PID 85997 — eval inference checkpoint-20 |\n| 3 | 0 MiB | 空闲 |\n\ntmux session `mvp2_grpo_ced_lr5e6_r1` 运行的是 cuda:0 上的 CED lr5e6 训练（无 recall penalty），不是 P0+P1。\n\n另外注意：cuda:0 训练在 step 5 报了 KL divergence = 2,412,554,396.9（阈值 100.0），极端异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-ckpt70-residual-and-verify-p0p1.md"
+}

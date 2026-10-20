@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cce3b98560fddc55d096",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh d032 ced scoring diagnosis",
+  "task_key": "worker_ssh_d032-ced-scoring-diagnosis_20260515T010820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d032-ced-scoring-diagnosis_20260515T010820_result.json",
+    "occurrence": 1,
+    "bytes": 1421,
+    "sha256": "ae489410ba46b5379d444741ae1374b19113567f023f783571edb7e6e38e330b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 246 个文档的 CED 诊断已完成。\n\n---\n\n```\n== D032 CED Scoring 诊断结果 ==\n分析 doc 数: 246\n每 doc 候选数: 8\n\nCED Score 分布:\n- 全局 mean: 0.5667\n- 全局 std: 0.3071\n- 跨文档 std 均值 (mean_std): 0.1425\n- 跨文档 std 中位数: 0.1245\n- top1-bottom1 gap 均值: 0.4203\n- top2-bottom2 gap 均值: 0.3354\n\nEvidence 多样性:\n- sentence_ids Jaccard overlap rate: 0.7405 (mean), 0.7352 (median)\n\nCED Score 分位数:\n  P  0: 0.0000\n  P 10: 0.0105\n  P 25: 0.3581\n  P 50: 0.5911\n  P 75: 0.8088\n  P 90: 0.9823\n  P100: 0.9977\n\n结论: 可行\n原因: mean_std=0.1425>0.05 且 top2-bottom2 gap=0.3354>0.1，CED 方差足够支撑 rejection sampling\n```\n\n**关键发现**：\n\n1. **CED 方差充足**：每个文档 8 个候选的 CED std 均值 = 0.1425（远超 0.05 阈值），top2-bottom2 gap = 0.3354（远超 0.1 阈值）。Rejection sampling 有足够的信号区分好坏候选。\n\n2. **Triple-set 虽然几乎相同（之前观测 diversity=0.9/8），但 evidence 引用确实有差异**：sentence_ids Jaccard overlap ~0.74，约 26% 的 evidence 差异来自不同的 sentence 引用组合，这正是 CED 奖励可以区分的维度。\n\n3. **CED 分布呈现良好的区分度**：P10=0.01 vs P90=0.98，说明最差和最好的候选之间有接近满分的差距。top-25% 筛选策略可以有效选出高质量 evidence。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d032-ced-scoring-diagnosis.md"
+}

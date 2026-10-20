@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "768c1cb987cb1d082a89",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778798567.md",
+  "task_key": "loop_4_1778798567",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778798567.md",
+    "occurrence": 1,
+    "bytes": 5440,
+    "sha256": "c4ad10344bfc3f650c17172986b12345fac91e8d8163b920fd82a66afa685566"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T22:19:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0,1,2,3（项目配置 `gpu_ids: [0,1,2,3]`），rtx5090-4x 和 bjb2-12179 是同一台机器的两个 SSH endpoint\n- 训练提交禁止 `bash -c \"...\"` 内联，必须先写 `.sh` 脚本到服务器再 `bash /path/to/script.sh`（D035，第 4+ 次引号冲突教训）\n- GRPO checkpoint eval 必须传 `--sft_adapter /root/autodl-tmp/sft_output`，否则缺 SFT 层导致指标虚低\n- kill_job 后必须派 Worker 验证子进程终止（`ps -p <PID>` + `nvidia-smi -i <GPU>`），tmux wrapper 死不等于训练进程死\n- 启动任何 GPU 任务前先 `nvidia-smi -i <GPU>` 确认目标卡无占用\n- TRL 1.1.0: `tokenizer=` → `processing_class=`；`max_seq_length` → `max_length`\n- flash_attn 未装，用 `attn_implementation=\"sdpa\"`\n\n### 2. 🖥️ 基础设施快照\n- 服务器: rtx5090-4x / bjb2-12179（同一台 4×RTX 5090 32GB）\n- 工作目录: `/root/autodl-tmp/freige`\n- Python: `/root/miniconda3/bin/python`（conda base 环境）\n- 模型: `/root/autodl-tmp/models/Qwen3-4B`（7.6GB, ModelScope 下载）\n- SFT adapter: `/root/autodl-tmp/sft_output`\n- GRPO 训练输出: `/root/autodl-tmp/grpo_output_ced_lr5e6/`（P0 训练目录）\n- 数据: `/root/autodl-tmp/data/docred`\n- Eval 输出: `/root/autodl-tmp/eval_results/`（GRPO）、`/root/autodl-tmp/sft_baseline_eval_results/`（SFT）\n- W&B: entity=`xiaoyucorynne-`, project=`freige-grpo`, run=`grpo-s3-ced-lr5e6-r1`\n- 活跃进程:\n  - cuda:0 — `mvp2_grpo_ced_lr5e6_r1` PID 90080, step ~68/200, ~3-4h remaining\n  - cuda:2 — `mvp2_eval_lr5e6_r1_ckpt40_r2` PID 101842（ckpt-40 eval, ~85-110min/ckpt）\n  - cuda:3 — `mvp2_eval_sft_baseline` PID 104979（SFT baseline eval 用统一 eval 脚本重跑）\n- Cron 监控: 2 个 active（lr5e6_r1 + ckpt40_r2）\n- Worker 运行中: `worker_ops_lr5e6_training_status`（检查训练进度）\n\n### 3. 📊 当前状态\n上个 session 核心工作：完成 ckpt-20 eval（FAIL, rel_f1=0.0077）、kill rp_r2（loss divergence）、启动 ckpt-40/60 eval 和 SFT baseline 重评估。\n\nRegistry 活跃实验:\n- `mvp2_grpo_ced_lr5e6_r1` — RUNNING, P0 训练 step ~68/200, cuda:0\n- `mvp2_eval_lr5e6_r1_ckpt40_r2` — RUNNING, P0 ckpt-40 eval, cuda:2（前一次 ckpt40 eval 因进程冲突 failed，这是 retry）\n- `mvp2_eval_sft_baseline` — RUNNING, SFT baseline 用统一 eval 脚本重跑（确保 apple-to-apple 对比）, cuda:3\n- `mvp2_eval_lr5e6_r1_ckpt60` — ALLOCATED, cuda:1, 等待提交（训练还未到 step 60 时创建的占位）\n\n等待中:\n- ckpt-40 eval 和 SFT baseline eval 的 cron 回调\n- Worker `worker_ops_lr5e6_training_status` 完成回调\n- 训练到 step 60 后启动 ckpt-60 eval\n\n统计: 成功 8 / 负向 7 / 失败 9 / killed 多个 / 共 45 实验\n\n### 4. 📋 待办（条件触发式）\n- `mvp2_eval_lr5e6_r1_ckpt40_r2` cron 回调（完成） → 读 `eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics.json`，提取 rel_f1。若 rel_f1 ≥ 0.30 → P0 PASS，汇报 Director 进入完整评估。若 < 0.30 → 更新 checkpoint 评估矩阵，继续等 ckpt-60\n- `mvp2_eval_sft_baseline` cron 回调（完成） → 读 `sft_baseline_eval_results/metrics.json`，与 sft_eval_r2 对比确认一致性（预期 F1=0.4057），更新 registry\n- P0 训练到 step 60+ → 提交 `mvp2_eval_lr5e6_r1_ckpt60`（已 ALLOCATED cuda:1），命令: `batch_eval --checkpoints 60 --exp_dir grpo_output_ced_lr5e6 --sft_adapter /root/autodl-tmp/sft_output`\n- **全部 ckpt eval 出齐（ckpt-20/40/60/80+）→ MVP-2 最终判定**:\n  - 任一 rel_f1 > 0.30 → P0 PASS，进 Post-MVP 流程（paper_framing → experiment_plan → dream_simulate）\n  - 全线 < 0.30 但明确上升趋势 → 延长训练到 step 200+\n  - 全线 < 0.30 且 plateau → P0 FAIL，pivot 到 DPO/Rejection Sampling（Contingency 1 或 2）\n- P0 FAIL 确认 → 产出 Framing 调整提案（red-section skill），汇报 Director，**不默默开下一个实验**\n\n### 5. 🎯 战略上下文\n- **核心结论**: CED reward signal 本身已验证（MVP-1 PASS, margin=0.4827, acc=81.5%, r=0.34），问题在 GRPO+QLoRA 训练方法论——lr=5e-5 全灭（D027），lr=5e-6 ckpt-20 也 FAIL（D030）。根因不是单纯 LR，是 GRPO+QLoRA 在结构化生成任务前 20 步 inherently 不稳定（60% 截断，format compliance 39.9%）\n- **参考轨迹**: ced_kl001_r4 (lr=5e-5) 呈\"先崩后部分恢复\"：step-10=0.003 → step-50=0.156 → step-100=0.217（但永远回不到 SFT 0.4057）。lr=5e-6 是否也有类似恢复是当前关键判定点\n- **易错点 1**: ckpt-40 eval 之前 failed 过一次（进程冲突），当前 r2 是 retry。如果 r2 也 fail，需要检查是代码问题还是资源冲突\n- **易错点 2**: `mvp2_eval_lr5e6_r1_ckpt60` 是 ALLOCATED 状态，但训练可能还没到 step 60——提交前必须确认 checkpoint-60 目录存在\n- **易错点 3**: 不要把 ced_kl001_r4 的 eval 数据（lr=5e-5）与 lr5e6_r1 的 eval 数据直接混用做趋势分析，它们是不同 LR 的训练 run\n- **决策链**: D020(统一配置) → D027(lr=5e-5 FAIL) → D029(rp_r2 killed) → D030(lr=5e-6 ckpt-20 FAIL) → 当前等 ckpt-40/60 判定\n- **Contingency 已就绪**: 若 P0 全线 FAIL，3 个备选方案在 ROADMAP.md（DPO+CED、Rejection Sampling、GRPO+format reward），CED reward signal 本身不需要重新验证\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778798567.md"
+}

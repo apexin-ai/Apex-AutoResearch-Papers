@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc0c8c45673844f84bb7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops verify 8b rsft s43 checkpoint",
+  "task_key": "worker_ops_verify_8b_rsft_s43_checkpoint_20260519T172536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_8b_rsft_s43_checkpoint_20260519T172536_result.json",
+    "occurrence": 1,
+    "bytes": 536,
+    "sha256": "01f71822d2ad5603f1aa48d44289e56e6ef84d12851aa1a87a822250f314295a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| 项目 | 状态 |\n|------|------|\n| **s43 checkpoint** | 完整。`adapter_config.json` + `adapter_model.safetensors` (698MB) 均存在，含 2 个中间 checkpoint (1100, 1134) |\n| **eval 结果** | 存在。F1=56.51, Ign-F1=54.71, Evi-F1=81.80, EDCR=60.94 |\n| **训练数据** | 3018 条 (`rsft_train.jsonl`) |\n| **s42 checkpoint** | 存在 |\n| **s44 checkpoint** | 存在 |\n\n三个 seed (s42/s43/s44) 共用同一份 3018 条训练数据，均为 Method A（从 SFT s42 base 出发的 RSFT）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-8b-rsft-s43-checkpoint.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "849ff48ee3858491da6c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "infra verify inference deploy",
+  "task_key": "worker_infra_verify-inference-deploy_20260514T084054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify-inference-deploy_20260514T084054_result.json",
+    "occurrence": 1,
+    "bytes": 1488,
+    "sha256": "6b09d7f734a7d3250db5b30ee3ac3a326dc953bdb1394a3eb19a433ff06900f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。\n\n### 结果\n\n| 检查项 | 状态 |\n|--------|------|\n| inference.py 部署 | **yes** (15632 bytes, 2026-05-14 16:07) |\n| dry-run `--help` | **pass** (无 ImportError) |\n| SFT checkpoint | **存在** `/root/autodl-tmp/sft_output/adapter_config.json` |\n| DocRED 数据 | **存在** `/root/autodl-tmp/data/docred/dev.json` |\n| Base model | **存在** `/root/autodl-tmp/models/Qwen3-4B/config.json` |\n\n### 参数匹配分析\n\n任务给的命令用 `--model_path /root/autodl-tmp/sft_output`，但根据 argparse 定义，`--model_path` 的说明是\"Base model 路径，或 LoRA adapter 路径（需配合 `--base_model`）\"。SFT output 是 LoRA adapter，所以需要同时指定 `--base_model`。\n\n`--base_model` 默认值已经是 `/root/autodl-tmp/models/Qwen3-4B`，所以不显式传也行，但显式传更安全。\n\n### 验证后的 SFT eval 完整命令\n\n```bash\ncd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference \\\n  --model_path /root/autodl-tmp/sft_output \\\n  --base_model /root/autodl-tmp/models/Qwen3-4B \\\n  --data_path /root/autodl-tmp/data/docred \\\n  --output_dir /root/runs/faith-evidence-ie/eval_sft \\\n  --batch_size 4 \\\n  --max_new_tokens 1024\n```\n\n`--base_model` 的默认值恰好匹配，可省略，但建议保留以明确意图。其余参数名 (`--model_path`, `--data_path`, `--output_dir`, `--batch_size`, `--max_new_tokens`) 全部与 argparse 定义一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-inference-deploy.md"
+}

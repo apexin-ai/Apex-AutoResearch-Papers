@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a5d4f0843346f6e47ed",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper research docre methods",
+  "task_key": "worker_paper_research_docre_methods_20260517T150401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_docre_methods_20260517T150401_result.json",
+    "occurrence": 1,
+    "bytes": 3674,
+    "sha256": "88f4045198385454fb187390af62e0b6a8c61ffa54b20c02c8f2828c58c280b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the information needed. Here are the results:\n\n---\n\n```\nVERIFICATION RESULTS:\n\n1. DocRED: ✅ VERIFIED\n   Title: \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\"\n   Authors: Yuan Yao, Deming Ye, Peng Li, Xu Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu, Lixin Huang, Jie Zhou, Maosong Sun\n   Venue: ACL 2019 (P19-1074)\n   arXiv: 1906.06127\n   ACL Anthology: https://aclanthology.org/P19-1074/\n\n2. Re-DocRED: ✅ VERIFIED\n   Title: \"Revisiting DocRED -- Addressing the False Negative Problem in Relation Extraction\"\n   Authors: Qingyu Tan, Lu Xu, Lidong Bing, Hwee Tou Ng\n   Venue: EMNLP 2022 (2022.emnlp-main.580)\n   arXiv: 2205.12696\n   ACL Anthology: https://aclanthology.org/2022.emnlp-main.580/\n\n3. ATLOP: ✅ VERIFIED\n   Title: \"Document-Level Relation Extraction with Adaptive Thresholding and Localized Context Pooling\"\n   Authors: Wenxuan Zhou, Kevin Huang, Tengyu Ma, Jing Huang\n   Venue: AAAI 2021\n   arXiv: 2010.11304\n   DOI: 10.1609/aaai.v35i16.17717\n\n4. LMRC: ✅ VERIFIED (年份需修正)\n   Title: \"LLM with Relation Classifier for Document-Level Relation Extraction\"\n   Authors: Xingzuo Li, Kehai Chen, Yunfei Long, Min Zhang\n   Venue: arXiv preprint (未确认正式会议录用)\n   arXiv: 2408.13889\n   ⚠️ 注意: 原始记录标注 \"Li et al., 2023\" 有误，arXiv 提交日期为 2024年8月，应修正为 2024\n\n5. DocKS-RAG: ✅ VERIFIED (venue需修正)\n   Title: \"DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning\"\n   Authors: Xiaolong Xu, Yibo Zhou, Haolong Xiang, Xiaoyong Li, Xuyun Zhang, Lianyong Qi, Wanchun Dou\n   Venue: ICML 2025 (Proceedings of Machine Learning Research vol. 267)\n   arXiv: ❌ 未找到 arXiv ID（论文通过 OpenReview 提交，ID: SVl9tIADWV）\n   PMLR: https://proceedings.mlr.press/v267/xu25am.html\n   ⚠️ 注意: 原始记录标注 \"Xu et al., 2024\"，实际发表于 ICML 2025。无 arXiv preprint。\n\n6. GenRES: ✅ VERIFIED\n   Title: \"GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models\"\n   Authors: Pengcheng Jiang, Jiacheng Lin, Zifeng Wang, Jimeng Sun, Jiawei Han\n   Venue: NAACL 2024 (Long Papers, pages 2820-2837)\n   arXiv: 2402.10744\n   ACL Anthology: https://aclanthology.org/2024.naacl-long.155/\n   DOI: 10.18653/v1/2024.naacl-long.155\n\n\nGAP-FILL (建议补充的论文):\n\n- [docunet] \"Document-level Relation Extraction as Semantic Segmentation\"\n  Authors: Ningyu Zhang, Xiang Chen, Xin Xie, Shumin Deng, Chuanqi Tan, Mosha Chen, Fei Huang, Luo Si, Huajun Chen\n  Venue: IJCAI 2021 | arXiv: 2106.03618\n\n- [kd_docre] \"Document-Level Relation Extraction with Adaptive Focal Loss and Knowledge Distillation\"\n  Authors: Qingyu Tan, Ruidan He, Lidong Bing, Hwee Tou Ng\n  Venue: Findings of ACL 2022 | arXiv: 2203.10900\n\n- [dreeam] \"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction\"\n  Authors: Youmi Ma, An Wang, Naoaki Okazaki\n  Venue: EACL 2023 | arXiv: 2302.08675\n  备注: 当前 DocRE SOTA 之一，与本项目 evidence-guided 主题高度相关\n\n- [autore] \"AutoRE: Document-Level Relation Extraction with Large Language Models\"\n  Authors: Lilong Xue, Dan Zhang, Yuxiao Dong, Jie Tang\n  Venue: ACL 2024 Demo | arXiv: 2403.14888\n  备注: LLM-based DocRE 代表性工作，RHF 范式，在 Re-DocRED 上 SOTA\n\n\nISSUES SUMMARY:\n- LMRC: 年份从 2023 修正为 2024\n- DocKS-RAG: 无 arXiv ID（仅 OpenReview + ICML 2025 proceedings），venue 从 2024 修正为 2025\n- 无 FAKE 论文，6 篇全部真实存在\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-docre-methods.md"
+}

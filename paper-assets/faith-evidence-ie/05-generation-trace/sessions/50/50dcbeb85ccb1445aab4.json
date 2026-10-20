@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50dcbeb85ccb1445aab4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check flatnli and sft eval",
+  "task_key": "worker_ops_check-flatnli-and-sft-eval_20260514T122931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-flatnli-and-sft-eval_20260514T122931_result.json",
+    "occurrence": 1,
+    "bytes": 1402,
+    "sha256": "a7447e7e107e7329aba47103272ca1a01e95156a50a57266b669b5dc458dbb9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告\n\n### 1. mvp2_grpo_flatnli — 已终止 (KL 爆炸)\n\n| 项目 | 值 |\n|------|-----|\n| 训练步数 | **5 / 756** |\n| 退出原因 | **KL early stop** — KL = 50,844,539,289.6，阈值 100.0 |\n| loss | 2,936,185,651.2 |\n| format_reward | 0.117 |\n| f1_reward | 0.062 |\n| flat_nli_reward | 0.158 |\n| total reward | 0.337 |\n| checkpoint | 已保存到 `/root/autodl-tmp/grpo_flatnli` |\n| EXIT_CODE | 129 (SIGHUP) |\n\n**和 extract 实验一模一样 — step 5 KL 爆炸。** 训练约 14 分钟即触发 early stop。KL 从正常值直接飙到 508 亿，说明 GRPO 在当前配置下系统性不稳定，不是个别实验的偶发问题。\n\n---\n\n### 2. mvp2_sft_eval — 运行中\n\n| 项目 | 值 |\n|------|-----|\n| 进程 | PID 47293，**存活**，已运行 41 分 11 秒 |\n| 进度 | **26 / 247 batches (10.5%)**，batch_size=4 |\n| 速度 | ~95s/batch |\n| 预计剩余 | ~5.8 小时 (221 batches × 95s) |\n| GPU | cuda:1，利用率 88%，10.7GB / 32.6GB |\n\n---\n\n### 3. GPU 状态\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| 0 | 57% | 13.1 / 32.6 GB |\n| 1 | 88% | 10.7 / 32.6 GB ← sft_eval |\n| 2 | 56% | 13.1 / 32.6 GB |\n| 3 | 47% | 13.1 / 32.6 GB |\n\n**GPU 0/2/3 未释放** — 各占 ~13GB。可能有残留进程，grpo_flatnli 虽然退出了但显存没回收，或者有其他任务在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-flatnli-and-sft-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ec876eab17b53f22cdd",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research cdr gda dataset",
+  "task_key": "worker_research_cdr_gda_dataset_20260518T100115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_cdr_gda_dataset_20260518T100115_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "43964a693b4a55c1d319cc56740cce232cc40ffeab8d71315405febf1c5d58be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GDA agent 的详细结果确认了关键发现：**GDA 同样无 evidence sentence annotations**（SAIS 论文明确指出 \"Since neither CDR nor GDA annotates evidence sentences\"）。\n\n报告已在上一条消息中完整给出，GDA 部分的结论一致，无需修正。核心结论不变：\n\n**CDR 和 GDA 均无 evidence 标注，但仍可作为 RE-only 跨领域评估基准。** 这两个是 DocRE 领域最广泛使用的生物医学 benchmark（ATLOP、DocuNet、SAIS 等论文均报告了两者的结果），可直接与已有 SOTA 对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-cdr-gda-dataset.md"
+}

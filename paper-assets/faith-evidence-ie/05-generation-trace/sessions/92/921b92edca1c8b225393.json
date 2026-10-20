@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "921b92edca1c8b225393",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis reeval sft baseline d076",
+  "task_key": "worker_analysis_reeval_sft_baseline_d076_20260516T072641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reeval_sft_baseline_d076_20260516T072641_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "e4e8d907d7a158cf0d2d0a780c4affa51de4d0551ebc3103ee34983419bf2e0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 已注册。结果汇总：\n\n## reeval_sft_baseline_d076 结果\n\n| 指标 | 值 |\n|------|-----|\n| **F1** | **0.4049** |\n| **Ign-F1** | **0.3974** |\n| **Evi-F1** | **0.7986** |\n| **EDCR** | **0.6982** |\n| Evi-F1-Joint | 0.3147 |\n| Precision / Recall | 0.4141 / 0.3962 |\n| Format OK | 983/985 (99.8%) |\n| Truncated | 288/985 |\n| Predictions | 16880 |\n\n### 日志状态\n- EXIT_CODE=0，无 error/traceback\n- 推理完整完成 247/247 batches，耗时 1h57m (7.16 s/doc)\n\n### 注意点\n- **288/985 (29.2%) 文档被截断** — max_new_tokens=1024 对长文档不够，可能压低了 recall\n- **field_compliance_rate 仅 70.66%** — 近 30% 的输出缺少完整字段（主要是 evidence 格式不完整），与截断高度相关\n- **EDCR 0.6982** — 约 70% 的引用为 distractor sentence，evidence 质量有提升空间\n\n### 结论：**Success** — 实验正常完成，数据可用作 D076 统一协议下的 SFT baseline 基准线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-reeval-sft-baseline-d076.md"
+}

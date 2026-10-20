@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "834dd1dfe2f18c128fe0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan 003 edcr prep",
+  "task_key": "worker_code_plan_003_edcr_prep_20260515T221504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_003_edcr_prep_20260515T221504_result.json",
+    "occurrence": 1,
+    "bytes": 904,
+    "sha256": "283832ed7ad593651a54fdd4d0b85ca89ebfce8489dc25b39e98e3767643575c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，结果如下：\n\n**plan_003 EDCR 代码状态: ✅ 就绪**\n\n两个脚本存在且完整：\n- `scripts/edcr_diagnostic.py` — 主诊断工具（347行），含 per-relation / per-document EDCR 分析 + LaTeX 输出\n- `eval/cross_method_table.py` — 简版跨方法汇总表\n\n依赖链完整：`evaluator.py` 提供 `compute_edcr`/`compute_f1`/`compute_evi_f1`/`_triple_key`，全部 14 个 AUTO_METHODS 的 predictions.json 已在磁盘上，数据格式匹配。\n\n**阻塞项：flat-NLI s44 + s45**\n- 目前只有 flat-NLI s42 和 s43 的 eval 结果\n- s44/s45 训练+eval 完成后需要：\n  1. 产出 predictions.json\n  2. 在 `edcr_diagnostic.py` 的 `AUTO_METHODS` 列表中添加这两个条目\n  3. 然后跑 `python -m freige.scripts.edcr_diagnostic --auto-discover`\n\n除了补充 s44/s45 条目（两行代码），不需要其他开发工作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-003-edcr-prep.md"
+}

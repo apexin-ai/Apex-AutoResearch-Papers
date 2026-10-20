@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3d2e2969edd38654b49",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose rsync gpu status",
+  "task_key": "worker_diagnose_rsync-gpu-status_20260520T082712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_rsync-gpu-status_20260520T082712_result.json",
+    "occurrence": 1,
+    "bytes": 1419,
+    "sha256": "c70f2f53302154c1153ab42dae7722de3c516a7bf7bb9dfe297f7342f7acccad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### rsync 状态\n- **仍在运行**：monitor 日志显示 6 个 rsync 进程活跃\n- **当前传输量**：`/root/autodl-tmp/` = **12GB**（3 分钟前是 10GB，增速 ~2GB/3min）\n- **当前进度**：正在传输 `grpo_bf16_g4/checkpoint-200/adapter_model.safetensors`（~1GB 文件，最新进度 82%）\n\n### nvidia-smi 完整输出\n\n| GPU | 型号 | 显存占用 | GPU-Util | 温度 | 功耗 |\n|-----|------|---------|----------|------|------|\n| 0 | RTX PRO 6000 Blackwell | **0MiB** / 97887MiB | **0%** | 31°C | 35W |\n| 1 | RTX PRO 6000 Blackwell | **0MiB** / 97887MiB | **0%** | 31°C | 34W |\n| 2 | RTX PRO 6000 Blackwell | **0MiB** / 97887MiB | **100%** | 40°C | 102W |\n| 3 | RTX PRO 6000 Blackwell | **0MiB** / 97887MiB | **100%** | 40°C | 104W |\n\n### cuda:2 和 cuda:3 异常\n\n**GPU-Util 100% 但无进程、无显存占用。** nvidia-smi 的 Processes 区域显示 \"No running processes found\"，compute apps 查询也为空。\n\n这是一个**幽灵利用率**现象——可能原因：\n1. 之前的进程异常退出但未正确释放 GPU 计算上下文（最常见）\n2. 驱动级残留状态\n\n解决方法：需要 `nvidia-smi --gpu-reset -i 2,3` 重置这两张卡，或者重启实例。在重置前这两张卡虽然显存可用，但可能行为异常。\n\n### cuda:0 和 cuda:1\n完全空闲，0MiB / 0% 利用率，可立即使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-rsync-gpu-status.md"
+}

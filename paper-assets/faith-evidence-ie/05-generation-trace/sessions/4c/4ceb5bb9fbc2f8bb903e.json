@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ceb5bb9fbc2f8bb903e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check 1 7b seed43 eval result",
+  "task_key": "worker_ops_check_1_7b_seed43_eval_result_20260517T164731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_1_7b_seed43_eval_result_20260517T164731_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "32e3cedfa6e9d34c51c2fa8c0fc616d2762007ad42d0f8b16f55cccf5cc311fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 1.7B RSFT Seed 43 Eval 结果\n\n| 指标 | Seed 42 | Seed 43 | Δ |\n|------|---------|---------|---|\n| **F1** | 0.5219 | 0.5180 | -0.39pp |\n| **Ign-F1** | 0.5050 | 0.5024 | -0.26pp |\n| Evi-F1 (DREEAM) | — | 0.4201 | — |\n| Evi-F1 (TP) | — | 0.8341 | — |\n| EDCR | — | 0.6246 | — |\n| Format OK | — | 984/985 (99.9%) | — |\n\n两个 seed 的 rel_f1 差距 0.39pp、ign_f1 差距 0.26pp，均在 ±1pp 以内，1.7B RSFT 数据点稳定。Registry 已更新，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-1-7b-seed43-eval-result.md"
+}

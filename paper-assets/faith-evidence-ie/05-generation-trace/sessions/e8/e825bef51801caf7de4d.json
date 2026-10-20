@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e825bef51801caf7de4d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "harvest llama sft s43 r3",
+  "task_key": "worker_harvest_llama-sft-s43-r3_20260520T140830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_llama-sft-s43-r3_20260520T140830_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "7909bec3d2a760f07bbeced55cd7535439b490adcb03bfb711424e13ca0db863"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## s43 r3 结果\n\n**训练**: 成功完成，3 epochs，train_loss=0.521，eval_loss=0.7393\n\n**Adapter**: 存在，641MB，路径 `/root/autodl-tmp/sft_output_llama_3_1_8b_s43/`\n\n**Eval 指标**:\n\n| 指标 | s43 r3 | s42 | RSFT 3-seed mean |\n|------|--------|-----|-------------------|\n| **Ign-F1** | **0.5142** | 0.5384 | 0.5654 |\n| F1 | 0.5308 | — | — |\n| Evi-F1 (DREEAM) | 0.4220 | — | — |\n| Evi-F1 (TP) | 0.8245 | — | — |\n| EDCR | 0.5866 | — | — |\n| Format OK | 985/985 (100%) | — | — |\n| Truncated | 190/985 | — | — |\n\n**对比**: s43 Ign-F1=0.5142，低于 s42 (0.5384) 2.4 个点，低于 RSFT 3-seed mean (0.5654) 5.1 个点。s43 的 SFT baseline 表现较弱。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-llama-sft-s43-r3.md"
+}

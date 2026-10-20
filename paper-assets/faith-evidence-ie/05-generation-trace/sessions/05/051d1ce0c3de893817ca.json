@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "051d1ce0c3de893817ca",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose eval plan 014 no evidence",
+  "task_key": "worker_diagnose_eval_plan_014_no_evidence_20260516T013029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_plan_014_no_evidence_20260516T013029_result.json",
+    "occurrence": 1,
+    "bytes": 1636,
+    "sha256": "4baa1dd8fae652ca0d85347ef18df279f4b6d815480dc1fb83604ecf52d5281e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "逻辑清楚了。代码的模型加载流程：\n\n1. `model_path` 有 `adapter_config.json` → 视为 adapter，`base_model` 作为底座\n2. 然后**无条件**检查：adapter 存在但 `--sft_adapter` 未设 → 报错\n3. `load_model_and_tokenizer` 中：`sft_adapter_path` 会被 merge 进底座，`adapter_path` 作为顶层 LoRA 叠加\n\n问题在于代码假设通过 `model_path` 传入的 adapter 一定是 RSFT/DPO/GRPO 等**下游 adapter**，需要先 merge SFT 再叠加。但 plan_014 的 adapter 本身就是 SFT adapter，不需要叠加，只需要 merge。\n\n**修复方案**：把 SFT adapter 路径从 `--model_path` 改为 `--sft_adapter`，`--model_path` 直接传底座模型。这样不会触发 adapter 检测逻辑，SFT adapter 通过 `sft_adapter_path` 被 merge 进底座后直接推理。\n\n修复后的完整命令：\n\n```bash\nCUDA_VISIBLE_DEVICES=X python -m freige.eval.inference \\\n  --model_path /root/autodl-tmp/models/Qwen3-4B \\\n  --sft_adapter /root/autodl-tmp/sft_no_evidence_output \\\n  --data_path /root/autodl-tmp/data/docred \\\n  --split dev \\\n  --batch_size 4 \\\n  --max_new_tokens 1024 \\\n  --seed 42 \\\n  --output_dir /root/autodl-tmp/eval_results/sft_no_evidence_noquant \\\n  --no-quantize \\\n  --no_evidence\n```\n\n（`X` 替换为实际空闲 GPU 编号，提交前 `nvidia-smi` 确认显存 < 2GB。）\n\n**改了什么**：去掉 `--base_model`，把 `--model_path` 改为底座 Qwen3-4B，SFT adapter 路径移到 `--sft_adapter`。这样底座直接加载，SFT adapter 通过 merge 方式合入，不触发\"必须有 sft_adapter\"的校验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-plan-014-no-evidence.md"
+}

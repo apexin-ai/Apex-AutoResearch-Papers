@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1ccb0b1e954088c9ff4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose plan017 14b rsft generate r2",
+  "task_key": "worker_diagnose_plan017_14b_rsft_generate_r2_20260520T113337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan017_14b_rsft_generate_r2_20260520T113337_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "9f96b9502c588957268aebdcb14024a52e23168375400d73a75f176e0209bf34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**根本原因**：`adapter_config.json` 不在 `/root/autodl-tmp/sft_output_14b/` 顶层，而在 `checkpoint-144/` 子目录下。\n\nSFT 训练只保存了 checkpoint 子目录（`checkpoint-96/`, `checkpoint-144/`），没有在顶层输出最终 adapter 文件。`PeftModel.from_pretrained()` 在 `/root/autodl-tmp/sft_output_14b/` 找不到 `adapter_config.json`，直接报错。\n\n**修复方案**：将 `--sft_adapter` 路径改为指向最新 checkpoint：\n\n```\n--sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144\n```\n\n即完整命令中把 `/root/autodl-tmp/sft_output_14b` 替换为 `/root/autodl-tmp/sft_output_14b/checkpoint-144`。\n\n**其他文件状态**：\n- 基座模型 Qwen3-14B ✅ 完整（8 个 safetensors 分片）\n- 训练数据 train_annotated.json ✅ 存在（13MB）\n- progress.json ✅ 存在（前次生成到 doc 1873 的进度）\n- 代码目录 ✅ 存在\n\n**无需等迁移**，所有必要文件已就位，只是 adapter 路径指错了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan017-14b-rsft-generate-r2.md"
+}

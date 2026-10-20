@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82d58aec2de9bc11531b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops registry cleanup stale",
+  "task_key": "worker_ops_registry-cleanup-stale_20260522T193257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry-cleanup-stale_20260522T193257_result.json",
+    "occurrence": 1,
+    "bytes": 1191,
+    "sha256": "cda2deaa58c2d4e0d8fdd9b696d61b14295d3fc8b5171567133060cef7d6296f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "103/103 全部完成。汇报：\n\n## Registry 清理完成\n\n**总计标记：103 个实验**（notes 添加 `[ARCHIVED] superseded by ...`）\n\n### 按前缀分组\n\n| 前缀 | 标记数 | 说明 |\n|------|--------|------|\n| mvp2_* | 35 | 统一标注 \"superseded by final pipeline (plan017/plan019 series)\" |\n| plan_0* / plan0* | 38 | 各自指向成功的 r2/r3/r4/r5 或后续 plan 版本 |\n| d1xx_* | 7 | 指向 _fix / _bf16 / _r3 等修正版本 |\n| eval_* | 10 | 指向 _r2 或正确版本 |\n| llama_sft_* | 4 | 指向 _r3 版本 |\n| wave1_* | 2 | 指向 _r2 版本 |\n| rsft_ced_* | 5 | 指向 _r3 / _r4 版本 |\n| retrain_/reeval_/test_eval_/rsft_s44_* | 2 | 指向 _v2 或对应成功版本 |\n\n### 跳过的实验（6 个，无明确替代者）\n\n1. `eval_plan_012_dpo_1ep_fixed` — DPO 方向整体放弃（结论 negative）\n2. `eval_plan_012_dpo_ced_ckpt400` — 同上\n3. `lead2_rsft_grpo_ced` — 训练失败，checkpoint eval 独立成功\n4. `lead2_rsft_grpo_ced_r2` — 同上\n5. `plan019_1_7b_rsft_no_evidence_eval` — 结论是 negative（evidence 有帮助），非技术失败\n6. `seed_comparison_prep` — 一次性分析任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-cleanup-stale.md"
+}

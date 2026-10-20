@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56995db97b469dddbf2d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code ced shortcut fix",
+  "task_key": "worker_code_ced-shortcut-fix_20260514T192919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ced-shortcut-fix_20260514T192919_result.json",
+    "occurrence": 1,
+    "bytes": 808,
+    "sha256": "179448c2e7284f9748cf287e137eced10a9f60eae456000a36a512788f8ec16e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 tests passed。\n\n修改完成，共改了两个文件：\n\n**`training/grpo_trainer.py`**:\n1. `CEDRewardWrapper.__init__` 新增 `recall_penalty: bool = False` 参数，存为 `self.recall_penalty`\n2. `__call__` 中用 `matched_gold_keys` set 跟踪命中的 gold keys\n3. 计算 `mean_ced` 后，若 `self.recall_penalty=True`，乘以 `recall = len(matched_gold_keys) / len(gold_map)`\n4. argparse 新增 `--ced_recall_penalty` flag（默认 False）\n5. `main()` 中将 `args.ced_recall_penalty` 传给 CEDRewardWrapper 构造函数\n\n**`tests/test_ced_gate.py`**:\n- fixture 补充 `w.recall_penalty = False`（因为 fixture 用 `__new__` 跳过了 `__init__`）\n\n用法：P0 实验不加 flag 行为不变，P0+P1 实验加 `--ced_recall_penalty` 即可启用 recall penalty。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ced-shortcut-fix.md"
+}

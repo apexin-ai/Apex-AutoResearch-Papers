@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7acc70fce65537fb1a6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops submit llama grpo qlora",
+  "task_key": "worker_ops_submit_llama_grpo_qlora_20260516T130835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_llama_grpo_qlora_20260516T130835_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "ca62feaff0ce4c5379ce6f02ade250396a3cd587e6d3e5a3d8d9c1cc56db9284"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。总结：\n\n**plan_016_llama_grpo_qlora** 已在 cuda:2 上运行（PID 346621）\n\n| 参数 | 值 |\n|------|-----|\n| base_model | Meta-Llama-3.1-8B |\n| sft_adapter | sft_output_llama_3_1_8b (with-evidence) |\n| quantize | 4-bit QLoRA |\n| stage | 3 (CED reward) |\n| num_generations | 4 |\n| lora_rank | 64 |\n| kl_coef | 0 |\n| total_steps | 757 |\n| GPU mem | 8039 MiB |\n\n**修复的问题**：\n1. base LLaMA-3.1-8B 的 tokenizer 没有 `chat_template` → 改为从 SFT adapter 目录加载 tokenizer\n2. NLI 模型（DeBERTa）网络不通 → 传本地缓存路径 + `TRANSFORMERS_OFFLINE=1`\n\n日志：`/root/autodl-tmp/grpo_output_llama_3_1_8b_qlora.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-llama-grpo-qlora.md"
+}

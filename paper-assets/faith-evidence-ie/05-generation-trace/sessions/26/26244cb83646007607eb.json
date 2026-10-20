@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26244cb83646007607eb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose ignf1 coincidence check",
+  "task_key": "worker_diagnose_ignf1_coincidence_check_20260516T033953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_ignf1_coincidence_check_20260516T033953_result.json",
+    "occurrence": 1,
+    "bytes": 1415,
+    "sha256": "9909f937baadea65ce4fd5ffef4fc3217bad43bc0a09116ae41a2080442d4456"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已全部收集。汇报结果：\n\n---\n\n## 对比结果\n\n### SFT no-evidence\n- **来源**: `sft_no_evidence/metrics_v2.json`（已修正 Ign-F1）\n- **ign_f1 = 0.4735509540** (47.36%)\n- ign_precision = 0.4635744003, ign_recall = 0.4839663617\n\n### CED reranker\n- **来源**: `ced_reranker_poc/results.json`（全量 985 docs 版本）\n- **ign_f1 = 0.4863674148** (48.64%)\n- ign_precision = 0.4913090940, ign_recall = 0.4815241544\n\n### 差异\n- |SFT - CED| = **0.0128164608** (1.28 percentage points)\n- 结论：**两者 Ign-F1 并不相同**。SFT no-evidence = 47.36，CED reranker = 48.64。Reviewer 的\"两者都是 47.36\"前提不成立。\n\n---\n\n## 额外发现：CED reranker 的 Ign-F1 计算可能有 bug\n\nCED reranker 结果中 **ign 指标与非 ign 指标完全相同**：\n- `ign_f1 == f1` = 0.4863674148\n- `ign_precision == precision` = 0.4913090940\n- `ign_recall == recall` = 0.4815241544\n\n这意味着 Ign 计算没有实际过滤训练集事实（train_facts），等价于没做 Ign。对比 SFT no-evidence 的 v2（修正后）：\n- f1 = 0.4893, ign_f1 = 0.4736（差 1.57pp，说明 Ign 过滤确实生效了）\n\n**CED reranker 的 eval 脚本很可能没有加载 train_triples 来做 Ign 过滤。** 这是一个真实的计算 bug，但不是 Reviewer 怀疑的\"共享计算路径\"问题——而是 CED reranker eval 缺少 Ign 逻辑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-ignf1-coincidence-check.md"
+}

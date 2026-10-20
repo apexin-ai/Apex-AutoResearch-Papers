@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c339cb14c091a1af8e24",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops extract plan010 metrics",
+  "task_key": "worker_ops_extract_plan010_metrics_20260520T021928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_extract_plan010_metrics_20260520T021928_result.json",
+    "occurrence": 1,
+    "bytes": 929,
+    "sha256": "2da1686ebade0e384236acfab72de7794feb6de46db3bc25340a4b324da83c82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 指标 | 值 |\n|------|-----|\n| ign_f1 | 0.4533 |\n| f1 (Rel-F1) | 0.4636 |\n| evi_f1 (TP-only) | 0.8194 |\n| evi_f1_joint | 0.3606 |\n| edcr | 0.6530 |\n| format_compliance_rate | 1.0 |\n| n_truncated | 180 |\n| precision | 0.4742 |\n| recall | 0.4535 |\n| ign_precision | 0.4513 |\n| ign_recall | 0.4552 |\n| evi_precision | 0.8090 |\n| evi_recall | 0.8301 |\n| evi_joint_precision | 0.3563 |\n| evi_joint_recall | 0.3650 |\n| field_compliance_rate | 0.8051 |\n| evidence_format_rate | 0.8051 |\n| n_total | 985 |\n| n_parseable | 985 |\n| n_predictions | 14870 |\n| n_documents | 985 |\n| tp | 5511 |\n| pred_count | 11622 |\n| gold_count | 12151 |\n| evi_tp | 7031 |\n| evi_pred_total | 19736 |\n| evi_gold_total | 19261 |\n| n_distractor_citations | 16422 |\n| n_total_citations | 25150 |\n| inference_time_seconds | 10064.2 |\n\n模型：Qwen3-4B + SFT + RSFT-NLI-Large，dev split，no_evidence=false。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-extract-plan010-metrics.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32dd4985e9c732b76aba",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research llm baseline numbers",
+  "task_key": "worker_research_llm-baseline-numbers_20260523T050340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_llm-baseline-numbers_20260523T050340_result.json",
+    "occurrence": 1,
+    "bytes": 3197,
+    "sha256": "4e2dc54459b8fa9c6fbee2b2fc5bbd07b06834370f741c8c3f01599314649c3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完成。以下是汇总结果：\n\n---\n\n## LLM-based DocRE Baselines on Re-DocRED\n\n### AutoRE\n\nAutoRE 原论文（[arXiv 2403.14888](https://arxiv.org/abs/2403.14888)，ACL 2024 Demo，非 AAAI）**只报告 F1，不报告 ign_f1**：\n\n| Variant | Re-DocRED dev F1 | Re-DocRED test F1 | Source |\n|---------|------------------|--------------------|--------|\n| AutoRE-Vicuna-7B | 54.29 | 53.84 | 原论文 Table 4 |\n| AutoRE-Mistral-7B | 53.01 | 51.91 | 原论文 Table 4 |\n| AutoRE-ChatGLM3-6B | 49.86 | 51.11 | 原论文 Table 4 |\n\nAutoRE-LLaMA3-8B 的 **ign_f1** 来自 RelPrior 论文（[arXiv 2511.08143](https://arxiv.org/html/2511.08143)，Table 2）复现：\n\n| Variant | dev Ign F1 | dev F1 | test Ign F1 | test F1 |\n|---------|-----------|--------|------------|---------|\n| AutoRE-LLaMA3-8B | **52.14** | 52.28 | **51.55** | 51.97 |\n\n### GLiDRE\n\n**注意：GLiDRE 是 dual-encoder 模型（几百M参数），不是 LLM generative 方法。**（[arXiv 2508.00757](https://arxiv.org/abs/2508.00757)）\n\n| Setting | dev Ign F1 | dev F1 | test Ign F1 | test F1 | Source |\n|---------|-----------|--------|------------|---------|--------|\n| Fully supervised | 76.70±0.35 | 77.76±0.35 | 76.80±0.22 | 77.83±0.23 | Table 1 |\n| Zero-shot | 16.37 | 16.72 | 16.41 | 17.32 | Table 3 |\n\nGLiDRE 与 LLM generative 方法不直接可比（架构完全不同）。\n\n### 其他 LLM-based Baselines（从 GLiDRE 和 RelPrior 论文中提取）\n\n**RelPrior**（[arXiv 2511.08143](https://arxiv.org/html/2511.08143)，Table 2）：\n\n| Method | dev Ign F1 | dev F1 | test Ign F1 | test F1 |\n|--------|-----------|--------|------------|---------|\n| RelPrior-LLaMA3-8B | **55.50** | 55.94 | **54.53** | 54.80 |\n| RelPrior-LLaMA3.1-8B | 54.31 | 54.88 | 53.48 | 53.56 |\n| RelPrior-Qwen2.5-7B | 51.02 | 51.43 | 50.64 | 50.72 |\n| D-R-F-LLaMA3-8B | 50.56 | 51.04 | 50.02 | 50.49 |\n\n**LMRC**（[arXiv 2408.13889](https://arxiv.org/html/2408.13889v1)，Table 7b）— 注意 LMRC 用 LLM+关系分类器，非纯 generative：\n\n| Method | test Ign F1 | test F1 | Source |\n|--------|------------|---------|--------|\n| LMRC-LLaMA2-13B-Chat | **74.08** | 74.63 | LMRC 原论文 |\n| LMRC-LLaMA2-7B-Chat | 72.33 | 72.92 | LMRC 原论文 |\n| LMRC-LLaMA3-8B-Instruct | 72.21 | 72.80 | GLiDRE Table 1 |\n| LMRC-LLaMA3.1-8B-Instruct | 72.35 | 72.93 | GLiDRE Table 1 |\n\n---\n\n### 关键发现\n\n1. **AutoRE 原论文不报 ign_f1**，只有 F1。ign_f1 数据来自 RelPrior 用 LLaMA3-8B 复现（dev 52.14 / test 51.55）。Mistral/Vicuna 版本的 ign_f1 无公开数据。\n\n2. **GLiDRE 不是 LLM-based 方法**，是 encoder-based dual-encoder。其 supervised 结果（ign_f1=76.80）不适合与 LLM generative 方法对比。\n\n3. **最相关的纯 LLM generative baselines**（与我们方法可比）：\n   - AutoRE-LLaMA3-8B: Re-DocRED dev ign_f1 = **52.14**\n   - RelPrior-LLaMA3-8B: Re-DocRED dev ign_f1 = **55.50**（当前 LLM-based SOTA）\n   - D-R-F-LLaMA3-8B: Re-DocRED dev ign_f1 = **50.56**\n\n4. **LMRC** 成绩很高（72+）但使用 LLM+分类器混合架构，是否归类为 \"LLM-based\" 取决于你的定义。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-llm-baseline-numbers.md"
+}

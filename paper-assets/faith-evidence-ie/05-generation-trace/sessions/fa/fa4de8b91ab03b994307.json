@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa4de8b91ab03b994307",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research comprehensive results table",
+  "task_key": "worker_research_comprehensive_results_table_20260519T075754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_comprehensive_results_table_20260519T075754_result.json",
+    "occurrence": 1,
+    "bytes": 1055,
+    "sha256": "492a2a948d91fd1d232f843bd51918f378bc2071fd32163f92fc534660f6398b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出文件: `artifacts/comprehensive_results.md` (art_20260519_a97536)\n\n包含 10 张表:\n\n| 表 | 内容 |\n|---|------|\n| Table 1 | Scale x Method ign_f1 主表 (1.7B/4B/8B/14B x SFT/RSFT/GRPO/No-evidence) |\n| Table 2 | Evidence metrics 全量明细 (evi_f1, EDCR, rel_f1) |\n| Table 3 | Seed variance analysis + per-seed RSFT gain |\n| Table 4 | Evidence tax (with vs without evidence) |\n| Table 5 | RSFT scoring ablation (CED vs flat-NLI vs Random) |\n| Table 6 | GRPO checkpoint analysis (G=4, G=8, RSFT->GRPO) |\n| Table 7 | CED reranker (inference-time, no fine-tuning) |\n| Table 8 | Cross-architecture (Llama-3.1-8B) |\n| Table 9 | Re-DocRED transfer |\n| Table 10 | DREEAM baseline |\n\n每个数值标注 source exp_id，pending 实验已标出（14B eval、8B RSFT k=1 s42/s43 eval、D112 pipeline）。\n\n核心发现: 4B RSFT variance reduction 7.1x (3.80pp->0.53pp)、evidence tax 非单调 (1.7B 负税 -8pp / 4B 正税 +7.5pp / 8B 近零)、CED vs Random +3.52pp 但 CED vs flat-NLI 无显著差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-comprehensive-results-table.md"
+}

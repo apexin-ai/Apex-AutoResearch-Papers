@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1cd3ecab8d0cca5172c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis wandb extract flatnli metrics",
+  "task_key": "worker_analysis_wandb-extract-flatnli-metrics_20260514T171801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_wandb-extract-flatnli-metrics_20260514T171801_result.json",
+    "occurrence": 1,
+    "bytes": 4259,
+    "sha256": "6eee8a30cb0a5059a2516690a7ffd24d4fb4777d0fbe7b17eb90c3335077df37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "从 checkpoint 的 trainer_state.json 获取到了全部数据。\n\n---\n\n## extract_r4 (Stage 1, extraction-only) — Steps 5–20\n\n| Step | reward | reward_std | frac_zero_std | f1_reward | format_reward | kl | grad_norm | loss | entropy | mean_length |\n|------|--------|-----------|--------------|-----------|--------------|-----|----------|------|---------|-------------|\n| 5 | 0.187 | 0.133 | 0.20 | 0.016 | 0.170 | 0.013 | 0.297 | 0.046 | 0.071 | 757 |\n| 10 | 0.282 | 0.039 | 0.70 | 0.000 | 0.282 | 0.044 | 0.005 | 0.025 | 0.046 | 516 |\n| 15 | 0.287 | 0.035 | 0.80 | 0.000 | 0.287 | 0.089 | 0.012 | -0.001 | 0.059 | 464 |\n| 20 | 0.293 | 0.027 | 0.80 | 0.000 | 0.293 | 0.093 | 0.198 | 0.030 | 0.069 | 457 |\n\n**健康判断: 不健康 — mode collapse**\n- `frac_zero_std` 从 0.2 快速升至 0.8，说明 80% 的 prompt 上所有 generation 得到相同 reward\n- `f1_reward` 从 step 10 起持续为 0 — 模型完全没有学到 extraction 能力\n- reward 几乎全部来自 `format_reward`（~0.29 ≈ format 满分 0.3）\n- KL 偏高 (0.093 at step 20)，增速快于 ced_kl001_r4 同期\n\n**与 ced_kl001_r4 同期对比 (step 5-10):**\n- reward: extract_r4 (0.187→0.282) vs ced (0.222→0.253) — 表面相近但 extract_r4 的 reward 几乎全是 format 分\n- KL: 0.013→0.044 vs 0.014→0.045 — 几乎一致\n- frac_zero_std: 0.2→0.7 vs 0.3→0.8 — 相近，都偏高\n- **关键差异**: extract_r4 没有 ced_reward 引导，f1_reward 在 step 10 已归零\n\n---\n\n## flatnli_r5 (Stage 2, flat-NLI reward) — Steps 5–120\n\n注：steps 5–100 继承自 checkpoint-100（之前的 flatnli_r3 训练），steps 105–120 是 r5 新训练的部分。\n\n### 前期 (r3 继承，steps 5–100，无 KL 日志)\n\n| Step | reward | frac_zero_std | f1_reward | flat_nli | format | mean_length |\n|------|--------|--------------|-----------|----------|--------|-------------|\n| 5 | 0.498 | 0.20 | 0.079 | 0.261 | 0.158 | 692 |\n| 10 | 0.725 | 0.05 | 0.040 | 0.442 | 0.243 | 712 |\n| 15 | 0.888 | 0.00 | 0.110 | 0.485 | 0.293 | 431 |\n| 20 | 1.260 | 0.00 | 0.374 | 0.593 | 0.293 | 419 |\n| 50 | 1.314 | 0.00 | 0.108 | 0.906 | 0.300 | 507 |\n| 100 | 1.236 | 0.00 | 0.025 | 0.911 | 0.300 | 376 |\n\n### r5 新训练 (steps 105–120，从 checkpoint-100 恢复)\n\n| Step | reward | frac_zero_std | f1_reward | flat_nli | format | kl | grad_norm | loss | entropy | mean_length |\n|------|--------|--------------|-----------|----------|--------|----|----------|------|---------|-------------|\n| 105 | 0.363 | **0.90** | 0.020 | 0.043 | 0.300 | **0.485** | 0.059 | -0.005 | 0.039 | 264 |\n| 110 | 1.082 | 0.70 | 0.533 | 0.249 | 0.300 | 0.435 | 0.313 | -0.002 | 0.024 | 205 |\n| 115 | 0.913 | 0.50 | 0.185 | 0.427 | 0.300 | 0.458 | 0.787 | 0.014 | 0.030 | 248 |\n| 120 | 0.560 | **0.80** | 0.089 | 0.171 | 0.300 | **0.456** | 0.733 | 0.002 | 0.031 | 225 |\n\n**健康判断: 严重异常**\n- **KL 灾难性高**: 0.45–0.49，比 ced_kl001_r4 同期 (0.014–0.045) 高 10 倍\n- `frac_zero_std` 剧烈波动 (0.5–0.9)，说明训练极不稳定\n- `flat_nli_reward` 从 checkpoint-100 的 0.911 暴跌至 0.043–0.427 — 恢复训练后能力严重退化\n- `f1_reward` 也大幅波动\n- completion 长度急剧缩短 (376→205–264)，可能出现 degenerate output\n\n**根因推测**: 从 checkpoint-100 恢复时，模型参数已经偏离 reference policy 很远（KL 初始就是 ~0.48），新的 training 在此基础上进一步恶化。这说明 r3 的训练可能在后期已经出现了 KL 漂移但因缺少 KL 日志未被发现。\n\n---\n\n## 总结\n\n| 实验 | 状态 | 主要问题 |\n|------|------|---------|\n| **extract_r4** | Mode collapse | f1_reward=0, 只学会了 format; frac_zero_std=0.8 |\n| **flatnli_r5** | KL 爆炸 + 能力退化 | KL~0.46 (正常<0.1), flat_nli 从 0.91 跌至 0.17 |\n| ced_kl001_r4 (参照) | 相对健康 | reward 稳步上升，KL 可控 |\n\n**D020 配置 (kl_coef=0.01, num_gen=8) 对 ced reward type 有效，但对 extract-only 和 flat-NLI 两种 reward type 均失败。** extract_r4 缺少 ced_reward 导致模型没有 extraction 学习信号；flatnli_r5 的 checkpoint-100 已有严重 KL 漂移，恢复训练使问题加剧。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-wandb-extract-flatnli-metrics.md"
+}

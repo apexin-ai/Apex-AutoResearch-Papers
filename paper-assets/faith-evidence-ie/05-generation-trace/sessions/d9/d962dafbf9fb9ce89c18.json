@@ -1,0 +1,1424 @@
+{
+  "schema_version": "1.0",
+  "id": "d962dafbf9fb9ce89c18",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "experiment qwen3 8b no evidence sft",
+  "task_key": "worker_experiment_qwen3_8b_no_evidence_sft_20260516T092923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_qwen3_8b_no_evidence_sft_20260516T092923.log",
+    "occurrence": 1,
+    "bytes": 64777,
+    "sha256": "59bb161a560bdc5aa04fe4292640a29a76bf67ebb72fae1405de000ee38ed3f1"
+  },
+  "statistics": {
+    "messages": 32,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "cb29b736-4ac7-4b61-9524-34b009f8f3bc",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778939400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "7ded2125-d156-4f8b-be63-a814b36c93d5",
+                "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to submit a Qwen3-8B no-evidence SFT training job on cuda:0 of rtx5090-4x. Let me follow the steps:\n\n1. First, check cuda:0 is free\n2. Check the base model exists\n3. Submit the training job\n4. Update the registry\n\nLet me start with steps 1 and 2 in parallel using ssh_read_only.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "c96511ae-3580-4669-a90f-270f1e32bcff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TVpdwVgVWwzb2sX5nuxDZ9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12247,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12247
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019xX48eKFVJCJdVm6sNYSxk",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "fd536373-8dfa-4e6d-b0a7-29a74858059b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TVpdwVgVWwzb2sX5nuxDZ9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12247,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12247
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T09:29:39.478Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_019xX48eKFVJCJdVm6sNYSxk",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "437a79f5-910a-4cf0-ad91-4fa73d0608cd",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__update_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me check cuda:0 is free and the model exists in parallel.",
+              "signature": "EvwBClkIDRgCKkC4cN36b8GT2Ii4+b7G8qQ6IFoa7viCaEapIf9svY+M7AxhdMrKYHCT0n38kmY6A/XRVEBoVKB0tYH/3mAqE7JLMg9jbGF1ZGUtb3B1cy00LTY4ABIMYnmUyi4NQ981L4moGgwr8LuK/aRMbEAg4KAiMNIMBhR+pniOrSD661FWDmo16YzY2KzHCPuBmG2ohSKihEZ5J1XN1U0K+eM/OiTjtipRTLZzd5pO/o84kks++EyNTLjgqeFRb01Crf6ZeEqV8dVdJ55iyMvkaqPd8jA6CspsRXevSrMHpzwTh7kfGl9jzQR/0MswYRFXL0P1JYn/9hhXGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "df37f0ce-f2dc-44f7-9912-9df91e3ab417",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wxgg6h4Yi6hA3n79NkJbB5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1189,
+                "cache_read_input_tokens": 24088,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1189
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C2hBgcezpg1Zkx4o6bKm7x",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "nvidia-smi -i 0 --query-gpu=memory.used,utilization.gpu --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "840cdfcb-903b-4710-a034-cab8b10d14ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wxgg6h4Yi6hA3n79NkJbB5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1189,
+                "cache_read_input_tokens": 24088,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1189
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YWTC9fmNcVRykG89SiERbD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls /root/autodl-tmp/models/Qwen/Qwen3-8B/config.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "b6264088-aec0-4c99-8a52-1f7069e9f193",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wxgg6h4Yi6hA3n79NkJbB5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1189,
+                "cache_read_input_tokens": 24088,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1189
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T09:29:45.095Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C2hBgcezpg1Zkx4o6bKm7x",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "f0f68c02-a1e5-45b5-8f01-9486a60ad9ff",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T09:29:45.467Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YWTC9fmNcVRykG89SiERbD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-8B/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "cba327d9-bafb-436e-9b03-42c10222f201",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-8B/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/models/Qwen/Qwen3-8B/config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:0 空闲（0 MiB, 0%），模型存在。提交训练。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "d0b9d60b-b6a0-422b-a515-b8b508763652",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X1VSw5bHgCQs4XdN9KJBjy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 525,
+                "cache_read_input_tokens": 25277,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 525
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bf1D6H25fzr2xyyszNQopE",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --no-quantize --seed 42 --wandb_run_name qwen3_8b_no_evidence_sft' > /root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log 2>&1 & echo \"PID=$!\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "5163c12e-8ba1-4c24-a1a7-b6c0e2ce4b66",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X1VSw5bHgCQs4XdN9KJBjy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 525,
+                "cache_read_input_tokens": 25277,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 525
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T09:30:22.993Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bf1D6H25fzr2xyyszNQopE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && nohup bash -c \\\\\\\\'CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --no-quantize --seed 42 --wandb_run_name qwen3_8b_no_evidence_sft\\\\\\\\' > /root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=325491\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "c240bff7-edd1-462f-a043-95a87740c24a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && nohup bash -c \\\\\\\\'CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --no-quantize --seed 42 --wandb_run_name qwen3_8b_no_evidence_sft\\\\\\\\' > /root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=325491\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && nohup bash -c \\\\'CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --no-quantize --seed 42 --wandb_run_name qwen3_8b_no_evidence_sft\\\\' > /root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=325491\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.3}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The command timed out after 30 seconds but that's expected with nohup - the PID was returned: 325491. The process is running in the background. Let me verify it's actually running and then update the registry.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "b0cc7e13-6f5b-412f-9fb6-d6455a0c2051",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EvHEHP56FBBgSbzCjkFypE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 748,
+                "cache_read_input_tokens": 25802,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 748
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已启动 PID=325491（超时是因为 nohup 后 shell 等待，但 PID 已返回）。验证进程存活并注册。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "860deb44-fded-4b7f-b790-cdc16e092b44",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EvHEHP56FBBgSbzCjkFypE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 748,
+                "cache_read_input_tokens": 25802,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 748
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tb7ERTBhHCg7GmQbNUmBqZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ps -p 325491 -o pid,cmd --no-headers",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "15ca9ea7-9058-4988-afd6-bce000eab22c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EvHEHP56FBBgSbzCjkFypE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 748,
+                "cache_read_input_tokens": 25802,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 748
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T09:30:32.216Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tb7ERTBhHCg7GmQbNUmBqZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"325491 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --no-quantize --seed 42 --wandb_run_name qwen3_8b_no_evidence_sft' > /root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "f10eecaa-4101-425e-9e1f-dfe85713a244",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"325491 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --no-quantize --seed 42 --wandb_run_name qwen3_8b_no_evidence_sft' > /root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"325491 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --no-quantize --seed 42 --wandb_run_name qwen3_8b_no_evidence_sft' > /root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log 2>&1 & echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The process is running. Now let me check the log to make sure training actually started (model loading etc.), and update the registry.",
+              "signature": "EsICClkIDRgCKkDUKqOYTAKxIVOmRIfmE7pvK4tSuQT3dgF3DmXa8r/bOSLoUPvgD3RQltJQjIYL8msvfbBIcCdhaENpyjNRkVcoMg9jbGF1ZGUtb3B1cy00LTY4ABIMSt7DusKVMQ6iBouiGgwk2e4ygaGTDjLSF1siMHNTwgQ91byf1tdMUAUYzfdS8+26kI7av1wSKOHhHmopf+iP6qLrqOSCH4jgx+yeNCqWAbyQl6VsDJG/8DSRHJ2hceJUDxBN7Z9KZ5B49SkhglUS1isIDHEez0sIqpdPn07YZE75T3lcoyb53AItE4677sexV9F4pqneMCqtt8WaI5GQA/Bptd6jPq7XhCq7RpAus0MLJvpmtN/UfB5HOEsVVa1sxS1gN1vfyN1UeB/eyw71hg5eh7b0lipJcrRbSp1yVrQNU2q33xgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "b8cdbad4-d81b-483a-b6db-a8dc30325be9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013bxRbs7Kmvsq2NewZAhcZf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 574,
+                "cache_read_input_tokens": 26550,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 574
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程存活。检查日志确认训练启动正常。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "74629746-c67b-4977-b040-9b46e2a52bb1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013bxRbs7Kmvsq2NewZAhcZf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 574,
+                "cache_read_input_tokens": 26550,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 574
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UQn21VPQ7uzuCUYdXozDNS",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "tail -20 /root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "684dfa7e-6a27-474c-af05-feb371d6f3b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013bxRbs7Kmvsq2NewZAhcZf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 574,
+                "cache_read_input_tokens": 26550,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 574
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T09:30:38.100Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UQn21VPQ7uzuCUYdXozDNS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 17:30:00,387 INFO Preparing dataset...\\\\n2026-05-16 17:30:00,388 INFO NO-EVIDENCE mode: training without evidence fields\\\\n2026-05-16 17:30:00,613 INFO Loaded 3053 documents from /root/autodl-tmp/data/docred/train_annotated.json\\\\n2026-05-16 17:30:01,422 INFO Processed 38180 relation samples from 3053 documents (17312 samples without hard negatives)\\\\n2026-05-16 17:30:01,839 INFO Prepared 3027 SFT samples from 3027 documents\\\\n2026-05-16 17:30:01,979 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-16 17:30:02,553 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-16 17:30:02,685 INFO Prepared 985 SFT samples from 985 documents\\\\n2026-05-16 17:30:02,712 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-8B\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  20%|██        | 1/5 [00:01<00:04,  1.05s/it]\\\\rLoading checkpoint shards:  40%|████      | 2/5 [00:02<00:03,  1.08s/it]\\\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:03<00:02,  1.09s/it]\\\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:04<00:01,  1.00s/it]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:04<00:00,  1.30it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:04<00:00,  1.12it/s]\\\\ntrainable params: 174,587,904 || all params: 8,365,323,264 || trainable%: 2.0870\\\\n\\\\rAdding EOS to train dataset:   0%|          | 0/3027 [00:00<?, ? examples/s]\\\\rAdding EOS to train dataset: 100%|██████████| 3027/3027 [00:00<00:00, 36694.74 examples/s]\\\\n\\\\rTokenizing train dataset:   0%|          | 0/3027 [00:00<?, ? examples/s]\\\\rTokenizing train dataset:   2%|▏         | 69/3027 [00:00<00:04, 674.14 examples/s]\\\\rTokenizing train dataset:   5%|▍         | 140/3027 [00:00<00:04, 689.23 examples/s]\\\\rTokenizing train dataset:   7%|▋         | 214/3027 [00:00<00:03, 709.01 examples/s]\\\\rTokenizing train dataset:  10%|█         | 315/3027 [00:00<00:03, 687.18 examples/s]\\\\rTokenizing train dataset:  13%|█▎        | 389/3027 [00:00<00:03, 700.00 examples/s]\\\\rTokenizing train dataset:  15%|█▌        | 463/3027 [00:00<00:03, 707.55 examples/s]\\\\rTokenizing train dataset:  18%|█▊        | 548/3027 [00:00<00:03, 649.74 examples/s]\\\\rTokenizing train dataset:  20%|██        | 615/3027 [00:00<00:03, 652.21 examples/s]\\\\rTokenizing train dataset:  24%|██▎       | 712/3027 [00:01<00:03, 647.06 examples/s]\\\\rTokenizing train dataset:  27%|██▋       | 811/3027 [00:01<00:03, 650.49 examples/s]\\\\rTokenizing train dataset:  29%|██▉       | 879/3027 [00:01<00:03, 654.81 examples/s]\\\\rTokenizing train dataset:  32%|███▏      | 974/3027 [00:01<00:03, 644.49 examples/s]\\\\rTokenizing train dataset:  35%|███▍      | 1056/3027 [00:01<00:04, 491.92 examples/s]\\\\rTokenizing train dataset:  37%|███▋      | 1117/3027 [00:01<00:03, 515.04 examples/s]\\\\rTokenizing train dataset:  39%|███▉      | 1175/3027 [00:01<00:03, 526.89 examples/s]\\\\rTokenizing train dataset:  41%|████      | 1239/3027 [00:02<00:03, 551.57 examples/s]\\\\rTokenizing train dataset:  43%|████▎     | 1303/3027 [00:02<00:03, 570.96 examples/s]\\\\rTokenizing train dataset:  46%|████▌     | 1396/3027 [00:02<00:02, 586.09 examples/s]\\\\rTokenizing train dataset:  48%|████▊     | 1465/3027 [00:02<00:02, 608.16 examples/s]\\\\rTokenizing train dataset:  50%|█████     | 1528/3027 [00:02<00:02, 610.42 examples/s]\\\\rTokenizing train dataset:  53%|█████▎    | 1613/3027 [00:02<00:02, 561.65 examples/s]\\\\rTokenizing train dataset:  56%|█████▌    | 1697/3027 [00:02<00:02, 558.75 examples/s]\\\\rTokenizing train dataset:  58%|█████▊    | 1763/3027 [00:02<00:02, 580.09 examples/s]\\\\rTokenizing train dataset:  61%|██████    | 1836/3027 [00:03<00:01, 615.06 examples/s]\\\\rTokenizing train dataset:  63%|██████▎   | 1905/3027 [00:03<00:01, 632.67 examples/s]\\\\rTokenizing train dataset:  65%|██████▌   | 1978/3027 [00:03<00:01, 656.04 examples/s]\\\\rTokenizing train dataset:  68%|██████▊   | 2066/3027 [00:03<00:01, 565.19 examples/s]\\\\rTokenizing train dataset:  71%|███████   | 2138/3027 [00:03<00:01, 599.71 examples/s]\\\\rTokenizing train dataset:  73%|███████▎  | 2207/3027 [00:03<00:01, 619.48 examples/s]\\\\rTokenizing train dataset:  75%|███████▌  | 2278/3027 [00:03<00:01, 641.27 examples/s]\\\\rTokenizing train dataset:  77%|███████▋  | 2345/3027 [00:03<00:01, 646.30 examples/s]\\\\rTokenizing train dataset:  80%|███████▉  | 2415/3027 [00:03<00:00, 658.84 examples/s]\\\\rTokenizing train dataset:  82%|████████▏ | 2485/3027 [00:04<00:00, 668.82 examples/s]\\\\rTokenizing train dataset:  84%|████████▍ | 2555/3027 [00:04<00:00, 674.13 examples/s]\\\\rTokenizing train dataset:  87%|████████▋ | 2627/3027 [00:04<00:00, 684.21 examples/s]\\\\rTokenizing train dataset:  90%|████████▉ | 2723/3027 [00:04<00:00, 665.34 examples/s]\\\\rTokenizing train dataset:  92%|█████████▏| 2792/3027 [00:04<00:00, 668.47 examples/s]\\\\rTokenizing train dataset:  94%|█████████▍| 2860/3027 [00:04<00:00, 670.20 examples/s]\\\\rTokenizing train dataset:  97%|█████████▋| 2930/3027 [00:04<00:00, 675.51 examples/s]\\\\rTokenizing train dataset:  99%|█████████▉| 3000/3027 [00:04<00:00, 576.10 examples/s]\\\\rTokenizing train dataset: 100%|██████████| 3027/3027 [00:04<00:00, 617.38 examples/s]\\\\n\\\\rAdding EOS to eval dataset:   0%|          | 0/985 [00:00<?, ? examples/s]\\\\rAdding EOS to eval dataset: 100%|██████████| 985/985 [00:00<00:00, 42289.95 examples/s]\\\\n\\\\rTokenizing eval dataset:   0%|          | 0/985 [00:00<?, ? examples/s]\\\\rTokenizing eval dataset:   7%|▋         | 68/985 [00:00<00:01, 665.31 examples/s]\\\\rTokenizing eval dataset:  14%|█▍        | 138/985 [00:00<00:01, 678.35 examples/s]\\\\rTokenizing eval dataset:  22%|██▏       | 212/985 [00:00<00:01, 698.34 examples/s]\\\\rTokenizing eval dataset:  29%|██▉       | 286/985 [00:00<00:00, 706.69 examples/s]\\\\rTokenizing eval dataset:  40%|███▉      | 390/985 [00:00<00:00, 694.96 examples/s]\\\\rTokenizing eval dataset:  47%|████▋     | 465/985 [00:00<00:00, 708.57 examples/s]\\\\rTokenizing eval dataset:  55%|█████▍    | 540/985 [00:00<00:00, 714.73 examples/s]\\\\rTokenizing eval dataset:  62%|██████▏   | 612/985 [00:00<00:00, 714.00 examples/s]\\\\rTokenizing eval dataset:  70%|███████   | 690/985 [00:00<00:00, 732.23 examples/s]\\\\rTokenizing eval dataset:  81%|████████  | 799/985 [00:01<00:00, 726.32 examples/s]\\\\rTokenizing eval dataset:  89%|████████▉ | 878/985 [00:01<00:00, 740.04 examples/s]\\\\rTokenizing eval dataset:  99%|█████████▉| 980/985 [00:01<00:00, 715.56 examples/s]\\\\rTokenizing eval dataset: 100%|██████████| 985/985 [00:01<00:00, 658.98 examples/s]\\\\nThe model is already on multiple devices. Skipping the move to device specified in `args`.\\\\n2026-05-16 17:30:18,740 INFO Starting SFT training...\\\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\\n\\\\r  0%|          | 0/570 [00:00<?, ?it/s]\\\\r  0%|          | 1/570 [00:06<1:04:49,  6.84s/it]\\\\r  0%|          | 2/570 [00:13<1:01:45,  6.52s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "d16e32ed-b59a-45a9-8698-e0b30340926b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 17:30:00,387 INFO Preparing dataset...\\\\n2026-05-16 17:30:00,388 INFO NO-EVIDENCE mode: training without evidence fields\\\\n2026-05-16 17:30:00,613 INFO Loaded 3053 documents from /root/autodl-tmp/data/docred/train_annotated.json\\\\n2026-05-16 17:30:01,422 INFO Processed 38180 relation samples from 3053 documents (17312 samples without hard negatives)\\\\n2026-05-16 17:30:01,839 INFO Prepared 3027 SFT samples from 3027 documents\\\\n2026-05-16 17:30:01,979 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-16 17:30:02,553 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-16 17:30:02,685 INFO Prepared 985 SFT samples from 985 documents\\\\n2026-05-16 17:30:02,712 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-8B\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  20%|██        | 1/5 [00:01<00:04,  1.05s/it]\\\\rLoading checkpoint shards:  40%|████      | 2/5 [00:02<00:03,  1.08s/it]\\\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:03<00:02,  1.09s/it]\\\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:04<00:01,  1.00s/it]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:04<00:00,  1.30it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:04<00:00,  1.12it/s]\\\\ntrainable params: 174,587,904 || all params: 8,365,323,264 || trainable%: 2.0870\\\\n\\\\rAdding EOS to train dataset:   0%|          | 0/3027 [00:00<?, ? examples/s]\\\\rAdding EOS to train dataset: 100%|██████████| 3027/3027 [00:00<00:00, 36694.74 examples/s]\\\\n\\\\rTokenizing train dataset:   0%|          | 0/3027 [00:00<?, ? examples/s]\\\\rTokenizing train dataset:   2%|▏         | 69/3027 [00:00<00:04, 674.14 examples/s]\\\\rTokenizing train dataset:   5%|▍         | 140/3027 [00:00<00:04, 689.23 examples/s]\\\\rTokenizing train dataset:   7%|▋         | 214/3027 [00:00<00:03, 709.01 examples/s]\\\\rTokenizing train dataset:  10%|█         | 315/3027 [00:00<00:03, 687.18 examples/s]\\\\rTokenizing train dataset:  13%|█▎        | 389/3027 [00:00<00:03, 700.00 examples/s]\\\\rTokenizing train dataset:  15%|█▌        | 463/3027 [00:00<00:03, 707.55 examples/s]\\\\rTokenizing train dataset:  18%|█▊        | 548/3027 [00:00<00:03, 649.74 examples/s]\\\\rTokenizing train dataset:  20%|██        | 615/3027 [00:00<00:03, 652.21 examples/s]\\\\rTokenizing train dataset:  24%|██▎       | 712/3027 [00:01<00:03, 647.06 examples/s]\\\\rTokenizing train dataset:  27%|██▋       | 811/3027 [00:01<00:03, 650.49 examples/s]\\\\rTokenizing train dataset:  29%|██▉       | 879/3027 [00:01<00:03, 654.81 examples/s]\\\\rTokenizing train dataset:  32%|███▏      | 974/3027 [00:01<00:03, 644.49 examples/s]\\\\rTokenizing train dataset:  35%|███▍      | 1056/3027 [00:01<00:04, 491.92 examples/s]\\\\rTokenizing train dataset:  37%|███▋      | 1117/3027 [00:01<00:03, 515.04 examples/s]\\\\rTokenizing train dataset:  39%|███▉      | 1175/3027 [00:01<00:03, 526.89 examples/s]\\\\rTokenizing train dataset:  41%|████      | 1239/3027 [00:02<00:03, 551.57 examples/s]\\\\rTokenizing train dataset:  43%|████▎     | 1303/3027 [00:02<00:03, 570.96 examples/s]\\\\rTokenizing train dataset:  46%|████▌     | 1396/3027 [00:02<00:02, 586.09 examples/s]\\\\rTokenizing train dataset:  48%|████▊     | 1465/3027 [00:02<00:02, 608.16 examples/s]\\\\rTokenizing train dataset:  50%|█████     | 1528/3027 [00:02<00:02, 610.42 examples/s]\\\\rTokenizing train dataset:  53%|█████▎    | 1613/3027 [00:02<00:02, 561.65 examples/s]\\\\rTokenizing train dataset:  56%|█████▌    | 1697/3027 [00:02<00:02, 558.75 examples/s]\\\\rTokenizing train dataset:  58%|█████▊    | 1763/3027 [00:02<00:02, 580.09 examples/s]\\\\rTokenizing train dataset:  61%|██████    | 1836/3027 [00:03<00:01, 615.06 examples/s]\\\\rTokenizing train dataset:  63%|██████▎   | 1905/3027 [00:03<00:01, 632.67 examples/s]\\\\rTokenizing train dataset:  65%|██████▌   | 1978/3027 [00:03<00:01, 656.04 examples/s]\\\\rTokenizing train dataset:  68%|██████▊   | 2066/3027 [00:03<00:01, 565.19 examples/s]\\\\rTokenizing train dataset:  71%|███████   | 2138/3027 [00:03<00:01, 599.71 examples/s]\\\\rTokenizing train dataset:  73%|███████▎  | 2207/3027 [00:03<00:01, 619.48 examples/s]\\\\rTokenizing train dataset:  75%|███████▌  | 2278/3027 [00:03<00:01, 641.27 examples/s]\\\\rTokenizing train dataset:  77%|███████▋  | 2345/3027 [00:03<00:01, 646.30 examples/s]\\\\rTokenizing train dataset:  80%|███████▉  | 2415/3027 [00:03<00:00, 658.84 examples/s]\\\\rTokenizing train dataset:  82%|████████▏ | 2485/3027 [00:04<00:00, 668.82 examples/s]\\\\rTokenizing train dataset:  84%|████████▍ | 2555/3027 [00:04<00:00, 674.13 examples/s]\\\\rTokenizing train dataset:  87%|████████▋ | 2627/3027 [00:04<00:00, 684.21 examples/s]\\\\rTokenizing train dataset:  90%|████████▉ | 2723/3027 [00:04<00:00, 665.34 examples/s]\\\\rTokenizing train dataset:  92%|█████████▏| 2792/3027 [00:04<00:00, 668.47 examples/s]\\\\rTokenizing train dataset:  94%|█████████▍| 2860/3027 [00:04<00:00, 670.20 examples/s]\\\\rTokenizing train dataset:  97%|█████████▋| 2930/3027 [00:04<00:00, 675.51 examples/s]\\\\rTokenizing train dataset:  99%|█████████▉| 3000/3027 [00:04<00:00, 576.10 examples/s]\\\\rTokenizing train dataset: 100%|██████████| 3027/3027 [00:04<00:00, 617.38 examples/s]\\\\n\\\\rAdding EOS to eval dataset:   0%|          | 0/985 [00:00<?, ? examples/s]\\\\rAdding EOS to eval dataset: 100%|██████████| 985/985 [00:00<00:00, 42289.95 examples/s]\\\\n\\\\rTokenizing eval dataset:   0%|          | 0/985 [00:00<?, ? examples/s]\\\\rTokenizing eval dataset:   7%|▋         | 68/985 [00:00<00:01, 665.31 examples/s]\\\\rTokenizing eval dataset:  14%|█▍        | 138/985 [00:00<00:01, 678.35 examples/s]\\\\rTokenizing eval dataset:  22%|██▏       | 212/985 [00:00<00:01, 698.34 examples/s]\\\\rTokenizing eval dataset:  29%|██▉       | 286/985 [00:00<00:00, 706.69 examples/s]\\\\rTokenizing eval dataset:  40%|███▉      | 390/985 [00:00<00:00, 694.96 examples/s]\\\\rTokenizing eval dataset:  47%|████▋     | 465/985 [00:00<00:00, 708.57 examples/s]\\\\rTokenizing eval dataset:  55%|█████▍    | 540/985 [00:00<00:00, 714.73 examples/s]\\\\rTokenizing eval dataset:  62%|██████▏   | 612/985 [00:00<00:00, 714.00 examples/s]\\\\rTokenizing eval dataset:  70%|███████   | 690/985 [00:00<00:00, 732.23 examples/s]\\\\rTokenizing eval dataset:  81%|████████  | 799/985 [00:01<00:00, 726.32 examples/s]\\\\rTokenizing eval dataset:  89%|████████▉ | 878/985 [00:01<00:00, 740.04 examples/s]\\\\rTokenizing eval dataset:  99%|█████████▉| 980/985 [00:01<00:00, 715.56 examples/s]\\\\rTokenizing eval dataset: 100%|██████████| 985/985 [00:01<00:00, 658.98 examples/s]\\\\nThe model is already on multiple devices. Skipping the move to device specified in `args`.\\\\n2026-05-16 17:30:18,740 INFO Starting SFT training...\\\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\\n\\\\r  0%|          | 0/570 [00:00<?, ?it/s]\\\\r  0%|          | 1/570 [00:06<1:04:49,  6.84s/it]\\\\r  0%|          | 2/570 [00:13<1:01:45,  6.52s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 17:30:00,387 INFO Preparing dataset...\\n2026-05-16 17:30:00,388 INFO NO-EVIDENCE mode: training without evidence fields\\n2026-05-16 17:30:00,613 INFO Loaded 3053 documents from /root/autodl-tmp/data/docred/train_annotated.json\\n2026-05-16 17:30:01,422 INFO Processed 38180 relation samples from 3053 documents (17312 samples without hard negatives)\\n2026-05-16 17:30:01,839 INFO Prepared 3027 SFT samples from 3027 documents\\n2026-05-16 17:30:01,979 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-16 17:30:02,553 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-16 17:30:02,685 INFO Prepared 985 SFT samples from 985 documents\\n2026-05-16 17:30:02,712 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-8B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:01<00:04,  1.05s/it]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:02<00:03,  1.08s/it]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:03<00:02,  1.09s/it]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:04<00:01,  1.00s/it]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:04<00:00,  1.30it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:04<00:00,  1.12it/s]\\ntrainable params: 174,587,904 || all params: 8,365,323,264 || trainable%: 2.0870\\n\\rAdding EOS to train dataset:   0%|          | 0/3027 [00:00<?, ? examples/s]\\rAdding EOS to train dataset: 100%|██████████| 3027/3027 [00:00<00:00, 36694.74 examples/s]\\n\\rTokenizing train dataset:   0%|          | 0/3027 [00:00<?, ? examples/s]\\rTokenizing train dataset:   2%|▏         | 69/3027 [00:00<00:04, 674.14 examples/s]\\rTokenizing train dataset:   5%|▍         | 140/3027 [00:00<00:04, 689.23 examples/s]\\rTokenizing train dataset:   7%|▋         | 214/3027 [00:00<00:03, 709.01 examples/s]\\rTokenizing train dataset:  10%|█         | 315/3027 [00:00<00:03, 687.18 examples/s]\\rTokenizing train dataset:  13%|█▎        | 389/3027 [00:00<00:03, 700.00 examples/s]\\rTokenizing train dataset:  15%|█▌        | 463/3027 [00:00<00:03, 707.55 examples/s]\\rTokenizing train dataset:  18%|█▊        | 548/3027 [00:00<00:03, 649.74 examples/s]\\rTokenizing train dataset:  20%|██        | 615/3027 [00:00<00:03, 652.21 examples/s]\\rTokenizing train dataset:  24%|██▎       | 712/3027 [00:01<00:03, 647.06 examples/s]\\rTokenizing train dataset:  27%|██▋       | 811/3027 [00:01<00:03, 650.49 examples/s]\\rTokenizing train dataset:  29%|██▉       | 879/3027 [00:01<00:03, 654.81 examples/s]\\rTokenizing train dataset:  32%|███▏      | 974/3027 [00:01<00:03, 644.49 examples/s]\\rTokenizing train dataset:  35%|███▍      | 1056/3027 [00:01<00:04, 491.92 examples/s]\\rTokenizing train dataset:  37%|███▋      | 1117/3027 [00:01<00:03, 515.04 examples/s]\\rTokenizing train dataset:  39%|███▉      | 1175/3027 [00:01<00:03, 526.89 examples/s]\\rTokenizing train dataset:  41%|████      | 1239/3027 [00:02<00:03, 551.57 examples/s]\\rTokenizing train dataset:  43%|████▎     | 1303/3027 [00:02<00:03, 570.96 examples/s]\\rTokenizing train dataset:  46%|████▌     | 1396/3027 [00:02<00:02, 586.09 examples/s]\\rTokenizing train dataset:  48%|████▊     | 1465/3027 [00:02<00:02, 608.16 examples/s]\\rTokenizing train dataset:  50%|█████     | 1528/3027 [00:02<00:02, 610.42 examples/s]\\rTokenizing train dataset:  53%|█████▎    | 1613/3027 [00:02<00:02, 561.65 examples/s]\\rTokenizing train dataset:  56%|█████▌    | 1697/3027 [00:02<00:02, 558.75 examples/s]\\rTokenizing train dataset:  58%|█████▊    | 1763/3027 [00:02<00:02, 580.09 examples/s]\\rTokenizing train dataset:  61%|██████    | 1836/3027 [00:03<00:01, 615.06 examples/s]\\rTokenizing train dataset:  63%|██████▎   | 1905/3027 [00:03<00:01, 632.67 examples/s]\\rTokenizing train dataset:  65%|██████▌   | 1978/3027 [00:03<00:01, 656.04 examples/s]\\rTokenizing train dataset:  68%|██████▊   | 2066/3027 [00:03<00:01, 565.19 examples/s]\\rTokenizing train dataset:  71%|███████   | 2138/3027 [00:03<00:01, 599.71 examples/s]\\rTokenizing train dataset:  73%|███████▎  | 2207/3027 [00:03<00:01, 619.48 examples/s]\\rTokenizing train dataset:  75%|███████▌  | 2278/3027 [00:03<00:01, 641.27 examples/s]\\rTokenizing train dataset:  77%|███████▋  | 2345/3027 [00:03<00:01, 646.30 examples/s]\\rTokenizing train dataset:  80%|███████▉  | 2415/3027 [00:03<00:00, 658.84 examples/s]\\rTokenizing train dataset:  82%|████████▏ | 2485/3027 [00:04<00:00, 668.82 examples/s]\\rTokenizing train dataset:  84%|████████▍ | 2555/3027 [00:04<00:00, 674.13 examples/s]\\rTokenizing train dataset:  87%|████████▋ | 2627/3027 [00:04<00:00, 684.21 examples/s]\\rTokenizing train dataset:  90%|████████▉ | 2723/3027 [00:04<00:00, 665.34 examples/s]\\rTokenizing train dataset:  92%|█████████▏| 2792/3027 [00:04<00:00, 668.47 examples/s]\\rTokenizing train dataset:  94%|█████████▍| 2860/3027 [00:04<00:00, 670.20 examples/s]\\rTokenizing train dataset:  97%|█████████▋| 2930/3027 [00:04<00:00, 675.51 examples/s]\\rTokenizing train dataset:  99%|█████████▉| 3000/3027 [00:04<00:00, 576.10 examples/s]\\rTokenizing train dataset: 100%|██████████| 3027/3027 [00:04<00:00, 617.38 examples/s]\\n\\rAdding EOS to eval dataset:   0%|          | 0/985 [00:00<?, ? examples/s]\\rAdding EOS to eval dataset: 100%|██████████| 985/985 [00:00<00:00, 42289.95 examples/s]\\n\\rTokenizing eval dataset:   0%|          | 0/985 [00:00<?, ? examples/s]\\rTokenizing eval dataset:   7%|▋         | 68/985 [00:00<00:01, 665.31 examples/s]\\rTokenizing eval dataset:  14%|█▍        | 138/985 [00:00<00:01, 678.35 examples/s]\\rTokenizing eval dataset:  22%|██▏       | 212/985 [00:00<00:01, 698.34 examples/s]\\rTokenizing eval dataset:  29%|██▉       | 286/985 [00:00<00:00, 706.69 examples/s]\\rTokenizing eval dataset:  40%|███▉      | 390/985 [00:00<00:00, 694.96 examples/s]\\rTokenizing eval dataset:  47%|████▋     | 465/985 [00:00<00:00, 708.57 examples/s]\\rTokenizing eval dataset:  55%|█████▍    | 540/985 [00:00<00:00, 714.73 examples/s]\\rTokenizing eval dataset:  62%|██████▏   | 612/985 [00:00<00:00, 714.00 examples/s]\\rTokenizing eval dataset:  70%|███████   | 690/985 [00:00<00:00, 732.23 examples/s]\\rTokenizing eval dataset:  81%|████████  | 799/985 [00:01<00:00, 726.32 examples/s]\\rTokenizing eval dataset:  89%|████████▉ | 878/985 [00:01<00:00, 740.04 examples/s]\\rTokenizing eval dataset:  99%|█████████▉| 980/985 [00:01<00:00, 715.56 examples/s]\\rTokenizing eval dataset: 100%|██████████| 985/985 [00:01<00:00, 658.98 examples/s]\\nThe model is already on multiple devices. Skipping the move to device specified in `args`.\\n2026-05-16 17:30:18,740 INFO Starting SFT training...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/570 [00:00<?, ?it/s]\\r  0%|          | 1/570 [00:06<1:04:49,  6.84s/it]\\r  0%|          | 2/570 [00:13<1:01:45,  6.52s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中（570 steps, ~6.5s/step）。注册实验。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "2c98fd78-7138-4d81-a702-d63e92d00daa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JbCvMBBUkBy85a8NkgNgaQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3510,
+                "cache_read_input_tokens": 27124,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3510
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018JcMQ2JoSGSMQZAgcuzoKv",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan_006_qwen3_8b_no_evidence_sft",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --no-quantize --seed 42 --wandb_run_name qwen3_8b_no_evidence_sft",
+                  "server": "rtx5090-4x",
+                  "gpu": [
+                    "cuda:0"
+                  ],
+                  "data_path": "/root/autodl-tmp/data/docred",
+                  "data_count": 3027,
+                  "model_name": "Qwen3-8B",
+                  "seed": 42,
+                  "plan_id": "plan_006",
+                  "hypothesis": "8B no-evidence SFT ablation (bf16 LoRA). 与 plan_006_qwen3_8b_sft_bf16 对比量化 evidence generation cost on 8B model. claim=1.",
+                  "quantize": "none (bf16 LoRA)",
+                  "lora_rank": 64,
+                  "lora_alpha": 128,
+                  "output_dir": "/root/autodl-tmp/sft_output_qwen3_8b_no_evidence",
+                  "log_path": "/root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log",
+                  "pid": 325491,
+                  "wandb_run_name": "qwen3_8b_no_evidence_sft"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "2816c564-31f5-4299-9254-d65b0a73b84b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JbCvMBBUkBy85a8NkgNgaQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3510,
+                "cache_read_input_tokens": 27124,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3510
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T09:30:49.462Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018JcMQ2JoSGSMQZAgcuzoKv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4578}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "2320a466-57db-4278-a3e7-ca1c15c5ab3d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4578}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.4578}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The registry has an issue with the state transition. It seems the experiment was already in PREPARING state. Let me try transitioning from PREPARING through the proper path. Let me check what states are allowed from PREPARING, or try setting it to PENDING first, then to RUNNING.\n\nActually, looking at the error: \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\"\n\nThis means from PREPARING, you can go to PENDING or QUEUED. Let me try setting it to PENDING first, then to RUNNING. Or maybe I need to set it to QUEUED first.\n\n\nSo the allowed transitions from PREPARING are to QUEUED or PENDING. Let me try going through QUEUED first to reach RUNNING.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "deadabe5-6203-4ae1-b335-648afb67888a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E3KKp3GhsA1BnSbbteRZEi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 814,
+                "cache_read_input_tokens": 30634,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 814
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TizPqDsGm46gZx4FNfqHeJ",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan_006_qwen3_8b_no_evidence_sft",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "bdfd631c-57e8-4377-a2fd-c509360e36a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E3KKp3GhsA1BnSbbteRZEi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 814,
+                "cache_read_input_tokens": 30634,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 814
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T09:30:59.516Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TizPqDsGm46gZx4FNfqHeJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_8b_no_evidence_sft\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:30:57.988Z\\\", \\\"updated_at\\\": \\\"2026-05-16T09:30:57.988Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0168}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "e513ac30-bf88-4d8d-8483-acf54f897c92",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_8b_no_evidence_sft\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:30:57.988Z\\\", \\\"updated_at\\\": \\\"2026-05-16T09:30:57.988Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0168}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_no_evidence_sft\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:30:57.988Z\", \"updated_at\": \"2026-05-16T09:30:57.988Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0168}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M7r1xXZ1APJjJDyS9rx8Az",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan_006_qwen3_8b_no_evidence_sft",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --no-quantize --seed 42 --wandb_run_name qwen3_8b_no_evidence_sft",
+                  "server": "rtx5090-4x",
+                  "gpu": [
+                    "cuda:0"
+                  ],
+                  "data_path": "/root/autodl-tmp/data/docred",
+                  "data_count": 3027,
+                  "model_name": "Qwen3-8B",
+                  "seed": 42,
+                  "plan_id": "plan_006",
+                  "hypothesis": "8B no-evidence SFT ablation (bf16 LoRA). 与 plan_006_qwen3_8b_sft_bf16 对比量化 evidence generation cost on 8B model. claim=1.",
+                  "quantize": "none (bf16 LoRA)",
+                  "lora_rank": 64,
+                  "lora_alpha": 128,
+                  "output_dir": "/root/autodl-tmp/sft_output_qwen3_8b_no_evidence",
+                  "log_path": "/root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log",
+                  "pid": 325491,
+                  "wandb_run_name": "qwen3_8b_no_evidence_sft"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "16bef33e-36df-4bfd-9a8b-0d372eb21cef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBEvxtmXtKKbQyRwFUGjk3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 500,
+                "cache_read_input_tokens": 31448,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 500
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T09:31:08.524Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M7r1xXZ1APJjJDyS9rx8Az",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_8b_no_evidence_sft\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:30:57.988Z\\\", \\\"updated_at\\\": \\\"2026-05-16T09:31:07.614Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --no-quantize --seed 42 --wandb_run_name qwen3_8b_no_evidence_sft\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 3027, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"plan_id\\\": \\\"plan_006\\\", \\\"hypothesis\\\": \\\"8B no-evidence SFT ablation (bf16 LoRA). 与 plan_006_qwen3_8b_sft_bf16 对比量化 evidence generation cost on 8B model. claim=1.\\\", \\\"quantize\\\": \\\"none (bf16 LoRA)\\\", \\\"lora_rank\\\": 64, \\\"lora_alpha\\\": 128, \\\"output_dir\\\": \\\"/root/autodl-tmp/sft_output_qwen3_8b_no_evidence\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log\\\", \\\"pid\\\": 325491, \\\"wandb_run_name\\\": \\\"qwen3_8b_no_evidence_sft\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3541}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "f40fd269-4fe2-4b9a-a9fa-1b5524ee36eb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_8b_no_evidence_sft\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:30:57.988Z\\\", \\\"updated_at\\\": \\\"2026-05-16T09:31:07.614Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --no-quantize --seed 42 --wandb_run_name qwen3_8b_no_evidence_sft\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 3027, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"plan_id\\\": \\\"plan_006\\\", \\\"hypothesis\\\": \\\"8B no-evidence SFT ablation (bf16 LoRA). 与 plan_006_qwen3_8b_sft_bf16 对比量化 evidence generation cost on 8B model. claim=1.\\\", \\\"quantize\\\": \\\"none (bf16 LoRA)\\\", \\\"lora_rank\\\": 64, \\\"lora_alpha\\\": 128, \\\"output_dir\\\": \\\"/root/autodl-tmp/sft_output_qwen3_8b_no_evidence\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log\\\", \\\"pid\\\": 325491, \\\"wandb_run_name\\\": \\\"qwen3_8b_no_evidence_sft\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3541}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_no_evidence_sft\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:30:57.988Z\", \"updated_at\": \"2026-05-16T09:31:07.614Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --no-quantize --seed 42 --wandb_run_name qwen3_8b_no_evidence_sft\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"plan_id\": \"plan_006\", \"hypothesis\": \"8B no-evidence SFT ablation (bf16 LoRA). 与 plan_006_qwen3_8b_sft_bf16 对比量化 evidence generation cost on 8B model. claim=1.\", \"quantize\": \"none (bf16 LoRA)\", \"lora_rank\": 64, \"lora_alpha\": 128, \"output_dir\": \"/root/autodl-tmp/sft_output_qwen3_8b_no_evidence\", \"log_path\": \"/root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log\", \"pid\": 325491, \"wandb_run_name\": \"qwen3_8b_no_evidence_sft\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3541}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n**训练状态**:\n- **exp_id**: `plan_006_qwen3_8b_no_evidence_sft`\n- **PID**: 325491 on cuda:0\n- **进度**: 570 steps, ~6.5s/step → 预估 ~62min\n- **配置**: bf16 LoRA (rank=64, alpha=128), `--no_evidence`, `--no-quantize`, seed=42\n- **日志**: `/root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log`\n- **W&B**: `qwen3_8b_no_evidence_sft`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "uuid": "17ececc5-9fde-44ac-a6f3-5f8c6154e371",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uudq4NFT1YK22B3xymctym",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1234,
+                "cache_read_input_tokens": 31948,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1234
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n**训练状态**:\n- **exp_id**: `plan_006_qwen3_8b_no_evidence_sft`\n- **PID**: 325491 on cuda:0\n- **进度**: 570 steps, ~6.5s/step → 预估 ~62min\n- **配置**: bf16 LoRA (rank=64, alpha=128), `--no_evidence`, `--no-quantize`, seed=42\n- **日志**: `/root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log`\n- **W&B**: `qwen3_8b_no_evidence_sft`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 99350,
+            "duration_api_ms": 64364,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "f2303177-7e66-44b2-87fa-78877038f4e5",
+            "total_cost_usd": 0.32938625,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 21341,
+              "cache_read_input_tokens": 234712,
+              "output_tokens": 3056,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21341,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 176,
+                  "cache_read_input_tokens": 31948,
+                  "cache_creation_input_tokens": 1234,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1234
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2074,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002189,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 3056,
+                "cacheReadInputTokens": 234712,
+                "cacheCreationInputTokens": 21341,
+                "webSearchRequests": 0,
+                "costUSD": 0.32719725,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "134a5aad-dd09-4e65-84d1-f190a39603a1"
+          },
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 32
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-qwen3-8b-no-evidence-sft.md"
+}

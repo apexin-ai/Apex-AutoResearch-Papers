@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ced313feaa1e5f8c936b",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "diagnose 8b rsft seed audit",
+  "task_key": "worker_diagnose_8b-rsft-seed-audit_20260522T212728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_8b-rsft-seed-audit_20260522T212728.log",
+    "occurrence": 1,
+    "bytes": 733222,
+    "sha256": "ea47490b31d99101dab414095dd68f3fbd8fe66d90759c35f13a9b0574a66952"
+  },
+  "statistics": {
+    "messages": 59,
+    "user_turns": 0,
+    "tool_calls": 21,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 21,
+      "tool_result": 21,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 59,
+      "chunks": [
+        {
+          "path": "ced313feaa1e5f8c936b-part-0001.json",
+          "message_count": 27
+        },
+        {
+          "path": "ced313feaa1e5f8c936b-part-0002.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-8b-rsft-seed-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b91f09c75e316c93a22",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "verify d112 step3 step4 readiness",
+  "task_key": "worker_verify_d112_step3_step4_readiness_20260519T032024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_d112_step3_step4_readiness_20260519T032024_result.json",
+    "occurrence": 1,
+    "bytes": 1740,
+    "sha256": "5044e610cfc8b9f00de3dd4ed9db08e3daf59bf12ef5c73aab70823b3309cc8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出\n\n### 1. Step 3/4 脚本就绪性\n\n**Step 3** (`step3_k1_filter_and_train.sh`) — 脚本本身 OK，但不能运行：\n- 模型路径 `/root/autodl-tmp/models/Qwen3-4B` ✅ 本地，存在\n- SFT adapter `/root/autodl-tmp/sft_output_seed44` ✅ 存在（528MB adapter）\n- CUDA_VISIBLE_DEVICES ✅ 正确设置（`${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`）\n- 无 HuggingFace 模型 ID，全部本地路径\n- **阻塞问题**：训练数据 `/root/autodl-tmp/rsft_scored_4b_sft_s44/rsft_train.jsonl` **不存在**（目录为空）。这是 step 2 的输出，step 2 尚未完成。\n\n**Step 4** (`step4_eval.sh`) — 脚本 OK，依赖 step 3 输出：\n- 所有模型路径本地 ✅\n- Eval 数据 `/root/autodl-tmp/data/docred/` ✅ 存在\n- RSFT adapter 路径 `/root/autodl-tmp/rsft_output_4b_sft_s44` — step 3 产出，尚不存在（预期）\n- 遵守了 C001（脚本注释提醒 nvidia-smi 检查）\n\n**建议修复**：两个脚本都没设 `export HF_HUB_OFFLINE=1`。虽然路径全是本地的，但 transformers `from_pretrained()` 可能仍尝试连 HF Hub 检查更新。鉴于 step 2 已因 HF 网络不可达失败过，建议在两个脚本的 `export` 区域都加上 `export HF_HUB_OFFLINE=1` 作为安全措施。\n\n### 2. experiment_plan.yaml 中 D112 状态\n\nD112 条目存在（`plan_d112`，line 253），registry_id 为 `d112_rsft_s44_gen_shard0`（对应 step 1 生成阶段）。描述准确。\n\n### 3. 需修复的问题清单\n\n| # | 问题 | 严重度 | 状态 |\n|---|------|--------|------|\n| 1 | step 2 输出 `rsft_train.jsonl` 不存在，step 3 被阻塞 | 阻塞 | 等 step 2 完成 |\n| 2 | step 3/4 缺 `HF_HUB_OFFLINE=1` | 低风险预防 | 建议加上 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-d112-step3-step4-readiness.md"
+}

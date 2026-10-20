@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d481ad8b4bd009b6d5f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "investigate 4b evidence tax source",
+  "task_key": "worker_investigate_4b_evidence_tax_source_20260518T134827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_4b_evidence_tax_source_20260518T134827_result.json",
+    "occurrence": 1,
+    "bytes": 2885,
+    "sha256": "cbb5fd599218e2a3dc0662728795d7733bd950df572f43b97768ea8ee0c74168"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the complete picture. Here's the analysis:\n\n---\n\n## 调查结果\n\n### 三组独立的 4B SFT eval 结果\n\n| 来源 | Evidence ign_f1 | No-evi ign_f1 | Tax | 协议 |\n|---|---|---|---|---|\n| **v1 buggy** (sft_baseline_noquant/metrics.json) | **41.06%** (ign=f1 bug) | — | — | merged model, bs=16 |\n| **v2 fixed** (sft_baseline_noquant/metrics_v2.json + sft_no_evidence/metrics_v2.json) | **40.36%** | **47.36%** | **7.00pp** | merged model, bs=16 |\n| **D076 reeval** (sft_baseline_d076_reeval + sft_no_evidence_noquant) | **39.74%** | **47.21%** | **7.47pp** | base+adapter, bs=4 |\n\n### 41.06% 的来源\n\n- **文件**: `sft_baseline_noquant/metrics.json` (v1)\n- **Config**: model_path=`/root/autodl-tmp/sft_output` (merged model), batch_size=16, seed=42, quantize=false\n- **Bug**: ign_f1 == f1 == 0.4106 — evaluator.py 的 Ign-F1 计算有 bug（train_facts 未按 doc_id 过滤），导致 ign_f1 = f1\n- v2 修正后该 eval 的真实 ign_f1 = **40.36%**\n\n### \"39.86%\" — **不存在于任何 metrics 文件中**\n\n搜遍了 `/root/autodl-tmp/eval_results/` 和本地 artifacts 目录，\"39.86\" 未出现在任何 SFT baseline 的 metrics 文件中。最接近的值是：\n- **39.74%** — `sft_baseline_d076_reeval/metrics.json`（D076 protocol, base+adapter, bs=4）\n- **40.36%** — `sft_baseline_noquant/metrics_v2.json`（merged model, bs=16, 修正后）\n\n任务描述中的 \"39.86%\" 可能是 39.74% 的误记，或是 47.36 - 7.5 = 39.86 的反推。\n\n### 差异根因\n\n两个维度的差异叠加：\n\n1. **Ign-F1 计算 bug**：v1 metrics.json 的 ign_f1 没有排除 train triples（ign_f1=f1），v2 修正后 40.36% → 降幅 0.70pp\n2. **Eval 协议不同**：merged model (bs=16) vs base+adapter (bs=4) 产生不同的生成行为（merged: f1=41.06, adapter: f1=40.49）\n\n### memory.md 中 \"6.15pp\" 的来源\n\n混用了两个不同协议的 buggy 值：\n- sft_baseline_noquant v1 ign_f1 = 41.06%（buggy, merged model）\n- sft_no_evidence_noquant ign_f1 = 47.21%（correct, base+adapter）\n- 47.21 - 41.06 = 6.15pp — **跨协议比较 + 使用 buggy 值，无效**\n\n### 论文当前 canonical 值\n\n`paper_metrics_corrected.md` 和 `paper_main_tables_draft.md` 统一使用 **v2 fixed metrics**：\n- Evidence: **40.36%**（sft_baseline_noquant/metrics_v2.json）\n- No-evidence: **47.36%**（sft_no_evidence/metrics_v2.json）\n- Tax: **7.00pp**\n\n### 推荐\n\n论文应使用 **40.36% / 47.36% / tax 7.00pp**（v2 corrected, merged model, 与 paper_metrics_corrected.md 一致）。\n\n如果 RSFT 对比实验全部遵循 D076 protocol（base+adapter, bs=4），那么 SFT baseline 也应对齐为 **39.74% / 47.21% / tax 7.47pp**。当前 D076 paired t-test 已使用 39.74% 作为 baseline。\n\nmemory.md 中的 \"6.15pp\" 需要修正为 7.00pp（v2）或 7.47pp（D076）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-4b-evidence-tax-source.md"
+}

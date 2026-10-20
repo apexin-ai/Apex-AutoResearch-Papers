@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c98ec2ed435f875258e8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops eval output prep",
+  "task_key": "worker_ops_eval-output-prep_20260514T220250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-output-prep_20260514T220250_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "7409506f44ccc310436853a683b609a147d92125f02aeb942ef254072e6ddf17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n### Eval 输出格式\n\n**两种入口**：\n- `freige.eval.batch_eval` — GRPO checkpoint eval，内部调 inference.py，需 `--sft_adapter` merge SFT\n- `freige.eval.inference` — 直接 eval（SFT baseline 用这个）\n\n**输出文件**：每个 checkpoint 目录下 `metrics.json`（~1.3KB 全部指标）+ `predictions.json`（~4-8MB 逐文档详情）。batch_eval 额外在顶层写 `summary.json`（f1/ign_f1/evi_f1/edcr/format_ok_rate）。\n\n**关键指标字段**：`f1`, `ign_f1`, `evi_f1`, `edcr`, `format_ok_rate`, `pred_count`, `n_truncated`\n\n### 当前状态\n\n- 4 个 eval 正在运行（ckpt-20/40/rp_ckpt20/sft_baseline），输出目录已创建但为空\n- 无 sentinel/W&B 输出，判断完成的唯一方式：检查 `metrics.json` 是否存在且非空\n- 预计每个 eval 耗时 85-110 分钟\n\n### SFT baseline 确认\n\nsft_eval_r3_results 与 sft_eval_results 数值完全一致：F1=0.4057, Evi-F1=0.7979, EDCR=0.7118。handoff 中的数字来源已确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-output-prep.md"
+}

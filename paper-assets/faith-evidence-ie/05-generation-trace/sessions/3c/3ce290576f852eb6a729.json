@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ce290576f852eb6a729",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu health check",
+  "task_key": "worker_ops_gpu_health_check_20260524T112123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_health_check_20260524T112123_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "037eb8af088879e11e64998b06b89c968a2a88f8b1f2604fbf6e0a4ec56f064b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | 型号 | 显存占用 | 利用率 | 温度 | 进程 |\n|-----|------|----------|--------|------|------|\n| 0 | RTX PRO 6000 Blackwell SE | 7,225 / 97,887 MiB (7.4%) | 72% | 56°C | PID 302254, python, 7,216 MiB |\n| 1 | RTX PRO 6000 Blackwell SE | 0 / 97,887 MiB | 0% | 31°C | 无 |\n| 2 | RTX PRO 6000 Blackwell SE | 32,479 / 97,887 MiB (33.2%) | 93% | 77°C | PID 306177, python, 32,470 MiB |\n| 3 | RTX PRO 6000 Blackwell SE | 0 / 97,887 MiB | 0% | 31°C | 无 |\n\nGPU 0 和 GPU 2 有 python 进程在跑，GPU 1 和 GPU 3 完全空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-health-check.md"
+}

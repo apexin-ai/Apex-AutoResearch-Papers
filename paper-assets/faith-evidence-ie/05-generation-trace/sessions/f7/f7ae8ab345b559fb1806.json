@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7ae8ab345b559fb1806",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis llama rsft fair tax 2048",
+  "task_key": "worker_analysis_llama_rsft_fair_tax_2048_20260521T140513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_rsft_fair_tax_2048_20260521T140513_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "f98fe03a3cd1f5cf1d6b2056d9ced52ead8f565ce5ed2c484c11f0bb4477bcd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇报：\n\n| | with-evi | no-evi |\n|---|---|---|\n| format_ok | 984 | 984 |\n| truncated | 90 | 140 |\n| format_fail | 1 (malformed) | 1 (malformed) |\n\n**Fair subset: 983 docs**（交集只少了各自 1 个 malformed，几乎全重叠）\n\n| 指标 | fair with-evi | fair no-evi | fair tax |\n|---|---|---|---|\n| ign_f1 | 0.5779 | 0.5562 | **+2.17pp** |\n| f1 | 0.5897 | 0.5706 | +1.91pp |\n\nFull set ign_f1 与 metrics.json 吻合（with-evi 0.5779 vs 报告 0.5774，微小差异来自 gold_count 处理）。\n\n**fair_tax = +2.17pp**，evidence 对 LLaMA RSFT 有正向增益。与 Qwen 1.7B 的 -5.63pp（evidence hurts）方向相反。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-rsft-fair-tax-2048.md"
+}

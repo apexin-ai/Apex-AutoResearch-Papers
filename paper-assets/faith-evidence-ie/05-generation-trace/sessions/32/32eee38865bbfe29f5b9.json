@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32eee38865bbfe29f5b9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "cpu paper metrics table prep",
+  "task_key": "worker_cpu_paper_metrics_table_prep_20260516T052206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_paper_metrics_table_prep_20260516T052206_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "de1841e57e8c3d73741a3f997856facb29ea02c7134e8f1f00d1b91a59c71fbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**服务器产出**: `/root/autodl-tmp/eval_results/paper_table_data.json` — 22 个方法条目，含完整 metrics + 协议元数据\n\n**收集到的完整数据 (13 个方法)**:\n\n| 方法 | Rel-F1 | Evi-F1 | EDCR |\n|------|--------|--------|------|\n| SFT baseline | 0.4106 | 0.8013 | 0.7039 |\n| SFT no-evidence | 0.4893 | — | — |\n| RSFT-CED (2-seed mean) | 0.4557 | 0.8118 | 0.6546 |\n| RSFT-flatNLI (2-seed mean) | 0.4583 | 0.8143 | 0.6490 |\n| RSFT top-k=3 | 0.4454 | 0.8088 | 0.6635 |\n| CED-reranker (N=8) | 0.4864 | — | — |\n| DPO-CED | 0.4034 | 0.8088 | 0.7139 |\n| GRPO bf16 (ckpt100) | 0.4549 | 0.8086 | 0.6318 |\n| GRPO QLoRA | 0.2167 | 0.5746 | 0.8539 |\n\n**4 个 reeval 仍在跑**: rsft_ced_s42, rsft_ced_s44, rsft_flat_nli_s42, rsft_flat_nli_s43_r2。完成后 CED 和 flatNLI 的 seed mean 会从 2-seed 变 4-seed。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-paper-metrics-table-prep.md"
+}

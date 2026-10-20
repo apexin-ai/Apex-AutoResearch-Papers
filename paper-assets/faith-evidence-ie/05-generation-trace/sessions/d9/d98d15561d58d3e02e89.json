@@ -1,0 +1,373 @@
+{
+  "schema_version": "1.0",
+  "id": "d98d15561d58d3e02e89",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "ssh merge scored shards",
+  "task_key": "worker_ssh_merge-scored-shards_20260515T052217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_merge-scored-shards_20260515T052217.jsonl",
+    "occurrence": 1,
+    "bytes": 16808,
+    "sha256": "9dd25ae95e4316c63dc359fed52d3617caf7e19984276e563ad1d21ac149cfd4"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T05:23:22.306811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__kill_job,mcp__agent-ml-research__detect_image",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T05:23:22.307306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T05:23:22.307575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "kill 155566 155966 157043 2>/dev/null; echo \"done\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T05:23:22.307762+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "wc -l /root/autodl-tmp/rsft_scored_s0/rsft_train.jsonl /root/autodl-tmp/rsft_scored_s1/rsft_train.jsonl /root/autodl-tmp/rsft_scored_s2/rsft_train.jsonl /root/autodl-tmp/rsft_scored_s3/rsft_train.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T05:23:22.307963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T05:23:22.308167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    687 /root/autodl-tmp/rsft_scored_s0/rsft_train.jsonl\\\\n    688 /root/autodl-tmp/rsft_scored_s1/rsft_train.jsonl\\\\n    689 /root/autodl-tmp/rsft_scored_s2/rsft_train.jsonl\\\\n    655 /root/autodl-tmp/rsft_scored_s3/rsft_train.jsonl\\\\n   2719 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T05:23:22.308395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/autodl-tmp/rsft_filtered && cat /root/autodl-tmp/rsft_scored_s0/rsft_train.jsonl /root/autodl-tmp/rsft_scored_s1/rsft_train.jsonl /root/autodl-tmp/rsft_scored_s2/rsft_train.jsonl /root/autodl-tmp/rsft_scored_s3/rsft_train.jsonl > /root/autodl-tmp/rsft_filtered/rsft_train_raw.jsonl && cd /root/autodl-tmp && python -c \"\nimport json\nseen = {}\nwith open('rsft_filtered/rsft_train_raw.jsonl') as f:\n    for line in f:\n        rec = json.loads(line)\n        key = (rec.get('doc_id', ''), rec.get('generation_idx', 0))\n        seen[key] = line.strip()\n\nwith open('rsft_filtered/rsft_train.jsonl', 'w') as f:\n    for line in seen.values():\n        f.write(line + '\\n')\n\nprint(f'Raw: {sum(1 for _ in open(\\\"rsft_filtered/rsft_train_raw.jsonl\\\"))} lines')\nprint(f'Deduped: {len(seen)} lines')\nprint(f'Duplicates removed: {sum(1 for _ in open(\\\"rsft_filtered/rsft_train_raw.jsonl\\\")) - len(seen)}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T05:23:22.308597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Raw: 2719 lines\\\\nDeduped: 2718 lines\\\\nDuplicates removed: 1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T05:23:22.311435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -c \"\nimport json\nrecords = []\nwith open('rsft_filtered/rsft_train.jsonl') as f:\n    for line in f:\n        records.append(json.loads(line))\n\ndocs = set(r.get('doc_id', '') for r in records)\nf1s = [r.get('f1_reward', 0) for r in records if 'f1_reward' in r]\nceds = [r.get('ced_score', 0) for r in records if 'ced_score' in r]\n\nprint(f'Total samples: {len(records)}')\nprint(f'Unique docs: {len(docs)}')\nprint(f'Mean F1 reward: {sum(f1s)/len(f1s):.4f}' if f1s else 'No f1_reward field')\nprint(f'Mean CED score: {sum(ceds)/len(ceds):.4f}' if ceds else 'No ced_score field')\nprint(f'Min F1: {min(f1s):.4f}' if f1s else '')\nprint(f'Max F1: {max(f1s):.4f}' if f1s else '')\n\nmissing_input = sum(1 for r in records if 'input' not in r)\nmissing_output = sum(1 for r in records if 'output' not in r)\nprint(f'Missing input field: {missing_input}')\nprint(f'Missing output field: {missing_output}')\n\nlow_f1 = sum(1 for f in f1s if f < 0.1)\nprint(f'Samples with f1 < 0.1: {low_f1}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T05:23:22.311722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total samples: 2718\\\\nUnique docs: 2691\\\\nMean F1 reward: 0.6157\\\\nMean CED score: 0.6683\\\\nMin F1: 0.1026\\\\nMax F1: 1.0000\\\\nMissing input field: 0\\\\nMissing output field: 0\\\\nSamples with f1 < 0.1: 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T05:23:22.311875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -c \"\nimport json\nreports = []\nfor i in range(4):\n    with open(f'rsft_scored_s{i}/rsft_report.json') as f:\n        reports.append(json.loads(f.read()))\n\ntotal_input = sum(r.get('total_records', 0) for r in reports)\ntotal_selected = sum(r.get('selected_count', 0) for r in reports)\ntotal_docs = sum(r.get('total_docs', 0) for r in reports)\n\ntrunc_analyses = [r.get('truncation_analysis', {}) for r in reports if 'truncation_analysis' in r]\ntotal_truncated = sum(t.get('truncated_count', 0) for t in trunc_analyses)\ntotal_non_truncated = sum(t.get('non_truncated_count', 0) for t in trunc_analyses)\ntrunc_pct = total_truncated / (total_truncated + total_non_truncated) * 100 if (total_truncated + total_non_truncated) > 0 else 0\n\nf1_stats = [r.get('f1_filter_stats', {}) for r in reports if 'f1_filter_stats' in r]\ntotal_gens_dropped = sum(s.get('gens_dropped_by_f1', 0) for s in f1_stats)\ntotal_docs_dropped = sum(s.get('docs_dropped_by_f1', 0) for s in f1_stats)\n\nsummary = {\n    'total_input_records': total_input,\n    'total_selected': total_selected,\n    'selection_rate': total_selected / total_input if total_input else 0,\n    'total_docs': total_docs,\n    'truncation_pct': trunc_pct,\n    'total_truncated': total_truncated,\n    'gens_dropped_by_f1': total_gens_dropped,\n    'docs_dropped_by_f1': total_docs_dropped,\n    'per_shard': [{\n        'shard': i,\n        'input': reports[i].get('total_records', 0),\n        'selected': reports[i].get('selected_count', 0),\n        'docs': reports[i].get('total_docs', 0)\n    } for i in range(4)]\n}\n\nwith open('rsft_filtered/rsft_combined_report.json', 'w') as f:\n    json.dump(summary, f, indent=2)\nprint(json.dumps(summary, indent=2))\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T05:23:22.312077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_input_records\\\\\\\": 21952,\\\\n  \\\\\\\"total_selected\\\\\\\": 0,\\\\n  \\\\\\\"selection_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"total_docs\\\\\\\": 0,\\\\n  \\\\\\\"truncation_pct\\\\\\\": 8.883017492711371,\\\\n  \\\\\\\"total_truncated\\\\\\\": 1950,\\\\n  \\\\\\\"gens_dropped_by_f1\\\\\\\": 1310,\\\\n  \\\\\\\"docs_dropped_by_f1\\\\\\\": 25,\\\\n  \\\\\\\"per_shard\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"shard\\\\\\\": 0,\\\\n      \\\\\\\"input\\\\\\\": 5560,\\\\n      \\\\\\\"selected\\\\\\\": 0,\\\\n      \\\\\\\"docs\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"shard\\\\\\\": 1,\\\\n      \\\\\\\"input\\\\\\\": 5552,\\\\n      \\\\\\\"selected\\\\\\\": 0,\\\\n      \\\\\\\"docs\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"shard\\\\\\\": 2,\\\\n      \\\\\\\"input\\\\\\\": 5568,\\\\n      \\\\\\\"selected\\\\\\\": 0,\\\\n      \\\\\\\"docs\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"shard\\\\\\\": 3,\\\\n      \\\\\\\"input\\\\\\\": 5272,\\\\n      \\\\\\\"selected\\\\\\\": 0,\\\\n      \\\\\\\"docs\\\\\\\": 0\\\\n    }\\\\n  ]\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T05:23:22.312415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -50 /root/autodl-tmp/rsft_scored_s0/rsft_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T05:23:22.313143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_records\\\\\\\": 5560,\\\\n  \\\\\\\"selected_records\\\\\\\": 687,\\\\n  \\\\\\\"filtered_records\\\\\\\": 4873,\\\\n  \\\\\\\"selection_rate\\\\\\\": 0.12356115107913669,\\\\n  \\\\\\\"unique_docs_total\\\\\\\": 695,\\\\n  \\\\\\\"unique_docs_selected\\\\\\\": 687,\\\\n  \\\\\\\"format_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.9969424460431655,\\\\n    \\\\\\\"std\\\\\\\": 0.05521055443151769,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 1.0,\\\\n    \\\\\\\"median\\\\\\\": 1.0,\\\\n    \\\\\\\"p5\\\\\\\": 1.0,\\\\n    \\\\\\\"p10\\\\\\\": 1.0,\\\\n    \\\\\\\"p25\\\\\\\": 1.0,\\\\n    \\\\\\\"p75\\\\\\\": 1.0,\\\\n    \\\\\\\"p90\\\\\\\": 1.0,\\\\n    \\\\\\\"p95\\\\\\\": 1.0,\\\\n    \\\\\\\"histogram\\\\\\\": {\\\\n      \\\\\\\"counts\\\\\\\": [\\\\n        17,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        5543\\\\n      ],\\\\n      \\\\\\\"bin_edges\\\\\\\": [\\\\n        0.0,\\\\n        0.1,\\\\n        0.2,\\\\n        0.3,\\\\n        0.4,\\\\n        0.5,\\\\n        0.6,\\\\n        0.7,\\\\n        0.8,\\\\n        0.9,\\\\n        1.0\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"f1_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.4808763953494628,\\\\n    \\\\\\\"std\\\\\\\": 0.2260758597361899,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T05:23:22.313805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -c \"\nimport json\nreports = []\nfor i in range(4):\n    with open(f'rsft_scored_s{i}/rsft_report.json') as f:\n        reports.append(json.loads(f.read()))\n\ntotal_input = sum(r.get('total_records', 0) for r in reports)\ntotal_selected = sum(r.get('selected_records', 0) for r in reports)\ntotal_docs = sum(r.get('unique_docs_total', 0) for r in reports)\ntotal_docs_selected = sum(r.get('unique_docs_selected', 0) for r in reports)\n\ntrunc_analyses = [r.get('truncation_analysis', {}) for r in reports if 'truncation_analysis' in r]\ntotal_truncated = sum(t.get('truncated_count', 0) for t in trunc_analyses)\ntotal_non_truncated = sum(t.get('non_truncated_count', 0) for t in trunc_analyses)\ntrunc_pct = total_truncated / (total_truncated + total_non_truncated) * 100 if (total_truncated + total_non_truncated) > 0 else 0\n\nf1_stats = [r.get('f1_filter_stats', {}) for r in reports if 'f1_filter_stats' in r]\ntotal_gens_dropped = sum(s.get('gens_dropped_by_f1', 0) for s in f1_stats)\ntotal_docs_dropped = sum(s.get('docs_dropped_by_f1', 0) for s in f1_stats)\n\nsummary = {\n    'total_input_records': total_input,\n    'total_selected': total_selected,\n    'selection_rate': total_selected / total_input if total_input else 0,\n    'total_docs': total_docs,\n    'total_docs_selected': total_docs_selected,\n    'truncation_pct': round(trunc_pct, 2),\n    'total_truncated': total_truncated,\n    'gens_dropped_by_f1': total_gens_dropped,\n    'docs_dropped_by_f1': total_docs_dropped,\n    'per_shard': [{\n        'shard': i,\n        'input': reports[i].get('total_records', 0),\n        'selected': reports[i].get('selected_records', 0),\n        'docs_total': reports[i].get('unique_docs_total', 0),\n        'docs_selected': reports[i].get('unique_docs_selected', 0)\n    } for i in range(4)]\n}\n\nwith open('rsft_filtered/rsft_combined_report.json', 'w') as f:\n    json.dump(summary, f, indent=2)\nprint(json.dumps(summary, indent=2))\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T05:23:22.314549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_input_records\\\\\\\": 21952,\\\\n  \\\\\\\"total_selected\\\\\\\": 2719,\\\\n  \\\\\\\"selection_rate\\\\\\\": 0.12386115160349855,\\\\n  \\\\\\\"total_docs\\\\\\\": 2744,\\\\n  \\\\\\\"total_docs_selected\\\\\\\": 2719,\\\\n  \\\\\\\"truncation_pct\\\\\\\": 8.88,\\\\n  \\\\\\\"total_truncated\\\\\\\": 1950,\\\\n  \\\\\\\"gens_dropped_by_f1\\\\\\\": 1310,\\\\n  \\\\\\\"docs_dropped_by_f1\\\\\\\": 25,\\\\n  \\\\\\\"per_shard\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"shard\\\\\\\": 0,\\\\n      \\\\\\\"input\\\\\\\": 5560,\\\\n      \\\\\\\"selected\\\\\\\": 687,\\\\n      \\\\\\\"docs_total\\\\\\\": 695,\\\\n      \\\\\\\"docs_selected\\\\\\\": 687\\\\n    },\\\\n    {\\\\n      \\\\\\\"shard\\\\\\\": 1,\\\\n      \\\\\\\"input\\\\\\\": 5552,\\\\n      \\\\\\\"selected\\\\\\\": 688,\\\\n      \\\\\\\"docs_total\\\\\\\": 694,\\\\n      \\\\\\\"docs_selected\\\\\\\": 688\\\\n    },\\\\n    {\\\\n      \\\\\\\"shard\\\\\\\": 2,\\\\n      \\\\\\\"input\\\\\\\": 5568,\\\\n      \\\\\\\"selected\\\\\\\": 689,\\\\n      \\\\\\\"docs_total\\\\\\\": 696,\\\\n      \\\\\\\"docs_selected\\\\\\\": 689\\\\n    },\\\\n    {\\\\n      \\\\\\\"shard\\\\\\\": 3,\\\\n      \\\\\\\"input\\\\\\\": 5272,\\\\n      \\\\\\\"selected\\\\\\\": 655,\\\\n      \\\\\\\"docs_total\\\\\\\": 659,\\\\n      \\\\\\\"docs_selected\\\\\\\": 655\\\\n    }\\\\n  ]\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T05:23:22.314775+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 指标 | 值 |\n|------|-----|\n| **总输入 generations** | 21,952 |\n| **筛选后样本数** | 2,719 (去重后 **2,718**) |\n| **选择率** | 12.4% |\n| **Unique docs** | 2,691 |\n| **去重删除** | 1 条 |\n| **Mean F1 reward** | 0.6157 |\n| **Mean CED score** | 0.6683 |\n| **F1 范围** | [0.1026, 1.0000] |\n| **f1 < 0.1 样本** | 0 (f1 threshold 生效) |\n| **截断比例** | 8.88% (1,950 条) |\n| **f1 过滤丢弃** | 1,310 generations / 25 docs |\n| **缺失 input/output** | 0 / 0 |\n\n输出文件：`/root/autodl-tmp/rsft_filtered/rsft_train.jsonl` (2,718 samples)，汇总报告 `rsft_combined_report.json` 已写入同目录。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_merge-scored-shards_20260515T052217"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-merge-scored-shards.md"
+}

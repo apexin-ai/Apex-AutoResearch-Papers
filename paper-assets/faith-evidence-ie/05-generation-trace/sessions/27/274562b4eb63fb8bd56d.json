@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "274562b4eb63fb8bd56d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose plan 007 redocred rsft r2",
+  "task_key": "worker_diagnose_plan_007_redocred_rsft_r2_20260516T174244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan_007_redocred_rsft_r2_20260516T174244_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "25a07d355a2c98b89c705c732d4e78803e39392346180500423a60627cd0a81c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因：Pipeline Bug — eval 命令参数传错。**\n\nRe-DocRED eval 运行时传了 `--model_path Qwen3-4B --sft_adapter rsft_checkpoint`，而正确应为 `--model_path rsft_checkpoint --sft_adapter sft_output`。\n\n这导致 RSFT LoRA 增量被直接 merge 到裸 Qwen3-4B（缺少 SFT 基底），模型退化为开放域 IE——输出自由文本关系（\"born\", \"won medal\"）和错误字段名（\"sentence_ids\" 替代 \"evidence\"），与 DocRED 标签集完全无法匹配。\n\n修复：用与 DocRED eval 一致的参数顺序重跑即可，预期 F1 应接近 DocRED 上的 0.46（可能略低因为 Re-DocRED 更难）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-007-redocred-rsft-r2.md"
+}

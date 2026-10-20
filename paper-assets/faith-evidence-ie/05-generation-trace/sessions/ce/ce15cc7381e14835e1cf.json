@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce15cc7381e14835e1cf",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis verify ced s45 params",
+  "task_key": "worker_analysis_verify_ced_s45_params_20260516T001824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verify_ced_s45_params_20260516T001824_result.json",
+    "occurrence": 1,
+    "bytes": 1511,
+    "sha256": "bbc2125f60a706bb222227544bb8e894668e0e8e578acfcc8159ce3730b43461"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**两个训练的超参数完全一致，无需重启。**\n\n### 关键发现\n\nargparse 中**不存在** `--batch`、`--grad_accum`、`--lr`、`--epochs` 这些参数名（第 254-257 行），只有：\n- `--per_device_batch_size` (default=4)\n- `--gradient_accumulation_steps` (default=4)\n- `--learning_rate` (default=2e-5)\n- `--num_epochs` (default=3)\n\n### 实际运行参数对比\n\ns43 的 `ps` 输出显示实际命令**没有传 batch/grad_accum 参数**，全部走默认值：\n\n| 参数 | s43 (默认值) | s45 (显式传入) |\n|------|-------------|---------------|\n| per_device_batch_size | **4** | 4 |\n| gradient_accumulation_steps | **4** | 4 |\n| effective batch size | **16** | 16 |\n| learning_rate | **2e-5** | 2e-5 |\n| num_epochs | **3** | 3 |\n| lora_rank | **64** | 64 |\n| lora_alpha | **128** | 128 |\n| bf16 | True | True |\n| weighted_sampling | True | True |\n\n两者都是 510 steps（2718 samples × 3 epochs / 16 = 510），进一步确认 effective batch size 一致。\n\n任务描述中 s43 的 `--batch 1 --grad_accum 16` 参数名在脚本中不存在——实际运行的 s43 用的是默认值 batch=4、accum=4。\n\n### 进程状态\n\n| PID | 运行时间 | 状态 |\n|-----|---------|------|\n| 275269 (s43) | 8h21m | 存活，约 84/510 steps (16%) |\n| 276143 (s45) | 1h53m | 存活，约 15/510 steps (3%) |\n\n**结论：两组训练参数完全一致（仅 seed 不同），满足 paired t-test 要求，不需要重启。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-verify-ced-s45-params.md"
+}

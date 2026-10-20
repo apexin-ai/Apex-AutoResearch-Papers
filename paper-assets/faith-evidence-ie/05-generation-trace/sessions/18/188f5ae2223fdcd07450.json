@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "188f5ae2223fdcd07450",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_6_1778817736.md",
+  "task_key": "loop_6_1778817736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778817736.md",
+    "occurrence": 1,
+    "bytes": 4521,
+    "sha256": "21744099023f9fd859654c4cb462d2fdb312fad77b1daf7a4cfb9cba8e6b8891"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T04:02:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 上 cuda:0/1/2/3，无其他服务器 GPU 可用（bjb2-12179 未分配 GPU）\n- RSFT 训练禁止 `--quantize`（4-bit + merge_and_unload 在 RTX 5090 有 CUBLAS 错误，bf16 Qwen3-4B 仅 ~8GB 无需量化）\n- 运行目录必须 `cd /root/autodl-tmp`，不能 `cd /root/autodl-tmp/freige`（内层空 freige/freige/ 包会覆盖正确 import）\n- Qwen3 generation_config 会静默覆盖温度和 top_k，生成前必须显式 override（详见 memory.md）\n- GRPO+QLoRA 方向已判死（D031/D033），不要再跑任何 GRPO 实验\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：rtx5090-4x（4× RTX 5090 32GB），account=root\n- **工作目录**：`/root/autodl-tmp`（代码在 `/root/autodl-tmp/freige`）\n- **Python**：`/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**：`/root/autodl-tmp/models/Qwen3-4B`（base），`/root/autodl-tmp/sft_output`（SFT adapter）\n- **NLI 模型**：`cross-encoder/nli-deberta-v3-base` 已缓存 `/root/autodl-tmp/.hf_cache`\n- **数据**：DocRED 在 `/root/autodl-tmp/data/docred`\n- **HF cache**：`/root/autodl-tmp/.hf_cache`\n- **活跃进程**：4 个 RSFT 生成分片正在跑\n  - mvp2_rsft_gen_s0: PID 135867 (cuda:0)\n  - mvp2_rsft_gen_s1: PID 136270 (cuda:1)\n  - mvp2_rsft_gen_s2: PID 136649 (cuda:2)\n  - mvp2_rsft_gen_s3: PID 137985 (cuda:3)\n- **Cron 监控**：4 个 cron 分别监控上述 4 个进程（reconcile 确认均 still running）\n- **W&B**：项目名查 registry spec 或 memory.md\n\n### 3. 📊 当前状态\n**刚做完**：D036 撤销 diversity crisis（监控 bug，实际 diversity 7.52/8 充足），重启 4 卡并行 RSFT 生成。\n\n**正在跑**：\n- `mvp2_rsft_gen_s0/s1/s2/s3`（RUNNING）— 4 卡并行生成 RSFT 候选，3027 docs × 8 generations，T=0.7，batch_size=1。s1 从 302 docs 断点续传，其余从头。预估 ~3h 完成。\n\n**PREPARING（已废弃，不要重启）**：\n- `mvp2_grpo_ced_kl001_r2/r3` — GRPO 实验，方向已判死\n- `mvp2_eval_ced_kl001_r4_last` — 已拆分为独立 eval，此条目作废\n\n**等待中**：\n- 4 个 RSFT 生成 cron 回调（完成后需合并 shard → CED 打分筛选 → RSFT 训练）\n- Worker 池 = 0（当前仅 cron 监控，无活跃 Worker）\n- 无待处理的 Director 决策\n\n### 4. 📋 待办（条件触发式）\n- **任一 rsft_gen shard cron 回调 → spawn Worker 检查该 shard 输出完整性（doc count、diversity metrics）**\n- **全部 4 shard 完成 → spawn Worker 合并 4 shard JSONL → CED 打分筛选（`rsft_score_filter.py`）→ 统计筛选后样本数和质量分布 → 汇报 Director**\n- **CED 筛选完成 → spawn Worker 启动 RSFT 训练（`rsft_trainer.py`，bf16 无量化，单卡或多卡）→ 提交审批 → PENDING**\n- **RSFT 训练完成 → eval rel_f1 + evidence quality → 与 SFT baseline (rel_f1=0.406) 对比 → 汇报 Director**\n- **RSFT eval rel_f1 > 0.406 → MVP-2 PASS，进入 complete_mvp() → paper_framing → experiment_plan**\n- **RSFT eval rel_f1 < 0.406 → 按 red-section 产 Framing 提案，考虑 DPO+CED / prompt diversity / 全参微调 contingency**\n\n### 5. 🎯 战略上下文\n**项目核心**：FREIGE — 用 CED（对比证据判别）奖励训练 LLM 做文档级关系抽取，同时生成可验证证据。\n\n**决策链关键节点**：\n- MVP-1 ✅：CED margin=0.4827, accuracy=81.5%, r=0.34 — CED 信号有效\n- D031/D033：GRPO+QLoRA 全线判死（在线 RL 导致 rel_f1 catastrophic forgetting，与 LoRA 低秩空间冲突）\n- D036：diversity crisis 是监控 bug 非生成问题，T=0.7 diversity 充足（7.52/8）\n- **当前赌注在 RSFT**：离线 RL 路线，避开在线 RL 的策略偏移问题\n\n**易错点**：\n- resource_usage 显示 \"实际跑 0 张\" 但 reconcile_crons 确认 4 个进程 still running — 这是因为 resource_usage 可能基于 registry 的 running_experiments 字段而非 cron 实时数据，**不要因此误判 GPU 空闲去提交新任务**\n- 不要把 PREPARING 状态的 GRPO 实验（kl001_r2/r3）当作待重启任务——方向已判死\n- RSFT 流水线是 generate → score_filter → train 三步串行，字段映射已验证兼容（见 memory.md 字段名映射表）\n- 成功/失败 48 个实验中 success 10 / negative 11 / failed 11 — 项目历史坎坷，RSFT 是 pivot 后的关键验证\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778817736.md"
+}

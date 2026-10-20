@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c108801cbe4c19aad294",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze test eval llama sft s42",
+  "task_key": "worker_analyze_test_eval_llama_sft_s42_20260521T231044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_test_eval_llama_sft_s42_20260521T231044_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "572293b9f5e5ae33d0901ae015d10c42a3aca09acfb18eae073600377905a17d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃 cron，无需删除（可能在上一个 session 中已清除或未在本 session 创建）。\n\n---\n\n## 诊断结果：test_eval_llama_sft_s42 — 成功\n\n**判断依据**：推理 500/500 完成，predictions.json + codalab_submission.json + test_summary.json 均已生成，日志无错误。\n\n### 完整 Metrics\n\n| 指标 | 值 |\n|------|-----|\n| **Ign-F1** | **0.3420** |\n| F1 | 0.3420 |\n| Precision | 0.4698 |\n| Recall | 0.2689 |\n| Evi-F1(DREEAM/joint) | 0.2409 |\n| Evi-F1(TP) | 0.5819 |\n| EDCR | 0.8403 |\n| Format OK | 490/500 |\n| Truncated | 327/500 |\n| Predictions | 23,821 |\n| CodaLab converted | 9,502 |\n\n**注**：Ign-F1 = F1 因 test set 无 train_annotated.json 去重。\n\n### GPU 状态\n\n| GPU | 显存占用 |\n|-----|---------|\n| 0 | 6,071 MiB |\n| 1 | 32,503 MiB |\n| **2** | **0 MiB** |\n| **3** | **0 MiB** ✓ |\n\ncuda:3 已释放。\n\n### Registry\n\n已更新为 `DONE / success`，metrics 已写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-test-eval-llama-sft-s42.md"
+}

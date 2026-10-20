@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6e236bcd1bb8ced8e6c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu status and ced s45 diagnosis",
+  "task_key": "worker_ops_gpu-status-and-ced-s45-diagnosis_20260516T012459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-and-ced-s45-diagnosis_20260516T012459_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "763d7d677d6d59b777c7f45969a8f3b3cdd0d208ba56650fe4838d597e23372d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告\n\n| GPU | PID | 显存占用 | 实验 ID | 状态 |\n|-----|-----|---------|---------|------|\n| 0 | 270467 | 11091 / 32607 MiB (34%) | eval_flat_nli_s44 | 运行中，164/247 batches (66%)，预计剩余 ~1h |\n| 1 | 277315 | 28679 / 32607 MiB (88%) | rsft_ced_s43_train_r3 | 运行中，340/510 steps (67%)，预计剩余 ~17min |\n| **2** | **-** | **0 / 32607 MiB (0%)** | **空闲** | **可用** |\n| 3 | 272169 | 11095 / 32607 MiB (34%) | eval_flat_nli_seed45 | 运行中，129/247 batches (52%)，预计剩余 ~1.5h |\n\n## rsft_ced_s45_train_r4 诊断\n\n**训练成功完成。**\n- 510/510 steps, 3 epochs, runtime 2924s (~49min)\n- Final train_loss: **0.6097**\n- Final mean_token_accuracy: **0.8517**\n- 模型保存: `/root/autodl-tmp/rsft_output_ced_s45`（含 checkpoint-510 + adapter_model.safetensors 528MB）\n- Registry 已更新: status=ANALYZING, conclusion=success\n\n**GPU 2 空闲，显存 0 MiB，可立即提交 eval_plan_014_no_evidence。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-and-ced-s45-diagnosis.md"
+}

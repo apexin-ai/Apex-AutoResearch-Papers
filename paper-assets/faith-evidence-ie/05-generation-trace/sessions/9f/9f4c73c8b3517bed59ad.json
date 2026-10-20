@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f4c73c8b3517bed59ad",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper figure fig grpo dynamics fix",
+  "task_key": "worker_paper_figure_fig_grpo_dynamics_fix_20260517T183654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_grpo_dynamics_fix_20260517T183654_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "62884b0035fe68f74e995d157c6f6bf0e7c805ae2c7c34e1a453954a0adfec54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两项修改：\n\n1. **图表术语修正**：Panel (c) 标题 \"Distractor Citation Rate\" → \"Evidence-Decoupling Ratio (EDCR)\"，红色区域注释 \"Near-total distractor citation\" → \"Near-total decoupling\"。重新生成的 PDF/PNG 已覆盖 `artifacts/_project/chart/` 并复制到 `figures/paper/`。\n\n2. **appendix.tex 更新**：注释掉的占位 section 替换为正式的 `\\begin{figure*}` 环境，caption 使用 \"EDCR\" 和 \"Evidence-Decoupling Ratio\"，与 method.tex 术语统一。绘图脚本保留在 `figures/paper/plot_fig_grpo_dynamics.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-grpo-dynamics-fix.md"
+}

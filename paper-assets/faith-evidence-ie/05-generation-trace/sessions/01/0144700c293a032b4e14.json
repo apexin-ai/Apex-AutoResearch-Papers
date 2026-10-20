@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0144700c293a032b4e14",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 001 flat nli seed45",
+  "task_key": "worker_analysis_plan_001_flat_nli_seed45_20260515T230918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_001_flat_nli_seed45_20260515T230918_result.json",
+    "occurrence": 1,
+    "bytes": 553,
+    "sha256": "6a3d599a03839c7de508d808303587e456618549b981c951fb5fc359c8ce3e77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan_001_flat_nli_seed45 训练结果: SUCCESS**\n\n关键数据:\n\n| 指标 | 值 |\n|------|-----|\n| Train loss | 0.6245 |\n| Task-eval F1 (final, 50 docs) | **0.4876** |\n| Task-eval Evi-F1 | 0.7927 |\n| Task-eval EDCR | 0.6517 |\n| Runtime | ~1h39m |\n| Checkpoint | `/root/autodl-tmp/rsft_output_flat_nli_s45/` (529MB adapter) |\n\nF1 逐 epoch 稳步上升 (0.4522 → 0.4700 → 0.4876)，无过拟合。与 s42 eval rel_f1=0.4539 相比，s45 task-eval 数值更高，但 task-eval 仅 50 docs，需正式 eval 才能对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-001-flat-nli-seed45.md"
+}

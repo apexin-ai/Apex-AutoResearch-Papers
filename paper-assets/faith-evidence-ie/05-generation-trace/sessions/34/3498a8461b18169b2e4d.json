@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3498a8461b18169b2e4d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "debug evi joint f1 missing",
+  "task_key": "worker_debug_evi_joint_f1_missing_20260515T235451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_evi_joint_f1_missing_20260515T235451_result.json",
+    "occurrence": 1,
+    "bytes": 1190,
+    "sha256": "f41485abf784bb46885f0133388b9e3bc7b69a986808aadd90e1fc2ceaa87872"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## 根因分析\n\n`compute_evi_f1_joint` 方法后来才加入 evaluator.py，`evaluate()` 方法调用了它。**之前跑的 18 个 eval 用的是旧版 evaluator，不包含 joint 计算**，所以 metrics.json 里没有 `evi_f1_joint` 字段。\n\n## 补算结果\n\n已从 predictions.json 重新计算并写入所有 18 个缺失目录的 metrics.json。验证：\n- 15 个已有 joint 的方法，重算值与原值完全一致（0 mismatch）\n- joint ≤ conditional 对所有方法成立\n\n## 汇总表（论文关注的 RSFT-CED 方法）\n\n| Method | Cond Evi-F1 | Joint Evi-F1 | Rel F1 |\n|--------|------------|-------------|--------|\n| rsft_r1 | 0.8187 | 0.3468 | 0.4449 |\n| rsft_r2a | 0.8108 | 0.3509 | 0.4494 |\n| rsft_r2b | 0.8128 | 0.3490 | 0.4493 |\n| rsft_r2b_maxtok1536 | 0.8102 | 0.3488 | 0.4504 |\n| rsft_s43 | 0.8156 | **0.3711** | **0.4683** |\n| rsft_s44 | 0.8087 | **0.3713** | 0.4655 |\n\nJoint Evi-F1 与 Rel F1 高度正相关（rel_f1 越高，FN 越少，joint 越接近 conditional），符合预期。\n\n脚本位于 `/root/autodl-tmp/scripts/recompute_joint_evi_f1.py`，支持 `--dry-run`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-evi-joint-f1-missing.md"
+}

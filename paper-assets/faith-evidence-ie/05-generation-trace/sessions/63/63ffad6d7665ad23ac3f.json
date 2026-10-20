@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63ffad6d7665ad23ac3f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh d034 kill orphan processes",
+  "task_key": "worker_ssh_d034-kill-orphan-processes_20260515T012004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d034-kill-orphan-processes_20260515T012004_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "6193a1a345cb0b524c19569dfd1bfa5ee4fad3dbe529f6f3aefb2bb672e0783a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已不存在（`ps` 返回码 1，无输出），且 cuda:0 显存已为 0 MiB。\n\n```\n== D034 Step 1 结果 ==\n杀前: PID 90084 不存在, PID 90085 不存在（已自然退出）\n杀后: N/A\ncuda:0 显存: 0 MiB（已空闲）\nGPU 全局状态: gpu0=0MiB/0%, gpu1=24005MiB/83%, gpu2=1435MiB/38%, gpu3=0MiB/0%\n结论: cuda:0 已释放，无需手动杀进程\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d034-kill-orphan-processes.md"
+}

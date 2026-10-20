@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24162587c60b285842e7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose 1 7b rsft s44 and gpu status",
+  "task_key": "worker_diagnose_1_7b_rsft_s44_and_gpu_status_20260519T034324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_1_7b_rsft_s44_and_gpu_status_20260519T034324_result.json",
+    "occurrence": 1,
+    "bytes": 1472,
+    "sha256": "ce772e510f9528243b77f4902e485f04b79ca269966a6fd829a3a25a28460ca8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练完成，`should_training_stop: true`，max_steps=567 全部完成。\n\n## 诊断结论\n\n### 1. plan019_1_7b_rsft_s44：**SUCCESS（正常完成，cron 误判）**\n\n- PID 602749 已正常退出（非 crash）\n- 训练完成全部 567 steps（3 epochs），`should_training_stop: true`\n- 最终 loss=0.5539，token_accuracy=0.8707，epoch=2.963\n- Checkpoint 路径：`/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44/`\n  - `adapter_model.safetensors` (279MB)，写入时间 11:29\n  - checkpoint-550, checkpoint-567\n- 无 tmux session 残留（正常退出后已关闭）\n- 日志文件 `/root/runs/faith-evidence-ie/plan019_1_7b_rsft_s44.log` 不存在（可能 tmux 未配置 logging 或命名不同）\n\n### 2. 全卡 GPU 状态\n\n| GPU | 显存占用 | 利用率 | PID | 实验 |\n|-----|---------|--------|-----|------|\n| 0 | 1501/32607 MiB | 41% | 604576 | D112 CED scoring (`rsft_score_filter`, rsft_scored_4b_sft_s44) |\n| 1 | 0 MiB | 0% | - | **空闲** |\n| 2 | 0 MiB | 0% | - | **空闲** |\n| 3 | 18891/32607 MiB | 70% | 598911 | 8B RSFT s44 eval (`rsft_8b_k1_s44_eval`) |\n\n### 3. D112 step 2 (PID 604576)：正常运行中\n- 进度：8000/24216 records scored\n- 任务：`rsft_score_filter` 对 `rsft_generations_4b_sft_s44` 做 CED 打分\n- GPU 0，显存 1.5GB\n\n### 4. 额外发现\n- GPU 3 上 PID 598911 是 8B RSFT s44 的 eval 推理，占用 18.9GB，正常运行\n- GPU 1 和 GPU 2 均空闲，可用于新任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-1-7b-rsft-s44-and-gpu-status.md"
+}

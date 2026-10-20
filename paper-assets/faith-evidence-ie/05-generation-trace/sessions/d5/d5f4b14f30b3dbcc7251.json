@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5f4b14f30b3dbcc7251",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check all 4gpu results",
+  "task_key": "worker_ops_check_all_4gpu_results_20260517T145145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_all_4gpu_results_20260517T145145_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "aa880eb523633b6ac72649ed2c8881cdbfb99f19d38c137dc681eb6e2a80d033"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 个实验仍在运行中，GPU 并非空闲。当前状态：\n\n| # | 实验 | GPU | PID | 进度 | 预计剩余 |\n|---|------|-----|-----|------|---------|\n| 1 | **8B RSFT eval** (plan_006_qwen3_8b_rsft_eval) | cuda:3 (19GB) | 442383 | 242/247 (98%) | ~4 min |\n| 2 | **lead2_ckpt20_eval** | cuda:1 (11GB) | 446829 | 运行 2h15m | 未知 (输出到 `eval_outputs/` 而非 `eval_results/`) |\n| 3 | **1.7B seed43 eval** (plan_006_qwen3_1_7b_rsft_seed43_eval) | cuda:2 (5.5GB) | 455637 | ~49/247 (20%) | ~1.5h |\n| 4 | **LLaMA training** (plan_006_llama_rsft_seed43) | cuda:0 (28GB) | 450239 | 2048/3312 (62%) | ~1h |\n\n注意事项：\n- **8B eval** 即将完成（~4分钟）\n- **lead2_ckpt20_eval** 的输出路径是 `/root/autodl-tmp/eval_outputs/lead2_ckpt20_eval`，不在 `eval_results/` 下\n- **1.7B seed43 eval** 和 **LLaMA training** 都还需要约 1-1.5 小时\n- LLaMA 训练已有 checkpoints: 1850, 1900, 1950, 2000, 2050，最终 checkpoint 尚未产生\n\n建议等 8B eval 完成后（几分钟内）先查看其结果，其余实验需要继续等待。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-all-4gpu-results.md"
+}

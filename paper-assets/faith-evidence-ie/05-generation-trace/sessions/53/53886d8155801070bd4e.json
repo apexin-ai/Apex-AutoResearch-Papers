@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53886d8155801070bd4e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops download llama 3 1 8b r2",
+  "task_key": "worker_ops_download_llama_3_1_8b_r2_20260516T064822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_llama_3_1_8b_r2_20260516T064822_result.json",
+    "occurrence": 1,
+    "bytes": 64,
+    "sha256": "593e99bea55ef2d93dd6e84faf8934f5fcf650aa1e84b5227d68a6bbf468214d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shard 2 接近完成 (82%)，2 分钟后再看。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-llama-3-1-8b-r2.md"
+}

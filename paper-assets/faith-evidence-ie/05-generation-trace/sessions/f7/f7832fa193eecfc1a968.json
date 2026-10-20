@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7832fa193eecfc1a968",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "maintenance gpu reset",
+  "task_key": "worker_maintenance_gpu-reset_20260520T083015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_maintenance_gpu-reset_20260520T083015_result.json",
+    "occurrence": 1,
+    "bytes": 511,
+    "sha256": "f3821dca9569de2c3e9e05fc4384c9d8f37cbfb301375bbf9f5c45788fa41e4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 结果汇总\n\n| 项目 | 结果 |\n|------|------|\n| **GPU reset** | **失败** — `nvidia-smi --gpu-reset` 不支持 RTX 5090 硬件。cuda:2/3 显存已空（0 MiB）但 GPU-Util 卡在 100%，`/dev/nvidia2` 设备节点不存在。需要通过 AutoDL 控制台重启实例才能恢复。 |\n| **进度汇报脚本** | 已部署，PID **6660**，每 30 分钟写入 `/tmp/rsync_progress.log` |\n| **当前 rsync 状态** | **6 个 rsync 进程活跃**，已传输 **14G / 350G (4%)**  |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/maintenance-gpu-reset.md"
+}

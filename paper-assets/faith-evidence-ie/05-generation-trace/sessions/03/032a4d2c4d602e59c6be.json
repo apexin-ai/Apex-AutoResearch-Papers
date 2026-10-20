@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "032a4d2c4d602e59c6be",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis 14b max length truncation",
+  "task_key": "worker_analysis_14b_max_length_truncation_20260518T171951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_14b_max_length_truncation_20260518T171951_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "09a1b9b069ab4f941ba9c6772c6369493d3bf032d3bdce8764c7e33fe3eb3200"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== Token 长度分布 ===\n样本数: 3027\nmean: 864, median: 813, p90: 1243, p95: 1419, p99: 1814, max: 2977\n\n=== 截断比例 ===\nmax_length=2048: 0.5% 截断 (14/3027 样本)\nmax_length=3072: 0.0% 截断 (0/3027 样本)\nmax_length=4096: 0.0% 截断 (0/3027 样本)\n\n=== 决策 ===\n最终 max_length: 2048\ngradient_checkpointing: 否（不需要）\n理由: 截断比例仅 0.5%，远低于 15% 阈值。被截断的 14 个样本均为高关系数文档（平均 48 relations vs 正常 12.4），是极端尾部。2048 对 14B 完全安全。\n\n=== 脚本修改 ===\n修改了: /root/autodl-tmp/freige/scripts/seed_expansion/sft_14b.sh\n变更: 仅在头部注释中添加了截断分析数据（max_length 和其他训练参数不变）\neval_14b.sh: 无需修改（max_new_tokens=1024 仅控制生成长度，与 max_length 无关）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-14b-max-length-truncation.md"
+}

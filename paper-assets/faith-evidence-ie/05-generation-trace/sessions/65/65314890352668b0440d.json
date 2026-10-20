@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "65314890352668b0440d",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "analysis matched tax data compilation",
+  "task_key": "worker_analysis_matched-tax-data-compilation_20260521T033625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_matched-tax-data-compilation_20260521T033625.log",
+    "occurrence": 1,
+    "bytes": 779392,
+    "sha256": "e55a3598a15becfa9f5c753499971eda4c1a78afb70e41113b999b73e853564c"
+  },
+  "statistics": {
+    "messages": 79,
+    "user_turns": 0,
+    "tool_calls": 31,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 31,
+      "tool_result": 31,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 79,
+      "chunks": [
+        {
+          "path": "65314890352668b0440d-part-0001.json",
+          "message_count": 30
+        },
+        {
+          "path": "65314890352668b0440d-part-0002.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-matched-tax-data-compilation.md"
+}

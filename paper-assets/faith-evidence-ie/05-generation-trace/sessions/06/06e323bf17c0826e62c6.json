@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06e323bf17c0826e62c6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops 4b no evi d076 eval cuda1",
+  "task_key": "worker_ops_4b_no_evi_d076_eval_cuda1_20260516T142358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_4b_no_evi_d076_eval_cuda1_20260516T142358_result.json",
+    "occurrence": 1,
+    "bytes": 736,
+    "sha256": "d8372dc649b89847f3faeb570583ddbd203f433a99f9601cea3751cc9284ca16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交完成。\n\n**状态汇总：**\n- **exp_id**: `plan_014_no_evidence_eval_d076` — RUNNING\n- **PID**: 353322 on cuda:1\n- **进度**: 1/247 batches (~39s/it)\n- **参数**: `--no_evidence` ✓, batch_size=4, max_new_tokens=1024, seed=42, no-quantize ✓\n- **模型**: Qwen3-4B + sft_no_evidence adapter (merged)\n- **输出**: `/root/autodl-tmp/eval_results/plan_014_no_evidence_eval_d076`\n\n**注意**: cuda:1 同时运行 LLaMA RSFT candidate gen (PID 353179, 17.9GB)——在我首次检查时不存在，属于竞态。eval 使用 9.6GB 未 OOM，但速度受影响（预计 ~2.7h 而非 30min）。如需加速可 kill RSFT gen，但该任务也是后续需要的，建议让两者共存完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-4b-no-evi-d076-eval-cuda1.md"
+}

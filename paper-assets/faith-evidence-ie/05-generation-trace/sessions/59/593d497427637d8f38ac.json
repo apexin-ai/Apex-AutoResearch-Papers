@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "593d497427637d8f38ac",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "research compile paper evidence table",
+  "task_key": "worker_research_compile_paper_evidence_table_20260516T032102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_compile_paper_evidence_table_20260516T032102.log",
+    "occurrence": 1,
+    "bytes": 685204,
+    "sha256": "24cb71ee57725eec80cb515a502522b0b40f8b05f270363217a758c82ae0358e"
+  },
+  "statistics": {
+    "messages": 89,
+    "user_turns": 1,
+    "tool_calls": 27,
+    "roles": {
+      "log": 1,
+      "system": 18,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 27,
+      "tool_result": 27,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "593d497427637d8f38ac-part-0001.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "593d497427637d8f38ac-part-0001.json",
+          "message_count": 59
+        },
+        {
+          "path": "593d497427637d8f38ac-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-compile-paper-evidence-table.md"
+}

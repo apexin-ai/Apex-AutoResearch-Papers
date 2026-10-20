@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c0bd22b039819ac971c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops prepare p0 ckpt20 eval",
+  "task_key": "worker_ops_prepare-p0-ckpt20-eval_20260514T203048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare-p0-ckpt20-eval_20260514T203048_result.json",
+    "occurrence": 1,
+    "bytes": 338,
+    "sha256": "1dc72978579555b1f185be8827de351184b20caa808da42c3b7abe3ef31edee9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **ckpt-20** 已存在（05-15 04:17 写入，adapter 252MB）\n- **eval 脚本**: `/root/autodl-tmp/scripts/eval_lr5e6_ckpt20.sh`\n- **eval 已启动**: PID=97333，运行在 cuda:1\n- **日志**: `/tmp/eval_lr5e6_ckpt20.log`\n- **结果目录**: `/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-p0-ckpt20-eval.md"
+}

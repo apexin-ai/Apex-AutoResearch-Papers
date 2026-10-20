@@ -1,0 +1,1100 @@
+{
+  "schema_version": "1.0",
+  "session_id": "74f16241bc997ed51cce",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T01:28:57.890Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BV26FRVZmEtTwsVqVLtUm1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "c001a6c0-1b62-4cae-bdf2-6c6ccbf91c69",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T01:28:58.553Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015Jz8vvVsBjTQShaMWRSPG6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                    mon_window_format_ok = 0\\\\n                    mon_window_truncated = 0\\\\n                    mon_window_total = 0\\\\n                    mon_window_diversity = 0.0\\\\n                    mon_window_docs = 0\\\\n\\\\n                completed.add(item[\\\\\\\"doc_id\\\\\\\"])\\\\n\\\\n            fout.flush()\\\\n            save_progress(args.output_dir, completed)\\\\n\\\\n    logger.info(\\\\\\\"Generation complete. %d documents, %d total outputs → %s\\\\\\\",\\\\n                len(items), len(items) * args.num_generations, output_file)\\\\n\\\\n    # 统计\\\\n    n_format_ok = 0\\\\n    n_total = 0\\\\n    with open(output_file) as f:\\\\n        for line in f:\\\\n            rec = json.loads(line)\\\\n            n_total += 1\\\\n            if rec.get(\\\\\\\"format_ok\\\\\\\"):\\\\n                n_format_ok += 1\\\\n\\\\n    logger.info(\\\\\\\"Format compliance: %d/%d (%.1f%%)\\\\\\\", n_format_ok, n_total,\\\\n                100 * n_format_ok / n_total if n_total else 0)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "e689a5d1-a037-4e72-a2e7-fc2c02184f99",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                    mon_window_format_ok = 0\\\\n                    mon_window_truncated = 0\\\\n                    mon_window_total = 0\\\\n                    mon_window_diversity = 0.0\\\\n                    mon_window_docs = 0\\\\n\\\\n                completed.add(item[\\\\\\\"doc_id\\\\\\\"])\\\\n\\\\n            fout.flush()\\\\n            save_progress(args.output_dir, completed)\\\\n\\\\n    logger.info(\\\\\\\"Generation complete. %d documents, %d total outputs → %s\\\\\\\",\\\\n                len(items), len(items) * args.num_generations, output_file)\\\\n\\\\n    # 统计\\\\n    n_format_ok = 0\\\\n    n_total = 0\\\\n    with open(output_file) as f:\\\\n        for line in f:\\\\n            rec = json.loads(line)\\\\n            n_total += 1\\\\n            if rec.get(\\\\\\\"format_ok\\\\\\\"):\\\\n                n_format_ok += 1\\\\n\\\\n    logger.info(\\\\\\\"Format compliance: %d/%d (%.1f%%)\\\\\\\", n_format_ok, n_total,\\\\n                100 * n_format_ok / n_total if n_total else 0)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"                    mon_window_format_ok = 0\\n                    mon_window_truncated = 0\\n                    mon_window_total = 0\\n                    mon_window_diversity = 0.0\\n                    mon_window_docs = 0\\n\\n                completed.add(item[\\\"doc_id\\\"])\\n\\n            fout.flush()\\n            save_progress(args.output_dir, completed)\\n\\n    logger.info(\\\"Generation complete. %d documents, %d total outputs → %s\\\",\\n                len(items), len(items) * args.num_generations, output_file)\\n\\n    # 统计\\n    n_format_ok = 0\\n    n_total = 0\\n    with open(output_file) as f:\\n        for line in f:\\n            rec = json.loads(line)\\n            n_total += 1\\n            if rec.get(\\\"format_ok\\\"):\\n                n_format_ok += 1\\n\\n    logger.info(\\\"Format compliance: %d/%d (%.1f%%)\\\", n_format_ok, n_total,\\n                100 * n_format_ok / n_total if n_total else 0)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+              }
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据集是 JSON 数组（非 JSONL），需要用 python 计数。获取关键信息。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "842b3750-6f03-478f-a4b0-9dee9898b0d0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018D23Rv6ubtSMh7paSh47Pm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1562,
+                "cache_read_input_tokens": 31985,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1562
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012ysWN1vP5u88uBcaowSQow",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/data/docred/train_annotated.json')); print(len(d))\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "81f96e8d-2e76-4927-a061-cbe6595895a5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018D23Rv6ubtSMh7paSh47Pm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1562,
+                "cache_read_input_tokens": 31985,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1562
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T01:29:05.386Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012ysWN1vP5u88uBcaowSQow",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "f9366709-ebaa-45dd-a9e7-c202d9b8132d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XwoEggyEsBB9e3JonmcVmS",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -n \"start_idx\\|end_idx\\|shard_id\\|output_dir\\|output_file\\|generations\" /root/autodl-tmp/freige/training/rsft_generate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "0f4d1145-91ef-4c4b-a4eb-b33b27518929",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018D23Rv6ubtSMh7paSh47Pm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1562,
+                "cache_read_input_tokens": 31985,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1562
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T01:29:06.520Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XwoEggyEsBB9e3JonmcVmS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "815a4365-2938-434c-aef0-c11ffdb753b2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018jMQq83cRmVEF2CgMiPUva",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -n \"start_idx\\|end_idx\\|shard_id\" /root/autodl-tmp/freige/training/rsft_generate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "43c0f23d-1a13-43ba-b6f0-9772bf286591",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JMTZqfzFUAUtKw9f16CZxX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 668,
+                "cache_read_input_tokens": 33547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 668
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T01:29:12.209Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018jMQq83cRmVEF2CgMiPUva",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "6592e513-b290-463b-9487-a646045318ce",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PpfDBt88fiqojmQXLB9d81",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "wc -l /root/autodl-tmp/data/docred/train_annotated.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "f88bdbb5-1216-44d7-a40b-16e0db48576e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JMTZqfzFUAUtKw9f16CZxX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 668,
+                "cache_read_input_tokens": 33547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 668
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T01:29:12.972Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PpfDBt88fiqojmQXLB9d81",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0 /root/autodl-tmp/data/docred/train_annotated.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "360b3741-84de-4240-883e-ad025ae60646",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0 /root/autodl-tmp/data/docred/train_annotated.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0 /root/autodl-tmp/data/docred/train_annotated.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `wc -l` shows 0 lines - that means it's all on one line (single JSON array). Let me use a different approach to get the count. Also, I need to look at the shard logic more carefully. Let me read more of the script to understand how start_idx, end_idx, and shard_id work.\n\nLet me also check the grep issue - the `|` in the regex is being blocked. I need to use a different grep pattern.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "22d18494-894e-43dc-a089-95fb93bbb361",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uztqn9tiuYXQzkjGwVRb3M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 500,
+                "cache_read_input_tokens": 34215,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 500
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QNDVVZ24SiWwpTPVK6AXrp",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -n \"start_idx\" /root/autodl-tmp/freige/training/rsft_generate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "36222913-5e34-41cc-99a5-bfe7f0c971ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uztqn9tiuYXQzkjGwVRb3M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 500,
+                "cache_read_input_tokens": 34215,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 500
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T01:29:20.567Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QNDVVZ24SiWwpTPVK6AXrp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"217:    parser.add_argument(\\\\\\\"--start_idx\\\\\\\", type=int, default=0,\\\\n243:        items = items[args.start_idx:args.end_idx]\\\\n244:    elif args.start_idx > 0:\\\\n245:        items = items[args.start_idx:]\\\\n247:                args.start_idx, str(args.end_idx) if args.end_idx > 0 else \\\\\\\"end\\\\\\\", len(items))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "b2695d9b-e96a-4f2d-8d3d-793885656f1a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"217:    parser.add_argument(\\\\\\\"--start_idx\\\\\\\", type=int, default=0,\\\\n243:        items = items[args.start_idx:args.end_idx]\\\\n244:    elif args.start_idx > 0:\\\\n245:        items = items[args.start_idx:]\\\\n247:                args.start_idx, str(args.end_idx) if args.end_idx > 0 else \\\\\\\"end\\\\\\\", len(items))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"217:    parser.add_argument(\\\"--start_idx\\\", type=int, default=0,\\n243:        items = items[args.start_idx:args.end_idx]\\n244:    elif args.start_idx > 0:\\n245:        items = items[args.start_idx:]\\n247:                args.start_idx, str(args.end_idx) if args.end_idx > 0 else \\\"end\\\", len(items))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XogQERmS6cV6bePVHG7hqS",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -n \"end_idx\" /root/autodl-tmp/freige/training/rsft_generate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "9a409088-8ddf-4592-bffd-5c3dffff95f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uztqn9tiuYXQzkjGwVRb3M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 500,
+                "cache_read_input_tokens": 34215,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 500
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T01:29:21.519Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XogQERmS6cV6bePVHG7hqS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"219:    parser.add_argument(\\\\\\\"--end_idx\\\\\\\", type=int, default=-1,\\\\n242:    if args.end_idx > 0:\\\\n243:        items = items[args.start_idx:args.end_idx]\\\\n247:                args.start_idx, str(args.end_idx) if args.end_idx > 0 else \\\\\\\"end\\\\\\\", len(items))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "ab0dd597-2b12-44b5-9791-1196aa15b5a5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"219:    parser.add_argument(\\\\\\\"--end_idx\\\\\\\", type=int, default=-1,\\\\n242:    if args.end_idx > 0:\\\\n243:        items = items[args.start_idx:args.end_idx]\\\\n247:                args.start_idx, str(args.end_idx) if args.end_idx > 0 else \\\\\\\"end\\\\\\\", len(items))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"219:    parser.add_argument(\\\"--end_idx\\\", type=int, default=-1,\\n242:    if args.end_idx > 0:\\n243:        items = items[args.start_idx:args.end_idx]\\n247:                args.start_idx, str(args.end_idx) if args.end_idx > 0 else \\\"end\\\", len(items))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RgdCuuVSpZbVkvGxN1YGHn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -n \"shard_id\" /root/autodl-tmp/freige/training/rsft_generate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "39ca5abc-cab2-4653-85b0-853a32cf75b3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uztqn9tiuYXQzkjGwVRb3M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 500,
+                "cache_read_input_tokens": 34215,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 500
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T01:29:21.994Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RgdCuuVSpZbVkvGxN1YGHn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"221:    parser.add_argument(\\\\\\\"--shard_id\\\\\\\", type=str, default=\\\\\\\"\\\\\\\",\\\\n231:    if args.shard_id:\\\\n232:        output_file = output_dir / f\\\\\\\"generations_shard{args.shard_id}.jsonl\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "baf096e3-552e-43e2-84dd-b56ad7f83576",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"221:    parser.add_argument(\\\\\\\"--shard_id\\\\\\\", type=str, default=\\\\\\\"\\\\\\\",\\\\n231:    if args.shard_id:\\\\n232:        output_file = output_dir / f\\\\\\\"generations_shard{args.shard_id}.jsonl\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"221:    parser.add_argument(\\\"--shard_id\\\", type=str, default=\\\"\\\",\\n231:    if args.shard_id:\\n232:        output_file = output_dir / f\\\"generations_shard{args.shard_id}.jsonl\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JkN9ufrmFv9V5AAwboqpqK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "stat /root/autodl-tmp/data/docred/train_annotated.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "43d3cdc9-d3bb-4adf-a7c0-16328a240113",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uztqn9tiuYXQzkjGwVRb3M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 500,
+                "cache_read_input_tokens": 34215,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 500
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T01:29:22.779Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JkN9ufrmFv9V5AAwboqpqK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/data/docred/train_annotated.json\\\\n  Size: 13029595  \\\\tBlocks: 25456      IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 2160573470  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-14 15:05:25.439791365 +0800\\\\nModify: 2026-05-14 15:04:46.983442539 +0800\\\\nChange: 2026-05-14 15:04:46.983442539 +0800\\\\n Birth: 2026-05-14 13:19:33.477046760 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "80c1c72f-0a51-43ab-94f3-b97c387f2028",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/data/docred/train_annotated.json\\\\n  Size: 13029595  \\\\tBlocks: 25456      IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 2160573470  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-14 15:05:25.439791365 +0800\\\\nModify: 2026-05-14 15:04:46.983442539 +0800\\\\nChange: 2026-05-14 15:04:46.983442539 +0800\\\\n Birth: 2026-05-14 13:19:33.477046760 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/data/docred/train_annotated.json\\n  Size: 13029595  \\tBlocks: 25456      IO Block: 4096   regular file\\nDevice: 900h/2304d\\tInode: 2160573470  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-14 15:05:25.439791365 +0800\\nModify: 2026-05-14 15:04:46.983442539 +0800\\nChange: 2026-05-14 15:04:46.983442539 +0800\\n Birth: 2026-05-14 13:19:33.477046760 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+              }
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019ns4r7bUMgueeJPRiCNUfJ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "python3 -c \"import json; print(len(json.load(open('/root/autodl-tmp/data/docred/train_annotated.json'))))\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "85b6bede-ae2d-48b4-aa16-7d554dadebdc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VqUofxKMgGnjttr9agjYSs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1504,
+                "cache_read_input_tokens": 34715,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1504
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T01:29:26.968Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019ns4r7bUMgueeJPRiCNUfJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "c3e802ae-121c-4a2a-8ae9-f8e9e690466d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012S8c6SDxs1tcxoQD52zYfz",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/freige/training/rsft_generate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "651d4d9c-1cd5-4ea2-963b-b6137cfea715",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VqUofxKMgGnjttr9agjYSs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1504,
+                "cache_read_input_tokens": 34715,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1504
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T01:29:27.982Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012S8c6SDxs1tcxoQD52zYfz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"RSFT Step 1: 批量生成候选输出。\\\\n\\\\n用 SFT warmup 模型对每个训练样本生成 N 个候选输出 (temperature sampling)，\\\\n保存为 JSONL 供后续 CED 打分筛选。\\\\n\\\\n输入:\\\\n  - base model (Qwen3-4B) + QLoRA adapter (SFT checkpoint)\\\\n  - DocRED train_annotated.json\\\\n\\\\n输出 (保存到 --output_dir):\\\\n  - generations.jsonl: 每行一个生成结果\\\\n    {\\\\\\\"doc_id\\\\\\\", \\\\\\\"generation_idx\\\\\\\", \\\\\\\"prompt\\\\\\\", \\\\\\\"output\\\\\\\", \\\\\\\"raw_text\\\\\\\", \\\\\\\"parsed_triples\\\\\\\", \\\\\\\"format_ok\\\\\\\"}\\\\n  - progress.json: 已完成的 doc_id 列表（用于断点续传）\\\\n\\\\n依赖: transformers, peft, bitsandbytes, torch, tqdm\\\\n\\\\n用法:\\\\n  python -m freige.training.rsft_generate \\\\\\\\\\\\n      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n      --sft_adapter /root/autodl-tmp/sft_output \\\\\\\\\\\\n      --data_path /root/autodl-tmp/data/docred \\\\\\\\\\\\n      --output_dir /root/autodl-tmp/rsft_generations \\\\\\\\\\\\n      --num_generations 8 --temperature 0.7 --batch_size 4\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\nfrom tqdm import tqdm\\\\n\\\\nfrom freige.data.docred_processor import DocREDProcessor\\\\nfrom freige.eval.evaluator import parse_model_output\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    \\\\\\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\\\\\"\\\\n    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n)\\\\n\\\\n\\\\ndef load_model_and_tokenizer(base_model, sft_adapter=None, quantize=False):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载 base model + 可选 QLoRA adapter，merge 后返回。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    logger.info(\\\\\\\"Loading tokenizer: %s\\\\\\\", base_model)\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n        base_model, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\",\\\\n    )\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    logger.info(\\\\\\\"Loading model: %s\\\\\\\", base_model)\\\\n    model_kwargs = dict(trust_remote_code=True, attn_implementation=\\\\\\\"sdpa\\\\\\\", device_map=\\\\\\\"auto\\\\\\\")\\\\n    if quantize:\\\\n        model_kwargs[\\\\\\\"quantization_config\\\\\\\"] = BitsAndBytesConfig(\\\\n            load_in_4bit=True,\\\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\\\n            bnb_4bit_quant_type=\\\\\\\"nf4\\\\\\\",\\\\n            bnb_4bit_use_double_quant=True,\\\\n        )\\\\n    else:\\\\n        model_kwargs[\\\\\\\"torch_dtype\\\\\\\"] = torch.bfloat16\\\\n\\\\n    model = AutoModelForCausalLM.from_pretrained(base_model, **model_kwargs)\\\\n\\\\n    if sft_adapter:\\\\n        logger.info(\\\\\\\"Loading & merging SFT adapter: %s\\\\\\\", sft_adapter)\\\\n        model = PeftModel.from_pretrained(model, sft_adapter)\\\\n        model = model.merge_and_unload()\\\\n\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef prepare_generation_data(data_dir, split, tokenizer):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载 DocRED 数据，构建每个文档的 prompt 和 gold 信息。\\\\n\\\\n    Returns:\\\\n        list of dict: 每个文档一条，含 doc_id, prompt, gold_triples, sents\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    processor = DocREDProcessor(data_dir=data_dir)\\\\n    samples = processor.process(split)\\\\n    groups = processor.group_by_document(samples)\\\\n\\\\n    items = []\\\\n    for doc_id, doc_samples in groups.items():\\\\n        sft_sample = processor.format_sft_sample(doc_samples)\\\\n        messages = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": f\\\\\\\"{sft_sample['instruction']}\\\\\\\\n\\\\\\\\n{sft_sample['input']}\\\\\\\"},\\\\n        ]\\\\n        prompt = tokenizer.apply_chat_template(\\\\n            messages, tokenize=False, add_generation_prompt=True, enable_thinking=False,\\\\n        )\\\\n\\\\n        gold_triples = []\\\\n        for s in doc_samples:\\\\n            gold_triples.append({\\\\n                \\\\\\\"head\\\\\\\": s.head.name,\\\\n                \\\\\\\"relation\\\\\\\": s.relation_name,\\\\n                \\\\\\\"tail\\\\\\\": s.tail.name,\\\\n                \\\\\\\"evidence\\\\\\\": s.evidence_sent_ids,\\\\n                \\\\\\\"hard_negative_sent_ids\\\\\\\": s.hard_negative_sent_ids,\\\\n            })\\\\n\\\\n        ref = doc_samples[0]\\\\n        items.append({\\\\n            \\\\\\\"doc_id\\\\\\\": doc_id,\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"gold_triples\\\\\\\": \\\\n\\\\n... [截断: 输出过长，省略 6859 字符] ...\\\\n\\\\n, args.temperature, args.max_new_tokens,\\\\n                )\\\\n            except torch.cuda.OutOfMemoryError:\\\\n                logger.warning(\\\\\\\"OOM on batch of %d, falling back to one-by-one\\\\\\\", len(batch))\\\\n                torch.cuda.empty_cache()\\\\n                batch_outputs = []\\\\n                batch_trunc = []\\\\n                for p in prompts:\\\\n                    out, trunc = generate_batch(\\\\n                        model, tokenizer, [p],\\\\n                        args.num_generations, args.temperature, args.max_new_tokens,\\\\n                    )\\\\n                    batch_outputs.append(out[0])\\\\n                    batch_trunc.append(trunc[0])\\\\n\\\\n            for item, generations, trunc_flags in zip(batch, batch_outputs, batch_trunc):\\\\n                doc_triple_sets = set()\\\\n                for gen_idx, raw_text in enumerate(generations):\\\\n                    parsed_triples, format_ok = parse_model_output(raw_text)\\\\n                    truncated = trunc_flags[gen_idx] if gen_idx < len(trunc_flags) else False\\\\n                    record = {\\\\n                        \\\\\\\"doc_id\\\\\\\": item[\\\\\\\"doc_id\\\\\\\"],\\\\n                        \\\\\\\"generation_idx\\\\\\\": gen_idx,\\\\n                        \\\\\\\"prompt\\\\\\\": item[\\\\\\\"prompt\\\\\\\"],\\\\n                        \\\\\\\"output\\\\\\\": raw_text,\\\\n                        \\\\\\\"raw_text\\\\\\\": raw_text,\\\\n                        \\\\\\\"parsed_triples\\\\\\\": parsed_triples,\\\\n                        \\\\\\\"format_ok\\\\\\\": format_ok,\\\\n                        \\\\\\\"truncated\\\\\\\": truncated,\\\\n                        \\\\\\\"gold_triples\\\\\\\": item[\\\\\\\"gold_triples\\\\\\\"],\\\\n                        \\\\\\\"sents\\\\\\\": item[\\\\\\\"sents\\\\\\\"],\\\\n                    }\\\\n                    fout.write(json.dumps(record, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n                    # 监��计数\\\\n                    mon_total_gens += 1\\\\n                    mon_window_total += 1\\\\n                    if format_ok:\\\\n                        mon_format_ok += 1\\\\n                        mon_window_format_ok += 1\\\\n                    if truncated:\\\\n                        mon_truncated += 1\\\\n                        mon_window_truncated += 1\\\\n                    triple_key = frozenset(\\\\n                        (t[\\\\\\\"head\\\\\\\"].lower(), t[\\\\\\\"relation\\\\\\\"].lower(), t[\\\\\\\"tail\\\\\\\"].lower())\\\\n                        for t in parsed_triples\\\\n                    )\\\\n                    doc_triple_sets.add(triple_key)\\\\n\\\\n                diversity = len(doc_triple_sets) / args.num_generations\\\\n                mon_diversity_sum += diversity\\\\n                mon_doc_count += 1\\\\n                mon_window_diversity += diversity\\\\n                mon_window_docs += 1\\\\n\\\\n                # 每 100 个文档打印一次监控\\\\n                if mon_doc_count == 100:\\\\n                    _print_monitor(\\\\\\\"First 100 samples\\\\\\\", mon_doc_count, mon_total_gens,\\\\n                                   mon_format_ok, mon_truncated, mon_diversity_sum)\\\\n                elif mon_doc_count > 100 and mon_window_docs >= 100:\\\\n                    _print_monitor(f\\\\\\\"Docs {mon_doc_count - mon_window_docs + 1}-{mon_doc_count}\\\\\\\",\\\\n                                   mon_window_docs, mon_window_total,\\\\n                                   mon_window_format_ok, mon_window_truncated, mon_window_diversity)\\\\n                    mon_window_format_ok = 0\\\\n                    mon_window_truncated = 0\\\\n                    mon_window_total = 0\\\\n                    mon_window_diversity = 0.0\\\\n                    mon_window_docs = 0\\\\n\\\\n                completed.add(item[\\\\\\\"doc_id\\\\\\\"])\\\\n\\\\n            fout.flush()\\\\n            save_progress(args.output_dir, completed)\\\\n\\\\n    logger.info(\\\\\\\"Generation complete. %d documents, %d total outputs → %s\\\\\\\",\\\\n                len(items), len(items) * args.num_generations, output_file)\\\\n\\\\n    # 统计\\\\n    n_format_ok = 0\\\\n    n_total = 0\\\\n    with open(output_file) as f:\\\\n        for line in f:\\\\n            rec = json.loads(line)\\\\n            n_total += 1\\\\n            if rec.get(\\\\\\\"format_ok\\\\\\\"):\\\\n                n_format_ok += 1\\\\n\\\\n    logger.info(\\\\\\\"Format compliance: %d/%d (%.1f%%)\\\\\\\", n_format_ok, n_total,\\\\n                100 * n_format_ok / n_total if n_total else 0)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "bef1846d-2a5e-435b-af93-5d30857a7270",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"RSFT Step 1: 批量生成候选输出。\\\\n\\\\n用 SFT warmup 模型对每个训练样本生成 N 个候选输出 (temperature sampling)，\\\\n保存为 JSONL 供后续 CED 打分筛选。\\\\n\\\\n输入:\\\\n  - base model (Qwen3-4B) + QLoRA adapter (SFT checkpoint)\\\\n  - DocRED train_annotated.json\\\\n\\\\n输出 (保存到 --output_dir):\\\\n  - generations.jsonl: 每行一个生成结果\\\\n    {\\\\\\\"doc_id\\\\\\\", \\\\\\\"generation_idx\\\\\\\", \\\\\\\"prompt\\\\\\\", \\\\\\\"output\\\\\\\", \\\\\\\"raw_text\\\\\\\", \\\\\\\"parsed_triples\\\\\\\", \\\\\\\"format_ok\\\\\\\"}\\\\n  - progress.json: 已完成的 doc_id 列表（用于断点续传）\\\\n\\\\n依赖: transformers, peft, bitsandbytes, torch, tqdm\\\\n\\\\n用法:\\\\n  python -m freige.training.rsft_generate \\\\\\\\\\\\n      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n      --sft_adapter /root/autodl-tmp/sft_output \\\\\\\\\\\\n      --data_path /root/autodl-tmp/data/docred \\\\\\\\\\\\n      --output_dir /root/autodl-tmp/rsft_generations \\\\\\\\\\\\n      --num_generations 8 --temperature 0.7 --batch_size 4\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\nfrom tqdm import tqdm\\\\n\\\\nfrom freige.data.docred_processor import DocREDProcessor\\\\nfrom freige.eval.evaluator import parse_model_output\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    \\\\\\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\\\\\"\\\\n    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n)\\\\n\\\\n\\\\ndef load_model_and_tokenizer(base_model, sft_adapter=None, quantize=False):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载 base model + 可选 QLoRA adapter，merge 后返回。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    logger.info(\\\\\\\"Loading tokenizer: %s\\\\\\\", base_model)\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n        base_model, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\",\\\\n    )\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    logger.info(\\\\\\\"Loading model: %s\\\\\\\", base_model)\\\\n    model_kwargs = dict(trust_remote_code=True, attn_implementation=\\\\\\\"sdpa\\\\\\\", device_map=\\\\\\\"auto\\\\\\\")\\\\n    if quantize:\\\\n        model_kwargs[\\\\\\\"quantization_config\\\\\\\"] = BitsAndBytesConfig(\\\\n            load_in_4bit=True,\\\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\\\n            bnb_4bit_quant_type=\\\\\\\"nf4\\\\\\\",\\\\n            bnb_4bit_use_double_quant=True,\\\\n        )\\\\n    else:\\\\n        model_kwargs[\\\\\\\"torch_dtype\\\\\\\"] = torch.bfloat16\\\\n\\\\n    model = AutoModelForCausalLM.from_pretrained(base_model, **model_kwargs)\\\\n\\\\n    if sft_adapter:\\\\n        logger.info(\\\\\\\"Loading & merging SFT adapter: %s\\\\\\\", sft_adapter)\\\\n        model = PeftModel.from_pretrained(model, sft_adapter)\\\\n        model = model.merge_and_unload()\\\\n\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef prepare_generation_data(data_dir, split, tokenizer):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载 DocRED 数据，构建每个文档的 prompt 和 gold 信息。\\\\n\\\\n    Returns:\\\\n        list of dict: 每个文档一条，含 doc_id, prompt, gold_triples, sents\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    processor = DocREDProcessor(data_dir=data_dir)\\\\n    samples = processor.process(split)\\\\n    groups = processor.group_by_document(samples)\\\\n\\\\n    items = []\\\\n    for doc_id, doc_samples in groups.items():\\\\n        sft_sample = processor.format_sft_sample(doc_samples)\\\\n        messages = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": f\\\\\\\"{sft_sample['instruction']}\\\\\\\\n\\\\\\\\n{sft_sample['input']}\\\\\\\"},\\\\n        ]\\\\n        prompt = tokenizer.apply_chat_template(\\\\n            messages, tokenize=False, add_generation_prompt=True, enable_thinking=False,\\\\n        )\\\\n\\\\n        gold_triples = []\\\\n        for s in doc_samples:\\\\n            gold_triples.append({\\\\n                \\\\\\\"head\\\\\\\": s.head.name,\\\\n                \\\\\\\"relation\\\\\\\": s.relation_name,\\\\n                \\\\\\\"tail\\\\\\\": s.tail.name,\\\\n                \\\\\\\"evidence\\\\\\\": s.evidence_sent_ids,\\\\n                \\\\\\\"hard_negative_sent_ids\\\\\\\": s.hard_negative_sent_ids,\\\\n            })\\\\n\\\\n        ref = doc_samples[0]\\\\n        items.append({\\\\n            \\\\\\\"doc_id\\\\\\\": doc_id,\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"gold_triples\\\\\\\": \\\\n\\\\n... [截断: 输出过长，省略 6859 字符] ...\\\\n\\\\n, args.temperature, args.max_new_tokens,\\\\n                )\\\\n            except torch.cuda.OutOfMemoryError:\\\\n                logger.warning(\\\\\\\"OOM on batch of %d, falling back to one-by-one\\\\\\\", len(batch))\\\\n                torch.cuda.empty_cache()\\\\n                batch_outputs = []\\\\n                batch_trunc = []\\\\n                for p in prompts:\\\\n                    out, trunc = generate_batch(\\\\n                        model, tokenizer, [p],\\\\n                        args.num_generations, args.temperature, args.max_new_tokens,\\\\n                    )\\\\n                    batch_outputs.append(out[0])\\\\n                    batch_trunc.append(trunc[0])\\\\n\\\\n            for item, generations, trunc_flags in zip(batch, batch_outputs, batch_trunc):\\\\n                doc_triple_sets = set()\\\\n                for gen_idx, raw_text in enumerate(generations):\\\\n                    parsed_triples, format_ok = parse_model_output(raw_text)\\\\n                    truncated = trunc_flags[gen_idx] if gen_idx < len(trunc_flags) else False\\\\n                    record = {\\\\n                        \\\\\\\"doc_id\\\\\\\": item[\\\\\\\"doc_id\\\\\\\"],\\\\n                        \\\\\\\"generation_idx\\\\\\\": gen_idx,\\\\n                        \\\\\\\"prompt\\\\\\\": item[\\\\\\\"prompt\\\\\\\"],\\\\n                        \\\\\\\"output\\\\\\\": raw_text,\\\\n                        \\\\\\\"raw_text\\\\\\\": raw_text,\\\\n                        \\\\\\\"parsed_triples\\\\\\\": parsed_triples,\\\\n                        \\\\\\\"format_ok\\\\\\\": format_ok,\\\\n                        \\\\\\\"truncated\\\\\\\": truncated,\\\\n                        \\\\\\\"gold_triples\\\\\\\": item[\\\\\\\"gold_triples\\\\\\\"],\\\\n                        \\\\\\\"sents\\\\\\\": item[\\\\\\\"sents\\\\\\\"],\\\\n                    }\\\\n                    fout.write(json.dumps(record, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n                    # 监��计数\\\\n                    mon_total_gens += 1\\\\n                    mon_window_total += 1\\\\n                    if format_ok:\\\\n                        mon_format_ok += 1\\\\n                        mon_window_format_ok += 1\\\\n                    if truncated:\\\\n                        mon_truncated += 1\\\\n                        mon_window_truncated += 1\\\\n                    triple_key = frozenset(\\\\n                        (t[\\\\\\\"head\\\\\\\"].lower(), t[\\\\\\\"relation\\\\\\\"].lower(), t[\\\\\\\"tail\\\\\\\"].lower())\\\\n                        for t in parsed_triples\\\\n                    )\\\\n                    doc_triple_sets.add(triple_key)\\\\n\\\\n                diversity = len(doc_triple_sets) / args.num_generations\\\\n                mon_diversity_sum += diversity\\\\n                mon_doc_count += 1\\\\n                mon_window_diversity += diversity\\\\n                mon_window_docs += 1\\\\n\\\\n                # 每 100 个文档打印一次监控\\\\n                if mon_doc_count == 100:\\\\n                    _print_monitor(\\\\\\\"First 100 samples\\\\\\\", mon_doc_count, mon_total_gens,\\\\n                                   mon_format_ok, mon_truncated, mon_diversity_sum)\\\\n                elif mon_doc_count > 100 and mon_window_docs >= 100:\\\\n                    _print_monitor(f\\\\\\\"Docs {mon_doc_count - mon_window_docs + 1}-{mon_doc_count}\\\\\\\",\\\\n                                   mon_window_docs, mon_window_total,\\\\n                                   mon_window_format_ok, mon_window_truncated, mon_window_diversity)\\\\n                    mon_window_format_ok = 0\\\\n                    mon_window_truncated = 0\\\\n                    mon_window_total = 0\\\\n                    mon_window_diversity = 0.0\\\\n                    mon_window_docs = 0\\\\n\\\\n                completed.add(item[\\\\\\\"doc_id\\\\\\\"])\\\\n\\\\n            fout.flush()\\\\n            save_progress(args.output_dir, completed)\\\\n\\\\n    logger.info(\\\\\\\"Generation complete. %d documents, %d total outputs → %s\\\\\\\",\\\\n                len(items), len(items) * args.num_generations, output_file)\\\\n\\\\n    # 统计\\\\n    n_format_ok = 0\\\\n    n_total = 0\\\\n    with open(output_file) as f:\\\\n        for line in f:\\\\n            rec = json.loads(line)\\\\n            n_total += 1\\\\n            if rec.get(\\\\\\\"format_ok\\\\\\\"):\\\\n                n_format_ok += 1\\\\n\\\\n    logger.info(\\\\\\\"Format compliance: %d/%d (%.1f%%)\\\\\\\", n_format_ok, n_total,\\\\n                100 * n_format_ok / n_total if n_total else 0)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT Step 1: 批量生成候选输出。\\n\\n用 SFT warmup 模型对每个训练样本生成 N 个候选输出 (temperature sampling)，\\n保存为 JSONL 供后续 CED 打分筛选。\\n\\n输入:\\n  - base model (Qwen3-4B) + QLoRA adapter (SFT checkpoint)\\n  - DocRED train_annotated.json\\n\\n输出 (保存到 --output_dir):\\n  - generations.jsonl: 每行一个生成结果\\n    {\\\"doc_id\\\", \\\"generation_idx\\\", \\\"prompt\\\", \\\"output\\\", \\\"raw_text\\\", \\\"parsed_triples\\\", \\\"format_ok\\\"}\\n  - progress.json: 已完成的 doc_id 列表（用于断点续传）\\n\\n依赖: transformers, peft, bitsandbytes, torch, tqdm\\n\\n用法:\\n  python -m freige.training.rsft_generate \\\\\\n      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\n      --sft_adapter /root/autodl-tmp/sft_output \\\\\\n      --data_path /root/autodl-tmp/data/docred \\\\\\n      --output_dir /root/autodl-tmp/rsft_generations \\\\\\n      --num_generations 8 --temperature 0.7 --batch_size 4\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\nfrom tqdm import tqdm\\n\\nfrom freige.data.docred_processor import DocREDProcessor\\nfrom freige.eval.evaluator import parse_model_output\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\ndef load_model_and_tokenizer(base_model, sft_adapter=None, quantize=False):\\n    \\\"\\\"\\\"加载 base model + 可选 QLoRA adapter，merge 后返回。\\\"\\\"\\\"\\n    logger.info(\\\"Loading tokenizer: %s\\\", base_model)\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    logger.info(\\\"Loading model: %s\\\", base_model)\\n    model_kwargs = dict(trust_remote_code=True, attn_implementation=\\\"sdpa\\\", device_map=\\\"auto\\\")\\n    if quantize:\\n        model_kwargs[\\\"quantization_config\\\"] = BitsAndBytesConfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n            bnb_4bit_use_double_quant=True,\\n        )\\n    else:\\n        model_kwargs[\\\"torch_dtype\\\"] = torch.bfloat16\\n\\n    model = AutoModelForCausalLM.from_pretrained(base_model, **model_kwargs)\\n\\n    if sft_adapter:\\n        logger.info(\\\"Loading & merging SFT adapter: %s\\\", sft_adapter)\\n        model = PeftModel.from_pretrained(model, sft_adapter)\\n        model = model.merge_and_unload()\\n\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef prepare_generation_data(data_dir, split, tokenizer):\\n    \\\"\\\"\\\"加载 DocRED 数据，构建每个文档的 prompt 和 gold 信息。\\n\\n    Returns:\\n        list of dict: 每个文档一条，含 doc_id, prompt, gold_triples, sents\\n    \\\"\\\"\\\"\\n    processor = DocREDProcessor(data_dir=data_dir)\\n    samples = processor.process(split)\\n    groups = processor.group_by_document(samples)\\n\\n    items = []\\n    for doc_id, doc_samples in groups.items():\\n        sft_sample = processor.format_sft_sample(doc_samples)\\n        messages = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": f\\\"{sft_sample['instruction']}\\\\n\\\\n{sft_sample['input']}\\\"},\\n        ]\\n        prompt = tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True, enable_thinking=False,\\n        )\\n\\n        gold_triples = []\\n        for s in doc_samples:\\n            gold_triples.append({\\n                \\\"head\\\": s.head.name,\\n                \\\"relation\\\": s.relation_name,\\n                \\\"tail\\\": s.tail.name,\\n                \\\"evidence\\\": s.evidence_sent_ids,\\n                \\\"hard_negative_sent_ids\\\": s.hard_negative_sent_ids,\\n            })\\n\\n        ref = doc_samples[0]\\n        items.append({\\n            \\\"doc_id\\\": doc_id,\\n            \\\"prompt\\\": prompt,\\n            \\\"gold_triples\\\": \\n\\n... [截断: 输出过长，省略 6859 字符] ...\\n\\n, args.temperature, args.max_new_tokens,\\n                )\\n            except torch.cuda.OutOfMemoryError:\\n                logger.warning(\\\"OOM on batch of %d, falling back to one-by-one\\\", len(batch))\\n                torch.cuda.empty_cache()\\n                batch_outputs = []\\n                batch_trunc = []\\n                for p in prompts:\\n                    out, trunc = generate_batch(\\n                        model, tokenizer, [p],\\n                        args.num_generations, args.temperature, args.max_new_tokens,\\n                    )\\n                    batch_outputs.append(out[0])\\n                    batch_trunc.append(trunc[0])\\n\\n            for item, generations, trunc_flags in zip(batch, batch_outputs, batch_trunc):\\n                doc_triple_sets = set()\\n                for gen_idx, raw_text in enumerate(generations):\\n                    parsed_triples, format_ok = parse_model_output(raw_text)\\n                    truncated = trunc_flags[gen_idx] if gen_idx < len(trunc_flags) else False\\n                    record = {\\n                        \\\"doc_id\\\": item[\\\"doc_id\\\"],\\n                        \\\"generation_idx\\\": gen_idx,\\n                        \\\"prompt\\\": item[\\\"prompt\\\"],\\n                        \\\"output\\\": raw_text,\\n                        \\\"raw_text\\\": raw_text,\\n                        \\\"parsed_triples\\\": parsed_triples,\\n                        \\\"format_ok\\\": format_ok,\\n                        \\\"truncated\\\": truncated,\\n                        \\\"gold_triples\\\": item[\\\"gold_triples\\\"],\\n                        \\\"sents\\\": item[\\\"sents\\\"],\\n                    }\\n                    fout.write(json.dumps(record, ensure_ascii=False) + \\\"\\\\n\\\")\\n\\n                    # 监��计数\\n                    mon_total_gens += 1\\n                    mon_window_total += 1\\n                    if format_ok:\\n                        mon_format_ok += 1\\n                        mon_window_format_ok += 1\\n                    if truncated:\\n                        mon_truncated += 1\\n                        mon_window_truncated += 1\\n                    triple_key = frozenset(\\n                        (t[\\\"head\\\"].lower(), t[\\\"relation\\\"].lower(), t[\\\"tail\\\"].lower())\\n                        for t in parsed_triples\\n                    )\\n                    doc_triple_sets.add(triple_key)\\n\\n                diversity = len(doc_triple_sets) / args.num_generations\\n                mon_diversity_sum += diversity\\n                mon_doc_count += 1\\n                mon_window_diversity += diversity\\n                mon_window_docs += 1\\n\\n                # 每 100 个文档打印一次监控\\n                if mon_doc_count == 100:\\n                    _print_monitor(\\\"First 100 samples\\\", mon_doc_count, mon_total_gens,\\n                                   mon_format_ok, mon_truncated, mon_diversity_sum)\\n                elif mon_doc_count > 100 and mon_window_docs >= 100:\\n                    _print_monitor(f\\\"Docs {mon_doc_count - mon_window_docs + 1}-{mon_doc_count}\\\",\\n                                   mon_window_docs, mon_window_total,\\n                                   mon_window_format_ok, mon_window_truncated, mon_window_diversity)\\n                    mon_window_format_ok = 0\\n                    mon_window_truncated = 0\\n                    mon_window_total = 0\\n                    mon_window_diversity = 0.0\\n                    mon_window_docs = 0\\n\\n                completed.add(item[\\\"doc_id\\\"])\\n\\n            fout.flush()\\n            save_progress(args.output_dir, completed)\\n\\n    logger.info(\\\"Generation complete. %d documents, %d total outputs → %s\\\",\\n                len(items), len(items) * args.num_generations, output_file)\\n\\n    # 统计\\n    n_format_ok = 0\\n    n_total = 0\\n    with open(output_file) as f:\\n        for line in f:\\n            rec = json.loads(line)\\n            n_total += 1\\n            if rec.get(\\\"format_ok\\\"):\\n                n_format_ok += 1\\n\\n    logger.info(\\\"Format compliance: %d/%d (%.1f%%)\\\", n_format_ok, n_total,\\n                100 * n_format_ok / n_total if n_total else 0)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I have most of the info I need. Let me parse from the progress.json - it has 264 completed doc_ids (let me count them). The progress.json shows the completed_doc_ids list. From the grep output, I can see the key argument definitions and their logic:\n\n- `--start_idx` (int, default=0): start index for slicing items\n- `--end_idx` (int, default=-1): end index for slicing items (if > 0, items = items[start_idx:end_idx])\n\n\n- `--shard_id` (str, default=\"\"): if set, output file becomes `generations_shard{shard_id}.jsonl`\n\nThe slicing logic checks if end_idx is positive and applies the range, otherwise just uses start_idx if it's greater than zero. Now I need to figure out the total dataset size - the JSON file is 13MB as a single-line array, so I'll need a different approach to count the items without running Python directly.\n\nLooking at the progress.json, I can see the completed_doc_ids list. The generations.jsonl has 2352 lines, and since each document generates 8 outputs by default, that means roughly 294 documents have been processed. The DocRED training set typically contains around 3053 documents, which aligns with the 13MB file size, though I should verify the exact count from the completed IDs in the progress file.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "fe133cca-f22c-4db0-bf1f-3928c1f59d5a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01839eFgQCFigQLnjtrrGXNn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3497,
+                "cache_read_input_tokens": 36219,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3497
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U7pg5brKnKX9vvmHmuL8PZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -c \"title\" /root/autodl-tmp/data/docred/train_annotated.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "fcd85062-e05c-429f-bac0-e4e3de0f04e2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01839eFgQCFigQLnjtrrGXNn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3497,
+                "cache_read_input_tokens": 36219,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3497
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T01:29:43.448Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U7pg5brKnKX9vvmHmuL8PZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "c211c41b-7f91-47c6-949b-89a7ada29877",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0132vWgYAMEjyxidpK9v3bPK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -o \"\\\"title\\\"\" /root/autodl-tmp/data/docred/train_annotated.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "e7499a9f-b024-47f8-be34-a329e743d79b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01839eFgQCFigQLnjtrrGXNn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3497,
+                "cache_read_input_tokens": 36219,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3497
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T01:29:44.272Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0132vWgYAMEjyxidpK9v3bPK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\n\\\\n... [截断: 输出过长，省略 17816 字符] ...\\\\n\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b09669-c2cc-42e3-8b67-258df9ec1c5e",
+            "uuid": "73a4238a-1b52-4cf6-b160-4e6c894a47a5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\n\\\\n... [截断: 输出过长，省略 17816 字符] ...\\\\n\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\\\\\"title\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\n\\n... [截断: 输出过长，省略 17816 字符] ...\\n\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\\\"title\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000067"
+        }
+      ]
+    }
+  ]
+}

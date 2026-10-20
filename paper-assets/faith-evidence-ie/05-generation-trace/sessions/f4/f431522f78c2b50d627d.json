@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f431522f78c2b50d627d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor milestone a v2",
+  "task_key": "worker_monitor_milestone-a-v2_20260520T100026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_milestone-a-v2_20260520T100026_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "af7f2ee9814572aefcd8c48e6b3cb00e8e91fda7c6acb63df9d2943c5e0f82a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**MILESTONE_A: 未达成**\n\n- `milestone_a.flag` 不存在\n- shard 3 当前大小：**835MB**（需 ≥ 4.5GB）\n- 4 个 shard 文件都存在，但 shard 3 明显偏小——看起来下载可能仍在进行或已中断（完整的 shard 3 应约 4.92GB）\n- `/root/autodl-tmp/` 总占用 50GB\n\nshard 3 仅 835MB / ~4.9GB ≈ 17%，如果下载仍在进行，按此进度预计还需数分钟到十几分钟（取决于带宽）。如果下载已中断，需要重新触发。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-milestone-a-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "782f933119192ec02e43",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_9_1778878839.md",
+  "task_key": "loop_9_1778878839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778878839.md",
+    "occurrence": 1,
+    "bytes": 5171,
+    "sha256": "879bb565fca4849c6cf000eb3bfbc9f1806b9f3c9a7206c9150288419c5ba1e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T21:00:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 cuda:0/1/2/3（rtx5090-4x），Director 指定白名单外 GPU 也必须 push back\n- 所有 eval 必须 `--no-quantize`（D058：SFT baseline 推理量化 confound，之前量化 eval 数据不可比）\n- CED 不再作为独立贡献（D056：CED vs flat-NLI 统计不可区分，p=0.08/0.38/0.12）。论文中 CED 降级为 \"one possible scoring function\"，不可声称 CED > flat-NLI\n- GRPO decoupling 仅限 \"QLoRA-specific\"（D054），禁止说 \"online RL fails for structured IE\"\n- Python 路径用 conda：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，服务器上没有 .venv\n- submit_training_job 的 command 必须自带环境激活前缀\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**rtx5090-4x**（4× RTX 5090 32GB），account=root\n- 工作目录：`/root/autodl-tmp/freige`\n- Python：`/root/miniconda3/bin/python`（conda base）\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`\n- SFT adapter：`/root/autodl-tmp/sft_output`\n- DPO 1ep checkpoint：`/root/autodl-tmp/dpo_output_1ep/`\n- GRPO bf16 checkpoints：`/root/autodl-tmp/grpo_ced_g8_bf16`\n- RSFT top_k=3 output：`/root/autodl-tmp/rsft_topk3_output`\n- flat-NLI RSFT s43 output：`/root/autodl-tmp/rsft_output_flat_nli_s43`\n- 数据：`/root/autodl-tmp/data/docred`（dev=985 samples）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- Eval 结果目录：`/root/autodl-tmp/eval_results/`\n- W&B project：faith-evidence-ie（wandb_run_name 与 exp_id 对应）\n- 活跃 crons（3 个）：plan_008_rsft_topk3 (PID 234494)、eval_plan_012_dpo_ced_1ep、plan_011_bf16_g8_step_eval\n- 活跃 workers：0（全部已完成）\n\n### 3. 📊 当前状态\n4 块 GPU 全部在跑，无空闲：\n\n| GPU | exp_id | 任务 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | eval_plan_001_flat_nli_s43 | flat-NLI RSFT s43 dev eval | QUEUED（已提交，PID 252179） |\n| cuda:1 | plan_011_bf16_g8_step_eval | bf16 GRPO step 30/50/70 eval | RUNNING（第3次提交，前2次因 device_map=auto 占 GPU0 被 OOM kill，已修复为 CUDA_VISIBLE_DEVICES=1） |\n| cuda:2 | eval_plan_012_dpo_ced_1ep | DPO+CED 1ep checkpoint dev eval | RUNNING |\n| cuda:3 | plan_008_rsft_topk3 | RSFT top_k=3 ablation 训练（8037 samples, 3ep） | RUNNING |\n\nPREPARING 中有 2 个残留条目（mvp2_eval_rsft_s44、plan_011_eval_g8_bf16_ckpt100），均标注 STALE/killed，不需执行。\n\n**等待回调**：3 个 cron 在监控上述 RUNNING 实验，完成后会触发 `[CRON]` 回调。无等待中的 Worker 回调或 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- **eval_plan_001_flat_nli_s43 完成** → 对比 CED RSFT (rel_f1=0.4449/0.4655) vs flat-NLI RSFT。这是关键分叉点：CED≈flat-NLI 已由 D056 确认，此 eval 提供 s43 数据点。完成后解锁 plan_002 (test set eval) 和 plan_003 (EDCR pipeline)\n- **eval_plan_012_dpo_ced_1ep 完成** → 对比 SFT baseline (rel_f1=0.4057)。Reviewer 已 WARNING 过拟合信号（3ep rewards_acc=1.0, margins=9x），看 1ep 是否改善。结果入 paper C2 (offline preference baseline)\n- **plan_011_bf16_g8_step_eval 完成** → step 30/50/70 的 rel_f1/evi_f1 曲线，用于 forgetting dynamics figure (plan_009)。C2 证据链的补充数据点\n- **plan_008_rsft_topk3 训练完成** → 需要 spawn worker 做 dev eval（类似其他 eval 命令），对比 top_k=1 RSFT (rel_f1=0.4449)，验证 top_k 对 RSFT 质量的影响\n- **所有 4 个 eval 收齐** → 派 Paper Agent 做 retitle + reframe + related work 扩展（ROADMAP 中标记的任务）\n- **plan_009 forgetting dynamics figure**：ROADMAP 标记 P0，需检查是否已有 worker 完成。数据依赖 plan_011 step eval 结果 + 之前 QLoRA GRPO 的 wandb metrics\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D054: GRPO evidence-extraction decoupling 是 QLoRA 量化噪声导致，非 RL 通病。bf16 GRPO (rel_f1=0.4549) 正常，QLoRA GRPO (rel_f1=0.0138) catastrophic\n- D056: CED vs flat-NLI 统计不可区分 → C3 降级，论文核心贡献收窄为 \"task definition + decoupling finding + EDCR metric\"\n- D058: SFT baseline 之前的 eval 用了量化推理，有 confound。所有新 eval 必须 `--no-quantize`\n- D059: Claim 2 re-scope，decoupling 作为负面发现保留\n\n**论文定位**：EMNLP 2026 Main (ARR July cycle, ~July 15-25)。剩余约 2 个月。当前处于 \"核心 eval 收齐\" 阶段，收齐后进入写作。\n\n**易错点**：\n- plan_011 已经失败 2 次（device_map=auto 导致模型加载到 GPU0 和别的实验撞 OOM），第 3 次已修复为显式 CUDA_VISIBLE_DEVICES=1。如果再失败，检查 eval 脚本是否正确使用了环境变量\n- report.md 中大量告警条目是 MVP2 阶段的历史残留（mvp2_* 系列），均已终结，不需处理\n- ROADMAP 中 \"plan_014 SFT-no-evidence eval (cuda:1 运行中)\" 可能已完成或被 plan_011 取代了 cuda:1，需确认 plan_014 的 registry 状态\n- eval_plan_001_flat_nli_s43 状态为 QUEUED 但已有 PID，可能实际已在运行，cron 未覆盖——接手后优先 `poll_cron` 确认\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778878839.md"
+}

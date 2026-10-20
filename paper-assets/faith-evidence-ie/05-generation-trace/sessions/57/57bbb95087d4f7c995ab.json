@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57bbb95087d4f7c995ab",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix plan 011 bf16 g8 step eval",
+  "task_key": "worker_fix_plan_011_bf16_g8_step_eval_20260515T195613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_plan_011_bf16_g8_step_eval_20260515T195613_result.json",
+    "occurrence": 1,
+    "bytes": 1854,
+    "sha256": "abe0fba28715dd5953f5fade41eba153886ffdee9b38482ac2e5359e33fc9a01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**Orphan 清理**: 已完成。pid 247234 是 bash wrapper，实际 GPU 进程在子进程树中（父进程 246980/247239 不断重启子进程）。已 kill -9 整个进程树（246980, 247239, 248423, 248424, 247234）。\n\n**cuda:1 状态**: 完全空闲，0 MiB / 32607 MiB。可用。\n\n**GPU 全局状态**:\n| GPU | 已用 | 总量 |\n|-----|------|------|\n| 0 | 16287 MiB | 32607 MiB |\n| 1 | **0 MiB** | 32607 MiB |\n| 2 | 22189 MiB | 32607 MiB |\n| 3 | 20093 MiB | 32607 MiB |\n\n**空产物目录**: `/root/autodl-tmp/eval_results/plan_011_bf16_g8_step30` 已删除。\n\n**Eval 脚本内容** (`/root/autodl-tmp/freige/scripts/eval_plan_011_steps.sh`):\n\n```bash\n#!/bin/bash\nset -e\n\nCKPT_BASE=\"/root/autodl-tmp/grpo_ced_g8_bf16\"\nBASE_MODEL=\"/root/autodl-tmp/models/Qwen3-4B\"\nSFT_ADAPTER=\"/root/autodl-tmp/sft_output\"\nDATA_PATH=\"/root/autodl-tmp/data/docred\"\nOUTPUT_BASE=\"/root/autodl-tmp/eval_results/plan_011_bf16_g8\"\n\ncd /root/autodl-tmp\n\nfor STEP in 30 50 70; do\n    CKPT_DIR=\"${CKPT_BASE}/checkpoint-${STEP}\"\n    OUTPUT_DIR=\"${OUTPUT_BASE}_step${STEP}\"\n\n    if [ ! -d \"$CKPT_DIR\" ]; then\n        echo \"=== SKIP step ${STEP}: checkpoint not found at ${CKPT_DIR} ===\"\n        continue\n    fi\n\n    python -m freige.eval.inference \\\n        --model_path \"$CKPT_DIR\" \\\n        --sft_adapter \"$SFT_ADAPTER\" \\\n        --base_model \"$BASE_MODEL\" \\\n        --data_path \"$DATA_PATH\" \\\n        --split dev \\\n        --batch_size 16 \\\n        --max_new_tokens 1024 \\\n        --seed 42 \\\n        --output_dir \"$OUTPUT_DIR\" \\\n        --no-quantize\n\n    echo \"=== Step ${STEP} DONE ===\"\ndone\n```\n\n脚本循环评估 step 30/50/70 三个 checkpoint，每个调用 `freige.eval.inference`。可以用 `submit_training_job` 重提交到 cuda:1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-plan-011-bf16-g8-step-eval.md"
+}

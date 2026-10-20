@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ff529ffa358b17ae26f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops flatnli backup kill fix restart",
+  "task_key": "worker_ops_flatnli-backup-kill-fix-restart_20260514T152334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_flatnli-backup-kill-fix-restart_20260514T152334_result.json",
+    "occurrence": 1,
+    "bytes": 1367,
+    "sha256": "6da6296ebc15b6efe201679f98c5d89cd94a2e5d11bc9ffcb4796fccfc1d0a05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 执行汇总\n\n### Step A: Checkpoint 备份\n- 备份 5 个 checkpoint 到 `/root/autodl-tmp/checkpoints_backup/flatnli_r3_healthy/`\n  - checkpoint-20, checkpoint-40, checkpoint-60, checkpoint-80, checkpoint-100\n\n### Step B: Kill flatnli_r3\n- PID 53292 已终止（SIGTERM），cuda:3 完全释放\n\n### Step C: NLI device 修复\n- **方式：参数修复**，无需改核心逻辑\n- `grpo_trainer.py` 两处改动：\n  - Line 383: 新增 `--resume_from_checkpoint` argparse 参数\n  - Line 511: `trainer.train()` → `trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)`\n- `--reward_device` 已存在（line 351，默认 `cpu`），重启时加 `--reward_device cuda`\n\n### Step D: 重启 flatnli_r4\n- **PID**: 67050 (cuda:3)\n- **exp_id**: mvp2_grpo_flatnli_r4\n- 从 checkpoint-100 恢复，output_dir: `/root/autodl-tmp/grpo_flatnli_r4`\n- 需要额外设 `HF_HOME=/root/autodl-tmp/.hf_cache`（NLI 模型缓存路径）\n\n### Step E: 验证\n- **Step 进度**: 104/756（从 checkpoint-100 成功恢复）\n- **Step time**: ~31-34s/step（vs 之前 ~100s/step on CPU，**3x 提速**）\n- **nvidia-smi**: cuda:3 单进程 9790MiB, 53% util\n- **注意**: step_time 34s 高于预期的 12s，可能因为 NLI model 和训练模型共享同一 GPU 导致显存/计算竞争。但相比 CPU 的 100s 已大幅改善。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-flatnli-backup-kill-fix-restart.md"
+}

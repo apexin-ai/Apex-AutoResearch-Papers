@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3254b215f6d0ee63b7e3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix test eval llama rsft s42 no evi 2048",
+  "task_key": "worker_fix_test_eval_llama_rsft_s42_no_evi_2048_20260522T183503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_test_eval_llama_rsft_s42_no_evi_2048_20260522T183503_result.json",
+    "occurrence": 1,
+    "bytes": 325,
+    "sha256": "193b02f27ffb3ec8de1dae25fd26065fc4598df383d7df49a3f2e7e3e36d9fa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 项目 | 值 |\n|------|-----|\n| PID | 196511 |\n| GPU | cuda:3, 18.9GB |\n| max_new_tokens | 2048 (已修正) |\n| 进度 | 1/500, ~24s/it |\n| 预计耗时 | ~3.3h |\n\n注意：用户提供的命令中 model_path/base_model/sft_adapter 路径均有误，已按 registry 原始记录修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-test-eval-llama-rsft-s42-no-evi-2048.md"
+}

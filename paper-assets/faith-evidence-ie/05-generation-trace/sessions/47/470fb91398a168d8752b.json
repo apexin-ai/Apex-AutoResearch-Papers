@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "470fb91398a168d8752b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code rsft no evidence eval scripts",
+  "task_key": "worker_code_rsft_no_evidence_eval_scripts_20260519T122513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rsft_no_evidence_eval_scripts_20260519T122513_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "549f40e4ffa57662dc8c71449694221b0828d02f36c5919f881d0b14f16031a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已创建，语法检查通过，所有路径已验证存在。\n\n| 脚本 | 路径 |\n|---|---|\n| 4B | `scripts/seed_expansion/eval_4b_rsft_no_evidence.sh` |\n| 8B | `scripts/seed_expansion/eval_8b_rsft_no_evidence.sh` |\n\n**注意**：4B RSFT s42 checkpoint 不存在，使用了 s44 (`rsft_output_4b_sft_s44`)。8B RSFT s42 (`rsft_output_qwen3_8b_k1`) 正常。两个脚本均遵循 1.7B 模板格式，包含 `--no_evidence` 和 `--no-quantize`，未实际执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rsft-no-evidence-eval-scripts-copy-2.md"
+}

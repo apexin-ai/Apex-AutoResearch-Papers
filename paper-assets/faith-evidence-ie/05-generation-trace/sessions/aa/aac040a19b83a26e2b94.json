@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "aac040a19b83a26e2b94",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ops d158 truncation check",
+  "task_key": "worker_ops_d158_truncation_check_20260524T092058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d158_truncation_check_20260524T092058.log",
+    "occurrence": 1,
+    "bytes": 695598,
+    "sha256": "050191be53054afefc023eef3dee43193ea833ac441875c0611711ba5c21d71b"
+  },
+  "statistics": {
+    "messages": 160,
+    "user_turns": 0,
+    "tool_calls": 60,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 60,
+      "tool_result": 60,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 160,
+      "chunks": [
+        {
+          "path": "aac040a19b83a26e2b94-part-0001.json",
+          "message_count": 133
+        },
+        {
+          "path": "aac040a19b83a26e2b94-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-d158-truncation-check.md"
+}

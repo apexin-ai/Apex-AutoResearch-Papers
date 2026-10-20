@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f84893eb2cda96f90986",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 015 bf16 grpo control",
+  "task_key": "worker_ops_plan_015_bf16_grpo_control_20260515T155759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_015_bf16_grpo_control_20260515T155759_result.json",
+    "occurrence": 1,
+    "bytes": 393,
+    "sha256": "a1ff75723df31b223a6ef7cbb09c232d7bd6350ec28005565806d70270bf0d7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan_015 已提交并正常运行：\n\n- **实验**: `plan_015_grpo_g4_bf16`\n- **服务器**: rtx5090-4x, cuda:0\n- **PID**: 222937\n- **状态**: RUNNING，GRPO 训练已开始（0/100 steps）\n- **关键变量**: bf16 LoRA（`--no-quantize`），其余参数（G=4, kl=0, CED reward）与原始 QLoRA GRPO 一致\n- **Registry**: 已更新为 RUNNING，hypothesis 已填充"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-015-bf16-grpo-control.md"
+}

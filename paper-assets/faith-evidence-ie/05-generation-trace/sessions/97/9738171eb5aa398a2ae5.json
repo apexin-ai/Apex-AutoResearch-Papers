@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9738171eb5aa398a2ae5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval harvest s44r2 and submit noev",
+  "task_key": "worker_eval_harvest_s44r2_and_submit_noev_20260519T114207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_harvest_s44r2_and_submit_noev_20260519T114207_result.json",
+    "occurrence": 1,
+    "bytes": 443,
+    "sha256": "eaf7b8b7b678e3372cde8b811603f623cf0ed8ba9d76934b247be10767446a5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**Part 1 — plan019_1_7b_rsft_s44_r2_eval → DONE (success)**\n\n| 指标 | 值 |\n|---|---|\n| ign_f1 | 0.5125 |\n| f1 | 0.5294 |\n| evi_f1 | 0.8267 |\n| evi_f1_joint | 0.4289 |\n| edcr | 0.6181 |\n| n_truncated | 240 |\n\n1.7B RSFT 3-seed 汇总：s42=0.5122, s43=0.5109, s44=0.5125，标准差极小。\n\n**Part 2 — plan019_1_7b_rsft_no_evidence_eval 已提交**\n- PID: 679713, cuda:3, cron 已注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-harvest-s44r2-and-submit-noev.md"
+}

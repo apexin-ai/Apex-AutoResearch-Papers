@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7b89775321248489fd9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh d034 diversity verify",
+  "task_key": "worker_ssh_d034-diversity-verify_20260515T011932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d034-diversity-verify_20260515T011932_result.json",
+    "occurrence": 1,
+    "bytes": 1253,
+    "sha256": "be6cdf0378ad189c649bc2282e38eb8b4eca7e8d08f8c0cdaf9ed9eee4f3afd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果出来了。**diversity 非常高，mean=7.11/8，与监控报告的 0.9/8 完全矛盾。**\n\n```\n== D034 Diversity 独立验证 ==\n分析文档数: 200 (共 200)\n每文档候选数: min=8, max=8, mode=8\n\nTriple-set Diversity:\n- mean unique sets: 7.11 / 8\n- median: 8.0\n- min: 1, max: 8\n- 分布: [1/8: 4 docs, 2/8: 2 docs, 3/8: 4 docs, 4/8: 6 docs, 5/8: 9 docs, 6/8: 15 docs, 7/8: 37 docs, 8/8: 123 docs]\n\nEvidence Diversity:\n- mean unique sets: 5.43 / 8\n- median: 6.0\n- min: 1, max: 8\n- 分布: [1/8: 5 docs, 2/8: 14 docs, 3/8: 23 docs, 4/8: 30 docs, 5/8: 25 docs, 6/8: 21 docs, 7/8: 43 docs, 8/8: 39 docs]\n\nFormat Parse Rate:\n- 成功解析 triple 的候选比例: 90.2%\n\n结论: diversity 合格 (mean=7.11 >= 3/8)\n```\n\n**结论**：实际 diversity 水平很高（7.11/8），与 diversity_probe 早期观察（7/8）一致。监控报告的 mean_diversity=0.9/8 是 **监控计算 bug**，不是生成质量问题。61.5% 的文档达到了 8/8 完全不同，只有 3% 的文档 diversity ≤ 2/8。\n\nEvidence diversity 略低（5.43/8），说明模型在 triple 层面有较好多样性，但 evidence 选择更趋于一致——这是合理的，因为正确 evidence 本身选择空间有限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d034-diversity-verify.md"
+}

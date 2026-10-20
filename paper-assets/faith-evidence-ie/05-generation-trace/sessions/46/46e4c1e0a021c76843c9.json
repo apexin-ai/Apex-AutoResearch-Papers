@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46e4c1e0a021c76843c9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix dev eval 4b rsft v2 correct submit",
+  "task_key": "worker_fix_dev_eval_4b_rsft_v2_correct_submit_20260522T040924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_dev_eval_4b_rsft_v2_correct_submit_20260522T040924_result.json",
+    "occurrence": 1,
+    "bytes": 469,
+    "sha256": "188eb52eff43b5948a66edb520197d0d4664dff09b3c32e69288763f7d4bcdd8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n- **失败原因**：前 3 次分别是 base_model 路径错误、data_path 指向 re-docred 目录（无 `dev.json`）、`--split dev_revised` 不在 argparse 的合法选项中\n- **修正**：改用 `--data_path /root/autodl-tmp/data/docred --split dev`（原始 DocRED，与之前成功的 eval 一致）\n- **当前状态**：PID 161216 在 GPU 0 上运行，已开始推理（985 docs，~8.4s/doc，预计 ~2.3h）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-dev-eval-4b-rsft-v2-correct-submit.md"
+}

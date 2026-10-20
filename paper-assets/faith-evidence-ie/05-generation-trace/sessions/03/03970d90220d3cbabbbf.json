@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03970d90220d3cbabbbf",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops update roadmap 1 7b 2048",
+  "task_key": "worker_ops_update_roadmap_1_7b_2048_20260519T201205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_update_roadmap_1_7b_2048_20260519T201205_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "0ecfc11614ada6116d09615011e3b6c4519cd2e8d82046759f8221a70fc1e032"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP.md 已更新，4 处改动：\n\n1. **Tier 2** \"Evidence tax 全 scale curve + RSFT 列\" → ✅，附完整 curve 数据\n2. **GPU 分布** 更新为当前实际状态（cuda:3 空闲，cuda:1 NLI ablation running）\n3. **近期任务** 1.7B 2048 项打勾，标注确认结论\n4. **关键风险** 1.7B evidence tax confounded 标记已解决（-7.75pp confirmed real）\n\n附带更新了 NLI ablation 状态为 running (Step 1 ~32%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-update-roadmap-1-7b-2048.md"
+}

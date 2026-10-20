@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "id": "7cb3d97ed95fcb32b66c",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ssh urgent shard status",
+  "task_key": "worker_ssh_urgent-shard-status_20260515T043257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-shard-status_20260515T043257.log",
+    "occurrence": 1,
+    "bytes": 2112650,
+    "sha256": "189b97c5dd58a1ac3984007a4cca3f0b802ccdbe5179e5436978538caa0cb3b6"
+  },
+  "statistics": {
+    "messages": 1421,
+    "user_turns": 2,
+    "tool_calls": 607,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 1,
+      "assistant": 167,
+      "tool_call": 607,
+      "tool_result": 607,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 153,
+      "chunks": [
+        {
+          "path": "7cb3d97ed95fcb32b66c-part-0001.json",
+          "message_count": 153
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 398,
+      "chunks": [
+        {
+          "path": "7cb3d97ed95fcb32b66c-part-0001.json",
+          "message_count": 27
+        },
+        {
+          "path": "7cb3d97ed95fcb32b66c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7cb3d97ed95fcb32b66c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7cb3d97ed95fcb32b66c-part-0004.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 870,
+      "chunks": [
+        {
+          "path": "7cb3d97ed95fcb32b66c-part-0004.json",
+          "message_count": 169
+        },
+        {
+          "path": "7cb3d97ed95fcb32b66c-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "7cb3d97ed95fcb32b66c-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "7cb3d97ed95fcb32b66c-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "7cb3d97ed95fcb32b66c-part-0008.json",
+          "message_count": 161
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-urgent-shard-status.md"
+}

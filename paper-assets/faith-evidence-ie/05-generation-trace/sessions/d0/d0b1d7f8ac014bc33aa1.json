@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0b1d7f8ac014bc33aa1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu status and dpo fix",
+  "task_key": "worker_ops_gpu_status_and_dpo_fix_20260515T193559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_and_dpo_fix_20260515T193559_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "97fbb1f893d81d3ca64b63c8d6f249e8f5cd5d68a0f3d55c9bc676495cb2a817"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练稳定运行中。Step 2/167，~11.8s/step，显存 21-29 GiB 波动（正常）。\n\n汇总：\n\n| GPU | 使用 | 任务 |\n|-----|------|------|\n| cuda:0 | 16281 MiB | plan_001_flat_nli_seed43 (RSFT) |\n| cuda:1 | 0 MiB | 空闲（eval_sft_baseline_noquant 已完成） |\n| cuda:2 | 21-29 GiB | **plan_012_dpo_ced_1ep** (刚提交，167 steps，预计 ~33min) |\n| cuda:3 | 20093 MiB | plan_008_rsft_topk3 |\n\n已完成：\n1. **排查 GPU 状态** — 4 卡状态已确认\n2. **ckpt-400 eval** — 已 OOM 失败（每个 batch 都 OOM），杀掉并更新 registry 为 DONE(failed)\n3. **DPO 1ep 训练** — 已提交到 cuda:2，batch_size 从 2 降到 1（grad_accum 16 补偿），训练正常进行\n4. **cuda:1 已空闲** — 可用于后续 ckpt-400 eval 重跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-and-dpo-fix.md"
+}

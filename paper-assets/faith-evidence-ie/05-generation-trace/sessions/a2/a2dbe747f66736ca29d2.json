@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2dbe747f66736ca29d2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check gpu status all",
+  "task_key": "worker_check_gpu_status_all_20260515T202632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_status_all_20260515T202632_result.json",
+    "occurrence": 1,
+    "bytes": 1497,
+    "sha256": "fa4c68118c09f0903530d62dc7eb16f98a4b346f13c4fbb6b14f70161746e6a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 0: 空闲       显存=0MiB        无进程\nGPU 1: 占用  PID=249551  显存=17848MiB  plan_011_bf16_g8_step_eval (eval checkpoint-30)\nGPU 2: 占用  PID=251136  显存=16460MiB  eval_plan_012_dpo_ced_1ep\nGPU 3: 占用  PID=234494  显存=20084MiB  plan_008_rsft_topk3 训练\n\nPID 状态:\n- PID 249541 (plan_011 bash wrapper): 存活 ✓，运行 27min\n- PID 249551 (plan_011 实际 python): 存活 ✓，cuda:1\n- PID 246974 (plan_009_flatnli_reward_eval_r2): 已退出 ✗，无冲突\n- PID 234494 (plan_008_rsft_topk3): 存活 ✓，cuda:3，已运行 2h24m\n\nplan_001_flat_nli_seed43 状态: 已完成 ✓\n  退出码=0，完成时间 2026-05-15T20:19:08Z\n  507/507 步全部完成，训练时长 1h55m\n  最终 metrics:\n    eval_loss=0.7567  eval_entropy=0.6778  eval_mean_token_accuracy=0.8298\n    train_loss=0.6248  train_samples/s=1.173  epoch=3.0\n  模型已保存到 /root/autodl-tmp/rsft_output_flat_nli_s43\n\nplan_011 eval 进度: 28/62 batches (45%)，正在评估 checkpoint-30，~31min 已过，预计再需 ~32min\n\nplan_009_flatnli_r2 (mvp2_eval_rsft_s43_r2): 已完成 ✓\n  退出码=0，完成时间 2026-05-15T13:15:19Z\n  F1=0.4683  Ign-F1=0.4683  Evi-F1=0.8156  EDCR=0.6388\n  格式正确 985/985  截断 171/985  预测数 14970\n\neval_dpo_1ep 进度: 5/62 batches (8%)，刚启动约 5min，预计总时长 ~58min\n\nplan_008_rsft_topk3 训练: 1272/1509 步 (84%)，epoch 2.53，loss=0.5148\n  预计剩余 ~17min 完成\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-status-all.md"
+}

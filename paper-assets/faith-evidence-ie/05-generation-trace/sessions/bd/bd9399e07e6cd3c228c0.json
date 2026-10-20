@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd9399e07e6cd3c228c0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops timeout and step20 monitor",
+  "task_key": "worker_ops_timeout-and-step20-monitor_20260514T112333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_timeout-and-step20-monitor_20260514T112333_result.json",
+    "occurrence": 1,
+    "bytes": 607,
+    "sha256": "99e055823a97ca1231852838d4bc866032512fcc3d2940191897fb3c3270e223"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Part 1 结果：Timeout 已修正。**\n\n- 发现 `timeout 21600` (6h) 包裹训练进程\n- 已 `kill -9` 掉 timeout 进程 (PID 39555)\n- 训练进程 (PID 39556) 已 reparent 到 init (PID 1)，4 GPU worker 全部正常运行\n- 训练不再受 6h 限制\n\n**已有 metrics 预览（令人担忧）：**\n- Step 5: loss=2.87×10⁸, reward=0.246\n- Step 10: loss=0.34, kl=4.80, reward=0.284\n- Step 15: loss=2.19×10¹⁰, kl=3.40×10¹¹, reward=0.415\n\n交替出现的巨大 loss/KL 尖刺可能与 `num_iterations=2` 的奇偶迭代有关。等 step 20 数据后给完整报告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-timeout-and-step20-monitor.md"
+}

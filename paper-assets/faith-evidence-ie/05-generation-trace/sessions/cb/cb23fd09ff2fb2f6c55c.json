@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb23fd09ff2fb2f6c55c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops kill rp r1 conflict",
+  "task_key": "worker_ops_kill-rp_r1-conflict_20260514T203139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-rp_r1-conflict_20260514T203139_result.json",
+    "occurrence": 1,
+    "bytes": 775,
+    "sha256": "df8b279f57c9d9c98cccaa3f83fe26ecfc8ba4b32a9fd81040b1e627b1a8a4bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。报告：\n\n| 项目 | 状态 |\n|------|------|\n| **PID 94055 (rp-r1)** | **KILLED** — 已终止，无残留子进程 |\n| **PID 94758 (rp-r2)** | **ALIVE** — etime 36:49，正常运行 |\n| **cuda:3 显存** | 13636 MiB（仅 PID 94758），冲突已解除 |\n| **output_dir** | 空目录（尚未到 save_steps，正常） |\n\n**全 4 卡快照：**\n\n| GPU | 利用率 | 显存占用 | 进程 |\n|-----|--------|----------|------|\n| 0 | 66% | 13645/32607 MiB | PID 90085 (13636 MiB) |\n| 1 | 94% | 19434/32607 MiB | PID 96500 + 97340 (各 9710 MiB) |\n| 2 | 65% | 9411/32607 MiB | PID 95373 (9402 MiB) |\n| 3 | 63% | 13645/32607 MiB | PID 94758 (13636 MiB) ← rp_r2 独占 |\n\ncuda:3 现在只有 rp_r2 一个进程，冲突已解决。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-rp-r1-conflict.md"
+}

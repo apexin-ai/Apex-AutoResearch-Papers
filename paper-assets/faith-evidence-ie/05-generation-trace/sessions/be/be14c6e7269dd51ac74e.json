@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be14c6e7269dd51ac74e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval plan 001 flat nli results",
+  "task_key": "worker_analysis_eval_plan_001_flat_nli_results_20260515T175932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_plan_001_flat_nli_results_20260515T175932_result.json",
+    "occurrence": 1,
+    "bytes": 1378,
+    "sha256": "aaee0ccf936e676736a6f4074c7e08e49bf31b6a44b90006a5b32179f3829c68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。完整结果如下：\n\n## flat-NLI RSFT Eval 结果\n\n| Metric | flat-NLI | CED (3-seed mean) | SFT baseline | flat-NLI vs CED | flat-NLI vs SFT |\n|--------|----------|-------------------|--------------|-----------------|-----------------|\n| **rel_f1** | 0.4539 | 0.4596 | 0.4057 | **-0.57pp** | +4.82pp |\n| **evi_f1** | 0.8043 | 0.8143 | 0.7979 | **-1.00pp** | +0.64pp |\n| **edcr** | 0.6431 | ~0.6350 | 0.7118 | +0.81pp | -6.87pp |\n| precision | 0.4671 | — | — | — | — |\n| recall | 0.4414 | — | — | — | — |\n| format_ok | 100% | — | — | — | — |\n| truncated | 199/985 | ~170 | — | — | — |\n| predictions | 15,294 | — | — | — | — |\n\n## 关键对比分析\n\n**flat-NLI ≈ CED，CED contrastive margin 对 RSFT filtering 无显著增益。**\n\n- rel_f1 差距仅 0.57pp，在 CED 3-seed 标准差范围内（σ=0.0127）\n- 更精确的 seed-matched 对比：flat-NLI seed=42 (0.4539) vs CED seed=42 (0.4449)，flat-NLI 反而**高 +0.90pp**\n- evi_f1 差距 1.00pp，同样不显著\n\n**论文影响**：CED 的 contrastive margin 在 RSFT data filtering 场景下不构成关键优势。论文对 CED 的 claim 应聚焦其在 **inference-time reranking**（rel_f1=0.4864, +2.68pp over RSFT mean）和 **GRPO reward signal** 上的价值，而非 RSFT filtering 的 scoring 方式差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-plan-001-flat-nli-results.md"
+}

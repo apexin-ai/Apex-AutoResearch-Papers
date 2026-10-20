@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d704c882486649659e30",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops disk cleanup and 4gpu resubmit",
+  "task_key": "worker_ops_disk_cleanup_and_4gpu_resubmit_20260517T082648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_and_4gpu_resubmit_20260517T082648_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "88c2ea5bfce7fe9f1c1b6d768a2eff893adc1db97531a9e2f9b4c1ca9033f415"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 3 验证完成。4 GPU 全部有进程，全部正常运行：\n\n| GPU | 实验 | PID | 显存 | 状态 |\n|-----|------|-----|------|------|\n| cuda:0 | `rsft_s43_dev_eval_preds` | 431308 | 10.4 GB | Inference 进行中 |\n| cuda:1 | `plan_006_qwen3_1_7b_rsft_eval_r2` | 431385 | 5.4 GB | Inference 进行中 |\n| cuda:2 | `plan_006_llama_rsft_r3_eval` | 432670 | 17.9 GB | Inference 刚启动 |\n| cuda:3 | `plan_006_qwen3_8b_rsft_train_r2` | 431785 | 27.5 GB | 从 step 750 resume，当前 step ~773/3393 |\n\n磁盘可用 58GB。\n\n修复过程中做的额外操作：\n- 为 `freige/freige/` 内层包创建了 symlink 指向外层的 `training/`, `eval/`, `data/`, `analysis/`, `configs/`, `rewards/` 目录（解决模块导入问题）\n- 在 `rsft_trainer.py` 中添加了 `--resume_from_checkpoint` 参数支持\n- LLaMA base_model 路径修正为 `Meta-Llama-3.1-8B`（与 SFT adapter 一致）\n- 8B resume 使用 checkpoint-750（checkpoint-100 不存在，750 是最早可用的）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-and-4gpu-resubmit.md"
+}

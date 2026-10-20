@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "cffadd926a1dda9688de",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose plan010 nli large eval",
+  "task_key": "worker_diagnose_plan010_nli_large_eval_20260519T232246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan010_nli_large_eval_20260519T232246_result.json",
+    "occurrence": 1,
+    "bytes": 2190,
+    "sha256": "c5452de25c4062ca6288bae60cbe19efda8bb9965bf10a319062ee02ec8e29a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到根因了。`plan010_nli_large_ablation.log` 揭示了真相：\n\n**EXIT_CODE=2 来自 `plan010_nli_large_ablation` 脚本的 Step 3，不是当前的 `plan010_nli_large_eval` 任务。**\n\nablation 日志末尾：\n```\n=== Step 3: D076 Eval ===\nStart: Wed May 20 06:46:59 CST 2026\ninference.py: error: the following arguments are required: --data_path\nEXIT_CODE=2\n```\n\nablation 多步脚本在 Step 3 调用 `inference.py` 时**漏传了 `--data_path` 参数**，argparse 报错退出码为 2。\n\n而你问的 `plan010_nli_large_eval`（07:18 提交）**仍在正常运行**：\n- PID 733763，状态 `Rl+`，GPU 1 占用 10.4GB\n- 进度 ~7/247 batches，每 batch ~40s，预计总时长 ~2.7h\n\n```json\n{\n  \"root_cause\": \"EXIT_CODE=2 来自 plan010_nli_large_ablation 脚本 Step 3 的 inference.py 调用缺少 --data_path 参数（argparse error），不是 plan010_nli_large_eval 本身。plan010_nli_large_eval (PID 733763) 仍在正常运行。\",\n  \"error_type\": \"data\",\n  \"fix_steps\": [\n    \"plan010_nli_large_eval 无需修复，正在正常推理中（~7/247 batches）\",\n    \"plan010_nli_large_ablation Step 3 需要在 eval 命令中补上 --data_path /root/autodl-tmp/data/docred\"\n  ],\n  \"can_auto_fix\": false,\n  \"resubmit_command\": \"无需重提交 plan010_nli_large_eval，它正在运行。ablation Step 3 修复后需重新提交整个 ablation 脚本或单独提交 Step 3 eval。\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "EXIT_CODE=2 来自 plan010_nli_large_ablation 脚本 Step 3 的 inference.py 调用缺少 --data_path 参数（argparse error），不是 plan010_nli_large_eval 本身。plan010_nli_large_eval (PID 733763) 仍在正常运行。",
+              "error_type": "data",
+              "fix_steps": [
+                "plan010_nli_large_eval 无需修复，正在正常推理中（~7/247 batches）",
+                "plan010_nli_large_ablation Step 3 需要在 eval 命令中补上 --data_path /root/autodl-tmp/data/docred"
+              ],
+              "can_auto_fix": false,
+              "resubmit_command": "无需重提交 plan010_nli_large_eval，它正在运行。ablation Step 3 修复后需重新提交整个 ablation 脚本或单独提交 Step 3 eval。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan010-nli-large-eval.md"
+}

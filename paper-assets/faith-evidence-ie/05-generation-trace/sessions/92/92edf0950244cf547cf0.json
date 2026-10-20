@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92edf0950244cf547cf0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze test eval 4b sft s42",
+  "task_key": "worker_analyze_test_eval_4b_sft_s42_20260521T224707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_test_eval_4b_sft_s42_20260521T224707_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "1f07f10e168325fada3481a92f8b7382e048e433107b8268c6c4a496a834f334"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已无残留，无需删除。\n\n---\n\n**诊断结果：test_eval_4b_sft_s42 — 成功完成**\n\n**日志末尾**：500/500 docs 推理完毕，耗时 4h10m（30.04 s/doc），无 error/OOM。\n\n**Metrics**：\n\n| 指标 | 值 |\n|------|-----|\n| F1 | 0.2232 |\n| Ign-F1 | 0.2232 |\n| Precision | 0.2871 |\n| Recall | 0.1826 |\n| Evi-F1 (DREEAM/joint) | 0.1640 |\n| Evi-F1 (TP only) | 0.6121 |\n| EDCR | 0.8652 |\n| Predictions | 23,993 |\n| Format OK | 497/500 |\n| Truncated | 323/500 |\n| CodaLab converted | 10,609 |\n\n**注意**：Ign-F1 = F1 因为 test set 无 train_annotated.json 做去重（符合预期）。\n\n**GPU 状态**：cuda:0 已释放（0 MiB），cuda:1/2/3 被其他任务占用。\n\n**Registry**：已更新 metrics + conclusion=success + status=DONE。Cron 无活跃任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-test-eval-4b-sft-s42.md"
+}

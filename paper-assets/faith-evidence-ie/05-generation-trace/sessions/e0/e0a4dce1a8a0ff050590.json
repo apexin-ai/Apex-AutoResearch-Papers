@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0a4dce1a8a0ff050590",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "investigate s43 status",
+  "task_key": "worker_investigate_s43-status_20260515T112951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_s43-status_20260515T112951_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "a4f747f47d6e84e7c53fb8234fcd0ddd0f19dbc48779de950ef36efcdfaa390a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. s43 训练状态 → **DONE (success)**\n\n| 指标 | 值 |\n|------|-----|\n| eval_loss | 0.7622 |\n| train_loss | 0.6148 |\n| mean_token_accuracy | 0.8291 |\n| 总步数 | 510 (3 epochs) |\n| 训练时长 | 1.99h |\n| Checkpoints | 350, 400, 450, 500, 510 ✓ |\n| Adapter 保存 | `/root/autodl-tmp/rsft_output_s43` (528MB) ✓ |\n\n与其他 seed 对比：s43 eval_loss=0.7622 vs r1 epoch1=0.756/epoch2=0.759。训练正常收敛。\n\nRegistry 已更新为 DONE + metrics + checkpoint_path。\n\n### 2. s43 eval 失败根因与修复\n\n**第一次** (`mvp2_eval_rsft_s43`): EXIT_CODE=2，参数名错误：\n- `--rsft_adapter` → 应为 `--model_path`\n- `--data_dir` → 应为 `--data_path`\n- `--gpu 0` → 该参数不存在\n\n**已修复并重试** (`mvp2_eval_rsft_s43_r2`): 正在运行，刚启动（1/124 batches），模型已加载成功。\n\n### 3. GPU 占用与预估时间\n\n| GPU | 进程 | 进度 | 预估剩余 |\n|-----|------|------|----------|\n| 0 | ced_reranker_poc | 运行中 | 未知（长时间任务） |\n| 1 | eval_rsft_r2a | 108/124 | ~14 min |\n| 2 | eval_rsft_s43_r2 | 1/124 | ~1.7h (~21:10) |\n| 3 | eval_rsft_r2b | 109/124 | ~12 min |\n\nr2a 和 r2b eval 即将完成（~15min 内）。s43 eval 刚启动，约 1.7h 后出结果。GPU 1 和 3 很快会空出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-s43-status.md"
+}

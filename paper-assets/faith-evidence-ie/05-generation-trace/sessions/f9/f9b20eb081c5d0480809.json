@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9b20eb081c5d0480809",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis dpo 1ep eval r2",
+  "task_key": "worker_analysis_dpo_1ep_eval_r2_20260515T234333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dpo_1ep_eval_r2_20260515T234333_result.json",
+    "occurrence": 1,
+    "bytes": 857,
+    "sha256": "38be07aa4fc75835122d211fa5e4880a7dabc0566ab1d4f43618a724bea1f351"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在 registry 中，状态 DONE，metrics 已填充。无需更新。\n\n**DPO 1ep eval 结果：**\n\n| Metric | DPO 1ep | DPO 3ep | SFT baseline | Delta vs SFT |\n|--------|---------|---------|-------------|-------------|\n| rel_f1 | 0.4034 | 0.3429 | 0.4057 | -0.0023 |\n| evi_f1 | 0.8088 | 0.8403 | 0.798 | +0.011 |\n| EDCR | 0.7139 | 0.7294 | — | — |\n| precision | 0.3809 | — | — | — |\n| recall | 0.4287 | — | — | — |\n\n**判断：**\n- DPO 1ep (0.4034) >> DPO 3ep (0.3429)：过拟合已修复\n- DPO 1ep (0.4034) ≈ SFT (0.4057)：本质持平，delta = -0.0023\n- Registry 结论 `negative` 合理——DPO 未带来任何增益，只是回到了 SFT 水平\n\n**predictions.json** 已确认存在于 `/root/autodl-tmp/eval_results/dpo_ced_1ep_fixed/`（8.1MB），可供 plan_003 EDCR diagnostic 使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dpo-1ep-eval-r2.md"
+}

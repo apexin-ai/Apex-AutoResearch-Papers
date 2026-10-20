@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b867a92a4ec962019947",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "infra audit seed comparison script",
+  "task_key": "worker_infra_audit_seed_comparison_script_20260516T032044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_audit_seed_comparison_script_20260516T032044_result.json",
+    "occurrence": 1,
+    "bytes": 1844,
+    "sha256": "2643e3ff47b1fcbd3096220cfd9acd05190238d2375897bfb0f2b8186a1b71a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n**原脚本：不兼容。** 使用硬编码目录名映射，缺少 reeval 目录，只读 metrics.json。\n\n### 修改内容\n\n1. **METHODS 目录映射**——添加 reeval 优先级链（`_reeval_r2` > `_reeval` > 原始）：\n   - CED s42: `[\"rsft_ced_s42_reeval\", \"rsft_r2b_maxtok1536\"]`\n   - CED s44: `[\"rsft_ced_s44_reeval\", \"rsft_s44\"]`\n   - flat-NLI s42: `[\"rsft_flat_nli_s42_reeval\", \"rsft_flat_nli\"]`\n   - flat-NLI s43: `[\"rsft_flat_nli_s43_reeval_r2\", \"rsft_flat_nli_s43_reeval\", \"rsft_flat_nli_s43\"]`\n\n2. **load_metrics** 优先读 `metrics_v2.json`，fallback 到 `metrics.json`\n\n3. **新增 `--dry-run`** 和 **sources 追踪**（report 显示每个 seed 的实际数据来源）\n\n### Dry-run 输出\n\n```\n=== CED_RSFT ===\n  s42: LOADED from rsft_r2b_maxtok1536/metrics_v2.json  (f1=0.4504)  ← 旧协议(bs=8,tok=1536), 等 rsft_ced_s42_reeval\n  s43: LOADED from rsft_s43/metrics_v2.json              (f1=0.4683)  ← 旧协议(bs=8,seed=42), 等 rsft_ced_s43 完成\n  s44: LOADED from rsft_s44/metrics_v2.json              (f1=0.4655)  ← 旧协议(bs=8,seed=42), 等 rsft_ced_s44_reeval\n  s45: NOT FOUND                                                      ← rsft_ced_s45 RUNNING 中\n\n=== flatNLI_RSFT ===\n  s42: LOADED from rsft_flat_nli/metrics_v2.json         (f1=0.4539)  ← 待确认协议, 等 rsft_flat_nli_s42_reeval\n  s43: LOADED from rsft_flat_nli_s43_reeval/metrics_v2.json (f1=0.4523) ← bs=16 非D076, 等 _r2 完成自动切换\n  s44: LOADED from rsft_flat_nli_s44/metrics.json        (f1=0.4615)  ← ✅ D076 协议\n  s45: LOADED from rsft_flat_nli_s45/metrics.json        (f1=0.4551)  ← ✅ D076 协议\n```\n\n当各 reeval 目录产生 metrics 后，脚本会自动切换到更高优先级的目录，无需再改代码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-audit-seed-comparison-script.md"
+}

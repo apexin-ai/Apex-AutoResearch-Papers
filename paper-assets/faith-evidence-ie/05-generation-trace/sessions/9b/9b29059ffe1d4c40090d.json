@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b29059ffe1d4c40090d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit test eval llama rsft s42 no evi",
+  "task_key": "worker_submit_test_eval_llama_rsft_s42_no_evi_20260522T181536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_test_eval_llama_rsft_s42_no_evi_20260522T181536_result.json",
+    "occurrence": 1,
+    "bytes": 493,
+    "sha256": "10b0cd203e5e9d86dfc2032a6b111d903fad1118619b04bb71b11f121d045026"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交完成。\n\n- **exp_id**: `test_eval_llama_rsft_s42_no_evi`\n- **PID**: 194437\n- **GPU**: cuda:3，占用 37,022 MiB / 97,887 MiB\n- **状态**: 模型已加载完成，正在 merge SFT adapter 并开始推理\n- **日志**: `/tmp/test_eval_llama_rsft_s42_no_evi.log`\n- **输出**: `/root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_no_evi`\n- 参数确认：`--no_evidence` ✓、`--no-quantize` ✓、`--max_new_tokens 1024` ✓、`CUDA_VISIBLE_DEVICES=3` ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-test-eval-llama-rsft-s42-no-evi.md"
+}

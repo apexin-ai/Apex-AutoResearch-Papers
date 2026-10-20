@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6a730691188215193d4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "train grpo ced launch",
+  "task_key": "worker_train_grpo-ced-launch_20260514T071113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_grpo-ced-launch_20260514T071113_result.json",
+    "occurrence": 1,
+    "bytes": 796,
+    "sha256": "0b421a7b3df52fbff8281d37bc6d65f4a5f36915189c8d15a56ddea385bd9513"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 卡全部在工作：\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 56% | 20.6 GB |\n| 1 | 47% | 7.1 GB |\n| 2 | 50% | 7.0 GB |\n| 3 | 50% | 7.6 GB |\n\nGRPO+CED Stage 3 训练已成功启动，总计 189 步（注意这里显示 189 而非之前预估的 48，因为 GRPOTrainer 内部按 `num_generations` 和 `num_mini_batches` 进一步分割了 batch）。\n\n总结修复的两个 bug：\n1. **accelerate + deepspeed 冲突**：移除 `accelerate_4gpu.yaml` 中的 `mixed_precision: bf16`，改为在 yaml 中用 `deepspeed_config_file` 引用 deepspeed json，从训练命令中移除 `--deepspeed` 参数\n2. **CEDRewardWrapper 缺少 `__name__`**：TRL GRPOTrainer 对 reward function 调用 `.__name__`，callable 类需要显式设置 `self.__name__`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-grpo-ced-launch.md"
+}

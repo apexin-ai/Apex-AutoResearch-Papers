@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9beae07d2614a00fae66",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "experiment qwen3 1 7b sft eval",
+  "task_key": "worker_experiment_qwen3_1_7b_sft_eval_20260516T072813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_qwen3_1_7b_sft_eval_20260516T072813_result.json",
+    "occurrence": 1,
+    "bytes": 228,
+    "sha256": "24f7ec05551fabdfd81bdb1211cc8cb41cde60e49a529dd9df1d4392dcfb47ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载中：model-00001-of-00002.safetensors (3.2GB)，当前 22MB，速度 ~1MB/s。预计整体下载约 60 分钟。\n\n我会每隔几分钟检查一次进度。要继续等待还是你有其他方案加速？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-qwen3-1-7b-sft-eval.md"
+}

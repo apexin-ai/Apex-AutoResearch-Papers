@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a15063239bb09cc0ba9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops verify cuda1 cleanup",
+  "task_key": "worker_ops_verify_cuda1_cleanup_20260515T173626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_cuda1_cleanup_20260515T173626_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "0be6194f16bbf3e06f617b7ef4fb1b4a5e8dcdb261714ad85ea8a18fddd43670"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完毕：\n\n- **PID 229668**：已不存在，清理干净\n- **PID 230809**：正常运行中，eval inference 进程（sft_no_evidence）\n- **cuda:1 显存**：16,626 MiB / 32,607 MiB（~16.2GB），相比之前 25.6GB 已恢复正常\n- **cuda:1 进程**：仅 PID 230809 一个 python 进程，无残留\n\ncuda:1 状态正常，无需额外清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-cuda1-cleanup.md"
+}

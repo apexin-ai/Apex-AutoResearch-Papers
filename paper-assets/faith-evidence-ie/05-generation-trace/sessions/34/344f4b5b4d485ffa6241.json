@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "344f4b5b4d485ffa6241",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "train plan 001 flat nli seed43",
+  "task_key": "worker_train_plan_001_flat_nli_seed43_20260515T182110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan_001_flat_nli_seed43_20260515T182110_result.json",
+    "occurrence": 1,
+    "bytes": 327,
+    "sha256": "0848657eced9934aab2e33e2fe10dd765410b5f8d1059add504408ceee67cadf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动并验证：\n\n- **PID**: 236774\n- **GPU**: cuda:0（已占用 8183 MiB）\n- **数据**: 2691 samples 已加载\n- **Registry**: `plan_001_flat_nli_seed43` 已注册\n- **预计训练时长**: ~49min（参照 seed=42 的 2946s）\n- **输出目录**: `/root/autodl-tmp/rsft_output_flat_nli_s43`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan-001-flat-nli-seed43.md"
+}

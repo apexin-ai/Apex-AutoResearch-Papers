@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2bd75d6171f05be283a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose plan 007 redocred failure",
+  "task_key": "worker_diagnose_plan_007_redocred_failure_20260516T123450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan_007_redocred_failure_20260516T123450_result.json",
+    "occurrence": 1,
+    "bytes": 1732,
+    "sha256": "ae2b51b85d36547f3cbca78969129df641a7c7147b366e1fb03acea5cf5318e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。结论如下：\n\n---\n\n## 诊断结果\n\n### 失败原因\n\n**模型不存在。** 代码尝试加载 `/root/autodl-tmp/models/Qwen/Qwen3-4B`，但该目录不存在。服务器上只有：\n- `/root/autodl-tmp/models/Qwen/Qwen3-1.7B`\n- `/root/autodl-tmp/models/Qwen/Qwen3-8B`\n\n新版 `transformers` 将路径当作 HF repo id 尝试远程下载，因路径格式不符而报 `HFValidationError`。\n\n### cuda:0 状态\n\n**空闲，可用。** 显存占用 0 MiB / 32607 MiB。\n\n其他 GPU 状态：\n| GPU | 已用 | 总计 |\n|-----|------|------|\n| 0 | 0 MiB | 32607 MiB |\n| 1 | 23292 MiB | 32607 MiB |\n| 2 | 18475 MiB | 32607 MiB |\n| 3 | 17883 MiB | 32607 MiB |\n\n### Re-DocRED 数据\n\n**不存在。** `/root/autodl-tmp/data/redocred/` 目录不存在，需要下载。\n\n### 修复建议\n\n1. **下载 Qwen3-4B 模型**（约 8GB）：\n   ```bash\n   source /etc/network_turbo\n   python -c \"from modelscope import snapshot_download; snapshot_download('Qwen/Qwen3-4B', cache_dir='/root/autodl-tmp/models')\"\n   ```\n   或用 HF CLI 指定 local-dir：\n   ```bash\n   HF_HOME=/root/autodl-tmp/.hf_cache huggingface-cli download Qwen/Qwen3-4B --local-dir /root/autodl-tmp/models/Qwen/Qwen3-4B\n   ```\n\n2. **准备 Re-DocRED 数据集** — 需要确认数据格式要求（代码中 `--dataset` 参数期望的路径/格式），然后下载放置到正确位置。\n\n3. **重新运行 eval**（模型和数据就位后）：\n   ```bash\n   CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-4B --dataset redocred ...\n   ```\n\n核心问题：plan_007 在模型和数据都未准备好的情况下就被提交了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-007-redocred-failure.md"
+}

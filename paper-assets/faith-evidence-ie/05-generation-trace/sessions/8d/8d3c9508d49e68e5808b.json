@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d3c9508d49e68e5808b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan 001 flat nli scoring",
+  "task_key": "worker_code_plan_001_flat_nli_scoring_20260515T135633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_001_flat_nli_scoring_20260515T135633_result.json",
+    "occurrence": 1,
+    "bytes": 129,
+    "sha256": "8dd5de91802bdc5d4dd03b8b373a4125a88c3f57d3f88a137cfec78fae2ebea6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Flat-NLI scoring 已在 cuda:3 上运行（PID=208148），21728 条记录待处理。4.5 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-001-flat-nli-scoring.md"
+}

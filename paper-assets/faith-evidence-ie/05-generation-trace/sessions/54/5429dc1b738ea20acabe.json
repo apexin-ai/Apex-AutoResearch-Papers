@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5429dc1b738ea20acabe",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose s44 r2 completion",
+  "task_key": "worker_diagnose_s44_r2_completion_20260519T061411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_s44_r2_completion_20260519T061411_result.json",
+    "occurrence": 1,
+    "bytes": 469,
+    "sha256": "5af604171b5d599b6f0e81f828872b280433e985e254b6e8ed5ba7f9c00bce8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan019_1_7b_rsft_s44_r2 训练成功完成。**\n\n| 项目 | 值 |\n|---|---|\n| global_step | 567/567 |\n| epoch | 3.0 |\n| final loss (step 560) | 0.5538 |\n| mean_token_accuracy | 0.8706 |\n| checkpoint | `/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44/checkpoint-567/` |\n\n**GPU 状态：cuda:3 已完全释放（0 MiB / 32607 MiB, 0% utilization），可用。**\n\n其余 GPU：cuda:0 (29.6GB), cuda:1 (16.2GB), cuda:2 (25.2GB) 仍有占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-s44-r2-completion.md"
+}

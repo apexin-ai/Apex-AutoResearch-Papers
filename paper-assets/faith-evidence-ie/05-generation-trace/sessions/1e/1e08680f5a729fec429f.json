@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e08680f5a729fec429f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check topk3 result",
+  "task_key": "worker_ops_check-topk3-result_20260515T083722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-topk3-result_20260515T083722_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "02d2fe82b083ec37c5152dd10b3fca48a76051534187c5bdc2f935681829edd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**top_k=3 CED scoring 已完成**，进程已退出，GPU3 已释放。\n\n| 指标 | top_k=3 | top_k=1 |\n|------|---------|---------|\n| 总 generations | 21,728 | 21,728 |\n| **selected samples** | **8,037** | **2,718** |\n| unique docs selected | 2,691 | — |\n| selection rate | 37.0% | 12.5% |\n| selected mean F1 | 0.576 | — |\n| selected mean CED | 0.621 | — |\n| selected mean combined | 0.679 | — |\n| F1 dropped (gens) | 1,299 | — |\n| F1 dropped (docs) | 25 | — |\n\ntop_k=3 选出 8,037 samples，约为 top_k=1 (2,718) 的 **2.96x**，覆盖 2,691/2,716 个 unique docs（几乎全覆盖）。selected 样本的 mean F1=0.576, mean CED=0.621，质量合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-topk3-result.md"
+}

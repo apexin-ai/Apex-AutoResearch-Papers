@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "97bc75b611498a382938",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "audit trace llama rsft s42",
+  "task_key": "worker_audit_trace-llama-rsft-s42_20260524T053125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_trace-llama-rsft-s42_20260524T053125.log",
+    "occurrence": 1,
+    "bytes": 911862,
+    "sha256": "711b12c7b5de588c63388d10886adaa0e420c75826a840973c29a44ba56afa2f"
+  },
+  "statistics": {
+    "messages": 93,
+    "user_turns": 0,
+    "tool_calls": 34,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 21,
+      "tool_call": 34,
+      "tool_result": 34,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 93,
+      "chunks": [
+        {
+          "path": "97bc75b611498a382938-part-0001.json",
+          "message_count": 15
+        },
+        {
+          "path": "97bc75b611498a382938-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "97bc75b611498a382938-part-0003.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-trace-llama-rsft-s42.md"
+}

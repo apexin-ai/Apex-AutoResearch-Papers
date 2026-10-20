@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "076b4f68092935bf317e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code dreeam evif1 alignment",
+  "task_key": "worker_code_dreeam_evif1_alignment_20260517T125441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dreeam_evif1_alignment_20260517T125441_result.json",
+    "occurrence": 1,
+    "bytes": 2916745,
+    "sha256": "ad6c6e92a7aa7e5a500f2ed99c34498714d8305ebecf836adfd19d2d80f99bfe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "076b4f68092935bf317e-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/code-dreeam-evif1-alignment.md"
+}

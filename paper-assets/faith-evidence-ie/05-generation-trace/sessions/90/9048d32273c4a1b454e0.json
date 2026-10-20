@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9048d32273c4a1b454e0",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_2_1778778064.md",
+  "task_key": "loop_2_1778778064",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778778064.md",
+    "occurrence": 1,
+    "bytes": 3864,
+    "sha256": "ac13aee47b5a8d47708afa2a442bd60ff047c6469eb1beda0b75e6dd8eca43e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T15:49:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 gpu_ids=[0,1,2,3]，全在 rtx5090-4x 一台机器上（gpu-5090-4x-1 是同一台的另一个 SSH endpoint，D004）\n- kl_coef + QLoRA 4-bit 不兼容（D008）：kl_coef>0 会导致 step 5 KL 爆炸（10^8-10^11），已在 r1/r3/extract/flatnli 四次验证。当前 r5/r3 系列用 kl_coef=0.0。唯一例外是 ced_kl001 (kl_coef=0.01) 作为对照实验\n- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），服务器用 conda 不用 venv\n- SFT eval 实际耗时 6-7 小时（不是之前估的 20-40min），28/247 batches 时 ~97s/batch\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（= gpu-5090-4x-1），4× RTX 5090 32GB\n- 工作目录：/root/autodl-tmp（代码在 /root/autodl-tmp/freige/）\n- Python：/root/miniconda3/bin/python，conda base 环境\n- 模型：/root/autodl-tmp/models/Qwen3-4B（base）、/root/autodl-tmp/sft_output（SFT adapter）\n- 数据：/root/autodl-tmp/data/docred（train 3027, dev 985）\n- NLI cache：/root/autodl-tmp/nli_cache/\n- HF cache：/root/autodl-tmp/.hf_cache\n- 日志目录：~/runs/faith-evidence-ie/\n- 活跃进程（待确认，handoff 时有诊断 Worker 在查）：\n  - mvp2_grpo_ced_r5: PID 53066, cuda:0\n  - mvp2_grpo_extract_r3: PID 53144, cuda:2\n  - mvp2_grpo_flatnli_r3: PID 53287, cuda:3\n  - mvp2_sft_eval_r2: PID 55410, cuda:1（QUEUED，可能已在运行）\n\n### 3. 📊 当前状态\n- 刚收到 mvp2_sft_eval 失败回调（EXIT_CODE=129/SIGHUP，运行 ~57min 后死，预期 6-7h）\n- 已派诊断 Worker（worker_diagnose_mvp2_sft_eval_20260514T124719）查日志 + 确认 r2 状态 + 检查 GPU 健康，**该 Worker 的回调尚未返回**\n- Registry 状态：\n  - RUNNING: ced_r5 (cuda:0), extract_r3 (cuda:2), flatnli_r3 (cuda:3) — 三路 GRPO kl_coef=0.0 对比实验\n  - QUEUED: sft_eval_r2 (cuda:1) — 已提交但状态未转 RUNNING\n  - PREPARING: ced_kl001 — 等 cuda:1 空出后提交\n- 尚未向 Director 汇报本次失败（等诊断结果）\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 读取失败根因，update_registry 写 failure_reason/notes，向 Director 汇报（带 [资源] 行）\n- sft_eval_r2 确认在运行 → update_registry status=RUNNING；若已死 → 分析原因后重新提交\n- ced_r5/extract_r3/flatnli_r3 任一完成 cron 回调 → 按 on-experiment-done 流程处理（这三个是关键路径，预计 8-16h）\n- sft_eval_r2 完成 → 得到 SFT baseline Evi-F1 数字（MVP-2 pass criteria 的 denominator）→ 然后提交 ced_kl001 到 cuda:1\n- 三路 GRPO 全部完成 + SFT eval 完成 → MVP-2 结果判定（CED Evi-F1 > SFT Evi-F1 ≥ 2pp）\n\n### 5. 🎯 战略上下文\n- 决策链：D001(两阶段MVP) → D002(MVP-1 PASS) → D003(smoke PASS) → D004(同一台机器) → D005/D006(r1 mode collapse) → D007/D008(KL爆炸根因=kl_coef+QLoRA) → D009(保守配置) → D010(保留 kl=0 进程)\n- 核心假设：CED reward 能让 GRPO 训练的 Evi-F1 超过 SFT baseline ≥2pp，同时 F1 退化 ≤5pp\n- 当前轮（r5/r3 系列）是第一次用 kl_coef=0.0 跑完整训练，之前所有 GRPO 都在 step 5 崩溃或被 kill，**没有任何 GRPO 实验成功完成过**\n- 易错点：sft_eval 命令中 model_path/base_model 必须用绝对路径（r2 已修正为 /root/autodl-tmp/sft_output 和 /root/autodl-tmp/models/Qwen3-4B），原始 sft_eval 用了相对路径可能是问题之一\n- EXIT_CODE=129 在本项目出现两次：ced_r3（KL early stop exit path）和 sft_eval（原因待诊断 Worker 确认）。129=SIGHUP，可能是 tmux/SSH 问题而非代码 bug\n- ced_kl001 是 kl_coef=0.01 对照实验，论文价值高（回答\"kl 是否必须严格为 0\"），但非关键路径\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778778064.md"
+}

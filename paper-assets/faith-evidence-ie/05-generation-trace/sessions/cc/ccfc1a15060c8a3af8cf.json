@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccfc1a15060c8a3af8cf",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check all running progress",
+  "task_key": "worker_ops_check_all_running_progress_20260515T195558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_all_running_progress_20260515T195558_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "f91d9e5cc133da5776f0a33ecbd9ad9e92aa68c076bb707093c8fc33ac8e31cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | 实验 | PID | 进度 | 预计剩余 |\n|-----|------|-----|------|---------|\n| 0 | plan_001_flat_nli_seed43 (RSFT) | 236779 | **502/507** (99%), epoch 2.96/3, loss 0.60 | **~25s** |\n| 1 | plan_009 eval: grpo_flatnli_r3/ckpt-20 | 246982 | 1/62 batches (2%), inference | ~1h40m |\n| 1 | plan_011 eval: bf16_g8/ckpt-30 | 247244 | 1/62 batches (2%), inference | ~1h50m |\n| 2 | plan_012_dpo_ced_1ep (DPO) | 245108 | **63/167** (38%), epoch 0.36/1, loss 0.642 | **~21min** |\n| 3 | plan_008_rsft_topk3 (RSFT) | 234494 | **1006/1509** (67%), epoch 1.99/3, loss 0.50 | **~36min** |\n\n要点：\n- **plan_001** 即将完成（剩 5 步），checkpoints: 300-500\n- **plan_011** 训练已结束（PID 246041 DEAD），当前 GPU 1 跑的是两个 eval inference，刚开始\n- **plan_012** DPO 训练正常，loss 从 0.693→0.642，rewards accuracy 0.41→0.70，暂无 checkpoint\n- **plan_008** 进入 epoch 2 末尾，checkpoints: 800-1000，预计 ~36min 后完成 epoch 2 并继续 epoch 3"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-all-running-progress.md"
+}

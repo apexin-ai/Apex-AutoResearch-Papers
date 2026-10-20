@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47d9ce11a54177b49771",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval flat nli seed45",
+  "task_key": "worker_analysis_eval_flat_nli_seed45_20260516T030542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_flat_nli_seed45_20260516T030542_result.json",
+    "occurrence": 1,
+    "bytes": 1237,
+    "sha256": "64b9d8c147e22d17781149f17e3ab5d2a135995bdaa386c541e1624615640198"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n## eval_flat_nli_seed45 结果摘要\n\n### 核心指标\n\n| Metric | s42 | s44 | **s45** | Mean ± Std |\n|--------|-----|-----|---------|------------|\n| rel_f1 | 0.4539 | 0.4615 | **0.4551** | **0.4568 ± 0.0033** |\n| evi_f1 | 0.8043 | 0.8131 | **0.8154** | **0.8109 ± 0.0047** |\n| edcr | 0.6431 | 0.6458 | **0.6521** | **0.6470 ± 0.0038** |\n\n### 完整指标 (s45)\n\n| Metric | Value |\n|--------|-------|\n| rel_p / rel_r / rel_f1 | 0.4632 / 0.4472 / 0.4551 |\n| ign_f1 | 0.4551 |\n| evi_p / evi_r / evi_f1 | 0.8108 / 0.8201 / 0.8154 |\n| evi_f1_joint | 0.3556 |\n| edcr | 0.6521 |\n| predictions / tp | 15650 / 5434 |\n| format_ok | 985/985 (100%) |\n| truncated | 206/985 (20.9%) |\n| inference time | 11867.6s (~3.3h) |\n\n### 对比分析\n\n- **rel_f1**: s45 (0.4551) 比 s42 高 +0.0012，比 s44 低 -0.0064，处于中间水平\n- **evi_f1**: s45 (0.8154) 是三个 seed 中最高的\n- **edcr**: s45 (0.6521) 也是三个 seed 最高\n- **vs CED RSFT mean (~0.4596)**: flat-NLI 三 seed 均值 0.4568 略低 -0.0028，差距很小\n- 三个 seed 方差极小（rel_f1 std=0.0033），训练稳定性良好\n- 无 format error，truncation 比例 20.9% 属正常范围"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-flat-nli-seed45.md"
+}

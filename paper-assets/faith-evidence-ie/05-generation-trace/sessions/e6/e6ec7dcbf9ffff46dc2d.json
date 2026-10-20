@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6ec7dcbf9ffff46dc2d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis wave1 sft 4b s44 eval r2",
+  "task_key": "worker_analysis_wave1_sft_4b_s44_eval_r2_20260518T220104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_wave1_sft_4b_s44_eval_r2_20260518T220104_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "220a5af05bee7dd02f5238e3f057b5ac73249037d167b78c09aee1601785eba2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新（status=DONE, conclusion=success 已由 hook 设置）。\n\n## wave1_sft_4b_s44_eval_r2 结果\n\n| Metric | Value |\n|--------|-------|\n| **Ign-F1** | **0.4734** |\n| F1 | 0.4838 |\n| Ign-Precision | 0.4676 |\n| Ign-Recall | 0.4794 |\n| Evi-F1 (DREEAM/joint) | 0.3820 |\n| Evi-F1 (TP) | 0.7875 |\n| EDCR | 0.6581 |\n| Format OK | 982/985 (99.7%) |\n| Truncated | 249/985 |\n| Predictions | 16,143 |\n\n**对比 canonical 4B SFT s42 (ign_f1 ≈ 0.505)：s44 低约 3.2 个点。** seed 间波动偏大，可能与 249/985 truncation（25.3%）有关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-wave1-sft-4b-s44-eval-r2.md"
+}

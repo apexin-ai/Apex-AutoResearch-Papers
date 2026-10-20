@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46f59b61cfbf8904fa8a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose plan019 1 7b sft s43 eval completion",
+  "task_key": "worker_diagnose_plan019_1_7b_sft_s43_eval_completion_20260518T220228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan019_1_7b_sft_s43_eval_completion_20260518T220228_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "c74a86f16a28c4ac42604b31bdd74fdc4c06aa505a5c105a8b6ec1d39187d8cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果报告\n\n**plan019_1_7b_sft_s43_eval: 成功完成** ✓\n\n### 指标\n\n| 指标 | 值 |\n|---|---|\n| **Ign-F1** | **0.4286** |\n| F1 | 0.4372 |\n| Precision / Recall | 0.4704 / 0.4084 |\n| Evi-F1 (TP) | 0.8350 |\n| Evi-F1 (Joint) | 0.3442 |\n| EDCR | 0.7040 |\n| Format Compliance | 100% |\n| Field Compliance | 58.6% |\n| Truncated | 408/985 |\n| Predictions | 18,140 |\n| Inference Time | 5,257s |\n\n### 1.7B 3-Seed 汇总\n\n| Seed | Ign-F1 |\n|---|---|\n| s42 | 0.4786 |\n| **s43** | **0.4286** |\n| s44 | 0.4321 |\n| **Mean ± Std** | **0.4464 ± 0.0224** |\n\ns43 是三个 seed 中最低的，且与 s42 差距较大（0.05），标准差偏高。\n\n### GPU 状态\n\n- **cuda:0**: 空闲 (0MiB)\n- **cuda:1**: 空闲 (0MiB)\n- cuda:2: 占用 18.5GB (PID 577861)\n- cuda:3: 占用 11GB (PID 571120)\n\nRegistry 已更新为 DONE/success，cron 已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan019-1-7b-sft-s43-eval-completion.md"
+}

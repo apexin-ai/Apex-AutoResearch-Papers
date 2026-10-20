@@ -1,0 +1,453 @@
+{
+  "schema_version": "1.0",
+  "id": "de78051e890c3ae09a59",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260517T164308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_introduction_20260517T164308.jsonl",
+    "occurrence": 1,
+    "bytes": 14811,
+    "sha256": "4aba5c8782bcdc6faed5b8462d1fa12f4478f450876170880d477a05c5a52334"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T16:44:54.565285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+              "description": "Check if output directory exists"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T16:44:54.565657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiments.tex\nmethod.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T16:44:54.565864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "content": "\\section{Introduction}\n\nDocument-level relation extraction (DocRE) requires identifying semantic relations between entity pairs across multiple sentences, a task where encoder-based methods such as \\citet{zhou2021atlop} long dominated.\nRecent LLM-based approaches have closed this gap: \\citet{wan2024genres} recast DocRE as constrained generation, \\citet{xu2024lmrc} frame it as multi-choice reading comprehension, and \\citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.\nThese methods approach or surpass encoder baselines on DocRED \\citep{yao2019docred} and Re-DocRED \\citep{tan2022redocred} in extraction accuracy.\nYet every one of them outputs bare relation triplets $(e_h, r, e_t)$ without any indication of \\emph{which sentences} in the document support each prediction.\nIn deployment contexts where predictions feed into clinical knowledge bases, legal due-diligence pipelines, or financial compliance systems, end users cannot verify a prediction without manually locating its textual basis across a multi-page document.\n\nThe absence of verifiable evidence creates a practical bottleneck.\nRelation extraction outputs are consumed downstream by knowledge graph construction and human decision workflows.\nWhen a system predicts that a drug interacts with a gene, or that a contract clause implies a liability, practitioners must trace each prediction back to source text before acting on it.\nWithout machine-generated evidence, this verification requires exhaustive manual review of the input document for every predicted relation.\nEncoder-based methods have partially addressed this need: \\citet{xiao2022sais} introduce sentence-level evidence supervision as an auxiliary signal, and \\citet{ma2023dreeam} extend this with dynamic evidence retrieval through memory attention.\nBoth improve extraction quality \\emph{and} produce evidence annotations.\nHowever, encoder methods now trail LLM-based approaches in extraction accuracy, and their evidence mechanisms (binary sentence classification) do not transfer to generative architectures.\nThe community therefore faces a gap: the most accurate extractors provide no evidence, while the evidence-capable methods are no longer competitive.\n\nThis gap reflects a deeper structural difference between evidence in encoder and generative frameworks.\nIn SAIS and DREEAM, evidence retrieval is a binary classification task (does sentence $s_i$ support relation $r$?) that serves as auxiliary supervision.\nThe evidence signal \\emph{regularizes} the encoder and improves extraction.\nIn LLM-based DocRE, evidence-grounded extraction requires the model to \\emph{generate} complete evidence sentences as part of its output sequence, substantially increasing output length and decoding complexity.\nEvidence production in this setting is not an auxiliary signal but an additional generation burden that competes with the extraction objective for model capacity.\nThe fundamental asymmetry is clear: encoder evidence helps extraction; generative evidence costs extraction capacity.\nThis distinction motivates a systematic investigation of how to produce faithful evidence within LLM-based DocRE without sacrificing the extraction gains that make these models attractive.\n\nWe formalize evidence-grounded DocRE as a structured generation task for LLMs and conduct a systematic comparison of three post-training optimization paradigms: online reinforcement learning via GRPO \\citep{shao2024deepseekmath}, offline preference optimization via DPO \\citep{rafailov2023direct}, and offline reinforcement learning via Rejection Sampling Fine-Tuning (RSFT, building on STaR \\citep{zelikman2022star}).\nOur experiments across 85+ configurations, spanning four model scales (1.7B to 8B), two model families, and two datasets, reveal three principal findings.\n\\textbf{First}, we identify a \\emph{decoupling spectrum}: the strength of RL optimization pressure correlates with the severity of evidence-extraction decoupling.\nGRPO with QLoRA \\citep{hu2022lora} produces catastrophic decoupling where extraction accuracy collapses to near zero; GRPO with full-precision training shows mild decoupling; DPO exhibits gradual degradation; and RSFT maintains stable joint performance.\nQLoRA acts as a catastrophic amplifier of the underlying optimization conflict rather than its root cause.\n\\textbf{Second}, we discover a \\emph{scale-dependent evidence tax}: the cost of jointly producing evidence and relations follows a non-monotonic pattern across model scales.\nAt 1.7B parameters, evidence supervision provides an implicit regularization benefit of +8 percentage points (pp) in Rel-F1; at 4B, it imposes a $-$7.5pp penalty; at 8B, the tax approaches zero.\nThis non-linear pattern overturns the naive assumption that evidence generation uniformly harms extraction.\n\\textbf{Third}, RSFT with NLI-based Claim-Evidence Decomposition (CED) scoring emerges as the only effective optimization route.\nBy selecting high-quality training samples through output filtering rather than applying gradient-based optimization pressure, RSFT sidesteps the multi-objective competition that destabilizes RL and preference methods.\n\nOur contributions are as follows:\n\\begin{enumerate}\n    \\item We formalize \\textbf{evidence-grounded document-level relation extraction} as a generation task for LLMs, defining structured output formats that jointly produce relation triplets and their supporting evidence sentences.\n\n    \\item We characterize a \\textbf{decoupling spectrum} across optimization paradigms: RL optimization pressure correlates with evidence-extraction decoupling severity (GRPO catastrophic $\\rightarrow$ DPO gradual $\\rightarrow$ RSFT none). We introduce the EDCR diagnostic metric, which captures this relationship with method-level $\\rho = -0.965$.\n\n    \\item We identify a \\textbf{scale-dependent evidence tax}: a non-monotonic cost pattern across 1.7B, 4B, and 8B parameters that overturns the assumption that evidence production uniformly degrades extraction quality.\n\n    \\item We establish \\textbf{RSFT with NLI-based CED scoring} as an effective solution, achieving +4.92pp Ign-F1 over SFT at 4B scale. Our 1.7B RSFT model (50.50 Ign-F1) matches 8B SFT performance (50.51), enabling deployment-efficient evidence-grounded extraction at reduced computational cost.\n\n    \\item We present a \\textbf{comprehensive empirical study} spanning 85+ experiments across four model scales, two model families, two datasets (DocRED, Re-DocRED), and three optimization paradigms, providing the first systematic analysis of evidence production in generative DocRE.\n\\end{enumerate}\n"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T16:44:54.566083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T16:44:54.566264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "—",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T16:44:54.566452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T16:44:54.566586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": " – ",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T16:44:54.566713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T16:44:54.566832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing[,.]?\\s*$",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T16:44:54.566948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "28:\\textbf{First}, we identify a \\emph{decoupling spectrum}: the strength of RL optimization pressure correlates with the severity of evidence-extraction decoupling."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T16:44:54.567077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "offset": "27",
+              "limit": "3"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T16:44:54.567196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "27\tOur experiments across 85+ configurations, spanning four model scales (1.7B to 8B), two model families, and two datasets, reveal three principal findings.\n28\t\\textbf{First}, we identify a \\emph{decoupling spectrum}: the strength of RL optimization pressure correlates with the severity of evidence-extraction decoupling.\n29\tGRPO with QLoRA \\citep{hu2022lora} produces catastrophic decoupling where extraction accuracy collapses to near zero; GRPO with full-precision training shows mild decoupling; DPO exhibits gradual degradation; and RSFT maintains stable joint performance."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T16:44:54.567355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Furthermore|Moreover|Additionally",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T16:44:54.567470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T16:44:54.567579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "delve|leverage|utilize|myriad|plethora",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T16:44:54.567687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T16:44:54.567804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T16:44:54.567914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T16:44:54.568036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "introduction.tex",
+              "type": "paper",
+              "description": "Introduction section for EMNLP 2026 paper \"Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction\"",
+              "project": "faith-evidence-ie",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "tags": "['paper', 'introduction', 'emnlp2026']"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T16:44:54.568176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260517_0dbdd7\\\", \\\"name\\\": \\\"introduction.tex\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Introduction section for EMNLP 2026 paper \\\\\\\"Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction\\\\\\\"\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/_project/paper/introduction.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-17T16:44:41.685535+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"introduction\\\", \\\"emnlp2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T16:44:54.568365+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已写入 `docs/paper/sections/introduction.tex`，约 1200 words，5 段结构：\n\n1. **P1** — LLM DocRE 进展但无证据：GenRES/LMRC/DocKS-RAG 逼近 encoder SOTA，但只输出裸三元组，部署场景无法验证\n2. **P2** — 可验证证据的必要性：RE 输出进入 KG 和决策流程，encoder 方法 (SAIS/DREEAM) 有证据但精度已落后\n3. **P3** — Encoder retrieval ≠ generative production：encoder 证据是辅助信号（helps extraction），生成式证据是额外负担（costs capacity）\n4. **P4** — 核心发现：decoupling spectrum、scale-dependent evidence tax、RSFT+CED 方案\n5. **P5** — 5 条贡献列表（enumerate 格式）\n\n风格检查通过：无 em-dash、无解释性 en-dash、无 -ing 短语结尾、无连续过渡词、无黑名单用词。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260517T164308"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-introduction.md"
+}

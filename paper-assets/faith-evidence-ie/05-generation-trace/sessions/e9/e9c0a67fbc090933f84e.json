@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e9c0a67fbc090933f84e",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "submit 14b sft and fix d112 scripts",
+  "task_key": "worker_submit_14b_sft_and_fix_d112_scripts_20260519T040209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_14b_sft_and_fix_d112_scripts_20260519T040209.log",
+    "occurrence": 1,
+    "bytes": 661641,
+    "sha256": "8de953185a5fbb40d6f186b8fd6da0b172cd136abaedbf6d66ef28d797129ab2"
+  },
+  "statistics": {
+    "messages": 280,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 280,
+      "chunks": [
+        {
+          "path": "e9c0a67fbc090933f84e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e9c0a67fbc090933f84e-part-0002.json",
+          "message_count": 100
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/submit-14b-sft-and-fix-d112-scripts.md"
+}

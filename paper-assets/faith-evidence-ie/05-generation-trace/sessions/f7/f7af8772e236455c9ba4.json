@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7af8772e236455c9ba4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research llama grpo qlora compat",
+  "task_key": "worker_research_llama_grpo_qlora_compat_20260516T124128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_llama_grpo_qlora_compat_20260516T124128_result.json",
+    "occurrence": 1,
+    "bytes": 2416,
+    "sha256": "679422a27f6c78e49bde14fc9d5de0d72e1f8d97091f0df21a5bd777f5136943"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息已足够。汇报如下：\n\n---\n\n## 验证结果\n\n### 1. `_apply_chat_template` — 已兼容 LLaMA\n\n```python\ndef _apply_chat_template(tokenizer, messages, **kwargs):\n    tmpl = getattr(tokenizer, 'chat_template', None) or ''\n    if 'enable_thinking' not in tmpl:\n        kwargs.pop('enable_thinking', None)\n    return tokenizer.apply_chat_template(messages, **kwargs)\n```\n\n该函数只处理 Qwen3 的 `enable_thinking` 参数兼容问题。LLaMA tokenizer 自带 `chat_template`，`apply_chat_template` 直接可用，**无需适配**。\n\n### 2. QLoRA 4-bit 配置 — 已存在且完整\n\n- 默认启用（`--quantize` 默认 True，`--no_quantize` 禁用）\n- BitsAndBytesConfig: `load_in_4bit=True`, `nf4`, `double_quant`, `bf16 compute`\n- `device_map = {\"\": local_rank}` — 单卡绑定，符合 C002/C003 约束\n\n### 3. LoRA 配置 — target modules 兼容 LLaMA\n\n```python\ntarget_modules=[\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\", \"gate_proj\", \"up_proj\", \"down_proj\"]\n```\n\n这些 module 名在 LLaMA-3.1 架构中完全一致，**无需修改**。默认 `lora_rank=64`。\n\n### 4. 显存估算 — 32GB 可 fit\n\n| 组件 | 估算 |\n|------|------|\n| LLaMA-3.1-8B 4-bit weights | ~5 GB |\n| LoRA adapters (r=64, 7 modules) | ~0.5 GB |\n| Optimizer states (AdamW on LoRA params) | ~1 GB |\n| G=4 generations × 1024 tokens KV cache | ~8-10 GB |\n| Activations + gradients (batch=1) | ~4-6 GB |\n| **总计** | **~19-23 GB** |\n\nRTX 5090 32GB 有 ~9-13GB 余量，**可行**。但如果 `max_length=4096` 的长 prompt 导致 KV cache 增大，余量会缩小到 ~5GB。建议保持 `per_device_batch_size=1`。\n\n### 5. LLaMA base model — 已存在\n\n`/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/config.json` ✓\n\n### 6. 需要的适配\n\n**零适配**。直接传参即可运行：\n\n```bash\nCUDA_VISIBLE_DEVICES=X python -m freige.training.grpo_trainer \\\n  --model_name /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B \\\n  --stage 1 --num_generations 4 --lora_rank 64 \\\n  --per_device_batch_size 1 --gradient_accumulation_steps 16 \\\n  --max_length 4096 --max_new_tokens 1024\n```\n\n脚本对模型架构无硬编码假设，LoRA target modules 与 LLaMA-3.1 一致，chat template 通过 tokenizer 自带处理。唯一注意点：如果有 LLaMA SFT adapter 需要加载，传 `--sft_adapter` 路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-llama-grpo-qlora-compat.md"
+}

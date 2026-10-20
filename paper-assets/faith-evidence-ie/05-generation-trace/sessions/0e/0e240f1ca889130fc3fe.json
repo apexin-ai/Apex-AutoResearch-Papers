@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "0e240f1ca889130fc3fe",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose 1 7b rsft failures",
+  "task_key": "worker_diagnose_1_7b_rsft_failures_20260519T035424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_1_7b_rsft_failures_20260519T035424_result.json",
+    "occurrence": 1,
+    "bytes": 3046,
+    "sha256": "ff1624120e7d08de23717451d04cf4fd7b7b2164ea1a447b2cb676772ab243e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有验证通过。GPU 1 和 GPU 2 空闲，可以并行提交两个训练。\n\n```json\n{\n  \"root_cause\": \"两个独立问题：(1) RSFT 脚本的 --sft_adapter 路径都指向 s42 的 SFT adapter (/root/autodl-tmp/sft_output_qwen3_1_7b_bf16)，而非各自的 seed-specific adapter (seed43/seed44)。训练实际完成但结果科学上无效。(2) 监控误报：WANDB_API_KEY 未设置导致 W&B 未上报，rsft_trainer.py 也无 sentinel file，监控系统检测到进程结束但无成功标志，自动标记失败。\",\n  \"error_type\": \"data\",\n  \"fix_applied\": \"修正 train_1_7b_s43.sh 的 --sft_adapter 为 sft_output_qwen3_1_7b_bf16_seed43，train_1_7b_s44.sh 的 --sft_adapter 为 sft_output_qwen3_1_7b_bf16_seed44。删除了无效输出目录。\",\n  \"fix_steps\": [\n    \"sed 修复 s43 脚本 sft_adapter 路径 → sft_output_qwen3_1_7b_bf16_seed43\",\n    \"sed 修复 s44 脚本 sft_adapter 路径 → sft_output_qwen3_1_7b_bf16_seed44\",\n    \"rm -rf 删除两个无效输出目录\",\n    \"dry-run 验证 import 正常\",\n    \"确认两个 seed-specific SFT adapter 文件完整（278MB）\",\n    \"确认 RSFT 训练数据存在（3021 行）\"\n  ],\n  \"ready_to_resubmit\": true,\n  \"resubmit_commands\": {\n    \"s43\": \"CUDA_VISIBLE_DEVICES=1 bash /root/autodl-tmp/freige/scripts/seed_expansion/train_1_7b_s43.sh\",\n    \"s44\": \"CUDA_VISIBLE_DEVICES=2 bash /root/autodl-tmp/freige/scripts/seed_expansion/train_1_7b_s44.sh\"\n  },\n  \"gpu_status\": \"GPU 1 (0 MiB used), GPU 2 (0 MiB used) 均空闲可用\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "两个独立问题：(1) RSFT 脚本的 --sft_adapter 路径都指向 s42 的 SFT adapter (/root/autodl-tmp/sft_output_qwen3_1_7b_bf16)，而非各自的 seed-specific adapter (seed43/seed44)。训练实际完成但结果科学上无效。(2) 监控误报：WANDB_API_KEY 未设置导致 W&B 未上报，rsft_trainer.py 也无 sentinel file，监控系统检测到进程结束但无成功标志，自动标记失败。",
+              "error_type": "data",
+              "fix_applied": "修正 train_1_7b_s43.sh 的 --sft_adapter 为 sft_output_qwen3_1_7b_bf16_seed43，train_1_7b_s44.sh 的 --sft_adapter 为 sft_output_qwen3_1_7b_bf16_seed44。删除了无效输出目录。",
+              "fix_steps": [
+                "sed 修复 s43 脚本 sft_adapter 路径 → sft_output_qwen3_1_7b_bf16_seed43",
+                "sed 修复 s44 脚本 sft_adapter 路径 → sft_output_qwen3_1_7b_bf16_seed44",
+                "rm -rf 删除两个无效输出目录",
+                "dry-run 验证 import 正常",
+                "确认两个 seed-specific SFT adapter 文件完整（278MB）",
+                "确认 RSFT 训练数据存在（3021 行）"
+              ],
+              "ready_to_resubmit": true,
+              "resubmit_commands": {
+                "s43": "CUDA_VISIBLE_DEVICES=1 bash /root/autodl-tmp/freige/scripts/seed_expansion/train_1_7b_s43.sh",
+                "s44": "CUDA_VISIBLE_DEVICES=2 bash /root/autodl-tmp/freige/scripts/seed_expansion/train_1_7b_s44.sh"
+              },
+              "gpu_status": "GPU 1 (0 MiB used), GPU 2 (0 MiB used) 均空闲可用"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-1-7b-rsft-failures.md"
+}

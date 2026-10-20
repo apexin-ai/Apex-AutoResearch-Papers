@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46b5881b5a2d0768704b",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_11_1778908839.md",
+  "task_key": "loop_11_1778908839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778908839.md",
+    "occurrence": 1,
+    "bytes": 4971,
+    "sha256": "ac42a26255d8a3c7927a08441dc9f583a39c59acbe8a853e81adadb630fbd270"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T05:17:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **cuda:0/1/2/3** on **rtx5090-4x** only。bjb2-12179 是备用服务器，未分配 GPU\n- **cuda:0 当前双进程违规**（reeval_ced_s44 PID 297190 + reeval_flat_nli_s42 PID 296732）——这是上一 session 的已知错误（memory.md C001），不要再犯。提交前必须 nvidia-smi 确认目标 GPU 显存 < 2GB\n- **cwd 必须是 `/root/autodl-tmp`**，不是 `/root/autodl-tmp/freige`。命令里 `cd /root/autodl-tmp && python freige/...`\n- RSFT checkpoint 路径有三代命名不一致，**必须查 memory.md 映射表**，不要猜（陷阱：`rsft_output_r2b/` 是旧实验不是 CED s42）\n- Eval 命令必须用 D076 统一协议：`batch_size=4, max_new_tokens=1024, --no-quantize, --sft_adapter`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），account=root\n- **工作目录**: `/root/autodl-tmp`（代码在 `/root/autodl-tmp/freige`）\n- **Python**: conda base (`/root/miniconda3/bin/python`)，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: `/root/autodl-tmp/rsft_output*/checkpoint-510`（CED）/ `checkpoint-507`（flat-NLI），底座 Qwen3-4B\n- **数据集**: DocRED, `/root/autodl-tmp/` 下\n- **关键脚本**: `/root/autodl-tmp/scripts/seed_comparison.py`, `artifacts/paired_ttest_analysis.py`\n- **活跃进程**:\n  - reeval_flat_nli_s43_r2: PID 291003, cuda:3, cron 活跃\n  - reeval_ced_s44: PID 297190, cuda:0, cron 活跃\n  - reeval_ced_s42: PID 298018, cuda:2, cron 活跃\n  - reeval_flat_nli_s42: PID 296732, cuda:0（与 ced_s44 共 GPU）, cron 活跃\n- **cuda:1 空闲**——这是失职，应该跑东西\n\n### 3. 📊 当前状态\n上一 session 核心工作：D076 eval 协议审计发现旧 eval 混用 batch_size/max_new_tokens，提交了 4 个 re-eval 实验统一协议。同时修复了 Ign-F1 bug（evaluator.py `_triple_key` 含 doc_id 导致 Ign 过滤无效），32 个历史实验已 recompute metrics_v2.json。\n\n**Registry 快照**:\n- **RUNNING (4)**: reeval_flat_nli_s43_r2, reeval_ced_s42, reeval_ced_s44, reeval_flat_nli_s42 — 全部是 D076 协议统一重跑\n- **ANALYZING (1)**: eval_rsft_ced_s43 — Worker `worker_analysis_eval_rsft_ced_s43` 正在分析（started 05:15）\n- **PREPARING (1)**: seed_comparison_prep — 等 re-eval 全部完成后跑 paired t-test\n- **DONE**: 101 个（success 47, negative 13, failed 19, killed 22）\n\n**等待中**:\n- 4 个 re-eval cron 回调（进程存活已确认）\n- eval_rsft_ced_s43 Worker 回调\n- Director 无 pending 决策\n\n### 4. 📋 待办（条件触发式）\n- eval_rsft_ced_s43 Worker 回调到达 → 更新 registry metrics，确认 CED s43 数据点完整\n- 任一 re-eval cron 回调（DONE）→ spawn Worker 分析 metrics_v2.json，更新 registry，检查是否全部 4 个 re-eval 完成\n- **4 个 re-eval 全部完成** → spawn Worker 跑 `seed_comparison.py` 做 paired t-test（CED vs flat-NLI），这是 Claim 3 统计显著性的关键路径。结果决定 CED 是独立贡献还是降级为 \"one possible scoring function\"\n- cuda:1 空闲 → 应立即安排任务。优先级：(1) CED s43 RSFT 训练（已失败 3 次，需诊断根因再重试）(2) plan_003 EDCR diagnostic (3) plan_002 test eval\n- re-eval + t-test 全部收齐 → 向 Director 汇报完整 seed comparison 结果 + Claim 3 定性结论 + 建议是否需要 re-Dream v3\n- 如果 paired t-test CED vs flat-NLI **不显著** → 按 red-section 产 Framing 调整提案（Claim 3 降级），不默默跑下一个\n- 如果**显著** → 推进 plan_002 test set eval + paper writing\n\n### 5. 🎯 战略上下文\n**项目**: FREIGE — evidence-grounded DocRE。目标 EMNLP 2026 Main（ARR July, ~7月15-25），剩 ~2 个月。\n\n**核心结论链**:\n- D054/D065/D066: QLoRA 是 catastrophic amplifier，decoupling 是 RL-for-IE 通用梯度\n- D068/D069: 从 \"GRPO fails\" 修正为 \"RL pressure ∝ decoupling severity\" spectrum\n- D070/D072: EDCR 双层诊断（方法级 + per-relation），Claim 4 升级\n- D076: eval 协议不一致，4 个数据点需重跑（正在进行）\n- 文献差异化确认（116 篇）：三个核心贡献无直接竞争者\n\n**易错点**:\n- rsft_ced_s43_train 已失败 3 次（r1 失败, r2 被误 kill, r3 失败），根因未彻底诊断。不要盲目重试，先查 r3 失败日志\n- CED 目前只有 3 个完整 seed（s42/s44/s45 + s43 在 ANALYZING），flat-NLI 有 4 个（s42-s45）。paired t-test 需要 matched pairs，如果 s43 分析失败则只有 3 对\n- report.md auto-facts 显示 cuda:1 空闲但 ROADMAP 里 cuda:1 标的是 reeval_flat_nli_s43（已完成/重跑为 r2 在 cuda:3）——ROADMAP GPU 分配表已过时，以 cron reconcile 为准\n- Ign-F1 bug 已修复，但论文主表数值需全部用 metrics_v2.json 更新，旧 metrics.json 的 ign_f1 全等于 f1（无效）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778908839.md"
+}

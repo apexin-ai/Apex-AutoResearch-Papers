@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f948793297413459f667",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "emergency rsync sft adapters",
+  "task_key": "worker_emergency_rsync-sft-adapters_20260520T162342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_rsync-sft-adapters_20260520T162342_result.json",
+    "occurrence": 1,
+    "bytes": 1250,
+    "sha256": "c4cb0980b4ca19bd8204439319afb729a1551f29977cb4e4f6952cb7616df591"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态汇报：\n\n**1. RSFT 是否依赖 SFT adapter：是，nested LoRA。**\n- `inference.py:90-92`：先用 `PeftModel.from_pretrained()` 加载 SFT adapter 并 merge 到 base model，然后再加载 RSFT adapter\n- `inference.py:418-424`：代码会检测如果是 RSFT adapter 但没传 `--sft_adapter` 则报错，明确说 \"RSFT/DPO/GRPO adapters are trained on SFT-merged model and MUST be evaluated with --sft_adapter\"\n- 结论：eval 时 `--sft_adapter` 参数必须指向对应的 SFT adapter 目录\n\n**2. rsync 传输状态：**\n- 4 个并行 rsync 已启动（PID 37381-37384），全部活跃\n- 当前进度（~2 分钟后）：每个 50-56MB / 4.6GB\n- 速度约 ~30MB/min/stream（5 个 rsync 共享跨区带宽）\n- 预计总时间：**2-3 小时**（远超预期的 5-15 分钟，因为跨 AutoDL 区域带宽有限且 5 路并行竞争）\n- 日志：`/tmp/rsync_sft_{bf16,s43,s44,noevi}.log`\n\n**3. 尚未完成。** rsync 在后台 nohup 运行，不会因 SSH 断开而中断。可稍后用以下命令验证：\n```bash\ndu -sh /root/autodl-tmp/sft_output_qwen3_8b_*/\nls /root/autodl-tmp/sft_output_qwen3_8b_*/adapter_model.safetensors\n```\n\n需要我继续定期轮询进度直到完成吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-rsync-sft-adapters.md"
+}

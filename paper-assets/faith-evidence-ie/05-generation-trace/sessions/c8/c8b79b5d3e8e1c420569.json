@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "c8b79b5d3e8e1c420569",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "code batch eval script",
+  "task_key": "worker_code_batch-eval-script_20260514T150051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_batch-eval-script_20260514T150051.log",
+    "occurrence": 1,
+    "bytes": 578335,
+    "sha256": "0936f11502ed3ab68e25c7041b124799956a42ae44436d0d23ae8b8cd136ec91"
+  },
+  "statistics": {
+    "messages": 322,
+    "user_turns": 2,
+    "tool_calls": 105,
+    "roles": {
+      "log": 1,
+      "system": 89,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 105,
+      "user": 2,
+      "tool_result": 105,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 1
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "c8b79b5d3e8e1c420569-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "c8b79b5d3e8e1c420569-part-0001.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 294,
+      "chunks": [
+        {
+          "path": "c8b79b5d3e8e1c420569-part-0001.json",
+          "message_count": 152
+        },
+        {
+          "path": "c8b79b5d3e8e1c420569-part-0002.json",
+          "message_count": 142
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-batch-eval-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b43ac73bc62555a52a6c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnosis dpo 3ep eval progress 2",
+  "task_key": "worker_diagnosis_dpo-3ep-eval-progress-2_20260523T132708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_dpo-3ep-eval-progress-2_20260523T132708_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "0667d74fdebca32d1adcec3cd54e54b0e5ac1f0996443be69597703a3ee46250"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前进度：**237/247 batches (95.9%)**，已运行 3h44m。\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | 237/247 (95.9%) |\n| 剩余 | 10 batches |\n| 平均速度 | ~60s/batch |\n| 预计完成 | ~10 分钟后 |\n| GPU (cuda:2) | 12309 MiB / 97887 MiB, 73% util |\n\nGPU 状态：\n- cuda:0, cuda:1: 空闲\n- cuda:2: 12.3GB (DPO 3ep eval)\n- cuda:3: 12.7GB (另一任务)\n\n推理接近完成，约 10 分钟后会写出 predictions.jsonl。完成后需运行 batch_eval 计算 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-dpo-3ep-eval-progress-2.md"
+}

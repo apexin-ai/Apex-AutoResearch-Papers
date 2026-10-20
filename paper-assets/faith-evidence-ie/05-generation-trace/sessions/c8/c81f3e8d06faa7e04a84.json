@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "c81f3e8d06faa7e04a84",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research plan002 prep",
+  "task_key": "worker_research_plan002-prep_20260516T052646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan002-prep_20260516T052646_result.json",
+    "occurrence": 1,
+    "bytes": 2808,
+    "sha256": "8c30c0f8163a0bdcedd8a2c09c2b9ef7352340173fb9d58cd0e2d54fae4ed7ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n---\n\n## Test Set Eval 就绪状态报告\n\n### 数据\n- **test.json 存在**: `/root/autodl-tmp/data/docred/test.json` (3.5MB, 1000 docs)\n- **问题**: test.json 只有 `vertexSet` / `sents` / `title`，**没有 `labels` 字段** — DocRED test set 标注不公开\n\n### Checkpoints (全部存在)\n| 配置 | 路径 | 状态 |\n|------|------|------|\n| RSFT-CED s44 | `/root/autodl-tmp/rsft_output_s44/checkpoint-510` | ✅ |\n| RSFT-flat-NLI s44 | `/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507` | ✅ |\n| SFT baseline | `/root/autodl-tmp/sft_output` | ✅ |\n\n### 代码\n- `inference.py` 有 `--split test` 参数 (choices=[\"dev\", \"test\"])\n- **无 CodaLab 提交脚本**\n\n### 之前的失败 (test_rsft_s44)\n日志清楚显示根因：`Processed 0 relation samples from 1000 documents`。因为 `prepare_eval_data()` → `processor.process(\"test\")` 遍历 `doc.get(\"labels\", [])` 构建样本，test.json 无 labels 所以 0 样本 → 全 0 指标。\n\n### 🚨 Blocker: 需要代码改造\n\n当前 inference pipeline **无法处理 test set**。原因链：\n1. `DocREDProcessor.process()` 从 `labels` 字段提取 (head, tail, relation, evidence) 来构建 prompt\n2. test.json 没有 labels → 0 样本\n3. 即使生成了预测，也无法本地计算 F1 — 需要提交 CodaLab\n\n**需要的改造：**\n\n1. **新增 test 模式的 prompt 构造**：不依赖 labels，而是枚举文档中所有 entity pairs，让模型自由预测 relations。类似于：给模型完整文档 + 所有 entities，输出所有发现的关系三元组\n2. **CodaLab 提交格式生成**：DocRED CodaLab 要求特定的 JSON 格式：\n   ```json\n   {\n     \"Miguel Riofrío\": [\n       {\"h_idx\": 0, \"t_idx\": 3, \"r\": \"P27\", \"evidence\": [0, 1]}\n     ]\n   }\n   ```\n   需要将模型输出 (entity name → relation name) 映射回 (entity index → relation P-code)\n\n3. **评估方式选择**：\n   - **方案 A (CodaLab)**: 提交到 https://codalab.lisn.upsaclay.fr/competitions/365 获取官方 F1/Ign-F1\n   - **方案 B (Re-DocRED test)**: 下载 Re-DocRED 版本的 test set（有标注），可本地评估。但 Re-DocRED 和 DocRED 标注不完全一致\n\n### 草拟方案\n\n最务实的路径是修改 `prepare_eval_data` 添加 test 模式——不依赖 labels，直接为每个文档构造一个 \"抽取所有关系\" 的 prompt，然后写一个 `format_codalab_submission()` 函数将输出转为 CodaLab 格式。改动量大约 100-150 行。\n\n需要你决定：走 CodaLab 提交，还是用 Re-DocRED test set 本地评估？"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "Miguel Riofrío": [
+                {
+                  "h_idx": 0,
+                  "t_idx": 3,
+                  "r": "P27",
+                  "evidence": [
+                    0,
+                    1
+                  ]
+                }
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan002-prep.md"
+}

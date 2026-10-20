@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca9e660bd36cdd1fa338",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code d102 8b refilter",
+  "task_key": "worker_code_d102_8b_refilter_20260518T053346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d102_8b_refilter_20260518T053346_result.json",
+    "occurrence": 1,
+    "bytes": 2800,
+    "sha256": "2f4a2dbfec9ec9999f0617f49e6a3f8d27103c2df2c21605028907914c006c0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n---\n\n### 8B CED scores 文件\n`/root/autodl-tmp/rsft_scored_qwen3_8b/rsft_scores.jsonl` — 24216 条 scored records, 3027 unique docs\n\n### Re-filter k=1 结果\n- **输出路径**: `/root/autodl-tmp/rsft_scored_qwen3_8b_k1/rsft_train.jsonl`\n- **样本数**: 3018（每 doc 取 combined_score 最高的 1 条）\n- **对比 k=3**: 9041 → 3018（质量更高，combined_score 均值 0.7609 vs 0.7322）\n- 格式与 k=3 版本完全一致，已验证\n\n### 4B Canonical RSFT 训练超参\n| 参数 | 4B 值 | 8B k=3 值 |\n|---|---|---|\n| learning_rate | 2e-5 | 2e-5 |\n| num_epochs | 3 | 3 |\n| per_device_batch_size | 4 | 1 |\n| gradient_accumulation_steps | 4 | 8 |\n| warmup_steps | 100 | 100 |\n| seed | 42 | 42 |\n| LoRA rank/alpha | 64/128 | 64/128 |\n| LoRA dropout | 0.05 | 0.05 |\n| bf16 | True | True |\n| save_steps | 50 | 50 |\n| max_length | 2048 | 2048 |\n\n### 推荐 8B k=1 训练命令\n\n**Seed 42:**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=X HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -m freige.training.rsft_trainer \\\n  --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B \\\n  --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 \\\n  --rsft_data_path /root/autodl-tmp/rsft_scored_qwen3_8b_k1/rsft_train.jsonl \\\n  --output_dir /root/autodl-tmp/rsft_output_qwen3_8b_k1 \\\n  --learning_rate 2e-5 \\\n  --num_epochs 3 \\\n  --per_device_batch_size 1 \\\n  --gradient_accumulation_steps 8 \\\n  --warmup_steps 100 \\\n  --save_steps 50 \\\n  --max_length 2048 \\\n  --seed 42 \\\n  --lora_rank 64 \\\n  --lora_alpha 128 \\\n  --bf16 \\\n  --wandb_project freige-rsft \\\n  --wandb_run_name rsft_qwen3_8b_k1_s42\n```\n\n**Seed 43:** (仅改 seed 和 output_dir/run_name)\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=X HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -m freige.training.rsft_trainer \\\n  --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B \\\n  --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 \\\n  --rsft_data_path /root/autodl-tmp/rsft_scored_qwen3_8b_k1/rsft_train.jsonl \\\n  --output_dir /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 \\\n  --learning_rate 2e-5 \\\n  --num_epochs 3 \\\n  --per_device_batch_size 1 \\\n  --gradient_accumulation_steps 8 \\\n  --warmup_steps 100 \\\n  --save_steps 50 \\\n  --max_length 2048 \\\n  --seed 43 \\\n  --lora_rank 64 \\\n  --lora_alpha 128 \\\n  --bf16 \\\n  --wandb_project freige-rsft \\\n  --wandb_run_name rsft_qwen3_8b_k1_s43\n```\n\n提交前需替换 `CUDA_VISIBLE_DEVICES=X` 为实际空闲 GPU，并按 C001 先 `nvidia-smi` 确认显存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d102-8b-refilter.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f7fc096f86d582ae146",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis ced kl001 r4 health recheck",
+  "task_key": "worker_analysis_ced-kl001-r4-health-recheck_20260514T163407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ced-kl001-r4-health-recheck_20260514T163407_result.json",
+    "occurrence": 1,
+    "bytes": 1878,
+    "sha256": "07bb64eac2e627277f65c67d89e9fb52ef83f9cafc150e7558dcb32fa9c580ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## mvp2_grpo_ced_kl001_r4 — Step 45/100, 健康\n\n**进程**: PID 68084 存活，运行 1h02m\n\n### 关键指标（最近 4 个 step）\n\n| 指标 | step ~42 | step ~43 | step ~44 | step 45 | 判断 |\n|------|----------|----------|----------|---------|------|\n| **kl** | 0.181 | 0.115 | 0.125 | **0.098** | 远低于 5，完全健康 |\n| **grad_norm** | — | 0.357 | 0.242 | **0.158** | 策略稳定更新 |\n| **f1_reward** | 0.028 | 0.089 | 0.082 | **0.240** | 稳步上升 |\n| **ced_reward** | 0.015 | 0.058 | 0.120 | **0.236** | 与 f1 同步上升，无 hacking |\n| **format_reward** | 0.296 | 0.300 | 0.293 | **0.220** | 略降（长输出格式变难） |\n| **reward** | 0.339 | 0.447 | 0.494 | **0.695** | 总 reward 翻倍 |\n| **reward_std** | 0.186 | 0.280 | 0.370 | **0.617** | 生成多样性大幅提升 |\n| **frac_zero_std** | 0.7 | 0.6 | 0.4 | **0.0** | 所有 batch 都有方差，GRPO advantage 全部有效 |\n\n### 核心判断\n\n- **KL 稳定**: 0.1 量级，kl_coef=0.01 完美控制住了（对比 kl_coef=0.05 在 step 5 爆到 10^8）\n- **无 reward hacking**: f1=0.240, ced=0.236 几乎同步，说明 CED 信号和 F1 一致\n- **frac_zero_std 从 0.7→0.0**: 模型已完全摆脱 mode collapse，每个 batch 都有多样性\n- **completions 变长**: 176→583 tokens，clipped_ratio=0.2 开始出现截断\n- **step_time**: 37s→105s（因输出变长），预计还需 ~1.5h 完成\n\n### 其他任务\n\n- **sft_eval_r3** (PID 62352): 存活，运行 1h41m\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 | 用途 |\n|-----|---------|--------|------|\n| 0 | 13649 MiB | 63% | GRPO 训练 |\n| 1 | 10303 MiB | 70% | sft_eval_r3 |\n| 2 | 0 MiB | 0% | 空闲 |\n| 3 | 15087 MiB | 57% | GRPO generation/NLI |\n\n**结论**: 实验非常健康，所有指标趋势正确。建议不干预，等跑完 100 step。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ced-kl001-r4-health-recheck.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10d5a8b468e9a083b252",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check rsft diversity",
+  "task_key": "worker_check_rsft-diversity_20260515T010435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_rsft-diversity_20260515T010435_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "05c4cc345ba3b313bdeae360d94af3a3f27daf8a076a3892971a21f7b2d7b3a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 整体统计\n| 指标 | 值 |\n|------|-----|\n| 总文档数 | 208 |\n| 总生成数 | 1664 (每文档恰好 8 个) |\n| **平均 unique ratio** | **0.985** |\n| 中位数 unique ratio | 1.000 |\n| 100% unique 的文档 | 196/208 (94.2%) |\n| 低多样性 (<50% unique) | 仅 2/208 |\n\n### 采样细节\n- AirAsia Zest: 8 gen → 5 unique (前 200 字符截断比较；完整输出大概率更不同)\n- Niklas Bergqvist: 8 gen → 4 unique (同上)\n- Pacific Fair: 8 gen → 7 unique\n\n### 日志中 \"0.9/8\" 的含义\n日志报告的 `mean_diversity: 0.9/8` 表示平均多样性比率约 0.9（即约 7.2/8 unique），与实际统计一致。\n\n### 结论\n**RSFT 数据多样性完全可行。** 94% 的文档 8 个生成全部不同，平均 unique 比率 98.5%。仅 2 个文档出现低多样性。T=0.7 的温度设置产生了足够差异化的输出，RSFT 方向没有多样性瓶颈。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-rsft-diversity.md"
+}

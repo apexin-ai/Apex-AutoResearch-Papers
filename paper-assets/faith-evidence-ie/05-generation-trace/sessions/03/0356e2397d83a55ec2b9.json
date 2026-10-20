@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0356e2397d83a55ec2b9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval plan 002 test eval s44",
+  "task_key": "worker_eval_plan_002_test_eval_s44_20260515T180503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_002_test_eval_s44_20260515T180503_result.json",
+    "occurrence": 1,
+    "bytes": 477,
+    "sha256": "84a9d0755fd3414ed63e15abc57b7da305d613466053a7fec80a2c2ff57363d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并运行中。\n\n**汇总：**\n- **exp_id**: `plan_002_test_eval_s44`\n- **tmux session**: `plan_002_test_eval_s44`\n- **GPU**: cuda:0 (RTX 5090, 32GB)\n- **数据**: DocRED test set, 1000 篇文档\n- **模型**: Qwen3-4B → SFT adapter → RSFT s44 adapter（三层 stack 已确认加载）\n- **输出**: `/root/autodl-tmp/eval_results/test_rsft_s44`\n- **日志**: `/root/autodl-tmp/eval_results/test_rsft_s44.log`\n- **Registry**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-002-test-eval-s44.md"
+}

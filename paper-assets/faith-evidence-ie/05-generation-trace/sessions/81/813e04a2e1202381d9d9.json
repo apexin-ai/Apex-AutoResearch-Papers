@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "813e04a2e1202381d9d9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "bugfix ign f1 evaluator",
+  "task_key": "worker_bugfix_ign_f1_evaluator_20260515T235133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_ign_f1_evaluator_20260515T235133_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "f3ab10e185d07452d99325bf66dd892671b4d9a2cfb839317c5139a8668a50e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n### 修复内容\n**evaluator.py** (`/root/autodl-tmp/freige/eval/evaluator.py`)：\n- `__init__` 新增 `train_facts: set[tuple]` 参数\n- `from_train_file` 额外构建 `train_facts`——key 为 `(head, tail, relation)` 不含 `doc_id`\n- `compute_f1` 的 Ign 过滤改为 `k[1:] not in self.train_facts`（按事实过滤，而非按文档级 triple 过滤）\n\n### 重算结果（32 个实验）\n\n| 指标 | 结果 |\n|------|------|\n| train_facts | 34,610 个唯一事实 |\n| F1 匹配 | 28/32 完全匹配，4 个低分实验有 < 0.003 偏差 |\n| Ign-F1 < F1 | 15/32 实验（过滤生效） |\n| 典型 delta | sft_no_evidence: -0.016, rsft 系列: -0.008~-0.010, dpo_ced_1ep_fixed: -0.015 |\n\n所有 `metrics_v2.json` 已保存到各实验目录，原 `metrics.json` 未覆盖。备份在 `evaluator.py.bak`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-ign-f1-evaluator.md"
+}

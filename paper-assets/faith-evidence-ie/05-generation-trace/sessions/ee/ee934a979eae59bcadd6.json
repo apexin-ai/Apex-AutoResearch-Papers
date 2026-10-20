@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee934a979eae59bcadd6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code 14b rsft eval launch",
+  "task_key": "worker_code_14b-rsft-eval-launch_20260520T205016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-rsft-eval-launch_20260520T205016_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "188ed104d04ce608088f3a8127fa0bc1f8bf3fe94a16777e607340d999ea5c33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14B RSFT eval 已启动。\n\n| 项目 | 值 |\n|---|---|\n| **PID** | 53413 (python), 53407 (bash wrapper) |\n| **GPU** | cuda:0, 32503 MiB / 97887 MiB |\n| **进度** | 985 docs, ~5s/doc |\n| **预估完成** | ~82 min (~1.4h) |\n| **输出目录** | `/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval/` |\n| **日志** | `/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval.log` |\n| **Registry** | `plan017_14b_rsft_eval` → RUNNING |\n\nNested LoRA 加载确认：base(Qwen3-14B) → merge SFT(checkpoint-144) → load RSFT adapter。与 4B/8B 流程一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-14b-rsft-eval-launch.md"
+}

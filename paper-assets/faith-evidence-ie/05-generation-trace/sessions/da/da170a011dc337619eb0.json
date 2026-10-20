@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da170a011dc337619eb0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops finalize llama sft eval",
+  "task_key": "worker_ops_finalize_llama_sft_eval_20260516T141912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_finalize_llama_sft_eval_20260516T141912_result.json",
+    "occurrence": 1,
+    "bytes": 330,
+    "sha256": "7b940106538ef09f88040f1a25ea52aaa78c6787b6963ae2c56a9bee20f27dc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完成。`plan_016_llama_3_1_8b_sft_eval` 状态已是 DONE（之前已被标记），metrics、checkpoint_path、log_path 均已写入。\n\n最终结果摘要：LLaMA-3.1-8B SFT (with evidence) → Ign-F1 **53.84**, Evi-F1 **81.51**, EDCR **62.80**, format compliance 99.5%, 197/985 truncated。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-finalize-llama-sft-eval.md"
+}

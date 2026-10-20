@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d19d6be0faeb8e178901",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops llama eval and rsft candidates",
+  "task_key": "worker_ops_llama_eval_and_rsft_candidates_20260516T142244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama_eval_and_rsft_candidates_20260516T142244_result.json",
+    "occurrence": 1,
+    "bytes": 1089,
+    "sha256": "14e34ae9dd5a43ad969c1b08ca39c2f477fd81f5963812bf3d831930c356fd7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n### Part 1: Zombie kill\n- PID 315637/315643/315708 已 kill，验证 ALL_KILLED\n\n### Part 2: LLaMA with-evidence eval 结果\n\n| Metric | Value |\n|--------|-------|\n| Ign-F1 | 0.5384 |\n| F1 | 0.5514 |\n| Evi-F1 | 0.8151 |\n| EDCR | 0.628 |\n| Precision | 0.5464 |\n| Recall | 0.5565 |\n| Format compliance | 99.5% |\n| Truncated | 197/985 |\n| **Evidence tax** | **-0.0068** (with_evi 0.5384 - no_evi 0.5452) |\n\nEvidence tax 为负值，说明 LLaMA with-evidence 模式 Ign-F1 略低于 no-evidence（-0.68pp），evidence 输出对 relation extraction 有轻微负面影响。Registry 已更新为 DONE/success。\n\n### Part 3: LLaMA RSFT candidates\n- Killed Re-DocRED eval (PID 352689) on cuda:1 释放空间\n- 提交 `plan_016_llama_rsft_candidates_r2`，PID 353179，cuda:1\n- 3027 documents × 8 generations，已开始 generating\n- 注意：cuda:1 上还有另一个 agent 提交的 plan_014_no_evidence_eval (PID 353322, ~9.6GB)，当前两者共用 27.5/32.6 GB，暂时共存。若后续 OOM 需优先保 RSFT candidates。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama-eval-and-rsft-candidates.md"
+}

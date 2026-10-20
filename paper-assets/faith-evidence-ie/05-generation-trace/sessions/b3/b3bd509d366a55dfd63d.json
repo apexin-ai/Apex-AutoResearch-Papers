@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3bd509d366a55dfd63d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code prep 1 7b eval scripts",
+  "task_key": "worker_code_prep_1_7b_eval_scripts_20260519T055940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_1_7b_eval_scripts_20260519T055940_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "8b5650bb03c80409eceebd02f16807ce25cae41f1b5a6193a547d253e07d36ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "dry-run 通过，参数解析正确。\n\n**汇报：**\n\n脚本已创建并验证：\n- `/root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh` — s43 已可运行\n- `/root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_s44_r2.sh` — 等 s44 训练完成\n\n**与用户模板的关键修正（基于实际代码）：**\n\n| 用户模板 | 实际代码 |\n|---|---|\n| `python freige/inference.py` | `python -m freige.eval.inference` |\n| `--rsft_adapter` | 不存在。`--model_path` 传 RSFT adapter，`--base_model` 传基础模型 |\n| `--input_file` / `--output_file` | `--data_path`（目录）/ `--output_dir` |\n| 分两步 inference + batch_eval.py | 一步完成推理+评测 |\n| base model: `models/Qwen3-1.7B` | 实际路径 `models/Qwen/Qwen3-1.7B` |\n\ns43 checkpoint 完整：adapter_model.safetensors (279MB) + adapter_config.json 均存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-1-7b-eval-scripts.md"
+}

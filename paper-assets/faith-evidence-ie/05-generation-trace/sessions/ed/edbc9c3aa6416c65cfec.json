@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edbc9c3aa6416c65cfec",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_18_1779375731.md",
+  "task_key": "loop_18_1779375731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779375731.md",
+    "occurrence": 1,
+    "bytes": 4347,
+    "sha256": "5a5a19688aa88467a673694556f56a6e16191ec74950643c3dee9b7ee48d1144"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-21T14:05:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0/1/2/3（共 4 张），不可用其他服务器 GPU\n- LLaMA SFT s42 的 adapter 路径是 `/root/autodl-tmp/sft_output_llama_3_1_8b`（无 seed 后缀），s43 是 `_s43`，s44 是 `_s44`——搞混会用错 adapter\n- LLaMA eval 的 no-evidence 系列已统一用 max_new_tokens=2048 重跑（1024 版有严重截断伪影），论文数据必须用 2048 版\n- evidence tax 必须用 fair comparison（format-OK 子集），不能用全集 ign_f1 直接相减（D134 决策）\n- 14B 实验用 Qwen3-14B，不是 LLaMA-14B——模型族别搞混\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：rtx5090-4x，工作目录 `/root/autodl-tmp/freige`\n- **Python**：`/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**：\n  - Qwen3 系列：`/root/autodl-tmp/models/Qwen/Qwen3-{1.7B,4B,8B,14B}`\n  - LLaMA：`/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`\n  - SFT adapters：`/root/autodl-tmp/sft_output_*`\n  - RSFT outputs：`/root/autodl-tmp/rsft_output_*`\n- **数据**：`/root/autodl-tmp/data/docred/`（dev.json 985 docs, train_annotated.json 3027 docs）\n- **eval 结果**：`/root/autodl-tmp/eval_results/`\n- **活跃进程**：\n  - `plan017_14b_rsft_eval` PID 53413, cuda:0, tmux 管理\n  - `eval_llama_sft_s43_no_evidence_2048` PID 45587, cuda:1, tmux 管理\n- **磁盘**：rtx5090-4x `/usr/bin/nvidia-smi` 分区 815G/879G 可用（3%）\n\n### 3. 📊 当前状态\n**刚做完**：收到 eval_llama_sft_s42_no_evidence_2048 的 cron 完成回调，已 spawn Worker (`worker_analysis_eval_llama_sft_s42_no_evidence_2048_20260520T211248`) 读日志提取 metrics。同时清理了 3 个滞留 ANALYZING 实验推到 DONE（s44_2048, s43_r2, 14b_gen_r4）。\n\n**RUNNING**：\n- `plan017_14b_rsft_eval` (cuda:0)：14B RSFT eval，SFT baseline ign_f1=0.5507，验证 RSFT 在 14B scale 的提升\n- `eval_llama_sft_s43_no_evidence_2048` (cuda:1)：s43 SFT no-evi 2048 版，3-seed evidence tax 的最后一块拼图\n\n**等待中的回调**：\n- Worker `analysis:eval_llama_sft_s42_no_evidence_2048`：提取 s42 2048 metrics → 更新 registry → DONE\n- Cron：s43 2048 完成 → 需同样分析\n- Cron：14b rsft eval 完成 → 填 scaling table 第 4 行\n\n**空闲 GPU**：cuda:2, cuda:3 空闲（分配了没跑 = 失职，需要尽快安排任务）\n\n### 4. 📋 待办\n- Worker s42 2048 分析完成 → 汇总 LLaMA SFT 3-seed evidence tax（s42+s43+s44 全 2048 版 fair comparison），向 Director 汇报完整结果\n- s43 2048 cron 回调 → spawn Worker 提取 metrics，3-seed evidence tax 数据集齐后计算 mean±std\n- plan017_14b_rsft_eval cron 回调 → 提取 ign_f1，与 SFT 0.5507 对比，填入 scaling table 第 4 行（1.7B/4B/8B/14B），向 Director 汇报\n- 3-seed evidence tax 全部就绪 → 更新 paper_framing.md 中 Claim 3 的 LLaMA 数据，确认 evidence tax 叙事\n- cuda:2/3 空闲 → 向 Director 汇报资源空闲，建议安排下一批任务（可能的候选：14B no-evidence eval、LLaMA RSFT no-evidence 2048 重跑、或其他 scaling table 补充实验）\n\n### 5. 🎯 战略上下文\n- **项目核心**：FREIGE = LLM-based evidence-grounded DocRE 系统性研究，3 贡献：(1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression。目标 EMNLP 2026 Main（~56 天）\n- **D136 关键发现**：LLaMA SFT evidence tax 极度 seed-dependent——s44 原 1024 版 ign_f1=0.3326（截断 41.7%），s42 原 1024 版 format_ok=88.7%。这就是为什么必须用 2048 统一重跑\n- **D135**：LLaMA RSFT 3-seed evidence tax 已完成 = -1.14pp±0（非常稳定），但 SFT 的 3-seed tax 还缺 2048 版数据\n- **s44 2048 已出结果**：ign_f1=0.4373, fair_tax=-4.18pp, truncation 从 41.7%→25.0%，ign_f1 比 1024 版高 +10.47pp（确认截断是主因）\n- **易错点**：\n  - s43 的 1024 版 truncation=38.4%, format_compliance 只有 61.6%——这个 seed 截断最严重，2048 版结果可能变化很大\n  - 14B RSFT eval 用 nested LoRA（SFT adapter + RSFT adapter 叠加），spec 里 `nested_lora: true`\n  - Scaling table 的 4B 有两套数据（A/B），对比时注意区分\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779375731.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57d05769059805e26fe4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d145 4b sft s44 no evi 2048",
+  "task_key": "worker_analysis_d145_4b_sft_s44_no_evi_2048_20260521T193710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d145_4b_sft_s44_no_evi_2048_20260521T193710_result.json",
+    "occurrence": 1,
+    "bytes": 1478,
+    "sha256": "82557cd6194b9d1e6f19259e4c1aa45ce5773c64b7400aaccb1f5315c01b2e6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总结果：\n\n## s44 no_evi 完整 metrics\n\n| 指标 | 值 |\n|---|---|\n| ign_f1 | 0.4680 |\n| f1 | 0.4784 |\n| ign_precision | 0.4492 |\n| ign_recall | 0.4884 |\n| precision | 0.4710 |\n| recall | 0.4860 |\n| evi_f1 | 0.0000 (expected) |\n| format_ok | 983/985 (99.8%) |\n| truncated | 158/985 |\n| predictions | 24,103 |\n| inference_time | 7,248s |\n\n## s44 fair_tax\n\n| 指标 | 值 |\n|---|---|\n| fair_subset_size | 982 docs |\n| fair_with_evi_ign_f1 | 0.4667 |\n| fair_no_evi_ign_f1 | 0.4688 |\n| **fair_tax** | **+0.21pp** |\n\n## 4B SFT 3-seed evidence tax 汇总\n\n| Seed | fair_tax (pp) | fair_subset | with_evi ign_f1 | no_evi ign_f1 |\n|------|-------------|-------------|----------------|--------------|\n| s42 | +0.73 | 981 | 0.3951 | 0.4024 |\n| s43 | -0.20 | 982 | 0.4367 | 0.4355 |\n| s44 | +0.21 | 982 | 0.4667 | 0.4688 |\n| **Mean±Std** | **+0.25 ± 0.47pp** | | | |\n\n## 异常检查\n- `no_evidence: true` 参数正确传递 ✓\n- format_ok 率 99.8%，与 with_evi 完全一致（均 983/985），fair_subset 982 docs — 正常\n- s44 的 with_evi (0.4665) 和 no_evi (0.4680) 绝对性能是三个 seed 中最高的，但 s42 明显低于 s43/s44（可能 s42 adapter 质量较差）\n- **3-seed 结论：4B SFT 的 evidence tax 均值 +0.25pp，方向为正（no_evi 略优），但 std=0.47pp 远大于均值，且 s43 为负值，说明 4B 模型上 evidence 的影响不显著且方向不稳定**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d145-4b-sft-s44-no-evi-2048.md"
+}

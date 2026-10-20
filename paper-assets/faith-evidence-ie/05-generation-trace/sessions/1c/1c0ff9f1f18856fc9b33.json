@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c0ff9f1f18856fc9b33",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis reeval flat nli s43 r2",
+  "task_key": "worker_analysis_reeval_flat_nli_s43_r2_20260516T060849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reeval_flat_nli_s43_r2_20260516T060849_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "69c05c5ccc572b46caa4dab2d43eed0745f06c86c2fe39d1cc82b6b476373401"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE + success。总结：\n\n## reeval_flat_nli_s43_r2 结果\n\n| 指标 | r2 (bs=4, 统一协议) | r1 (bs=16) | Δ |\n|------|---------------------|------------|---|\n| **rel_f1** | **0.4586** | 0.4523 | **+0.63pp** |\n| ign_f1 | 0.4503 | 0.4523 | -0.20pp |\n| evi_f1 | 0.8113 | 0.8158 | -0.45pp |\n| edcr | 0.6552 | 0.6505 | +0.47pp |\n\n**结论：success。** batch_size 从 16 降到 4 后 rel_f1 不降反升 +0.63pp，在 3pp 阈值内，确认 batch_size 变化不影响结果。flat-NLI s43 与 CED s43 (rel_f1=0.4601) 在统一协议下基本持平（差 -0.15pp）。无 W&B run。GPU 时间 3.08h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-reeval-flat-nli-s43-r2.md"
+}

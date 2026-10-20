@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dd8aae6c36f0c8d7cf8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops redocred rsft eval r3 cuda1",
+  "task_key": "worker_ops_redocred_rsft_eval_r3_cuda1_20260516T173632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_redocred_rsft_eval_r3_cuda1_20260516T173632_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "333ebfefa39065117266396c9cc28bf5c8e24bb6ef7bbbf55ff6d0133c745b56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**总结：**\n\n1. **plan_014** 已完成并更新 registry：Ign-F1 = **0.4721**（no-evidence 4B SFT）\n2. **plan_007_redocred_rsft_eval_r3** 已提交到 cuda:1，PID=368363，正常推理中\n   - 配置已修正：model_path=`/root/autodl-tmp/models/Qwen3-4B`（base），sft_adapter=`/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510`（RSFT ckpt）\n   - 500 docs / 124 batches，预计约 1 小时完成（28s/it × 124 ≈ 58 min）\n   - Log: `/root/runs/faith-evidence-ie/plan_007_redocred_rsft_eval_r3.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-redocred-rsft-eval-r3-cuda1.md"
+}

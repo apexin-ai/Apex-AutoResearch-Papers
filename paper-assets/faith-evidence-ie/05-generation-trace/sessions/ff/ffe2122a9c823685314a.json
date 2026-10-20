@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffe2122a9c823685314a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d158 14b rsft s44 generate",
+  "task_key": "worker_analysis_d158_14b_rsft_s44_generate_20260525T035658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d158_14b_rsft_s44_generate_20260525T035658_result.json",
+    "occurrence": 1,
+    "bytes": 275,
+    "sha256": "2ccdc311333ba4a6053bb76f214c665ee04573af9f90d0e62ac87aba26e6e22b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CED scoring 已提交。\n\n**结果汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| d158_14b_rsft_s44_generate | DONE/success, 24216 samples (3027 docs × 8), format 100.0%, diversity 7.40/8 |\n| d158_14b_rsft_s44_ced_score | RUNNING on cuda:2, PID 353179 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d158-14b-rsft-s44-generate.md"
+}

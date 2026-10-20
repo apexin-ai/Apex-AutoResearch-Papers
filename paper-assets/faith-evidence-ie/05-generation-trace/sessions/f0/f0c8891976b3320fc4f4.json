@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0c8891976b3320fc4f4",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778804508.md",
+  "task_key": "loop_4_1778804508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778804508.md",
+    "occurrence": 1,
+    "bytes": 5199,
+    "sha256": "e333da46910d9a3b675dfa00b61e83cefd5c428c55c15531945c6bb7542029f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T23:46:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0, cuda:1, cuda:2, cuda:3（4 张）。不可用白名单外的 GPU\n- rtx5090-4x 和 gpu-5090-4x-1 是**同一台机器**两个 SSH endpoint，不要当两台机器用\n- submit_training_job 的命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- QLoRA 4-bit + kl_coef > 0.01 不兼容（KL 爆炸），kl_coef 只能用 0.0 或 0.01\n- 不能从 kl_coef=0 的 checkpoint 恢复加 KL penalty，必须从 SFT scratch 训练\n- CED recall penalty flag (`--ced_recall_penalty`) 刚部署，mvp2_grpo_ced_lr5e6_rp_r1 首次使用就 EXIT_CODE=2 失败，**诊断 Worker 已派出但尚未返回**——下一个\"你\"需要接收 Worker 回调并根据结果修复重跑\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（= gpu-5090-4x-1），4× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp`（代码 `freige/` 在此下）\n- Python：`/root/miniconda3/bin/python`（conda base 环境，无 venv）\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`（7.6GB, ModelScope 下载）\n- SFT adapter：`/root/autodl-tmp/sft_output`\n- 数据：`/root/autodl-tmp/data/docred`（3053 train, 985 dev）\n- HF cache：`/root/autodl-tmp/.hf_cache`（需 `HF_HOME` 指向）\n- wandb：entity=`xiaoyucorynne-`，project=`freige-grpo`，key 在 `~/.netrc`\n- flash-attn 未装，用 `attn_implementation=\"sdpa\"`\n- AutoDL 网络加速：每次 SSH 先 `source /etc/network_turbo`\n- 活跃进程：\n  - mvp2_grpo_ced_lr5e6_r1: PID 90080, cuda:0, RUNNING\n  - mvp2_eval_ced_kl001_r4_multi: PID 78850, cuda:2, RUNNING（批量 eval ckpt-10~80，ckpt-10 done，正在跑 ckpt-20+）\n- 活跃 Worker：`worker_diagnose_mvp2_grpo_ced_lr5e6_rp_r1_20260514T200104`（诊断失败实验，未返回）\n\n### 3. 📊 当前状态\n**我刚做完**：收到 mvp2_grpo_ced_lr5e6_rp_r1 的 CRON 失败回调，完成 session-start 初始化（registry + reconcile + report + ROADMAP + memory），派出诊断 Worker 读日志。Worker 尚未返回结果。\n\n**Registry 关键状态**：\n- RUNNING: mvp2_grpo_ced_lr5e6_r1 (cuda:0, P0: lr=5e-6 无 recall penalty), mvp2_eval_ced_kl001_r4_multi (cuda:2, 批量 checkpoint eval)\n- DONE(failed): mvp2_grpo_ced_lr5e6_rp_r1 (cuda:3, EXIT_CODE=2, 26 秒即崩), mvp2_eval_ced_kl001_r4_ckpt7080 (failed), mvp2_eval_ced_kl001_r4_high (failed)\n- DONE(negative): mvp2_eval_ced_kl001_r4_step100 (rel_f1=0.217, 远低于 SFT 0.4057)\n- ALLOCATED(killed): mvp2_grpo_ced_lr5e6_p1_r1 (cuda:1, 被 D032 supersede，从未提交)\n- PREPARING: mvp2_eval_ced_kl001_r4_last, mvp2_grpo_ced_kl001_r2, mvp2_grpo_ced_kl001_r3\n\n**等待中**：\n- Worker 回调：诊断 Worker（mvp2_grpo_ced_lr5e6_rp_r1 失败原因）\n- 空闲 GPU：cuda:1, cuda:3 完全空闲；cuda:2 在跑 eval（低优先级可共存）\n- **未向 Director 汇报本次失败**——诊断 Worker 返回后需汇报\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 返回 → 读结果，判断是 `--ced_recall_penalty` 参数不被 argparse 识别还是其他语法错误 → 修复后在 cuda:3 重新提交 mvp2_grpo_ced_lr5e6_rp_r1\n- mvp2_grpo_ced_lr5e6_r1 (P0) cron 回调 → eval best + last checkpoint，与 SFT baseline (F1=0.4057) 对比，判断 lr=5e-6 是否解决灾难性遗忘\n- mvp2_eval_ced_kl001_r4_multi 回调 → 汇总全轨迹 (ckpt-10~80) 的 F1/Evi-F1/EDCR/pred_count，用于 paper negative result 分析\n- cuda:1 空闲 → 修复 rp_r1 后可同时提交；或从 PREPARING 池里挑 ced_kl001_r2/r3（但这两个假设和 rp_r1 不同，需确认 Director 优先级）\n- **失败修复后**向 Director 汇报，开头带 `[资源]` 行\n\n### 5. 🎯 战略上下文\n**核心研究问题**：CED reward 能否在 GRPO 训练中同时改善 evidence quality 和防止 mode collapse？\n\n**决策链**：\n- D008: QLoRA 4-bit + kl_coef 不兼容 → kl_coef=0.0\n- D020: 统一配置 kl_coef=0.01 + num_gen=8（CED 专用，extract/flatnli 在此配置下 collapse）\n- D024: **关键发现**——CED 有 anti-mode-collapse 作用（同配置下 CED 成功，extract/flatnli 都 collapse）\n- D029: lr=5e-5 太高导致灾难性遗忘 + CED recall shortcut → 下一轮 P0=lr 5e-6, P1=recall penalty\n- D032: eval 轨迹确认\"崩溃→部分恢复\"模式，CED recall shortcut 持续加剧\n\n**当前实验结构**（两个并行 ablation）：\n- P0 (mvp2_grpo_ced_lr5e6_r1, cuda:0): 只降 lr 到 5e-6，不加 recall penalty → 隔离 lr 效果\n- P0+P1 (mvp2_grpo_ced_lr5e6_rp_r1, cuda:3): lr 5e-6 + recall penalty → 两个 fix 叠加效果\n- 对比 P0 vs P0+P1 可以隔离 recall penalty 的边际贡献\n\n**易踩的坑**：\n- mvp2_grpo_ced_lr5e6_p1_r1 (ALLOCATED cuda:1) 已被 D032 kill/supersede，**不要提交它**——rp_r1 是替代品\n- `list_wandb_runs` MCP 工具有 bug（wandb_project 参数传递错误），直接用 `fetch_wandb_run_history` + 已知 run_id\n- kill_job 后必须验证子进程终止（ps + nvidia-smi），tmux wrapper 死了不代表 python 进程死了\n- stdout 缓冲：短命实验日志可能为空，需 PYTHONUNBUFFERED=1\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778804508.md"
+}

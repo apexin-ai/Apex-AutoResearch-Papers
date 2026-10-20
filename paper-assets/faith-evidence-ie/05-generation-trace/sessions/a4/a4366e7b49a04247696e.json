@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a4366e7b49a04247696e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze d111 4b sft s42 reeval",
+  "task_key": "worker_analyze_d111_4b_sft_s42_reeval_20260519T035307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_d111_4b_sft_s42_reeval_20260519T035307_result.json",
+    "occurrence": 1,
+    "bytes": 1601,
+    "sha256": "44b0c01b1020ac781c0ca8cb3cfe3a8cbb627fbd5648e9be426e75388e49a08e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。下面是结果分析：\n\nD076 协议下 s42 的 ign_f1 = **0.3974**，与之前三次结果中的最低值完全一致（0.4106 / 0.4036 / 0.3974）。这说明之前 0.3974 那次就是用了与 D076 等价的协议，而 0.4106 和 0.4036 可能有协议差异（如 batch_size、max_new_tokens、quantize 设置不同）。\n\n**3-seed 对比（D076 协议，ign_f1）：**\n\n| Seed | ign_f1 |\n|------|--------|\n| s42  | 0.3974 |\n| s43  | 0.4365 |\n| s44  | 0.4734 |\n| **Mean** | **0.4358** |\n| **Std**  | **0.0310** |\n\n```json\n{\n  \"ign_f1\": 0.3974,\n  \"rel_f1\": 0.4049,\n  \"evi_f1\": 0.7986,\n  \"evi_f1_joint\": 0.3147,\n  \"edcr\": 0.6982,\n  \"three_seed_mean\": 0.4358,\n  \"three_seed_std\": 0.0310,\n  \"comparison_note\": \"D076 reeval confirms s42=0.3974, matching the lowest of the 3 prior inconsistent results exactly. s42 is the weakest seed — 7.6pp below s44, 3.9pp below s43. 3-seed std=0.031 indicates moderate variance across seeds.\"\n}\n```\n\ns42 是最弱的 seed，与 s44 差距 7.6pp。3-seed 标准差 0.031 偏大，说明 4B SFT 模型的 seed sensitivity 较高。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "ign_f1": 0.3974,
+              "rel_f1": 0.4049,
+              "evi_f1": 0.7986,
+              "evi_f1_joint": 0.3147,
+              "edcr": 0.6982,
+              "three_seed_mean": 0.4358,
+              "three_seed_std": 0.031,
+              "comparison_note": "D076 reeval confirms s42=0.3974, matching the lowest of the 3 prior inconsistent results exactly. s42 is the weakest seed — 7.6pp below s44, 3.9pp below s43. 3-seed std=0.031 indicates moderate variance across seeds."
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-d111-4b-sft-s42-reeval.md"
+}

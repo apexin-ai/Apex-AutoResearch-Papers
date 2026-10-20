@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9db0b7f06736972e58b8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp d158 14b rsft s44 ced score v2",
+  "task_key": "worker_exp_d158_14b_rsft_s44_ced_score_v2_20260525T040503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_d158_14b_rsft_s44_ced_score_v2_20260525T040503_result.json",
+    "occurrence": 1,
+    "bytes": 314,
+    "sha256": "b7dbc36d7a48c26eb8ab52f030f55771ee87cdd335b291ba58b8226ab8a15430"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交，状态汇总：\n\n- **PID**: 353669，cuda:2，正在运行\n- **NLI 模型**: cross-encoder/nli-deberta-v3-base 从本地缓存加载成功（HF_HOME 修复生效）\n- **输入**: 24216 records / 3027 unique docs\n- **Registry**: d158_14b_rsft_s44_ced_score → RUNNING, retry_count=1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d158-14b-rsft-s44-ced-score-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70a5955093892ca840c6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor 14b rsft generate status",
+  "task_key": "worker_monitor_14b_rsft_generate_status_20260521T091137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_14b_rsft_generate_status_20260521T091137_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "6a9d1be37e6a9857001cc76e9ab159a8b9da58049fec3d1cda10b10423a1a149"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14B RSFT pipeline 全部 4/5 阶段完成：\n\n| 阶段 | 状态 | 关键数据 |\n|------|------|----------|\n| Generation | ✅ | 3027 docs, 24216 outputs, format 100%, diversity 7.28/8 |\n| CED Scoring | ✅ | 3015 selected (top-k=1), combined mean=0.768 |\n| RSFT Training | ✅ | 3 epochs, loss=0.500, token_acc=0.878, checkpoint-1131 |\n| Eval no-evidence | ✅ | **F1=55.36, ign_F1=54.32**, format_ok=96.8% |\n| Eval with-evidence | ❌ | 未执行 |\n\n**下一步**: 需要运行 with-evidence eval 获取 evi_f1_joint 和 EDCR 指标，然后与 14B SFT baseline 汇总对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-14b-rsft-generate-status.md"
+}

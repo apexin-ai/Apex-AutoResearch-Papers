@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6810878ee1c10e1aee78",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis edcr tex fix and per relation",
+  "task_key": "worker_analysis_edcr_tex_fix_and_per_relation_20260515T235434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_edcr_tex_fix_and_per_relation_20260515T235434_result.json",
+    "occurrence": 1,
+    "bytes": 1514,
+    "sha256": "0a593b3009d764b1d13dfb0bde466d87168c74bfc42a2371b9108de387b41d10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n### Part 1: edcr_diagnostic.tex 修复\n\n- `dpo_ced_1ep/` → `dpo_ced_1ep_fixed/`（rel_f1: 0.0022 → 0.4034）\n- `rsft_flat_nli_s43` 已移除（reeval 目录为空，无可用数据）\n- 新 .tex/.csv/.md 已生成，无非 GRPO 的 rel_f1 < 0.01 条目\n\n### Part 2: Per-Relation EDCR 分析结果\n\n93 个 relation types 分析（≥5 样本），76 个有非零 rel_f1 和 evi_f1 参与相关性计算。\n\n**核心发现**：\n\n| 指标对 | Spearman ρ | p-value |\n|--------|-----------|---------|\n| EDCR_distractor vs evi_f1 | **-0.064** | 0.583 |\n| EDCR_distractor vs rel_f1 | -0.793 | <0.001 |\n| evi_f1 vs rel_f1 | **-0.013** | 0.914 |\n\n**结论**：ρ(EDCR, evi_f1) = -0.064，几乎零相关 → **EDCR 在 per-relation 层面提供完全独立于 evi_f1 的信息。Claim 4 有支撑。**\n\n另一个发现：evi_f1 vs rel_f1 在 per-relation 层面也几乎零相关（ρ=-0.013），说明模型的 evidence 质量和 relation 抽取能力在不同 relation type 间完全解耦。\n\n**典型案例**：\n- date_of_birth: EDCR=0.118, evi_f1=0.965, rel_f1=0.922（高 faithful）\n- head_of_government: EDCR=0.956, evi_f1=0.875, rel_f1=0.086（高 decoupled — 证据好但关系抽取差）\n\n### 产出清单\n1. `/root/autodl-tmp/eval_results/edcr_diagnostic.tex` + `.csv` + `_table.md` — 修复后\n2. `/root/autodl-tmp/scripts/edcr_per_relation_analysis.py`\n3. `/root/autodl-tmp/eval_results/edcr_per_relation_analysis.json` + `.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-edcr-tex-fix-and-per-relation.md"
+}

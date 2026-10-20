@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc6d11b09a5fe6108314",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor progress check loop15",
+  "task_key": "worker_monitor_progress_check_loop15_20260516T164332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_progress_check_loop15_20260516T164332_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "27aa25f5e97f74725e8debca610a76e954d01ddbe1d73e3ecff3d6382dbb4914"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验 | GPU | PID存活 | 进度 | 速率 | 预计完成 |\n|------|-----|---------|------|------|----------|\n| **plan_006_qwen3_1_7b_rsft_candidates** | cuda:0 (13.5/32.6 GB, 52%) | ✅ (2h52m) | 820/3027 (27.1%) | ~12.5s/doc | ~7.7h 后 (~08:00 UTC) |\n| **plan_006_qwen3_8b_rsft_candidates** | cuda:3 (28.1/32.6 GB, 78%) | ✅ (2h53m) | 649/3027 (21.4%) | ~16s/doc | ~10.6h 后 (~11:00 UTC) |\n| **plan_016_llama_rsft_candidates_r3** | cuda:2 (24.0/32.6 GB, 88%) | ✅ (53m) | 271/2963 (9.1%, 从idx=64恢复) | ~11.8s/doc | ~8.8h 后 (~09:10 UTC) |\n| **plan_007_redocred_rsft_eval_r2** | cuda:1 (10.5/32.6 GB, 42%) | ✅ (16m) | 30/124 batches (24.2%) | ~32s/batch | ~50min 后 (~01:20 UTC) |\n\n备注：\n- 1.7B 和 8B 的 RSFT Monitor 报告 truncation_rate 14.8%/16.4%（超过 10% 阈值），建议后续考虑 max_new_tokens=3072\n- Llama 刚恢复运行 53 分钟，速度正常\n- Eval 预计很快完成（~50min）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-progress-check-loop15.md"
+}

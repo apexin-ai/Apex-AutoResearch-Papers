@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c373f3764f212025946",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp r3 grpo bf16 g4",
+  "task_key": "worker_exp_r3_grpo_bf16_g4_20260524T232142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r3_grpo_bf16_g4_20260524T232142_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "12e2012d1126ab495f35bd064a654dbb6d3a28c3b1a47dd2779f993d130a41cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | r3_grpo_bf16_g4 |\n| PID | 339032 |\n| GPU | cuda:1 (9725 MiB 已占用，模型加载中) |\n| 关键参数 | `--num_generations 4`, `--no-quantize` (bf16), 其余与 plan_011 一致 |\n| wandb | r3_grpo_bf16_g4 |\n| log | ~/runs/faith-evidence-ie/r3_grpo_bf16_g4.log |\n| registry | RUNNING，parent=plan_011_grpo_g8_bf16 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-r3-grpo-bf16-g4.md"
+}

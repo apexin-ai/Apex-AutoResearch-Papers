@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e1111695a545335b76c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose wave1 sft 4b s44 crash",
+  "task_key": "worker_diagnose_wave1_sft_4b_s44_crash_20260518T135847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_wave1_sft_4b_s44_crash_20260518T135847_result.json",
+    "occurrence": 1,
+    "bytes": 1480,
+    "sha256": "fcac24f456c9ac316df1225d474dc5786af60017cef538b36fa89943a5433b14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 SFT 训练都**正常结束**。\n\n## wave1_sft_4b_s44（seed44）\n\n- **状态**: 正常完成，21:57:22 结束\n- **训练 metrics**:\n  - `train_loss`: **0.7008**\n  - `train_runtime`: 4379s (~73 min)\n  - `train_steps`: 144 steps, 3 epochs\n  - `train_samples_per_second`: 2.074\n- **Eval metrics** (epoch 3):\n  - `eval_loss`: **0.7478**\n  - `eval_mean_token_accuracy`: **0.8299**\n  - `eval_entropy`: 0.6943\n- **Checkpoint 路径**: `/root/autodl-tmp/sft_output_seed44/`（含 `adapter_model.safetensors` 528MB，checkpoint-96 和 checkpoint-144）\n\n## wave1_sft_4b_s43（seed43）\n\n- **状态**: 正常完成，21:58:29 结束\n- **训练 metrics**:\n  - `train_loss`: **0.7011**\n  - `train_runtime`: 4455s (~74 min)\n  - `train_steps`: 144 steps, 3 epochs\n  - `train_samples_per_second`: 2.039\n- **Eval metrics** (epoch 3):\n  - `eval_loss`: **0.7482**\n  - `eval_mean_token_accuracy`: **0.8300**\n  - `eval_entropy`: 0.6933\n- **Checkpoint 路径**: `/root/autodl-tmp/sft_output_seed43/`（同样结构）\n\n## GPU 当前状态\n\n| GPU | 占用 | 进程 |\n|-----|------|------|\n| cuda:0 | 空闲 (0 MiB) | — |\n| cuda:1 | 空闲 (0 MiB) | — |\n| cuda:2 | 16.6 GB | PID 542126 - GRPO trainer (`grpo_bf16_g4`) |\n| cuda:3 | 18.4 GB | PID 541954 - eval inference (`d102_llama_k1_s43`) |\n\n两个 SFT 都已正常训练完成并保存了 adapter，s43 和 s44 的 loss/accuracy 非常接近。cuda:0 和 cuda:1 现在空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-wave1-sft-4b-s44-crash.md"
+}

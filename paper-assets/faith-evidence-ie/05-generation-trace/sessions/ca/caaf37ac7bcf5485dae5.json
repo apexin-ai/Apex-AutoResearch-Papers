@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "caaf37ac7bcf5485dae5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops disk cleanup and download monitor",
+  "task_key": "worker_ops_disk_cleanup_and_download_monitor_20260516T081214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_and_download_monitor_20260516T081214_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "e3a31ccb16aad3573e67b38bb4c1aa72193851bf4936fce6ee5d9ccdb410a80a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部任务完成。\n\n### 结果汇总\n\n| 项目 | 状态 |\n|------|------|\n| **磁盘清理** | 3.2GB → **12GB** (释放 ~8.8GB) |\n| **LLaMA 8B 下载** | 已完成 (4 shards, 15GB, `llama/4096`) |\n| **Qwen3-1.7B** | 已存在，无需重新下载 (`qwen3/2048`) |\n\n**清理明细：**\n- HF cache hub: 718MB\n- predictions.json (44个): ~270MB\n- Qwen3-1.7B_dl + _tmp (重复下载): ~3.8GB\n- checkpoints_backup (grpo_flatnli_r3 备份): 3.8GB\n\n**注意：** `original/` 目录不存在，无需删除。Qwen3-1.7B 已在服务器上，未执行下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-and-download-monitor.md"
+}

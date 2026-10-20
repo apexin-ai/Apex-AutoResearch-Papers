@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34ce41c276150c7eb377",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d029 failure mode analysis",
+  "task_key": "worker_analysis_d029-failure-mode-analysis_20260514T191625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d029-failure-mode-analysis_20260514T191625_result.json",
+    "occurrence": 1,
+    "bytes": 7537,
+    "sha256": "a7db826ce9aef601a1369614f3a46e53fea32cc351507c0eb4a0b23c412dd2c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码和社区经验都已到手。关键发现：CED reward 对非匹配 triple 无 hard negative（p_neg=0），存在系统性 shortcut。下面给出完整分析。\n\n---\n\n## 根因分析\n\n通过代码审查和社区数据，识别出 **3 个互相叠加的根因**：\n\n### 根因 1：lr=5e-5 对 GRPO 太激进（主因）\n\n社区共识：GRPO+QLoRA 的 lr 应为 **5e-6**（[Unsloth RL Guide](https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide)），HuggingFace 官方示例用 **1e-5**（[TRL GRPO cookbook](https://huggingface.co/learn/cookbook/en/fine_tuning_llm_grpo_trl)），MS-SWIFT 对 Qwen 甚至用 **1e-6**（[MS-SWIFT](https://qwen.readthedocs.io/en/latest/training/ms_swift.html)）。当前 5e-5 是推荐值的 **5-10 倍**。\n\n证据：ckpt-10（仅 10 步！）rel_f1 从 SFT 的 0.4057 崩到 0.003。这不是 reward hacking，是 **on-policy 更新步幅过大导致的灾难性遗忘**。GRPO 不同于 SFT——SFT 有 teacher forcing 锚定正确分布，GRPO 的梯度完全来自采样 reward，更新方向噪声更大，lr 必须更保守。\n\n### 根因 2：CED reward 的 recall shortcut（代码级确认）\n\n审查 `grpo_trainer.py` L221-280 的 `CEDRewardWrapper.__call__`：\n\n```python\n# 对每个 predicted triple:\nmatched_gold = gold_map.get(key, {})  # 非匹配 triple → {}\nhard_neg_ids = matched_gold.get(\"hard_negative_sent_ids\", [])  # → []\nhard_neg_sents = [...]  # → []\n\n# 在 ced_reward.py 中:\nif not hard_negative_sents:\n    p_neg = 0.0  # ← 无 hard negative 时 p_neg=0\nreward = max(0, p_pos - p_neg) * float(p_pos > tau)\n# → 简化为: p_pos * I(p_pos > tau)\n```\n\n**Shortcut 机制**：非匹配 predicted triple（不在 gold 中）没有 hard negatives → p_neg=0 → CED 退化为 flat NLI → 任何\"看起来合理\"的 triple 都能拿到高 CED。F1 gate 只要求 **至少 1 个** triple 匹配 gold 就放行全部 triples 的 CED 计算。\n\n**结果**：模型学会（1）少预测以提高 per-triple 平均 CED，（2）集中预测 NLI 容易判 entail 的 triple。这解释了 pred_count ↓50%、recall 崩塌、EDCR 虚高。\n\n### 根因 3：Train/eval 分布不匹配\n\n训练用 temperature sampling（8 candidates 取 reward 最高的更新），eval 用 greedy。Training f1_reward 0.02→0.72 持续上升，但 eval rel_f1 远低于预期。说明 model 偶尔在高 temperature 下采样到好输出拿高 reward，但 greedy mode 走不到那条路径。这是 GRPO 固有问题，但 **lr 过高放大了这个 gap**——policy 被少数高 reward 样本的梯度大幅拉偏。\n\n---\n\n## Top-3 可执行方案\n\n### 方向 1: 降 lr 到 5e-6\n**诊断依据**:\n- ckpt-10 rel_f1=0.003（10 步摧毁 SFT 全部 extraction 能力）\n- 社区标准 GRPO+QLoRA lr = 5e-6（vs 当前 5e-5，高 10x）\n- [HuggingFace GRPO Trainer](https://huggingface.co/docs/trl/main/en/grpo_trainer) 文档：val/ratio 偏离 1.0 太远 → lr 太高\n- 即使不改 reward 设计，lr 下降可能大幅缓解遗忘+hacking\n\n**实验配置**:\n- 改动: `--learning_rate 5e-6`（其余完全不变）\n- 命令 diff:\n  ```diff\n  - --learning_rate 5e-5\n  + --learning_rate 5e-6\n  ```\n- max_steps: 200（lr 降 10x，给更多步收敛）\n- save_steps: 20\n- 预计 GPU 时间: ~4h（单卡 RTX 5090，200 steps）\n\n**预期结果**:\n- 如果假说正确: ckpt-20 rel_f1 > 0.30（SFT 的 75%+），ckpt-100 rel_f1 ≥ 0.40，evi_f1 保持 > 0.70\n- 风险: 收敛太慢看不到 reward 上升 → 下一轮试 1e-5\n\n**优先级**: **P0** — 这是阻塞性问题，lr 不降其他修复无意义\n\n---\n\n### 方向 2: 修复 CED recall shortcut\n**诊断依据**:\n- 代码确认：非匹配 triple 的 p_neg=0，CED 退化为 flat NLI\n- pred_count: 18815 → 9250（-50%），recall: 0.407 → 0.117\n- EDCR: 0.71 → 0.89-0.99（proxy 被过度优化）\n- F1 gate 阈值太低（1 个匹配就放行所有 triple 的 CED）\n\n**实验配置** — 改 CEDRewardWrapper（两种选项，推荐 A）:\n\n**选项 A: 严格匹配 — 只对 gold-matched triple 计算 CED**\n```python\n# grpo_trainer.py CEDRewardWrapper.__call__ 中\n# 替换当前 \"对所有 pred triple 算 CED\" 的逻辑:\nfor p in pred:\n    key = (head, relation, tail)\n    if key not in gold_map:\n        continue  # 非匹配 triple 直接跳过，不计入 CED\n    # 只有 matched triple 进 CED 计算\n    ...\n# 如果没有 matched triple → reward = 0 (F1 gate 已处理)\n```\n\n**选项 B: recall penalty 加权**\n```python\n# 在 CED reward 最后乘以 recall factor\nrecall = matched_count / len(gold_set) if gold_set else 0\nfinal_reward = mean_ced * recall\n```\n\n- 命令 diff: 代码修改 + `--learning_rate 5e-6`（与方向 1 组合）\n- 预计 GPU 时间: ~4h（200 steps）\n\n**预期结果**:\n- 如果假说正确: pred_count 不再下降，recall 恢复到 SFT 水平（0.40+），EDCR 适度提升（0.75-0.85 而非 0.99）\n- 风险: 严格匹配可能让 CED reward 太稀疏（多数 triple 拿不到分），失去 CED-as-stabilizer 作用 → 用选项 B 折中\n\n**优先级**: **P1** — 与方向 1 组合使用\n\n---\n\n### 方向 3: MO-GRPO 风格 reward 归一化\n**诊断依据**:\n- [MO-GRPO](https://arxiv.org/abs/2509.22047) 指出标准 GRPO 按 sum 归一化 advantage，variance 大的 reward 主导梯度\n- format reward variance≈0（已最大化），f1 和 CED 的 variance 不同，CED 可能主导\n- 当前 WeightedRewardFn 只做静态权重，不做 variance normalization\n- 实现简单：TRL GRPOTrainer 内部对 rewards 做 group-level normalization，只需改 reward_funcs 返回方式\n\n**实验配置**:\n- 改动: 在 WeightedRewardFn 外层 wrapper，对每个 reward channel 的 advantage 独立归一化后再求和\n- 或者更简单：移除 format reward（已无信号），只用 f1 + CED 两个 channel，参考 MO-GRPO 的 per-objective normalization\n- 与方向 1+2 组合: `--learning_rate 5e-6` + CED shortcut fix + MO-GRPO normalization\n- 预计 GPU 时间: ~4h\n\n**预期结果**:\n- 如果假说正确: f1 和 CED 同步提升，不再出现 CED 单边优化\n- 风险: TRL 内部 normalization 可能与自定义 normalization 冲突，需仔细对接\n\n**优先级**: **P2** — 在 P0+P1 效果不够时再叠加\n\n---\n\n## 执行建议\n\n| 优先级 | 实验 | 关键改动 | 验证标准 |\n|--------|------|---------|---------|\n| **P0** | lr=5e-6 | `learning_rate 5e-6`, max_steps=200 | ckpt-20 rel_f1 > 0.30 |\n| **P1** | P0 + CED shortcut fix | 只对 gold-matched triple 计算 CED | pred_count 不下降, recall > 0.35 |\n| **P2** | P0+P1 + MO-GRPO norm | per-objective advantage normalization | f1/ced 同步上升 |\n\n**建议先单独跑 P0**（只改 lr），如果 ckpt-20 rel_f1 > 0.30 确认 lr 是主因，再叠加 P1。P0 和 P1 可以并行跑（如果有两张空闲卡）以节省时间。\n\nSources:\n- [Unsloth RL Guide — lr=5e-6 for GRPO](https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide)\n- [HuggingFace GRPO Trainer docs](https://huggingface.co/docs/trl/main/en/grpo_trainer)\n- [TRL GRPO cookbook — lr=1e-5](https://huggingface.co/learn/cookbook/en/fine_tuning_llm_grpo_trl)\n- [MO-GRPO: Mitigating Reward Hacking](https://arxiv.org/abs/2509.22047)\n- [Reward Hacking in GRPO — blog](https://ishanjmukherjee.github.io/reward-hacking-grpo)\n- [MS-SWIFT Qwen GRPO — lr=1e-6](https://qwen.readthedocs.io/en/latest/training/ms_swift.html)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d029-failure-mode-analysis.md"
+}

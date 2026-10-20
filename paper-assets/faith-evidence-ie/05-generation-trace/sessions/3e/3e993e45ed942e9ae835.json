@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e993e45ed942e9ae835",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research seed comparison prep",
+  "task_key": "worker_research_seed-comparison-prep_20260516T052633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_seed-comparison-prep_20260516T052633_result.json",
+    "occurrence": 1,
+    "bytes": 1402,
+    "sha256": "09bfa28f3a61e1ea8f4f13f4a86a4796a344b92ab0b7be7acc4d222c80762470"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### seed_comparison.py 路径配置：**正确，无需修改**\n\n脚本 METHODS dict 已指向正确的 8 个目录。\n\n### 8 个目录状态\n\n| Slot | 目录 | 存在 | metrics_v2.json | 状态 |\n|------|------|------|-----------------|------|\n| CED s42 | `rsft_ced_s42_reeval` | ✓ | **无（空目录）** | re-eval 进行中 |\n| CED s43 | `rsft_ced_s43` | ✓ | ✓ f1=0.4601, ign_f1=0.4512 | **完成** |\n| CED s44 | `rsft_ced_s44_reeval` | ✓ | **无（空目录）** | re-eval 进行中 |\n| CED s45 | `rsft_ced_s45` | ✓ | ✓ | **完成** |\n| flatNLI s42 | `rsft_flat_nli_s42_reeval` | ✓ | **无（空目录）** | re-eval 进行中 |\n| flatNLI s43 | `rsft_flat_nli_s43_reeval_r2` | ✓ | **无（空目录）** | re-eval 进行中 |\n| flatNLI s44 | `rsft_flat_nli_s44` | ✓ | ✓ f1=0.4615, ign_f1=0.4521 | **完成** |\n| flatNLI s45 | `rsft_flat_nli_s45` | ✓ | ✓ | **完成** |\n\n### 指标读取验证\n\n脚本 `load_metrics()` 优先读 `metrics_v2.json`，`METRICS_KEYS` 包含 `ign_f1` 和 `f1`（即 rel_f1）。已确认已完成的 metrics_v2.json 中这两个字段均存在且有效。\n\n### 结论\n\n- 脚本配置正确，**不需要修改**\n- 4/8 已完成（CED s43、CED s45、flatNLI s44、flatNLI s45）\n- 4/8 re-eval 进行中（CED s42、CED s44、flatNLI s42、flatNLI s43），目录已创建但尚无输出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-seed-comparison-prep.md"
+}

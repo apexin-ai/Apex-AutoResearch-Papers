@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3e5490171efd935f1e6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan017 14b sft eval r2",
+  "task_key": "worker_analysis_plan017_14b_sft_eval_r2_20260519T135510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan017_14b_sft_eval_r2_20260519T135510_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "10cfc556c9809969008019e3d20dad75aaaa6e4708c7622487cd66fd83d6b114"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完成。结果汇总：\n\n**plan017_14b_sft_eval_r2 — 14B SFT baseline eval (bf16, no quantize)**\n\n| 指标 | 值 |\n|------|-----|\n| **ign_f1** | **0.5507** |\n| ign_precision | 0.5268 |\n| ign_recall | 0.5768 |\n| f1 | 0.5611 |\n| format_compliance_rate | 1.0 |\n| n_truncated | 139 / 985 |\n| inference_time | 18011s (~5h) |\n| evi_f1 | 0.8292 |\n| evi_f1_joint | 0.4453 |\n| edcr | 0.597 |\n\n**Scale 对比（SFT baseline ign_f1）：**\n- 1.7B: 0.4464\n- 4B: 0.4358\n- 8B: 0.4866\n- **14B: 0.5507** (+13.2% over 8B mean)\n\n**对比 14B no-evidence (0.551)：** 两者几乎持平（0.5507 vs 0.551），evidence tax 极小（-0.05%），说明 14B 模型在输出 evidence 的同时几乎不牺牲关系抽取性能。\n\nConclusion: **success**。14B 在 4 个 scale 档中最强，且 evidence tax 接近零。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan017-14b-sft-eval-r2.md"
+}

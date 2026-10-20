@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0c589a7c51b09c4063f",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_19_1779403949.md",
+  "task_key": "loop_19_1779403949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19_1779403949.md",
+    "occurrence": 1,
+    "bytes": 4180,
+    "sha256": "5e2f50a4c88164d73b32dfd2e537a748915402d4c658c94652b28adebdef5181"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-21T22:52:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x cuda:0-3，无其他服务器可用\n- 1.7B no-evi@2048 已证实 negative（截断是模型能力限制非 budget），不要再跑 1.7B no-evi 变体\n- matched@2048 是当前唯一合法的 evidence tax 计算方法论（D137 决策），@1024 的 tax 数字不可用于论文\n- D142 narrative reframe 已批准：Contribution 重构中，不要用旧 framing 写 paper\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（4× RTX PRO 6000, 96GB/卡）\n- 工作目录：/root/autodl-tmp/freige\n- Python：/root/miniconda3/bin/python（conda base）\n- 模型路径：/root/autodl-tmp/models/Qwen/Qwen3-{1.7B,4B,8B,14B}，LLaMA /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B-Instruct\n- SFT adapters：/root/autodl-tmp/sft_output_qwen3_{1_7b,4b,8b,14b}_bf16，/root/autodl-tmp/sft_output_llama_*\n- 数据：/root/autodl-tmp/data/docred（dev=985 examples）\n- Eval 输出：/root/autodl-tmp/eval_results/{exp_id}/metrics.json\n- HF cache：/root/autodl-tmp/.hf_cache（HF_HUB_OFFLINE=1）\n- 活跃进程：\n  - plan017_14b_rsft_eval_2048 (PID 70388, cuda:1)\n  - eval_llama_rsft_s42_with_evidence_2048 (PID 70706, cuda:0)\n  - d140_8b_sft_s42_with_evi_2048 (PID 81857, cuda:3)\n\n### 3. 📊 当前状态\n- 刚收到 `d140_1_7b_sft_s42_with_evi_2048` 完成回调（ANALYZING），已派 Worker 读取 metrics 并分析。等 Worker 回调后更新 registry + 汇报 Director。\n- RUNNING 实验（3个）：\n  - `plan017_14b_rsft_eval_2048`：14B RSFT with-evi@2048，验证 budget 无影响（@1024 已 0 截断）\n  - `eval_llama_rsft_s42_with_evidence_2048`：LLaMA RSFT s42 with-evi@2048，matched control\n  - `d140_8b_sft_s42_with_evi_2048`：8B SFT with-evi@2048，D140 Phase 2 pilot\n- Worker 运行中：\n  - `worker_analyze_d140_1_7b_sft_s42_with_evi_2048_20260521T062635`：分析 1.7B with-evi@2048 结果\n  - `worker_research_next-batch-planning_20260521T061905`：规划下一批实验\n- cuda:1 和 cuda:2 空闲（plan017 占 cuda:1 但 resource 系统未注册；cuda:2 刚跑完 1.7B with-evi）\n\n### 4. 📋 待办\n- Worker analyze 回调 → 读 metrics，计算 1.7B matched tax@2048 = no-evi(0.3925) - with-evi(?)，update_registry(conclusion+metrics)，汇报 Director\n- d140_8b_sft_s42_with_evi_2048 完成 → 同理计算 8B matched tax@2048（需先跑 8B no-evi@2048 配对）\n- plan017_14b_rsft_eval_2048 完成 → 对比 @1024(0.5886)，验证 14B 无截断假设\n- eval_llama_rsft_s42_with_evidence_2048 完成 → 对比 @1024(0.5714)，确认 RSFT matched tax\n- 所有 matched@2048 数据齐全（1.7B/8B/14B/LLaMA × SFT/RSFT × with/no-evi）→ 全面重算 evidence tax table → patch paper\n- next-batch-planning Worker 回调 → 读建议，判断 cuda:2 空闲可以跑什么（可能是 8B no-evi@2048 或 Qwen 8B RSFT with-evi@2048）\n\n### 5. 🎯 战略上下文\n- 核心 narrative（D142 reframe）：3 贡献 = (1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression\n- D137 pivot：所有 evidence tax 必须用 matched@2048（@1024 截断不对称导致 tax 伪影）。目前只有 LLaMA SFT 3-seed matched tax 完整（全负，evidence helps）\n- D140 全尺度截断审计正在进行：1.7B（最严重截断）、8B Qwen（31.8% 不对称）是关键数据点\n- 1.7B no-evi@2048 是 negative（截断未改善 = 模型能力限制）——这意味着 1.7B 的 matched tax 计算仍有效但 baseline 低\n- 易错点：\n  - no-evi@2048 的 1.7B 截断率几乎没下降（50.9%→50.56%），说明 1.7B 生成能力不足导致无穷长输出——这不是 budget 问题而是 capability bound\n  - 不要混淆\"evidence tax 为负\"（evidence helps）和\"evidence tax 为正\"（evidence hurts）——论文 claim 是 RSFT 消除 tax，所以关注 RSFT tax ≈ 0 而 SFT tax 显著负\n  - 投稿 EMNLP 2026 Main（ARR July，~55 天），时间充足但需要全尺度 matched 数据 + paper rewrite\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1779403949.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f41d8e7d7493fbb8e82c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "investigate lead1 and cuda0",
+  "task_key": "worker_investigate_lead1_and_cuda0_20260517T125405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_lead1_and_cuda0_20260517T125405_result.json",
+    "occurrence": 1,
+    "bytes": 1514,
+    "sha256": "27ff55f3087fda5e2ac04ab73f09e4a0e00020d4d423e9d2ca800ebc8b677bf2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### Part 1: lead1_ced_evidence_filter — 已完成，结论 negative\n\nPID 441954 已退出。输出目录 `/root/autodl-tmp/lead1_ced_filter_results/` 有完整结果。\n\n**关键指标对比：**\n\n| 指标 | Baseline | tau=0.3 | tau=0.5 | tau=0.7 |\n|------|----------|---------|---------|---------|\n| Evi Precision | 0.802 | 0.902 | 0.904 | 0.908 |\n| Evi Recall | 0.810 | 0.613 | 0.612 | 0.608 |\n| **Evi F1** | **0.806** | 0.730 | 0.730 | 0.729 |\n| EDCR | 0.654 | 0.580 | 0.578 | 0.578 |\n| Joint Evi F1 | 0.361 | 0.335 | 0.334 | 0.334 |\n| RE F1 | 0.460 | 0.460 | 0.460 | 0.460 |\n\n**结论：** NLI filter 提升 precision (+10pt) 但 recall 损失过大 (-20pt)，所有 tau 下 evi_f1、EDCR、joint_f1 均劣于 baseline。D090 判断正确。Registry 已更新为 DONE/negative。\n\n---\n\n### Part 2: CodaLab test 提交文件 — 已就绪\n\n两个模型的 test predictions 均已生成且包含 `codalab_submission.json`：\n\n| 文件 | 模型 | Predictions | Format OK |\n|------|------|-------------|-----------|\n| `/root/autodl-tmp/eval_results/plan_002_test_rsft_s44/codalab_submission.json` (2.3MB) | Qwen3-4B rsft_s44/ckpt-510 | 26,925 | 99.6% |\n| `/root/autodl-tmp/eval_results/plan_002_test_rsft_s43/codalab_submission.json` (2.3MB) | Qwen3-4B rsft_ced_s43/ckpt-510 | 27,119 | 99.8% |\n\n**格式：** 标准 DocRED 提交格式 `[{title, h_idx, t_idx, r, evidence}, ...]`，可直接上传 CodaLab。两个文件均已就绪，无需额外转换。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-lead1-and-cuda0.md"
+}

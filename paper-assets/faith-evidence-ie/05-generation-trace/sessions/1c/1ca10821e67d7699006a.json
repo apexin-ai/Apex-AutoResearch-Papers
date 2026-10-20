@@ -1,0 +1,2972 @@
+{
+  "schema_version": "1.0",
+  "id": "1ca10821e67d7699006a",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "diagnose 14b gen progress and multiseed scan",
+  "task_key": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521.jsonl",
+    "occurrence": 1,
+    "bytes": 98245,
+    "sha256": "bd02f59c2e1d9e6846a218f7daf47802ed543bd211af7fdcb1086a13d820a7b5"
+  },
+  "statistics": {
+    "messages": 147,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "tool_call": 73,
+      "tool_result": 73,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T00:29:09.209923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T00:29:09.210334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T00:29:09.210594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ps -p 194682 -o pid,etime,pcpu,rss= 2>/dev/null || echo \"PID DEAD\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T00:29:09.210756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T00:29:09.210887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -20 ~/runs/faith-evidence-ie/plan017_14b_rsft_s43_generate.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T00:29:09.211104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[RSFT Monitor] Docs 702-801 (100 docs, 800 generations):\\\\n  format_ok_rate: 99.8%\\\\n  truncation_rate: 8.2%\\\\n  mean_diversity: 7.3/8\\\\n\\\\n\\\\rGenerating:  26%|██▋       | 801/3027 [4:39:05<12:03:03, 19.49s/it]\\\\rGenerating:  26%|██▋       | 802/3027 [4:39:38<14:33:37, 23.56s/it]\\\\rGenerating:  27%|██▋       | 803/3027 [4:39:50<12:19:19, 19.95s/it]\\\\rGenerating:  27%|██▋       | 804/3027 [4:40:22<14:41:53, 23.80s/it]\\\\rGenerating:  27%|██▋       | 805/3027 [4:40:55<16:21:11, 26.49s/it]\\\\rGenerating:  27%|██▋       | 806/3027 [4:41:09<13:54:44, 22.55s/it]\\\\rGenerating:  27%|██▋       | 807/3027 [4:41:41<15:46:57, 25.59s/it]\\\\rGenerating:  27%|██▋       | 808/3027 [4:41:53<13:17:14, 21.56s/it]\\\\rGenerating:  27%|██▋       | 809/3027 [4:42:13<13:00:06, 21.10s/it]\\\\rGenerating:  27%|██▋       | 810/3027 [4:42:46<15:08:15, 24.58s/it]\\\\rGenerating:  27%|██▋       | 811/3027 [4:43:19<16:38:33, 27.04s/it]\\\\rGenerating:  27%|██▋       | 812/3027 [4:43:20<11:55:21, 19.38s/it]\\\\rGenerating:  27%|██▋       | 813/3027 [4:43:38<11:29:45, 18.69s/it]\\\\rGenerating:  27%|██▋       | 814/3027 [4:44:10<14:04:51, 22.91s/it]\\\\rGenerating:  27%|██▋       | 815/3027 [4:44:36<14:33:01, 23.68s/it]\\\\rGenerating:  27%|██▋       | 816/3027 [4:45:09<16:15:06, 26.46s/it]\\\\rGenerating:  27%|██▋       | 817/3027 [4:45:42<17:24:44, 28.36s/it]\\\\rGenerating:  27%|██▋       | 818/3027 [4:45:46<13:01:18, 21.22s/it]\\\\rGenerating:  27%|██▋       | 819/3027 [4:46:20<15:16:53, 24.92s/it]\\\\rGenerating:  27%|██▋       | 820/3027 [4:46:24<11:28:38, 18.72s/it]\\\\rGenerating:  27%|██▋       | 821/3027 [4:46:35<10:05:18, 16.46s/it]\\\\rGenerating:  27%|██▋       | 822/3027 [4:46:48<9:27:37, 15.45s/it] \\\\rGenerating:  27%|██▋       | 823/3027 [4:46:55<7:54:44, 12.92s/it]\\\\rGenerating:  27%|██▋       | 824/3027 [4:47:04<7:06:06, 11.61s/it]\\\\rGenerating:  27%|██▋       | 825/3027 [4:47:37<11:00:13, 17.99s/it]\\\\rGenerating:  27%|█���▋       | 826/3027 [4:48:01<12:0\n…[truncated 6446 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T00:29:09.211313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "wc -l /root/autodl-tmp/rsft_generations_14b_s43/*.jsonl 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T00:29:09.211468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T00:29:09.211594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/rsft_generations_14b_s43/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T00:29:09.211717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T00:29:09.211861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ps -p 194682 -o pid,etime,pcpu,rss",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T00:29:09.211986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED %CPU   RSS\\\\n194682    06:08:47  100 2458228\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T00:29:09.212106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/rsft_generations_14b_s43/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T00:29:09.212251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 88108\\\\ndrwxr-xr-x  2 root root       64 May 23 02:18 .\\\\ndrwxr-xr-x 87 root root     8192 May 23 02:17 ..\\\\n-rw-r--r--  1 root root 82038174 May 23 08:25 generations.jsonl\\\\n-rw-r--r--  1 root root    24794 May 23 08:25 progress.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T00:29:09.212411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/rsft_output_qwen3_1_7b_k1*",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T00:29:09.212549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T00:29:09.212670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/rsft_output_1_7b*",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T00:29:09.212791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/rsft_output_1_7b*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T00:29:09.212950+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/rsft_output_ced_s42*",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T00:29:09.213072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_ced_s42_v2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T00:29:09.213187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/rsft_output_ced_s43*",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T00:29:09.213359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_ced_s43\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T00:29:09.213483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/rsft_output_ced_s44*",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T00:29:09.213601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/rsft_output_s4*",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T00:29:09.213720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/rsft_output_ced_s44*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T00:29:09.213846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/rsft_output_s4*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T00:29:09.213963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/rsft_output/checkpoint-*",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T00:29:09.214082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/rsft_output/checkpoint-*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T00:29:09.214195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/rsft_output_qwen3_8b_k1*",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T00:29:09.214362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_8b_k1\\\\n/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43\\\\n/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T00:29:09.214485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/rsft_output_14b*",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T00:29:09.214604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_14b\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T00:29:09.214718+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/rsft_output_llama*",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T00:29:09.214835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_llama_3_1_8b_k1\\\\n/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43\\\\n/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T00:29:09.214956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -d /root/autodl-tmp/eval_results/test_eval_*",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T00:29:09.215093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s42\\\\n/root/autodl-tmp/eval_results/test_eval_14b_rsft_s42_no_evi\\\\n/root/autodl-tmp/eval_results/test_eval_14b_sft_s42\\\\n/root/autodl-tmp/eval_results/test_eval_14b_sft_s42_no_evi\\\\n/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42\\\\n/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42_no_evi\\\\n/root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42\\\\n/root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42_no_evi\\\\n/root/autodl-tmp/eval_results/test_eval_4b_rsft_s42\\\\n/root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_no_evi\\\\n/root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2\\\\n/root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2.log\\\\n/root/autodl-tmp/eval_results/test_eval_4b_sft_s42\\\\n/root/autodl-tmp/eval_results/test_eval_4b_sft_s42_no_evi\\\\n/root/autodl-tmp/eval_results/test_eval_8b_rsft_s42\\\\n/root/autodl-tmp/eval_results/test_eval_8b_rsft_s42_no_evi\\\\n/root/autodl-tmp/eval_results/test_eval_8b_sft_s42\\\\n/root/autodl-tmp/eval_results/test_eval_8b_sft_s42_no_evi\\\\n/root/autodl-tmp/eval_results/test_eval_llama_rsft_s42\\\\n/root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_no_evi\\\\n/root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_no_evi.log\\\\n/root/autodl-tmp/eval_results/test_eval_llama_sft_s42\\\\n/root/autodl-tmp/eval_results/test_eval_llama_sft_s42.log\\\\n/root/autodl-tmp/eval_results/test_eval_llama_sft_s42_no_evi\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T00:29:09.215275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/rsft_generations_14b_s43/progress.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T00:29:09.215640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"completed_doc_ids\\\\\\\": [\\\\\\\"(We've Got) Honey Love\\\\\\\", \\\\\\\".cw\\\\\\\", \\\\\\\"A Caribbean Mystery\\\\\\\", \\\\\\\"A Christmas to Remember\\\\\\\", \\\\\\\"A Very Crappy Christmas\\\\\\\", \\\\\\\"AIDAblu\\\\\\\", \\\\\\\"Abdoulaye Idrissa Ma\\\\\\\\u00efga\\\\\\\", \\\\\\\"Abrakurrie Cave\\\\\\\", \\\\\\\"Actus Tragicus (comics)\\\\\\\", \\\\\\\"Ad\\\\\\\\u00e4ka Cultural Festival\\\\\\\", \\\\\\\"Africa Finance Corporation\\\\\\\", \\\\\\\"Agamemnon\\\\\\\", \\\\\\\"Ahmed Djoghlaf\\\\\\\", \\\\\\\"AirAsia Zest\\\\\\\", \\\\\\\"Al Chang\\\\\\\", \\\\\\\"Al Passarell\\\\\\\", \\\\\\\"Al-Mustansiriya University\\\\\\\", \\\\\\\"Albert Tatlock\\\\\\\", \\\\\\\"Albertosaurinae\\\\\\\", \\\\\\\"Alex Shelley\\\\\\\", \\\\\\\"Alexander Novikov\\\\\\\", \\\\\\\"Alexandrov Ensemble\\\\\\\", \\\\\\\"Alfred Des Cloizeaux\\\\\\\", \\\\\\\"Alfred Edward Moffat\\\\\\\", \\\\\\\"Alfred M. Wood\\\\\\\", \\\\\\\"Alfred Todd (politician)\\\\\\\", \\\\\\\"Algester, Queensland\\\\\\\", \\\\\\\"Ali Charaf Damache\\\\\\\", \\\\\\\"Alkali Falls\\\\\\\", \\\\\\\"All I Want for Christmas Is a Real Good Tan\\\\\\\", \\\\\\\"Allan Octavian Hume\\\\\\\", \\\\\\\"Alliance (Sweden)\\\\\\\", \\\\\\\"Alma (Finnish singer)\\\\\\\", \\\\\\\"Alton, Illinois\\\\\\\", \\\\\\\"Amanda S\\\\\\\\u00f8rensen\\\\\\\", \\\\\\\"American Association for Nude Recreation\\\\\\\", \\\\\\\"American Girls (band)\\\\\\\", \\\\\\\"Amor d'\\\\\\\\u00e1gua fresca\\\\\\\", \\\\\\\"Ampato\\\\\\\", \\\\\\\"Amras\\\\\\\", \\\\\\\"Anakpawis\\\\\\\", \\\\\\\"Anayama Nobutada\\\\\\\", \\\\\\\"Andrea Ferrante\\\\\\\", \\\\\\\"Andrew Kiss\\\\\\\", \\\\\\\"Andy White (drummer)\\\\\\\", \\\\\\\"Anil's Ghost\\\\\\\", \\\\\\\"Ann Wagner\\\\\\\", \\\\\\\"Anna-Lisa Bj\\\\\\\\u00f6rling\\\\\\\", \\\\\\\"Anselperga\\\\\\\", \\\\\\\"Antennaria media\\\\\\\", \\\\\\\"Anthony Newley\\\\\\\", \\\\\\\"Anthony Power Development\\\\\\\", \\\\\\\"Anton Antonov-Ovseyenko\\\\\\\", \\\\\\\"Antonie van Leeuwenhoek\\\\\\\", \\\\\\\"Antwerp\\\\\\\", \\\\\\\"Apatornis\\\\\\\", \\\\\\\"Apgujeong-dong\\\\\\\", \\\\\\\"Archie Comics\\\\\\\", \\\\\\\"Ares\\\\\\\", \\\\\\\"Ark: Survival Evolved\\\\\\\", \\\\\\\"Arkadi Ghukasyan\\\\\\\", \\\\\\\"Ashley Mote\\\\\\\", \\\\\\\"Asian Men's Volleyball Cup\\\\\\\", \\\\\\\"Askar Simitko\\\\\\\", \\\\\\\"Assam Rifles\\\\\\\", \\\\\\\"Athos de Oliveira\\\\\\\", \\\\\\\"Athrips mongolorum\\\\\\\", \\\\\\\"Atomic Blonde\\\\\\\", \\\\\\\"Australia (Whore of the world)\\\\\\\", \\\\\\\"Australia\\\\\\\\u2013Japa\n…[truncated 8358 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T00:29:09.215819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/test_eval_* -name \"metrics.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T00:29:09.215955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T00:29:09.216081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls ~/runs/faith-evidence-ie/test_eval_*.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T00:29:09.216216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/faith-evidence-ie/test_eval_14b_rsft_s42.log\\\\n/root/runs/faith-evidence-ie/test_eval_14b_rsft_s42_no_evi.log\\\\n/root/runs/faith-evidence-ie/test_eval_1_7b_rsft_s42.log\\\\n/root/runs/faith-evidence-ie/test_eval_1_7b_rsft_s42_no_evi.log\\\\n/root/runs/faith-evidence-ie/test_eval_4b_rsft_s42.log\\\\n/root/runs/faith-evidence-ie/test_eval_4b_rsft_s42_no_evi.log\\\\n/root/runs/faith-evidence-ie/test_eval_4b_rsft_s42_v2.log\\\\n/root/runs/faith-evidence-ie/test_eval_4b_rsft_s42_v3.log\\\\n/root/runs/faith-evidence-ie/test_eval_8b_rsft_s42.log\\\\n/root/runs/faith-evidence-ie/test_eval_8b_rsft_s42_no_evi.log\\\\n/root/runs/faith-evidence-ie/test_eval_8b_sft_s42_no_evi.log\\\\n/root/runs/faith-evidence-ie/test_eval_llama_rsft_s42.log\\\\n/root/runs/faith-evidence-ie/test_eval_llama_rsft_s42_no_evi.log\\\\n/root/runs/faith-evidence-ie/test_eval_llama_sft_s42_no_evi.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T00:29:09.216375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output_qwen3_1_7b_k1 -name \"adapter_config.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T00:29:09.216505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1/checkpoint-550/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1/checkpoint-567/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-23T00:29:09.216624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output_ced_s42_v2 -name \"adapter_config.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-23T00:29:09.216750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_ced_s42_v2/checkpoint-350/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_ced_s42_v2/checkpoint-400/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_ced_s42_v2/checkpoint-450/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_ced_s42_v2/checkpoint-500/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_ced_s42_v2/checkpoint-510/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_ced_s42_v2/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-23T00:29:09.216889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output_14b -name \"adapter_config.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-23T00:29:09.217016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_14b/checkpoint-1100/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_14b/checkpoint-1131/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_14b/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-23T00:29:09.217132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "wc -l /root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-23T00:29:09.217265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"8464 /root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-23T00:29:09.217445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-23T00:29:09.217571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-23T00:29:09.217687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-23T00:29:09.217806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"codalab_submission.json\\\\ncodalab_submission_codalab.json\\\\npredictions.json\\\\ntest_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-23T00:29:09.217920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42 -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-23T00:29:09.218087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-23T00:29:09.218214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -5 ~/runs/faith-evidence-ie/test_eval_4b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-23T00:29:09.218380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 23:00:24,355 INFO Full model: /root/autodl-tmp/rsft_output/checkpoint-510\\\\n2026-05-21 23:00:24,355 INFO Loading tokenizer: /root/autodl-tmp/rsft_output/checkpoint-510\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\\\\\", line 422, in cached_files\\\\n    hf_hub_download(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-23T00:29:09.218513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -10 ~/runs/faith-evidence-ie/test_eval_4b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-23T00:29:09.218646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/configuration_utils.py\\\\\\\", line 737, in _get_config_dict\\\\n    resolved_config_file = cached_file(\\\\n                           ^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\\\\\", line 278, in cached_file\\\\n    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\\\\\", line 473, in cached_files\\\\n    raise OSError(f\\\\\\\"{e}\\\\\\\") from e\\\\nOSError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/root/autodl-tmp/rsft_output/checkpoint-510'. Use `repo_type` argument if needed.\\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-23T00:29:09.218770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -5 ~/runs/faith-evidence-ie/test_eval_8b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-23T00:29:09.218931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 22:07:53,454 INFO Detected adapter at /root/autodl-tmp/rsft_output_qwen3_8b_k1, base: /root/autodl-tmp/models/Qwen/Qwen3-8B\\\\n2026-05-21 22:07:53,454 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-8B\\\\n2026-05-21 22:07:53,830 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-8B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/399 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/399 [00:00<01:21,  4.89it/s]\\\\rLoading weights:   1%|          | 2/399 [00:00<01:29,  4.41it/s]\\\\rLoading weights:   4%|▍         | 15/399 [00:00<00:10, 38.18it/s]\\\\rLoading weights:   7%|▋         | 27/399 [00:00<00:06, 60.75it/s]\\\\rLoading weights:  10%|▉         | 38/399 [00:00<00:05, 64.14it/s]\\\\rLoading weights:  15%|█▌        | 61/399 [00:00<00:03, 106.59it/s]\\\\rLoading weights:  20%|█▉        | 79/399 [00:01<00:02, 114.28it/s]\\\\rLoading weights:  24%|██▎       | 94/399 [00:01<00:02, 122.55it/s]\\\\rLoading weights:  28%|██▊       | 112/399 [00:01<00:02, 137.55it/s]\\\\rLoading weights:  32%|███▏      | 127/399 [00:01<00:02, 125.76it/s]\\\\rLoading weights:  37%|███▋      | 146/399 [00:01<00:01, 135.85it/s]\\\\rLoading weights:  40%|████      | 161/399 [00:01<00:01, 132.34it/s]\\\\rLoading weights:  45%|████▍     | 179/399 [00:01<00:01, 144.76it/s]\\\\rLoading weights:  49%|████▊     | 194/399 [00:01<00:01, 129.93it/s]\\\\rLoading weights:  53%|█████▎    | 213/399 [00:01<00:01, 141.44it/s]\\\\rLoading weights:  57%|█████▋    | 228/399 [00:02<00:01, 140.37it/s]\\\\rLoading weights:  62%|██████▏   | 246/399 [00:02<00:01, 148.23it/s]\\\\rLoading weights:  66%|██████▌   | 262/399 [00:02<00:00, 146.18it/s]\\\\rLoading weights:  70%|██████▉   | 279/399 [00:02<00:00, 152.66it/s]\\\\rLoading weights:  74%|███████▍  | 295/399 [00:02<00:00, 151.27it/s]\\\\rLoading weights:  78%|███████▊  | 312/399 [00:02<00:00, 152.92it/s]\\\\rLoading weights:  82%|████████▏ | 328/399 [00:02<00\n…[truncated 473 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-23T00:29:09.219084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -10 ~/runs/faith-evidence-ie/test_eval_8b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-23T00:29:09.219215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Evi-F1(TP):     0.6037\\\\n  EDCR:        0.7993\\\\n  Documents:   500\\\\n  Predictions: 14616\\\\n  Format OK:   499/500\\\\n  Truncated:   9/500\\\\n  CodaLab:     8049 converted, 315 skipped (rel), 301 skipped (entity)\\\\n  Output:      /root/autodl-tmp/eval_results/test_eval_8b_rsft_s42/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-23T00:29:09.219360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -5 ~/runs/faith-evidence-ie/test_eval_14b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-23T00:29:09.219559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 18:07:53,725 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-21 18:07:53,725 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-21 18:07:54,159 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/443 [00:01<11:53,  1.61s/it]\\\\rLoading weights:   0%|          | 2/443 [00:03<11:59,  1.63s/it]\\\\rLoading weights:   1%|          | 4/443 [00:03<04:52,  1.50it/s]\\\\rLoading weights:   1%|          | 5/443 [00:03<03:46,  1.93it/s]\\\\rLoading weights:   1%|▏         | 6/443 [00:03<03:03,  2.39it/s]\\\\rLoading weights:   2%|▏         | 10/443 [00:03<01:13,  5.87it/s]\\\\rLoading weights:   3%|▎         | 13/443 [00:04<00:53,  8.01it/s]\\\\rLoading weights:   4%|▎         | 16/443 [00:04<00:42, 10.06it/s]\\\\rLoading weights:   4%|▍         | 18/443 [00:04<00:42, 10.05it/s]\\\\rLoading weights:   5%|▍         | 21/443 [00:04<00:42,  9.91it/s]\\\\rLoading weights:   6%|▌         | 27/443 [00:04<00:27, 15.20it/s]\\\\rLoading weights:   7%|▋         | 29/443 [00:05<00:28, 14.37it/s]\\\\rLoading weights:   8%|▊         | 35/443 [00:05<00:19, 21.46it/s]\\\\rLoading weights:   9%|▊         | 38/443 [00:05<00:25, 15.87it/s]\\\\rLoading weights:   9%|▉         | 41/443 [00:05<00:25, 15.47it/s]\\\\rLoading weights:  10%|█         | 46/443 [00:05<00:19, 20.77it/s]\\\\rLoading weights:  11%|█         | 49/443 [00:06<00:23, 16.51it/s]\\\\rLoading weights:  12%|█▏        | 52/443 [00:06<00:23, 16.66it/s]\\\\rLoading weights:  13%|█▎        | 57/443 [00:06<00:21, 17.68it/s]\\\\rLoading weights:  14%|█▎        | 60/443 [00:06<00:21, 18.08it/s]\\\\rLoading weights:  14%|█▍        | 63/443 [00:06<00:21, 17.83it/s]\\\\rLoading weights:  15%|█▍        | 66/443 [00:07<00:19, 19.20it/s]\\\\rLoading weights:  16\n…[truncated 6438 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-23T00:29:09.219718+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -10 ~/runs/faith-evidence-ie/test_eval_14b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-23T00:29:09.219852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Evi-F1(TP):     0.6025\\\\n  EDCR:        0.7865\\\\n  Documents:   500\\\\n  Predictions: 15835\\\\n  Format OK:   499/500\\\\n  Truncated:   67/500\\\\n  CodaLab:     11235 converted, 225 skipped (rel), 349 skipped (entity)\\\\n  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s42/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-23T00:29:09.219975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -5 ~/runs/faith-evidence-ie/test_eval_1_7b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-23T00:29:09.220116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 19:39:18,195 INFO Detected adapter at /root/autodl-tmp/rsft_output_qwen3_1_7b_k1, base: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n2026-05-21 19:39:18,195 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n2026-05-21 19:39:18,581 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/311 [00:00<?, ?it/s]\\\\rLoading weights:   1%|          | 2/311 [00:00<00:29, 10.46it/s]\\\\rLoading weights:  19%|█▉        | 59/311 [00:00<00:01, 246.05it/s]\\\\rLoading weights:  37%|███▋      | 115/311 [00:00<00:00, 362.86it/s]\\\\rLoading weights:  56%|█████▋    | 175/311 [00:00<00:00, 443.59it/s]\\\\rLoading weights:  76%|███████▌  | 235/311 [00:00<00:00, 489.10it/s]\\\\rLoading weights:  94%|█████████▎| 291/311 [00:00<00:00, 503.43it/s]\\\\rLoading weights: 100%|██████████| 311/311 [00:00<00:00, 424.20it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-23T00:29:09.220268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -10 ~/runs/faith-evidence-ie/test_eval_1_7b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-23T00:29:09.220408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Evi-F1(TP):     0.6196\\\\n  EDCR:        0.8169\\\\n  Documents:   500\\\\n  Predictions: 26098\\\\n  Format OK:   500/500\\\\n  Truncated:   369/500\\\\n  CodaLab:     7793 converted, 131 skipped (rel), 750 skipped (entity)\\\\n  Output:      /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-23T00:29:09.220538+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -10 ~/runs/faith-evidence-ie/test_eval_llama_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-23T00:29:09.220665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Evi-F1(TP):     0.5447\\\\n  EDCR:        0.8391\\\\n  Documents:   500\\\\n  Predictions: 23330\\\\n  Format OK:   500/500\\\\n  Truncated:   283/500\\\\n  CodaLab:     9641 converted, 490 skipped (rel), 1389 skipped (entity)\\\\n  Output:      /root/autodl-tmp/eval_results/test_eval_llama_rsft_s42/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-23T00:29:09.220820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -h \"INFO\\|Total\\|Finished\\|elapsed\\|time\" ~/runs/faith-evidence-ie/test_eval_1_7b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-23T00:29:09.220948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-23T00:29:09.221064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep \"Evaluating\\|INFO\" ~/runs/faith-evidence-ie/test_eval_8b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-23T00:29:09.221182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-23T00:29:09.221319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep \"Evaluating\\|INFO\" ~/runs/faith-evidence-ie/test_eval_14b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-23T00:29:09.221439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-23T00:29:09.221561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep \"Evaluating\\|INFO\" ~/runs/faith-evidence-ie/test_eval_llama_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-23T00:29:09.221677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-23T00:29:09.221790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2/",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-23T00:29:09.221907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"codalab_submission.json\\\\ncodalab_submission_codalab.json\\\\npredictions.json\\\\ntest_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-23T00:29:09.222020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -10 ~/runs/faith-evidence-ie/test_eval_4b_rsft_s42_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-23T00:29:09.222143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: test_inference.py [-h] --model_path MODEL_PATH\\\\n                         [--base_model BASE_MODEL] [--sft_adapter SFT_ADAPTER]\\\\n                         --data_path DATA_PATH --output_dir OUTPUT_DIR\\\\n                         [--batch_size BATCH_SIZE]\\\\n                         [--max_new_tokens MAX_NEW_TOKENS] [--seed SEED]\\\\n                         [--split SPLIT] [--no_evidence]\\\\n                         [--quantize | --no-quantize]\\\\ntest_inference.py: error: unrecognized arguments: --rsft_adapter /root/autodl-tmp/rsft_output_ced_s42_v2\\\\nEXIT_CODE=2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-23T00:29:09.222281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -10 ~/runs/faith-evidence-ie/test_eval_4b_rsft_s42_v3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-23T00:29:09.222448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 09:17:17,213 INFO Detected adapter at /root/autodl-tmp/rsft_output_ced_s42_v2, base: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-22 09:17:17,213 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-22 09:17:17,595 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/398 [00:00<?, ?it/s]\\\\rLoading weights:   1%|▏         | 5/398 [00:00<00:08, 47.65it/s]\\\\rLoading weights:  12%|█▏        | 47/398 [00:00<00:01, 258.23it/s]\\\\rLoading weights:  21%|██        | 83/398 [00:00<00:01, 303.76it/s]\\\\rLoading weights:  30%|███       | 121/398 [00:00<00:00, 333.38it/s]\\\\rLoading weights:  40%|███▉      | 158/398 [00:00<00:00, 343.48it/s]\\\\rLoading weights:  48%|████▊     | 193/398 [00:00<00:00, 342.19it/s]\\\\rLoading weights:  59%|█████▉    | 234/398 [00:00<00:00, 363.05it/s]\\\\rLoading weights:  69%|██████▊   | 273/398 [00:00<00:00, 367.04it/s]\\\\rLoading weights:  78%|███████▊  | 310/398 [00:00<00:00, 361.44it/s]\\\\rLoading weights:  87%|████████▋ | 347/398 [00:01<00:00, 354.31it/s]\\\\rLoading weights:  97%|█████████▋| 388/398 [00:01<00:00, 367.21it/s]\\\\rLoading weights: 100%|██████████| 398/398 [00:01<00:00, 343.34it/s]\\\\n2026-05-22 09:17:19,174 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\\\n2026-05-22 09:17:20,577 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_ced_s42_v2\\\\n2026-05-22 09:17:21,893 INFO Prepared 500 test documents\\\\n\\\\rInference:   0%|          | 0/500 [00:00<?, ?it/s]\\\\rInference:   0%|          | 1/500 [00:20<2:49:48, 20.42s/it]\\\\rInference:   0%|          | 2/500 [01:23<6:15:23, 45.23s/it]\\\\rInference:   1%|          | 3/500 [02:25<7:20:41, 53.20s/it]\\\\rInference:   1%|          | 4/500 [03:28<7:50:26, 56.91s/it]\\\\rInference:   1%|          | 5/500 [04:30<8:06:42, 59.00s/it]\\\\rInference:   1%|          | 6/500 [05:15<7:25:13, 54.08s/it]\\\\rInference: \n…[truncated 1303 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-23T00:29:09.222599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42 -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-23T00:29:09.222723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-23T00:29:09.222839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2 -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-23T00:29:09.222960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2/predictions.json\\\\n/root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2/codalab_submission.json\\\\n/root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2/test_summary.json\\\\n/root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2/codalab_submission_codalab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-23T00:29:09.223107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42/test_summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-23T00:29:09.223291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_documents\\\\\\\": 500,\\\\n  \\\\\\\"n_predictions\\\\\\\": 26098,\\\\n  \\\\\\\"n_truncated\\\\\\\": 369,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 500,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 21128.6,\\\\n  \\\\\\\"codalab_stats\\\\\\\": {\\\\n    \\\\\\\"converted\\\\\\\": 7793,\\\\n    \\\\\\\"skipped_rel\\\\\\\": 131,\\\\n    \\\\\\\"skipped_entity\\\\\\\": 750\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/re-docred-repo/data\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 1,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"test_revised\\\\\\\",\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.46245500806751894,\\\\n    \\\\\\\"recall\\\\\\\": 0.2147550432276657,\\\\n    \\\\\\\"f1\\\\\\\": 0.29330499468650373,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.46245500806751894,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.2147550432276657,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.29330499468650373,\\\\n    \\\\\\\"tp\\\\\\\": 3726,\\\\n    \\\\\\\"pred_count\\\\\\\": 8057,\\\\n    \\\\\\\"gold_count\\\\\\\": 17350,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.4975687819289715,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.8209606986899564,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.6196060397026137,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 26024,\\\\n    \\\\\\\"edcr\\\\\\\": 0.8169259687025839,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 36073,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 44157,\\\\n    \\\\\\\"evi_joint_precision\\\\\\\": 0.2221496953872933,\\\\n    \\\\\\\"evi_joint_recall\\\\\\\": 0.24272921784610507,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.23198394365130456,\\\\n    \\\\\\\"evi_tp\\\\\\\": 3063,\\\\n    \\\\\\\"evi_pred_total\\\\\\\": 13788,\\\\n    \\\\\\\"evi_gold_total\\\\\\\": 12619,\\\\n    \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n    \\\\\n…[truncated 325 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-23T00:29:09.223441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2/test_summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-23T00:29:09.223608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_documents\\\\\\\": 500,\\\\n  \\\\\\\"n_predictions\\\\\\\": 20917,\\\\n  \\\\\\\"n_truncated\\\\\\\": 214,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 499,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.998,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 4124.2,\\\\n  \\\\\\\"codalab_stats\\\\\\\": {\\\\n    \\\\\\\"converted\\\\\\\": 9630,\\\\n    \\\\\\\"skipped_rel\\\\\\\": 515,\\\\n    \\\\\\\"skipped_entity\\\\\\\": 456\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_ced_s42_v2\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/re-docred-repo/data\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"test_revised\\\\\\\",\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.3403115388431392,\\\\n    \\\\\\\"recall\\\\\\\": 0.19769452449567723,\\\\n    \\\\\\\"f1\\\\\\\": 0.25010025885012216,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.3403115388431392,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.19769452449567723,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.25010025885012216,\\\\n    \\\\\\\"tp\\\\\\\": 3430,\\\\n    \\\\\\\"pred_count\\\\\\\": 10079,\\\\n    \\\\\\\"gold_count\\\\\\\": 17350,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.5130349675238011,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.7953103448275862,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.6237222132078533,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 20560,\\\\n    \\\\\\\"edcr\\\\\\\": 0.8288208051300321,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 27918,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 33684,\\\\n    \\\\\\\"evi_joint_precision\\\\\\\": 0.16087990487514864,\\\\n    \\\\\\\"evi_joint_recall\\\\\\\": 0.2144385450511134,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.18383776622847242,\\\\n    \\\\\\\"evi_tp\\\\\\\": 2706,\\\\n    \\\\\\\"evi_pred_total\\\\\\\": 16820,\\\\n    \\\\\\\"evi_gold_total\\\\\\\": 12619,\\\\n    \\\\\\\"format_compliance_rate\\\\\\\": 0.998,\\\\n    \\\\\\\"field_compliance_r\n…[truncated 305 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-23T00:29:09.223755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -3 ~/runs/faith-evidence-ie/test_eval_1_7b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-23T00:29:09.223884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 19:39:18,195 INFO Detected adapter at /root/autodl-tmp/rsft_output_qwen3_1_7b_k1, base: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n2026-05-21 19:39:18,195 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n2026-05-21 19:39:18,581 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-23T00:29:09.224004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -3 ~/runs/faith-evidence-ie/test_eval_1_7b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-23T00:29:09.224125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Output:      /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-23T00:29:09.224264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -3 ~/runs/faith-evidence-ie/test_eval_8b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-23T00:29:09.224392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -3 ~/runs/faith-evidence-ie/test_eval_8b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-23T00:29:09.224514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 22:07:53,454 INFO Detected adapter at /root/autodl-tmp/rsft_output_qwen3_8b_k1, base: /root/autodl-tmp/models/Qwen/Qwen3-8B\\\\n2026-05-21 22:07:53,454 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-8B\\\\n2026-05-21 22:07:53,830 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-8B\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-23T00:29:09.224634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Output:      /root/autodl-tmp/eval_results/test_eval_8b_rsft_s42/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-23T00:29:09.224750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -3 ~/runs/faith-evidence-ie/test_eval_14b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-23T00:29:09.224882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 18:07:53,725 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-21 18:07:53,725 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-21 18:07:54,159 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-23T00:29:09.225001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -3 ~/runs/faith-evidence-ie/test_eval_14b_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-23T00:29:09.225125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s42/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-23T00:29:09.225256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "head -3 ~/runs/faith-evidence-ie/test_eval_llama_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-23T00:29:09.225383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 18:33:02,206 INFO Detected adapter at /root/autodl-tmp/rsft_output_llama_3_1_8b_k1, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n2026-05-21 18:33:02,206 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n2026-05-21 18:33:02,918 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-23T00:29:09.225500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -3 ~/runs/faith-evidence-ie/test_eval_llama_rsft_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-23T00:29:09.225617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Output:      /root/autodl-tmp/eval_results/test_eval_llama_rsft_s42/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-23T00:29:09.225729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42 -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-23T00:29:09.225844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-23T00:29:09.225956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/test_eval_4b_sft_s42 -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-23T00:29:09.226076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/test_eval_4b_sft_s42/run.log\\\\n/root/autodl-tmp/eval_results/test_eval_4b_sft_s42/predictions.json\\\\n/root/autodl-tmp/eval_results/test_eval_4b_sft_s42/codalab_submission.json\\\\n/root/autodl-tmp/eval_results/test_eval_4b_sft_s42/test_summary.json\\\\n/root/autodl-tmp/eval_results/test_eval_4b_sft_s42/codalab_submission_codalab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-23T00:29:09.226223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/test_eval_8b_rsft_s42/test_summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-23T00:29:09.226407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_documents\\\\\\\": 500,\\\\n  \\\\\\\"n_predictions\\\\\\\": 14616,\\\\n  \\\\\\\"n_truncated\\\\\\\": 9,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 499,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.998,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 2711.3,\\\\n  \\\\\\\"codalab_stats\\\\\\\": {\\\\n    \\\\\\\"converted\\\\\\\": 8049,\\\\n    \\\\\\\"skipped_rel\\\\\\\": 315,\\\\n    \\\\\\\"skipped_entity\\\\\\\": 301\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_qwen3_8b_k1\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_8b_bf16\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/re-docred-repo/data\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/test_eval_8b_rsft_s42\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"test_revised\\\\\\\",\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.5148621224782142,\\\\n    \\\\\\\"recall\\\\\\\": 0.2485878962536023,\\\\n    \\\\\\\"f1\\\\\\\": 0.3352897733898239,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.5148621224782142,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.2485878962536023,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.3352897733898239,\\\\n    \\\\\\\"tp\\\\\\\": 4313,\\\\n    \\\\\\\"pred_count\\\\\\\": 8377,\\\\n    \\\\\\\"gold_count\\\\\\\": 17350,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.46744186046511627,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.8521282007800577,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.6037123806091188,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 14329,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7993371136490696,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 20017,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 25042,\\\\n    \\\\\\\"evi_joint_precision\\\\\\\": 0.23594964573158148,\\\\n    \\\\\\\"evi_joint_recall\\\\\\\": 0.2718123464616848,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.2526145234938872,\\\\n    \\\\\\\"evi_tp\\\\\\\": 3430,\\\\n    \\\\\\\"evi_pred_total\\\\\\\": 14537,\\\\n    \\\\\\\"evi_gold_total\\\\\\\": 12619,\\\\n    \\\\\\\"format_compliance_rate\\\\\\\": 0.998,\\\\n    \\\\\\\"field_co\n…[truncated 313 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-23T00:29:09.226550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s42/test_summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-23T00:29:09.226722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_documents\\\\\\\": 500,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15835,\\\\n  \\\\\\\"n_truncated\\\\\\\": 67,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 499,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.998,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 19085.8,\\\\n  \\\\\\\"codalab_stats\\\\\\\": {\\\\n    \\\\\\\"converted\\\\\\\": 11235,\\\\n    \\\\\\\"skipped_rel\\\\\\\": 225,\\\\n    \\\\\\\"skipped_entity\\\\\\\": 349\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_14b\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_14b/checkpoint-144\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/re-docred-repo/data\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s42\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 1,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"test_revised\\\\\\\",\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.48046234796860177,\\\\n    \\\\\\\"recall\\\\\\\": 0.32103746397694527,\\\\n    \\\\\\\"f1\\\\\\\": 0.3848944477075632,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.48046234796860177,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.32103746397694527,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.3848944477075632,\\\\n    \\\\\\\"tp\\\\\\\": 5570,\\\\n    \\\\\\\"pred_count\\\\\\\": 11593,\\\\n    \\\\\\\"gold_count\\\\\\\": 17350,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.4684197387035034,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.8441811637672465,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.6025153866738026,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 15564,\\\\n    \\\\\\\"edcr\\\\\\\": 0.786497250142234,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 20736,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 26365,\\\\n    \\\\\\\"evi_joint_precision\\\\\\\": 0.22086327269021047,\\\\n    \\\\\\\"evi_joint_recall\\\\\\\": 0.3434503526428402,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.2688418832578624,\\\\n    \\\\\\\"evi_tp\\\\\\\": 4334,\\\\n    \\\\\\\"evi_pred_total\\\\\\\": 19623,\\\\n    \\\\\\\"evi_gold_total\\\\\\\": 12619,\\\\n    \\\\\\\"format_compliance_rate\\\\\\\": 0.998,\\\\n    \\\\\\\"fiel\n…[truncated 317 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-23T00:29:09.226867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/test_eval_llama_rsft_s42/test_summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-23T00:29:09.227033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_documents\\\\\\\": 500,\\\\n  \\\\\\\"n_predictions\\\\\\\": 23330,\\\\n  \\\\\\\"n_truncated\\\\\\\": 283,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 500,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 19570.7,\\\\n  \\\\\\\"codalab_stats\\\\\\\": {\\\\n    \\\\\\\"converted\\\\\\\": 9641,\\\\n    \\\\\\\"skipped_rel\\\\\\\": 490,\\\\n    \\\\\\\"skipped_entity\\\\\\\": 1389\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_llama_3_1_8b_k1\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_llama_3_1_8b\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/re-docred-repo/data\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/test_eval_llama_rsft_s42\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 1,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"test_revised\\\\\\\",\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.4789730817128077,\\\\n    \\\\\\\"recall\\\\\\\": 0.2881844380403458,\\\\n    \\\\\\\"f1\\\\\\\": 0.35985461873403146,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.4789730817128077,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.2881844380403458,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.35985461873403146,\\\\n    \\\\\\\"tp\\\\\\\": 5000,\\\\n    \\\\\\\"pred_count\\\\\\\": 10439,\\\\n    \\\\\\\"gold_count\\\\\\\": 17350,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.40350776965265084,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.8379404437062522,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.5447113716114602,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 22751,\\\\n    \\\\\\\"edcr\\\\\\\": 0.8390639597147219,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 36824,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 43887,\\\\n    \\\\\\\"evi_joint_precision\\\\\\\": 0.20297878594875313,\\\\n    \\\\\\\"evi_joint_recall\\\\\\\": 0.32831444646960933,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.2508628519527702,\\\\n    \\\\\\\"evi_tp\\\\\\\": 4143,\\\\n    \\\\\\\"evi_pred_total\\\\\\\": 20411,\\\\n    \\\\\\\"evi_gold_total\\\\\\\": 12619,\\\\n    \\\\\\\"format_compliance_rate\\\\\\\":\n…[truncated 341 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-23T00:29:09.227183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42_no_evi -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-23T00:29:09.227333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42_no_evi/predictions.json\\\\n/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42_no_evi/codalab_submission.json\\\\n/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s42_no_evi/test_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-23T00:29:09.227455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_no_evi -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-23T00:29:09.227579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_no_evi/predictions.json\\\\n/root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_no_evi/codalab_submission.json\\\\n/root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_no_evi/test_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-23T00:29:09.227703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/test_eval_8b_rsft_s42_no_evi -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-23T00:29:09.227825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/test_eval_8b_rsft_s42_no_evi/predictions.json\\\\n/root/autodl-tmp/eval_results/test_eval_8b_rsft_s42_no_evi/codalab_submission.json\\\\n/root/autodl-tmp/eval_results/test_eval_8b_rsft_s42_no_evi/test_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-23T00:29:09.227942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/test_eval_14b_rsft_s42_no_evi -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-23T00:29:09.228060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s42_no_evi/predictions.json\\\\n/root/autodl-tmp/eval_results/test_eval_14b_rsft_s42_no_evi/codalab_submission.json\\\\n/root/autodl-tmp/eval_results/test_eval_14b_rsft_s42_no_evi/test_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-23T00:29:09.228174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_no_evi -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-23T00:29:09.228338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_no_evi/predictions.json\\\\n/root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_no_evi/codalab_submission.json\\\\n/root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_no_evi/test_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-23T00:29:09.228518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 -name \"adapter_config.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-23T00:29:09.228647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-550/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/checkpoint-567/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-23T00:29:09.228771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44 -name \"adapter_config.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-23T00:29:09.228907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44/checkpoint-550/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44/checkpoint-567/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-23T00:29:09.229025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output_ced_s43 -name \"adapter_config.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-23T00:29:09.229146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-350/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_ced_s43/checkpoint-400/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_ced_s43/checkpoint-450/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_ced_s43/checkpoint-500/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_ced_s43/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-23T00:29:09.229282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 -name \"adapter_config.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-23T00:29:09.229407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43/checkpoint-1100/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43/checkpoint-1134/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-23T00:29:09.229522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output_qwen3_8b_k1_s44 -name \"adapter_config.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-23T00:29:09.229647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44/checkpoint-1100/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44/checkpoint-1134/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-23T00:29:09.229764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43 -name \"adapter_config.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-23T00:29:09.229882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43/checkpoint-1100/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43/checkpoint-1107/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-23T00:29:09.229996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44 -name \"adapter_config.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-23T00:29:09.230112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44/checkpoint-1100/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44/checkpoint-1107/adapter_config.json\\\\n/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-23T00:29:09.230329+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 14B s43 Generation\n\n- **进度**: 1058/3027 docs (35%)\n- **PID**: 194682, 运行 6h9m, CPU 100%, RSS 2.4GB\n- **生成文件**: 8464 lines (8 gens/doc × 1058 docs)\n- **速度**: ~21s/doc\n- **剩余**: 1969 docs × 21s ≈ **11.5 小时**\n- **ETA**: 约今天 ~19:30 UTC\n\n---\n\n## Multi-seed RSFT Test Eval 可行性\n\n### 已有 RSFT Models (all verified with adapter_config.json)\n\n| Scale | seed 42 | seed 43 | seed 44 |\n|-------|---------|---------|---------|\n| Qwen3-1.7B | `rsft_output_qwen3_1_7b_k1` | `rsft_output_qwen3_1_7b_k1_s43` | `rsft_output_qwen3_1_7b_k1_s44` |\n| Qwen3-4B | `rsft_output_ced_s42_v2` | `rsft_output_ced_s43` | — |\n| Qwen3-8B | `rsft_output_qwen3_8b_k1` | `rsft_output_qwen3_8b_k1_s43` | `rsft_output_qwen3_8b_k1_s44` |\n| Qwen3-14B | `rsft_output_14b` | — (gen中) | — |\n| LLaMA-3.1-8B | `rsft_output_llama_3_1_8b_k1` | `rsft_output_llama_3_1_8b_k1_s43` | `rsft_output_llama_3_1_8b_k1_s44` |\n\n### 已有 Test Eval (全部仅 s42)\n\n| Scale | s42 with-evi (ign_f1) | s42 no-evi | s43 w/ | s43 no | s44 w/ | s44 no |\n|-------|-----------------------|------------|--------|--------|--------|--------|\n| 1.7B | ✅ 0.293 | ✅ | — | — | — | — |\n| 4B | ✅ 0.250 | ✅ | — | — | n/a | n/a |\n| 8B | ✅ 0.335 | ✅ | — | — | — | — |\n| 14B | ✅ 0.385 | ✅ | n/a | n/a | n/a | n/a |\n| LLaMA | ✅ 0.360 | ✅ | — | — | — | — |\n\n### 可立即跑的 Test Eval 清单 (14 evals)\n\n| # | Scale | Seed | Mode | Model Path |\n|---|-------|------|------|------------|\n| 1 | 1.7B | s43 | with-evi | `rsft_output_qwen3_1_7b_k1_s43` |\n| 2 | 1.7B | s43 | no-evi | 同上 |\n| 3 | 1.7B | s44 | with-evi | `rsft_output_qwen3_1_7b_k1_s44` |\n| 4 | 1.7B | s44 | no-evi | 同上 |\n| 5 | 4B | s43 | with-evi | `rsft_output_ced_s43` |\n| 6 | 4B | s43 | no-evi | 同上 |\n| 7 | 8B | s43 | with-evi | `rsft_output_qwen3_8b_k1_s43` |\n| 8 | 8B | s43 | no-evi | 同上 |\n| 9 | 8B | s44 | with-evi | `rsft_output_qwen3_8b_k1_s44` |\n| 10 | 8B | s44 | no-evi | 同上 |\n| 11 | LLaMA | s43 | with-evi | `rsft_output_llama_3_1_8b_k1_s43` |\n| 12 | LLaMA | s43 | no-evi | 同上 |\n| 13 | LLaMA | s44 | with-evi | `rsft_output_llama_3_1_8b_k1_s44` |\n| 14 | LLaMA | s44 | no-evi | 同上 |\n\n### 预估运行时间 (from s42 test_summary.json)\n\n| Scale | inference_time | batch_size | 备注 |\n|-------|---------------|------------|------|\n| 1.7B | 5.9h (21129s) | 1 | 可尝试 batch=16 加速 |\n| 4B | **1.1h** (4124s) | 16 | 快 |\n| 8B | **0.75h** (2711s) | 16 | 最快 |\n| 14B | 5.3h (19086s) | 1 | — |\n| LLaMA | 5.4h (19571s) | 1 | — |\n\n**总计 14 evals**。4 卡并行调度估算：\n- 快速组 (4B×2 + 8B×4 = 6 evals): ~2h 内全部完成\n- 慢速组 (1.7B×4 + LLaMA×4 = 8 evals): 每个 ~6h, 4 卡并行需 2 轮 ≈ **~12h**\n- **总墙钟时间: ~12-14h** (慢速组是瓶颈)\n- 注意: 14B gen 正占 2 卡 (cuda:0,1)，当前只有 2 卡空闲可跑 eval，需等 gen 完成后才能 4 卡满载"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521"
+          },
+          "id": "event-000147"
+        }
+      ],
+      "message_count": 147
+    }
+  ],
+  "readable_path": "readable/conversations/diagnose-14b-gen-progress-and-multiseed-scan.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52fea60238cec10f511d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose full gpu progress check",
+  "task_key": "worker_diagnose_full_gpu_progress_check_20260519T054343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_full_gpu_progress_check_20260519T054343_result.json",
+    "occurrence": 1,
+    "bytes": 647,
+    "sha256": "1a11e91c319ca42b43bf084421c29a8c4d5bdf52c14eee992100c7c3cf313d5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:3 现在有进程了（PID 618028, 27438MiB），s44_r2 已正常启动。\n\n```\ncuda:0: D112 step 3 — 258/567 steps (~7s/step), 剩余 ~36 min\ncuda:1+2: 14B SFT — 72/144 steps (~64s/step), 剩余 ~77 min\ncuda:3: 1.7B s44_r2 — 12/567 steps (~3s/step), 剩余 ~28 min (PID 618028, 刚启动)\n```\n\n补充：\n- **1.7B s43_r2 已完成** — 13:38 保存至 `/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43`（567/567 steps, final loss=0.553）\n- 14B SFT epoch 1 eval 已完成（eval_loss=0.635, token_acc=0.847），现在在 epoch 2\n- D112 step 3 训练 PID 613083 仍活跃，尚未完成，不触发 step 4 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-full-gpu-progress-check.md"
+}

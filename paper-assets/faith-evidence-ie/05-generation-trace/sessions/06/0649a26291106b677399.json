@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0649a26291106b677399",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval flat nli results",
+  "task_key": "worker_analysis_eval_flat_nli_results_20260515T180038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_flat_nli_results_20260515T180038_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "f6598dcf240ab4843f587c35c87fead1ba18039ad42c6f2250e08d9f48b82448"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已有详细 notes（hook 自动填充）。metrics 已更新完毕。\n\n**Flat-NLI RSFT 结果汇总：**\n\n| 指标 | Flat-NLI | CED RSFT (3-seed mean) | Δ |\n|------|----------|----------------------|---|\n| rel_f1 | 0.4539 | 0.4596 ± 0.0128 | -0.57pp |\n| evi_f1 | 0.8043 | 0.8126 | -0.83pp |\n| edcr | 0.6431 | — | — |\n| format_ok | 100% | 100% | — |\n| truncated | 199/985 | ~170/985 | — |\n\n**结论：CED contrastive margin 对 RSFT filtering 无显著增益。**\n\n- rel_f1 差距仅 0.57pp，远在 CED 3-seed 标准差（σ=0.0128）范围内\n- flat-NLI 单 seed=42 的 0.4539 甚至高于 CED seed=42 的 0.4449（+0.90pp）\n- 两种 RSFT 均大幅超过 SFT baseline（+4.8pp），说明 RSFT 本身有效，但 contrastive margin 不是关键因素\n- 论文中 CED 的价值应聚焦在 reranker/GRPO reward 等其他用途，而非 RSFT filtering 的 margin 设计"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-flat-nli-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7fbce7ecb5f925be9e9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check training progress",
+  "task_key": "worker_ops_check-training-progress_20260515T230245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-training-progress_20260515T230245_result.json",
+    "occurrence": 1,
+    "bytes": 1487,
+    "sha256": "5bfc65e3a6a36263cc6ec74e074f42778bfa13738a5216d21548d9bae2617dfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总\n\n### GPU 状态\n| GPU | 显存占用 | 利用率 | 任务 |\n|-----|---------|--------|------|\n| 0 | 19175/32607 MiB (59%) | 38% | seed44 训练 |\n| 1 | 16925/32607 MiB (52%) | 88% | reeval s43 |\n| 2 | 19745/32607 MiB (61%) | 40% | seed45 训练 |\n| 3 | 30704/32607 MiB (94%) | 95% | DPO eval |\n\n### 各实验状态\n\n**1. plan_001_flat_nli_seed44** (cuda:0) — **训练完成 507/507 steps (100%)**\n- 已完成 3 epochs，最后 loss=0.5736, mean_token_accuracy=0.857\n- Epoch 2 eval_loss=0.753, eval_mean_token_accuracy=0.830\n- 运行时间 1h24m，正在收尾（保存 checkpoint/eval）\n- 无异常\n\n**2. plan_001_flat_nli_seed45** (cuda:2) — **训练完成 507/507 steps (100%)**\n- 已完成 3 epochs，最后 loss=0.5931, mean_token_accuracy=0.854\n- Epoch 2 eval_loss=0.753, eval_mean_token_accuracy=0.830\n- 运行时间 1h37m，正在收尾\n- 无异常\n\n**3. eval_plan_012_dpo_1ep_fixed_r2** (cuda:3) — **推理中 33/62 batches (53%)**\n- 速度 ~113s/batch\n- 预估剩余 **~55 分钟**\n- 运行时间 1h04m\n- 无异常\n\n**4. reeval_flat_nli_s43** (cuda:1) — **推理中 5/62 batches (8%)**\n- 刚启动 6 分钟，已正常产出\n- 速度 ~57s/batch（比 DPO eval 快一倍，可能模型更小/生成更短）\n- 预估剩余 **~54 分钟**\n- 无异常\n\n所有 4 个进程正常运行，无 OOM 或错误。两个训练即将结束（进入 final eval/save），两个 eval 大约还需 ~55 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-training-progress.md"
+}

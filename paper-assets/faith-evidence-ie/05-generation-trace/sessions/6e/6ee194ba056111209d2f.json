@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ee194ba056111209d2f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis deep error analysis",
+  "task_key": "worker_analysis_deep_error_analysis_20260519T101901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deep_error_analysis_20260519T101901_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "163b056a76e75d643093b53dbae88ae3c2d798251261c337dd2ca3be237bafb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果文件在 `/root/autodl-tmp/freige/scripts/analysis/results/` 下，summary 已保存到项目 memory。\n\n核心发现：\n\n**Per-Relation**: RSFT gain 高度 relation-dependent。4B 最大增益在 entertainment/media 关系（original network +32pt, cast member +14pt, performer +13pt），损失集中在低频关系（chairperson -16pt, screenwriter -9pt）。8B 增益分布更分散。\n\n**Per-Length (ign_f1)**: 4B gain 跨长度较均匀（+4.8~5.8pt）。8B 有趣的模式：**长文档 gain 最大**（+4.6pt vs 短文档 +2.9pt），说明 RSFT 在 8B 上更多帮助了复杂多句推理。\n\n**Per-Entity-Count (ign_f1)**: 4B 中等实体数文档 gain 最大（+6.4pt）；8B 低/高实体数 gain 相近（~4pt），中等实体数 gain 最小（+2.0pt）。\n\n注意：4B RSFT s42 无 predictions 文件，使用了训练 seed 43 的模型替代（`rsft_s43_dev_eval_preds`, ign_f1=0.451）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deep-error-analysis.md"
+}

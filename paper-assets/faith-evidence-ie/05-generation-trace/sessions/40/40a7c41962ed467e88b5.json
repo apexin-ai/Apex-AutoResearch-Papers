@@ -1,0 +1,578 @@
+{
+  "schema_version": "1.0",
+  "id": "40a7c41962ed467e88b5",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "eval plan 012 dpo ced 1ep",
+  "task_key": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_plan_012_dpo_ced_1ep_20260515T202053.jsonl",
+    "occurrence": 1,
+    "bytes": 18638,
+    "sha256": "5745a5036f147d21106cd8f158634f511a8aca992bddfb396c86851e5c76ab79"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T20:22:27.991911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T20:22:27.992314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T20:22:27.992545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/dpo_output_1ep/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T20:22:27.992708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T20:22:27.992956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 531724\\\\ndrwxr-xr-x  5 root root      4096 May 16 04:17 .\\\\ndrwxr-xr-x 72 root root      4096 May 16 03:08 ..\\\\n-rw-r--r--  1 root root      2384 May 16 04:17 README.md\\\\n-rw-r--r--  1 root root      1112 May 16 04:17 adapter_config.json\\\\n-rw-r--r--  1 root root 528550256 May 16 04:17 adapter_model.safetensors\\\\n-rw-r--r--  1 root root       707 May 16 04:17 added_tokens.json\\\\n-rw-r--r--  1 root root      4168 May 16 04:17 chat_template.jinja\\\\ndrwxr-xr-x  3 root root      4096 May 16 04:03 checkpoint-100\\\\ndrwxr-xr-x  3 root root      4096 May 16 04:17 checkpoint-167\\\\n-rw-r--r--  1 root root   1671853 May 16 04:17 merges.txt\\\\ndrwxr-xr-x  2 root root        78 May 16 04:17 ref\\\\n-rw-r--r--  1 root root       499 May 16 04:17 special_tokens_map.json\\\\n-rw-r--r--  1 root root  11422654 May 16 04:17 tokenizer.json\\\\n-rw-r--r--  1 root root      5430 May 16 04:17 tokenizer_config.json\\\\n-rw-r--r--  1 root root      6481 May 16 04:17 training_args.bin\\\\n-rw-r--r--  1 root root   2776833 May 16 04:17 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T20:22:27.993137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sat May 16 04:21:08 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:98:00.0 Off |                  N/A |\\\\n| 41%   35C    P8             14W /  575W |       0MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:A8:00.0 Off |                  N/A |\\\\n| 62%   66C    P1            353W /  575W |   16925MiB /  32607MiB |     87%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:B8:00.0 Off |                  N/A |\\\\n| 42%   34C    P8             20W /  575W |       0MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:C8:00.0 Off |                  N/A |\\\\n| 58%   64C    P1            4\n…[truncated 1111 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T20:22:27.993387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "submit training job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T20:22:27.993530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T20:22:27.993690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "mkdir -p /root/autodl-tmp/eval_results/dpo_ced_1ep && tmux new-session -d -s eval_plan_012_dpo_ced_1ep 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_1ep/ --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_ced_1ep --no-quantize 2>&1 | tee /root/autodl-tmp/eval_results/dpo_ced_1ep/eval.log'",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T20:22:27.993825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T20:22:27.993973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tmux list-sessions",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T20:22:27.994100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T20:22:27.994227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_plan_012_dpo_ced_1ep",
+              "field": "status",
+              "value": "running",
+              "project": "faith-evidence-ie",
+              "spec": "{'command': 'python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_1ep/ --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_ced_1ep --no-quantize', 'server': 'rtx5090-4x', 'data_path': 'docred-dev', 'data_count': 985, 'model_name': 'Qwen3-4B + DPO-CED-1ep LoRA', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/dpo_output_1ep/ (final, 167 steps = 1 epoch)', 'eval_data': 'docred-dev', 'gpu_id': 2, 'parent': 'plan_012_dpo_ced_1ep', 'hypothesis': 'DPO+CED 1ep checkpoint dev set evaluation: 验证 1ep 是否消除 3ep 过拟合 (rewards_acc=1.0, margins=9x), 对比 SFT baseline rel_f1=0.4057'}"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T20:22:27.994410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid state 'running'. Valid: ['ALLOCATED', 'ANALYZING', 'DEPLOYED', 'DEPLOYING', 'DONE', 'PENDING', 'PREPARING', 'QUEUED', 'RUNNING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3133}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T20:22:27.994713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tmux list-sessions",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T20:22:27.994857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_plan_012_dpo_ced_1ep: 1 windows (created Sat May 16 04:21:45 2026)\\\\nplan_008_rsft_topk3: 1 windows (created Sat May 16 02:03:03 2026)\\\\nplan_011_bf16_g8_step_eval: 1 windows (created Sat May 16 04:00:01 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T20:22:27.994994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_plan_012_dpo_ced_1ep",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "faith-evidence-ie",
+              "spec": "{'command': 'python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_1ep/ --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_ced_1ep --no-quantize', 'server': 'rtx5090-4x', 'data_path': 'docred-dev', 'data_count': 985, 'model_name': 'Qwen3-4B + DPO-CED-1ep LoRA', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/dpo_output_1ep/ (final, 167 steps = 1 epoch)', 'eval_data': 'docred-dev', 'gpu_id': 2, 'parent': 'plan_012_dpo_ced_1ep', 'hypothesis': 'DPO+CED 1ep checkpoint dev set evaluation: 验证 1ep 是否消除 3ep 过拟合 (rewards_acc=1.0, margins=9x), 对比 SFT baseline rel_f1=0.4057'}"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T20:22:27.995148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3097}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T20:22:27.995349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_plan_012_dpo_ced_1ep",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T20:22:27.995489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -30 /root/autodl-tmp/eval_results/dpo_ced_1ep/eval.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T20:22:27.995629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_plan_012_dpo_ced_1ep\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:22:11.752Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:22:11.752Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0381}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T20:22:27.995774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:21:50,054 INFO Detected adapter at /root/autodl-tmp/dpo_output_1ep/, base: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-16 04:21:50,055 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-16 04:21:50,364 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-16 04:21:50,590 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.04it/s]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.09it/s]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.61it/s]\\\\n2026-05-16 04:21:52,489 INFO Loading LoRA adapter: /root/autodl-tmp/dpo_output_1ep/\\\\n2026-05-16 04:21:55,597 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-16 04:21:55,915 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-16 04:21:56,102 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/62 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T20:22:27.995945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_plan_012_dpo_ced_1ep",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "faith-evidence-ie",
+              "spec": "{'command': 'python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_1ep/ --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_ced_1ep --no-quantize', 'server': 'rtx5090-4x', 'data_path': 'docred-dev', 'data_count': 985, 'model_name': 'Qwen3-4B + DPO-CED-1ep LoRA', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/dpo_output_1ep/ (final, 167 steps = 1 epoch)', 'eval_data': 'docred-dev', 'gpu_id': 2, 'parent': 'plan_012_dpo_ced_1ep', 'hypothesis': 'DPO+CED 1ep checkpoint dev set evaluation: 验证 1ep 是否消除 3ep 过拟合 (rewards_acc=1.0, margins=9x), 对比 SFT baseline rel_f1=0.4057'}"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T20:22:27.996156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T20:22:27.996352+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_plan_012_dpo_ced_1ep\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:22:11.752Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:22:19.503Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_1ep/ --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_ced_1ep --no-quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"docred-dev\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + DPO-CED-1ep LoRA\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/dpo_output_1ep/ (final, 167 steps = 1 epoch)\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"gpu_id\\\": 2, \\\"parent\\\": \\\"plan_012_dpo_ced_1ep\\\", \\\"hypothesis\\\": \\\"DPO+CED 1ep checkpoint dev set evaluation: 验证 1ep 是否消除 3ep 过拟合 (rewards_acc=1.0, margins=9x), 对比 SFT baseline rel_f1=0.4057\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.924}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T20:22:27.996513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 0 %\\\\n1, 16925 MiB, 87 %\\\\n2, 12509 MiB, 86 %\\\\n3, 20093 MiB, 96 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T20:22:27.996728+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪：\n\n- **tmux session**: `eval_plan_012_dpo_ced_1ep` 运行中\n- **模型加载成功**: adapter 从 `/root/autodl-tmp/dpo_output_1ep/` 加载，base model Qwen3-4B\n- **数据**: 985 eval documents, 12275 gold triples，推理已开始 (0/62 batches)\n- **GPU 2**: 12509 MiB 已占用，86% utilization — 正常推理中\n- **Registry**: `eval_plan_012_dpo_ced_1ep` 状态 RUNNING，spec 完整\n- **参数**: `--no-quantize` ✓, seed=42 ✓, batch_size=16 ✓\n- **日志**: `/root/autodl-tmp/eval_results/dpo_ced_1ep/eval.log`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan_012_dpo_ced_1ep_20260515T202053"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/eval-plan-012-dpo-ced-1ep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e281e7b0b18c92dbc68c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops wait llama submit lead2 r2",
+  "task_key": "worker_ops_wait_llama_submit_lead2_r2_20260517T061924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_wait_llama_submit_lead2_r2_20260517T061924_result.json",
+    "occurrence": 1,
+    "bytes": 445,
+    "sha256": "594a76f4ffb9142a9c4f2026603037ed2895cab428dfa4958c98c04ab525f8b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中。\n\n## LLaMA r3 完成\n- train_loss: 0.3724, steps: 3312/3312, epoch: 3.0\n- mean_token_accuracy: 0.929, runtime: 10231s (~2h50m)\n- 模型已保存至 `/root/autodl-tmp/rsft_output_llama_3_1_8b_r3`\n\n## Lead 2 r2 提交\n- PID: 421806, GPU: cuda:2 (10.5GB), 验证: running\n- Stage 3 CED reward, tau 0.30→0.50, max_steps=50\n- NLI 模型已成功加载（使用本地快照路径修复离线问题）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-wait-llama-submit-lead2-r2.md"
+}

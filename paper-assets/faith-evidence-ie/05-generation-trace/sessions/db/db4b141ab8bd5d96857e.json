@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db4b141ab8bd5d96857e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan 008 topk3 random",
+  "task_key": "worker_code_plan_008_topk3_random_20260515T135859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_008_topk3_random_20260515T135859_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "7721ceacc60b6d661d0ef3cec2720930751b10653c7297da3bdad4d34c9bcbe8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "格式完全匹配。输出验证通过：\n- 8037 行 ✓\n- 字段结构与 topk3 一致（`input`, `output`, `ced_score`, `doc_id`, `generation_idx`, `format_reward`, `f1_reward`, `combined_score`）✓\n\n**结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| 全部 scored 样本 | 21,728 |\n| f1 >= 0.1 过滤后 | 20,380 |\n| 随机抽样数 | 8,037 |\n| 覆盖 unique docs | 2,605 |\n| mean f1_reward | 0.5054 |\n| mean ced_score | 0.5285 |\n| seed | 42 |\n\n输出路径：`/root/autodl-tmp/rsft_filtered_topk3_random/rsft_train.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-008-topk3-random.md"
+}

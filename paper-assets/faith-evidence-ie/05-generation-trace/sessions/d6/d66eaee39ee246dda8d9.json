@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d66eaee39ee246dda8d9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper fig2 ced paperbanana",
+  "task_key": "worker_paper_fig2-ced-paperbanana_20260524T220921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig2-ced-paperbanana_20260524T220921_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "15cf43c71f4d188a5cb7e66daa286ddedb49fbf6a01b6050653197c78ee7aa25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**汇报：**\n- 迭代次数：1 轮（第一轮即通过）\n- 检查项：\n  1. Document + Triple 上下文 — ✓\n  2. Positive Pair 蓝色边框 / Negative Pair 红色边框 — ✓\n  3. NLI Model 框 — ✓（蓝色填充，与 fig_overview 的 LLM 框风格一致）\n  4. p⁺ = 0.92 / p⁻ = 0.31 — ✓\n  5. CED = 0.61 底部显示 — ✓\n  6. 风格与 fig_overview 一致 — ✓（圆角矩形、配色、阴影、箭头风格匹配）\n  7. 无标题、无 panel labels — ✓\n- 文件大小：PNG 3.6MB (2752×1536)，PDF 320KB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig2-ced-paperbanana.md"
+}

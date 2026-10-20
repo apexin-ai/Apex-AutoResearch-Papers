@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bb607591e60e1302862",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose urgent gpu check and cascade",
+  "task_key": "worker_diagnose_urgent-gpu-check-and-cascade_20260522T082944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_urgent-gpu-check-and-cascade_20260522T082944_result.json",
+    "occurrence": 1,
+    "bytes": 1079,
+    "sha256": "cc1c1c28b8aec05dfc96c180731545e8cbd300a21c3f099f29433c2c1b697a52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CodaLab 文件验证通过（7433 triples）。\n\n---\n\n**汇报：**\n\n| 实验 | GPU | 状态 | 关键指标 |\n|------|-----|------|---------|\n| test_eval_llama_sft_s42_no_evi | cuda:3 (空闲) | **DONE** ✓ | ign_f1=0.2926, evidence_tax=-4.94pp |\n| dev_eval_4b_rsft_ced_s42_v2 | cuda:0 (9.6GB, 56%) | **运行中** 714/985 (72%) | 预计还需~1.5h |\n\n**GPU 总览：**\n| GPU | 显存占用 | 状态 |\n|-----|---------|------|\n| cuda:0 | 9593/97887 MiB | dev eval 运行中 |\n| cuda:1 | 0 MiB | 空闲 |\n| cuda:2 | 0 MiB | 空闲 |\n| cuda:3 | 0 MiB | 空闲 |\n\n**LLaMA evidence tax 小结：**\n- With evidence: ign_f1 = 0.3420 → No evidence: ign_f1 = 0.2926\n- Test evidence tax = **-4.94pp**（去掉 evidence 后下降）\n- Dev 3-seed mean fair_tax = -5.19pp，test 与 dev 方向一致\n- CodaLab 文件已生成：`/root/autodl-tmp/codalab_submissions/test_eval_llama_sft_s42_no_evi.json`\n\n**待办：** dev_eval_4b_rsft_ced_s42_v2 完成后检查 ign_f1，如在 0.4317~0.4717 范围内立即在 cuda:2 提交 4B RSFT v2 test eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-urgent-gpu-check-and-cascade.md"
+}

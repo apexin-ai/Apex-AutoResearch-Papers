@@ -1,0 +1,1441 @@
+{
+  "schema_version": "1.0",
+  "id": "0c321ce77b8263f34a38",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "diagnose 14b sft registry fix",
+  "task_key": "worker_diagnose_14b_sft_registry_fix_20260519T065038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_14b_sft_registry_fix_20260519T065038.log",
+    "occurrence": 1,
+    "bytes": 86789,
+    "sha256": "a4ddd62f8924c3d33572ab1c60c27edfa4a0e505ee75603aca89cf1bf8133bf4"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "12ee4107-b432-4e3e-989f-8850d14cd294",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779174000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "b8eed7cf-4a5b-4930-b5d7-c7b7f4baa7f8",
+                "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to SSH to the server, check GPU status, verify processes, check training progress, and update the registry. Let me execute these steps.\n\nLet me first load the necessary tools.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "9a126888-6bc6-4301-85e9-4b49aacf97bb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AFc81X7CrKow8Ve1PqiX5f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14046,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14046
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YFLy7bjq8QuCik34tkY7mB",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "50d396dc-75e8-46c1-a065-c31fdb358ff7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AFc81X7CrKow8Ve1PqiX5f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14046,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14046
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T06:50:52.636Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01YFLy7bjq8QuCik34tkY7mB",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "408a945c-1407-4029-8f94-4ebd0968ce85",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__update_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "执行 nvidia-smi 和进程确认。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "5accc4ca-7186-4431-ba1e-e4485a78477c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LZLfNQuusPzuYKA6BLP4n8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 973,
+                "cache_read_input_tokens": 25493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 973
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GmkTXfBjtoLMzFqLKk2bpu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "nvidia-smi",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "1ebcfbf0-a4ce-4379-abb1-0e8361f40629",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LZLfNQuusPzuYKA6BLP4n8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 973,
+                "cache_read_input_tokens": 25493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 973
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016p72kLWGvc3Gh4inetj6En",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ps aux --no-headers -p 611578,611579",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "a46d7109-4672-4d92-b7fc-67a62e07bd89",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LZLfNQuusPzuYKA6BLP4n8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 973,
+                "cache_read_input_tokens": 25493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 973
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T06:50:57.289Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GmkTXfBjtoLMzFqLKk2bpu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Tue May 19 14:50:57 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:98:00.0 Off |                  N/A |\\\\n| 69%   61C    P1            325W /  575W |   29639MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:A8:00.0 Off |                  N/A |\\\\n| 48%   55C    P1            225W /  575W |   16183MiB /  32607MiB |     88%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:B8:00.0 Off |                  N/A |\\\\n| 43%   54C    P1            269W /  575W |   25211MiB /  32607MiB |     81%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:C8:00.0 Off |                  N/A |\\\\n| 39%   41C    P1            140W /  575W |    5389MiB /  32607MiB |     40%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          613083      C   python                                29630MiB |\\\\n|    1   N/A  N/A          611578      C   /root/miniconda3/bin/python           16130MiB |\\\\n|    2   N/A  N/A          611579      C   /root/miniconda3/bin/python           25158MiB |\\\\n|    3   N/A  N/A          620737      C   python                                 5380MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "d53eea4b-2562-4aa0-a83b-a4c4b1d4d1b8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Tue May 19 14:50:57 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:98:00.0 Off |                  N/A |\\\\n| 69%   61C    P1            325W /  575W |   29639MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:A8:00.0 Off |                  N/A |\\\\n| 48%   55C    P1            225W /  575W |   16183MiB /  32607MiB |     88%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:B8:00.0 Off |                  N/A |\\\\n| 43%   54C    P1            269W /  575W |   25211MiB /  32607MiB |     81%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:C8:00.0 Off |                  N/A |\\\\n| 39%   41C    P1            140W /  575W |    5389MiB /  32607MiB |     40%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          613083      C   python                                29630MiB |\\\\n|    1   N/A  N/A          611578      C   /root/miniconda3/bin/python           16130MiB |\\\\n|    2   N/A  N/A          611579      C   /root/miniconda3/bin/python           25158MiB |\\\\n|    3   N/A  N/A          620737      C   python                                 5380MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Tue May 19 14:50:57 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:98:00.0 Off |                  N/A |\\n| 69%   61C    P1            325W /  575W |   29639MiB /  32607MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:A8:00.0 Off |                  N/A |\\n| 48%   55C    P1            225W /  575W |   16183MiB /  32607MiB |     88%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:B8:00.0 Off |                  N/A |\\n| 43%   54C    P1            269W /  575W |   25211MiB /  32607MiB |     81%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:C8:00.0 Off |                  N/A |\\n| 39%   41C    P1            140W /  575W |    5389MiB /  32607MiB |     40%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          613083      C   python                                29630MiB |\\n|    1   N/A  N/A          611578      C   /root/miniconda3/bin/python           16130MiB |\\n|    2   N/A  N/A          611579      C   /root/miniconda3/bin/python           25158MiB |\\n|    3   N/A  N/A          620737      C   python                                 5380MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JV2kx8xjFMdHJpgtWzLnce",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "tmux ls",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "5835ad2a-a32c-43ee-ab34-2e6af4f5adad",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LZLfNQuusPzuYKA6BLP4n8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 973,
+                "cache_read_input_tokens": 25493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 973
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T06:50:57.686Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016p72kLWGvc3Gh4inetj6En",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476   640 ?        Ss   May14   0:00 bash /init/boot/boot.sh\\\\nroot        917  2.0  0.0 724384 20992 ?        Sl   May14 147:46 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        933  0.0  0.0 4147828 66840 ?       Sl   May14   3:18 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        938  0.0  0.0 190656 94176 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        939  0.3  0.0 6969592 136288 ?      Sl   May14  26:16 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        940  0.0  0.0  15444  3964 ?        S    May14   0:03 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        941  0.0  0.0 3386912 17352 ?       Sl   May14   1:56 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        942  0.0  0.0 3829304 19876 ?       Sl   May14   6:02 proxy -c /init/proxy/proxy.ini\\\\nroot       1047  0.0  0.0 28341068 9064 ?       Sl   May14   6:05 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_89kwecbi/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_89kwecbi/startup_error\\\\nroot     557643  0.0  0.0  16792 10520 ?        Ss   00:27   0:10 sshd: root@notty\\\\nroot     557673  0.0  0.0  16692 10532 ?        Ss   00:27   0:04 sshd: root@notty\\\\nroot     558240  0.0  0.0   6452  4184 ?        Ss   00:35   0:03 tmux new-session -d -s plan019_1_7b_sft_s44_eval rm -f /tmp/agent-ml-exit/plan019_1_7b_sft_s44_eval.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/faith-evidence-ie/plan019_1_7b_sft_s44_eval.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/plan019_1_7b_sft_s44_eval.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44/ --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan019_1_7b_sft_s44_eval\\\\\\\"'; } > ~/runs/faith-evidence-ie/plan019_1_7b_sft_s44_eval.log 2>&1\\\\nroot     611410  0.0  0.0   4364  3216 pts/1    Ss+  12:20   0:00 bash -c export CUDA_VISIBLE_DEVICES=1,2 && bash /root/autodl-tmp/freige/scripts/sft_14b.sh 2>&1 | tee /root/autodl-tmp/logs/plan017_14b_sft.log\\\\nroot     611412  0.0  0.0   4364  3208 pts/1    S+   12:20   0:00 bash /root/autodl-tmp/freige/scripts/sft_14b.sh\\\\nroot     611413  0.0  0.0   2796  1048 pts/1    S+   12:20   0:00 tee /root/autodl-tmp/logs/plan017_14b_sft.log\\\\nroot     611418  0.3  0.1 27894652 912028 pts/1 Sl+  12:20   0:27 /root/miniconda3/bin/python /root/miniconda3/bin/accelerate launch --config_file configs/accelerate_2gpu_zero3.yaml -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-14B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_14b --deepspeed configs/deepspeed_zero3_14b.json --no-quantize --lora_rank 64 --lora_alpha 128 --lora_dropout 0.05 --max_length 4096 --per_device_batch_size 1 --gradient_accumulation_steps 32 --num_epochs 3 --learning_rate 2e-4 --warmup_ratio 0.05 --bf16 --seed 42 --wandb_project freige-sft --wandb_run_name sft-14b-seed42\\\\nroot     611578  100  3.6 222359716 29130340 ?  Ssl  12:20 150:53 /root/miniconda3/bin/python -u -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-14B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp\\\\n\\\\n... [截断: 输出过长，省略 73 字符] ...\\\\n\\\\ne --lora_rank 64 --lora_alpha 128 --lora_dropout 0.05 --max_length 4096 --per_device_batch_size 1 --gradient_accumulation_steps 32 --num_epochs 3 --learning_rate 2e-4 --warmup_ratio 0.05 --bf16 --seed 42 --wandb_project freige-sft --wandb_run_name sft-14b-seed42\\\\nroot     611579  100  3.5 231691004 27927160 ?  Ssl  12:20 150:54 /root/miniconda3/bin/python -u -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-14B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_14b --deepspeed configs/deepspeed_zero3_14b.json --no-quantize --lora_rank 64 --lora_alpha 128 --lora_dropout 0.05 --max_length 4096 --per_device_batch_size 1 --gradient_accumulation_steps 32 --num_epochs 3 --learning_rate 2e-4 --warmup_ratio 0.05 --bf16 --seed 42 --wandb_project freige-sft --wandb_run_name sft-14b-seed42\\\\nroot     613075  0.0  0.0   4364  1992 ?        S    12:33   0:00 bash -c export CUDA_VISIBLE_DEVICES=0 && nohup bash -c \\\\\\\"source /root/miniconda3/bin/activate && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export CUDA_VISIBLE_DEVICES=0 && cd /root/autodl-tmp && bash scripts/d112/step3_k1_filter_and_train.sh\\\\\\\" > /root/autodl-tmp/logs/d112_rsft_s44_train.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot     613076  0.0  0.0   4364  3288 ?        S    12:33   0:00 bash scripts/d112/step3_k1_filter_and_train.sh\\\\nroot     613083  102  0.4 82775944 3795708 ?    Rl   12:33 141:12 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_4b_sft_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_4b_sft_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 5 --max_length 2048 --seed 42 --lora_rank 64 --lora_alpha 128 --lora_dropout 0.05 --bf16 --quantize --wandb_run_name d112-rsft-ced-k1-from-sft-s44 --eval_data_dir /root/autodl-tmp/data/docred --max_new_tokens 1024\\\\nroot     620725  0.0  0.0   4496  3500 pts/0    Ss+  14:16   0:00 bash -c rm -f /tmp/agent-ml-exit/plan019_1_7b_rsft_s43_r2_eval.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/faith-evidence-ie/plan019_1_7b_rsft_s43_r2_eval.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/plan019_1_7b_rsft_s43_r2_eval.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=3 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp && bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\\\\\"'; } > ~/runs/faith-evidence-ie/plan019_1_7b_rsft_s43_r2_eval.log 2>&1\\\\nroot     620729  0.0  0.0   2800  1020 pts/0    S    14:16   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/bin/activate && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp && bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\\\\\"\\\\nroot     620730  0.0  0.0   4364  3208 pts/0    S    14:16   0:00 bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\\nroot     620737  107  0.2 40171820 2142008 pts/0 Rl  14:16  37:28 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 42\\\\nroot     622953  3.0  0.0  16692 10548 ?        Ss   14:50   0:00 sshd: root@notty\\\\nroot     622967  0.0  0.0   7064  1560 ?        Rs   14:50   0:00 ps aux --no-headers -p 611578,611579\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "8adfe052-248b-4f0e-b52a-d7a23d5cc495",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476   640 ?        Ss   May14   0:00 bash /init/boot/boot.sh\\\\nroot        917  2.0  0.0 724384 20992 ?        Sl   May14 147:46 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        933  0.0  0.0 4147828 66840 ?       Sl   May14   3:18 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        938  0.0  0.0 190656 94176 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        939  0.3  0.0 6969592 136288 ?      Sl   May14  26:16 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        940  0.0  0.0  15444  3964 ?        S    May14   0:03 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        941  0.0  0.0 3386912 17352 ?       Sl   May14   1:56 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        942  0.0  0.0 3829304 19876 ?       Sl   May14   6:02 proxy -c /init/proxy/proxy.ini\\\\nroot       1047  0.0  0.0 28341068 9064 ?       Sl   May14   6:05 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_89kwecbi/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_89kwecbi/startup_error\\\\nroot     557643  0.0  0.0  16792 10520 ?        Ss   00:27   0:10 sshd: root@notty\\\\nroot     557673  0.0  0.0  16692 10532 ?        Ss   00:27   0:04 sshd: root@notty\\\\nroot     558240  0.0  0.0   6452  4184 ?        Ss   00:35   0:03 tmux new-session -d -s plan019_1_7b_sft_s44_eval rm -f /tmp/agent-ml-exit/plan019_1_7b_sft_s44_eval.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/faith-evidence-ie/plan019_1_7b_sft_s44_eval.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/plan019_1_7b_sft_s44_eval.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44/ --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan019_1_7b_sft_s44_eval\\\\\\\"'; } > ~/runs/faith-evidence-ie/plan019_1_7b_sft_s44_eval.log 2>&1\\\\nroot     611410  0.0  0.0   4364  3216 pts/1    Ss+  12:20   0:00 bash -c export CUDA_VISIBLE_DEVICES=1,2 && bash /root/autodl-tmp/freige/scripts/sft_14b.sh 2>&1 | tee /root/autodl-tmp/logs/plan017_14b_sft.log\\\\nroot     611412  0.0  0.0   4364  3208 pts/1    S+   12:20   0:00 bash /root/autodl-tmp/freige/scripts/sft_14b.sh\\\\nroot     611413  0.0  0.0   2796  1048 pts/1    S+   12:20   0:00 tee /root/autodl-tmp/logs/plan017_14b_sft.log\\\\nroot     611418  0.3  0.1 27894652 912028 pts/1 Sl+  12:20   0:27 /root/miniconda3/bin/python /root/miniconda3/bin/accelerate launch --config_file configs/accelerate_2gpu_zero3.yaml -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-14B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_14b --deepspeed configs/deepspeed_zero3_14b.json --no-quantize --lora_rank 64 --lora_alpha 128 --lora_dropout 0.05 --max_length 4096 --per_device_batch_size 1 --gradient_accumulation_steps 32 --num_epochs 3 --learning_rate 2e-4 --warmup_ratio 0.05 --bf16 --seed 42 --wandb_project freige-sft --wandb_run_name sft-14b-seed42\\\\nroot     611578  100  3.6 222359716 29130340 ?  Ssl  12:20 150:53 /root/miniconda3/bin/python -u -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-14B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp\\\\n\\\\n... [截断: 输出过长，省略 73 字符] ...\\\\n\\\\ne --lora_rank 64 --lora_alpha 128 --lora_dropout 0.05 --max_length 4096 --per_device_batch_size 1 --gradient_accumulation_steps 32 --num_epochs 3 --learning_rate 2e-4 --warmup_ratio 0.05 --bf16 --seed 42 --wandb_project freige-sft --wandb_run_name sft-14b-seed42\\\\nroot     611579  100  3.5 231691004 27927160 ?  Ssl  12:20 150:54 /root/miniconda3/bin/python -u -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-14B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_14b --deepspeed configs/deepspeed_zero3_14b.json --no-quantize --lora_rank 64 --lora_alpha 128 --lora_dropout 0.05 --max_length 4096 --per_device_batch_size 1 --gradient_accumulation_steps 32 --num_epochs 3 --learning_rate 2e-4 --warmup_ratio 0.05 --bf16 --seed 42 --wandb_project freige-sft --wandb_run_name sft-14b-seed42\\\\nroot     613075  0.0  0.0   4364  1992 ?        S    12:33   0:00 bash -c export CUDA_VISIBLE_DEVICES=0 && nohup bash -c \\\\\\\"source /root/miniconda3/bin/activate && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export CUDA_VISIBLE_DEVICES=0 && cd /root/autodl-tmp && bash scripts/d112/step3_k1_filter_and_train.sh\\\\\\\" > /root/autodl-tmp/logs/d112_rsft_s44_train.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot     613076  0.0  0.0   4364  3288 ?        S    12:33   0:00 bash scripts/d112/step3_k1_filter_and_train.sh\\\\nroot     613083  102  0.4 82775944 3795708 ?    Rl   12:33 141:12 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_4b_sft_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_4b_sft_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 5 --max_length 2048 --seed 42 --lora_rank 64 --lora_alpha 128 --lora_dropout 0.05 --bf16 --quantize --wandb_run_name d112-rsft-ced-k1-from-sft-s44 --eval_data_dir /root/autodl-tmp/data/docred --max_new_tokens 1024\\\\nroot     620725  0.0  0.0   4496  3500 pts/0    Ss+  14:16   0:00 bash -c rm -f /tmp/agent-ml-exit/plan019_1_7b_rsft_s43_r2_eval.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/faith-evidence-ie/plan019_1_7b_rsft_s43_r2_eval.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/plan019_1_7b_rsft_s43_r2_eval.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=3 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp && bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\\\\\"'; } > ~/runs/faith-evidence-ie/plan019_1_7b_rsft_s43_r2_eval.log 2>&1\\\\nroot     620729  0.0  0.0   2800  1020 pts/0    S    14:16   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/bin/activate && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp && bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\\\\\"\\\\nroot     620730  0.0  0.0   4364  3208 pts/0    S    14:16   0:00 bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\\nroot     620737  107  0.2 40171820 2142008 pts/0 Rl  14:16  37:28 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 42\\\\nroot     622953  3.0  0.0  16692 10548 ?        Ss   14:50   0:00 sshd: root@notty\\\\nroot     622967  0.0  0.0   7064  1560 ?        Rs   14:50   0:00 ps aux --no-headers -p 611578,611579\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476   640 ?        Ss   May14   0:00 bash /init/boot/boot.sh\\nroot        917  2.0  0.0 724384 20992 ?        Sl   May14 147:46 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        933  0.0  0.0 4147828 66840 ?       Sl   May14   3:18 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        938  0.0  0.0 190656 94176 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        939  0.3  0.0 6969592 136288 ?      Sl   May14  26:16 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        940  0.0  0.0  15444  3964 ?        S    May14   0:03 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        941  0.0  0.0 3386912 17352 ?       Sl   May14   1:56 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        942  0.0  0.0 3829304 19876 ?       Sl   May14   6:02 proxy -c /init/proxy/proxy.ini\\nroot       1047  0.0  0.0 28341068 9064 ?       Sl   May14   6:05 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_89kwecbi/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_89kwecbi/startup_error\\nroot     557643  0.0  0.0  16792 10520 ?        Ss   00:27   0:10 sshd: root@notty\\nroot     557673  0.0  0.0  16692 10532 ?        Ss   00:27   0:04 sshd: root@notty\\nroot     558240  0.0  0.0   6452  4184 ?        Ss   00:35   0:03 tmux new-session -d -s plan019_1_7b_sft_s44_eval rm -f /tmp/agent-ml-exit/plan019_1_7b_sft_s44_eval.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/faith-evidence-ie/plan019_1_7b_sft_s44_eval.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/plan019_1_7b_sft_s44_eval.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44/ --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan019_1_7b_sft_s44_eval\\\"'; } > ~/runs/faith-evidence-ie/plan019_1_7b_sft_s44_eval.log 2>&1\\nroot     611410  0.0  0.0   4364  3216 pts/1    Ss+  12:20   0:00 bash -c export CUDA_VISIBLE_DEVICES=1,2 && bash /root/autodl-tmp/freige/scripts/sft_14b.sh 2>&1 | tee /root/autodl-tmp/logs/plan017_14b_sft.log\\nroot     611412  0.0  0.0   4364  3208 pts/1    S+   12:20   0:00 bash /root/autodl-tmp/freige/scripts/sft_14b.sh\\nroot     611413  0.0  0.0   2796  1048 pts/1    S+   12:20   0:00 tee /root/autodl-tmp/logs/plan017_14b_sft.log\\nroot     611418  0.3  0.1 27894652 912028 pts/1 Sl+  12:20   0:27 /root/miniconda3/bin/python /root/miniconda3/bin/accelerate launch --config_file configs/accelerate_2gpu_zero3.yaml -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-14B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_14b --deepspeed configs/deepspeed_zero3_14b.json --no-quantize --lora_rank 64 --lora_alpha 128 --lora_dropout 0.05 --max_length 4096 --per_device_batch_size 1 --gradient_accumulation_steps 32 --num_epochs 3 --learning_rate 2e-4 --warmup_ratio 0.05 --bf16 --seed 42 --wandb_project freige-sft --wandb_run_name sft-14b-seed42\\nroot     611578  100  3.6 222359716 29130340 ?  Ssl  12:20 150:53 /root/miniconda3/bin/python -u -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-14B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp\\n\\n... [截断: 输出过长，省略 73 字符] ...\\n\\ne --lora_rank 64 --lora_alpha 128 --lora_dropout 0.05 --max_length 4096 --per_device_batch_size 1 --gradient_accumulation_steps 32 --num_epochs 3 --learning_rate 2e-4 --warmup_ratio 0.05 --bf16 --seed 42 --wandb_project freige-sft --wandb_run_name sft-14b-seed42\\nroot     611579  100  3.5 231691004 27927160 ?  Ssl  12:20 150:54 /root/miniconda3/bin/python -u -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-14B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_14b --deepspeed configs/deepspeed_zero3_14b.json --no-quantize --lora_rank 64 --lora_alpha 128 --lora_dropout 0.05 --max_length 4096 --per_device_batch_size 1 --gradient_accumulation_steps 32 --num_epochs 3 --learning_rate 2e-4 --warmup_ratio 0.05 --bf16 --seed 42 --wandb_project freige-sft --wandb_run_name sft-14b-seed42\\nroot     613075  0.0  0.0   4364  1992 ?        S    12:33   0:00 bash -c export CUDA_VISIBLE_DEVICES=0 && nohup bash -c \\\"source /root/miniconda3/bin/activate && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export CUDA_VISIBLE_DEVICES=0 && cd /root/autodl-tmp && bash scripts/d112/step3_k1_filter_and_train.sh\\\" > /root/autodl-tmp/logs/d112_rsft_s44_train.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     613076  0.0  0.0   4364  3288 ?        S    12:33   0:00 bash scripts/d112/step3_k1_filter_and_train.sh\\nroot     613083  102  0.4 82775944 3795708 ?    Rl   12:33 141:12 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_4b_sft_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_4b_sft_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 5 --max_length 2048 --seed 42 --lora_rank 64 --lora_alpha 128 --lora_dropout 0.05 --bf16 --quantize --wandb_run_name d112-rsft-ced-k1-from-sft-s44 --eval_data_dir /root/autodl-tmp/data/docred --max_new_tokens 1024\\nroot     620725  0.0  0.0   4496  3500 pts/0    Ss+  14:16   0:00 bash -c rm -f /tmp/agent-ml-exit/plan019_1_7b_rsft_s43_r2_eval.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/faith-evidence-ie/plan019_1_7b_rsft_s43_r2_eval.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/plan019_1_7b_rsft_s43_r2_eval.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=3 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/bin/activate && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp && bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\"'; } > ~/runs/faith-evidence-ie/plan019_1_7b_rsft_s43_r2_eval.log 2>&1\\nroot     620729  0.0  0.0   2800  1020 pts/0    S    14:16   0:00 timeout 86400 env bash -c bash -c \\\"source /root/miniconda3/bin/activate && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp && bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\"\\nroot     620730  0.0  0.0   4364  3208 pts/0    S    14:16   0:00 bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\nroot     620737  107  0.2 40171820 2142008 pts/0 Rl  14:16  37:28 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 42\\nroot     622953  3.0  0.0  16692 10548 ?        Ss   14:50   0:00 sshd: root@notty\\nroot     622967  0.0  0.0   7064  1560 ?        Rs   14:50   0:00 ps aux --no-headers -p 611578,611579\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T06:50:57.708Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JV2kx8xjFMdHJpgtWzLnce",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "e365937d-b946-4aea-907d-974d16f679a6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Got the info. Let me now check training progress and the current registry entry.\n\nFrom nvidia-smi:\n- cuda:0: PID 613083 (rsft trainer, 29630MiB)\n- cuda:1: PID 611578 (14B SFT, 16130MiB)\n- cuda:2: PID 611579 (14B SFT, 25158MiB)\n- cuda:3: PID 620737 (eval inference, 5380MiB)\n\n\nI've confirmed those two 14B SFT processes are running the Qwen3-14B model with DeepSpeed ZeRO-3, spawned from an accelerate launch parent process that started at 12:20. Since tmux is in read-only mode, I'll need to check the training progress and registry directly.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "29c9cf68-04da-4640-bf02-218317601f15",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MVNGVdyh1b1E1t4hrJi9d7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5096,
+                "cache_read_input_tokens": 26466,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5096
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完毕：PID 611578 (cuda:1) 和 611579 (cuda:2) 都是 14B SFT 进程。现在查训练进度和当前 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "2bb476e1-09f8-4a99-98a7-6f92bd39a75d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MVNGVdyh1b1E1t4hrJi9d7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5096,
+                "cache_read_input_tokens": 26466,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5096
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S2buiF92XJDo89KsFWCSBZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "python3 -c \"import json, glob; files = sorted(glob.glob('/root/autodl-tmp/sft_output_14b/checkpoint-*/trainer_state.json')); d = json.load(open(files[-1])) if files else None; print('no checkpoint found') if not d else (print('latest checkpoint step:', d['global_step'], '/ 144'), print('latest loss:', [l for l in d['log_history'] if 'loss' in l][-1]['loss'] if [l for l in d['log_history'] if 'loss' in l] else 'N/A'))\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "564024ed-6e3c-4c2b-b002-1d6f00cb581d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MVNGVdyh1b1E1t4hrJi9d7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5096,
+                "cache_read_input_tokens": 26466,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5096
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T06:51:13.146Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S2buiF92XJDo89KsFWCSBZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "3e7d67fd-bd7e-4480-8d52-af71f2fe2d4d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017tbasZtZP7UvhTs5w9Bir1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "tail -5 /root/autodl-tmp/logs/plan017_14b_sft.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "49b25591-ced2-4025-aa52-a1abb4b7c40d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MVNGVdyh1b1E1t4hrJi9d7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5096,
+                "cache_read_input_tokens": 26466,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5096
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BZ11WXT6fR5rYGitEyQqEL",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_registry",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "1a293a0b-a5bd-471d-9e2e-89796510aee1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MVNGVdyh1b1E1t4hrJi9d7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5096,
+                "cache_read_input_tokens": 26466,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5096
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T06:51:13.670Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017tbasZtZP7UvhTs5w9Bir1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r100%|██████████| 493/493 [07:16<00:00,  1.17it/s]\\\\u001b[A\\\\n\\\\r                                                 \\\\u001b[A\\\\r 67%|██████▋   | 97/144 [1:57:41<2:34:06, 196.74s/it]\\\\r 68%|██████▊   | 98/144 [1:58:51<2:01:37, 158.64s/it]\\\\r 69%|██████▉   | 99/144 [2:00:09<1:40:47, 134.39s/it]\\\\r 69%|██████▉   | 100/144 [2:01:13<1:23:04, 113.29s/it]\\\\r                                                      \\\\r{'loss': 0.5528, 'grad_norm': 0.07501255720853806, 'learning_rate': 6.61764705882353e-05, 'entropy': 0.6014707424496645, 'num_tokens': 5440031.0, 'mean_token_accuracy': 0.8580014683656244, 'epoch': 2.08}\\\\n\\\\r 69%|██████▉   | 100/144 [2:01:13<1:23:04, 113.29s/it]\\\\r 70%|███████   | 101/144 [2:02:17<1:10:42, 98.67s/it] \\\\r 71%|███████   | 102/144 [2:03:22<1:01:52, 88.39s/it]\\\\r 72%|███████▏  | 103/144 [2:04:28<55:53, 81.79s/it]  \\\\r 72%|███████▏  | 104/144 [2:05:34<51:26, 77.17s/it]\\\\r 73%|███████▎  | 105/144 [2:06:41<48:10, 74.11s/it]\\\\r 74%|███████▎  | 106/144 [2:07:48<45:28, 71.80s/it]\\\\r 74%|███████▍  | 107/144 [2:08:54<43:17, 70.21s/it]\\\\r 75%|███████▌  | 108/144 [2:10:01<41:29, 69.17s/it]\\\\r 76%|███████▌  | 109/144 [2:11:07<39:48, 68.23s/it]\\\\r 76%|███████▋  | 110/144 [2:12:14<38:25, 67.82s/it]\\\\r                                                   \\\\r{'loss': 0.5535, 'grad_norm': 0.08643564581871033, 'learning_rate': 5.147058823529411e-05, 'entropy': 0.586822509765625, 'num_tokens': 5984479.0, 'mean_token_accuracy': 0.8599229590967298, 'epoch': 2.3}\\\\n\\\\r 76%|███████▋  | 110/144 [2:12:14<38:25, 67.82s/it]\\\\r 77%|███████▋  | 111/144 [2:13:20<37:04, 67.39s/it]\\\\r 78%|███████▊  | 112/144 [2:14:27<35:50, 67.21s/it]\\\\r 78%|███████▊  | 113/144 [2:15:33<34:36, 66.99s/it]\\\\r 79%|███████▉  | 114/144 [2:16:39<33:20, 66.69s/it]\\\\r 80%|███████▉  | 115/144 [2:17:46<32:11, 66.59s/it]\\\\r 81%|████████  | 116/144 [2:18:52<31:04, 66.59s/it]\\\\r 81%|████████▏ | 117/144 [2:19:59<29:59, 66.64s/it]\\\\r 82%|████████▏ | 118/144 [2:21:06<28:50, 66.55s/it]\\\\r 83%|████████▎ | 119/144 [2:22:12<27:46, 66.66s/it]\\\\r 83%|████████▎ | 120/144 [2:23:19<26:41, 66.72s/it]\\\\r                                                   \\\\r{'loss': 0.5385, 'grad_norm': 0.08450149744749069, 'learning_rate': 3.6764705882352945e-05, 'entropy': 0.5780670166015625, 'num_tokens': 6533145.0, 'mean_token_accuracy': 0.864035140350461, 'epoch': 2.51}\\\\n\\\\r 83%|████████▎ | 120/144 [2:23:19<26:41, 66.72s/it]\\\\r 84%|████████▍ | 121/144 [2:24:27<25:39, 66.93s/it]\\\\r 85%|████████▍ | 122/144 [2:25:34<24:32, 66.94s/it]\\\\r 85%|████████▌ | 123/144 [2:26:40<23:19, 66.65s/it]\\\\r 86%|████████▌ | 124/144 [2:27:47<22:19, 66.95s/it]\\\\r 87%|████████▋ | 125/144 [2:28:54<21:09, 66.79s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "a770d225-7f69-4e51-bf91-449e3c19ad58",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r100%|██████████| 493/493 [07:16<00:00,  1.17it/s]\\\\u001b[A\\\\n\\\\r                                                 \\\\u001b[A\\\\r 67%|██████▋   | 97/144 [1:57:41<2:34:06, 196.74s/it]\\\\r 68%|██████▊   | 98/144 [1:58:51<2:01:37, 158.64s/it]\\\\r 69%|██████▉   | 99/144 [2:00:09<1:40:47, 134.39s/it]\\\\r 69%|██████▉   | 100/144 [2:01:13<1:23:04, 113.29s/it]\\\\r                                                      \\\\r{'loss': 0.5528, 'grad_norm': 0.07501255720853806, 'learning_rate': 6.61764705882353e-05, 'entropy': 0.6014707424496645, 'num_tokens': 5440031.0, 'mean_token_accuracy': 0.8580014683656244, 'epoch': 2.08}\\\\n\\\\r 69%|██████▉   | 100/144 [2:01:13<1:23:04, 113.29s/it]\\\\r 70%|███████   | 101/144 [2:02:17<1:10:42, 98.67s/it] \\\\r 71%|███████   | 102/144 [2:03:22<1:01:52, 88.39s/it]\\\\r 72%|███████▏  | 103/144 [2:04:28<55:53, 81.79s/it]  \\\\r 72%|███████▏  | 104/144 [2:05:34<51:26, 77.17s/it]\\\\r 73%|███████▎  | 105/144 [2:06:41<48:10, 74.11s/it]\\\\r 74%|███████▎  | 106/144 [2:07:48<45:28, 71.80s/it]\\\\r 74%|███████▍  | 107/144 [2:08:54<43:17, 70.21s/it]\\\\r 75%|███████▌  | 108/144 [2:10:01<41:29, 69.17s/it]\\\\r 76%|███████▌  | 109/144 [2:11:07<39:48, 68.23s/it]\\\\r 76%|███████▋  | 110/144 [2:12:14<38:25, 67.82s/it]\\\\r                                                   \\\\r{'loss': 0.5535, 'grad_norm': 0.08643564581871033, 'learning_rate': 5.147058823529411e-05, 'entropy': 0.586822509765625, 'num_tokens': 5984479.0, 'mean_token_accuracy': 0.8599229590967298, 'epoch': 2.3}\\\\n\\\\r 76%|███████▋  | 110/144 [2:12:14<38:25, 67.82s/it]\\\\r 77%|███████▋  | 111/144 [2:13:20<37:04, 67.39s/it]\\\\r 78%|███████▊  | 112/144 [2:14:27<35:50, 67.21s/it]\\\\r 78%|███████▊  | 113/144 [2:15:33<34:36, 66.99s/it]\\\\r 79%|███████▉  | 114/144 [2:16:39<33:20, 66.69s/it]\\\\r 80%|███████▉  | 115/144 [2:17:46<32:11, 66.59s/it]\\\\r 81%|████████  | 116/144 [2:18:52<31:04, 66.59s/it]\\\\r 81%|████████▏ | 117/144 [2:19:59<29:59, 66.64s/it]\\\\r 82%|████████▏ | 118/144 [2:21:06<28:50, 66.55s/it]\\\\r 83%|████████▎ | 119/144 [2:22:12<27:46, 66.66s/it]\\\\r 83%|████████▎ | 120/144 [2:23:19<26:41, 66.72s/it]\\\\r                                                   \\\\r{'loss': 0.5385, 'grad_norm': 0.08450149744749069, 'learning_rate': 3.6764705882352945e-05, 'entropy': 0.5780670166015625, 'num_tokens': 6533145.0, 'mean_token_accuracy': 0.864035140350461, 'epoch': 2.51}\\\\n\\\\r 83%|████████▎ | 120/144 [2:23:19<26:41, 66.72s/it]\\\\r 84%|████████▍ | 121/144 [2:24:27<25:39, 66.93s/it]\\\\r 85%|████████▍ | 122/144 [2:25:34<24:32, 66.94s/it]\\\\r 85%|████████▌ | 123/144 [2:26:40<23:19, 66.65s/it]\\\\r 86%|████████▌ | 124/144 [2:27:47<22:19, 66.95s/it]\\\\r 87%|████████▋ | 125/144 [2:28:54<21:09, 66.79s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\r100%|██████████| 493/493 [07:16<00:00,  1.17it/s]\\u001b[A\\n\\r                                                 \\u001b[A\\r 67%|██████▋   | 97/144 [1:57:41<2:34:06, 196.74s/it]\\r 68%|██████▊   | 98/144 [1:58:51<2:01:37, 158.64s/it]\\r 69%|██████▉   | 99/144 [2:00:09<1:40:47, 134.39s/it]\\r 69%|██████▉   | 100/144 [2:01:13<1:23:04, 113.29s/it]\\r                                                      \\r{'loss': 0.5528, 'grad_norm': 0.07501255720853806, 'learning_rate': 6.61764705882353e-05, 'entropy': 0.6014707424496645, 'num_tokens': 5440031.0, 'mean_token_accuracy': 0.8580014683656244, 'epoch': 2.08}\\n\\r 69%|██████▉   | 100/144 [2:01:13<1:23:04, 113.29s/it]\\r 70%|███████   | 101/144 [2:02:17<1:10:42, 98.67s/it] \\r 71%|███████   | 102/144 [2:03:22<1:01:52, 88.39s/it]\\r 72%|███████▏  | 103/144 [2:04:28<55:53, 81.79s/it]  \\r 72%|███████▏  | 104/144 [2:05:34<51:26, 77.17s/it]\\r 73%|███████▎  | 105/144 [2:06:41<48:10, 74.11s/it]\\r 74%|███████▎  | 106/144 [2:07:48<45:28, 71.80s/it]\\r 74%|███████▍  | 107/144 [2:08:54<43:17, 70.21s/it]\\r 75%|███████▌  | 108/144 [2:10:01<41:29, 69.17s/it]\\r 76%|███████▌  | 109/144 [2:11:07<39:48, 68.23s/it]\\r 76%|███████▋  | 110/144 [2:12:14<38:25, 67.82s/it]\\r                                                   \\r{'loss': 0.5535, 'grad_norm': 0.08643564581871033, 'learning_rate': 5.147058823529411e-05, 'entropy': 0.586822509765625, 'num_tokens': 5984479.0, 'mean_token_accuracy': 0.8599229590967298, 'epoch': 2.3}\\n\\r 76%|███████▋  | 110/144 [2:12:14<38:25, 67.82s/it]\\r 77%|███████▋  | 111/144 [2:13:20<37:04, 67.39s/it]\\r 78%|███████▊  | 112/144 [2:14:27<35:50, 67.21s/it]\\r 78%|███████▊  | 113/144 [2:15:33<34:36, 66.99s/it]\\r 79%|███████▉  | 114/144 [2:16:39<33:20, 66.69s/it]\\r 80%|███████▉  | 115/144 [2:17:46<32:11, 66.59s/it]\\r 81%|████████  | 116/144 [2:18:52<31:04, 66.59s/it]\\r 81%|████████▏ | 117/144 [2:19:59<29:59, 66.64s/it]\\r 82%|████████▏ | 118/144 [2:21:06<28:50, 66.55s/it]\\r 83%|████████▎ | 119/144 [2:22:12<27:46, 66.66s/it]\\r 83%|████████▎ | 120/144 [2:23:19<26:41, 66.72s/it]\\r                                                   \\r{'loss': 0.5385, 'grad_norm': 0.08450149744749069, 'learning_rate': 3.6764705882352945e-05, 'entropy': 0.5780670166015625, 'num_tokens': 6533145.0, 'mean_token_accuracy': 0.864035140350461, 'epoch': 2.51}\\n\\r 83%|████████▎ | 120/144 [2:23:19<26:41, 66.72s/it]\\r 84%|████████▍ | 121/144 [2:24:27<25:39, 66.93s/it]\\r 85%|████████▍ | 122/144 [2:25:34<24:32, 66.94s/it]\\r 85%|████████▌ | 123/144 [2:26:40<23:19, 66.65s/it]\\r 86%|████████▌ | 124/144 [2:27:47<22:19, 66.95s/it]\\r 87%|████████▋ | 125/144 [2:28:54<21:09, 66.79s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T06:51:13.676Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01BZ11WXT6fR5rYGitEyQqEL",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "27a4d002-254b-4b38-9a2e-a9a5e712f08f",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UePBZ75q9GBo44cx1UVwD3",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "filters": {
+                  "exp_id": "plan017_14b_sft"
+                },
+                "project": "faith-evidence-ie",
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "c89925e2-b76a-4522-92da-7743289f7d1a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FYpHNebUWHszmhweQNpB3m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2844,
+                "cache_read_input_tokens": 31562,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2844
+                },
+                "output_tokens": 52,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T06:51:17.680Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UePBZ75q9GBo44cx1UVwD3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6924}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "ebb8efb3-7020-4d87-a0ec-2b84dc6de37c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6924}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6924}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The registry returned 0 results for \"plan017_14b_sft\". Let me try a broader search to find the correct exp_id.",
+              "signature": "EqkCClkIDRgCKkDXWDKQtR4oVC1MxWdeWi1fbSMCSmSJu2fj1ow+gaYcnwlot/3gmMq6ttEgDOGWlBqa7SxU0Z1h5YIYgRMM9MVjMg9jbGF1ZGUtb3B1cy00LTY4ABIM38POMZcYeEhdJi6CGgxDWYocPoe4lXv96LoiMP5wxZzp8gfJnv8JxHL1Dyx1/4nsKIwRk3rsQRTaBfnZTez2Sjb520ggs7x937BWuSp+skDkauc5WKwzaVj2wFikercPdfy7ym9/qlb0fDWpuzQpIhc8vKG6LOvQzp4BYTTZM3rwxSJA3E2hMQmT6w929F1s7vxvnyctBB250Jg438hOU58v8pVg4DtC2SMh8pX7Z/79vniJnngHIqt3JkOiEGEpP73i5qQ0u9ULBtH9GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "14a72644-14bd-43bd-82d0-8bef19284f9a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BRxnPdL5H6QcsJbHE5QavM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 299,
+                "cache_read_input_tokens": 34406,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 299
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 中没有 `plan017_14b_sft` 条目。搜一下现有的 plan017 相关条目。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "4876d036-5435-4f66-a801-0771a2d7c671",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BRxnPdL5H6QcsJbHE5QavM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 299,
+                "cache_read_input_tokens": 34406,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 299
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vnfsen5GGUJHgLQk1BSu5Q",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "filters": {
+                  "status": "RUNNING"
+                },
+                "project": "faith-evidence-ie",
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "537f8644-649f-4dd5-a6a6-aa40ba82edbc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BRxnPdL5H6QcsJbHE5QavM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 299,
+                "cache_read_input_tokens": 34406,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 299
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T06:51:22.822Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vnfsen5GGUJHgLQk1BSu5Q",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan019_1_7b_rsft_s43_r2_eval\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T06:15:45.750Z\\\", \\\"updated_at\\\": \\\"2026-05-19T06:16:20.480Z\\\", \\\"hypothesis\\\": \\\"D076 eval for 1.7B RSFT s43_r2 (Method A: s42 SFT adapter + s42 CED k=1 data, RSFT seed=43). 预期 ign_f1 接近 s42 RSFT (0.5122)，验证 1.7B RSFT 跨 seed 稳健性。\\\", \\\"parent\\\": \\\"plan019_1_7b_rsft_s43_r2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 620725, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}}, \\\"d112_rsft_s44_train\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T04:33:11.623Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:34:22.521Z\\\", \\\"hypothesis\\\": \\\"D112 step 3: RSFT training on SFT s44 base using CED k=1 scored data. 在最强 SFT seed (s44, ign_f1=0.4734) 上验证 RSFT 效果，参数与 canonical s42 RSFT 完全一致。\\\", \\\"parent\\\": \\\"d112_rsft_s44_ced_score\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/d112/step3_k1_filter_and_train.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 613075, \\\"data_path\\\": \\\"/root/autodl-tmp/rsft_scored_4b_sft_s44/rsft_train.jsonl\\\", \\\"data_count\\\": 3014, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"d112_rsft_s44_ced_score (3014 CED k=1 scored samples)\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/d112_rsft_s44_train.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_4b_sft_s44\\\"}}, \\\"plan017_14b_sft\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T04:22:05.400Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:22:12.311Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/autodl-tmp/freige/scripts/sft_14b.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 3027, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 42, \\\"gpu_ids\\\": [\\\"cuda:1\\\", \\\"cuda:2\\\"], \\\"tmux\\\": \\\"plan017_14b_sft\\\", \\\"pid\\\": \\\"611578,611579\\\", \\\"deepspeed\\\": \\\"ZeRO-3 CPU offload\\\", \\\"max_length\\\": 4096, \\\"lora_rank\\\": 64, \\\"batch\\\": \\\"1x32x2=64\\\", \\\"epochs\\\": 3, \\\"total_steps\\\": 144, \\\"output_dir\\\": \\\"/root/autodl-tmp/sft_output_14b\\\"}}}, \\\"count\\\": 3, \\\"total\\\": 3, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7941}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "3854d968-ca70-44e7-ae27-18438c353a97",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan019_1_7b_rsft_s43_r2_eval\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T06:15:45.750Z\\\", \\\"updated_at\\\": \\\"2026-05-19T06:16:20.480Z\\\", \\\"hypothesis\\\": \\\"D076 eval for 1.7B RSFT s43_r2 (Method A: s42 SFT adapter + s42 CED k=1 data, RSFT seed=43). 预期 ign_f1 接近 s42 RSFT (0.5122)，验证 1.7B RSFT 跨 seed 稳健性。\\\", \\\"parent\\\": \\\"plan019_1_7b_rsft_s43_r2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 620725, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}}, \\\"d112_rsft_s44_train\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T04:33:11.623Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:34:22.521Z\\\", \\\"hypothesis\\\": \\\"D112 step 3: RSFT training on SFT s44 base using CED k=1 scored data. 在最强 SFT seed (s44, ign_f1=0.4734) 上验证 RSFT 效果，参数与 canonical s42 RSFT 完全一致。\\\", \\\"parent\\\": \\\"d112_rsft_s44_ced_score\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/d112/step3_k1_filter_and_train.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 613075, \\\"data_path\\\": \\\"/root/autodl-tmp/rsft_scored_4b_sft_s44/rsft_train.jsonl\\\", \\\"data_count\\\": 3014, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"d112_rsft_s44_ced_score (3014 CED k=1 scored samples)\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/d112_rsft_s44_train.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_4b_sft_s44\\\"}}, \\\"plan017_14b_sft\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T04:22:05.400Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:22:12.311Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/autodl-tmp/freige/scripts/sft_14b.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 3027, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 42, \\\"gpu_ids\\\": [\\\"cuda:1\\\", \\\"cuda:2\\\"], \\\"tmux\\\": \\\"plan017_14b_sft\\\", \\\"pid\\\": \\\"611578,611579\\\", \\\"deepspeed\\\": \\\"ZeRO-3 CPU offload\\\", \\\"max_length\\\": 4096, \\\"lora_rank\\\": 64, \\\"batch\\\": \\\"1x32x2=64\\\", \\\"epochs\\\": 3, \\\"total_steps\\\": 144, \\\"output_dir\\\": \\\"/root/autodl-tmp/sft_output_14b\\\"}}}, \\\"count\\\": 3, \\\"total\\\": 3, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7941}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan019_1_7b_rsft_s43_r2_eval\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:15:45.750Z\", \"updated_at\": \"2026-05-19T06:16:20.480Z\", \"hypothesis\": \"D076 eval for 1.7B RSFT s43_r2 (Method A: s42 SFT adapter + s42 CED k=1 data, RSFT seed=43). 预期 ign_f1 接近 s42 RSFT (0.5122)，验证 1.7B RSFT 跨 seed 稳健性。\", \"parent\": \"plan019_1_7b_rsft_s43_r2\", \"spec\": {\"command\": \"bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 620725, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}}, \"d112_rsft_s44_train\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T04:33:11.623Z\", \"updated_at\": \"2026-05-19T04:34:22.521Z\", \"hypothesis\": \"D112 step 3: RSFT training on SFT s44 base using CED k=1 scored data. 在最强 SFT seed (s44, ign_f1=0.4734) 上验证 RSFT 效果，参数与 canonical s42 RSFT 完全一致。\", \"parent\": \"d112_rsft_s44_ced_score\", \"spec\": {\"command\": \"bash scripts/d112/step3_k1_filter_and_train.sh\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"pid\": 613075, \"data_path\": \"/root/autodl-tmp/rsft_scored_4b_sft_s44/rsft_train.jsonl\", \"data_count\": 3014, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"d112_rsft_s44_ced_score (3014 CED k=1 scored samples)\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"log_path\": \"/root/autodl-tmp/logs/d112_rsft_s44_train.log\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_4b_sft_s44\"}}, \"plan017_14b_sft\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T04:22:05.400Z\", \"updated_at\": \"2026-05-19T04:22:12.311Z\", \"spec\": {\"command\": \"bash /root/autodl-tmp/freige/scripts/sft_14b.sh\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-14B\", \"seed\": 42, \"gpu_ids\": [\"cuda:1\", \"cuda:2\"], \"tmux\": \"plan017_14b_sft\", \"pid\": \"611578,611579\", \"deepspeed\": \"ZeRO-3 CPU offload\", \"max_length\": 4096, \"lora_rank\": 64, \"batch\": \"1x32x2=64\", \"epochs\": 3, \"total_steps\": 144, \"output_dir\": \"/root/autodl-tmp/sft_output_14b\"}}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7941}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The registry entry for `plan017_14b_sft` already exists and has status RUNNING. The spec shows:\n- `gpu_ids`: [\"cuda:1\", \"cuda:2\"] — but the field should be `gpu` not `gpu_ids`\n- `pid`: \"611578,611579\" — this is a string, not a number\n- Missing `gpu` field (has `gpu_ids` instead)\n\nThe user wants to fix the spec to include `gpu` field correctly. Let me check what the system expects. The user's message says to update spec with `gpu: \"cuda:1,cuda:2\"` and `pid: <actual_pid>`.\n\n\nThe problem is clear now — the spec uses `gpu_ids` as an array when it should use `gpu` as a string like the other experiments do. The actual process IDs are 611578 and 611579 for the two GPUs, with the main launcher process at 611418. The training is progressing well at step 125 out of 144, nearly complete.\n\nI need to fix the spec by switching from `gpu_ids: [\"cuda:1\", \"cuda:2\"]` to `gpu: \"cuda:1,cuda:2\"` and ensure the PIDs are correctly set to match the worker processes.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "d879f69b-ab19-421b-9f02-ee28cb67a39e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M9vrAvPSoBKi6ihAU95z2T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1432,
+                "cache_read_input_tokens": 34705,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1432
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了。Registry 中 `plan017_14b_sft` 已存在，但 spec 用了 `gpu_ids` 字段而非标准的 `gpu` 字段，这就是系统报警的原因。\n\n现在更新 spec，将 `gpu_ids` 替换为标准的 `gpu` 字段。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "c3157ccb-d4f5-450a-88dc-c7e73175acd3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M9vrAvPSoBKi6ihAU95z2T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1432,
+                "cache_read_input_tokens": 34705,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1432
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016N5L69b8Bqrp9cMh61YfFG",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan017_14b_sft",
+                "field": "spec",
+                "value": {
+                  "command": "bash /root/autodl-tmp/freige/scripts/sft_14b.sh",
+                  "server": "rtx5090-4x",
+                  "gpu": "cuda:1,cuda:2",
+                  "pid": 611578,
+                  "data_path": "/root/autodl-tmp/data/docred",
+                  "data_count": 3027,
+                  "model_name": "Qwen3-14B",
+                  "seed": 42,
+                  "deepspeed": "ZeRO-3 CPU offload",
+                  "max_length": 4096,
+                  "lora_rank": 64,
+                  "batch": "1x32x2=64",
+                  "epochs": 3,
+                  "total_steps": 144,
+                  "output_dir": "/root/autodl-tmp/sft_output_14b",
+                  "tmux": "plan017_14b_sft"
+                },
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "7e17944d-e60e-4c9b-a614-a10f24d0f290",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M9vrAvPSoBKi6ihAU95z2T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1432,
+                "cache_read_input_tokens": 34705,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1432
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T06:51:40.546Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016N5L69b8Bqrp9cMh61YfFG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan017_14b_sft\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T04:22:05.400Z\\\", \\\"updated_at\\\": \\\"2026-05-19T06:51:40.098Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/autodl-tmp/freige/scripts/sft_14b.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1,cuda:2\\\", \\\"pid\\\": 611578, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 3027, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 42, \\\"deepspeed\\\": \\\"ZeRO-3 CPU offload\\\", \\\"max_length\\\": 4096, \\\"lora_rank\\\": 64, \\\"batch\\\": \\\"1x32x2=64\\\", \\\"epochs\\\": 3, \\\"total_steps\\\": 144, \\\"output_dir\\\": \\\"/root/autodl-tmp/sft_output_14b\\\", \\\"tmux\\\": \\\"plan017_14b_sft\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0649}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "0df0cf0e-2f75-4fd6-836c-b4c4c7c28383",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan017_14b_sft\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T04:22:05.400Z\\\", \\\"updated_at\\\": \\\"2026-05-19T06:51:40.098Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/autodl-tmp/freige/scripts/sft_14b.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1,cuda:2\\\", \\\"pid\\\": 611578, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 3027, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 42, \\\"deepspeed\\\": \\\"ZeRO-3 CPU offload\\\", \\\"max_length\\\": 4096, \\\"lora_rank\\\": 64, \\\"batch\\\": \\\"1x32x2=64\\\", \\\"epochs\\\": 3, \\\"total_steps\\\": 144, \\\"output_dir\\\": \\\"/root/autodl-tmp/sft_output_14b\\\", \\\"tmux\\\": \\\"plan017_14b_sft\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0649}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan017_14b_sft\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T04:22:05.400Z\", \"updated_at\": \"2026-05-19T06:51:40.098Z\", \"spec\": {\"command\": \"bash /root/autodl-tmp/freige/scripts/sft_14b.sh\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1,cuda:2\", \"pid\": 611578, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-14B\", \"seed\": 42, \"deepspeed\": \"ZeRO-3 CPU offload\", \"max_length\": 4096, \"lora_rank\": 64, \"batch\": \"1x32x2=64\", \"epochs\": 3, \"total_steps\": 144, \"output_dir\": \"/root/autodl-tmp/sft_output_14b\", \"tmux\": \"plan017_14b_sft\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0649}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已修正。汇报：\n\n**nvidia-smi GPU 占用：**\n| GPU | PID | 进程 | 显存 |\n|-----|-----|------|------|\n| cuda:0 | 613083 | d112_rsft_s44_train | 29630 MiB |\n| cuda:1 | 611578 | **plan017_14b_sft** (worker 0) | 16130 MiB |\n| cuda:2 | 611579 | **plan017_14b_sft** (worker 1) | 25158 MiB |\n| cuda:3 | 620737 | plan019_1_7b_rsft_s43_r2_eval | 5380 MiB |\n\n**Registry 修正内容：**\n- 原 spec 使用 `gpu_ids: [\"cuda:1\", \"cuda:2\"]`（非标准字段），系统无法识别 GPU 注册\n- 已改为 `gpu: \"cuda:1,cuda:2\"`（标准字段），`pid: 611578`（整数）\n- 其余字段保留不变\n\n**训练进度：**\n- Step 125 / 144（87%），epoch 2.51\n- 最新 loss: 0.5385（step 120），mean_token_accuracy: 0.864\n- 预计剩余约 21 分钟（19 steps × ~67s/step）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "uuid": "3460f13f-90f7-4f09-b8bf-ea73f091c69f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RRwRjKsdbEJ9RmKWUm6oE7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1276,
+                "cache_read_input_tokens": 36137,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1276
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已修正。汇报：\n\n**nvidia-smi GPU 占用：**\n| GPU | PID | 进程 | 显存 |\n|-----|-----|------|------|\n| cuda:0 | 613083 | d112_rsft_s44_train | 29630 MiB |\n| cuda:1 | 611578 | **plan017_14b_sft** (worker 0) | 16130 MiB |\n| cuda:2 | 611579 | **plan017_14b_sft** (worker 1) | 25158 MiB |\n| cuda:3 | 620737 | plan019_1_7b_rsft_s43_r2_eval | 5380 MiB |\n\n**Registry 修正内容：**\n- 原 spec 使用 `gpu_ids: [\"cuda:1\", \"cuda:2\"]`（非标准字段），系统无法识别 GPU 注册\n- 已改为 `gpu: \"cuda:1,cuda:2\"`（标准字段），`pid: 611578`（整数）\n- 其余字段保留不变\n\n**训练进度：**\n- Step 125 / 144（87%），epoch 2.51\n- 最新 loss: 0.5385（step 120），mean_token_accuracy: 0.864\n- 预计剩余约 21 分钟（19 steps × ~67s/step）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 61686,
+            "duration_api_ms": 60283,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "2e40df2f-d32a-4830-92e4-3dce49f2af77",
+            "total_cost_usd": 0.3346335,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 25966,
+              "cache_read_input_tokens": 200216,
+              "output_tokens": 2806,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25966,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 375,
+                  "cache_read_input_tokens": 36137,
+                  "cache_creation_input_tokens": 1276,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1276
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1918,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002028,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 2806,
+                "cacheReadInputTokens": 200216,
+                "cacheCreationInputTokens": 25966,
+                "webSearchRequests": 0,
+                "costUSD": 0.33260549999999994,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "295cd8ac-b9b5-4d18-9eb7-8f9fb5aeb1b2"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-14b-sft-registry-fix.md"
+}

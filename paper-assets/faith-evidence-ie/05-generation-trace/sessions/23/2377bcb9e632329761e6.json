@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2377bcb9e632329761e6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu cleanup and fix",
+  "task_key": "worker_ops_gpu_cleanup_and_fix_20260519T131517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_cleanup_and_fix_20260519T131517_result.json",
+    "occurrence": 1,
+    "bytes": 1079,
+    "sha256": "e401fd9e2320050753923d11f5eb26342c5684b828b2e40be36f7e648e561c13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 报告\n\n### 子任务 1: Kill cuda:0 zombie 进程\n- PID 675161/675171 已确认存活但 registry 标记 DONE/success\n- 已执行 `kill 675161 675171`，进程已终止\n- **cuda:0 已完全释放**: 0 MiB 占用，32110 MiB 可用\n\n### 子任务 2: d112_rsft_s44_eval_bf16 状态\n- 进程正常运行：PID 693535（python eval），tmux session 存在，log 文件存在\n- 推理进度：16/247 batches（~6%），约 ~40s/batch，预计还需约 2.5 小时\n- Registry 已从 PREPARING 推进到 **RUNNING**（PID 693535, cuda:2）\n\n### 子任务 3: GPU 完整状态\n\n| GPU | 显存占用 | 显存空闲 | 利用率 | 状态 |\n|-----|---------|---------|--------|------|\n| cuda:0 | 0 MiB | 32110 MiB | 0% | **空闲可用** |\n| cuda:1 | 31805 MiB | 306 MiB | 79% | 占用（PID 633119） |\n| cuda:2 | 29262 MiB | 2848 MiB | 87% | 占用（d112_eval_bf16 + plan019_8b_rsft_no_evidence_eval） |\n| cuda:3 | 31594 MiB | 516 MiB | 92% | 占用（PID 679723 + 683952） |\n\n**cuda:0 是唯一空闲 GPU，可立即使用。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-cleanup-and-fix.md"
+}

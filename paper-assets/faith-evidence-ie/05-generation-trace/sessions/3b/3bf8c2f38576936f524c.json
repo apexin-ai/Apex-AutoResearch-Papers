@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bf8c2f38576936f524c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops fix sft baseline status",
+  "task_key": "worker_ops_fix_sft_baseline_status_20260514T221526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_sft_baseline_status_20260514T221526_result.json",
+    "occurrence": 1,
+    "bytes": 363,
+    "sha256": "e01b717e013bc42f38c0659158c2fa62c0f39dae8c49d0cb36ca092b2421a750"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 修正完成：\n\n- **PID 104979**: 存活，cuda:3 占 9704 MiB，运行 ~23 分钟\n- **Registry**: DONE/failed → RUNNING（经 PREPARING→QUEUED→ALLOCATED→RUNNING 路径恢复）\n- **Notes**: 已记录 cron 误判原因和修正\n- **Cron 监控**: 已注册每 5 分钟轮询，进程结束后自动提取结果更新 registry"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-sft-baseline-status.md"
+}

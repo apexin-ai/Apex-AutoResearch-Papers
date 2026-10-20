@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35e90ad949d0741c3473",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose verify 8b rsft s44 and prep 1 7b rsft",
+  "task_key": "worker_diagnose_verify_8b_rsft_s44_and_prep_1_7b_rsft_20260518T222733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_verify_8b_rsft_s44_and_prep_1_7b_rsft_20260518T222733_result.json",
+    "occurrence": 1,
+    "bytes": 1348,
+    "sha256": "15b64c8cd0eeaa38218bbcf638efb9fe9a200791419e88e4f56319a4cfd91e71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认完毕。汇总：\n\n## 产出\n\n### 1. cuda:1 状态：8B RSFT s44 正常运行\n- PID 581524 在 cuda:1 上，显存 26944MiB/32607MiB，GPU 利用率 82%\n- 全卡均在使用中（4 个 python 进程分别占 cuda:0~3）\n\n### 2. 1.7B RSFT scored data 路径\n- `/root/autodl-tmp/freige/outputs/rsft_scored_1_7b_k1/rsft_train.jsonl` (3021 条)\n- SFT adapter: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\n- 已完成的 s42 RSFT 输出: `/root/autodl-tmp/rsft_output_qwen3_1_7b_k1/`\n\n### 3. 1.7B RSFT seed expansion 脚本（已存在）\n- `train_1_7b_s43.sh`: `/root/autodl-tmp/freige/scripts/seed_expansion/train_1_7b_s43.sh`\n- `train_1_7b_s44.sh`: `/root/autodl-tmp/freige/scripts/seed_expansion/train_1_7b_s44.sh`\n\n两脚本配置正确：\n- base_model: Qwen3-1.7B\n- sft_adapter: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\n- rsft_data_path: `/root/autodl-tmp/freige/outputs/rsft_scored_1_7b_k1/rsft_train.jsonl`\n- batch_size=4, grad_accum=4 (比 8B 大，1.7B 模型显存更小)\n- CUDA_VISIBLE_DEVICES 使用 `${GPU:-${CUDA_VISIBLE_DEVICES:-0}}` 模式（符合约束 C002/C003）\n\n8B s44 跑完后 cuda:1 释放，可直接提交 1.7B RSFT s43/s44。\n\n---\n\n关于第二个任务（sync experiment_plan.yaml），需要使用 `read_registry` 和项目知识工具。要继续执行吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-verify-8b-rsft-s44-and-prep-1-7b-rsft.md"
+}

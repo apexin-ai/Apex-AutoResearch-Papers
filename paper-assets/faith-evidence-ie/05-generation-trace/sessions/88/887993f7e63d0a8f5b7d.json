@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "887993f7e63d0a8f5b7d",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "analysis variance statistics",
+  "task_key": "worker_analysis_variance-statistics_20260523T012204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_variance-statistics_20260523T012204.log",
+    "occurrence": 1,
+    "bytes": 810128,
+    "sha256": "08fc854869be562d01aadfd622b53f99ae5a6013c866ae4d6294a9336ca07c30"
+  },
+  "statistics": {
+    "messages": 104,
+    "user_turns": 0,
+    "tool_calls": 38,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 38,
+      "tool_result": 38,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 104,
+      "chunks": [
+        {
+          "path": "887993f7e63d0a8f5b7d-part-0001.json",
+          "message_count": 49
+        },
+        {
+          "path": "887993f7e63d0a8f5b7d-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-variance-statistics.md"
+}

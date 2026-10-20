@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed20bd273a171841c286",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis test set table compilation",
+  "task_key": "worker_analysis_test_set_table_compilation_20260521T184910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_test_set_table_compilation_20260521T184910_result.json",
+    "occurrence": 1,
+    "bytes": 833,
+    "sha256": "4970bf3e631e6ad8b2fb7f8c07c28ddf2132c238606e655dd75246d824f37d1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。Test Set Scaling Table 已写入 memory.md。\n\n### 综合表格\n\n| Scale | SFT test | RSFT test ign_f1 | Dev→Test Gap |\n|-------|----------|------------------|-------------|\n| 1.7B | ❌ 未开始 | **0.2933** | -21.9pp |\n| 4B | 🔄 运行中 | ❌ FAILED | — |\n| 8B | 🔄 运行中 | **0.3353** | -20.8pp |\n| 14B | 🔄 运行中 | **0.3849** | -20.4pp |\n| LLaMA-8B | ❌ 未开始 | **0.3599** | -20.6pp |\n\n### 待提交\n\n| 优先级 | 实验 | 阻塞原因 |\n|--------|------|---------|\n| P0 | 4B RSFT 重训 + test eval | checkpoint 丢失，retrain 被 killed |\n| P1 | 1.7B SFT test | 未开始 |\n| P1 | LLaMA SFT test | 未开始 |\n\n关键发现：Dev→Test gap 在所有 scale 上惊人一致（~20-22pp），scaling 排序与 dev 完全一致。4B RSFT 是唯一缺口。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-test-set-table-compilation.md"
+}

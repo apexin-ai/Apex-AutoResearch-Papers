@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d18105f95dc19220b8d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diag mvp2 eval rsft s43",
+  "task_key": "worker_diag_mvp2_eval_rsft_s43_20260515T112747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_mvp2_eval_rsft_s43_20260515T112747_result.json",
+    "occurrence": 1,
+    "bytes": 1447,
+    "sha256": "ec093023f615353058d8734f6a22236a4b704f0073fd01f575256e98af822382"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果：\n\n### 1. 关键错误行\n```\ninference.py: error: the following arguments are required: --model_path, --data_path\nEXIT_CODE=2\n```\n\n### 2. 根因\n原始命令缺少两个 **required** 参数：`--model_path` 和 `--data_path`，同时使用了不存在的参数 `--rsft_adapter` 和 `--data_dir`。\n\n脚本实际参数接口：\n| 原始命令用的 | 脚本实际要求 |\n|---|---|\n| ❌ `--rsft_adapter` | 不存在此参数，adapter 应通过 `--model_path` 传入 |\n| ❌ `--data_dir` | `--data_path`（required） |\n| ❌ 未传 `--model_path` | `--model_path`（required）— 即 adapter 路径 |\n\n脚本逻辑：`--model_path` 是 adapter 路径（或完整模型路径），`--base_model` 是底座模型路径（默认已是 Qwen3-4B），`--sft_adapter` 是可选的 SFT adapter（先合并再加载 RSFT adapter）。\n\n### 3. 修复命令\n```bash\ncd /root/autodl-tmp && python -m freige.eval.inference \\\n  --model_path /root/autodl-tmp/rsft_output_s43 \\\n  --base_model /root/autodl-tmp/models/Qwen3-4B \\\n  --sft_adapter /root/autodl-tmp/sft_output \\\n  --data_path /root/autodl-tmp/data/docred \\\n  --output_dir /root/autodl-tmp/eval_results/rsft_s43 \\\n  --no-quantize\n```\n\n变更：\n- `--rsft_adapter` → `--model_path`（RSFT adapter 路径）\n- `--data_dir` → `--data_path`\n- 移除不存在的 `--gpu 0`（脚本用 `device_map=\"auto\"`，不接受此参数）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-mvp2-eval-rsft-s43.md"
+}

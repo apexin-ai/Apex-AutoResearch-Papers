@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8e9bfcef8affd36dfed",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp d158 1 7b rsft s44 eval",
+  "task_key": "worker_exp_d158_1_7b_rsft_s44_eval_20260525T002220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_d158_1_7b_rsft_s44_eval_20260525T002220_result.json",
+    "occurrence": 1,
+    "bytes": 345,
+    "sha256": "e6e4b3794077df6d80f05481795051a980ee75baf3ad0968eac067016ec49396"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 正常运行中：\n\n- **PID**: 342049，cuda:0\n- **进度**: 3/247 batches，约 28s/batch，预计约 **1 小时 54 分**完成\n- **Registry**: `d158_1_7b_rsft_s44_eval` → RUNNING\n- **日志**: `/root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log`\n- **输出**: `/root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d158-1-7b-rsft-s44-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bfe994cca3e11e4d275",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "audit final table cells",
+  "task_key": "worker_audit_final-table-cells_20260524T044728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_final-table-cells_20260524T044728_result.json",
+    "occurrence": 1,
+    "bytes": 1272,
+    "sha256": "e21f2d8774537ba1b68608ed23803536245c2041ad4e9355461edc3e517bc0b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Audit report written and registered (`art_20260524_20be7d`).\n\n**14 tables audited. Key findings:**\n\n- **10 tables fully verified**: tab:main, tab:training_tax, tab:mechanistic, tab:test_results, tab:test_tax, tab:rsft_test_tax, tab:inference_efficiency, tab:error_analysis, tab:encoder_comparison, tab:ablation_full (most cells)\n- **4 special attention items**:\n  1. tab:cross_detail 8B RSFT Evi-F1=81.54: ~ minor discrepancy (registry 3-seed mean=81.16, Δ=0.38pp)\n  2. tab:rsft_test_tax 1.7B 2-seed mean: ✓ exact match (29.02±0.45 / 24.00±0.14)\n  3. tab:scaling 14B SFT ^(1): ✓ single seed correctly annotated\n  4. tab:inference_efficiency: ✓ exact match with efficiency_comparison.md, arithmetic verified\n\n**Discrepancies requiring attention**:\n- **1.7B RSFT s42**: registry=50.50 vs paper=51.23 → cascades to tab:scaling mean (50.95 vs 51.19), tab:variance_ci compression (7.1× vs 32.6×), tab:cross_detail\n- **LLaMA RSFT s42**: registry=55.63 vs paper=57.14 → cascades to tab:scaling mean (56.04 vs 56.54)\n- **DPO 3ep Rel-F1**: paper=31.45 but registry has no rel_f1 field for `dpo_rebuilt_3ep_eval`\n\nRecommend verifying whether different eval checkpoints/protocols produced the paper-quoted 1.7B and LLaMA RSFT s42 values."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-final-table-cells.md"
+}

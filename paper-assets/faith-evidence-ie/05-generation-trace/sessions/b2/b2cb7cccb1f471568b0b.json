@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2cb7cccb1f471568b0b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code batch eval script",
+  "task_key": "worker_code_batch-eval-script_20260514T155514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_batch-eval-script_20260514T155514_result.json",
+    "occurrence": 1,
+    "bytes": 967,
+    "sha256": "b25cdd35a011c621a99b15a6ad7598d2a7120b0707811cc27be4acaa93758531"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已部署到 `/root/autodl-tmp/freige/eval/`，均可正常运行：\n\n**batch_eval.py** — 批量评估 checkpoint\n```bash\ncd /root/autodl-tmp && python -m freige.eval.batch_eval \\\n    --exp_dir /root/autodl-tmp/grpo_extract_r3 \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --output_dir /root/autodl-tmp/eval_results/grpo_extract_r3 \\\n    --resume\n```\n- 自动发现 checkpoint-N 目录，按 step 顺序串行 eval\n- `--resume` 跳过已评测的 checkpoint\n- `--checkpoints 100,200` 指定只评测特定 step\n- 完成后生成 `summary.json`，自动输出 best-by-F1\n\n**find_best_checkpoint.py** — 从训练日志找 best reward\n```bash\ncd /root/autodl-tmp && python -m freige.eval.find_best_checkpoint \\\n    --exp_dir /root/autodl-tmp/grpo_flatnli_r3\n```\n- 自动找实验目录中最新的 `trainer_state.json`\n- `--sort_by f1_reward_fn` 可按不同指标排序\n- `--save_csv` 导出全部记录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-batch-eval-script.md"
+}

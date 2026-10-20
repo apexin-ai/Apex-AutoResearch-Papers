@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2080268cfbc8b37611e1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code ced reward f1 gate",
+  "task_key": "worker_code_ced-reward-f1-gate_20260514T152547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ced-reward-f1-gate_20260514T152547_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "a4a8d8ebfdb58eec01ce2cff6e2f11d7bc49078aa9230288d3870447e7191d74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n### 修改内容\n\n**1. F1 门控** (`grpo_trainer.py:221-235`)\n在 `CEDRewardWrapper.__call__` 的 gold_map 构建之后、triple_rewards 循环之前，插入 F1 gate：遍历 pred triples，检查是否有至少一个 (head, relation, tail) 匹配 gold_map。无匹配则 CED reward = 0，跳过 NLI 计算。\n\n**2. `--lr` alias** (`grpo_trainer.py:372`)\n`--learning_rate` 添加了 `--lr` 别名。\n\n**3. 单元测试** (`freige/tests/test_ced_gate.py`)\n3 个 case 全部 PASSED：\n- `test_empty_output_returns_zero` — 空输出 → 0\n- `test_correct_triple_returns_positive` — 正确 triple → > 0\n- `test_nonsense_output_returns_zero` — 废话输出 → 0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ced-reward-f1-gate.md"
+}

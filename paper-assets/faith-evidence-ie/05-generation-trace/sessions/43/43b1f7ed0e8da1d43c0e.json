@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43b1f7ed0e8da1d43c0e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose gpu cascade check",
+  "task_key": "worker_diagnose_gpu-cascade-check_20260521T233752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu-cascade-check_20260521T233752_result.json",
+    "occurrence": 1,
+    "bytes": 1659,
+    "sha256": "c82b8eb70c3c586373a3ec3f6be1c6171d21bc5d65108afcd5710816573f70d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 诊断结果\n\n### 当前 GPU 占用\n| GPU | 显存占用 | PID | 实验 |\n|-----|---------|-----|------|\n| 0 | 6,071 / 97,887 MiB (6%) | 140534 | test_eval_1_7b_sft_s42 |\n| 1 | 32,503 / 97,887 MiB (33%) | 125323 | test_eval_14b_sft_s42 |\n| 2 | 94,453 / 97,887 MiB (97%) | 142872 | retrain_4b_rsft_ced_s42_v2 |\n| 3 | 32,503 / 97,887 MiB (33%) | 143166 | test_eval_14b_sft_s42_no_evi |\n\n### 实验状态\n\n| 状态 | 实验 | GPU | 进度 | 备注 |\n|------|------|-----|------|------|\n| [RUNNING] | retrain_4b_rsft_ced_s42_v2 | cuda:2 | step 300/510 (59%), epoch ~1.76/3 | last_loss≈0.605, uptime 23:50 |\n| [RUNNING] | test_eval_14b_sft_s42 | cuda:1 | 448/500 (90%) | ~35s/it, ETA ~30min, uptime 5h05m |\n| [RUNNING] | test_eval_1_7b_sft_s42 | cuda:0 | 115/500 (23%) | ~27s/it, ETA ~2.9h, uptime 48min |\n| [RUNNING] | test_eval_14b_sft_s42_no_evi | cuda:3 | 37/500 (7%) | ~40-50s/it, ETA ~5.5h, uptime 23min |\n\n### Cascade 就绪度\n\n- **retrain checkpoint**: ❌ 训练中 (300/510 steps), 预计再 ~15min 完成。最新 checkpoint: `/root/autodl-tmp/rsft_output_ced_s42_v2/checkpoint-300/adapter_model.safetensors` (504MB)\n- **1.7B SFT adapter**: ✅ `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16/adapter_model.safetensors` (267MB, 2026-05-16)\n- **空闲 GPU**: 无 — 全部 4 卡被占用\n\n### 预计完成时间线\n1. **test_eval_14b_sft_s42** (cuda:1) — 约 30 分钟后完成\n2. **retrain_4b_rsft_ced_s42_v2** (cuda:2) — 约 15-20 分钟后完成 (210 steps remaining)\n3. **test_eval_1_7b_sft_s42** (cuda:0) — 约 2.9 小时后\n4. **test_eval_14b_sft_s42_no_evi** (cuda:3) — 约 5.5 小时后"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-cascade-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e8e784007923ddb53e2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose dev eval 4b rsft v2 check",
+  "task_key": "worker_diagnose_dev_eval_4b_rsft_v2_check_20260522T033049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_dev_eval_4b_rsft_v2_check_20260522T033049_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "bb00a8b5d66d83262576d27b13b87066d9f509cafd49c061a61472a38e9524a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**dev_eval_4b_rsft_ced_s42_v2 失败**（进程已退出，PID 157071 不存在，cuda:0 已空闲）。\n\n**失败原因**：`--base_model /root/autodl-tmp/models/Qwen/Qwen3-4B` 路径不存在。服务器上 4B 模型在 `/root/autodl-tmp/models/Qwen3-4B`（无 `Qwen/` 子目录）。1.7B/8B/14B 在 `/root/autodl-tmp/models/Qwen/` 下，但 4B 不在。`AutoTokenizer.from_pretrained` 收到含 `/` 的路径后误判为 repo id 抛出 `HFValidationError`。\n\n**修复**：重新提交时把 `--base_model` 改为 `/root/autodl-tmp/models/Qwen3-4B`。这与 test_eval_4b_rsft_s42_v3 修过的同一个 bug。\n\n需要我立即重新提交修正后的 dev eval 吗？cuda:0 当前空闲（0 MiB），可以直接用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-dev-eval-4b-rsft-v2-check.md"
+}

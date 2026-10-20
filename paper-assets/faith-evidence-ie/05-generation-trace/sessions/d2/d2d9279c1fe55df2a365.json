@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2d9279c1fe55df2a365",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit plan017 14b sft s43",
+  "task_key": "worker_submit_plan017_14b_sft_s43_20260522T161048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_plan017_14b_sft_s43_20260522T161048_result.json",
+    "occurrence": 1,
+    "bytes": 736,
+    "sha256": "af2436e70ee0377bd39465b2b2d89bd2a2c2ee7957a18250ff452241a3f5b8e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动并注册。汇总：\n\n**plan017_14b_sft_s43** — PID 189766, cuda:1\n\n| 参数 | 值 |\n|------|-----|\n| model | Qwen3-14B (bf16, LoRA r=64 α=128) |\n| data | docred train_annotated (3027 docs) |\n| batch | 1 × 64 grad_accum = effective 64 |\n| epochs | 3 (144 steps) |\n| lr | 2e-4, warmup 5% |\n| seed | 43 |\n| output | /root/autodl-tmp/sft_output_14b_s43 |\n| log | /root/runs/faith-evidence-ie/plan017_14b_sft_s43.log |\n| wandb | freige-sft / sft-14b-s43 |\n\n与 s42 的差异：单卡运行（无 DeepSpeed），gradient_accumulation_steps 从 32 调为 64 以保持相同的 effective batch size。训练动态等价。\n\n预估时长：s42 双卡约 66 分钟，单卡约 2-2.5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-plan017-14b-sft-s43.md"
+}

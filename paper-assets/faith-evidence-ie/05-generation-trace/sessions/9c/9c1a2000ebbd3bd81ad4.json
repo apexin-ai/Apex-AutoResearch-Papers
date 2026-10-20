@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "9c1a2000ebbd3bd81ad4",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "research plan 009 dynamics data",
+  "task_key": "worker_research_plan_009_dynamics_data_20260515T210649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan_009_dynamics_data_20260515T210649.log",
+    "occurrence": 1,
+    "bytes": 959896,
+    "sha256": "a28331c7c2d4033fa05f1f9db0e134cd907366e3dcc998009858a80daef0404d"
+  },
+  "statistics": {
+    "messages": 280,
+    "user_turns": 1,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 67,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 80,
+      "tool_result": 80,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 69,
+      "chunks": [
+        {
+          "path": "9c1a2000ebbd3bd81ad4-part-0001.json",
+          "message_count": 69
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 211,
+      "chunks": [
+        {
+          "path": "9c1a2000ebbd3bd81ad4-part-0001.json",
+          "message_count": 111
+        },
+        {
+          "path": "9c1a2000ebbd3bd81ad4-part-0002.json",
+          "message_count": 100
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-plan-009-dynamics-data.md"
+}

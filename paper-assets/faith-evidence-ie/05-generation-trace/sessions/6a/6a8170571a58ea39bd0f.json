@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "6a8170571a58ea39bd0f",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ops registry cleanup stale",
+  "task_key": "worker_ops_registry-cleanup-stale_20260522T193257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry-cleanup-stale_20260522T193257.log",
+    "occurrence": 1,
+    "bytes": 1518648,
+    "sha256": "40ce3c2c4f22b77d16be8ee61d147c35a0c2e82f24555cfb7110832144502552"
+  },
+  "statistics": {
+    "messages": 268,
+    "user_turns": 1,
+    "tool_calls": 117,
+    "roles": {
+      "log": 1,
+      "system": 14,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 117,
+      "tool_result": 117,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "6a8170571a58ea39bd0f-part-0001.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 255,
+      "chunks": [
+        {
+          "path": "6a8170571a58ea39bd0f-part-0001.json",
+          "message_count": 14
+        },
+        {
+          "path": "6a8170571a58ea39bd0f-part-0002.json",
+          "message_count": 156
+        },
+        {
+          "path": "6a8170571a58ea39bd0f-part-0003.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-registry-cleanup-stale.md"
+}

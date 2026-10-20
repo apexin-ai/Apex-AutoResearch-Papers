@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9366531dea917c32a3e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research related work survey",
+  "task_key": "worker_research_related_work_survey_20260516T060606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_survey_20260516T060606_result.json",
+    "occurrence": 1,
+    "bytes": 1940,
+    "sha256": "690fc3fc7354f91a6008c2f0ae0ed1325d5b176c47c87463885aa7e257638071"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "literature_map.yaml 已更新。142 篇论文，新增 11 篇（注意 ESTR-DocRE 和 Dual reasoning 已有但被分到了同一新 category）。\n\n---\n\n## 调研摘要\n\n新增 11 篇论文，覆盖 5 个新 category（37-41），按方向分布：\n\n### a. DocRE + Evidence\n- **SAIS** (NAACL 2022): 最直接 prior work——encoder-based two-stage evidence retrieval + DocRE，发现 evidence supervision 提升 RE。与 FREIGE 形成关键对比：discriminative evidence supervision 有益 vs generative evidence generation 有 ~8pp cost。\n- **ATLOP** (AAAI 2021), **DocuNet** (IJCAI 2021): DocRE 标准 baseline，related work 必须引用。\n- **DocRED** (ACL 2019), **Re-DocRED** (EMNLP 2022): 数据集论文，FREIGE 的评测基础。\n\n### b. LLM for IE\n- **GenRES** (NAACL 2024): 指出 exact match F1 低估 generative RE 性能，human annotation 自身不完整。FREIGE 论文需讨论此 evaluation limitation。\n\n### c. RSFT / Self-training for IE\n- **STaR** (NeurIPS 2022): RSFT 的理论先驱——iterative bootstrapping (generate → filter correct → fine-tune)。FREIGE 的 RSFT 是 STaR 的单轮变体 + evidence quality 筛选。\n- **SPIN** (ICML 2024): Self-play fine-tuning，利用模型自身输出进行训练，与 RSFT 方向互补。\n\n### d. RL for Structured Prediction\n- 已有文献 (R1-RE, ReasoningNER, E-GRPO, RL-Struct 等) 覆盖充分，本轮未新增。\n\n### e. Faithfulness / Knowledge Distillation\n- **KD-DocRE** (Findings ACL 2022), **PSD** (TOIS 2024): DocRE 的知识蒸馏和自蒸馏方法，与 RSFT 的 self-improvement 思路有概念联系。\n\n### 对论文 Related Work 的建议\n1. **必引**: DocRED, Re-DocRED, ATLOP, SAIS, DREEAM (已有), R1-RE (已有)\n2. **建议引**: GenRES (evaluation caveat), STaR (RSFT 理论渊源), DocuNet, KD-DocRE\n3. 现有 map 中 RL stability (DAPO, Dr. GRPO, GDPO) 和 LoRA artifacts 类别已充足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-survey.md"
+}

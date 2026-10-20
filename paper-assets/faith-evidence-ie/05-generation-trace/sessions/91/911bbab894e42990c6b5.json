@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "911bbab894e42990c6b5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose full gpu status and harvest",
+  "task_key": "worker_diagnose_full-gpu-status-and-harvest_20260520T164923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_full-gpu-status-and-harvest_20260520T164923_result.json",
+    "occurrence": 1,
+    "bytes": 1609,
+    "sha256": "4b9e4d9dca9a551baaa41e05a3451dfc583a13e916c03c5bca6bc199f75172c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 状态:\n- cuda:0: 92% util, 32.5/98GB — plan017_14b_rsft_generate_r4 — 225/474 pending (2782/3027 docs, 92%)\n- cuda:1: 91% util, 18.9/98GB — eval_llama_sft_s43_no_evidence_r2 — 69/247 batches (28%), ETA ~1h\n- cuda:2: 85% util, 18.9/98GB — eval_llama_sft_s44_no_evidence — 226/247 batches (91%), ETA ~12min\n- cuda:3: 0% util, 空闲\n\n已完成实验 metrics:\n- eval_llama_rsft_s44_no_evidence: ign_f1=0.5550, f1=0.5674, edcr=0.6818, format_ok=984/985 (99.9%), truncated=178/985\n\nFair Comparison 结果 (RSFT s44):\n                      ign_f1    P        R        pred     gold\n  With-evidence(full): 0.5587   0.5574   0.5601   11781    12151\n  No-evidence(full):   0.5550   0.5488   0.5614   11994    12151\n  Fair tax:            -0.38pp  (fair subset: 984 docs)\n\n  → 去掉 evidence 仅损失 0.38pp ign_f1，几乎无 evidence tax\n  → no-evi recall 略高(+0.13pp) 但 precision 低(-0.86pp)，说明去掉 evidence 后模型倾向多预测\n\nRsync 状态:\n- 主 autodl-tmp rsync: 仍在运行 (PID 5150)\n- Qwen3-8B 4个 adapter rsync: 全部进行中 (PIDs 37381-37399)\n  - bf16: 810M ✓ (adapter_model.safetensors 存在)\n  - s43: 939M, s44: 939M, no_evidence: 939M\n\n14B gen r4: 22256 lines ≈ 2782/3027 docs (92%), 剩余 ~245 docs, ETA ~1.2h\n```\n\n**待完成（预计按时间顺序）：**\n1. ~12min: eval_llama_sft_s44_no_evidence 完成 → 可立即跑 SFT s44 fair comparison\n2. ~1h: eval_llama_sft_s43_no_evidence_r2 完成 → 可跑 SFT s43 fair comparison\n3. ~1.2h: 14B gen r4 完成 → 可开始 RSFT filtering + training"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-full-gpu-status-and-harvest.md"
+}

@@ -1,0 +1,1361 @@
+{
+  "schema_version": "1.0",
+  "id": "0af9837aadf0ef018d59",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "eval test eval 8b rsft s43 no evi",
+  "task_key": "worker_eval_test_eval_8b_rsft_s43_no_evi_20260523T025329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_test_eval_8b_rsft_s43_no_evi_20260523T025329.log",
+    "occurrence": 1,
+    "bytes": 39409,
+    "sha256": "5a9dfd5ae4ad6c46484e81b41e0edf7f51a45abd638d3a3d5befb22ac698f641"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "39562889-8a2c-49f2-9652-e2d3555183ca",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779518400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "191bac7f-9e29-4216-b99c-a23728e617e5",
+                "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to submit an 8B RSFT s43 no-evidence test eval on cuda:0. Let me follow the steps:\n\n1. First, register the experiment\n2. Check GPU availability (constraint C001)\n3. Submit the job\n4. Update registry to RUNNING\n\nLet me start by loading the necessary tools and checking GPU status.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "bbaae5cc-f3a2-4385-9fc8-d9c63b0d7be1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E23wN8GP9yLA2WjzGu5LSK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12907,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12907
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先注册实验并检查 GPU 0 显存。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "0d426ba4-fe5b-4df3-8fda-769efb702def",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E23wN8GP9yLA2WjzGu5LSK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12907,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12907
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ETbGFNyjgtLFvK1dB8GR8p",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "7aed2ca5-6d5c-444c-a382-8b7ba6300e2f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E23wN8GP9yLA2WjzGu5LSK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12907,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12907
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T02:53:46.635Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01ETbGFNyjgtLFvK1dB8GR8p",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "4d5b7d89-7d1b-46db-971a-41724c5e6612",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013cCsnaoXZ6pA8i5fCNaJXe",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "test_eval_8b_rsft_s43_no_evi",
+                "field": "status",
+                "value": "PREPARING",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "ed20af84-c8d8-4a4b-b4bb-562bb6873eb0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MgbKm82Z6j8j2oGdFDgWNJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1273,
+                "cache_read_input_tokens": 24748,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1273
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XbceqQNWrSYREiNvdTLN4b",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "1fea1251-f5c6-4f29-9e25-78191742ca88",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MgbKm82Z6j8j2oGdFDgWNJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1273,
+                "cache_read_input_tokens": 24748,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1273
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T02:53:52.907Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013cCsnaoXZ6pA8i5fCNaJXe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T02:53:50.925Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:53:50.925Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9815}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "fc2dd524-a758-4264-bfd7-eae283bf66fd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T02:53:50.925Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:53:50.925Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9815}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_8b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T02:53:50.925Z\", \"updated_at\": \"2026-05-23T02:53:50.925Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.9815}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T02:53:53.990Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XbceqQNWrSYREiNvdTLN4b",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 97887 MiB\\\\n1, 32479 MiB, 97887 MiB\\\\n2, 80381 MiB, 97887 MiB\\\\n3, 6071 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "acab1efe-5a9d-49e6-8c04-009400e4a805",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 97887 MiB\\\\n1, 32479 MiB, 97887 MiB\\\\n2, 80381 MiB, 97887 MiB\\\\n3, 6071 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 97887 MiB\\n1, 32479 MiB, 97887 MiB\\n2, 80381 MiB, 97887 MiB\\n3, 6071 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 显存 0 MiB，空闲。注册 hypothesis/parent 并提交任务。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "173a8563-ab97-4dd4-95f1-30070b64b515",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QsEZ9crptKwnvMKHdx5jF9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 607,
+                "cache_read_input_tokens": 26021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 607
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N6iwh63kjQsNWzkFoFcQx9",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "test_eval_8b_rsft_s43_no_evi",
+                "field": "hypothesis",
+                "value": "8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "db394955-2739-4105-9236-1b0235db129a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QsEZ9crptKwnvMKHdx5jF9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 607,
+                "cache_read_input_tokens": 26021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 607
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013kasCCSaymDGnAkQcCEKNU",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "test_eval_8b_rsft_s43_no_evi",
+                "field": "parent",
+                "value": "test_eval_8b_rsft_s43_with_evi",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "e2d9ec31-738a-4a49-a157-7294ae8b5b08",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QsEZ9crptKwnvMKHdx5jF9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 607,
+                "cache_read_input_tokens": 26021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 607
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T02:54:02.195Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N6iwh63kjQsNWzkFoFcQx9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T02:53:50.925Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:54:01.519Z\\\", \\\"hypothesis\\\": \\\"8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.743}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "58c06720-1bea-4f6d-b1c6-cd7b1439840b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T02:53:50.925Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:54:01.519Z\\\", \\\"hypothesis\\\": \\\"8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.743}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_8b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T02:53:50.925Z\", \"updated_at\": \"2026-05-23T02:54:01.519Z\", \"hypothesis\": \"8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.743}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T02:54:03.804Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013kasCCSaymDGnAkQcCEKNU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T02:53:50.925Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:54:03.118Z\\\", \\\"hypothesis\\\": \\\"8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。\\\", \\\"parent\\\": \\\"test_eval_8b_rsft_s43_with_evi\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5964}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "01d3f562-365d-4bb5-ac2f-299688183058",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T02:53:50.925Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:54:03.118Z\\\", \\\"hypothesis\\\": \\\"8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。\\\", \\\"parent\\\": \\\"test_eval_8b_rsft_s43_with_evi\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5964}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_8b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T02:53:50.925Z\", \"updated_at\": \"2026-05-23T02:54:03.118Z\", \"hypothesis\": \"8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。\", \"parent\": \"test_eval_8b_rsft_s43_with_evi\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5964}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交任务。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "f6be7028-ece7-4b9a-94c4-a66a27fa81b5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QUyDXyF3iR5jPLnkfYyVzr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 940,
+                "cache_read_input_tokens": 26628,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 940
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UEbCUGZcJFiCzDj4GRpWaE",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "CUDA_VISIBLE_DEVICES=0 nohup bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no_evidence --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi --batch_size 16 --seed 42\" > /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi.log 2>&1 &\necho $!",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "635f63fa-5e8b-48e2-9341-605f2df3376c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QUyDXyF3iR5jPLnkfYyVzr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 940,
+                "cache_read_input_tokens": 26628,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 940
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T02:54:13.574Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UEbCUGZcJFiCzDj4GRpWaE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"220069\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "a12dc6d3-118e-41f3-ac90-2a8bd0d12690",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"220069\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"220069\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 220069。验证进程存活并更新 registry 到 RUNNING。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "11a8ecbd-5a5b-4be8-bd81-d5828c3a2767",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EPUeD3reg2jzNjLj4MnpUD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 506,
+                "cache_read_input_tokens": 27568,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 506
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Toan64z8Kfo2yBpUVdcMFQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ps -p 220069 -o pid,cmd --no-headers",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "8c371906-8075-49f9-8358-b5e65769d93b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EPUeD3reg2jzNjLj4MnpUD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 506,
+                "cache_read_input_tokens": 27568,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 506
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T02:54:17.889Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Toan64z8Kfo2yBpUVdcMFQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"220069 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no_evidence --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi --batch_size 16 --seed 42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "d6202511-1473-4c73-8371-ab63812318a1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"220069 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no_evidence --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi --batch_size 16 --seed 42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"220069 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no_evidence --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi --batch_size 16 --seed 42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HTzqvFSrP4j3nJ2roY8hUa",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "test_eval_8b_rsft_s43_no_evi",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "command": "python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no_evidence --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi --batch_size 16 --seed 42",
+                  "server": "rtx5090-4x",
+                  "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+                  "data_count": 500,
+                  "model_name": "Qwen3-8B + SFT + RSFT-k1-s43 (no-evidence)",
+                  "seed": 42,
+                  "checkpoint_source": "/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43",
+                  "eval_data": "test_revised",
+                  "pid": 220069,
+                  "gpu": "cuda:0",
+                  "log_path": "/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "de114263-3792-47bc-b723-d7ada9a0a0e4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EPUeD3reg2jzNjLj4MnpUD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 506,
+                "cache_read_input_tokens": 27568,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 506
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T02:54:23.594Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HTzqvFSrP4j3nJ2roY8hUa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8998}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "e5b1e98b-9dff-4ec3-b2cc-cbfcc50b290b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8998}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.8998}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要先经过 QUEUED 状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "a01e47c6-c669-4ef0-89c6-6cd557327a6f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LSe2BxzhjiYZqGpBJ3QszU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1142,
+                "cache_read_input_tokens": 28074,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1142
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018SyCQBgspLD8vSku9T9g2Z",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "test_eval_8b_rsft_s43_no_evi",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "faith-evidence-ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "441842a7-0ddd-458a-a56c-07471fc6a9da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LSe2BxzhjiYZqGpBJ3QszU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1142,
+                "cache_read_input_tokens": 28074,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1142
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T02:54:29.095Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018SyCQBgspLD8vSku9T9g2Z",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T02:53:50.925Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:54:27.255Z\\\", \\\"hypothesis\\\": \\\"8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。\\\", \\\"parent\\\": \\\"test_eval_8b_rsft_s43_with_evi\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.741}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "1dfc814d-0d7f-4a7f-a26e-442ff5359f6e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T02:53:50.925Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:54:27.255Z\\\", \\\"hypothesis\\\": \\\"8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。\\\", \\\"parent\\\": \\\"test_eval_8b_rsft_s43_with_evi\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.741}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_8b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T02:53:50.925Z\", \"updated_at\": \"2026-05-23T02:54:27.255Z\", \"hypothesis\": \"8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。\", \"parent\": \"test_eval_8b_rsft_s43_with_evi\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.741}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KHMQ4UgCTwzUtefSiDRkC6",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "test_eval_8b_rsft_s43_no_evi",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "faith-evidence-ie",
+                "spec": {
+                  "command": "python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no_evidence --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi --batch_size 16 --seed 42",
+                  "server": "rtx5090-4x",
+                  "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+                  "data_count": 500,
+                  "model_name": "Qwen3-8B + SFT + RSFT-k1-s43 (no-evidence)",
+                  "seed": 42,
+                  "checkpoint_source": "/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43",
+                  "eval_data": "test_revised",
+                  "pid": 220069,
+                  "gpu": "cuda:0",
+                  "log_path": "/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "f5dc267a-14a3-4f1b-8d1a-38caacc4ba12",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014a1iEVbJm4GzEQHDhkSnb1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 414,
+                "cache_read_input_tokens": 29216,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 414
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T02:54:40.046Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KHMQ4UgCTwzUtefSiDRkC6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T02:53:50.925Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:54:38.261Z\\\", \\\"hypothesis\\\": \\\"8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。\\\", \\\"parent\\\": \\\"test_eval_8b_rsft_s43_with_evi\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no_evidence --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi --batch_size 16 --seed 42\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-8B + SFT + RSFT-k1-s43 (no-evidence)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43\\\", \\\"eval_data\\\": \\\"test_revised\\\", \\\"pid\\\": 220069, \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.6916}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "714dd2ea-e2a0-477f-b410-5928880cadb3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_8b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T02:53:50.925Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:54:38.261Z\\\", \\\"hypothesis\\\": \\\"8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。\\\", \\\"parent\\\": \\\"test_eval_8b_rsft_s43_with_evi\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no_evidence --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi --batch_size 16 --seed 42\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-8B + SFT + RSFT-k1-s43 (no-evidence)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43\\\", \\\"eval_data\\\": \\\"test_revised\\\", \\\"pid\\\": 220069, \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.6916}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_8b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T02:53:50.925Z\", \"updated_at\": \"2026-05-23T02:54:38.261Z\", \"hypothesis\": \"8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。\", \"parent\": \"test_eval_8b_rsft_s43_with_evi\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no_evidence --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi --batch_size 16 --seed 42\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-8B + SFT + RSFT-k1-s43 (no-evidence)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43\", \"eval_data\": \"test_revised\", \"pid\": 220069, \"gpu\": \"cuda:0\", \"log_path\": \"/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.6916}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。\n\n- **exp_id**: `test_eval_8b_rsft_s43_no_evi`\n- **PID**: 220069, cuda:0\n- **状态**: RUNNING\n- **日志**: `/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi.log`\n- 预估 ~45min"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "uuid": "ecb5b60d-c11a-43c3-80e7-77f81fee4109",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0161TdrNdAwM9XEgEaspW6jR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1172,
+                "cache_read_input_tokens": 29630,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1172
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。\n\n- **exp_id**: `test_eval_8b_rsft_s43_no_evi`\n- **PID**: 220069, cuda:0\n- **状态**: RUNNING\n- **日志**: `/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi.log`\n- 预估 ~45min"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 64331,
+            "duration_api_ms": 53298,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "1f01c56b-a8a6-4b3f-87f7-2c653d189f77",
+            "total_cost_usd": 0.29000624999999997,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 18961,
+              "cache_read_input_tokens": 203726,
+              "output_tokens": 2697,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 18961,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 101,
+                  "cache_read_input_tokens": 29630,
+                  "cache_creation_input_tokens": 1172,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1172
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2042,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002157,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 2697,
+                "cacheReadInputTokens": 203726,
+                "cacheCreationInputTokens": 18961,
+                "webSearchRequests": 0,
+                "costUSD": 0.28784925,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "5b3109cb-11de-41e2-ab4d-48a24ed51880"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-test-eval-8b-rsft-s43-no-evi.md"
+}

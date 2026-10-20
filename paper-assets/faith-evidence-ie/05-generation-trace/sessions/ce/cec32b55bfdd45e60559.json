@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cec32b55bfdd45e60559",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze eval llama sft s43 no evidence r2",
+  "task_key": "worker_analyze_eval_llama_sft_s43_no_evidence_r2_20260520T182543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_llama_sft_s43_no_evidence_r2_20260520T182543_result.json",
+    "occurrence": 1,
+    "bytes": 1898,
+    "sha256": "98800f37eb970a41bdc5bdc6c00184f205c18c532d9732da4165583cf39d3478"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。汇总如下：\n\n## eval_llama_sft_s43_no_evidence_r2 结果\n\n| Metric | Value |\n|--------|-------|\n| **ign_f1** | **0.3391** |\n| ign_precision | 0.4274 |\n| ign_recall | 0.2811 |\n| f1 | 0.3579 |\n| precision | 0.4603 |\n| recall | 0.2927 |\n| evi_f1 / evi_f1_joint | 0.0 (no-evidence 模式，符合预期) |\n| edcr | 0.0 |\n| format_ok | 835/985 (84.8%) |\n| truncated | 378/985 (38.4%) |\n| n_predictions | 14,538 |\n| n_documents | 985 |\n| inference_time | 7,755s (~2h09m) |\n| EXIT_CODE | 0 |\n| no_evidence 参数 | true (已确认) |\n\n## 跨 seed/setting 对比\n\n| Experiment | ign_f1 | format_ok | truncated | 备注 |\n|---|---|---|---|---|\n| s42 SFT **with-evidence** (r3) | — | — | — | registry 未找到独立条目 |\n| s43 SFT **with-evidence** (r3) | **0.5142** | — | — | |\n| s44 SFT **with-evidence** (r3) | **0.4802** | 985/985 | 240 (24.4%) | |\n| s42 SFT **no-evidence** (std_r2) | **0.5219** | 88.7% | 219 (22.2%) | |\n| **s43 SFT no-evidence (r2, 本次)** | **0.3391** | 84.8% | 378 (38.4%) | |\n| s44 SFT no-evidence | **0.3326** | 94.5% | 411 (41.7%) | 已知异常低 |\n\n## 关键发现\n\n1. **s43 no-evidence ign_f1=0.3391，与 s44 的 0.3326 同样异常低**，远低于 s42 的 0.5219（差距 -0.1828）。\n2. **s43 evidence→no-evidence 降幅 = -0.1751（-34%）**，而 s42 的 no-evidence 反而比 s43/s44 的 with-evidence 还高。\n3. **截断率 38.4% 偏高**（s42 仅 22.2%），但低于 s44 的 41.7%。截断与低 ign_f1 高度相关——s42 截断低→ign_f1 高，s43/s44 截断高→ign_f1 低。\n4. **format_ok 84.8% 是三个 seed 中最低的**（s42: 88.7%, s44: 94.5%），说明 s43 模型在 no-evidence 格式上表现最差。\n5. recall 极低（0.2811）是 ign_f1 低的主因——模型漏掉了大量关系，可能是因为截断导致后半段预测丢失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-llama-sft-s43-no-evidence-r2.md"
+}

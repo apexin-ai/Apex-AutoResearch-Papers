@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db0eead018d9054a9050",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "investigate 8b no evi base model field",
+  "task_key": "worker_investigate_8b_no_evi_base_model_field_20260517T143505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_8b_no_evi_base_model_field_20260517T143505_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "0a91cd7f21c7120476644aff9c1a38884371c75eacf824742f775fd732b7d793"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n代码逻辑清晰，关键在第 404-410 行：\n\n```python\nadapter_config = Path(args.model_path) / \"adapter_config.json\"\nif adapter_config.exists():\n    base_model_path = args.base_model\n    adapter_path = args.model_path\nelse:\n    base_model_path = args.model_path  # ← 完整模型时，直接用 model_path\n    adapter_path = None                # ← adapter 不加载\n```\n\n**1. base_model 在 model_path 为完整模型时被完全忽略。** 当 `model_path` 目录下不存在 `adapter_config.json`（即为完整模型），代码将 `base_model_path = args.model_path`，`adapter_path = None`。`args.base_model` 不参与任何加载逻辑。\n\n**2. metrics.json 中的 base_model 是参数记录，不是实际使用记录。** `metrics[\"config\"] = vars(args)` 直接序列化所有命令行参数原始值，包括未被使用的 `--base_model` 默认值 `/root/autodl-tmp/models/Qwen3-4B`。\n\n**3. 8B no-evidence eval 结果可信。** 实际加载的模型是 `--model_path` 指定的 8B 模型，metrics.json 中 `base_model` 显示 Qwen3-4B 只是默认参数值被记录，不影响推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-8b-no-evi-base-model-field.md"
+}

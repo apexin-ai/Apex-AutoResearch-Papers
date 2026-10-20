@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1644b58658bb5425bc15",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper research rl alignment",
+  "task_key": "worker_paper_research_rl_alignment_20260517T154253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_rl_alignment_20260517T154253_result.json",
+    "occurrence": 1,
+    "bytes": 5218,
+    "sha256": "57fb51d6599f988bb4ca63f7626139b8642f70d06713e82e022186dc5bcfafc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 8 篇论文验证完成。以下是结果：\n\n---\n\n## Must-cite 论文（3篇）\n\n## [GRPO / DeepSeekMath]\n- title: DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\n- authors: Shao et al. (Zhihong Shao)\n- venue: arXiv preprint (2024)\n- year: 2024\n- arxiv: 2402.03300\n- doi: —\n- bibtex_key: shao2024deepseekmath\n- verified: true\n- relevance: 提出 GRPO 算法，本论文直接使用 GRPO 训练 DocRE 模型\n- verification_note: 确认 GRPO 在此论文中首次提出，作为 PPO 的变体用于数学推理。title/authors/arXiv ID 均与预期一致。\n\n## [DPO]\n- title: Direct Preference Optimization: Your Language Model is Secretly a Reward Model\n- authors: Rafailov et al. (Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher D. Manning, Chelsea Finn)\n- venue: NeurIPS 2023\n- year: 2023\n- arxiv: 2305.18290\n- doi: 10.5555/3666122.3668460\n- bibtex_key: rafailov2023dpo\n- verified: true\n- relevance: 本论文使用 DPO 作为对比方法训练 DocRE 模型，发现渐进退化现象\n- verification_note: 确认 NeurIPS 2023（非 2024）。arXiv ID 2305.18290。\n\n## [Gao et al. 2023 — Reward Overoptimization]\n- title: Scaling Laws for Reward Model Overoptimization\n- authors: Gao et al. (Leo Gao, John Schulman, Jacob Hilton)\n- venue: ICML 2023\n- year: 2023\n- arxiv: 2210.10760\n- doi: 10.5555/3618408.3618845\n- bibtex_key: gao2023scaling\n- verified: true\n- relevance: 本论文发现 GRPO QLoRA catastrophic decoupling 与 reward hacking 相关，此文提供 reward overoptimization 理论基础\n- verification_note: 确认 ICML 2023 (40th ICML)。arXiv 提交于 2022-10，发表于 2023。\n\n---\n\n## Gap-fill 论文（5篇）\n\n## [Adjali et al. 2026 — GRPO for Event Extraction]\n- title: Aligning Instruction-Tuned LLMs for Event Extraction with Multi-objective Reinforcement Learning\n- authors: Adjali et al. (O. Adjali, S. Liang, O.S. Bhatti, D. Sonntag)\n- venue: ECIR 2026 (Advances in Information Retrieval)\n- year: 2026\n- arxiv: —（无 arXiv 预印本）\n- doi: 10.1007/978-3-032-21300-6_50\n- bibtex_key: adjali2026aligning\n- verified: true\n- relevance: 直接使用 GRPO + 多目标 reward（format/BM25/task-specific）做 IE 任务，与本论文方法高度相似\n- verification_note: 仅在 Springer 发表，无 arXiv 版本。ECIR 2026 确认。\n\n## [R1-RE — RLVR for Relation Extraction]\n- title: R1-RE: Cross-Domain Relation Extraction with RLVR\n- authors: Dai et al. (Runpeng Dai, Tong Zheng, Run Yang, Kaixian Yu, Hongtu Zhu)\n- venue: arXiv preprint (2025)\n- year: 2025\n- arxiv: 2507.04642\n- doi: —\n- bibtex_key: dai2025r1re\n- verified: true\n- relevance: 首个将 RLVR 用于关系抽取的工作，证明 RL 可提升 RE 跨域泛化能力，与本论文 GRPO-for-DocRE 直接可比\n- verification_note: arXiv 2025-07-07。标题中 \"Relation Extraction\" 有时显示为 \"Relationship Extraction\"，同一论文。\n\n## [Jin et al. 2025 — RL vs SFT Analysis]\n- title: RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs\n- authors: Jin et al. (Hangzhan Jin, Sicheng Lv, Sifan Wu, Mohammad Hamdaqa)\n- venue: arXiv preprint (2025)\n- year: 2025\n- arxiv: 2508.16546\n- doi: —\n- bibtex_key: jin2025rl_panacea\n- verified: true\n- relevance: 分析 SFT→RL 时表征变化与 OOD 性能，为本论文 catastrophic decoupling 分析提供理论支撑（SFT 严重过拟合时 RL 无法完全恢复）\n- verification_note: Polytechnique Montreal / Mila。2025-08-22 提交。\n\n## [E-GRPO — Entity-Aware Rewards in GRPO]\n- title: Repurposing Synthetic Data for Fine-grained Search Agent Supervision\n- authors: Zhao et al. (Yida Zhao, Kuan Li, Xixi Wu, Liwen Zhang, et al.)\n- venue: arXiv preprint (2025)\n- year: 2025\n- arxiv: 2510.24694\n- doi: —\n- bibtex_key: zhao2025egrpo\n- verified: true\n- relevance: 提出 E-GRPO（entity-aware dense reward in GRPO），用实体匹配作为细粒度 reward，与本论文 evidence-level reward 设计思路一致\n- verification_note: 论文主题为搜索代理，但核心贡献 E-GRPO 的 entity-aware reward 机制对本论文有直接参考价值。阿里巴巴团队。\n\n## [Moskovitz et al. 2024 — Constrained RLHF]\n- title: Confronting Reward Model Overoptimization with Constrained RLHF\n- authors: Moskovitz et al. (Ted Moskovitz, Aaditya Singh, DJ Strouse, Tuomas Sandholm, Ruslan Salakhutdinov, Anca Dragan, Stephen McAleer)\n- venue: ICLR 2024\n- year: 2024\n- arxiv: 2310.04373\n- doi: —\n- bibtex_key: moskovitz2024constrained\n- verified: true\n- relevance: 研究 composite RM 的 overoptimization 及约束方法，为本论文多维度 reward (faithfulness + evidence + format) 的平衡问题提供理论支撑\n- verification_note: 确认 ICLR 2024 poster。OpenReview ID: gkfUvn0fLU。\n\n---\n\n**总结**: 8/8 全部验证通过。3 篇 must-cite 信息与预期一致（DPO 是 NeurIPS 2023 非 2024）。5 篇 gap-fill 覆盖了 GRPO-for-IE (Adjali, R1-RE)、RL 理论分析 (Jin)、entity-aware reward (E-GRPO)、multi-objective reward hacking (Moskovitz) 四个维度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-rl-alignment.md"
+}

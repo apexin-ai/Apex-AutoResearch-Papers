@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "725fd535de9b6198c04a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d140 4b sft s42 no evi 2048 fix",
+  "task_key": "worker_analysis_d140_4b_sft_s42_no_evi_2048_fix_20260521T095312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d140_4b_sft_s42_no_evi_2048_fix_20260521T095312_result.json",
+    "occurrence": 1,
+    "bytes": 2839,
+    "sha256": "a4d7a84d04c344f98b9f49afb30e4db64c402b7d6ee9a25d2ab53aa250614f53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已收集完毕。\n\n```json\n{\n  \"exp_id\": \"d140_4b_sft_s42_no_evi_2048_fix\",\n  \"model\": \"Qwen3-4B\",\n  \"mode\": \"no_evidence\",\n  \"max_new_tokens\": 2048,\n  \"seed\": 42,\n  \"adapter\": \"sft_output (standard SFT)\",\n  \"metrics\": {\n    \"ign_f1\": 0.4016,\n    \"f1\": 0.4095,\n    \"ign_precision\": 0.3859,\n    \"ign_recall\": 0.4185,\n    \"precision\": 0.4062,\n    \"recall\": 0.4128,\n    \"evi_f1_tp\": 0.0,\n    \"evi_f1_joint\": 0.0,\n    \"edcr\": 0.0,\n    \"format_ok\": \"983/985 (99.8%)\",\n    \"truncated\": \"178/985 (18.1%)\",\n    \"n_predictions\": 25638,\n    \"inference_time_seconds\": 7606.2\n  },\n  \"evidence_tax\": {\n    \"status\": \"PENDING — d140_4b_sft_s42_with_evi_2048 still RUNNING on cuda:3\",\n    \"will_compute\": \"with_evi@2048 ign_f1 - 0.4016\"\n  }\n}\n```\n\n## 分析\n\n**跨模型 no-evi@2048 对比：**\n\n| 模型 | ign_f1 | truncated | n_predictions | format_ok |\n|------|--------|-----------|---------------|-----------|\n| 1.7B | 0.4233 | 507/985 (51.5%) | 44566 | 971/985 (98.6%) |\n| **4B** | **0.4016** | **178/985 (18.1%)** | **25638** | **983/985 (99.8%)** |\n| 8B | fix 仍在运行 | — | — | — |\n\n**关键发现：**\n\n1. **4B no-evi ign_f1 (0.4016) 低于 1.7B no-evi (0.4233)**，差 -2.17pp。这是反直觉的——更大模型反而更差。\n2. **截断大幅改善**：4B 仅 18.1% 截断 vs 1.7B 的 51.5%（-33.4pp）。4B 输出更紧凑（25638 predictions vs 44566）。\n3. **1.7B 的高 ign_f1 可能受 over-prediction 驱动**：44566 predictions 是 4B 的 1.74 倍，recall 导向的策略在 F1 上占便宜，但 precision 极低（1.7B ign_precision=0.4297 vs 4B 0.3859——两者都低，但 1.7B 靠更高 recall 0.4172 拉高了 F1）。\n4. **等 with-evi 配对结果**才能判断 4B 的 evidence tax。参照 1.7B 的 +5.73pp tax，如果 4B with-evi 也有类似提升，最终 with-evi ign_f1 应在 ~0.45-0.46 区间。\n5. **对比 8B with-evi (ign_f1=0.5012)**，4B 的天花板显然更低，符合模型规模预期。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "exp_id": "d140_4b_sft_s42_no_evi_2048_fix",
+              "model": "Qwen3-4B",
+              "mode": "no_evidence",
+              "max_new_tokens": 2048,
+              "seed": 42,
+              "adapter": "sft_output (standard SFT)",
+              "metrics": {
+                "ign_f1": 0.4016,
+                "f1": 0.4095,
+                "ign_precision": 0.3859,
+                "ign_recall": 0.4185,
+                "precision": 0.4062,
+                "recall": 0.4128,
+                "evi_f1_tp": 0.0,
+                "evi_f1_joint": 0.0,
+                "edcr": 0.0,
+                "format_ok": "983/985 (99.8%)",
+                "truncated": "178/985 (18.1%)",
+                "n_predictions": 25638,
+                "inference_time_seconds": 7606.2
+              },
+              "evidence_tax": {
+                "status": "PENDING — d140_4b_sft_s42_with_evi_2048 still RUNNING on cuda:3",
+                "will_compute": "with_evi@2048 ign_f1 - 0.4016"
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d140-4b-sft-s42-no-evi-2048-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10ceae878c0d1f90dee8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code prep next eval commands",
+  "task_key": "worker_code_prep-next-eval-commands_20260515T230421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-next-eval-commands_20260515T230421_result.json",
+    "occurrence": 1,
+    "bytes": 3738,
+    "sha256": "655e9fa25f2cd182818686736c581b2f0e6f3ce4ba7151e2e5e528c094a52190"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部路径已确认。汇总如下：\n\n---\n\n## 各命令状态\n\n### 1. eval_flat_nli_seed44 — **READY** (checkpoint 已存在)\n\nCheckpoint: `/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507` ✅\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=<GPU> HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 44 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s44_eval --no-quantize\n```\n\n### 2. eval_flat_nli_seed45 — **READY** (checkpoint 已存在)\n\nCheckpoint: `/root/autodl-tmp/rsft_output_flat_nli_s45/checkpoint-507` ✅\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=<GPU> HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s45/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 45 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s45_eval --no-quantize\n```\n\n### 3. reeval_rsft_topk3 — **READY，路径已修正**\n\n你给的路径 `rsft_output_topk3/checkpoint-507` **不存在**。实际路径是：\n- `/root/autodl-tmp/rsft_topk3_output/checkpoint-1509` ✅ (topk3 训练步数不同，最终 checkpoint 是 1509)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=<GPU> HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_topk3_output/checkpoint-1509 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_topk3_reeval --no-quantize\n```\n\n### 4. seed46 训练 — **READY**\n\n训练数据: `/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl` (2691 行) ✅\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=<GPU> HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_flat_nli_s46 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 1 --gradient_accumulation_steps 16 --lora_rank 64 --lora_alpha 128 --eval_data_dir /root/autodl-tmp/data/docred --wandb_run_name plan_001_flat_nli_seed46 --seed 46\n```\n\n---\n\n## GPU 状态（C001 约束）\n\n| GPU | 显存占用 | 可用于 eval? |\n|-----|---------|-------------|\n| 0 | 19175 / 32607 MiB | ❌ |\n| 1 | 16925 / 32607 MiB | ❌ |\n| 2 | 19745 / 32607 MiB | ❌ |\n| 3 | 30708 / 32607 MiB | ❌ |\n\n**当前 4 卡全部被占用，无法提交 eval。** 需要等当前训练完成释放 GPU 后再提交。所有命令中 `CUDA_VISIBLE_DEVICES=<GPU>` 需在提交时替换为空闲 GPU 编号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-next-eval-commands.md"
+}

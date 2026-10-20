@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bd74dd9192447f638d4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops test eval 1 7b s44 no evi check",
+  "task_key": "worker_ops_test_eval_1_7b_s44_no_evi_check_20260525T053650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_test_eval_1_7b_s44_no_evi_check_20260525T053650_result.json",
+    "occurrence": 1,
+    "bytes": 664,
+    "sha256": "1bd0a3dcd5d01ac05b0dabc698dde885e41049ffe12de17026396c129b769a89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## Evidence Tax（1.7B RSFT, seed 44, test_revised）\n\n| Condition | ign_f1 | precision | recall |\n|-----------|--------|-----------|--------|\n| **With evidence** | 22.46% | 40.07% | 15.76% |\n| **No evidence** | 20.19% | 39.71% | 13.53% |\n| **Δ (tax)** | **+2.27 pp** | +0.36 pp | +2.23 pp |\n\n**结论**：假设被否定。No-evidence 模型的 ign_f1 反而**低了 2.27 个百分点**，说明 evidence 生成并未构成 performance tax——相反，要求模型输出 evidence 反而略微提升了关系抽取性能（可能因为 evidence reasoning 起到了 chain-of-thought 的作用）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-test-eval-1-7b-s44-no-evi-check.md"
+}

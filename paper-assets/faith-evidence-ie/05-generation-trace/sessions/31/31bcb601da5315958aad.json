@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31bcb601da5315958aad",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit plan 011 bf16 g8 step eval r2",
+  "task_key": "worker_submit_plan_011_bf16_g8_step_eval_r2_20260515T195936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_plan_011_bf16_g8_step_eval_r2_20260515T195936_result.json",
+    "occurrence": 1,
+    "bytes": 161,
+    "sha256": "b9fa2639778106eebec28afe2539474e8c1d7f6f74d3d68b45fa92fcaece3d00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。plan_011_bf16_g8_step_eval 已在 cuda:1 上运行（PID 249541，GPU 进程 249551 占用 8172 MiB），registry 已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-plan-011-bf16-g8-step-eval-r2.md"
+}

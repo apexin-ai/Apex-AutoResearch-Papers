@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "id": "87ca389e4d30d10b81c6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops analyze dpo 1ep results submit seed45",
+  "task_key": "worker_ops_analyze-dpo-1ep-results-submit-seed45_20260515T212456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_analyze-dpo-1ep-results-submit-seed45_20260515T212456_result.json",
+    "occurrence": 1,
+    "bytes": 1466,
+    "sha256": "200271c23f8e86cb066457ecb5e0ab3e297bff6a6ef9e6c209c73f613510488c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Task A: eval_plan_012_dpo_ced_1ep 完整 metrics\n\n```json\n{\n  \"rel_f1\": 0.0022,\n  \"ign_f1\": 0.0022,\n  \"evi_f1\": 0.7500,\n  \"edcr\": 0.9982,\n  \"n_predictions\": 19265,\n  \"n_format_ok\": 981,\n  \"n_total\": 985,\n  \"format_ok_rate\": 0.996,\n  \"n_truncated\": 358,\n  \"tp\": 34,\n  \"pred_count\": 18307,\n  \"gold_count\": 12151,\n  \"inference_time_seconds\": 3643\n}\n```\n\n**结论: NEGATIVE。** rel_f1 = 0.0022，远低于 SFT baseline 0.4057。\n\nDPO 模型严重退化——虽然格式合规率高 (99.6%)、evidence 质量好 (Evi-F1=0.75, EDCR=0.998)，但关系抽取完全崩溃。模型输出了 19265 个 predictions（gold 只有 12151），仅 34 个 TP，说明 DPO 训练导致模型在关系判断上丧失了区分能力（几乎全部预测错误）。\n\n### Task B: GPU 状态\n\n| GPU | Util | Memory Used | Memory Total |\n|-----|------|-------------|--------------|\n| 0 | 87% | 19517 MiB | 32607 MiB |\n| 1 | 91% | 16701 MiB | 32607 MiB |\n| **2** | **0%** | **0 MiB** | **32607 MiB** |\n| 3 | 100% | 16469 MiB | 32607 MiB |\n\n**cuda:2 完全空闲可用。**"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "rel_f1": 0.0022,
+              "ign_f1": 0.0022,
+              "evi_f1": 0.75,
+              "edcr": 0.9982,
+              "n_predictions": 19265,
+              "n_format_ok": 981,
+              "n_total": 985,
+              "format_ok_rate": 0.996,
+              "n_truncated": 358,
+              "tp": 34,
+              "pred_count": 18307,
+              "gold_count": 12151,
+              "inference_time_seconds": 3643
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-analyze-dpo-1ep-results-submit-seed45.md"
+}

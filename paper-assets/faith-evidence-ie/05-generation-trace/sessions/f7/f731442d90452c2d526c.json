@@ -1,0 +1,252 @@
+{
+  "schema_version": "1.0",
+  "id": "f731442d90452c2d526c",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "harvest llama sft s43 r3",
+  "task_key": "worker_harvest_llama-sft-s43-r3_20260520T140830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_harvest_llama-sft-s43-r3_20260520T140830.jsonl",
+    "occurrence": 1,
+    "bytes": 11284,
+    "sha256": "b525c80c4f2fbc8cc4a593b4fb47ca66c8b7c103904e317a058ac1abaa0c1ab1"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T14:09:04.349989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_llama-sft-s43-r3_20260520T140830",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T14:09:04.350416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_llama-sft-s43-r3_20260520T140830",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T14:09:04.350656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_llama-sft-s43-r3_20260520T140830",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -50 ~/runs/faith-evidence-ie/llama_sft_s43_train_eval_r3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T14:09:04.350813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_llama-sft-s43-r3_20260520T140830",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -lh /root/autodl-tmp/sft_output_llama_3_1_8b_s43/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T14:09:04.351130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 98%|█████████▊| 969/985 [01:11<00:01, 12.59it/s]\\\\u001b[A\\\\n\\\\r 99%|█████████▊| 971/985 [01:11<00:01, 12.84it/s]\\\\u001b[A\\\\n\\\\r 99%|█████████▉| 973/985 [01:11<00:00, 13.28it/s]\\\\u001b[A\\\\n\\\\r 99%|█████████▉| 975/985 [01:11<00:00, 12.40it/s]\\\\u001b[A\\\\n\\\\r 99%|█████████▉| 977/985 [01:12<00:00, 12.17it/s]\\\\u001b[A\\\\n\\\\r 99%|█████████▉| 979/985 [01:12<00:00, 13.48it/s]\\\\u001b[A\\\\n\\\\r100%|█████████▉| 981/985 [01:12<00:00, 13.74it/s]\\\\u001b[A\\\\n\\\\r100%|█████████▉| 983/985 [01:12<00:00, 13.55it/s]\\\\u001b[A\\\\n\\\\r100%|██████████| 985/985 [01:12<00:00, 14.42it/s]\\\\u001b[A\\\\r                                                 \\\\r\\\\n\\\\r                                                 \\\\r\\\\u001b[A\\\\r100%|██████████| 570/570 [42:54<00:00,  3.20s/it]\\\\n\\\\r100%|██████████| 985/985 [01:12<00:00, 14.42it/s]\\\\u001b[A\\\\n\\\\r                                                 \\\\u001b[A\\\\r                                                 \\\\r\\\\r100%|██████████| 570/570 [42:56<00:00,  3.20s/it]\\\\r100%|██████████| 570/570 [42:56<00:00,  4.52s/it]\\\\n2026-05-20 20:06:50,208 INFO Saving model to /root/autodl-tmp/sft_output_llama_3_1_8b_s43\\\\n2026-05-20 20:06:50,798 INFO SFT training complete.\\\\n{'eval_loss': '0.7393', 'eval_runtime': '72.68', 'eval_samples_per_second': '13.55', 'eval_steps_per_second': '13.55', 'eval_entropy': '0.5494', 'eval_num_tokens': '7.676e+06', 'eval_mean_token_accuracy': '0.8359', 'epoch': '3'}\\\\n{'train_runtime': '2577', 'train_samples_per_second': '3.524', 'train_steps_per_second': '0.221', 'train_loss': '0.521', 'epoch': '3'}\\\\nStep 1 done: Wed May 20 20:06:51 CST 2026\\\\n=== Step 2: D076 Eval ===\\\\nStart: Wed May 20 20:06:51 CST 2026\\\\n2026-05-20 20:06:54,420 INFO Detected adapter at /root/autodl-tmp/sft_output_llama_3_1_8b_s43, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n2026-05-20 20:06:54,420 WARNING --sft_adapter not set but --base_model is non-default (/root/autodl-tmp/models/meta-llama/Meta-\n…[truncated 6548 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_llama-sft-s43-r3_20260520T140830",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T14:09:04.351374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_llama-sft-s43-r3_20260520T140830",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "find /root/autodl-tmp/eval_results/ -path \"*s43*\" -name \"*.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T14:09:04.351554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 657M\\\\n-rw-r--r-- 1 root root 1.5K May 20 20:06 README.md\\\\n-rw-r--r-- 1 root root 1.2K May 20 20:06 adapter_config.json\\\\n-rw-r--r-- 1 root root 641M May 20 20:06 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root  384 May 20 20:06 chat_template.jinja\\\\ndrwxr-xr-x 2 root root 4.0K May 20 19:38 checkpoint-190\\\\ndrwxr-xr-x 2 root root 4.0K May 20 20:06 checkpoint-570\\\\n-rw-r--r-- 1 root root  17M May 20 20:06 tokenizer.json\\\\n-rw-r--r-- 1 root root  389 May 20 20:06 tokenizer_config.json\\\\n-rw-r--r-- 1 root root 5.7K May 20 20:06 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_llama-sft-s43-r3_20260520T140830",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T14:09:04.351726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/8b_sft_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/8b_sft_s43/predictions.json\\\\n/root/autodl-tmp/eval_results/d102_8b_k1_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/d102_8b_k1_s43/predictions.json\\\\n/root/autodl-tmp/eval_results/d102_llama_k1_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/d102_llama_k1_s43/predictions.json\\\\n/root/autodl-tmp/eval_results/eval_llama_rsft_k1_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/eval_llama_rsft_k1_s43/predictions.json\\\\n/root/autodl-tmp/eval_results/eval_llama_rsft_s43_no_evidence/metrics.json\\\\n/root/autodl-tmp/eval_results/eval_llama_rsft_s43_no_evidence/predictions.json\\\\n/root/autodl-tmp/eval_results/plan019_1_7b_sft_s43_eval/metrics.json\\\\n/root/autodl-tmp/eval_results/plan019_1_7b_sft_s43_eval/predictions.json\\\\n/root/autodl-tmp/eval_results/plan_002_test_rsft_s43/codalab_submission.json\\\\n/root/autodl-tmp/eval_results/plan_002_test_rsft_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/plan_002_test_rsft_s43/predictions.json\\\\n/root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval/predictions.json\\\\n/root/autodl-tmp/eval_results/rsft_ced_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_ced_s43/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s43/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_s43_dev_eval_preds/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s43_dev_eval_preds/predictions.json\\\\n/root/autodl-tmp/eval_results/sft_llama_s43_eval/metrics\n…[truncated 323 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_llama-sft-s43-r3_20260520T140830",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T14:09:04.351912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_llama-sft-s43-r3_20260520T140830",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/sft_llama_s43_eval/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T14:09:04.352116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5168863583183839,\\\\n  \\\\\\\"recall\\\\\\\": 0.5453872109291417,\\\\n  \\\\\\\"f1\\\\\\\": 0.5307544449783758,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.49165261382799325,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.5388596248036226,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.5141748600149906,\\\\n  \\\\\\\"tp\\\\\\\": 6627,\\\\n  \\\\\\\"pred_count\\\\\\\": 12821,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8761566501542201,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.7786360993437993,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8245228252264931,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15504,\\\\n  \\\\\\\"edcr\\\\\\\": 0.5865566973933753,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 13299,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 22673,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.42544993930437536,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.4185140958413374,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.42195351758793975,\\\\n  \\\\\\\"evi_tp\\\\\\\": 8061,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 18947,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8071065989847716,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8060913705583757,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 795,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 794,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15548,\\\\n  \\\\\\\"n_truncated\\\\\\\": 190,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6971.8,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_llama_3_1_8b_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": null,\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/sft_llama_s43_eval\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\n…[truncated 69 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_llama-sft-s43-r3_20260520T140830",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T14:09:04.352348+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## s43 r3 结果\n\n**训练**: 成功完成，3 epochs，train_loss=0.521，eval_loss=0.7393\n\n**Adapter**: 存在，641MB，路径 `/root/autodl-tmp/sft_output_llama_3_1_8b_s43/`\n\n**Eval 指标**:\n\n| 指标 | s43 r3 | s42 | RSFT 3-seed mean |\n|------|--------|-----|-------------------|\n| **Ign-F1** | **0.5142** | 0.5384 | 0.5654 |\n| F1 | 0.5308 | — | — |\n| Evi-F1 (DREEAM) | 0.4220 | — | — |\n| Evi-F1 (TP) | 0.8245 | — | — |\n| EDCR | 0.5866 | — | — |\n| Format OK | 985/985 (100%) | — | — |\n| Truncated | 190/985 | — | — |\n\n**对比**: s43 Ign-F1=0.5142，低于 s42 (0.5384) 2.4 个点，低于 RSFT 3-seed mean (0.5654) 5.1 个点。s43 的 SFT baseline 表现较弱。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_llama-sft-s43-r3_20260520T140830"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/harvest-llama-sft-s43-r3.md"
+}

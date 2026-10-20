@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "107382cfa8e533368b92",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis reeval ced s42",
+  "task_key": "worker_analysis_reeval_ced_s42_20260516T075842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reeval_ced_s42_20260516T075842_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "052acb39f0ee2286471994788f1b539f381d4257da99da2da48c8709bb1a2f3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## reeval_ced_s42 结果摘要\n\n**状态**: 成功完成 (EXIT_CODE=0)\n\n### 核心指标\n\n| 指标 | 值 |\n|------|------|\n| **Rel F1** | 0.4517 |\n| Rel Precision | 0.4657 |\n| Rel Recall | 0.4385 |\n| **Ign-F1** | 0.4423 |\n| **Evi F1** | 0.8174 |\n| Evi Precision | 0.8113 |\n| Evi Recall | 0.8237 |\n| **EDCR** | 0.6569 |\n| Evi F1 (joint) | 0.3518 |\n\n### 统计\n\n- 文档数: 985，预测数: 15436\n- 格式合规: 100%，字段合规: 77.6%\n- 截断: 214/985\n- 推理耗时: 10815s (~3h)\n\n### 其他\n\n- **W&B run ID**: 无\n- **结论**: **success** — 评估正常完成，指标合理，可用于 paired t-test 对比。\n\nArtifact 已注册: `art_20260516_a0bf21`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-reeval-ced-s42-copy-2.md"
+}

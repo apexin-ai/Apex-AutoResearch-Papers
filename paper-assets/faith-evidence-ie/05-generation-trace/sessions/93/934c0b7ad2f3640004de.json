@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "934c0b7ad2f3640004de",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778794020.md",
+  "task_key": "loop_4_1778794020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778794020.md",
+    "occurrence": 1,
+    "bytes": 4650,
+    "sha256": "730cde06077e98953c16b5de3fbb330ed58d502654e316b9da436c768d208c97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T21:21:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 = cuda:0,1,2,3（rtx5090-4x），不可用其他设备\n- rtx5090-4x 和 bjb2-12179（gpu-5090-4x-1）是**同一台机器**两个 SSH endpoint，不要当两台用\n- 训练提交**禁止 bash -c 内联引号**（D035 硬规则，第 4+ 次引号冲突）——必须先写 .sh 脚本到 `/root/autodl-tmp/scripts/`，再 `bash /path/to/script.sh` 提交\n- kill_job 后**必须验证子进程终止**（`ps -p <PID>` + `nvidia-smi -i <GPU>`），tmux wrapper 死了训练子进程可能还活着\n- attn_implementation 必须用 `sdpa`，flash_attn 未安装\n- SFT adapter merge 是 GRPO eval 的前置——inference.py 需要 `--sft_adapter` 参数\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（= gpu-5090-4x-1 / bjb2-12179），4× RTX 5090 32GB\n- **工作目录**: `/root/autodl-tmp/freige`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（7.6GB，ModelScope 下载）\n- **SFT checkpoint**: 由 `mvp2_sft_warmup` 产出，grpo_trainer.py 自动 merge\n- **wandb**: entity=`xiaoyucorynne-`, project=`freige-grpo`, API key 在 `~/.netrc`\n- **活跃进程**:\n  - mvp2_grpo_ced_lr5e6_r1: PID 90080, cuda:0, cron 监控中\n  - mvp2_grpo_ced_lr5e6_rp_r2: PID 94758, cuda:3, cron 监控中\n  - mvp2_eval_lr5e6_r1_ckpt20: PID 96500, cuda:1, cron 监控中\n- **活跃 Worker**: `worker_diagnose_mvp2_eval_ced_kl001_r4_multi`（诊断已 FAIL 的 multi-eval）\n- cuda:2 **空闲**（分配了没跑 = 失职状态）\n\n### 3. 📊 当前状态\n刚完成 lr=5e-6 方向转向（D029），从 lr=5e-5 全灭后切换到社区推荐的 5e-6。当前三路并行：\n\n| 实验 | GPU | 说明 | 预计完成 |\n|------|-----|------|----------|\n| mvp2_grpo_ced_lr5e6_r1 (P0) | cuda:0 | lr=5e-6 纯 CED，~step 25/200 | ~5h |\n| mvp2_grpo_ced_lr5e6_rp_r2 (P0+P1) | cuda:3 | lr=5e-6 + recall_penalty，~step 8/200 | ~8h |\n| mvp2_eval_lr5e6_r1_ckpt20 | cuda:1 | P0 ckpt-20 早期 eval，6% done | ~2.5h |\n\n**等待中**:\n- 3 个 cron 回调（上述 3 个 RUNNING 实验）\n- 1 个 Worker 回调（diagnose worker）\n- cuda:2 空闲需要安排任务（PREPARING 里有 mvp2_grpo_ced_kl001_r2/r3 但那些是旧 lr=5e-5 配置，可能已过时）\n\n**MVP-2 核心 gate**: P0 ckpt-20 eval 的 rel_f1 > 0.30 → lr=5e-6 方向 PASS\n\n### 4. 📋 待办（条件触发式）\n- **mvp2_eval_lr5e6_r1_ckpt20 完成** → 看 rel_f1：≥0.30 = P0 PASS（lr=5e-6 验证成功，铺后续 eval 矩阵）；<0.30 = 需要更低 lr 或其他修复，产 Framing 提案给 Director\n- **cuda:1 释放**（eval 完成后）→ 启动 P0+P1 ckpt-20 eval（验证 recall_penalty 效果）\n- **cuda:2 现在就空着** → 应立即安排任务（P0 ckpt-40 eval 或其他有意义的实验），否则违反\"分配了必须跑\"红线\n- **mvp2_grpo_ced_lr5e6_r1 训练完成** → eval best + last checkpoint，与 SFT baseline (F1=0.4057) 对比\n- **mvp2_grpo_ced_lr5e6_rp_r2 训练完成** → eval best + last，与 P0 对比隔离 recall_penalty 贡献\n- **diagnose worker 回调** → 处理 mvp2_eval_ced_kl001_r4_multi 的失败诊断结果\n- **P0 + P0+P1 都 PASS** → 进入 MVP-2 完整评估框架（CED vs SFT ≥2pp, F1 不退化, CED > flat-NLI）→ 然后 post-MVP 流程（paper_framing.md, experiment_plan.yaml）\n\n### 5. 🎯 战略上下文\n- **核心发现（D024）**: CED reward 不仅改善 evidence quality，还通过 reward variance 防止 GRPO mode collapse。这是论文最重要的 finding——CED 兼具双重作用。extraction-only 和 flat-NLI reward 在相同配置下都 collapse，只有 CED 存活。\n- **lr=5e-5 全灭原因（D029）**: 灾难性遗忘 + CED recall shortcut（少预测→高 CED→recall 崩塌）。lr=5e-6 是当前唯一活路。\n- **CED recall shortcut 已修复（D032）**: `--ced_recall_penalty` flag 乘以 recall factor 惩罚 under-prediction。P0+P1 实验测试此修复。\n- **决策链**: D008(KL不兼容) → D020(kl=0.01配置) → D024(CED anti-collapse) → D027/D029(lr过高) → D032(recall shortcut) → 当前 lr=5e-6 实验\n- **易错点**:\n  - PREPARING 里的 kl001_r2/r3 是旧 lr=5e-5 配置的 retry，**不要提交**——它们的前提假设（lr=5e-5 可行）已被 D029 推翻\n  - eval 指标要看 rel_f1（相对 SFT baseline），不是 raw F1——SFT baseline F1=0.4057\n  - report.md 的\"资源状态\"显示全部空闲是 auto-generated 的 bug，实际 3 卡在跑\n  - wandb MCP 工具 `list_wandb_runs` 有 bug，用 `fetch_wandb_run_history` + run_id 代替\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778794020.md"
+}

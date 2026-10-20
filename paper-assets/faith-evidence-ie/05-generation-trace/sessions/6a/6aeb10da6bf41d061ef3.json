@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6aeb10da6bf41d061ef3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh pipeline prep verify",
+  "task_key": "worker_ssh_pipeline-prep-verify_20260515T020801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_pipeline-prep-verify_20260515T020801_result.json",
+    "occurrence": 1,
+    "bytes": 3048,
+    "sha256": "2fea59b0848887e9eea317552c583abfd90c07fe62aacf0f77f66e81f486e067"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## RSFT 后处理 Pipeline 验证报告\n\n### 组件就绪状态\n\n| 组件 | 状态 | 备注 |\n|------|------|------|\n| `rsft_generate.py` | ✅ 运行中 | 4 shard 并行，输出格式含所有必要字段 |\n| `merge_shards.py` | ✅ 已创建 | 原不存在，已写入服务器 + 本地。按 `(doc_id, generation_idx)` 去重 |\n| `rsft_score_filter.py` | ✅ import 正常 | 输入字段与生成输出完全兼容 |\n| CED/NLI 模型 | ✅ 离线加载正常 | dry-run 通过，p_pos=0.993 |\n| `rsft_trainer.py` | ✅ import 正常 | bf16 ✅ lora_rank=64 ✅ lora_alpha=128 ✅ 无量化 ✅ |\n| 字段兼容性 | ✅ 全链路匹配 | generate→score_filter→trainer 三级 I/O 格式一致 |\n\n### 关键注意事项\n\n运行 score_filter 和 trainer 时**必须**设置环境变量（HF 网络不可达）：\n```bash\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_OFFLINE=1\nexport TRANSFORMERS_OFFLINE=1\n```\n\nPython 路径：`/root/miniconda3/bin/python`（`python3` 不在 PATH）\n\n### 生成完成后执行命令序列\n\n```bash\n# Step 1: Merge\ncd /root/autodl-tmp && python -m freige.training.merge_shards \\\n    --shard_dir /root/autodl-tmp/rsft_generations \\\n    --output /root/autodl-tmp/rsft_generations/generations_merged.jsonl\n\n# Step 2: Score & Filter (用 GPU 加速 NLI)\ncd /root/autodl-tmp && python -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/rsft_generations_merged \\\n    --output_path /root/autodl-tmp/rsft_filtered \\\n    --selection_strategy top_pct --top_pct 25\n\n# Step 3: RSFT Training (4 GPU)\ncd /root/autodl-tmp && accelerate launch --num_processes 4 \\\n    -m freige.training.rsft_trainer \\\n    --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl \\\n    --output_dir /root/autodl-tmp/rsft_output\n```\n\n**注意**：Step 2 的 `--input_dir` 需要指向包含 `generations_merged.jsonl` 的目录，但 `load_generations()` 硬编码读 `generations.jsonl`。需要改名或做符号链接：\n```bash\nmkdir -p /root/autodl-tmp/rsft_generations_merged\nln -s /root/autodl-tmp/rsft_generations/generations_merged.jsonl \\\n      /root/autodl-tmp/rsft_generations_merged/generations.jsonl\n```\n\n### 当前生成进度快照\n\n| 来源 | 已完成 lines | 已完成 docs | 分配范围 | 总 docs | 进度 |\n|------|-------------|------------|---------|---------|------|\n| top-level (旧) | 2,416 | 302 | idx 0-301 | 302 | 100% |\n| shard_0 | 1,048 | ~131 | idx 302-983 | 682 | 19% |\n| shard_1 | 1,120 | ~140 | idx 984-1664 | 681 | 21% |\n| shard_2 | 1,104 | ~138 | idx 1665-2345 | 681 | 20% |\n| shard_3 | 696 | ~87 | idx 2346-3026 | 681 | 13% |\n| **合计** | **6,384** | **~791** | | **3,027** | **26%** |\n\n- 去重后: 6,328 条有效记录\n- 120 条重复（top-level 与 shard_0 重叠区域）\n\n### 预估完成时间\n\n各 shard 生成速率约 4.1-4.7 docs/min。瓶颈是 shard_3（启动最晚、剩余最多）。\n\n**预计全部完成：约 2-2.5 小时后**（~12:00-12:30 UTC）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-pipeline-prep-verify.md"
+}

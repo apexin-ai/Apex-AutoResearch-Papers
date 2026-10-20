@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0352fd5ac87c865d760",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze d140 4b sft s42 no evi 2048 fix",
+  "task_key": "worker_analyze_d140_4b_sft_s42_no_evi_2048_fix_20260521T103142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_d140_4b_sft_s42_no_evi_2048_fix_20260521T103142_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "abe364b7695154f15256383aaddb9abb1f4d0fa621e41e6237d4ebc66eb705d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE(success)。\n\n**d140_4b_sft_s42_no_evi_2048_fix 结果汇总：**\n\n| 指标 | 值 |\n|---|---|\n| **Ign-F1** | **0.4016** |\n| **F1** | **0.4095** |\n| Evi-F1 (DREEAM) | 0 (no-evi, 符合预期) |\n| EDCR | 0 (no-evi, 符合预期) |\n| Format OK | 983/985 (99.8%) |\n| Truncated | 178/985 |\n| Predictions | 25,638 |\n| Inference time | 7606s (7.72 s/doc) |\n| GPU hours | 2.82h |\n\nIgn-F1 0.4016 在 4B 预期范围内（0.35-0.50）。Evidence tax 待配对实验 `d140_4b_sft_s42_with_evi_2048` 完成后计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-d140-4b-sft-s42-no-evi-2048-fix.md"
+}

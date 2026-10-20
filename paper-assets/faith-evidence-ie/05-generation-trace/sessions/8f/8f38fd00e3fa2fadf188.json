@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f38fd00e3fa2fadf188",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu conflict check",
+  "task_key": "worker_ops_gpu_conflict_check_20260515T195421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_conflict_check_20260515T195421_result.json",
+    "occurrence": 1,
+    "bytes": 1039,
+    "sha256": "5b9dac4461203b567c9ab75760c030b90686fc5a09945d198ff852d5402e4142"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### cuda:0 实际占用\n\n| GPU | UUID (前8位) | 占用 PID | 显存 | 利用率 |\n|-----|-------------|---------|------|--------|\n| 0 | 7717ada7 | 236779 (plan_001 子进程) | 16278/32607 MiB | 74% |\n| 1 | 19de3485 | 246982 + 247244 | 12126 + 8366 MiB | 77% |\n| 2 | 5e7d7885 | 245108 | 28816/32607 MiB | 97% |\n| 3 | 80915638 | 234494 | 20084/32607 MiB | 32% |\n\n**cuda:0 无冲突。** 只有 plan_001 的子进程 (PID 236779) 在 GPU 0 上。plan_011 的 PID 246041 已不存在。\n\n### plan_001_flat_nli_seed43 状态\n\n- **仍在训练中**，进度 481/507 steps（~95%），epoch 2.84/3.0\n- 已运行 1h30m，预计还剩 ~2 分钟\n- 最新 checkpoint: checkpoint-450\n- Epoch 2.0 eval: loss=0.7535, mean_token_accuracy=0.8300\n- 最新 train metrics (step 480): loss=0.6003, mean_token_accuracy=0.8523, entropy=0.6433\n\n### 结论\n\n- plan_001 即将完成（~2min），独占 GPU 0，无冲突\n- plan_011 (PID 246041) 已终止，GPU 1 上运行的是其他进程 (PID 246982, 247244)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-conflict-check.md"
+}

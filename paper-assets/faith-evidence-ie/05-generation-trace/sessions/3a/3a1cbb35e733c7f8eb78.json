@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a1cbb35e733c7f8eb78",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research d102 llama verify",
+  "task_key": "worker_research_d102_llama_verify_20260518T053411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d102_llama_verify_20260518T053411_result.json",
+    "occurrence": 1,
+    "bytes": 2002,
+    "sha256": "16e59f399d357f4a6e136135e0d6113719725a33f0bf2dfe76df5961f0097ed3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### LLaMA-8B RSFT 实际 top_k 值：**k=3（确认）**\n\n**判断依据：**\n- `rsft_report.json` 明确记录 `\"selection_strategy\": \"top_k\", \"top_k\": 3`\n- 数据量验证：23704 candidates / 2963 docs → top_k=3 后选 8829 samples（2952 docs × ~3 ≈ 8829）\n- 训练日志确认加载了 8829 samples\n\n### Re-filter k=1 结果\n\n| | k=3（原始） | k=1（re-filtered） |\n|---|---|---|\n| **样本数** | 8829 | 2952 |\n| **唯一文档数** | 2952 | 2952 |\n| **F1 均值** | 0.6768 | 0.7098 |\n| **CED 均值** | 0.6509 | 0.6860 |\n| **Combined 均值** | 0.7311 | 0.7583 |\n\n### 关键路径\n\n- 原始 k=3 训练数据：`/root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl`（8829 samples）\n- **新 k=1 训练数据：`/root/autodl-tmp/rsft_scored_llama_3_1_8b_k1/rsft_train.jsonl`（2952 samples）**\n- 已完成 k=3 训练输出：`/root/autodl-tmp/rsft_output_llama_3_1_8b_r3/`\n\n### 推荐 LLaMA k=1 重训命令\n\n```bash\nCUDA_VISIBLE_DEVICES=X source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\npython -m freige.training.rsft_trainer \\\n    --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B \\\n    --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b \\\n    --rsft_data_path /root/autodl-tmp/rsft_scored_llama_3_1_8b_k1/rsft_train.jsonl \\\n    --output_dir /root/autodl-tmp/rsft_output_llama_3_1_8b_k1 \\\n    --num_epochs 3 \\\n    --learning_rate 2e-5 \\\n    --per_device_batch_size 1 \\\n    --gradient_accumulation_steps 8 \\\n    --warmup_steps 100 \\\n    --max_length 2048 \\\n    --lora_rank 64 \\\n    --lora_alpha 128 \\\n    --bf16 \\\n    --wandb_run_name llama_8b_rsft_ced_k1 \\\n    --seed 42\n```\n\n注：batch size 参数从日志推算（3312 steps = 8829×3/8，effective batch=8），原始训练大概率用了 `per_device_batch_size=1, gradient_accumulation_steps=8`。k=1 数据量约为 k=3 的 1/3，预计 ~1104 steps，训练时间约 1 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-d102-llama-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4af24490acd4d8c6e800",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops submit 8b ced scoring cuda3",
+  "task_key": "worker_ops_submit_8b_ced_scoring_cuda3_20260517T034726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_8b_ced_scoring_cuda3_20260517T034726_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "cf280b1936b38324e4ef6f51b2294f004580767e8c8077d2acd5e514737d522a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**状态总结：**\n- `plan_006_qwen3_8b_ced_scoring` 已在 cuda:3 启动，PID 411027\n- NLI 模型（DeBERTa-v3-base）加载成功，显存占用 ~1.4GB\n- 24216 条 candidates（3027 docs）正在 CED scoring\n- Registry 已更新为 RUNNING\n\n首次尝试因 `HF_HUB_OFFLINE=1` 导致无法定位缓存中的模型，第二次改用本地快照绝对路径解决。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-8b-ced-scoring-cuda3.md"
+}

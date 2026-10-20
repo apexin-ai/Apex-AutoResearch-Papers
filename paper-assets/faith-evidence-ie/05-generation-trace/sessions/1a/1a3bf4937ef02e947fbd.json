@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a3bf4937ef02e947fbd",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code 14b rsft train launch",
+  "task_key": "worker_code_14b-rsft-train-launch_20260520T191246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-rsft-train-launch_20260520T191246_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "2cf89c207bf944704e4db2fb2374b3ed2b2d54a972e456d28ecd691b0165a6f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常运行。\n\n## 汇报\n\n| 项目 | 值 |\n|------|-----|\n| **exp_id** | `plan017_14b_rsft_train` |\n| **PID** | 48806 |\n| **GPU** | cuda:0, 峰值显存 38GB / 96GB |\n| **训练数据** | 3015 条 (CED top_k=1) |\n| **Base model** | Qwen3-14B + SFT adapter (checkpoint-144) merge |\n| **LoRA rank/alpha** | 64 / 128 |\n| **Trainable params** | 256.9M / 15.0B (1.71%) |\n| **Epochs** | 3 |\n| **LR** | 2e-5 |\n| **Batch size** | 1 × grad_accum 8 = effective 8 |\n| **Gradient checkpointing** | Yes (硬编码) |\n| **Total steps** | 1131 |\n| **步速** | ~3.9s/step |\n| **预估训练时间** | 1131 × 3.9s ≈ 4411s ≈ **~74 分钟 (1.2h)** |\n| **预估完成时间** | ~2026-05-21 04:32 UTC |\n| **Output dir** | `/root/autodl-tmp/rsft_output_14b` |\n| **Log** | `~/runs/faith-evidence-ie/plan017_14b_rsft_train.log` |\n\n不需要 QLoRA 量化，bf16 单卡 38GB 峰值，余量充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-14b-rsft-train-launch.md"
+}

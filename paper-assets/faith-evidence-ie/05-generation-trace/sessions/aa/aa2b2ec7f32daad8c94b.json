@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa2b2ec7f32daad8c94b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "train 8b sft s43",
+  "task_key": "worker_train_8b_sft_s43_20260519T120318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_8b_sft_s43_20260519T120318_result.json",
+    "occurrence": 1,
+    "bytes": 375,
+    "sha256": "e2740c94e00cd5d132d1a471ae2d1054331892ed743806cdfb84dfb2ba756119"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常运行。\n\n**汇总：**\n- `plan019_8b_sft_s43` 已在 cuda:3 启动，PID 683937\n- Qwen3-8B bf16 LoRA (rank=64)，seed=43，3 epochs，3027 samples\n- 输出目录：`/root/autodl-tmp/sft_output_qwen3_8b_s43`\n- 总 570 steps，当前 ~12s/step，预计 ~1.9h 完成\n- Registry 已更新（RUNNING + hypothesis + parent），cron 已注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-8b-sft-s43.md"
+}

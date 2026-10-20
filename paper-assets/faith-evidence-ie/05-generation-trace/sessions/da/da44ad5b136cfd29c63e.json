@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da44ad5b136cfd29c63e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diag plan 002 d057 failure",
+  "task_key": "worker_diag_plan_002_d057_failure_20260516T061247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_plan_002_d057_failure_20260516T061247_result.json",
+    "occurrence": 1,
+    "bytes": 2370,
+    "sha256": "929d56ab4917cc9d49e820671e96ed1a03ded5303e3dc0a4f312648dc3105baa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 诊断结果\n\n### 根因\nDocRED `test.json` 有 1000 个文档但**无 `labels` 字段**（keys 只有 `vertexSet, title, sents`）。原 `DocREDProcessor.process(\"test\")` 遍历 `doc.get(\"labels\", [])` 构建 RelationSample → 返回 0 样本 → 0 predictions → 全部指标 0.0000。\n\n**不是运行时错误，是代码逻辑不支持无 gold label 的 test split。**\n\n### 代码修复状态\n**已修好。** 当前 `inference.py` 已包含：\n- `prepare_test_data()` (L148-195)：直接从 `vertexSet` 构建 entity list + prompt，不依赖 labels\n- `convert_to_codalab()` (L198-250)：将预测转换为 CodaLab 提交格式\n- `main()` 中 L420-427：`--split test` 时走 `prepare_test_data` 路径\n- L454-460：test split 跳过 evaluate，生成 `codalab_submission.json`\n\n### 资源就绪检查\n| 资源 | 状态 |\n|------|------|\n| test.json | ✅ `/root/autodl-tmp/data/docred/test.json` (1000 docs) |\n| RSFT CED s44 checkpoint | ✅ `/root/autodl-tmp/rsft_output_s44/checkpoint-510/adapter_config.json` |\n| SFT adapter | ✅ `/root/autodl-tmp/sft_output` |\n| Base model | ✅ `/root/autodl-tmp/models/Qwen3-4B` |\n| GPU 3 | ✅ 0 MiB / 32607 MiB（空闲）|\n\n### 修复方案：直接重新提交\n\n代码已修好，只需重跑。遵循 D076 协议 + C001/C002 约束：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/test_rsft_ced_s44 --no-quantize\"\n```\n\n### 预估 GPU 时间\nDev split (985 docs, batch_size=4, no-quantize) 约 2.5-3h。Test split (1000 docs) 类似，**预估 ~2.5-3h**。\n\n### 产出\n- `metrics.json`（含 n_documents, n_predictions, format_ok_rate 等，但无 F1——需提交 CodaLab）\n- `predictions.json`（每文档详细预测）\n- `codalab_submission.json`（CodaLab 提交文件，格式 `[{title, h_idx, t_idx, r, evidence}]`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-plan-002-d057-failure.md"
+}

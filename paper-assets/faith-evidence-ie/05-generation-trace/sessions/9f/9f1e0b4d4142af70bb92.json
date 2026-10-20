@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f1e0b4d4142af70bb92",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze plan019 1 7b sft s43 r2",
+  "task_key": "worker_analyze_plan019_1_7b_sft_s43_r2_20260518T201851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_plan019_1_7b_sft_s43_r2_20260518T201851_result.json",
+    "occurrence": 1,
+    "bytes": 375,
+    "sha256": "4ed3231124ab06d013adca0434b7866473c1bf9f6b78374955636e1eae79ba26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 memory.md。\n\n**总结**：plan019_1_7b_sft_s43_r2 训练成功完成。train_loss 0.6881 略优于 s42 (~0.70)，checkpoint 在 `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed43`，adapter 文件完整 (278MB)。无 W&B 记录。eval_loss 有轻微过拟合但属正常范围。下一步需提交 eval 获取 ign_f1，以确定三 seed 方差。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-plan019-1-7b-sft-s43-r2.md"
+}

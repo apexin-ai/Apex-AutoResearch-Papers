@@ -1,0 +1,3572 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5512c30421f76fcf8927",
+  "rounds": [
+    {
+      "number": 189,
+      "messages": [
+        {
+          "source_line": 3961,
+          "timestamp": "2026-05-20T16:24:13.366547+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_emergency_eval-timeout-fix_20260520T162238]:\nWorker worker_emergency_eval-timeout-fix_20260520T162238 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-003961"
+        },
+        {
+          "source_line": 3962,
+          "timestamp": "2026-05-20T16:24:23.546432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-003962"
+        },
+        {
+          "source_line": 3963,
+          "timestamp": "2026-05-20T16:24:23.949530+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-003963"
+        },
+        {
+          "source_line": 3964,
+          "timestamp": "2026-05-20T16:24:24.451763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s43_no_evidence_r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T16:12:20.890Z\\\", \\\"updated_at\\\": \\\"2026-05-20T16:13:13.880Z\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s43 标准化 no-evidence eval（r2: 超时重试，timeout_hours 从 2h 提高到 3h）。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax。\\\", \\\"parent\\\": \\\"eval_llama_sft_s43_no_evidence\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"36398\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T16:13:11.226Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"36398\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_r2.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2\\\\\\\"\\\"}}, \\\"plan017_14b_rsft\n…[truncated 5268 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 905
+          },
+          "id": "event-003964"
+        },
+        {
+          "source_line": 3965,
+          "timestamp": "2026-05-20T16:24:25.759443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 91 %, 32503 MiB\\\\n1, 91 %, 18879 MiB\\\\n2, 84 %, 18879 MiB\\\\n3, 90 %, 18879 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1809
+          },
+          "id": "event-003965"
+        },
+        {
+          "source_line": 3966,
+          "timestamp": "2026-05-20T16:24:45.632294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -2 ~/runs/faith-evidence-ie/eval_llama_sft_s44_no_evidence.log"
+            }
+          },
+          "id": "event-003966"
+        },
+        {
+          "source_line": 3967,
+          "timestamp": "2026-05-20T16:24:46.185073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s][transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.\\\\n\\\\rInference:   0%|          | 1/247 [00:34<2:21:52, 34.60s/it]\\\\rInference:   1%|          | 2/247 [01:08<2:19:03, 34.06s/it]\\\\rInference:   1%|          | 3/247 [01:41<2:17:09, 33.73s/it]\\\\rInference:   2%|▏         | 4/247 [02:15<2:16:13, 33.64s/it]\\\\rInference:   2%|▏         | 5/247 [02:48<2:14:56, 33.46s/it]\\\\rInference:   2%|▏         | 6/247 [03:21<2:14:43, 33.54s/it]\\\\rInference:   3%|▎         | 7/247 [03:55<2:13:55, 33.48s/it]\\\\rInference:   3%|▎         | 8/247 [04:28<2:13:27, 33.50s/it]\\\\rInference:   4%|▎         | 9/247 [04:36<1:41:21, 25.55s/it]\\\\rInference:   4%|▍         | 10/247 [05:11<1:51:34, 28.25s/it]\\\\rInference:   4%|▍         | 11/247 [05:45<1:58:06, 30.03s/it]\\\\rInference:   5%|▍         | 12/247 [06:18<2:01:55, 31.13s/it]\\\\rInference:   5%|▌         | 13/247 [06:29<1:37:35, 25.03s/it]\\\\rInference:   6%|▌         | 14/247 [06:40<1:20:44, 20.79s/it]\\\\rInference:   6%|▌         | 15/247 [07:14<1:35:05, 24.59s/it]\\\\rInference:   6%|▋         | 16/247 [07:42<1:38:41, 25.63s/it]\\\\rInference:   7%|▋         | 17/247 [08:16<1:47:44, 28.11s/it]\\\\rInference:   7%|▋         | 18/247 [08:50<1:54:23, 29.97s/it]\\\\rInference:   8%|▊         | 19/247 [09:24<1:58:10, 31.10s/it]\\\\rInference:   8%|▊         | 20/247 [09:46<1:47:49, 28.50s/it]\\\\rInference:   9%|▊         | 21/247 [10:20<1:53:19, 30.09s/it]\\\\rInference:   9%|▉         | 22/247 [10:54<1:56:55, 31.18s/it]\\\\rInference:   9%|▉         | 23/247 [11:28<1:59:40, 32.06s/it]\\\\rInfe\n…[truncated 6445 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-003967"
+        },
+        {
+          "source_line": 3968,
+          "timestamp": "2026-05-20T16:24:46.185497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -2 ~/runs/faith-evidence-ie/eval_llama_rsft_s44_no_evidence.log"
+            }
+          },
+          "id": "event-003968"
+        },
+        {
+          "source_line": 3969,
+          "timestamp": "2026-05-20T16:24:46.738017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s][transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.\\\\n\\\\rInference:   0%|          | 1/247 [00:33<2:18:42, 33.83s/it]\\\\rInference:   1%|          | 2/247 [00:56<1:50:19, 27.02s/it]\\\\rInference:   1%|          | 3/247 [01:29<2:01:17, 29.83s/it]\\\\rInference:   2%|▏         | 4/247 [02:02<2:06:26, 31.22s/it]\\\\rInference:   2%|▏         | 5/247 [02:30<2:00:28, 29.87s/it]\\\\rInference:   2%|▏         | 6/247 [02:42<1:36:23, 24.00s/it]\\\\rInference:   3%|▎         | 7/247 [03:15<1:47:55, 26.98s/it]\\\\rInference:   3%|▎         | 8/247 [03:32<1:33:58, 23.59s/it]\\\\rInference:   4%|▎         | 9/247 [03:41<1:15:48, 19.11s/it]\\\\rInference:   4%|▍         | 10/247 [04:15<1:33:42, 23.72s/it]\\\\rInference:   4%|▍         | 11/247 [04:49<1:45:18, 26.77s/it]\\\\rInference:   5%|▍         | 12/247 [04:58<1:24:35, 21.60s/it]\\\\rInference:   5%|▌         | 13/247 [05:32<1:38:06, 25.16s/it]\\\\rInference:   6%|▌         | 14/247 [06:06<1:47:57, 27.80s/it]\\\\rInference:   6%|▌         | 15/247 [06:32<1:45:40, 27.33s/it]\\\\rInference:   6%|▋         | 16/247 [07:05<1:52:04, 29.11s/it]\\\\rInference:   7%|▋         | 17/247 [07:39<1:56:50, 30.48s/it]\\\\rInference:   7%|▋         | 18/247 [08:13<2:00:33, 31.59s/it]\\\\rInference:   8%|▊         | 19/247 [08:29<1:41:45, 26.78s/it]\\\\rInference:   8%|▊         | 20/247 [09:02<1:48:27, 28.67s/it]\\\\rInference:   9%|▊         | 21/247 [09:32<1:50:18, 29.29s/it]\\\\rInference:   9%|▉         | 22/247 [10:06<1:54:27, 30.52s/it]\\\\rInference:   9%|▉         | 23/247 [10:40<1:57:44, 31.54s/it]\\\\rInfe\n…[truncated 6447 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-003969"
+        },
+        {
+          "source_line": 3970,
+          "timestamp": "2026-05-20T16:25:24.939692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "RSFT s44 no-evi 预计 ~14min 完成，SFT s44 可能在 ~16:50 UTC 超时",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-003970"
+        },
+        {
+          "source_line": 3971,
+          "timestamp": "2026-05-20T16:25:24.990444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 16:30:00 (in 275s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-003971"
+        },
+        {
+          "source_line": 3972,
+          "timestamp": "2026-05-20T16:27:38.124271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__tail_training_logs",
+              "max_results": "3"
+            }
+          },
+          "id": "event-003972"
+        },
+        {
+          "source_line": 3973,
+          "timestamp": "2026-05-20T16:27:38.174941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-003973"
+        },
+        {
+          "source_line": 3974,
+          "timestamp": "2026-05-20T16:27:41.891571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-003974"
+        },
+        {
+          "source_line": 3975,
+          "timestamp": "2026-05-20T16:27:42.594862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-003975"
+        },
+        {
+          "source_line": 3976,
+          "timestamp": "2026-05-20T16:27:42.748092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s43_no_evidence_r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T16:12:20.890Z\\\", \\\"updated_at\\\": \\\"2026-05-20T16:13:13.880Z\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s43 标准化 no-evidence eval（r2: 超时重试，timeout_hours 从 2h 提高到 3h）。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax。\\\", \\\"parent\\\": \\\"eval_llama_sft_s43_no_evidence\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"36398\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T16:13:11.226Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"36398\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_r2.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2\\\\\\\"\\\"}}, \\\"plan017_14b_rsft\n…[truncated 5268 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 856
+          },
+          "id": "event-003976"
+        },
+        {
+          "source_line": 3977,
+          "timestamp": "2026-05-20T16:27:43.303472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 78 %, 32503 MiB, 97887 MiB\\\\n1, 80 %, 18879 MiB, 97887 MiB\\\\n2, 86 %, 18879 MiB, 97887 MiB\\\\n3, 91 %, 18879 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 708
+          },
+          "id": "event-003977"
+        },
+        {
+          "source_line": 3978,
+          "timestamp": "2026-05-20T16:27:52.701384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "eval_llama_sft_s44_no_evidence",
+              "project": "faith-evidence-ie",
+              "n": "15"
+            }
+          },
+          "id": "event-003978"
+        },
+        {
+          "source_line": 3979,
+          "timestamp": "2026-05-20T16:27:53.655334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-20 22:50:45,447 INFO Detected adapter at /root/autodl-tmp/sft_output_llama_3_1_8b_s44, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-20 22:50:45,447 WARNING --sft_adapter not set but --base_model is non-default (/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B); assuming base is already merged.\\\", \\\"2026-05-20 22:50:45,447 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-20 22:50:46,232 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:38,  7.51it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:37,  7.61it/s]\\\\rLoading weights:   5%|▌         | 15/291 [00:00<00:05, 52.50it/s]\\\\rLoading weights:  11%|█         | 32/291 [00:00<00:02, 90.75it/s]\\\\rLoading weights:  17%|█▋        | 49/291 [00:00<00:02, 112.50it/s]\\\\rLoading weights:  22%|██▏       | 63/291 [00:00<00:01, 119.83it/s]\\\\rLoading weights:  26%|██▋       | 77/291 [00:00<00:01, 125.24it/s]\\\\rLoading weights:  32%|███▏      | 94/291 [00:00<00:01, 135.12it/s]\\\\rLoading weights:  37%|███▋      | 108/291 [00:01<00:01, 134.76it/s]\\\\rLoading weights:  42%|████▏     | 122/291 [00:01<00:01, 135.17it/s]\\\\rLoading weights:  48%|████▊     | 139/291 [00:01<00:01, 141.05it/s]\\\\rLoading weights:  53%|█████▎    | 154/291 [00:01<00:00, 138.81it/s]\\\\rLoading weights:  58%|█████▊    | 168/291 [00:01<00:00, 134.92it/s]\\\\rLoading weights:  63%|██████▎   | 182/291 [00:01<00:00, 125.39it/s]\\\\rLoading weights:  70%|██████▉   | 203/291 [00:01<00:00, 145.80it/s]\\\\rLoading weights:  76%|███████▌  | 220/291 [00:01<00:00, 147.98it/s]\\\\rLoading weights:  81%|████████  | 235/291 [00:01<00:00, 144.72it/s]\\\\rLoading weights:  86%|████████▌ | 250/291 [00:02<00:00, 139.69it/s]\\\\rLoading weights:  9\n…[truncated 6556 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 953
+          },
+          "id": "event-003979"
+        },
+        {
+          "source_line": 3980,
+          "timestamp": "2026-05-20T16:27:53.655799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "eval_llama_rsft_s44_no_evidence",
+              "project": "faith-evidence-ie",
+              "n": "15"
+            }
+          },
+          "id": "event-003980"
+        },
+        {
+          "source_line": 3981,
+          "timestamp": "2026-05-20T16:27:54.659390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-20 22:50:54,839 INFO Detected adapter at /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-20 22:50:54,839 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-20 22:50:55,680 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:50,  5.75it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:49,  5.89it/s]\\\\rLoading weights:   5%|▍         | 14/291 [00:00<00:06, 41.49it/s]\\\\rLoading weights:   9%|▉         | 27/291 [00:00<00:03, 67.82it/s]\\\\rLoading weights:  14%|█▎        | 40/291 [00:00<00:02, 86.04it/s]\\\\rLoading weights:  18%|█▊        | 51/291 [00:00<00:02, 89.19it/s]\\\\rLoading weights:  23%|██▎       | 67/291 [00:00<00:02, 108.03it/s]\\\\rLoading weights:  27%|██▋       | 79/291 [00:00<00:01, 107.18it/s]\\\\rLoading weights:  32%|███▏      | 94/291 [00:01<00:01, 114.88it/s]\\\\rLoading weights:  36%|███▋      | 106/291 [00:01<00:01, 105.41it/s]\\\\rLoading weights:  42%|████▏     | 121/291 [00:01<00:01, 116.98it/s]\\\\rLoading weights:  46%|████▌     | 134/291 [00:01<00:01, 114.54it/s]\\\\rLoading weights:  51%|█████     | 148/291 [00:01<00:01, 120.04it/s]\\\\rLoading weights:  55%|█████▌    | 161/291 [00:01<00:01, 115.08it/s]\\\\rLoading weights:  60%|██████    | 176/291 [00:01<00:00, 118.85it/s]\\\\rLoading weights:  65%|██████▍   | 189/291 [00:01<00:00, 117.27it/s]\\\\rLoading weights:  69%|██████▉   | 202/291 [00:02<00:00, 117.90it/s]\\\\rLoading weights:  74%|███████▎  | 214/291 [00:02<00:00, 112.66it/s]\\\\rLoading weights:  78%|███████▊  | 226/291 [00:02<00:00, 100.96it/s]\\\\rLoading weights:  85%|████████▍ | 247/291 [00:02<00:00, 125.55it/s]\\\\rLoading weights:  89%|████████▉ | 260/291 [00:02<00:00, 12\n…[truncated 6560 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1003
+          },
+          "id": "event-003981"
+        },
+        {
+          "source_line": 3982,
+          "timestamp": "2026-05-20T16:27:54.659901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "eval_llama_sft_s43_no_evidence_r2",
+              "project": "faith-evidence-ie",
+              "n": "15"
+            }
+          },
+          "id": "event-003982"
+        },
+        {
+          "source_line": 3983,
+          "timestamp": "2026-05-20T16:27:55.111750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-21 00:13:14,356 INFO Detected adapter at /root/autodl-tmp/sft_output_llama_3_1_8b_s43, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-21 00:13:14,356 WARNING --sft_adapter not set but --base_model is non-default (/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B); assuming base is already merged.\\\", \\\"2026-05-21 00:13:14,356 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-21 00:13:15,232 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:51,  5.62it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:50,  5.75it/s]\\\\rLoading weights:   5%|▍         | 14/291 [00:00<00:06, 40.23it/s]\\\\rLoading weights:   9%|▉         | 27/291 [00:00<00:03, 66.55it/s]\\\\rLoading weights:  14%|█▎        | 40/291 [00:00<00:02, 84.01it/s]\\\\rLoading weights:  18%|█▊        | 51/291 [00:00<00:02, 87.07it/s]\\\\rLoading weights:  23%|██▎       | 67/291 [00:00<00:02, 103.98it/s]\\\\rLoading weights:  27%|██▋       | 78/291 [00:01<00:02, 100.81it/s]\\\\rLoading weights:  32%|███▏      | 94/291 [00:01<00:01, 110.77it/s]\\\\rLoading weights:  36%|███▋      | 106/291 [00:01<00:01, 105.22it/s]\\\\rLoading weights:  42%|████▏     | 121/291 [00:01<00:01, 111.58it/s]\\\\rLoading weights:  46%|████▌     | 133/291 [00:01<00:01, 107.91it/s]\\\\rLoading weights:  51%|█████     | 148/291 [00:01<00:01, 115.46it/s]\\\\rLoading weights:  55%|█████▍    | 160/291 [00:01<00:01, 112.02it/s]\\\\rLoading weights:  60%|██████    | 175/291 [00:01<00:00, 117.60it/s]\\\\rLoading weights:  64%|██████▍   | 187/291 [00:01<00:00, 109.79it/s]\\\\rLoading weights:  68%|██████▊   | 199/291 [00:02<00:00, 111.48it/s]\\\\rLoading weights:  73%|███████▎  | 211/291 [00:02<00:00, 113.08it/s]\\\\rLoading weights:  77%|\n…[truncated 3126 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 451
+          },
+          "id": "event-003983"
+        },
+        {
+          "source_line": 3984,
+          "timestamp": "2026-05-20T16:27:55.112167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "plan017_14b_rsft_generate_r4",
+              "project": "faith-evidence-ie",
+              "n": "15"
+            }
+          },
+          "id": "event-003984"
+        },
+        {
+          "source_line": 3985,
+          "timestamp": "2026-05-20T16:27:55.664613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-20 23:35:29,442 INFO Resumed from JSONL: 2553 complete docs (20424 lines)\\\", \\\"2026-05-20 23:35:29,445 INFO Total: 3027, completed: 2553, pending: 474\\\", \\\"\\\\rGenerating:   0%|          | 0/474 [00:00<?, ?it/s]\\\\rGenerating:   0%|          | 1/474 [00:26<3:27:47, 26.36s/it]\\\\rGenerating:   0%|          | 2/474 [00:41<2:35:52, 19.82s/it]\\\\rGenerating:   1%|          | 3/474 [00:59<2:27:05, 18.74s/it]\\\\rGenerating:   1%|          | 4/474 [01:17<2:26:18, 18.68s/it]\\\\rGenerating:   1%|          | 5/474 [01:25<1:56:51, 14.95s/it]\\\\rGenerating:   1%|▏         | 6/474 [01:45<2:08:35, 16.49s/it]\\\\rGenerating:   1%|▏         | 7/474 [02:18<2:51:03, 21.98s/it]\\\\rGenerating:   2%|▏         | 8/474 [02:36<2:39:06, 20.49s/it]\\\\rGenerating:   2%|▏         | 9/474 [02:52<2:29:25, 19.28s/it]\\\\rGenerating:   2%|▏         | 10/474 [03:25<3:01:39, 23.49s/it]\\\\rGenerating:   2%|▏         | 11/474 [03:39<2:38:38, 20.56s/it]\\\\rGenerating:   3%|▎         | 12/474 [03:44<2:00:48, 15.69s/it]\\\\rGenerating:   3%|▎         | 13/474 [04:17<2:40:54, 20.94s/it]\\\\rGenerating:   3%|▎         | 14/474 [04:37<2:40:01, 20.87s/it]\\\\rGenerating:   3%|▎         | 15/474 [04:57<2:37:35, 20.60s/it]\\\\rGenerating:   3%|▎         | 16/474 [04:59<1:52:51, 14.79s/it]\\\\rGenerating:   4%|▎         | 17/474 [05:25<2:19:24, 18.30s/it]\\\\rGenerating:   4%|▍         | 18/474 [05:46<2:26:16, 19.25s/it]\\\\rGenerating:   4%|▍         | 19/474 [06:00<2:13:53, 17.66s/it]\\\\rGenerating:   4%|▍         | 20/474 [06:28<2:35:22, 20.53s/it]\\\\rGenerating:   4%|▍         | 21/474 [06:42<2:21:44, 18.77s/it]\\\\rGenerating:   5%|▍         | 22/474 [06:48<1:51:49, 14.84s/it]\\\\rGenerating:   5%|▍         | 23/474 [06:55<1:33:14, 12.41s/it]\\\\rGenerating:   5%|▌         | 24/474 [06:57<1:10:31,  9.40s/it]\\\\rGenerating:   5%|▌         | 25/474 [07:02<1:00:48,  8.13s/it]\\\\rGenerating:   5%|▌         | 26/474 [07:25<1:34:22, 12.64s/it]\\\\rGenerating:   6%|▌         | 27/474 [07:37\n…[truncated 6591 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 552
+          },
+          "id": "event-003985"
+        },
+        {
+          "source_line": 3986,
+          "timestamp": "2026-05-20T16:28:23.133624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "date -u '+%Y-%m-%d %H:%M:%S UTC'"
+            }
+          },
+          "id": "event-003986"
+        },
+        {
+          "source_line": 3987,
+          "timestamp": "2026-05-20T16:28:23.134058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ps -p 29983 -o pid,etime,args --no-headers"
+            }
+          },
+          "id": "event-003987"
+        },
+        {
+          "source_line": 3988,
+          "timestamp": "2026-05-20T16:28:23.134356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ps -p 30188 -o pid,etime,args --no-headers"
+            }
+          },
+          "id": "event-003988"
+        },
+        {
+          "source_line": 3989,
+          "timestamp": "2026-05-20T16:28:23.184890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'date' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 51
+          },
+          "id": "event-003989"
+        },
+        {
+          "source_line": 3990,
+          "timestamp": "2026-05-20T16:28:23.636922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 29983    01:37:42 bash -c rm -f /tmp/agent-ml-exit/eval_llama_sft_s44_no_evidence.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/faith-evidence-ie/eval_llama_sft_s44_no_evidence.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_llama_sft_s44_no_evidence.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s44 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s44_no_evidence\\\\\\\"'; } > ~/runs/faith-evidence-ie/eval_llama_sft_s44_no_evidence.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-003990"
+        },
+        {
+          "source_line": 3991,
+          "timestamp": "2026-05-20T16:28:24.139789+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 30188    01:37:33 bash -c rm -f /tmp/agent-ml-exit/eval_llama_rsft_s44_no_evidence.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/faith-evidence-ie/eval_llama_rsft_s44_no_evidence.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_llama_rsft_s44_no_evidence.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=3 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence\\\\\\\"'; } > ~/runs/faith-evidence-ie/eval_llama_rsft_s44_no_evidence.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1005
+          },
+          "id": "event-003991"
+        },
+        {
+          "source_line": 3992,
+          "timestamp": "2026-05-20T16:28:40.619734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ps -p 36398 -o pid,etime,args --no-headers"
+            }
+          },
+          "id": "event-003992"
+        },
+        {
+          "source_line": 3993,
+          "timestamp": "2026-05-20T16:28:40.620088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ps -p 33608 -o pid,etime,args --no-headers"
+            }
+          },
+          "id": "event-003993"
+        },
+        {
+          "source_line": 3994,
+          "timestamp": "2026-05-20T16:28:41.373313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 36398       15:31 bash -c rm -f /tmp/agent-ml-exit/eval_llama_sft_s43_no_evidence_r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_r2.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_llama_sft_s43_no_evidence_r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=1 && timeout 10800 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2\\\\\\\"'; } > ~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_r2.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 753
+          },
+          "id": "event-003994"
+        },
+        {
+          "source_line": 3995,
+          "timestamp": "2026-05-20T16:28:41.876344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 33608       53:27 bash -c rm -f /tmp/agent-ml-exit/plan017_14b_rsft_generate_r4.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/faith-evidence-ie/plan017_14b_rsft_generate_r4.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/plan017_14b_rsft_generate_r4.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=0 && timeout 21600 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b --num_generations 8 --temperature 0.7 --top_p 0.95 --batch_size 1 --max_new_tokens 1024 --seed 42 --resume\\\\\\\"'; } > ~/runs/faith-evidence-ie/plan017_14b_rsft_generate_r4.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1256
+          },
+          "id": "event-003995"
+        },
+        {
+          "source_line": 3996,
+          "timestamp": "2026-05-20T16:29:00.113450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "faith-evidence-ie",
+              "limit": "10",
+              "fields": "['status', 'conclusion', 'metrics', 'updated_at', 'hypothesis']"
+            }
+          },
+          "id": "event-003996"
+        },
+        {
+          "source_line": 3997,
+          "timestamp": "2026-05-20T16:29:00.918741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s43_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T16:11:53.884Z\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s43 标准化 no-evidence eval。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax，与 s42 no-evidence eval 配对。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"migration_bjb2_to_westd\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T16:00:08.179Z\\\", \\\"hypothesis\\\": \\\"全量数据迁移 bjb2-12179 → westd-37389，207G 包含所有 adapters、基座模型、数据集、eval 结果。迁移完成后 4 GPU 并行恢复实验。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"d112_rsft_s44_ced_score\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T15:56:23.053Z\\\", \\\"hypothesis\\\": \\\"D112 step 2: CED scoring + k=1 selection on SFT s44 generation candidates. 使用 NLI-DeBERTa 对 N=8 候选打分，format_w=0.2, f1_w=0.4, ced_w=0.4，top_k=1 筛选最优样本用于后续 RSFT 训练。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_scored\\\": 24216, \\\"selected_count\\\": 3014, \\\"selection_rate\\\": 0.124, \\\"mean_f1\\\": 0.676, \\\"mean_ced\\\": 0.676}}, \\\"d112_rsft_s44_generate\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T15:56:21.779Z\\\", \\\"hypothesis\\\": \\\"D112 step1: 用 SFT s44 adapter (ign_f1=0.4734, 最强 seed) 生成 N=8 RSFT 候选。验证 RSFT pipeline 从强 SFT base 出发是否能进一步提升，决定 Claim 1 表述强度。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan017_14b_rsft_generate_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T15:34:39.825Z\\\", \\\"hypothesis\\\": \\\"14B RSFT 生成 resume (r3: 修正 adapter 路径指向 checkpoint-144)。从 doc 1873 继续生成剩余 1155 docs。r2 因 --sft_adapter 指向顶层目录而非 checkpoint-144 子目录失败。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_llama_sft_s42_no_evidence_std_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T14:39:28.376Z\\\", \\\"hypothesis\\\": \\\"标准化 LLaMA SFT s42 inference-time evidence tax 测量（r2: 修复 SCP 嵌套路径）。用同一 SFT adapter (sft_output_llama_3_1_8b) + --no_evidence flag 推理，与 with-evidence eval (ign_f1=0.5384) 直接对比。\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5219, \\\"f1\\\": 0.5311, \\\"ign_precision\\\": 0.542, \\\"ign_recall\\\": 0.5031, \\\"e\n…[truncated 2346 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 805
+          },
+          "id": "event-003997"
+        },
+        {
+          "source_line": 3998,
+          "timestamp": "2026-05-20T16:29:14.728037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-003998"
+        },
+        {
+          "source_line": 3999,
+          "timestamp": "2026-05-20T16:29:14.778808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-003999"
+        },
+        {
+          "source_line": 4000,
+          "timestamp": "2026-05-20T16:29:22.970659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] s44 timeout 风险修正 + 全局状态更新\n\n**之前的 s44 timeout 警告撤回**：独立核实发现 eval_llama_sft_s44_no_evidence 和 eval_llama_rsft_s44_no_evidence 的实际 timeout 均为 86400s (24h)，不是之前推测的 2h。2h timeout 问题仅影响了 s43（已作为 r2 以 3h timeout 重启）。\n\n**当前 4 GPU 全满载运行，白名单合规：**\n\n| GPU | 实验 | 进度 | Timeout | ETA |\n|-----|------|------|---------|-----|\n| 0 | r4 14B gen | 159/474 (34%) | 6h | ~1h45m |\n| 1 | s43 r2 no-evi | 26/247 (11%) | 3h | ~2h05m |\n| 2 | s44 SFT no-evi | 187/247 (76%) | 24h | ~30min |\n| 3 | s44 RSFT no-evi | 221/247 (89%) | 24h | ~12min |\n\ns44 RSFT 和 SFT no-evi 即将完成，完成后即可计算完整 LLaMA 3-seed evidence tax（SFT + RSFT 各 3 seed）。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-004000"
+        },
+        {
+          "source_line": 4001,
+          "timestamp": "2026-05-20T16:29:26.584945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3614
+          },
+          "id": "event-004001"
+        },
+        {
+          "source_line": 4002,
+          "timestamp": "2026-05-20T16:29:33.229027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "900",
+              "reason": "s44 RSFT no-evi eval ~12min 内完成，15min 后检查结果并审计",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004002"
+        },
+        {
+          "source_line": 4003,
+          "timestamp": "2026-05-20T16:29:33.279848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 16:45:00 (in 927s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-004003"
+        },
+        {
+          "source_line": 4004,
+          "timestamp": "2026-05-20T16:29:36.520994+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 GPU 全满载，无异常。s44 RSFT no-evi ~12min 完成、s44 SFT no-evi ~30min 完成，15min 后回来审计结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-004004"
+        }
+      ]
+    },
+    {
+      "number": 190,
+      "messages": [
+        {
+          "source_line": 4005,
+          "timestamp": "2026-05-20T16:29:36.995428+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_emergency_rsync-sft-adapters_20260520T162342]:\nWorker worker_emergency_rsync-sft-adapters_20260520T162342 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "worker_done:worker_emergency_rsync-sft-adapters_20260520t162342"
+          },
+          "id": "event-004005"
+        },
+        {
+          "source_line": 4006,
+          "timestamp": "2026-05-20T16:29:45.266272+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-004006"
+        },
+        {
+          "source_line": 4007,
+          "timestamp": "2026-05-20T16:29:46.320948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "faith-evidence-ie",
+              "limit": "10",
+              "fields": "['status', 'hypothesis', 'updated_at', 'server']"
+            }
+          },
+          "id": "event-004007"
+        },
+        {
+          "source_line": 4008,
+          "timestamp": "2026-05-20T16:29:46.622759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 92 %, 32503 MiB, 97887 MiB\\\\n1, 90 %, 18879 MiB, 97887 MiB\\\\n2, 91 %, 18879 MiB, 97887 MiB\\\\n3, 91 %, 18879 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1356
+          },
+          "id": "event-004008"
+        },
+        {
+          "source_line": 4009,
+          "timestamp": "2026-05-20T16:29:47.376110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s43_no_evidence_r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T16:13:13.880Z\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s43 标准化 no-evidence eval（r2: 超时重试，timeout_hours 从 2h 提高到 3h）。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax。\\\", \\\"server\\\": \\\"rtx5090-4x\\\"}, \\\"plan017_14b_rsft_generate_r4\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T15:35:28.394Z\\\", \\\"hypothesis\\\": \\\"14B RSFT 生成 resume (r4: ghost file recovery 后继续)。从 doc 2553/3027 继续生成剩余 474 docs。r3 因 rsync 删除 inode 导致写入 ghost file，已通过 /proc/fd 恢复 20424 行数据。\\\", \\\"server\\\": \\\"rtx5090-4x\\\"}, \\\"eval_llama_rsft_s44_no_evidence\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T14:51:18.862Z\\\", \\\"hypothesis\\\": \\\"LLaMA RSFT s44 no-evidence eval。补齐 LLaMA RSFT 3-seed evidence tax：s42 tax=-1.88pp (ign_f1=0.5526), s43 tax=-1.16pp (ign_f1=0.5546)。s44 with-evidence ign_f1=0.5587。完成后可计算跨家族 RSFT evidence tax mean±std。\\\", \\\"server\\\": \\\"rtx5090-4x\\\"}, \\\"eval_llama_sft_s44_no_evidence\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T14:51:16.426Z\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s44 标准化 no-evidence eval。补齐 LLaMA SFT 3-seed evidence tax：s42 tax=-1.65pp, s43 RUNNING。s44 with-evidence ign_f1=0.4802。完成后可计算 SFT 3-seed evidence tax mean±std。\\\", \\\"server\\\": \\\"rtx5090-4x\\\"}}, \\\"count\\\": 4, \\\"total\\\": 4, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7344}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1055
+          },
+          "id": "event-004009"
+        },
+        {
+          "source_line": 4010,
+          "timestamp": "2026-05-20T16:29:53.101249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "eval_llama_rsft_s44_no_evidence",
+              "project": "faith-evidence-ie",
+              "n": "20"
+            }
+          },
+          "id": "event-004010"
+        },
+        {
+          "source_line": 4011,
+          "timestamp": "2026-05-20T16:29:54.055942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-20 22:50:54,839 INFO Detected adapter at /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-20 22:50:54,839 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-20 22:50:55,680 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:50,  5.75it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:49,  5.89it/s]\\\\rLoading weights:   5%|▍         | 14/291 [00:00<00:06, 41.49it/s]\\\\rLoading weights:   9%|▉         | 27/291 [00:00<00:03, 67.82it/s]\\\\rLoading weights:  14%|█▎        | 40/291 [00:00<00:02, 86.04it/s]\\\\rLoading weights:  18%|█▊        | 51/291 [00:00<00:02, 89.19it/s]\\\\rLoading weights:  23%|██▎       | 67/291 [00:00<00:02, 108.03it/s]\\\\rLoading weights:  27%|██▋       | 79/291 [00:00<00:01, 107.18it/s]\\\\rLoading weights:  32%|███▏      | 94/291 [00:01<00:01, 114.88it/s]\\\\rLoading weights:  36%|███▋      | 106/291 [00:01<00:01, 105.41it/s]\\\\rLoading weights:  42%|████▏     | 121/291 [00:01<00:01, 116.98it/s]\\\\rLoading weights:  46%|████▌     | 134/291 [00:01<00:01, 114.54it/s]\\\\rLoading weights:  51%|█████     | 148/291 [00:01<00:01, 120.04it/s]\\\\rLoading weights:  55%|█████▌    | 161/291 [00:01<00:01, 115.08it/s]\\\\rLoading weights:  60%|██████    | 176/291 [00:01<00:00, 118.85it/s]\\\\rLoading weights:  65%|██████▍   | 189/291 [00:01<00:00, 117.27it/s]\\\\rLoading weights:  69%|██████▉   | 202/291 [00:02<00:00, 117.90it/s]\\\\rLoading weights:  74%|███████▎  | 214/291 [00:02<00:00, 112.66it/s]\\\\rLoading weights:  78%|███████▊  | 226/291 [00:02<00:00, 100.96it/s]\\\\rLoading weights:  85%|████████▍ | 247/291 [00:02<00:00, 125.55it/s]\\\\rLoading weights:  89%|████████▉ | 260/291 [00:02<00:00, 12\n…[truncated 6560 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 954
+          },
+          "id": "event-004011"
+        },
+        {
+          "source_line": 4012,
+          "timestamp": "2026-05-20T16:29:54.207213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "eval_llama_sft_s44_no_evidence",
+              "project": "faith-evidence-ie",
+              "n": "20"
+            }
+          },
+          "id": "event-004012"
+        },
+        {
+          "source_line": 4013,
+          "timestamp": "2026-05-20T16:29:54.709811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-20 22:50:45,447 INFO Detected adapter at /root/autodl-tmp/sft_output_llama_3_1_8b_s44, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-20 22:50:45,447 WARNING --sft_adapter not set but --base_model is non-default (/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B); assuming base is already merged.\\\", \\\"2026-05-20 22:50:45,447 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-20 22:50:46,232 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:38,  7.51it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:37,  7.61it/s]\\\\rLoading weights:   5%|▌         | 15/291 [00:00<00:05, 52.50it/s]\\\\rLoading weights:  11%|█         | 32/291 [00:00<00:02, 90.75it/s]\\\\rLoading weights:  17%|█▋        | 49/291 [00:00<00:02, 112.50it/s]\\\\rLoading weights:  22%|██▏       | 63/291 [00:00<00:01, 119.83it/s]\\\\rLoading weights:  26%|██▋       | 77/291 [00:00<00:01, 125.24it/s]\\\\rLoading weights:  32%|███▏      | 94/291 [00:00<00:01, 135.12it/s]\\\\rLoading weights:  37%|███▋      | 108/291 [00:01<00:01, 134.76it/s]\\\\rLoading weights:  42%|████▏     | 122/291 [00:01<00:01, 135.17it/s]\\\\rLoading weights:  48%|████▊     | 139/291 [00:01<00:01, 141.05it/s]\\\\rLoading weights:  53%|█████▎    | 154/291 [00:01<00:00, 138.81it/s]\\\\rLoading weights:  58%|█████▊    | 168/291 [00:01<00:00, 134.92it/s]\\\\rLoading weights:  63%|██████▎   | 182/291 [00:01<00:00, 125.39it/s]\\\\rLoading weights:  70%|██████▉   | 203/291 [00:01<00:00, 145.80it/s]\\\\rLoading weights:  76%|███████▌  | 220/291 [00:01<00:00, 147.98it/s]\\\\rLoading weights:  81%|████████  | 235/291 [00:01<00:00, 144.72it/s]\\\\rLoading weights:  86%|████████▌ | 250/291 [00:02<00:00, 139.69it/s]\\\\rLoading weights:  9\n…[truncated 6557 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 502
+          },
+          "id": "event-004013"
+        },
+        {
+          "source_line": 4014,
+          "timestamp": "2026-05-20T16:30:04.904997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "720",
+              "reason": "s44 RSFT no-evi 约 10min 完成，12min 后检查完成结果并审计指标",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004014"
+        },
+        {
+          "source_line": 4015,
+          "timestamp": "2026-05-20T16:30:04.955742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 16:43:00 (in 775s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-004015"
+        },
+        {
+          "source_line": 4016,
+          "timestamp": "2026-05-20T16:30:07.453107+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度更新：\n- **s44 RSFT (GPU 3)**: 225/247 (91%) — ~10min 完成\n- **s44 SFT (GPU 2)**: 191/247 (77%) — ~31min 完成\n\n两个都在正常推进。设置 wakeup 等 RSFT 完成后审计结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-004016"
+        }
+      ]
+    },
+    {
+      "number": 191,
+      "messages": [
+        {
+          "source_line": 4017,
+          "timestamp": "2026-05-20T16:41:41.683790+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:eval_llama_rsft_s44_no_evidence]:\n实验 eval_llama_rsft_s44_no_evidence complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-004017"
+        },
+        {
+          "source_line": 4018,
+          "timestamp": "2026-05-20T16:41:55.119823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval_llama_rsft_s44_no_evidence'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-004018"
+        },
+        {
+          "source_line": 4019,
+          "timestamp": "2026-05-20T16:41:56.074809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8048}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 954
+          },
+          "id": "event-004019"
+        },
+        {
+          "source_line": 4020,
+          "timestamp": "2026-05-20T16:41:56.075224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "eval_llama_rsft_s44_no_evidence",
+              "project": "faith-evidence-ie",
+              "n": "30"
+            }
+          },
+          "id": "event-004020"
+        },
+        {
+          "source_line": 4021,
+          "timestamp": "2026-05-20T16:41:57.130598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-20 22:50:54,839 INFO Detected adapter at /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-20 22:50:54,839 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-20 22:50:55,680 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:50,  5.75it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:49,  5.89it/s]\\\\rLoading weights:   5%|▍         | 14/291 [00:00<00:06, 41.49it/s]\\\\rLoading weights:   9%|▉         | 27/291 [00:00<00:03, 67.82it/s]\\\\rLoading weights:  14%|█▎        | 40/291 [00:00<00:02, 86.04it/s]\\\\rLoading weights:  18%|█▊        | 51/291 [00:00<00:02, 89.19it/s]\\\\rLoading weights:  23%|██▎       | 67/291 [00:00<00:02, 108.03it/s]\\\\rLoading weights:  27%|██▋       | 79/291 [00:00<00:01, 107.18it/s]\\\\rLoading weights:  32%|███▏      | 94/291 [00:01<00:01, 114.88it/s]\\\\rLoading weights:  36%|███▋      | 106/291 [00:01<00:01, 105.41it/s]\\\\rLoading weights:  42%|████▏     | 121/291 [00:01<00:01, 116.98it/s]\\\\rLoading weights:  46%|████▌     | 134/291 [00:01<00:01, 114.54it/s]\\\\rLoading weights:  51%|█████     | 148/291 [00:01<00:01, 120.04it/s]\\\\rLoading weights:  55%|█████▌    | 161/291 [00:01<00:01, 115.08it/s]\\\\rLoading weights:  60%|██████    | 176/291 [00:01<00:00, 118.85it/s]\\\\rLoading weights:  65%|██████▍   | 189/291 [00:01<00:00, 117.27it/s]\\\\rLoading weights:  69%|██████▉   | 202/291 [00:02<00:00, 117.90it/s]\\\\rLoading weights:  74%|███████▎  | 214/291 [00:02<00:00, 112.66it/s]\\\\rLoading weights:  78%|███████▊  | 226/291 [00:02<00:00, 100.96it/s]\\\\rLoading weights:  85%|████████▍ | 247/291 [00:02<00:00, 125.55it/s]\\\\rLoading weights:  89%|████████▉ | 260/291 [00:02<00:00, 12\n…[truncated 6622 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1055
+          },
+          "id": "event-004021"
+        },
+        {
+          "source_line": 4022,
+          "timestamp": "2026-05-20T16:43:12.316586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "faith-evidence-ie",
+              "limit": "30",
+              "fields": "['status', 'conclusion', 'metrics', 'hypothesis']"
+            }
+          },
+          "id": "event-004022"
+        },
+        {
+          "source_line": 4023,
+          "timestamp": "2026-05-20T16:43:13.220830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s43_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s43 标准化 no-evidence eval。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax，与 s42 no-evidence eval 配对。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"migration_bjb2_to_westd\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"全量数据迁移 bjb2-12179 → westd-37389，207G 包含所有 adapters、基座模型、数据集、eval 结果。迁移完成后 4 GPU 并行恢复实验。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"d112_rsft_s44_ced_score\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D112 step 2: CED scoring + k=1 selection on SFT s44 generation candidates. 使用 NLI-DeBERTa 对 N=8 候选打分，format_w=0.2, f1_w=0.4, ced_w=0.4，top_k=1 筛选最优样本用于后续 RSFT 训练。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_scored\\\": 24216, \\\"selected_count\\\": 3014, \\\"selection_rate\\\": 0.124, \\\"mean_f1\\\": 0.676, \\\"mean_ced\\\": 0.676}}, \\\"d112_rsft_s44_generate\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D112 step1: 用 SFT s44 adapter (ign_f1=0.4734, 最强 seed) 生成 N=8 RSFT 候选。验证 RSFT pipeline 从强 SFT base 出发是否能进一步提升，决定 Claim 1 表述强度。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan017_14b_rsft_generate_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B RSFT 生成 resume (r3: 修正 adapter 路径指向 checkpoint-144)。从 doc 1873 继续生成剩余 1155 docs。r2 因 --sft_adapter 指向顶层目录而非 checkpoint-144 子目录失败。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_llama_sft_s42_no_evidence_std_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"标准化 LLaMA SFT s42 inference-time evidence tax 测量（r2: 修复 SCP 嵌套路径）。用同一 SFT adapter (sft_output_llama_3_1_8b) + --no_evidence flag 推理，与 with-evidence eval (ign_f1=0.5384) 直接对比。\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5219, \\\"f1\\\": 0.5311, \\\"ign_precision\\\": 0.542, \\\"ign_recall\\\": 0.5031, \\\"evi_f1_joint\\\": 0.0005, \\\"evi_f1_tp\\\": 0.0102, \\\"edcr\\\": 0.58, \\\"format_ok_rate\\\": 0.8873, \\\"n_truncated\\\": 219, \\\"n_predictions\\\": 16292, \\\"inference_time_seconds\\\": 6927.2}, \\\"conclusion\\\": \\\"success\\\"}, \\\"llama_sft_s44_train_eval_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\":\n…[truncated 9923 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 904
+          },
+          "id": "event-004023"
+        },
+        {
+          "source_line": 4024,
+          "timestamp": "2026-05-20T16:45:12.291364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] 审查报告 — eval_llama_rsft_s44_no_evidence\n\n**结论**: PASS\n\n### 发现\n\n- [info] **实验成功完成**：Ign-F1=0.5550, EXIT_CODE=0, Format OK=984/985 (99.9%)。配置合规（k=1 adapter, D076 协议, seed=42, GPU 3 白名单内）。\n\n- [info] **LLaMA RSFT 3-seed no-evidence 全部出齐，结果高度一致**：\n  - s42: 0.5526, s43: 0.5546, s44: 0.5550\n  - **Mean=55.41, std=0.13pp** — 比 with-evidence std (0.64pp) 窄 4.9×\n  - 这个发现有论文价值：evidence 生成本身引入了更多方差，no-evidence mode 下 RSFT 的 variance compression 更极端\n\n- [info] **RSFT evidence tax（3-seed 完整数据）**：\n  - s42: -1.88pp, s43: -1.16pp, s44: -0.37pp\n  - **Mean=-1.14pp, std=0.76pp**（全部为负 → evidence 一致性地提升 RSFT 性能）\n  - Tax 的方差来自 with-evidence 端而非 no-evidence 端\n\n- [info] EDCR 跨 seed 不稳定 (0/0.33/0.68)，但 Evi-F1(TP) 均 ≈0，属于分母接近零的数值噪声，不影响结论。\n\n### 注意\n\n- s44 tax 仅 -0.37pp，明显弱于 s42/s43。不影响\"方向一致\"的结论，但论文 Claim 3 在描述 LLaMA RSFT evidence tax 时需注意措辞——不宜说\"substantially benefits\"，\"consistently negative\"更准确。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-004024"
+        },
+        {
+          "source_line": 4025,
+          "timestamp": "2026-05-20T16:45:16.111120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3819
+          },
+          "id": "event-004025"
+        },
+        {
+          "source_line": 4026,
+          "timestamp": "2026-05-20T16:45:22.112339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "s44 SFT no-evi eval 约 20min 后完成，4.5min 后检查进度（同时 GPU 3 释放，看是否有新任务调度）",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004026"
+        },
+        {
+          "source_line": 4027,
+          "timestamp": "2026-05-20T16:45:22.213328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 16:50:00 (in 278s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 100
+          },
+          "id": "event-004027"
+        },
+        {
+          "source_line": 4028,
+          "timestamp": "2026-05-20T16:45:24.563939+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "s44 SFT no-evi 还在跑（约 20min 剩余），等它完成就能算完整的 SFT 3-seed evidence tax。设置 wakeup。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-004028"
+        }
+      ]
+    },
+    {
+      "number": 192,
+      "messages": [
+        {
+          "source_line": 4029,
+          "timestamp": "2026-05-20T16:45:25.036376+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:eval_llama_rsft_s44_no_evidence]:\n实验 eval_llama_rsft_s44_no_evidence complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-004029"
+        },
+        {
+          "source_line": 4030,
+          "timestamp": "2026-05-20T16:45:32.537526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "eval_llama_sft_s44_no_evidence",
+              "project": "faith-evidence-ie",
+              "n": "15"
+            }
+          },
+          "id": "event-004030"
+        },
+        {
+          "source_line": 4031,
+          "timestamp": "2026-05-20T16:45:33.392051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-004031"
+        },
+        {
+          "source_line": 4032,
+          "timestamp": "2026-05-20T16:45:34.097139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-20 22:50:45,447 INFO Detected adapter at /root/autodl-tmp/sft_output_llama_3_1_8b_s44, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-20 22:50:45,447 WARNING --sft_adapter not set but --base_model is non-default (/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B); assuming base is already merged.\\\", \\\"2026-05-20 22:50:45,447 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-20 22:50:46,232 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:38,  7.51it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:37,  7.61it/s]\\\\rLoading weights:   5%|▌         | 15/291 [00:00<00:05, 52.50it/s]\\\\rLoading weights:  11%|█         | 32/291 [00:00<00:02, 90.75it/s]\\\\rLoading weights:  17%|█▋        | 49/291 [00:00<00:02, 112.50it/s]\\\\rLoading weights:  22%|██▏       | 63/291 [00:00<00:01, 119.83it/s]\\\\rLoading weights:  26%|██▋       | 77/291 [00:00<00:01, 125.24it/s]\\\\rLoading weights:  32%|███▏      | 94/291 [00:00<00:01, 135.12it/s]\\\\rLoading weights:  37%|███▋      | 108/291 [00:01<00:01, 134.76it/s]\\\\rLoading weights:  42%|████▏     | 122/291 [00:01<00:01, 135.17it/s]\\\\rLoading weights:  48%|████▊     | 139/291 [00:01<00:01, 141.05it/s]\\\\rLoading weights:  53%|█████▎    | 154/291 [00:01<00:00, 138.81it/s]\\\\rLoading weights:  58%|█████▊    | 168/291 [00:01<00:00, 134.92it/s]\\\\rLoading weights:  63%|██████▎   | 182/291 [00:01<00:00, 125.39it/s]\\\\rLoading weights:  70%|██████▉   | 203/291 [00:01<00:00, 145.80it/s]\\\\rLoading weights:  76%|███████▌  | 220/291 [00:01<00:00, 147.98it/s]\\\\rLoading weights:  81%|████████  | 235/291 [00:01<00:00, 144.72it/s]\\\\rLoading weights:  86%|████████▌ | 250/291 [00:02<00:00, 139.69it/s]\\\\rLoading weights:  9\n…[truncated 6557 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1559
+          },
+          "id": "event-004032"
+        },
+        {
+          "source_line": 4033,
+          "timestamp": "2026-05-20T16:45:34.749912+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 91 %, 32503 MiB, 97887 MiB\\\\n1, 87 %, 18879 MiB, 97887 MiB\\\\n2, 91 %, 18879 MiB, 97887 MiB\\\\n3, 0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1357
+          },
+          "id": "event-004033"
+        },
+        {
+          "source_line": 4034,
+          "timestamp": "2026-05-20T16:45:47.657404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] GPU 3 空闲 — RSFT s44 no-evi 完成后尚未调度新任务。当前 GPU 2 的 s44 SFT no-evi 约 16min 后也将完成（218/247, 88%），届时 GPU 2+3 同时空闲。建议提前排队下一批任务。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-004034"
+        },
+        {
+          "source_line": 4035,
+          "timestamp": "2026-05-20T16:45:51.584082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3926
+          },
+          "id": "event-004035"
+        },
+        {
+          "source_line": 4036,
+          "timestamp": "2026-05-20T16:45:55.487413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "s44 SFT no-evi 约 16min 完成，4.5min 后检查进度保持 cache 热",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004036"
+        },
+        {
+          "source_line": 4037,
+          "timestamp": "2026-05-20T16:45:55.588411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 16:50:00 (in 245s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 100
+          },
+          "id": "event-004037"
+        },
+        {
+          "source_line": 4038,
+          "timestamp": "2026-05-20T16:45:57.723071+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态：\n- **GPU 0**: 91% — r4 14B gen 运行中\n- **GPU 1**: 87% — s43 r2 运行中\n- **GPU 2**: 91% — s44 SFT no-evi at **218/247 (88%)**，~16min 完成\n- **GPU 3**: **0%, 0MB — 空闲**（RSFT s44 完成后未调度新任务）\n\nGPU 3 空闲，提醒 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-004038"
+        }
+      ]
+    },
+    {
+      "number": 193,
+      "messages": [
+        {
+          "source_line": 4039,
+          "timestamp": "2026-05-20T16:45:58.217209+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342]:\nWorker worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "worker_done:worker_analysis_eval_llama_rsft_s44_no_evidence_20260520t164342"
+          },
+          "id": "event-004039"
+        },
+        {
+          "source_line": 4040,
+          "timestamp": "2026-05-20T16:46:05.916380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "eval_llama_sft_s44_no_evidence",
+              "project": "faith-evidence-ie",
+              "n": "10"
+            }
+          },
+          "id": "event-004040"
+        },
+        {
+          "source_line": 4041,
+          "timestamp": "2026-05-20T16:46:07.071745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-20 22:50:45,447 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"2026-05-20 22:50:46,232 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\", \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:38,  7.51it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:37,  7.61it/s]\\\\rLoading weights:   5%|▌         | 15/291 [00:00<00:05, 52.50it/s]\\\\rLoading weights:  11%|█         | 32/291 [00:00<00:02, 90.75it/s]\\\\rLoading weights:  17%|█▋        | 49/291 [00:00<00:02, 112.50it/s]\\\\rLoading weights:  22%|██▏       | 63/291 [00:00<00:01, 119.83it/s]\\\\rLoading weights:  26%|██▋       | 77/291 [00:00<00:01, 125.24it/s]\\\\rLoading weights:  32%|███▏      | 94/291 [00:00<00:01, 135.12it/s]\\\\rLoading weights:  37%|███▋      | 108/291 [00:01<00:01, 134.76it/s]\\\\rLoading weights:  42%|████▏     | 122/291 [00:01<00:01, 135.17it/s]\\\\rLoading weights:  48%|████▊     | 139/291 [00:01<00:01, 141.05it/s]\\\\rLoading weights:  53%|█████▎    | 154/291 [00:01<00:00, 138.81it/s]\\\\rLoading weights:  58%|█████▊    | 168/291 [00:01<00:00, 134.92it/s]\\\\rLoading weights:  63%|██████▎   | 182/291 [00:01<00:00, 125.39it/s]\\\\rLoading weights:  70%|██████▉   | 203/291 [00:01<00:00, 145.80it/s]\\\\rLoading weights:  76%|███████▌  | 220/291 [00:01<00:00, 147.98it/s]\\\\rLoading weights:  81%|████████  | 235/291 [00:01<00:00, 144.72it/s]\\\\rLoading weights:  86%|████████▌ | 250/291 [00:02<00:00, 139.69it/s]\\\\rLoading weights:  92%|█████████▏| 267/291 [00:02<00:00, 139.92it/s]\\\\rLoading weights:  98%|█████████▊| 284/291 [00:02<00:00, 136.47it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 127.73it/s]\\\", \\\"2026-05-20 22:50:49,721 INFO Loading LoRA adapter: /root/autodl-tmp/sft_output_llama_3_1_8b_s44\\\", \\\"2026-05-20 22:50:51,381 INFO Loaded 998 docu\n…[truncated 6557 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1155
+          },
+          "id": "event-004041"
+        },
+        {
+          "source_line": 4042,
+          "timestamp": "2026-05-20T16:46:19.880160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "s44 SFT no-evi 约 16min 完成，检查最终结果 + GPU 3 是否有新任务",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004042"
+        },
+        {
+          "source_line": 4043,
+          "timestamp": "2026-05-20T16:46:19.930967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 16:51:00 (in 280s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-004043"
+        },
+        {
+          "source_line": 4044,
+          "timestamp": "2026-05-20T16:46:27.824226+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "s44 SFT no-evi: 219/247 (89%), ~16min 完成。GPU 3 已空闲（RSFT s44 刚完成），等待调度新任务。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-004044"
+        }
+      ]
+    },
+    {
+      "number": 194,
+      "messages": [
+        {
+          "source_line": 4045,
+          "timestamp": "2026-05-20T16:51:54.302886+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diagnose_full-gpu-status-and-harvest_20260520T164923]:\nWorker worker_diagnose_full-gpu-status-and-harvest_20260520T164923 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-004045"
+        },
+        {
+          "source_line": 4046,
+          "timestamp": "2026-05-20T16:52:03.196532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-004046"
+        },
+        {
+          "source_line": 4047,
+          "timestamp": "2026-05-20T16:52:04.405001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "eval_llama_sft_s44_no_evidence",
+              "project": "faith-evidence-ie",
+              "n": "5"
+            }
+          },
+          "id": "event-004047"
+        },
+        {
+          "source_line": 4048,
+          "timestamp": "2026-05-20T16:52:04.606560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 92 %, 32503 MiB, 97887 MiB\\\\n1, 91 %, 18879 MiB, 97887 MiB\\\\n2, 89 %, 18879 MiB, 97887 MiB\\\\n3, 0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1410
+          },
+          "id": "event-004048"
+        },
+        {
+          "source_line": 4049,
+          "timestamp": "2026-05-20T16:52:05.211276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-20 22:50:51,381 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\", \\\"2026-05-20 22:50:51,608 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\", \\\"2026-05-20 22:50:51,728 INFO Prepared 985 eval documents, 12275 gold triples\\\", \\\"\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s][transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.\\\", \\\"\\\\rInference:   0%|          | 1/247 [00:34<2:21:52, 34.60s/it]\\\\rInference:   1%|          | 2/247 [01:08<2:19:03, 34.06s/it]\\\\rInference:   1%|          | 3/247 [01:41<2:17:09, 33.73s/it]\\\\rInference:   2%|▏         | 4/247 [02:15<2:16:13, 33.64s/it]\\\\rInference:   2%|▏         | 5/247 [02:48<2:14:56, 33.46s/it]\\\\rInference:   2%|▏         | 6/247 [03:21<2:14:43, 33.54s/it]\\\\rInference:   3%|▎         | 7/247 [03:55<2:13:55, 33.48s/it]\\\\rInference:   3%|▎         | 8/247 [04:28<2:13:27, 33.50s/it]\\\\rInference:   4%|▎         | 9/247 [04:36<1:41:21, 25.55s/it]\\\\rInference:   4%|▍         | 10/247 [05:11<1:51:34, 28.25s/it]\\\\rInference:   4%|▍         | 11/247 [05:45<1:58:06, 30.03s/it]\\\\rInference:   5%|▍         | 12/247 [06:18<2:01:55, 31.13s/it]\\\\rInference:   5%|▌         | 13/247 [06:29<1:37:35, 25.03s/it]\\\\rInference:   6%|▌         | 14/247 [06:40<1:20:44, 20.79s/it]\\\\rInference:   6%|▌         | 15/247 [07:14<1:35:05, 24.59s/it]\\\\rInference:   6%|▋         | 16/247 [07:42<1:38:41, 25.63s/it]\\\\rInference:   7%|▋         | 17/247 [08:16<1:47:44, 28.11s/it]\\\\rInference:   7%|▋         | 18/247 [08:50<1:54:23, 29.97s/it]\\\\rInference:   8%|▊\n…[truncated 6547 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 806
+          },
+          "id": "event-004049"
+        },
+        {
+          "source_line": 4050,
+          "timestamp": "2026-05-20T16:52:16.021106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "s44 SFT no-evi 约 10min 完成，等结果出来审计 LLaMA SFT 3-seed evidence tax",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004050"
+        },
+        {
+          "source_line": 4051,
+          "timestamp": "2026-05-20T16:52:16.073413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 16:57:00 (in 284s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 52
+          },
+          "id": "event-004051"
+        },
+        {
+          "source_line": 4052,
+          "timestamp": "2026-05-20T16:52:18.457150+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "s44 SFT no-evi: 230/247 (93%), ~10min 完成。GPU 3 仍空闲。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-004052"
+        }
+      ]
+    },
+    {
+      "number": 195,
+      "messages": [
+        {
+          "source_line": 4053,
+          "timestamp": "2026-05-20T17:03:28.332701+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_harvest_eval-llama-sft-s44-no-evidence_20260520T170140]:\nWorker worker_harvest_eval-llama-sft-s44-no-evidence_20260520T170140 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-004053"
+        },
+        {
+          "source_line": 4054,
+          "timestamp": "2026-05-20T17:03:42.288400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "eval_llama_sft_s44_no_evidence",
+              "project": "faith-evidence-ie",
+              "n": "20"
+            }
+          },
+          "id": "event-004054"
+        },
+        {
+          "source_line": 4055,
+          "timestamp": "2026-05-20T17:03:42.841420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval_llama_sft_s44_no_evidence'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-004055"
+        },
+        {
+          "source_line": 4056,
+          "timestamp": "2026-05-20T17:03:43.545651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-20 22:50:51,728 INFO Prepared 985 eval documents, 12275 gold triples\\\", \\\"\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s][transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.\\\", \\\"\\\\rInference:   0%|          | 1/247 [00:34<2:21:52, 34.60s/it]\\\\rInference:   1%|          | 2/247 [01:08<2:19:03, 34.06s/it]\\\\rInference:   1%|          | 3/247 [01:41<2:17:09, 33.73s/it]\\\\rInference:   2%|▏         | 4/247 [02:15<2:16:13, 33.64s/it]\\\\rInference:   2%|▏         | 5/247 [02:48<2:14:56, 33.46s/it]\\\\rInference:   2%|▏         | 6/247 [03:21<2:14:43, 33.54s/it]\\\\rInference:   3%|▎         | 7/247 [03:55<2:13:55, 33.48s/it]\\\\rInference:   3%|���         | 8/247 [04:28<2:13:27, 33.50s/it]\\\\rInference:   4%|▎         | 9/247 [04:36<1:41:21, 25.55s/it]\\\\rInference:   4%|▍         | 10/247 [05:11<1:51:34, 28.25s/it]\\\\rInference:   4%|▍         | 11/247 [05:45<1:58:06, 30.03s/it]\\\\rInference:   5%|▍         | 12/247 [06:18<2:01:55, 31.13s/it]\\\\rInference:   5%|▌         | 13/247 [06:29<1:37:35, 25.03s/it]\\\\rInference:   6%|▌         | 14/247 [06:40<1:20:44, 20.79s/it]\\\\rInference:   6%|▌         | 15/247 [07:14<1:35:05, 24.59s/it]\\\\rInference:   6%|▋         | 16/247 [07:42<1:38:41, 25.63s/it]\\\\rInference:   7%|▋         | 17/247 [08:16<1:47:44, 28.11s/it]\\\\rInference:   7%|▋         | 18/247 [08:50<1:54:23, 29.97s/it]\\\\rInference:   8%|▊         | 19/247 [09:24<1:58:10, 31.10s/it]\\\\rInference:   8%|▊         | 20/247 [09:46<1:47:49, 28.50s/it]\\\\rInference:   9%|▊         | 21/247 [10:20<1:53:19, 30.09s/it]\\\\rInference:   9%|▉         | 22/247 [10:54<1:5\n…[truncated 6605 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1257
+          },
+          "id": "event-004056"
+        },
+        {
+          "source_line": 4057,
+          "timestamp": "2026-05-20T17:03:44.300456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1459
+          },
+          "id": "event-004057"
+        },
+        {
+          "source_line": 4058,
+          "timestamp": "2026-05-20T17:04:54.608806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: critical] 审查报告 — eval_llama_sft_s44_no_evidence\n\n**结论**: CRITICAL — 结果严重异常，不可直接用于 evidence tax 计算\n\n### 发现\n\n- [critical] **Ign-F1 = 0.3326，远低于预期**：\n  - s42 SFT no-evi: 0.5219 (tax=-1.65pp)\n  - s44 SFT with-evi: 0.4802\n  - s44 SFT no-evi: **0.3326** (tax=-14.76pp)\n  - 这是一个量级差异——s42 的 evidence tax 仅 -1.65pp，s44 的 tax 达 -14.76pp\n\n- [critical] **截断率异常：41.7% (411/985)**，远超同系列：\n  - s42 SFT no-evi: 22.2% (219/985)\n  - s44 SFT with-evi: 24.4% (240/985)\n  - **s44 no-evi 截断率几乎翻倍**，说明模型去掉 evidence 约束后生成了极长冗余输出\n\n- [critical] **预测数暴跌：9926** (s42 为 16292，降 39%)，大量 TP 被截断丢失导致 recall 崩塌\n\n- [info] Format OK: 94.5% — 反而高于 s42 的 88.7%，format 不是问题\n- [info] EXIT_CODE=0，实验本身正常完成，不是 timeout/crash\n\n### 分析\n\ns44 SFT 本身就是 3 seed 中最弱的（with-evi ign_f1=0.4802 vs s42=0.5384, s43=0.5142），且 with-evi 截断率已偏高（24.4%）。在 no-evidence 模式下，缺少 evidence 生成的结构约束，s44 adapter 的输出冗长问题被放大，截断率从 24.4% → 41.7%，导致性能崩塌。\n\n这可能是真实的 seed-specific 效应（弱 SFT adapter 在 no-evidence 模式下更不稳定），而非 bug。但结论需要验证。\n\n### 建议\n\n1. **用 max_new_tokens=2048 重跑 s44 SFT no-evi**，排除截断伪影（类似 plan019_1_7b_rsft_no_evidence_eval_2048 的方法）\n2. 如果 2048 版本的 ign_f1 恢复到 ~0.47-0.52 区间 → 确认是截断 artifact\n3. 如果 2048 版本仍然低 → 确认 s44 SFT 确实在 no-evi mode 存在严重退化，可考虑论文中作为 outlier 讨论\n4. **在重跑验证前，SFT 3-seed evidence tax 统计量暂不可用**——如果直接用 0.3326，将严重扭曲 mean 和 std",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-004058"
+        },
+        {
+          "source_line": 4059,
+          "timestamp": "2026-05-20T17:04:58.290248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3681
+          },
+          "id": "event-004059"
+        },
+        {
+          "source_line": 4060,
+          "timestamp": "2026-05-20T17:05:05.432912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-004060"
+        },
+        {
+          "source_line": 4061,
+          "timestamp": "2026-05-20T17:05:05.936460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 85 %, 32503 MiB, 97887 MiB\\\\n1, 92 %, 18879 MiB, 97887 MiB\\\\n2, 0 %, 0 MiB, 97887 MiB\\\\n3, 0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-004061"
+        },
+        {
+          "source_line": 4062,
+          "timestamp": "2026-05-20T17:05:17.991670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "GPU 2/3 空闲，监控是否被调度新任务；s43 r2 和 r4 gen 继续运行中",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004062"
+        },
+        {
+          "source_line": 4063,
+          "timestamp": "2026-05-20T17:05:18.093453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 17:10:00 (in 282s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 101
+          },
+          "id": "event-004063"
+        },
+        {
+          "source_line": 4064,
+          "timestamp": "2026-05-20T17:05:20.473921+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 2 和 3 均已空闲。GPU 0 (r4 gen) 和 GPU 1 (s43 r2) 仍在跑。等待 Director 调度新任务到空闲 GPU。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-004064"
+        }
+      ]
+    },
+    {
+      "number": 196,
+      "messages": [
+        {
+          "source_line": 4065,
+          "timestamp": "2026-05-20T17:08:02.022679+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_14b-ced-scoring-prep_20260520T170537]:\nWorker worker_code_14b-ced-scoring-prep_20260520T170537 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-004065"
+        },
+        {
+          "source_line": 4066,
+          "timestamp": "2026-05-20T17:08:15.080555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-004066"
+        },
+        {
+          "source_line": 4067,
+          "timestamp": "2026-05-20T17:08:16.489414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 92 %, 32503 MiB, 97887 MiB\\\\n1, 91 %, 18879 MiB, 97887 MiB\\\\n2, 91 %, 18879 MiB, 97887 MiB\\\\n3, 0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1408
+          },
+          "id": "event-004067"
+        },
+        {
+          "source_line": 4068,
+          "timestamp": "2026-05-20T17:08:21.511666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "faith-evidence-ie",
+              "limit": "10",
+              "fields": "['status', 'hypothesis', 'updated_at', 'server', 'spec']"
+            }
+          },
+          "id": "event-004068"
+        },
+        {
+          "source_line": 4069,
+          "timestamp": "2026-05-20T17:08:22.265608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s44_no_evidence_2048\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T17:07:32.687Z\\\", \\\"hypothesis\\\": \\\"Truncation 诊断：s44 SFT no-evi 截断率 41.7% (411/985) 远高于 s42 (22.2%)，导致 ign_f1=0.3326 异常低。用 max_new_tokens=2048（原 1024）重跑，验证低 ign_f1 是截断伪影还是真实 evidence dependency。如果 2048 版 ign_f1 恢复到 ~0.47-0.52 → 截断 artifact，论文用 2048 数据。\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=2 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s44 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s44_no_evidence_2048\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"40255\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_llama_sft_s44_no_evidence_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:07:29.962Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval_llama_sft_s43_no_evidence_r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T16:13:13.880Z\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s43 标准化 no-evidence eval（r2: 超时重试，timeout_hours 从 2h 提高到 3h）。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --no_evidence --output_dir /root/autodl-tmp\n…[truncated 1398 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 753
+          },
+          "id": "event-004069"
+        },
+        {
+          "source_line": 4070,
+          "timestamp": "2026-05-20T17:08:44.104448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "监控 GPU 3 是否分配新任务，s43 r2 约 1h 后完成",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004070"
+        },
+        {
+          "source_line": 4071,
+          "timestamp": "2026-05-20T17:08:44.205440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 17:13:00 (in 256s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 100
+          },
+          "id": "event-004071"
+        },
+        {
+          "source_line": 4072,
+          "timestamp": "2026-05-20T17:08:46.250492+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Director 已迅速响应我的建议，在 GPU 2 启动了 `eval_llama_sft_s44_no_evidence_2048`（max_new_tokens=2048）。配置审计：\n\n- Adapter: `sft_output_llama_3_1_8b_s44` ✓（与 1024 版一致）\n- base_model: Meta-Llama-3.1-8B ✓\n- max_new_tokens: **2048** ✓\n- seed=42, batch_size=4, --no-quantize, --no_evidence ✓（D076）\n- GPU: cuda:2 ✓（白名单内）\n\n当前状态：\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| 0 | r4 14B gen | 运行中 |\n| 1 | s43 r2 no-evi | 运行中（~1-1.5h 完成） |\n| 2 | s44 SFT no-evi 2048 | **刚启动** |\n| 3 | **空闲** | 等待调度 |"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-004072"
+        }
+      ]
+    },
+    {
+      "number": 197,
+      "messages": [
+        {
+          "source_line": 4073,
+          "timestamp": "2026-05-20T17:40:46.180562+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\n**对齐请求：s44 SFT no-evi 2048 决策树**\n\n已安排 eval_llama_sft_s44_no_evidence_2048（cuda:2）和 eval_llama_sft_s42_no_evidence_2048（cuda:3）做 matched comparison。请审查以下决策树，确认是否遗漏分支：\n\n**Branch A: s44_2048 ign_f1 ≈ 0.47-0.52（恢复到 with-evi 水平附近）**\n→ 截断是 primary cause，s44 真实 tax 远小于 -12.62pp\n→ 论文统一用 2048 版 no-evi 数据报 3-seed SFT evidence tax\n→ D136 \"RSFT 压缩 tax 方差 10×\" 需用 2048 数据重算，预计 variance 缩小但 RSFT 仍更稳定\n→ 额外发现：SFT no-evi 对 max_new_tokens 敏感（截断伪影），RSFT 不敏感（format compliance 99.9% + 更短输出）\n\n**Branch B: s44_2048 ign_f1 ≈ 0.33-0.40（仍然低）**\n→ 真实 seed-specific evidence dependency，不是截断 artifact\n→ D136 叙事成立：弱 SFT seed 真实依赖 evidence 作为结构化约束\n→ 论文可直接报，讨论 seed-specific vulnerability\n\n**Branch C: s44_2048 ign_f1 ≈ 0.40-0.47（部分恢复）**\n→ 截断是部分原因但不是全部\n→ 真实 tax 仍然大（约 -3 到 -8pp），seed instability 确认但量级缩小\n→ 报 2048 版数据，讨论截断 + seed-specific 两个因素\n\n**交叉验证：s42_2048 vs s42_1024**\n→ 如果 s42 差异 < 1pp → 确认 s42 不受截断影响，问题确实是 s44-specific\n→ 如果 s42 也有显著变化 → 所有 seed 的 1024 版都有截断 bias，必须全部用 2048\n\n请确认这个决策树是否完备，以及是否有你认为需要额外检查的点。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-004073"
+        },
+        {
+          "source_line": 4074,
+          "timestamp": "2026-05-20T17:40:52.618406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "faith-evidence-ie",
+              "limit": "10",
+              "fields": "['status', 'hypothesis', 'spec']"
+            }
+          },
+          "id": "event-004074"
+        },
+        {
+          "source_line": 4075,
+          "timestamp": "2026-05-20T17:40:53.527681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s44_no_evidence_2048\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Truncation 诊断：s44 SFT no-evi 截断率 41.7% (411/985) 远高于 s42 (22.2%)，导致 ign_f1=0.3326 异常低。用 max_new_tokens=2048（原 1024）重跑，验证低 ign_f1 是截断伪影还是真实 evidence dependency。如果 2048 版 ign_f1 恢复到 ~0.47-0.52 → 截断 artifact，论文用 2048 数据。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=2 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s44 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s44_no_evidence_2048\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"40255\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_llama_sft_s44_no_evidence_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:07:29.962Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval_llama_sft_s43_no_evidence_r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s43 标准化 no-evidence eval（r2: 超时重试，timeout_hours 从 2h 提高到 3h）。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"363\n…[truncated 1176 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 909
+          },
+          "id": "event-004075"
+        },
+        {
+          "source_line": 4076,
+          "timestamp": "2026-05-20T17:41:23.790414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'plan019_1_7b_rsft_no_evidence_eval_2048'}",
+              "project": "faith-evidence-ie",
+              "fields": "['metrics', 'conclusion']"
+            }
+          },
+          "id": "event-004076"
+        },
+        {
+          "source_line": 4077,
+          "timestamp": "2026-05-20T17:41:25.298856+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4915}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1508
+          },
+          "id": "event-004077"
+        },
+        {
+          "source_line": 4078,
+          "timestamp": "2026-05-20T17:41:56.870618+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] 决策树审查 — s44 SFT no-evi 2048 分支分析\n\n**总体评估**：决策树三主分支 + s42 交叉验证结构合理，覆盖了主要情形。以下是遗漏的分支和风险：\n\n### 1. [warning] 2048 可能不够——1.7B 先例\n\nplan019_1_7b_rsft_no_evidence_eval_2048 的数据：1024 截断 59.2% → 2048 截断 57.7%（几乎没改善），ign_f1 仍然低（0.4344），evidence tax 仍 -7.75pp。\n\n如果 s44 SFT 是类似的\"冗长输出\"模型，2048 可能同样无法有效降低截断。**建议：如果 s44_2048 截断率仍 >30%，需要考虑 3072 或 4096 作为第三步诊断，或直接确认为真实 seed-specific 效应（Branch B）。** 决策树缺少这个\"2048 仍然截断严重\"的子分支。\n\n### 2. [warning] 审稿人攻击面：no-evi 用 2048 vs with-evi 用 1024\n\n如果 Branch A 成立（统一用 2048），论文的 evidence tax = ign_f1(no_evi, 2048) - ign_f1(with_evi, 1024)。审稿人会问：**\"性能差异是因为 removed evidence 还是因为 double output budget？\"** 即使 with-evi 截断率低（~20-24%），这个方法论不对称仍是一个攻击点。\n\n**建议**：\n- Branch A 成立时，应同时报 with-evi 的 2048 版作为 robustness check（或至少检查 with-evi 在 2048 下的变化 <1pp 来证明 1024 对 with-evi 已经 sufficient）\n- 或者在论文中明确报告两种 max_new_tokens 下的结果，证明 with-evi 对 token limit 不敏感\n\n### 3. [info] s43 也需要 2048 的条件路径\n\n决策树隐含了\"如果 s42_2048 变化大 → 全部重跑 2048\"。但 s43 r2 当前在跑 1024 版。如果 s42 交叉验证触发\"全部 2048\"，s43 r2 的结果就作废了——需要重跑 s43_2048。**建议在 s42_2048 结果出来前暂不以 s43_1024 结果做最终 tax 计算。**\n\n### 4. [info] RSFT 不需要 2048 重跑\n\nRSFT no-evi 3 seed 截断率一致（18.1-19.3%），format OK ≥99.8%，ign_f1 std=0.13pp。截断问题是 SFT-specific，RSFT 不需要重跑。这本身就是一个有力发现——RSFT 的 format compliance 天然防止了截断伪影。\n\n### 5. [info] s42_2048 降低的可能性\n\n决策树假设 2048 只会持平或提升。理论上 2048 可能让模型生成更多 noise/hallucinated relations，导致 precision 下降。虽然不太可能，但如果 s42_2048 < s42_1024 - 1pp，说明长输出引入了 FP 噪声——这需要单独分析。\n\n### 决策树完备性评分：8/10\n\n主框架正确，上述 #1 和 #2 是实质性遗漏，需要补入。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-004078"
+        },
+        {
+          "source_line": 4079,
+          "timestamp": "2026-05-20T17:42:00.438917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3568
+          },
+          "id": "event-004079"
+        },
+        {
+          "source_line": 4080,
+          "timestamp": "2026-05-20T17:42:04.535037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-004080"
+        },
+        {
+          "source_line": 4081,
+          "timestamp": "2026-05-20T17:42:05.740861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 91 %, 32503 MiB, 97887 MiB\\\\n1, 90 %, 18879 MiB, 97887 MiB\\\\n2, 93 %, 18879 MiB, 97887 MiB\\\\n3, 91 %, 18879 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1205
+          },
+          "id": "event-004081"
+        },
+        {
+          "source_line": 4082,
+          "timestamp": "2026-05-20T17:42:11.386749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "4 GPU 满载，等 s43 r2 完成（约 45min 后）和 2048 诊断实验推进",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004082"
+        },
+        {
+          "source_line": 4083,
+          "timestamp": "2026-05-20T17:42:11.437397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 17:46:00 (in 229s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-004083"
+        },
+        {
+          "source_line": 4084,
+          "timestamp": "2026-05-20T17:42:14.804273+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 GPU 全满载。GPU 3 已被调度（91%，18.9GB）——大概率是 s42_2048 eval。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-004084"
+        }
+      ]
+    },
+    {
+      "number": 198,
+      "messages": [
+        {
+          "source_line": 4085,
+          "timestamp": "2026-05-20T18:08:34.355415+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:plan017_14b_rsft_generate_r4]:\n实验 plan017_14b_rsft_generate_r4 complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-004085"
+        },
+        {
+          "source_line": 4086,
+          "timestamp": "2026-05-20T18:08:45.246847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'plan017_14b_rsft_generate_r4'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-004086"
+        },
+        {
+          "source_line": 4087,
+          "timestamp": "2026-05-20T18:08:45.849928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "plan017_14b_rsft_generate_r4",
+              "project": "faith-evidence-ie",
+              "n": "30"
+            }
+          },
+          "id": "event-004087"
+        },
+        {
+          "source_line": 4088,
+          "timestamp": "2026-05-20T18:08:46.102271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8363}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 855
+          },
+          "id": "event-004088"
+        },
+        {
+          "source_line": 4089,
+          "timestamp": "2026-05-20T18:08:47.458216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"Generating:  21%|██        | 100/474 [33:06<2:06:17, 20.26s/it]\\\", \\\"[RSFT Monitor] Docs 1-101 (101 docs, 808 generations):\\\", \\\"  format_ok_rate: 100.0%\\\", \\\"  truncation_rate: 6.1%\\\", \\\"  mean_diversity: 7.1/8\\\", \\\"\\\", \\\"\\\\rGenerating:  21%|██▏       | 101/474 [33:23<2:00:34, 19.40s/it]\\\\rGenerating:  22%|██▏       | 102/474 [33:34<1:43:41, 16.72s/it]\\\\rGenerating:  22%|██▏       | 103/474 [34:04<2:09:01, 20.87s/it]\\\\rGenerating:  22%|██▏       | 104/474 [34:14<1:48:24, 17.58s/it]\\\\rGenerating:  22%|██▏       | 105/474 [34:27<1:38:27, 16.01s/it]\\\\rGenerating:  22%|██▏       | 106/474 [34:37<1:28:10, 14.38s/it]\\\\rGenerating:  23%|██▎       | 107/474 [34:44<1:14:02, 12.11s/it]\\\\rGenerating:  23%|██▎       | 108/474 [35:06<1:32:37, 15.18s/it]\\\\rGenerating:  23%|██▎       | 109/474 [35:15<1:20:43, 13.27s/it]\\\\rGenerating:  23%|██▎       | 110/474 [35:26<1:16:17, 12.58s/it]\\\\rGenerating:  23%|██▎       | 111/474 [35:59<1:53:40, 18.79s/it]\\\\rGenerating:  24%|██▎       | 112/474 [36:33<2:19:30, 23.12s/it]\\\\rGenerating:  24%|██▍       | 113/474 [36:38<1:46:43, 17.74s/it]\\\\rGenerating:  24%|██▍       | 114/474 [37:11<2:14:41, 22.45s/it]\\\\rGenerating:  24%|██▍       | 115/474 [37:33<2:12:54, 22.21s/it]\\\\rGenerating:  24%|██▍       | 116/474 [37:59<2:18:56, 23.29s/it]\\\\rGenerating:  25%|██▍       | 117/474 [38:09<1:55:27, 19.40s/it]\\\\rGenerating:  25%|██▍       | 118/474 [38:24<1:47:35, 18.13s/it]\\\\rGenerating:  25%|██▌       | 119/474 [38:35<1:33:43, 15.84s/it]\\\\rGenerating:  25%|██▌       | 120/474 [38:55<1:40:26, 17.03s/it]\\\\rGenerating:  26%|██▌       | 121/474 [39:15<1:46:59, 18.19s/it]\\\\rGenerating:  26%|██▌       | 122/474 [39:48<2:12:37, 22.61s/it]\\\\rGenerating:  26%|██▌       | 123/474 [40:01<1:54:53, 19.64s/it]\\\\rGenerating:  26%|██▌       | 124/474 [40:18<1:50:23, 18.92s/it]\\\\rGenerating:  26%|██▋       | 125/474 [40:31<1:39:39, 17.13s/it]\\\\rGenerating:  27%|██▋       | 126/474 [40:45<1:33:38, 16.15s/it]\\\\rGe\n…[truncated 6577 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1608
+          },
+          "id": "event-004089"
+        },
+        {
+          "source_line": 4090,
+          "timestamp": "2026-05-20T18:09:00.121419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "wc -l /root/autodl-tmp/rsft_generations_14b/generations.jsonl"
+            }
+          },
+          "id": "event-004090"
+        },
+        {
+          "source_line": 4091,
+          "timestamp": "2026-05-20T18:09:00.630845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "stat /root/autodl-tmp/rsft_generations_14b/generations.jsonl"
+            }
+          },
+          "id": "event-004091"
+        },
+        {
+          "source_line": 4092,
+          "timestamp": "2026-05-20T18:09:00.686680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"24216 /root/autodl-tmp/rsft_generations_14b/generations.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 565
+          },
+          "id": "event-004092"
+        },
+        {
+          "source_line": 4093,
+          "timestamp": "2026-05-20T18:09:01.206576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/rsft_generations_14b/generations.jsonl\\\\n  Size: 225955326 \\\\tBlocks: 441320     IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 2155271157  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 02:07:01.463909136 +0800\\\\nModify: 2026-05-21 02:07:01.459909150 +0800\\\\nChange: 2026-05-21 02:07:01.459909150 +0800\\\\n Birth: 2026-05-20 23:15:44.562170958 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 575
+          },
+          "id": "event-004093"
+        },
+        {
+          "source_line": 4094,
+          "timestamp": "2026-05-20T18:09:20.157438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] 审查报告 — plan017_14b_rsft_generate_r4\n\n**结论**: PASS\n\n### 发现\n\n- [info] **14B RSFT 生成全量完成**：24216 行 = 3027 × 8，文件完整，Inode 正常（无 ghost file 复发）。\n- [info] 质量指标优秀：format compliance 100%，diversity 7.28/8，truncation 仅 6.1%。\n- [info] Ghost file recovery 成功验证：Birth=23:15 (recovery), Modify=02:07 (r4 完成)，文件连续写入无中断。\n- [info] **GPU 0 已释放**。14B pipeline 可进入 Step 2 (CED scoring)。CED scoring 需要 NLI-DeBERTa 模型，占用显存较小，可与其他 eval 共存。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-004094"
+        },
+        {
+          "source_line": 4095,
+          "timestamp": "2026-05-20T18:09:24.365870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4208
+          },
+          "id": "event-004095"
+        },
+        {
+          "source_line": 4096,
+          "timestamp": "2026-05-20T18:09:29.971564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "GPU 0 释放，监控是否安排 14B CED scoring；s43 r2 约 30min 后完成",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004096"
+        },
+        {
+          "source_line": 4097,
+          "timestamp": "2026-05-20T18:09:30.022215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 18:14:00 (in 270s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-004097"
+        },
+        {
+          "source_line": 4098,
+          "timestamp": "2026-05-20T18:09:33.310857+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 释放。当前 3 GPU 运行中（GPU 1/2/3），GPU 0 空闲等待调度。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-004098"
+        }
+      ]
+    },
+    {
+      "number": 199,
+      "messages": [
+        {
+          "source_line": 4099,
+          "timestamp": "2026-05-20T18:11:24.581709+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analyze_plan017_14b_rsft_generate_r4_20260520T180958]:\nWorker worker_analyze_plan017_14b_rsft_generate_r4_20260520T180958 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-004099"
+        },
+        {
+          "source_line": 4100,
+          "timestamp": "2026-05-20T18:11:35.424722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-004100"
+        },
+        {
+          "source_line": 4101,
+          "timestamp": "2026-05-20T18:11:36.632052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 60 %, 1495 MiB, 97887 MiB\\\\n1, 91 %, 18879 MiB, 97887 MiB\\\\n2, 92 %, 18879 MiB, 97887 MiB\\\\n3, 91 %, 18879 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1207
+          },
+          "id": "event-004101"
+        },
+        {
+          "source_line": 4102,
+          "timestamp": "2026-05-20T18:11:44.010567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "faith-evidence-ie",
+              "limit": "10",
+              "fields": "['status', 'hypothesis', 'updated_at', 'spec']"
+            }
+          },
+          "id": "event-004102"
+        },
+        {
+          "source_line": 4103,
+          "timestamp": "2026-05-20T18:11:45.417056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan017_14b_ced_scoring\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T18:10:20.243Z\\\", \\\"hypothesis\\\": \\\"14B RSFT CED scoring: 用 NLI-DeBERTa 对 24216 条 14B generation candidates 打分，top_k=1 筛选最优候选。预期产出 ~3000+ 训练样本。与 4B CED scoring (selected avg f1=0.676, 3014 docs) 对比。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=0 bash scripts/plan017/step2_ced_score_14b.sh\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"44419\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan017_14b_ced_scoring.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T18:10:17.337Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval_llama_sft_s42_no_evidence_2048\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T17:41:26.005Z\\\", \\\"hypothesis\\\": \\\"方法论一致性：s42 SFT no-evi 用 max_new_tokens=2048 重跑，与 s44 2048 版 matched comparison。原 1024 版 s42 format_ok=88.7% (874/985)，fair tax=+1.35pp。2048 版验证截断对 s42 的影响程度，确保 3-seed evidence tax 在相同条件下比较。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=3 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s42_no_evidence_2048\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"42346\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_llama_sft_s42_no_evidence_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:41:22.540Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval_llama_sft_s44_no_evidence_2048\\\": {\n…[truncated 2331 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1406
+          },
+          "id": "event-004103"
+        },
+        {
+          "source_line": 4104,
+          "timestamp": "2026-05-20T18:11:57.069008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "s43 r2 约 10-20min 完成，监控结果；CED scoring 进度",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004104"
+        },
+        {
+          "source_line": 4105,
+          "timestamp": "2026-05-20T18:11:57.119818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 18:16:00 (in 243s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-004105"
+        },
+        {
+          "source_line": 4106,
+          "timestamp": "2026-05-20T18:11:59.620478+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 GPU 满载，白名单全部合规：\n\n| GPU | 实验 | 已运行 | 预计剩余 |\n|-----|------|--------|---------|\n| 0 | 14B CED scoring | 刚启动 | NLI-DeBERTa 轻量任务 |\n| 1 | s43 r2 no-evi (1024) | ~2h | ~10-20min |\n| 2 | s44 2048 no-evi | ~1h | ~1.5-2h |\n| 3 | s42 2048 no-evi | ~30min | ~2h |\n\ns43 r2 应该快完成了。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-004106"
+        }
+      ]
+    },
+    {
+      "number": 200,
+      "messages": [
+        {
+          "source_line": 4107,
+          "timestamp": "2026-05-20T18:24:26.995470+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:eval_llama_sft_s43_no_evidence_r2]:\n实验 eval_llama_sft_s43_no_evidence_r2 complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-004107"
+        },
+        {
+          "source_line": 4108,
+          "timestamp": "2026-05-20T18:24:36.743834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "eval_llama_sft_s43_no_evidence_r2",
+              "project": "faith-evidence-ie",
+              "n": "20"
+            }
+          },
+          "id": "event-004108"
+        },
+        {
+          "source_line": 4109,
+          "timestamp": "2026-05-20T18:24:37.950296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-21 00:13:21,265 INFO Prepared 985 eval documents, 12275 gold triples\\\", \\\"\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s][transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.\\\", \\\"\\\\rInference:   0%|          | 1/247 [00:34<2:22:07, 34.67s/it]\\\\rInference:   1%|          | 2/247 [01:08<2:20:41, 34.46s/it]\\\\rInference:   1%|          | 3/247 [01:42<2:19:11, 34.23s/it]\\\\rInference:   2%|▏         | 4/247 [02:00<1:51:41, 27.58s/it]\\\\rInference:   2%|▏         | 5/247 [02:33<1:59:48, 29.71s/it]\\\\rInference:   2%|▏         | 6/247 [03:07<2:04:59, 31.12s/it]\\\\rInference:   3%|▎         | 7/247 [03:41<2:07:37, 31.90s/it]\\\\rInference:   3%|���         | 8/247 [04:14<2:09:07, 32.42s/it]\\\\rInference:   4%|▎         | 9/247 [04:47<2:09:29, 32.64s/it]\\\\rInference:   4%|▍         | 10/247 [05:22<2:10:50, 33.12s/it]\\\\rInference:   4%|▍         | 11/247 [05:55<2:11:02, 33.31s/it]\\\\rInference:   5%|▍         | 12/247 [06:29<2:10:31, 33.32s/it]\\\\rInference:   5%|▌         | 13/247 [07:02<2:10:17, 33.41s/it]\\\\rInference:   6%|▌         | 14/247 [07:36<2:10:30, 33.61s/it]\\\\rInference:   6%|▌         | 15/247 [08:10<2:09:48, 33.57s/it]\\\\rInference:   6%|▋         | 16/247 [08:33<1:57:08, 30.43s/it]\\\\rInference:   7%|▋         | 17/247 [09:07<2:00:45, 31.50s/it]\\\\rInference:   7%|▋         | 18/247 [09:41<2:03:25, 32.34s/it]\\\\rInference:   8%|▊         | 19/247 [10:15<2:04:37, 32.80s/it]\\\\rInference:   8%|▊         | 20/247 [10:49<2:04:52, 33.01s/it]\\\\rInference:   9%|▊         | 21/247 [11:22<2:05:16, 33.26s/it]\\\\rInference:   9%|▉         | 22/247 [11:56<2:0\n…[truncated 6608 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1206
+          },
+          "id": "event-004109"
+        },
+        {
+          "source_line": 4110,
+          "timestamp": "2026-05-20T18:25:32.557539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: critical] 审查报告 — eval_llama_sft_s43_no_evidence_r2 + SFT no-evi 系统性问题\n\n**结论**: CRITICAL — SFT no-evi 1024 数据系统性不可靠\n\n### 发现\n\n- [critical] **s43 结果与 s44 同样异常**：Ign-F1=0.3391, 截断率 38.4% (378/985), format_ok=84.8%。这确认**截断问题是系统性的，不是 s44-specific outlier**。\n\n- [critical] **SFT no-evi (1024) 3-seed 全貌**：\n  | Seed | Ign-F1 | Truncated | Format OK |\n  |------|--------|-----------|-----------|\n  | s42 | 0.5219 | 22.2% | 88.7% |\n  | s43 | 0.3391 | 38.4% | 84.8% |\n  | s44 | 0.3326 | 41.7% | 94.5% |\n  \n  s42 是唯一\"正常\"的，但它也有最低的 format compliance (88.7%)。**2/3 seed 的 1024 no-evi 数据因截断严重损坏**。\n\n- [critical] **1024 数据不可用于 SFT evidence tax 计算**：如果用这些数据，SFT mean tax ≈ -9.5pp ± 7.5pp，完全被截断伪影主导。\n\n### 对决策树的更新\n\n1. **s44-specific 假设已被否决**：s43 也有相同问题，这是 SFT no-evi mode 的系统性冗长输出问题\n2. **2048 实验从\"诊断\"升级为\"必要\"**：不仅 s44 需要 2048，**s43 也需要 2048 重跑**\n3. s42 是否只是运气好（输出恰好短）？**s42_2048 交叉验证变得更加关键**——如果 s42_2048 ≈ s42_1024（差 <1pp），说明 s42 确实不受截断影响；如果差异大，则所有 1024 数据全部作废\n4. RSFT no-evi 3 seed 截断率一致（18.1-19.3%），**截断抗性是 RSFT 的结构性优势**——这本身值得在论文中讨论\n\n### 建议\n\n- **立即安排 s43_2048 no-evi eval**（当 GPU 1 释放后）\n- 等 s42_2048 和 s44_2048 结果出来后，根据决策树 Branch A/B/C 确定最终方案\n- 论文叙事可强化：RSFT format compliance (99.8%+) 天然免疫截断伪影，而 SFT 在 no-evidence mode 下输出结构退化",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-004110"
+        },
+        {
+          "source_line": 4111,
+          "timestamp": "2026-05-20T18:25:36.375122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3817
+          },
+          "id": "event-004111"
+        },
+        {
+          "source_line": 4112,
+          "timestamp": "2026-05-20T18:25:41.469141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "GPU 1 释放，等 s43_2048 被调度；监控 s42/s44 2048 进度和 CED scoring",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004112"
+        },
+        {
+          "source_line": 4113,
+          "timestamp": "2026-05-20T18:25:41.520138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 18:30:00 (in 259s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-004113"
+        },
+        {
+          "source_line": 4114,
+          "timestamp": "2026-05-20T18:25:45.313552+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 释放。当前 3 GPU 运行中，GPU 1 空闲，应尽快安排 s43_2048。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-004114"
+        }
+      ]
+    },
+    {
+      "number": 201,
+      "messages": [
+        {
+          "source_line": 4115,
+          "timestamp": "2026-05-20T18:27:04.552905+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analyze_eval_llama_sft_s43_no_evidence_r2_20260520T182543]:\nWorker worker_analyze_eval_llama_sft_s43_no_evidence_r2_20260520T182543 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-004115"
+        },
+        {
+          "source_line": 4116,
+          "timestamp": "2026-05-20T18:27:17.892112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-004116"
+        },
+        {
+          "source_line": 4117,
+          "timestamp": "2026-05-20T18:27:18.948212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "faith-evidence-ie",
+              "limit": "10",
+              "fields": "['status', 'hypothesis', 'updated_at', 'spec']"
+            }
+          },
+          "id": "event-004117"
+        },
+        {
+          "source_line": 4118,
+          "timestamp": "2026-05-20T18:27:19.099309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 54 %, 1589 MiB, 97887 MiB\\\\n1, 94 %, 18879 MiB, 97887 MiB\\\\n2, 93 %, 18879 MiB, 97887 MiB\\\\n3, 90 %, 18879 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1207
+          },
+          "id": "event-004118"
+        },
+        {
+          "source_line": 4119,
+          "timestamp": "2026-05-20T18:27:19.902790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s43_no_evidence_2048\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T18:26:34.484Z\\\", \\\"hypothesis\\\": \\\"方法论一致性：s43 SFT no-evi 用 max_new_tokens=2048 重跑。原 1024 版 truncation=38.4%, ign_f1=0.3391。与 s42/s44 2048 版 matched comparison，验证截断伪影 vs 真实退化。seed=42（标准 eval seed）。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_2048\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"45587\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T18:26:31.570Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"plan017_14b_ced_scoring\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T18:10:20.243Z\\\", \\\"hypothesis\\\": \\\"14B RSFT CED scoring: 用 NLI-DeBERTa 对 24216 条 14B generation candidates 打分，top_k=1 筛选最优候选。预期产出 ~3000+ 训练样本。与 4B CED scoring (selected avg f1=0.676, 3014 docs) 对比。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=0 bash scripts/plan017/step2_ced_score_14b.sh\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"44419\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan017_14b_ced_scoring.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T18:10:17.337Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval_llama_sft_s42_no_evidence_2048\\\": {\\\"status\\\": \\\"RUNNING\\\",\n…[truncated 2343 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 954
+          },
+          "id": "event-004119"
+        },
+        {
+          "source_line": 4120,
+          "timestamp": "2026-05-20T18:27:40.448546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "CED scoring 可能很快完成，先检查；2048 evals 还需 2-3h",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004120"
+        },
+        {
+          "source_line": 4121,
+          "timestamp": "2026-05-20T18:27:40.499281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 18:32:00 (in 260s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-004121"
+        },
+        {
+          "source_line": 4122,
+          "timestamp": "2026-05-20T18:27:43.051428+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 GPU 满载，s43_2048 已在 GPU 1 启动。全部白名单合规。\n\n| GPU | 实验 | 已运行 | 预计完成 |\n|-----|------|--------|---------|\n| 0 | 14B CED scoring | ~20min | DeBERTa 轻量，较快 |\n| 1 | **s43_2048** | 刚启动 | ~3-4h |\n| 2 | s44_2048 | ~1h23m | ~2-3h |\n| 3 | s42_2048 | ~49m | ~2.5-3.5h |\n\n注意：s43_2048 改用 **seed=42**（D076 标准），纠正了 s43 r2 的 seed=43 偏差。greedy decoding 下影响极小，但方法论更规范。\n\n2048 实验需要较长时间。设置较长 wakeup。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer"
+          },
+          "id": "event-004122"
+        }
+      ]
+    },
+    {
+      "number": 202,
+      "messages": [
+        {
+          "source_line": 4123,
+          "timestamp": "2026-05-20T19:10:31.549746+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:plan017_14b_ced_scoring]:\n实验 plan017_14b_ced_scoring complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "source": "system"
+          },
+          "id": "event-004123"
+        },
+        {
+          "source_line": 4124,
+          "timestamp": "2026-05-20T19:10:42.974648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "plan017_14b_ced_scoring",
+              "project": "faith-evidence-ie",
+              "n": "30"
+            }
+          },
+          "id": "event-004124"
+        },
+        {
+          "source_line": 4125,
+          "timestamp": "2026-05-20T19:10:44.080505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"\\\\\\\"f1_filter_stats\\\\\\\": {\\\", \\\"    \\\\\\\"gens_dropped_by_f1\\\\\\\": 497,\\\", \\\"    \\\\\\\"docs_dropped_by_f1\\\\\\\": 12\\\", \\\"  },\\\", \\\"  \\\\\\\"truncation_analysis\\\\\\\": {\\\", \\\"    \\\\\\\"truncated_count\\\\\\\": 1701,\\\", \\\"    \\\\\\\"non_truncated_count\\\\\\\": 22515,\\\", \\\"    \\\\\\\"truncated_mean_f1\\\\\\\": 0.4868,\\\", \\\"    \\\\\\\"non_truncated_mean_f1\\\\\\\": 0.6254,\\\", \\\"    \\\\\\\"f1_gap\\\\\\\": 0.1386,\\\", \\\"    \\\\\\\"gap_significant\\\\\\\": true\\\", \\\"  },\\\", \\\"  \\\\\\\"args\\\\\\\": {\\\", \\\"    \\\\\\\"input_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_generations_14b\\\\\\\",\\\", \\\"    \\\\\\\"output_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_scored_14b\\\\\\\",\\\", \\\"    \\\\\\\"nli_model_path\\\\\\\": \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\", \\\"    \\\\\\\"nli_device\\\\\\\": null,\\\", \\\"    \\\\\\\"tau\\\\\\\": 0.5,\\\", \\\"    \\\\\\\"scoring_mode\\\\\\\": \\\\\\\"ced\\\\\\\",\\\", \\\"    \\\\\\\"format_weight\\\\\\\": 0.2,\\\", \\\"    \\\\\\\"f1_weight\\\\\\\": 0.4,\\\", \\\"    \\\\\\\"ced_weight\\\\\\\": 0.4,\\\", \\\"    \\\\\\\"format_threshold\\\\\\\": 0.5,\\\", \\\"    \\\\\\\"f1_threshold\\\\\\\": 0.1,\\\", \\\"    \\\\\\\"ced_threshold\\\\\\\": 0.0,\\\", \\\"    \\\\\\\"selection_strategy\\\\\\\": \\\\\\\"top_k\\\\\\\",\\\", \\\"    \\\\\\\"top_k\\\\\\\": 1,\\\", \\\"    \\\\\\\"top_pct\\\\\\\": 25\\\", \\\"  }\\\", \\\"}EXIT_CODE=0\\\"], \\\"line_count\\\": 30, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan017_14b_ced_scoring.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1105
+          },
+          "id": "event-004125"
+        },
+        {
+          "source_line": 4126,
+          "timestamp": "2026-05-20T19:10:48.655080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "exp_id": "plan017_14b_ced_scoring",
+              "project": "faith-evidence-ie",
+              "n": "60"
+            }
+          },
+          "id": "event-004126"
+        },
+        {
+          "source_line": 4127,
+          "timestamp": "2026-05-20T19:10:49.109538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"\\\\\\\"p75\\\\\\\": 1.0\\\", \\\"    },\\\", \\\"    \\\\\\\"f1_reward\\\\\\\": {\\\", \\\"      \\\\\\\"mean\\\\\\\": 0.7297289475278967,\\\", \\\"      \\\\\\\"std\\\\\\\": 0.1753431445309267,\\\", \\\"      \\\\\\\"min\\\\\\\": 0.1,\\\", \\\"      \\\\\\\"max\\\\\\\": 1.0,\\\", \\\"      \\\\\\\"median\\\\\\\": 0.75,\\\", \\\"      \\\\\\\"p25\\\\\\\": 0.631578947368421,\\\", \\\"      \\\\\\\"p75\\\\\\\": 0.8571428571428571\\\", \\\"    },\\\", \\\"    \\\\\\\"ced_reward\\\\\\\": {\\\", \\\"      \\\\\\\"mean\\\\\\\": 0.690067092548156,\\\", \\\"      \\\\\\\"std\\\\\\\": 0.20858805514889336,\\\", \\\"      \\\\\\\"min\\\\\\\": 0.0,\\\", \\\"      \\\\\\\"max\\\\\\\": 0.9975577126412342,\\\", \\\"      \\\\\\\"median\\\\\\\": 0.7095869180297346,\\\", \\\"      \\\\\\\"p25\\\\\\\": 0.5607546438329067,\\\", \\\"      \\\\\\\"p75\\\\\\\": 0.8495486011114819\\\", \\\"    },\\\", \\\"    \\\\\\\"combined_score\\\\\\\": {\\\", \\\"      \\\\\\\"mean\\\\\\\": 0.767918416030421,\\\", \\\"      \\\\\\\"std\\\\\\\": 0.11042657038199197,\\\", \\\"      \\\\\\\"min\\\\\\\": 0.31428571428571433,\\\", \\\"      \\\\\\\"max\\\\\\\": 0.9990230850564938,\\\", \\\"      \\\\\\\"median\\\\\\\": 0.7697157646963995,\\\", \\\"      \\\\\\\"p25\\\\\\\": 0.6976848926226653,\\\", \\\"      \\\\\\\"p75\\\\\\\": 0.8462641779668743\\\", \\\"    }\\\", \\\"  },\\\", \\\"  \\\\\\\"f1_filter_stats\\\\\\\": {\\\", \\\"    \\\\\\\"gens_dropped_by_f1\\\\\\\": 497,\\\", \\\"    \\\\\\\"docs_dropped_by_f1\\\\\\\": 12\\\", \\\"  },\\\", \\\"  \\\\\\\"truncation_analysis\\\\\\\": {\\\", \\\"    \\\\\\\"truncated_count\\\\\\\": 1701,\\\", \\\"    \\\\\\\"non_truncated_count\\\\\\\": 22515,\\\", \\\"    \\\\\\\"truncated_mean_f1\\\\\\\": 0.4868,\\\", \\\"    \\\\\\\"non_truncated_mean_f1\\\\\\\": 0.6254,\\\", \\\"    \\\\\\\"f1_gap\\\\\\\": 0.1386,\\\", \\\"    \\\\\\\"gap_significant\\\\\\\": true\\\", \\\"  },\\\", \\\"  \\\\\\\"args\\\\\\\": {\\\", \\\"    \\\\\\\"input_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_generations_14b\\\\\\\",\\\", \\\"    \\\\\\\"output_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_scored_14b\\\\\\\",\\\", \\\"    \\\\\\\"nli_model_path\\\\\\\": \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\", \\\"    \\\\\\\"nli_device\\\\\\\": null,\\\", \\\"    \\\\\\\"tau\\\\\\\": 0.5,\\\", \\\"    \\\\\\\"scoring_mode\\\\\\\": \\\\\\\"ced\\\\\\\",\\\", \\\"    \\\\\\\"format_weight\\\\\\\": 0.2,\\\", \\\"    \\\\\\\"f1_weight\\\\\\\": 0.4,\\\", \\\"    \\\\\\\"ced_weight\\\\\\\": 0.4,\\\", \\\"    \\\\\\\"format_t\n…[truncated 404 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 454
+          },
+          "id": "event-004127"
+        },
+        {
+          "source_line": 4128,
+          "timestamp": "2026-05-20T19:10:54.122828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -E \"total_scored|selected_count|selection_rate|selected_mean|total_docs|docs_selected\" /root/runs/faith-evidence-ie/plan017_14b_ced_scoring.log"
+            }
+          },
+          "id": "event-004128"
+        },
+        {
+          "source_line": 4129,
+          "timestamp": "2026-05-20T19:10:54.173696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-004129"
+        },
+        {
+          "source_line": 4130,
+          "timestamp": "2026-05-20T19:10:57.286302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -E \"total_scored|selected_count|selection_rate|selected_mean|total_docs|docs_selected\" /root/runs/faith-evidence-ie/plan017_14b_ced_scoring.log"
+            }
+          },
+          "id": "event-004130"
+        },
+        {
+          "source_line": 4131,
+          "timestamp": "2026-05-20T19:10:57.286681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-004131"
+        },
+        {
+          "source_line": 4132,
+          "timestamp": "2026-05-20T19:11:00.563407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep \"selected\" /root/runs/faith-evidence-ie/plan017_14b_ced_scoring.log"
+            }
+          },
+          "id": "event-004132"
+        },
+        {
+          "source_line": 4133,
+          "timestamp": "2026-05-20T19:11:01.016440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"selected_records\\\\\\\": 3015,\\\\n  \\\\\\\"unique_docs_selected\\\\\\\": 3015,\\\\n  \\\\\\\"selected_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-004133"
+        },
+        {
+          "source_line": 4134,
+          "timestamp": "2026-05-20T19:11:04.381680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep -E \"total_generations|total_docs|format_ok|mean\" /root/runs/faith-evidence-ie/plan017_14b_ced_scoring.log"
+            }
+          },
+          "id": "event-004134"
+        },
+        {
+          "source_line": 4135,
+          "timestamp": "2026-05-20T19:11:04.382065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-004135"
+        },
+        {
+          "source_line": 4136,
+          "timestamp": "2026-05-20T19:11:07.949727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "grep \"total\" /root/runs/faith-evidence-ie/plan017_14b_ced_scoring.log"
+            }
+          },
+          "id": "event-004136"
+        },
+        {
+          "source_line": 4137,
+          "timestamp": "2026-05-20T19:11:08.401799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"total_records\\\\\\\": 24216,\\\\n  \\\\\\\"unique_docs_total\\\\\\\": 3027,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-004137"
+        },
+        {
+          "source_line": 4138,
+          "timestamp": "2026-05-20T19:11:37.852744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] 审查报告 — plan017_14b_ced_scoring\n\n**结论**: PASS\n\n### 发现\n\n- [info] **14B CED scoring 成功完成**：24216 条输入 → 3015 条 top_k=1 筛选。配置与 4B canonical 一致（NLI-DeBERTa-v3-base, CED mode, weights 0.2/0.4/0.4）。\n\n- [info] **14B 生成质量优于 4B**：selected f1 mean=0.730 vs 4B 的 0.676 (+5.4pp)，CED mean=0.690 vs 0.676 (+1.4pp)。14B 更大的模型容量产出了更高质量的 RSFT 候选数据。\n\n- [info] 截断分析：7.0% 截断率，截断样本 f1 显著低于未截断 (0.487 vs 0.625, gap=0.139)。CED scorer 的 top_k=1 策略会自然倾向选择未截断的高质量样本。\n\n- [info] 12 docs 被完全丢弃（all 8 gens 的 f1 < 0.1）。占比 0.4%，可忽略。\n\n- [info] **GPU 0 已释放**。14B pipeline 可进入 Step 3 (RSFT training)。RSFT training 需要较多显存 (~32-50GB for 14B LoRA)，建议使用 GPU 0。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-004138"
+        },
+        {
+          "source_line": 4139,
+          "timestamp": "2026-05-20T19:11:41.522063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3669
+          },
+          "id": "event-004139"
+        },
+        {
+          "source_line": 4140,
+          "timestamp": "2026-05-20T19:11:47.833376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "GPU 0 空闲等待 14B RSFT training 调度；2048 evals 继续运行中",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-004140"
+        }
+      ]
+    }
+  ]
+}

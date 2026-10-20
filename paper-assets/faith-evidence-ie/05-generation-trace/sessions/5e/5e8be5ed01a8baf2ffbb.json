@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e8be5ed01a8baf2ffbb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "audit final figures appendix",
+  "task_key": "worker_audit_final-figures-appendix_20260524T044743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_final-figures-appendix_20260524T044743_result.json",
+    "occurrence": 1,
+    "bytes": 757,
+    "sha256": "63dacba170aebd22063b6d33f6e191d2c90b36dba4e1d01f187e6265432565ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。82项检查全部 PASS，0 FAIL，4个 LOW severity 警告：\n\n1. **Cross-method ρ 不一致**：正文3处报 ρ=−0.89 (n=7)，附录 partial correlation 节报 raw ρ=−0.9643 (n=7)。方向一致但数值不同，应核实聚合方式。\n2. **fig_scaling caption**：文字声称\"RSFT narrows the gap\"但图中只画了 SFT bars，RSFT 未可视化。\n3. **Inference overhead 措辞**：experiments.tex 写\"adds 16–24% at 14B\"，实际 16% 来自 4B、24% 来自 14B。\n4. **Unused bib entry**：`wan2024genres` 定义但未引用。\n\n所有 figure 数据源、appendix 段落数字、Cohen's d / χ² CI / Spearman ρ、\\ref/\\cite 交叉引用均验证通过。报告已注册为 `art_20260524_fe80e9`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-final-figures-appendix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41dd00fd725624522c94",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose urgent gpu check v2",
+  "task_key": "worker_diagnose_urgent-gpu-check-v2_20260523T032800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_urgent-gpu-check-v2_20260523T032800_result.json",
+    "occurrence": 1,
+    "bytes": 1474,
+    "sha256": "f7a7e3f5c9ba3615d05aaacd37928114d352cb17c2d992f2842dbf2199e7b69f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "原始数据如下：\n\n```\n=== NVIDIA-SMI ===\n0, 96 %, 26857 MiB, 97887 MiB\n1, 92 %, 32479 MiB, 97887 MiB\n2, 0 %, 0 MiB, 97887 MiB\n3, 45 %, 6071 MiB, 97887 MiB\n\n=== GPU PROCESSES ===\n220069, 26848 MiB    (GPU 0)\n194682, 32470 MiB    (GPU 1)\n214028, 6062 MiB     (GPU 3)\n\n=== DPO PID 218955 ===\nDEAD\n\n=== DPO OUTPUT DIR ===\nREADME.md\nadapter_config.json\nadapter_model.safetensors\nchat_template.jinja\ncheckpoint-100\ncheckpoint-187\nref\ntokenizer.json\ntokenizer_config.json\ntraining_args.bin\n\n=== DPO LOG TAIL ===\n(空 — 日志文件不存在或为空)\n\n=== 8B NO-EVI PID 220069 ===\nPID 220069, ELAPSED 34:29, CPU 112%\n\n=== 8B NO-EVI RESULTS ===\n(无结果文件，仍在运行)\n\n=== 1.7B PID 214028 ===\nPID 214028, ELAPSED 02:20:05, CPU 101%\n\n=== 1.7B PROGRESS ===\n(无日志输出)\n\n=== 14B PID 194682 ===\nPID 194682, ELAPSED 09:11:40, CPU 100%\n\n=== 14B GEN PROGRESS ===\n12744 /root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl\n\n=== TMUX ===\nplan017_14b_rsft_s43_generate: 1 windows (created Sat May 23 02:17:02 2026)\n```\n\n**摘要：**\n- **GPU 2 空闲**，其余三卡被占用\n- **DPO (218955)**: 已结束，输出目录有 adapter 和 2 个 checkpoint (100, 187)\n- **8B no-evi eval (220069)**: GPU 0, 运行 34 分钟，尚无结果文件\n- **1.7B eval (214028)**: GPU 3, 运行 2h20m，无日志输出\n- **14B gen (194682)**: GPU 1, 运行 9h11m，已生成 12744 行 generations.jsonl"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-urgent-gpu-check-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4679e4e611747966e7ed",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh status check all",
+  "task_key": "worker_ssh_status-check-all_20260515T010407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_status-check-all_20260515T010407_result.json",
+    "occurrence": 1,
+    "bytes": 1749,
+    "sha256": "a1d0cec227c9335ecc09cfcb2c5b102caae0a5a8e0f75ac68be456414a4ff58c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n### 1. GRPO 训练 `mvp2_grpo_ced_lr5e6_r1` — 运行中 188/200 (94%)\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | 188/200 steps |\n| ETA | ~20 min (约 100s/step × 12 steps) |\n| GPU | cuda:0, 48% util, 13.6/32.6 GB |\n\n最近两个 step 的关键指标（reward 在下降）：\n\n| 指标 | step ~150 | step ~155 |\n|------|-----------|-----------|\n| reward | 0.453 | 0.281 |\n| format_reward | 0.285 | 0.252 |\n| f1_reward | 0.060 | 0.014 |\n| ced_reward | 0.107 | 0.015 |\n| kl | 0.013 | 0.036 |\n| frac_reward_zero_std | 0.4 | 0.3 |\n\nKL divergence warning 持续触发（极大值，仅监控未停止）。Reward 在后期明显下降，可能出现了训练不稳定。\n\n---\n\n### 2. Eval ckpt-100 `mvp2_eval_lr5e6_r1_ckpt100` — 运行中 54/62 (87%)\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | 54/62 batches |\n| ETA | ~13 min (~95s/batch × 8 batches) |\n| GPU | cuda:3, 64% util, 11.2/32.6 GB |\n\nmetrics.json 尚未生成，预计 ~13 分钟后完成可读取结果。\n\n---\n\n### 3. RSFT 生成 `mvp2_rsft_generate` — 运行中 104/1514 (6.9%)\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | 104/1514 batches, 200+ docs, 1632 lines |\n| ETA | **~14.6 小时** (~37s/batch) |\n| GPU | cuda:1, 81% util, 23.2/32.6 GB |\n\n**Diversity 依然极低：**\n\n| 区间 | format_ok | truncation | diversity |\n|------|-----------|------------|-----------|\n| docs 1-101 | 99.6% | 9.2% | **0.9/8** |\n| docs 102-201 | 99.8% | 9.9% | **1.0/8** |\n\ndiversity 从 0.9 微升到 1.0，但仍然极低（8 个 generation 里平均只有 ~1 个不同输出）。这意味着模型几乎在 deterministic 输出，RSFT 的 rejection sampling 没有足够的多样性来筛选好样本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-status-check-all.md"
+}

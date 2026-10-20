@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc882da65ad78f66d434",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze plan019 8b sft s43 eval",
+  "task_key": "worker_analyze_plan019_8b_sft_s43_eval_20260519T170951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_plan019_8b_sft_s43_eval_20260519T170951_result.json",
+    "occurrence": 1,
+    "bytes": 1094,
+    "sha256": "47c49aff2fdd45936308fe99875bb7c6e7705516507eb8eccce09a852b946f47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成，结果如下：\n\n```\nign_f1:      0.5324\nf1:          0.5457\nign_prec:    0.5319\nign_recall:  0.5330\nprecision:   0.5550\nrecall:      0.5367\nevi_f1(TP):  0.8333\nevi_f1_joint(DREEAM): 0.4430\nedcr:        0.5805\nformat_compliance_rate: 100.0%\nn_predictions: 13933\nn_truncated: 139/985\nwandb_run_id: none\n```\n\n**8B SFT 3-seed 统计：**\n\n```\ns42 = 0.5128\ns43 = 0.5324  ← 本次\ns44 = 0.4604\n\n8b_sft_3seed_mean = 0.5019\n8b_sft_3seed_std  = 0.0372\n```\n\n**对比基准：**\n\n| 配置 | ign_f1 | 对比 |\n|------|--------|------|\n| 8B SFT 3-seed mean | 0.5019 (±0.0372) | — |\n| 1.7B RSFT s42 | 0.5122 | > 8B SFT mean (+0.0103) |\n| 8B RSFT mean | 0.5414 | > 8B SFT mean (+0.0395) |\n\ns43 是 3 个 seed 中最高的（0.5324），s44 严重拖低均值。高方差（0.0372）削弱了统计显著性——1.7B RSFT 的 0.5122 落在 8B SFT 的 1σ 范围内（0.5019±0.0372 = [0.4647, 0.5391]）。\"1.7B RSFT surpasses 8B SFT\" 的 claim 在数值上成立（+0.0103），但需要 1.7B RSFT 多 seed 才能做显著性检验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-plan019-8b-sft-s43-eval.md"
+}

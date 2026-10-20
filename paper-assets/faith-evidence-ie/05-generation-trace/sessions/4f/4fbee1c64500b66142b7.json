@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fbee1c64500b66142b7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops llama rsft r3 bf16",
+  "task_key": "worker_ops_llama_rsft_r3_bf16_20260517T032639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama_rsft_r3_bf16_20260517T032639_result.json",
+    "occurrence": 1,
+    "bytes": 485,
+    "sha256": "5b1f1764f8a7fb51cec008ccfbae59282acd5bb26e50291441df65508c6b8d51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **死进程已 kill**，cuda:2 显存已释放\n- **r3 训练已启动**：PID 408764，cuda:2 占用 28.9GB，正常训练中\n- **配置**：bf16 + gradient_checkpointing（硬编码）+ bs=1 + grad_accum=8，effective bs=8\n- **预计时长**：~2.8 小时（3312 steps × ~3s/step）\n- **Registry**：plan_016_llama_rsft_train_r3 → RUNNING\n\n修正了一个问题：`--rsft_data_path` 需要指向文件 `rsft_train.jsonl` 而非目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama-rsft-r3-bf16.md"
+}

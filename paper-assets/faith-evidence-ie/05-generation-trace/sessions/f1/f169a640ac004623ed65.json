@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f169a640ac004623ed65",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan017 14b rsft s43 generate",
+  "task_key": "worker_analysis_plan017_14b_rsft_s43_generate_20260523T114328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan017_14b_rsft_s43_generate_20260523T114328_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "06e231737d33f310123d834cc6587478da3da9a71b782ed114161e5d22c8f39b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能之前已删除），无影响。\n\n## 汇总\n\n**plan017_14b_rsft_s43_generate — 成功**\n\n| 指标 | 值 |\n|------|-----|\n| 文档数 | 3027 |\n| 总生成数 | 24216 (3027 × 8) |\n| 格式合规率 | 99.9% (24202/24216) |\n| 平均多样性 | 7.38/8，中位数 8.0/8 |\n| 截断率（末批） | 8.4% |\n| 输出文件 | `/root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl` (222MB) |\n| 运行时长 | ~17.4 小时 |\n\nRegistry 已更新为 DONE/success。下一步：CED scoring → RSFT train → eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan017-14b-rsft-s43-generate.md"
+}

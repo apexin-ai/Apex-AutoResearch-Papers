@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "d4b954404dd538bb3651",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze test eval llama rsft s42",
+  "task_key": "worker_analyze_test_eval_llama_rsft_s42_20260521T160325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_test_eval_llama_rsft_s42_20260521T160325_result.json",
+    "occurrence": 1,
+    "bytes": 2301,
+    "sha256": "6eee150f83447d26ecfa59cae4d19d8b4113a9b15f00afcee2a9d8be06fbf538"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## test_eval_llama_rsft_s42 结果\n\n```json\n{\n  \"ign_f1\": 0.3599,\n  \"f1\": 0.3599,\n  \"precision\": 0.4790,\n  \"recall\": 0.2882,\n  \"evi_f1_dreeam (joint)\": 0.2509,\n  \"evi_f1_tp\": 0.5447,\n  \"edcr\": 0.8391,\n  \"format_ok_rate\": 1.0,\n  \"n_predictions\": 23330,\n  \"n_truncated\": \"283/500 (56.6%)\",\n  \"n_documents\": 500,\n  \"field_compliance_rate\": 0.352,\n  \"evidence_format_rate\": 0.352,\n  \"codalab\": {\"converted\": 9641, \"skipped_rel\": 490, \"skipped_entity\": 1389}\n}\n```\n\n**注意**: `ign_f1 == f1` 是因为 `train_annotated.json` 未找到，无法计算 Ign 指标，日志有 WARNING。\n\n### 对比分析\n\n| 模型 | split | ign_f1 |\n|------|-------|--------|\n| **LLaMA-8B RSFT s42** | **test** | **0.3599** |\n| 14B RSFT s42 | test | 0.3849 |\n| Qwen-8B RSFT s42 | test | 0.3353 |\n| LLaMA RSFT s42 (3-seed avg) | dev | 0.5654 |\n\n**结论**:\n- LLaMA-8B test ign_f1=0.3599，介于 14B (0.3849) 和 Qwen-8B (0.3353) 之间，符合预期（同参数量 LLaMA > Qwen，小参数量 < 14B）。\n- **test vs dev 落差显著**：test 0.3599 vs dev 0.5654，降幅 36.3%。这在 Re-DocRED 上是已知现象（test_revised 标注更严格，且无 train_annotated 做 Ign 过滤）。\n- **truncation 率 56.6%** 偏高，可能影响 recall（0.2882 远低于 precision 0.4790）。\n- CodaLab submission 已生成：`/root/autodl-tmp/eval_results/test_eval_llama_rsft_s42/codalab_submission.json`\n\n### 异常标注\n1. **train_annotated.json 缺失** → ign_f1 退化为 f1，CodaLab 提交后官方会用自己的 train_annotated 重算，实际 ign_f1 可能略有差异。\n2. **field_compliance_rate 仅 35.2%** — 只有 176/500 文档的 evidence 字段格式完全正确，其余文档 evidence 解析失败但关系三元组仍可提取。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "ign_f1": 0.3599,
+              "f1": 0.3599,
+              "precision": 0.479,
+              "recall": 0.2882,
+              "evi_f1_dreeam (joint)": 0.2509,
+              "evi_f1_tp": 0.5447,
+              "edcr": 0.8391,
+              "format_ok_rate": 1.0,
+              "n_predictions": 23330,
+              "n_truncated": "283/500 (56.6%)",
+              "n_documents": 500,
+              "field_compliance_rate": 0.352,
+              "evidence_format_rate": 0.352,
+              "codalab": {
+                "converted": 9641,
+                "skipped_rel": 490,
+                "skipped_entity": 1389
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-test-eval-llama-rsft-s42.md"
+}

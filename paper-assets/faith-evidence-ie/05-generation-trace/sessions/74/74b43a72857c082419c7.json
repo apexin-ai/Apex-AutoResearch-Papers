@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "74b43a72857c082419c7",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "research related work expansion",
+  "task_key": "worker_research_related-work-expansion_20260515T230258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related-work-expansion_20260515T230258.log",
+    "occurrence": 1,
+    "bytes": 824738,
+    "sha256": "a5b9f34cc273b511a8df98fe4c8e88afeb8ac54a500988d8b39dfca8ec5133d6"
+  },
+  "statistics": {
+    "messages": 103,
+    "user_turns": 0,
+    "tool_calls": 40,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 40,
+      "tool_result": 40,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "74b43a72857c082419c7-part-0001.json",
+          "message_count": 83
+        },
+        {
+          "path": "74b43a72857c082419c7-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-related-work-expansion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15b2f57aa7a20d4abf2f",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_5_1778812343.md",
+  "task_key": "loop_5_1778812343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778812343.md",
+    "occurrence": 1,
+    "bytes": 4100,
+    "sha256": "e5dbead0ce10639ffac588228a3542a4b2221e717fac82120f65d62d6f3caf6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-15T02:21:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0,1,2,3 on rtx5090-4x，不可用其他 GPU\n- RSFT 训练**禁止** `--quantize`（4-bit merge_and_unload 在 RTX 5090 有 CUBLAS 错误），bf16 即可（Qwen3-4B 仅 ~8GB）\n- 运行目录必须是 `/root/autodl-tmp/`，不能 `cd /root/autodl-tmp/freige`（会导致 Python import 找到内层空 freige/freige/ 包）\n- Qwen3 自带 generation_config 会静默覆盖 temperature/top_k，生成前必须显式 `model.generation_config.temperature=0.7; model.generation_config.top_k=0`\n- GRPO+QLoRA 方向已判死 (D031/D033)，不要再尝试任何 GRPO 实验\n\n### 2. 🖥️ 基础设施快照\n- 服务器: rtx5090-4x（4× RTX 5090 32GB），备用 bjb2-12179\n- 工作目录: `/root/autodl-tmp/freige`（但 Python 执行必须从 `/root/autodl-tmp/` 启动）\n- Python: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型: `/root/autodl-tmp/models/Qwen3-4B`\n- SFT adapter: `/root/autodl-tmp/sft_output`\n- HF cache: `/root/autodl-tmp/.hf_cache`（HF_HOME 指向此处）\n- NLI 模型: `cross-encoder/nli-deberta-v3-base` 已在 HF cache\n- 活跃进程: 4 个 RSFT 生成分片\n  - mvp2_rsft_gen_s0: PID 135867, cuda:0\n  - mvp2_rsft_gen_s1: PID 136270, cuda:1（含 302 docs 断点续传）\n  - mvp2_rsft_gen_s2: PID 136649, cuda:2\n  - mvp2_rsft_gen_s3: PID 137985, cuda:3\n- Cron: 4 个活跃 cron 监控上述 4 个进程\n\n### 3. 📊 当前状态\n**刚做完**: D036 撤销 diversity crisis（D034/D035 是监控 bug，实际 diversity=7.52/8），重启 4 卡并行 RSFT 生成。\n\n**RUNNING (4)**:\n- mvp2_rsft_gen_s0~s3: 4 卡并行生成 RSFT 候选数据，每个 doc 生成 N=8 outputs at T=0.7，总计 3027 docs，batch_size=1（OOM fix）。预计 ~3h 完成。\n\n**PREPARING (3, 全部废弃)**:\n- mvp2_grpo_ced_kl001_r2/r3, mvp2_eval_ced_kl001_r4_last — GRPO 时代遗留，已无意义，不必理会。\n\n**等待中**: 4 个 RSFT 生成 cron 回调（进程完成时触发）。无 Worker 在跑，无待处理 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- 4 个 rsft_gen cron 回调到达 → spawn Worker 合并 4 shard 输出到单一 JSONL → 验证总 doc 数 = 3027 且 diversity 指标正常\n- 合并完成 → spawn Worker 跑 `rsft_score_filter.py`（CED 打分 + 筛选），注册新实验 → 提交审批\n- CED 筛选完成 → spawn Worker 跑 `rsft_trainer.py`（bf16, 不 quantize, lora_rank=64, lora_alpha=128），注册新实验 → 提交审批\n- RSFT 训练完成 → eval rel_f1 + evidence quality，对比 SFT baseline (rel_f1=0.406, evi_f1=0.628)\n- 如果 RSFT eval rel_f1 > 0.406 → success，推进 post-MVP（complete_mvp → paper_framing → experiment_plan）\n- 如果 RSFT eval rel_f1 < 0.406 但 > 0.30 → 调参（lr, top_pct 阈值, LoRA rank）\n- 如果 RSFT eval rel_f1 < 0.30 → negative，走 red-section framing 提案，考虑 Contingency（DPO+CED / prompt diversity / 全参微调）\n\n### 5. 🎯 战略上下文\n**核心结论链**: MVP-1 验证 CED 有效 (margin=0.48, acc=81.5%) → GRPO+QLoRA 全线 FAIL (D031: alignment tax + QLoRA 低秩空间不足) → pivot 到 RSFT+CED 离线 RL (D031)。RSFT 是当前唯一活跃路线。\n\n**易错点**:\n1. 4 个 shard 回调可能不同时到达，**必须等全部 4 个都完成**再合并，不要只收到 1 个就开始下游\n2. shard 1 (s1) 有 302 docs 断点续传数据，合并时注意去重\n3. 3 个 PREPARING 实验是 GRPO 遗留，不要试图恢复或提交\n4. diversity 监控已修复（独立 `diversity_metrics.py` 模块），但仍建议合并后用独立脚本 cross-check\n5. RSFT trainer 字段映射: generate 输出 `prompt`/`output` → score_filter 输出 `input`/`output`/`ced_score` → trainer 读 `input`/`output`/`ced_score`，链路已验证通过\n6. 成功率: 10 success / 11 negative / 11 failed / 48 total — 项目踩了很多坑，RSFT 是经过充分排除后的方向，不是随意选的\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778812343.md"
+}

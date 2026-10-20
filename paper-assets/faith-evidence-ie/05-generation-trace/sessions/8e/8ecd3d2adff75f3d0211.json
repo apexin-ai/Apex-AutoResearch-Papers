@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ecd3d2adff75f3d0211",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research metrics compilation",
+  "task_key": "worker_research_metrics-compilation_20260516T005928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_metrics-compilation_20260516T005928_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "5c185b38cebb244e915cfae5387d3b1d820d1594d367e66d9ca8bd600769b190"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存并注册：`art_20260516_752e0d`\n\n**表格摘要：**\n\n| 方法 | rel_f1 | vs SFT |\n|------|--------|--------|\n| CED Reranker (N=8) | 0.4864 | +8.07pp |\n| RSFT-CED 3-seed mean | 0.4596±0.0128 | +5.39pp |\n| GRPO bf16 step-100 | 0.4549 | +4.92pp |\n| RSFT-flat-NLI 2-seed mean | 0.4531±0.0011 | +4.74pp |\n| SFT baseline | 0.4057 | — |\n| DPO 1ep | 0.4034 | −0.23pp |\n| GRPO QLoRA | 0.2167 | −18.90pp |\n\n缺失数据：RSFT-CED s45（训练失败）、flat-NLI s44/s45（eval 未完成），已在表中标 TBD。CED vs flat-NLI 差距仅 ~0.65pp，contrastive margin 贡献有限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-metrics-compilation.md"
+}

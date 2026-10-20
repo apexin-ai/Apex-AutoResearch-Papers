@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb9a104f52621630fe4c",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_11_1778898452.md",
+  "task_key": "loop_11_1778898452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778898452.md",
+    "occurrence": 1,
+    "bytes": 5511,
+    "sha256": "16bf846d6a07fa67d883d9ed3c511363c5ab0611f9b0dcf1ac04c6af08adec3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T02:21:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 on rtx5090-4x（`execution.gpu_ids=[0,1,2,3]`）。第二台服务器 bjb2-12179 存在但无 GPU 分配，不要在上面跑实验\n- CED RSFT 训练 cwd 必须 `cd /root/autodl-tmp`（不是 `/root/autodl-tmp/freige`），否则 `No module named freige.training.rsft_trainer`\n- eval 命令必须带 `--sft_adapter` + `--no-quantize`（D064 教训：不带 adapter 会跑底座模型得出虚假指标）\n- C3（CED vs flat-NLI 差异）已降级（D056），不再作为独立贡献——不要在论文中 claim CED 优于 flat-NLI\n- Ign-F1 已修复（metrics_v2.json），论文主表必须用 metrics_v2 数值，不能用旧 metrics.json\n- RSFT top_k=3 已确认 negative（−1.5pp），Director 决定走 ablation table 方案，不需额外实验\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），account=root\n- **工作目录**: `/root/autodl-tmp/freige`（代码），`/root/autodl-tmp`（运行 cwd）\n- **Python**: `/root/miniconda3/bin/python`（conda base，非 venv）\n- **模型底座**: Qwen3-4B（具体路径需 SSH 确认，通常 `/root/autodl-tmp/models/` 或 HF cache）\n- **Eval 结果**: `/root/autodl-tmp/eval_results/`\n- **RSFT checkpoints**: `/root/autodl-tmp/rsft_checkpoints/`（各 seed 子目录）\n- **Seed comparison 脚本**: `/root/autodl-tmp/scripts/seed_comparison.py`（输入 CED+flat-NLI eval_results，输出 paired t-test/CI/Cohen's d）\n- **活跃进程**:\n  - eval_flat_nli_s44: PID 270462, cuda:0（cron 监控中）\n  - eval_flat_nli_seed45: PID 272164, cuda:3（cron 监控中）\n  - eval_rsft_ced_s45: PID 283838, cuda:2（cron 监控中）\n  - eval_rsft_ced_s43: PID 286587, cuda:1（cron 监控中）\n- **Cron**: 4 个 active，分别监控上述 4 个 eval 进程\n- **W&B**: 项目存在但具体 project name 需 SSH 确认\n\n### 3. 📊 当前状态\n**刚完成**: CED RSFT 全部 4 个 seed 训练（s42/s44 早前完成，s43 r3 + s45 r4 本 session 完成）。flat-NLI s44/s45 训练也已完成。现在 4 块 GPU 全部在跑 eval：\n\n| GPU | exp_id | 内容 |\n|-----|--------|------|\n| cuda:0 | eval_flat_nli_s44 | flat-NLI seed=44 全量 dev eval |\n| cuda:1 | eval_rsft_ced_s43 | CED seed=43 全量 dev eval |\n| cuda:2 | eval_rsft_ced_s45 | CED seed=45 全量 dev eval |\n| cuda:3 | eval_flat_nli_seed45 | flat-NLI seed=45 全量 dev eval |\n\n**PREPARING**: eval_plan_014_no_evidence_r2（SFT-no-evidence eval retry，修复 adapter 检测逻辑冲突。Director 指令：任一 eval 完成释放 GPU 后立即在该 GPU 启动）\n\n**运行中的 Workers**:\n1. `worker_research_literature-related-work` — related work 文献调研\n2. `worker_analysis_seed_comparison_prep` — seed 对比分析准备\n\n**等待中**: 4 个 cron 回调（eval 完成时触发）。eval 完成后需立即跑 seed_comparison.py 做 paired t-test。\n\n### 4. 📋 待办（条件触发式）\n- **任一 eval cron 回调到** → 更新 registry（metrics from metrics_v2.json），刷新 report.md\n- **eval_flat_nli_s44 或 eval_flat_nli_seed45 完成释放 GPU** → 立即在该 GPU 启动 eval_plan_014_no_evidence_r2（Director 指令）\n- **4 个 seed eval 全部完成**（CED s42/s43/s44/s45 + flat-NLI s42/s43/s44/s45）→ spawn Worker 跑 `/root/autodl-tmp/scripts/seed_comparison.py` 做 paired t-test → 汇报 Director（CED vs flat-NLI 统计结果，确认 C3 降级决策）\n- **seed comparison 出结果** → 若 p<0.05 则重新考虑 C3；若 p>0.05 确认 D056 降级正确\n- **eval_plan_014_no_evidence_r2 完成** → 确认 no-evidence rel_f1（之前 0.4893），巩固 C1 evidence tax ~8pp 的 claim\n- **所有 P0 eval 收齐** → 启动 plan_002 test set eval + plan_003 EDCR cross-method diagnostic + Paper Agent retitle + related work 扩展\n- **文献 Worker 回调** → 整合 related work 发现到 literature_map.yaml\n\n### 5. 🎯 战略上下文\n**项目**: FREIGE — LLM-based evidence-grounded DocRE 系统性研究。投 EMNLP 2026 Main（ARR July ~7/15-25，剩 ~2 个月）。\n\n**论文核心 narrative（4 claims）**:\n1. **C1 Evidence Tax**: evidence generation 代价 ~8pp rel_f1。SFT+evidence=0.4106, SFT-no-evidence=0.4893。CED reranker 恢复 97%（0.4864）\n2. **C2 Decoupling**: RL 优化压力与 task decoupling 严重度正相关。QLoRA GRPO catastrophic > bf16 GRPO mild > DPO gradual > RSFT none。**关键**: decoupling 是 QLoRA-specific artifact（D054/D065/D066），bf16 下不复现\n3. **C3 已降级**: CED≈flat-NLI 统计不可区分（D056），不作为独立贡献。当前 4-seed eval 是最终确认\n4. **C4 EDCR**: 双层诊断——方法级(横向 decoupling 度量) + per-relation(纵向难度诊断)。ρ(EDCR, evi_f1)=-0.064 说明 EDCR 与 evidence 质量独立\n\n**关键决策链**: D054→D056→D065→D066→D067→D068→D069→D070→D072→D073→D075\n\n**易错点**:\n- flat-NLI 已有 s42(0.4539)、s43(reeval 完成)；CED 已有 s42、s44 eval done → 不要重复提交已完成的 eval\n- 0.4549 是 plan_011 ckpt-100 起点（训练前），不是 GRPO bf16 训练后结果；实际 GRPO bf16 best ≈0.434\n- eval 命令 argparse 静默忽略未知参数（D074 教训）——命令拼错参数名不会报错，需仔细检查\n- GRPO 全系列（12+ 次重试）已确认不可行，不要再尝试 GRPO 训练\n- report.md 的\"资源状态\"段可能 stale，以 cron reconcile 和实际 SSH 为准\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778898452.md"
+}

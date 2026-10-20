@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78e73c9da57842844661",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnostics server state check",
+  "task_key": "worker_diagnostics_server-state-check_20260522T013735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnostics_server-state-check_20260522T013735_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "d343bab77e951a3b7d78902c4cd5a26db53af14f44f8c3d728b8b30911520472"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/server_state_20260522.md`。\n\n**关键发现：**\n\n| GPU | 状态 | 实验 |\n|-----|------|------|\n| 0 | 占用 6GB | test_eval_1_7b_sft_s42 (PID 140534, 运行2h47m) |\n| 1 | 占用 6GB | test_eval_1_7b_sft_s42_no_evi (PID 147596, 185/500=37%) |\n| 2 | **空闲** | — |\n| 3 | 占用 32GB | test_eval_14b_sft_s42_no_evi (PID 143166, 221/500=44%) |\n\n**已完成 9 个 test_eval**，F1 排序：14B SFT (0.389) > 14B RSFT (0.385) > Llama RSFT (0.360) > Llama SFT (0.342) > 8B RSFT (0.335) > 8B SFT (0.311) > 1.7B RSFT (0.293) > 4B RSFT (0.250) > 4B SFT (0.223)\n\n**需要处理：**\n- 7 个旧 PID 已死，6 个正常完成可清理 registry\n- PID 151217 (test_eval_4b_rsft_s42_v3) 失败，输出目录为空，需重跑\n- GPU 2 空闲可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnostics-server-state-check.md"
+}

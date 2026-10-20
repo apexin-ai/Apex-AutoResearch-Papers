@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28c70121026ef5c2ff36",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_3_1778783774.md",
+  "task_key": "loop_3_1778783774",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778783774.md",
+    "occurrence": 1,
+    "bytes": 4468,
+    "sha256": "26edda20b881f5229dc0e76bb239d457cfd19d0b55c2030c84848a1b2cad18ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T18:15:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0/1/2/3，共 4 张，不可用其他设备\n- kl_coef=0.05 + QLoRA 4-bit 不兼容（D008），所有 GRPO 实验必须 kl_coef=0.0 或 ≥0.01 且经过验证\n- ced_r5 已确认 mode collapse（f1=0, 输出固定 34 tokens），其 checkpoint 不可用于 eval（D014/D015）\n- flatnli_r3 的 `--ced_reward_weight 1.0` 实际含义是 evidence reward weight，stage 2 下走 flat-NLI 而非 CED（命名不直观，不要搞混）\n- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不要假设 .venv\n- save_total_limit 曾导致 ced_r5 早期好 checkpoint 丢失，后续实验注意设够大或关掉\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（两个 SSH endpoint 同一台机），4× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/`（代码 `/root/autodl-tmp/freige/`）\n- Python：`/root/miniconda3/bin/python`，conda base 环境\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`（base）、`/root/autodl-tmp/sft_output`（SFT adapter）\n- 数据：`/root/autodl-tmp/data/docred/`（train 3027, dev 985）\n- NLI cache：`/root/autodl-tmp/nli_cache/`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程（reconcile_crons 确认）：\n  - mvp2_grpo_ced_r5: PID 53066, cuda:0（mode collapsed，跑完取分析价值）\n  - mvp2_grpo_extract_r3: PID 53144, cuda:2（训练停滞 grad_norm=0）\n- mvp2_sft_eval_r3: PID 62352, cuda:1（未在 cron 列表中，状态待确认）\n\n### 3. 📊 当前状态\n刚收到 flatnli_r3 失败回调（\"process dead 5× with no sentinel/W&B\"），已：\n1. 派诊断 Worker `worker_diagnose_mvp2_grpo_flatnli_r3_20260514T151222` 读日志\n2. 向 Director 汇报失败 + cuda:3 空闲 + 建议 ced_kl001 提前到 cuda:3\n\n**Registry 状态**：\n- RUNNING：ced_r5（cuda:0, collapsed）、extract_r3（cuda:2, stagnated）、sft_eval_r3（cuda:1）\n- PREPARING：ced_kl001（原定 cuda:1，建议移 cuda:3）\n- DONE/failed：flatnli_r3（刚失败，诊断中）\n\n**等待中**：\n- 诊断 Worker 回调 → 更新 registry failure_reason + 决定是否重跑\n- Director 回复：是否批准 ced_kl001 移到 cuda:3 提前启动\n- ced_r5 / extract_r3 完成回调（两个都有严重问题，预期结论 negative）\n- sft_eval_r3 完成回调（SFT baseline eval，关键数据点）\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调 → 读诊断报告 → update_registry(failure_reason) → 如 can_auto_fix 且 Director 批准 → 修复后重提交到 cuda:3\n- Director 批准 ced_kl001 到 cuda:3 → submit_on_allocated（注意 GPU 编号改为 cuda:3）\n- sft_eval_r3 完成 → 记录 SFT baseline metrics → 这是 MVP-2 pass criteria 的锚点\n- ced_r5 完成 → conclusion=negative（已 collapsed），走 on-experiment-done negative 流程，但不用出 Framing 提案（已知 mode collapse 是训练稳定性问题不是方向问题）\n- extract_r3 完成 → 检查最终 metrics，可能也是 negative（grad_norm=0）\n- 三路 GRPO 全部完成 + SFT eval 完成 → MVP-2 结果判定（pass criteria: CED_Evi-F1 − SFT_Evi-F1 ≥ 2pp）\n- 如果 kl_coef=0 三路全部 collapse/stagnate → ced_kl001 成为唯一希望，汇报 Director 评估是否需要更大范围超参搜索\n\n### 5. 🎯 战略上下文\n- MVP-2 核心问题：CED reward 能否通过 GRPO 训练改善 evidence quality？目前 kl_coef=0 的三路实验（ced_r5 collapsed, extract_r3 stagnated, flatnli_r3 crashed）全部出问题，形势严峻\n- D008 是关键决策：QLoRA 4-bit 下 kl_coef>0 导致 KL 爆炸，改 0 后虽稳定但 collapse/stagnation 问题浮现。ced_kl001（kl_coef=0.01）是验证\"是否存在 sweet spot\"的关键实验\n- SFT baseline eval（sft_eval_r2 已完成：rel_f1=0.4057, evi_f1=0.7979, EDCR=0.7118）。sft_eval_r3 是用统一 eval 脚本的重跑版本，结果应接近\n- 易错点：不要把 ced_r5 的 collapse 解读为\"CED reward 本身有问题\"——更可能是 kl_coef=0 下缺乏 KL 约束导致。ced_kl001 才能回答这个问题\n- 决策链：D008(QLoRA+KL不兼容) → D010(保留kl=0实验) → D014/D015(collapse确认但保留分析价值) → D019(flatnli修复后继续)\n- MVP-2 pass criteria（D012/D013 调整后）：CED_Evi-F1 − SFT_Evi-F1 ≥ 2pp，F1 不退化超 5pp，CED > flat-NLI\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778783774.md"
+}

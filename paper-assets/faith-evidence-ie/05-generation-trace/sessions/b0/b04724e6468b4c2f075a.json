@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b04724e6468b4c2f075a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose eval rsft r2a",
+  "task_key": "worker_diagnose_eval_rsft_r2a_20260515T114602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_rsft_r2a_20260515T114602_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "b8ab0bdb0c971419d83c90bbd901ab22aeda821717d789574cfd55ebdf752129"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**mvp2_eval_rsft_r2a → DONE (success)**\n\n| 指标 | r2a | r1 (3ep) | r2b (1ep,α=32) | SFT baseline |\n|------|-----|----------|-----------------|-------------|\n| rel_f1 | **0.4494** | 0.4449 | 0.4493 | 0.4057 |\n| evi_f1 | 0.8108 | **0.8187** | 0.8128 | 0.7979 |\n| edcr | 0.6641 | — | 0.6609 | **0.7118** |\n\n关键发现：1 epoch + clean data (r2a) 的 rel_f1 与 3 epoch (r1) 持平甚至略高，说明多 epoch 训练在 clean data 上收益有限。r2a 和 r2b 的 rel_f1 几乎相同，alpha=128 vs 32 对关系抽取影响不大，但高 alpha 在 edcr 上略优。所有 RSFT 变体的 edcr 均低于 SFT baseline（0.66 vs 0.71）。\n\n- Registry: status=DONE, conclusion=success, metrics/notes 已更新\n- Cron: 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-rsft-r2a.md"
+}

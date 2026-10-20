@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e99012f243e6141a6e83",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit test eval 4b sft s42 no evi",
+  "task_key": "worker_submit_test_eval_4b_sft_s42_no_evi_20260522T040455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_test_eval_4b_sft_s42_no_evi_20260522T040455_result.json",
+    "occurrence": 1,
+    "bytes": 460,
+    "sha256": "af07a9b2a4e530e1caaa62638f6addd14b70e7362946ff5a817a7af64ad28a1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交，汇总：\n\n- **Adapter**: `/root/autodl-tmp/sft_output`（与 with-evi 配对实验 test_eval_4b_sft_s42 一致）\n- **PID**: 160621\n- **GPU**: cuda:1，显存 9409 MiB（模型已加载，推理进行中 1/500）\n- **参数**: `--no_evidence --split test_revised --seed 42 --max_new_tokens 2048`\n- **输出**: `/root/autodl-tmp/eval_results/test_eval_4b_sft_s42_no_evi/`\n- **预计耗时**: ~4h（参考 with-evi 的 4h10m）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-test-eval-4b-sft-s42-no-evi.md"
+}

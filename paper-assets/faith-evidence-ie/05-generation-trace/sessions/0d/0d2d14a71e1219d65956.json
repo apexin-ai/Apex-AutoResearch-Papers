@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d2d14a71e1219d65956",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper figure fig edcr relations fix",
+  "task_key": "worker_paper_figure_fig_edcr_relations_fix_20260517T184420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_edcr_relations_fix_20260517T184420_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "0e7ce5f92a4f7f54668c8618cfbcfc23e818ab01277c3db0c83f11a4a23812c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n1. **图表 X 轴标签已修正**：从 \"EDCR (Evidence-Distractor Citation Ratio)\" 改为 \"EDCR (Evidence-Decoupling Ratio)\"。重新生成的 PDF/PNG 已覆盖 `artifacts/fig_edcr_relations.pdf` 和 `figures/paper/fig_edcr_relations.pdf`。\n\n2. **appendix.tex 已更新**：在 GRPO Training Dynamics 之后添加了 `\\section{Per-Relation EDCR Distribution}`（`\\label{sec:edcr_per_relation}`），包含 `\\includegraphics` 和 caption，术语与 method.tex 统一。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-edcr-relations-fix.md"
+}

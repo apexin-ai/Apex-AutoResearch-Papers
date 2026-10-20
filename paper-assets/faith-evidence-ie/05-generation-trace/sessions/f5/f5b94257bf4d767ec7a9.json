@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5b94257bf4d767ec7a9",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_2_1778772389.md",
+  "task_key": "loop_2_1778772389",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778772389.md",
+    "occurrence": 1,
+    "bytes": 4119,
+    "sha256": "23c7981b800e8a52e9f4241929e408a3c746ef099ffa8bfb346ff6b3852bce60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T15:12:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：gpu_ids=[0,1,2,3]，全在 rtx5090-4x（与 gpu-5090-4x-1 是同一台机器，4 张 RTX 5090 32GB）\n- 单卡 GRPO 必须带 `--gradient_accumulation_steps ≥16`，否则 KL 5 步爆炸（r3 教训）\n- HF 下载在 AutoDL 极慢，大模型用 ModelScope；NLI 模型 cross-encoder/nli-deberta-v3-base 首次加载会 HF timeout，需 `source /etc/network_turbo` + SSL 证书设置\n- ZeRO-3 + QLoRA 不兼容，只能用 ZeRO-2\n- TRL 1.1.0：`processing_class=` 不是 `tokenizer=`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（= gpu-5090-4x-1，同一台机），账号 root\n- 工作目录：/root/autodl-tmp（代码在 /root/autodl-tmp/freige/）\n- Python：/root/miniconda3/bin/python（conda base，不用 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：/root/autodl-tmp/models/Qwen3-4B（7.6GB，ModelScope 下载）\n- SFT checkpoint：/root/autodl-tmp/sft_output\n- NLI cache：/root/autodl-tmp/nli_cache/\n- 数据集：/root/autodl-tmp/data/docred（train 3027, dev 985）\n- HF cache：/root/autodl-tmp/.hf_cache\n- 活跃进程：\n  - mvp2_sft_eval: PID 47293, tmux, cuda:1（SFT baseline eval，应快完成）\n  - mvp2_grpo_flatnli: PID 47722, tmux, cuda:3（flat-NLI reward GRPO，~8-16h）\n- Cron 监控：mvp2_sft_eval + mvp2_grpo_flatnli 两个活跃 cron\n\n### 3. 📊 当前状态\n刚处理完 mvp2_grpo_ced_r3 失败回调（KL 爆炸，5 步 KL=4.4M）。已更新 registry notes、发飞书卡片、更新 memory.md、向 Director 汇报并提出 r4 三个修复方案（A: 单卡+grad_accum+低lr, B: 4卡accelerate, C: lr warmup），等 Director 决策。\n\nRegistry 状态：\n- mvp2_sft_eval: RUNNING, cuda:1（SFT baseline eval，预计很快完成）\n- mvp2_grpo_extract: ANALYZING（刚完成，on_complete 已触发，待处理回调）\n- mvp2_grpo_flatnli: RUNNING, cuda:3\n- mvp2_grpo_ced_r3: DONE/failed（KL 爆炸）\n- mvp2_grpo_ced_r2: DONE/killed（OOM）\n- mvp2_grpo_ced_r1: DONE/killed（mode collapse）\n- 其余 DONE/success\n\n**等待中**：\n1. Director 回复 r4 方案选择（cuda:0 空闲）\n2. mvp2_grpo_extract 完成回调（ANALYZING → 需分析结果）\n3. mvp2_sft_eval 完成回调\n4. mvp2_grpo_flatnli cron 监控\n\n### 4. 📋 待办\n- mvp2_grpo_extract 回调到达 → spawn worker 读日志/metrics → 更新 registry → 与 SFT baseline 对比 → 汇报 Director\n- mvp2_sft_eval 完成 → 获取 SFT baseline Evi-F1/F1 → 这是 MVP-2 pass criteria 的基准线\n- mvp2_grpo_flatnli 完成 → 与 extract + SFT baseline 三路对比\n- Director 选 r4 方案 → 立即在 cuda:0 提交 CED GRPO r4（务必带 grad_accum）\n- 三路对比全部完成 → MVP-2 判定（CED Evi-F1 > SFT Evi-F1 ≥ 2pp; F1 > 45）\n- cuda:2 空闲 → 可立即安排任务（等 Director 指示或 sft_eval 完成后跑额外 eval）\n\n### 5. 🎯 战略上下文\n- 核心假设：CED（对比证据判别）奖励能让 LLM 在 DocRED 关系抽取中同时提升抽取质量和证据可验证性\n- MVP-1 已验证 CED 信号有效（margin 0.48, accuracy 81.5%）→ 信号本身没问题\n- MVP-2 目标：端到端训练验证，pass criteria = CED GRPO Evi-F1 > SFT Evi-F1 ≥ 2pp + F1 > 45\n- CED GRPO 连续 3 次失败（r1/r2/r3），但失败原因各不同（reward hacking → OOM → KL 爆炸），每次都修复了不同问题。核心方法没有被否定，是工程配置问题\n- 易错点：**不要假设单卡和 4 卡的超参可以互换**。r1 的 4 卡配置（grad_accum=16, lr=5e-5）不能直接降到单卡（有效 batch 从 64 降到 1）。单卡必须自带 grad_accum\n- 易错点：grpo_trainer 日志显示跑了两轮（可能代码内有 retry 或 dual-phase），第二轮 KL 从已diverge 的 checkpoint 继续，只会更糟。排查代码是否有意为之\n- 决策链：D001（两阶段 MVP）→ D002（MVP-1 PASS）→ D003（smoke test pass）→ D005/D006（r1 mode collapse 诊断 + kill）→ D007（r3 回退 num_iterations=1）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778772389.md"
+}

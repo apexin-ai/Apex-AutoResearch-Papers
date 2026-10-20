@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd5184da70ed1e8e31be",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose cuda2 pid and 1 7b",
+  "task_key": "worker_diagnose_cuda2-pid-and-1_7b_20260522T020257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cuda2-pid-and-1_7b_20260522T020257_result.json",
+    "occurrence": 1,
+    "bytes": 1396,
+    "sha256": "414cbe28465ce8a229bb47469d84a59ea34b9018bf2904000541e2ba39d2fdf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "纠正：`21:15` 是 21 分 15 秒，不是 21 小时。8B no_evi 刚启动不久。\n\n## PID 152873 身份\n- 进程: `test_eval_8b_sft_s42_no_evi` — Qwen3-8B SFT, `--no_evidence`, test_revised split, seed 42\n- 进度: 46/500 (9%), ~32s/it, 预计 ~4h 完成\n- 有价值: ✅ （8B SFT no-evidence test eval，参数正确含 `--no_evidence`）\n- Registry: 已推进到 RUNNING\n\n## 1.7B SFT Test (`test_eval_1_7b_sft_s42`, PID 140534)\n- 状态: **RUNNING**（3h14m，无 `--no_evidence`，即 with-evidence 版本）\n- Output dir 为空，无 log 文件（脚本可能只在结束时写入，或日志去了 tmux stdout）\n- 估算进度: ~430/500 based on ~27s/doc，预计 ~30min 内完成\n- Registry: **不存在**，无 log_path\n\n## 完整 GPU 占用\n\n| PID | GPU | VRAM | Eval ID | Model | 运行时间 | --no_evidence |\n|-----|-----|------|---------|-------|---------|------|\n| 140534 | cuda:0 | 6 GB | test_eval_1_7b_sft_s42 | 1.7B | 3h14m | ❌ |\n| 147596 | cuda:1 | 6 GB | test_eval_1_7b_sft_s42_no_evi | 1.7B | 1h47m (244/500) | ✅ |\n| 152873 | cuda:2 | 19.6 GB | test_eval_8b_sft_s42_no_evi | 8B | 21min (46/500) | ✅ |\n| 143166 | cuda:3 | 32.5 GB | test_eval_14b_sft_s42_no_evi | 14B | 2h50m | ✅ |\n\n4 个 GPU 全满，均为有效 eval 任务。1.7B SFT test (with evidence) 最快完成，完成后需要更新 registry 和收集 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cuda2-pid-and-1-7b.md"
+}

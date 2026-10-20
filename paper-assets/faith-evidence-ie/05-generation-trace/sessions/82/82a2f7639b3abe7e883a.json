@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82a2f7639b3abe7e883a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan 003 edcr pipeline",
+  "task_key": "worker_code_plan_003_edcr_pipeline_20260515T210707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_003_edcr_pipeline_20260515T210707_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "ee9a82734a74ed19f3761ae8aae97d51d98fdf843daa0d0a2f7904b6156cec2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果验证正确：\n- GRPO QLoRA lr5e6 ckpt100: rel_f1=0.0147, evi_f1=0.8502, edcr=0.9869 — 与 registry 记录的 0.0138/0.8500/0.9900 高度吻合（微小差异来自 prediction 文件差异）\n- DPO-CED 1ep 和 RSFT-flatNLI s43 的 eval 还在运行中，跳过正常\n\n脚本位于 `/root/autodl-tmp/freige/scripts/edcr_diagnostic.py`，功能完整：\n- `--auto-discover`: 扫描已有 eval 结果\n- `--methods NAME:PATH`: 手动指定方法\n- 输出 `edcr_diagnostic.json`（汇总 JSON，含 per-relation-type 和 per-document EDCR 分布）\n- 输出 `edcr_diagnostic.tex`（LaTeX table + per-relation table）\n- EDCR 逻辑复用 `DocREDEvaluator.compute_edcr` + `_triple_key`\n\nEDCR diagnostic 的关键发现：GRPO QLoRA 系列的 EDCR 极高（0.85-0.99），median 接近 1.0，证实 catastrophic forgetting 导致模型几乎所有 evidence citation 都是 distractor。相反 RSFT-CED 和 GRPO bf16 的 EDCR 显著低于 SFT baseline（0.63-0.66 vs 0.71），验证了 Claim 4。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-003-edcr-pipeline.md"
+}

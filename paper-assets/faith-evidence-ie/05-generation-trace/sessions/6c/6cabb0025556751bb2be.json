@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cabb0025556751bb2be",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "prep plan 012 dpo 1ep",
+  "task_key": "worker_prep_plan_012_dpo_1ep_20260515T193812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_plan_012_dpo_1ep_20260515T193812_result.json",
+    "occurrence": 1,
+    "bytes": 1474,
+    "sha256": "f89651843615190627df9b95840f0449f798fd8c6228a8551a226a50e793eccc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完毕，汇总如下：\n\n---\n\n## plan_012_dpo_ced_1ep 状态报告\n\n**意外发现：实验已在运行。** 在我们检查前，它已被重新提交到 **cuda:2**（绕过了 cuda:3 被占用的阻塞），pid=244073，03:39 启动。\n\n### 当前进度\n- **3/167 steps**，~13.5s/step\n- 预计总时长 **~37 min**，ETA 约 04:17（服务器时间）\n\n### 前置条件（全部满足）\n| 项目 | 状态 | 路径 |\n|------|------|------|\n| 基础模型 | ✅ | `/root/autodl-tmp/models/Qwen3-4B` |\n| SFT adapter | ✅ | `/root/autodl-tmp/sft_output` |\n| DPO 数据 | ✅ | `/root/autodl-tmp/dpo_data/dpo_pairs.jsonl` (2666 pairs) |\n| 训练脚本 | ✅ | `/root/autodl-tmp/freige/training/dpo_trainer.py` |\n| 输出目录 | ✅ | `/root/autodl-tmp/dpo_output_1ep/` (空, checkpoint 将写到这) |\n\n### 超参配置（与 3ep 一致，仅改 epochs）\n- beta=0.1, loss=sigmoid, lr=5e-7, batch=2, grad_accum=8, lora_r=64/alpha=128, bf16\n\n### 附加发现\n- **checkpoint-400 存在**：`/root/autodl-tmp/dpo_output/checkpoint-400/`（完整 adapter + optimizer），后续可 eval\n- **前次 eval_plan_012_dpo_ced_ckpt400 OOM 失败**（cuda:3 被占用时跑的），需在空闲 GPU 重跑\n- **前次 1ep 提交 (pid=240426) 失败**：cuda:3 被占用导致 OOM，日志仅到加载数据就停了\n\n### 已更新\n- Registry status: ALLOCATED → **RUNNING**\n- Notes: 写入完整就绪性检查和提交命令记录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-plan-012-dpo-1ep.md"
+}

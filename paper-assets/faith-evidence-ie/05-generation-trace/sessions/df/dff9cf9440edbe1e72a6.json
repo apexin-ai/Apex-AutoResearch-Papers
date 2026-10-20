@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dff9cf9440edbe1e72a6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research 4b rsft s42 canonical deep",
+  "task_key": "worker_research_4b_rsft_s42_canonical_deep_20260519T134413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_4b_rsft_s42_canonical_deep_20260519T134413_result.json",
+    "occurrence": 1,
+    "bytes": 1290,
+    "sha256": "9e70d604495e6b17af4b1366210b0cb10f3f71b0e594996635abd73004cf6c7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "搜索完成。结论：\n\n## 4B CED RSFT s42 Checkpoint — 已被删除\n\n**原始路径**: `/root/autodl-tmp/rsft_output/`（checkpoint-510 为 reeval 使用的版本）\n\n**确认依据**:\n- `eval_results/rsft_r1/metrics.json` → `model_path: /root/autodl-tmp/rsft_output`, seed=42\n- `eval_results/rsft_ced_s42_reeval/metrics.json` → `model_path: /root/autodl-tmp/rsft_output/checkpoint-510`, seed=42\n- 两者都是 base=Qwen3-4B, sft_adapter=sft_output\n\n**删除原因推测**: 这是最早的 RSFT 实验，使用了无后缀的泛化名称 `rsft_output/`。后续实验改用明确命名（`rsft_output_ced_s43`, `rsft_output_random_k1` 等），原始目录在某次磁盘清理中被删除。\n\n**历史性能** (rsft_r1 eval):\n- F1=0.4449, Ign-F1=0.4449, Evi-F1=0.8187, EDCR=0.6565\n\n**可重训**: CED-scored 训练数据仍存在：\n| 数据文件 | 行数 | 含 ced_score |\n|----------|------|-------------|\n| `/root/autodl-tmp/rsft_filtered/rsft_train.jsonl` | 2,718 | Yes |\n| `/root/autodl-tmp/rsft_filtered_topk3_ced_filtered/rsft_train.jsonl` | 7,942 | Yes |\n\n如需重训，两个数据文件内容一致（首条记录相同），`rsft_filtered/` 更可能是原始训练用的版本（行数较少，对应原始 CED top-1 筛选）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-4b-rsft-s42-canonical-deep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2d894850e467a915002",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check llama no evi sft completion",
+  "task_key": "worker_ops_check_llama_no_evi_sft_completion_20260516T120405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_llama_no_evi_sft_completion_20260516T120405_result.json",
+    "occurrence": 1,
+    "bytes": 405,
+    "sha256": "2ed3b2983db5ae5c90e981f6c4797c6f9a825442c8611debc39c9eeda7a7638f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常完成，registry 已更新。\n\n**结果汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | 成功完成 (3 epochs, 570/570 steps) |\n| train_loss | 0.456 |\n| train_token_accuracy | 88.16% |\n| eval_loss | 0.8412 |\n| eval_token_accuracy | 81.50% |\n| checkpoint | `/root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence/` (adapter 671MB) |\n| cuda:3 | 空闲 (0 MiB) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-llama-no-evi-sft-completion.md"
+}

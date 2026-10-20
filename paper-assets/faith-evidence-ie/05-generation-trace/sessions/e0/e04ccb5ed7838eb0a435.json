@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e04ccb5ed7838eb0a435",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778795427.md",
+  "task_key": "loop_4_1778795427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778795427.md",
+    "occurrence": 1,
+    "bytes": 5446,
+    "sha256": "2d671e90992386cbc2d00cbd3a64f150f3b1f38b1139678f973dae2565f4b498"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T21:40:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：只能用 rtx5090-4x 上的 cuda:0/1/2/3。rtx5090-4x 和 gpu-5090-4x-1 和 bjb2-12179 是**同一台机器**（D004 确认），不要当两台用\n- **训练提交必须用 .sh 脚本**（D035）：先 Worker 写 `/root/autodl-tmp/scripts/train_xxx.sh`，再 `bash /path/to/script.sh` 提交。禁止 bash -c 内联引号——已 4 次 EXIT_CODE=2\n- **kill 后必须验证子进程终止**：kill_job 只杀 tmux，python 子进程可能 reparent 继续占显存。kill 后必须 `ps -p <PID>` + `nvidia-smi -i <GPU>` 验证\n- **启动 GPU 任务前必须 nvidia-smi 检查目标 GPU**：本 session 多次重复进程冲突\n- **flash_attn 未安装**：训练脚本必须用 `attn_implementation=\"sdpa\"`\n- **TRL 1.1.0 API**：`tokenizer=` → `processing_class=`，`max_seq_length` → `max_length`\n- **conda 环境**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要创建 venv\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：rtx5090-4x（4× RTX 5090 32GB），SSH 也可用 bjb2-12179 / gpu-5090-4x-1（同机器）\n- **工作目录**：`/root/autodl-tmp/freige`（代码），`/root/autodl-tmp/` 为数据盘根\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境）\n- **模型**：`/root/autodl-tmp/models/Qwen3-4B`（7.6GB，ModelScope 下载）\n- **SFT adapter**：`/root/autodl-tmp/sft_output`\n- **数据**：`/root/autodl-tmp/data/docred`（train 3053, dev 985）\n- **GRPO checkpoints**：`/root/autodl-tmp/grpo_ced_lr5e6/` (P0)，`/root/autodl-tmp/grpo_ced_lr5e6_rp/` (P0+P1)\n- **wandb**：entity=`xiaoyucorynne-`，project=`freige-grpo`。`fetch_wandb_run_history` + run_id 直接查（list_wandb_runs 有 bug）\n- **HF cache**：`/root/autodl-tmp/.hf_cache`\n- **活跃进程**：\n  - mvp2_grpo_ced_lr5e6_r1: PID 90080, cuda:0, tmux session, cron 监控中\n  - mvp2_grpo_ced_lr5e6_rp_r2: PID 94753, cuda:3, tmux session, cron 监控中（**D028 判定 kill，可能尚未执行**）\n  - mvp2_eval_lr5e6_r1_ckpt20: PID 96500, cuda:1, cron 监控中\n- **Worker**：worker_analysis_p0-step60-metrics（running，分析 P0 step 60 指标）\n\n### 3. 📊 当前状态\n**刚做完**：D028 判定 kill rp_r2（P0+P1，recall_penalty 导致 loss 指数 divergence）。正在等 P0 ckpt-20 eval 结果（~2.5h 预计）和 Worker p0-step60-metrics 分析回调。\n\n**RUNNING 实验**：\n| exp_id | GPU | 说明 | 状态 |\n|--------|-----|------|------|\n| mvp2_grpo_ced_lr5e6_r1 | cuda:0 | **P0 核心**：lr=5e-6 CED GRPO 200 步 | 训练中，约 step 25+/200 |\n| mvp2_grpo_ced_lr5e6_rp_r2 | cuda:3 | P0+P1：+recall_penalty | **D028 判 KILL**，loss diverge |\n| mvp2_eval_lr5e6_r1_ckpt20 | cuda:1 | P0 ckpt-20 early eval | 运行中，~6% |\n\n**cuda:2 空闲**——分配了但没跑，是违规状态。上一轮 eval_lr5e6_r1_ckpt40 在 cuda:2 上 failed（进程死 5 次无 sentinel）。\n\n**3 个 PREPARING 实验均已废弃**：r2/r3 是 kl001 系列基础设施失败，last 已拆分。\n\n### 4. 📋 待办（条件触发式）\n- **rp_r2 D028 kill 未执行** → 验证是否已 kill；若仍在跑，kill + 验证子进程 + nvidia-smi cuda:3 → cuda:3 释放后跑 rp_r2 ckpt-20 eval（关闭对比线）\n- **eval_lr5e6_r1_ckpt20 cron 回调** → rel_f1 > 0.30 = P0 ckpt-20 PASS，< 0.30 = 看 D028 新框架（ckpt-20 FAIL + ckpt-40 PASS → P0 仍 PASS）\n- **cuda:2 空闲** → 应立即安排 P0 ckpt-40 eval（eval_lr5e6_r1_ckpt40 上次 failed，需重跑）\n- **Worker p0-step60-metrics 回调** → 整合分析结果到 registry\n- **P0 训练完成（~5h）** → 多 checkpoint eval：best reward ckpt + last ckpt + 中间点\n- **P0+P1 ckpt-20 eval 完成** → 与 P0 ckpt-20 对比，隔离 recall_penalty 贡献\n- **P0 eval 全部完成 + 通过** → 进入 Post-MVP 流程：complete_mvp → paper_framing.md → experiment_plan.yaml\n\n### 5. 🎯 战略上下文\n**项目**：FREIGE——用对比证据判别 (CED) 奖励训练 LLM 做文档级关系抽取 + 可验证证据生成。\n\n**决策链关键节点**：\n- D002: MVP-1 PASS（CED 信号有效）\n- D008: QLoRA 4-bit + kl_coef>0.05 不兼容（KL 爆炸），但 D020 证明 kl_coef=0.01 可用\n- D024: **核心发现**——D020 ablation 中只有 CED reward 存活（extract-only/flat-NLI 均 collapse），CED 有 anti-mode-collapse 作用\n- D027/D029: lr=5e-5 全灭（灾难性遗忘 + CED recall shortcut），转 lr=5e-6\n- D032: CED recall shortcut 机制确认（非匹配 triple p_neg=0 退化为 flat NLI，鼓励 conservative prediction）\n- D035: bash -c 引号问题永久改用 .sh 脚本\n- D028: recall_penalty + kl_coef=0.01 → 梯度爆炸，P0+P1 线暂停\n\n**SFT Baseline**：F1=0.4057, Evi-F1=0.7979, EDCR=0.7118（截断率 37.3%）\n\n**最容易判断错的事**：\n1. **P0 是唯一 MVP 通道**——rp_r2 (P0+P1) 已判 kill。不要启动新的 recall_penalty 实验，MVP 阶段 P0 单独通过即可\n2. **ckpt-40 eval 上次 failed 不是实验 negative**——是进程死 5 次的基础设施问题，需要重跑\n3. **wandb list_wandb_runs 有 bug**——只能用 `fetch_wandb_run_history` + 已知 run_id（如 `grpo-s3-ced-lr5e6-r1`）\n4. **recall_penalty 如果要重试**，需要 kl_coef=0.001 或加 gradient clipping——kl_coef=0.01 下梯度 5-10x 会 diverge\n5. **3 个 PREPARING 实验都是废弃的**，不要尝试恢复\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778795427.md"
+}

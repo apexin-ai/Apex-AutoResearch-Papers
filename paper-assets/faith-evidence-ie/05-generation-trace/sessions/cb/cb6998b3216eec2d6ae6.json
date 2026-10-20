@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb6998b3216eec2d6ae6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code fix taskeval callback",
+  "task_key": "worker_code_fix-taskeval-callback_20260515T094121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-taskeval-callback_20260515T094121_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "318fc0af5146a2a0cda0d8108530a3a76287ac4bdd99f09a847f8ffd4a7d391a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**修改位置**: `prepare_eval_data` 函数，第 117-120 行\n\n**修改前**:\n```python\ngold = gold_from_docred(dev_data)\n```\n\n**修改后**:\n```python\nall_gold = gold_from_docred(dev_data)\n# Filter gold to match eval_max_docs subset; using full dev gold inflates the denominator\neval_doc_ids = {item[\"doc_id\"] for item in eval_items}\ngold = [g for g in all_gold if g[\"doc_id\"] in eval_doc_ids]\n```\n\n**逻辑差异**: 之前 `gold` 包含全量 dev set 的 12275 条 triples，但推理只在前 N 个 doc 上执行，F1 分母被严重膨胀。修复后 `gold` 只保留被评估的 N 个 doc 对应的 triples，分子分母对齐。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-taskeval-callback.md"
+}

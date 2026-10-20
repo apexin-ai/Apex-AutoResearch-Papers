@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0982793f4e7d5b5714c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh e2e pipeline verify",
+  "task_key": "worker_ssh_e2e-pipeline-verify_20260515T040551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_e2e-pipeline-verify_20260515T040551_result.json",
+    "occurrence": 1,
+    "bytes": 3647,
+    "sha256": "f17f4bbebd7f73e6911429ca45a90be371634c86bd76560939ae26bc1f56c1c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 端到端验证结果\n\n### 阶段 1: merge_shards.py — **通过**\n- 5 个源文件合并：root 2416 + 4 shard 共 20968 → 去重后 **20648 records, 2581 unique docs**\n- last-wins 去重正常：344 records 被 shard 版本覆盖\n- JSONL 格式正确，字段完整（doc_id, generation_idx, prompt, output, parsed_triples, gold_triples, sents）\n\n### 阶段 2: rsft_score_filter.py — **通过**\n- CPU NLI 80 条记录 ~4 分钟完成\n- format_reward=1.0 (全部格式正确), f1_mean=0.584, ced_mean=0.534\n- top_k=1: 10/80 选中（10 docs 各 1 条），selected combined_score mean=0.758\n- 输出 rsft_train.jsonl 有 `input`/`output`/`ced_score` 字段，与 rsft_trainer 兼容\n- rsft_report.json 统计完整\n\n### 阶段 3: rsft_trainer.py — **通过（含 2 个修复）**\n- **修复 1**: 添加 `--max_steps` 参数（argparse + SFTConfig 传递）\n- **修复 2**: `parse_model_output(item[\"doc_id\"], text)` → `parse_model_output(text)` + 手动加 doc_id\n- 训练 2 步：train_loss=1.25, eval_loss=1.37\n- 模型加载流程验证：base → merge SFT adapter → fresh LoRA → train → save\n- 输出 adapter 完整（adapter_config.json + adapter_model.safetensors）\n\n### 阶段 4: eval/inference.py — **已就绪**\n- 支持 `--sft_adapter`（先 merge）+ `--model_path`（再加 LoRA），完美覆盖 RSFT 双层 adapter\n- 自动检测 `adapter_config.json` 判断是 adapter 还是完整模型\n- 输出 metrics.json + predictions.json\n\n---\n\n## 生成完成后的完整执行命令序列\n\n```bash\n# 环境设置（每次 SSH 后执行一次）\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1\ncd /root/autodl-tmp\n\n# Step 1: 合并 shards\npython -m freige.training.merge_shards \\\n    --shard_dir /root/autodl-tmp/rsft_generations \\\n    --output /root/autodl-tmp/rsft_generations_merged.jsonl\n\n# Step 2: CED 打分 + 筛选（GPU 空闲后用 GPU，否则 --nli_device cpu）\npython -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/rsft_generations \\\n    --output_path /root/autodl-tmp/rsft_filtered \\\n    --selection_strategy top_k --top_k 1 \\\n    --nli_device cuda:0\n\n# Step 3: RSFT 训练（单卡）\nCUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer \\\n    --base_model /root/autodl-tmp/models/Qwen3-4B \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl \\\n    --output_dir /root/autodl-tmp/rsft_output \\\n    --learning_rate 2e-5 \\\n    --num_epochs 3 \\\n    --per_device_batch_size 4 \\\n    --gradient_accumulation_steps 4 \\\n    --lora_rank 64 --lora_alpha 128 \\\n    --quantize \\\n    --eval_data_dir /root/autodl-tmp/data/docred \\\n    --eval_max_docs 50 \\\n    --seed 42\n\n# Step 4: 评测（生成完成后可立即执行）\n# RSFT 模型 eval\nCUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference \\\n    --model_path /root/autodl-tmp/rsft_output \\\n    --base_model /root/autodl-tmp/models/Qwen3-4B \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --data_path /root/autodl-tmp/data/docred \\\n    --output_dir /root/autodl-tmp/rsft_eval_results \\\n    --split dev\n\n# SFT baseline eval（对比用）\nCUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference \\\n    --model_path /root/autodl-tmp/sft_output \\\n    --base_model /root/autodl-tmp/models/Qwen3-4B \\\n    --data_path /root/autodl-tmp/data/docred \\\n    --output_dir /root/autodl-tmp/sft_eval_results \\\n    --split dev\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-e2e-pipeline-verify.md"
+}

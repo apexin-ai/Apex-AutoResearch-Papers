@@ -1,0 +1,973 @@
+{
+  "schema_version": "1.0",
+  "id": "e848970e715d1eacb5c7",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "analysis edcr correlation recompute",
+  "task_key": "worker_analysis_edcr_correlation_recompute_20260518T070740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_edcr_correlation_recompute_20260518T070740.log",
+    "occurrence": 1,
+    "bytes": 93406,
+    "sha256": "74fd77d356ab073b0446080b6e8866f814b681b1d2bfd119403c7c95feab3225"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "59caca43-5b41-4578-83ef-62ad48921c08",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779105600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "8d549810-485c-413a-a284-a67375391f95",
+                "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我来在服务器上查找 EDCR diagnostic 数据并完成敏感性分析。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "0fdcd115-10a3-42e1-ad70-2e33914c6e89",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011TEdE4yUd9ZVSBdBrBbxHy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13834,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13834
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KVtwpL5CQ5J5owL5KUyF1e",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "f8d4202c-91c4-4d07-a9c5-d8f6b4b9a374",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011TEdE4yUd9ZVSBdBrBbxHy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13834,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13834
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T07:07:54.008Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01KVtwpL5CQ5J5owL5KUyF1e",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "621a1f4b-c904-48af-b506-542ab553e74a",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me find the EDCR diagnostic data on the server.",
+              "signature": "Eu4BClkIDRgCKkCBaN7GGj3USp//rxW6Qtlj4AgetoHy+4lTwIeIn6gMvHF8Ta68YxcDXvTHBLbiEPGfS/5KlYcBnzvslU6g5Ls5Mg9jbGF1ZGUtb3B1cy00LTY4ABIMyXlInzqzH/1OsMLmGgyNJQQVe0EgA2Py1hkiMHx793DaUtED+DpuwhsZINDCOHUJJh9FI1v3dNwVOtZxeBW9+jlTsspKcCcxALBLUipDVXpgnmThIdgyFH1DEUKC8uZ9hU4xVZupUsJcbuhSb4vCbpqPbOIN1D8CfoL6gGPOZ+zVfy8tumU9fGGc2i4X1ZzMPRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "420b512c-db3f-4772-a9cb-b32d7d51716c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AYhNNHCcrL8qNwQ88tLw3b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 376,
+                "cache_read_input_tokens": 25675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 376
+                },
+                "output_tokens": 54,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QjC7p7YXn4kVLBbqejvdPn",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "find /root/autodl-tmp/ -name \"*edcr*diagnostic*\" -o -name \"*edcr*report*\" -o -name \"*plan_003*\" 2>/dev/null | head -20",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "5946770c-63ba-45da-9c7d-32b4d42d3685",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AYhNNHCcrL8qNwQ88tLw3b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 376,
+                "cache_read_input_tokens": 25675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 376
+                },
+                "output_tokens": 54,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GoeUNWtThZHxLpeZAHEmNw",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "find /root/autodl-tmp/eval_results/ -name \"*edcr*\" 2>/dev/null | head -10",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "0f448388-6ee9-4caa-b91f-d98c1d30e283",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AYhNNHCcrL8qNwQ88tLw3b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 376,
+                "cache_read_input_tokens": 25675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 376
+                },
+                "output_tokens": 54,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T07:07:59.531Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QjC7p7YXn4kVLBbqejvdPn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/scripts/edcr_diagnostic.sh\\\\n/root/autodl-tmp/freige/scripts/edcr_diagnostic.py\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic.json\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic.tex\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_v2.json\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_v2.tex\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_table.md\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_table.csv\\\\n/root/autodl-tmp/scripts/edcr_diagnostic.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "16183215-6192-485b-b835-ffe8b76806f2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/scripts/edcr_diagnostic.sh\\\\n/root/autodl-tmp/freige/scripts/edcr_diagnostic.py\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic.json\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic.tex\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_v2.json\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_v2.tex\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_table.md\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_table.csv\\\\n/root/autodl-tmp/scripts/edcr_diagnostic.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/scripts/edcr_diagnostic.sh\\n/root/autodl-tmp/freige/scripts/edcr_diagnostic.py\\n/root/autodl-tmp/eval_results/edcr_diagnostic.json\\n/root/autodl-tmp/eval_results/edcr_diagnostic.tex\\n/root/autodl-tmp/eval_results/edcr_diagnostic_v2.json\\n/root/autodl-tmp/eval_results/edcr_diagnostic_v2.tex\\n/root/autodl-tmp/eval_results/edcr_diagnostic_table.md\\n/root/autodl-tmp/eval_results/edcr_diagnostic_table.csv\\n/root/autodl-tmp/scripts/edcr_diagnostic.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T07:07:59.922Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GoeUNWtThZHxLpeZAHEmNw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2b/edcr_analysis.json\\\\n/root/autodl-tmp/eval_results/edcr_analysis_r2b.md\\\\n/root/autodl-tmp/eval_results/edcr_analysis.json\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic.json\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic.tex\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_v2.json\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_v2.tex\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_table.md\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_table.csv\\\\n/root/autodl-tmp/eval_results/edcr_per_relation_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "fd34d0ab-478e-430d-8e3a-9d2d817a6820",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2b/edcr_analysis.json\\\\n/root/autodl-tmp/eval_results/edcr_analysis_r2b.md\\\\n/root/autodl-tmp/eval_results/edcr_analysis.json\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic.json\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic.tex\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_v2.json\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_v2.tex\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_table.md\\\\n/root/autodl-tmp/eval_results/edcr_diagnostic_table.csv\\\\n/root/autodl-tmp/eval_results/edcr_per_relation_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/rsft_r2b/edcr_analysis.json\\n/root/autodl-tmp/eval_results/edcr_analysis_r2b.md\\n/root/autodl-tmp/eval_results/edcr_analysis.json\\n/root/autodl-tmp/eval_results/edcr_diagnostic.json\\n/root/autodl-tmp/eval_results/edcr_diagnostic.tex\\n/root/autodl-tmp/eval_results/edcr_diagnostic_v2.json\\n/root/autodl-tmp/eval_results/edcr_diagnostic_v2.tex\\n/root/autodl-tmp/eval_results/edcr_diagnostic_table.md\\n/root/autodl-tmp/eval_results/edcr_diagnostic_table.csv\\n/root/autodl-tmp/eval_results/edcr_per_relation_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了数据文件。读取最新的 diagnostic 数据。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "b9229814-1abb-445e-8e41-f32c50775e31",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011hi66s6AD5aWARszUsPrZx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 935,
+                "cache_read_input_tokens": 26051,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 935
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017AsoYSeV8YHXAYvhyyoX2M",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/eval_results/edcr_diagnostic_v2.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "1ab73082-91c5-41bc-8547-9339a0a2a5ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011hi66s6AD5aWARszUsPrZx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 935,
+                "cache_read_input_tokens": 26051,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 935
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T07:08:04.037Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017AsoYSeV8YHXAYvhyyoX2M",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT baseline (quant)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4057,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7979,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7118,\\\\n    \\\\\\\"precision\\\\\\\": 0.4043,\\\\n    \\\\\\\"recall\\\\\\\": 0.407,\\\\n    \\\\\\\"n_predictions\\\\\\\": 18815,\\\\n    \\\\\\\"n_truncated\\\\\\\": 367,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": -0.49,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 0.79,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT baseline (noquant)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4106,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8013,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7039,\\\\n    \\\\\\\"precision\\\\\\\": 0.4198,\\\\n    \\\\\\\"recall\\\\\\\": 0.4019,\\\\n    \\\\\\\"n_predictions\\\\\\\": 16774,\\\\n    \\\\\\\"n_truncated\\\\\\\": 288,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3216,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 0.0,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 0.0,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT no-evidence\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4893,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.0,\\\\n    \\\\\\\"edcr\\\\\\\": 0.0,\\\\n    \\\\\\\"precision\\\\\\\": 0.4884,\\\\n    \\\\\\\"recall\\\\\\\": 0.4902,\\\\n    \\\\\\\"n_predictions\\\\\\\": 21064,\\\\n    \\\\\\\"n_truncated\\\\\\\": 298,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 7.86,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -70.39,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED s42\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4449,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8187,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6565,\\\\n    \\\\\\\"precision\\\\\\\": 0.4607,\\\\n    \\\\\\\"recall\\\\\\\": 0.4302,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15307,\\\\n    \\\\\\\"n_truncated\\\\\\\": 213,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 3.43,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -4.74,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED s43\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4683,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8156,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6388,\\\\n    \\\\\\\"precision\\\\\\\": 0.4817,\\\\n    \\\\\\\"recall\\\\\\\": 0.4556,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14970,\\\\n    \\\\\\\"n_truncated\\\\\\\": 171,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 5.77,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -6.51,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED s44\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4655,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8087,\\\\n    \\\\\\\"edcr\\\\\\\": 0.635,\\\\n    \\\\\\\"precision\\\\\\\": 0.4798,\\\\n    \\\\\\\"recall\\\\\\\": 0.4521,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15202,\\\\n    \\\\\\\"n_truncated\\\\\\\": 189,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 5.49,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -6.88,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED r2a\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4494,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8108,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6641,\\\\n    \\\\\\\"precision\\\\\\\": 0.4512,\\\\n    \\\\\\\"recall\\\\\\\": 0.4475,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15482,\\\\n    \\\\\\\"n_truncated\\\\\\\": 208,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 3.88,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -3.97,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED r2b\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4493,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8128,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6609,\\\\n    \\\\\\\"precision\\\\\\\": 0.4566,\\\\n    \\\\\\\"recall\\\\\\\": 0.4424,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14829,\\\\n    \\\\\\\"n_truncated\\\\\\\": 179,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 3.87,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -4.29,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-flatNLI s42\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4539,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8043,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6431,\\\\n    \\\\\\\"precision\\\\\\\": 0.4671,\\\\n    \\\\\\\"recall\\\\\\\": 0.4414,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15294,\\\\n    \\\\\\\"n_truncated\\\\\\\": 199,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3544,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.33,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -6.08,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-flatNLI s43\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.0022,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8533,\\\\n    \\\\\\\"edcr\\\\\\\": 0.9982,\\\\n    \\\\\\\"precision\\\\\\\": 0.002,\\\\n    \\\\\\\"recall\\\\\\\": 0.0026,\\\\n    \\\\\\\"n_predictions\\\\\\\": 17285,\\\\n    \\\\\\\"n_truncated\\\\\\\": 251,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.0018,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": -40.84,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 29.43,\\\\n    \\\\\\\"collapsed\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"CED-reranker (N=8)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4864,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8188,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6156,\\\\n    \\\\\\\"precision\\\\\\\": 0.4913,\\\\n    \\\\\\\"recall\\\\\\\": 0.4815,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14782,\\\\n    \\\\\\\"n_truncated\\\\\\\": null,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 7.58,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -8.83,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"DPO CED 3ep\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.3429,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8403,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7294,\\\\n    \\\\\\\"precision\\\\\\\": 0,\\\\n    \\\\\\\"recall\\\\\\\": 0,\\\\n    \\\\\\\"n_predictions\\\\\\\": null,\\\\n    \\\\\\\"n_truncated\\\\\\\": null,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": -6.77,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 2.55,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"DPO CED 1ep\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.0022,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.75,\\\\n    \\\\\\\"edcr\\\\\\\": 0.9982,\\\\n    \\\\\\\"precision\\\\\\\": 0.0019,\\\\n    \\\\\\\"recall\\\\\\\": 0.0028,\\\\n    \\\\\\\"n_predictions\\\\\\\": 19265,\\\\n    \\\\\\\"n_truncated\\\\\\\": 358,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.0018,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": -40.84,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 29.43,\\\\n    \\\\\\\"collapsed\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"GRPO bf16 step30\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.434,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8063,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6807,\\\\n    \\\\\\\"precision\\\\\\\": 0.4357,\\\\n    \\\\\\\"recall\\\\\\\": 0.4322,\\\\n    \\\\\\\"n_predictions\\\\\\\": 13636,\\\\n    \\\\\\\"n_truncated\\\\\\\": 129,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3396,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 2.33,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -2.32,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"GRPO bf16 step50\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4276,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8024,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6855,\\\\n    \\\\\\\"precision\\\\\\\": 0.4623,\\\\n    \\\\\\\"recall\\\\\\\": 0.3977,\\\\n    \\\\\\\"n_predictions\\\\\\\": 11289,\\\\n    \\\\\\\"n_truncated\\\\\\\": 68,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.33,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 1.69,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -1.83,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"GRPO bf16 step70\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4341,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8099,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6685,\\\\n    \\\\\\\"precision\\\\\\\": 0.4603,\\\\n    \\\\\\\"recall\\\\\\\": 0.4107,\\\\n    \\\\\\\"n_predictions\\\\\\\": 11554,\\\\n    \\\\\\\"n_truncated\\\\\\\": 73,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3396,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 2.35,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -3.54,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"GRPO bf16 ckpt100\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4549,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8086,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6318,\\\\n    \\\\\\\"precision\\\\\\\": 0,\\\\n    \\\\\\\"recall\\\\\\\": 0,\\\\n    \\\\\\\"n_predictions\\\\\\\": null,\\\\n    \\\\\\\"n_truncated\\\\\\\": null,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.43,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -7.21,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"GRPO QLoRA kl001\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.2108,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.5666,\\\\n    \\\\\\\"edcr\\\\\\\": 0.8584,\\\\n    \\\\\\\"precision\\\\\\\": 0,\\\\n    \\\\\\\"recall\\\\\\\": 0,\\\\n    \\\\\\\"n_predictions\\\\\\\": null,\\\\n    \\\\\\\"n_truncated\\\\\\\": null,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": -19.98,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 15.45,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED 3-seed mean\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4596,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8143,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6434,\\\\n    \\\\\\\"rel_f1_std\\\\\\\": 0.0128,\\\\n    \\\\\\\"evi_f1_std\\\\\\\": 0.0051,\\\\n    \\\\\\\"edcr_std\\\\\\\": 0.0115,\\\\n    \\\\\\\"n_seeds\\\\\\\": 3,\\\\n    \\\\\\\"is_summary\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"  → best (RSFT-CED s43)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4683,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8156,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6388,\\\\n    \\\\\\\"precision\\\\\\\": 0.4817,\\\\n    \\\\\\\"recall\\\\\\\": 0.4556,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14970,\\\\n    \\\\\\\"n_truncated\\\\\\\": 171,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 5.77,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -6.51,\\\\n    \\\\\\\"collapsed\\\\\\\": false,\\\\n    \\\\\\\"is_summary\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"  → best (RSFT-flatNLI s42)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4539,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8043,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6431,\\\\n    \\\\\\\"precision\\\\\\\": 0.4671,\\\\n    \\\\\\\"recall\\\\\\\": 0.4414,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15294,\\\\n    \\\\\\\"n_truncated\\\\\\\": 199,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3544,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.33,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -6.08,\\\\n    \\\\\\\"collapsed\\\\\\\": false,\\\\n    \\\\\\\"is_summary\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"  → best (GRPO bf16 ckpt100)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4549,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8086,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6318,\\\\n    \\\\\\\"precision\\\\\\\": 0,\\\\n    \\\\\\\"recall\\\\\\\": 0,\\\\n    \\\\\\\"n_predictions\\\\\\\": null,\\\\n    \\\\\\\"n_truncated\\\\\\\": null,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.43,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -7.21,\\\\n    \\\\\\\"collapsed\\\\\\\": false,\\\\n    \\\\\\\"is_summary\\\\\\\": true\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "c7bfbdae-d0a3-4b6d-9ec8-947fd293ddba",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT baseline (quant)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4057,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7979,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7118,\\\\n    \\\\\\\"precision\\\\\\\": 0.4043,\\\\n    \\\\\\\"recall\\\\\\\": 0.407,\\\\n    \\\\\\\"n_predictions\\\\\\\": 18815,\\\\n    \\\\\\\"n_truncated\\\\\\\": 367,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": -0.49,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 0.79,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT baseline (noquant)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4106,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8013,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7039,\\\\n    \\\\\\\"precision\\\\\\\": 0.4198,\\\\n    \\\\\\\"recall\\\\\\\": 0.4019,\\\\n    \\\\\\\"n_predictions\\\\\\\": 16774,\\\\n    \\\\\\\"n_truncated\\\\\\\": 288,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3216,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 0.0,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 0.0,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT no-evidence\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4893,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.0,\\\\n    \\\\\\\"edcr\\\\\\\": 0.0,\\\\n    \\\\\\\"precision\\\\\\\": 0.4884,\\\\n    \\\\\\\"recall\\\\\\\": 0.4902,\\\\n    \\\\\\\"n_predictions\\\\\\\": 21064,\\\\n    \\\\\\\"n_truncated\\\\\\\": 298,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 7.86,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -70.39,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED s42\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4449,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8187,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6565,\\\\n    \\\\\\\"precision\\\\\\\": 0.4607,\\\\n    \\\\\\\"recall\\\\\\\": 0.4302,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15307,\\\\n    \\\\\\\"n_truncated\\\\\\\": 213,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 3.43,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -4.74,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED s43\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4683,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8156,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6388,\\\\n    \\\\\\\"precision\\\\\\\": 0.4817,\\\\n    \\\\\\\"recall\\\\\\\": 0.4556,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14970,\\\\n    \\\\\\\"n_truncated\\\\\\\": 171,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 5.77,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -6.51,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED s44\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4655,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8087,\\\\n    \\\\\\\"edcr\\\\\\\": 0.635,\\\\n    \\\\\\\"precision\\\\\\\": 0.4798,\\\\n    \\\\\\\"recall\\\\\\\": 0.4521,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15202,\\\\n    \\\\\\\"n_truncated\\\\\\\": 189,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 5.49,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -6.88,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED r2a\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4494,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8108,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6641,\\\\n    \\\\\\\"precision\\\\\\\": 0.4512,\\\\n    \\\\\\\"recall\\\\\\\": 0.4475,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15482,\\\\n    \\\\\\\"n_truncated\\\\\\\": 208,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 3.88,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -3.97,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED r2b\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4493,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8128,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6609,\\\\n    \\\\\\\"precision\\\\\\\": 0.4566,\\\\n    \\\\\\\"recall\\\\\\\": 0.4424,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14829,\\\\n    \\\\\\\"n_truncated\\\\\\\": 179,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 3.87,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -4.29,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-flatNLI s42\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4539,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8043,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6431,\\\\n    \\\\\\\"precision\\\\\\\": 0.4671,\\\\n    \\\\\\\"recall\\\\\\\": 0.4414,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15294,\\\\n    \\\\\\\"n_truncated\\\\\\\": 199,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3544,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.33,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -6.08,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-flatNLI s43\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.0022,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8533,\\\\n    \\\\\\\"edcr\\\\\\\": 0.9982,\\\\n    \\\\\\\"precision\\\\\\\": 0.002,\\\\n    \\\\\\\"recall\\\\\\\": 0.0026,\\\\n    \\\\\\\"n_predictions\\\\\\\": 17285,\\\\n    \\\\\\\"n_truncated\\\\\\\": 251,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.0018,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": -40.84,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 29.43,\\\\n    \\\\\\\"collapsed\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"CED-reranker (N=8)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4864,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8188,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6156,\\\\n    \\\\\\\"precision\\\\\\\": 0.4913,\\\\n    \\\\\\\"recall\\\\\\\": 0.4815,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14782,\\\\n    \\\\\\\"n_truncated\\\\\\\": null,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 7.58,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -8.83,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"DPO CED 3ep\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.3429,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8403,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7294,\\\\n    \\\\\\\"precision\\\\\\\": 0,\\\\n    \\\\\\\"recall\\\\\\\": 0,\\\\n    \\\\\\\"n_predictions\\\\\\\": null,\\\\n    \\\\\\\"n_truncated\\\\\\\": null,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": -6.77,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 2.55,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"DPO CED 1ep\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.0022,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.75,\\\\n    \\\\\\\"edcr\\\\\\\": 0.9982,\\\\n    \\\\\\\"precision\\\\\\\": 0.0019,\\\\n    \\\\\\\"recall\\\\\\\": 0.0028,\\\\n    \\\\\\\"n_predictions\\\\\\\": 19265,\\\\n    \\\\\\\"n_truncated\\\\\\\": 358,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.0018,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": -40.84,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 29.43,\\\\n    \\\\\\\"collapsed\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"GRPO bf16 step30\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.434,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8063,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6807,\\\\n    \\\\\\\"precision\\\\\\\": 0.4357,\\\\n    \\\\\\\"recall\\\\\\\": 0.4322,\\\\n    \\\\\\\"n_predictions\\\\\\\": 13636,\\\\n    \\\\\\\"n_truncated\\\\\\\": 129,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3396,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 2.33,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -2.32,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"GRPO bf16 step50\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4276,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8024,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6855,\\\\n    \\\\\\\"precision\\\\\\\": 0.4623,\\\\n    \\\\\\\"recall\\\\\\\": 0.3977,\\\\n    \\\\\\\"n_predictions\\\\\\\": 11289,\\\\n    \\\\\\\"n_truncated\\\\\\\": 68,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.33,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 1.69,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -1.83,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"GRPO bf16 step70\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4341,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8099,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6685,\\\\n    \\\\\\\"precision\\\\\\\": 0.4603,\\\\n    \\\\\\\"recall\\\\\\\": 0.4107,\\\\n    \\\\\\\"n_predictions\\\\\\\": 11554,\\\\n    \\\\\\\"n_truncated\\\\\\\": 73,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3396,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 2.35,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -3.54,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"GRPO bf16 ckpt100\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4549,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8086,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6318,\\\\n    \\\\\\\"precision\\\\\\\": 0,\\\\n    \\\\\\\"recall\\\\\\\": 0,\\\\n    \\\\\\\"n_predictions\\\\\\\": null,\\\\n    \\\\\\\"n_truncated\\\\\\\": null,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.43,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -7.21,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"GRPO QLoRA kl001\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.2108,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.5666,\\\\n    \\\\\\\"edcr\\\\\\\": 0.8584,\\\\n    \\\\\\\"precision\\\\\\\": 0,\\\\n    \\\\\\\"recall\\\\\\\": 0,\\\\n    \\\\\\\"n_predictions\\\\\\\": null,\\\\n    \\\\\\\"n_truncated\\\\\\\": null,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": -19.98,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 15.45,\\\\n    \\\\\\\"collapsed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED 3-seed mean\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4596,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8143,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6434,\\\\n    \\\\\\\"rel_f1_std\\\\\\\": 0.0128,\\\\n    \\\\\\\"evi_f1_std\\\\\\\": 0.0051,\\\\n    \\\\\\\"edcr_std\\\\\\\": 0.0115,\\\\n    \\\\\\\"n_seeds\\\\\\\": 3,\\\\n    \\\\\\\"is_summary\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"  → best (RSFT-CED s43)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4683,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8156,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6388,\\\\n    \\\\\\\"precision\\\\\\\": 0.4817,\\\\n    \\\\\\\"recall\\\\\\\": 0.4556,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14970,\\\\n    \\\\\\\"n_truncated\\\\\\\": 171,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 5.77,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -6.51,\\\\n    \\\\\\\"collapsed\\\\\\\": false,\\\\n    \\\\\\\"is_summary\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"  → best (RSFT-flatNLI s42)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4539,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8043,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6431,\\\\n    \\\\\\\"precision\\\\\\\": 0.4671,\\\\n    \\\\\\\"recall\\\\\\\": 0.4414,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15294,\\\\n    \\\\\\\"n_truncated\\\\\\\": 199,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3544,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.33,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -6.08,\\\\n    \\\\\\\"collapsed\\\\\\\": false,\\\\n    \\\\\\\"is_summary\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"  → best (GRPO bf16 ckpt100)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4549,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8086,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6318,\\\\n    \\\\\\\"precision\\\\\\\": 0,\\\\n    \\\\\\\"recall\\\\\\\": 0,\\\\n    \\\\\\\"n_predictions\\\\\\\": null,\\\\n    \\\\\\\"n_truncated\\\\\\\": null,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": null,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.43,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -7.21,\\\\n    \\\\\\\"collapsed\\\\\\\": false,\\\\n    \\\\\\\"is_summary\\\\\\\": true\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"method\\\": \\\"SFT baseline (quant)\\\",\\n    \\\"rel_f1\\\": 0.4057,\\n    \\\"evi_f1\\\": 0.7979,\\n    \\\"edcr\\\": 0.7118,\\n    \\\"precision\\\": 0.4043,\\n    \\\"recall\\\": 0.407,\\n    \\\"n_predictions\\\": 18815,\\n    \\\"n_truncated\\\": 367,\\n    \\\"evi_f1_joint\\\": null,\\n    \\\"delta_rel_f1_pp\\\": -0.49,\\n    \\\"delta_edcr_pp\\\": 0.79,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"SFT baseline (noquant)\\\",\\n    \\\"rel_f1\\\": 0.4106,\\n    \\\"evi_f1\\\": 0.8013,\\n    \\\"edcr\\\": 0.7039,\\n    \\\"precision\\\": 0.4198,\\n    \\\"recall\\\": 0.4019,\\n    \\\"n_predictions\\\": 16774,\\n    \\\"n_truncated\\\": 288,\\n    \\\"evi_f1_joint\\\": 0.3216,\\n    \\\"delta_rel_f1_pp\\\": 0.0,\\n    \\\"delta_edcr_pp\\\": 0.0,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"SFT no-evidence\\\",\\n    \\\"rel_f1\\\": 0.4893,\\n    \\\"evi_f1\\\": 0.0,\\n    \\\"edcr\\\": 0.0,\\n    \\\"precision\\\": 0.4884,\\n    \\\"recall\\\": 0.4902,\\n    \\\"n_predictions\\\": 21064,\\n    \\\"n_truncated\\\": 298,\\n    \\\"evi_f1_joint\\\": 0.0,\\n    \\\"delta_rel_f1_pp\\\": 7.86,\\n    \\\"delta_edcr_pp\\\": -70.39,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED s42\\\",\\n    \\\"rel_f1\\\": 0.4449,\\n    \\\"evi_f1\\\": 0.8187,\\n    \\\"edcr\\\": 0.6565,\\n    \\\"precision\\\": 0.4607,\\n    \\\"recall\\\": 0.4302,\\n    \\\"n_predictions\\\": 15307,\\n    \\\"n_truncated\\\": 213,\\n    \\\"evi_f1_joint\\\": null,\\n    \\\"delta_rel_f1_pp\\\": 3.43,\\n    \\\"delta_edcr_pp\\\": -4.74,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED s43\\\",\\n    \\\"rel_f1\\\": 0.4683,\\n    \\\"evi_f1\\\": 0.8156,\\n    \\\"edcr\\\": 0.6388,\\n    \\\"precision\\\": 0.4817,\\n    \\\"recall\\\": 0.4556,\\n    \\\"n_predictions\\\": 14970,\\n    \\\"n_truncated\\\": 171,\\n    \\\"evi_f1_joint\\\": null,\\n    \\\"delta_rel_f1_pp\\\": 5.77,\\n    \\\"delta_edcr_pp\\\": -6.51,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED s44\\\",\\n    \\\"rel_f1\\\": 0.4655,\\n    \\\"evi_f1\\\": 0.8087,\\n    \\\"edcr\\\": 0.635,\\n    \\\"precision\\\": 0.4798,\\n    \\\"recall\\\": 0.4521,\\n    \\\"n_predictions\\\": 15202,\\n    \\\"n_truncated\\\": 189,\\n    \\\"evi_f1_joint\\\": null,\\n    \\\"delta_rel_f1_pp\\\": 5.49,\\n    \\\"delta_edcr_pp\\\": -6.88,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED r2a\\\",\\n    \\\"rel_f1\\\": 0.4494,\\n    \\\"evi_f1\\\": 0.8108,\\n    \\\"edcr\\\": 0.6641,\\n    \\\"precision\\\": 0.4512,\\n    \\\"recall\\\": 0.4475,\\n    \\\"n_predictions\\\": 15482,\\n    \\\"n_truncated\\\": 208,\\n    \\\"evi_f1_joint\\\": null,\\n    \\\"delta_rel_f1_pp\\\": 3.88,\\n    \\\"delta_edcr_pp\\\": -3.97,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED r2b\\\",\\n    \\\"rel_f1\\\": 0.4493,\\n    \\\"evi_f1\\\": 0.8128,\\n    \\\"edcr\\\": 0.6609,\\n    \\\"precision\\\": 0.4566,\\n    \\\"recall\\\": 0.4424,\\n    \\\"n_predictions\\\": 14829,\\n    \\\"n_truncated\\\": 179,\\n    \\\"evi_f1_joint\\\": null,\\n    \\\"delta_rel_f1_pp\\\": 3.87,\\n    \\\"delta_edcr_pp\\\": -4.29,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-flatNLI s42\\\",\\n    \\\"rel_f1\\\": 0.4539,\\n    \\\"evi_f1\\\": 0.8043,\\n    \\\"edcr\\\": 0.6431,\\n    \\\"precision\\\": 0.4671,\\n    \\\"recall\\\": 0.4414,\\n    \\\"n_predictions\\\": 15294,\\n    \\\"n_truncated\\\": 199,\\n    \\\"evi_f1_joint\\\": 0.3544,\\n    \\\"delta_rel_f1_pp\\\": 4.33,\\n    \\\"delta_edcr_pp\\\": -6.08,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-flatNLI s43\\\",\\n    \\\"rel_f1\\\": 0.0022,\\n    \\\"evi_f1\\\": 0.8533,\\n    \\\"edcr\\\": 0.9982,\\n    \\\"precision\\\": 0.002,\\n    \\\"recall\\\": 0.0026,\\n    \\\"n_predictions\\\": 17285,\\n    \\\"n_truncated\\\": 251,\\n    \\\"evi_f1_joint\\\": 0.0018,\\n    \\\"delta_rel_f1_pp\\\": -40.84,\\n    \\\"delta_edcr_pp\\\": 29.43,\\n    \\\"collapsed\\\": true\\n  },\\n  {\\n    \\\"method\\\": \\\"CED-reranker (N=8)\\\",\\n    \\\"rel_f1\\\": 0.4864,\\n    \\\"evi_f1\\\": 0.8188,\\n    \\\"edcr\\\": 0.6156,\\n    \\\"precision\\\": 0.4913,\\n    \\\"recall\\\": 0.4815,\\n    \\\"n_predictions\\\": 14782,\\n    \\\"n_truncated\\\": null,\\n    \\\"evi_f1_joint\\\": null,\\n    \\\"delta_rel_f1_pp\\\": 7.58,\\n    \\\"delta_edcr_pp\\\": -8.83,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"DPO CED 3ep\\\",\\n    \\\"rel_f1\\\": 0.3429,\\n    \\\"evi_f1\\\": 0.8403,\\n    \\\"edcr\\\": 0.7294,\\n    \\\"precision\\\": 0,\\n    \\\"recall\\\": 0,\\n    \\\"n_predictions\\\": null,\\n    \\\"n_truncated\\\": null,\\n    \\\"evi_f1_joint\\\": null,\\n    \\\"delta_rel_f1_pp\\\": -6.77,\\n    \\\"delta_edcr_pp\\\": 2.55,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"DPO CED 1ep\\\",\\n    \\\"rel_f1\\\": 0.0022,\\n    \\\"evi_f1\\\": 0.75,\\n    \\\"edcr\\\": 0.9982,\\n    \\\"precision\\\": 0.0019,\\n    \\\"recall\\\": 0.0028,\\n    \\\"n_predictions\\\": 19265,\\n    \\\"n_truncated\\\": 358,\\n    \\\"evi_f1_joint\\\": 0.0018,\\n    \\\"delta_rel_f1_pp\\\": -40.84,\\n    \\\"delta_edcr_pp\\\": 29.43,\\n    \\\"collapsed\\\": true\\n  },\\n  {\\n    \\\"method\\\": \\\"GRPO bf16 step30\\\",\\n    \\\"rel_f1\\\": 0.434,\\n    \\\"evi_f1\\\": 0.8063,\\n    \\\"edcr\\\": 0.6807,\\n    \\\"precision\\\": 0.4357,\\n    \\\"recall\\\": 0.4322,\\n    \\\"n_predictions\\\": 13636,\\n    \\\"n_truncated\\\": 129,\\n    \\\"evi_f1_joint\\\": 0.3396,\\n    \\\"delta_rel_f1_pp\\\": 2.33,\\n    \\\"delta_edcr_pp\\\": -2.32,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"GRPO bf16 step50\\\",\\n    \\\"rel_f1\\\": 0.4276,\\n    \\\"evi_f1\\\": 0.8024,\\n    \\\"edcr\\\": 0.6855,\\n    \\\"precision\\\": 0.4623,\\n    \\\"recall\\\": 0.3977,\\n    \\\"n_predictions\\\": 11289,\\n    \\\"n_truncated\\\": 68,\\n    \\\"evi_f1_joint\\\": 0.33,\\n    \\\"delta_rel_f1_pp\\\": 1.69,\\n    \\\"delta_edcr_pp\\\": -1.83,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"GRPO bf16 step70\\\",\\n    \\\"rel_f1\\\": 0.4341,\\n    \\\"evi_f1\\\": 0.8099,\\n    \\\"edcr\\\": 0.6685,\\n    \\\"precision\\\": 0.4603,\\n    \\\"recall\\\": 0.4107,\\n    \\\"n_predictions\\\": 11554,\\n    \\\"n_truncated\\\": 73,\\n    \\\"evi_f1_joint\\\": 0.3396,\\n    \\\"delta_rel_f1_pp\\\": 2.35,\\n    \\\"delta_edcr_pp\\\": -3.54,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"GRPO bf16 ckpt100\\\",\\n    \\\"rel_f1\\\": 0.4549,\\n    \\\"evi_f1\\\": 0.8086,\\n    \\\"edcr\\\": 0.6318,\\n    \\\"precision\\\": 0,\\n    \\\"recall\\\": 0,\\n    \\\"n_predictions\\\": null,\\n    \\\"n_truncated\\\": null,\\n    \\\"evi_f1_joint\\\": null,\\n    \\\"delta_rel_f1_pp\\\": 4.43,\\n    \\\"delta_edcr_pp\\\": -7.21,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"GRPO QLoRA kl001\\\",\\n    \\\"rel_f1\\\": 0.2108,\\n    \\\"evi_f1\\\": 0.5666,\\n    \\\"edcr\\\": 0.8584,\\n    \\\"precision\\\": 0,\\n    \\\"recall\\\": 0,\\n    \\\"n_predictions\\\": null,\\n    \\\"n_truncated\\\": null,\\n    \\\"evi_f1_joint\\\": null,\\n    \\\"delta_rel_f1_pp\\\": -19.98,\\n    \\\"delta_edcr_pp\\\": 15.45,\\n    \\\"collapsed\\\": false\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED 3-seed mean\\\",\\n    \\\"rel_f1\\\": 0.4596,\\n    \\\"evi_f1\\\": 0.8143,\\n    \\\"edcr\\\": 0.6434,\\n    \\\"rel_f1_std\\\": 0.0128,\\n    \\\"evi_f1_std\\\": 0.0051,\\n    \\\"edcr_std\\\": 0.0115,\\n    \\\"n_seeds\\\": 3,\\n    \\\"is_summary\\\": true\\n  },\\n  {\\n    \\\"method\\\": \\\"  → best (RSFT-CED s43)\\\",\\n    \\\"rel_f1\\\": 0.4683,\\n    \\\"evi_f1\\\": 0.8156,\\n    \\\"edcr\\\": 0.6388,\\n    \\\"precision\\\": 0.4817,\\n    \\\"recall\\\": 0.4556,\\n    \\\"n_predictions\\\": 14970,\\n    \\\"n_truncated\\\": 171,\\n    \\\"evi_f1_joint\\\": null,\\n    \\\"delta_rel_f1_pp\\\": 5.77,\\n    \\\"delta_edcr_pp\\\": -6.51,\\n    \\\"collapsed\\\": false,\\n    \\\"is_summary\\\": true\\n  },\\n  {\\n    \\\"method\\\": \\\"  → best (RSFT-flatNLI s42)\\\",\\n    \\\"rel_f1\\\": 0.4539,\\n    \\\"evi_f1\\\": 0.8043,\\n    \\\"edcr\\\": 0.6431,\\n    \\\"precision\\\": 0.4671,\\n    \\\"recall\\\": 0.4414,\\n    \\\"n_predictions\\\": 15294,\\n    \\\"n_truncated\\\": 199,\\n    \\\"evi_f1_joint\\\": 0.3544,\\n    \\\"delta_rel_f1_pp\\\": 4.33,\\n    \\\"delta_edcr_pp\\\": -6.08,\\n    \\\"collapsed\\\": false,\\n    \\\"is_summary\\\": true\\n  },\\n  {\\n    \\\"method\\\": \\\"  → best (GRPO bf16 ckpt100)\\\",\\n    \\\"rel_f1\\\": 0.4549,\\n    \\\"evi_f1\\\": 0.8086,\\n    \\\"edcr\\\": 0.6318,\\n    \\\"precision\\\": 0,\\n    \\\"recall\\\": 0,\\n    \\\"n_predictions\\\": null,\\n    \\\"n_truncated\\\": null,\\n    \\\"evi_f1_joint\\\": null,\\n    \\\"delta_rel_f1_pp\\\": 4.43,\\n    \\\"delta_edcr_pp\\\": -7.21,\\n    \\\"collapsed\\\": false,\\n    \\\"is_summary\\\": true\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SeV5J9uCjNu8K56tpSgMyS",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/eval_results/edcr_diagnostic_table.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "ce88665a-eadd-44e2-95ca-72ac2db9f339",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011hi66s6AD5aWARszUsPrZx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 935,
+                "cache_read_input_tokens": 26051,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 935
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T07:08:04.419Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SeV5J9uCjNu8K56tpSgMyS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Method,rel_f1,evi_f1,EDCR,EDCR_median,EDCR_std,n_docs\\\\nSFT baseline (quant),0.4057,0.7979,0.7118,0.6838,0.2879,982\\\\nSFT baseline (noquant),0.4106,0.8013,0.7039,0.6667,0.2927,983\\\\nRSFT-CED s42,0.4449,0.8187,0.6565,0.6000,0.2936,985\\\\nRSFT-CED s43,0.4683,0.8156,0.6388,0.5818,0.2902,985\\\\nRSFT-CED s44,0.4655,0.8087,0.6350,0.5714,0.2894,985\\\\nRSFT-CED r2a,0.4494,0.8108,0.6641,0.6190,0.2844,985\\\\nRSFT-CED r2b,0.4493,0.8128,0.6609,0.6111,0.2866,983\\\\nRSFT-flatNLI s42,0.4539,0.8043,0.6431,0.6000,0.2935,985\\\\nSFT no-evidence,0.4893,0.0000,0.0000,0.0000,0.0000,0\\\\nGRPO bf16 ckpt100,0.4549,0.8086,0.6318,0.5909,0.2743,985\\\\nGRPO QLoRA kl001 ckpt100,0.2167,0.5746,0.8539,0.9231,0.1787,985\\\\nGRPO QLoRA lr5e6 ckpt100,0.0147,0.8502,0.9869,1.0000,0.0562,984\\\\nDPO-CED 1ep (fixed),0.4034,0.8088,0.7139,0.7143,0.2399,984\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "1fca93e8-ca37-4f57-860f-db8d32282b50",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Method,rel_f1,evi_f1,EDCR,EDCR_median,EDCR_std,n_docs\\\\nSFT baseline (quant),0.4057,0.7979,0.7118,0.6838,0.2879,982\\\\nSFT baseline (noquant),0.4106,0.8013,0.7039,0.6667,0.2927,983\\\\nRSFT-CED s42,0.4449,0.8187,0.6565,0.6000,0.2936,985\\\\nRSFT-CED s43,0.4683,0.8156,0.6388,0.5818,0.2902,985\\\\nRSFT-CED s44,0.4655,0.8087,0.6350,0.5714,0.2894,985\\\\nRSFT-CED r2a,0.4494,0.8108,0.6641,0.6190,0.2844,985\\\\nRSFT-CED r2b,0.4493,0.8128,0.6609,0.6111,0.2866,983\\\\nRSFT-flatNLI s42,0.4539,0.8043,0.6431,0.6000,0.2935,985\\\\nSFT no-evidence,0.4893,0.0000,0.0000,0.0000,0.0000,0\\\\nGRPO bf16 ckpt100,0.4549,0.8086,0.6318,0.5909,0.2743,985\\\\nGRPO QLoRA kl001 ckpt100,0.2167,0.5746,0.8539,0.9231,0.1787,985\\\\nGRPO QLoRA lr5e6 ckpt100,0.0147,0.8502,0.9869,1.0000,0.0562,984\\\\nDPO-CED 1ep (fixed),0.4034,0.8088,0.7139,0.7143,0.2399,984\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Method,rel_f1,evi_f1,EDCR,EDCR_median,EDCR_std,n_docs\\nSFT baseline (quant),0.4057,0.7979,0.7118,0.6838,0.2879,982\\nSFT baseline (noquant),0.4106,0.8013,0.7039,0.6667,0.2927,983\\nRSFT-CED s42,0.4449,0.8187,0.6565,0.6000,0.2936,985\\nRSFT-CED s43,0.4683,0.8156,0.6388,0.5818,0.2902,985\\nRSFT-CED s44,0.4655,0.8087,0.6350,0.5714,0.2894,985\\nRSFT-CED r2a,0.4494,0.8108,0.6641,0.6190,0.2844,985\\nRSFT-CED r2b,0.4493,0.8128,0.6609,0.6111,0.2866,983\\nRSFT-flatNLI s42,0.4539,0.8043,0.6431,0.6000,0.2935,985\\nSFT no-evidence,0.4893,0.0000,0.0000,0.0000,0.0000,0\\nGRPO bf16 ckpt100,0.4549,0.8086,0.6318,0.5909,0.2743,985\\nGRPO QLoRA kl001 ckpt100,0.2167,0.5746,0.8539,0.9231,0.1787,985\\nGRPO QLoRA lr5e6 ckpt100,0.0147,0.8502,0.9869,1.0000,0.0562,984\\nDPO-CED 1ep (fixed),0.4034,0.8088,0.7139,0.7143,0.2399,984\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I have both data sources. Let me now understand the data:\n\nFrom the v2.json, the individual methods (excluding summary rows) are:\n1. SFT baseline (quant): rel_f1=0.4057, evi_f1=0.7979, edcr=0.7118\n2. SFT baseline (noquant): rel_f1=0.4106, evi_f1=0.8013, edcr=0.7039\n3. SFT no-evidence: rel_f1=0.4893, evi_f1=0.0, edcr=0.0 — this has no evidence, so EDCR=0\n\n\n4. RSFT-CED s42: rel_f1=0.4449, evi_f1=0.8187, edcr=0.6565\n5. RSFT-CED s43: rel_f1=0.4683, evi_f1=0.8156, edcr=0.6388\n6. RSFT-CED s44: rel_f1=0.4655, evi_f1=0.8087, edcr=0.6350\n7. RSFT-CED r2a: rel_f1=0.4494, evi_f1=0.8108, edcr=0.6641\n8. RSFT-CED r2b: rel_f1=0.4706, evi_f1=0.8134, edcr=0.6519\n9. RSFT-flatNLI s42: rel_f1=0.4539, evi_f1=0.8043, edcr=0.6431\n10. RSFT-flatNLI s43: rel_f1=0.0022, evi_f1=0.8533, edcr=0.9982, collapsed=true\n11. CED-reranker (N=8): rel_f1=0.4864, evi_f1=0.8188, edcr=0.6156\n12. DPO CED 3ep: rel_f1=0.3429, evi_f1=0.8403, edcr=0.7294\n13. DPO CED 1ep: rel_f1=0.0022, evi_f1=0.8533, edcr=0.9982, collapsed=true\n\nNow I'm looking at the performance metrics across different model variants and training approaches. The CED-reranker shows the strongest relevance F1 score at 0.4864, while the DPO variants show some instability with one configuration collapsing entirely. The flatNLI s43 variant also collapsed with near-zero relevance performance despite high evidence F1. I'm noticing some discrepancies between the v2.json results and the CSV data—the CSV has updated metrics for some configurations, and there are methods present in one source but not the other, like the GRPO QLoRA lr5e6 variant that appears only in the CSV.\n\nI should consolidate these sources by using v2.json as the primary dataset and filling in any gaps with the CSV entries. For the correlation analysis, I need to focus only on methods that actually produce evidence, which means excluding SFT no-evidence since it has zero evidence F1 and EDCR scores. I also need to apply the filtering criteria mentioned in the task: removing GRPO QLoRA outliers with rel_f1 below 0.05 and excluding DPO 3ep due to overfitting signals.\n\nLooking at the actual rel_f1 values in the data, I'm seeing several methods that fall below that threshold—RSFT-flatNLI s43, DPO CED 1ep, and GRPO QLoRA lr5e6 all have extremely low rel_f1 values around 0.002 to 0.015, suggesting these are collapsed or severely degraded models that should be filtered out. I'm not sure if that 0.2108 value qualifies as an outlier since it's above the 0.05 threshold, so I'll just implement the script with the strict rel_f1 < 0.05 criterion and see what the actual count is. I'm building a Python script that merges both data sources, filters out SFT no-evidence cases and summary rows, computes the three subsets, and calculates all the correlations I need.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "ea98a7c9-5b48-452c-8e3b-eac5df98fdb9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DGGjB96s5297oKJYMpznp4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5966,
+                "cache_read_input_tokens": 26986,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5966
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已找到。现在合并两个数据源并运行敏感性分析。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "d9971dce-ad30-4bd3-83c0-d616f79c436f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DGGjB96s5297oKJYMpznp4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5966,
+                "cache_read_input_tokens": 26986,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5966
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H5BkUbxwribKtG3T9Vkrxk",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\nfrom scipy.stats import spearmanr\n\n# Load v2.json as primary source\nwith open(\"/root/autodl-tmp/eval_results/edcr_diagnostic_v2.json\") as f:\n    v2_data = json.load(f)\n\n# Filter: only individual methods (no summary rows), only evidence-producing (edcr > 0)\nmethods = {}\nfor d in v2_data:\n    if d.get(\"is_summary\"):\n        continue\n    name = d[\"method\"]\n    if name == \"SFT no-evidence\":\n        continue  # no evidence produced\n    methods[name] = {\n        \"method\": name,\n        \"rel_f1\": d[\"rel_f1\"],\n        \"evi_f1\": d[\"evi_f1\"],\n        \"edcr\": d[\"edcr\"],\n        \"collapsed\": d.get(\"collapsed\", False)\n    }\n\n# Add CSV entries not in v2.json\nimport csv\nwith open(\"/root/autodl-tmp/eval_results/edcr_diagnostic_table.csv\") as f:\n    reader = csv.DictReader(f)\n    for row in reader:\n        name = row[\"Method\"]\n        if name == \"SFT no-evidence\":\n            continue\n        if name not in methods:\n            methods[name] = {\n                \"method\": name,\n                \"rel_f1\": float(row[\"rel_f1\"]),\n                \"evi_f1\": float(row[\"evi_f1\"]),\n                \"edcr\": float(row[\"EDCR\"]),\n                \"collapsed\": float(row[\"rel_f1\"]) < 0.01\n            }\n\n# Update DPO CED 1ep with fixed version from CSV if available\nif \"DPO-CED 1ep (fixed)\" in methods and \"DPO CED 1ep\" in methods:\n    # CSV has a \"fixed\" version - replace the collapsed one\n    pass  # keep both, they're different entries\n\ndata = list(methods.values())\ndata.sort(key=lambda x: x[\"rel_f1\"], reverse=True)\n\nprint(\"=\" * 90)\nprint(f\"{'Method':<30} {'Rel-F1':>8} {'Evi-F1':>8} {'EDCR':>8} {'Collapsed':>10}\")\nprint(\"-\" * 90)\nfor d in data:\n    print(f\"{d['method']:<30} {d['rel_f1']:>8.4f} {d['evi_f1']:>8.4f} {d['edcr']:>8.4f} {str(d['collapsed']):>10}\")\nprint(f\"\\nTotal evidence-producing methods: {len(data)}\")\n\n# Define subsets\nfull = data\nno_extreme = [d for d in data if d[\"rel_f1\"] >= 0.05]\nno_extreme_no_dpo3ep = [d for d in no_extreme if d[\"method\"] != \"DPO CED 3ep\"]\n\nprint(\"\\n\" + \"=\" * 90)\nprint(\"SUBSET DEFINITIONS\")\nprint(\"-\" * 90)\n\n# Methods with rel_f1 < 0.05 (extreme outliers)\nextreme = [d for d in data if d[\"rel_f1\"] < 0.05]\nprint(f\"\\nExtreme outliers removed (rel_f1 < 0.05): {len(extreme)}\")\nfor d in extreme:\n    print(f\"  - {d['method']}: rel_f1={d['rel_f1']:.4f}, edcr={d['edcr']:.4f}\")\n\nprint(f\"\\nDPO CED 3ep (also removed in subset c):\")\ndpo3 = [d for d in data if d[\"method\"] == \"DPO CED 3ep\"]\nfor d in dpo3:\n    print(f\"  - {d['method']}: rel_f1={d['rel_f1']:.4f}, edcr={d['edcr']:.4f}\")\n\n# Compute correlations\nprint(\"\\n\" + \"=\" * 90)\nprint(\"SPEARMAN CORRELATIONS: EDCR vs Rel-F1\")\nprint(\"-\" * 90)\nprint(f\"{'Subset':<40} {'n':>3} {'rho':>8} {'p-value':>12}\")\nprint(\"-\" * 90)\n\nfor name, subset in [(\"Full set\", full), \n                      (\"No extreme outliers (rel_f1>=0.05)\", no_extreme),\n                      (\"No extreme + No DPO 3ep\", no_extreme_no_dpo3ep)]:\n    edcr_vals = [d[\"edcr\"] for d in subset]\n    rel_f1_vals = [d[\"rel_f1\"] for d in subset]\n    rho, pval = spearmanr(edcr_vals, rel_f1_vals)\n    print(f\"{name:<40} {len(subset):>3} {rho:>8.4f} {pval:>12.6f}\")\n\n# Additional correlations\nprint(\"\\n\" + \"=\" * 90)\nprint(\"ADDITIONAL CORRELATIONS (full set)\")\nprint(\"-\" * 90)\nprint(f\"{'Metric pair':<40} {'n':>3} {'rho':>8} {'p-value':>12}\")\nprint(\"-\" * 90)\n\n# EDCR vs Evi-F1\nedcr_vals = [d[\"edcr\"] for d in full]\nevi_f1_vals = [d[\"evi_f1\"] for d in full]\nrel_f1_vals = [d[\"rel_f1\"] for d in full]\nrho_ev, pval_ev = spearmanr(edcr_vals, evi_f1_vals)\nprint(f\"{'EDCR vs Evi-F1':<40} {len(full):>3} {rho_ev:>8.4f} {pval_ev:>12.6f}\")\n\n# EDCR vs Rel-F1\nrho_rf, pval_rf = spearmanr(edcr_vals, rel_f1_vals)\nprint(f\"{'EDCR vs Rel-F1':<40} {len(full):>3} {rho_rf:>8.4f} {pval_rf:>12.6f}\")\n\n# (Evi-F1 - Rel-F1) vs EDCR\ngaps = [d[\"evi_f1\"] - d[\"rel_f1\"] for d in full]\nrho_gap, pval_gap = spearmanr(gaps, edcr_vals)\nprint(f\"{'(Evi-F1 - Rel-F1) vs EDCR':<40} {len(full):>3} {rho_gap:>8.4f} {pval_gap:>12.6f}\")\n\n# Also compute on filtered subsets\nprint(\"\\n\" + \"=\" * 90)\nprint(\"ADDITIONAL CORRELATIONS (no extreme outliers)\")\nprint(\"-\" * 90)\nedcr_ne = [d[\"edcr\"] for d in no_extreme]\nevi_ne = [d[\"evi_f1\"] for d in no_extreme]\nrel_ne = [d[\"rel_f1\"] for d in no_extreme]\ngaps_ne = [d[\"evi_f1\"] - d[\"rel_f1\"] for d in no_extreme]\n\nrho1, p1 = spearmanr(edcr_ne, evi_ne)\nprint(f\"{'EDCR vs Evi-F1':<40} {len(no_extreme):>3} {rho1:>8.4f} {p1:>12.6f}\")\nrho2, p2 = spearmanr(edcr_ne, rel_ne)\nprint(f\"{'EDCR vs Rel-F1':<40} {len(no_extreme):>3} {rho2:>8.4f} {p2:>12.6f}\")\nrho3, p3 = spearmanr(gaps_ne, edcr_ne)\nprint(f\"{'(Evi-F1 - Rel-F1) vs EDCR':<40} {len(no_extreme):>3} {rho3:>8.4f} {p3:>12.6f}\")\n\n# Print methods in each subset\nprint(\"\\n\" + \"=\" * 90)\nprint(\"METHODS IN EACH SUBSET\")\nprint(\"-\" * 90)\nfor sname, subset in [(\"Full set\", full), \n                       (\"No extreme outliers\", no_extreme),\n                       (\"No extreme + No DPO 3ep\", no_extreme_no_dpo3ep)]:\n    print(f\"\\n{sname} (n={len(subset)}):\")\n    for d in subset:\n        print(f\"  {d['method']:<30} rel_f1={d['rel_f1']:.4f}  evi_f1={d['evi_f1']:.4f}  edcr={d['edcr']:.4f}\")\n\nPYEOF",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "80e138ca-9bcf-4a68-b35c-1351966dab04",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DGGjB96s5297oKJYMpznp4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5966,
+                "cache_read_input_tokens": 26986,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5966
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T07:09:04.948Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H5BkUbxwribKtG3T9Vkrxk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==========================================================================================\\\\nMethod                           Rel-F1   Evi-F1     EDCR  Collapsed\\\\n------------------------------------------------------------------------------------------\\\\nCED-reranker (N=8)               0.4864   0.8188   0.6156      False\\\\nRSFT-CED s43                     0.4683   0.8156   0.6388      False\\\\nRSFT-CED s44                     0.4655   0.8087   0.6350      False\\\\nGRPO bf16 ckpt100                0.4549   0.8086   0.6318      False\\\\nRSFT-flatNLI s42                 0.4539   0.8043   0.6431      False\\\\nRSFT-CED r2a                     0.4494   0.8108   0.6641      False\\\\nRSFT-CED r2b                     0.4493   0.8128   0.6609      False\\\\nRSFT-CED s42                     0.4449   0.8187   0.6565      False\\\\nGRPO bf16 step70                 0.4341   0.8099   0.6685      False\\\\nGRPO bf16 step30                 0.4340   0.8063   0.6807      False\\\\nGRPO bf16 step50                 0.4276   0.8024   0.6855      False\\\\nSFT baseline (noquant)           0.4106   0.8013   0.7039      False\\\\nSFT baseline (quant)             0.4057   0.7979   0.7118      False\\\\nDPO-CED 1ep (fixed)              0.4034   0.8088   0.7139      False\\\\nDPO CED 3ep                      0.3429   0.8403   0.7294      False\\\\nGRPO QLoRA kl001 ckpt100         0.2167   0.5746   0.8539      False\\\\nGRPO QLoRA kl001                 0.2108   0.5666   0.8584      False\\\\nGRPO QLoRA lr5e6 ckpt100         0.0147   0.8502   0.9869      False\\\\nRSFT-flatNLI s43                 0.0022   0.8533   0.9982       True\\\\nDPO CED 1ep                      0.0022   0.7500   0.9982       True\\\\n\\\\nTotal evidence-producing methods: 20\\\\n\\\\n==========================================================================================\\\\nSUBSET DEFINITIONS\\\\n------------------------------------------------------------------------------------------\\\\n\\\\nExtreme outliers removed (rel_f1 < 0.05): 3\\\\n  - GRPO QLoRA lr5e6 ckpt100: rel_f1=0.0147, edcr=0.9869\\\\n  - RSFT-flatNLI s43: rel_f1=0.0022, edcr=0.9982\\\\n  - DPO CED 1ep: rel_f1=0.0022, edcr=0.9982\\\\n\\\\nDPO CED 3ep (also removed in subset c):\\\\n  - DPO CED 3ep: rel_f1=0.3429, edcr=0.7294\\\\n\\\\n==========================================================================================\\\\nSPEARMAN CORRELATIONS: EDCR vs Rel-F1\\\\n------------------------------------------------------------------------------------------\\\\nSubset                                     n      rho      p-value\\\\n------------------------------------------------------------------------------------------\\\\nFull set                                  20  -0.9880     0.000000\\\\nNo extreme outliers (rel_f1>=0.05)        17  -0.9804     0.000000\\\\nNo extreme + No DPO 3ep                   16  -0.9765     0.000000\\\\n\\\\n==========================================================================================\\\\nADDITIONAL CORRELATIONS (full set)\\\\n------------------------------------------------------------------------------------------\\\\nMetric pair                                n      rho      p-value\\\\n------------------------------------------------------------------------------------------\\\\nEDCR vs Evi-F1                            20  -0.1768     0.455977\\\\nEDCR vs Rel-F1                            20  -0.9880     0.000000\\\\n(Evi-F1 - Rel-F1) vs EDCR                 20   0.7898     0.000035\\\\n\\\\n==========================================================================================\\\\nADDITIONAL CORRELATIONS (no extreme outliers)\\\\n------------------------------------------------------------------------------------------\\\\nEDCR vs Evi-F1                            17  -0.4902     0.045760\\\\nEDCR vs Rel-F1                            17  -0.9804     0.000000\\\\n(Evi-F1 - Rel-F1) vs EDCR                 17   0.6618     0.003809\\\\n\\\\n==========================================================================================\\\\nMETHODS IN EACH SUBSET\\\\n------------------------------------------------------------------------------------------\\\\n\\\\nFull set (n=20):\\\\n  CED-reranker (N=8)             rel_f1=0.4864  evi_f1=0.8188  edcr=0.6156\\\\n  RSFT-CED s43                   rel_f1=0.4683  evi_f1=0.8156  edcr=0.6388\\\\n  RSFT-CED s44                   rel_f1=0.4655  evi_f1=0.8087  edcr=0.6350\\\\n  GRPO bf16 ckpt100              rel_f1=0.4549  evi_f1=0.8086  edcr=0.6318\\\\n  RSFT-flatNLI s42               rel_f1=0.4539  evi_f1=0.8043  edcr=0.6431\\\\n  RSFT-CED r2a                   rel_f1=0.4494  evi_f1=0.8108  edcr=0.6641\\\\n  RSFT-CED r2b                   rel_f1=0.4493  evi_f1=0.8128  edcr=0.6609\\\\n  RSFT-CED s42                   rel_f1=0.4449  evi_f1=0.8187  edcr=0.6565\\\\n  GRPO bf16 step70               rel_f1=0.4341  evi_f1=0.8099  edcr=0.6685\\\\n  GRPO bf16 step30               rel_f1=0.4340  evi_f1=0.8063  edcr=0.6807\\\\n  GRPO bf16 step50               rel_f1=0.4276  evi_f1=0.8024  edcr=0.6855\\\\n  SFT baseline (noquant)         rel_f1=0.4106  evi_f1=0.8013  edcr=0.7039\\\\n  SFT baseline (quant)           rel_f1=0.4057  evi_f1=0.7979  edcr=0.7118\\\\n  DPO-CED 1ep (fixed)            rel_f1=0.4034  evi_f1=0.8088  edcr=0.7139\\\\n  DPO CED 3ep                    rel_f1=0.3429  evi_f1=0.8403  edcr=0.7294\\\\n  GRPO QLoRA kl001 ckpt100       rel_f1=0.2167  evi_f1=0.5746  edcr=0.8539\\\\n  GRPO QLoRA kl001               rel_f1=0.2108  evi_f1=0.5666  edcr=0.8584\\\\n  GRPO QLoRA lr5e6 ckpt100       rel_f1=0.0147  evi_f1=0.8502  edcr=0.9869\\\\n  RSFT-flatNLI s43               rel_f1=0.0022  evi_f1=0.8533  edcr=0.9982\\\\n  DPO CED 1ep                    rel_f1=0.0022  evi_f1=0.7500  edcr=0.9982\\\\n\\\\nNo extreme outliers (n=17):\\\\n  CED-reranker (N=8)             rel_f1=0.4864  evi_f1=0.8188  edcr=0.6156\\\\n  RSFT-CED s43                   rel_f1=0.4683  evi_f1=0.8156  edcr=0.6388\\\\n  RSFT-CED s44                   rel_f1=0.4655  evi_f1=0.8087  edcr=0.6350\\\\n  GRPO bf16 ckpt100              rel_f1=0.4549  evi_f1=0.8086  edcr=0.6318\\\\n  RSFT-flatNLI s42               rel_f1=0.4539  evi_f1=0.8043  edcr=0.6431\\\\n  RSFT-CED r2a                   rel_f1=0.4494  evi_f1=0.8108  edcr=0.6641\\\\n  RSFT-CED r2b                   rel_f1=0.4493  evi_f1=0.8128  edcr=0.6609\\\\n  RSFT-CED s42                   rel_f1=0.4449  evi_f1=0.8187  edcr=0.6565\\\\n  GRPO bf16 step70               rel_f1=0.4341  evi_f1=0.8099  edcr=0.6685\\\\n  GRPO bf16 step30               rel_f1=0.4340  evi_f1=0.8063  edcr=0.6807\\\\n  GRPO bf16 step50               rel_f1=0.4276  evi_f1=0.8024  edcr=0.6855\\\\n  SFT baseline (noquant)         rel_f1=0.4106  evi_f1=0.8013  edcr=0.7039\\\\n  SFT baseline (quant)           rel_f1=0.4057  evi_f1=0.7979  edcr=0.7118\\\\n  DPO-CED 1ep (fixed)            rel_f1=0.4034  evi_f1=0.8088  edcr=0.7139\\\\n  DPO CED 3ep                    rel_f1=0.3429  evi_f1=0.8403  edcr=0.7294\\\\n  GRPO QLoRA kl001 ckpt100       rel_f1=0.2167  evi_f1=0.5746  edcr=0.8539\\\\n  GRPO QLoRA kl001               rel_f1=0.2108  evi_f1=0.5666  edcr=0.8584\\\\n\\\\nNo extreme + No DPO 3ep (n=16):\\\\n  CED-reranker (N=8)             rel_f1=0.4864  evi_f1=0.8188  edcr=0.6156\\\\n  RSFT-CED s43                   rel_f1=0.4683  evi_f1=0.8156  edcr=0.6388\\\\n  RSFT-CED s44                   rel_f1=0.4655  evi_f1=0.8087  edcr=0.6350\\\\n  GRPO bf16 ckpt100              rel_f1=0.4549  evi_f1=0.8086  edcr=0.6318\\\\n  RSFT-flatNLI s42               rel_f1=0.4539  evi_f1=0.8043  edcr=0.6431\\\\n  RSFT-CED r2a                   rel_f1=0.4494  evi_f1=0.8108  edcr=0.6641\\\\n  RSFT-CED r2b                   rel_f1=0.4493  evi_f1=0.8128  edcr=0.6609\\\\n  RSFT-CED s42                   rel_f1=0.4449  evi_f1=0.8187  edcr=0.6565\\\\n  GRPO bf16 step70               rel_f1=0.4341  evi_f1=0.8099  edcr=0.6685\\\\n  GRPO bf16 step30               rel_f1=0.4340  evi_f1=0.8063  edcr=0.6807\\\\n  GRPO bf16 step50               rel_f1=0.4276  evi_f1=0.8024  edcr=0.6855\\\\n  SFT baseline (noquant)         rel_f1=0.4106  evi_f1=0.8013  edcr=0.7039\\\\n  SFT baseline (quant)           rel_f1=0.4057  evi_f1=0.7979  edcr=0.7118\\\\n  DPO-CED 1ep (fixed)            rel_f1=0.4034  evi_f1=0.8088  edcr=0.7139\\\\n  GRPO QLoRA kl001 ckpt100       rel_f1=0.2167  evi_f1=0.5746  edcr=0.8539\\\\n  GRPO QLoRA kl001               rel_f1=0.2108  evi_f1=0.5666  edcr=0.8584\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "0386e246-d20f-4fa3-b33e-2066a5e674bf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==========================================================================================\\\\nMethod                           Rel-F1   Evi-F1     EDCR  Collapsed\\\\n------------------------------------------------------------------------------------------\\\\nCED-reranker (N=8)               0.4864   0.8188   0.6156      False\\\\nRSFT-CED s43                     0.4683   0.8156   0.6388      False\\\\nRSFT-CED s44                     0.4655   0.8087   0.6350      False\\\\nGRPO bf16 ckpt100                0.4549   0.8086   0.6318      False\\\\nRSFT-flatNLI s42                 0.4539   0.8043   0.6431      False\\\\nRSFT-CED r2a                     0.4494   0.8108   0.6641      False\\\\nRSFT-CED r2b                     0.4493   0.8128   0.6609      False\\\\nRSFT-CED s42                     0.4449   0.8187   0.6565      False\\\\nGRPO bf16 step70                 0.4341   0.8099   0.6685      False\\\\nGRPO bf16 step30                 0.4340   0.8063   0.6807      False\\\\nGRPO bf16 step50                 0.4276   0.8024   0.6855      False\\\\nSFT baseline (noquant)           0.4106   0.8013   0.7039      False\\\\nSFT baseline (quant)             0.4057   0.7979   0.7118      False\\\\nDPO-CED 1ep (fixed)              0.4034   0.8088   0.7139      False\\\\nDPO CED 3ep                      0.3429   0.8403   0.7294      False\\\\nGRPO QLoRA kl001 ckpt100         0.2167   0.5746   0.8539      False\\\\nGRPO QLoRA kl001                 0.2108   0.5666   0.8584      False\\\\nGRPO QLoRA lr5e6 ckpt100         0.0147   0.8502   0.9869      False\\\\nRSFT-flatNLI s43                 0.0022   0.8533   0.9982       True\\\\nDPO CED 1ep                      0.0022   0.7500   0.9982       True\\\\n\\\\nTotal evidence-producing methods: 20\\\\n\\\\n==========================================================================================\\\\nSUBSET DEFINITIONS\\\\n------------------------------------------------------------------------------------------\\\\n\\\\nExtreme outliers removed (rel_f1 < 0.05): 3\\\\n  - GRPO QLoRA lr5e6 ckpt100: rel_f1=0.0147, edcr=0.9869\\\\n  - RSFT-flatNLI s43: rel_f1=0.0022, edcr=0.9982\\\\n  - DPO CED 1ep: rel_f1=0.0022, edcr=0.9982\\\\n\\\\nDPO CED 3ep (also removed in subset c):\\\\n  - DPO CED 3ep: rel_f1=0.3429, edcr=0.7294\\\\n\\\\n==========================================================================================\\\\nSPEARMAN CORRELATIONS: EDCR vs Rel-F1\\\\n------------------------------------------------------------------------------------------\\\\nSubset                                     n      rho      p-value\\\\n------------------------------------------------------------------------------------------\\\\nFull set                                  20  -0.9880     0.000000\\\\nNo extreme outliers (rel_f1>=0.05)        17  -0.9804     0.000000\\\\nNo extreme + No DPO 3ep                   16  -0.9765     0.000000\\\\n\\\\n==========================================================================================\\\\nADDITIONAL CORRELATIONS (full set)\\\\n------------------------------------------------------------------------------------------\\\\nMetric pair                                n      rho      p-value\\\\n------------------------------------------------------------------------------------------\\\\nEDCR vs Evi-F1                            20  -0.1768     0.455977\\\\nEDCR vs Rel-F1                            20  -0.9880     0.000000\\\\n(Evi-F1 - Rel-F1) vs EDCR                 20   0.7898     0.000035\\\\n\\\\n==========================================================================================\\\\nADDITIONAL CORRELATIONS (no extreme outliers)\\\\n------------------------------------------------------------------------------------------\\\\nEDCR vs Evi-F1                            17  -0.4902     0.045760\\\\nEDCR vs Rel-F1                            17  -0.9804     0.000000\\\\n(Evi-F1 - Rel-F1) vs EDCR                 17   0.6618     0.003809\\\\n\\\\n==========================================================================================\\\\nMETHODS IN EACH SUBSET\\\\n------------------------------------------------------------------------------------------\\\\n\\\\nFull set (n=20):\\\\n  CED-reranker (N=8)             rel_f1=0.4864  evi_f1=0.8188  edcr=0.6156\\\\n  RSFT-CED s43                   rel_f1=0.4683  evi_f1=0.8156  edcr=0.6388\\\\n  RSFT-CED s44                   rel_f1=0.4655  evi_f1=0.8087  edcr=0.6350\\\\n  GRPO bf16 ckpt100              rel_f1=0.4549  evi_f1=0.8086  edcr=0.6318\\\\n  RSFT-flatNLI s42               rel_f1=0.4539  evi_f1=0.8043  edcr=0.6431\\\\n  RSFT-CED r2a                   rel_f1=0.4494  evi_f1=0.8108  edcr=0.6641\\\\n  RSFT-CED r2b                   rel_f1=0.4493  evi_f1=0.8128  edcr=0.6609\\\\n  RSFT-CED s42                   rel_f1=0.4449  evi_f1=0.8187  edcr=0.6565\\\\n  GRPO bf16 step70               rel_f1=0.4341  evi_f1=0.8099  edcr=0.6685\\\\n  GRPO bf16 step30               rel_f1=0.4340  evi_f1=0.8063  edcr=0.6807\\\\n  GRPO bf16 step50               rel_f1=0.4276  evi_f1=0.8024  edcr=0.6855\\\\n  SFT baseline (noquant)         rel_f1=0.4106  evi_f1=0.8013  edcr=0.7039\\\\n  SFT baseline (quant)           rel_f1=0.4057  evi_f1=0.7979  edcr=0.7118\\\\n  DPO-CED 1ep (fixed)            rel_f1=0.4034  evi_f1=0.8088  edcr=0.7139\\\\n  DPO CED 3ep                    rel_f1=0.3429  evi_f1=0.8403  edcr=0.7294\\\\n  GRPO QLoRA kl001 ckpt100       rel_f1=0.2167  evi_f1=0.5746  edcr=0.8539\\\\n  GRPO QLoRA kl001               rel_f1=0.2108  evi_f1=0.5666  edcr=0.8584\\\\n  GRPO QLoRA lr5e6 ckpt100       rel_f1=0.0147  evi_f1=0.8502  edcr=0.9869\\\\n  RSFT-flatNLI s43               rel_f1=0.0022  evi_f1=0.8533  edcr=0.9982\\\\n  DPO CED 1ep                    rel_f1=0.0022  evi_f1=0.7500  edcr=0.9982\\\\n\\\\nNo extreme outliers (n=17):\\\\n  CED-reranker (N=8)             rel_f1=0.4864  evi_f1=0.8188  edcr=0.6156\\\\n  RSFT-CED s43                   rel_f1=0.4683  evi_f1=0.8156  edcr=0.6388\\\\n  RSFT-CED s44                   rel_f1=0.4655  evi_f1=0.8087  edcr=0.6350\\\\n  GRPO bf16 ckpt100              rel_f1=0.4549  evi_f1=0.8086  edcr=0.6318\\\\n  RSFT-flatNLI s42               rel_f1=0.4539  evi_f1=0.8043  edcr=0.6431\\\\n  RSFT-CED r2a                   rel_f1=0.4494  evi_f1=0.8108  edcr=0.6641\\\\n  RSFT-CED r2b                   rel_f1=0.4493  evi_f1=0.8128  edcr=0.6609\\\\n  RSFT-CED s42                   rel_f1=0.4449  evi_f1=0.8187  edcr=0.6565\\\\n  GRPO bf16 step70               rel_f1=0.4341  evi_f1=0.8099  edcr=0.6685\\\\n  GRPO bf16 step30               rel_f1=0.4340  evi_f1=0.8063  edcr=0.6807\\\\n  GRPO bf16 step50               rel_f1=0.4276  evi_f1=0.8024  edcr=0.6855\\\\n  SFT baseline (noquant)         rel_f1=0.4106  evi_f1=0.8013  edcr=0.7039\\\\n  SFT baseline (quant)           rel_f1=0.4057  evi_f1=0.7979  edcr=0.7118\\\\n  DPO-CED 1ep (fixed)            rel_f1=0.4034  evi_f1=0.8088  edcr=0.7139\\\\n  DPO CED 3ep                    rel_f1=0.3429  evi_f1=0.8403  edcr=0.7294\\\\n  GRPO QLoRA kl001 ckpt100       rel_f1=0.2167  evi_f1=0.5746  edcr=0.8539\\\\n  GRPO QLoRA kl001               rel_f1=0.2108  evi_f1=0.5666  edcr=0.8584\\\\n\\\\nNo extreme + No DPO 3ep (n=16):\\\\n  CED-reranker (N=8)             rel_f1=0.4864  evi_f1=0.8188  edcr=0.6156\\\\n  RSFT-CED s43                   rel_f1=0.4683  evi_f1=0.8156  edcr=0.6388\\\\n  RSFT-CED s44                   rel_f1=0.4655  evi_f1=0.8087  edcr=0.6350\\\\n  GRPO bf16 ckpt100              rel_f1=0.4549  evi_f1=0.8086  edcr=0.6318\\\\n  RSFT-flatNLI s42               rel_f1=0.4539  evi_f1=0.8043  edcr=0.6431\\\\n  RSFT-CED r2a                   rel_f1=0.4494  evi_f1=0.8108  edcr=0.6641\\\\n  RSFT-CED r2b                   rel_f1=0.4493  evi_f1=0.8128  edcr=0.6609\\\\n  RSFT-CED s42                   rel_f1=0.4449  evi_f1=0.8187  edcr=0.6565\\\\n  GRPO bf16 step70               rel_f1=0.4341  evi_f1=0.8099  edcr=0.6685\\\\n  GRPO bf16 step30               rel_f1=0.4340  evi_f1=0.8063  edcr=0.6807\\\\n  GRPO bf16 step50               rel_f1=0.4276  evi_f1=0.8024  edcr=0.6855\\\\n  SFT baseline (noquant)         rel_f1=0.4106  evi_f1=0.8013  edcr=0.7039\\\\n  SFT baseline (quant)           rel_f1=0.4057  evi_f1=0.7979  edcr=0.7118\\\\n  DPO-CED 1ep (fixed)            rel_f1=0.4034  evi_f1=0.8088  edcr=0.7139\\\\n  GRPO QLoRA kl001 ckpt100       rel_f1=0.2167  evi_f1=0.5746  edcr=0.8539\\\\n  GRPO QLoRA kl001               rel_f1=0.2108  evi_f1=0.5666  edcr=0.8584\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"==========================================================================================\\nMethod                           Rel-F1   Evi-F1     EDCR  Collapsed\\n------------------------------------------------------------------------------------------\\nCED-reranker (N=8)               0.4864   0.8188   0.6156      False\\nRSFT-CED s43                     0.4683   0.8156   0.6388      False\\nRSFT-CED s44                     0.4655   0.8087   0.6350      False\\nGRPO bf16 ckpt100                0.4549   0.8086   0.6318      False\\nRSFT-flatNLI s42                 0.4539   0.8043   0.6431      False\\nRSFT-CED r2a                     0.4494   0.8108   0.6641      False\\nRSFT-CED r2b                     0.4493   0.8128   0.6609      False\\nRSFT-CED s42                     0.4449   0.8187   0.6565      False\\nGRPO bf16 step70                 0.4341   0.8099   0.6685      False\\nGRPO bf16 step30                 0.4340   0.8063   0.6807      False\\nGRPO bf16 step50                 0.4276   0.8024   0.6855      False\\nSFT baseline (noquant)           0.4106   0.8013   0.7039      False\\nSFT baseline (quant)             0.4057   0.7979   0.7118      False\\nDPO-CED 1ep (fixed)              0.4034   0.8088   0.7139      False\\nDPO CED 3ep                      0.3429   0.8403   0.7294      False\\nGRPO QLoRA kl001 ckpt100         0.2167   0.5746   0.8539      False\\nGRPO QLoRA kl001                 0.2108   0.5666   0.8584      False\\nGRPO QLoRA lr5e6 ckpt100         0.0147   0.8502   0.9869      False\\nRSFT-flatNLI s43                 0.0022   0.8533   0.9982       True\\nDPO CED 1ep                      0.0022   0.7500   0.9982       True\\n\\nTotal evidence-producing methods: 20\\n\\n==========================================================================================\\nSUBSET DEFINITIONS\\n------------------------------------------------------------------------------------------\\n\\nExtreme outliers removed (rel_f1 < 0.05): 3\\n  - GRPO QLoRA lr5e6 ckpt100: rel_f1=0.0147, edcr=0.9869\\n  - RSFT-flatNLI s43: rel_f1=0.0022, edcr=0.9982\\n  - DPO CED 1ep: rel_f1=0.0022, edcr=0.9982\\n\\nDPO CED 3ep (also removed in subset c):\\n  - DPO CED 3ep: rel_f1=0.3429, edcr=0.7294\\n\\n==========================================================================================\\nSPEARMAN CORRELATIONS: EDCR vs Rel-F1\\n------------------------------------------------------------------------------------------\\nSubset                                     n      rho      p-value\\n------------------------------------------------------------------------------------------\\nFull set                                  20  -0.9880     0.000000\\nNo extreme outliers (rel_f1>=0.05)        17  -0.9804     0.000000\\nNo extreme + No DPO 3ep                   16  -0.9765     0.000000\\n\\n==========================================================================================\\nADDITIONAL CORRELATIONS (full set)\\n------------------------------------------------------------------------------------------\\nMetric pair                                n      rho      p-value\\n------------------------------------------------------------------------------------------\\nEDCR vs Evi-F1                            20  -0.1768     0.455977\\nEDCR vs Rel-F1                            20  -0.9880     0.000000\\n(Evi-F1 - Rel-F1) vs EDCR                 20   0.7898     0.000035\\n\\n==========================================================================================\\nADDITIONAL CORRELATIONS (no extreme outliers)\\n------------------------------------------------------------------------------------------\\nEDCR vs Evi-F1                            17  -0.4902     0.045760\\nEDCR vs Rel-F1                            17  -0.9804     0.000000\\n(Evi-F1 - Rel-F1) vs EDCR                 17   0.6618     0.003809\\n\\n==========================================================================================\\nMETHODS IN EACH SUBSET\\n------------------------------------------------------------------------------------------\\n\\nFull set (n=20):\\n  CED-reranker (N=8)             rel_f1=0.4864  evi_f1=0.8188  edcr=0.6156\\n  RSFT-CED s43                   rel_f1=0.4683  evi_f1=0.8156  edcr=0.6388\\n  RSFT-CED s44                   rel_f1=0.4655  evi_f1=0.8087  edcr=0.6350\\n  GRPO bf16 ckpt100              rel_f1=0.4549  evi_f1=0.8086  edcr=0.6318\\n  RSFT-flatNLI s42               rel_f1=0.4539  evi_f1=0.8043  edcr=0.6431\\n  RSFT-CED r2a                   rel_f1=0.4494  evi_f1=0.8108  edcr=0.6641\\n  RSFT-CED r2b                   rel_f1=0.4493  evi_f1=0.8128  edcr=0.6609\\n  RSFT-CED s42                   rel_f1=0.4449  evi_f1=0.8187  edcr=0.6565\\n  GRPO bf16 step70               rel_f1=0.4341  evi_f1=0.8099  edcr=0.6685\\n  GRPO bf16 step30               rel_f1=0.4340  evi_f1=0.8063  edcr=0.6807\\n  GRPO bf16 step50               rel_f1=0.4276  evi_f1=0.8024  edcr=0.6855\\n  SFT baseline (noquant)         rel_f1=0.4106  evi_f1=0.8013  edcr=0.7039\\n  SFT baseline (quant)           rel_f1=0.4057  evi_f1=0.7979  edcr=0.7118\\n  DPO-CED 1ep (fixed)            rel_f1=0.4034  evi_f1=0.8088  edcr=0.7139\\n  DPO CED 3ep                    rel_f1=0.3429  evi_f1=0.8403  edcr=0.7294\\n  GRPO QLoRA kl001 ckpt100       rel_f1=0.2167  evi_f1=0.5746  edcr=0.8539\\n  GRPO QLoRA kl001               rel_f1=0.2108  evi_f1=0.5666  edcr=0.8584\\n  GRPO QLoRA lr5e6 ckpt100       rel_f1=0.0147  evi_f1=0.8502  edcr=0.9869\\n  RSFT-flatNLI s43               rel_f1=0.0022  evi_f1=0.8533  edcr=0.9982\\n  DPO CED 1ep                    rel_f1=0.0022  evi_f1=0.7500  edcr=0.9982\\n\\nNo extreme outliers (n=17):\\n  CED-reranker (N=8)             rel_f1=0.4864  evi_f1=0.8188  edcr=0.6156\\n  RSFT-CED s43                   rel_f1=0.4683  evi_f1=0.8156  edcr=0.6388\\n  RSFT-CED s44                   rel_f1=0.4655  evi_f1=0.8087  edcr=0.6350\\n  GRPO bf16 ckpt100              rel_f1=0.4549  evi_f1=0.8086  edcr=0.6318\\n  RSFT-flatNLI s42               rel_f1=0.4539  evi_f1=0.8043  edcr=0.6431\\n  RSFT-CED r2a                   rel_f1=0.4494  evi_f1=0.8108  edcr=0.6641\\n  RSFT-CED r2b                   rel_f1=0.4493  evi_f1=0.8128  edcr=0.6609\\n  RSFT-CED s42                   rel_f1=0.4449  evi_f1=0.8187  edcr=0.6565\\n  GRPO bf16 step70               rel_f1=0.4341  evi_f1=0.8099  edcr=0.6685\\n  GRPO bf16 step30               rel_f1=0.4340  evi_f1=0.8063  edcr=0.6807\\n  GRPO bf16 step50               rel_f1=0.4276  evi_f1=0.8024  edcr=0.6855\\n  SFT baseline (noquant)         rel_f1=0.4106  evi_f1=0.8013  edcr=0.7039\\n  SFT baseline (quant)           rel_f1=0.4057  evi_f1=0.7979  edcr=0.7118\\n  DPO-CED 1ep (fixed)            rel_f1=0.4034  evi_f1=0.8088  edcr=0.7139\\n  DPO CED 3ep                    rel_f1=0.3429  evi_f1=0.8403  edcr=0.7294\\n  GRPO QLoRA kl001 ckpt100       rel_f1=0.2167  evi_f1=0.5746  edcr=0.8539\\n  GRPO QLoRA kl001               rel_f1=0.2108  evi_f1=0.5666  edcr=0.8584\\n\\nNo extreme + No DPO 3ep (n=16):\\n  CED-reranker (N=8)             rel_f1=0.4864  evi_f1=0.8188  edcr=0.6156\\n  RSFT-CED s43                   rel_f1=0.4683  evi_f1=0.8156  edcr=0.6388\\n  RSFT-CED s44                   rel_f1=0.4655  evi_f1=0.8087  edcr=0.6350\\n  GRPO bf16 ckpt100              rel_f1=0.4549  evi_f1=0.8086  edcr=0.6318\\n  RSFT-flatNLI s42               rel_f1=0.4539  evi_f1=0.8043  edcr=0.6431\\n  RSFT-CED r2a                   rel_f1=0.4494  evi_f1=0.8108  edcr=0.6641\\n  RSFT-CED r2b                   rel_f1=0.4493  evi_f1=0.8128  edcr=0.6609\\n  RSFT-CED s42                   rel_f1=0.4449  evi_f1=0.8187  edcr=0.6565\\n  GRPO bf16 step70               rel_f1=0.4341  evi_f1=0.8099  edcr=0.6685\\n  GRPO bf16 step30               rel_f1=0.4340  evi_f1=0.8063  edcr=0.6807\\n  GRPO bf16 step50               rel_f1=0.4276  evi_f1=0.8024  edcr=0.6855\\n  SFT baseline (noquant)         rel_f1=0.4106  evi_f1=0.8013  edcr=0.7039\\n  SFT baseline (quant)           rel_f1=0.4057  evi_f1=0.7979  edcr=0.7118\\n  DPO-CED 1ep (fixed)            rel_f1=0.4034  evi_f1=0.8088  edcr=0.7139\\n  GRPO QLoRA kl001 ckpt100       rel_f1=0.2167  evi_f1=0.5746  edcr=0.8539\\n  GRPO QLoRA kl001               rel_f1=0.2108  evi_f1=0.5666  edcr=0.8584\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n## EDCR vs Rel-F1 Spearman 相关性（敏感性分析）\n\n| 子集 | n | ρ | p-value |\n|------|---|---|---------|\n| Full set | 20 | **-0.9880** | <0.000001 |\n| No extreme outliers (rel_f1≥0.05) | 17 | **-0.9804** | <0.000001 |\n| No extreme + No DPO 3ep | 16 | **-0.9765** | <0.000001 |\n\n去掉 3 个 collapsed/extreme 方法和 DPO 3ep 过拟合方法后，相关性几乎不变，从 -0.988 降到 -0.977，仍极强且高度显著。\n\n## 替代指标对比\n\n| 指标对 | n | ρ | p-value |\n|--------|---|---|---------|\n| EDCR vs Rel-F1 (full) | 20 | -0.9880 | <0.000001 |\n| EDCR vs Evi-F1 (full) | 20 | -0.1768 | 0.456 |\n| (Evi-F1 − Rel-F1) vs EDCR (full) | 20 | 0.7898 | 0.000035 |\n| EDCR vs Evi-F1 (no outliers) | 17 | -0.4902 | 0.046 |\n| (Evi-F1 − Rel-F1) vs EDCR (no outliers) | 17 | 0.6618 | 0.004 |\n\n关键发现：\n- **EDCR vs Rel-F1 的强负相关对 outlier 不敏感**（ρ 从 -0.988 到 -0.977，结论稳健）\n- **EDCR 与 Evi-F1 正交**：full set ρ=-0.18 (p=0.46)，不显著；去除 outlier 后 ρ=-0.49 (p=0.046)，仅边缘显著\n- 被去除的 extreme outliers：GRPO QLoRA lr5e6 (rel_f1=0.015), RSFT-flatNLI s43 (0.002, collapsed), DPO CED 1ep (0.002, collapsed)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "uuid": "3ee8b9f0-d3af-4fc2-9bb5-15bc689c3fc3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KW3h6vrCVkFHuDyrBRztaB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7869,
+                "cache_read_input_tokens": 32952,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7869
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n## EDCR vs Rel-F1 Spearman 相关性（敏感性分析）\n\n| 子集 | n | ρ | p-value |\n|------|---|---|---------|\n| Full set | 20 | **-0.9880** | <0.000001 |\n| No extreme outliers (rel_f1≥0.05) | 17 | **-0.9804** | <0.000001 |\n| No extreme + No DPO 3ep | 16 | **-0.9765** | <0.000001 |\n\n去掉 3 个 collapsed/extreme 方法和 DPO 3ep 过拟合方法后，相关性几乎不变，从 -0.988 降到 -0.977，仍极强且高度显著。\n\n## 替代指标对比\n\n| 指标对 | n | ρ | p-value |\n|--------|---|---|---------|\n| EDCR vs Rel-F1 (full) | 20 | -0.9880 | <0.000001 |\n| EDCR vs Evi-F1 (full) | 20 | -0.1768 | 0.456 |\n| (Evi-F1 − Rel-F1) vs EDCR (full) | 20 | 0.7898 | 0.000035 |\n| EDCR vs Evi-F1 (no outliers) | 17 | -0.4902 | 0.046 |\n| (Evi-F1 − Rel-F1) vs EDCR (no outliers) | 17 | 0.6618 | 0.004 |\n\n关键发现：\n- **EDCR vs Rel-F1 的强负相关对 outlier 不敏感**（ρ 从 -0.988 到 -0.977，结论稳健）\n- **EDCR 与 Evi-F1 正交**：full set ρ=-0.18 (p=0.46)，不显著；去除 outlier 后 ρ=-0.49 (p=0.046)，仅边缘显著\n- 被去除的 extreme outliers：GRPO QLoRA lr5e6 (rel_f1=0.015), RSFT-flatNLI s43 (0.002, collapsed), DPO CED 1ep (0.002, collapsed)"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 88669,
+            "duration_api_ms": 88199,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "a3848529-3091-43c5-b62d-c6c6350e1447",
+            "total_cost_usd": 0.38445450000000003,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 28980,
+              "cache_read_input_tokens": 123505,
+              "output_tokens": 5560,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 28980,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 653,
+                  "cache_read_input_tokens": 32952,
+                  "cache_creation_input_tokens": 7869,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 7869
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2447,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002532,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 5560,
+                "cacheReadInputTokens": 123505,
+                "cacheCreationInputTokens": 28980,
+                "webSearchRequests": 0,
+                "costUSD": 0.38192250000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "b4fc29f4-884f-4f3b-b358-fb32f6fa8f15"
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-edcr-correlation-recompute.md"
+}

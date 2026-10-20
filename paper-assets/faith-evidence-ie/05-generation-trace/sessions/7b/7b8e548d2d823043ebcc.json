@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b8e548d2d823043ebcc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check 1 7b 2048 harvest",
+  "task_key": "worker_ops_check_1_7b_2048_harvest_20260519T192518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_1_7b_2048_harvest_20260519T192518_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "faa30d2f85fe03006214e302f42966caabbcf020e86509866f26d303d67a8570"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The 2048 eval is **still running** — at batch 216/247 (87%). The log is at a different path, and no metrics.json yet because it hasn't finished.\n\n**Progress**: 216/247 batches (87.4%)\n- Speed: ~80-85s/batch (2x slower than 1024 version, expected)\n- Remaining: 31 batches × ~83s ≈ **43 minutes**\n- Last logged batch timestamp: 4:36:47 elapsed\n\nThe process PID 702837 is the parent shell; the actual Python child is doing the GPU work on cuda:3.\n\n## Summary\n\n| Item | Value |\n|------|-------|\n| **Status** | Running, 87% complete |\n| **ETA** | ~43 min from last log entry |\n| **Log** | `/root/autodl-tmp/eval_outputs/eval_1_7b_rsft_no_evidence_2048.log` |\n| **Output dir** | `/root/autodl-tmp/eval_outputs/eval_1_7b_rsft_no_evidence_2048/` |\n| **Note** | Registry entry for `plan019_1_7b_rsft_no_evidence_eval_2048` does not exist yet — needs to be created when harvesting results |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-1-7b-2048-harvest.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d70c514f06699cfd094",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose flatnli r6 step30 health",
+  "task_key": "worker_diagnose_flatnli-r6-step30-health_20260514T180957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_flatnli-r6-step30-health_20260514T180957_result.json",
+    "occurrence": 1,
+    "bytes": 1417,
+    "sha256": "3a362774a4125665e3f1dd7bcb53c1d1c781781b85427b0ff747145e464449e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## flatnli_r6 健康状态报告\n\n**判定: MODE COLLAPSE CONFIRMED** — step 25 已完全坍塌\n\n### 进程状态\n- PID 76958: **仍在运行**, elapsed 44:52, RSS 3.3GB\n- GPU 3: 54% util, 13647/32607 MiB\n- 当前 step: ~26/100\n- W&B 链接: 日志中未找到\n\n### 最近 5 个 log point 的关键指标\n\n| Step | frac_zero_std | f1_reward | flat_nli | total_reward | KL | grad_norm |\n|------|:---:|:---:|:---:|:---:|:---:|:---:|\n| 5 | 0.1 | 0.007 | 0.021 | 0.192 | **1.24亿** | 0.479 |\n| 10 | 0.4 | 0.003 | 0.006 | 0.257 | 0.022 | 0.235 |\n| 15 | 0.6 | 0.023 | 0.018 | 0.318 | 0.043 | 0.201 |\n| 20 | 0.7 | 0.012 | 0.023 | 0.325 | 0.036 | 0.037 |\n| **25** | **0.9** | **0.0** | **0.0** | 0.293 | 0.056 | 0.271 |\n\n### 坍塌分析\n\n- **frac_zero_std**: 0.1 → 0.4 → 0.6 → 0.7 → **0.9**, 单调上升，step 25 远超 0.8 警戒线\n- **task reward 归零**: step 25 的 f1_reward 和 flat_nli_reward 均为 **精确 0.0** — 模型已完全丧失任务能力\n- **reward 全部来自 format**: total_reward 0.293 ≈ format_reward 0.293\n- **生成长度坍缩**: mean_length 从 774 → 400, reward_std 从 0.16 → 0.018（所有样本输出趋同）\n- **坍塌起始**: step 20-25 之间，step 25 确认完全坍塌\n- 模式与 extract_r4 一致，但更快（r4 是 step 30+，r6 在 step 25 就完全坍塌）\n\n这个 run 继续跑没有意义，建议 kill。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-flatnli-r6-step30-health.md"
+}

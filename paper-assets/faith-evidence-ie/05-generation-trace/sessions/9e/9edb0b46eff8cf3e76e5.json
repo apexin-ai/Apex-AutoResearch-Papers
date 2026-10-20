@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9edb0b46eff8cf3e76e5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops server health check",
+  "task_key": "worker_ops_server-health-check_20260514T224531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server-health-check_20260514T224531_result.json",
+    "occurrence": 1,
+    "bytes": 2426,
+    "sha256": "228a7d19072d8d6856aee0ec4f97abfda2dd7a019acfae683208c09da9289880"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 进程存活\n\n| PID | 任务 | 状态 | GPU | 显存 |\n|-----|------|------|-----|------|\n| 90080 | 训练 grpo_ced_lr5e6_r1 | **ALIVE** | GPU 0 | 13.6 GB |\n| 108025 | ckpt-60 eval 原版 | **DEAD** | — | — |\n| 108185 | ckpt-60 eval r2 | **ALIVE** | GPU 1 | 9.7 GB |\n| 101842 | ckpt-40 eval r2 | **ALIVE** | GPU 2 | 10.6 GB |\n| 104979 | SFT baseline eval | **ALIVE** | GPU 3 | 9.7 GB |\n\n### GPU 占用（4× RTX 5090 32GB each）\n\n- **GPU 0**: 训练进程 (13.6/32 GB)\n- **GPU 1**: ckpt-60 eval r2 (9.7/32 GB)\n- **GPU 2**: ckpt-40 eval r2 (10.6/32 GB)\n- **GPU 3**: SFT baseline eval (9.7/32 GB)\n\n### 训练进度\n\n- **Step 101/200** (50.5%)，已运行 3h06m\n- 速度 ~100-110 s/step，剩余 99 步 → 预计还需 **~2h45m**（约 UTC 09:30 完成）\n- 最新 checkpoint: **checkpoint-100**（06:43 UTC 保存）\n- KL divergence 警告：step 5 时爆到 2.4B，step 30 到 70T，step 85 到 14M，step 90 回落到 685。当前 KL 在 0.007 左右，正常范围\n- Reward 趋势：format_reward ~0.25, f1_reward ~0.016, ced_reward ~0.018, total ~0.28\n\n### ckpt-60 eval\n\n- **PID 108025（原版）**：已死，exit -15（被 SIGTERM 杀掉），inference 还没开始就挂了\n- **PID 108185（r2）**：存活，运行 16min，当前 **10/62 batches (16%)**，~92s/batch → 剩余 52 batch ≈ **~80min**（约 UTC 08:00 完成）\n- 输出目录 `grpo_ced_lr5e6_ckpt60/` 为空（还在跑）\n- 注意：r2 的 output_dir 和原版不同：原版写到 `lr5e6_r1_ckpt60/checkpoint-60`，r2 直接写到 `grpo_ced_lr5e6_ckpt60/`\n\n### ckpt-40 eval r2\n\n- 运行 1h21m，output_dir `lr5e6_r1_ckpt40/checkpoint-40/` 仍为空（结果在完成时写入）\n- 根据运行时间估算（~93-100s/batch），大约已完成 **~48/62 batches (77%)**\n- 预计还需 **~23min**（约 UTC 07:10 完成）\n\n### SFT baseline eval\n\n- 运行 53min，output_dir `sft_baseline_eval_results/` 仍为空\n- 估算已完成 **~34/62 batches (55%)**\n- 预计还需 **~43min**（约 UTC 07:30 完成）\n\n### 关键发现\n\n1. ckpt-60 原版 eval (PID 108025) 被 SIGTERM 杀了，r2 (PID 108185) 正在正常跑，不需要修复\n2. ckpt-40 原版 eval 也曾被 SIGTERM 杀过（日志显示 `exit -15`），r2 重试正在正常运行\n3. 所有 4 张 GPU 都在工作，没有闲置\n4. 训练的 KL 曾经爆炸过但已恢复，reward 在缓慢提升"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-server-health-check.md"
+}

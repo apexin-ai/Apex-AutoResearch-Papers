@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efb06c1e533db32491d3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops cuda1 cleanup",
+  "task_key": "worker_ops_cuda1_cleanup_20260514T223326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda1_cleanup_20260514T223326_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "f4287ce1e251b81d4edc534e105ee47002e8c444c3c1552ab71e1e16b8b1d063"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **PID 108025**：已死，无需 kill\n- **PID 108185**：正常运行中，已跑 4 分 32 秒，进度 3%（2/62 batches），速度约 98s/batch，预计还需 ~98 分钟\n- **cuda:1 状态**：只有 108185 一个进程，占用 9060 MiB，无冲突\n- **输出目录**：`/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60`\n\n不需要任何清理操作，108185 正常推进中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda1-cleanup.md"
+}

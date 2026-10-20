@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00051ef63ab803ffba9a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops submit llama rsft train cuda2",
+  "task_key": "worker_ops_submit_llama_rsft_train_cuda2_20260517T030342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_llama_rsft_train_cuda2_20260517T030342_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "80b9590e39a5a1b54750a15476362893ae9272257f8918f54b4f18a15486b320"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**执行摘要：**\n- cuda:2 确认空闲 → 训练已启动（PID 404050），当前占用 ~14.8 GB\n- 模块名修正：`freige.training.rsft_trainer`（非 `rsft_train`）\n- 参数修正：`--rsft_data_path`（非 `--scored_data`），`--num_epochs`（非 `--epochs`），无 `--top_k`\n- 训练数据：8829 samples 确认\n- tmux session: `plan_016_llama_rsft_train`\n- Registry: `plan_016_llama_rsft_train` → RUNNING, `plan_016_llama_ced_scoring` → DONE(success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-llama-rsft-train-cuda2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13f6ae7b9bf06a5cdd1d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 003 edcr diagnostic",
+  "task_key": "worker_analysis_plan_003_edcr_diagnostic_20260515T195224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_003_edcr_diagnostic_20260515T195224_result.json",
+    "occurrence": 1,
+    "bytes": 927,
+    "sha256": "dba946d256927c2905c61daa4be7fd448c6a87b643873b0fa4a7988e532d1546"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。诊断表覆盖 21 个方法变体，核心发现：\n\n**EDCR 本质上是 FP 三元组检测器** — 90% 的 distractor citations 来自假阳性三元组，而非证据标注错误。\n\n五个诊断模式：\n- **正常改进**（RSFT/bf16 GRPO）：EDCR 降 5-10pp，rel_f1 升 4-8pp\n- **灾难性遗忘**（QLoRA GRPO）：EDCR 爆到 0.85-0.99，即使 evi_f1 看起来正常（0.83），EDCR 也能检出\n- **DPO 过拟合**：evi_f1 最高(0.84) 但 EDCR 反而高于 baseline → 条件 evi_f1 对 FP 膨胀视而不见\n- **CED-reranker 最低 EDCR(0.6156)**：不是反直觉，而是直接用 CED 做选择所以机械性地淘汰了 FP 密集候选\n- **不可约 EDCR 下限 ~0.52**（oracle 选择仍有 52% distractor rate），说明数据集标注与证据生成策略存在结构性不匹配\n\n文件：`artifacts/edcr_diagnostic_table.md`，已注册为 `art_20260515_8b91f9`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-003-edcr-diagnostic-copy-2.md"
+}

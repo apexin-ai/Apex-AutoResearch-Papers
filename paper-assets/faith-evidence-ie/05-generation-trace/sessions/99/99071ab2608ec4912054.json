@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99071ab2608ec4912054",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh ced score shard0",
+  "task_key": "worker_ssh_ced-score-shard0_20260515T050122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_ced-score-shard0_20260515T050122_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "642679b62ee618e90036efc6a5f55886b30fdc6f258846fa6b49267bd2f0abc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Shard 0 CED scoring 完成。**\n\n### 汇报\n\n| 指标 | 值 |\n|------|-----|\n| 总 records | 5560 (695 docs) |\n| 选中 | **687** (12.4%, 687/695 docs) |\n| F1 阈值过滤丢弃 | 339 gens, 8 docs |\n\n**分数统计 (selected)**:\n| reward | mean | median | min | max |\n|--------|------|--------|-----|-----|\n| format | 1.000 | 1.000 | 1.0 | 1.0 |\n| f1 | 0.618 | 0.636 | 0.103 | 1.0 |\n| ced | 0.673 | 0.692 | 0.0 | 0.997 |\n| combined | 0.716 | 0.717 | 0.4 | 0.999 |\n\n**截断 vs 非截断 F1 对比**:\n| 类型 | 数量 | mean F1 |\n|------|------|---------|\n| 截断 | 506 | 0.328 |\n| 非截断 | 5054 | 0.496 |\n| **gap** | — | **0.169** (显著) |\n\n**输出文件**:\n- `rsft_scores.jsonl`: 5560 条评分记录 (17.5MB)\n- `rsft_train.jsonl`: **687** 条训练样本 (2.1MB)\n- `rsft_report.json`: 完整统计报告\n\n耗时 ~18 分钟 (13:01→13:19)。GPU 0 现已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-ced-score-shard0.md"
+}

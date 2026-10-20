@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "916754d938faa7d41e80",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_10_1778891055.md",
+  "task_key": "loop_10_1778891055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778891055.md",
+    "occurrence": 1,
+    "bytes": 5571,
+    "sha256": "fe0836d79fc270b19599e0d11a86987bd1cb6aef5cf10d00e0233d0cbc2b5734"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T00:22:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3（rtx5090-4x），白名单外的 GPU 必须 push back Director\n- RSFT 训练 cwd 必须为 `cd /root/autodl-tmp`，**不是** `cd /root/autodl-tmp/freige`（rsft_ced_s43_train 因此失败两次）\n- 所有 eval 命令必须带 `--sft_adapter /root/autodl-tmp/sft_output`（D064 教训：缺此 flag 导致 3 个 eval 结果无效被撤回）\n- 主表指标用 Ign-F1（metrics_v2.json），不是 F1（Ign-F1 bug 已修复，旧 metrics.json 中 Ign-F1 全等于 F1 是错的）\n- reeval_rsft_topk3 结果为 negative（rel_f1=0.4454 < top_k=1 的 ~0.46），尚未向 Director 产出 Framing 提案——下一个 session 需要处理这个 negative 结论（但这是 ablation 级 negative，不是 core claim 级，影响有限）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x (4× RTX 5090 32GB)，account=root\n- **工作目录**: `/root/autodl-tmp/freige`（代码），`/root/autodl-tmp`（运行 cwd）\n- **Python**: `/root/miniconda3/bin/python`，conda base env（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`\n- **SFT adapter**: `/root/autodl-tmp/sft_output`\n- **数据**: `/root/autodl-tmp/data/docred`（DocRED），`/root/autodl-tmp/rsft_filtered/rsft_train.jsonl`（CED RSFT 2718 samples）\n- **Eval 产出**: `/root/autodl-tmp/eval_results/`\n- **RSFT 产出**: `/root/autodl-tmp/rsft_output_ced_s{42,43,44,45}/`, `/root/autodl-tmp/rsft_output_flat_nli_s{42,43,44,45}/`\n- **活跃进程**:\n  - eval_flat_nli_s44: PID 270462, tmux=eval_flat_nli_s44, cuda:0\n  - eval_flat_nli_seed45: PID 272164, tmux=eval_flat_nli_seed45, cuda:3\n  - rsft_ced_s43_train_r3: PID 277310, tmux=rsft_ced_s43_train_r3, cuda:1（状态 PREPARING，已 submit 但未更新到 RUNNING）\n  - rsft_ced_s45_train_r3: PID 277407, tmux=rsft_ced_s45_train_r3, cuda:2（同上，PREPARING 未更新）\n- **Cron**: 2 个 active（eval_flat_nli_s44 + eval_flat_nli_seed45），rsft_ced_s43/s45_train_r3 尚未被 cron 接管（因状态还在 PREPARING）\n\n### 3. 📊 当前状态\n上一轮做了：提交 flat-NLI s44/s45 eval + CED s43/s45 补种训练（r3），分析 reeval_rsft_topk3（negative），修复 Ign-F1 bug 并重算 32 个实验的 metrics_v2.json。\n\n**4 张 GPU 全部在跑**：\n| GPU | exp_id | 类型 | 预计时长 |\n|-----|--------|------|---------|\n| cuda:0 | eval_flat_nli_s44 | flat-NLI eval | ~1h |\n| cuda:1 | rsft_ced_s43_train_r3 | CED RSFT 训练 | ~2h |\n| cuda:2 | rsft_ced_s45_train_r3 | CED RSFT 训练 | ~2h |\n| cuda:3 | eval_flat_nli_seed45 | flat-NLI eval | ~1h |\n\n**Worker 池**: 0 running（刚全部完成）。PREPARING 状态的 rsft_ced 训练需要先确认 cron 是否接管，否则需要手动推进状态。\n\n**等待中**：\n- eval_flat_nli_s44 / seed45 完成 → cron 回调\n- rsft_ced_s43/s45_train_r3 完成 → 需要提交对应 eval\n- reeval_rsft_topk3 negative 的 Framing 提案还没产出（但这是 minor ablation）\n\n### 4. 📋 待办（条件触发式）\n- **rsft_ced_s43/s45_train_r3 状态仍为 PREPARING** → 先 reconcile_crons 或手动检查 tmux 进程存活，确认后 update_registry 推进到 RUNNING\n- **eval_flat_nli_s44 完成** → on-experiment-done 流程，记录 rel_f1/ign_f1，与 s42 (0.4539) 对比\n- **eval_flat_nli_seed45 完成** → 同上，与中间 eval 0.4876 对比确认\n- **两个 flat-NLI eval 都完成** → 4 seeds (s42/s43/s44/s45) 齐，运行 `/root/autodl-tmp/scripts/seed_comparison.py`（但 CED 侧只有 s42/s44 两个 seed，需等 s43/s45 训练+eval 才能做 paired t-test）\n- **rsft_ced_s43_train_r3 完成** → 提交 eval（与 eval_flat_nli_s44 同样命令模式，checkpoint 在 rsft_output_ced_s43/）\n- **rsft_ced_s45_train_r3 完成** → 提交 eval（checkpoint 在 rsft_output_ced_s45/）\n- **所有 4 CED seeds eval 齐** → paired t-test（C3 显著性最终判定），结果汇报 Director\n- **GPU 释放** → 按优先级填：plan_003_edcr_diagnostic (P0, ~2h) > plan_002 test set eval (P0) > eval_plan_014_no_evidence (排队中)\n- **reeval_rsft_topk3 negative** → 产出 Framing 提案（但这是 ablation 级：top_k=3 < top_k=1 只说明 CED scoring 最优 k=1，不影响核心 claim）\n\n### 5. 🎯 战略上下文\n**论文核心结论链**：\n- D054/D065/D066: decoupling 是 QLoRA-specific amplification，bf16 仅 mild\n- D067/D068/D069: DPO 从 \"fails\" 修正为 \"gradual decoupling\"，形成连续谱系\n- D070/D071/D072/D073: EDCR 双层诊断（方法级+per-relation级），Claim 4 叙事定稿\n- D064: --sft_adapter bug 撤回 3 个 eval，已全部重跑\n\n**关键路径**: flat-NLI 4 seeds + CED 4 seeds → paired t-test → C3 最终判定。如果 CED 不显著优于 flat-NLI（大概率），C3 降级为 \"NLI-based scoring works, CED is one option\"，不影响 C1/C2。\n\n**最容易判断错的事**：\n- rsft_ced_s43/s45_train_r3 看起来在 PREPARING 但实际已提交（有 PID），不要重复提交——先查 tmux/进程\n- CED RSFT 训练 checkpoint 数量：3 epochs × 2718 samples ÷ (batch 4 × grad_accum 4) ≈ 507 steps，checkpoint 在 `checkpoint-507`\n- 不要把 Ign-F1 和 F1 搞混：metrics_v2.json 才有正确的 Ign-F1，旧 metrics.json 的 ign_f1 字段等于 f1（bug）\n- plan_014 no-evidence eval 已完成（rel_f1=0.4893, ign_f1=47.36），不需要重跑\n- EMNLP ARR July deadline ~7月15-25，还有 ~2 个月，但 CED 补种+eval+统计+写作 时间紧\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778891055.md"
+}

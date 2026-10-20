@@ -1,0 +1,3502 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9953c44ea3bbed47b7aa",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T14:32:28.624974+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Director，这是 Loop #5。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：cuda:0/1/2/3（rtx5090-4x 服务器，4×RTX 5090 32GB）\n- DREEAM baseline 刚因 GPU 错配出过 CRITICAL（registry 写 cuda:2 实际跑 cuda:0），submit 后必须用 /proc/PID/environ 验证 CUDA_VISIBLE_DEVICES 与 registry 一致\n- plan_011 GRPO G=8 实验用了 bf16 + kl_coef=0.01（非原始 QLoRA 4-bit + kl_coef=0），三变量混淆——不能直接归因单一变量\n- AutoDL 环境必须 `source /etc/network_turbo` + 设 `HF_HUB_DISABLE_XET=1` + SSL 证书变量\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x (connect.bjb2.seetacloud.com) + bjb2-12179，工作目录 /root/autodl-tmp/freige\n- 根分区小，大文件全放 /root/autodl-tmp/\n- 模型：SFT base = /root/autodl-tmp/qwen3_4b_sft_lora_merged；GRPO G=8 输出 = /root/autodl-tmp/grpo_ced_g8_bf16/\n- DREEAM 代码：/root/autodl-tmp/DREEAM/\n- 活跃进程（截至 handoff）：\n  - DREEAM teacher (PID 213006, cuda:2, 30 epochs ~1.8h)\n  - CED reranker (PID 178055, cuda:0)\n  - maxtok1536_r2 eval (cuda:1)\n  - flat-NLI scoring (cuda:3)\n\n### 3. 📊 当前状态\n**刚处理完**：\n- plan_011 GRPO G=8 训练完成（100 steps, EXIT_CODE=0），reward 趋势积极（f1_reward 0.56-1.85 未崩塌，CED reward 上升），**但 registry 仍为 RUNNING，且 dev set eval 尚未执行**——这是最高优先级待办\n- DREEAM baseline (plan_004) GPU 迁移：从 cuda:0 kill 后用 cuda:2 重启成功，CRITICAL 已解决。Registry status 仍为 QUEUED 应改 RUNNING\n- 取消了队列中过时的\"GRPO G=8 配置匹配\"指令（训练已完成，先 eval 再说）\n\n**Agent 队列**：刚 RESET_BOTH 前深度 7+，有多个 worker:done 待处理（plan_001 monitor、plan_008 topk3 random、gpu-status-fix、dreeam-global-fix-rerun）\n\n### 4. 📋 待办\n- **plan_011 registry 更新为 DONE + dev set eval** → 这是当前最紧急的。eval 结果决定 Claim 3 方向：rel_f1 保持 → GRPO failure 可能是 QLoRA/G=4 的锅而非 GRPO 本质问题；rel_f1 崩 → 加强 Claim 3（GRPO 对 IE 任务确实有 catastrophic forgetting）\n- DREEAM teacher 训练完成（~1.8h 后）→ 跑 DREEAM dev eval 获得 Evi-F1 baseline 数字\n- CED reranker (plan_005) 完成 → 收集 reranker eval 结果\n- plan_008 topk3 random 数据已就绪（8037 samples）→ 启动 RSFT 训练对比 CED-scored topk3\n- plan_001 flat-NLI scoring 完成 → 启动 flat-NLI RSFT 训练（C2 ablation 核心）\n- Reviewer 建议：如 topk3 vs random 差异显著，追加 doc-balanced random baseline 消除 per-doc 分布混淆\n\n### 5. 🎯 战略上下文\n- **项目核心**：Faith & Evidence in IE——用 CED (Contrastive Evidence Distillation) 做 document-level RE 的 evidence-aware 训练，对比 RSFT vs GRPO\n- **四个 Core Claims**：C1=CED+RSFT 提升 evidence 质量；C2=CED scoring 优于 flat-NLI；C3=GRPO 对 IE 有 catastrophic forgetting（negative result）；C4=EDCR 作为新评估指标\n- **MVP 已通过**，处于 Research 阶段 + 审稿同步进行中（Review Director 在 C 群独立审稿）\n- **关键决策链**：D031/D033 确认 GRPO 全线失败 → plan_011 G=8 是验证\"failure 是否因 G=4 太小\" → 如果 G=8 eval 也 fail 则 C3 更强，如果改善则需修改论文结论\n- **易错点**：plan_011 三变量混淆（bf16/kl_coef/G）——eval 结果无论好坏都不能归因给单一变量，需要后续 ablation 拆分\n- **GPU 利用率**：4 张卡当前全部在用，Reviewer 会盯 GPU 空转，DREEAM 完成后立即安排下一个实验上 cuda:2\n\n## 可查的历史\n前 3 轮 handoff 在 `task_context/history/director/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T14:32:29.183578+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 3min\n\n⚠️ 你自己的 context 状态：已 74 条消息 / 3h 4min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T14:32:46.699563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ralph_respond",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T14:32:46.751475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T14:32:50.229423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T14:32:50.280139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 50
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T14:32:50.628278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__director_get_project_overview,mcp__agent-ml-research__get_agent_queue_status",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T14:32:50.679167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T14:32:52.794482+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "RESET_BOTH 已确认。等待系统发 [WRITE HANDOFF] 写交接文档。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T14:33:07.224149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T14:33:07.627099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_get_project_overview"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T14:33:07.627585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T14:33:07.729020+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `faith-evidence-ie`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    rtx5090-4x (connect.bjb2.seetacloud.com) [root] + bjb2-12179 [root]\\n✓ 代码路径  /root/autodl-tmp/freige\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 46 条记录\\n\\n── 📊 研究进度 ──\\n实验: 76 个 (运行中 4 | 待处理 1 | 完成 71 | 成功 26)\\n\\n  mvp2_grpo_ced_r3      DONE (failed)\\n  mvp2_grpo_ced_r2      DONE (killed)\\n  mvp2_grpo_ced_r1      DONE (killed)\\n  mvp2_grpo_ced         DONE (failed)\\n  precompute_nli_train  DONE (success)\\n  mvp2_sft_warmup       DONE (success)\\n  smoke_test_grpo       DONE (success)\\n  mvp1_ced_signal       DONE (success)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan_004_dreeam_baseline | Phase A: 复现 DREEAM fully-supervised teacher (RoBERTa-large) DocRED dev Evi-F1≈54.15, RE-F1≈63.49。论文报告的57.34是student model在test set的结果，需4阶段self-training pipeline。 | — | — | — |\\n| plan_011_grpo_g8_bf16 | GRPO G=8 bf16 LoRA: 验证 catastrophic forgetting 是否在 bf16（非 QLoRA 4-bit）下仍复现。CED reward + kl_coef=0.01, 100 steps。如仍 fail → 加强 Claim 3 | — | — | — |\\n| mvp2_eval_rsft_r2b_maxtok1536_r2 | Truncation diagnosis: r2b eval with max_ne\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 504
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T14:33:08.030510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"# 项目 faith-evidence-ie 概况\\n\\n## 实验状态 (76 个)\\n\\n- **mvp2_sft_eval_r2**: DONE (success) — \\n- **mvp2_sft_eval**: DONE (killed) — \\n- **mvp2_grpo_flatnli_r2**: DONE (killed) — \\n- **mvp2_grpo_extract_r2**: DONE (killed) — \\n- **mvp2_grpo_ced_r4**: DONE (killed) — \\n- **mvp2_grpo_extract**: DONE (failed) — \\n- **mvp2_grpo_flatnli**: DONE (failed) — \\n- **mvp2_grpo_ced_r3**: DONE (failed) — \\n- **mvp2_grpo_ced_r2**: DONE (killed) — \\n- **mvp2_grpo_ced_r1**: DONE (killed) — \\n- **mvp2_grpo_ced**: DONE (failed) — \\n- **precompute_nli_train**: DONE (success) — \\n- **mvp2_sft_warmup**: DONE (success) — \\n- **smoke_test_grpo**: DONE (success) — \\n- **mvp1_ced_signal**: DONE (success) — \\n\\n## 最新报告\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan_004_dreeam_baseline | Phase A: 复现 DREEAM fully-supervised teacher (RoBERTa-large) DocRED dev Evi-F1≈54.15, RE-F1≈63.49。论文报告的57.34是student model在test set的结果，需4阶段self-training pipeline。 | — | — | — |\\n| plan_011_grpo_g8_bf16 | GRPO G=8 bf16 LoRA: 验证 catastrophic forgetting 是否在 bf16（非 QLoRA 4-bit）下仍复现。CED reward + kl_coef=0.01, 100 steps。如仍 fail → 加强 Claim 3 | — | — | — |\\n| mvp2_eval_rsft_r2b_maxtok1536_r2 | Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). Retry with correct model stack (Base+SFT+RSFT). If EDCR improves significantly (from 0.6609 toward 0.71+), truncation is the cause. If unchanged, distractor citation is genuine RSFT behavior. | — | — | — |\\n\\n## 待处理\\n- mvp2_eval_rsft_s44: Full dev eval of RSFT seed=44 checkpoint. First MVP-2 judgement data point. Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798 (SFT baseline).（准备中）\\n\\n## 近期结论\\n- **mvp2_eval_rsft_s43_r2** (success): Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798. Retry of mvp2_eval_rsft_s43 (fixed arg names). ← 基于 mvp2_rsft_train_r1_s\n…[truncated 2270 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "elapsed_ms": 403
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T14:33:08.081207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":0,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_plan_001_monitor_scoring_20260515T142856 已完成（status=done）。用 `get_worker_status('worker_o\\\"},\\\"pending\\\":[],\\\"idle_seconds\\\":9}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 453
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T14:33:29.322253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T14:33:29.373401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T14:33:31.834125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "tool_args": {
+              "server": "rtx5090-4x"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T14:33:32.237409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {\\\"rtx5090-4x\\\": {\\\"error\\\": \\\"no data yet\\\", \\\"stale\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 403
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T14:33:32.237893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T14:33:32.689737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选 RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py 用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set 上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 4, \\\"description\\\": \\\"EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing 方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large) 的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [], \\\"registry_id\\\": \\\"plan_004_dreeam_baseline\\\", \\\"status\\\": \\\"RUNNING\\\"}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [], \\\"registry_id\\\": \\\"mvp2_ced_reranker_poc\\\", \\\"status\\\": \\\"RUNNING\\\"}, {\\\"id\\\": \\\"plan_006\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Model size ablation: Qwen3-1.7B 和 Qwen3-8B 上复现 RSFT+CED pipeline，验证方法对模型规模的泛化性。应对 RC4。\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 24, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_007\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Re-DocRED extension: 在\n…[truncated 4019 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 451
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T14:34:12.614696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_post_to_main_agent",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T14:34:12.666479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T14:34:29.123143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "优先级任务，按顺序执行：\n\n**1. [最高优先级] plan_011 GRPO G=8 收尾 + dev eval**\n训练已完成（100 steps, EXIT_CODE=0），但 registry 仍为 RUNNING。\n- 更新 registry status → DONE\n- 立即在 GRPO G=8 模型（/root/autodl-tmp/grpo_ced_g8_bf16/）上跑 dev set full eval\n- 需要计算：rel_f1, evi_f1, EDCR\n- ⚠️ 注意三变量混淆（bf16/kl_coef=0.01/G=8 vs 原始 QLoRA 4-bit/kl_coef=0/G=4），eval 结果描述中标注这一点\n- 结果决定 Claim 3 方向：rel_f1 保持 → forgetting 可能是 QLoRA/G=4 的锅；rel_f1 崩 → 加强 C3\n\n**2. GPU 进程全盘扫描**\n跑 nvidia-smi + ps aux 确认 cuda:0/1/2/3 实际占用情况：\n- cuda:0: CED reranker (PID 178055) 是否还在？\n- cuda:1: maxtok1536_r2 eval 是否完成？\n- cuda:2: DREEAM teacher (PID 213006) 是否还在？\n- cuda:3: flat-NLI scoring 刚 worker:done，应该空了\n\n空出的卡立即汇报，我安排下一个实验。\n\n**3. plan_001 flat-NLI scoring 结果**\n你刚处理完 plan_001 worker:done——flat-NLI scoring 数据是否就绪？有多少 samples？质量如何？汇报结果。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T14:34:33.247290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f46a148a4a4c2d8f4b2498f7e4\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 4124
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T14:34:45.768965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T14:34:45.870793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 13:42 UTC | 更新原因: Reviewer 路线图审查修正：GPU 表更新实际状态、joint evi_f1 进展、DPO 升 P0、C2 风险标注\\\\n\\\\n## 核心方向\\\\nFREIGE: LLM-based evidence-grounded DocRE 新任务范式。核心发现：GRPO 在结构化 IE 上导致 evidence-extraction decoupling。RSFT+NLI-based scoring 有效提升证据质量。CED 作为 scoring function 之一，显著性待验证。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（MVP 2026-05-15 通过）\\\\n- **Dream v1**: best=2.5, median=3.0, worst=2.5 → 不达标\\\\n- **Reframe 完成** (D044): CED 降级、claims 重构（C1=可行性, C2=decoupling, C3=NLI ablation, C4=EDCR）\\\\n- **Re-dream**: dream_20260515T132059 运行中，验证 reframe 效果（目标 best≥3.5, median≥3.0）\\\\n- **MVP 成果**: RSFT 4/4 configs PASS (rel_f1 +3.9~6.0pp vs SFT)；joint evi_f1 已回填（SFT=0.3117 → best RSFT s44=0.3713, +5.96pp）\\\\n- **GRPO 判死**: 3 reward × 多 lr 全线 catastrophic forgetting (D031/D033)\\\\n- **topk3 scoring 完成**: 8037 samples (2.96x topk1)，数据就绪\\\\n- **DPO 升级为 P0** (D045): 直接影响 C2 decoupling 叙事\\\\n\\\\n## 投稿目标\\\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25)\\\\n- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)\\\\n\\\\n## 近期任务\\\\n- [ ] 等 re-dream 结果验证 reframe\\\\n- [ ] Agent 处理队列（urgent: s43_r2 registry 修复 + plan_008 双变体设计 + evaluate() joint 集成）\\\\n- [ ] Re-dream 达标后批准 P0 实验：\\\\n  - plan_011: GRPO G=8（**最高风险，首批启动**，C2 必要条件）\\\\n  - plan_001: flat-NLI RSFT ablation (C3)\\\\n  - plan_004: DREEAM baseline reproduction (C1)\\\\n  - plan_012: DPO+CED（**升 P0**，C2 叙事关键）\\\\n- [ ] 处理运行中实验结果（maxtok1536_r2 cuda:1, CED reranker cuda:0）\\\\n- [ ] plan_008 topk3 双变体训练（cuda:2 全量 / cuda:3 过滤CED=0）\\\\n\\\\n## GPU 分配\\\\n\\\\n| GPU | 状态 | 任务 |\\\\n|-----|------|------|\\\\n| cuda:0 | 🏃 | mvp2_ced_reranker_poc (plan_005) |\\\\n| cuda:1 | 🏃 | mvp2_eval_rsft_r2b_maxtok1536_r2 |\\\\n| cuda:2 | ⏳ | 待分配 → plan_008 topk3_all |\\\\n| cuda:3 | ⏳ | 待分配 → plan_008 topk3_ced_filtered |\\\\n\\\\n## GPU 预算\\\\n- 硬件: 4× RTX 5090 32GB (rtx50\n…[truncated 2146 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 101
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T14:34:45.871320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "file": "report.md"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T14:34:45.921841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool read_project_file: 1 validation error for read_project_fileArguments\nproject\n  Field required [type=missing, input_value={'file': 'report.md'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T14:34:58.523252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "file": "report.md",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T14:34:58.523663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_dream_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T14:34:58.574420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| plan_004_dreeam_baseline | Phase A: 复现 DREEAM fully-supervised teacher (RoBERTa-large) DocRED dev Evi-F1≈54.15, RE-F1≈63.49。论文报告的57.34是student model在test set的结果，需4阶段self-training pipeline。 | — | — | — |\\\\n| plan_011_grpo_g8_bf16 | GRPO G=8 bf16 LoRA: 验证 catastrophic forgetting 是否在 bf16（非 QLoRA 4-bit）下仍复现。CED reward + kl_coef=0.01, 100 steps。如仍 fail → 加强 Claim 3 | — | — | — |\\\\n| mvp2_eval_rsft_r2b_maxtok1536_r2 | Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). Retry with correct model stack (Base+SFT+RSFT). If EDCR improves significantly (from 0.6609 toward 0.71+), truncation is the cause. If unchanged, distractor citation is genuine RSFT behavior. | — | — | — |\\\\n\\\\n## 待处理\\\\n- mvp2_eval_rsft_s44: Full dev eval of RSFT seed=44 checkpoint. First MVP-2 judgement data point. Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798 (SFT baseline).（准备中）\\\\n\\\\n## 近期结论\\\\n- **mvp2_eval_rsft_s43_r2** (success): Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798. Retry of mvp2_eval_rsft_s43 (fixed arg names). ← 基于 mvp2_rsft_train_r1_s43\\\\n- **mvp2_rsft_ced_scoring_topk3_r2** (success): CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally). ← 基于 mvp2_rsft_ced_scoring\\\\n- **mvp2_rsft_train_r1_s44** (success): RSFT training seed=44 variance estimate. Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples). Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798. ← 基于 mvp2_rsft_train_r1\\\\n\\\\n## 趋势\\\\n成功 26 / 负向 11 /\n…[truncated 1667 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T14:34:58.575004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T14:35:02.953302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_dream_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_dream_status",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "dream_id": "dream_20260515T132059"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T14:35:03.004072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"dream_id\\\": \\\"dream_20260515T132059\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"done\\\", \\\"review_mode\\\": \\\"full\\\", \\\"review_visible\\\": true, \\\"writing_visible\\\": true, \\\"venue\\\": \\\"EMNLP 2026 Main\\\", \\\"focus\\\": \\\"D042 修正后 re-dream。关键变化: (1) Claim 3 缩窄为 GRPO+QLoRA 而非 online RL; (2) 新增 GRPO G=8 实验(plan_011); (3) 新增 DPO baseline(plan_012); (4) CED contingency plan(如 p>0.05 则降级); (5) Evi-F1 改为 DREEAM 对齐协议(joint); (6) 新增 EDCR 人工验证(plan_013)。请关注这些修改是否有效提升了论文质量。\\\", \\\"what_if\\\": [], \\\"pid\\\": 360021, \\\"chat_id\\\": \\\"oc_84537e1e2f9ef71a90742c2db859c6f2\\\", \\\"card_message_id\\\": \\\"om_x100b6f45952a00acc38c9e916e1443d\\\", \\\"started_at\\\": \\\"2026-05-15T13:20:59+00:00\\\", \\\"updated_at\\\": \\\"2026-05-15T14:34:23+00:00\\\", \\\"stages_completed\\\": [\\\"imagine\\\", \\\"write\\\", \\\"review\\\"], \\\"error\\\": null, \\\"context_hash\\\": \\\"efb4a0c9bd571c049ec518cb31230d1c582a129add922756295653f606c82d77\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_dream_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T14:35:20.722409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_local_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T14:35:20.732463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 10
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T14:35:23.955630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/dream-report-action.skill.md"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T14:35:24.028499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 72
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T14:35:26.374872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/dream-report-action*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T14:35:26.827400+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "elapsed_ms": 452
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T14:35:27.028703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/dream_20260515T132059/**",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T14:35:27.080913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/logs/orchestrator.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/logs/phase1_attempt0.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/logs/phase2_best_attempt0.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/logs/phase2_median_attempt0.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/logs/phase2_worst_attempt0.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/paper.aux\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/paper.out\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/paper.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/paper.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/logs/paper_a\n…[truncated 4290 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "elapsed_ms": 52
+          },
+          "id": "event-000043"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T14:35:28.403664+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Director，这是 Loop #5。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：cuda:0/1/2/3（rtx5090-4x 服务器，4×RTX 5090 32GB）\n- DREEAM baseline 刚因 GPU 错配出过 CRITICAL（registry 写 cuda:2 实际跑 cuda:0），submit 后必须用 /proc/PID/environ 验证 CUDA_VISIBLE_DEVICES 与 registry 一致\n- plan_011 GRPO G=8 实验用了 bf16 + kl_coef=0.01（非原始 QLoRA 4-bit + kl_coef=0），三变量混淆——不能直接归因单一变量\n- AutoDL 环境必须 `source /etc/network_turbo` + 设 `HF_HUB_DISABLE_XET=1` + SSL 证书变量\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x (connect.bjb2.seetacloud.com) + bjb2-12179，工作目录 /root/autodl-tmp/freige\n- 根分区小，大文件全放 /root/autodl-tmp/\n- 模型：SFT base = /root/autodl-tmp/qwen3_4b_sft_lora_merged；GRPO G=8 输出 = /root/autodl-tmp/grpo_ced_g8_bf16/\n- DREEAM 代码：/root/autodl-tmp/DREEAM/\n- 活跃进程（截至 handoff）：\n  - DREEAM teacher (PID 213006, cuda:2, 30 epochs ~1.8h)\n  - CED reranker (PID 178055, cuda:0)\n  - maxtok1536_r2 eval (cuda:1)\n  - flat-NLI scoring (cuda:3)\n\n### 3. 📊 当前状态\n**刚处理完**：\n- plan_011 GRPO G=8 训练完成（100 steps, EXIT_CODE=0），reward 趋势积极（f1_reward 0.56-1.85 未崩塌，CED reward 上升），**但 registry 仍为 RUNNING，且 dev set eval 尚未执行**——这是最高优先级待办\n- DREEAM baseline (plan_004) GPU 迁移：从 cuda:0 kill 后用 cuda:2 重启成功，CRITICAL 已解决。Registry status 仍为 QUEUED 应改 RUNNING\n- 取消了队列中过时的\"GRPO G=8 配置匹配\"指令（训练已完成，先 eval 再说）\n\n**Agent 队列**：刚 RESET_BOTH 前深度 7+，有多个 worker:done 待处理（plan_001 monitor、plan_008 topk3 random、gpu-status-fix、dreeam-global-fix-rerun）\n\n### 4. 📋 待办\n- **plan_011 registry 更新为 DONE + dev set eval** → 这是当前最紧急的。eval 结果决定 Claim 3 方向：rel_f1 保持 → GRPO failure 可能是 QLoRA/G=4 的锅而非 GRPO 本质问题；rel_f1 崩 → 加强 Claim 3（GRPO 对 IE 任务确实有 catastrophic forgetting）\n- DREEAM teacher 训练完成（~1.8h 后）→ 跑 DREEAM dev eval 获得 Evi-F1 baseline 数字\n- CED reranker (plan_005) 完成 → 收集 reranker eval 结果\n- plan_008 topk3 random 数据已就绪（8037 samples）→ 启动 RSFT 训练对比 CED-scored topk3\n- plan_001 flat-NLI scoring 完成 → 启动 flat-NLI RSFT 训练（C2 ablation 核心）\n- Reviewer 建议：如 topk3 vs random 差异显著，追加 doc-balanced random baseline 消除 per-doc 分布混淆\n\n### 5. 🎯 战略上下文\n- **项目核心**：Faith & Evidence in IE——用 CED (Contrastive Evidence Distillation) 做 document-level RE 的 evidence-aware 训练，对比 RSFT vs GRPO\n- **四个 Core Claims**：C1=CED+RSFT 提升 evidence 质量；C2=CED scoring 优于 flat-NLI；C3=GRPO 对 IE 有 catastrophic forgetting（negative result）；C4=EDCR 作为新评估指标\n- **MVP 已通过**，处于 Research 阶段 + 审稿同步进行中（Review Director 在 C 群独立审稿）\n- **关键决策链**：D031/D033 确认 GRPO 全线失败 → plan_011 G=8 是验证\"failure 是否因 G=4 太小\" → 如果 G=8 eval 也 fail 则 C3 更强，如果改善则需修改论文结论\n- **易错点**：plan_011 三变量混淆（bf16/kl_coef/G）——eval 结果无论好坏都不能归因给单一变量，需要后续 ablation 拆分\n- **GPU 利用率**：4 张卡当前全部在用，Reviewer 会盯 GPU 空转，DREEAM 完成后立即安排下一个实验上 cuda:2\n\n## 可查的历史\n前 3 轮 handoff 在 `task_context/history/director/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000044"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "messages": [
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T14:35:30.110137+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 6min\n\n⚠️ 你自己的 context 状态：已 0 条消息 / 0h 3min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T14:35:32.500446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/meta.yaml"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T14:35:33.057370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/review_report.md"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T14:35:33.924436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (74385 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 1423
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T14:35:33.925104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdream_id: dream_20260515T132059\n3\ttier: best\n4\toverall_score: 3.0 - Findings\n5\ttimestamp: 2026-05-15T14:16:20.253527+00:00\n6\t---\n7\t\n8\t# Dream Review Report: FREIGE\n9\t\n10\t**Paper:** FREIGE: Faithful Evidence Generation for LLM-Based Document-Level Relation Extraction via Contrastive Evidence Discrimination\n11\t**Venue:** EMNLP 2026 Main (ACL Rolling Review)\n12\t**Review Mode:** Full (2 Reviewers + Roundtable)\n13\t\n14\t---\n15\t\n16\t## Roundtable Summary\n17\t\n18\t| | R1 (Methods+Experiments) | R2 (Novelty+Related Work) | Post-Discussion |\n19\t|---|---|---|---|\n20\t| Soundness | 3/5 | 3/5 | 3/5 |\n21\t| Excitement | 3/5 → 2.5/5 | 3/5 | 3/5 |\n22\t| Overall | 3.0 → 2.5 | 3.0 | **3.0 (Findings)** |\n23\t| Reproducibility | 3/5 | 4/5 | 3/5 |\n24\t| Confidence | 4/5 | 4/5 | 4/5 |\n25\t\n26\t**Consensus outcome: 3.0 — Findings acceptance.** Both reviewers initially scored 3.0. During cross-sharing, R1 dropped to 2.5 after being persuaded by R2's point about CED's non-significance over flat-NLI. R2 held at 3.0, finding R1's QLoRA confound concern reinforcing but not score-changing. The meta-review settles at 3.0: the paper has genuine contributions (task definition, decoupling finding, EDCR metric) that merit Findings publication, but insufficient method novelty and positioning gaps prevent main conference acceptance.\n27\t\n28\t---\n29\t\n30\t## Consolidated Strengths\n31\t\n32\t**S1: Evidence-grounded DocRE as a new task (R1, R2 agree).** The paper credibly claims to be the first LLM-based DocRE system jointly generating relation triples and explicit sentence-level evidence citations. This fills a real gap: encoder methods provide only implicit attention-based evidence, and all prior LLM-based DocRE methods (LMRC, AutoRE, etc.) produce no evidence. The task formulation is well-motivated for KB population, biomedical curation, and RAG provenance.\n33\t\n34\t**S2: Evidence–extraction decoupling is a striking negative finding (R1, R2 strongly agree).** The observation that GRPO drives Evi-F1 to 0.850 while\n…[truncated 12241 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 867
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T14:35:33.925475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/median/review_report.md"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T14:35:34.078077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdream_id: dream_20260515T132059\n3\ttier: median\n4\toverall_score: 2.5/5 — Leaning Reject (Main); Recommend Findings\n5\ttimestamp: 2026-05-15T14:25:43.822210+00:00\n6\t---\n7\t\n8\t# DREAM Review Report: FREIGE\n9\t\n10\t**Paper**: FREIGE: Faithful Evidence Generation for Document-Level Relation Extraction via Rejection Sampling Fine-Tuning  \n11\t**Venue**: EMNLP 2026 Main (via ACL Rolling Review)  \n12\t**Review Mode**: Full (2 Reviewers + Roundtable)  \n13\t**Date**: 2026-05-15\n14\t\n15\t---\n16\t\n17\t## 1. Paper Summary\n18\t\n19\tFREIGE proposes the first LLM-based document-level relation extraction (DocRE) system that jointly generates relation triples and sentence-level evidence citations. The method uses Rejection Sampling Fine-Tuning (RSFT): an SFT-trained Qwen3-4B generates N=8 candidate outputs per document, a Contrastive Evidence Discrimination (CED) scorer based on DeBERTa-v3-base NLI ranks candidates by evidence quality using document-internal hard negatives, and only the top-1 candidate is retained for further fine-tuning. On DocRED test, FREIGE achieves rel_F1=43.2% (+3.2pp over SFT, p<0.01) and joint Evi-F1=32.2%. The paper also documents \"evidence-extraction decoupling\" under GRPO+QLoRA (evidence quality rises while extraction collapses), shows this worsens with larger group sizes (G=8 vs G=4), and introduces EDCR (Evidence Distractor Citation Rate) as a diagnostic metric validated through human annotation (r=0.44, method-level rank concordance=1.0).\n20\t\n21\t---\n22\t\n23\t## 2. Strengths\n24\t\n25\t### S1: Credible and well-scoped \"first\" claim (R1+R2 consensus)\n26\tNo prior LLM-based DocRE system jointly generates (head, relation, tail, [evidence sentences]). Encoder methods (DREEAM, SAIS) derive evidence from attention weights (implicit, not directly auditable). LLM methods (LMRC, AutoRE) produce triples only. The task definition fills a genuine gap relevant to KB population, biomedical curation, and RAG provenance. The claim is appropriately scoped to DocRED.\n27\t\n28\t### S2: T\n…[truncated 18408 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 152
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T14:35:34.078564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/worst/review_report.md"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T14:35:34.129732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdream_id: dream_20260515T132059\n3\ttier: worst\n4\toverall_score: leaning reject\n5\ttimestamp: 2026-05-15T14:34:04.053727+00:00\n6\t---\n7\t\n8\t# Dream Review Report: \"How Should LLMs Generate Evidence for Document-Level Relation Extraction?\"\n9\t\n10\t**Venue:** EMNLP 2026 Main (via ACL Rolling Review)\n11\t**Review Mode:** Full (2 Reviewers + Roundtable)\n12\t**Date:** 2026-05-15\n13\t\n14\t---\n15\t\n16\t## Meta-Review (Roundtable Synthesis)\n17\t\n18\tBoth reviewers independently scored this paper at **Overall 2.5/5 (Leaning Reject)**. The roundtable converged on the assessment that this paper makes genuine empirical contributions suitable for the **Findings track** but does not meet the bar for Main conference acceptance at EMNLP 2026 (~22% acceptance rate).\n19\t\n20\t### Points of Agreement (Both Reviewers)\n21\t\n22\t1. **The task definition (evidence-grounded LLM DocRE) fills a genuine gap.** No prior work has LLMs jointly generate (h, r, t, evidence sentences) for document-level RE. This is a credible \"first.\"\n23\t2. **Evidence-extraction decoupling under GRPO is the paper's strongest finding.** The scissors pattern (reward↑, Rel-F1↓) and the extreme lr=5e-6 case (Evi-F1=85.0, Rel-F1=1.4) are empirically compelling.\n24\t3. **CED's non-significance vs. flat-NLI is a fatal title-contribution mismatch.** CED is prominently featured but fails to significantly outperform the simpler baseline on any metric (p>0.10). The paper's primary method contribution effectively reduces to \"RSFT applied to DocRE.\"\n25\t4. **The GRPO decoupling claim is confounded by QLoRA.** All GRPO experiments use 4-bit QLoRA. Without a full-FT or bf16 control, the claim cannot distinguish QLoRA artifacts from genuine RL-for-IE phenomena. The abstract/intro use unqualified language while Limitations correctly scopes to \"GRPO+QLoRA.\"\n26\t5. **Dev-to-test degradation is concerning.** RSFT drops 5.75pp (46.55→40.80) vs. SFT's 1.27pp (40.57→39.30). The 6x relative ratio suggests indirect overfitting through the CED scoring pa\n…[truncated 16661 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T14:35:40.574194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__get_agent_queue_status,mcp__agent-ml-research__director_get_project_overview",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T14:35:40.624906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T14:35:42.482843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_AGENT"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T14:35:42.585672+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_AGENT\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 102
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T14:35:45.179929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T14:35:45.533315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T14:35:45.533726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_get_project_overview"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T14:35:45.888101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `faith-evidence-ie`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    rtx5090-4x (connect.bjb2.seetacloud.com) [root] + bjb2-12179 [root]\\n✓ 代码路径  /root/autodl-tmp/freige\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 46 条记录\\n\\n── 📊 研究进度 ──\\n实验: 76 个 (运行中 3 | 分析中 1 | 待处理 1 | 完成 71 | 成功 26)\\n\\n  mvp2_grpo_ced_r3      DONE (failed)\\n  mvp2_grpo_ced_r2      DONE (killed)\\n  mvp2_grpo_ced_r1      DONE (killed)\\n  mvp2_grpo_ced         DONE (failed)\\n  precompute_nli_train  DONE (success)\\n  mvp2_sft_warmup       DONE (success)\\n  smoke_test_grpo       DONE (success)\\n  mvp1_ced_signal       DONE (success)\\n\\n── 📝 最新报告 ──\\n<!-- AUTO-FACTS-BEGIN (generated 2026-05-15T14:35:22Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 53 个实验 — ANALYZING 1, DONE 48, PREPARING 1, RUNNING 3\\n**DONE 分布**: failed 9, killed 11, negative 7, success 21\\n\\n### GPU 占用\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n- **实际运行**: 3 张 — rtx5090-4x:cuda:0(mvp2_ced_reranker_poc), rtx5090-4x:cuda:1(mvp2_eval_rsft_r2b_maxtok1536_r2), rtx5090-4x:cuda:2(plan_004_dreeam_baseline)\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:3\\n\\n### 🏃 RUNNING\\n| exp_id | server |\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 708
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T14:35:45.990529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":1,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_011_grpo_result_20260515T143225 已完成（status=done）。用 `get_worker_status('worker_\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_plan_001_wait_and_submit_20260515T143351 已完成（status=done）。用 `get_worker_status('worker_o\\\",\\\"queued_at\\\":1778855736.341148}],\\\"idle_seconds\\\":7}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 457
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T14:35:46.494592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"# 项目 faith-evidence-ie 概况\\n\\n## 实验状态 (76 个)\\n\\n- **mvp2_sft_eval_r2**: DONE (success) — \\n- **mvp2_sft_eval**: DONE (killed) — \\n- **mvp2_grpo_flatnli_r2**: DONE (killed) — \\n- **mvp2_grpo_extract_r2**: DONE (killed) — \\n- **mvp2_grpo_ced_r4**: DONE (killed) — \\n- **mvp2_grpo_extract**: DONE (failed) — \\n- **mvp2_grpo_flatnli**: DONE (failed) — \\n- **mvp2_grpo_ced_r3**: DONE (failed) — \\n- **mvp2_grpo_ced_r2**: DONE (killed) — \\n- **mvp2_grpo_ced_r1**: DONE (killed) — \\n- **mvp2_grpo_ced**: DONE (failed) — \\n- **precompute_nli_train**: DONE (success) — \\n- **mvp2_sft_warmup**: DONE (success) — \\n- **smoke_test_grpo**: DONE (success) — \\n- **mvp1_ced_signal**: DONE (success) — \\n\\n## 最新报告\\n<!-- AUTO-FACTS-BEGIN (generated 2026-05-15T14:35:22Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 53 个实验 — ANALYZING 1, DONE 48, PREPARING 1, RUNNING 3\\n**DONE 分布**: failed 9, killed 11, negative 7, success 21\\n\\n### GPU 占用\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n- **实际运行**: 3 张 — rtx5090-4x:cuda:0(mvp2_ced_reranker_poc), rtx5090-4x:cuda:1(mvp2_eval_rsft_r2b_maxtok1536_r2), rtx5090-4x:cuda:2(plan_004_dreeam_baseline)\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:3\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `mvp2_ced_reranker_poc` | rtx5090-4x | cuda:0 | 178050 | `—` |\\n| `mvp2_eval_rsft_r2b_maxtok1536_r2` | rtx5090-4x | cuda:1 | 197381 | `…runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log` |\\n| `plan_004_dreeam_baseline` | rtx5090-4x | cuda:2 | 213006 | `~/runs/faith-evidence-ie/plan_004_dreeam_baseline.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `mvp2_eval_rsft_s43_r2` [success] — 2026-05-15T13:54:26\\n- `mvp2_rsft_ced_scoring_topk3_r2` [success] — 2026-05-15T13:53:08\\n- `mvp2_rsft_train_r1_s44` [success] — 2026-05-15T13:27:38\\n- `mvp2_eval_rsft_r2b` [success] — 2026-05-15T13:27:35\\n- `mvp2_eval_rsft_r2a` [success]\n…[truncated 2260 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "elapsed_ms": 960
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T14:35:46.978815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__director_get_project_overview,mcp__agent-ml-research__get_resource_inventory",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T14:35:47.031439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T14:35:50.149936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T14:35:50.503714+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_get_project_overview"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T14:35:50.504206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_resource_inventory"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_resource_inventory",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T14:35:50.555304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `faith-evidence-ie`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    rtx5090-4x (connect.bjb2.seetacloud.com) [root] + bjb2-12179 [root]\\n✓ 代码路径  /root/autodl-tmp/freige\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 46 条记录\\n\\n── 📊 研究进度 ──\\n实验: 76 个 (运行中 3 | 分析中 1 | 待处理 1 | 完成 71 | 成功 26)\\n\\n  mvp2_grpo_ced_r3      DONE (failed)\\n  mvp2_grpo_ced_r2      DONE (killed)\\n  mvp2_grpo_ced_r1      DONE (killed)\\n  mvp2_grpo_ced         DONE (failed)\\n  precompute_nli_train  DONE (success)\\n  mvp2_sft_warmup       DONE (success)\\n  smoke_test_grpo       DONE (success)\\n  mvp1_ced_signal       DONE (success)\\n\\n── 📝 最新报告 ──\\n<!-- AUTO-FACTS-BEGIN (generated 2026-05-15T14:35:22Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 53 个实验 — ANALYZING 1, DONE 48, PREPARING 1, RUNNING 3\\n**DONE 分布**: failed 9, killed 11, negative 7, success 21\\n\\n### GPU 占用\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n- **实际运行**: 3 张 — rtx5090-4x:cuda:0(mvp2_ced_reranker_poc), rtx5090-4x:cuda:1(mvp2_eval_rsft_r2b_maxtok1536_r2), rtx5090-4x:cuda:2(plan_004_dreeam_baseline)\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:3\\n\\n### 🏃 RUNNING\\n| exp_id | server |\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 405
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T14:35:50.858468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"# 项目 faith-evidence-ie 概况\\n\\n## 实验状态 (76 个)\\n\\n- **mvp2_sft_eval_r2**: DONE (success) — \\n- **mvp2_sft_eval**: DONE (killed) — \\n- **mvp2_grpo_flatnli_r2**: DONE (killed) — \\n- **mvp2_grpo_extract_r2**: DONE (killed) — \\n- **mvp2_grpo_ced_r4**: DONE (killed) — \\n- **mvp2_grpo_extract**: DONE (failed) — \\n- **mvp2_grpo_flatnli**: DONE (failed) — \\n- **mvp2_grpo_ced_r3**: DONE (failed) — \\n- **mvp2_grpo_ced_r2**: DONE (killed) — \\n- **mvp2_grpo_ced_r1**: DONE (killed) — \\n- **mvp2_grpo_ced**: DONE (failed) — \\n- **precompute_nli_train**: DONE (success) — \\n- **mvp2_sft_warmup**: DONE (success) — \\n- **smoke_test_grpo**: DONE (success) — \\n- **mvp1_ced_signal**: DONE (success) — \\n\\n## 最新报告\\n<!-- AUTO-FACTS-BEGIN (generated 2026-05-15T14:35:22Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 53 个实验 — ANALYZING 1, DONE 48, PREPARING 1, RUNNING 3\\n**DONE 分布**: failed 9, killed 11, negative 7, success 21\\n\\n### GPU 占用\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n- **实际运行**: 3 张 — rtx5090-4x:cuda:0(mvp2_ced_reranker_poc), rtx5090-4x:cuda:1(mvp2_eval_rsft_r2b_maxtok1536_r2), rtx5090-4x:cuda:2(plan_004_dreeam_baseline)\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:3\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `mvp2_ced_reranker_poc` | rtx5090-4x | cuda:0 | 178050 | `—` |\\n| `mvp2_eval_rsft_r2b_maxtok1536_r2` | rtx5090-4x | cuda:1 | 197381 | `…runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log` |\\n| `plan_004_dreeam_baseline` | rtx5090-4x | cuda:2 | 213006 | `~/runs/faith-evidence-ie/plan_004_dreeam_baseline.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `mvp2_eval_rsft_s43_r2` [success] — 2026-05-15T13:54:26\\n- `mvp2_rsft_ced_scoring_topk3_r2` [success] — 2026-05-15T13:53:08\\n- `mvp2_rsft_train_r1_s44` [success] — 2026-05-15T13:27:38\\n- `mvp2_eval_rsft_r2b` [success] — 2026-05-15T13:27:35\\n- `mvp2_eval_rsft_r2a` [success]\n…[truncated 2260 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "elapsed_ms": 354
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T14:35:50.912476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"## 基础设施资源\\n\\n### 项目绑定\\n\\n- 服务器: `rtx5090-4x(root) + bjb2-12179(root)`\\n- 远程路径: `/root/autodl-tmp/freige`\\n\\n### 项目服务器\\n\\n- `rtx5090-4x` (connect.bjb2.seetacloud.com) — 4 GPU 总数\\n  - `root`: 全部 GPU 可用\\n- `bjb2-12179` (?) — 0 GPU 总数\\n\\n### 弹性 GPU（AutoDL 租卡）\\n\\n- 状态: **未启用** — 本项目不使用弹性 GPU 租卡\\n- 如需启用，请在 Dashboard Settings 项目配置中开启，或使用 `update_project_config(project, \\\"execution\\\", {\\\"elastic_gpu\\\": true})`\\n\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_resource_inventory",
+            "elapsed_ms": 408
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T14:36:06.441621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/dream-report-action.skill.md"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T14:36:06.492677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: dream-report-action\n3\tdescription: 'Dream 完成后的审稿反馈分析协议。区分通用建议与数据依赖建议，\n4\t  跨三档对比验证有效性，构建行动列表并持久化。由 dispatch_dream_done\n5\t  注入消息触发 Read。'\n6\talways: false\n7\troles:\n8\t  - director\n9\t---\n10\t\n11\t# Dream Report Action Protocol\n12\t\n13\t## Dream 审稿的特殊性\n14\t\n15\tDream 先想象三档实验数据（best/median/worst），再据此写论文，最后审稿。\n16\t审稿人看到的\"实验结果\"是想象的，因此审稿意见的可信度因类型而异：\n17\t\n18\t### 通用建议（data-independent）— 直接可信\n19\t\n20\t不管实验数据长什么样，这类意见都成立：\n21\t- 缺少某类 baseline / benchmark / 模型家族覆盖\n22\t- 引用不足或遗漏关键 related work\n23\t- 方法描述不清楚、逻辑链不完整\n24\t- framing 本身的逻辑漏洞（如 claim 之间有矛盾）\n25\t- 论文结构问题（motivation 不清、contribution 不 sharp）\n26\t\n27\t### 数据依赖建议（data-dependent）— 需要跨档验证\n28\t\n29\t这类意见的有效性取决于想象数据的质量：\n30\t- \"claim X 太强/太弱，证据不足以支撑\"\n31\t- \"实验 Y 的效果不够 convincing / 缺分析\"\n32\t- \"表 Z 的数字不支持结论\"\n33\t- \"ablation 不完整，无法区分各 component 贡献\"\n34\t\n35\t这些可能只是因为某一档的想象数据恰好偏弱/偏强导致的。\n36\t\n37\t## 分析流程\n38\t\n39\t### Step 1: 提取意见列表\n40\t\n41\t从三份报告中提取每条 distinct issue：\n42\t\n43\t| ID | 内容摘要 | 出现档位 | 类型 |\n44\t|----|---------|---------|------|\n45\t| D1 | 缺 cross-domain baseline | [B][M][W] | 通用 |\n46\t| D2 | Claim 2 过强 | [M][W] | 数据依赖 |\n47\t| D3 | Method §3.2 描述不清 | [B] | 通用 |\n48\t\n49\t注意：同一个问题用不同措辞出现在多份报告中，应合并为一条并标注所有出现档位。\n50\t\n51\t### Step 2: 跨档对比判定\n52\t\n53\t**通用建议**：无需跨档对比，直接评估合理性。合理的 → 确认行动项。\n54\t\n55\t**数据依赖建议**——按跨档一致性判定：\n56\t\n57\t| 跨档模式 | 判定 | 处理方式 |\n58\t|---------|------|---------|\n59\t| 三档一致 [B][M][W] | 结构性问题 — 不因数据好坏而改变 | → 确认行动项，立即处理 |\n60\t| 两档一致 [B][M] 或 [M][W] | 可能有效，存在不确定性 | → 观察项，记录并优先在真实实验中验证 |\n61\t| 仅单档 [B] 或 [M] 或 [W] | 很可能是想象数据的偶然产物 | → 记录但不行动，等真实实验 |\n62\t\n63\t关键提醒：\n64\t- 不要因为 worst 档的想象数据差就急着\"减弱 claim\" — worst 本来就是最坏假设\n65\t- 不要因为 best 档的想象数据好就盲目\"增强 claim\" — best 本来就是最好假设\n66\t- claim 强弱的最终判断取决于真实实验，dream 只能暴露结构性问题\n67\t- **禁止因 dream 结果建议降级目标 venue** — dream 暴露的问题用\"补实验/改 framing\"解决，不用\"换更低的会议\"解决\n68\t\n69\t### Step 3: 构建行动列表\n70\t\n71\t**3a. 确认行动项**（即刻执行）：\n72\t- 通用建议中的合理项\n73\t- 三档一致的数据依赖建议\n74\t- 每条写明：做什么 + 改哪个文件 + 为什么\n75\t\n76\t**3b. 观察项**（记录待验证）：\n77\t- 两档一致的数据依赖建议\n78\t- 单档出现但内容合理的建议\n79\t- 每条写明：观察什么指标 + 什么条件下需要行动 + 关联哪个 claim / 实验\n80\t\n81\t**3c. 忽略项**（有理由地不处理）：\n82\t- 写明忽略理由\n83\t\n84\t### Step 4:\n…[truncated 1113 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T14:36:12.168648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_agent_queue_status,mcp__agent-ml-research__director_post_to_main_agent",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T14:36:12.219452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T14:36:16.352800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__read_roadmap",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T14:36:16.403542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-15T14:36:16.450086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-15T14:36:16.551755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":1,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_011_grpo_result_20260515T143225 已完成（status=done）。用 `get_worker_status('worker_\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_plan_001_wait_and_submit_20260515T143351 已完成（status=done）。用 `get_worker_status('worker_o\\\",\\\"queued_at\\\":1778855736.341148}],\\\"idle_seconds\\\":37}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-15T14:36:19.325434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-15T14:36:19.325856+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-15T14:36:19.928961+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选 RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py 用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set 上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 4, \\\"description\\\": \\\"EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing 方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large) 的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [], \\\"registry_id\\\": \\\"plan_004_dreeam_baseline\\\", \\\"status\\\": \\\"RUNNING\\\"}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [], \\\"registry_id\\\": \\\"mvp2_ced_reranker_poc\\\", \\\"status\\\": \\\"RUNNING\\\"}, {\\\"id\\\": \\\"plan_006\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Model size ablation: Qwen3-1.7B 和 Qwen3-8B 上复现 RSFT+CED pipeline，验证方法对模型规模的泛化性。应对 RC4。\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 24, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_007\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Re-DocRED extension: 在\n…[truncated 4392 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 603
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-15T14:36:19.931409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 13:42 UTC | 更新原因: Reviewer 路线图审查修正：GPU 表更新实际状态、joint evi_f1 进展、DPO 升 P0、C2 风险标注\\\\n\\\\n## 核心方向\\\\nFREIGE: LLM-based evidence-grounded DocRE 新任务范式。核心发现：GRPO 在结构化 IE 上导致 evidence-extraction decoupling。RSFT+NLI-based scoring 有效提升证据质量。CED 作为 scoring function 之一，显著性待验证。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（MVP 2026-05-15 通过）\\\\n- **Dream v1**: best=2.5, median=3.0, worst=2.5 → 不达标\\\\n- **Reframe 完成** (D044): CED 降级、claims 重构（C1=可行性, C2=decoupling, C3=NLI ablation, C4=EDCR）\\\\n- **Re-dream**: dream_20260515T132059 运行中，验证 reframe 效果（目标 best≥3.5, median≥3.0）\\\\n- **MVP 成果**: RSFT 4/4 configs PASS (rel_f1 +3.9~6.0pp vs SFT)；joint evi_f1 已回填（SFT=0.3117 → best RSFT s44=0.3713, +5.96pp）\\\\n- **GRPO 判死**: 3 reward × 多 lr 全线 catastrophic forgetting (D031/D033)\\\\n- **topk3 scoring 完成**: 8037 samples (2.96x topk1)，数据就绪\\\\n- **DPO 升级为 P0** (D045): 直接影响 C2 decoupling 叙事\\\\n\\\\n## 投稿目标\\\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25)\\\\n- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)\\\\n\\\\n## 近期任务\\\\n- [ ] 等 re-dream 结果验证 reframe\\\\n- [ ] Agent 处理队列（urgent: s43_r2 registry 修复 + plan_008 双变体设计 + evaluate() joint 集成）\\\\n- [ ] Re-dream 达标后批准 P0 实验：\\\\n  - plan_011: GRPO G=8（**最高风险，首批启动**，C2 必要条件）\\\\n  - plan_001: flat-NLI RSFT ablation (C3)\\\\n  - plan_004: DREEAM baseline reproduction (C1)\\\\n  - plan_012: DPO+CED（**升 P0**，C2 叙事关键）\\\\n- [ ] 处理运行中实验结果（maxtok1536_r2 cuda:1, CED reranker cuda:0）\\\\n- [ ] plan_008 topk3 双变体训练（cuda:2 全量 / cuda:3 过滤CED=0）\\\\n\\\\n## GPU 分配\\\\n\\\\n| GPU | 状态 | 任务 |\\\\n|-----|------|------|\\\\n| cuda:0 | 🏃 | mvp2_ced_reranker_poc (plan_005) |\\\\n| cuda:1 | 🏃 | mvp2_eval_rsft_r2b_maxtok1536_r2 |\\\\n| cuda:2 | ⏳ | 待分配 → plan_008 topk3_all |\\\\n| cuda:3 | ⏳ | 待分配 → plan_008 topk3_ced_filtered |\\\\n\\\\n## GPU 预算\\\\n- 硬件: 4× RTX 5090 32GB (rtx50\n…[truncated 2146 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 605
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-15T14:36:41.770298+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 刚重置，正在处理队列：\n- **当前处理**：plan_011 GRPO G=8 结果分析（worker:done）\n- **待处理**：plan_001 flat-NLI scoring 结果（worker:done）\n\n这正好是 handoff 的最高优先级。Agent 会自动处理 registry 更新和结果分析。\n\n但 **cuda:3 空闲**是个问题。等 Agent 处理完当前两个 worker:done 后，我需要确保它立刻把 cuda:3 用起来。候选任务：\n1. plan_011 GRPO G=8 dev eval（如果 Agent 分析完决定要跑 eval）\n2. plan_001 flat-NLI RSFT 训练（如果 flat-NLI scoring 成功）\n3. plan_008 topk3 random RSFT 训练\n\nAgent 正在处理中（idle 37s），不堆消息，等它回报后再给下一步指令。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000084"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "messages": [
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-15T14:36:43.276973+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 4 / 实际跑 4 | Worker 池 1 (GPU 0 / CPU 1 ⚠️ 正在补充)\n\n**Session #8 初始化完成，状态摘要：**\n\n**RUNNING（4卡全满）：**\n| GPU | exp_id | 任务 | 备注 |\n|-----|--------|------|------|\n| cuda:0 | mvp2_ced_reranker_poc | CED-as-reranker (N=8) | PID 178050，长时间运行中 |\n| cuda:1 | mvp2_eval_rsft_r2b_maxtok1536_r2 | 截断诊断 (1536 vs 1024 tokens) | PID 197381 |\n| cuda:2 | plan_004_dreeam_baseline | DREEAM teacher 复现 (30 epochs) | PID 213006，刚启动 |\n| cuda:3 | plan_011_grpo_g8_bf16 | GRPO G=8 bf16 (C2 关键) | PID 210099，分析 Worker 已派出 |\n\n**已完成的关键结果（自上次汇报以来）：**\n- 3-seed RSFT eval 全部 PASS：r1=0.4449, s44=0.4655, s43=0.4683（mean=0.4596±0.013, 全部 > SFT 0.4057）\n- topk3 CED scoring 完成：8037 samples（2.96× topk1），数据就绪待训练\n- RSFT 4/4 configs PASS（r1/s44/r2a/r2b）\n\n**Worker 队列：**\n- `ops:plan_001_wait_and_submit`：flat-NLI RSFT ablation (P0) 准备+等 GPU 自动提交\n- 正在补充 plan_009 GRPO forgetting dynamics 分析 Worker（CPU 任务，拉 wandb 数据+画图，支撑 C3）\n\n**等待中：**\n1. plan_011 GRPO G=8 分析结果 → 决定 C2 narrative 是否需要调整\n2. re-dream 验证 reframe（进行中）\n3. CED reranker / maxtok1536 / DREEAM baseline 完成回调\n\n**下一步（GPU 释放后优先序）：**\n- plan_001 flat-NLI ablation (P0, Worker 已就绪自动提交)\n- plan_008 topk3 训练双变体 (P1, 数据就绪)\n- plan_012 DPO+CED (P0 per D045, 代码待准备)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "agent"
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-15T14:36:48.544015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_dream_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-15T14:36:48.594720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-15T14:36:51.809996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_dream_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_dream_status",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "dream_id": "dream_20260515T132059"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-15T14:36:51.912750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"dream_id\\\": \\\"dream_20260515T132059\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"done\\\", \\\"review_mode\\\": \\\"full\\\", \\\"review_visible\\\": true, \\\"writing_visible\\\": true, \\\"venue\\\": \\\"EMNLP 2026 Main\\\", \\\"focus\\\": \\\"D042 修正后 re-dream。关键变化: (1) Claim 3 缩窄为 GRPO+QLoRA 而非 online RL; (2) 新增 GRPO G=8 实验(plan_011); (3) 新增 DPO baseline(plan_012); (4) CED contingency plan(如 p>0.05 则降级); (5) Evi-F1 改为 DREEAM 对齐协议(joint); (6) 新增 EDCR 人工验证(plan_013)。请关注这些修改是否有效提升了论文质量。\\\", \\\"what_if\\\": [], \\\"pid\\\": 360021, \\\"chat_id\\\": \\\"oc_84537e1e2f9ef71a90742c2db859c6f2\\\", \\\"card_message_id\\\": \\\"om_x100b6f45952a00acc38c9e916e1443d\\\", \\\"started_at\\\": \\\"2026-05-15T13:20:59+00:00\\\", \\\"updated_at\\\": \\\"2026-05-15T14:34:23+00:00\\\", \\\"stages_completed\\\": [\\\"imagine\\\", \\\"write\\\", \\\"review\\\"], \\\"error\\\": null, \\\"context_hash\\\": \\\"efb4a0c9bd571c049ec518cb31230d1c582a129add922756295653f606c82d77\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_dream_status",
+            "elapsed_ms": 102
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-15T14:36:58.951634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__log_decision,mcp__agent-ml-research__update_roadmap,mcp__agent-ml-research__director_reply_to_user",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-15T14:36:59.002518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-15T14:37:00.176829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/dream_reports/dream_20260515T132059/**/*.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie"
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-15T14:37:00.228658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/median/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/worst/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/median/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/worst/review_report.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "elapsed_ms": 51
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-15T14:37:02.844262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/review_report.md"
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-15T14:37:03.299352+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdream_id: dream_20260515T132059\n3\ttier: best\n4\toverall_score: 3.0 - Findings\n5\ttimestamp: 2026-05-15T14:16:20.253527+00:00\n6\t---\n7\t\n8\t# Dream Review Report: FREIGE\n9\t\n10\t**Paper:** FREIGE: Faithful Evidence Generation for LLM-Based Document-Level Relation Extraction via Contrastive Evidence Discrimination\n11\t**Venue:** EMNLP 2026 Main (ACL Rolling Review)\n12\t**Review Mode:** Full (2 Reviewers + Roundtable)\n13\t\n14\t---\n15\t\n16\t## Roundtable Summary\n17\t\n18\t| | R1 (Methods+Experiments) | R2 (Novelty+Related Work) | Post-Discussion |\n19\t|---|---|---|---|\n20\t| Soundness | 3/5 | 3/5 | 3/5 |\n21\t| Excitement | 3/5 → 2.5/5 | 3/5 | 3/5 |\n22\t| Overall | 3.0 → 2.5 | 3.0 | **3.0 (Findings)** |\n23\t| Reproducibility | 3/5 | 4/5 | 3/5 |\n24\t| Confidence | 4/5 | 4/5 | 4/5 |\n25\t\n26\t**Consensus outcome: 3.0 — Findings acceptance.** Both reviewers initially scored 3.0. During cross-sharing, R1 dropped to 2.5 after being persuaded by R2's point about CED's non-significance over flat-NLI. R2 held at 3.0, finding R1's QLoRA confound concern reinforcing but not score-changing. The meta-review settles at 3.0: the paper has genuine contributions (task definition, decoupling finding, EDCR metric) that merit Findings publication, but insufficient method novelty and positioning gaps prevent main conference acceptance.\n27\t\n28\t---\n29\t\n30\t## Consolidated Strengths\n31\t\n32\t**S1: Evidence-grounded DocRE as a new task (R1, R2 agree).** The paper credibly claims to be the first LLM-based DocRE system jointly generating relation triples and explicit sentence-level evidence citations. This fills a real gap: encoder methods provide only implicit attention-based evidence, and all prior LLM-based DocRE methods (LMRC, AutoRE, etc.) produce no evidence. The task formulation is well-motivated for KB population, biomedical curation, and RAG provenance.\n33\t\n34\t**S2: Evidence–extraction decoupling is a striking negative finding (R1, R2 strongly agree).** The observation that GRPO drives Evi-F1 to 0.850 while\n…[truncated 12241 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 455
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-15T14:37:03.350036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/median/review_report.md"
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-15T14:37:03.907102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdream_id: dream_20260515T132059\n3\ttier: median\n4\toverall_score: 2.5/5 — Leaning Reject (Main); Recommend Findings\n5\ttimestamp: 2026-05-15T14:25:43.822210+00:00\n6\t---\n7\t\n8\t# DREAM Review Report: FREIGE\n9\t\n10\t**Paper**: FREIGE: Faithful Evidence Generation for Document-Level Relation Extraction via Rejection Sampling Fine-Tuning  \n11\t**Venue**: EMNLP 2026 Main (via ACL Rolling Review)  \n12\t**Review Mode**: Full (2 Reviewers + Roundtable)  \n13\t**Date**: 2026-05-15\n14\t\n15\t---\n16\t\n17\t## 1. Paper Summary\n18\t\n19\tFREIGE proposes the first LLM-based document-level relation extraction (DocRE) system that jointly generates relation triples and sentence-level evidence citations. The method uses Rejection Sampling Fine-Tuning (RSFT): an SFT-trained Qwen3-4B generates N=8 candidate outputs per document, a Contrastive Evidence Discrimination (CED) scorer based on DeBERTa-v3-base NLI ranks candidates by evidence quality using document-internal hard negatives, and only the top-1 candidate is retained for further fine-tuning. On DocRED test, FREIGE achieves rel_F1=43.2% (+3.2pp over SFT, p<0.01) and joint Evi-F1=32.2%. The paper also documents \"evidence-extraction decoupling\" under GRPO+QLoRA (evidence quality rises while extraction collapses), shows this worsens with larger group sizes (G=8 vs G=4), and introduces EDCR (Evidence Distractor Citation Rate) as a diagnostic metric validated through human annotation (r=0.44, method-level rank concordance=1.0).\n20\t\n21\t---\n22\t\n23\t## 2. Strengths\n24\t\n25\t### S1: Credible and well-scoped \"first\" claim (R1+R2 consensus)\n26\tNo prior LLM-based DocRE system jointly generates (head, relation, tail, [evidence sentences]). Encoder methods (DREEAM, SAIS) derive evidence from attention weights (implicit, not directly auditable). LLM methods (LMRC, AutoRE) produce triples only. The task definition fills a genuine gap relevant to KB population, biomedical curation, and RAG provenance. The claim is appropriately scoped to DocRED.\n27\t\n28\t### S2: T\n…[truncated 18408 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 557
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-15T14:37:03.957900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/worst/review_report.md"
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-15T14:37:04.009414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdream_id: dream_20260515T132059\n3\ttier: worst\n4\toverall_score: leaning reject\n5\ttimestamp: 2026-05-15T14:34:04.053727+00:00\n6\t---\n7\t\n8\t# Dream Review Report: \"How Should LLMs Generate Evidence for Document-Level Relation Extraction?\"\n9\t\n10\t**Venue:** EMNLP 2026 Main (via ACL Rolling Review)\n11\t**Review Mode:** Full (2 Reviewers + Roundtable)\n12\t**Date:** 2026-05-15\n13\t\n14\t---\n15\t\n16\t## Meta-Review (Roundtable Synthesis)\n17\t\n18\tBoth reviewers independently scored this paper at **Overall 2.5/5 (Leaning Reject)**. The roundtable converged on the assessment that this paper makes genuine empirical contributions suitable for the **Findings track** but does not meet the bar for Main conference acceptance at EMNLP 2026 (~22% acceptance rate).\n19\t\n20\t### Points of Agreement (Both Reviewers)\n21\t\n22\t1. **The task definition (evidence-grounded LLM DocRE) fills a genuine gap.** No prior work has LLMs jointly generate (h, r, t, evidence sentences) for document-level RE. This is a credible \"first.\"\n23\t2. **Evidence-extraction decoupling under GRPO is the paper's strongest finding.** The scissors pattern (reward↑, Rel-F1↓) and the extreme lr=5e-6 case (Evi-F1=85.0, Rel-F1=1.4) are empirically compelling.\n24\t3. **CED's non-significance vs. flat-NLI is a fatal title-contribution mismatch.** CED is prominently featured but fails to significantly outperform the simpler baseline on any metric (p>0.10). The paper's primary method contribution effectively reduces to \"RSFT applied to DocRE.\"\n25\t4. **The GRPO decoupling claim is confounded by QLoRA.** All GRPO experiments use 4-bit QLoRA. Without a full-FT or bf16 control, the claim cannot distinguish QLoRA artifacts from genuine RL-for-IE phenomena. The abstract/intro use unqualified language while Limitations correctly scopes to \"GRPO+QLoRA.\"\n26\t5. **Dev-to-test degradation is concerning.** RSFT drops 5.75pp (46.55→40.80) vs. SFT's 1.27pp (40.57→39.30). The 6x relative ratio suggests indirect overfitting through the CED scoring pa\n…[truncated 16661 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-15T14:37:10.710444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_post_to_main_agent,mcp__agent-ml-research__get_dream_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-15T14:37:10.813567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 103
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-15T14:37:13.986402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_dream_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_dream_status",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "dream_id": "dream_20260515T132059"
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-15T14:37:14.088374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"dream_id\\\": \\\"dream_20260515T132059\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"done\\\", \\\"review_mode\\\": \\\"full\\\", \\\"review_visible\\\": true, \\\"writing_visible\\\": true, \\\"venue\\\": \\\"EMNLP 2026 Main\\\", \\\"focus\\\": \\\"D042 修正后 re-dream。关键变化: (1) Claim 3 缩窄为 GRPO+QLoRA 而非 online RL; (2) 新增 GRPO G=8 实验(plan_011); (3) 新增 DPO baseline(plan_012); (4) CED contingency plan(如 p>0.05 则降级); (5) Evi-F1 改为 DREEAM 对齐协议(joint); (6) 新增 EDCR 人工验证(plan_013)。请关注这些修改是否有效提升了论文质量。\\\", \\\"what_if\\\": [], \\\"pid\\\": 360021, \\\"chat_id\\\": \\\"oc_84537e1e2f9ef71a90742c2db859c6f2\\\", \\\"card_message_id\\\": \\\"om_x100b6f45952a00acc38c9e916e1443d\\\", \\\"started_at\\\": \\\"2026-05-15T13:20:59+00:00\\\", \\\"updated_at\\\": \\\"2026-05-15T14:34:23+00:00\\\", \\\"stages_completed\\\": [\\\"imagine\\\", \\\"write\\\", \\\"review\\\"], \\\"error\\\": null, \\\"context_hash\\\": \\\"efb4a0c9bd571c049ec518cb31230d1c582a129add922756295653f606c82d77\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_dream_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-15T14:37:23.406312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "summary": "Re-dream v2 分析：best=3.0/median=2.5/worst=2.5，未达标。识别 7 个三档一致结构性问题，plan_011 bf16 GRPO 是关键突破口，新增 SFT-without-evidence ablation 实验",
+              "rationale": "Dream v2 (dream_20260515T132059) reframe 后评分：best=3.0(Findings), median=2.5(Leaning Reject), worst=2.5(Leaning Reject)。目标 best≥3.5/median≥3.0 未达标，但比 v1(best=2.5/median=3.0/worst=2.5)的 best 提升了 0.5。\n\n**三档一致结构性问题（确认行动项）**：\n1. CED 非显著 vs flat-NLI + title-contribution mismatch → 必须更强地 reframe，CED 降为 one scoring option\n2. QLoRA 混淆 GRPO claim → plan_011 (bf16 LoRA) 直接解决！若 decoupling 在 bf16 下复现 → 消除最大弱点\n3. Related work 严重缺失：R1-RE(GRPO sentence-level RE 成功)、RelPrior/Ru-LLM/AutoRE/GLiDRE、DAPO/Dr.GRPO、INFUSE/TRUE\n4. DPO 实验细节缺失 → 必须补全训练超参\n5. 缺 GRPO forgetting dynamics figure → plan_009 升 P0\n6. Single-seed test → 多 seed mean±std\n7. 缺 SFT-without-evidence ablation → 新增实验 plan_014\n\n**观察项（等真实数据验证）**：\n- Dev-to-test degradation 6x ratio\n- CED gold evidence dependency 讨论\n- Reward hacking lineage 扩写\n\n**关键路径**：plan_011 eval → 若 decoupling 持续 → C2 claim 升级为 \"RL vs structured IE\"（去 QLoRA qualifier）→ 论文最大弱点消除 → re-dream 预期 best≥3.5",
+              "related_experiments": "[{'exp_id': 'plan_011', 'role': 'critical_path', 'result': 'training_done_eval_pending'}, {'exp_id': 'plan_009', 'role': 'upgrade_to_P0', 'result': 'planned'}, {'exp_id': 'plan_001', 'role': 'flat-NLI_ablation', 'result': 'scoring_done'}]",
+              "depends_on": "['D044', 'D046']"
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-15T14:37:23.557879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D047\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 151
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-15T14:37:24.101578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-15T14:37:24.152386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-15T14:37:28.035983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_local_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-15T14:37:28.088410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-15T14:37:32.601809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/dream_reports/dream_20260515T132059/**/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie"
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-15T14:37:32.954007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/logs/orchestrator.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/logs/phase1_attempt0.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/logs/phase2_best_attempt0.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/logs/phase2_median_attempt0.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/logs/phase2_worst_attempt0.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/paper.aux\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/paper.out\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/paper.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/paper.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/logs/paper_a\n…[truncated 4290 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "elapsed_ms": 352
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-15T14:37:33.004818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/dream-report-action.skill.md"
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-15T14:37:33.056007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-15T14:37:36.424675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/best/review_report.md"
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-15T14:37:37.338729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdream_id: dream_20260515T132059\n3\ttier: best\n4\toverall_score: 3.0 - Findings\n5\ttimestamp: 2026-05-15T14:16:20.253527+00:00\n6\t---\n7\t\n8\t# Dream Review Report: FREIGE\n9\t\n10\t**Paper:** FREIGE: Faithful Evidence Generation for LLM-Based Document-Level Relation Extraction via Contrastive Evidence Discrimination\n11\t**Venue:** EMNLP 2026 Main (ACL Rolling Review)\n12\t**Review Mode:** Full (2 Reviewers + Roundtable)\n13\t\n14\t---\n15\t\n16\t## Roundtable Summary\n17\t\n18\t| | R1 (Methods+Experiments) | R2 (Novelty+Related Work) | Post-Discussion |\n19\t|---|---|---|---|\n20\t| Soundness | 3/5 | 3/5 | 3/5 |\n21\t| Excitement | 3/5 → 2.5/5 | 3/5 | 3/5 |\n22\t| Overall | 3.0 → 2.5 | 3.0 | **3.0 (Findings)** |\n23\t| Reproducibility | 3/5 | 4/5 | 3/5 |\n24\t| Confidence | 4/5 | 4/5 | 4/5 |\n25\t\n26\t**Consensus outcome: 3.0 — Findings acceptance.** Both reviewers initially scored 3.0. During cross-sharing, R1 dropped to 2.5 after being persuaded by R2's point about CED's non-significance over flat-NLI. R2 held at 3.0, finding R1's QLoRA confound concern reinforcing but not score-changing. The meta-review settles at 3.0: the paper has genuine contributions (task definition, decoupling finding, EDCR metric) that merit Findings publication, but insufficient method novelty and positioning gaps prevent main conference acceptance.\n27\t\n28\t---\n29\t\n30\t## Consolidated Strengths\n31\t\n32\t**S1: Evidence-grounded DocRE as a new task (R1, R2 agree).** The paper credibly claims to be the first LLM-based DocRE system jointly generating relation triples and explicit sentence-level evidence citations. This fills a real gap: encoder methods provide only implicit attention-based evidence, and all prior LLM-based DocRE methods (LMRC, AutoRE, etc.) produce no evidence. The task formulation is well-motivated for KB population, biomedical curation, and RAG provenance.\n33\t\n34\t**S2: Evidence–extraction decoupling is a striking negative finding (R1, R2 strongly agree).** The observation that GRPO drives Evi-F1 to 0.850 while\n…[truncated 12241 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 914
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-15T14:37:37.339256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/median/review_report.md"
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-15T14:37:37.845934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdream_id: dream_20260515T132059\n3\ttier: median\n4\toverall_score: 2.5/5 — Leaning Reject (Main); Recommend Findings\n5\ttimestamp: 2026-05-15T14:25:43.822210+00:00\n6\t---\n7\t\n8\t# DREAM Review Report: FREIGE\n9\t\n10\t**Paper**: FREIGE: Faithful Evidence Generation for Document-Level Relation Extraction via Rejection Sampling Fine-Tuning  \n11\t**Venue**: EMNLP 2026 Main (via ACL Rolling Review)  \n12\t**Review Mode**: Full (2 Reviewers + Roundtable)  \n13\t**Date**: 2026-05-15\n14\t\n15\t---\n16\t\n17\t## 1. Paper Summary\n18\t\n19\tFREIGE proposes the first LLM-based document-level relation extraction (DocRE) system that jointly generates relation triples and sentence-level evidence citations. The method uses Rejection Sampling Fine-Tuning (RSFT): an SFT-trained Qwen3-4B generates N=8 candidate outputs per document, a Contrastive Evidence Discrimination (CED) scorer based on DeBERTa-v3-base NLI ranks candidates by evidence quality using document-internal hard negatives, and only the top-1 candidate is retained for further fine-tuning. On DocRED test, FREIGE achieves rel_F1=43.2% (+3.2pp over SFT, p<0.01) and joint Evi-F1=32.2%. The paper also documents \"evidence-extraction decoupling\" under GRPO+QLoRA (evidence quality rises while extraction collapses), shows this worsens with larger group sizes (G=8 vs G=4), and introduces EDCR (Evidence Distractor Citation Rate) as a diagnostic metric validated through human annotation (r=0.44, method-level rank concordance=1.0).\n20\t\n21\t---\n22\t\n23\t## 2. Strengths\n24\t\n25\t### S1: Credible and well-scoped \"first\" claim (R1+R2 consensus)\n26\tNo prior LLM-based DocRE system jointly generates (head, relation, tail, [evidence sentences]). Encoder methods (DREEAM, SAIS) derive evidence from attention weights (implicit, not directly auditable). LLM methods (LMRC, AutoRE) produce triples only. The task definition fills a genuine gap relevant to KB population, biomedical curation, and RAG provenance. The claim is appropriately scoped to DocRED.\n27\t\n28\t### S2: T\n…[truncated 18408 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 506
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-15T14:37:37.896683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/worst/review_report.md"
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-15T14:37:38.202801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdream_id: dream_20260515T132059\n3\ttier: worst\n4\toverall_score: leaning reject\n5\ttimestamp: 2026-05-15T14:34:04.053727+00:00\n6\t---\n7\t\n8\t# Dream Review Report: \"How Should LLMs Generate Evidence for Document-Level Relation Extraction?\"\n9\t\n10\t**Venue:** EMNLP 2026 Main (via ACL Rolling Review)\n11\t**Review Mode:** Full (2 Reviewers + Roundtable)\n12\t**Date:** 2026-05-15\n13\t\n14\t---\n15\t\n16\t## Meta-Review (Roundtable Synthesis)\n17\t\n18\tBoth reviewers independently scored this paper at **Overall 2.5/5 (Leaning Reject)**. The roundtable converged on the assessment that this paper makes genuine empirical contributions suitable for the **Findings track** but does not meet the bar for Main conference acceptance at EMNLP 2026 (~22% acceptance rate).\n19\t\n20\t### Points of Agreement (Both Reviewers)\n21\t\n22\t1. **The task definition (evidence-grounded LLM DocRE) fills a genuine gap.** No prior work has LLMs jointly generate (h, r, t, evidence sentences) for document-level RE. This is a credible \"first.\"\n23\t2. **Evidence-extraction decoupling under GRPO is the paper's strongest finding.** The scissors pattern (reward↑, Rel-F1↓) and the extreme lr=5e-6 case (Evi-F1=85.0, Rel-F1=1.4) are empirically compelling.\n24\t3. **CED's non-significance vs. flat-NLI is a fatal title-contribution mismatch.** CED is prominently featured but fails to significantly outperform the simpler baseline on any metric (p>0.10). The paper's primary method contribution effectively reduces to \"RSFT applied to DocRE.\"\n25\t4. **The GRPO decoupling claim is confounded by QLoRA.** All GRPO experiments use 4-bit QLoRA. Without a full-FT or bf16 control, the claim cannot distinguish QLoRA artifacts from genuine RL-for-IE phenomena. The abstract/intro use unqualified language while Limitations correctly scopes to \"GRPO+QLoRA.\"\n26\t5. **Dev-to-test degradation is concerning.** RSFT drops 5.75pp (46.55→40.80) vs. SFT's 1.27pp (40.57→39.30). The 6x relative ratio suggests indirect overfitting through the CED scoring pa\n…[truncated 16661 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 306
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-15T14:37:38.203324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/meta.yaml"
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-15T14:37:38.606470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (74385 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 403
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-15T14:37:39.066586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/dream-report-action.skill.md"
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-15T14:37:39.117551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-15T14:37:42.233782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/dream-report-action.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-15T14:37:42.287483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "elapsed_ms": 53
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-15T14:37:45.455778+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/dream-report-action*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-15T14:37:45.556738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-15T14:37:49.826516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/skills/**/*dream*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-15T14:37:49.877193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-15T14:38:08.156547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "content": "# faith-evidence-ie — Research Dashboard\n\n> 核心方向详见 paper_framing.md | 实验计划详见 experiment_plan.yaml\n\n## 核心方向\nFREIGE: LLM-based evidence-grounded DocRE 新任务范式。核心贡献重心：(1) 任务定义（首个联合生成三元组+证据的 LLM DocRE）；(2) Evidence-extraction decoupling 负面发现（GRPO 导致证据-抽取解耦）；(3) EDCR 诊断指标。CED 降级为 one scoring option，不是 headline contribution。\n\n## 当前进展\n- **阶段**: Research（MVP 2026-05-15 通过）+ 审稿同步进行中\n- **Dream v2** (dream_20260515T132059): best=3.0, median=2.5, worst=2.5 → **未达标**（目标 best≥3.5, median≥3.0）\n- **D047 分析**: 7 个三档一致结构性问题已识别，plan_011 是关键突破口\n- **MVP 成果**: RSFT 4/4 configs PASS (rel_f1 +3.9~6.0pp vs SFT)；joint evi_f1 SFT=0.3117 → best RSFT s44=0.3713\n- **GRPO 判死**: 3 reward × 多 lr 全线 catastrophic forgetting (D031/D033)\n- **topk3 scoring 完成**: 8037 samples (2.96x topk1)，数据就绪\n\n## 投稿目标\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25)\n\n## 关键路径（按优先级）\n1. **plan_011 eval**（最高优先级）：GRPO G=8 bf16 LoRA 训练已完成，等 dev eval → 若 decoupling 持续 → 消除 QLoRA 混淆（三档一致 #1 弱点）\n2. **plan_009 forgetting dynamics figure**（升 P0）：用现有 42 checkpoint 数据画 rel_f1/evi_f1/reward 轨迹图 → 三档一致要求\n3. **plan_001 flat-NLI RSFT**：scoring 完成 → 启动 RSFT 训练 → C3 ablation\n4. **plan_014 SFT-without-evidence ablation**（新增 P0）：隔离 evidence generation 的抽取代价 → 三档一致要求\n5. **plan_004 DREEAM baseline**：训练中（cuda:2）\n6. **plan_005 CED reranker**：运行中（cuda:0）\n7. **plan_012 DPO**：P0，等 GPU 空出\n\n## 近期任务\n- [ ] plan_011 registry → DONE + dev eval（Agent 已收到指令）\n- [ ] GPU 进程全盘扫描确认实际占用\n- [ ] plan_001 flat-NLI scoring 结果收集 + RSFT 训练启动\n- [ ] plan_009 forgetting dynamics figure（升 P0，用现有数据）\n- [ ] 新增 plan_014: SFT-without-evidence ablation\n- [ ] Related work 扩展：R1-RE, RelPrior/Ru-LLM/AutoRE/GLiDRE, DAPO/Dr.GRPO\n- [ ] DPO 训练超参补全文档化\n- [ ] 多 seed test 评估（seeds 42/43/44）\n- [ ] plan_011 eval 出结果后 → re-dream v3 验证改善\n- [Dream 观察] dev-to-test degradation ratio（test eval 出来后评估）\n- [Dream 观察] CED gold evidence dependency（paper 讨论中补充）\n\n## Dream v2 三档一致问题追踪\n| # | 问题 | 解决方案 | 状态 |\n|---|------|---------|------|\n| 1 | CED 非显著 + title mismatch | reframe CED → one scoring option | D044 部分完成，需更强 |\n| 2 | QLoRA 混淆 GRPO claim | plan_011 bf16 LoRA 控制实验 | ⏳ eval pending |\n| 3 | Related work 缺失 | 扩展 5 类文献 | ⬜ 待 Paper Agent |\n| 4 | DPO 细节缺失 | 补全训练超参 | ⬜ 待 Agent |\n| 5 | 缺 GRPO dynamics figure | plan_009 升 P0 | ⬜ |\n| 6 | Single-seed test | 多 seed mean±std | ⬜ 待 plan_002 |\n| 7 | 缺 SFT-without-evidence ablation | 新增 plan_014 | ⬜ |\n\n## GPU 分配\n\n| GPU | 状态 | 任务 |\n|-----|------|------|\n| cuda:0 | 🏃/❓ | CED reranker (plan_005) — 待确认 |\n| cuda:1 | 🏃/❓ | maxtok1536_r2 eval — 待确认 |\n| cuda:2 | 🏃/❓ | DREEAM teacher (plan_004) — 待确认 |\n| cuda:3 | ❓ | flat-NLI scoring 刚完成 — 待确认 |\n\n## GPU 预算\n- 硬件: 4× RTX 5090 32GB (rtx5090-4x)\n- MVP 已消耗: ~80+ GPU-hours\n- Research P0: ~85h (flat-NLI 25h + test eval 4h + DREEAM 8h + GRPO G=8 8h + DPO 12h + dynamics figure 4h + SFT-no-evi 8h + multi-seed test 4h + re-dream验证后续)\n- Research P1: ~46h (EDCR人工验证 + reranker 6h + model size 24h + Re-DocRED 12h)\n\n## 风险监控\n- **C2 单点依赖**: plan_011 eval 是 publishability 必要条件。decoupling 在 bf16 下消失 → scope 大幅缩减\n- **Dream 未达标**: 需要 plan_011 + structural fixes 后 re-dream v3 验证",
+              "reason": "Dream v2 完成分析 (D047): 三档评分未达标, 7 个结构性问题识别, plan_011 eval 为关键路径"
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-15T14:38:08.862108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"lines\\\": 89, \\\"reason\\\": \\\"Dream v2 完成分析 (D047): 三档评分未达标, 7 个结构性问题识别, plan_011 eval 为关键路径\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "elapsed_ms": 705
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-15T14:38:21.766531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260515T132059/meta.yaml",
+              "limit": "50"
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-15T14:38:22.170462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tdream_id: dream_20260515T132059\n2\tproject: faith-evidence-ie\n3\tvenue: EMNLP 2026 Main\n4\tfocus: 'D042 修正后 re-dream。关键变化: (1) Claim 3 缩窄为 GRPO+QLoRA 而非 online RL; (2) 新增 GRPO\n5\t  G=8 实验(plan_011); (3) 新增 DPO baseline(plan_012); (4) CED contingency plan(如 p>0.05\n6\t  则降级); (5) Evi-F1 改为 DREEAM 对齐协议(joint); (6) 新增 EDCR 人工验证(plan_013)。请关注这些修改是否有效提升了论文质量。'\n7\treview_mode: full\n8\treview_visible: true\n9\twriting_visible: true\n10\twhat_if: []\n11\ttier_definitions:\n12\t  tiers:\n13\t    best:\n14\t      tier: best\n15\t      meaning: 所有核心假设成立：CED 显著优于 flat-NLI，test set 保持 dev 增幅，GRPO G=8 仍崩，DPO 填补光谱，EDCR\n16\t        人工验证通过\n17\t      key_assumptions:\n18\t      - CED vs flat-NLI RSFT 在 evi_f1 和 EDCR 上均显著（p<0.01），对比性 margin 确实过滤了 distractor-heavy\n19\t        候选\n20\t      - Test set rel_f1 Δ ≥ +3.5pp over SFT（dev→test 退化 ≤1.5pp），evi_f1_joint 在 DREEAM\n21\t        对齐协议下仍优于 SFT\n22\t      - GRPO G=8 仍 catastrophic forgetting（rel_f1 < 0.05），排除 advantage estimation\n23\t        noise 作为 G=4 失败的混淆因素\n24\t      - DPO+CED 不崩但弱于 RSFT（rel_f1 0.25-0.38），形成 online→offline 清晰退化光谱\n25\t      - EDCR 与人工判断 Pearson r ≥ 0.55，验证其作为自动指标的有效性\n26\t      - DREEAM baseline 可复现（Evi-F1 ≈ 57.34），FREIGE 的 joint Evi-F1 在 LLM 方法中无可比对手\n27\t      number_ranges:\n28\t        test_rel_f1_delta_over_sft:\n29\t        - 3.5\n30\t        - 6.5\n31\t        ced_vs_flatnli_evi_f1_delta:\n32\t        - 1.5\n33\t        - 3.0\n34\t        ced_vs_flatnli_edcr_delta:\n35\t        - -8.0\n36\t        - -4.0\n37\t        ced_vs_flatnli_p_value:\n38\t        - 0.001\n39\t        - 0.01\n40\t        grpo_g8_best_rel_f1:\n41\t        - 0.0\n42\t        - 0.05\n43\t        dpo_rel_f1:\n44\t        - 0.25\n45\t        - 0.38\n46\t        edcr_human_pearson_r:\n47\t        - 0.55\n48\t        - 0.75\n49\t        rsft_best_test_rel_f1:\n50\t        - 0.43"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 403
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-15T14:38:22.170937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/skills/**/dream-report-action.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-15T14:38:22.271598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-15T14:38:27.061512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**Re-dream v2 结果 + 行动计划**\n\nDream v2 (reframe 后) 评分：best=3.0 / median=2.5 / worst=2.5\n目标 best≥3.5, median≥3.0 **未达标**，但 best 比 v1 提升了 0.5。\n\n**三档一致的结构性问题（7 个，全部有解法）：**\n1. CED 非显著 → 已在 D044 降级，需更彻底 reframe\n2. QLoRA 混淆 GRPO claim → **plan_011 (bf16 LoRA) 正是审稿人要的控制实验**，训练已完成，正在安排 eval\n3. Related work 缺 R1-RE / 最新 LLM DocRE / GRPO 稳定性文献\n4. DPO 实验细节缺失\n5. 缺 GRPO forgetting dynamics figure\n6. 需要多 seed test mean±std\n7. 缺 SFT-without-evidence ablation（新增 plan_014）\n\n**关键路径：** plan_011 eval → 若 decoupling 在 bf16 下仍复现 → 消除 QLoRA 混淆这个最大弱点 → 预期 re-dream v3 可达标。已派 Agent 最高优先级执行 eval。\n\nD047 已记录。ROADMAP 已更新。"
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-15T14:38:27.734870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 673
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-15T14:38:35.050213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml"
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-15T14:38:35.101056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texperiments:\n2\t- id: plan_001\n3\t  claim: 2\n4\t  description: 'CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选\n5\t    RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py\n6\t    用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。'\n7\t  priority: P0\n8\t  gpu_budget_hours: 20\n9\t  deps: []\n10\t  registry_id: null\n11\t- id: plan_002\n12\t  claim: 1\n13\t  description: 'Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set\n14\t    上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。'\n15\t  priority: P0\n16\t  gpu_budget_hours: 4\n17\t  deps:\n18\t  - plan_001\n19\t  registry_id: null\n20\t- id: plan_003\n21\t  claim: 4\n22\t  description: 'EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing\n23\t    方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。'\n24\t  priority: P0\n25\t  gpu_budget_hours: 2\n26\t  deps:\n27\t  - plan_001\n28\t  registry_id: null\n29\t- id: plan_004\n30\t  claim: 1\n31\t  description: 'DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large)\n32\t    的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。'\n33\t  priority: P0\n34\t  gpu_budget_hours: 8\n35\t  deps: []\n36\t  registry_id: plan_004_dreeam_baseline\n37\t- id: plan_005\n38\t  claim: 1\n39\t  description: 'CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。'\n40\t  priority: P1\n41\t  gpu_budget_hours: 6\n42\t  deps: []\n43\t  registry_id: mvp2_ced_reranker_poc\n44\t- id: plan_006\n45\t  claim: 1\n46\t  description: 'Model size ablation: Qwen3-1.7B 和 Qwen3-8B 上复现 RSFT+CED pipeline，验证方法对模型规模的泛化性。应对\n47\t    RC4。'\n48\t  priority: P1\n49\t  gpu_budget_hours: 24\n50\t  deps:\n51\t  - plan_001\n52\t  registry_id: null\n53\t- id: plan_007\n54\t  claim: 1\n55\t  description: 'Re-DocRED extension: 在 Re-DocRED（修正 false negative 标注的版本）上评估，验证 RSFT+CED\n56\t    在更干净标注下的表现。应对 RC4。'\n57\t  priority: P1\n58\t  gpu_budget_hours: 12\n59\t  deps:\n60\t  - plan_002\n61\t  registry_id: null\n62\t- id: plan_008\n63\t  claim: 2\n64\t  description: 'top_k ablation: CED \n…[truncated 2964 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-15T14:38:43.347568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+              "old_string": "- id: plan_009\n  claim: 3\n  description: 'GRPO forgetting 详细分析: 整理全部 GRPO checkpoint 的 rel_f1/evi_f1/EDCR 轨迹，绘制\n    forgetting dynamics 可视化（reward vs task performance 曲线），支撑 Claim 3 的论述。'\n  priority: P2\n  gpu_budget_hours: 4\n  deps: []\n  registry_id: null",
+              "new_string": "- id: plan_009\n  claim: 3\n  description: 'GRPO forgetting dynamics figure: 整理全部 GRPO checkpoint（42个）的 rel_f1/evi_f1/EDCR/reward\n    轨迹，绘制 training dynamics 可视化图。包含 G=4 vs G=8 对比、三种 reward 对比。Dream v2 三档一致要求此图作为论文核心\n    figure。数据已有，只需汇总+画图。'\n  priority: P0\n  gpu_budget_hours: 2\n  deps: []\n  registry_id: null"
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-15T14:38:43.398420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-15T14:38:52.563628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+              "old_string": "- id: plan_010\n  claim: 1\n  description: 'NLI model ablation: DeBERTa-v3-base vs DeBERTa-v3-large 作为 CED scorer\n    的对比，验证 NLI 模型能力对 CED 打分质量的影响。应对 RC1。'\n  priority: P2\n  gpu_budget_hours: 4\n  deps: []\n  registry_id: null",
+              "new_string": "- id: plan_010\n  claim: 1\n  description: 'NLI model ablation: DeBERTa-v3-base vs DeBERTa-v3-large 作为 CED scorer\n    的对比，验证 NLI 模型能力对 CED 打分质量的影响。应对 RC1。'\n  priority: P2\n  gpu_budget_hours: 4\n  deps: []\n  registry_id: null\n- id: plan_014\n  claim: 1\n  description: 'SFT-without-evidence ablation: 训练 Qwen3-4B SFT 只输出 relation triples（不含\n    evidence sentences），对比标准 SFT（含 evidence）的 rel_f1。隔离 evidence generation 对抽取性能的代价。Dream\n    v2 三档一致要求。用于回答\"43.2% vs LMRC 60.7% 的 gap 有多少来自 evidence 生成负担\"。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: null"
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-15T14:38:52.614577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-15T14:38:53.220310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__log_decision,mcp__agent-ml-research__director_reply_to_user",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-15T14:38:53.271122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-15T14:39:02.991679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml",
+              "old_string": "- id: plan_012\n  claim: 3\n  description: 'DPO+CED experiment: Dream [M][W] 指出缺少 online-offline 中间方法 baseline。用\n    RSFT 候选数据构造 preference pairs (CED-preferred vs CED-rejected)，DPO 训练。验证 DPO 是否避免\n    GRPO 的 catastrophic forgetting。'\n  priority: P1\n  gpu_budget_hours: 12\n  deps:\n  - plan_001\n  registry_id: null",
+              "new_string": "- id: plan_012\n  claim: 3\n  description: 'DPO+CED experiment: 用 RSFT 候选数据构造 preference pairs (CED-preferred vs CED-rejected)，DPO\n    训练。验证 DPO 是否避免 GRPO 的 catastrophic forgetting。Dream v2 三档要求 DPO 作为 RL spectrum 关键数据点，必须补全训练超参（β,\n    lr, epochs, pair construction）。D045 升 P0。'\n  priority: P0\n  gpu_budget_hours: 12\n  deps: []\n  registry_id: null"
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-15T14:39:03.043565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-15T14:39:04.711458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "summary": "Dream v2 分析：best=3.0/median=2.5/worst=2.5，未达标。三档一致指出5个结构性问题+2个新实验需求。plan_011 bf16 是升Main最大杠杆。",
+              "rationale": "Re-dream (dream_20260515T132059) full review 结果：reframe 后 best 从 2.5→3.0 有改善，但 median 从 3.0→2.5 反降。三档一致的结构性问题：(1) CED vs flat-NLI 非显著=标题贡献不匹配，(2) GRPO QLoRA confound 需 non-QLoRA 控制，(3) related work 大缺（R1-RE/LLM DocRE/GRPO stability），(4) 缺 forgetting dynamics figure，(5) DPO 细节不足。新实验需求：SFT-without-evidence ablation（量化 evidence 生成代价）+ post-hoc retrieval baseline。plan_011 bf16 直接回答 QLoRA confound——如果 decoupling 持续则 C2 从 QLoRA-scoped 升级为 structural claim，这是 Findings→Main 的最关键杠杆。行动：(A) plan_011 eval 最高优先，(B) 新增 SFT-no-evidence 实验到 plan，(C) plan_009 forgetting figure 并行推进，(D) plan_012 DPO 代码准备立即启动。",
+              "related_experiments": "[{'exp_id': 'plan_011_grpo_g8_bf16', 'role': 'key_experiment', 'result': 'ANALYZING'}, {'exp_id': 'plan_001', 'role': 'pending', 'result': 'planned'}, {'exp_id': 'plan_009', 'role': 'supporting', 'result': 'planned'}, {'exp_id': 'plan_012', 'role': 'pending', 'result': 'planned'}]",
+              "depends_on": "['D044', 'D046']"
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-15T14:39:04.912923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D048\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 201
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-15T14:39:06.793410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__log_decision,mcp__agent-ml-research__director_reply_to_user,mcp__agent-ml-research__director_post_to_main_agent",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-15T14:39:06.844468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-15T14:39:09.099346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-15T14:39:09.200680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":13}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-15T14:39:16.501137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-15T14:39:16.603143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":21}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 102
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-15T14:39:19.772637+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**Re-dream 结果出来了（dream_20260515T132059）**\n\n评分：best=3.0 / median=2.5 / worst=2.5，目标 best≥3.5 median≥3.0 未达。相比 v1（2.5/3.0/2.5）best 有改善但 median 反降。\n\n**三档一致指出的核心问题**：\n1. CED vs flat-NLI 无显著差异 → 标题-贡献不匹配（最致命）\n2. GRPO decoupling 被 QLoRA 混淆 → 需 non-QLoRA 控制\n3. Related work 大面积缺失（R1-RE、最新 LLM DocRE 方法等）\n4. 缺 forgetting dynamics 可视化\n5. DPO 实验细节不足 + SFT-without-evidence ablation 缺失\n\n**好消息**：plan_011 GRPO G=8 bf16 恰好就是 reviewer 要的 non-QLoRA 控制实验。如果 bf16 下 decoupling 仍持续 → C2 claim 从 \"GRPO+QLoLA\" 升级为 \"structural incompatibility\"，这是 Findings→Main 最大杠杆。目前 plan_011 训练已完成（reward 趋势积极），正在等 dev eval 结果。\n\n**下一步**：\n- plan_011 dev eval（最高优先）\n- 新增 SFT-without-evidence ablation（量化 evidence 生成代价）\n- plan_009 forgetting figure + plan_012 DPO 代码准备并行推进\n- plan_001 flat-NLI ablation 等 GPU 释放后自动提交"
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-15T14:39:20.224715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "summary": "Dream v2 (dream_20260515T132059) 结果: best=3.0/median=2.5/worst=2.5，未达标(目标 best≥3.5/median≥3.0)。三档一致结构性问题: (1) CED≈flat-NLI 标题错配 (2) QLoRA confound (3) related work 缺口。行动: 新增 plan_014 bf16 GRPO 控制实验 + plan_015 SFT-no-evidence ablation; plan_009 升 P1; Paper Agent 负责 retitle+reframe+related work。plan_011 eval 优先完成后决定 plan_014 优先级。",
+              "rationale": "Reframe (D044) 后 re-dream 仍未达 Main 标准。三档审稿一致指出: (a) CED 不显著优于 flat-NLI 但占据标题, (b) GRPO decoupling claim 被 QLoRA confound 限制泛化性, (c) related work 大缺口。这三个是结构性问题而非数据依赖——必须通过新实验(bf16 GRPO 控制)和 reframe 解决。plan_011 已用 bf16 但三变量混淆(bf16+G=8+kl=0.01), 需 clean 单变量控制。禁止 fallback 到 Findings——补实验+reframe 冲 Main。",
+              "related_experiments": "[{'exp_id': 'plan_011', 'role': 'context', 'result': 'ANALYZING - bf16 G=8 训练完成待 eval'}, {'exp_id': 'plan_014', 'role': 'planned', 'result': '新增: bf16 LoRA GRPO G=4 kl=0 clean control'}, {'exp_id': 'plan_015', 'role': 'planned', 'result': '新增: SFT-without-evidence ablation'}]",
+              "depends_on": "['D044', 'D046']"
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-15T14:39:20.629098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D049\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 404
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-15T14:39:24.302435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-15T14:39:24.353418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":28}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-15T14:39:33.549605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_gpu_health",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-15T14:39:33.602586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-15T14:39:35.327124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 15554
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-15T14:39:35.378518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "Dream v2 完成，三档一致要求的关键行动。按优先级执行：\n\n**最高优先：plan_011 GRPO G=8 bf16 dev eval**\n训练已完成（100 steps, exit_code=0, reward 趋势积极）。立即在 cuda:3 上跑 dev set eval——用和 RSFT eval 完全一致的 evaluate() 流程，计算 rel_f1、evi_f1_joint、EDCR。这个结果决定 C2 claim 能否从 \"GRPO+QLoRA\" 升级为 \"structural incompatibility\"。结果出来后第一时间汇报。\n\n**并行 CPU 任务（不等 GPU，立即启动）：**\n\n1. **plan_009 forgetting dynamics figure**：用已有的所有 GRPO checkpoint 数据（G=4 全配置 + G=8），画 rel_f1/evi_f1/reward vs training step 曲线。三档审稿都说\"描述了三阶段模式但没图\"。用 matplotlib 出 PDF，保存到 artifacts/figures/。\n\n2. **plan_012 DPO 代码准备**：写好 DPO 训练脚本（基于 RSFT candidates 构造 preference pairs：CED top-1 = chosen, CED bottom-1 = rejected）。包含完整超参数（β, lr, LoRA config, epochs）。审稿三档都批评 DPO \"underspecified\"。代码就绪后等 GPU 释放即可提交。\n\n3. **新实验 SFT-without-evidence ablation**（dream 三档推荐）：修改 SFT 训练数据，去掉 evidence 输出（只保留 relation triples），重新训练一轮。目的：量化 joint evidence generation 对 extraction 的代价（当前 rel_f1=40.6 vs LMRC 60.7 的 gap 有多少来自 evidence 负担）。准备代码+数据，等 GPU。\n\n**注意**：plan_011 eval 的三变量混淆（bf16/kl_coef=0.01/G=8 vs 原始 QLoRA/kl_coef=0/G=4）——eval 结果汇报时明确标注这三个变量差异，不要归因单一变量。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-15T14:39:36.690056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f474cb6a4a8c3b1401e42e7099\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 1311
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-15T14:39:37.599401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "tool_args": {
+              "server": "rtx5090-4x"
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-15T14:39:37.650465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {\\\"rtx5090-4x\\\": {\\\"error\\\": \\\"no data yet\\\", \\\"stale\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 51
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-15T14:39:38.250495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md",
+              "limit": "100"
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-15T14:39:38.251056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — FREIGE\n2\t\n3\t> **状态**: POST-MVP + DREAM v1 (重大 reframe based on Dream feedback)\n4\t> **最后更新**: 2026-05-15\n5\t> **Dream v1**: best=2.5, median=3.0, worst=2.5 → 需 reframe 后 re-dream\n6\t\n7\t## Target Venue\n8\t\n9\t- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)\n10\t- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)\n11\t\n12\t## Core Insight\n13\t\n14\tLLM-based document-level IE 已逼近 encoder SOTA 的抽取精度，但零方法能生成可验证证据。本文提出 **evidence-grounded DocRE** 作为新任务范式：LLM 同时输出关系三元组和支撑证据句。\n15\t\n16\t我们系统性地探索了 online RL (GRPO) 和 offline RL (RSFT) 两条技术路线。关键发现：**GRPO 在结构化 IE 上导致 evidence-extraction decoupling**——evidence 质量持续提升（evi_f1→0.85）但抽取能力 catastrophically forget（rel_f1<0.02），这一现象在 3 种 reward function 下一致出现。RSFT 有效规避此问题。\n17\t\n18\tCED (Contrastive Evidence Discrimination) 是一种 NLI-based 候选筛选函数，通过文档内 hard negative 对比评估 evidence 质量。CED 作为 RSFT 的 scoring function 之一进行测试，其相对于 flat-NLI 的优势需要通过充分的统计检验验证。\n19\t\n20\t## Story Arc\n21\t\n22\t1. **Problem**: LLM DocRE 无证据 → 部署障碍\n23\t2. **New task**: evidence-grounded DocRE — 同时生成关系和证据\n24\t3. **Exploration**: 系统性比较 online RL (GRPO) vs offline RL (RSFT)\n25\t4. **Key finding**: evidence-extraction decoupling — GRPO 下 evidence 和 extraction 被差异化优化，extraction catastrophically forget\n26\t5. **What works**: RSFT with NLI-based scoring 有效提升 evidence 质量而不牺牲抽取\n27\t6. **Diagnostic tool**: EDCR 捕捉 Evi-F1 的盲区\n28\t\n29\t## Core Claims (reframed after Dream v1)\n30\t\n31\t### Claim 1 (Main): Evidence-grounded DocRE 是可行的新能力\n32\t- FREIGE 是首个在 DocRED 上同时输出 (head, relation, tail, [evidence]) 的 LLM 方法\n33\t- RSFT 在 4/4 配置下均超过 SFT baseline（rel_f1 +3.9~6.0pp）\n34\t- 需要 DREEAM-protocol 对齐的 Evi-F1 对比（D041 在处理中）\n35\t\n36\t### Claim 2 (Core finding): GRPO 在结构化 IE 上导致 evidence-extraction decoupling\n37\t- 3 种 reward × 多个 lr 全线失败\n38\t- **Evidence-extraction decoupling**: evi_f1 → 0.850 而 rel_f1 < 0.02\n39\t- 三档 Dream 审稿均认为此发现\"genuinely novel and striking\"\n40\t- **需要加强**: GRPO G=8 实验（排除 G=4 confound）；DPO 作为 offline preference optimization baseline（验证 decoupling 是否 on-\n…[truncated 2257 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-15T14:39:43.285005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md",
+              "offset": "100"
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-15T14:39:43.335901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t## Key Baselines (12+)\n101\t\n102\t1. **SFT-only**: Qwen3-4B + LoRA SFT\n103\t2. **RSFT flat-NLI**: flat-NLI scored RSFT（核心 ablation）\n104\t3. **RSFT CED**: CED scored RSFT（主方法）\n105\t4. **CED-as-reranker**: 推理时 CED 重排（无训练）\n106\t5. **DPO+CED**: offline preference learning（NEW）\n107\t6. **GRPO+CED (G=4)**: online RL negative baseline\n108\t7. **GRPO+CED (G=8)**: G=4 confound 排除（NEW）\n109\t8. **Post-hoc retrieval**: SFT + BM25 evidence（NEW）\n110\t9. **DREEAM**: encoder evidence SOTA\n111\t10. **SAIS**: encoder evidence baseline\n112\t11. **DocKS-RAG**: extraction SOTA（无 evidence）\n113\t12. **LMRC**: generative LLM SOTA（无 evidence）\n114\t\n115\t## Publishability Threshold (revised after Dream)\n116\t\n117\t- **必要条件**: (1) RSFT 在 test set 上 rel_f1 显著 > SFT (2) DREEAM-protocol Evi-F1 可报告 (3) GRPO decoupling 在 G=8 下仍复现\n118\t- **充分条件**: 上述 + CED 显著 > flat-NLI + EDCR 人工验证\n119\t- **Failure pivot**: decoupling 在 G=8 下不复现 → scope 大幅缩减\n120\t\n121\t## Research Phase Priorities (revised after Dream v1)\n122\t\n123\t| Priority | 实验 | Claim | GPU-h |\n124\t|----------|------|-------|-------|\n125\t| P0 | flat-NLI RSFT ablation (5 seeds) | C3 | ~25h |\n126\t| P0 | CED RSFT additional seeds (→5 total) | C3 | ~10h |\n127\t| P0 | DREEAM-protocol Evi-F1 对齐 | C1 | CPU |\n128\t| P0 | Test set evaluation | C1 | ~4h |\n129\t| P0 | DREEAM baseline reproduction | C1 | ~8h |\n130\t| P0 | GRPO G=8 experiment | C2 | ~16h |\n131\t| P0 | DPO+CED experiment | C2 | ~12h |\n132\t| P1 | EDCR human validation | C4 | API |\n133\t| P1 | Post-hoc evidence retrieval baseline | C1 | ~4h |\n134\t| P1 | CED-as-reranker (running) | C1 | ~6h |\n135\t| P1 | Model size ablation | RC | ~24h |\n136\t| P1 | Re-DocRED extension | RC | ~12h |\n137\t| P2 | GRPO forgetting 可视化 | C2 | ~4h |\n138\t| P2 | Advantage variance measurement | C2 | CPU |\n139\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-15T14:39:48.003802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_roadmap",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-15T14:39:48.104740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-15T14:39:55.005061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**Dream v2 结果（reframe 后）**\n\n| 档位 | 评分 | 目标 |\n|------|------|------|\n| Best | 3.0 (Findings) | ≥3.5 |\n| Median | 2.5 (Leaning Reject) | ≥3.0 |\n| Worst | 2.5 (Leaning Reject) | — |\n\n**未达标。** 三档一致的结构性问题：\n1. CED vs flat-NLI 无显著差异 → 标题-贡献错配\n2. GRPO decoupling claim 被 QLoRA confound 限制 → 需 bf16 控制实验\n3. Related work 大缺口（R1-RE 等）\n\n**行动计划（D049）：**\n- 等 plan_011 GRPO G=8 eval 结果（Agent 正在处理）\n- 新增 plan_014: bf16 LoRA GRPO 单变量控制（G=4, kl=0，只改量化方式）\n- 新增 plan_015: SFT-without-evidence ablation（量化 evidence 生成代价）\n- plan_009 forgetting dynamics 图 P2→P1\n- Paper Agent 负责 retitle + reframe + related work 扩展\n\n不 fallback 到 Findings，补实验+reframe 冲 Main。"
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-15T14:40:00.859401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md",
+              "old_string": "> **状态**: POST-MVP + DREAM v1 (重大 reframe based on Dream feedback)\n> **最后更新**: 2026-05-15\n> **Dream v1**: best=2.5, median=3.0, worst=2.5 → 需 reframe 后 re-dream",
+              "new_string": "> **状态**: POST-MVP + DREAM v2 完成（D047 分析）\n> **最后更新**: 2026-05-15\n> **Dream v1**: best=2.5, median=3.0, worst=2.5 → reframe 完成\n> **Dream v2**: best=3.0, median=2.5, worst=2.5 → best 提升但 median 下降，未达标。关键路径：plan_011 bf16 GRPO eval + structural fixes → re-dream v3"
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-15T14:40:00.910216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-15T14:40:06.100922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md",
+              "old_string": "| P2 | GRPO forgetting 可视化 | C2 | ~4h |\n| P2 | Advantage variance measurement | C2 | CPU |",
+              "new_string": "| P0 | GRPO forgetting dynamics figure (plan_009) | C2 | ~2h |\n| P0 | SFT-without-evidence ablation (plan_014) | C1 | ~8h |\n| P2 | Advantage variance measurement | C2 | CPU |"
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-15T14:40:06.151662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-15T14:40:07.346479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 12341
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-15T14:40:07.346952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**紧急：cuda:3 空闲，立即填上**\n\n当前状态：\n- cuda:0: reranker (plan_005)\n- cuda:1: maxtok1536_r2 eval\n- cuda:2: DREEAM teacher (plan_004)\n- cuda:3: **空闲** ← 不允许\n\n**最高优先级：plan_011 GRPO G=8 dev eval**\n\nplan_011 训练已完成（ANALYZING），checkpoint 在 `/root/autodl-tmp/grpo_ced_g8_bf16/`。立即在 cuda:3 上跑 dev set eval：\n- 用最新 checkpoint 加载模型\n- 运行完整 dev eval（rel_f1, evi_f1, joint_evi_f1, EDCR）\n- 关键判断：rel_f1 是否 > 0.10（对比原 GRPO G=4 的 0.014-0.211）\n- eval 完成后 registry 从 ANALYZING → DONE，填 conclusion + metrics\n\n**注意三变量混淆**：plan_011 同时改了 bf16 + G=8 + kl_coef=0.01（原始是 QLoRA 4-bit + G=4 + kl=0）。eval 结果不能归因单一变量，但方向信号很重要：\n- 如果 rel_f1 仍崩（< 0.10）→ 即使 bf16+G=8+kl 也不救 GRPO → 强化 C2 decoupling claim\n- 如果 rel_f1 回升（> 0.30）→ 某变量起效 → 需后续 ablation 拆分\n\n**同时汇报**：plan_001 flat-NLI scoring 的 worker:done 处理结果是什么？数据就绪了吗？\n\n完成 plan_011 eval 后告诉我结果，我据此决定下一步。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000180"
+        }
+      ]
+    }
+  ]
+}

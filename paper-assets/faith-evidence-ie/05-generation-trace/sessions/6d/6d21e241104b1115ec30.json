@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d21e241104b1115ec30",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis d076 paired ttest",
+  "task_key": "worker_analysis_d076_paired_ttest_20260516T120755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d076_paired_ttest_20260516T120755_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "b939590bf48765b7cd295ffe3c40e78387042afd5c172d24f77af5c6546d4d0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D076 分析完成。报告已保存至 `/root/autodl-tmp/eval_results/d076_paired_ttest_report.json`。\n\n**结论：INDISTINGUISHABLE**\n\n| 指标 | CED mean | flat-NLI mean | Diff | p-value | Cohen's d |\n|------|----------|---------------|------|---------|-----------|\n| rel_f1 | 0.4563 | 0.4572 | -0.0009 | 0.523 | -0.36 |\n| ign_f1 | 0.4465 | 0.4496 | -0.0031 | 0.337 | -0.57 |\n| evi_f1 | 0.8116 | 0.8109 | +0.0006 | 0.895 | 0.07 |\n| edcr | 0.6503 | 0.6497 | +0.0005 | 0.892 | 0.07 |\n\nBootstrap 95% CI for rel_f1 diff: [-0.0028, +0.0010]，包含零。\n\n两方法均显著优于 SFT baseline（CED +5.1%, flat-NLI +5.2%, p<0.001）。\n\n**D078 建议**：CED 与 flat-NLI 在 rel_f1 上等效，应基于其他标准（训练成本、evidence 质量、可解释性）做选择。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d076-paired-ttest-copy-2.md"
+}

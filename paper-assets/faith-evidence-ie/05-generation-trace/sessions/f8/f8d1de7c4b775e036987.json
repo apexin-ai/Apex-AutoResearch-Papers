@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "f8d1de7c4b775e036987",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "audit registry maintenance",
+  "task_key": "worker_audit_registry-maintenance_20260524T053309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_registry-maintenance_20260524T053309.log",
+    "occurrence": 1,
+    "bytes": 1020630,
+    "sha256": "6d2ced36aa0e5661080b1b376a67f7129cec6cd61e6a931efea236a5c7f0539b"
+  },
+  "statistics": {
+    "messages": 106,
+    "user_turns": 0,
+    "tool_calls": 42,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 42,
+      "tool_result": 42,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 106,
+      "chunks": [
+        {
+          "path": "f8d1de7c4b775e036987-part-0001.json",
+          "message_count": 16
+        },
+        {
+          "path": "f8d1de7c4b775e036987-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "f8d1de7c4b775e036987-part-0003.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-registry-maintenance.md"
+}

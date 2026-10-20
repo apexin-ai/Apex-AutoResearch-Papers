@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9839952dd9091f492215",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_5_1778807305.md",
+  "task_key": "loop_5_1778807305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778807305.md",
+    "occurrence": 1,
+    "bytes": 5184,
+    "sha256": "89b2ac4a3a7d6e2d240c5911f2a21687de460dfdc106432890b7feb6c190b6c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-15T01:06:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0,1,2,3（rtx5090-4x），用其他 GPU 必须 push back Director\n- RSFT 训练/生成 **禁止 `--quantize`**：4-bit + merge_and_unload 在 RTX 5090 触发 CUBLAS 错误，bf16 Qwen3-4B 仅 ~8GB 无需量化\n- 工作目录必须 `cd /root/autodl-tmp`，**不要** `cd /root/autodl-tmp/freige`（内层空 freige/freige/ 包会覆盖正确 import）\n- GRPO+QLoRA 方向已判死 (D031)，**不要再开新 GRPO 实验**。当前 3 个 RUNNING 是收尾/sunk cost\n- rsft_score_filter.py 输出格式与 rsft_trainer.py 输入格式已由 Worker 修复（JSON→JSONL + 字段名统一），确认代码已 push 再用\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（备用 SSH endpoint: bjb2-12179），4× RTX 5090 32GB\n- **工作目录**: `/root/autodl-tmp/freige`（代码），`/root/autodl-tmp/`（运行目录）\n- **Python**: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（base），`/root/autodl-tmp/sft_output`（SFT adapter）\n- **数据集**: `/root/autodl-tmp/data/docred`（DocRED，3053 samples train_annotated）\n- **GRPO checkpoint**: `/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-{20,40,60,80,100,...}`\n- **HF cache**: `HF_HOME=/root/autodl-tmp/.hf_cache`\n- **W&B run**: `grpo-s3-ced-lr5e6-r1`\n- **NLI 模型**: `cross-encoder/nli-deberta-v3-base` **本地未下载**，RSFT scoring 前需先下载\n- **活跃进程**:\n  - cuda:0 — GRPO 训练 PID 90080, tmux=mvp2_grpo_ced_lr5e6_r1, step ~113/200\n  - cuda:1 — RSFT 生成 PID 122144, tmux=mvp2_rsft_generate\n  - cuda:2 — **空闲**\n  - cuda:3 — ckpt-100 eval PID 117635, tmux=mvp2_eval_lr5e6_r1_ckpt100\n- **活跃 cron**: 3 个（对应上面 3 个 RUNNING 实验）\n\n### 3. 📊 当前状态\n**D031 pivot 已执行**: GRPO+QLoRA 判死，转 RSFT+CED。RSFT 代码三件套（generate/score_filter/trainer）已写完并修复 2 个 critical bug。\n\n**RUNNING 实验**:\n- `mvp2_grpo_ced_lr5e6_r1` (cuda:0): GRPO 训练 step ~113/200。D032 决定 kill 以释放 GPU，但尚未执行 kill。轨迹数据已充分。\n- `mvp2_eval_lr5e6_r1_ckpt100` (cuda:3): ckpt-100 eval。判定线: eval F1 > 0.15 = 拐点真实，< 0.05 = reward hacking。W&B 显示 step-100 有 f1_reward 拐点 (0.016→0.093)，但 ckpt-20/40 eval 均 ~0.007 完全失败。\n- `mvp2_rsft_generate` (cuda:1): RSFT 生成阶段，N=8, T=0.7，刚启动。\n\n**等待中**:\n- 2 个 Worker 正在跑: `status-check-all` + `rsft-diversity-diagnosis`（可能即将回调）\n- ckpt-100 eval 完成后需判定并更新 registry\n- RSFT 生成完成后 → score_filter → trainer 流水线\n\n### 4. 📋 待办（条件触发式）\n- **ckpt-100 eval 完成** → rel_f1 > 0.15: 记录为\"拐点真实但仍远低于 SFT baseline(0.406)\"，不改变 D031 pivot 决策；< 0.05: 记录 reward hacking 确认。两种情况都更新 registry(DONE) + report.md\n- **GRPO 训练 (cuda:0) 完成或 kill** → 释放 cuda:0 给 RSFT 后续任务（scoring 或 trainer）。D032 已决定 kill，执行 kill 后更新 registry\n- **RSFT generate 完成** → 检查 `/root/autodl-tmp/rsft_generations/generations.jsonl` 数据量和质量 → spawn Worker 跑 `rsft_score_filter.py`（需 NLI 模型，先确认已下载）→ 产出 rsft_train.jsonl → spawn Worker 跑 `rsft_trainer.py`\n- **NLI 模型未下载** → 在 RSFT scoring 前，spawn Worker: `source /etc/network_turbo && pip install sentence-transformers && python -c \"from transformers import AutoModelForSequenceClassification; AutoModelForSequenceClassification.from_pretrained('cross-encoder/nli-deberta-v3-base')\"`\n- **diversity probe Worker 回调** → 读取 diversity 分析结果，判断 T=0.7 N=8 是否足够产出多样候选\n- **cuda:2 空闲** → 可用于预下载 NLI 模型或跑其他 CPU-bound 任务\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D027: lr=5e-5 GRPO catastrophic forgetting（best eval=0.211=SFT 52%）\n- D030: lr=5e-6 ckpt-20 eval FAIL (0.0077)\n- D031: GRPO+QLoRA **方向判死**。根因不是超参，是 QLoRA 低秩空间无法同时维持 SFT 能力和 RL 目标\n- D032: Kill GRPO 训练释放 GPU（尚未执行）\n- **CED reward signal 本身有效**（MVP-1: margin=0.48, accuracy=81.5%），问题在在线 RL 方法论\n- **Pivot**: RSFT（优先）+ DPO+CED（备选）\n\n**易错点**:\n1. 不要被 ckpt-100 的 W&B 拐点诱惑重开 GRPO——即使 eval F1 > 0.15，仍远低于 SFT(0.406)，不改变 pivot\n2. RSFT 流水线三步（generate→score→train）的数据格式已修复，但**需验证修复代码已在服务器上**（git pull/sync_code）\n3. `submit_on_allocated` 的命令必须 `cd /root/autodl-tmp`（不是 freige 子目录），否则 import 会找到空包\n4. AutoDL 网络操作需 `source /etc/network_turbo` + SSL 证书环境变量\n5. SFT baseline eval 结果: rel_f1=0.406, evi_f1=0.628——这是 RSFT 的 pass criteria 锚点（必须超过 SFT）\n6. Contingency（RSFT 也失败时）: 全参微调 或 CED 作为推理时 reranker\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778807305.md"
+}

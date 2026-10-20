@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e2c0e681106a49425e7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval dpo rebuilt 1ep eval",
+  "task_key": "worker_eval_dpo_rebuilt_1ep_eval_20260523T034757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_dpo_rebuilt_1ep_eval_20260523T034757_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "715cf2379b405a0f58ee5878608ab08f23aeb0e8fe09ef214fbb2048c7d4db3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 占用情况汇总：\n\n| GPU | 显存 | 进程 | 运行时间 |\n|-----|------|------|---------|\n| 0 | 26.8GB | 8B RSFT no-evi test eval (batch=16) | 55 min |\n| 1 | 32.5GB | 14B RSFT generation (8 gens) | 9.5h |\n| 2 | 11.5GB | **DPO rebuilt 1ep dev eval** (batch=4, 9%) | 20 min |\n| 3 | 6.1GB | 1.7B RSFT test eval | 2h40m |\n\n**所有 4 卡都被占用，C001 约束阻止提交。**\n\n额外问题：cuda:2 的 dev eval 输出目录 `/root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval` 与 test eval 目标目录冲突。\n\n选项：\n1. 等 cuda:2 dev eval 结束（预计还需 ~3h），然后提交 test eval（需换 output_dir）\n2. 等 GPU 0 或 3 的 eval 先结束，改用那张卡\n3. Kill cuda:2 的 dev eval，立即提交 test eval（你说了 test eval 最高优先级）\n\n需要你决定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-dpo-rebuilt-1ep-eval.md"
+}

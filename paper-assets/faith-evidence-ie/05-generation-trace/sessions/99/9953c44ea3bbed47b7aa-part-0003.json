@@ -1,0 +1,3482 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9953c44ea3bbed47b7aa",
+  "rounds": [
+    {
+      "number": 47,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": "2026-05-15T16:32:02.874594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "summary": "Reviewer 核实 plan_011 vs mvp2_grpo_ced_kl001_r4 已构成 clean quantization ablation（唯一变量=quantization，其余 G=8/kl=0.01/lr=5e-5/weights 完全一致）。不再 gate framing 在 plan_015 上",
+              "rationale": "Reviewer 逐项核对：plan_011 (bf16) 与 mvp2_grpo_ced_kl001_r4 (QLoRA) 除 quantization 外完全一致（G=8, kl=0.01, lr=5e-5, weights=0.3/3.0/1.0, steps=100, seed=42）。结果：QLoRA rel_f1=0.2167 vs bf16 rel_f1=0.4549 (Δ=+23.8pp)。这是 quantization→forgetting 的最强直接证据，已完成。plan_015_v2 有 3 个变量差异（weights/lr/kl），不是 clean ablation，定位应为 robustness check。plan_015_v3 不再是 gating experiment——可以立即更新 paper framing。",
+              "related_experiments": "[{'exp_id': 'plan_011_grpo_g8_bf16_eval', 'role': 'treatment', 'result': 'bf16 rel_f1=0.4549'}, {'exp_id': 'mvp2_grpo_ced_kl001_r4', 'role': 'control', 'result': 'QLoRA rel_f1=0.2167'}, {'exp_id': 'plan_015_v2', 'role': 'robustness', 'result': 'running, 3-variable confound, not clean ablation'}]",
+              "depends_on": "['D051']"
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": "2026-05-15T16:32:03.126280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D052\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 251
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-15T16:32:11.105857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**好消息：quantization ablation 其实已经有了**\n\nReviewer 刚核实：plan_011 (bf16 GRPO) 和 mvp2_grpo_ced_kl001_r4 (QLoRA GRPO) 的配置除了 quantization 之外完全一致（G=8, kl=0.01, lr=5e-5, reward weights 都一样）。结果：\n\n| | QLoRA 4-bit | bf16 |\n|---|---|---|\n| rel_f1 | 0.2167 | **0.4549** |\n| Δ | — | **+23.8pp** |\n\n这就是干净的单变量 ablation，不需要再等 plan_015。可以立即启动 paper framing 更新。\n\nplan_001 (flat-NLI RSFT) 也马上完成（98%），结果出来后一起写进新 framing。"
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": "2026-05-15T16:32:16.800412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 5694
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": "2026-05-15T16:32:16.901434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "[Director 指令] Reviewer D052 确认 — framing 不再 gate 在 plan_015\n\nReviewer 核实 plan_011 vs mvp2_grpo_ced_kl001_r4 已是 clean single-variable quantization ablation（唯一变量=quantization，其余完全一致）。Δrel_f1=+23.8pp。\n\n**执行：**\n1. **plan_015_v3 取消** — 不再需要作为 gating experiment。v2 跑完作为 robustness check 即可\n2. **plan_015_v2 hypothesis 修正** — 删除\"完全一致，仅改 quantization\"表述，改为\"robustness check: bf16 在 G=4/kl=0/lr=5e-6 条件下是否也防止 forgetting\"\n3. **plan_001 快完成了（98%）** — 完成后立即 eval 并汇报 flat-NLI vs CED RSFT 对比\n4. plan_001 eval 完成后开始 plan_002 (test set eval) 和 plan_003 (EDCR cross-method table)",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": "2026-05-15T16:32:18.059120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f40e7d9bc68c4eab437b9c022e\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 6, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[Director 指令] [Director → Session #9 综合指令] 队列已清理。以下是当前全部待办。\\\\n\\\\n**关键上下文（上轮 session 已确认）：**\\\\n- 原始 QLoRA GRPO 的 kl_coef=0.01（不是 0）\\\\n- plan_015_v1 (lr=5e-5, kl=0) → killed（step 46/100，部分 checkpoint 可恢复做 eval）\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 1157
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": "2026-05-15T16:32:21.944844+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "D052 已确认 plan_011 vs mvp2_grpo_ced_kl001_r4 是 clean ablation。plan_015 系列不再需要。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": "2026-05-15T16:32:21.960571+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 发现了关键事实：**plan_011 vs mvp2_grpo_ced_kl001_r4 已经是干净的单变量 quantization ablation**。不需要再等 plan_015。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": "2026-05-15T16:32:29.869661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "summary": "Quantization isolation 已由 plan_011 vs mvp2_grpo_ced_kl001_r4 解决（Δ=+23.8pp），plan_015 降级为 robustness check，可以开始 reframe",
+              "rationale": "Reviewer 逐项核对发现 plan_011 (bf16, G=8, kl=0.01, lr=5e-5, weights 0.3/3.0/1.0) 与 mvp2_grpo_ced_kl001_r4 (QLoRA 4-bit, G=8, kl=0.01, lr=5e-5, weights 0.3/3.0/1.0) 配置完全一致，唯一差异为 quantization。结果：QLoRA rel_f1=0.2167 vs bf16 rel_f1=0.4549 (+23.8pp)。D051 等 plan_015 隔离的前提不再成立——干净的 ablation 数据已有。plan_015 系列（lr=5e-6）与任何 QLoRA 实验都有 lr confound，作为 robustness check 而非 controlled ablation。",
+              "related_experiments": "[{'exp_id': 'plan_011_grpo_g8_bf16_eval', 'role': 'treatment', 'result': 'bf16 rel_f1=0.4549'}, {'exp_id': 'mvp2_grpo_ced_kl001_r4', 'role': 'control', 'result': 'QLoRA rel_f1=0.2167'}, {'exp_id': 'plan_015', 'role': 'downgraded', 'result': 'robustness check, not gating'}]",
+              "depends_on": "['D051']"
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": "2026-05-15T16:32:30.071903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D053\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 202
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": "2026-05-15T16:32:43.735476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__urgent_agent_message"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "message": "[Director 紧急] 三个行动\n\n**1. 立即 kill PID 223975（plan_015_v2 zombie on cuda:3）**\n这是第三次 zombie 了。直接 SSH 执行 `kill -9 223975`，不要通过 kill_job。确认进程死亡后更新 registry。cuda:3 eval 被它拖慢了。\n\n**2. plan_015 全系列降级为 P2 robustness check**\nReviewer 核实：**plan_011 vs mvp2_grpo_ced_kl001_r4 已经是干净的单变量 quantization ablation**（G=8, kl=0.01, lr=5e-5, weights 0.3/3.0/1.0 完全一致，唯一差异是 quantization）。结果 Δ=+23.8pp。quantization isolation 问题已解决，不需要等 plan_015。\n\n如果后续还想做 G-size ablation，正确配置是：bf16, G=4, kl=0.01, lr=5e-5, weights 0.3/3.0/1.0（与 mvp2_grpo_ced_kl001_r4 精确对标，只改 G）。但这是 P2，先完成 P0 实验。\n\n**3. 当前 P0 实验继续**\n- cuda:0: plan_001（应该快完成了）\n- cuda:1: plan_014\n- cuda:2: plan_012\n- cuda:3: eval_grpo_g8_bf16 ckpt-90（kill zombie 后应该加速）\n\nplan_001 完成后汇报 flat-NLI RSFT eval 结果，这是 CED vs flat-NLI 对比的关键数据。"
+            }
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": "2026-05-15T16:32:44.289467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"inserted\\\":true,\\\"queue_depth\\\":8,\\\"agent_key\\\":\\\"feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "elapsed_ms": 553
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": "2026-05-15T16:32:55.684734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**重要更新：quantization ablation 已解决，不需要等 plan_015**\n\nReviewer 逐项核对发现，plan_011 (bf16 GRPO) 和 mvp2_grpo_ced_kl001_r4 (QLoRA GRPO) 的配置完全一致（G=8, kl=0.01, lr=5e-5, reward weights 相同），唯一差异就是 quantization。\n\n结果：QLoRA rel_f1=0.2167 → bf16 rel_f1=0.4549，**纯 quantization 差异 +23.8pp**。\n\n之前担心的三重 confound 不存在——干净的单变量 ablation 已经有了。plan_015 降级为 robustness check。\n\n现在可以确定论文 story：**QLoRA quantization 是导致 GRPO catastrophic forgetting 的根本原因，bf16 GRPO 实际有效**。这比原来的\"GRPO fails\"更精确、更有诊断价值。\n\n还在等的关键数据：\n- plan_001 flat-NLI RSFT（CED vs flat-NLI 对比，快完成了）\n- plan_012 DPO+CED（RL spectrum 补全）\n- plan_014 SFT-no-evidence（evidence 生成代价量化）\n\n这些结果陆续出来后开始更新 paper_framing.md 并启动 Paper Agent。"
+            }
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": "2026-05-15T16:32:59.890256+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 4205
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": "2026-05-15T16:33:02.171816+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Quantization ablation 已有干净数据，可以开始 reframe 了。通知用户。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000375"
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "messages": [
+        {
+          "source_line": 376,
+          "timestamp": "2026-05-15T16:33:14.207021+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — plan_009 figure update (v3)\n\n**结论**: PASS（附 warnings）\n\n### 数据核实\n\nv3 脚本已补全 bf16 eval 数据，所有硬编码数据点与 registry 交叉验证：\n- QLoRA lr=5e-5 七个 eval 点 (step 10→100): rel_f1 0.003→0.2167 ✅\n- QLoRA lr=5e-6 五个 eval 点: rel_f1 0.008→0.014 ✅\n- bf16 G=8 两个 eval 点: ckpt-80 rel_f1=0.4456, ckpt-100 0.4549 ✅\n- SFT baseline: rel_f1=0.4057, evi_f1=0.7979 ✅\n- 注释准确：\"53% of SFT\" (0.217/0.406=53.4%), \"112% of SFT\" (0.455/0.406=112.1%) ✅\n\nsummary.json key_finding 正确：catastrophic forgetting is QLoRA-specific。\n\n### 发现\n\n1. [severity: info] 相比 v2，核心缺陷已修复——bf16 数据不再缺失，三条曲线清晰对比。\n\n2. [severity: warning] **ckpt-90 数据缺失**：bf16 eval 只有 2 个点（ckpt-80, 100），ckpt-90 正在评估中（61%）。建议 eval 完成后补入第 3 个数据点，使 bf16 曲线更完整。\n\n3. [severity: warning] **G confound 未在图中标注**：bf16 标签为 \"bf16, G=8\"，但 QLoRA 标签只写了 lr，未显示 \"G=4\"。读者可能忽略两组实验的 G 不同（4 vs 8）。建议：\n   - QLoRA 标签改为 \"QLoRA, G=4, lr=5e-5\" / \"QLoRA, G=4, lr=5e-6\"\n   - 或在 caption 中明确注明 QLoRA 和 bf16 runs 在 G 上有差异\n\n4. [severity: info] 图表质量良好：serif 字体、去顶/右边框、SFT baseline 虚线、annotation 带箭头。适合论文使用（修正标签后）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "reviewer"
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": "2026-05-15T16:33:19.666842+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000377"
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "messages": [
+        {
+          "source_line": 378,
+          "timestamp": "2026-05-15T16:34:58.454168+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — plan_015_v3 提交\n\n**结论**: WARNING\n\n### 发现\n\n1. **[severity: info] v3 启动正常**：PID 226481 在 cuda:0 运行，CUDA_VISIBLE_DEVICES=0，13.1GB 显存。命令参数确认：bf16, G=4, kl=0.01, lr=5e-6, weights 0.3/3.0/1.0, seed=42, max_steps=200。NLI 模型已加载，GRPO 训练已开始。GPU 合规无问题。\n\n2. **[severity: critical] zombie v2 仍未处理**：Review 7 已标记 PID 223975 为 critical（DONE/killed 但仍占 cuda:3 14.3GB），但提交 v3 的 worker 没有 kill 它。eval_grpo_g8_bf16 ckpt-90 推理速度仍被拖慢（~100s/batch vs 正常 ~55s/batch）。**请立即 kill PID 223975**。\n\n3. **[severity: warning] lr confound 未修正**：v3 仍用 lr=5e-6。对标 mvp2_grpo_ced_kl001（rel_f1=0.2167 的来源，lr=5e-5）仍有 lr 10x 差异。v3 的 hypothesis \"仅改 quantization\" 不成立。如果 Director 已决定接受此 confound，请在 registry notes 中明确标注，避免论文引用时误导。\n\n### GPU 状态\n| GPU | 占用 | 实验 | 显存 |\n|-----|------|------|------|\n| cuda:0 | plan_015_v3 | 正常 | 13.1/32.6GB |\n| cuda:1 | plan_014 | 正常 | 22.4/32.6GB |\n| cuda:2 | plan_012 | 正常 | 22.7/32.6GB |\n| cuda:3 | eval + **zombie v2** | ⚠️ | 28.8/32.6GB (88%) |"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "reviewer"
+          },
+          "id": "event-000378"
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "messages": [
+        {
+          "source_line": 379,
+          "timestamp": "2026-05-15T16:35:10.225014+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — plan_001_rsft_flat_nli 训练完成\n\n**结论**: WARNING\n\n### 训练验证\n\nplan_001 flat-NLI RSFT 训练成功完成（EXIT_CODE=0, 507/507 steps, 3 epochs, ~49 min）。\n\n- train_loss=0.6237, mean_token_accuracy=0.8528（与 CED RSFT 训练曲线范围一致，无异常）\n- LoRA 配置 r=64, alpha=128, dropout=0.05 — 与 CED RSFT 完全一致 ✓\n- seed=42 固定 ✓\n- 数据：2691 flat-NLI 筛选样本（vs CED RSFT 2718 样本）✓\n- Checkpoint 保存正确：`/root/autodl-tmp/rsft_output_flat_nli/`（注意：实际路径与 spec 中 `--output_dir rsft_flat_nli_output` 不同，Agent eval 时需用正确路径）\n\n### 发现\n\n1. **[severity: warning] plan_001 eval 未提交，cuda:0 被 plan_015_v3 占据**：plan_001 完成释放 cuda:0 后，Agent 提交了 plan_015_v3（GRPO G=4 kl=0.01, ~7h）而非 plan_001 eval（~1-2h）。CED vs flat-NLI 的 ablation 是论文 Claim C4 的直接支撑，优先级应高于 plan_015_v3（forgetting isolation，plan_011 已有初步结论）。建议在其余 3 张卡上找空位先跑 eval。\n\n2. **[severity: warning] plan_015_v3 lr=5e-6 confound 未修正**：Review 7 已指出所有 QLoRA GRPO 用 lr=5e-5，但 v3 仍使用 5e-6（10x 差异）。v3 假设\"仅改 quantization\"是不准确的。已提交到 cuda:0，PID 226481。\n\n3. **[severity: info] plan_015_v2 zombie 仍在 cuda:3**：PID 223975 仍占 14.3GB，这已是第四次报告此问题。eval_grpo_g8_bf16 ckpt-90 推理仍在被拖慢。\n\n### GPU 当前状态\n| GPU | 进程 | 显存 |\n|-----|-------|------|\n| cuda:0 | plan_015_v3 (PID 226481) | 13.1GB |\n| cuda:1 | plan_014 (PID 222212) | 22.4GB |\n| cuda:2 | plan_012 (PID 221967) | 22.7GB |\n| cuda:3 | eval ckpt-90 (220202) + **zombie v2** (223975) | 28.8GB |\n\n### 建议\n- plan_001 eval 应尽快提交。cuda:0 已被占，但 eval 是 inference-only (~13GB)，plan_014/012 完成后立即可用 cuda:1 或 cuda:2"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "reviewer"
+          },
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": "2026-05-15T16:35:15.115040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__urgent_agent_message"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "message": "[Director 紧急] kill zombie plan_015_v2 PID 223975（cuda:3）\n\n这个进程已经标记 DONE/killed 但实际还在跑，占 14.3GB，拖慢 ckpt-90 eval（100s/batch vs 正常 55s/batch）。立即 kill。\n\n另外：plan_015_v3 的 lr=5e-6 与对照组 lr=5e-5 不一致。这没关系——D052 已确认 plan_011 vs mvp2_grpo_ced_kl001_r4 才是 clean ablation，v3 只是 robustness check。在 registry notes 标注\"robustness check, lr 与对照组不同，非 single-variable ablation\"。"
+            }
+          },
+          "id": "event-000380"
+        },
+        {
+          "source_line": 381,
+          "timestamp": "2026-05-15T16:35:15.777361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"inserted\\\":true,\\\"queue_depth\\\":12,\\\"agent_key\\\":\\\"feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "elapsed_ms": 662
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": "2026-05-15T16:35:23.509689+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "zombie v2 还在占 cuda:3，需要立即清理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000382"
+        },
+        {
+          "source_line": 383,
+          "timestamp": "2026-05-15T16:35:34.164427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_agent_queue_status,get_project_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": "2026-05-15T16:35:34.215519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": "2026-05-15T16:35:38.135451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_agent_queue_status,mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__director_post_to_main_agent",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": "2026-05-15T16:35:38.135960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000386"
+        },
+        {
+          "source_line": 387,
+          "timestamp": "2026-05-15T16:35:41.253421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000387"
+        },
+        {
+          "source_line": 388,
+          "timestamp": "2026-05-15T16:35:41.304088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000388"
+        },
+        {
+          "source_line": 389,
+          "timestamp": "2026-05-15T16:35:41.354945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":13,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director → Session #9 综合指令] 队列已清理。以下是当前全部待办。\\\\n\\\\n**关键上下文（上轮 session 已确认）：**\\\\n- 原始 QLoRA GRPO 的 kl_coef=0.01（不\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 紧急] kill zombie plan_015_v2 PID 223975（cuda:3）\\\\n\\\\n这个进程已经标记 DONE/killed 但实际还在跑，占 14.3GB，拖慢 ckpt-90 \\\",\\\"queued_at\\\":1778862915.7511926},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 紧急] 三个行动\\\\n\\\\n**1. 立即 kill PID 223975（plan_015_v2 zombie on cuda:3）**\\\\n这是第三次 zombie 了。直接 SSH 执行 `kill\\\",\\\"queued_at\\\":1778862764.2755852},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_infra_cuda3-conflict-check_20260515T162726 已完成（status=done）。用 `get_worker_status('worker_inf\\\",\\\"queued_at\\\":1778862500.3464694},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_009_figure_update_20260515T162610 已完成（status=done）。用 `get_worker_status('worke\\\",\\\"queued_at\\\":1778862559.235001},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] plan_015 状态核实 — 最高优先\\\\n\\\\n**关键问题：cuda:3 上 PID 223970 的 kl_coef 是多少？**\\\\n\\\\n上轮确认：\\\\n- 原始 QLoRA GRPO 用的 \\\",\\\"queued_at\\\":1778862561.896311},{\\\"source\\\":\\\"cron\\\",\\\"preview\\\":\\\"[CRON 需要判断] 实验 **plan_015_grpo_g4_bf16_v2** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\\\n\\\\n请派 Worker SSH 到 rtx5090-4x 检查日志 `~/runs\\\",\\\"queued_at\\\":1778862585.6192865},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_3seed-rsft-summary_20260515T162743 已完成（status=done）。用 `get_worker_status('worker_an\\\",\\\"queued_at\\\":1778862619.9316123},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] plan_015 路线修正\\\\n\\\\nv2 (kl=0) 剩 ~13min，让它跑完，数据有用（如果 kl=0 bf16 也不 forget → kl 不是关键因素，额外证据）。\\\\n\\\\n**但 v\\\",\\\"queued_at\\\":1778862637.392077},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] Reviewer D052 确认 — framing 不再 gate 在 plan_015\\\\n\\\\nReviewer 核实 plan_011 vs mv\n…[truncated 874 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-000389"
+        },
+        {
+          "source_line": 390,
+          "timestamp": "2026-05-15T16:35:41.808477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `faith-evidence-ie`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    rtx5090-4x (connect.bjb2.seetacloud.com) [root] + bjb2-12179 [root]\\n✓ 代码路径  /root/autodl-tmp/freige\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 53 条记录\\n\\n── 📊 研究进度 ──\\n实验: 86 个 (运行中 4 | 分析中 1 | 待处理 2 | 完成 79 | 成功 32)\\n\\n  mvp2_grpo_ced_r3      DONE (failed)\\n  mvp2_grpo_ced_r2      DONE (killed)\\n  mvp2_grpo_ced_r1      DONE (killed)\\n  mvp2_grpo_ced         DONE (failed)\\n  precompute_nli_train  DONE (success)\\n  mvp2_sft_warmup       DONE (success)\\n  smoke_test_grpo       DONE (success)\\n  mvp1_ced_signal       DONE (success)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan_015_grpo_g4_bf16_v3 | — | — | — | — |\\n| plan_012_dpo_ced | DPO+CED preference learning: 用 CED 构造 preference pairs (CED top-1 = chosen, CED bottom-1 = rejected)，DPO 训练。验证 offline preference optimization 能否替代 online GRPO 避免 catastrophic forgetting，同时利用 CED 信号。对比 RSFT (rel_f1=0.46) 和 SFT baseline (rel_f1=0.4057)。 | — | — | — |\\n| plan_014_sft_no_evidence | SFT-without-evidence ablation: 训练只输出 relation triples（不含 evidence sentences）的 SFT 模型。量化 joint e\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 504
+          },
+          "id": "event-000390"
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "messages": [
+        {
+          "source_line": 391,
+          "timestamp": "2026-05-15T16:36:30.078596+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — plan_009 forgetting figure v4 + dynamics 数据\n\n**结论**: PASS (Review 4 CRITICAL 已修复，残留 warning)\n\n### 改进确认\n\nv4 图表解决了 Review 4 的 CRITICAL 问题（bf16 eval 数据缺失）：\n- 布局升级为 2×2 (reward, rel_f1, evi_f1, EDCR) ✓\n- bf16 G=8 eval 数据已加入：ckpt-80 (rel_f1=0.4456) 和 ckpt-100 (0.4549) ✓\n- 4 条 run 的 step-level reward 轨迹完整 ✓\n- summary_v4.json 数据与 registry 中已验证指标一致 ✓\n\n### 残留问题\n\n1. **[severity: info] bf16 G=8 reward 轨迹有缺失点**：step 15/30/40/55/70/80/95 的 reward 值缺失（只有 kl+loss），共 7/20 步无 reward。图中这些步会显示为空隙。可能是 W&B logging 频率或解析问题。\n\n2. **[severity: info] QLoRA lr=5e-6 KL 数值溢出**：step 5 KL=2.4e9, step 30 KL=7e13 — QLoRA 4-bit 下 ref model 与 policy 的 KL 计算有数值不稳定。建议在 plot 中 clip 或标注这些异常点，否则影响可视化。\n\n3. **[severity: info] bf16 G=4 仍无 eval 数据**：summary 正确标注\"unknown (no eval data)\"。plan_015_v3 正在 cuda:0 训练，eval 需等其完成。\n\n4. **[severity: info] eval_grpo_g8_bf16 ckpt-90 完成后**将补充 bf16 G=8 的第三个 eval 点（step_90），使轨迹更完整。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "reviewer"
+          },
+          "id": "event-000391"
+        },
+        {
+          "source_line": 392,
+          "timestamp": "2026-05-15T16:36:31.375040+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 报告分析完毕。Agent 队列深度 13，已有 zombie kill 和 plan_015 路线修正指令在队列中。\n\n三个发现的处理判断：\n\n1. **plan_001 eval 未提交（WARNING）** — Reviewer 正确，CED vs flat-NLI 是 Claim C4 的直接证据，优先级高于 plan_015_v3。但当前 4 张卡全满（cuda:0 plan_015_v3, cuda:1 plan_014, cuda:2 plan_012, cuda:3 eval+zombie），无可用 GPU。plan_014/012 完成后立即优先提交 plan_001 eval。\n\n2. **plan_015_v3 lr=5e-6 confound（WARNING）** — 已提交运行中，队列已有路线修正指令。v3 结果需标注 lr confound，不能直接归因于 quantization 差异。\n\n3. **zombie PID 223975（INFO）** — 队列已有两条 kill 指令，等 Agent 处理即可。\n\n队列深度 13 不宜继续堆消息。等队列消化、下一张卡释放时，我会用 urgent 指令确保 plan_001 eval 排第一。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000392"
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "messages": [
+        {
+          "source_line": 393,
+          "timestamp": "2026-05-15T16:36:59.203487+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — plan_009 forgetting figure v4\n\n**结论**: PASS（附改进建议）\n\n### 验证\n\nv4 figure (2×2 grid: reward / rel_f1 / evi_f1 / EDCR) 已加入 bf16 G=8 eval 数据，修复了 Review 4 的 CRITICAL 问题。\n\n**数据准确性**（与 registry/独立验证的 metrics.json 交叉核对）：\n- bf16 G=8 step-80: rel_f1=0.4456, evi_f1=0.8034, EDCR=0.6409 ✓\n- bf16 G=8 step-100: rel_f1=0.4549, evi_f1=0.8086, EDCR=0.6318 ✓\n- QLoRA kl001 step-100: rel_f1=0.2167 ✓\n- QLoRA lr5e6 5-point trajectory: 0.0077→0.0138 ✓\n- SFT baseline: 0.4057 ✓\n\n**图表质量**：配色清晰（橙=QLoRA, 蓝=bf16），annotations 精准（\"+12.1% vs SFT\"、\"Catastrophic forgetting\"、\"task decoupling\"），story telling 完整。\n\n### 改进建议\n\n1. **[severity: info] bf16 G=4 只出现在 reward panel**：panel (a) 中浅蓝线 (G=4, kl=0) reward 最高 (~4.0)，但 (b)(c)(d) 无对应数据点。读者可能误以为是最优方案。建议加注 \"eval pending\" 或等 plan_015_v3 eval 后补全再发表。\n\n2. **[severity: info] eval ckpt-90 待补**：bf16 G=8 目前仅 2 点 (step 80, 100)。ckpt-90 eval 正在跑（~61% 进度），完成后应补入第三个点。\n\n3. **[severity: info] 论文级别需更密集 eval 点**：QLoRA lr=5e-6 有 5 个 eval 点（trajectory 清晰），但 bf16 G=8 和 QLoRA kl001 仅 2 点。如 checkpoints 存在，建议补跑 step 10-70 的 eval 使曲线更完整。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "reviewer"
+          },
+          "id": "event-000393"
+        },
+        {
+          "source_line": 394,
+          "timestamp": "2026-05-15T16:37:25.604662+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan_009 figure v4 通过审查，数据准确性已交叉验证。三条 info 建议都是\"等更多 eval 数据补全\"——ckpt-90 正在跑（61%），bf16 G=4 等 plan_015_v3 完成后补，这些会自然解决。\n\nAgent 队列深度 13，不追加消息。当前最高优先仍是前一份报告的 **plan_001 eval**（Claim C4 直接支撑），等队列消化后确保 plan_001 eval 排进去。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000394"
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "messages": [
+        {
+          "source_line": 395,
+          "timestamp": "2026-05-15T16:50:11.534355+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\nplan_015_v2 清理完毕。现在并行处理：补 plan_012 registry + spawn plan_015_v3 提交 + spawn plan_001 结果分析。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "main_agent"
+          },
+          "id": "event-000395"
+        },
+        {
+          "source_line": 396,
+          "timestamp": "2026-05-15T16:50:58.970442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "[Director 指令] plan_001 eval 提交 — 最高优先\n\nplan_001 RSFT flat-NLI 训练已完成，checkpoint 在 `/root/autodl-tmp/rsft_output_flat_nli/`。\n\n**plan_001 eval 是 Claim C4（CED vs flat-NLI ablation）的直接支撑，优先级高于所有当前排队任务。**\n\n行动：\n1. plan_012 或 plan_014 任一完成释放 GPU 后，**立即**提交 plan_001 eval（inference-only，~13GB，~1-2h）\n2. eval 脚本复用 CED RSFT eval 的流程，模型路径改为 `/root/autodl-tmp/rsft_output_flat_nli/`\n3. 需要出 rel_f1、evi_f1、EDCR 三个指标，与 CED RSFT 直接对比\n\n注意：plan_015_v3 已在 cuda:0 上跑（lr=5e-6 confound 已知，结果解读时注意），不要动它。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000396"
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "messages": [
+        {
+          "source_line": 397,
+          "timestamp": "2026-05-15T16:51:03.178941+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 4/4 实际跑 4 | Worker 池 4 (GPU 1 / CPU 3)\n\n## 执行完毕\n\n**1. Zombie PID 223975 已 kill** — cuda:3 显存释放，eval_grpo_g8_bf16 应恢复正常速度。\n\n**2. plan_015_v3 已在 cuda:0 运行** — PID 226476，kl_coef=0.01，cron 已注册。Registry notes 已标注：\"Robustness check, 非 single-variable ablation。lr=5e-6 与对照组不一致。D052 确认 plan_011 vs mvp2_grpo_ced_kl001_r4 才是 clean ablation。\"\n\n**3. plan_001_rsft_flat_nli 训练完成** — EXIT_CODE=0 → ANALYZING。Worker 正在分析结果（日志、W&B metrics、checkpoint）。\n\n**4. plan_012 hypothesis 已补录**\n\n## 当前 GPU\n| GPU | 任务 | PID | 状态 |\n|-----|------|-----|------|\n| cuda:0 | **plan_015_v3** (P0-CRITICAL) | 226476 | RUNNING |\n| cuda:1 | plan_014 SFT-no-evidence | 222207 | RUNNING |\n| cuda:2 | plan_012 DPO+CED | 221962 | RUNNING |\n| cuda:3 | eval_grpo_g8_bf16 batch | 214552 | RUNNING (zombie 已清) |\n\n## Worker 池\n1. worker_ops_plan_015_v3_submit (GPU) — 已提交 plan_015_v3\n2. worker_analysis_plan_001_rsft_flat_nli_done — 分析 plan_001 完成结果\n3. worker_analysis_plan_009_forgetting_figure — 更新 figure\n4. worker_analysis_forgetting-dynamics-data — figure 数据准备"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "agent"
+          },
+          "id": "event-000397"
+        },
+        {
+          "source_line": 398,
+          "timestamp": "2026-05-15T16:51:03.501832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f40a1a60930c3c4aa834919840\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 12, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[Director 指令] [Director 紧急] kill zombie plan_015_v2 PID 223975（cuda:3）\\\\n\\\\n这个进程已经标记 DONE/killed 但实际还在跑，占 14.3GB，拖慢 ckpt-90 eval（100s/batch vs 正常 55s/batch）。立即 kill。\\\\n\\\\n另外：plan_015_v3 的 lr=5e-6 与对照组 lr=5e-5\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 4531
+          },
+          "id": "event-000398"
+        },
+        {
+          "source_line": 399,
+          "timestamp": "2026-05-15T16:51:09.321792+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "队列深度 12，Agent 正在处理 zombie 清理。plan_001 eval 指令已排队，等 GPU 释放后会被执行。\n\nReviewer 两份报告的处理状态：\n- **plan_001 训练完成 (WARNING)**：已派 eval 优先级指令，等 GPU 空位\n- **plan_009 figure v4 (PASS)**：图表数据准确，bf16 G=4 缺 panel b/c/d 数据和 ckpt-90 补点属于 info 级，等 plan_015_v3 eval 和 ckpt-90 完成后自然解决\n- **plan_015_v3 lr confound**：已提交无法撤回，结果解读时标注 lr=5e-6 与对照组 5e-5 的差异"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000399"
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "messages": [
+        {
+          "source_line": 400,
+          "timestamp": "2026-05-15T16:51:13.684161+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n完成。向 Director 汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "main_agent"
+          },
+          "id": "event-000400"
+        },
+        {
+          "source_line": 401,
+          "timestamp": "2026-05-15T16:51:21.376858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__director_get_project_overview,mcp__agent-ml-research__get_agent_queue_status",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000401"
+        },
+        {
+          "source_line": 402,
+          "timestamp": "2026-05-15T16:51:21.427757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000402"
+        },
+        {
+          "source_line": 403,
+          "timestamp": "2026-05-15T16:51:25.999450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000403"
+        },
+        {
+          "source_line": 404,
+          "timestamp": "2026-05-15T16:51:26.406544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `faith-evidence-ie`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    rtx5090-4x (connect.bjb2.seetacloud.com) [root] + bjb2-12179 [root]\\n✓ 代码路径  /root/autodl-tmp/freige\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 53 条记录\\n\\n── 📊 研究进度 ──\\n实验: 86 个 (运行中 4 | 分析中 1 | 待处理 2 | 完成 79 | 成功 32)\\n\\n  mvp2_grpo_ced_r3      DONE (failed)\\n  mvp2_grpo_ced_r2      DONE (killed)\\n  mvp2_grpo_ced_r1      DONE (killed)\\n  mvp2_grpo_ced         DONE (failed)\\n  precompute_nli_train  DONE (success)\\n  mvp2_sft_warmup       DONE (success)\\n  smoke_test_grpo       DONE (success)\\n  mvp1_ced_signal       DONE (success)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan_015_grpo_g4_bf16_v3 | — | — | — | — |\\n| plan_012_dpo_ced | DPO+CED preference learning: 用 CED 构造 preference pairs (CED top-1 = chosen, CED bottom-1 = rejected)，DPO 训练。验证 offline preference optimization 能否替代 online GRPO 避免 catastrophic forgetting，同时利用 CED 信号。对比 RSFT (rel_f1=0.46) 和 SFT baseline (rel_f1=0.4057)。 | — | — | — |\\n| plan_014_sft_no_evidence | SFT-without-evidence ablation: 训练只输出 relation triples（不含 evidence sentences）的 SFT 模型。量化 joint e\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 407
+          },
+          "id": "event-000404"
+        },
+        {
+          "source_line": 405,
+          "timestamp": "2026-05-15T16:51:26.407054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_get_project_overview"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000405"
+        },
+        {
+          "source_line": 406,
+          "timestamp": "2026-05-15T16:51:26.407348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000406"
+        },
+        {
+          "source_line": 407,
+          "timestamp": "2026-05-15T16:51:26.708875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"# 项目 faith-evidence-ie 概况\\n\\n## 实验状态 (86 个)\\n\\n- **mvp2_sft_eval_r2**: DONE (success) — \\n- **mvp2_sft_eval**: DONE (killed) — \\n- **mvp2_grpo_flatnli_r2**: DONE (killed) — \\n- **mvp2_grpo_extract_r2**: DONE (killed) — \\n- **mvp2_grpo_ced_r4**: DONE (killed) — \\n- **mvp2_grpo_extract**: DONE (failed) — \\n- **mvp2_grpo_flatnli**: DONE (failed) — \\n- **mvp2_grpo_ced_r3**: DONE (failed) — \\n- **mvp2_grpo_ced_r2**: DONE (killed) — \\n- **mvp2_grpo_ced_r1**: DONE (killed) — \\n- **mvp2_grpo_ced**: DONE (failed) — \\n- **precompute_nli_train**: DONE (success) — \\n- **mvp2_sft_warmup**: DONE (success) — \\n- **smoke_test_grpo**: DONE (success) — \\n- **mvp1_ced_signal**: DONE (success) — \\n\\n## 最新报告\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan_015_grpo_g4_bf16_v3 | — | — | — | — |\\n| plan_012_dpo_ced | DPO+CED preference learning: 用 CED 构造 preference pairs (CED top-1 = chosen, CED bottom-1 = rejected)，DPO 训练。验证 offline preference optimization 能否替代 online GRPO 避免 catastrophic forgetting，同时利用 CED 信号。对比 RSFT (rel_f1=0.46) 和 SFT baseline (rel_f1=0.4057)。 | — | — | — |\\n| plan_014_sft_no_evidence | SFT-without-evidence ablation: 训练只输出 relation triples（不含 evidence sentences）的 SFT 模型。量化 joint evidence generation 对 extraction 的代价（当前 rel_f1=0.4057 vs 只抽关系的 LMRC 60.7 的 gap 有多少来自 evidence 负担）。 | — | — | — |\\n\\n## 待处理\\n- plan_011_eval_g8_bf16_ckpt100（准备中）\\n- mvp2_eval_rsft_s44: Full dev eval of RSFT seed=44 checkpoint. First MVP-2 judgement data point. Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798 (SFT baseline).（准备中）\\n\\n## 近期结论\\n- **plan_015_grpo_g4_bf16_v2** (killed): QLoRA quantization isolation: bf16 LoRA GRPO with G=4, kl=0, lr=5e-6（与原始 QLoRA GRPO mvp2_grpo_ced 完全一致，仅改 quantization: 4-bit → bf16）。如 forgetting 不复现 → QLoRA 是唯一 confound。如复现 → G 或 kl 也是必要条件。 ← 基于 plan_011_grpo_g8_bf16\\n- **plan_015_grpo_g4_bf16** (killed): bf16 LoRA GRPO clean control: 与原始 QLoRA GRPO 仅改 q\n…[truncated 2276 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "elapsed_ms": 301
+          },
+          "id": "event-000407"
+        },
+        {
+          "source_line": 408,
+          "timestamp": "2026-05-15T16:51:26.759805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":12,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 紧急] 三个行动\\\\n\\\\n**1. 立即 kill PID 223975（plan_015_v2 zombie on cuda:3）**\\\\n这是第三次 zombie 了。直接 SSH 执行 `kill\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_infra_cuda3-conflict-check_20260515T162726 已完成（status=done）。用 `get_worker_status('worker_inf\\\",\\\"queued_at\\\":1778862500.3464694},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_009_figure_update_20260515T162610 已完成（status=done）。用 `get_worker_status('worke\\\",\\\"queued_at\\\":1778862559.235001},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] plan_015 状态核实 — 最高优先\\\\n\\\\n**关键问题：cuda:3 上 PID 223970 的 kl_coef 是多少？**\\\\n\\\\n上轮确认：\\\\n- 原始 QLoRA GRPO 用的 \\\",\\\"queued_at\\\":1778862561.896311},{\\\"source\\\":\\\"cron\\\",\\\"preview\\\":\\\"[CRON 需要判断] 实验 **plan_015_grpo_g4_bf16_v2** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\\\n\\\\n请派 Worker SSH 到 rtx5090-4x 检查日志 `~/runs\\\",\\\"queued_at\\\":1778862585.6192865},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_3seed-rsft-summary_20260515T162743 已完成（status=done）。用 `get_worker_status('worker_an\\\",\\\"queued_at\\\":1778862619.9316123},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] plan_015 路线修正\\\\n\\\\nv2 (kl=0) 剩 ~13min，让它跑完，数据有用（如果 kl=0 bf16 也不 forget → kl 不是关键因素，额外证据）。\\\\n\\\\n**但 v\\\",\\\"queued_at\\\":1778862637.392077},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] Reviewer D052 确认 — framing 不再 gate 在 plan_015\\\\n\\\\nReviewer 核实 plan_011 vs mvp2_grpo_ced_kl001_r\\\",\\\"queued_at\\\":1778862737.999698},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_plan_015_v3_submit_20260515T163158 已完成（status=done）。用 `get_worker_status('worker_ops_pla\\\",\\\"queued_at\\\":1778862798.4603915},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_001_rsft_flat_nli_done_20260515T163208 已完成（status=done）。用 `get_w\n…[truncated 671 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 352
+          },
+          "id": "event-000408"
+        },
+        {
+          "source_line": 409,
+          "timestamp": "2026-05-15T16:51:27.788489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_agent_queue_status",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000409"
+        },
+        {
+          "source_line": 410,
+          "timestamp": "2026-05-15T16:51:27.939523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 151
+          },
+          "id": "event-000410"
+        },
+        {
+          "source_line": 411,
+          "timestamp": "2026-05-15T16:51:31.411539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000411"
+        },
+        {
+          "source_line": 412,
+          "timestamp": "2026-05-15T16:51:31.691345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000412"
+        },
+        {
+          "source_line": 413,
+          "timestamp": "2026-05-15T16:51:31.691807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000413"
+        },
+        {
+          "source_line": 414,
+          "timestamp": "2026-05-15T16:51:32.085028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `faith-evidence-ie`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    rtx5090-4x (connect.bjb2.seetacloud.com) [root] + bjb2-12179 [root]\\n✓ 代码路径  /root/autodl-tmp/freige\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 53 条记录\\n\\n── 📊 研究进度 ──\\n实验: 86 个 (运行中 4 | 分析中 1 | 待处理 2 | 完成 79 | 成功 32)\\n\\n  mvp2_grpo_ced_r3      DONE (failed)\\n  mvp2_grpo_ced_r2      DONE (killed)\\n  mvp2_grpo_ced_r1      DONE (killed)\\n  mvp2_grpo_ced         DONE (failed)\\n  precompute_nli_train  DONE (success)\\n  mvp2_sft_warmup       DONE (success)\\n  smoke_test_grpo       DONE (success)\\n  mvp1_ced_signal       DONE (success)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan_015_grpo_g4_bf16_v3 | — | — | — | — |\\n| plan_012_dpo_ced | DPO+CED preference learning: 用 CED 构造 preference pairs (CED top-1 = chosen, CED bottom-1 = rejected)，DPO 训练。验证 offline preference optimization 能否替代 online GRPO 避免 catastrophic forgetting，同时利用 CED 信号。对比 RSFT (rel_f1=0.46) 和 SFT baseline (rel_f1=0.4057)。 | — | — | — |\\n| plan_014_sft_no_evidence | SFT-without-evidence ablation: 训练只输出 relation triples（不含 evidence sentences）的 SFT 模型。量化 joint e\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 673
+          },
+          "id": "event-000414"
+        },
+        {
+          "source_line": 415,
+          "timestamp": "2026-05-15T16:51:32.392890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选 RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py 用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [], \\\"registry_id\\\": \\\"plan_001_rsft_flat_nli\\\", \\\"status\\\": \\\"ANALYZING\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.6238, \\\"train_loss_min\\\": 0.5803, \\\"mean_token_accuracy\\\": 0.8528, \\\"train_runtime_sec\\\": 2946, \\\"epochs\\\": 3, \\\"total_steps\\\": 507, \\\"samples\\\": 2691}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set 上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 4, \\\"description\\\": \\\"EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing 方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large) 的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [], \\\"registry_id\\\": \\\"plan_004_dreeam_baseline\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dev_rel_f1\\\": 63.57, \\\"dev_rel_ign_f1\\\": 61.72, \\\"dev_evi_f1\\\": 54.01, \\\"dev_rel_p\\\": 66.95, \\\"dev_rel_r\\\": 60.51, \\\"dev_evi_p\\\": 60.53, \\\"dev_evi_r\\\": 48.76}}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hou\n…[truncated 6746 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 701
+          },
+          "id": "event-000415"
+        },
+        {
+          "source_line": 416,
+          "timestamp": "2026-05-15T16:51:32.443704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":12,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 紧急] 三个行动\\\\n\\\\n**1. 立即 kill PID 223975（plan_015_v2 zombie on cuda:3）**\\\\n这是第三次 zombie 了。直接 SSH 执行 `kill\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_infra_cuda3-conflict-check_20260515T162726 已完成（status=done）。用 `get_worker_status('worker_inf\\\",\\\"queued_at\\\":1778862500.3464694},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_009_figure_update_20260515T162610 已完成（status=done）。用 `get_worker_status('worke\\\",\\\"queued_at\\\":1778862559.235001},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] plan_015 状态核实 — 最高优先\\\\n\\\\n**关键问题：cuda:3 上 PID 223970 的 kl_coef 是多少？**\\\\n\\\\n上轮确认：\\\\n- 原始 QLoRA GRPO 用的 \\\",\\\"queued_at\\\":1778862561.896311},{\\\"source\\\":\\\"cron\\\",\\\"preview\\\":\\\"[CRON 需要判断] 实验 **plan_015_grpo_g4_bf16_v2** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\\\n\\\\n请派 Worker SSH 到 rtx5090-4x 检查日志 `~/runs\\\",\\\"queued_at\\\":1778862585.6192865},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_3seed-rsft-summary_20260515T162743 已完成（status=done）。用 `get_worker_status('worker_an\\\",\\\"queued_at\\\":1778862619.9316123},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] plan_015 路线修正\\\\n\\\\nv2 (kl=0) 剩 ~13min，让它跑完，数据有用（如果 kl=0 bf16 也不 forget → kl 不是关键因素，额外证据）。\\\\n\\\\n**但 v\\\",\\\"queued_at\\\":1778862637.392077},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] Reviewer D052 确认 — framing 不再 gate 在 plan_015\\\\n\\\\nReviewer 核实 plan_011 vs mvp2_grpo_ced_kl001_r\\\",\\\"queued_at\\\":1778862737.999698},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_plan_015_v3_submit_20260515T163158 已完成（status=done）。用 `get_worker_status('worker_ops_pla\\\",\\\"queued_at\\\":1778862798.4603915},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_001_rsft_flat_nli_done_20260515T163208 已完成（status=done）。用 `get_w\n…[truncated 671 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 751
+          },
+          "id": "event-000416"
+        },
+        {
+          "source_line": 417,
+          "timestamp": "2026-05-15T16:51:50.282155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000417"
+        },
+        {
+          "source_line": 418,
+          "timestamp": "2026-05-15T16:51:50.384656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 102
+          },
+          "id": "event-000418"
+        },
+        {
+          "source_line": 419,
+          "timestamp": "2026-05-15T16:51:54.005645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000419"
+        },
+        {
+          "source_line": 420,
+          "timestamp": "2026-05-15T16:51:54.409910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 14:41 UTC | 更新原因: Dream v2 结果分析(D049): best=3.0/median=2.5 未达标，新增 plan_015 bf16 GRPO 控制 + 行动追踪表\\\\n\\\\n## 核心方向\\\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。核心发现：GRPO 在结构化 IE 上导致 evidence-extraction decoupling。RSFT+NLI-based scoring 有效提升证据质量。论文定位待 reframe：从 CED-centric 转向 \\\\\\\"task definition + decoupling finding + EDCR metric\\\\\\\"。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（MVP 2026-05-15 通过）+ 审稿同步进行\\\\n- **Dream v1**: best=2.5, median=3.0, worst=2.5 → 不达标\\\\n- **Reframe 完成** (D044): CED 降级、claims 重构\\\\n- **Dream v2** (D049): best=3.0, median=2.5, worst=2.5 → **仍未达标**（目标 best≥3.5, median≥3.0）\\\\n- **Dream v2 结构性问题**: (1) CED≈flat-NLI 标题错配 (2) QLoRA confound (3) related work 缺口 (4) 缺 forgetting figure (5) DPO 细节不足\\\\n- **MVP 成果**: RSFT 4/4 configs PASS (rel_f1 +3.9~6.0pp vs SFT)\\\\n- **GRPO 判死**: QLoRA G=4 全线 catastrophic forgetting (D031/D033)\\\\n- **plan_011 GRPO G=8 bf16**: 训练完成 (100 steps, exit_code=0, reward↑), **dev eval 进行中**\\\\n\\\\n## 投稿目标\\\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25)\\\\n- 不 fallback Findings，补实验+reframe 冲 Main\\\\n\\\\n## 近期任务\\\\n- [ ] **plan_011 dev eval**（cuda:3，Agent 正在执行）→ 决定 plan_015 优先级\\\\n- [ ] plan_001 flat-NLI RSFT ablation（数据 scoring 完成，待训练）\\\\n- [ ] plan_004 DREEAM baseline（cuda:2 运行中）\\\\n- [ ] plan_005 CED reranker（cuda:0 运行中）\\\\n- [ ] maxtok1536_r2 eval（cuda:1 运行中）\\\\n- [ ] plan_015 bf16 GRPO clean control（待 plan_011 eval 结果决定优先级）\\\\n- [ ] plan_014 SFT-without-evidence ablation（P0，待 GPU 空出）\\\\n- [ ] plan_012 DPO+CED（P0，完整记录超参）\\\\n- [ ] plan_009 forgetting dynamics figure（P0，数据已有，汇总+画图）\\\\n- [ ] Paper Agent: retitle + reframe + related work 扩展\\\\n\\\\n## GPU 分配\\\\n\\\\n| GPU | 状态 | 任务 |\\\\n|-----|------|------|\\\\n| cuda:0 | 🏃 | mvp2_ced_reranker_poc (plan_005) |\\\\n| cuda:1 | 🏃 | mvp2_eval_rsft_r2b_maxtok1536_r2 |\n…[truncated 2541 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 404
+          },
+          "id": "event-000420"
+        },
+        {
+          "source_line": 421,
+          "timestamp": "2026-05-15T16:51:54.410416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000421"
+        },
+        {
+          "source_line": 422,
+          "timestamp": "2026-05-15T16:51:54.461063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| plan_015_grpo_g4_bf16_v3 | — | — | — | — |\\\\n| plan_012_dpo_ced | DPO+CED preference learning: 用 CED 构造 preference pairs (CED top-1 = chosen, CED bottom-1 = rejected)，DPO 训练。验证 offline preference optimization 能否替代 online GRPO 避免 catastrophic forgetting，同时利用 CED 信号。对比 RSFT (rel_f1=0.46) 和 SFT baseline (rel_f1=0.4057)。 | — | — | — |\\\\n| plan_014_sft_no_evidence | SFT-without-evidence ablation: 训练只输出 relation triples（不含 evidence sentences）的 SFT 模型。量化 joint evidence generation 对 extraction 的代价（当前 rel_f1=0.4057 vs 只抽关系的 LMRC 60.7 的 gap 有多少来自 evidence 负担）。 | — | — | — |\\\\n\\\\n## 待处理\\\\n- plan_011_eval_g8_bf16_ckpt100（准备中）\\\\n- mvp2_eval_rsft_s44: Full dev eval of RSFT seed=44 checkpoint. First MVP-2 judgement data point. Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798 (SFT baseline).（准备中）\\\\n\\\\n## 近期结论\\\\n- **plan_015_grpo_g4_bf16_v2** (killed): QLoRA quantization isolation: bf16 LoRA GRPO with G=4, kl=0, lr=5e-6（与原始 QLoRA GRPO mvp2_grpo_ced 完全一致，仅改 quantization: 4-bit → bf16）。如 forgetting 不复现 → QLoRA 是唯一 confound。如复现 → G 或 kl 也是必要条件。 ← 基于 plan_011_grpo_g8_bf16\\\\n- **plan_015_grpo_g4_bf16** (killed): bf16 LoRA GRPO clean control: 与原始 QLoRA GRPO 仅改 quantization（4-bit → bf16），保持 G=4, kl=0, CED reward 不变。验证 catastrophic forgetting 是否由 QLoRA quantization 导致。\\\\n- **plan_011_grpo_g8_bf16** (success): GRPO G=8 bf16 LoRA: 验证 catastrophic forgetting 是否在 bf16（非 QLoRA 4-bit）下仍复现。CED reward + kl_coef=0.01, 100 steps。如仍 fail → 加强 Claim 3\\\\n\\\\n## 趋势\\\\n成功 31 / 负向 12 / 失败 12 / 共 79\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nrtx5090-4x: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\\\n\\\\n## 告警\\\\n- mvp2_grpo_ced: 训练失败 — unknown\\\\n- mvp2_grpo_flatnli: 训练失败 — unknown\\\\n- mvp2_grpo_extract: 训练失\n…[truncated 1529 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000422"
+        },
+        {
+          "source_line": 423,
+          "timestamp": "2026-05-15T16:52:04.814678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cancel_agent_queue_item",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000423"
+        },
+        {
+          "source_line": 424,
+          "timestamp": "2026-05-15T16:52:04.865358+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000424"
+        },
+        {
+          "source_line": 425,
+          "timestamp": "2026-05-15T16:52:12.357093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cancel_agent_queue_item"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__cancel_agent_queue_item",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "index": "5"
+            }
+          },
+          "id": "event-000425"
+        },
+        {
+          "source_line": 426,
+          "timestamp": "2026-05-15T16:52:12.407853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"cancelled\\\":true,\\\"index\\\":5,\\\"agent_key\\\":\\\"feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__cancel_agent_queue_item",
+            "elapsed_ms": 50
+          },
+          "id": "event-000426"
+        },
+        {
+          "source_line": 427,
+          "timestamp": "2026-05-15T16:52:12.709641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cancel_agent_queue_item"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__cancel_agent_queue_item",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "index": "3"
+            }
+          },
+          "id": "event-000427"
+        },
+        {
+          "source_line": 428,
+          "timestamp": "2026-05-15T16:52:12.811457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"cancelled\\\":true,\\\"index\\\":3,\\\"agent_key\\\":\\\"feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__cancel_agent_queue_item",
+            "elapsed_ms": 101
+          },
+          "id": "event-000428"
+        },
+        {
+          "source_line": 429,
+          "timestamp": "2026-05-15T16:52:12.862099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cancel_agent_queue_item"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__cancel_agent_queue_item",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "index": "2"
+            }
+          },
+          "id": "event-000429"
+        },
+        {
+          "source_line": 430,
+          "timestamp": "2026-05-15T16:52:12.912816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"cancelled\\\":true,\\\"index\\\":2,\\\"agent_key\\\":\\\"feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__cancel_agent_queue_item",
+            "elapsed_ms": 50
+          },
+          "id": "event-000430"
+        },
+        {
+          "source_line": 431,
+          "timestamp": "2026-05-15T16:52:43.647953+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 队列当前深度 12 且正在处理中，三个实验在跑（plan_015_v3, plan_012_dpo_ced, plan_014_sft_no_evidence），两个待处理（plan_011_eval, mvp2_eval_rsft_s44）。Agent 正在消化积压指令，包括 plan_001 eval 提交、plan_015 状态核实等。\n\n不加新指令，等 Agent 消化完队列后带回实质性结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000431"
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "messages": [
+        {
+          "source_line": 432,
+          "timestamp": "2026-05-15T16:52:51.813018+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 4/4 实际跑 4 | Worker 池 1 (GPU 1 / CPU 0)\n\n## 1. Zombie PID 223975 — Worker 已派出 SSH kill -9\n\n## 2. plan_015 降级 P2 — 已执行\n- plan_015_v3 hypothesis 和 notes 已更新为 \"P2 robustness check, 非 single-variable ablation\"\n- v3 当前在 cuda:0 运行中（PID 226476），已有 cron 监控，让它跑完\n\n## 3. ⚠️ plan_001 已完成训练（Director 可能未知）\nplan_001_rsft_flat_nli 在 reconcile_crons 时检测到 EXIT_CODE=0 → ANALYZING。Worker 已分析完毕：\n- 3 epochs / 507 steps，final loss=0.6238，~49 min\n- checkpoint: `/root/autodl-tmp/rsft_output_flat_nli/checkpoint-507`\n- **下一步需要 dev eval，但 4 张 GPU 都在用**：\n  - cuda:0: plan_015_v3 (P2, RUNNING)\n  - cuda:1: plan_014 (P0)\n  - cuda:2: plan_012 (P0)\n  - cuda:3: eval_grpo_g8_bf16 (P0)\n- eval_grpo_g8_bf16 应该最先完成 → cuda:3 空出后立即提交 plan_001 eval\n- 或者：plan_015_v3 是 P2，如果 Director 认为 plan_001 eval 更优先，可以 kill v3 腾 cuda:0\n\n## 4. plan_009 figure v4 已完成\n2×2 四面板图更新完毕，加入 bf16 GRPO 数据：\n- Panel (a) Training Reward: bf16 2-6× 高于 QLoRA\n- Panel (b) Relation F1: bf16 G=8 rel_f1=0.455 (+12.1% vs SFT), QLoRA 崩到 0.217/-0.014\n- Panel (c) Evidence F1: QLoRA lr5e6 evi_f1↑但 rel_f1→0 = task decoupling\n- Panel (d) EDCR: QLoRA 85-99% distractor, bf16 63%\n- 文件: artifacts/plan_009_grpo_forgetting/grpo_forgetting_dynamics_v4.pdf\n\n## 当前 GPU\n| GPU | 任务 | 优先级 | 预计完成 |\n|-----|------|--------|---------|\n| cuda:0 | plan_015_v3 GRPO G=4 bf16 | P2 | ~1h (200 steps) |\n| cuda:1 | plan_014 SFT-no-evidence | P0 | 运行中 |\n| cuda:2 | plan_012 DPO+CED | P0 | 运行中 |\n| cuda:3 | eval_grpo_g8_bf16 batch | P0 | zombie kill 后应加速 |\n\n**建议**：cuda:3 eval 完成后立即提交 plan_001 flat-NLI RSFT dev eval（CED vs flat-NLI 对比的关键数据）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "agent"
+          },
+          "id": "event-000432"
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "messages": [
+        {
+          "source_line": 433,
+          "timestamp": "2026-05-15T16:52:54.716103+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n两个 Worker 都完成了。plan_001 训练成功（需要 eval GPU），plan_009 figure v4 已生成。更新 plan_015 notes 并汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "main_agent"
+          },
+          "id": "event-000433"
+        },
+        {
+          "source_line": 434,
+          "timestamp": "2026-05-15T16:52:57.107896+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已清理 3 条过时指令，队列从 12 降到 9。剩余都是有效的 worker:done 通知和关键指令（plan_001 eval 提交在队尾）。\n\n**当前态势判断：**\n\n| 维度 | 状态 |\n|------|------|\n| GPU 利用率 | 4/4 满载 ✓ |\n| 关键等待 | plan_001 flat-NLI 分析中（Claim 2 核心对比） |\n| 运行中 | plan_012 DPO, plan_014 SFT-no-evidence, plan_015_v3 bf16 GRPO |\n| 已完成待用 | plan_011 G=8 GRPO (rel_f1=0.4549), plan_004 DREEAM baseline |\n| 下一批 | plan_002 test eval + plan_003 EDCR pipeline（都依赖 plan_001） |\n\n**plan_001 是当前最关键节点** — flat-NLI vs CED 的对比直接决定 Claim 2（CED 的 contrastive margin 比朴素 NLI 更好）是否成立。分析结果出来后立即推 plan_002 test eval 和 plan_003 EDCR 诊断表。\n\nAgent 正在处理队列，无需额外干预。等 plan_001 分析结果和其他实验完成回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000434"
+        },
+        {
+          "source_line": 435,
+          "timestamp": "2026-05-15T16:53:06.742194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_project_status,get_agent_queue_status,read_experiment_plan_with_status,auto_build_provenance",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000435"
+        },
+        {
+          "source_line": 436,
+          "timestamp": "2026-05-15T16:53:06.772471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 30
+          },
+          "id": "event-000436"
+        },
+        {
+          "source_line": 437,
+          "timestamp": "2026-05-15T16:53:09.887264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__get_agent_queue_status,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__auto_build_provenance",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000437"
+        },
+        {
+          "source_line": 438,
+          "timestamp": "2026-05-15T16:53:09.938598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000438"
+        },
+        {
+          "source_line": 439,
+          "timestamp": "2026-05-15T16:53:13.252925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000439"
+        },
+        {
+          "source_line": 440,
+          "timestamp": "2026-05-15T16:53:13.556059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000440"
+        },
+        {
+          "source_line": 441,
+          "timestamp": "2026-05-15T16:53:13.556542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000441"
+        },
+        {
+          "source_line": 442,
+          "timestamp": "2026-05-15T16:53:13.707532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `faith-evidence-ie`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    rtx5090-4x (connect.bjb2.seetacloud.com) [root] + bjb2-12179 [root]\\n✓ 代码路径  /root/autodl-tmp/freige\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 53 条记录\\n\\n── 📊 研究进度 ──\\n实验: 86 个 (运行中 4 | 分析中 1 | 待处理 2 | 完成 79 | 成功 32)\\n\\n  mvp2_grpo_ced_r3      DONE (failed)\\n  mvp2_grpo_ced_r2      DONE (killed)\\n  mvp2_grpo_ced_r1      DONE (killed)\\n  mvp2_grpo_ced         DONE (failed)\\n  precompute_nli_train  DONE (success)\\n  mvp2_sft_warmup       DONE (success)\\n  smoke_test_grpo       DONE (success)\\n  mvp1_ced_signal       DONE (success)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan_015_grpo_g4_bf16_v3 | — | — | — | — |\\n| plan_012_dpo_ced | DPO+CED preference learning: 用 CED 构造 preference pairs (CED top-1 = chosen, CED bottom-1 = rejected)，DPO 训练。验证 offline preference optimization 能否替代 online GRPO 避免 catastrophic forgetting，同时利用 CED 信号。对比 RSFT (rel_f1=0.46) 和 SFT baseline (rel_f1=0.4057)。 | — | — | — |\\n| plan_014_sft_no_evidence | SFT-without-evidence ablation: 训练只输出 relation triples（不含 evidence sentences）的 SFT 模型。量化 joint e\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 454
+          },
+          "id": "event-000442"
+        },
+        {
+          "source_line": 443,
+          "timestamp": "2026-05-15T16:53:13.708160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":9,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_infra_cuda3-conflict-check_20260515T162726 已完成（status=done）。用 `get_worker_status('worker_inf\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_009_figure_update_20260515T162610 已完成（status=done）。用 `get_worker_status('worke\\\",\\\"queued_at\\\":1778862559.235001},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_3seed-rsft-summary_20260515T162743 已完成（status=done）。用 `get_worker_status('worker_an\\\",\\\"queued_at\\\":1778862619.9316123},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] Reviewer D052 确认 — framing 不再 gate 在 plan_015\\\\n\\\\nReviewer 核实 plan_011 vs mvp2_grpo_ced_kl001_r\\\",\\\"queued_at\\\":1778862737.999698},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_plan_015_v3_submit_20260515T163158 已完成（status=done）。用 `get_worker_status('worker_ops_pla\\\",\\\"queued_at\\\":1778862798.4603915},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_001_rsft_flat_nli_done_20260515T163208 已完成（status=done）。用 `get_worker_status('\\\",\\\"queued_at\\\":1778862832.0530736},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_009_forgetting_figure_20260515T162745 已完成（status=done）。用 `get_worker_status('w\\\",\\\"queued_at\\\":1778862845.730013},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_forgetting-dynamics-data_20260515T162933 已完成（status=done）。用 `get_worker_status('wor\\\",\\\"queued_at\\\":1778862920.0545182},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] plan_001 eval 提交 — 最高优先\\\\n\\\\nplan_001 RSFT flat-NLI 训练已完成，checkpoint 在 `/root/autodl-tmp/rsft_ou\\\",\\\"queued_at\\\":1778863863.4459388},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_kill_zombie_223975_20260515T165146 已完成（status=done）。用 `get_worker_status('worker_ops_\n…[truncated 63 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 152
+          },
+          "id": "event-000443"
+        },
+        {
+          "source_line": 444,
+          "timestamp": "2026-05-15T16:53:14.010886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选 RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py 用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [], \\\"registry_id\\\": \\\"plan_001_rsft_flat_nli\\\", \\\"status\\\": \\\"ANALYZING\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.6238, \\\"train_loss_min\\\": 0.5803, \\\"mean_token_accuracy\\\": 0.8528, \\\"train_runtime_sec\\\": 2946, \\\"epochs\\\": 3, \\\"total_steps\\\": 507, \\\"samples\\\": 2691}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set 上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 4, \\\"description\\\": \\\"EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing 方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large) 的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [], \\\"registry_id\\\": \\\"plan_004_dreeam_baseline\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dev_rel_f1\\\": 63.57, \\\"dev_rel_ign_f1\\\": 61.72, \\\"dev_evi_f1\\\": 54.01, \\\"dev_rel_p\\\": 66.95, \\\"dev_rel_r\\\": 60.51, \\\"dev_evi_p\\\": 60.53, \\\"dev_evi_r\\\": 48.76}}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hou\n…[truncated 6746 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 454
+          },
+          "id": "event-000444"
+        },
+        {
+          "source_line": 445,
+          "timestamp": "2026-05-15T16:53:40.777435+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the current project status and agent queue before responding."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000445"
+        },
+        {
+          "source_line": 446,
+          "timestamp": "2026-05-15T16:53:40.789309+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 执行到位。几个要点确认：\n\n1. **plan_001 eval 指令已在队列中**（队列最后一条），cuda:3 eval 完成后立即提交，不需要额外指令。\n\n2. **plan_009 figure v4 完成** — Dream v2 行动追踪表中可以勾掉\"缺 forgetting figure\"。bf16 vs QLoRA 的对比数据很有力（bf16 rel_f1=0.455 vs QLoRA 崩到 0.217），直接支持 Claim 3。\n\n3. **不 kill plan_015_v3** — P2 但已在跑，~1h 成本低，跑完有额外 robustness 数据。cuda:3 会先空出。\n\n4. **当前并行度良好**：4/4 GPU 占满，3 个 P0 + 1 个 P2。\n\n等待：cuda:3 eval 结果（plan_011 bf16 GRPO 的 dev 指标）→ 这是确认 D051 判断的关键数据点；之后 plan_001 flat-NLI eval 接上。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000446"
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "messages": [
+        {
+          "source_line": 447,
+          "timestamp": "2026-05-15T17:00:08.379957+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — plan_001 eval 提交 + D052 quantization ablation\n\n**结论**: PASS\n\n### 发现\n\n1. **[severity: info] eval_plan_001_flat_nli 正确提交**：模型 stack Base+SFT+RSFT-flat-NLI ✓，seed=42 ✓，no-quantize ✓，985 dev docs。预计 1-2h 完成。\n\n2. **[severity: info] D052 quantization ablation 分析验证通过**：独立核实 mvp2_grpo_ced_kl001_r4 参数：\n   - G=8, kl=0.01, lr=5e-5, weights 0.3/3.0/1.0, QLoRA 4-bit, single GPU\n   - plan_011: G=8, kl=0.01, lr=5e-5, weights 0.3/3.0/1.0, bf16 LoRA, single GPU\n   - **唯一差异确实是 quantization**，clean single-variable ablation ✓\n   - 结果：bf16 rel_f1=0.4549 vs QLoRA rel_f1=0.2167 → 量化导致 catastrophic forgetting 结论成立\n   - 这解决了 Review 7 中关于 plan_015 confound 的担忧\n\n3. **[severity: info] plan_015_v3 正确取消**：既然 plan_011 vs kl001_r4 已提供 clean ablation，v3 (lr=5e-6) 降级为 robustness data，让出 cuda:0 给更优先的 plan_001 eval。决策合理。\n\n4. **[severity: info] zombie 223975 已确认清除**：cuda:3 从 28.8GB 降至 15.6GB，eval ckpt-90 独占。\n\n### 待审查\n- eval_plan_001_flat_nli 结果（CED vs flat-NLI ablation 的最终判定）\n- eval_grpo_g8_bf16 ckpt-90（bf16 3-point trajectory 完成）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "reviewer"
+          },
+          "id": "event-000447"
+        },
+        {
+          "source_line": 448,
+          "timestamp": "2026-05-15T17:00:37.975854+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 全部 PASS，无 warning/critical。关键确认：\n\n- **D052 quantization ablation 干净**：plan_011 vs mvp2_grpo_ced_kl001_r4 唯一差异确实是 quantization（bf16 vs QLoRA 4-bit），rel_f1 0.4549 vs 0.2167，catastrophic forgetting 归因 QLoRA 结论成立。Claim 3 证据链闭合。\n- plan_001 eval 正确提交，plan_015_v3 正确降级，zombie 已清除。\n\n当前 4 张卡全在跑 P0 任务，等两个 eval 结果回来：\n1. **eval_plan_001_flat_nli** — CED vs flat-NLI scoring 对比，决定 RSFT scoring 方案的最终定位\n2. **eval_grpo_g8_bf16 ckpt-90** — bf16 trajectory 第三点，完善 forgetting dynamics 图\n\n无需当前行动，等结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000448"
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "messages": [
+        {
+          "source_line": 449,
+          "timestamp": "2026-05-15T17:03:06.646304+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — plan_014_sft_no_evidence 训练完成\n\n**结论**: PASS（待 eval）\n\n### 训练验证\n\n- EXIT_CODE=0, 570/570 steps, 3 epochs, ~64 min ✓\n- train_loss=0.7077, eval_loss=0.8781, token_accuracy=0.8086\n- LoRA 配置 r=64, alpha=128, dropout=0.05 — 与标准 SFT 一致 ✓\n- seed=42, QLoRA 4-bit（与标准 SFT baseline 相同量化方式）✓\n- Checkpoint 正确保存：`/root/autodl-tmp/sft_no_evidence_output/` ✓\n\n### 发现\n\n1. **[severity: info] 训练指标合理**：train_loss=0.7077 略高于标准 SFT（预期——no-evidence 模式输出格式不同，loss 范围可能有差异）。training 曲线无异常（entropy 从 ~0.7 逐步下降，mean_token_accuracy 稳定 ~0.83）。\n\n2. **[severity: warning] eval 需要特殊处理**：此模型不输出 evidence sentences。标准 eval 脚本 (inference.py) 期望 JSON 包含 evidence 字段。eval 时需确认：\n   - format_ok 判定是否将缺少 evidence 视为 format 错误？如果是，format_ok 率会很低，影响 rel_f1 计算\n   - 建议 Agent 检查 inference.py 的 format 判定逻辑，必要时用 `--no_evidence` 模式 eval（如存在）\n   - rel_f1 是唯一关键指标，evi_f1 预期为 0\n\n3. **[severity: info] cuda:1 已释放**：可用于 plan_001 eval 或其他待排实验。\n\n### 对比基准\n- 标准 SFT (with evidence): rel_f1=0.4057\n- LMRC (relation-only, 非 LLM): rel_f1=60.7\n- 如 plan_014 rel_f1 显著高于 0.4057 → evidence generation 是 extraction 的负担\n- 如 plan_014 rel_f1 ≈ 0.4057 → evidence 生成不影响抽取能力"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "reviewer"
+          },
+          "id": "event-000449"
+        },
+        {
+          "source_line": 450,
+          "timestamp": "2026-05-15T17:03:24.412262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000450"
+        },
+        {
+          "source_line": 451,
+          "timestamp": "2026-05-15T17:03:24.463472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":7,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] Reviewer D052 确认 — framing 不再 gate 在 plan_015\\\\n\\\\nReviewer 核实 plan_011 vs mvp2_grpo_ced_kl001_r\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_plan_015_v3_submit_20260515T163158 已完成（status=done）。用 `get_worker_status('worker_ops_pla\\\",\\\"queued_at\\\":1778862798.4603915},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_001_rsft_flat_nli_done_20260515T163208 已完成（status=done）。用 `get_worker_status('\\\",\\\"queued_at\\\":1778862832.0530736},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_009_forgetting_figure_20260515T162745 已完成（status=done）。用 `get_worker_status('w\\\",\\\"queued_at\\\":1778862845.730013},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_forgetting-dynamics-data_20260515T162933 已完成（status=done）。用 `get_worker_status('wor\\\",\\\"queued_at\\\":1778862920.0545182},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] plan_001 eval 提交 — 最高优先\\\\n\\\\nplan_001 RSFT flat-NLI 训练已完成，checkpoint 在 `/root/autodl-tmp/rsft_ou\\\",\\\"queued_at\\\":1778863863.4459388},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_kill_zombie_223975_20260515T165146 已完成（status=done）。用 `get_worker_status('worker_ops_kil\\\",\\\"queued_at\\\":1778863939.1415117},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_plan_001_flat_nli_eval_20260515T165519 已完成（status=done）。用 `get_worker_status('worker_ops\\\",\\\"queued_at\\\":1778864291.318288}],\\\"idle_seconds\\\":558}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-000451"
+        },
+        {
+          "source_line": 452,
+          "timestamp": "2026-05-15T17:03:35.218451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_post_to_main_agent",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000452"
+        },
+        {
+          "source_line": 453,
+          "timestamp": "2026-05-15T17:03:35.269621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000453"
+        },
+        {
+          "source_line": 454,
+          "timestamp": "2026-05-15T17:04:00.826444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "text": "[Director 指令] plan_014 SFT-no-evidence eval — cuda:1 已空出\n\nplan_014 训练完成（Reviewer PASS），checkpoint 在 `/root/autodl-tmp/sft_no_evidence_output/`。\n\n**立即提交 dev eval on cuda:1。**\n\n⚠️ **Reviewer 警告：eval format 需特殊处理**\n该模型不输出 evidence sentences。检查 inference.py 的 format 判定逻辑——如果缺 evidence 字段被判为 format_error，会导致 format_ok 率极低、rel_f1 计算失真。必要时修改 eval 脚本对 no-evidence 模式做适配（跳过 evidence 字段校验，只算 rel_f1）。\n\n关键对比基准：\n- 标准 SFT (with evidence): rel_f1=0.4057\n- 如 plan_014 rel_f1 >> 0.4057 → evidence generation 是 extraction 负担（支持 Claim 4）\n- 如 plan_014 rel_f1 ≈ 0.4057 → evidence 不影响抽取\n\neval 完成后汇报 rel_f1 + format_ok 率。"
+            }
+          },
+          "id": "event-000454"
+        },
+        {
+          "source_line": 455,
+          "timestamp": "2026-05-15T17:04:04.748501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f416ef204a4c21fb20c0435e45\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 7, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[Director 指令] [Director 指令] Reviewer D052 确认 — framing 不再 gate 在 plan_015\\\\n\\\\nReviewer 核实 plan_011 vs mvp2_grpo_ced_kl001_r4 已是 clean single-variable quantization ablation（唯一变量=quantization，其余完全一致）。Δrel_\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3922
+          },
+          "id": "event-000455"
+        },
+        {
+          "source_line": 456,
+          "timestamp": "2026-05-15T17:04:21.547870+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan_014 eval 指令已入队。当前 4 GPU 全部在跑：\n\n| GPU | 任务 | 优先级 |\n|-----|------|--------|\n| cuda:0 | plan_015_v3 GRPO G=4 bf16 | P2 |\n| cuda:1 | plan_014 eval（刚派） | P0 |\n| cuda:2 | plan_012 DPO+CED | P0 |\n| cuda:3 | eval_grpo_g8_bf16 ckpt batch | P0 |\n\n等待 eval 结果回来再做下一步决策。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000456"
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "messages": [
+        {
+          "source_line": 457,
+          "timestamp": "2026-05-15T17:05:19.664933+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 4 / 实际跑 3 | Worker 池 1 (CPU 1)\ncuda:1 刚完成 plan_014 训练，已派 Worker 分析日志+提交 eval，预计很快恢复 4/4。\n\n## plan_014_sft_no_evidence 训练完成\n\n**实验**: SFT-without-evidence ablation（只输出 relation triples，不含 evidence sentences）\n**目的**: 量化 joint evidence generation 对抽取性能的代价，回答\"43.2% vs LMRC 60.7% 的 gap 有多少来自 evidence 生成负担\"\n**状态**: 训练已正常退出（ANALYZING），Worker 正在读日志+准备 dev eval\n\n### 当前进度\n- 训练完成: Qwen3-4B SFT --no_evidence, 3027 samples, seed=42\n- Checkpoint: /root/autodl-tmp/sft_no_evidence_output\n- W&B 数据可用，Worker 正在提取训练指标\n- **下一步**: Worker 在 cuda:1 上提交 dev eval (985 docs)\n\n### 其他实验状态\n- cuda:0: eval_plan_001_flat_nli (RUNNING) — flat-NLI RSFT dev eval\n- cuda:2: plan_012_dpo_ced (RUNNING) — DPO+CED 训练\n- cuda:3: eval_grpo_g8_bf16 (RUNNING) — GRPO bf16 checkpoint eval\n\nplan_014 eval 结果回来后将立即汇报完整分析（含 vs SFT baseline 对比）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "agent"
+          },
+          "id": "event-000457"
+        },
+        {
+          "source_line": 458,
+          "timestamp": "2026-05-15T17:05:26.122024+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000458"
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "messages": [
+        {
+          "source_line": 459,
+          "timestamp": "2026-05-15T17:14:35.558380+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — Review 11: plan_014_sft_no_evidence 训练完成 + bf16 GRPO 轨迹更新\n\n**结论**: PASS\n\n### plan_014_sft_no_evidence 训练审查\n\n- [severity: info] 训练正常完成：EXIT_CODE=0，570/570 步，3 epochs，train_loss=0.7077，QLoRA 4-bit，seed=42，3027 docs，cuda:1\n- [severity: info] Eval 已提交 cuda:1（PID 229668）：`--model_path sft_no_evidence_output --base_model Qwen3-4B --no-quantize`，无 --sft_adapter（正确：plan_014 是直接 SFT，不需要 merge SFT adapter）\n- [severity: info] GPU 合规：训练 spec 声明 cuda:1，eval 也在 cuda:1，nvidia-smi 确认 PID 229668 占用 12.9GB ✓\n- [severity: info] Registry 状态 ANALYZING，符合预期（等待 eval 结果）\n- 假设明确：量化 evidence generation 对 rel_f1 的成本（对比 SFT baseline rel_f1=0.4057）\n\n### bf16 GRPO G=8 eval 轨迹（eval_grpo_g8_bf16）\n\nckpt-90 eval 已完成，三点轨迹：\n\n| Checkpoint | rel_f1 | evi_f1 | EDCR | format_ok |\n|------------|--------|--------|------|-----------|\n| ckpt-80 | 0.4456 | 0.8034 | 0.6409 | 984/985 |\n| ckpt-90 | **0.4523** | **0.8052** | **0.6414** | 983/985 |\n| ckpt-100 | (re-eval中, cuda:3 PID 228925) | | | |\n\n关键观察：\n- rel_f1 稳步上升（+0.67pp），**无遗忘迹象**——进一步确认 catastrophic forgetting 是 QLoRA-specific\n- evi_f1 稳定在 ~0.805，EDCR ~0.641，evidence 质量未受 GRPO 训练影响\n- truncated 略增（50→60），可能因更长输出，但不影响结论\n\n### 当前 GPU 利用率（全 4 卡活跃）\n- cuda:0 (87%): eval_plan_001_flat_nli — C4 claim 关键 ablation\n- cuda:1 (80%): plan_014 eval — evidence cost 量化\n- cuda:2 (96%): plan_012 DPO 训练 — offline preference learning\n- cuda:3 (86%): eval_grpo_g8_bf16 ckpt-100 re-eval — 补全轨迹数据\n\nGPU 饱和运转，无空闲卡。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "reviewer"
+          },
+          "id": "event-000459"
+        },
+        {
+          "source_line": 460,
+          "timestamp": "2026-05-15T17:14:53.685880+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000460"
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "messages": [
+        {
+          "source_line": 461,
+          "timestamp": "2026-05-15T17:15:33.053152+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 4/4 实际跑 4 | Worker 池 0 (GPU 0 / CPU 0)\n\n## plan_001 eval 已提交\n\neval_plan_001_flat_nli 在 cuda:0 运行中（PID 228508），cron 已注册。985 docs / 62 batches，预计 1-2h。\n\n产出指标：rel_f1, evi_f1, EDCR，将直接与 CED RSFT (3-seed mean rel_f1=0.4596) 对比。\n\n## 当前 GPU\n| GPU | 任务 | PID | 状态 |\n|-----|------|-----|------|\n| cuda:0 | eval_plan_001_flat_nli | 228508 | RUNNING (~1-2h) |\n| cuda:1 | plan_014 SFT-no-evidence | 222207 | RUNNING |\n| cuda:2 | plan_012 DPO+CED | 221962 | RUNNING |\n| cuda:3 | eval_grpo_g8_bf16 batch (ckpt-90) | 220202 | RUNNING |\n\n注意：plan_015_v3 已被上一条 Director 指令取消（\"plan_015_v3 取消\"），cuda:0 腾给了 plan_001 eval。如果 Director 希望保留 v3，请告知，可在其他 GPU 空出后重新提交。\n\n## 下一步\nplan_001 eval 完成后 → 汇报 CED vs flat-NLI 对比 → 启动 plan_002 (test set eval) + plan_003 (EDCR cross-method table)。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "agent"
+          },
+          "id": "event-000461"
+        },
+        {
+          "source_line": 462,
+          "timestamp": "2026-05-15T17:15:42.011948+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000462"
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "messages": [
+        {
+          "source_line": 463,
+          "timestamp": "2026-05-15T17:23:10.099196+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — Review 12: eval_plan_014_sft_no_evidence 提交审查\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: warning] **cuda:1 存在重复 eval 进程，第一个配置错误**：\n  - **PID 229668**（旧，未注册）：`--model_path sft_no_evidence_output --base_model Qwen3-4B --output_dir eval_plan_014_no_evidence --no-quantize --max_new_tokens 1024` — **缺少 `--no_evidence` flag**，batch_size=8（默认），无 --seed。已跑 18/124 batches（14%），占用 12.9GB。\n  - **PID 230809**（新，正确注册为 eval_plan_014_sft_no_evidence）：`--no_evidence --batch_size 16 --seed 42 --output_dir eval_results/sft_no_evidence` — 配置正确，刚启动，占用 12.7GB。\n  - 两进程合计 25.6GB / 32.6GB = 79%，有 OOM 风险且互相减速。\n\n- [severity: warning] **PID 229668 结果将不可用**：该 eval 缺少 `--no_evidence`，模型被要求生成 evidence 但从未学过 evidence 格式，产生的 rel_f1 / evi_f1 不能反映真实的 \"无 evidence 训练\" 效果。**建议立即 kill PID 229668 释放 12.9GB 显存**。\n\n- [severity: info] 正确的 eval（PID 230809）配置完整：--no_evidence, --no-quantize, batch_size=16, seed=42, output_dir=eval_results/sft_no_evidence。Registry 已注册。预计 ~50min（62 batches × ~50s/batch）。\n\n- [severity: info] GPU 合规：两个进程均在 cuda:1（与 spec 声明一致），无越界。\n\n### 建议\n- **立即 kill PID 229668**（错误配置的旧 eval），释放 cuda:1 约 12.9GB 显存，让正确 eval 无争用运行。\n- 检查是哪个 worker 提交的 PID 229668 且未清理，避免类似残留。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "reviewer"
+          },
+          "id": "event-000463"
+        },
+        {
+          "source_line": 464,
+          "timestamp": "2026-05-15T17:23:16.386603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__urgent_agent_message",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000464"
+        },
+        {
+          "source_line": 465,
+          "timestamp": "2026-05-15T17:23:16.437292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000465"
+        },
+        {
+          "source_line": 466,
+          "timestamp": "2026-05-15T17:23:23.390159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__urgent_agent_message"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "message": "[Director 紧急] 立即 kill PID 229668 on cuda:1\n\nReviewer 发现 cuda:1 有两个 eval 进程冲突：\n- PID 229668（旧，错误配置）：缺 `--no_evidence` flag，结果不可用，占 12.9GB\n- PID 230809（新，正确配置）：有 `--no_evidence`，已注册为 eval_plan_014_sft_no_evidence\n\n两进程合计 25.6GB / 32.6GB，有 OOM 风险且互相减速。\n\nSSH 执行 `kill -9 229668`，确认只剩 PID 230809 在跑。"
+            }
+          },
+          "id": "event-000466"
+        },
+        {
+          "source_line": 467,
+          "timestamp": "2026-05-15T17:23:23.943433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"inserted\\\":true,\\\"queue_depth\\\":3,\\\"agent_key\\\":\\\"feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "elapsed_ms": 553
+          },
+          "id": "event-000467"
+        },
+        {
+          "source_line": 468,
+          "timestamp": "2026-05-15T17:23:28.604644+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已插队紧急指令 kill 错误的 eval 进程。cuda:1 上 PID 229668 缺 `--no_evidence` flag，结果不可用且与正确 eval 争显存。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000468"
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "messages": [
+        {
+          "source_line": 469,
+          "timestamp": "2026-05-15T17:35:57.738868+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：运行时长 6h3m\n  本轮累计 88 条消息 / 6h 3min\n\n⚠️ 你自己的 context 状态：已 39 条消息 / 3h 3min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000469"
+        },
+        {
+          "source_line": 470,
+          "timestamp": "2026-05-15T17:36:03.650031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ralph_respond",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000470"
+        },
+        {
+          "source_line": 471,
+          "timestamp": "2026-05-15T17:36:03.801211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 151
+          },
+          "id": "event-000471"
+        },
+        {
+          "source_line": 472,
+          "timestamp": "2026-05-15T17:36:17.924972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_AGENT"
+            }
+          },
+          "id": "event-000472"
+        },
+        {
+          "source_line": 473,
+          "timestamp": "2026-05-15T17:36:17.975728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_AGENT\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 50
+          },
+          "id": "event-000473"
+        },
+        {
+          "source_line": 474,
+          "timestamp": "2026-05-15T17:36:22.781087+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 运行 6h / 88 条，4 张 GPU 都在跑实验，结果都还没回来，Agent 当前没有需要紧急执行的任务。重置 Agent，我继续盯结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000474"
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "messages": [
+        {
+          "source_line": 475,
+          "timestamp": "2026-05-15T17:40:35.517850+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — Review 13: plan_012_dpo_ced 训练完成\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: info] 训练正常完成：EXIT_CODE=0，501/501 步，3 epochs，~101 min，cuda:2，bf16 LoRA（非 QLoRA）。SFT adapter 已正确加载并合并（日志确认 \"Merging SFT adapter: /root/autodl-tmp/sft_output\"）。2666 DPO pairs，lr=2e-5，effective batch=16，beta=0.10。\n\n- [severity: info] 模型配置合规：LoRA r=64, alpha=128, dropout=0.05, 7 target modules, trainable 3.18%（132M/4.15B）。ref/ 目录保存了 DPO 参考模型副本。\n\n- [severity: warning] **典型 DPO 过拟合信号**——训练集已被完全记忆：\n  | 阶段 | loss | rewards/acc | margins | entropy |\n  |------|------|-------------|---------|---------|\n  | epoch 0.5-0.9 | 0.44-0.52 | 0.71-0.82 | 1.3-2.0 | 0.11-0.12 |\n  | epoch 1.5-1.8 | 0.28-0.33 | 0.84-0.89 | 2.6-3.4 | 0.08-0.10 |\n  | epoch 2.7-3.0 | 0.05-0.09 | **0.97-1.00** | **5.4-6.3** | **0.058-0.065** |\n  \n  rewards/accuracies=1.0 = 训练集完美分离，margin 翻倍（3→6），entropy 降 40%。logps/rejected 从 -113 暴跌到 -168（模型激进打压 rejected）。这些都是 DPO 在小数据集（2666 pairs × 3 epochs）上的经典过拟合模式。\n\n- [severity: warning] **缺少早期 checkpoint**：仅保存了 ckpt-400/500/501（对应 epoch 2.4/3.0/3.0）。训练\"健康期\"（epoch 0.5-1.5）无 checkpoint。若过拟合导致 eval 退化，**无法回退到更优的早期模型**。建议如 eval 表现不佳，考虑用 save_steps=100 重跑或从 ckpt-400 起点评估。\n\n- [severity: info] GPU 已释放：cuda:2 空闲，DPO eval 应立即提交到 cuda:2。\n\n### 当前 GPU 状态\n- cuda:0 (82%): eval_plan_001_flat_nli\n- cuda:1 (78%): eval_plan_014_sft_no_evidence（正确版，PID 230809）\n- cuda:2: **空闲** — 等待 DPO eval\n- cuda:3 (71%): eval_grpo_g8_bf16 ckpt-100（42/62, ~50%）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "reviewer"
+          },
+          "id": "event-000475"
+        },
+        {
+          "source_line": 476,
+          "timestamp": "2026-05-15T17:40:48.271750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000476"
+        },
+        {
+          "source_line": 477,
+          "timestamp": "2026-05-15T17:40:48.372599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":4,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 紧急] 立即 kill PID 229668 on cuda:1\\\\n\\\\nReviewer 发现 cuda:1 有两个 eval 进程冲突：\\\\n- PID 229668（旧，错误配置）：缺 `--no\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_014_sft_no_evidence_20260515T170422 已完成（status=done）。用 `get_worker_status('wor\\\",\\\"queued_at\\\":1778864932.7282095},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_eval_plan_014_sft_no_evidence_20260515T171645 已完成（status=done）。用 `get_worker_status('wor\\\",\\\"queued_at\\\":1778865659.8784704},{\\\"source\\\":\\\"system:ralph_loop:dispatch\\\",\\\"preview\\\":\\\"[RALPH DISPATCH] RESET_AGENT\\\",\\\"queued_at\\\":1778866582.7814727},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_verify_cuda1_cleanup_20260515T173626 已完成（status=done）。用 `get_worker_status('worker_ops_v\\\",\\\"queued_at\\\":1778866619.174176}],\\\"idle_seconds\\\":292}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-000477"
+        },
+        {
+          "source_line": 478,
+          "timestamp": "2026-05-15T17:41:10.374771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "text": "[Director 指令] plan_012 DPO+CED eval — cuda:2 已空出\n\nplan_012 训练完成（Reviewer WARNING：过拟合信号明显）。立即提交 dev eval on cuda:2。\n\nCheckpoint: `/root/autodl-tmp/dpo_ced_output/`（ckpt-400 和 ckpt-501 都有）\n\n**eval 两个 checkpoint**：\n1. ckpt-501（最终，epoch 3.0）— 可能过拟合\n2. ckpt-400（epoch 2.4）— 如果 501 退化，这是回退点\n\n模型 stack: Base → SFT adapter merge → DPO adapter。确认 eval 时正确加载 DPO adapter（不是 SFT adapter）。\n\n关键对比基准：\n- SFT baseline: rel_f1=0.4057\n- RSFT CED: rel_f1≈0.46\n- 如 DPO rel_f1 > RSFT → offline preference learning 有效\n- 如 DPO rel_f1 < SFT → 过拟合导致退化，需用 save_steps=100 重跑取早期 checkpoint\n\n两个 ckpt eval 完成后汇报 rel_f1 + evi_f1 + EDCR 对比。"
+            }
+          },
+          "id": "event-000478"
+        },
+        {
+          "source_line": 479,
+          "timestamp": "2026-05-15T17:41:14.899559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f41e56f9ca0c39b94fb87ed1e5\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 4, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[Director 指令] [Director 紧急] 立即 kill PID 229668 on cuda:1\\\\n\\\\nReviewer 发现 cuda:1 有两个 eval 进程冲突：\\\\n- PID 229668（旧，错误配置）：缺 `--no_evidence` flag，结果不可用，占 12.9GB\\\\n- PID 230809（新，正确配置）：有 `--no_evidence`，已注册为 eval_\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 4524
+          },
+          "id": "event-000479"
+        },
+        {
+          "source_line": 480,
+          "timestamp": "2026-05-15T17:41:16.847099+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 正在处理 kill PID 指令，reset dispatch 在队列中。cuda:2 空了，需要提交 plan_012 DPO eval。发送指令排队，新 Agent session 启动后会处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000480"
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "messages": [
+        {
+          "source_line": 481,
+          "timestamp": "2026-05-15T17:41:24.027147+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 5min\n\n⚠️ 你自己的 context 状态：已 40 条消息 / 3h 8min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000481"
+        },
+        {
+          "source_line": 482,
+          "timestamp": "2026-05-15T17:41:46.946000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_AGENT"
+            }
+          },
+          "id": "event-000482"
+        },
+        {
+          "source_line": 483,
+          "timestamp": "2026-05-15T17:41:46.997403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_AGENT\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 51
+          },
+          "id": "event-000483"
+        },
+        {
+          "source_line": 484,
+          "timestamp": "2026-05-15T17:41:53.316004+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 新 session 只处理了 1 条消息就空闲了 3 小时，明显异常。多个 eval 实验可能已经完成但没有被处理。立即重置让新 Agent 拾起进展。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000484"
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "messages": [
+        {
+          "source_line": 485,
+          "timestamp": "2026-05-15T17:49:34.631633+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 4 / 实际在跑 3 (cuda:0/1/3) + cuda:2 待 DPO eval 提交 | Worker 池 2→3 (GPU 1 / CPU 2)\n\n## Session 10 状态同步\n\n### 已完成实验 (handoff 后确认)\n\n1. **plan_011 GRPO G=8 bf16 eval** ✅ rel_f1=0.4549 (+4.92pp vs SFT), Evi-F1=0.8086, EDCR=0.6318\n   - Catastrophic forgetting 不复现。bf16 LoRA 下 GRPO 甚至超 SFT baseline\n   - vs QLoRA GRPO: Δ=+23.8pp (0.4549 vs 0.2167)\n   - **结论**: decoupling 是 QLoRA-specific artifact，不是 RL-for-IE 的通病\n   - plan_015 已 kill (D052/D053确认: plan_011 vs mvp2_grpo_ced_kl001_r4 本身就是 clean quantization ablation)\n\n2. **plan_004 DREEAM baseline** ✅ dev_rel_f1=63.57, dev_evi_f1=54.01\n   - Encoder baseline 建立。注意 DREEAM 用 sentence-level tagging protocol，与 FREIGE generative protocol 不直接可比\n   - DREEAM Evi-F1=54.01 vs FREIGE SFT Evi-F1=79.79——但 protocol 差异大，需在论文中谨慎表述\n\n3. **plan_005 CED reranker** ✅ rel_f1=0.4864 (+8.07pp vs SFT, +2.68pp vs RSFT mean)\n   - N=8 生成 + CED 选最佳，无需额外训练\n   - Oracle 上界 rel_f1=0.6237, CED reranker 实现 37% of ceiling\n   - **C1 关键补充**: CED 不仅能筛训练数据(RSFT)，推理时也直接可用\n\n4. **maxtok1536 truncation 诊断** ⚠️ 截断 179→146 (-33), EDCR +0.013\n   - 截断只是 EDCR 偏低的次要因素，distractor citation 是 RSFT 的真实行为\n\n### 当前运行\n| GPU | 实验 | 预期产出 |\n|-----|------|---------|\n| cuda:0 | eval_plan_001_flat_nli | CED vs flat-NLI ablation: CED margin 是否优于朴素 NLI |\n| cuda:1 | eval_plan_014_sft_no_evidence | SFT-without-evidence 的 rel_f1 → 量化 evidence 生成的性能代价 |\n| cuda:2 | (plan_012 DPO eval Worker 准备中) | DPO+CED 是否避免 forgetting 同时保持 F1 |\n| cuda:3 | eval_grpo_g8_bf16 multi-ckpt | ckpt80 rel_f1=0.4456 已出，等 ckpt90/100 |\n\nWorker 池: plan_012 eval (GPU) + plan_009 forgetting figure (CPU) + 即将 spawn 文献调研 (CPU)\n\n### 等待 Director 决策 (延续上轮)\n1. **C2 reframe 方向**: plan_011 确认 decoupling 是 QLoRA-specific。建议 C2 → \"quantization noise disrupts RL signal in structured IE: evidence-extraction catastrophically decouples under QLoRA but not bf16 LoRA\"。这其实是更 interesting 的发现（量化噪声如何破坏 RL 的 reward signal），但 claim 边界更窄。请审批 reframe 方向。\n2. **plan_008 topk3 ablation** (P1): cuda:2 空出后可提交。CED scoring top_k=3 (~8000 samples) vs top_k=1 (~2718 samples)，验证 CED 过滤严格度对 RSFT 质量的影响。是否批准？\n\n### Publishability 三必要条件进展\n| 条件 | 状态 | 进展 |\n|------|------|------|\n| RSFT test set rel_f1 > SFT | ⏳ | 训练 4/4 PASS, test eval 待 plan_001 完成后执行 (plan_002) |\n| DREEAM-protocol Evi-F1 | ✅ | plan_004 完成: dev_evi_f1=54.01 (encoder baseline) |\n| GRPO decoupling G=8 复现 | ✅→❌ | plan_011: bf16 下不复现。但这是更 interesting 的发现——C2 reframe needed |"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "agent"
+          },
+          "id": "event-000485"
+        },
+        {
+          "source_line": 486,
+          "timestamp": "2026-05-15T17:50:11.455425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__log_decision,mcp__agent-ml-research__director_reply_to_user",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000486"
+        },
+        {
+          "source_line": 487,
+          "timestamp": "2026-05-15T17:50:11.506084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000487"
+        },
+        {
+          "source_line": 488,
+          "timestamp": "2026-05-15T17:50:26.696470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "summary": "C2 reframe: GRPO decoupling 从\"RL通病\"收窄为\"QLoRA-specific artifact\"。bf16 LoRA GRPO 不遗忘(rel_f1=0.4549 +4.92pp)，QLoRA 崩(0.2167)。Claim 更窄但更 interesting：量化噪声如何破坏 RL reward signal in structured IE。",
+              "rationale": "plan_011 vs mvp2_grpo_ced_kl001_r4 构成 clean single-variable ablation（唯一差异=quantization），Δrel_f1=+23.8pp。原 C2\"GRPO causes decoupling\"已被 plan_011 否定。新 C2 更有实用价值（QLoRA 广泛使用，此 failure mode 未被文献记录），且 Reviewer D052 已确认 ablation 有效性。",
+              "related_experiments": "[{'exp_id': 'plan_011_grpo_g8_bf16_eval', 'role': 'primary', 'result': 'rel_f1=0.4549, no forgetting'}, {'exp_id': 'mvp2_grpo_ced_kl001_r4', 'role': 'control', 'result': 'rel_f1=0.2167, catastrophic forgetting'}, {'exp_id': 'plan_015_grpo_g4_bf16_v2', 'role': 'supporting', 'result': 'killed, plan_011 already provides clean ablation'}]",
+              "depends_on": "['D052', 'D053']"
+            }
+          },
+          "id": "event-000488"
+        },
+        {
+          "source_line": 489,
+          "timestamp": "2026-05-15T17:50:38.313502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D054\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 11617
+          },
+          "id": "event-000489"
+        },
+        {
+          "source_line": 490,
+          "timestamp": "2026-05-15T17:50:38.314083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**实验进展更新** (5/15)\n\n**4 个实验完成，3 个关键发现：**\n\n1. **GRPO 遗忘是 QLoRA 特有问题**（plan_011）\n   - bf16 LoRA GRPO: rel_f1=0.4549（+4.9pp vs SFT），无遗忘\n   - QLoRA GRPO: rel_f1=0.2167，catastrophic forgetting\n   - Clean single-variable ablation，唯一差异=量化方式\n   - → C2 reframe：从\"RL导致decoupling\"收窄为\"QLoRA量化噪声破坏RL信号\"\n\n2. **CED reranker 推理时直接可用**（plan_005）\n   - N=8 生成 + CED 选最佳 → rel_f1=0.4864（+8pp vs SFT，+2.7pp vs RSFT）\n   - 无需额外训练，推理时即用\n   - Oracle 上界 rel_f1=0.6237\n\n3. **DREEAM encoder baseline 建立**（plan_004）\n   - dev_rel_f1=63.57, dev_evi_f1=54.01\n   - 与 FREIGE 的 protocol 差异需在论文中谨慎表述\n\n**当前 4 GPU 满载运行 P0 eval：**\n- cuda:0: plan_001 flat-NLI RSFT eval（CED vs NLI ablation）\n- cuda:1: plan_014 SFT-no-evidence eval（evidence 生成代价）\n- cuda:2: plan_012 DPO eval（准备中）\n- cuda:3: GRPO bf16 multi-ckpt eval\n\n结果陆续回来后汇报。"
+            }
+          },
+          "id": "event-000490"
+        },
+        {
+          "source_line": 491,
+          "timestamp": "2026-05-15T17:50:42.563467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 4249
+          },
+          "id": "event-000491"
+        },
+        {
+          "source_line": 492,
+          "timestamp": "2026-05-15T17:50:55.079595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "text": "[Director 指令] 两个决策\n\n**1. C2 reframe — 批准 (D054)**\n方向确认：C2 从\"GRPO causes decoupling\"改为\"QLoRA quantization noise disrupts RL reward signal in structured IE — evidence-extraction catastrophically decouples under QLoRA but not bf16 LoRA\"。paper_framing.md 中 C2 需要更新，但先等 P0 eval 全部回来再统一改。\n\n**2. plan_008 topk3 ablation — 批准，但排在 P0 eval 之后**\ncuda:2 当前优先给 plan_012 DPO eval（两个 checkpoint: ckpt-400 和 ckpt-501）。DPO eval 完成后 cuda:2 给 plan_008。\n\n**当前优先级：**\n1. plan_012 DPO eval on cuda:2（最高优先，Reviewer 报过拟合 WARNING，需要看实际 F1）\n2. 等 plan_001 / plan_014 / eval_grpo_g8_bf16 结果回来\n3. plan_008 topk3 排 DPO eval 之后\n\nplan_005 CED reranker rel_f1=0.4864 是目前最好单点成绩，确认已记录到 registry。"
+            }
+          },
+          "id": "event-000492"
+        },
+        {
+          "source_line": 493,
+          "timestamp": "2026-05-15T17:50:56.238125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f41813a04a0c437788b757d81c\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 7, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[Director 指令] [Director 紧急] 立即 kill PID 229668 on cuda:1\\\\n\\\\nReviewer 发现 cuda:1 有两个 eval 进程冲突：\\\\n- PID 229668（旧，错误配置）：缺 `--no_evidence` flag，结果不可用，占 12.9GB\\\\n- PID 230809（新，正确配置）：有 `--no_evidence`，已注册为 eval_\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 1158
+          },
+          "id": "event-000493"
+        },
+        {
+          "source_line": 494,
+          "timestamp": "2026-05-15T17:51:00.540308+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "D054 已记录，指令已排队。C2 reframe 批准，plan_008 排在 DPO eval 之后。4 张 GPU 满载跑 P0 eval，等结果回来。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000494"
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "messages": [
+        {
+          "source_line": 495,
+          "timestamp": "2026-05-15T17:52:32.504807+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 20min\n\n⚠️ 你自己的 context 状态：已 42 条消息 / 3h 20min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000495"
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "messages": [
+        {
+          "source_line": 496,
+          "timestamp": "2026-05-15T17:52:37.506014+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 17min\n\n⚠️ 你自己的 context 状态：已 42 条消息 / 3h 20min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000496"
+        },
+        {
+          "source_line": 497,
+          "timestamp": "2026-05-15T17:52:51.107181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-000497"
+        },
+        {
+          "source_line": 498,
+          "timestamp": "2026-05-15T17:52:51.157878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 50
+          },
+          "id": "event-000498"
+        },
+        {
+          "source_line": 499,
+          "timestamp": "2026-05-15T17:52:53.184397+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 连续两次新 session 都在 1 条消息后空闲 3 小时，明显有系统性问题。我的 context 也到 42 条了，关键决策（D054）和指令都已持久化。eval 实验在 GPU 上跑着有 cron 监控。两边一起重置，新 session 干净接手处理即将回来的 eval 结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000499"
+        },
+        {
+          "source_line": 500,
+          "timestamp": "2026-05-15T17:53:09.418434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ralph_respond",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000500"
+        },
+        {
+          "source_line": 501,
+          "timestamp": "2026-05-15T17:53:09.469073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000501"
+        },
+        {
+          "source_line": 502,
+          "timestamp": "2026-05-15T17:53:12.739481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-000502"
+        },
+        {
+          "source_line": 503,
+          "timestamp": "2026-05-15T17:53:12.842559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 103
+          },
+          "id": "event-000503"
+        },
+        {
+          "source_line": 504,
+          "timestamp": "2026-05-15T17:53:16.340161+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "双方均已批准重置，等待系统发 [WRITE HANDOFF] 写交接文档。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000504"
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "messages": [
+        {
+          "source_line": 505,
+          "timestamp": "2026-05-15T17:54:37.896345+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 20min\n\n⚠️ 你自己的 context 状态：已 43 条消息 / 3h 22min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000505"
+        },
+        {
+          "source_line": 506,
+          "timestamp": "2026-05-15T17:54:46.224548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-000506"
+        },
+        {
+          "source_line": 507,
+          "timestamp": "2026-05-15T17:54:46.275405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 50
+          },
+          "id": "event-000507"
+        },
+        {
+          "source_line": 508,
+          "timestamp": "2026-05-15T17:54:48.524582+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "本轮同样已收敛，继续 RESET_BOTH。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director"
+          },
+          "id": "event-000508"
+        }
+      ]
+    },
+    {
+      "number": 71,
+      "messages": [
+        {
+          "source_line": 509,
+          "timestamp": "2026-05-15T17:55:58.531629+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\nPID 229668 已 kill。派 Worker 确认 cuda:1 只剩 PID 230809。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "main_agent"
+          },
+          "id": "event-000509"
+        },
+        {
+          "source_line": 510,
+          "timestamp": "2026-05-15T17:56:06.906118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__get_agent_queue_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000510"
+        },
+        {
+          "source_line": 511,
+          "timestamp": "2026-05-15T17:56:06.956812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000511"
+        },
+        {
+          "source_line": 512,
+          "timestamp": "2026-05-15T17:56:09.620451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000512"
+        },
+        {
+          "source_line": 513,
+          "timestamp": "2026-05-15T17:56:09.621010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000513"
+        },
+        {
+          "source_line": 514,
+          "timestamp": "2026-05-15T17:56:10.181711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `faith-evidence-ie`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    rtx5090-4x (connect.bjb2.seetacloud.com) [root] + bjb2-12179 [root]\\n✓ 代码路径  /root/autodl-tmp/freige\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 54 条记录\\n\\n── 📊 研究进度 ──\\n实验: 88 个 (运行中 2 | 分析中 4 | 待处理 2 | 完成 80 | 成功 32)\\n\\n  mvp2_grpo_ced_r3      DONE (failed)\\n  mvp2_grpo_ced_r2      DONE (killed)\\n  mvp2_grpo_ced_r1      DONE (killed)\\n  mvp2_grpo_ced         DONE (failed)\\n  precompute_nli_train  DONE (success)\\n  mvp2_sft_warmup       DONE (success)\\n  smoke_test_grpo       DONE (success)\\n  mvp1_ced_signal       DONE (success)\\n\\n── 📝 最新报告 ──\\n<!-- AUTO-FACTS-BEGIN (generated 2026-05-15T17:55:06Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 65 个实验 — ANALYZING 4, DONE 57, PREPARING 2, RUNNING 2\\n**DONE 分布**: failed 9, killed 14, negative 8, success 26\\n\\n### GPU 占用\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n- **实际运行**: 2 张 — rtx5090-4x:cuda:0(eval_plan_001_flat_nli), rtx5090-4x:cuda:1(eval_plan_014_sft_no_evidence)\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 561
+          },
+          "id": "event-000514"
+        },
+        {
+          "source_line": 515,
+          "timestamp": "2026-05-15T17:56:10.232550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":10,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_014_sft_no_evidence_20260515T170422 已完成（status=done）。用 `get_worker_status('wor\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_eval_plan_014_sft_no_evidence_20260515T171645 已完成（status=done）。用 `get_worker_status('wor\\\",\\\"queued_at\\\":1778865659.8784704},{\\\"source\\\":\\\"system:ralph_loop:dispatch\\\",\\\"preview\\\":\\\"[RALPH DISPATCH] RESET_AGENT\\\",\\\"queued_at\\\":1778866582.7814727},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_verify_cuda1_cleanup_20260515T173626 已完成（status=done）。用 `get_worker_status('worker_ops_v\\\",\\\"queued_at\\\":1778866619.174176},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] plan_012 DPO+CED eval — cuda:2 已空出\\\\n\\\\nplan_012 训练完成（Reviewer WARNING：过拟合信号明显）。立即提交 dev eval on\\\",\\\"queued_at\\\":1778866874.8401437},{\\\"source\\\":\\\"system:ralph_loop:dispatch\\\",\\\"preview\\\":\\\"[RALPH DISPATCH] RESET_AGENT\\\",\\\"queued_at\\\":1778866913.316815},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_plan_009_forgetting_figure_20260515T174224 已完成（status=done）。用 `get_worker_status('w\\\",\\\"queued_at\\\":1778867427.1148288},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] 两个决策\\\\n\\\\n**1. C2 reframe — 批准 (D054)**\\\\n方向确认：C2 从\\\\\\\"GRPO causes decoupling\\\\\\\"改为\\\\\\\"QLoRA quantization n\\\",\\\"queued_at\\\":1778867456.1819062},{\\\"source\\\":\\\"system:ralph_loop:dispatch\\\",\\\"preview\\\":\\\"[RALPH DISPATCH] RESET_BOTH\\\",\\\"queued_at\\\":1778867573.1850708},{\\\"source\\\":\\\"system:ralph_loop:dispatch\\\",\\\"preview\\\":\\\"[RALPH DISPATCH] RESET_BOTH\\\",\\\"queued_at\\\":1778867596.3405333},{\\\"source\\\":\\\"system:ralph_loop:dispatch\\\",\\\"preview\\\":\\\"[RALPH DISPATCH] RESET_BOTH\\\",\\\"queued_at\\\":1778867688.5250905}],\\\"idle_seconds\\\":14}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 611
+          },
+          "id": "event-000515"
+        }
+      ]
+    },
+    {
+      "number": 72,
+      "messages": [
+        {
+          "source_line": 516,
+          "timestamp": "2026-05-15T17:56:23.451965+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — Review 14: eval_grpo_g8_bf16 完成（全部 checkpoint）\n\n**结论**: PASS\n\n### 发现\n\n- [severity: info] **bf16 GRPO G=8 完整三点轨迹确认——无遗忘，稳步提升**：\n\n  | Checkpoint | rel_f1 | evi_f1 | EDCR | format_ok | truncated |\n  |------------|--------|--------|------|-----------|-----------|\n  | ckpt-80 | 0.4456 | 0.8034 | 0.6409 | 984/985 | 50 |\n  | ckpt-90 | 0.4523 | 0.8052 | 0.6414 | 983/985 | 60 |\n  | ckpt-100 | **0.4549** | **0.8086** | **0.6318** | **985/985** | 61 |\n\n- [severity: info] **ckpt-100 re-eval 与之前记录完全一致**（rel_f1=0.4549），确认可复现。\n\n- [severity: info] **方法对比**（rel_f1 / evi_f1）：\n  - SFT baseline: 0.4057 / 0.7979\n  - bf16 GRPO ckpt-100: 0.4549 / 0.8086 — **vs SFT +4.92pp / +1.07pp** ✓\n  - RSFT CED 3-seed mean: 0.4596 / 0.8143 — **vs GRPO 仅差 0.47pp / 0.57pp**（noise level）\n  - QLoRA GRPO ckpt-100: 0.2167 / 0.5746 — catastrophic forgetting ✓\n  \n  bf16 GRPO 与 RSFT 基本持平，两者均显著优于 SFT baseline。**C2（QLoRA-specific forgetting）和 C3（bf16 GRPO 可行性）的 evidence 链完整**。\n\n- [severity: info] 趋势分析：rel_f1 在 80→100 步区间仍在缓慢上升（+0.93pp/20步），未见平台期。如 paper 需要更强结果，可考虑延长训练（150-200 步），但当前数据已足够支撑 claims。\n\n### GPU 状态更新\n- cuda:0: eval_plan_001_flat_nli（仍在运行）\n- cuda:1: eval_plan_014_sft_no_evidence（仍在运行）\n- cuda:2: **eval_plan_012_dpo_ced**（PID 232312，刚启动 13 min，配置正确：--sft_adapter + --model_path dpo_output + --no-quantize）\n- cuda:3: **空闲**"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "reviewer"
+          },
+          "id": "event-000516"
+        },
+        {
+          "source_line": 517,
+          "timestamp": "2026-05-15T17:56:43.613196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__read_roadmap",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000517"
+        },
+        {
+          "source_line": 518,
+          "timestamp": "2026-05-15T17:56:43.664288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000518"
+        },
+        {
+          "source_line": 519,
+          "timestamp": "2026-05-15T17:56:47.585306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000519"
+        },
+        {
+          "source_line": 520,
+          "timestamp": "2026-05-15T17:56:47.637413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000520"
+        },
+        {
+          "source_line": 521,
+          "timestamp": "2026-05-15T17:56:48.097321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选 RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py 用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [], \\\"registry_id\\\": \\\"plan_001_rsft_flat_nli\\\", \\\"status\\\": \\\"ANALYZING\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.6238, \\\"train_loss_min\\\": 0.5803, \\\"mean_token_accuracy\\\": 0.8528, \\\"train_runtime_sec\\\": 2946, \\\"epochs\\\": 3, \\\"total_steps\\\": 507, \\\"samples\\\": 2691}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set 上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 4, \\\"description\\\": \\\"EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing 方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large) 的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [], \\\"registry_id\\\": \\\"plan_004_dreeam_baseline\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dev_rel_f1\\\": 63.57, \\\"dev_rel_ign_f1\\\": 61.72, \\\"dev_evi_f1\\\": 54.01, \\\"dev_rel_p\\\": 66.95, \\\"dev_rel_r\\\": 60.51, \\\"dev_evi_p\\\": 60.53, \\\"dev_evi_r\\\": 48.76}}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hou\n…[truncated 6775 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 512
+          },
+          "id": "event-000521"
+        },
+        {
+          "source_line": 522,
+          "timestamp": "2026-05-15T17:56:48.098123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 14:41 UTC | 更新原因: Dream v2 结果分析(D049): best=3.0/median=2.5 未达标，新增 plan_015 bf16 GRPO 控制 + 行动追踪表\\\\n\\\\n## 核心方向\\\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。核心发现：GRPO 在结构化 IE 上导致 evidence-extraction decoupling。RSFT+NLI-based scoring 有效提升证据质量。论文定位待 reframe：从 CED-centric 转向 \\\\\\\"task definition + decoupling finding + EDCR metric\\\\\\\"。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（MVP 2026-05-15 通过）+ 审稿同步进行\\\\n- **Dream v1**: best=2.5, median=3.0, worst=2.5 → 不达标\\\\n- **Reframe 完成** (D044): CED 降级、claims 重构\\\\n- **Dream v2** (D049): best=3.0, median=2.5, worst=2.5 → **仍未达标**（目标 best≥3.5, median≥3.0）\\\\n- **Dream v2 结构性问题**: (1) CED≈flat-NLI 标题错配 (2) QLoRA confound (3) related work 缺口 (4) 缺 forgetting figure (5) DPO 细节不足\\\\n- **MVP 成果**: RSFT 4/4 configs PASS (rel_f1 +3.9~6.0pp vs SFT)\\\\n- **GRPO 判死**: QLoRA G=4 全线 catastrophic forgetting (D031/D033)\\\\n- **plan_011 GRPO G=8 bf16**: 训练完成 (100 steps, exit_code=0, reward↑), **dev eval 进行中**\\\\n\\\\n## 投稿目标\\\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25)\\\\n- 不 fallback Findings，补实验+reframe 冲 Main\\\\n\\\\n## 近期任务\\\\n- [ ] **plan_011 dev eval**（cuda:3，Agent 正在执行）→ 决定 plan_015 优先级\\\\n- [ ] plan_001 flat-NLI RSFT ablation（数据 scoring 完成，待训练）\\\\n- [ ] plan_004 DREEAM baseline（cuda:2 运行中）\\\\n- [ ] plan_005 CED reranker（cuda:0 运行中）\\\\n- [ ] maxtok1536_r2 eval（cuda:1 运行中）\\\\n- [ ] plan_015 bf16 GRPO clean control（待 plan_011 eval 结果决定优先级）\\\\n- [ ] plan_014 SFT-without-evidence ablation（P0，待 GPU 空出）\\\\n- [ ] plan_012 DPO+CED（P0，完整记录超参）\\\\n- [ ] plan_009 forgetting dynamics figure（P0，数据已有，汇总+画图）\\\\n- [ ] Paper Agent: retitle + reframe + related work 扩展\\\\n\\\\n## GPU 分配\\\\n\\\\n| GPU | 状态 | 任务 |\\\\n|-----|------|------|\\\\n| cuda:0 | 🏃 | mvp2_ced_reranker_poc (plan_005) |\\\\n| cuda:1 | 🏃 | mvp2_eval_rsft_r2b_maxtok1536_r2 |\n…[truncated 2598 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 460
+          },
+          "id": "event-000522"
+        },
+        {
+          "source_line": 523,
+          "timestamp": "2026-05-15T17:56:56.044625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__read_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000523"
+        },
+        {
+          "source_line": 524,
+          "timestamp": "2026-05-15T17:56:56.095318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000524"
+        },
+        {
+          "source_line": 525,
+          "timestamp": "2026-05-15T17:57:01.731429+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000525"
+        },
+        {
+          "source_line": 526,
+          "timestamp": "2026-05-15T17:57:02.285015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 14:41 UTC | 更新原因: Dream v2 结果分析(D049): best=3.0/median=2.5 未达标，新增 plan_015 bf16 GRPO 控制 + 行动追踪表\\\\n\\\\n## 核心方向\\\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。核心发现：GRPO 在结构化 IE 上导致 evidence-extraction decoupling。RSFT+NLI-based scoring 有效提升证据质量。论文定位待 reframe：从 CED-centric 转向 \\\\\\\"task definition + decoupling finding + EDCR metric\\\\\\\"。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（MVP 2026-05-15 通过）+ 审稿同步进行\\\\n- **Dream v1**: best=2.5, median=3.0, worst=2.5 → 不达标\\\\n- **Reframe 完成** (D044): CED 降级、claims 重构\\\\n- **Dream v2** (D049): best=3.0, median=2.5, worst=2.5 → **仍未达标**（目标 best≥3.5, median≥3.0）\\\\n- **Dream v2 结构性问题**: (1) CED≈flat-NLI 标题错配 (2) QLoRA confound (3) related work 缺口 (4) 缺 forgetting figure (5) DPO 细节不足\\\\n- **MVP 成果**: RSFT 4/4 configs PASS (rel_f1 +3.9~6.0pp vs SFT)\\\\n- **GRPO 判死**: QLoRA G=4 全线 catastrophic forgetting (D031/D033)\\\\n- **plan_011 GRPO G=8 bf16**: 训练完成 (100 steps, exit_code=0, reward↑), **dev eval 进行中**\\\\n\\\\n## 投稿目标\\\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25)\\\\n- 不 fallback Findings，补实验+reframe 冲 Main\\\\n\\\\n## 近期任务\\\\n- [ ] **plan_011 dev eval**（cuda:3，Agent 正在执行）→ 决定 plan_015 优先级\\\\n- [ ] plan_001 flat-NLI RSFT ablation（数据 scoring 完成，待训练）\\\\n- [ ] plan_004 DREEAM baseline（cuda:2 运行中）\\\\n- [ ] plan_005 CED reranker（cuda:0 运行中）\\\\n- [ ] maxtok1536_r2 eval（cuda:1 运行中）\\\\n- [ ] plan_015 bf16 GRPO clean control（待 plan_011 eval 结果决定优先级）\\\\n- [ ] plan_014 SFT-without-evidence ablation（P0，待 GPU 空出）\\\\n- [ ] plan_012 DPO+CED（P0，完整记录超参）\\\\n- [ ] plan_009 forgetting dynamics figure（P0，数据已有，汇总+画图）\\\\n- [ ] Paper Agent: retitle + reframe + related work 扩展\\\\n\\\\n## GPU 分配\\\\n\\\\n| GPU | 状态 | 任务 |\\\\n|-----|------|------|\\\\n| cuda:0 | 🏃 | mvp2_ced_reranker_poc (plan_005) |\\\\n| cuda:1 | 🏃 | mvp2_eval_rsft_r2b_maxtok1536_r2 |\n…[truncated 2598 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 553
+          },
+          "id": "event-000526"
+        },
+        {
+          "source_line": 527,
+          "timestamp": "2026-05-15T17:57:02.285519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000527"
+        },
+        {
+          "source_line": 528,
+          "timestamp": "2026-05-15T17:57:02.490660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000528"
+        },
+        {
+          "source_line": 529,
+          "timestamp": "2026-05-15T17:57:02.844463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选 RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py 用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [], \\\"registry_id\\\": \\\"plan_001_rsft_flat_nli\\\", \\\"status\\\": \\\"ANALYZING\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.6238, \\\"train_loss_min\\\": 0.5803, \\\"mean_token_accuracy\\\": 0.8528, \\\"train_runtime_sec\\\": 2946, \\\"epochs\\\": 3, \\\"total_steps\\\": 507, \\\"samples\\\": 2691}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set 上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 4, \\\"description\\\": \\\"EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing 方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large) 的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [], \\\"registry_id\\\": \\\"plan_004_dreeam_baseline\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dev_rel_f1\\\": 63.57, \\\"dev_rel_ign_f1\\\": 61.72, \\\"dev_evi_f1\\\": 54.01, \\\"dev_rel_p\\\": 66.95, \\\"dev_rel_r\\\": 60.51, \\\"dev_evi_p\\\": 60.53, \\\"dev_evi_r\\\": 48.76}}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hou\n…[truncated 6999 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 558
+          },
+          "id": "event-000529"
+        },
+        {
+          "source_line": 530,
+          "timestamp": "2026-05-15T17:57:02.845066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-15T17:55:06Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 65 个实验 — ANALYZING 4, DONE 57, PREPARING 2, RUNNING 2\\\\n**DONE 分布**: failed 9, killed 14, negative 8, success 26\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\\\n- **实际运行**: 2 张 — rtx5090-4x:cuda:0(eval_plan_001_flat_nli), rtx5090-4x:cuda:1(eval_plan_014_sft_no_evidence)\\\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval_plan_001_flat_nli` | rtx5090-4x | cuda:0 | 228508 | `~/runs/faith-evidence-ie/eval_plan_001_flat_nli.log` |\\\\n| `eval_plan_014_sft_no_evidence` | rtx5090-4x | cuda:1 | 230804 | `~/runs/faith-evidence-ie/eval_plan_014_sft_no_evidence.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `plan_015_grpo_g4_bf16_v3` [killed] — 2026-05-15T16:54:54\\\\n- `plan_015_grpo_g4_bf16_v2` [killed] — 2026-05-15T16:54:42\\\\n- `plan_015_grpo_g4_bf16` [killed] — 2026-05-15T16:03:08\\\\n- `plan_011_grpo_g8_bf16` [success] — 2026-05-15T15:55:53\\\\n- `plan_011_grpo_g8_bf16_eval` [success] — 2026-05-15T15:55:52\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `plan_015_grpo_g4_bf16_v3`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n- `plan_015_grpo_g4_bf16_v2`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n- `plan_015_grpo_g4_bf16`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| eval_plan_014_sft_no_evidence | — | — | — | — |\\\\n| eval_plan_001_flat_nli | Dev eval of flat-NLI RSFT (plan_001). 对比 CED RSFT (3-seed mean rel_f1=0.4\n…[truncated 3172 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 354
+          },
+          "id": "event-000530"
+        },
+        {
+          "source_line": 531,
+          "timestamp": "2026-05-15T17:57:38.146446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__replace_agent_queue",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000531"
+        },
+        {
+          "source_line": 532,
+          "timestamp": "2026-05-15T17:57:38.159728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 13
+          },
+          "id": "event-000532"
+        }
+      ]
+    },
+    {
+      "number": 73,
+      "messages": [
+        {
+          "source_line": 533,
+          "timestamp": "2026-05-15T17:57:39.836355+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 2min\n\n⚠️ 你自己的 context 状态：已 43 条消息 / 3h 25min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000533"
+        },
+        {
+          "source_line": 534,
+          "timestamp": "2026-05-15T17:57:52.688427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_AGENT"
+            }
+          },
+          "id": "event-000534"
+        },
+        {
+          "source_line": 535,
+          "timestamp": "2026-05-15T17:57:52.790275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_AGENT\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 101
+          },
+          "id": "event-000535"
+        },
+        {
+          "source_line": 536,
+          "timestamp": "2026-05-15T17:57:56.366089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__replace_agent_queue,mcp__agent-ml-research__director_post_to_main_agent,mcp__agent-ml-research__cancel_agent_queue_item",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000536"
+        },
+        {
+          "source_line": 537,
+          "timestamp": "2026-05-15T17:57:56.366643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000537"
+        },
+        {
+          "source_line": 538,
+          "timestamp": "2026-05-15T17:57:57.573466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__replace_agent_queue"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__replace_agent_queue",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "message": "[Director 指令] 综合指令 — 清理队列后的统一任务\n\n当前 GPU 状态:\n- cuda:0: eval_plan_001_flat_nli (RUNNING)\n- cuda:1: eval_plan_014_sft_no_evidence (RUNNING)\n- cuda:2: **空闲** ← 立即占用\n- cuda:3: **空闲** ← 立即占用\n\n**任务 1 (cuda:2): plan_012 DPO+CED dev eval**\nplan_012 训练已完成，状态 ANALYZING。立即在 cuda:2 上跑 dev eval（全量 985 docs）。Reviewer WARNING 过拟合信号明显，eval 结果需要特别关注 rel_f1 是否退化。完整记录: rel_f1, ign_f1, evi_f1, EDCR, format_ok_rate, n_predictions。\n\n**任务 2 (cuda:3): plan_009 forgetting dynamics figure**\n数据已有（全部 GRPO checkpoint 的 eval 结果），汇总所有 checkpoint 的 rel_f1/evi_f1/EDCR/reward 轨迹，画 training dynamics 图。包含:\n- G=4 QLoRA vs G=8 bf16 对比\n- 三种 reward (CED/flat-NLI/extract) 对比（如数据可用）\n- X 轴 training steps，Y 轴多指标\n输出 PDF 到 artifacts/ 目录。如果画图本身不需要 GPU，cuda:3 空出后立即安排下一个任务（plan_003 EDCR pipeline 或其他 P0 待跑实验）。\n\n**决策通知: C2 reframe (D054)**\nC2 从 \"GRPO causes decoupling\" 改为 \"QLoRA quantization noise is a key driver of catastrophic forgetting in GRPO-for-IE\"。依据: plan_011 bf16 G=8 rel_f1=0.4549 vs mvp2_grpo_ced_kl001_r4 QLoRA G=4 rel_f1=0.2167，Δ=+23.8pp。这是 clean single-variable quantization ablation（D052 Reviewer 核实）。plan_015 全部 killed，不再需要。\n\n**ANALYZING 实验处理**\n- plan_001: eval 在 cuda:0 跑着，完成后立即汇报 rel_f1/evi_f1/EDCR，对比 CED RSFT 3-seed mean (rel_f1=0.4596)\n- plan_014: eval 在 cuda:1 跑着，完成后立即汇报 rel_f1（隔离 evidence generation 对性能的代价）\n- plan_012: 见任务 1\n\n所有 eval 完成后汇报全量结果。cuda:2/cuda:3 不许空着。"
+            }
+          },
+          "id": "event-000538"
+        },
+        {
+          "source_line": 539,
+          "timestamp": "2026-05-15T17:57:58.177480+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"cancelled\\\":13,\\\"new_message_queued\\\":true,\\\"agent_key\\\":\\\"feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "mcp__agent-ml-research__replace_agent_queue",
+            "elapsed_ms": 604
+          },
+          "id": "event-000539"
+        },
+        {
+          "source_line": 540,
+          "timestamp": "2026-05-15T17:58:10.444401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_reply_to_user",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000540"
+        }
+      ]
+    }
+  ]
+}

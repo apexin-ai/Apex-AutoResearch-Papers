@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49e78e0a6d3e4f8a7556",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze mvp2 rsft train r1 s44",
+  "task_key": "worker_analyze_mvp2_rsft_train_r1_s44_20260515T073356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_mvp2_rsft_train_r1_s44_20260515T073356_result.json",
+    "occurrence": 1,
+    "bytes": 1347,
+    "sha256": "1607165205516e1a5e6255537f327ebfe4bb1a5a608352757aeca64cefef261e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。分析报告如下：\n\n---\n\n## mvp2_rsft_train_r1_s44 分析报告\n\n### 训练状态\n- **完成**，EXIT_CODE=0，无报错\n- 训练时间：~1h52m，3 epochs，510 steps\n- train_loss=0.6138\n\n### Task Eval Metrics\n\n| Metric | Step 170 (~Epoch 1) | Step 510 (Epoch 3, Final) | Pass 标准 |\n|--------|---------------------|---------------------------|-----------|\n| **rel_f1 (F1)** | 0.0448 | **0.0509** | > 0.4057 |\n| **evi_f1** | 0.7545 | **0.7798** | > 0.798 |\n| ign_f1 | 0.0448 | 0.0509 | - |\n| EDCR | 0.6181 | 0.6030 | - |\n| preds | 812 | 771 | - |\n\n### HF Trainer Eval\n\n| Metric | Epoch 2 | Epoch 3 |\n|--------|---------|---------|\n| eval_loss | 0.7590 | 0.7625 |\n| mean_token_accuracy | 0.8291 | 0.8290 |\n\n### Pass 判定：**FAIL**\n- rel_f1 = 0.0509 << 0.4057（相对 SFT baseline 下降 87%，灾难性退化）\n- evi_f1 = 0.7798 < 0.798（差 0.0182，未达标）\n\n### Checkpoint\n`/root/autodl-tmp/rsft_output_s44/` — adapter_model.safetensors (528MB)，含 5 个中间 checkpoint (350/400/450/500/510)\n\n### 结论：**NEGATIVE**\nRSFT 训练严重破坏了 relation extraction 能力（rel_f1 从 0.4057 降到 0.0509），evidence F1 虽有改善趋势但仍未达标。seed=44 的 variance run 确认了 RSFT r1 方案的根本问题不是随机性导致的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-mvp2-rsft-train-r1-s44.md"
+}

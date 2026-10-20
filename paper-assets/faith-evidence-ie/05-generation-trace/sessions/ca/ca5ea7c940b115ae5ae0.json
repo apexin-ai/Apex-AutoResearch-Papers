@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "ca5ea7c940b115ae5ae0",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "code plan 002 003 prep",
+  "task_key": "worker_code_plan_002_003_prep_20260515T180127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_002_003_prep_20260515T180127.log",
+    "occurrence": 1,
+    "bytes": 784292,
+    "sha256": "4e17317b7ed3b64f9a34c673908db10c676d289851f49fe7ae33a502013ee0a2"
+  },
+  "statistics": {
+    "messages": 185,
+    "user_turns": 1,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 68,
+      "tool_result": 68,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "ca5ea7c940b115ae5ae0-part-0001.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 154,
+      "chunks": [
+        {
+          "path": "ca5ea7c940b115ae5ae0-part-0001.json",
+          "message_count": 93
+        },
+        {
+          "path": "ca5ea7c940b115ae5ae0-part-0002.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-002-003-prep.md"
+}

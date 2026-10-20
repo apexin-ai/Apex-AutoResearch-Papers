@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de82cec53745b6a1f3c4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis edcr deduped with reranker",
+  "task_key": "worker_analysis_edcr_deduped_with_reranker_20260518T074117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_edcr_deduped_with_reranker_20260518T074117_result.json",
+    "occurrence": 1,
+    "bytes": 1076,
+    "sha256": "5de95bf1940c409f2f684c849f9101541d17c3b057521d3ff6f8d3a40435d5ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整输出：\n\n```\n去重全集 (n=7):\n  Methods: ['SFT', 'RSFT_CED', 'RSFT_flatNLI', 'GRPO_QLoRA', 'GRPO_bf16_G8', 'DPO_1ep', 'CED_reranker']\n  EDCR vs Rel-F1: rho=-0.8929, p=0.006807\n  EDCR vs Evi-F1: rho=-0.7143, p=0.071344\n  (Evi-F1 - Rel-F1) vs Rel-F1: rho=-0.7857, p=0.036238\n\n无GRPO_QLoRA (n=6):\n  Methods: ['SFT', 'RSFT_CED', 'RSFT_flatNLI', 'GRPO_bf16_G8', 'DPO_1ep', 'CED_reranker']\n  EDCR vs Rel-F1: rho=-0.8286, p=0.041563\n  EDCR vs Evi-F1: rho=-0.5429, p=0.265703\n  (Evi-F1 - Rel-F1) vs Rel-F1: rho=-0.8286, p=0.041563\n\n无QLoRA无DPO (n=5):\n  Methods: ['SFT', 'RSFT_CED', 'RSFT_flatNLI', 'GRPO_bf16_G8', 'CED_reranker']\n  EDCR vs Rel-F1: rho=-0.7000, p=0.188120\n  EDCR vs Evi-F1: rho=-0.9000, p=0.037386\n  (Evi-F1 - Rel-F1) vs Rel-F1: rho=-0.7000, p=0.188120\n```\n\n加入 CED_reranker 后，EDCR vs Rel-F1 在全集 n=7 上 ρ=-0.8929 (p=0.007)，相关性进一步增强且高度显著。去掉 GRPO_QLoRA 的 n=6 子集也保持显著 (ρ=-0.8286, p=0.042)。n=5 子集因样本量太小失去统计显著性 (p=0.188)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-edcr-deduped-with-reranker.md"
+}

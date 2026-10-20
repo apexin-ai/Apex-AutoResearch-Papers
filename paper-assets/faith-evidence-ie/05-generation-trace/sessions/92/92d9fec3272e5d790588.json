@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92d9fec3272e5d790588",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose flatnli r5 checkpoint 140",
+  "task_key": "worker_diagnose_flatnli-r5-checkpoint-140_20260514T172119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_flatnli-r5-checkpoint-140_20260514T172119_result.json",
+    "occurrence": 1,
+    "bytes": 1754,
+    "sha256": "8e162984bde001a87c36085919b25876dff64ef9f90987d461a2e8e9c0c6558a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果报告\n\n### 状态总览\n- **检查的 checkpoint**: step 120（最新可用，checkpoint-140 尚未生成）\n- **训练进度**: step 134/200，约 48s/step，checkpoint-140 约 5 分钟后生成\n- **进程**: PID 73407 存活，GPU PID 73412（子进程），占用 11608 MiB on cuda:3\n- **save_steps**: 实际为 20（下一个 checkpoint 在 step 140）\n\n### frac_zero_std 趋势（恢复训练后）\n\n| Step | frac_zero_std | KL | reward | nli_reward |\n|------|--------------|------|--------|------------|\n| 100 | 0.0 | — | 1.236 | 0.911 | ← r3 结束点\n| **105** | **0.9** | 0.485 | 0.363 | 0.043 | ← 恢复后立即崩溃\n| 110 | 0.7 | 0.435 | 1.082 | 0.249 |\n| 115 | 0.5 | 0.458 | 0.913 | 0.427 |\n| **120** | **0.8** | 0.456 | 0.560 | 0.171 | ← 最新\n\n### 关键判断\n\n**frac_zero_std = 0.8 @ step 120 → WAIT FOR CHECKPOINT-140**\n\n趋势不乐观：\n- frac_zero_std 在 0.5–0.9 之间震荡，无收敛迹象（105→110 好转，115 继续好转到 0.5，但 120 反弹到 0.8）\n- KL 稳定在 0.44–0.49，显著高于正常范围\n- NLI reward 从恢复前的 0.91 崩至 0.04–0.43，step 120 仅 0.17\n- reward 同步下滑：1.24 → 0.56\n\n### 异常指标\n- **恢复后立即退化**：step 100→105 的 frac_zero_std 从 0.0 跳到 0.9，说明从 r3 恢复的衔接有严重问题\n- **KL 全程高位**：~0.46 持续不降，模型偏离参考策略过远\n- **grad_norm 骤降**：step 105 的 grad_norm 仅 0.059（恢复前 ~0.4–0.9），信号接近消失\n\n### 建议\n等 checkpoint-140（约 5 分钟后）再决定。如果 frac_zero_std ≥ 0.9，立即 kill。按当前震荡模式，大概率维持 0.7–0.9 范围，不太可能自行恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-flatnli-r5-checkpoint-140.md"
+}

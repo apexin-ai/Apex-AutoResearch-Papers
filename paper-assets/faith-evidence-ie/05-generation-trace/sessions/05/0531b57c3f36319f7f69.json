@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0531b57c3f36319f7f69",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops harvest 1 7b 2048 final",
+  "task_key": "worker_ops_harvest_1_7b_2048_final_20260519T200859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_harvest_1_7b_2048_final_20260519T200859_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "35b762b728be243ad529ed5839b1621f21ceee2534f2950e715eb893bcc1d013"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/negative，无活跃 cron 需要清理。\n\n## 结果摘要\n\n| 指标 | 1024 tokens | 2048 tokens | 变化 |\n|------|------------|------------|------|\n| **Ign-F1** | 0.4349 | 0.4344 | -0.05pp |\n| **Truncation** | 583/985 (59.2%) | 568/985 (57.7%) | -1.5pp |\n| **Format OK** | — | 958/985 (97.3%) | — |\n| **Evidence Tax** | -7.70pp | **-7.75pp** | 基本一致 |\n\n**结论：1.7B evidence tax 是真实效应，非截断 artifact。**\n\n将 max_new_tokens 翻倍后，ign_f1 几乎不变（0.4349→0.4344），截断率仅微降 1.5pp（59.2%→57.7%）。说明 1.7B 模型在 no-evidence 条件下截断的主因不是 token 不够，而是模型本身生成冗余重复内容——即便给更多空间也无法提升质量。\n\n1.7B 真实 evidence tax = **-7.75pp**（ign_f1: 0.4344 vs with-evidence 0.5119）。对比 4B 的 evidence tax +0.94pp，1.7B 的 evidence 依赖性远高于 4B，这支持 \"小模型更需要 evidence 作为推理线索\" 的假设。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-1-7b-2048-final.md"
+}

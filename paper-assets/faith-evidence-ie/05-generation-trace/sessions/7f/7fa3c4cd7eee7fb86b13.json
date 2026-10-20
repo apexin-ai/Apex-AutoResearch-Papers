@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fa3c4cd7eee7fb86b13",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis reeval flat nli s43",
+  "task_key": "worker_analysis_reeval_flat_nli_s43_20260515T235848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reeval_flat_nli_s43_20260515T235848_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "10841883a37f65be68fed4339a3424ca02fab9a4f7b3a119371302af4a664844"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n## reeval_flat_nli_s43 结论\n\n| 指标 | s43 (本次) | s42 | Δ |\n|------|-----------|-----|---|\n| **rel_f1** | **0.4523** | 0.4539 | -0.16pp |\n| ign_f1 | 0.4523 | — | — |\n| evi_f1 | 0.8158 | — | — |\n| edcr | 0.6505 | — | — |\n\n**结论: success.** flat-NLI RSFT s43 的 rel_f1=0.4523 与 s42 (0.4539) 仅差 0.16pp，确认 seed 稳定性。D064 bug 修复有效（原无效结果 0.0022 → 修复后 0.4523）。flat-NLI 两 seed 均值 0.4531，略低于 CED RSFT 均值 0.4596（差 0.65pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-reeval-flat-nli-s43.md"
+}

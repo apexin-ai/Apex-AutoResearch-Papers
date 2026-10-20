@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b02d31a33f6a9d6277b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose reeval flat nli s43 protocol",
+  "task_key": "worker_diagnose_reeval_flat_nli_s43_protocol_20260516T022754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_reeval_flat_nli_s43_protocol_20260516T022754_result.json",
+    "occurrence": 1,
+    "bytes": 1513,
+    "sha256": "219af53f7166ec22c241aa582c0ad0dbd2c17fef36188d9ee338d470d5968aca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 核实结果\n\n### 协议对比\n\n| 参数 | reeval_flat_nli_s43 | eval_flat_nli_s44 |\n|------|-------------------|------------------|\n| 模型 | Qwen3-4B (full precision) | Qwen3-4B (full precision) |\n| 量化 | **无**（无 4-bit/bnb 日志） | **无** |\n| SFT adapter | ✓ `/root/autodl-tmp/sft_output` | ✓ `/root/autodl-tmp/sft_output` |\n| LoRA adapter | `rsft_output_flat_nli_s43/checkpoint-507` | `rsft_output_flat_nli_s44/checkpoint-507` |\n| **推理 batch 数** | **62** | **247** |\n| **推断 batch_size** | **16** (985/62≈15.9) | **4** (985/247≈3.99) |\n| 总耗时 | 3515.8s (56.71s/batch) | 10580.1s (42.83s/batch) |\n| 文档数 | 985 | 985 |\n\n### 结论\n\n**Reviewer 的量化假说不成立**——两个 eval 都是 full precision，没有 `--no-quantize` 差异。\n\n**真正的协议不一致是 batch_size：s43 用了 batch_size=16，s44 用了 batch_size=4。** 这完美解释了 2.8x 的耗时差异（batch 数量差 4x，但大 batch 单步更慢，净效果约 3x 加速）。\n\n不同 batch_size 可能因 padding 和 attention 行为差异影响生成结果。**建议用 batch_size=4 重跑 s43 eval 以确保跨 seed 可比性**，或者确认 batch_size=16 对结果无实质影响（对比两次 s43 eval 的 metrics）。\n\n补充：`eval_flat_nli_seed44.log` 和 `eval_flat_nli_seed45.log` 都用了 247 batches（batch_size=4），但 seed44 在 batch 12 被 Terminated，seed45 在 batch 208 截断。这些是早期未完成的 run。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-reeval-flat-nli-s43-protocol.md"
+}

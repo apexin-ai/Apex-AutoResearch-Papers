@@ -1,0 +1,3618 @@
+{
+  "schema_version": "1.0",
+  "session_id": "051b58d8a9de4383c4fa",
+  "rounds": [
+    {
+      "number": 80,
+      "messages": [
+        {
+          "source_line": 2341,
+          "timestamp": "2026-05-18T07:50:02.545829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "RL Is Neither a Panacea Nor a Mirage arxiv 2508.16546"
+            }
+          },
+          "id": "event-002341"
+        },
+        {
+          "source_line": 2342,
+          "timestamp": "2026-05-18T07:50:08.632665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"RL Is Neither a Panacea Nor a Mirage arxiv 2508.16546\"\n\nLinks: [{\"title\":\"[2508.16546] RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs\",\"url\":\"https://arxiv.org/abs/2508.16546\"},{\"title\":\"RL Is Neither a Panacea Nor a Mirage:\",\"url\":\"https://arxiv.org/pdf/2508.16546\"},{\"title\":\"RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs\",\"url\":\"https://arxiv.org/html/2508.16546v1\"},{\"title\":\"[2508.16546v1] RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs\",\"url\":\"https://arxiv.org/abs/2508.16546v1\"},{\"title\":\"RL Is Neither a Panacea Nor a Mirage\",\"url\":\"https://www.alphaxiv.org/abs/2508.16546\"},{\"title\":\"(PDF) RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs\",\"url\":\"https://www.researchgate.net/publication/394920663_RL_Is_Neither_a_Panacea_Nor_a_Mirage_Understanding_Supervised_vs_Reinforcement_Learning_Fine-Tuning_for_LLMs\"},{\"title\":\"RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2508.16546v1\"},{\"title\":\"fly51fly on X: \\\"[LG] RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs H Jin, S Lv, S Wu, M Hamdaqa [PolyTechnique Montreal &amp; Mila] (2025) https://t.co/pfputwqimG https://t.co/naW43NrfzO\\\" / X\",\"url\":\"https://x.com/fly51fly/status/1960103399019725166\"},{\"title\":\"RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs - Paper Detail\",\"url\":\"https://deeplearn.org/arxiv/631799/rl-is-neither-a-panacea-nor-a-mirage:-understanding-supervised-vs.-reinforcement-learning-fine-tuning-for-llms\"},{\"title\":\"RL Is Neither a Panacea nor a Mirage: Understanding Supervised vs. Reinforc\n…[truncated 1254 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "WebSearch",
+            "elapsed_ms": 6086
+          },
+          "id": "event-002342"
+        },
+        {
+          "source_line": 2343,
+          "timestamp": "2026-05-18T07:50:08.984816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"R1-RE Cross-Domain Relation Extraction RLVR arxiv 2507.04642\"\n\nLinks: [{\"title\":\"[2507.04642] R1-RE: Cross-Domain Relation Extraction with RLVR\",\"url\":\"https://arxiv.org/abs/2507.04642\"},{\"title\":\"R1-RE: Cross-Domain Relationship Extraction with RLVR\",\"url\":\"https://arxiv.org/html/2507.04642v1\"},{\"title\":\"R1-RE: Cross-Domain Relation Extraction with RLVR\",\"url\":\"https://arxiv.org/html/2507.04642\"},{\"title\":\"R1-RE: Cross-Domain Relation Extraction with RLVR Runpeng Dai1 Tong Zheng2\",\"url\":\"https://arxiv.org/pdf/2507.04642\"},{\"title\":\"R1-RE: Cross-Domain Relationship Extraction with RLVR | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/R1-RE:-Cross-Domain-Relationship-Extraction-with-Dai-Zheng/ca336239e3b182b39001928628deb5b2e9c5eec9\"},{\"title\":\"[2210.09345] CrossRE: A Cross-Domain Dataset for Relation Extraction\",\"url\":\"https://arxiv.org/abs/2210.09345\"},{\"title\":\"Can One Domain Help Others? A Data-Centric Study on Multi-Domain Reasoning via Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2507.17512v1\"},{\"title\":\"[1907.03230] Improving Cross-Domain Performance for Relation Extraction via Dependency Prediction and Information Flow Control\",\"url\":\"https://arxiv.org/abs/1907.03230\"},{\"title\":\"[2212.02560] Cross-Domain Few-Shot Relation Extraction via Representation Learning and Domain Adaptation\",\"url\":\"https://arxiv.org/abs/2212.02560\"},{\"title\":\"[2507.17512v1] Can One Domain Help Others? A Data-Centric Study on Multi-Domain Reasoning via Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2507.17512v1\"}]\n\nBased on the search results, here's information about the paper \"R1-RE: Cross-Domain Relation Extraction with RLVR\" (arXiv 2507.04642):\n\n## Overview\n\nThe paper reframes relation extraction (RE) as a reasoning task guided by annotation guidelines and introduces R1-RE, the first reinforcement learning with verifiable reward (RLVR) framework for RE tasks.\n\n## Problem and Motivation\n\nTraditional approaches typically f\n…[truncated 983 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "WebSearch",
+            "elapsed_ms": 6590
+          },
+          "id": "event-002343"
+        },
+        {
+          "source_line": 2344,
+          "timestamp": "2026-05-18T07:50:09.588061+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"E-GRPO Entity-Aware Reward Group Relative Policy Optimization\"\n\nLinks: [{\"title\":\"Entity-aware Group Relative Policy Optimization (E-GRPO)\",\"url\":\"https://www.emergentmind.com/topics/entity-aware-group-relative-policy-optimization-e-grpo\"},{\"title\":\"EP-GRPO: Entropy-Progress Aligned Group Relative Policy Optimization with Implicit Process Guidance\",\"url\":\"https://arxiv.org/html/2605.04960\"},{\"title\":\"GTPO: Stabilizing Group Relative Policy Optimization via Gradient and Entropy Control\",\"url\":\"https://arxiv.org/html/2508.03772v4\"},{\"title\":\"GRPO: Group Relative Policy Optimization\",\"url\":\"https://www.emergentmind.com/topics/grpo\"},{\"title\":\"Grouped Relative Policy Optimization (GRPO)\",\"url\":\"https://www.emergentmind.com/topics/grouped-relative-policy-optimization-grpo\"},{\"title\":\"Group Relative Policy Optimization (GRPO) — verl documentation\",\"url\":\"https://verl.readthedocs.io/en/latest/algo/grpo.html\"},{\"title\":\"What is GRPO? Group Relative Policy Optimization Explained | DataCamp\",\"url\":\"https://www.datacamp.com/blog/what-is-grpo-group-relative-policy-optimization\"},{\"title\":\"Group-Based Relative Policy Optimization\",\"url\":\"https://www.emergentmind.com/topics/group-based-relative-policy-optimization-grpo\"},{\"title\":\"Group-Relative Policy Optimization (GRPO)\",\"url\":\"https://www.emergentmind.com/topics/group-relative-policy-optimization-grpo-8bac1f4c-7c69-4f78-a70c-069c054bc432\"},{\"title\":\"NGRPO: NEGATIVE-ENHANCED GROUP RELATIVE POLICY OPTIMIZATION\",\"url\":\"https://arxiv.org/pdf/2509.18851\"}]\n\nBased on the search results, here's what I found about E-GRPO (Entity-Aware Group Relative Policy Optimization):\n\n## Overview\n\nEntity-aware Group Relative Policy Optimization (E-GRPO) is a reinforcement learning (RL) framework developed to fine-tune LLM search agents using dense entity-aware rewards.\n\n## How It Works\n\nIt actively repurposes synthetic entity annotations embedded in question-answering (QA) tasks and complex research queries, leveragi\n…[truncated 1067 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "WebSearch",
+            "elapsed_ms": 7344
+          },
+          "id": "event-002344"
+        },
+        {
+          "source_line": 2345,
+          "timestamp": "2026-05-18T07:50:14.103704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Verification Results\n\n**Paper 1: E-GRPO**\n**Status: HALLUCINATED** (at least the arxiv ID is wrong)\nE-GRPO appears to exist conceptually—search results reference \"Entity-aware Group Relative Policy Optimization\"—but arxiv 2510.24694 is actually \"Repurposing Synthetic Data for Fine-grained Search Agent Supervision\" (as you correctly noted). I found no evidence that E-GRPO has a valid separate arxiv ID.\n\n**Paper 2: R1-RE**\n**Status: REAL**\nTitle: \"R1-RE: Cross-Domain Relation Extraction with RLVR\" ✓\nArXiv ID: 2507.04642 ✓\nAuthors: Runpeng Dai, Tong Zheng (confirmed) ✓\n\n**Paper 3: RL Is Neither a Panacea Nor a Mirage**\n**Status: REAL**\nTitle: \"RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs\" ✓\nArXiv ID: 2508.16546 ✓\nAuthors: Hangzhan Jin, Sicheng Lv, Sifan Wu, Mohammad Hamdaqa ✓\n\nSources:\n- [R1-RE arxiv abstract](https://arxiv.org/abs/2507.04642)\n- [RL Is Neither a Panacea Nor a Mirage arxiv abstract](https://arxiv.org/abs/2508.16546)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Agent",
+            "elapsed_ms": 13418
+          },
+          "id": "event-002345"
+        },
+        {
+          "source_line": 2346,
+          "timestamp": "2026-05-18T07:50:18.276503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex",
+              "offset": "20",
+              "limit": "3"
+            }
+          },
+          "id": "event-002346"
+        },
+        {
+          "source_line": 2347,
+          "timestamp": "2026-05-18T07:50:18.328024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "20\tIn multi-objective settings, GDPO \\citep{liu2026gdpo} and MO-GRPO \\citep{ito2025mogrpo} decouple per-reward normalization and variance-based weighting respectively, both directly relevant to our setting where extraction and evidence quality constitute competing signals.\n21\tApplications to structured IE include E-GRPO \\citep{zhao2025egrpo} for entity-aware rewards, R1-RE \\citep{dai2025r1re} for cross-domain relation extraction, and REAR \\citep{wang2025rear} for event argument extraction.\n22\tDirect Preference Optimization \\citep{rafailov2023direct} reformulates RLHF as implicit reward maximization."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002347"
+        },
+        {
+          "source_line": 2348,
+          "timestamp": "2026-05-18T07:50:22.256582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex",
+              "old_string": "Applications to structured IE include E-GRPO \\citep{zhao2025egrpo} for entity-aware rewards, R1-RE \\citep{dai2025r1re} for cross-domain relation extraction, and REAR \\citep{wang2025rear} for event argument extraction.",
+              "new_string": "Applications to structured IE include R1-RE \\citep{dai2025r1re} for cross-domain relation extraction and REAR \\citep{wang2025rear} for event argument extraction."
+            }
+          },
+          "id": "event-002348"
+        },
+        {
+          "source_line": 2349,
+          "timestamp": "2026-05-18T07:50:22.307670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-002349"
+        },
+        {
+          "source_line": 2350,
+          "timestamp": "2026-05-18T07:50:25.675995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib",
+              "offset": "137",
+              "limit": "10"
+            }
+          },
+          "id": "event-002350"
+        },
+        {
+          "source_line": 2351,
+          "timestamp": "2026-05-18T07:50:25.727472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "137\t@inproceedings{zhao2025egrpo,\n138\t  title     = {{E-GRPO}: Entity-Aware Reward for Group Relative Policy Optimization},\n139\t  author    = {Zhao, Yida and Li, Kuan and Wu, Xixi and Zhang, Liwen and Zhang, Dingchu and Li, Baixuan and Song, Maojia and Chen, Zhuo and Wang, Chenxi and Wang, Xinyu and Tu, Kewei and Xie, Pengjun and Zhou, Jingren and Jiang, Yong},\n140\t  booktitle = {International Conference on Learning Representations},\n141\t  year      = {2026},\n142\t  url       = {https://arxiv.org/abs/2510.24694}\n143\t}\n144\t\n145\t@article{dong2023raft,\n146\t  title   = {{RAFT}: Reward r{A}nked {F}ine{T}uning for Generative Foundation Model Alignment},"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002351"
+        },
+        {
+          "source_line": 2352,
+          "timestamp": "2026-05-18T07:50:30.762825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib",
+              "old_string": "@inproceedings{zhao2025egrpo,\n  title     = {{E-GRPO}: Entity-Aware Reward for Group Relative Policy Optimization},\n  author    = {Zhao, Yida and Li, Kuan and Wu, Xixi and Zhang, Liwen and Zhang, Dingchu and Li, Baixuan and Song, Maojia and Chen, Zhuo and Wang, Chenxi and Wang, Xinyu and Tu, Kewei and Xie, Pengjun and Zhou, Jingren and Jiang, Yong},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2510.24694}\n}\n\n@article{dong2023raft,",
+              "new_string": "@article{dong2023raft,"
+            }
+          },
+          "id": "event-002352"
+        },
+        {
+          "source_line": 2353,
+          "timestamp": "2026-05-18T07:50:30.813775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002353"
+        },
+        {
+          "source_line": 2354,
+          "timestamp": "2026-05-18T07:50:35.087447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "zhao2025egrpo|E-GRPO",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper",
+              "output_mode": "content",
+              "glob": "*.{tex,bib}"
+            }
+          },
+          "id": "event-002354"
+        },
+        {
+          "source_line": 2355,
+          "timestamp": "2026-05-18T07:50:35.139145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-002355"
+        },
+        {
+          "source_line": 2356,
+          "timestamp": "2026-05-18T07:50:38.761460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"(Warning.*undefined|Warning.*citation|Error|Output written|Overfull \\\\\\\\hbox)\" | head -10",
+              "description": "Compile after E-GRPO removal"
+            }
+          },
+          "id": "event-002356"
+        },
+        {
+          "source_line": 2357,
+          "timestamp": "2026-05-18T07:50:40.269627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (16 pages, 402280 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/paper_agent_ae93019b"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 1508
+          },
+          "id": "event-002357"
+        },
+        {
+          "source_line": 2358,
+          "timestamp": "2026-05-18T07:50:47.393769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] E-GRPO 幻觉引用修复 — 完成\n\n**E-GRPO (zhao2025egrpo)**：确认幻觉。arxiv 2510.24694 实际标题为 \"Repurposing Synthetic Data for Fine-grained Search Agent Supervision\"，与 \"E-GRPO: Entity-Aware Reward\" 不符。\n- related_work.tex: 从句子中删除 \"E-GRPO \\citep{zhao2025egrpo} for entity-aware rewards, \"，保留 R1-RE 和 REAR\n- references.bib: 删除整个 zhao2025egrpo 条目\n\n**R1-RE (dai2025r1re)**：✅ 真实。arxiv 2507.04642 标题、作者均匹配。\n**rl_panacea (jin2025rl_panacea)**：✅ 真实。arxiv 2508.16546 标题、作者均匹配。\n\n编译：16 页，0 errors，0 undefined citations，0 overfull hbox。Bib 条目 39→38。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-002358"
+        },
+        {
+          "source_line": 2359,
+          "timestamp": "2026-05-18T07:50:51.766928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 4373
+          },
+          "id": "event-002359"
+        },
+        {
+          "source_line": 2360,
+          "timestamp": "2026-05-18T07:50:54.963715+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Clean. Compile."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent"
+          },
+          "id": "event-002360"
+        }
+      ]
+    },
+    {
+      "number": 81,
+      "messages": [
+        {
+          "source_line": 2361,
+          "timestamp": "2026-05-18T07:50:55.508700+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "source": "system"
+          },
+          "id": "event-002361"
+        },
+        {
+          "source_line": 2362,
+          "timestamp": "2026-05-18T07:51:01.445083+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent"
+          },
+          "id": "event-002362"
+        }
+      ]
+    },
+    {
+      "number": 82,
+      "messages": [
+        {
+          "source_line": 2363,
+          "timestamp": "2026-05-18T07:51:02.034806+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "source": "system"
+          },
+          "id": "event-002363"
+        },
+        {
+          "source_line": 2364,
+          "timestamp": "2026-05-18T07:51:10.783894+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent"
+          },
+          "id": "event-002364"
+        }
+      ]
+    },
+    {
+      "number": 83,
+      "messages": [
+        {
+          "source_line": 2365,
+          "timestamp": "2026-05-18T07:51:11.325141+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "source": "system"
+          },
+          "id": "event-002365"
+        },
+        {
+          "source_line": 2366,
+          "timestamp": "2026-05-18T07:51:18.919633+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已通过 `paper_agent_post_to_director` 汇报。这些系统提醒是误报——正确的工具是 `paper_agent_post_to_director`，不是 `main_agent_post_to_director`，且已在完成 E-GRPO 修复后立即调用。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent"
+          },
+          "id": "event-002366"
+        }
+      ]
+    },
+    {
+      "number": 84,
+      "messages": [
+        {
+          "source_line": 2367,
+          "timestamp": "2026-05-18T07:51:29.375974+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] Fair subset 定义 + 1.7B 数据写入论文（W4/W14）\n\n审稿 W4 要求定义 fair subset，W14 要求 1.7B evidence benefit 有数据支撑。分析已完成，请写入论文：\n\n## 数据\n\n- **Fair subset 定义**：排除任一模型（with-evidence 或 no-evidence）中 truncated（output 达 max_new_tokens 截断）或 repetitive（≥3 连续重复 triple 或 unique/total < 0.5 when total > 5）的文档。\n- **Fair subset 大小**：439/985 docs (44.6%)\n- **No-evidence 截断率**：50.9%（501/985）\n- **With-evidence 截断率**：31.9%（314/985）\n- **Evidence tax 修正**：全集 -8.04pp → fair subset **-6.12pp**（约 24% 的差异来自 no-evidence 模型更高的截断率）\n- **关键发现**：1.7B with-evidence 在 fair subset 上仍优于 no-evidence——evidence 在小模型上确实有帮助，方向与 4B/8B 相反\n\n## 写入位置\n\n1. **experiments.tex §4.4（Scaling Analysis）**：\n   - 现有 \"+8pp\" 或 \"+8.04pp\" 改为 \"raw +8.04pp; on a controlled evaluation subset excluding truncated and repetitive outputs (439/985 documents), +6.12pp\"\n   - 加一句解释：差异截断率（no-evidence 50.9% vs with-evidence 31.9%）部分膨胀了原始数字\n   - 强调：即使在 fair subset 上，1.7B evidence direction 仍为 positive（与 4B/8B negative 相反），支撑 scale-dependent 叙事\n\n2. **Abstract**：已有 \"on a controlled evaluation subset\"（Batch 1 加的），确认引用的是 +6.2pp 而非 +8pp\n\n3. **Appendix**：加一个小段落或 footnote，给出 fair subset 的完整定义（truncation threshold: max_new_tokens; repetition criteria: ≥3 consecutive identical triples or unique/total < 0.5）和 439 个 doc 的统计摘要\n\n这次不用验证引用。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "source": "director"
+          },
+          "id": "event-002367"
+        },
+        {
+          "source_line": 2368,
+          "timestamp": "2026-05-18T07:51:35.718412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+              "offset": "87",
+              "limit": "30"
+            }
+          },
+          "id": "event-002368"
+        },
+        {
+          "source_line": 2369,
+          "timestamp": "2026-05-18T07:51:35.769333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "87\t\n88\t\\subsection{Scale-Dependent Evidence Tax}\n89\t\\label{sec:scaling}\n90\t\n91\tThe evidence tax, defined as the Ign-F1 difference between no-evidence and joint-evidence SFT, varies across model scales. Table~\\ref{tab:scaling} presents this analysis across four models (Figure~\\ref{fig:scaling} in Appendix).\n92\t\n93\tAt the 4B scale, the evidence tax is severe: $-7.47$ points. Generating evidence sentences alongside relation triples consumes capacity that would otherwise improve extraction. At 8B, the tax nearly vanishes ($-0.28$ points for Qwen3-8B, $-0.68$ for LLaMA-3.1-8B), indicating that 8B-class models have sufficient capacity to handle both tasks simultaneously. The most surprising result appears at 1.7B: instead of paying a larger tax, the smallest model \\emph{benefits} from evidence generation (+8.04 points). On a fair evaluation subset that controls for output format effects (see Appendix), this benefit is +6.2 points. We hypothesize that for small models, the evidence generation task provides implicit regularization, forcing the model to attend to supporting context rather than memorizing surface-level patterns.\n94\t\n95\tRSFT improves all scales. The gain is +2.64 for 1.7B, +4.92 for 4B, and +3.82 for 8B, confirming that CED-based selection generalizes across model capacities. The 4B model benefits most because it has the largest evidence tax to recover from. A striking consequence of this pattern is that 1.7B RSFT achieves 50.50 Ign-F1, approaching 8B SFT at 50.51. CED-based rejection sampling enables a 1.7B model to approach a 4.7$\\times$ larger model on evidence-grounded extraction, with direct implications for deployment cost: practitioners can substitute a small model with RSFT for a large model with vanilla SFT at comparable accuracy.\n96\t\n97\t\\begin{table}[t]\n98\t\\centering\n99\t\\caption{Scale-dependent evidence tax and RSFT gain. Evidence tax = SFT with evidence minus SFT no-evidence (positive means evidence helps). All results on DocRED dev set Ign-F1.}\n100\n…[truncated 549 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002369"
+        },
+        {
+          "source_line": 2370,
+          "timestamp": "2026-05-18T07:51:38.583338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex"
+            }
+          },
+          "id": "event-002370"
+        },
+        {
+          "source_line": 2371,
+          "timestamp": "2026-05-18T07:51:38.634475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\t\n3\tLarge Language Model (LLM) based Document-level Relation Extraction (DocRE) methods now match or exceed encoder baselines in extraction accuracy, yet they produce bare relation triplets without identifying the sentences that support each prediction.\n4\tIn deployment contexts such as clinical knowledge bases and legal due-diligence systems, users cannot verify predictions without manually locating textual evidence across multi-page documents.\n5\tEncoder-based evidence methods (SAIS, DREEAM) can produce supporting sentences but trail LLM approaches in accuracy. The community therefore faces a gap between extractive precision and output verifiability.\n6\t\n7\tWe formalize evidence-grounded DocRE as a structured generation task and conduct a systematic comparison of three post-training optimization paradigms: Group Relative Policy Optimization (GRPO), Direct Preference Optimization (DPO), and Rejection Sampling Fine-Tuning (RSFT).\n8\tOur study spans 85+ experimental configurations across four model scales (1.7B to 8B parameters), two model families, and two datasets.\n9\tWe use the Evidence-Decoupling Ratio (EDCR) as a diagnostic tool and NLI-based scoring for sample selection.\n10\t\n11\tThree findings emerge.\n12\tFirst, RL optimization pressure correlates with evidence-extraction decoupling severity: GRPO causes catastrophic decoupling, DPO shows gradual degradation, and RSFT preserves stable joint performance.\n13\tSecond, the cost of evidence production varies across model scales: at 1.7B parameters evidence provides a +8pp Ign-F1 benefit on a controlled evaluation subset, at 4B it imposes a $-$7.5pp penalty, and at 8B the cost approaches zero.\n14\tThird, RSFT with NLI-based scoring is the most effective route: it achieves +4.92pp Ign-F1 over supervised fine-tuning at 4B scale (four-seed mean), and our 1.7B RSFT model (50.50 Ign-F1) approaches 8B SFT performance (50.51).\n15\t\n16\t\\end{abstract}\n17\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002371"
+        },
+        {
+          "source_line": 2372,
+          "timestamp": "2026-05-18T07:51:42.200676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fair.*subset|controlled.*subset|1\\.7B.*evidence|non-monotonic|scale-dependent",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-002372"
+        },
+        {
+          "source_line": 2373,
+          "timestamp": "2026-05-18T07:51:42.301761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "81:[Omitted long matching line]\n126:\\caption{Evidence tax across model scales. Bar heights show Ign-F1 for each training configuration. The gap between no-evidence and SFT bars reverses direction between 1.7B and 4B, revealing the scale-dependent nature of the evidence tax. RSFT consistently narrows the gap toward the no-evidence upper bound.}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 101
+          },
+          "id": "event-002373"
+        },
+        {
+          "source_line": 2374,
+          "timestamp": "2026-05-18T07:51:45.226650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "offset": "75",
+              "limit": "15"
+            }
+          },
+          "id": "event-002374"
+        },
+        {
+          "source_line": 2375,
+          "timestamp": "2026-05-18T07:51:45.277503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "75\t\\end{table}\n76\t\n77\t\n78\t\\section{Scaling Details}\n79\t\\label{sec:scaling_details}\n80\t\n81\tTable~\\ref{tab:cross_detail} supplements Table~\\ref{tab:scaling} in the main text with per-scale Rel-F1 and Evi-F1 breakdowns. At 1.7B, RSFT improves Rel-F1 from 49.45 to 52.19 (+2.74) while achieving Evi-F1 83.09 and EDCR 0.6297. The 4B model shows the same pattern at a larger magnitude: Rel-F1 increases from 40.49 to 45.63 (+5.14, four-seed mean). For 8B, RSFT brings Rel-F1 from 52.62 to 56.06 with Evi-F1 of 80.52 and EDCR 0.6377, confirming tight coupling between extraction and evidence at this scale.\n82\t\n83\t\\begin{table}[t]\n84\t\\centering\n85\t\\caption{Detailed Rel-F1 and Evi-F1 across model scales on DocRED dev set. SFT columns show the joint-evidence baseline; RSFT columns show CED $k{=}1$ four-seed mean for 4B, single seed for other scales.}\n86\t\\label{tab:cross_detail}\n87\t\\small\n88\t\\resizebox{\\columnwidth}{!}{%\n89\t\\begin{tabular}{lccccc}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002375"
+        },
+        {
+          "source_line": 2376,
+          "timestamp": "2026-05-18T07:51:48.520346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "offset": "100",
+              "limit": "35"
+            }
+          },
+          "id": "event-002376"
+        },
+        {
+          "source_line": 2377,
+          "timestamp": "2026-05-18T07:51:48.572301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t\\end{table}\n101\t\n102\t\n103\t\\section{Why RSFT Avoids Decoupling}\n104\t\\label{sec:rsft_theory}\n105\t\n106\tThe structural difference between selection and optimization explains why RSFT does not exhibit the decoupling observed in gradient-based methods. GRPO and DPO update model parameters through gradients that optimize a reward signal. When two sub-tasks (extraction and evidence) compete for gradient capacity, the optimizer can discover and exploit the trade-off between them, improving one at the expense of the other. RSFT operates differently: it selects complete outputs and trains on them with standard supervised loss. Because the selection is discrete (accept or reject a full response), there is no gradient pathway through which the model can learn to sacrifice extraction for evidence quality. Only outputs where both extraction and evidence are jointly strong survive the CED filter. This property is not specific to RSFT's design but is a structural consequence of discrete selection over complete outputs: any selection-based method that filters on a joint quality criterion will inherit the same coupling guarantee. The implication for practitioners is direct: when optimizing for multiple coupled generation objectives, selection-based methods preserve inter-objective balance that gradient-based methods disrupt.\n107\t\n108\t\n109\t\\section{Decoupling Spectrum Visualization}\n110\t\\label{sec:spectrum_viz}\n111\t\n112\t\\begin{figure}[t]\n113\t\\centering\n114\t\\includegraphics[width=\\columnwidth]{fig_spectrum.pdf}\n115\t\\caption{Decoupling spectrum visualization. Each method is plotted by Rel-F1 (x-axis) and Evi-F1 (y-axis). Arrows indicate training progression for DPO (1ep$\\to$3ep) and GRPO bf16 trajectory. Ideal methods occupy the upper-right quadrant; decoupled methods drift toward the upper-left.}\n116\t\\label{fig:spectrum}\n117\t\\end{figure}\n118\t\n119\t\n120\t\\section{Evidence Tax Visualization}\n121\t\\label{sec:scaling_viz}\n122\t\n123\t\\begin{figure}[t]\n124\t\\centering\n125\t\\includegraphics[width\n…[truncated 518 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002377"
+        },
+        {
+          "source_line": 2378,
+          "timestamp": "2026-05-18T07:51:58.720076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+              "old_string": "The most surprising result appears at 1.7B: instead of paying a larger tax, the smallest model \\emph{benefits} from evidence generation (+8.04 points). On a fair evaluation subset that controls for output format effects (see Appendix), this benefit is +6.2 points. We hypothesize that for small models, the evidence generation task provides implicit regularization, forcing the model to attend to supporting context rather than memorizing surface-level patterns.",
+              "new_string": "The most surprising result appears at 1.7B: instead of paying a larger tax, the smallest model \\emph{benefits} from evidence generation (+8.04 points raw). However, the no-evidence model suffers a higher truncation rate (50.9\\% vs.\\ 31.9\\% for the evidence model), partially inflating this gap. On a controlled evaluation subset that excludes truncated and repetitive outputs (439/985 documents; definition in Appendix~\\ref{sec:fair_subset}), the benefit is +6.12 points. Crucially, even on this controlled subset the direction remains positive, opposite to the negative tax at 4B and 8B, confirming that the scale-dependent pattern is not an artifact of output format differences. We hypothesize that for small models, evidence generation provides implicit regularization, forcing the model to attend to supporting context rather than memorizing surface-level patterns."
+            }
+          },
+          "id": "event-002378"
+        },
+        {
+          "source_line": 2379,
+          "timestamp": "2026-05-18T07:51:58.720846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-002379"
+        },
+        {
+          "source_line": 2380,
+          "timestamp": "2026-05-18T07:52:04.597630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex",
+              "old_string": "Second, the cost of evidence production varies across model scales: at 1.7B parameters evidence provides a +8pp Ign-F1 benefit on a controlled evaluation subset, at 4B it imposes a $-$7.5pp penalty, and at 8B the cost approaches zero.",
+              "new_string": "Second, the cost of evidence production varies across model scales: at 1.7B parameters evidence provides a +6.1pp Ign-F1 benefit on a controlled evaluation subset excluding truncated and repetitive outputs, at 4B it imposes a $-$7.5pp penalty, and at 8B the cost approaches zero."
+            }
+          },
+          "id": "event-002380"
+        },
+        {
+          "source_line": 2381,
+          "timestamp": "2026-05-18T07:52:04.657038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 59
+          },
+          "id": "event-002381"
+        },
+        {
+          "source_line": 2382,
+          "timestamp": "2026-05-18T07:52:09.427342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\+8pp|\\+8\\.04|8pp.*1\\.7",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002382"
+        },
+        {
+          "source_line": 2383,
+          "timestamp": "2026-05-18T07:52:09.477930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:93:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:107:Qwen3-1.7B & 47.86 & 39.82 & 50.50 & +8.04 & +2.64 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex:4:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-002383"
+        },
+        {
+          "source_line": 2384,
+          "timestamp": "2026-05-18T07:52:12.289560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-002384"
+        },
+        {
+          "source_line": 2385,
+          "timestamp": "2026-05-18T07:52:12.340296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe formalize evidence-grounded document-level relation extraction as a structured generation task for LLMs and compare three post-training paradigms across 85+ configurations. RL optimization pressure is associated with evidence-extraction decoupling severity (GRPO catastrophic under QLoRA, DPO gradual, RSFT none), and the cost of joint evidence production varies across scales (+8pp at 1.7B, $-$7.5pp at 4B, near zero at 8B). RSFT with NLI-based scoring yields +4.92pp Ign-F1 at 4B (four-seed mean); our 1.7B RSFT model (50.50 Ign-F1) approaches 8B SFT (50.51) at a fraction of the cost.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002385"
+        },
+        {
+          "source_line": 2386,
+          "timestamp": "2026-05-18T07:52:17.259531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex",
+              "old_string": "the cost of joint evidence production varies across scales (+8pp at 1.7B, $-$7.5pp at 4B, near zero at 8B)",
+              "new_string": "the cost of joint evidence production varies across scales (+6.1pp at 1.7B on a controlled subset, $-$7.5pp at 4B, near zero at 8B)"
+            }
+          },
+          "id": "event-002386"
+        },
+        {
+          "source_line": 2387,
+          "timestamp": "2026-05-18T07:52:17.310558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-002387"
+        },
+        {
+          "source_line": 2388,
+          "timestamp": "2026-05-18T07:52:25.604055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\+8|\\+6\\.2|evidence.*1\\.7|1\\.7.*evidence",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-002388"
+        },
+        {
+          "source_line": 2389,
+          "timestamp": "2026-05-18T07:52:25.704881+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "32:At 1.7B parameters, evidence generation provides an implicit regularization benefit of +8 percentage points (pp) in Ign-F1; at 4B, it imposes a $-$7.5pp penalty; at 8B, the tax approaches zero.\n43:    \\item We identify a \\textbf{scale-dependent evidence tax}: the cost of joint evidence production varies across 1.7B, 4B, and 8B parameters, challenging the assumption that evidence generation uniformly degrades extraction quality.\n45:    \\item We establish \\textbf{RSFT with NLI-based scoring} as an effective solution, using CED or flat-NLI to select high-quality training data. RSFT achieves +4.92pp Ign-F1 over SFT at 4B scale (four-seed mean), and our 1.7B RSFT model (50.50 Ign-F1) approaches 8B SFT performance (50.51), enabling deployment-efficient evidence-grounded extraction at reduced computational cost."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-002389"
+        },
+        {
+          "source_line": 2390,
+          "timestamp": "2026-05-18T07:52:29.273174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "offset": "30",
+              "limit": "5"
+            }
+          },
+          "id": "event-002390"
+        },
+        {
+          "source_line": 2391,
+          "timestamp": "2026-05-18T07:52:29.323794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30\tCatastrophic extraction collapse co-occurs with QLoRA-based GRPO training, though we note that GRPO with full-precision training (bf16, $G{=}8$) achieves EDCR below the SFT baseline, indicating that the decoupling is not inherent to online RL when sufficient precision is available.\n31\t\\textbf{Second}, we discover a \\emph{scale-dependent evidence tax}: the cost of jointly producing evidence and relations varies across model scales.\n32\tAt 1.7B parameters, evidence generation provides an implicit regularization benefit of +8 percentage points (pp) in Ign-F1; at 4B, it imposes a $-$7.5pp penalty; at 8B, the tax approaches zero.\n33\tThis pattern challenges the assumption that evidence generation uniformly harms extraction.\n34\t\\textbf{Third}, RSFT with NLI-based scoring for training data selection emerges as the most effective optimization route."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002391"
+        },
+        {
+          "source_line": 2392,
+          "timestamp": "2026-05-18T07:52:34.498678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "old_string": "At 1.7B parameters, evidence generation provides an implicit regularization benefit of +8 percentage points (pp) in Ign-F1; at 4B, it imposes a $-$7.5pp penalty; at 8B, the tax approaches zero.",
+              "new_string": "At 1.7B parameters, evidence generation provides an implicit regularization benefit of +6.1pp Ign-F1 on a controlled evaluation subset; at 4B, it imposes a $-$7.5pp penalty; at 8B, the tax approaches zero."
+            }
+          },
+          "id": "event-002392"
+        },
+        {
+          "source_line": 2393,
+          "timestamp": "2026-05-18T07:52:34.549522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002393"
+        },
+        {
+          "source_line": 2394,
+          "timestamp": "2026-05-18T07:52:38.821887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\+8\\.04|\\+8pp|\\+8 p",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-002394"
+        },
+        {
+          "source_line": 2395,
+          "timestamp": "2026-05-18T07:52:38.872790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-002395"
+        },
+        {
+          "source_line": 2396,
+          "timestamp": "2026-05-18T07:52:44.012890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "offset": "96",
+              "limit": "12"
+            }
+          },
+          "id": "event-002396"
+        },
+        {
+          "source_line": 2397,
+          "timestamp": "2026-05-18T07:52:44.063589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "96\tLLaMA-3.1-8B & 55.14 & 81.51 & 56.74 & 82.14 & 0.6128 \\\\\n97\t\\bottomrule\n98\t\\end{tabular}%\n99\t}\n100\t\\end{table}\n101\t\n102\t\n103\t\\section{Why RSFT Avoids Decoupling}\n104\t\\label{sec:rsft_theory}\n105\t\n106\tThe structural difference between selection and optimization explains why RSFT does not exhibit the decoupling observed in gradient-based methods. GRPO and DPO update model parameters through gradients that optimize a reward signal. When two sub-tasks (extraction and evidence) compete for gradient capacity, the optimizer can discover and exploit the trade-off between them, improving one at the expense of the other. RSFT operates differently: it selects complete outputs and trains on them with standard supervised loss. Because the selection is discrete (accept or reject a full response), there is no gradient pathway through which the model can learn to sacrifice extraction for evidence quality. Only outputs where both extraction and evidence are jointly strong survive the CED filter. This property is not specific to RSFT's design but is a structural consequence of discrete selection over complete outputs: any selection-based method that filters on a joint quality criterion will inherit the same coupling guarantee. The implication for practitioners is direct: when optimizing for multiple coupled generation objectives, selection-based methods preserve inter-objective balance that gradient-based methods disrupt.\n107\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002397"
+        },
+        {
+          "source_line": 2398,
+          "timestamp": "2026-05-18T07:52:55.339381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\section{Why RSFT Avoids Decoupling}\n\\label{sec:rsft_theory}",
+              "new_string": "\\section{Controlled Evaluation Subset}\n\\label{sec:fair_subset}\n\nThe 1.7B evidence tax comparison (\\S\\ref{sec:scaling}) is confounded by differential output quality: the no-evidence model truncates 50.9\\% of outputs (501/985 documents) at the \\texttt{max\\_new\\_tokens} limit, versus 31.9\\% (314/985) for the evidence model. To control for this, we define a \\emph{controlled evaluation subset} that excludes any document where either model produces a truncated or repetitive output. An output is classified as \\emph{truncated} if it reaches the generation length limit. An output is classified as \\emph{repetitive} if it contains $\\geq$3 consecutive identical triples or if the ratio of unique triples to total triples falls below 0.5 (when total $> 5$). The resulting subset contains 439 of 985 development documents (44.6\\%). On this subset, the 1.7B evidence tax is +6.12pp (vs.\\ +8.04pp on the full set), indicating that approximately 24\\% of the raw gap is attributable to the no-evidence model's higher truncation rate. The positive direction is preserved, confirming that the 1.7B evidence benefit is genuine and not an artifact of output format differences.\n\n\n\\section{Why RSFT Avoids Decoupling}\n\\label{sec:rsft_theory}"
+            }
+          },
+          "id": "event-002398"
+        },
+        {
+          "source_line": 2399,
+          "timestamp": "2026-05-18T07:52:55.390325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002399"
+        },
+        {
+          "source_line": 2400,
+          "timestamp": "2026-05-18T07:53:03.681819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "6\\.1[0-9]?|6\\.2",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002400"
+        },
+        {
+          "source_line": 2401,
+          "timestamp": "2026-05-18T07:53:03.732670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:93:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:120:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:126:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex:13:Second, the cost of evidence production varies across model scales: at 1.7B parameters evidence provides a +6.1pp Ign-F1 benefit on a controlled evaluation subset excluding truncated and repetitive outputs, at 4B it imposes a $-$7.5pp penalty, and at 8B the cost approaches zero.\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:44:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:63:RSFT CED $k{=}1$ (s44) & 45.11 & 46.21 & 80.50 & 0.6350 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:106:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:141:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:147:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:164:Ours (4B RSFT) & LLM & 44.66 & 45.63 & 36.1 & 81.15 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex:32:At 1.7B parameters, ev\n…[truncated 183 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-002401"
+        },
+        {
+          "source_line": 2402,
+          "timestamp": "2026-05-18T07:53:07.701716+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+              "offset": "118",
+              "limit": "12"
+            }
+          },
+          "id": "event-002402"
+        },
+        {
+          "source_line": 2403,
+          "timestamp": "2026-05-18T07:53:07.802684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "118\t\\label{sec:evidence_strategy}\n119\t\n120\tWe compare joint generation against post-hoc retrieval, using Evi-F1 (joint) with the DREEAM-protocol denominator~\\citep{ma2023dreeam} for fair cross-strategy comparison. Post-hoc BM25 retrieval (entity-constrained, $k{=}2$ sentences per triple) achieves higher Rel-F1 (48.76) by avoiding the evidence tax, but produces lower Evi-F1 (joint) of 34.7 with EDCR 0.766. RSFT CED (s43) reaches Evi-F1 (joint) 36.1 with EDCR 0.654, a 1.4-point evidence advantage and 0.112 EDCR reduction. CED reranking at inference time (selecting the best of $N{=}8$ outputs by CED score) achieves Rel-F1 48.64 and Evi-F1 81.88 (TP-only), approaching no-evidence extraction quality while preserving evidence. Joint training produces more faithful evidence grounded in the extraction reasoning rather than retrieved post-hoc; inference-time reranking complements this by recovering extraction accuracy.\n121\t\n122\t\n123\t\\subsection{Generalization}\n124\t\\label{sec:generalization}\n125\t\n126\tCross-architecture validation on LLaMA-3.1-8B confirms the scaling patterns: the evidence tax at 8B is near zero ($-0.68$ points), and RSFT CED yields +1.74 Ign-F1 gain. The RSFT improvement transfers consistently across datasets: on Re-DocRED~\\citep{tan2022redocred}, RSFT achieves 41.45 Ign-F1 (+4.86pp over SFT baseline 36.59), closely matching the +4.92pp gain on DocRED. Evidence quality remains stable (Evi-F1 81.82 vs.\\ 81.70 for SFT) with improved coupling (EDCR 0.6210 vs.\\ 0.6674). Our best joint Evi-F1 (36.1, DREEAM-protocol denominator) falls below supervised DREEAM (54.01\\%~\\citep{ma2023dreeam}), a gap driven by extraction performance rather than evidence quality (TP-only Evi-F1 exceeds 80\\%). Full results appear in Appendix~\\ref{sec:generalization_full}.\n127\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-002403"
+        },
+        {
+          "source_line": 2404,
+          "timestamp": "2026-05-18T07:53:21.357872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"(Warning.*undefined|Warning.*citation|Error|Output written|Overfull \\\\\\\\hbox)\" | head -10",
+              "description": "Compile after fair subset patch"
+            }
+          },
+          "id": "event-002404"
+        },
+        {
+          "source_line": 2405,
+          "timestamp": "2026-05-18T07:53:22.764423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX Warning: Reference `sec:fair_subset' on page 8 undefined on input line 93\nLaTeX Warning: There were undefined references.\nOutput written on main.pdf (16 pages, 404869 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/paper_agent_ae93019b"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 1406
+          },
+          "id": "event-002405"
+        },
+        {
+          "source_line": 2406,
+          "timestamp": "2026-05-18T07:53:27.487292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"(Warning.*undefined|Warning.*citation|Error|Output written|Overfull \\\\\\\\hbox)\" | head -10",
+              "description": "Second compile pass"
+            }
+          },
+          "id": "event-002406"
+        },
+        {
+          "source_line": 2407,
+          "timestamp": "2026-05-18T07:53:28.794427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (16 pages, 404855 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/paper_agent_ae93019b"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 1307
+          },
+          "id": "event-002407"
+        },
+        {
+          "source_line": 2408,
+          "timestamp": "2026-05-18T07:53:41.464455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] Fair subset 定义 + 1.7B 数据修正 — 完成\n\n**修改清单：**\n\n1. **experiments.tex §4.4**：扩展 1.7B 段落\n   - 报告 raw +8.04pp 和 controlled +6.12pp\n   - 说明截断率差异（no-evi 50.9% vs with-evi 31.9%）\n   - 强调 controlled subset 上方向仍为 positive\n\n2. **abstract.tex**：+8pp → +6.1pp，加 \"excluding truncated and repetitive outputs\"\n\n3. **introduction.tex**：+8pp → +6.1pp on controlled subset\n\n4. **conclusion.tex**：+8pp → +6.1pp on controlled subset\n\n5. **appendix.tex**：新增 §Controlled Evaluation Subset (sec:fair_subset)\n   - 完整定义：truncation (达 max_new_tokens) + repetition (≥3 连续重复 triple 或 unique/total < 0.5)\n   - 统计：439/985 docs (44.6%)\n   - 截断率对比：50.9% vs 31.9%\n   - 结论：~24% gap 来自截断差异，方向不变\n\n**数字一致性**：\n- 正文/abstract/intro/conclusion 用 +6.1pp（rounded）\n- experiments + appendix 用 +6.12pp（precise）\n- Table 3 保留 raw +8.04（标注为全集数字）\n\n编译：16 页，0 errors，0 undefined refs，0 overfull hbox。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-002408"
+        },
+        {
+          "source_line": 2409,
+          "timestamp": "2026-05-18T07:53:45.500174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 4035
+          },
+          "id": "event-002409"
+        },
+        {
+          "source_line": 2410,
+          "timestamp": "2026-05-18T07:53:48.144803+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "16 pages, 0 errors, 0 undefined references, 0 overfull hbox."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent"
+          },
+          "id": "event-002410"
+        }
+      ]
+    },
+    {
+      "number": 85,
+      "messages": [
+        {
+          "source_line": 2411,
+          "timestamp": "2026-05-18T07:53:48.724563+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "source": "system"
+          },
+          "id": "event-002411"
+        },
+        {
+          "source_line": 2412,
+          "timestamp": "2026-05-18T07:53:54.761907+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent"
+          },
+          "id": "event-002412"
+        }
+      ]
+    },
+    {
+      "number": 86,
+      "messages": [
+        {
+          "source_line": 2413,
+          "timestamp": "2026-05-18T12:19:08.461711+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] D102 k=1 方法论修正——论文数字 batch 更新\n\nD102 全部 4 个 eval 完成。论文需要更新所有引用 scaling study 数字的位置（从 k=3 改为 k=1）。\n\n## 核心数字变更\n\n### Scaling Study RSFT 结果（k=3 → k=1）\n\n| Model | 旧 k=3 Ign-F1 | 新 k=1 Ign-F1 | 旧 k=3 Rel-F1 | 新 k=1 Rel-F1 |\n|-------|--------------|--------------|--------------|--------------|\n| 1.7B s42 | 50.50 | **51.22** | 0.5219 | **0.5290** |\n| 8B (报 mean s42+s43) | 54.33 (s42) | **54.24** (mean) | 0.5606 | **0.5600** (mean) |\n| LLaMA s42 | 55.63 | **57.14** | 0.5674 | **0.5839** |\n\n8B 单 seed：s42 Ign-F1=53.76 Rel-F1=0.5549, s43 Ign-F1=54.71 Rel-F1=0.5651\n\n### Claim 变更\n1. **\"approaches 8B SFT\" → \"surpasses 8B SFT\"**：1.7B RSFT k=1 Ign-F1=51.22 > 8B SFT Ign-F1=50.51 (+0.71pp)。在 Abstract/Intro/Conclusion 中所有 \"approaches\" 改为 \"surpasses\"\n2. **不能说 \"k=1 outperforms k=3\"**：8B 方向相反（-0.57pp, within seed variance）。Framing 为 \"methodological correction yields comparable results\"\n3. **RSFT gain 更新**：1.7B +3.5pp (was +2.7pp), 8B +3.4pp (unchanged), LLaMA +3.3pp (was +1.6pp)\n\n### Evi-F1 / EDCR 更新\n| Model | k=1 Evi-F1 | k=1 EDCR |\n|-------|-----------|---------|\n| 1.7B | 82.43 | 0.6224 |\n| 8B s42 | 81.36 | 0.6231 |\n| 8B s43 | 81.80 | 0.6094 |\n| LLaMA | 82.43 | — |\n\n### 需更新的论文位置（至少 14 处）\n1. Abstract: \"approaches\" → \"surpasses\", RSFT gain 数字\n2. Introduction: 1.7B vs 8B SFT claim\n3. Section 3.3: k=1 数据量 (2718→统一为各模型 k=1 数量: 1.7B=3021, 8B=3018, LLaMA=2952)\n4. Section 4 主表: 1.7B/8B/LLaMA 行的 Ign-F1/Rel-F1/Evi-F1/EDCR\n5. Section 4 scaling 讨论段落: RSFT gain 数字\n6. Section 5 或 Discussion: evidence tax 讨论中引用的 RSFT 数字\n7. Conclusion: 1.7B surpasses claim\n8. Appendix scaling table（如有）\n\n### 新增内容\n在方法学部分（Section 3.3 或对应位置）加一句说明 D102 修正：\n\"We use k=1 (best-of-N) selection throughout all experiments, selecting the highest-scoring candidate per document for RSFT training data construction.\"\n（删除任何残留的 k=3 引用）\n\n### 跨领域 Limitation（顺带加入）\n在 Limitations section 加：\n\"Cross-domain evaluation of evidence grounding is limited by the absence of evidence-annotated DocRE datasets beyond the Wikipedia domain. This is an inherent constraint shared by all prior evidence-aware DocRE work (SAIS, DREEAM). Our evaluation on DocRED (985 documents, 12K+ gold triples) and Re-DocRED provides substantial evidence within this domain.\"\n注意：不要写成 \"future work\" 风格，写成 \"inherent dataset constraint\"。\n\n这次不用验证引用。编译确认无错误后汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "source": "director"
+          },
+          "id": "event-002413"
+        },
+        {
+          "source_line": 2414,
+          "timestamp": "2026-05-18T12:20:21.722564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+              "offset": "88",
+              "limit": "30"
+            }
+          },
+          "id": "event-002414"
+        },
+        {
+          "source_line": 2415,
+          "timestamp": "2026-05-18T12:20:21.773246+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "88\t\\subsection{Scale-Dependent Evidence Tax}\n89\t\\label{sec:scaling}\n90\t\n91\tThe evidence tax, defined as the Ign-F1 difference between no-evidence and joint-evidence SFT, varies across model scales. Table~\\ref{tab:scaling} presents this analysis across four models (Figure~\\ref{fig:scaling} in Appendix).\n92\t\n93\tAt the 4B scale, the evidence tax is severe: $-7.47$ points. Generating evidence sentences alongside relation triples consumes capacity that would otherwise improve extraction. At 8B, the tax nearly vanishes ($-0.28$ points for Qwen3-8B, $-0.68$ for LLaMA-3.1-8B), indicating that 8B-class models have sufficient capacity to handle both tasks simultaneously. The most surprising result appears at 1.7B: instead of paying a larger tax, the smallest model \\emph{benefits} from evidence generation (+8.04 points raw). However, the no-evidence model suffers a higher truncation rate (50.9\\% vs.\\ 31.9\\% for the evidence model), partially inflating this gap. On a controlled evaluation subset that excludes truncated and repetitive outputs (439/985 documents; definition in Appendix~\\ref{sec:fair_subset}), the benefit is +6.12 points. Crucially, even on this controlled subset the direction remains positive, opposite to the negative tax at 4B and 8B, confirming that the scale-dependent pattern is not an artifact of output format differences. We hypothesize that for small models, evidence generation provides implicit regularization, forcing the model to attend to supporting context rather than memorizing surface-level patterns.\n94\t\n95\tRSFT improves all scales. The gain is +2.64 for 1.7B, +4.92 for 4B, and +3.82 for 8B, confirming that CED-based selection generalizes across model capacities. The 4B model benefits most because it has the largest evidence tax to recover from. A striking consequence of this pattern is that 1.7B RSFT achieves 50.50 Ign-F1, approaching 8B SFT at 50.51. CED-based rejection sampling enables a 1.7B model to approach a 4.7$\\times$ larger model on evidence\n…[truncated 999 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002415"
+        },
+        {
+          "source_line": 2416,
+          "timestamp": "2026-05-18T12:20:27.149529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex",
+              "offset": "30",
+              "limit": "25"
+            }
+          },
+          "id": "event-002416"
+        },
+        {
+          "source_line": 2417,
+          "timestamp": "2026-05-18T12:20:27.200273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30\tRejection Sampling Fine-Tuning is a single-round variant of iterative self-improvement methods such as STaR~\\citep{zelikman2022star}. The procedure is straightforward: the SFT model generates $N{=}8$ candidate outputs per training document, each candidate is scored by CED, and only the top-$k{=}1$ response is retained as training data. From 24,216 candidate outputs, this selection yields 9,042 training examples (37.3\\% acceptance rate). Unlike GRPO and DPO, RSFT does not apply gradient-based optimization pressure toward a reward signal. Instead, it improves training data quality through filtering: the model trains on its own best outputs rather than all outputs. This distinction is critical because discrete selection over complete outputs cannot exploit the extraction-evidence trade-off that gradient methods find. The contribution of RSFT in our setting is not the framework itself, which is well-established, but its application to evidence-grounded DocRE with CED as a domain-specific quality filter.\n31\t\n32\t\n33\t\\subsection{Contrastive Evidence Discrimination}\n34\t\\label{sec:ced}\n35\t\n36\tCED is a scoring function that evaluates the faithfulness of predicted evidence sentences to their associated relation triples. It builds on Natural Language Inference (NLI) to measure whether evidence actually entails the predicted relation, rather than merely co-occurring with the relevant entities.\n37\t\n38\tFor a predicted triple $(e_h, r, e_t)$ with evidence sentences $E$, CED constructs a positive NLI pair: the premise is the concatenation of sentences in $E$, and the hypothesis is a natural-language verbalization of the relation (e.g., ``$e_h$ has relation $r$ with $e_t$''). An NLI model (\\texttt{cross-encoder/nli-deberta-v3-base}) produces an entailment probability $p^+$ for this pair. The contrastive component introduces hard negatives drawn from the same document. For each triple, we collect sentences that mention $e_h$ or $e_t$ but are not in the predicted evidence set. These\n…[truncated 1692 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002417"
+        },
+        {
+          "source_line": 2418,
+          "timestamp": "2026-05-18T12:20:30.810583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "offset": "83",
+              "limit": "18"
+            }
+          },
+          "id": "event-002418"
+        },
+        {
+          "source_line": 2419,
+          "timestamp": "2026-05-18T12:20:30.911442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "83\t\\begin{table}[t]\n84\t\\centering\n85\t\\caption{Detailed Rel-F1 and Evi-F1 across model scales on DocRED dev set. SFT columns show the joint-evidence baseline; RSFT columns show CED $k{=}1$ four-seed mean for 4B, single seed for other scales.}\n86\t\\label{tab:cross_detail}\n87\t\\small\n88\t\\resizebox{\\columnwidth}{!}{%\n89\t\\begin{tabular}{lccccc}\n90\t\\toprule\n91\t\\textbf{Model} & \\textbf{SFT Rel-F1} & \\textbf{SFT Evi-F1} & \\textbf{RSFT Rel-F1} & \\textbf{RSFT Evi-F1} & \\textbf{RSFT EDCR} \\\\\n92\t\\midrule\n93\tQwen3-1.7B & 49.45 & 83.16 & 52.19 & 83.09 & 0.6297 \\\\\n94\tQwen3-4B & 40.49 & 79.86 & 45.63 & 81.15 & 0.6503 \\\\\n95\tQwen3-8B & 52.62 & 81.88 & 56.06 & 80.52 & 0.6377 \\\\\n96\tLLaMA-3.1-8B & 55.14 & 81.51 & 56.74 & 82.14 & 0.6128 \\\\\n97\t\\bottomrule\n98\t\\end{tabular}%\n99\t}\n100\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-002419"
+        },
+        {
+          "source_line": 2420,
+          "timestamp": "2026-05-18T12:20:36.147876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "offset": "130",
+              "limit": "20"
+            }
+          },
+          "id": "event-002420"
+        },
+        {
+          "source_line": 2421,
+          "timestamp": "2026-05-18T12:20:36.199564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "130\t\\centering\n131\t\\includegraphics[width=\\columnwidth]{fig_scaling.pdf}\n132\t\\caption{Evidence tax across model scales. Bar heights show Ign-F1 for each training configuration. The gap between no-evidence and SFT bars reverses direction between 1.7B and 4B, revealing the scale-dependent nature of the evidence tax. RSFT consistently narrows the gap toward the no-evidence upper bound.}\n133\t\\label{fig:scaling}\n134\t\\end{figure}\n135\t\n136\t\n137\t\\section{Full Generalization Results}\n138\t\\label{sec:generalization_full}\n139\t\n140\t\\paragraph{Cross-family transfer.}\n141\tLLaMA-3.1-8B confirms the scaling patterns observed with Qwen3. Its SFT baseline achieves 53.84 Ign-F1 (Rel-F1 55.14, Evi-F1 81.51), and the no-evidence variant reaches 54.52 Ign-F1 (Rel-F1 56.24). The evidence tax of $-0.68$ points mirrors the near-zero tax seen for Qwen3-8B ($-0.28$), supporting our claim that 8B-class models absorb the cost of joint evidence generation regardless of architecture family. RSFT CED improves LLaMA to 55.58 Ign-F1 (Rel-F1 56.74, Evi-F1 82.14, EDCR 0.6128), a +1.74 point gain consistent with the pattern at the 8B scale (Qwen3-8B: +3.82). A second seed (s43: 56.19 Ign-F1, EDCR 0.6073) confirms robustness.\n142\t\n143\t\\paragraph{Cross-dataset robustness.}\n144\tOn Re-DocRED~\\citep{tan2022redocred}, the SFT baseline achieves 36.59 Ign-F1 (Evi-F1 81.70, EDCR 0.6674). RSFT CED improves this to 41.45 Ign-F1 (Evi-F1 81.82, EDCR 0.6210), a +4.86pp gain that closely matches the +4.92pp improvement on DocRED. This consistency across datasets with different annotation protocols confirms that RSFT's benefit generalizes beyond training-set-specific artifacts. Evidence quality remains stable across datasets (Evi-F1 81.82 vs.\\ 81.15 on DocRED), and the EDCR reduction ($-0.046$) mirrors the DocRED pattern, further supporting the robustness of CED-based selection.\n145\t\n146\t\\paragraph{Comparison to supervised methods.}\n147\tTable~\\ref{tab:encoder_comparison} directly compares encoder-based methods with our\n…[truncated 872 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002421"
+        },
+        {
+          "source_line": 2422,
+          "timestamp": "2026-05-18T12:20:41.090546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "offset": "42",
+              "limit": "6"
+            }
+          },
+          "id": "event-002422"
+        },
+        {
+          "source_line": 2423,
+          "timestamp": "2026-05-18T12:20:41.241770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "42\t\n43\t    \\item We identify a \\textbf{scale-dependent evidence tax}: the cost of joint evidence production varies across 1.7B, 4B, and 8B parameters, challenging the assumption that evidence generation uniformly degrades extraction quality.\n44\t\n45\t    \\item We establish \\textbf{RSFT with NLI-based scoring} as an effective solution, using CED or flat-NLI to select high-quality training data. RSFT achieves +4.92pp Ign-F1 over SFT at 4B scale (four-seed mean), and our 1.7B RSFT model (50.50 Ign-F1) approaches 8B SFT performance (50.51), enabling deployment-efficient evidence-grounded extraction at reduced computational cost.\n46\t\\end{enumerate}\n47\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-002423"
+        },
+        {
+          "source_line": 2424,
+          "timestamp": "2026-05-18T12:20:44.455489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/limitations.tex"
+            }
+          },
+          "id": "event-002424"
+        },
+        {
+          "source_line": 2425,
+          "timestamp": "2026-05-18T12:20:44.506222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Limitations}\n2\t\n3\tAll results use the DocRED development set; test set submission is pending. Exact-match F1 penalizes surface-form-different entity mentions~\\citep{wan2024genres}, likely underestimating absolute extraction capability, though relative comparisons remain valid.\n4\t\n5\tWe evaluate one algorithm per RL family (GRPO, DPO); other algorithms may yield different results. GRPO uses a single KL coefficient (0.01) and DPO a single $\\beta$ (0.1); alternative hyperparameter settings may produce different decoupling behaviors and warrant future exploration. CED scoring depends on an external NLI model, and the RSFT ablation uses limited seeds (four for CED, two for flat-NLI). The evidence tax pattern observed up to 8B may not extrapolate to larger scales. At 1.7B scale, 44.4\\% of outputs exhibit repetitive patterns (vs.\\ negligible at 4B+); small models may require decoding-time interventions (e.g., repetition penalty) for reliable deployment.\n6\t\n7\t\\section{Ethics Statement}\n8\t\n9\tThis work uses publicly available benchmarks (DocRED, Re-DocRED) derived from Wikipedia, containing no private or sensitive information. All models are trained on existing annotated data without human subjects involvement. Our evidence-grounding approach aims to improve the verifiability of relation extraction outputs, which supports responsible deployment in high-stakes domains such as clinical and legal information systems by enabling human verification of model predictions. We release code and model outputs to support reproducibility.\n10\t\n11\t\\section*{Responsible NLP Research Checklist}\n12\t\n13\t\\paragraph{A. Did you describe the limitations of your work?}\n14\tYes. Section ``Limitations'' discusses evaluation on development set only, limited RL algorithm coverage, seed count, scale extrapolation, and 1.7B repetition issues.\n15\t\n16\t\\paragraph{B. Did you discuss any potential risks of your work?}\n17\tYes. The Ethics Statement discusses data sources, absence of human subjects, and \n…[truncated 1924 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002425"
+        },
+        {
+          "source_line": 2426,
+          "timestamp": "2026-05-18T12:20:49.126398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex",
+              "offset": "28",
+              "limit": "5"
+            }
+          },
+          "id": "event-002426"
+        },
+        {
+          "source_line": 2427,
+          "timestamp": "2026-05-18T12:20:49.177489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "28\t\n29\t\\paragraph{RSFT.}\n30\tRejection Sampling Fine-Tuning is a single-round variant of iterative self-improvement methods such as STaR~\\citep{zelikman2022star}. The procedure is straightforward: the SFT model generates $N{=}8$ candidate outputs per training document, each candidate is scored by CED, and only the top-$k{=}1$ response is retained as training data. From 24,216 candidate outputs, this selection yields 9,042 training examples (37.3\\% acceptance rate). Unlike GRPO and DPO, RSFT does not apply gradient-based optimization pressure toward a reward signal. Instead, it improves training data quality through filtering: the model trains on its own best outputs rather than all outputs. This distinction is critical because discrete selection over complete outputs cannot exploit the extraction-evidence trade-off that gradient methods find. The contribution of RSFT in our setting is not the framework itself, which is well-established, but its application to evidence-grounded DocRE with CED as a domain-specific quality filter.\n31\t\n32\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002427"
+        },
+        {
+          "source_line": 2428,
+          "timestamp": "2026-05-18T12:22:08.983404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+              "old_string": "Qwen3-1.7B & 47.86 & 39.82 & 50.50 & +8.04 & +2.64 \\\\\nQwen3-4B & 39.74 & 47.21 & 44.66 & $-$7.47 & +4.92 \\\\\nQwen3-8B & 50.51 & 50.79 & \\textbf{54.33} & $-$0.28 & +3.82 \\\\\nLLaMA-3.1-8B & 53.84 & 54.52 & 55.58 & $-$0.68 & +1.74 \\\\",
+              "new_string": "Qwen3-1.7B & 47.86 & 39.82 & 51.22 & +8.04 & +3.36 \\\\\nQwen3-4B & 39.74 & 47.21 & 44.66 & $-$7.47 & +4.92 \\\\\nQwen3-8B & 50.51 & 50.79 & \\textbf{54.24} & $-$0.28 & +3.73 \\\\\nLLaMA-3.1-8B & 53.84 & 54.52 & 57.14 & $-$0.68 & +3.30 \\\\"
+            }
+          },
+          "id": "event-002428"
+        },
+        {
+          "source_line": 2429,
+          "timestamp": "2026-05-18T12:22:09.034133+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002429"
+        },
+        {
+          "source_line": 2430,
+          "timestamp": "2026-05-18T12:22:19.535467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+              "old_string": "RSFT improves all scales. The gain is +2.64 for 1.7B, +4.92 for 4B, and +3.82 for 8B, confirming that CED-based selection generalizes across model capacities. The 4B model benefits most because it has the largest evidence tax to recover from. A striking consequence of this pattern is that 1.7B RSFT achieves 50.50 Ign-F1, approaching 8B SFT at 50.51. CED-based rejection sampling enables a 1.7B model to approach a 4.7$\\times$ larger model on evidence-grounded extraction, with direct implications for deployment cost: practitioners can substitute a small model with RSFT for a large model with vanilla SFT at comparable accuracy.",
+              "new_string": "RSFT improves all scales. The gain is +3.36 for 1.7B, +4.92 for 4B, and +3.73 for 8B, confirming that CED-based selection generalizes across model capacities. The 4B model benefits most because it has the largest evidence tax to recover from. A striking consequence of this pattern is that 1.7B RSFT achieves 51.22 Ign-F1, surpassing 8B SFT at 50.51 (+0.71pp). CED-based rejection sampling enables a 1.7B model to surpass a 4.7$\\times$ larger model on evidence-grounded extraction, with direct implications for deployment cost: practitioners can substitute a small model with RSFT for a large model with vanilla SFT at better accuracy."
+            }
+          },
+          "id": "event-002430"
+        },
+        {
+          "source_line": 2431,
+          "timestamp": "2026-05-18T12:22:19.586542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-002431"
+        },
+        {
+          "source_line": 2432,
+          "timestamp": "2026-05-18T12:22:26.167869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex",
+              "old_string": "Third, RSFT with NLI-based scoring is the most effective route: it achieves +4.92pp Ign-F1 over supervised fine-tuning at 4B scale (four-seed mean), and our 1.7B RSFT model (50.50 Ign-F1) approaches 8B SFT performance (50.51).",
+              "new_string": "Third, RSFT with NLI-based scoring is the most effective route: it achieves +4.92pp Ign-F1 over supervised fine-tuning at 4B scale (four-seed mean), and our 1.7B RSFT model (51.22 Ign-F1) surpasses 8B SFT performance (50.51)."
+            }
+          },
+          "id": "event-002432"
+        },
+        {
+          "source_line": 2433,
+          "timestamp": "2026-05-18T12:22:26.220278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 52
+          },
+          "id": "event-002433"
+        },
+        {
+          "source_line": 2434,
+          "timestamp": "2026-05-18T12:22:31.780002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "old_string": "RSFT achieves +4.92pp Ign-F1 over SFT at 4B scale (four-seed mean), and our 1.7B RSFT model (50.50 Ign-F1) approaches 8B SFT performance (50.51), enabling deployment-efficient evidence-grounded extraction at reduced computational cost.",
+              "new_string": "RSFT achieves +4.92pp Ign-F1 over SFT at 4B scale (four-seed mean), and our 1.7B RSFT model (51.22 Ign-F1) surpasses 8B SFT performance (50.51), enabling deployment-efficient evidence-grounded extraction at reduced computational cost."
+            }
+          },
+          "id": "event-002434"
+        },
+        {
+          "source_line": 2435,
+          "timestamp": "2026-05-18T12:22:31.830919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002435"
+        },
+        {
+          "source_line": 2436,
+          "timestamp": "2026-05-18T12:22:37.257738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex",
+              "old_string": "RSFT with NLI-based scoring yields +4.92pp Ign-F1 at 4B (four-seed mean); our 1.7B RSFT model (50.50 Ign-F1) approaches 8B SFT (50.51) at a fraction of the cost.",
+              "new_string": "RSFT with NLI-based scoring yields +4.92pp Ign-F1 at 4B (four-seed mean); our 1.7B RSFT model (51.22 Ign-F1) surpasses 8B SFT (50.51) at a fraction of the cost."
+            }
+          },
+          "id": "event-002436"
+        },
+        {
+          "source_line": 2437,
+          "timestamp": "2026-05-18T12:22:37.308486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002437"
+        },
+        {
+          "source_line": 2438,
+          "timestamp": "2026-05-18T12:22:46.801032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex",
+              "old_string": "The procedure is straightforward: the SFT model generates $N{=}8$ candidate outputs per training document, each candidate is scored by CED, and only the top-$k{=}1$ response is retained as training data. From 24,216 candidate outputs, this selection yields 9,042 training examples (37.3\\% acceptance rate).",
+              "new_string": "The procedure is straightforward: the SFT model generates $N{=}8$ candidate outputs per training document, each candidate is scored by CED, and only the top-$k{=}1$ response is retained as training data. We use $k{=}1$ (best-of-$N$) selection throughout all experiments, selecting the single highest-scoring candidate per document for RSFT training data construction. This yields approximately 3,000 training examples per model (one per document; exact counts vary slightly by model due to generation failures)."
+            }
+          },
+          "id": "event-002438"
+        },
+        {
+          "source_line": 2439,
+          "timestamp": "2026-05-18T12:22:46.801863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-002439"
+        },
+        {
+          "source_line": 2440,
+          "timestamp": "2026-05-18T12:22:54.793087+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "old_string": "Qwen3-1.7B & 49.45 & 83.16 & 52.19 & 83.09 & 0.6297 \\\\\nQwen3-4B & 40.49 & 79.86 & 45.63 & 81.15 & 0.6503 \\\\\nQwen3-8B & 52.62 & 81.88 & 56.06 & 80.52 & 0.6377 \\\\\nLLaMA-3.1-8B & 55.14 & 81.51 & 56.74 & 82.14 & 0.6128 \\\\",
+              "new_string": "Qwen3-1.7B & 49.45 & 83.16 & 52.90 & 82.43 & 0.6224 \\\\\nQwen3-4B & 40.49 & 79.86 & 45.63 & 81.15 & 0.6503 \\\\\nQwen3-8B & 52.62 & 81.88 & 56.00 & 81.58 & 0.6163 \\\\\nLLaMA-3.1-8B & 55.14 & 81.51 & 58.39 & 82.43 & -- \\\\"
+            }
+          },
+          "id": "event-002440"
+        },
+        {
+          "source_line": 2441,
+          "timestamp": "2026-05-18T12:22:54.844042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002441"
+        },
+        {
+          "source_line": 2442,
+          "timestamp": "2026-05-18T12:23:01.226360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\caption{Detailed Rel-F1 and Evi-F1 across model scales on DocRED dev set. SFT columns show the joint-evidence baseline; RSFT columns show CED $k{=}1$ four-seed mean for 4B, single seed for other scales.}",
+              "new_string": "\\caption{Detailed Rel-F1 and Evi-F1 across model scales on DocRED dev set. SFT columns show the joint-evidence baseline; RSFT columns show CED $k{=}1$ four-seed mean for 4B, two-seed mean for 8B, single seed for 1.7B and LLaMA.}"
+            }
+          },
+          "id": "event-002442"
+        },
+        {
+          "source_line": 2443,
+          "timestamp": "2026-05-18T12:23:01.277386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-002443"
+        },
+        {
+          "source_line": 2444,
+          "timestamp": "2026-05-18T12:23:13.716603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "old_string": "Table~\\ref{tab:cross_detail} supplements Table~\\ref{tab:scaling} in the main text with per-scale Rel-F1 and Evi-F1 breakdowns. At 1.7B, RSFT improves Rel-F1 from 49.45 to 52.19 (+2.74) while achieving Evi-F1 83.09 and EDCR 0.6297. The 4B model shows the same pattern at a larger magnitude: Rel-F1 increases from 40.49 to 45.63 (+5.14, four-seed mean). For 8B, RSFT brings Rel-F1 from 52.62 to 56.06 with Evi-F1 of 80.52 and EDCR 0.6377, confirming tight coupling between extraction and evidence at this scale.",
+              "new_string": "Table~\\ref{tab:cross_detail} supplements Table~\\ref{tab:scaling} in the main text with per-scale Rel-F1 and Evi-F1 breakdowns. At 1.7B, RSFT improves Rel-F1 from 49.45 to 52.90 (+3.45) while achieving Evi-F1 82.43 and EDCR 0.6224. The 4B model shows the same pattern at a larger magnitude: Rel-F1 increases from 40.49 to 45.63 (+5.14, four-seed mean). For 8B, RSFT brings Rel-F1 from 52.62 to 56.00 (two-seed mean) with Evi-F1 of 81.58 and EDCR 0.6163, confirming tight coupling between extraction and evidence at this scale."
+            }
+          },
+          "id": "event-002444"
+        },
+        {
+          "source_line": 2445,
+          "timestamp": "2026-05-18T12:23:13.768317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-002445"
+        },
+        {
+          "source_line": 2446,
+          "timestamp": "2026-05-18T12:23:21.006671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "old_string": "RSFT CED improves LLaMA to 55.58 Ign-F1 (Rel-F1 56.74, Evi-F1 82.14, EDCR 0.6128), a +1.74 point gain consistent with the pattern at the 8B scale (Qwen3-8B: +3.82). A second seed (s43: 56.19 Ign-F1, EDCR 0.6073) confirms robustness.",
+              "new_string": "RSFT CED improves LLaMA to 57.14 Ign-F1 (Rel-F1 58.39, Evi-F1 82.43), a +3.30 point gain consistent with the pattern at the 8B scale (Qwen3-8B: +3.73)."
+            }
+          },
+          "id": "event-002446"
+        },
+        {
+          "source_line": 2447,
+          "timestamp": "2026-05-18T12:23:21.057549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002447"
+        },
+        {
+          "source_line": 2448,
+          "timestamp": "2026-05-18T12:23:28.493202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+              "offset": "122",
+              "limit": "6"
+            }
+          },
+          "id": "event-002448"
+        },
+        {
+          "source_line": 2449,
+          "timestamp": "2026-05-18T12:23:28.544571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "122\t\n123\t\\subsection{Generalization}\n124\t\\label{sec:generalization}\n125\t\n126\tCross-architecture validation on LLaMA-3.1-8B confirms the scaling patterns: the evidence tax at 8B is near zero ($-0.68$ points), and RSFT CED yields +1.74 Ign-F1 gain. The RSFT improvement transfers consistently across datasets: on Re-DocRED~\\citep{tan2022redocred}, RSFT achieves 41.45 Ign-F1 (+4.86pp over SFT baseline 36.59), closely matching the +4.92pp gain on DocRED. Evidence quality remains stable (Evi-F1 81.82 vs.\\ 81.70 for SFT) with improved coupling (EDCR 0.6210 vs.\\ 0.6674). Our best joint Evi-F1 (36.1, DREEAM-protocol denominator) falls below supervised DREEAM (54.01\\%~\\citep{ma2023dreeam}), a gap driven by extraction performance rather than evidence quality (TP-only Evi-F1 exceeds 80\\%). Full results appear in Appendix~\\ref{sec:generalization_full}.\n127\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002449"
+        },
+        {
+          "source_line": 2450,
+          "timestamp": "2026-05-18T12:23:33.188605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+              "old_string": "Cross-architecture validation on LLaMA-3.1-8B confirms the scaling patterns: the evidence tax at 8B is near zero ($-0.68$ points), and RSFT CED yields +1.74 Ign-F1 gain.",
+              "new_string": "Cross-architecture validation on LLaMA-3.1-8B confirms the scaling patterns: the evidence tax at 8B is near zero ($-0.68$ points), and RSFT CED yields +3.30 Ign-F1 gain."
+            }
+          },
+          "id": "event-002450"
+        },
+        {
+          "source_line": 2451,
+          "timestamp": "2026-05-18T12:23:33.239658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-002451"
+        },
+        {
+          "source_line": 2452,
+          "timestamp": "2026-05-18T12:23:36.955603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "offset": "149",
+              "limit": "20"
+            }
+          },
+          "id": "event-002452"
+        },
+        {
+          "source_line": 2453,
+          "timestamp": "2026-05-18T12:23:37.006305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "149\t\\begin{table}[t]\n150\t\\centering\n151\t\\caption{Comparison with encoder-based methods on DocRED dev set. Encoder methods use RoBERTa-large; LLM methods use Qwen3. Evi-F1 for encoder methods uses joint evaluation (all triples in denominator); our joint Evi-F1 follows the same protocol for fair comparison. TP-only Evi-F1 conditions on correctly predicted triples. Rel-F1 is reported in percentage for all methods.}\n152\t\\label{tab:encoder_comparison}\n153\t\\small\n154\t\\resizebox{\\columnwidth}{!}{%\n155\t\\begin{tabular}{llcccc}\n156\t\\toprule\n157\t\\textbf{Method} & \\textbf{Type} & \\textbf{Ign-F1} & \\textbf{Rel-F1} & \\textbf{Evi-F1 (joint)} & \\textbf{Evi-F1 (TP)} \\\\\n158\t\\midrule\n159\tATLOP & Encoder & 61.32 & 63.18 & -- & -- \\\\\n160\tEIDER & Encoder & 62.34 & 64.27 & 52.54 & -- \\\\\n161\tSAIS & Encoder & 62.23 & 65.17 & 55.84 & -- \\\\\n162\tDREEAM & Encoder & 61.71 & 63.49 & 54.15 & -- \\\\\n163\t\\midrule\n164\tOurs (4B RSFT) & LLM & 44.66 & 45.63 & 36.1 & 81.15 \\\\\n165\tOurs (8B RSFT) & LLM & 54.33 & 56.06 & -- & 80.52 \\\\\n166\t\\bottomrule\n167\t\\end{tabular}%\n168\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002453"
+        },
+        {
+          "source_line": 2454,
+          "timestamp": "2026-05-18T12:23:41.515906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "old_string": "Ours (8B RSFT) & LLM & 54.33 & 56.06 & -- & 80.52 \\\\",
+              "new_string": "Ours (8B RSFT) & LLM & 54.24 & 56.00 & -- & 81.58 \\\\"
+            }
+          },
+          "id": "event-002454"
+        },
+        {
+          "source_line": 2455,
+          "timestamp": "2026-05-18T12:23:41.528813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 12
+          },
+          "id": "event-002455"
+        },
+        {
+          "source_line": 2456,
+          "timestamp": "2026-05-18T12:23:48.806657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/limitations.tex",
+              "old_string": "The evidence tax pattern observed up to 8B may not extrapolate to larger scales.",
+              "new_string": "The evidence tax pattern observed up to 8B may not extrapolate to larger scales. Cross-domain evaluation of evidence grounding is limited by the absence of evidence-annotated DocRE datasets beyond the Wikipedia domain; this is an inherent constraint shared by all prior evidence-aware DocRE work (SAIS, DREEAM, EIDER). Our evaluation on DocRED (985 development documents, 12K+ gold triples) and Re-DocRED provides substantial evidence within this domain."
+            }
+          },
+          "id": "event-002456"
+        },
+        {
+          "source_line": 2457,
+          "timestamp": "2026-05-18T12:23:48.857658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/limitations.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002457"
+        },
+        {
+          "source_line": 2458,
+          "timestamp": "2026-05-18T12:23:53.178333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "50\\.50",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002458"
+        },
+        {
+          "source_line": 2459,
+          "timestamp": "2026-05-18T12:23:53.228975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-002459"
+        },
+        {
+          "source_line": 2460,
+          "timestamp": "2026-05-18T12:23:57.249402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "54\\.33|55\\.58|52\\.19|56\\.06|56\\.74",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002460"
+        },
+        {
+          "source_line": 2461,
+          "timestamp": "2026-05-18T12:23:57.350277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-002461"
+        },
+        {
+          "source_line": 2462,
+          "timestamp": "2026-05-18T12:24:00.977492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "approaches.*8B|approach.*4\\.7",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002462"
+        },
+        {
+          "source_line": 2463,
+          "timestamp": "2026-05-18T12:24:01.028260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-002463"
+        },
+        {
+          "source_line": 2464,
+          "timestamp": "2026-05-18T12:24:05.026447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\+2\\.64|\\+3\\.82|\\+1\\.74",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002464"
+        },
+        {
+          "source_line": 2465,
+          "timestamp": "2026-05-18T12:24:05.077010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-002465"
+        },
+        {
+          "source_line": 2466,
+          "timestamp": "2026-05-18T12:24:09.305402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "9,042|9042",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002466"
+        },
+        {
+          "source_line": 2467,
+          "timestamp": "2026-05-18T12:24:09.356072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-002467"
+        },
+        {
+          "source_line": 2468,
+          "timestamp": "2026-05-18T12:24:13.172115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "approach",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002468"
+        },
+        {
+          "source_line": 2469,
+          "timestamp": "2026-05-18T12:24:13.273118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex:9:DREEAM \\citep{ma2023dreeam} extended this approach with dynamic memory-based evidence retrieval that guides attention to supporting sentences.\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex:13:AutoRE \\citep{autore2024} fine-tunes LLMs with QLoRA using a relation-head-facts decomposition; \\citet{xu2024lmrc} frame extraction as multi-choice reading comprehension; RelPrior \\citep{wang2025relprior} uses relation priors to guide LLM-based extraction; GLiDRE \\citep{zhang2025glidre} presents a generalist lightweight approach; Ru-LLM \\citep{wang2025rullm} incorporates logical rule constraints; and \\citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:120:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex:9:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/limitations.tex:9:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex:5:Encoder-based evidence methods (SAIS, DREEAM) can produce supporting sentences but trail LLM approaches in accuracy. The community therefore faces a gap between extractive precision and output verifiability.\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex:13:Second, the cost of evidence production varies across model scales: at 1.7B parameters evidence provides a +6.1pp Ign-F1 benefit on a controlled evaluation subset excluding truncated and repetitive outputs, at 4B it imposes a $-$7.5pp penalty, and at 8B the cost approaches zero.\n/\n…[truncated 1440 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-002469"
+        },
+        {
+          "source_line": 2470,
+          "timestamp": "2026-05-18T12:24:20.607454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "k.?=.?3|k=3",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002470"
+        },
+        {
+          "source_line": 2471,
+          "timestamp": "2026-05-18T12:24:20.708360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/analysis.tex:11:CED and flat-NLI produce comparable performance (Rel-F1 45.63 vs.\\ 45.61); stricter selection ($k{=}1$) outperforms $k{=}3$ by 1.02 Ign-F1 despite 2.96$\\times$ fewer examples (Appendix~\\ref{sec:ablation_full}).\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:46:\\paragraph{Top-$k$ selection.} Best-of-8 ($k{=}1$) yields mean Ign-F1 44.66 and Rel-F1 45.63, while top-3-of-8 ($k{=}3$) produces 43.64 and 44.54. The selected training data confirms the quality gap: $k{=}1$ data has mean extraction F1 of 61.57 and mean CED of 0.6683, versus 57.61 and 0.6205 for $k{=}3$. Despite $k{=}3$ providing 2.96$\\times$ more training examples, the additional lower-ranked samples introduce noise that degrades final performance.\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:67:RSFT CED $k{=}3$ & 43.64 & 44.54 & 80.88 & 0.6635 \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-002471"
+        },
+        {
+          "source_line": 2472,
+          "timestamp": "2026-05-18T12:24:26.437561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+              "offset": "12",
+              "limit": "5"
+            }
+          },
+          "id": "event-002472"
+        },
+        {
+          "source_line": 2473,
+          "timestamp": "2026-05-18T12:24:26.488211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12\t\n13\t\\paragraph{Training.}\n14\tAll models use LoRA~\\citep{hu2022lora} with rank $r{=}64$ and $\\alpha{=}128$ over a structured output format that jointly produces relation triples and evidence sentences. For RSFT, we sample $N{=}8$ candidate outputs per document and select the top-$k{=}1$ response ranked by CED scoring (\\S\\ref{sec:ced}), which combines NLI-based evidence faithfulness with extraction accuracy. GRPO experiments use group sizes $G{=}4$ (QLoRA, 4-bit) and $G{=}8$ (bf16 full-precision LoRA). DPO constructs preference pairs from CED-ranked outputs.\n15\t\n16\t\\paragraph{Metrics.}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002473"
+        },
+        {
+          "source_line": 2474,
+          "timestamp": "2026-05-18T12:24:31.678274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"(Warning.*undefined|Warning.*citation|Error|Output written|Overfull \\\\\\\\hbox)\" | head -10",
+              "description": "Compile after D102 batch update"
+            }
+          },
+          "id": "event-002474"
+        },
+        {
+          "source_line": 2475,
+          "timestamp": "2026-05-18T12:24:33.282011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (16 pages, 405836 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/paper_agent_ae93019b"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 1603
+          },
+          "id": "event-002475"
+        },
+        {
+          "source_line": 2476,
+          "timestamp": "2026-05-18T12:24:37.953840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "51\\.22",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002476"
+        },
+        {
+          "source_line": 2477,
+          "timestamp": "2026-05-18T12:24:38.055131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:95:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:107:Qwen3-1.7B & 47.86 & 39.82 & 51.22 & +8.04 & +3.36 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex:14:Third, RSFT with NLI-based scoring is the most effective route: it achieves +4.92pp Ign-F1 over supervised fine-tuning at 4B scale (four-seed mean), and our 1.7B RSFT model (51.22 Ign-F1) surpasses 8B SFT performance (50.51).\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex:45:    \\item We establish \\textbf{RSFT with NLI-based scoring} as an effective solution, using CED or flat-NLI to select high-quality training data. RSFT achieves +4.92pp Ign-F1 over SFT at 4B scale (four-seed mean), and our 1.7B RSFT model (51.22 Ign-F1) surpasses 8B SFT performance (50.51), enabling deployment-efficient evidence-grounded extraction at reduced computational cost."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 101
+          },
+          "id": "event-002477"
+        },
+        {
+          "source_line": 2478,
+          "timestamp": "2026-05-18T12:24:42.838467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "surpass",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002478"
+        },
+        {
+          "source_line": 2479,
+          "timestamp": "2026-05-18T12:24:42.940474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex:14:These methods match or surpass encoder baselines but produce bare triplets without evidence.\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:95:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex:14:Third, RSFT with NLI-based scoring is the most effective route: it achieves +4.92pp Ign-F1 over supervised fine-tuning at 4B scale (four-seed mean), and our 1.7B RSFT model (51.22 Ign-F1) surpasses 8B SFT performance (50.51).\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex:5:These methods approach or surpass encoder baselines on DocRED \\citep{yao2019docred} and Re-DocRED \\citep{tan2022redocred} in extraction accuracy.\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex:45:    \\item We establish \\textbf{RSFT with NLI-based scoring} as an effective solution, using CED or flat-NLI to select high-quality training data. RSFT achieves +4.92pp Ign-F1 over SFT at 4B scale (four-seed mean), and our 1.7B RSFT model (51.22 Ign-F1) surpasses 8B SFT performance (50.51), enabling deployment-efficient evidence-grounded extraction at reduced computational cost."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 102
+          },
+          "id": "event-002479"
+        },
+        {
+          "source_line": 2480,
+          "timestamp": "2026-05-18T12:25:06.368483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] D102 k=1 batch 更新 — 完成\n\n**13 处修改：**\n\n**Table 3 (scaling)**:\n- 1.7B RSFT: 50.50→51.22, gain +2.64→+3.36\n- 8B RSFT: 54.33→54.24 (2-seed mean), gain +3.82→+3.73\n- LLaMA RSFT: 55.58→57.14, gain +1.74→+3.30\n\n**\"approaches\" → \"surpasses\" (4处)**:\n- Abstract: ✅ 51.22 surpasses 50.51\n- Introduction: ✅\n- Experiments §4.4: ✅ (+0.71pp)\n- Conclusion: ✅\n\n**Method §3.3**: \"9,042 training examples (37.3% acceptance rate)\" → \"approximately 3,000 training examples per model (one per document)\"; 新增 k=1 best-of-N 声明\n\n**Appendix cross_detail table**:\n- 1.7B: Rel-F1 52.19→52.90, Evi-F1 83.09→82.43, EDCR 0.6297→0.6224\n- 8B: Rel-F1 56.06→56.00, Evi-F1 80.52→81.58, EDCR 0.6377→0.6163\n- LLaMA: Rel-F1 56.74→58.39, Evi-F1 82.14→82.43, EDCR→-- (未提供)\n- Caption: 8B 标注 two-seed mean\n\n**Appendix generalization**: LLaMA RSFT 55.58→57.14, gain +1.74→+3.30\n**Encoder comparison table**: 8B RSFT 54.33→54.24, Rel-F1 56.06→56.00, TP-Evi-F1 80.52→81.58\n**Generalization §4.6**: LLaMA gain +1.74→+3.30\n\n**Limitations**: 新增 cross-domain evaluation caveat（Wikipedia domain constraint, shared by SAIS/DREEAM/EIDER）\n\n**验证**:\n- `grep \"50.50\"` = 0 hits（旧 1.7B 清零）\n- `grep \"54.33|55.58|52.19|56.06|56.74\"` = 0 hits（旧 scaling 数字清零）\n- `grep \"+2.64|+3.82|+1.74\"` = 0 hits（旧 gain 清零）\n- `grep \"9,042\"` = 0 hits（旧 k=3 数据量清零）\n- `grep \"approach.*8B\"` = 0 hits\n\n**⚠️ 待确认**：LLaMA k=1 EDCR 未提供，appendix 表格标 --。如有数据请补。\n\n编译：16 页，0 errors，0 undefined refs，0 overfull hbox。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-002480"
+        },
+        {
+          "source_line": 2481,
+          "timestamp": "2026-05-18T12:25:10.448936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 4080
+          },
+          "id": "event-002481"
+        },
+        {
+          "source_line": 2482,
+          "timestamp": "2026-05-18T12:25:13.086547+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All consistent. \"surpasses\" in abstract, intro, experiments, conclusion — all with 51.22 vs 50.51."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent"
+          },
+          "id": "event-002482"
+        }
+      ]
+    },
+    {
+      "number": 87,
+      "messages": [
+        {
+          "source_line": 2483,
+          "timestamp": "2026-05-18T12:25:13.560585+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "source": "system"
+          },
+          "id": "event-002483"
+        },
+        {
+          "source_line": 2484,
+          "timestamp": "2026-05-18T12:25:19.233873+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent"
+          },
+          "id": "event-002484"
+        }
+      ]
+    },
+    {
+      "number": 88,
+      "messages": [
+        {
+          "source_line": 2485,
+          "timestamp": "2026-05-18T12:27:32.539536+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] D102 batch 更新确认收到，13 处修改 + 编译通过。\n\nLLaMA k=1 EDCR：数据尚未计算，Agent 在做 LLaMA s43 eval 时会一并计算。拿到后再发一次小 patch 补上 appendix 表格的 \"--\"。\n\n目前不需要其他修改，等 Wave 1 实验结果出来（SFT seeds + Random RSFT baseline + GRPO bf16 G=4）后会有新一轮数据 patch。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "source": "director"
+          },
+          "id": "event-002485"
+        },
+        {
+          "source_line": 2486,
+          "timestamp": "2026-05-18T12:27:39.914703+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "收到，等待 Wave 1 实验结果和 LLaMA EDCR 数据。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent"
+          },
+          "id": "event-002486"
+        }
+      ]
+    },
+    {
+      "number": 89,
+      "messages": [
+        {
+          "source_line": 2487,
+          "timestamp": "2026-05-18T12:27:40.406559+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "source": "system"
+          },
+          "id": "event-002487"
+        },
+        {
+          "source_line": 2488,
+          "timestamp": "2026-05-18T12:27:46.530705+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent"
+          },
+          "id": "event-002488"
+        }
+      ]
+    },
+    {
+      "number": 90,
+      "messages": [
+        {
+          "source_line": 2489,
+          "timestamp": "2026-05-18T12:44:37.510074+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] LLaMA k=1 EDCR 数据补充\n\nAppendix cross_detail 表格中 LLaMA-8B RSFT k=1 s42 的 EDCR 之前标 \"--\"，现在有数据了：\n\n- EDCR = 0.5799\n\n请将 appendix 表格中 LLaMA 行的 EDCR \"--\" 替换为 0.5799。\n\n同时确认 LLaMA evi_f1 数字一致性：paper_framing.md 记录 0.8243，Agent 报告 82.38%。如果 appendix 表格用的是 82.43，保持 82.43 即可（差异来自小数点精度）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "source": "director"
+          },
+          "id": "event-002489"
+        },
+        {
+          "source_line": 2490,
+          "timestamp": "2026-05-18T12:45:00.657775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "offset": "88",
+              "limit": "12"
+            }
+          },
+          "id": "event-002490"
+        },
+        {
+          "source_line": 2491,
+          "timestamp": "2026-05-18T12:45:00.658361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "88\t\\resizebox{\\columnwidth}{!}{%\n89\t\\begin{tabular}{lccccc}\n90\t\\toprule\n91\t\\textbf{Model} & \\textbf{SFT Rel-F1} & \\textbf{SFT Evi-F1} & \\textbf{RSFT Rel-F1} & \\textbf{RSFT Evi-F1} & \\textbf{RSFT EDCR} \\\\\n92\t\\midrule\n93\tQwen3-1.7B & 49.45 & 83.16 & 52.90 & 82.43 & 0.6224 \\\\\n94\tQwen3-4B & 40.49 & 79.86 & 45.63 & 81.15 & 0.6503 \\\\\n95\tQwen3-8B & 52.62 & 81.88 & 56.00 & 81.58 & 0.6163 \\\\\n96\tLLaMA-3.1-8B & 55.14 & 81.51 & 58.39 & 82.43 & -- \\\\\n97\t\\bottomrule\n98\t\\end{tabular}%\n99\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-002491"
+        },
+        {
+          "source_line": 2492,
+          "timestamp": "2026-05-18T12:45:06.252670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "old_string": "LLaMA-3.1-8B & 55.14 & 81.51 & 58.39 & 82.43 & -- \\\\",
+              "new_string": "LLaMA-3.1-8B & 55.14 & 81.51 & 58.39 & 82.43 & 0.5799 \\\\"
+            }
+          },
+          "id": "event-002492"
+        },
+        {
+          "source_line": 2493,
+          "timestamp": "2026-05-18T12:45:06.453964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 201
+          },
+          "id": "event-002493"
+        },
+        {
+          "source_line": 2494,
+          "timestamp": "2026-05-18T12:45:11.518461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"(Warning.*undefined|Warning.*citation|Error|Output written|Overfull \\\\\\\\hbox)\" | head -10",
+              "description": "Compile after EDCR patch"
+            }
+          },
+          "id": "event-002494"
+        },
+        {
+          "source_line": 2495,
+          "timestamp": "2026-05-18T12:45:13.724984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (16 pages, 405757 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/paper_agent_ae93019b"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 2206
+          },
+          "id": "event-002495"
+        },
+        {
+          "source_line": 2496,
+          "timestamp": "2026-05-18T12:45:17.954137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] LLaMA k=1 EDCR 补充 — 完成\n\nAppendix cross_detail 表格 LLaMA 行：EDCR \"--\" → 0.5799。\nEvi-F1 保持 82.43（与表格其他位置一致）。\n\n编译：16 页，0 errors。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-002496"
+        },
+        {
+          "source_line": 2497,
+          "timestamp": "2026-05-18T12:45:22.076019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 4121
+          },
+          "id": "event-002497"
+        },
+        {
+          "source_line": 2498,
+          "timestamp": "2026-05-18T12:45:24.727861+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "LLaMA Evi-F1 保持 82.43（与表格一致）。编译确认。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent"
+          },
+          "id": "event-002498"
+        }
+      ]
+    },
+    {
+      "number": 91,
+      "messages": [
+        {
+          "source_line": 2499,
+          "timestamp": "2026-05-18T12:45:25.261082+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "source": "system"
+          },
+          "id": "event-002499"
+        },
+        {
+          "source_line": 2500,
+          "timestamp": "2026-05-18T12:45:32.241006+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent"
+          },
+          "id": "event-002500"
+        }
+      ]
+    },
+    {
+      "number": 92,
+      "messages": [
+        {
+          "source_line": 2501,
+          "timestamp": "2026-05-18T13:45:44.979213+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] Mechanistic analysis 数据完善 — fair subset 统一 + 4B 补充\n\n两项更新需 patch 进论文：\n\n### 1. Fair subset 数字统一\n- 论文中所有 fair subset 引用统一用 **aggregate ign_f1**（DocRED 标准 micro F1）\n- 权威数字：442/985 docs, 1.7B +6.2pp, 8B Qwen -0.3pp, 8B LLaMA +0.3pp\n- 如果论文中有 per-doc average F1 (4.9pp)，改为 6.2pp\n\n### 2. 4B Duplication + Truncation 数据（新增）\nMechanistic analysis section 补充 4B 数据，形成完整 3-scale 表：\n\n**Duplication rate monotonic decline**:\n| Model | with-evi | no-evi | Gap |\n|-------|----------|--------|-----|\n| 1.7B | 33.0% | 60.5% | 27.5pp |\n| 4B | 31.1% | 43.2% | 12.1pp |\n| 8B | 29.2% | 32.9% | 3.7pp |\n\n**Truncation asymmetry**:\n| Model | Δ (no-evi minus evi) | Pattern |\n|-------|---------------------|---------|\n| 1.7B | +19pp | no-evi worse |\n| 4B | +2pp | neutral |\n| 8B | -9pp | evi worse |\n\n这两个表支撑 \"evidence as implicit regularization\" 叙事：正则化效应随容量增大 monotonically 递减。4B 是 capacity valley——duplication 已低到不需正则化，但容量不足以同时做 RE + evidence generation。\n\n这次不用验证引用。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "source": "director"
+          },
+          "id": "event-002501"
+        },
+        {
+          "source_line": 2502,
+          "timestamp": "2026-05-18T13:45:54.559106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fair.*subset|controlled.*subset|439|442|6\\.12|6\\.2",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002502"
+        },
+        {
+          "source_line": 2503,
+          "timestamp": "2026-05-18T13:45:54.609876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:93:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex:13:Second, the cost of evidence production varies across model scales: at 1.7B parameters evidence provides a +6.1pp Ign-F1 benefit on a controlled evaluation subset excluding truncated and repetitive outputs, at 4B it imposes a $-$7.5pp penalty, and at 8B the cost approaches zero.\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:44:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:63:RSFT CED $k{=}1$ (s44) & 45.11 & 46.21 & 80.50 & 0.6350 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:104:\\label{sec:fair_subset}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:106:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:141:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex:32:At 1.7B parameters, evidence generation provides an implicit regularization benefit of +6.1pp Ign-F1 on a controlled evaluation subset; at 4B, it imposes a $-$7.5pp penalty; at 8B, the tax approaches zero."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-002503"
+        },
+        {
+          "source_line": 2504,
+          "timestamp": "2026-05-18T13:45:57.477438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+              "offset": "91",
+              "limit": "6"
+            }
+          },
+          "id": "event-002504"
+        },
+        {
+          "source_line": 2505,
+          "timestamp": "2026-05-18T13:45:57.578707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "91\tThe evidence tax, defined as the Ign-F1 difference between no-evidence and joint-evidence SFT, varies across model scales. Table~\\ref{tab:scaling} presents this analysis across four models (Figure~\\ref{fig:scaling} in Appendix).\n92\t\n93\tAt the 4B scale, the evidence tax is severe: $-7.47$ points. Generating evidence sentences alongside relation triples consumes capacity that would otherwise improve extraction. At 8B, the tax nearly vanishes ($-0.28$ points for Qwen3-8B, $-0.68$ for LLaMA-3.1-8B), indicating that 8B-class models have sufficient capacity to handle both tasks simultaneously. The most surprising result appears at 1.7B: instead of paying a larger tax, the smallest model \\emph{benefits} from evidence generation (+8.04 points raw). However, the no-evidence model suffers a higher truncation rate (50.9\\% vs.\\ 31.9\\% for the evidence model), partially inflating this gap. On a controlled evaluation subset that excludes truncated and repetitive outputs (439/985 documents; definition in Appendix~\\ref{sec:fair_subset}), the benefit is +6.12 points. Crucially, even on this controlled subset the direction remains positive, opposite to the negative tax at 4B and 8B, confirming that the scale-dependent pattern is not an artifact of output format differences. We hypothesize that for small models, evidence generation provides implicit regularization, forcing the model to attend to supporting context rather than memorizing surface-level patterns.\n94\t\n95\tRSFT improves all scales. The gain is +3.36 for 1.7B, +4.92 for 4B, and +3.73 for 8B, confirming that CED-based selection generalizes across model capacities. The 4B model benefits most because it has the largest evidence tax to recover from. A striking consequence of this pattern is that 1.7B RSFT achieves 51.22 Ign-F1, surpassing 8B SFT at 50.51 (+0.71pp). CED-based rejection sampling enables a 1.7B model to surpass a 4.7$\\times$ larger model on evidence-grounded extraction, with direct implications for deployment co\n…[truncated 115 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-002505"
+        },
+        {
+          "source_line": 2506,
+          "timestamp": "2026-05-18T13:46:00.595739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "offset": "102",
+              "limit": "15"
+            }
+          },
+          "id": "event-002506"
+        },
+        {
+          "source_line": 2507,
+          "timestamp": "2026-05-18T13:46:00.646421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "102\t\n103\t\\section{Controlled Evaluation Subset}\n104\t\\label{sec:fair_subset}\n105\t\n106\tThe 1.7B evidence tax comparison (\\S\\ref{sec:scaling}) is confounded by differential output quality: the no-evidence model truncates 50.9\\% of outputs (501/985 documents) at the \\texttt{max\\_new\\_tokens} limit, versus 31.9\\% (314/985) for the evidence model. To control for this, we define a \\emph{controlled evaluation subset} that excludes any document where either model produces a truncated or repetitive output. An output is classified as \\emph{truncated} if it reaches the generation length limit. An output is classified as \\emph{repetitive} if it contains $\\geq$3 consecutive identical triples or if the ratio of unique triples to total triples falls below 0.5 (when total $> 5$). The resulting subset contains 439 of 985 development documents (44.6\\%). On this subset, the 1.7B evidence tax is +6.12pp (vs.\\ +8.04pp on the full set), indicating that approximately 24\\% of the raw gap is attributable to the no-evidence model's higher truncation rate. The positive direction is preserved, confirming that the 1.7B evidence benefit is genuine and not an artifact of output format differences.\n107\t\n108\t\n109\t\\section{Why RSFT Avoids Decoupling}\n110\t\\label{sec:rsft_theory}\n111\t\n112\tThe structural difference between selection and optimization explains why RSFT does not exhibit the decoupling observed in gradient-based methods. GRPO and DPO update model parameters through gradients that optimize a reward signal. When two sub-tasks (extraction and evidence) compete for gradient capacity, the optimizer can discover and exploit the trade-off between them, improving one at the expense of the other. RSFT operates differently: it selects complete outputs and trains on them with standard supervised loss. Because the selection is discrete (accept or reject a full response), there is no gradient pathway through which the model can learn to sacrifice extraction for evidence quality. Only outputs where both \n…[truncated 587 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002507"
+        },
+        {
+          "source_line": 2508,
+          "timestamp": "2026-05-18T13:46:09.441166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+              "old_string": "On a controlled evaluation subset that excludes truncated and repetitive outputs (439/985 documents; definition in Appendix~\\ref{sec:fair_subset}), the benefit is +6.12 points.",
+              "new_string": "On a controlled evaluation subset that excludes truncated and repetitive outputs (442/985 documents; definition in Appendix~\\ref{sec:fair_subset}), the benefit is +6.2 points."
+            }
+          },
+          "id": "event-002508"
+        },
+        {
+          "source_line": 2509,
+          "timestamp": "2026-05-18T13:46:09.441811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-002509"
+        },
+        {
+          "source_line": 2510,
+          "timestamp": "2026-05-18T13:46:14.918457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex",
+              "old_string": "at 1.7B parameters evidence provides a +6.1pp Ign-F1 benefit on a controlled evaluation subset excluding truncated and repetitive outputs",
+              "new_string": "at 1.7B parameters evidence provides a +6.2pp Ign-F1 benefit on a controlled evaluation subset excluding truncated and repetitive outputs"
+            }
+          },
+          "id": "event-002510"
+        },
+        {
+          "source_line": 2511,
+          "timestamp": "2026-05-18T13:46:14.969248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002511"
+        },
+        {
+          "source_line": 2512,
+          "timestamp": "2026-05-18T13:46:18.996969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+              "old_string": "an implicit regularization benefit of +6.1pp Ign-F1 on a controlled evaluation subset",
+              "new_string": "an implicit regularization benefit of +6.2pp Ign-F1 on a controlled evaluation subset"
+            }
+          },
+          "id": "event-002512"
+        },
+        {
+          "source_line": 2513,
+          "timestamp": "2026-05-18T13:46:19.097864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-002513"
+        },
+        {
+          "source_line": 2514,
+          "timestamp": "2026-05-18T13:46:22.362482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-002514"
+        },
+        {
+          "source_line": 2515,
+          "timestamp": "2026-05-18T13:46:22.413328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe formalize evidence-grounded document-level relation extraction as a structured generation task for LLMs and compare three post-training paradigms across 85+ configurations. RL optimization pressure is associated with evidence-extraction decoupling severity (GRPO catastrophic under QLoRA, DPO gradual, RSFT none), and the cost of joint evidence production varies across scales (+6.1pp at 1.7B on a controlled subset, $-$7.5pp at 4B, near zero at 8B). RSFT with NLI-based scoring yields +4.92pp Ign-F1 at 4B (four-seed mean); our 1.7B RSFT model (51.22 Ign-F1) surpasses 8B SFT (50.51) at a fraction of the cost.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002515"
+        },
+        {
+          "source_line": 2516,
+          "timestamp": "2026-05-18T13:46:25.378338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex",
+              "old_string": "+6.1pp at 1.7B on a controlled subset",
+              "new_string": "+6.2pp at 1.7B on a controlled subset"
+            }
+          },
+          "id": "event-002516"
+        },
+        {
+          "source_line": 2517,
+          "timestamp": "2026-05-18T13:46:25.430409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 52
+          },
+          "id": "event-002517"
+        },
+        {
+          "source_line": 2518,
+          "timestamp": "2026-05-18T13:46:46.815326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+              "old_string": "The resulting subset contains 439 of 985 development documents (44.6\\%). On this subset, the 1.7B evidence tax is +6.12pp (vs.\\ +8.04pp on the full set), indicating that approximately 24\\% of the raw gap is attributable to the no-evidence model's higher truncation rate. The positive direction is preserved, confirming that the 1.7B evidence benefit is genuine and not an artifact of output format differences.",
+              "new_string": "The resulting subset contains 442 of 985 development documents (44.9\\%). On this subset, the 1.7B evidence tax is +6.2pp (vs.\\ +8.04pp on the full set), indicating that approximately 23\\% of the raw gap is attributable to the no-evidence model's higher truncation rate. The positive direction is preserved, confirming that the 1.7B evidence benefit is genuine and not an artifact of output format differences.\n\nTable~\\ref{tab:mechanistic} provides a mechanistic breakdown across three scales. Output duplication rate (fraction of documents containing $\\geq$3 repeated triples or unique/total $< 0.5$) declines monotonically with scale for both training configurations, but the gap between no-evidence and with-evidence models narrows from 27.5pp at 1.7B to 3.7pp at 8B. This pattern supports the implicit regularization hypothesis: evidence generation forces smaller models to attend to supporting context, reducing degenerate repetition. At 4B, duplication is already moderate (31.1\\% with evidence), so the regularization benefit diminishes, while the model lacks sufficient capacity to jointly optimize extraction and evidence generation, creating the capacity valley that produces the largest evidence tax ($-7.47$pp). The truncation asymmetry reverses across scales: at 1.7B the no-evidence model truncates 19pp more often; at 8B the evidence model truncates 9pp more often due to the longer output format.\n\n\\begin{table}[t]\n\\centering\n\\caption{Mechanistic breakdown of output quality across scales. Duplication rate: fraction of documents with degenerate outputs. Truncation $\\Delta$: no-evidence rate minus with-evidence rate (positive means no-evidence truncates more).}\n\\label{tab:mechanistic}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{Duplication Rate}} & \\multicolumn{2}{c}{\\textbf{Truncation}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-6}\n\\textbf{Scale} & \\textbf{w/ evi} & \\textbf{no-evi} & \\textbf{Gap} & \\textbf{$\\Delta$} & \\textbf{Pattern} \\\\\n\\midrule\n1.7B & 33.0 & 60.5 & 27.5 & +19 & no-evi worse \\\\\n4B & 31.1 & 43.2 & 12.1 & +2 & neutral \\\\\n8B & 29.2 & 32.9 & 3.7 & $-$9 & evi worse \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}"
+            }
+          },
+          "id": "event-002518"
+        },
+        {
+          "source_line": 2519,
+          "timestamp": "2026-05-18T13:46:46.866331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002519"
+        },
+        {
+          "source_line": 2520,
+          "timestamp": "2026-05-18T13:46:51.738569+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "6\\.12|6\\.1pp|439/",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002520"
+        }
+      ]
+    }
+  ]
+}

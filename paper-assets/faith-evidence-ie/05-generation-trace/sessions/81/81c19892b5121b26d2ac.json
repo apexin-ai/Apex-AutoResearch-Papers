@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81c19892b5121b26d2ac",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis dpo rebuilt 3ep",
+  "task_key": "worker_analysis_dpo_rebuilt_3ep_20260523T093841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dpo_rebuilt_3ep_20260523T093841_result.json",
+    "occurrence": 1,
+    "bytes": 3054,
+    "sha256": "e134a2ad2488898cbcfbcbbc08bb9a52c81a1871300fa823210a4dcd2f5a7c8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "W&B 数据未找到（可能未正确初始化）。基于训练日志的完整分析如下：\n\n---\n\n## DPO 3-epoch 训练结果分析\n\n### 1. 训练概况\n\n| 项目 | 值 |\n|------|-----|\n| 总步数 | 561 |\n| 训练耗时 | 6135s (≈1h 42min) |\n| 平均 train_loss | 0.4347 |\n| 退出码 | 0 (正常完成) |\n| 报错/异常 | 无 |\n\n### 2. Checkpoint 结构\n\n- `checkpoint-400` (~epoch 2.14)\n- `checkpoint-500` (~epoch 2.67)\n- `checkpoint-561` (final, epoch 3)\n- **最终 adapter**: `/root/autodl-tmp/dpo_output_rebuilt_3ep/adapter_model.safetensors` (504MB)\n- adapter_config.json ✓, ref/ 目录 ✓\n\n### 3. 训练动态（逐 epoch 关键指标）\n\n| 指标 | ~Ep 0.5 | ~Ep 1.0 | ~Ep 1.5 | ~Ep 2.0 | ~Ep 2.5 | ~Ep 3.0 |\n|------|---------|---------|---------|---------|---------|---------|\n| loss | 0.579 | 0.514 | 0.416 | 0.268 | 0.336 | 0.300 |\n| accuracy | 0.694 | 0.719 | 0.831 | 0.919 | 0.888 | 0.869 |\n| margin | 0.389 | 1.064 | 1.633 | 2.203 | 2.142 | 2.404 |\n| entropy | 0.114 | 0.108 | 0.097 | 0.098 | 0.094 | 0.090 |\n| logps/chosen | -39.9 | -63.3 | -52.4 | -67.6 | -61.5 | -58.2 |\n\n### 4. 过拟合分析\n\n**有明显过拟合迹象：**\n\n1. **Accuracy 在 epoch 2 见顶 (0.919) 后回落至 epoch 3 的 0.869** — 典型的过拟合后训练不稳定模式。\n2. **Entropy 持续下降 (0.114 → 0.090)** — 模型 policy 越来越确定，多样性损失。\n3. **最终 summary 的 accuracy=1.0, margin=4.619** — 在最后一个 batch 上完美分离，过拟合信号。\n4. **logps/chosen 从 -40 漂移到 -58~-68 范围** — 模型显著偏离 reference policy，chosen 的绝对概率在变差（DPO 在压低 rejected 的同时也拉低了 chosen）。\n5. **Loss 在 epoch 2 之后不再持续下降**，在 0.27-0.36 之间振荡。\n\n### 5. 3ep vs 1ep 对比\n\n| 指标 | 1ep 位置 (~step 187) | 3ep 最终 (~step 561) |\n|------|---------------------|---------------------|\n| loss | ~0.51 | ~0.30 |\n| accuracy | ~0.72 | ~0.87 |\n| margin | ~1.06 | ~2.40 |\n| 下游 ign_f1 | **0.32231** | **待 eval** |\n| EDCR | **0.8123** | **待 eval** |\n\n训练指标上 3ep 大幅优于 1ep（loss 降 41%, margin 翻倍），但这可能只反映了在训练集上的拟合程度而非泛化能力。accuracy 在 epoch 2 后的回落和 entropy 的持续下降是负面信号。\n\n### 6. 初步判断\n\n3ep DPO 训练在 **训练集** 上的区分能力显著强于 1ep，但存在 **过拟合风险**。关键判据在于下游 eval：\n- 如果 ign_f1 > 0.32231 → 3ep 仍有收益，支撑 \"gradual degradation\" 假说（更多 epoch = 更好，或至少不大幅退化）\n- 如果 ign_f1 < 0.32231 → 典型的 DPO 过拟合，epoch 2 可能是最优点，支撑在 checkpoint-400 处早停\n\n### 7. 下一步\n\n需要在 Re-DocRED test set 上跑 eval：\n- 最终 checkpoint (`/root/autodl-tmp/dpo_output_rebuilt_3ep/`)\n- 可选：中间 checkpoint-400 (~ep 2.14) 作为早停候选\n- 对比 1ep baseline ign_f1=0.32231\n\n是否现在提交 eval？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dpo-rebuilt-3ep.md"
+}

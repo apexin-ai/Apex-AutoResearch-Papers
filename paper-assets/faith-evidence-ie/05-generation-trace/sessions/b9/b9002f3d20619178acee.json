@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9002f3d20619178acee",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check all running progress",
+  "task_key": "worker_ops_check-all-running-progress_20260514T195214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-all-running-progress_20260514T195214_result.json",
+    "occurrence": 1,
+    "bytes": 2368,
+    "sha256": "e779ac4e9b331ce794d8f2910be4c84171e64fc0448090e8f7fac0053fe8cd36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总\n\n### GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 63% | 13.6/31.8 GB |\n| 1 | 75% | 10.6/31.8 GB |\n| 2 | 64% | 9.7/31.8 GB |\n| 3 | 94% | 16.1/31.8 GB |\n\n---\n\n### 1. mvp2_grpo_ced_lr5e6_r1 (cuda:0, pid=90080) — **运行中**\n- **进度**: step 6/200 (3%)\n- **速度**: ~111s/step\n- **预估剩余**: ~5h58m\n- **输出目录**: `/root/autodl-tmp/grpo_ced_lr5e6/` — 空，尚未到第一个 save_steps=20\n- **⚠️ 异常**: KL divergence = **2,412,554,396.9** (远超阈值 100)，虽然标记 monitoring only 没有停止，但 KL 爆炸到 24 亿严重异常，大概率导致训练崩溃或无效。建议检查 lr=5e-6 是否过大或初始化问题。\n\n---\n\n### 2. mvp2_eval_ced_kl001_r4_step90 (cuda:1, pid=83207) — **运行中**\n- **进度**: 58/62 batches (94%)\n- **速度**: ~82s/batch\n- **预估剩余**: ~5-6 min\n- **状态**: 即将完成\n\n---\n\n### 3. mvp2_eval_ced_kl001_r4_multi (cuda:2, pid=78850) — **运行中**\n- **已完成 checkpoint**: 10 ✅, 50 ✅, 60 ✅\n- **当前**: ckpt-20 eval 中，46/62 batches (74%)\n- **预估剩余 ckpt-20**: ~13 min\n- **待 eval**: 30, 40 (ckpt-70, 80 已分给实验 4)\n- **预估全部完成**: ~3.5h（ckpt-20 剩 13min + ckpt-30 ~87min + ckpt-40 ~87min）\n\n**已完成 metrics**:\n\n| Checkpoint | F1 | Ign-F1 | Evi-F1 | EDCR | Format |\n|------------|-----|--------|--------|------|--------|\n| 10 | 0.003 | 0.003 | 0.720 | 0.998 | 99.9% |\n| 50 | **0.156** | **0.156** | 0.564 | 0.886 | 99.9% |\n| 60 | 0.147 | 0.147 | 0.576 | 0.906 | 100% |\n\nckpt-10 关系 F1 几乎为零（模型还没学会），ckpt-50 是目前最高点，ckpt-60 略有下降。\n\n---\n\n### 4. mvp2_eval_ced_kl001_r4_ckpt7080 (cuda:3, pid=91681) — **运行中**\n- **当前**: ckpt-70 eval 刚启动，模型已加载完毕，inference 0/62\n- **预估完成**: ~3h（ckpt-70 ~87min + ckpt-80 ~87min）\n\n---\n\n### 关键发现\n1. **KL 爆炸**: 实验 1 (grpo_ced_lr5e6) 的 KL divergence 爆到 24 亿，lr=5e-6 可能过大，这轮训练大概率无效。需要决定是否提前终止。\n2. **Eval 矩阵进展顺利**: ckpt-90 eval 即将完成（~5min），ckpt-20 也快完成（~13min）。\n3. **ckpt-50 暂时最优**: F1=0.156, 后续 ckpt-60 已略有下降，等 ckpt-90 结果出来可以看完整曲线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-all-running-progress-copy-2.md"
+}

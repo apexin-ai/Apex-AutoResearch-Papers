@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "857c68b6d0679ba5a431",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose 14b gen progress and multiseed scan",
+  "task_key": "worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_14b-gen-progress-and-multiseed-scan_20260523T002521_result.json",
+    "occurrence": 1,
+    "bytes": 3015,
+    "sha256": "a1ca6f41cff4a0be0d7621ac11928b2c48425e2a8489b4087df3ab27f44f0cac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 14B s43 Generation\n\n- **进度**: 1058/3027 docs (35%)\n- **PID**: 194682, 运行 6h9m, CPU 100%, RSS 2.4GB\n- **生成文件**: 8464 lines (8 gens/doc × 1058 docs)\n- **速度**: ~21s/doc\n- **剩余**: 1969 docs × 21s ≈ **11.5 小时**\n- **ETA**: 约今天 ~19:30 UTC\n\n---\n\n## Multi-seed RSFT Test Eval 可行性\n\n### 已有 RSFT Models (all verified with adapter_config.json)\n\n| Scale | seed 42 | seed 43 | seed 44 |\n|-------|---------|---------|---------|\n| Qwen3-1.7B | `rsft_output_qwen3_1_7b_k1` | `rsft_output_qwen3_1_7b_k1_s43` | `rsft_output_qwen3_1_7b_k1_s44` |\n| Qwen3-4B | `rsft_output_ced_s42_v2` | `rsft_output_ced_s43` | — |\n| Qwen3-8B | `rsft_output_qwen3_8b_k1` | `rsft_output_qwen3_8b_k1_s43` | `rsft_output_qwen3_8b_k1_s44` |\n| Qwen3-14B | `rsft_output_14b` | — (gen中) | — |\n| LLaMA-3.1-8B | `rsft_output_llama_3_1_8b_k1` | `rsft_output_llama_3_1_8b_k1_s43` | `rsft_output_llama_3_1_8b_k1_s44` |\n\n### 已有 Test Eval (全部仅 s42)\n\n| Scale | s42 with-evi (ign_f1) | s42 no-evi | s43 w/ | s43 no | s44 w/ | s44 no |\n|-------|-----------------------|------------|--------|--------|--------|--------|\n| 1.7B | ✅ 0.293 | ✅ | — | — | — | — |\n| 4B | ✅ 0.250 | ✅ | — | — | n/a | n/a |\n| 8B | ✅ 0.335 | ✅ | — | — | — | — |\n| 14B | ✅ 0.385 | ✅ | n/a | n/a | n/a | n/a |\n| LLaMA | ✅ 0.360 | ✅ | — | — | — | — |\n\n### 可立即跑的 Test Eval 清单 (14 evals)\n\n| # | Scale | Seed | Mode | Model Path |\n|---|-------|------|------|------------|\n| 1 | 1.7B | s43 | with-evi | `rsft_output_qwen3_1_7b_k1_s43` |\n| 2 | 1.7B | s43 | no-evi | 同上 |\n| 3 | 1.7B | s44 | with-evi | `rsft_output_qwen3_1_7b_k1_s44` |\n| 4 | 1.7B | s44 | no-evi | 同上 |\n| 5 | 4B | s43 | with-evi | `rsft_output_ced_s43` |\n| 6 | 4B | s43 | no-evi | 同上 |\n| 7 | 8B | s43 | with-evi | `rsft_output_qwen3_8b_k1_s43` |\n| 8 | 8B | s43 | no-evi | 同上 |\n| 9 | 8B | s44 | with-evi | `rsft_output_qwen3_8b_k1_s44` |\n| 10 | 8B | s44 | no-evi | 同上 |\n| 11 | LLaMA | s43 | with-evi | `rsft_output_llama_3_1_8b_k1_s43` |\n| 12 | LLaMA | s43 | no-evi | 同上 |\n| 13 | LLaMA | s44 | with-evi | `rsft_output_llama_3_1_8b_k1_s44` |\n| 14 | LLaMA | s44 | no-evi | 同上 |\n\n### 预估运行时间 (from s42 test_summary.json)\n\n| Scale | inference_time | batch_size | 备注 |\n|-------|---------------|------------|------|\n| 1.7B | 5.9h (21129s) | 1 | 可尝试 batch=16 加速 |\n| 4B | **1.1h** (4124s) | 16 | 快 |\n| 8B | **0.75h** (2711s) | 16 | 最快 |\n| 14B | 5.3h (19086s) | 1 | — |\n| LLaMA | 5.4h (19571s) | 1 | — |\n\n**总计 14 evals**。4 卡并行调度估算：\n- 快速组 (4B×2 + 8B×4 = 6 evals): ~2h 内全部完成\n- 慢速组 (1.7B×4 + LLaMA×4 = 8 evals): 每个 ~6h, 4 卡并行需 2 轮 ≈ **~12h**\n- **总墙钟时间: ~12-14h** (慢速组是瓶颈)\n- 注意: 14B gen 正占 2 卡 (cuda:0,1)，当前只有 2 卡空闲可跑 eval，需等 gen 完成后才能 4 卡满载"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-14b-gen-progress-and-multiseed-scan.md"
+}

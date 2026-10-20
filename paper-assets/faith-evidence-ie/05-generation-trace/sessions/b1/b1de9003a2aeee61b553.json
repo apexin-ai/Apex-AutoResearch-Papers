@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1de9003a2aeee61b553",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops prep rp r2 ckpt20 eval cuda2",
+  "task_key": "worker_ops_prep-rp_r2-ckpt20-eval-cuda2_20260514T212827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep-rp_r2-ckpt20-eval-cuda2_20260514T212827_result.json",
+    "occurrence": 1,
+    "bytes": 225,
+    "sha256": "5556b320e0eacb213abb578a81c32e0b301ca9278154055d9a4f93db018f766a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **脚本路径**: `/root/autodl-tmp/scripts/eval_lr5e6_rp_ckpt20_cuda2.sh`\n- **唯一差异**: `CUDA_VISIBLE_DEVICES=1` → `CUDA_VISIBLE_DEVICES=2`\n- **ckpt-20 存在**: `adapter_model.safetensors` (252MB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-rp-r2-ckpt20-eval-cuda2.md"
+}

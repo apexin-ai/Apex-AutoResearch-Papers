@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "95f729109982816d52f3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze d158 14b rsft s44 eval",
+  "task_key": "worker_analyze_d158_14b_rsft_s44_eval_20260525T150520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_d158_14b_rsft_s44_eval_20260525T150520_result.json",
+    "occurrence": 1,
+    "bytes": 1458,
+    "sha256": "1c3c441557242bf2c8b3cc10cd73d2dfe9cd0c633670067d44448d15d60e34b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No W&B run ID in the log. Results:\n\n```json\n{\n  \"ign_f1\": 0.5655,\n  \"f1\": 0.5794,\n  \"precision\": 0.5496,\n  \"recall\": 0.6125,\n  \"ign_precision\": 0.5259,\n  \"ign_recall\": 0.6116,\n  \"evi_f1_tp\": 0.8355,\n  \"evi_f1_joint\": 0.4718,\n  \"edcr\": 0.5955,\n  \"format_ok_rate\": 1.0,\n  \"n_truncated\": 95,\n  \"n_documents\": 985,\n  \"n_predictions\": 18151,\n  \"inference_time_seconds\": 21564.6,\n  \"wandb_run_id\": null,\n  \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_14b_s44\",\n  \"log_path\": \"~/runs/faith-evidence-ie/d158_14b_rsft_s44_eval.log\"\n}\n```\n\n**3-seed summary (14B RSFT k=1, dev, with-evidence):**\n\n| seed | ign_f1 |\n|------|--------|\n| s42 | 0.5886 |\n| s43 | 0.5815 |\n| s44 | 0.5655 |\n| **mean±std** | **0.5785 ± 0.0095** |\n\ns44 比前两个 seed 低约 1.3-2.3 points，拉低了均值。无错误，format 100%，运行正常（~6h 推理）。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "ign_f1": 0.5655,
+              "f1": 0.5794,
+              "precision": 0.5496,
+              "recall": 0.6125,
+              "ign_precision": 0.5259,
+              "ign_recall": 0.6116,
+              "evi_f1_tp": 0.8355,
+              "evi_f1_joint": 0.4718,
+              "edcr": 0.5955,
+              "format_ok_rate": 1.0,
+              "n_truncated": 95,
+              "n_documents": 985,
+              "n_predictions": 18151,
+              "inference_time_seconds": 21564.6,
+              "wandb_run_id": null,
+              "checkpoint_path": "/root/autodl-tmp/rsft_output_14b_s44",
+              "log_path": "~/runs/faith-evidence-ie/d158_14b_rsft_s44_eval.log"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-d158-14b-rsft-s44-eval.md"
+}

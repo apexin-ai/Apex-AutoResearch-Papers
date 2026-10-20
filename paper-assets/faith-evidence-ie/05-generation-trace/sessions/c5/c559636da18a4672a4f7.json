@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c559636da18a4672a4f7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval plan 012 dpo 1ep fixed r2",
+  "task_key": "worker_analysis_eval_plan_012_dpo_1ep_fixed_r2_20260515T233756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_plan_012_dpo_1ep_fixed_r2_20260515T233756_result.json",
+    "occurrence": 1,
+    "bytes": 2470,
+    "sha256": "b9f11482d96bb707ac85be7d26b703327d02fd4faf7dadcf22d6a2b7758419c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 指标\n- rel_f1: 0.4034\n- ign_f1: 0.4034\n- evi_f1 (conditional): 0.8088\n- evi_f1 (joint): 0.3069\n- EDCR: 0.7139\n- precision: 0.3809\n- recall: 0.4287\n- wandb_run_id: 无（日志中未记录）\n\n## 对比分析\n\n| 方法 | rel_f1 | evi_f1 | EDCR |\n|------|--------|--------|------|\n| **DPO 1ep (本次)** | 0.4034 | 0.8088 | 0.7139 |\n| SFT baseline | 0.4057 | 0.7979 | 0.7118 |\n| DPO 3ep | 0.3429 | — | — |\n| RSFT CED best (s44) | 0.4655 | 0.8087 | — |\n| RSFT CED mean | ~0.4596 | — | — |\n| CED reranker | 0.4864 | 0.8188 | — |\n\n**vs SFT baseline**: rel_f1 下降 0.0023（-0.6%），本质持平。evi_f1 微升 +0.0109，EDCR 微升 +0.0021。DPO 1ep 没有提升关系抽取能力。\n\n**vs DPO 3ep**: 1ep（0.4034）远优于 3ep（0.3429），确认 3ep 是过拟合。但 1ep 也只是回到 SFT 水平，说明 DPO 在早期就已无正向信号。\n\n**vs RSFT methods**: 差距巨大。RSFT CED best 0.4655 比 DPO 1ep 高 +0.0621（+15.4%），CED reranker 0.4864 高 +0.0830（+20.6%）。\n\n**Evidence decoupling**: 未出现明显 decoupling。evi_f1 从 0.7979→0.8088 微升，rel_f1 基本不变，DPO 对两个维度都没有产生有意义的影响。\n\n## 结论建议\n```\nconclusion = negative\n```\n理由：DPO 1ep 的 rel_f1=0.4034 未超过 SFT baseline（0.4057），甚至略低。虽然避免了 3ep 的过拟合崩塌，但完全没有正向提升。与 RSFT 方法差距极大（15-20%），DPO 作为 offline preference optimization 在本任务上无效。\n\n## DPO 论文定位建议\n\nDPO 应作为**负面对比实验（negative baseline）**，用于论证：\n1. **Offline preference optimization 不适用于 structured IE 任务** — DPO 的 pair-wise preference signal 在 CED（关系+证据联合生成）场景下无法提供有效梯度，1ep 即饱和、3ep 过拟合。\n2. **凸显 RSFT/Reranker 路线的优势** — 相比 DPO 的 0.4034，RSFT CED（0.4655）和 CED reranker（0.4864）显著有效，说明在 structured output 场景下，rejection sampling + 正例强化比 pair-wise preference 更合适。\n3. 在论文中用一段话+一行表格数据带过即可，不必详细展开 DPO 消融。核心 message：**\"We also explored DPO but found it ineffective for joint relation-evidence extraction (F1=0.40 vs. SFT 0.41), confirming that pair-wise preference signals are insufficient for structured generation tasks with compositional outputs.\"**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-plan-012-dpo-1ep-fixed-r2.md"
+}

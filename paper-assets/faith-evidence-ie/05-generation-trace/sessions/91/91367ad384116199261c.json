@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91367ad384116199261c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "audit table registry trace final",
+  "task_key": "worker_audit_table-registry-trace-final_20260523T191624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_table-registry-trace-final_20260523T191624_result.json",
+    "occurrence": 1,
+    "bytes": 958,
+    "sha256": "5b1b2150654ea685ac112afec17f76e0a5a14dd30abcf116ac3e0df4a6408475"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计已完成。最终结果写入 `artifacts/final_audit_w2_tables.md`。\n\n**汇总：212 cells，200 ✅ (94.3%)，12 ⚠️ (5.7%)，0 ❌**\n\n12 个 ⚠️ 按优先级：\n\n1. **LLaMA test 行混用 v1/v3 评估**（2 cells）— truncation 和 evi_f1_joint 来自 v1，Ign-F1 来自 v3。建议统一用 v3 值。\n2. **Flat-NLI 消融混源**（4 cells）— Rel-F1 用 D076-compliant reeval，Evi-F1/EDCR 用旧 eval。建议用单一协议重跑或标注。\n3. **8B RSFT 跨表不一致**（3 cells）— Table 2 用 d102 checkpoint 的 Ign-F1，tab:cross_detail 用 plan_006 的 Evi-F1/EDCR。不同 checkpoint。\n4. **8B/LLaMA inference-time tax 无法精确复现**（2 cells）— 使用 registry 预计算值，原始 metrics 计算略有偏差。\n5. **1.7B RSFT Rel-F1 四舍五入 & variance 压缩比**（1 cell each）— 微小舍入差异。\n\n需要我处理其中某项，还是这份审计报告直接归档？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-table-registry-trace-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b0928c80a362abac1b2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose plan 007 redocred 4b sft eval",
+  "task_key": "worker_diagnose_plan_007_redocred_4b_sft_eval_20260516T123325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan_007_redocred_4b_sft_eval_20260516T123325_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "a81202dedd8377011af166fe74fd2f165da54959726d84f54f1f4003642a6792"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成：\n\n**根因**：Qwen3-4B 基座模型和 SFT adapter 均不存在。\n- `/root/autodl-tmp/models/Qwen/Qwen3-4B/` — 未下载（服务器只有 Qwen3-1.7B 和 Qwen3-8B）\n- `/root/autodl-tmp/sft_output_qwen3_4b/` — 不存在（4B 未训练过）\n\ninference.py 因本地路径不存在回退到 HF Hub 查找，路径格式不符合 repo_id 规范，触发 `HFValidationError`。\n\n**修复**：需先下载 Qwen3-4B 模型 → 完成 SFT 训练 → 再提交 eval。已更新 registry notes。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-007-redocred-4b-sft-eval.md"
+}

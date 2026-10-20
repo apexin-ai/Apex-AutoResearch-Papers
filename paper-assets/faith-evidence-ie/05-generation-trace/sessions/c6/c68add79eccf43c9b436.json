@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c68add79eccf43c9b436",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops llama rsft s44 pipeline",
+  "task_key": "worker_ops_llama_rsft_s44_pipeline_20260520T010402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama_rsft_s44_pipeline_20260520T010402_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "fa9ee388c8b393c7dce6d8d33c4bb4d62dad8946e35438dad9daeffc59ed159c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**汇总：**\n\n| 项目 | 详情 |\n|------|------|\n| 脚本 | `/root/autodl-tmp/freige/scripts/seed_expansion/llama_rsft_s44_pipeline.sh` |\n| tmux session | `llama_rsft_s44` |\n| GPU | cuda:3（0 MiB → 已确认空闲） |\n| 日志 | `/root/autodl-tmp/freige/logs/llama_rsft_s44_pipeline.log` |\n| Registry | `llama_rsft_s44_pipeline` → RUNNING |\n| 数据 | 复用 s42 CED-scored data（2952 samples），Method A |\n| 流程 | Step 1: RSFT train (seed=44) → Step 2: D076 eval |\n| 预估耗时 | 训练 ~50min + eval ~2.3h ≈ **3-4 小时** |\n\n注意：任务描述中提议的 generation/CED scoring 步骤已跳过——现有 s42/s43 均复用同一份 CED-scored 数据（Method A），s44 保持一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama-rsft-s44-pipeline.md"
+}

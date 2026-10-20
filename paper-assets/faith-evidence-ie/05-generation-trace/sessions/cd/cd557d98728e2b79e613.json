@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd557d98728e2b79e613",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval plan 009 extract reward",
+  "task_key": "worker_eval_plan_009_extract_reward_20260515T195346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_009_extract_reward_20260515T195346_result.json",
+    "occurrence": 1,
+    "bytes": 495,
+    "sha256": "7b6b61b3fc4e50da607d4ad30a750c1d7115bb07134819d2c0ff9333e8b02779"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并运行中。\n\n- **exp_id**: `plan_009_extract_reward_eval`\n- **PID**: 247778\n- **GPU**: cuda:1 (30879/32607 MiB, 94% util)\n- **状态**: 正在 eval r4 step 10，模型加载中\n- **评估计划**: r4 (step 10, 20, 30) + r3 (step 680, 700, 720, 740, 756)，共 8 个 checkpoint\n- **日志**: `~/runs/faith-evidence-ie/plan_009_extract_reward_eval.log`\n\n每个 checkpoint eval 约 5-10 分钟（参考 plan_011 的 ~5 min/ckpt），总计预计 40-80 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-009-extract-reward.md"
+}

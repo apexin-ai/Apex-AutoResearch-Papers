@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cb73a262686920584e0",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_14_1778954319.md",
+  "task_key": "loop_14_1778954319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778954319.md",
+    "occurrence": 1,
+    "bytes": 4178,
+    "sha256": "83fda115e37d75c3a4b2301bcc5d042567975b184ff6938f0c3cfdb546e34446"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T17:58:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0/1/2/3，无其他服务器分配给本项目\n- submit_training_job 命令必须用 `bash -c \"...\"` 包装（tmux 用 sh 执行，source/conda activate 会 127）\n- No-evidence eval 必须同时传 `--sft_adapter <path>` 和 `--no_evidence`，漏传产出伪数据（已导致 3 个实验作废）\n- 所有命令 cwd 必须 `cd /root/autodl-tmp`，不是 `/root/autodl-tmp/freige`\n- 提交 GPU 实验前必须 nvidia-smi 确认目标 GPU 显存 < 2GB\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x，工作目录 `/root/autodl-tmp`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型路径：`/root/autodl-tmp/` 下各子目录（Qwen3-4B/1.7B/8B, LLaMA-3.1-8B）\n- 数据集：DocRED `/root/autodl-tmp/data/`，Re-DocRED 同目录\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：\n  - plan_016_llama_3_1_8b_sft_eval (PID 340111, cuda:1) — LLaMA with-evidence eval\n  - plan_006_qwen3_1_7b_no_evidence_eval_v3 (PID 337839, cuda:1) — 1.7B no-evidence eval\n  - plan_016_llama_grpo_qlora (PID 346621, cuda:2) — LLaMA GRPO QLoRA 训练\n- Cron 监控这 3 个实验，回调会自动到达\n- Worker：1 个 CPU worker 在检查 redocred_r2 完成情况\n\n### 3. 📊 当前状态\n刚处理完 plan_016_llama_3_1_8b_no_evidence_eval 的完成回调（success, rel_f1=0.5624, ign_f1=0.5452）。已向 Director 汇报，包含 cross-model 对比表和 2 张空闲 GPU（cuda:0, cuda:3）的调度请求。已更新 memory.md。\n\nRegistry RUNNING：\n- plan_016_llama_3_1_8b_sft_eval — LLaMA with-evidence eval，出结果后可算 LLaMA evidence tax\n- plan_006_qwen3_1_7b_no_evidence_eval_v3 — Qwen3-1.7B no-evidence eval（v1/v2 作废后的修正版）\n- plan_016_llama_grpo_qlora — LLaMA GRPO QLoRA 训练，验证 decoupling 是否跨家族\n\n等待中：\n- Director 对 cuda:0/cuda:3 调度方案的决策（已发 post_to_director）\n- 3 个 RUNNING 实验的 cron 完成回调\n- worker_ops_check_redocred_r2_completion 的结果\n\n### 4. 📋 待办\n- plan_016_llama_3_1_8b_sft_eval 完成 → 计算 LLaMA evidence tax（rel_f1_no_evi 0.5624 - rel_f1_with_evi），与 4B 的 7.7pp 对比；如 ≈0 则 evidence tax 是 scale-dependent（强化 C1）\n- plan_006_qwen3_1_7b_no_evidence_eval_v3 完成 → 与 1.7B with-evidence (rel_f1=0.4945) 对比算 1.7B evidence tax；v1 的 0.3786 是伪数据不可用\n- plan_016_llama_grpo_qlora 完成 → 关键实验：如果 LLaMA GRPO 也 catastrophic → decoupling 跨家族成立（C2 可做更强 claim）；如果不 catastrophic → QLoRA decoupling 可能是 Qwen-specific\n- Director 回复 GPU 调度 → 立即按方案在 cuda:0/cuda:3 提交实验（Re-DocRED RSFT / seed comparison / 其他）\n- redocred_r2 worker 完成 → 确认 Re-DocRED eval 结果已入 registry（plan_007_redocred_4b_sft_eval_r2 已 DONE, ign_f1=0.3659, evi_f1=0.817）\n\n### 5. 🎯 战略上下文\n**核心结论链**：C1 evidence tax 4B 确认 7.7pp（D079 8B ≈0）→ C2 decoupling spectrum（QLoRA catastrophic > bf16 mild > DPO gradual > RSFT none）→ C3 已降级（CED vs flat-NLI 统计不可区分 D078）→ C4 EDCR 双层诊断确立（D072）。\n\n**D077 scope 扩展是当前主线**：从单模型(Qwen3-4B)单数据集(DocRED)扩展到多 scale × 跨家族 × 跨数据集。plan_006（Qwen 1.7B/8B）+ plan_016（LLaMA-3.1-8B）+ plan_007（Re-DocRED）。投稿目标 EMNLP 2026 Main (ARR July ~7/15-25)，GPU 预算 ~100h / 4 GPU ≈ 3 天，时间充裕。\n\n**易错点**：\n- Qwen3-8B no-evidence eval v2 标记 success 但 metrics 为空——D079 \"evidence tax ≈ 0\" 可能来自日志分析而非 registry，需验证\n- 不要用 plan_006_qwen3_1_7b_no_evidence_eval v1 的 0.3786 做任何分析（已作废，eval flag bug）\n- LLaMA RSFT 训练需要先完成 SFT eval → 从 SFT candidates 做 CED scoring → RSFT，不能跳步\n- Re-DocRED ~55% triples 无 evidence 标注，必须报告 evidence_only + full 两种模式\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778954319.md"
+}

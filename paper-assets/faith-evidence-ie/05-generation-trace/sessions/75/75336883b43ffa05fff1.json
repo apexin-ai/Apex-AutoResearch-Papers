@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75336883b43ffa05fff1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis 4b s44 noevi and gpu",
+  "task_key": "worker_analysis_4b-s44-noevi-and-gpu_20260523T140431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_4b-s44-noevi-and-gpu_20260523T140431_result.json",
+    "occurrence": 1,
+    "bytes": 1208,
+    "sha256": "2afb18d4fd60249bd6e1b508187ac2acfbb14eb7440defdbc436adec92429200"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "test_summary.json 已有 metrics，不需要 batch_eval。结果如下：\n\n## 4B s44 no-evi r2 (test_revised)\n\n| metric | value |\n|--------|-------|\n| ign_f1 | **0.2671** |\n| precision | 0.3444 |\n| recall | 0.2182 |\n| no_evidence | true ✓ |\n\n### 3-seed evidence tax 汇总\n\n| seed | with-evi | no-evi | tax |\n|------|----------|--------|-----|\n| s42 | 0.2503 | 0.2654 | +1.51pp |\n| s43 | 0.2503 | 0.2702 | +1.99pp |\n| s44 | 0.2525 | 0.2671 | **+1.46pp** |\n| **avg** | **0.2510** | **0.2676** | **+1.66pp** |\n\nEvidence tax 在 3 个 seed 上一致为正（+1.46 ~ +1.99pp），均值 +1.66pp。\n\n## DPO 3ep eval (dev)\n\n| metric | DPO 1ep | DPO 3ep | Δ |\n|--------|---------|---------|---|\n| ign_f1 | 0.3223 | **0.3076** | **-1.47pp** |\n| evi_f1 | — | 0.8484 | |\n| evi_f1_joint | — | 0.2451 | |\n| edcr | — | 0.7503 | |\n\nDPO 3ep 相比 1ep 下降 1.47pp，过拟合明显。1ep 仍是最优。\n\n## GPU 状态\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 0 MiB / 97887 MiB | 0% |\n| 1 | 50311 MiB / 97887 MiB | 97% |\n| 2 | 0 MiB / 97887 MiB | 0% |\n| 3 | 0 MiB / 97887 MiB | 0% |\n\nGPU 0/2/3 空闲，GPU 1 有任务在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-4b-s44-noevi-and-gpu.md"
+}

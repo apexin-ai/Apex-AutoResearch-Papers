@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e8f6bba8f19000e1348",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis rp r2 early metrics",
+  "task_key": "worker_analysis_rp_r2-early-metrics_20260514T210337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rp_r2-early-metrics_20260514T210337_result.json",
+    "occurrence": 1,
+    "bytes": 2703,
+    "sha256": "5b17e87e2c47ed62204f99e0ab6e995a18ae3d87a57c5e24755e5b7c936cbafe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了。rp_r2 的 KL 值与 `grpo_ced_lr5e6_rp/checkpoint-20` 的 trainer_state 完全吻合——rp_r2 输出到了 `grpo_ced_lr5e6_rp` 目录。\n\n数据齐全，整理对比。\n\n## P0+P1 训练指标 (rp_r2, step 5-20, logging_steps=5)\n\n| Step | f1_reward | ced_reward | format | reward_mean | reward_std | frac_zero_std | grad_norm | KL |\n|------|-----------|------------|--------|-------------|------------|---------------|-----------|-----|\n| 5 | 0.0211 | 0.0047 | 0.0731 | 0.0990 | 0.145 | 0.2 | 1.625 | 3.9e10 |\n| 10 | 0.0000 | 0.0000 | 0.0934 | 0.0934 | 0.123 | 0.2 | 0.194 | 6.9e4 |\n| 15 | 0.0031 | 0.0000 | 0.1459 | 0.1490 | 0.143 | **0.0** | 1.594 | 1.9e6 |\n| 20 | 0.0017 | 0.0005 | 0.1448 | 0.1469 | 0.141 | **0.0** | 1.469 | 1.4e9 |\n\n## P0 对照 (grpo_ced_lr5e6, 无 recall penalty)\n\n| Step | f1_reward | ced_reward | format | reward_mean | reward_std | frac_zero_std | grad_norm | KL |\n|------|-----------|------------|--------|-------------|------------|---------------|-----------|-----|\n| 5 | 0.0185 | 0.0114 | 0.0574 | 0.0873 | 0.139 | 0.2 | 0.224 | 2.4e9 |\n| 10 | 0.0000 | 0.0000 | 0.0683 | 0.0683 | 0.110 | 0.1 | 0.187 | 0.002 |\n| 15 | 0.0109 | 0.0036 | 0.1410 | 0.1555 | 0.167 | 0.2 | 0.393 | 0.002 |\n| 20 | 0.0000 | 0.0000 | 0.1009 | 0.1009 | 0.121 | 0.2 | 0.115 | 1.37 |\n\n## 与 P0 早期对比\n\n- **ced_reward 差异**: rp_r2 step 5 = 0.0047 vs P0 step 5 = 0.0114。recall penalty 使 ced_reward 更难获得（低约 59%），符合预期——under-prediction 被惩罚后整体 CED 分数降低。\n- **f1_reward 差异**: step 5 基本相当（0.021 vs 0.019）；后续 step 两者都接近 0，差异不显著。\n- **frac_zero_std**: **关键差异**。rp_r2 在 step 15-20 降至 0.0（完全无零方差 batch），而 P0 一直保持 0.1-0.2。recall penalty 大幅提升了生成多样性。\n- **grad_norm**: rp_r2 显著更高（1.5-1.6 vs 0.1-0.4），recall penalty 产生更强梯度信号。\n- **KL**: 两者均有 QLoRA 量化导致的 KL 爆炸（step 5 达 1e9-1e10 量级），但 rp_r2 更严重且持续震荡（step 20 仍为 1.4e9），P0 在 step 10-15 快速恢复到 <1。\n\n## 整体判断\n\nRecall penalty **产生了预期效果**：\n1. CED reward 更低 — 惩罚 under-prediction 正在生效\n2. 生成多样性显著提升 — frac_zero_std 降至 0\n3. 梯度信号更强 — grad_norm 提高约 5-10x\n\n**风险信号**: KL 持续极高且剧烈震荡（step 5→10→15→20: 3.9e10 → 6.9e4 → 1.9e6 → 1.4e9），比 P0 严重得多。P0 的 KL 在 step 10 后快速稳定到 <1，而 rp_r2 始终不收敛。这可能导致后期训练不稳定，建议关注 step 40+ 的 KL 趋势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rp-r2-early-metrics.md"
+}

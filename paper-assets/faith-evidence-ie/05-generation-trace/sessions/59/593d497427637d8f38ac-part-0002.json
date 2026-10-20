@@ -1,0 +1,404 @@
+{
+  "schema_version": "1.0",
+  "session_id": "593d497427637d8f38ac",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-16T03:25:39.042Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MrEWKD3kWYBASMkCtL8PUF",
+              "type": "tool_result",
+              "content": "D067\n  date: 2026-05-15 23:39 UTC\n  summary: DPO 叙事修正：从\"DPO 也失败\"改为\"DPO 中性/轻度退化\"，作为 RL spectrum 中间数据点\n  rationale: D064 bug fix 后 DPO 1ep 重新评估：rel_f1=0.4034 ≈ SFT baseline 0.4057（-0.23pp，噪声范围）。D061\n    基于缺 --sft_adapter 的无效 eval 关闭 DPO 线，该决策维持（不需额外 DPO 实验），但论文叙事需修正。RL spectrum 更新：GRPO\n    QLoRA catastrophic(<0.02) → GRPO bf16 G=8 mild degradation(0.434 from 0.4549 base)\n    → DPO 1ep neutral(0.4034) → DPO 3ep mild退化(0.3429) → RSFT effective(0.44-0.49)。DPO\n    展现温和 decoupling 模式（evi_f1↑ rel_f1↓），支持 preference optimization 在 structured IE\n    上的 evidence-extraction trade-off 是普遍现象但程度因方法而异。两个 Reviewer 一致确认。待查：DPO field_compliance_rate\n    仅 65.9%，需对比 SFT baseline 排除模型本身问题。\n  related_experiments:\n  - exp_id: eval_plan_012_dpo_1ep_fixed_r2\n    role: primary\n    result: rel_f1=0.4034, evi_f1=0.8088, EDCR=0.7139\n  - exp_id: plan_012_dpo_ced\n    role: comparison\n    result: DPO 3ep rel_f1=0.3429 (mild degradation)\n  - exp_id: plan_011_bf16_g8_step_eval\n    role: comparison\n    result: GRPO bf16\n===\nD068\n  date: 2026-05-15 23:40 UTC\n  summary: 修正 DPO 结论：DPO 1ep 中性（非失败），Claim 2 叙事需从\"RL fails\"转向\"RL spectrum 分化\"\n  rationale: D061 基于缺 --sft_adapter 的无效 eval 判定\"关闭 DPO 线\"。修正后数据：DPO 1ep rel_f1=0.4034（≈SFT\n    0.4057），DPO 3ep=0.3429（过拟合退化）。结合 GRPO QLoRA catastrophic(<0.02) vs GRPO bf16 mild\n    degradation(~0.434)，decoupling 的 catastrophic 程度与 QLoRA 强相关。新叙事：QLoRA+GRPO 导致\n    catastrophic decoupling；bf16+GRPO 轻度退化；DPO 中性无改善；RSFT 是唯一有效路线。plan_015（clean G=4\n    bf16 control）升为高优先级以隔离 QLoRA confound。\n  related_experiments:\n  - exp_id: eval_plan_012_dpo_1ep_fixed_r2\n    role: corrected_eval\n    result: rel_f1=0.4034, neutral vs SFT\n  - exp_id: plan_012_dpo_ced\n    role: original_3ep\n    result: rel_f1=0.3429, mild degradation\n  - exp_id: plan_011_bf16_g8_step_eval\n    role: grpo_bf16_control\n    result: best=0.4341, mild not catastrophic\n  - exp_id: mvp2_grpo_ced_lr5e6_r1\n    role: grpo_qlora_original\n    result: rel_f1<0.02, catastrophic\n  depends_on: []\n- id: D069\n  date: 2026-05-15 23:44 UT\n===\nD069\n  date: 2026-05-15 23:44 UTC\n  summary: 修正 D068：evidence-extraction decoupling 是 RL-for-IE 通用现象，非 QLoRA 特有；severity\n    按方法分层\n  rationale: D068 判断\"catastrophic decoupling 是 QLoRA artifact\"不完整。Reviewer 指出 DPO\n    1ep→3ep 也呈现 decoupling（rel_f1 0.4034→0.3429 下降，evi_f1 0.8088→0.8403 上升），与 GRPO\n    方向一致仅程度不同。修正后的完整图景：(1) GRPO+QLoRA=catastrophic decoupling (rel_f1<0.02)；(2) GRPO+bf16=mild\n    decoupling (0.4549→0.434)；(3) DPO+bf16=gradual decoupling (0.4034→0.3429 over\n    epochs)；(4) RSFT=无 decoupling。结论：decoupling 是所有 RL 方法在结构化 IE 上的通用现象，QLoRA 放大其严重程度但不是唯一原因。RSFT（非\n    RL 的数据筛选）是唯一规避路径。Claim 2 应从\"GRPO fails\"升级为\"RL-for-IE universal decoupling + severity\n    hierarchy\"。plan_015 仍有价值（量化 QLoRA 放大效应）但不再是叙事关键。另需排查 Ign-F1=F1 的 eval pipeline\n    bug。\n  related_experiments:\n  - exp_id: eval_plan_012_dpo_1ep_fixed_r2\n    role: dpo_1ep_corrected\n    result: rel_f1=0.4034, evi_f1=0.8088\n  - exp_id: plan_012_dpo_ced\n    role: dpo_3ep\n    result: rel_f1=0.3429, evi_f1=0.8403, decoupling confirmed\n \n===\nD070\n  date: 2026-05-15 23:50 UTC\n  summary: Claim 4 重新定位：EDCR 从跨方法诊断指标降级为 per-relation-type/per-document 细粒度诊断工具\n  rationale: plan_003 EDCR diagnostic table 显示跨方法 EDCR 与 rel_f1 近乎完全反相关（Spearman=-0.965），与\n    evi_f1 相关性为零（0.002）。这意味着在方法级比较中 EDCR 不提供超出 rel_f1 的独立信息，原始 Claim 4\"EDCR 捕捉 Evi-F1\n    盲区\"在方法级不成立。但 per-relation-type 分析显示有意义的方差（date_of_birth EDCR≈0.1 vs head_of_government\n    EDCR≈0.95），说明 EDCR 在细粒度诊断上仍有价值。重新定位为\"per-relation/per-document 证据质量诊断工具\"，避免审稿人用一个相关性计算即击穿\n    Claim 4。\n  related_experiments:\n  - exp_id: plan_003_edcr_diagnostic\n    role: diagnostic_table\n    result: EDCR vs rel_f1 Spearman=-0.965, vs evi_f1 Spearman=0.002\n  depends_on: []\n- id: D071\n  date: 2026-05-15 23:50 UTC\n  summary: EDCR 定义存在 by-construction 混淆：当前 EDCR ≈ f(1/rel_f1)，不独立度量 evidence 质量。暂停\n    Claim 4，实现 TP-only EDCR 后重新评估\n  rationale: plan_003 诊断表显示 EDCR vs rel_f1 Spearman r=-0.9648, EDCR vs evi_f1 r=0.0022。机理：EDCR\n    = n_distractor/n_total 在全部预测上计算，rel_f1 低的模型预测大量错误关系→evidence 自动成为 distractor→推高\n  \n===\nD071\n  date: 2026-05-15 23:50 UTC\n  summary: EDCR 定义存在 by-construction 混淆：当前 EDCR ≈ f(1/rel_f1)，不独立度量 evidence 质量。暂停\n    Claim 4，实现 TP-only EDCR 后重新评估\n  rationale: plan_003 诊断表显示 EDCR vs rel_f1 Spearman r=-0.9648, EDCR vs evi_f1 r=0.0022。机理：EDCR\n    = n_distractor/n_total 在全部预测上计算，rel_f1 低的模型预测大量错误关系→evidence 自动成为 distractor→推高\n    EDCR。这是定义层面的混淆，非数据问题。修复方案：EDCR 改为仅在 TP triples 上计算（\"正确关系中 evidence 的忠实度\"），若 TP-only\n    EDCR 仍与 rel_f1 强相关则 Claim 4 需大幅削弱。plan_013（人工标注验证）暂停，等 TP-only EDCR 定义确认后再决定。\n  related_experiments:\n  - exp_id: plan_003_edcr_diagnostic\n    role: diagnostic\n    result: EDCR vs rel_f1 r=-0.965, EDCR vs evi_f1 r=0.002\n  depends_on: []\n- id: D072\n  date: 2026-05-16 00:00 UTC\n  summary: 'Claim 4 升级为双层论述: 方法级 EDCR (decoupling 量化) + per-relation EDCR (独立诊断工具)'\n  rationale: Per-relation EDCR 分析 (93 relation types) 显示 EDCR vs evi_f1 ρ=-0.064 (p=0.583)，完全独立。与方法级\n    ρ=-0.965 形成互补。方法级 EDCR 本质是 rel_f1 的变换，诊断价值有限；但 per-relation 粒度上 EDCR 捕捉到 evi_f1\n    看不到的信息（如 head_of_government E\n===\nD072\n  date: 2026-05-16 00:00 UTC\n  summary: 'Claim 4 升级为双层论述: 方法级 EDCR (decoupling 量化) + per-relation EDCR (独立诊断工具)'\n  rationale: Per-relation EDCR 分析 (93 relation types) 显示 EDCR vs evi_f1 ρ=-0.064 (p=0.583)，完全独立。与方法级\n    ρ=-0.965 形成互补。方法级 EDCR 本质是 rel_f1 的变换，诊断价值有限；但 per-relation 粒度上 EDCR 捕捉到 evi_f1\n    看不到的信息（如 head_of_government EDCR=0.956 但 evi_f1=0.875，证据看似好但 relation 抽取极差）。同时发现\n    evi_f1 vs rel_f1 在 per-relation 层面也近乎零相关 (ρ=-0.013)，说明 evidence quality 和 relation\n    extraction 在不同 relation type 间完全解耦——这是一个独立的发现，强化整篇论文的 decoupling narrative。\n  related_experiments:\n  - exp_id: plan_003_edcr_diagnostic\n    role: 方法级 EDCR 分析\n    result: ρ=-0.965 vs rel_f1\n  - exp_id: D070\n    role: per-relation EDCR 分析\n    result: EDCR vs evi_f1 ρ=-0.064, EDCR vs rel_f1 ρ=-0.793\n  depends_on:\n  - D070\n- id: D073\n  date: 2026-05-16 00:02 UTC\n  summary: 'EDCR 论文定义规范: 正文用 distractor count ratio (∈[0,1])，formula proxy 1-rel_f1/evi_f1\n    仅用于方法级快速对比；per-relation 表格须 n_pred≥10 过滤'\n  rationale: 'Reviewer \n===\nD073\n  date: 2026-05-16 00:02 UTC\n  summary: 'EDCR 论文定义规范: 正文用 distractor count ratio (∈[0,1])，formula proxy 1-rel_f1/evi_f1\n    仅用于方法级快速对比；per-relation 表格须 n_pred≥10 过滤'\n  rationale: 'Reviewer 指出两个问题: (1) EDCR formula 1-rel_f1/evi_f1 在 rel_f1>evi_f1 时为负(manufacturer=-0.1879)，名为\n    rate 却不在[0,1]，审稿人会质疑; (2) per-relation top/bottom 表被退化 case 主导(n_pred=0→EDCR=0,\n    TP=0→EDCR=1)，有 cherry-picking 嫌疑。解决方案: 论文正文 EDCR 定义为 distractor count ratio (cited\n    evidence 中非支撑性证据的比例，自然∈[0,1])；formula proxy 仅在方法级无逐预测 distractor 计数时使用，论文中注明是近似。per-relation\n    展示表格加 n_pred≥10 过滤。'\n  related_experiments:\n  - exp_id: plan_003_edcr_diagnostic\n    role: 方法级 EDCR\n    result: formula proxy 用于15个方法对比\n  - exp_id: D070\n    role: per-relation EDCR\n    result: 发现负值 case 和退化 case\n  depends_on:\n  - D072\n- id: D074\n  date: 2026-05-16 00:25 UTC\n  summary: r2 实际配置正确但已被 kill，r3 替代运行；argparse 静默忽略未知参数是代码隐患\n  rationale: 验证发现 rsft_trainer.py 的 argparse 不存在 --batch/--grad_accum/--lr/--epochs\n    参数，这些 flag 被静默忽略，实际使用默认值 \n===",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1b422aa5-76ab-42b1-8a3d-85cfc234200a",
+            "uuid": "23d40e87-2ac6-4daa-a971-20e08792e61b",
+            "tool_use_result": {
+              "stdout": "D067\n  date: 2026-05-15 23:39 UTC\n  summary: DPO 叙事修正：从\"DPO 也失败\"改为\"DPO 中性/轻度退化\"，作为 RL spectrum 中间数据点\n  rationale: D064 bug fix 后 DPO 1ep 重新评估：rel_f1=0.4034 ≈ SFT baseline 0.4057（-0.23pp，噪声范围）。D061\n    基于缺 --sft_adapter 的无效 eval 关闭 DPO 线，该决策维持（不需额外 DPO 实验），但论文叙事需修正。RL spectrum 更新：GRPO\n    QLoRA catastrophic(<0.02) → GRPO bf16 G=8 mild degradation(0.434 from 0.4549 base)\n    → DPO 1ep neutral(0.4034) → DPO 3ep mild退化(0.3429) → RSFT effective(0.44-0.49)。DPO\n    展现温和 decoupling 模式（evi_f1↑ rel_f1↓），支持 preference optimization 在 structured IE\n    上的 evidence-extraction trade-off 是普遍现象但程度因方法而异。两个 Reviewer 一致确认。待查：DPO field_compliance_rate\n    仅 65.9%，需对比 SFT baseline 排除模型本身问题。\n  related_experiments:\n  - exp_id: eval_plan_012_dpo_1ep_fixed_r2\n    role: primary\n    result: rel_f1=0.4034, evi_f1=0.8088, EDCR=0.7139\n  - exp_id: plan_012_dpo_ced\n    role: comparison\n    result: DPO 3ep rel_f1=0.3429 (mild degradation)\n  - exp_id: plan_011_bf16_g8_step_eval\n    role: comparison\n    result: GRPO bf16\n===\nD068\n  date: 2026-05-15 23:40 UTC\n  summary: 修正 DPO 结论：DPO 1ep 中性（非失败），Claim 2 叙事需从\"RL fails\"转向\"RL spectrum 分化\"\n  rationale: D061 基于缺 --sft_adapter 的无效 eval 判定\"关闭 DPO 线\"。修正后数据：DPO 1ep rel_f1=0.4034（≈SFT\n    0.4057），DPO 3ep=0.3429（过拟合退化）。结合 GRPO QLoRA catastrophic(<0.02) vs GRPO bf16 mild\n    degradation(~0.434)，decoupling 的 catastrophic 程度与 QLoRA 强相关。新叙事：QLoRA+GRPO 导致\n    catastrophic decoupling；bf16+GRPO 轻度退化；DPO 中性无改善；RSFT 是唯一有效路线。plan_015（clean G=4\n    bf16 control）升为高优先级以隔离 QLoRA confound。\n  related_experiments:\n  - exp_id: eval_plan_012_dpo_1ep_fixed_r2\n    role: corrected_eval\n    result: rel_f1=0.4034, neutral vs SFT\n  - exp_id: plan_012_dpo_ced\n    role: original_3ep\n    result: rel_f1=0.3429, mild degradation\n  - exp_id: plan_011_bf16_g8_step_eval\n    role: grpo_bf16_control\n    result: best=0.4341, mild not catastrophic\n  - exp_id: mvp2_grpo_ced_lr5e6_r1\n    role: grpo_qlora_original\n    result: rel_f1<0.02, catastrophic\n  depends_on: []\n- id: D069\n  date: 2026-05-15 23:44 UT\n===\nD069\n  date: 2026-05-15 23:44 UTC\n  summary: 修正 D068：evidence-extraction decoupling 是 RL-for-IE 通用现象，非 QLoRA 特有；severity\n    按方法分层\n  rationale: D068 判断\"catastrophic decoupling 是 QLoRA artifact\"不完整。Reviewer 指出 DPO\n    1ep→3ep 也呈现 decoupling（rel_f1 0.4034→0.3429 下降，evi_f1 0.8088→0.8403 上升），与 GRPO\n    方向一致仅程度不同。修正后的完整图景：(1) GRPO+QLoRA=catastrophic decoupling (rel_f1<0.02)；(2) GRPO+bf16=mild\n    decoupling (0.4549→0.434)；(3) DPO+bf16=gradual decoupling (0.4034→0.3429 over\n    epochs)；(4) RSFT=无 decoupling。结论：decoupling 是所有 RL 方法在结构化 IE 上的通用现象，QLoRA 放大其严重程度但不是唯一原因。RSFT（非\n    RL 的数据筛选）是唯一规避路径。Claim 2 应从\"GRPO fails\"升级为\"RL-for-IE universal decoupling + severity\n    hierarchy\"。plan_015 仍有价值（量化 QLoRA 放大效应）但不再是叙事关键。另需排查 Ign-F1=F1 的 eval pipeline\n    bug。\n  related_experiments:\n  - exp_id: eval_plan_012_dpo_1ep_fixed_r2\n    role: dpo_1ep_corrected\n    result: rel_f1=0.4034, evi_f1=0.8088\n  - exp_id: plan_012_dpo_ced\n    role: dpo_3ep\n    result: rel_f1=0.3429, evi_f1=0.8403, decoupling confirmed\n \n===\nD070\n  date: 2026-05-15 23:50 UTC\n  summary: Claim 4 重新定位：EDCR 从跨方法诊断指标降级为 per-relation-type/per-document 细粒度诊断工具\n  rationale: plan_003 EDCR diagnostic table 显示跨方法 EDCR 与 rel_f1 近乎完全反相关（Spearman=-0.965），与\n    evi_f1 相关性为零（0.002）。这意味着在方法级比较中 EDCR 不提供超出 rel_f1 的独立信息，原始 Claim 4\"EDCR 捕捉 Evi-F1\n    盲区\"在方法级不成立。但 per-relation-type 分析显示有意义的方差（date_of_birth EDCR≈0.1 vs head_of_government\n    EDCR≈0.95），说明 EDCR 在细粒度诊断上仍有价值。重新定位为\"per-relation/per-document 证据质量诊断工具\"，避免审稿人用一个相关性计算即击穿\n    Claim 4。\n  related_experiments:\n  - exp_id: plan_003_edcr_diagnostic\n    role: diagnostic_table\n    result: EDCR vs rel_f1 Spearman=-0.965, vs evi_f1 Spearman=0.002\n  depends_on: []\n- id: D071\n  date: 2026-05-15 23:50 UTC\n  summary: EDCR 定义存在 by-construction 混淆：当前 EDCR ≈ f(1/rel_f1)，不独立度量 evidence 质量。暂停\n    Claim 4，实现 TP-only EDCR 后重新评估\n  rationale: plan_003 诊断表显示 EDCR vs rel_f1 Spearman r=-0.9648, EDCR vs evi_f1 r=0.0022。机理：EDCR\n    = n_distractor/n_total 在全部预测上计算，rel_f1 低的模型预测大量错误关系→evidence 自动成为 distractor→推高\n  \n===\nD071\n  date: 2026-05-15 23:50 UTC\n  summary: EDCR 定义存在 by-construction 混淆：当前 EDCR ≈ f(1/rel_f1)，不独立度量 evidence 质量。暂停\n    Claim 4，实现 TP-only EDCR 后重新评估\n  rationale: plan_003 诊断表显示 EDCR vs rel_f1 Spearman r=-0.9648, EDCR vs evi_f1 r=0.0022。机理：EDCR\n    = n_distractor/n_total 在全部预测上计算，rel_f1 低的模型预测大量错误关系→evidence 自动成为 distractor→推高\n    EDCR。这是定义层面的混淆，非数据问题。修复方案：EDCR 改为仅在 TP triples 上计算（\"正确关系中 evidence 的忠实度\"），若 TP-only\n    EDCR 仍与 rel_f1 强相关则 Claim 4 需大幅削弱。plan_013（人工标注验证）暂停，等 TP-only EDCR 定义确认后再决定。\n  related_experiments:\n  - exp_id: plan_003_edcr_diagnostic\n    role: diagnostic\n    result: EDCR vs rel_f1 r=-0.965, EDCR vs evi_f1 r=0.002\n  depends_on: []\n- id: D072\n  date: 2026-05-16 00:00 UTC\n  summary: 'Claim 4 升级为双层论述: 方法级 EDCR (decoupling 量化) + per-relation EDCR (独立诊断工具)'\n  rationale: Per-relation EDCR 分析 (93 relation types) 显示 EDCR vs evi_f1 ρ=-0.064 (p=0.583)，完全独立。与方法级\n    ρ=-0.965 形成互补。方法级 EDCR 本质是 rel_f1 的变换，诊断价值有限；但 per-relation 粒度上 EDCR 捕捉到 evi_f1\n    看不到的信息（如 head_of_government E\n===\nD072\n  date: 2026-05-16 00:00 UTC\n  summary: 'Claim 4 升级为双层论述: 方法级 EDCR (decoupling 量化) + per-relation EDCR (独立诊断工具)'\n  rationale: Per-relation EDCR 分析 (93 relation types) 显示 EDCR vs evi_f1 ρ=-0.064 (p=0.583)，完全独立。与方法级\n    ρ=-0.965 形成互补。方法级 EDCR 本质是 rel_f1 的变换，诊断价值有限；但 per-relation 粒度上 EDCR 捕捉到 evi_f1\n    看不到的信息（如 head_of_government EDCR=0.956 但 evi_f1=0.875，证据看似好但 relation 抽取极差）。同时发现\n    evi_f1 vs rel_f1 在 per-relation 层面也近乎零相关 (ρ=-0.013)，说明 evidence quality 和 relation\n    extraction 在不同 relation type 间完全解耦——这是一个独立的发现，强化整篇论文的 decoupling narrative。\n  related_experiments:\n  - exp_id: plan_003_edcr_diagnostic\n    role: 方法级 EDCR 分析\n    result: ρ=-0.965 vs rel_f1\n  - exp_id: D070\n    role: per-relation EDCR 分析\n    result: EDCR vs evi_f1 ρ=-0.064, EDCR vs rel_f1 ρ=-0.793\n  depends_on:\n  - D070\n- id: D073\n  date: 2026-05-16 00:02 UTC\n  summary: 'EDCR 论文定义规范: 正文用 distractor count ratio (∈[0,1])，formula proxy 1-rel_f1/evi_f1\n    仅用于方法级快速对比；per-relation 表格须 n_pred≥10 过滤'\n  rationale: 'Reviewer \n===\nD073\n  date: 2026-05-16 00:02 UTC\n  summary: 'EDCR 论文定义规范: 正文用 distractor count ratio (∈[0,1])，formula proxy 1-rel_f1/evi_f1\n    仅用于方法级快速对比；per-relation 表格须 n_pred≥10 过滤'\n  rationale: 'Reviewer 指出两个问题: (1) EDCR formula 1-rel_f1/evi_f1 在 rel_f1>evi_f1 时为负(manufacturer=-0.1879)，名为\n    rate 却不在[0,1]，审稿人会质疑; (2) per-relation top/bottom 表被退化 case 主导(n_pred=0→EDCR=0,\n    TP=0→EDCR=1)，有 cherry-picking 嫌疑。解决方案: 论文正文 EDCR 定义为 distractor count ratio (cited\n    evidence 中非支撑性证据的比例，自然∈[0,1])；formula proxy 仅在方法级无逐预测 distractor 计数时使用，论文中注明是近似。per-relation\n    展示表格加 n_pred≥10 过滤。'\n  related_experiments:\n  - exp_id: plan_003_edcr_diagnostic\n    role: 方法级 EDCR\n    result: formula proxy 用于15个方法对比\n  - exp_id: D070\n    role: per-relation EDCR\n    result: 发现负值 case 和退化 case\n  depends_on:\n  - D072\n- id: D074\n  date: 2026-05-16 00:25 UTC\n  summary: r2 实际配置正确但已被 kill，r3 替代运行；argparse 静默忽略未知参数是代码隐患\n  rationale: 验证发现 rsft_trainer.py 的 argparse 不存在 --batch/--grad_accum/--lr/--epochs\n    参数，这些 flag 被静默忽略，实际使用默认值 \n===",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the data I need. Let me compile the evidence table. Let me also check Ign-F1 numbers from the paper_framing.md summary table, cross-referencing with the registry data.\n\nKey data points I've gathered:\n\n**Claim 1: Evidence-grounded DocRE is a viable new capability**\n\nSFT baseline (with evidence):\n- quantized: rel_f1=0.4057, ign_f1=0.4057 (=40.57%), evi_f1=0.7979, evi_f1_joint=0.3117, edcr=0.7118\n\n\n- no-quantize: rel_f1=0.4106, evi_f1=0.8013, evi_f1_joint=0.3216, edcr=0.7039\n\nSFT no-evidence baseline shows rel_f1=0.4893, ign_f1=0.4893 (=48.93%), which means the evidence generation tax is roughly 8.36 percentage points. Though I'm seeing a discrepancy with paper_framing.md that reports different Ign-F1 values, so I need to reconcile those numbers.\n\nLooking at the registry entries more carefully, rel_f1 and Ign-F1 appear to be distinct metrics, and the paper_framing table shows SFT no-evidence at Ign-F1=47.36 versus the baseline at 40.36, which doesn't quite match what the registry is reporting. Looking at the actual data from the subagent, I'm seeing that the registry's rel_f1 values don't consistently map to either Ign-F1 or F1 from the paper_framing table—sometimes they align with one, sometimes the other. I need to check what the registry's ign_f1 field actually contains to understand which metric is which. Now I'm seeing the corrected Ign-F1 values from the paper_framing table, which show meaningful differences from the standard F1 scores across all the key experiments. I'll use those as my primary source and fill in additional details from the registry data where needed. My plan is to organize the evidence around two main claims: first, that evidence-grounded DocRE represents a viable new capability based on the SFT and RSFT CED experiments, and second, that the severity of decoupling correlates with RL optimization pressure, which I'll demonstrate through the GR experiments.\n\nFor the remaining claims, I need to show that NLI-based scoring specifically improves RSFT quality by comparing the CED variant against flat-NLI across multiple seeds and ablations, and then demonstrate the diagnostic value of the EDCR dual-layer approach through per-relation analysis. I should also flag that the D076 protocol issue means four of my eight evaluations need to be rerun under a unified protocol before I can run paired t-tests.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1b422aa5-76ab-42b1-8a3d-85cfc234200a",
+            "uuid": "ba06629c-6e85-4897-b418-829076a0d093",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qowr4r96pxR8nkoLCy7SKu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4607,
+                "cache_read_input_tokens": 47744,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4607
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Let me compile the evidence table."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1b422aa5-76ab-42b1-8a3d-85cfc234200a",
+            "uuid": "3de4a7e9-2837-460a-addc-374d48c404a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qowr4r96pxR8nkoLCy7SKu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4607,
+                "cache_read_input_tokens": 47744,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4607
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K6i9bkDFhbhwsWqsVpKLN8",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/paper_evidence_table.md",
+                "content": "# Paper Evidence Table — FREIGE (EMNLP 2026)\n\n> **Compiled**: 2026-05-16\n> **Source**: experiment registry + paper_framing.md + decisions D067-D076\n> **Convention**: Ign-F1/F1 as percentage (e.g., 40.36); rel_f1/evi_f1 as decimal (e.g., 0.4036) when directly from registry. Paper reports Ign-F1 in main table, F1 in appendix (D071).\n\n---\n\n## Claim 1: Evidence-grounded DocRE is a viable new capability\n\n**Statement**: FREIGE is the first LLM method to simultaneously output (head, relation, tail, [evidence]) on DocRED. Evidence generation has a ~7pp Ign-F1 cost; RSFT recovers most of it; CED reranker recovers 97%.\n\n### Supporting Experiments\n\n| exp_id | method | seed | F1 (rel_f1) | Ign-F1 | Evi-F1 | Evi-F1 (joint) | EDCR | protocol | notes |\n|--------|--------|------|-------------|--------|--------|----------------|------|----------|-------|\n| eval_plan_014_sft_no_evidence | SFT no-evidence | 42 | 48.93 | 47.36 | — | — | — | standard | Upper bound: no evidence burden |\n| eval_sft_baseline_noquant | SFT baseline (noquant) | 42 | 41.06 | 40.36 | 80.13 | 32.16 | 0.7039 | standard | Primary SFT baseline for paper |\n| mvp2_eval_sft_baseline | SFT baseline (quantized) | 42 | 40.57 | 40.57 | 79.79 | 31.17 | 0.7118 | unified (r3) | Quantized; -0.49pp vs noquant |\n| mvp2_eval_rsft_s43_r2 | RSFT CED k=1 | 43 | 46.83 | 45.85 | 81.56 | 37.11 | 0.6388 | original | **Best RSFT seed** |\n| mvp2_rsft_train_r1_s44 | RSFT CED k=1 | 44 | 46.55 | 45.51 | 80.87 | 37.13 | 0.6350 | original | |\n| mvp2_eval_rsft_r1 | RSFT CED k=1 (3ep) | 42 | 44.49 | 43.63 | 81.87 | 34.68 | 0.6565 | original | 3-epoch; s42 |\n| mvp2_eval_rsft_r2a | RSFT CED k=1 (1ep) | 42 | 44.94 | 44.01 | 81.08 | 35.09 | 0.6641 | original | 1-epoch ablation α=128 |\n| mvp2_eval_rsft_r2b | RSFT CED k=1 (1ep) | 42 | 44.93 | 44.10 | 81.28 | 34.90 | 0.6609 | original | 1-epoch ablation α=32 |\n| mvp2_ced_reranker_poc | CED reranker (N=8) | 42 | 48.64 | TBD | 81.88 | — | 0.6156 | standard | **Best practical: 97% recovery** |\n| plan_004_dreeam_baseline | DREEAM (RoBERTa-large) | 66 | 63.57† | 61.72† | 54.01† | — | — | encoder | †Encoder model, different paradigm |\n\n### Key Numbers for Paper\n\n- **Evidence generation tax**: Ign-F1 47.36 (no-evidence) → 40.36 (with evidence) = **-7.00pp** cost of faithfulness\n- **RSFT recovery**: Best RSFT CED (s43) Ign-F1 = 45.85, recovering **5.49pp** of the 7.00pp gap (78.4% recovery)\n- **CED reranker**: F1=48.64 (only -0.29pp below no-evidence F1=48.93), evi_f1=0.8188 → **recovers 97% of evidence cost with no training**\n- **RSFT CED 3-seed mean** (s42/s43/s44, original protocol): rel_f1=0.4596±0.0127, evi_f1=0.8143±0.0051\n- **All 4 RSFT CED configs > SFT baseline**: Δ Ign-F1 = +3.27 to +5.49pp\n- **DREEAM comparison**: Encoder model gets F1=63.57 / Evi-F1=54.01 — different paradigm (classification vs generation), not directly comparable for RE but sets evidence baseline context\n- **Joint Evi-F1** (unconditional): SFT baseline 31.17 → best RSFT 37.13 (+5.96pp)\n\n### Evidence Gaps\n\n- [ ] **CED reranker Ign-F1**: Currently only F1 available (48.64); need Ign-F1 for main table\n- [ ] **D076 unified protocol reevals** (reeval_ced_s42, reeval_ced_s44): PREPARING — s42 used wrong checkpoint, s44 used wrong seed\n- [ ] **RSFT CED s45**: eval RUNNING — needed for 4+ seed statistics\n- [ ] **DREEAM-protocol Evi-F1 alignment** (D041): Not yet done — conditional vs joint Evi-F1 not directly comparable with encoder baselines\n- [ ] **Test set evaluation** (plan_002): Not started — requires CodaLab submission\n- [ ] **Post-hoc retrieval baseline** (SFT + BM25 evidence): Not started — RC10\n\n---\n\n## Claim 2: RL optimization pressure correlates with evidence-extraction decoupling severity\n\n**Statement**: Decoupling severity forms a continuous spectrum — GRPO QLoRA (catastrophic) > GRPO bf16 (mild) > DPO (gradual) > RSFT (none). QLoRA is a catastrophic amplifier, not the root cause. Decoupling is an intra-task multi-objective trade-off (not inter-task forgetting).\n\n### Supporting Experiments\n\n| exp_id | method | seed | F1 (rel_f1) | Evi-F1 | EDCR | Δ vs SFT (F1) | protocol | notes |\n|--------|--------|------|-------------|--------|------|---------------|----------|-------|\n| mvp2_eval_sft_baseline | SFT baseline | 42 | 40.57 | 79.79 | 0.7118 | — | unified | Reference point |\n| mvp2_eval_lr5e6_r1_ckpt100 | GRPO QLoRA (lr=5e-6) | 42 | **1.38** | **85.04** | **0.9876** | **-39.19pp** | original | Catastrophic decoupling |\n| mvp2_eval_ced_kl001_r4_step100 | GRPO QLoRA (lr=5e-5) | 42 | 21.67 | 57.46 | 0.8539 | -18.90pp | original | Less catastrophic but still severe |\n| plan_011_bf16_g8_step_eval (step30) | GRPO bf16 G=8 | 42 | 43.40 | 80.63 | 0.6807 | +2.83pp | original | Mild decline from ckpt-100 |\n| plan_011_bf16_g8_step_eval (step70) | GRPO bf16 G=8 | 42 | 43.41 | 80.99 | 0.6685 | +2.84pp | original | Non-monotonic |\n| plan_011_grpo_g8_bf16_eval (ckpt100) | GRPO bf16 G=8 | 42 | **45.49** | 80.86 | 0.6318 | **+4.92pp** | original | Best GRPO bf16; **no catastrophic forgetting** |\n| eval_plan_012_dpo_1ep_fixed_r2 | DPO bf16 1ep | 42 | 40.34 | 80.88 | 0.7139 | -0.23pp | original | Neutral — matches SFT |\n| plan_012_dpo_ced | DPO bf16 3ep | 42 | **34.29** | **84.03** | **0.7294** | **-6.28pp** | original | Gradual decoupling (overfit) |\n| mvp2_eval_rsft_s43_r2 | RSFT CED | 43 | 46.83 | 81.56 | 0.6388 | +6.26pp | original | **No decoupling** |\n\n### Decoupling Spectrum (for paper figure/table)\n\n| Method | Quantization | Optimization Pressure | rel_f1 | Δ rel_f1 | evi_f1 | EDCR | Severity |\n|--------|-------------|----------------------|--------|----------|--------|------|----------|\n| GRPO (lr=5e-6) | QLoRA 4-bit | High (100 steps, G=8) | 0.0138 | -0.3919 | 0.8504 | 0.9876 | **Catastrophic** |\n| GRPO (lr=5e-5) | QLoRA 4-bit | Moderate (100 steps, G=8) | 0.2167 | -0.1890 | 0.5746 | 0.8539 | Severe |\n| DPO 3ep | bf16 | Moderate (3 epochs) | 0.3429 | -0.0628 | 0.8403 | 0.7294 | **Gradual** |\n| GRPO G=8 (ckpt30-70) | bf16 | Active (30-70 steps) | ~0.434 | -0.021 | ~0.808 | ~0.68 | **Mild** |\n| DPO 1ep | bf16 | Low (1 epoch) | 0.4034 | -0.0023 | 0.8088 | 0.7139 | Neutral |\n| GRPO G=8 (ckpt100) | bf16 | Converged (100 steps) | 0.4549 | +0.0492 | 0.8086 | 0.6318 | None |\n| RSFT CED (best) | — | Offline (data filter) | 0.4683 | +0.0626 | 0.8156 | 0.6388 | **None** |\n\n### Key Numbers for Paper\n\n- **QLoRA amplification**: bf16 GRPO rel_f1=0.4549 vs QLoRA GRPO rel_f1=0.0138 — QLoRA turns mild (-2pp early) into catastrophic (-39pp)\n- **GRPO bf16 trajectory**: ckpt-80→90→100: rel_f1 = 0.4456→0.4523→0.4549 (monotonically improving, no forgetting)\n- **GRPO bf16 early checkpoints** show mild decline: step30=0.434, step50=0.4276, step70=0.4341 (all below ckpt-100's 0.4549) — confirms transient mild decoupling during training, recovers by convergence\n- **DPO gradual decay**: 1ep rel_f1=0.4034 → 3ep rel_f1=0.3429 (evi_f1 simultaneously rises 0.8088→0.8403)\n- **DPO narrative (D067/D068/D069)**: DPO is neutral/gradual, not \"failed\" — it's a middle data point on the spectrum, confirming decoupling is universal across RL methods\n- **Intra-task vs inter-task** (D069): This is NOT catastrophic forgetting of pretrained knowledge; it's competition between RE and evidence objectives within the same task\n\n### Evidence Gaps\n\n- [ ] **GRPO bf16 Ign-F1**: Currently reporting F1; paper_framing notes Ign-F1=45.59 > F1=~43.4 \"因 train triples 过滤效应\" — this inversion needs explanation in paper\n- [ ] **DPO 3ep Ign-F1**: TBD in paper_framing table\n- [ ] **GRPO QLoRA (lr=5e-6) Ign-F1**: TBD\n- [ ] **Connecting to reward overoptimization literature** (RC9): Need explicit Gao et al. 2023 citation\n- [ ] **QuRL/QaRL literature** (D076 framing note): Supports QLoRA amplification narrative but not yet in Related Work\n\n---\n\n## Claim 3: NLI-based scoring improves RSFT quality (CED vs flat-NLI ablation)\n\n**Statement**: Both CED and flat-NLI outperform random/no scoring. CED vs flat-NLI difference is statistically uncertain — CED may be \"one possible scoring function\" rather than strictly superior.\n\n### Supporting Experiments\n\n#### CED RSFT (top_k=1)\n\n| exp_id | seed | F1 (rel_f1) | Ign-F1 | Evi-F1 | EDCR | D076 unified? | notes |\n|--------|------|-------------|--------|--------|------|---------------|-------|\n| mvp2_eval_rsft_r1 | 42 (3ep) | 44.49 | 43.63 | 81.87 | 0.6565 | No | 3-epoch run |\n| mvp2_eval_rsft_r2a | 42 (1ep) | 44.94 | 44.01 | 81.08 | 0.6641 | No | 1ep, α=128 |\n| mvp2_eval_rsft_r2b | 42 (1ep) | 44.93 | 44.10 | 81.28 | 0.6609 | No | 1ep, α=32 |\n| mvp2_eval_rsft_s43_r2 | 43 | 46.83 | 45.85 | 81.56 | 0.6388 | No | Best seed |\n| mvp2_rsft_train_r1_s44 | 44 | 46.55 | 45.51 | 80.87 | 0.6350 | No | |\n| eval_rsft_ced_s45 | 45 | — | — | — | — | — | **RUNNING** |\n| reeval_ced_s42 | 42 | — | — | — | — | Yes | **PREPARING** (fixes wrong ckpt) |\n| reeval_ced_s44 | 44 | — | — | — | — | Yes | **PREPARING** (fixes wrong seed) |\n\n**CED 3-seed mean (s42-r1/s43/s44)**: rel_f1 = 0.4596 ± 0.0127, evi_f1 = 0.8143 ± 0.0051\n\n#### flat-NLI RSFT (top_k=1)\n\n| exp_id | seed | F1 (rel_f1) | Ign-F1 | Evi-F1 | EDCR | D076 unified? | notes |\n|--------|------|-------------|--------|--------|------|---------------|-------|\n| eval_plan_001_flat_nli | 42 | 45.39 | 44.49 | 80.43 | 0.6431 | No | |\n| reeval_flat_nli_s43 | 43 | 45.23 | TBD | 81.58 | 0.6505 | Partial (fixed adapter, batch=16) | |\n| eval_flat_nli_s44 | 44 | 46.15 | 46.15 | 81.31 | 0.6458 | No | |\n| eval_flat_nli_seed45 | 45 | 45.51 | 45.51 | 81.54 | 0.6521 | No | |\n| reeval_flat_nli_s42 | 42 | — | — | — | — | Yes | **PREPARING** |\n| reeval_flat_nli_s43_r2 | 43 | — | — | — | — | Yes | **RUNNING** |\n\n**flat-NLI 4-seed mean (s42/s43/s44/s45)**: rel_f1 = 0.4557 ± 0.0039\n\n#### top_k Ablation\n\n| exp_id | method | seed | F1 (rel_f1) | Ign-F1 | Evi-F1 | EDCR | notes |\n|--------|--------|------|-------------|--------|--------|------|-------|\n| CED 3-seed mean | CED k=1 | s42/43/44 | 45.96 | 45.00 | 81.43 | 0.6434 | |\n| reeval_rsft_topk3 | CED k=3 | 42 | 44.54 | 43.64 | 80.88 | 0.6635 | D076 corrected ign_f1 |\n\n**Δ (k=3 vs k=1 mean)**: Ign-F1 **-1.36pp**, rel_f1 **-1.42pp**, evi_f1 **-0.55pp**, EDCR +0.02\n- Training data: k=1 → 2718 samples (12.4%), k=3 → 8037 samples (37%) — 2.96× more data but lower quality\n- Scoring quality: k=1 mean_f1=0.6157, mean_ced=0.6683 → k=3 mean_f1=0.5761, mean_ced=0.6205\n\n### Key Numbers for Paper\n\n- **CED vs flat-NLI head-to-head** (current data, NOT D076-unified):\n  - CED 3-seed mean rel_f1 = 0.4596 vs flat-NLI 4-seed mean = 0.4557 → Δ = **+0.39pp** (not significant)\n  - Dream reported p-values: 0.08 / 0.38 / 0.12 — not statistically significant\n- **Both > SFT baseline**: CED +5.39pp, flat-NLI +5.00pp (Ign-F1 vs SFT 40.36)\n- **top_k=1 > top_k=3**: Scoring precision matters more than data quantity; rank 2-3 samples dilute quality\n- **Status**: CED ≈ flat-NLI statistically indistinguishable → CED is \"one possible scoring function,\" not independently superior (C3 降级)\n\n### Evidence Gaps\n\n- [ ] **D076 unified protocol**: 4/8 evals need rerunning before paired t-test is valid (reeval_ced_s42, reeval_ced_s44, reeval_flat_nli_s42, reeval_flat_nli_s43_r2)\n- [ ] **CED s45 eval**: Still RUNNING — needed for 4-seed CED statistics\n- [ ] **Paired t-test**: Cannot compute until all seeds are under unified protocol\n- [ ] **top_k=3 additional seeds**: Only 1 seed; direction consistent but no significance test possible — present as supplementary ablation row, not independent claim\n\n---\n\n## Claim 4: EDCR dual-layer diagnostic value\n\n**Statement**: EDCR quantifies evidence-extraction decoupling at method level (echoing Claim 2 spectrum) and provides relation-type diagnostic information orthogonal to Evi-F1 at per-relation level.\n\n### Supporting Experiments\n\n| exp_id | analysis | result | notes |\n|--------|----------|--------|-------|\n| plan_003_edcr_diagnostic | Method-level EDCR table (15 methods) | EDCR vs rel_f1 Spearman ρ=-0.9648 (p=0.0001); EDCR vs evi_f1 ρ=0.0022 (p=0.9941) | EDCR ≈ transform of rel_f1 at method level (D071 flags by-construction concern) |\n| D070 per-relation analysis | Per-relation EDCR (93 types, ≥5 samples) | EDCR vs evi_f1 ρ=**-0.064** (p=0.58) → **completely independent**; EDCR vs rel_f1 ρ=-0.793 (p<0.001) | 76 types with non-zero data |\n| D070 per-relation analysis | Per-relation evi_f1 vs rel_f1 | ρ=-0.013 (p=0.91) → evidence quality and extraction completely decoupled across relation types | Independent finding supporting paper narrative |\n\n### EDCR Method-Level Summary\n\n| Method | EDCR | rel_f1 | evi_f1 | interpretation |\n|--------|------|--------|--------|----------------|\n| GRPO QLoRA (lr=5e-6) | 0.9876 | 0.0138 | 0.8504 | Pathological: high evidence, zero extraction |\n| GRPO QLoRA (lr=5e-5) | 0.8539 | 0.2167 | 0.5746 | Severe decoupling |\n| DPO 3ep | 0.7294 | 0.3429 | 0.8403 | Moderate decoupling |\n| SFT baseline | 0.7118 | 0.4057 | 0.7979 | Reference |\n| DPO 1ep | 0.7139 | 0.4034 | 0.8088 | ≈ SFT level |\n| RSFT r2a (1ep) | 0.6641 | 0.4494 | 0.8108 | Improved |\n| RSFT CED k=3 | 0.6635 | 0.4454 | 0.8088 | Improved |\n| RSFT r2b (1ep) | 0.6609 | 0.4493 | 0.8128 | Improved |\n| RSFT CED s42 (3ep) | 0.6565 | 0.4449 | 0.8187 | Improved |\n| flat-NLI s43 | 0.6505 | 0.4523 | 0.8158 | Improved |\n| flat-NLI s44 | 0.6458 | 0.4615 | 0.8131 | Improved |\n| flat-NLI s42 | 0.6431 | 0.4539 | 0.8043 | Improved |\n| RSFT CED s43 | 0.6388 | 0.4683 | 0.8156 | Best RSFT |\n| RSFT CED s44 | 0.6350 | 0.4655 | 0.8087 | Near best |\n| GRPO bf16 G=8 | 0.6318 | 0.4549 | 0.8086 | Best GRPO (no decoupling) |\n| CED reranker | 0.6156 | 0.4864 | 0.8188 | **Best overall** |\n\n### Per-Relation Exemplars (D070)\n\n| Relation Type | EDCR | evi_f1 | rel_f1 | interpretation |\n|---------------|------|--------|--------|----------------|\n| date_of_birth | 0.118 | high | high | High faithfulness — easy relation |\n| head_of_government | 0.956 | 0.875 | low | High evidence quality but poor extraction — EDCR catches what evi_f1 misses |\n\n### Key Numbers for Paper\n\n- **Layer 1 (method-level)**: EDCR identifies pathological models (GRPO QLoRA: EDCR≈1.0) — works as decoupling meter, echoes Claim 2\n- **Layer 2 (per-relation)**: EDCR vs evi_f1 ρ=-0.064 → completely independent signals at per-relation granularity\n- **D071 caveat**: Method-level EDCR ≈ f(1/rel_f1) by construction — when model predicts wrong relations, evidence automatically becomes \"distractor.\" Paper must acknowledge this and frame method-level EDCR as decoupling measure, not independent evidence quality metric\n- **D073 definition**: Paper uses distractor count ratio (∈[0,1]) definition; formula proxy 1-rel_f1/evi_f1 only for method-level quick comparison; per-relation tables require n_pred≥10 filter\n\n### Evidence Gaps\n\n- [ ] **100-example human annotation validation** (plan_013): Not started — needed for RC6\n- [ ] **TP-only EDCR** (D071): Not implemented — needed to address by-construction confound; if TP-only EDCR still correlates with rel_f1, Claim 4 method-level value is weak\n- [ ] **More per-relation exemplars**: Need to populate full table with n_pred≥10 filter (D073)\n\n---\n\n## Cross-Claim Protocol Issues\n\n### D076 Unified Protocol Reeval Status\n\nThe following evals have protocol inconsistencies that prevent valid paired t-test (Claim 3):\n\n| exp_id | issue | unified reeval | status |\n|--------|-------|---------------|--------|\n| CED s42 (mvp2_eval_rsft_r2b_maxtok1536_r2) | Wrong checkpoint (r2b α=32 instead of ckpt-510 α=128), batch_size=8, max_new_tokens=1536 | reeval_ced_s42 | PREPARING |\n| CED s44 (mvp2_rsft_train_r1_s44) | Seed=42 in eval (should be 44) | reeval_ced_s44 | PREPARING |\n| flat-NLI s42 (eval_plan_001_flat_nli) | batch_size=16 | reeval_flat_nli_s42 | PREPARING |\n| flat-NLI s43 (reeval_flat_nli_s43) | batch_size=16 | reeval_flat_nli_s43_r2 | RUNNING |\n\n**Unified protocol**: batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024, correct seed.\n\n**Impact**: Old protocol data can be used for directional claims but NOT for paired t-test (Claim 3 significance). All 8 CED/flat-NLI evals must be under unified protocol before statistical comparison.\n\n### Ign-F1 vs F1 Issue\n\n- Most registry entries show ign_f1 = rel_f1 (suspected eval pipeline bug, D069)\n- Paper_framing table has corrected Ign-F1 values that differ from F1 (e.g., SFT no-evidence: Ign-F1=47.36 vs F1=48.93)\n- D071: \"Ign-F1 修正后排名无实质变化\"\n- **Paper uses Ign-F1 in main table** per D071\n\n### Experiments Still Running / Pending\n\n| exp_id | purpose | status | blocking |\n|--------|---------|--------|----------|\n| eval_rsft_ced_s43 | CED s43 re-eval | RUNNING | C3 statistics |\n| eval_rsft_ced_s45 | CED s45 (new seed) | RUNNING | C3 statistics |\n| eval_plan_014_no_evidence_r2 | SFT no-evidence re-eval | RUNNING | — |\n| reeval_ced_s42 | Unified protocol CED s42 | PREPARING | C3 paired t-test |\n| reeval_ced_s44 | Unified protocol CED s44 | PREPARING | C3 paired t-test |\n| reeval_flat_nli_s42 | Unified protocol flat-NLI s42 | PREPARING | C3 paired t-test |\n| reeval_flat_nli_s43_r2 | Unified protocol flat-NLI s43 | RUNNING | C3 paired t-test |\n| plan_002 | Test set evaluation | PLANNED | C1 final numbers |\n| plan_013 | EDCR human annotation (100 examples) | PLANNED | C4 validation |\n\n---\n\n## Summary: Paper-Ready vs Gaps\n\n### Paper-Ready Numbers\n\n1. **Evidence tax**: 47.36 → 40.36 = -7.00pp Ign-F1 (plan_014 vs noquant SFT)\n2. **CED reranker recovery**: F1=48.64, only -0.29pp below no-evidence (plan_005)\n3. **RSFT CED best**: Ign-F1=45.85, +5.49pp over SFT (s43)\n4. **Decoupling spectrum**: Complete data for GRPO QLoRA / GRPO bf16 / DPO / RSFT\n5. **QLoRA amplification**: bf16 0.4549 vs QLoRA 0.0138 (plan_011 vs QLoRA runs)\n6. **EDCR per-relation independence**: ρ=-0.064 vs evi_f1 (D070)\n7. **top_k ablation**: k=1 > k=3, precision > quantity (plan_008)\n8. **DREEAM baseline**: F1=63.57, Evi-F1=54.01 reproduced (plan_004)\n\n### Critical Gaps (blocking paper submission)\n\n1. **D076 unified reevals** — blocking Claim 3 statistical test\n2. **CED reranker Ign-F1** — needed for main table\n3. **Test set evaluation** (plan_002) — no official numbers yet\n4. **DREEAM-protocol Evi-F1 alignment** — cross-paradigm evidence comparison\n\n### Nice-to-Have (strengthen but not blocking)\n\n1. EDCR human validation (plan_013) — RC6\n2. Post-hoc retrieval baseline (SFT + BM25) — RC10\n3. Model size ablation (plan_006) — RC4\n4. TP-only EDCR (D071) — method-level confound\n5. Re-DocRED extension (plan_007) — RC4\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1b422aa5-76ab-42b1-8a3d-85cfc234200a",
+            "uuid": "43e34f20-a9f4-4223-b627-84087eea54fa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qowr4r96pxR8nkoLCy7SKu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4607,
+                "cache_read_input_tokens": 47744,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4607
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-16T03:28:42.723Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K6i9bkDFhbhwsWqsVpKLN8",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/paper_evidence_table.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1b422aa5-76ab-42b1-8a3d-85cfc234200a",
+            "uuid": "885c0001-b9a2-45f9-b772-5878a5e124a4",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/paper_evidence_table.md",
+              "content": "# Paper Evidence Table — FREIGE (EMNLP 2026)\n\n> **Compiled**: 2026-05-16\n> **Source**: experiment registry + paper_framing.md + decisions D067-D076\n> **Convention**: Ign-F1/F1 as percentage (e.g., 40.36); rel_f1/evi_f1 as decimal (e.g., 0.4036) when directly from registry. Paper reports Ign-F1 in main table, F1 in appendix (D071).\n\n---\n\n## Claim 1: Evidence-grounded DocRE is a viable new capability\n\n**Statement**: FREIGE is the first LLM method to simultaneously output (head, relation, tail, [evidence]) on DocRED. Evidence generation has a ~7pp Ign-F1 cost; RSFT recovers most of it; CED reranker recovers 97%.\n\n### Supporting Experiments\n\n| exp_id | method | seed | F1 (rel_f1) | Ign-F1 | Evi-F1 | Evi-F1 (joint) | EDCR | protocol | notes |\n|--------|--------|------|-------------|--------|--------|----------------|------|----------|-------|\n| eval_plan_014_sft_no_evidence | SFT no-evidence | 42 | 48.93 | 47.36 | — | — | — | standard | Upper bound: no evidence burden |\n| eval_sft_baseline_noquant | SFT baseline (noquant) | 42 | 41.06 | 40.36 | 80.13 | 32.16 | 0.7039 | standard | Primary SFT baseline for paper |\n| mvp2_eval_sft_baseline | SFT baseline (quantized) | 42 | 40.57 | 40.57 | 79.79 | 31.17 | 0.7118 | unified (r3) | Quantized; -0.49pp vs noquant |\n| mvp2_eval_rsft_s43_r2 | RSFT CED k=1 | 43 | 46.83 | 45.85 | 81.56 | 37.11 | 0.6388 | original | **Best RSFT seed** |\n| mvp2_rsft_train_r1_s44 | RSFT CED k=1 | 44 | 46.55 | 45.51 | 80.87 | 37.13 | 0.6350 | original | |\n| mvp2_eval_rsft_r1 | RSFT CED k=1 (3ep) | 42 | 44.49 | 43.63 | 81.87 | 34.68 | 0.6565 | original | 3-epoch; s42 |\n| mvp2_eval_rsft_r2a | RSFT CED k=1 (1ep) | 42 | 44.94 | 44.01 | 81.08 | 35.09 | 0.6641 | original | 1-epoch ablation α=128 |\n| mvp2_eval_rsft_r2b | RSFT CED k=1 (1ep) | 42 | 44.93 | 44.10 | 81.28 | 34.90 | 0.6609 | original | 1-epoch ablation α=32 |\n| mvp2_ced_reranker_poc | CED reranker (N=8) | 42 | 48.64 | TBD | 81.88 | — | 0.6156 | standard | **Best practical: 97% recovery** |\n| plan_004_dreeam_baseline | DREEAM (RoBERTa-large) | 66 | 63.57† | 61.72† | 54.01† | — | — | encoder | †Encoder model, different paradigm |\n\n### Key Numbers for Paper\n\n- **Evidence generation tax**: Ign-F1 47.36 (no-evidence) → 40.36 (with evidence) = **-7.00pp** cost of faithfulness\n- **RSFT recovery**: Best RSFT CED (s43) Ign-F1 = 45.85, recovering **5.49pp** of the 7.00pp gap (78.4% recovery)\n- **CED reranker**: F1=48.64 (only -0.29pp below no-evidence F1=48.93), evi_f1=0.8188 → **recovers 97% of evidence cost with no training**\n- **RSFT CED 3-seed mean** (s42/s43/s44, original protocol): rel_f1=0.4596±0.0127, evi_f1=0.8143±0.0051\n- **All 4 RSFT CED configs > SFT baseline**: Δ Ign-F1 = +3.27 to +5.49pp\n- **DREEAM comparison**: Encoder model gets F1=63.57 / Evi-F1=54.01 — different paradigm (classification vs generation), not directly comparable for RE but sets evidence baseline context\n- **Joint Evi-F1** (unconditional): SFT baseline 31.17 → best RSFT 37.13 (+5.96pp)\n\n### Evidence Gaps\n\n- [ ] **CED reranker Ign-F1**: Currently only F1 available (48.64); need Ign-F1 for main table\n- [ ] **D076 unified protocol reevals** (reeval_ced_s42, reeval_ced_s44): PREPARING — s42 used wrong checkpoint, s44 used wrong seed\n- [ ] **RSFT CED s45**: eval RUNNING — needed for 4+ seed statistics\n- [ ] **DREEAM-protocol Evi-F1 alignment** (D041): Not yet done — conditional vs joint Evi-F1 not directly comparable with encoder baselines\n- [ ] **Test set evaluation** (plan_002): Not started — requires CodaLab submission\n- [ ] **Post-hoc retrieval baseline** (SFT + BM25 evidence): Not started — RC10\n\n---\n\n## Claim 2: RL optimization pressure correlates with evidence-extraction decoupling severity\n\n**Statement**: Decoupling severity forms a continuous spectrum — GRPO QLoRA (catastrophic) > GRPO bf16 (mild) > DPO (gradual) > RSFT (none). QLoRA is a catastrophic amplifier, not the root cause. Decoupling is an intra-task multi-objective trade-off (not inter-task forgetting).\n\n### Supporting Experiments\n\n| exp_id | method | seed | F1 (rel_f1) | Evi-F1 | EDCR | Δ vs SFT (F1) | protocol | notes |\n|--------|--------|------|-------------|--------|------|---------------|----------|-------|\n| mvp2_eval_sft_baseline | SFT baseline | 42 | 40.57 | 79.79 | 0.7118 | — | unified | Reference point |\n| mvp2_eval_lr5e6_r1_ckpt100 | GRPO QLoRA (lr=5e-6) | 42 | **1.38** | **85.04** | **0.9876** | **-39.19pp** | original | Catastrophic decoupling |\n| mvp2_eval_ced_kl001_r4_step100 | GRPO QLoRA (lr=5e-5) | 42 | 21.67 | 57.46 | 0.8539 | -18.90pp | original | Less catastrophic but still severe |\n| plan_011_bf16_g8_step_eval (step30) | GRPO bf16 G=8 | 42 | 43.40 | 80.63 | 0.6807 | +2.83pp | original | Mild decline from ckpt-100 |\n| plan_011_bf16_g8_step_eval (step70) | GRPO bf16 G=8 | 42 | 43.41 | 80.99 | 0.6685 | +2.84pp | original | Non-monotonic |\n| plan_011_grpo_g8_bf16_eval (ckpt100) | GRPO bf16 G=8 | 42 | **45.49** | 80.86 | 0.6318 | **+4.92pp** | original | Best GRPO bf16; **no catastrophic forgetting** |\n| eval_plan_012_dpo_1ep_fixed_r2 | DPO bf16 1ep | 42 | 40.34 | 80.88 | 0.7139 | -0.23pp | original | Neutral — matches SFT |\n| plan_012_dpo_ced | DPO bf16 3ep | 42 | **34.29** | **84.03** | **0.7294** | **-6.28pp** | original | Gradual decoupling (overfit) |\n| mvp2_eval_rsft_s43_r2 | RSFT CED | 43 | 46.83 | 81.56 | 0.6388 | +6.26pp | original | **No decoupling** |\n\n### Decoupling Spectrum (for paper figure/table)\n\n| Method | Quantization | Optimization Pressure | rel_f1 | Δ rel_f1 | evi_f1 | EDCR | Severity |\n|--------|-------------|----------------------|--------|----------|--------|------|----------|\n| GRPO (lr=5e-6) | QLoRA 4-bit | High (100 steps, G=8) | 0.0138 | -0.3919 | 0.8504 | 0.9876 | **Catastrophic** |\n| GRPO (lr=5e-5) | QLoRA 4-bit | Moderate (100 steps, G=8) | 0.2167 | -0.1890 | 0.5746 | 0.8539 | Severe |\n| DPO 3ep | bf16 | Moderate (3 epochs) | 0.3429 | -0.0628 | 0.8403 | 0.7294 | **Gradual** |\n| GRPO G=8 (ckpt30-70) | bf16 | Active (30-70 steps) | ~0.434 | -0.021 | ~0.808 | ~0.68 | **Mild** |\n| DPO 1ep | bf16 | Low (1 epoch) | 0.4034 | -0.0023 | 0.8088 | 0.7139 | Neutral |\n| GRPO G=8 (ckpt100) | bf16 | Converged (100 steps) | 0.4549 | +0.0492 | 0.8086 | 0.6318 | None |\n| RSFT CED (best) | — | Offline (data filter) | 0.4683 | +0.0626 | 0.8156 | 0.6388 | **None** |\n\n### Key Numbers for Paper\n\n- **QLoRA amplification**: bf16 GRPO rel_f1=0.4549 vs QLoRA GRPO rel_f1=0.0138 — QLoRA turns mild (-2pp early) into catastrophic (-39pp)\n- **GRPO bf16 trajectory**: ckpt-80→90→100: rel_f1 = 0.4456→0.4523→0.4549 (monotonically improving, no forgetting)\n- **GRPO bf16 early checkpoints** show mild decline: step30=0.434, step50=0.4276, step70=0.4341 (all below ckpt-100's 0.4549) — confirms transient mild decoupling during training, recovers by convergence\n- **DPO gradual decay**: 1ep rel_f1=0.4034 → 3ep rel_f1=0.3429 (evi_f1 simultaneously rises 0.8088→0.8403)\n- **DPO narrative (D067/D068/D069)**: DPO is neutral/gradual, not \"failed\" — it's a middle data point on the spectrum, confirming decoupling is universal across RL methods\n- **Intra-task vs inter-task** (D069): This is NOT catastrophic forgetting of pretrained knowledge; it's competition between RE and evidence objectives within the same task\n\n### Evidence Gaps\n\n- [ ] **GRPO bf16 Ign-F1**: Currently reporting F1; paper_framing notes Ign-F1=45.59 > F1=~43.4 \"因 train triples 过滤效应\" — this inversion needs explanation in paper\n- [ ] **DPO 3ep Ign-F1**: TBD in paper_framing table\n- [ ] **GRPO QLoRA (lr=5e-6) Ign-F1**: TBD\n- [ ] **Connecting to reward overoptimization literature** (RC9): Need explicit Gao et al. 2023 citation\n- [ ] **QuRL/QaRL literature** (D076 framing note): Supports QLoRA amplification narrative but not yet in Related Work\n\n---\n\n## Claim 3: NLI-based scoring improves RSFT quality (CED vs flat-NLI ablation)\n\n**Statement**: Both CED and flat-NLI outperform random/no scoring. CED vs flat-NLI difference is statistically uncertain — CED may be \"one possible scoring function\" rather than strictly superior.\n\n### Supporting Experiments\n\n#### CED RSFT (top_k=1)\n\n| exp_id | seed | F1 (rel_f1) | Ign-F1 | Evi-F1 | EDCR | D076 unified? | notes |\n|--------|------|-------------|--------|--------|------|---------------|-------|\n| mvp2_eval_rsft_r1 | 42 (3ep) | 44.49 | 43.63 | 81.87 | 0.6565 | No | 3-epoch run |\n| mvp2_eval_rsft_r2a | 42 (1ep) | 44.94 | 44.01 | 81.08 | 0.6641 | No | 1ep, α=128 |\n| mvp2_eval_rsft_r2b | 42 (1ep) | 44.93 | 44.10 | 81.28 | 0.6609 | No | 1ep, α=32 |\n| mvp2_eval_rsft_s43_r2 | 43 | 46.83 | 45.85 | 81.56 | 0.6388 | No | Best seed |\n| mvp2_rsft_train_r1_s44 | 44 | 46.55 | 45.51 | 80.87 | 0.6350 | No | |\n| eval_rsft_ced_s45 | 45 | — | — | — | — | — | **RUNNING** |\n| reeval_ced_s42 | 42 | — | — | — | — | Yes | **PREPARING** (fixes wrong ckpt) |\n| reeval_ced_s44 | 44 | — | — | — | — | Yes | **PREPARING** (fixes wrong seed) |\n\n**CED 3-seed mean (s42-r1/s43/s44)**: rel_f1 = 0.4596 ± 0.0127, evi_f1 = 0.8143 ± 0.0051\n\n#### flat-NLI RSFT (top_k=1)\n\n| exp_id | seed | F1 (rel_f1) | Ign-F1 | Evi-F1 | EDCR | D076 unified? | notes |\n|--------|------|-------------|--------|--------|------|---------------|-------|\n| eval_plan_001_flat_nli | 42 | 45.39 | 44.49 | 80.43 | 0.6431 | No | |\n| reeval_flat_nli_s43 | 43 | 45.23 | TBD | 81.58 | 0.6505 | Partial (fixed adapter, batch=16) | |\n| eval_flat_nli_s44 | 44 | 46.15 | 46.15 | 81.31 | 0.6458 | No | |\n| eval_flat_nli_seed45 | 45 | 45.51 | 45.51 | 81.54 | 0.6521 | No | |\n| reeval_flat_nli_s42 | 42 | — | — | — | — | Yes | **PREPARING** |\n| reeval_flat_nli_s43_r2 | 43 | — | — | — | — | Yes | **RUNNING** |\n\n**flat-NLI 4-seed mean (s42/s43/s44/s45)**: rel_f1 = 0.4557 ± 0.0039\n\n#### top_k Ablation\n\n| exp_id | method | seed | F1 (rel_f1) | Ign-F1 | Evi-F1 | EDCR | notes |\n|--------|--------|------|-------------|--------|--------|------|-------|\n| CED 3-seed mean | CED k=1 | s42/43/44 | 45.96 | 45.00 | 81.43 | 0.6434 | |\n| reeval_rsft_topk3 | CED k=3 | 42 | 44.54 | 43.64 | 80.88 | 0.6635 | D076 corrected ign_f1 |\n\n**Δ (k=3 vs k=1 mean)**: Ign-F1 **-1.36pp**, rel_f1 **-1.42pp**, evi_f1 **-0.55pp**, EDCR +0.02\n- Training data: k=1 → 2718 samples (12.4%), k=3 → 8037 samples (37%) — 2.96× more data but lower quality\n- Scoring quality: k=1 mean_f1=0.6157, mean_ced=0.6683 → k=3 mean_f1=0.5761, mean_ced=0.6205\n\n### Key Numbers for Paper\n\n- **CED vs flat-NLI head-to-head** (current data, NOT D076-unified):\n  - CED 3-seed mean rel_f1 = 0.4596 vs flat-NLI 4-seed mean = 0.4557 → Δ = **+0.39pp** (not significant)\n  - Dream reported p-values: 0.08 / 0.38 / 0.12 — not statistically significant\n- **Both > SFT baseline**: CED +5.39pp, flat-NLI +5.00pp (Ign-F1 vs SFT 40.36)\n- **top_k=1 > top_k=3**: Scoring precision matters more than data quantity; rank 2-3 samples dilute quality\n- **Status**: CED ≈ flat-NLI statistically indistinguishable → CED is \"one possible scoring function,\" not independently superior (C3 降级)\n\n### Evidence Gaps\n\n- [ ] **D076 unified protocol**: 4/8 evals need rerunning before paired t-test is valid (reeval_ced_s42, reeval_ced_s44, reeval_flat_nli_s42, reeval_flat_nli_s43_r2)\n- [ ] **CED s45 eval**: Still RUNNING — needed for 4-seed CED statistics\n- [ ] **Paired t-test**: Cannot compute until all seeds are under unified protocol\n- [ ] **top_k=3 additional seeds**: Only 1 seed; direction consistent but no significance test possible — present as supplementary ablation row, not independent claim\n\n---\n\n## Claim 4: EDCR dual-layer diagnostic value\n\n**Statement**: EDCR quantifies evidence-extraction decoupling at method level (echoing Claim 2 spectrum) and provides relation-type diagnostic information orthogonal to Evi-F1 at per-relation level.\n\n### Supporting Experiments\n\n| exp_id | analysis | result | notes |\n|--------|----------|--------|-------|\n| plan_003_edcr_diagnostic | Method-level EDCR table (15 methods) | EDCR vs rel_f1 Spearman ρ=-0.9648 (p=0.0001); EDCR vs evi_f1 ρ=0.0022 (p=0.9941) | EDCR ≈ transform of rel_f1 at method level (D071 flags by-construction concern) |\n| D070 per-relation analysis | Per-relation EDCR (93 types, ≥5 samples) | EDCR vs evi_f1 ρ=**-0.064** (p=0.58) → **completely independent**; EDCR vs rel_f1 ρ=-0.793 (p<0.001) | 76 types with non-zero data |\n| D070 per-relation analysis | Per-relation evi_f1 vs rel_f1 | ρ=-0.013 (p=0.91) → evidence quality and extraction completely decoupled across relation types | Independent finding supporting paper narrative |\n\n### EDCR Method-Level Summary\n\n| Method | EDCR | rel_f1 | evi_f1 | interpretation |\n|--------|------|--------|--------|----------------|\n| GRPO QLoRA (lr=5e-6) | 0.9876 | 0.0138 | 0.8504 | Pathological: high evidence, zero extraction |\n| GRPO QLoRA (lr=5e-5) | 0.8539 | 0.2167 | 0.5746 | Severe decoupling |\n| DPO 3ep | 0.7294 | 0.3429 | 0.8403 | Moderate decoupling |\n| SFT baseline | 0.7118 | 0.4057 | 0.7979 | Reference |\n| DPO 1ep | 0.7139 | 0.4034 | 0.8088 | ≈ SFT level |\n| RSFT r2a (1ep) | 0.6641 | 0.4494 | 0.8108 | Improved |\n| RSFT CED k=3 | 0.6635 | 0.4454 | 0.8088 | Improved |\n| RSFT r2b (1ep) | 0.6609 | 0.4493 | 0.8128 | Improved |\n| RSFT CED s42 (3ep) | 0.6565 | 0.4449 | 0.8187 | Improved |\n| flat-NLI s43 | 0.6505 | 0.4523 | 0.8158 | Improved |\n| flat-NLI s44 | 0.6458 | 0.4615 | 0.8131 | Improved |\n| flat-NLI s42 | 0.6431 | 0.4539 | 0.8043 | Improved |\n| RSFT CED s43 | 0.6388 | 0.4683 | 0.8156 | Best RSFT |\n| RSFT CED s44 | 0.6350 | 0.4655 | 0.8087 | Near best |\n| GRPO bf16 G=8 | 0.6318 | 0.4549 | 0.8086 | Best GRPO (no decoupling) |\n| CED reranker | 0.6156 | 0.4864 | 0.8188 | **Best overall** |\n\n### Per-Relation Exemplars (D070)\n\n| Relation Type | EDCR | evi_f1 | rel_f1 | interpretation |\n|---------------|------|--------|--------|----------------|\n| date_of_birth | 0.118 | high | high | High faithfulness — easy relation |\n| head_of_government | 0.956 | 0.875 | low | High evidence quality but poor extraction — EDCR catches what evi_f1 misses |\n\n### Key Numbers for Paper\n\n- **Layer 1 (method-level)**: EDCR identifies pathological models (GRPO QLoRA: EDCR≈1.0) — works as decoupling meter, echoes Claim 2\n- **Layer 2 (per-relation)**: EDCR vs evi_f1 ρ=-0.064 → completely independent signals at per-relation granularity\n- **D071 caveat**: Method-level EDCR ≈ f(1/rel_f1) by construction — when model predicts wrong relations, evidence automatically becomes \"distractor.\" Paper must acknowledge this and frame method-level EDCR as decoupling measure, not independent evidence quality metric\n- **D073 definition**: Paper uses distractor count ratio (∈[0,1]) definition; formula proxy 1-rel_f1/evi_f1 only for method-level quick comparison; per-relation tables require n_pred≥10 filter\n\n### Evidence Gaps\n\n- [ ] **100-example human annotation validation** (plan_013): Not started — needed for RC6\n- [ ] **TP-only EDCR** (D071): Not implemented — needed to address by-construction confound; if TP-only EDCR still correlates with rel_f1, Claim 4 method-level value is weak\n- [ ] **More per-relation exemplars**: Need to populate full table with n_pred≥10 filter (D073)\n\n---\n\n## Cross-Claim Protocol Issues\n\n### D076 Unified Protocol Reeval Status\n\nThe following evals have protocol inconsistencies that prevent valid paired t-test (Claim 3):\n\n| exp_id | issue | unified reeval | status |\n|--------|-------|---------------|--------|\n| CED s42 (mvp2_eval_rsft_r2b_maxtok1536_r2) | Wrong checkpoint (r2b α=32 instead of ckpt-510 α=128), batch_size=8, max_new_tokens=1536 | reeval_ced_s42 | PREPARING |\n| CED s44 (mvp2_rsft_train_r1_s44) | Seed=42 in eval (should be 44) | reeval_ced_s44 | PREPARING |\n| flat-NLI s42 (eval_plan_001_flat_nli) | batch_size=16 | reeval_flat_nli_s42 | PREPARING |\n| flat-NLI s43 (reeval_flat_nli_s43) | batch_size=16 | reeval_flat_nli_s43_r2 | RUNNING |\n\n**Unified protocol**: batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024, correct seed.\n\n**Impact**: Old protocol data can be used for directional claims but NOT for paired t-test (Claim 3 significance). All 8 CED/flat-NLI evals must be under unified protocol before statistical comparison.\n\n### Ign-F1 vs F1 Issue\n\n- Most registry entries show ign_f1 = rel_f1 (suspected eval pipeline bug, D069)\n- Paper_framing table has corrected Ign-F1 values that differ from F1 (e.g., SFT no-evidence: Ign-F1=47.36 vs F1=48.93)\n- D071: \"Ign-F1 修正后排名无实质变化\"\n- **Paper uses Ign-F1 in main table** per D071\n\n### Experiments Still Running / Pending\n\n| exp_id | purpose | status | blocking |\n|--------|---------|--------|----------|\n| eval_rsft_ced_s43 | CED s43 re-eval | RUNNING | C3 statistics |\n| eval_rsft_ced_s45 | CED s45 (new seed) | RUNNING | C3 statistics |\n| eval_plan_014_no_evidence_r2 | SFT no-evidence re-eval | RUNNING | — |\n| reeval_ced_s42 | Unified protocol CED s42 | PREPARING | C3 paired t-test |\n| reeval_ced_s44 | Unified protocol CED s44 | PREPARING | C3 paired t-test |\n| reeval_flat_nli_s42 | Unified protocol flat-NLI s42 | PREPARING | C3 paired t-test |\n| reeval_flat_nli_s43_r2 | Unified protocol flat-NLI s43 | RUNNING | C3 paired t-test |\n| plan_002 | Test set evaluation | PLANNED | C1 final numbers |\n| plan_013 | EDCR human annotation (100 examples) | PLANNED | C4 validation |\n\n---\n\n## Summary: Paper-Ready vs Gaps\n\n### Paper-Ready Numbers\n\n1. **Evidence tax**: 47.36 → 40.36 = -7.00pp Ign-F1 (plan_014 vs noquant SFT)\n2. **CED reranker recovery**: F1=48.64, only -0.29pp below no-evidence (plan_005)\n3. **RSFT CED best**: Ign-F1=45.85, +5.49pp over SFT (s43)\n4. **Decoupling spectrum**: Complete data for GRPO QLoRA / GRPO bf16 / DPO / RSFT\n5. **QLoRA amplification**: bf16 0.4549 vs QLoRA 0.0138 (plan_011 vs QLoRA runs)\n6. **EDCR per-relation independence**: ρ=-0.064 vs evi_f1 (D070)\n7. **top_k ablation**: k=1 > k=3, precision > quantity (plan_008)\n8. **DREEAM baseline**: F1=63.57, Evi-F1=54.01 reproduced (plan_004)\n\n### Critical Gaps (blocking paper submission)\n\n1. **D076 unified reevals** — blocking Claim 3 statistical test\n2. **CED reranker Ign-F1** — needed for main table\n3. **Test set evaluation** (plan_002) — no official numbers yet\n4. **DREEAM-protocol Evi-F1 alignment** — cross-paradigm evidence comparison\n\n### Nice-to-Have (strengthen but not blocking)\n\n1. EDCR human validation (plan_013) — RC6\n2. Post-hoc retrieval baseline (SFT + BM25) — RC10\n3. Model size ablation (plan_006) — RC4\n4. TP-only EDCR (D071) — method-level confound\n5. Re-DocRED extension (plan_007) — RC4\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JQB5kejgmf2LY4y9a8gqiT",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "paper_evidence_table",
+                "type": "report",
+                "description": "Structured evidence table for EMNLP 2026 paper, organized by 4 claims with supporting experiments, key numbers, and evidence gaps. Compiled from 130 registry experiments + paper_framing.md + decisions D067-D076.",
+                "project": "faith-evidence-ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/paper_evidence_table.md",
+                "tags": [
+                  "paper",
+                  "evidence-table",
+                  "emnlp2026",
+                  "sprint-prep"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1b422aa5-76ab-42b1-8a3d-85cfc234200a",
+            "uuid": "876a9ba9-cda1-4ea9-87f3-7c90755cc6b7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MLcgjVRiAUbCiibNY9uUgr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9649,
+                "cache_read_input_tokens": 52351,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9649
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-16T03:28:48.709Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JQB5kejgmf2LY4y9a8gqiT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_a1a71e\\\", \\\"name\\\": \\\"paper_evidence_table\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Structured evidence table for EMNLP 2026 paper, organized by 4 claims with supporting experiments, key numbers, and evidence gaps. Compiled from 130 registry experiments + paper_framing.md + decisions D067-D076.\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/_project/report/paper_evidence_table.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T03:28:48.606791+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"evidence-table\\\", \\\"emnlp2026\\\", \\\"sprint-prep\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1b422aa5-76ab-42b1-8a3d-85cfc234200a",
+            "uuid": "385d42fd-90f9-4a17-b2b0-69aeca3a9900",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_a1a71e\\\", \\\"name\\\": \\\"paper_evidence_table\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Structured evidence table for EMNLP 2026 paper, organized by 4 claims with supporting experiments, key numbers, and evidence gaps. Compiled from 130 registry experiments + paper_framing.md + decisions D067-D076.\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/_project/report/paper_evidence_table.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T03:28:48.606791+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"evidence-table\\\", \\\"emnlp2026\\\", \\\"sprint-prep\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_a1a71e\", \"name\": \"paper_evidence_table\", \"type\": \"report\", \"description\": \"Structured evidence table for EMNLP 2026 paper, organized by 4 claims with supporting experiments, key numbers, and evidence gaps. Compiled from 130 registry experiments + paper_framing.md + decisions D067-D076.\", \"path\": \"projects/faith-evidence-ie/artifacts/_project/report/paper_evidence_table.md\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T03:28:48.606791+00:00\", \"tags\": [\"paper\", \"evidence-table\", \"emnlp2026\", \"sprint-prep\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Evidence table 已编译完成，写入 `artifacts/paper_evidence_table.md` 并注册为 artifact `art_20260516_a1a71e`。\n\n核心发现：\n\n**Paper-ready 数据**：4 个 claim 都有实验支撑——evidence tax -7pp, CED reranker 97% recovery, decoupling spectrum 完整, EDCR per-relation 独立性 ρ=-0.064。\n\n**4 个 blocking gaps**：\n1. D076 统一协议 reeval（4/8 eval 不一致，阻塞 C3 paired t-test）\n2. CED reranker 缺 Ign-F1（主表需要）\n3. Test set evaluation（plan_002 未开始）\n4. DREEAM-protocol Evi-F1 对齐（跨范式对比）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1b422aa5-76ab-42b1-8a3d-85cfc234200a",
+            "uuid": "291bffb2-5c63-4b89-8428-e80bba147f5a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011iu7JPo51pBFBL1UfEDPW7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 571,
+                "cache_read_input_tokens": 62000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 571
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Evidence table 已编译完成，写入 `artifacts/paper_evidence_table.md` 并注册为 artifact `art_20260516_a1a71e`。\n\n核心发现：\n\n**Paper-ready 数据**：4 个 claim 都有实验支撑——evidence tax -7pp, CED reranker 97% recovery, decoupling spectrum 完整, EDCR per-relation 独立性 ρ=-0.064。\n\n**4 个 blocking gaps**：\n1. D076 统一协议 reeval（4/8 eval 不一致，阻塞 C3 paired t-test）\n2. CED reranker 缺 Ign-F1（主表需要）\n3. Test set evaluation（plan_002 未开始）\n4. DREEAM-protocol Evi-F1 对齐（跨范式对比）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 468149,
+            "duration_api_ms": 465546,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "1b422aa5-76ab-42b1-8a3d-85cfc234200a",
+            "total_cost_usd": 1.79705575,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 51124,
+              "cache_read_input_tokens": 438991,
+              "output_tokens": 12641,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 51124,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 234,
+                  "cache_read_input_tokens": 62000,
+                  "cache_creation_input_tokens": 571,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 571
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1870,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0019649999999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 33,
+                "outputTokens": 23802,
+                "cacheReadInputTokens": 938364,
+                "cacheCreationInputTokens": 116911,
+                "webSearchRequests": 0,
+                "costUSD": 1.7950907499999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "bce51b3f-68a6-4a87-8c7e-54c501a475c2"
+          },
+          "id": "event-000089"
+        }
+      ]
+    }
+  ]
+}

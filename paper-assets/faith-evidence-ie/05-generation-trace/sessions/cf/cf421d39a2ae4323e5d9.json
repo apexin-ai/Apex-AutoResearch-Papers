@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf421d39a2ae4323e5d9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose dev eval 4b rsft v2 cascade",
+  "task_key": "worker_diagnose_dev-eval-4b-rsft-v2-cascade_20260522T104633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_dev-eval-4b-rsft-v2-cascade_20260522T104633_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "79dbb6bd02d2a64035bcbddae0a36219789ed5d3ceb4d612a299dcd698b00de5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**dev_eval_4b_rsft_ced_s42_v2** — 已完成 ✓\n- **ign_f1 = 0.4388**（期望 0.4517，差 -1.29pp，在 ±2pp 范围内）\n- evi_f1 = 0.8069, format_compliance = 100%, 143/985 truncated\n- Registry 已更新为 DONE/success\n\n**test_eval_4b_rsft_s42_v2_reeval** — 已提交 ✓\n- PID: **176927**，运行在 **cuda:2**（13GB 已占用）\n- 500 test documents, 推理进度 0/32 batches\n- 预计运行 ~6 小时（参考 dev eval 985 docs 用了 ~6h）\n\n**GPU 状态**：\n| GPU | 显存占用 |\n|-----|---------|\n| 0 | 0 MiB / 97887 MiB (空闲) |\n| 1 | 0 MiB / 97887 MiB (空闲) |\n| 2 | 12989 MiB / 97887 MiB (test eval 运行中) |\n| 3 | 0 MiB / 97887 MiB (空闲) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-dev-eval-4b-rsft-v2-cascade.md"
+}

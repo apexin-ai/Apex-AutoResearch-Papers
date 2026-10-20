@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4393ca50f053f55cbc6c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops kill zombie maxtok1536",
+  "task_key": "worker_ops_kill-zombie-maxtok1536_20260515T132559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-zombie-maxtok1536_20260515T132559_result.json",
+    "occurrence": 1,
+    "bytes": 536,
+    "sha256": "4f5a55245c4112e8acd8deea14a217204020d01180f1702d5c03ce5649869c3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n1. **Zombie 进程 (196705, 196704)** — 已成功 kill，确认已死\n2. **PID 197386 (r2)** — 正常运行中，已运行 1h31m，命令行包含正确的 `--base_model` 和 `--sft_adapter` 参数\n3. **输出目录 `/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/`** — 目录为空（仅有 `.` 和 `..`），无污染文件，无需清理。r2 进程尚未写出结果文件\n4. **topk3 tmux session** — 不存在。当前仅有 `mvp2_eval_rsft_r2b_maxtok1536_r2` 一个 session，无需清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombie-maxtok1536.md"
+}

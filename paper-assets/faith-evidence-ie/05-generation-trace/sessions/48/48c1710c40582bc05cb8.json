@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48c1710c40582bc05cb8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops verify p0 startup",
+  "task_key": "worker_ops_verify-p0-startup_20260514T194102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-p0-startup_20260514T194102_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "8d81a6a81a872aaff8f61e0a5cce71ffbb9a1403900345c0c95d6d1461806776"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**P0 启动成功。**\n\n| 检查项 | 状态 |\n|--------|------|\n| 进程 PID 90080 | 存活，运行 1 分 18 秒 |\n| 模型加载 | Qwen3-4B (4-bit QLoRA) + SFT adapter 合并完成 |\n| NLI reward 模型 | `cross-encoder/nli-deberta-v3-base` 加载成功，entailment_index=1 |\n| 数据集 | 3053 docs → 38180 relation samples → 3027 GRPO prompts |\n| 训练状态 | Stage 3 GRPO 已启动，CED reward，tau 0.30→0.50，0/200 steps |\n| GPU 0 | 7527 MiB 占用，63% 利用率 |\n\n关键参数确认：`lr=5e-6`, `max_steps=200`, `num_generations=8`, `ced_reward_weight=1.0`, `f1_reward_weight=3.0`, `format_reward_weight=0.3`, `kl_coef=0.01`。\n\n有两个非阻塞 warning：vLLM 版本 0.18.1 超出 TRL 支持范围（0.11-0.17.1），4-bit LoRA merge 精度警告。均不影响训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-p0-startup.md"
+}

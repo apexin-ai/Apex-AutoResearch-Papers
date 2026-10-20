@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8f3cd5645da7d6314a5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh recompute ign f1 ced s43 s45",
+  "task_key": "worker_ssh_recompute_ign_f1_ced_s43_s45_20260516T052547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_recompute_ign_f1_ced_s43_s45_20260516T052547_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "cd7759b04627a482a1071cdec19852ee29b74c68547728f2c9d54cd2c5495d62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。metrics_v2.json 已生成：\n\n| 实验 | f1 | ign_f1 (v2) | delta |\n|------|-----|-------------|-------|\n| rsft_ced_s43 | 0.4601 | 0.4512 | -0.0089 |\n| rsft_ced_s45 | 0.4514 | 0.4416 | -0.0098 |\n| rsft_flat_nli_s44 | 0.4615 | 0.4521 | -0.0094 |\n| rsft_flat_nli_s45 | 0.4551 | 0.4462 | -0.0089 |\n\nCED s43/s45 值与 metrics.json 一致（本就正确）。flat-NLI s44/s45 已从 recompute 脚本获得正确的 ign_f1（低于 f1 约 0.9pp）。seed_comparison.py 现在可以正常读取这四个目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-recompute-ign-f1-ced-s43-s45.md"
+}

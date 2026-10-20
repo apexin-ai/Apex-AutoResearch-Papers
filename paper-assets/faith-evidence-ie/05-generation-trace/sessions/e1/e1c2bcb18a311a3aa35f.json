@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1c2bcb18a311a3aa35f",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_21_1779738674.md",
+  "task_key": "loop_21_1779738674",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_21_1779738674.md",
+    "occurrence": 1,
+    "bytes": 4128,
+    "sha256": "118cbcf78083bfbdbfc2e71452ea8fb4d5dd09ff0989af05e2406463eebb6417"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 21\nreason: idle_timeout\nupdated: '2026-05-24T00:54:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x cuda:0/1/2/3。bjb2-12179 cuda:0 标记不可用，禁止在上面提交实验\n- test_eval_4b_rsft_s44_no_evi_v2 状态 PREPARING 但 conclusion=killed——这是上轮遗留的死实验（v1 因 conda 未激活 EXIT_CODE=127 失败），需要重新创建而非复用\n- 4B s44 no-evi test eval 是 **最后一个缺失数据点**：当前 4B test tax 已有 3-seed (s42=+1.51, s43=+1.99, s44=+1.46)，但 s44 no-evi 数据来源需确认——ROADMAP 表中已填 s44 tax=+1.46pp，memory.md 也有 s44 no-evi=0.2671。若数据已完整则 test_eval_4b_rsft_s44_no_evi_v2 无需再跑\n- 论文数字必须追溯到 registry，所有 evidence tax 数据以 memory.md \"全 scale evidence tax 汇总\" 表为 truth source\n- submit_training_job 命令必须自带环境激活（rtx5090-4x 用 `source /root/miniconda3/bin/activate`），不能假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- **服务器 1**: rtx5090-4x，工作目录 /root/autodl-tmp/freige，account=root\n- **服务器 2**: bjb2-12179，account=root（cuda:0 不可用）\n- **Python**: /root/miniconda3/bin/python（conda base 环境）\n- **活跃进程**: 无。0 个 RUNNING 实验，0 个活跃 Worker，0 个活跃 Cron\n- **GPU 状态**: rtx5090-4x cuda:0-3 全部空闲（14B eval 全部完成后释放）\n\n### 3. 📊 当前状态\n**刚完成**：\n- D157 数据审计全部完成（62 项，58 PASS，3 FAIL 已修正，1 multi-seed 补全）\n- 14B RSFT s43 全链路完成（generation → CED scoring → training → dev eval → test eval）\n- 所有 5 个 scale 的 multi-seed evidence tax 数据收集完毕（见 ROADMAP 汇总表）\n- Round 2 审稿修复进行中（D155 Action Matrix：W1 variance 降级 + W2 EDCR partial correlation + 9 writing patches）\n\n**Registry 状态**：\n- 0 RUNNING，1 PREPARING (test_eval_4b_rsft_s44_no_evi_v2, killed/遗留)\n- 总计 363 实验：229 success / 23 negative / 65 failed\n\n**等待中**：\n- 无 Worker 回调\n- 无 Cron\n- 待 Director 决策：Round 3 review 启动时机\n\n### 4. 📋 待办（条件触发式）\n- Director 说\"启动 Round 3 review\" → spawn Worker 执行 review-reviewer-session-start skill，检查论文格式/编译/材料清单\n- Director 说\"提交\" → 执行投稿前检查清单（reference-audit、paper-visual-review、abstract ≤200 words、limitations section 合规）\n- 收到 Round 3 review 结果 → 根据评分决定：≥3.5 准备投稿，<3.5 识别具体扣分项并制定修复方案\n- 确认 4B s44 no-evi 数据是否已完整（memory.md 显示已有，但 PREPARING 实验遗留）→ 若数据确实完整则清理 PREPARING 实验；若缺失则重建并提交\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D155：Round 2 得分 3.0 (Findings)，3 个系统性问题：统计方法论(W1/W2)、方法原创性(W3)、decoupling spectrum 深度(W4/W5)\n- D157：数据审计完成，所有数字与 registry 一致\n- D150/D153：Evidence tax 叙事框架确定——Claim 5 改为 landscape 视角（scale-dependent + architecture-dependent）\n- D144：4B tax 从 +7.5pp 修正为 +0.73pp（matched@2048），\"non-monotonic\"/\"capacity valley\" 叙事已废弃\n\n**贡献结构（3 贡献）**：\n1. Evidence-grounded DocRE + RSFT with NLI-based scoring\n2. Decoupling spectrum（观察性，非因果）\n3. Evidence tax landscape + RSFT variance compression\n\n**易踩的坑**：\n- W1 降级后，Abstract/Contributions 只能用 \"consistently reduces\"（定性），不能给具体倍数——具体数字只在分析正文\n- \"significantly\" 必须有统计检验支撑，sign test p=0.0625 是 n=4 的结构性上限，不能称 \"statistically significant\"\n- DPO 数据是 rebuilt eval（从 RSFT generations 重新计算），不是原始 DPO 训练的 eval\n- 4B evidence tax 在 matched@2048 下是 +0.73pp（不是旧的 +7.5pp），论文中必须标注 \"on a controlled evaluation subset\"\n- memory.md 14B dev eval 行写 \"RUNNING\" 但实际已完成（memory.md 未更新，以 ROADMAP 为准）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-21-1779738674.md"
+}

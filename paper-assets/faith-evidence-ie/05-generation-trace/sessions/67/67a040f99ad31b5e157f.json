@@ -1,0 +1,1329 @@
+{
+  "schema_version": "1.0",
+  "id": "67a040f99ad31b5e157f",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ops pytest f1gate verify",
+  "task_key": "worker_ops_pytest-f1gate-verify_20260514T161447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pytest-f1gate-verify_20260514T161447.log",
+    "occurrence": 1,
+    "bytes": 113770,
+    "sha256": "abade217b65a33cfec1f525f0125ca792e8626af40b8cc77891d5d2a08a61c49"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "c32be268-3cb3-4f00-acf9-93f1c3c408ce",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778784000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "92ab3dd3-43e8-4f13-8796-dd2c9559893e",
+                "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to verify CED F1 gating code and pytest tests on the server. Let me follow the steps outlined. I need to use the MCP tools for SSH operations.\n\nLet me first load the SSH tool schemas.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "80365c86-2df3-4728-ad03-58c79464b709",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WxdzTa6Ggh9LBfTTDDzJTM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11687,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11687
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RGDd9JowcTpjZNoSK5bkg6",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "608c3a84-4d23-4512-bd1d-fb2863067dde",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WxdzTa6Ggh9LBfTTDDzJTM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11687,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11687
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T16:15:01.541Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01RGDd9JowcTpjZNoSK5bkg6",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "13abe3a4-edaf-497b-b622-12bbe64c52da",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "执行三步验证。\n\n**Step 1: 查看 F1 gate 代码**"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "171c8276-adf6-42a5-a485-56d213ebd908",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JmJMeX6KKqcPvKJfxseBj1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 937,
+                "cache_read_input_tokens": 23134,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 937
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qi8ck5hWgCWC3mcigwZrvS",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat -n /root/autodl-tmp/freige/training/grpo_trainer.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "c2d1d9a5-f78a-4b42-bd7c-750e3b6d3e4e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JmJMeX6KKqcPvKJfxseBj1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 937,
+                "cache_read_input_tokens": 23134,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 937
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XYVUxqsgQayhq5AthQGbUc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "find /root/autodl-tmp -name test_ced_gate.py -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "95cb9c27-cddd-4c80-9ba7-dffea1d7943d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JmJMeX6KKqcPvKJfxseBj1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 937,
+                "cache_read_input_tokens": 23134,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 937
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T16:15:06.250Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qi8ck5hWgCWC3mcigwZrvS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t\\\\\\\"\\\\\\\"\\\\\\\"GRPO 训练脚本: 基于 TRL GRPOTrainer 的多阶段 curriculum 训练。\\\\n     2\\\\t\\\\n     3\\\\t支持单卡和多卡（DeepSpeed ZeRO-2/3）训练，默认 4-bit QLoRA。\\\\n     4\\\\t\\\\n     5\\\\t单卡:   python -m freige.training.grpo_trainer --stage 1 --output_dir ./grpo_s1\\\\n     6\\\\t多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\\\\\\\n     7\\\\t            -m freige.training.grpo_trainer --deepspeed configs/deepspeed_zero2.json \\\\\\\\\\\\n     8\\\\t            --stage 1 --reward_device cpu\\\\n     9\\\\t不量化: 加 --no_quantize\\\\n    10\\\\t\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    11\\\\t\\\\n    12\\\\timport argparse\\\\n    13\\\\timport json\\\\n    14\\\\timport logging\\\\n    15\\\\timport math\\\\n    16\\\\timport os\\\\n    17\\\\timport re\\\\n    18\\\\tfrom pathlib import Path\\\\n    19\\\\tfrom typing import Optional\\\\n    20\\\\t\\\\n    21\\\\timport torch\\\\n    22\\\\tfrom datasets import Dataset\\\\n    23\\\\tfrom peft import LoraConfig, PeftModel, TaskType\\\\n    24\\\\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainerCallback\\\\n    25\\\\tfrom trl import GRPOConfig, GRPOTrainer\\\\n    26\\\\t\\\\n    27\\\\tlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n    28\\\\tlogger = logging.getLogger(__name__)\\\\n    29\\\\t\\\\n    30\\\\tclass KLDivergenceCallback(TrainerCallback):\\\\n    31\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"Monitor KL divergence — log only, no early stopping.\\\\n    32\\\\t\\\\n    33\\\\t    With QLoRA 4-bit, KL between ref and policy is unreliable due to\\\\n    34\\\\t    quantization noise. We log it for diagnostics but do not penalize or stop.\\\\n    35\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    36\\\\t\\\\n    37\\\\t    def __init__(self, max_kl: float = 100.0):\\\\n    38\\\\t        self.max_kl = max_kl\\\\n    39\\\\t\\\\n    40\\\\t    def on_log(self, args, state, control, logs=None, **kwargs):\\\\n    41\\\\t        if logs and \\\\\\\"kl\\\\\\\" in logs:\\\\n    42\\\\t            kl = logs[\\\\\\\"kl\\\\\\\"]\\\\n    43\\\\t            if kl > self.max_kl:\\\\n    44\\\\t                logger.warning(\\\\\\\"KL divergence %.2f exceeds monitoring threshold %.1f (monitoring only, not stopping)\\\\\\\", kl, self.max_kl)\\\\n    45\\\\t\\\\n    46\\\\tSYSTEM_PROMPT = (\\\\n    47\\\\t    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    48\\\\t    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    49\\\\t    \\\\\\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\\\\\"\\\\n    50\\\\t    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n    51\\\\t)\\\\n    52\\\\t\\\\n    53\\\\t\\\\n    54\\\\tdef _parse_json_output(text: str) -> list[dict]:\\\\n    55\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"从模型输出中解析 JSON 列表。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    56\\\\t    try:\\\\n    57\\\\t        return json.loads(text)\\\\n    58\\\\t    except json.JSONDecodeError:\\\\n    59\\\\t        start = text.find(\\\\\\\"[\\\\\\\")\\\\n    60\\\\t        end = text.rfind(\\\\\\\"]\\\\\\\") + 1\\\\n    61\\\\t        if start >= 0 and end > start:\\\\n    62\\\\t            try:\\\\n    63\\\\t                return json.loads(text[start:end])\\\\n    64\\\\t            except json.JSONDecodeError:\\\\n    65\\\\t                return []\\\\n    66\\\\t    return []\\\\n    67\\\\t\\\\n    68\\\\t\\\\n    69\\\\tdef format_reward_fn(completions: list[str], **kwargs) -> list[float]:\\\\n    70\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"格式奖励: 输出是否为合法 JSON 列表，每个元素是否含必需字��。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    71\\\\t    rewards = []\\\\n    72\\\\t    for text in completions:\\\\n    73\\\\t        parsed = _parse_json_output(text)\\\\n    74\\\\t        if not isinstance(parsed, list):\\\\n    75\\\\t            rewards.append(0.0)\\\\n    76\\\\t            continue\\\\n    77\\\\t        if not parsed:\\\\n    78\\\\t            rewards.append(0.1)\\\\n    79\\\\t            continue\\\\n    80\\\\t        valid = 0\\\\n    81\\\\t        for item in parsed:\\\\n    82\\\\t            if (isinstance(item, dict) and \\\\\\\"head\\\\\\\" in item\\\\n    83\\\\t                    and \\\\\\\"relation\\\\\\\" in item and \\\\\\\"tail\\\\\\\" in item\\\\n    84\\\\t                    and \\\\\\\"evidence\\\\\\\" in item\\\\n    85\\\\t                    and isinstance(item[\\\\\\\"evidence\\\\\\\"], list)):\\\\n    86\\\\t                valid += 1\\\\n    87\\\\t        rewards.append(valid / len(parsed))\\\\n    88\\\\t    return rewards\\\\n    89\\\\t\\\\n    90\\\\t\\\\n    91\\\\tdef f1_reward_fn(completions: list[str], gold_triples: list[str], **kwargs) -> list[float]:\\\\n    92\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"F1 奖励: 预测三元组与 gold 三元组的 micro-F1。\\\\n    93\\\\t\\\\n    94\\\\t    gold_triples 是 JSON 字符串列表，每个元素对应一个 prompt 的 gold。\\\\n    95\\\\t    completions 中每 num_generations 个对应同一个 prompt。\\\\n    96\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    97\\\\t    num_gen = len(completions) // len(gold_triples)\\\\n    98\\\\t    rewards = []\\\\n    99\\\\t\\\\n\\\\n\\\\n... [截断: 输出过长，省略 16043 字符] ...\\\\n\\\\nward_fns = [\\\\n   448\\\\t        WeightedRewardFn(format_reward_fn, args.format_reward_weight),\\\\n   449\\\\t        WeightedRewardFn(f1_reward_fn, args.f1_reward_weight),\\\\n   450\\\\t    ]\\\\n   451\\\\t\\\\n   452\\\\t    if args.stage >= 2 and args.ced_reward_weight > 0:\\\\n   453\\\\t        mode = \\\\\\\"flat_nli\\\\\\\" if args.stage == 2 else \\\\\\\"ced\\\\\\\"\\\\n   454\\\\t        num_gpus = int(os.environ.get(\\\\\\\"WORLD_SIZE\\\\\\\", 1))\\\\n   455\\\\t        steps_per_epoch = math.ceil(\\\\n   456\\\\t            len(train_dataset) / (args.per_device_batch_size * num_gpus * args.gradient_accumulation_steps)\\\\n   457\\\\t        )\\\\n   458\\\\t        total_steps = steps_per_epoch * args.num_epochs\\\\n   459\\\\t        ced_wrapper = CEDRewardWrapper(\\\\n   460\\\\t            nli_model=args.nli_model,\\\\n   461\\\\t            mode=mode,\\\\n   462\\\\t            device=args.reward_device,\\\\n   463\\\\t            tau_start=args.tau_start,\\\\n   464\\\\t            tau_end=args.tau_end,\\\\n   465\\\\t            total_steps=total_steps,\\\\n   466\\\\t        )\\\\n   467\\\\t        reward_fns.append(WeightedRewardFn(ced_wrapper, args.ced_reward_weight))\\\\n   468\\\\t        logger.info(\\\\n   469\\\\t            \\\\\\\"Stage %d: using %s reward, tau %.2f→%.2f over %d steps\\\\\\\",\\\\n   470\\\\t            args.stage, mode, args.tau_start, args.tau_end, total_steps,\\\\n   471\\\\t        )\\\\n   472\\\\t    else:\\\\n   473\\\\t        logger.info(\\\\\\\"Extraction-only mode: format + F1 rewards (stage=%d, ced_weight=%.1f)\\\\\\\", args.stage, args.ced_reward_weight)\\\\n   474\\\\t\\\\n   475\\\\t    lora_config = LoraConfig(\\\\n   476\\\\t        task_type=TaskType.CAUSAL_LM,\\\\n   477\\\\t        r=args.lora_rank,\\\\n   478\\\\t        lora_alpha=args.lora_alpha,\\\\n   479\\\\t        lora_dropout=0.05,\\\\n   480\\\\t        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\",\\\\n   481\\\\t                         \\\\\\\"gate_proj\\\\\\\", \\\\\\\"up_proj\\\\\\\", \\\\\\\"down_proj\\\\\\\"],\\\\n   482\\\\t    )\\\\n   483\\\\t\\\\n   484\\\\t    save_strategy = \\\\\\\"steps\\\\\\\" if args.save_steps else \\\\\\\"epoch\\\\\\\"\\\\n   485\\\\t    save_steps = args.save_steps if args.save_steps else None\\\\n   486\\\\t\\\\n   487\\\\t    grpo_config_kwargs = dict(\\\\n   488\\\\t        output_dir=args.output_dir,\\\\n   489\\\\t        num_train_epochs=args.num_epochs,\\\\n   490\\\\t        per_device_train_batch_size=args.per_device_batch_size,\\\\n   491\\\\t        gradient_accumulation_steps=args.gradient_accumulation_steps,\\\\n   492\\\\t        learning_rate=args.learning_rate,\\\\n   493\\\\t        bf16=args.bf16,\\\\n   494\\\\t        logging_steps=5,\\\\n   495\\\\t        save_strategy=save_strategy,\\\\n   496\\\\t        save_total_limit=args.save_total_limit,\\\\n   497\\\\t        seed=args.seed,\\\\n   498\\\\t        num_generations=args.num_generations,\\\\n   499\\\\t        max_completion_length=args.max_new_tokens,\\\\n   500\\\\t        report_to=\\\\\\\"wandb\\\\\\\" if \\\\\\\"WANDB_API_KEY\\\\\\\" in os.environ else \\\\\\\"none\\\\\\\",\\\\n   501\\\\t        gradient_checkpointing=True,\\\\n   502\\\\t        gradient_checkpointing_kwargs={\\\\\\\"use_reentrant\\\\\\\": False},\\\\n   503\\\\t        deepspeed=args.deepspeed,\\\\n   504\\\\t        num_iterations=args.num_iterations,\\\\n   505\\\\t    )\\\\n   506\\\\t    if save_steps:\\\\n   507\\\\t        grpo_config_kwargs[\\\\\\\"save_steps\\\\\\\"] = save_steps\\\\n   508\\\\t    if args.max_steps > 0:\\\\n   509\\\\t        grpo_config_kwargs[\\\\\\\"max_steps\\\\\\\"] = args.max_steps\\\\n   510\\\\t    if args.kl_coef > 0:\\\\n   511\\\\t        grpo_config_kwargs[\\\\\\\"beta\\\\\\\"] = args.kl_coef\\\\n   512\\\\t    grpo_config = GRPOConfig(**grpo_config_kwargs)\\\\n   513\\\\t\\\\n   514\\\\t    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\\\n   515\\\\t\\\\n   516\\\\t    trainer = GRPOTrainer(\\\\n   517\\\\t        model=model,\\\\n   518\\\\t        args=grpo_config,\\\\n   519\\\\t        train_dataset=train_dataset,\\\\n   520\\\\t        reward_funcs=reward_fns,\\\\n   521\\\\t        peft_config=lora_config,\\\\n   522\\\\t        processing_class=tokenizer,\\\\n   523\\\\t        callbacks=callbacks,\\\\n   524\\\\t    )\\\\n   525\\\\t\\\\n   526\\\\t    logger.info(\\\\\\\"Starting GRPO training (stage %d)...\\\\\\\", args.stage)\\\\n   527\\\\t    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)\\\\n   528\\\\t\\\\n   529\\\\t    logger.info(\\\\\\\"Saving model to %s\\\\\\\", args.output_dir)\\\\n   530\\\\t    trainer.save_model(args.output_dir)\\\\n   531\\\\t    tokenizer.save_pretrained(args.output_dir)\\\\n   532\\\\t    logger.info(\\\\\\\"GRPO training (stage %d) complete.\\\\\\\", args.stage)\\\\n   533\\\\t\\\\n   534\\\\t\\\\n   535\\\\tif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n   536\\\\t    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "08b63dbc-cc03-4ac7-a834-030bea10e041",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t\\\\\\\"\\\\\\\"\\\\\\\"GRPO 训练脚本: 基于 TRL GRPOTrainer 的多阶段 curriculum 训练。\\\\n     2\\\\t\\\\n     3\\\\t支持单卡和多卡（DeepSpeed ZeRO-2/3）训练，默认 4-bit QLoRA。\\\\n     4\\\\t\\\\n     5\\\\t单卡:   python -m freige.training.grpo_trainer --stage 1 --output_dir ./grpo_s1\\\\n     6\\\\t多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\\\\\\\n     7\\\\t            -m freige.training.grpo_trainer --deepspeed configs/deepspeed_zero2.json \\\\\\\\\\\\n     8\\\\t            --stage 1 --reward_device cpu\\\\n     9\\\\t不量化: 加 --no_quantize\\\\n    10\\\\t\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    11\\\\t\\\\n    12\\\\timport argparse\\\\n    13\\\\timport json\\\\n    14\\\\timport logging\\\\n    15\\\\timport math\\\\n    16\\\\timport os\\\\n    17\\\\timport re\\\\n    18\\\\tfrom pathlib import Path\\\\n    19\\\\tfrom typing import Optional\\\\n    20\\\\t\\\\n    21\\\\timport torch\\\\n    22\\\\tfrom datasets import Dataset\\\\n    23\\\\tfrom peft import LoraConfig, PeftModel, TaskType\\\\n    24\\\\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainerCallback\\\\n    25\\\\tfrom trl import GRPOConfig, GRPOTrainer\\\\n    26\\\\t\\\\n    27\\\\tlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n    28\\\\tlogger = logging.getLogger(__name__)\\\\n    29\\\\t\\\\n    30\\\\tclass KLDivergenceCallback(TrainerCallback):\\\\n    31\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"Monitor KL divergence — log only, no early stopping.\\\\n    32\\\\t\\\\n    33\\\\t    With QLoRA 4-bit, KL between ref and policy is unreliable due to\\\\n    34\\\\t    quantization noise. We log it for diagnostics but do not penalize or stop.\\\\n    35\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    36\\\\t\\\\n    37\\\\t    def __init__(self, max_kl: float = 100.0):\\\\n    38\\\\t        self.max_kl = max_kl\\\\n    39\\\\t\\\\n    40\\\\t    def on_log(self, args, state, control, logs=None, **kwargs):\\\\n    41\\\\t        if logs and \\\\\\\"kl\\\\\\\" in logs:\\\\n    42\\\\t            kl = logs[\\\\\\\"kl\\\\\\\"]\\\\n    43\\\\t            if kl > self.max_kl:\\\\n    44\\\\t                logger.warning(\\\\\\\"KL divergence %.2f exceeds monitoring threshold %.1f (monitoring only, not stopping)\\\\\\\", kl, self.max_kl)\\\\n    45\\\\t\\\\n    46\\\\tSYSTEM_PROMPT = (\\\\n    47\\\\t    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    48\\\\t    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    49\\\\t    \\\\\\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\\\\\"\\\\n    50\\\\t    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n    51\\\\t)\\\\n    52\\\\t\\\\n    53\\\\t\\\\n    54\\\\tdef _parse_json_output(text: str) -> list[dict]:\\\\n    55\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"从模型输出中解析 JSON 列表。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    56\\\\t    try:\\\\n    57\\\\t        return json.loads(text)\\\\n    58\\\\t    except json.JSONDecodeError:\\\\n    59\\\\t        start = text.find(\\\\\\\"[\\\\\\\")\\\\n    60\\\\t        end = text.rfind(\\\\\\\"]\\\\\\\") + 1\\\\n    61\\\\t        if start >= 0 and end > start:\\\\n    62\\\\t            try:\\\\n    63\\\\t                return json.loads(text[start:end])\\\\n    64\\\\t            except json.JSONDecodeError:\\\\n    65\\\\t                return []\\\\n    66\\\\t    return []\\\\n    67\\\\t\\\\n    68\\\\t\\\\n    69\\\\tdef format_reward_fn(completions: list[str], **kwargs) -> list[float]:\\\\n    70\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"格式奖励: 输出是否为合法 JSON 列表，每个元素是否含必需字��。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    71\\\\t    rewards = []\\\\n    72\\\\t    for text in completions:\\\\n    73\\\\t        parsed = _parse_json_output(text)\\\\n    74\\\\t        if not isinstance(parsed, list):\\\\n    75\\\\t            rewards.append(0.0)\\\\n    76\\\\t            continue\\\\n    77\\\\t        if not parsed:\\\\n    78\\\\t            rewards.append(0.1)\\\\n    79\\\\t            continue\\\\n    80\\\\t        valid = 0\\\\n    81\\\\t        for item in parsed:\\\\n    82\\\\t            if (isinstance(item, dict) and \\\\\\\"head\\\\\\\" in item\\\\n    83\\\\t                    and \\\\\\\"relation\\\\\\\" in item and \\\\\\\"tail\\\\\\\" in item\\\\n    84\\\\t                    and \\\\\\\"evidence\\\\\\\" in item\\\\n    85\\\\t                    and isinstance(item[\\\\\\\"evidence\\\\\\\"], list)):\\\\n    86\\\\t                valid += 1\\\\n    87\\\\t        rewards.append(valid / len(parsed))\\\\n    88\\\\t    return rewards\\\\n    89\\\\t\\\\n    90\\\\t\\\\n    91\\\\tdef f1_reward_fn(completions: list[str], gold_triples: list[str], **kwargs) -> list[float]:\\\\n    92\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"F1 奖励: 预测三元组与 gold 三元组的 micro-F1。\\\\n    93\\\\t\\\\n    94\\\\t    gold_triples 是 JSON 字符串列表，每个元素对应一个 prompt 的 gold。\\\\n    95\\\\t    completions 中每 num_generations 个对应同一个 prompt。\\\\n    96\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    97\\\\t    num_gen = len(completions) // len(gold_triples)\\\\n    98\\\\t    rewards = []\\\\n    99\\\\t\\\\n\\\\n\\\\n... [截断: 输出过长，省略 16043 字符] ...\\\\n\\\\nward_fns = [\\\\n   448\\\\t        WeightedRewardFn(format_reward_fn, args.format_reward_weight),\\\\n   449\\\\t        WeightedRewardFn(f1_reward_fn, args.f1_reward_weight),\\\\n   450\\\\t    ]\\\\n   451\\\\t\\\\n   452\\\\t    if args.stage >= 2 and args.ced_reward_weight > 0:\\\\n   453\\\\t        mode = \\\\\\\"flat_nli\\\\\\\" if args.stage == 2 else \\\\\\\"ced\\\\\\\"\\\\n   454\\\\t        num_gpus = int(os.environ.get(\\\\\\\"WORLD_SIZE\\\\\\\", 1))\\\\n   455\\\\t        steps_per_epoch = math.ceil(\\\\n   456\\\\t            len(train_dataset) / (args.per_device_batch_size * num_gpus * args.gradient_accumulation_steps)\\\\n   457\\\\t        )\\\\n   458\\\\t        total_steps = steps_per_epoch * args.num_epochs\\\\n   459\\\\t        ced_wrapper = CEDRewardWrapper(\\\\n   460\\\\t            nli_model=args.nli_model,\\\\n   461\\\\t            mode=mode,\\\\n   462\\\\t            device=args.reward_device,\\\\n   463\\\\t            tau_start=args.tau_start,\\\\n   464\\\\t            tau_end=args.tau_end,\\\\n   465\\\\t            total_steps=total_steps,\\\\n   466\\\\t        )\\\\n   467\\\\t        reward_fns.append(WeightedRewardFn(ced_wrapper, args.ced_reward_weight))\\\\n   468\\\\t        logger.info(\\\\n   469\\\\t            \\\\\\\"Stage %d: using %s reward, tau %.2f→%.2f over %d steps\\\\\\\",\\\\n   470\\\\t            args.stage, mode, args.tau_start, args.tau_end, total_steps,\\\\n   471\\\\t        )\\\\n   472\\\\t    else:\\\\n   473\\\\t        logger.info(\\\\\\\"Extraction-only mode: format + F1 rewards (stage=%d, ced_weight=%.1f)\\\\\\\", args.stage, args.ced_reward_weight)\\\\n   474\\\\t\\\\n   475\\\\t    lora_config = LoraConfig(\\\\n   476\\\\t        task_type=TaskType.CAUSAL_LM,\\\\n   477\\\\t        r=args.lora_rank,\\\\n   478\\\\t        lora_alpha=args.lora_alpha,\\\\n   479\\\\t        lora_dropout=0.05,\\\\n   480\\\\t        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\",\\\\n   481\\\\t                         \\\\\\\"gate_proj\\\\\\\", \\\\\\\"up_proj\\\\\\\", \\\\\\\"down_proj\\\\\\\"],\\\\n   482\\\\t    )\\\\n   483\\\\t\\\\n   484\\\\t    save_strategy = \\\\\\\"steps\\\\\\\" if args.save_steps else \\\\\\\"epoch\\\\\\\"\\\\n   485\\\\t    save_steps = args.save_steps if args.save_steps else None\\\\n   486\\\\t\\\\n   487\\\\t    grpo_config_kwargs = dict(\\\\n   488\\\\t        output_dir=args.output_dir,\\\\n   489\\\\t        num_train_epochs=args.num_epochs,\\\\n   490\\\\t        per_device_train_batch_size=args.per_device_batch_size,\\\\n   491\\\\t        gradient_accumulation_steps=args.gradient_accumulation_steps,\\\\n   492\\\\t        learning_rate=args.learning_rate,\\\\n   493\\\\t        bf16=args.bf16,\\\\n   494\\\\t        logging_steps=5,\\\\n   495\\\\t        save_strategy=save_strategy,\\\\n   496\\\\t        save_total_limit=args.save_total_limit,\\\\n   497\\\\t        seed=args.seed,\\\\n   498\\\\t        num_generations=args.num_generations,\\\\n   499\\\\t        max_completion_length=args.max_new_tokens,\\\\n   500\\\\t        report_to=\\\\\\\"wandb\\\\\\\" if \\\\\\\"WANDB_API_KEY\\\\\\\" in os.environ else \\\\\\\"none\\\\\\\",\\\\n   501\\\\t        gradient_checkpointing=True,\\\\n   502\\\\t        gradient_checkpointing_kwargs={\\\\\\\"use_reentrant\\\\\\\": False},\\\\n   503\\\\t        deepspeed=args.deepspeed,\\\\n   504\\\\t        num_iterations=args.num_iterations,\\\\n   505\\\\t    )\\\\n   506\\\\t    if save_steps:\\\\n   507\\\\t        grpo_config_kwargs[\\\\\\\"save_steps\\\\\\\"] = save_steps\\\\n   508\\\\t    if args.max_steps > 0:\\\\n   509\\\\t        grpo_config_kwargs[\\\\\\\"max_steps\\\\\\\"] = args.max_steps\\\\n   510\\\\t    if args.kl_coef > 0:\\\\n   511\\\\t        grpo_config_kwargs[\\\\\\\"beta\\\\\\\"] = args.kl_coef\\\\n   512\\\\t    grpo_config = GRPOConfig(**grpo_config_kwargs)\\\\n   513\\\\t\\\\n   514\\\\t    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\\\n   515\\\\t\\\\n   516\\\\t    trainer = GRPOTrainer(\\\\n   517\\\\t        model=model,\\\\n   518\\\\t        args=grpo_config,\\\\n   519\\\\t        train_dataset=train_dataset,\\\\n   520\\\\t        reward_funcs=reward_fns,\\\\n   521\\\\t        peft_config=lora_config,\\\\n   522\\\\t        processing_class=tokenizer,\\\\n   523\\\\t        callbacks=callbacks,\\\\n   524\\\\t    )\\\\n   525\\\\t\\\\n   526\\\\t    logger.info(\\\\\\\"Starting GRPO training (stage %d)...\\\\\\\", args.stage)\\\\n   527\\\\t    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)\\\\n   528\\\\t\\\\n   529\\\\t    logger.info(\\\\\\\"Saving model to %s\\\\\\\", args.output_dir)\\\\n   530\\\\t    trainer.save_model(args.output_dir)\\\\n   531\\\\t    tokenizer.save_pretrained(args.output_dir)\\\\n   532\\\\t    logger.info(\\\\\\\"GRPO training (stage %d) complete.\\\\\\\", args.stage)\\\\n   533\\\\t\\\\n   534\\\\t\\\\n   535\\\\tif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n   536\\\\t    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"GRPO 训练脚本: 基于 TRL GRPOTrainer 的多阶段 curriculum 训练。\\n     2\\t\\n     3\\t支持单卡和多卡（DeepSpeed ZeRO-2/3）训练，默认 4-bit QLoRA。\\n     4\\t\\n     5\\t单卡:   python -m freige.training.grpo_trainer --stage 1 --output_dir ./grpo_s1\\n     6\\t多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n     7\\t            -m freige.training.grpo_trainer --deepspeed configs/deepspeed_zero2.json \\\\\\n     8\\t            --stage 1 --reward_device cpu\\n     9\\t不量化: 加 --no_quantize\\n    10\\t\\\"\\\"\\\"\\n    11\\t\\n    12\\timport argparse\\n    13\\timport json\\n    14\\timport logging\\n    15\\timport math\\n    16\\timport os\\n    17\\timport re\\n    18\\tfrom pathlib import Path\\n    19\\tfrom typing import Optional\\n    20\\t\\n    21\\timport torch\\n    22\\tfrom datasets import Dataset\\n    23\\tfrom peft import LoraConfig, PeftModel, TaskType\\n    24\\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainerCallback\\n    25\\tfrom trl import GRPOConfig, GRPOTrainer\\n    26\\t\\n    27\\tlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n    28\\tlogger = logging.getLogger(__name__)\\n    29\\t\\n    30\\tclass KLDivergenceCallback(TrainerCallback):\\n    31\\t    \\\"\\\"\\\"Monitor KL divergence — log only, no early stopping.\\n    32\\t\\n    33\\t    With QLoRA 4-bit, KL between ref and policy is unreliable due to\\n    34\\t    quantization noise. We log it for diagnostics but do not penalize or stop.\\n    35\\t    \\\"\\\"\\\"\\n    36\\t\\n    37\\t    def __init__(self, max_kl: float = 100.0):\\n    38\\t        self.max_kl = max_kl\\n    39\\t\\n    40\\t    def on_log(self, args, state, control, logs=None, **kwargs):\\n    41\\t        if logs and \\\"kl\\\" in logs:\\n    42\\t            kl = logs[\\\"kl\\\"]\\n    43\\t            if kl > self.max_kl:\\n    44\\t                logger.warning(\\\"KL divergence %.2f exceeds monitoring threshold %.1f (monitoring only, not stopping)\\\", kl, self.max_kl)\\n    45\\t\\n    46\\tSYSTEM_PROMPT = (\\n    47\\t    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    48\\t    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    49\\t    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    50\\t    \\\"Output as a JSON list.\\\"\\n    51\\t)\\n    52\\t\\n    53\\t\\n    54\\tdef _parse_json_output(text: str) -> list[dict]:\\n    55\\t    \\\"\\\"\\\"从模型输出中解析 JSON 列表。\\\"\\\"\\\"\\n    56\\t    try:\\n    57\\t        return json.loads(text)\\n    58\\t    except json.JSONDecodeError:\\n    59\\t        start = text.find(\\\"[\\\")\\n    60\\t        end = text.rfind(\\\"]\\\") + 1\\n    61\\t        if start >= 0 and end > start:\\n    62\\t            try:\\n    63\\t                return json.loads(text[start:end])\\n    64\\t            except json.JSONDecodeError:\\n    65\\t                return []\\n    66\\t    return []\\n    67\\t\\n    68\\t\\n    69\\tdef format_reward_fn(completions: list[str], **kwargs) -> list[float]:\\n    70\\t    \\\"\\\"\\\"格式奖励: 输出是否为合法 JSON 列表，每个元素是否含必需字��。\\\"\\\"\\\"\\n    71\\t    rewards = []\\n    72\\t    for text in completions:\\n    73\\t        parsed = _parse_json_output(text)\\n    74\\t        if not isinstance(parsed, list):\\n    75\\t            rewards.append(0.0)\\n    76\\t            continue\\n    77\\t        if not parsed:\\n    78\\t            rewards.append(0.1)\\n    79\\t            continue\\n    80\\t        valid = 0\\n    81\\t        for item in parsed:\\n    82\\t            if (isinstance(item, dict) and \\\"head\\\" in item\\n    83\\t                    and \\\"relation\\\" in item and \\\"tail\\\" in item\\n    84\\t                    and \\\"evidence\\\" in item\\n    85\\t                    and isinstance(item[\\\"evidence\\\"], list)):\\n    86\\t                valid += 1\\n    87\\t        rewards.append(valid / len(parsed))\\n    88\\t    return rewards\\n    89\\t\\n    90\\t\\n    91\\tdef f1_reward_fn(completions: list[str], gold_triples: list[str], **kwargs) -> list[float]:\\n    92\\t    \\\"\\\"\\\"F1 奖励: 预测三元组与 gold 三元组的 micro-F1。\\n    93\\t\\n    94\\t    gold_triples 是 JSON 字符串列表，每个元素对应一个 prompt 的 gold。\\n    95\\t    completions 中每 num_generations 个对应同一个 prompt。\\n    96\\t    \\\"\\\"\\\"\\n    97\\t    num_gen = len(completions) // len(gold_triples)\\n    98\\t    rewards = []\\n    99\\t\\n\\n\\n... [截断: 输出过长，省略 16043 字符] ...\\n\\nward_fns = [\\n   448\\t        WeightedRewardFn(format_reward_fn, args.format_reward_weight),\\n   449\\t        WeightedRewardFn(f1_reward_fn, args.f1_reward_weight),\\n   450\\t    ]\\n   451\\t\\n   452\\t    if args.stage >= 2 and args.ced_reward_weight > 0:\\n   453\\t        mode = \\\"flat_nli\\\" if args.stage == 2 else \\\"ced\\\"\\n   454\\t        num_gpus = int(os.environ.get(\\\"WORLD_SIZE\\\", 1))\\n   455\\t        steps_per_epoch = math.ceil(\\n   456\\t            len(train_dataset) / (args.per_device_batch_size * num_gpus * args.gradient_accumulation_steps)\\n   457\\t        )\\n   458\\t        total_steps = steps_per_epoch * args.num_epochs\\n   459\\t        ced_wrapper = CEDRewardWrapper(\\n   460\\t            nli_model=args.nli_model,\\n   461\\t            mode=mode,\\n   462\\t            device=args.reward_device,\\n   463\\t            tau_start=args.tau_start,\\n   464\\t            tau_end=args.tau_end,\\n   465\\t            total_steps=total_steps,\\n   466\\t        )\\n   467\\t        reward_fns.append(WeightedRewardFn(ced_wrapper, args.ced_reward_weight))\\n   468\\t        logger.info(\\n   469\\t            \\\"Stage %d: using %s reward, tau %.2f→%.2f over %d steps\\\",\\n   470\\t            args.stage, mode, args.tau_start, args.tau_end, total_steps,\\n   471\\t        )\\n   472\\t    else:\\n   473\\t        logger.info(\\\"Extraction-only mode: format + F1 rewards (stage=%d, ced_weight=%.1f)\\\", args.stage, args.ced_reward_weight)\\n   474\\t\\n   475\\t    lora_config = LoraConfig(\\n   476\\t        task_type=TaskType.CAUSAL_LM,\\n   477\\t        r=args.lora_rank,\\n   478\\t        lora_alpha=args.lora_alpha,\\n   479\\t        lora_dropout=0.05,\\n   480\\t        target_modules=[\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\",\\n   481\\t                         \\\"gate_proj\\\", \\\"up_proj\\\", \\\"down_proj\\\"],\\n   482\\t    )\\n   483\\t\\n   484\\t    save_strategy = \\\"steps\\\" if args.save_steps else \\\"epoch\\\"\\n   485\\t    save_steps = args.save_steps if args.save_steps else None\\n   486\\t\\n   487\\t    grpo_config_kwargs = dict(\\n   488\\t        output_dir=args.output_dir,\\n   489\\t        num_train_epochs=args.num_epochs,\\n   490\\t        per_device_train_batch_size=args.per_device_batch_size,\\n   491\\t        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n   492\\t        learning_rate=args.learning_rate,\\n   493\\t        bf16=args.bf16,\\n   494\\t        logging_steps=5,\\n   495\\t        save_strategy=save_strategy,\\n   496\\t        save_total_limit=args.save_total_limit,\\n   497\\t        seed=args.seed,\\n   498\\t        num_generations=args.num_generations,\\n   499\\t        max_completion_length=args.max_new_tokens,\\n   500\\t        report_to=\\\"wandb\\\" if \\\"WANDB_API_KEY\\\" in os.environ else \\\"none\\\",\\n   501\\t        gradient_checkpointing=True,\\n   502\\t        gradient_checkpointing_kwargs={\\\"use_reentrant\\\": False},\\n   503\\t        deepspeed=args.deepspeed,\\n   504\\t        num_iterations=args.num_iterations,\\n   505\\t    )\\n   506\\t    if save_steps:\\n   507\\t        grpo_config_kwargs[\\\"save_steps\\\"] = save_steps\\n   508\\t    if args.max_steps > 0:\\n   509\\t        grpo_config_kwargs[\\\"max_steps\\\"] = args.max_steps\\n   510\\t    if args.kl_coef > 0:\\n   511\\t        grpo_config_kwargs[\\\"beta\\\"] = args.kl_coef\\n   512\\t    grpo_config = GRPOConfig(**grpo_config_kwargs)\\n   513\\t\\n   514\\t    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\n   515\\t\\n   516\\t    trainer = GRPOTrainer(\\n   517\\t        model=model,\\n   518\\t        args=grpo_config,\\n   519\\t        train_dataset=train_dataset,\\n   520\\t        reward_funcs=reward_fns,\\n   521\\t        peft_config=lora_config,\\n   522\\t        processing_class=tokenizer,\\n   523\\t        callbacks=callbacks,\\n   524\\t    )\\n   525\\t\\n   526\\t    logger.info(\\\"Starting GRPO training (stage %d)...\\\", args.stage)\\n   527\\t    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)\\n   528\\t\\n   529\\t    logger.info(\\\"Saving model to %s\\\", args.output_dir)\\n   530\\t    trainer.save_model(args.output_dir)\\n   531\\t    tokenizer.save_pretrained(args.output_dir)\\n   532\\t    logger.info(\\\"GRPO training (stage %d) complete.\\\", args.stage)\\n   533\\t\\n   534\\t\\n   535\\tif __name__ == \\\"__main__\\\":\\n   536\\t    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T16:15:06.654Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XYVUxqsgQayhq5AthQGbUc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/tests/test_ced_gate.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "0b4bf8e5-94be-4f55-8257-0d6b0083ecfb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/tests/test_ced_gate.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/tests/test_ced_gate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QWLCnHQ46qLKHWZVLPtPNo",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "head -50 /root/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r4.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "00a51ca3-0528-4250-8a70-255641b16566",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JmJMeX6KKqcPvKJfxseBj1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 937,
+                "cache_read_input_tokens": 23134,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 937
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T16:15:07.056Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QWLCnHQ46qLKHWZVLPtPNo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n2026-05-14 23:32:43,444 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-14 23:32:43,800 INFO Preparing dataset...\\\\n2026-05-14 23:32:44,004 INFO Loaded 3053 documents from /root/autodl-tmp/data/docred/train_annotated.json\\\\n2026-05-14 23:32:44,817 INFO Processed 38180 relation samples from 3053 documents (17312 samples without hard negatives)\\\\n2026-05-14 23:32:45,252 INFO Prepared 3027 GRPO prompts\\\\n2026-05-14 23:32:45,360 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-14 23:32:45,360 INFO Using 4-bit QLoRA quantization\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:03<00:06,  3.02s/it]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.29s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.20s/it]\\\\n2026-05-14 23:32:52,243 INFO Loading SFT adapter from /root/autodl-tmp/sft_output\\\\n/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\\\n  warnings.warn(\\\\n2026-05-14 23:33:04,062 INFO Loading NLI model: cross-encoder/nli-deberta-v3-base\\\\n2026-05-14 23:33:07,562 INFO Entailment index: 1 (id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'})\\\\n2026-05-14 23:33:07,562 INFO Stage 3: using ced reward, tau 0.30→0.50 over 190 steps\\\\n2026-05-14 23:33:09,476 INFO Starting GRPO training (stage 3)...\\\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\\n\\\\r  0%|          | 0/100 [00:00<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed\\\\n\\\\r  1%|          | 1/100 [01:51<3:04:12, 111.64s/it]\\\\r  2%|▏         | 2/100 [03:47<3:06:17, 114.06s/it]\\\\r  3%|▎         | 3/100 [05:42<3:05:06, 114.50s/it]\\\\r  4%|▍         | 4/100 [07:36<3:03:11, 114.50s/it]\\\\r  5%|▌         | 5/100 [09:32<3:02:02, 114.98s/it]\\\\r                                                  \\\\r\\\\r  5%|▌         | 5/100 [09:32<3:02:02, 114.98s/it]\\\\r  6%|▌         | 6/100 [11:25<2:59:01, 114.27s/it]\\\\r  7%|▋         | 7/100 [13:20<2:57:36, 114.59s/it]\\\\r  8%|▊         | 8/100 [14:40<2:38:40, 103.48s/it]\\\\r  9%|▉         | 9/100 [16:35<2:42:24, 107.08s/it]\\\\r 10%|█         | 10/100 [17:55<2:28:08, 98.76s/it]\\\\r                                                  \\\\r\\\\r 10%|█         | 10/100 [17:55<2:28:08, 98.76s/it]\\\\r 11%|█         | 11/100 [19:01<2:11:19, 88.54s/it]\\\\r 12%|█▏        | 12/100 [20:43<2:16:08, 92.83s/it]\\\\r 13%|█▎        | 13/100 [21:32<1:55:10, 79.43s/it]\\\\r 14%|█▍        | 14/100 [22:51<1:53:36, 79.26s/it]\\\\r 15%|█▌        | 15/100 [24:06<1:50:25, 77.95s/it]\\\\r                                                  \\\\r\\\\r 15%|█▌        | 15/100 [24:06<1:50:25, 77.95s/it]\\\\r 16%|█▌        | 16/100 [24:49<1:34:43, 67.66s/it]\\\\r 17%|█▋        | 17/100 [26:40<1:51:29, 80.60s/it]\\\\r 18%|█▊        | 18/100 [27:25<1:35:20, 69.76s/it]\\\\r 19%|█▉        | 19/100 [29:07<1:47:22, 79.54s/it]\\\\r 20%|██        | 20/100 [30:15<1:41:21, 76.02s/it]\\\\r                                                  \\\\r\\\\r 20%|██        | 20/100 [30:15<1:41:21, 76.02s/it]\\\\r 21%|██        | 21/100 [30:45<1:21:53, 62.20s/it]\\\\r 22%|██▏       | 22/100 [31:21<1:10:36, 54.31s/it]\\\\r 23%|██▎       | 23/100 [32:03<1:05:08, 50.77s/it]\\\\r 24%|██▍       | 24/100 [32:40<58:58, 46.56s/it]  \\\\r 25%|██▌       | 25/100 [33:20<55:44, 44.59s/it]\\\\r                                                \\\\r\\\\r 25%|██▌       | 25/100 [33:20<55:44, 44.59s/it]\\\\r 26%|██▌       | 26/100 [34:07<56:04, 45.47s/it]\\\\r 27%|██▋       | 27/100 [34:54<55:39, 45.75s/it]\\\\r 28%|██▊       | 28/100 [35:55<1:00:24, 50.34s/it]\\\\r 29%|██▉       | 29/100 [37:10<1:08:20, 57.75s/it]\\\\r 30%|��██       | 30/100 [37:51<1:01:30, 52.72s/it]\\\\r                                                  \\\\r\\\\r 30%|███       | 30/100 [37:51<1:01:30, 52.72s/it]\\\\r 31%|███       | 31/100 [39:08<1:09:03, 60.05s/it]\\\\r 32%|███▏      | 32/100 [40:06<1:07:31, 59.58s/it]\\\\r 33%|███▎      | 33/100 [41:17<1:10:06, 62.79s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "4c114b8a-91b6-4e9b-8abf-af59250de881",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n2026-05-14 23:32:43,444 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-14 23:32:43,800 INFO Preparing dataset...\\\\n2026-05-14 23:32:44,004 INFO Loaded 3053 documents from /root/autodl-tmp/data/docred/train_annotated.json\\\\n2026-05-14 23:32:44,817 INFO Processed 38180 relation samples from 3053 documents (17312 samples without hard negatives)\\\\n2026-05-14 23:32:45,252 INFO Prepared 3027 GRPO prompts\\\\n2026-05-14 23:32:45,360 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-14 23:32:45,360 INFO Using 4-bit QLoRA quantization\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:03<00:06,  3.02s/it]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.29s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.20s/it]\\\\n2026-05-14 23:32:52,243 INFO Loading SFT adapter from /root/autodl-tmp/sft_output\\\\n/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\\\n  warnings.warn(\\\\n2026-05-14 23:33:04,062 INFO Loading NLI model: cross-encoder/nli-deberta-v3-base\\\\n2026-05-14 23:33:07,562 INFO Entailment index: 1 (id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'})\\\\n2026-05-14 23:33:07,562 INFO Stage 3: using ced reward, tau 0.30→0.50 over 190 steps\\\\n2026-05-14 23:33:09,476 INFO Starting GRPO training (stage 3)...\\\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\\n\\\\r  0%|          | 0/100 [00:00<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed\\\\n\\\\r  1%|          | 1/100 [01:51<3:04:12, 111.64s/it]\\\\r  2%|▏         | 2/100 [03:47<3:06:17, 114.06s/it]\\\\r  3%|▎         | 3/100 [05:42<3:05:06, 114.50s/it]\\\\r  4%|▍         | 4/100 [07:36<3:03:11, 114.50s/it]\\\\r  5%|▌         | 5/100 [09:32<3:02:02, 114.98s/it]\\\\r                                                  \\\\r\\\\r  5%|▌         | 5/100 [09:32<3:02:02, 114.98s/it]\\\\r  6%|▌         | 6/100 [11:25<2:59:01, 114.27s/it]\\\\r  7%|▋         | 7/100 [13:20<2:57:36, 114.59s/it]\\\\r  8%|▊         | 8/100 [14:40<2:38:40, 103.48s/it]\\\\r  9%|▉         | 9/100 [16:35<2:42:24, 107.08s/it]\\\\r 10%|█         | 10/100 [17:55<2:28:08, 98.76s/it]\\\\r                                                  \\\\r\\\\r 10%|█         | 10/100 [17:55<2:28:08, 98.76s/it]\\\\r 11%|█         | 11/100 [19:01<2:11:19, 88.54s/it]\\\\r 12%|█▏        | 12/100 [20:43<2:16:08, 92.83s/it]\\\\r 13%|█▎        | 13/100 [21:32<1:55:10, 79.43s/it]\\\\r 14%|█▍        | 14/100 [22:51<1:53:36, 79.26s/it]\\\\r 15%|█▌        | 15/100 [24:06<1:50:25, 77.95s/it]\\\\r                                                  \\\\r\\\\r 15%|█▌        | 15/100 [24:06<1:50:25, 77.95s/it]\\\\r 16%|█▌        | 16/100 [24:49<1:34:43, 67.66s/it]\\\\r 17%|█▋        | 17/100 [26:40<1:51:29, 80.60s/it]\\\\r 18%|█▊        | 18/100 [27:25<1:35:20, 69.76s/it]\\\\r 19%|█▉        | 19/100 [29:07<1:47:22, 79.54s/it]\\\\r 20%|██        | 20/100 [30:15<1:41:21, 76.02s/it]\\\\r                                                  \\\\r\\\\r 20%|██        | 20/100 [30:15<1:41:21, 76.02s/it]\\\\r 21%|██        | 21/100 [30:45<1:21:53, 62.20s/it]\\\\r 22%|██▏       | 22/100 [31:21<1:10:36, 54.31s/it]\\\\r 23%|██▎       | 23/100 [32:03<1:05:08, 50.77s/it]\\\\r 24%|██▍       | 24/100 [32:40<58:58, 46.56s/it]  \\\\r 25%|██▌       | 25/100 [33:20<55:44, 44.59s/it]\\\\r                                                \\\\r\\\\r 25%|██▌       | 25/100 [33:20<55:44, 44.59s/it]\\\\r 26%|██▌       | 26/100 [34:07<56:04, 45.47s/it]\\\\r 27%|██▋       | 27/100 [34:54<55:39, 45.75s/it]\\\\r 28%|██▊       | 28/100 [35:55<1:00:24, 50.34s/it]\\\\r 29%|██▉       | 29/100 [37:10<1:08:20, 57.75s/it]\\\\r 30%|��██       | 30/100 [37:51<1:01:30, 52.72s/it]\\\\r                                                  \\\\r\\\\r 30%|███       | 30/100 [37:51<1:01:30, 52.72s/it]\\\\r 31%|███       | 31/100 [39:08<1:09:03, 60.05s/it]\\\\r 32%|███▏      | 32/100 [40:06<1:07:31, 59.58s/it]\\\\r 33%|███▎      | 33/100 [41:17<1:10:06, 62.79s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\n  if is_vllm_available():\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\n  if is_vllm_available():\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\n  if is_vllm_available():\\n2026-05-14 23:32:43,444 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-14 23:32:43,800 INFO Preparing dataset...\\n2026-05-14 23:32:44,004 INFO Loaded 3053 documents from /root/autodl-tmp/data/docred/train_annotated.json\\n2026-05-14 23:32:44,817 INFO Processed 38180 relation samples from 3053 documents (17312 samples without hard negatives)\\n2026-05-14 23:32:45,252 INFO Prepared 3027 GRPO prompts\\n2026-05-14 23:32:45,360 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-14 23:32:45,360 INFO Using 4-bit QLoRA quantization\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:03<00:06,  3.02s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.29s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.20s/it]\\n2026-05-14 23:32:52,243 INFO Loading SFT adapter from /root/autodl-tmp/sft_output\\n/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\n  warnings.warn(\\n2026-05-14 23:33:04,062 INFO Loading NLI model: cross-encoder/nli-deberta-v3-base\\n2026-05-14 23:33:07,562 INFO Entailment index: 1 (id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'})\\n2026-05-14 23:33:07,562 INFO Stage 3: using ced reward, tau 0.30→0.50 over 190 steps\\n2026-05-14 23:33:09,476 INFO Starting GRPO training (stage 3)...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/100 [00:00<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed\\n\\r  1%|          | 1/100 [01:51<3:04:12, 111.64s/it]\\r  2%|▏         | 2/100 [03:47<3:06:17, 114.06s/it]\\r  3%|▎         | 3/100 [05:42<3:05:06, 114.50s/it]\\r  4%|▍         | 4/100 [07:36<3:03:11, 114.50s/it]\\r  5%|▌         | 5/100 [09:32<3:02:02, 114.98s/it]\\r                                                  \\r\\r  5%|▌         | 5/100 [09:32<3:02:02, 114.98s/it]\\r  6%|▌         | 6/100 [11:25<2:59:01, 114.27s/it]\\r  7%|▋         | 7/100 [13:20<2:57:36, 114.59s/it]\\r  8%|▊         | 8/100 [14:40<2:38:40, 103.48s/it]\\r  9%|▉         | 9/100 [16:35<2:42:24, 107.08s/it]\\r 10%|█         | 10/100 [17:55<2:28:08, 98.76s/it]\\r                                                  \\r\\r 10%|█         | 10/100 [17:55<2:28:08, 98.76s/it]\\r 11%|█         | 11/100 [19:01<2:11:19, 88.54s/it]\\r 12%|█▏        | 12/100 [20:43<2:16:08, 92.83s/it]\\r 13%|█▎        | 13/100 [21:32<1:55:10, 79.43s/it]\\r 14%|█▍        | 14/100 [22:51<1:53:36, 79.26s/it]\\r 15%|█▌        | 15/100 [24:06<1:50:25, 77.95s/it]\\r                                                  \\r\\r 15%|█▌        | 15/100 [24:06<1:50:25, 77.95s/it]\\r 16%|█▌        | 16/100 [24:49<1:34:43, 67.66s/it]\\r 17%|█▋        | 17/100 [26:40<1:51:29, 80.60s/it]\\r 18%|█▊        | 18/100 [27:25<1:35:20, 69.76s/it]\\r 19%|█▉        | 19/100 [29:07<1:47:22, 79.54s/it]\\r 20%|██        | 20/100 [30:15<1:41:21, 76.02s/it]\\r                                                  \\r\\r 20%|██        | 20/100 [30:15<1:41:21, 76.02s/it]\\r 21%|██        | 21/100 [30:45<1:21:53, 62.20s/it]\\r 22%|██▏       | 22/100 [31:21<1:10:36, 54.31s/it]\\r 23%|██▎       | 23/100 [32:03<1:05:08, 50.77s/it]\\r 24%|██▍       | 24/100 [32:40<58:58, 46.56s/it]  \\r 25%|██▌       | 25/100 [33:20<55:44, 44.59s/it]\\r                                                \\r\\r 25%|██▌       | 25/100 [33:20<55:44, 44.59s/it]\\r 26%|██▌       | 26/100 [34:07<56:04, 45.47s/it]\\r 27%|██▋       | 27/100 [34:54<55:39, 45.75s/it]\\r 28%|██▊       | 28/100 [35:55<1:00:24, 50.34s/it]\\r 29%|██▉       | 29/100 [37:10<1:08:20, 57.75s/it]\\r 30%|��██       | 30/100 [37:51<1:01:30, 52.72s/it]\\r                                                  \\r\\r 30%|███       | 30/100 [37:51<1:01:30, 52.72s/it]\\r 31%|███       | 31/100 [39:08<1:09:03, 60.05s/it]\\r 32%|███▏      | 32/100 [40:06<1:07:31, 59.58s/it]\\r 33%|███▎      | 33/100 [41:17<1:10:06, 62.79s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The output was truncated for grpo_trainer.py. I need to see the CEDRewardWrapper.__call__ method specifically. Let me look at the relevant section. Also, I found the test file location. Let me now:\n1. Read the CEDRewardWrapper class to find the F1 gating logic\n2. Run the pytest",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "e4a1b346-1a72-4fa9-8eb6-e164cf8dbcf9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WZsPACLojqqti1MjqMLAM1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6638,
+                "cache_read_input_tokens": 24071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6638
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "grpo_trainer.py 输出被截断，需要看 CEDRewardWrapper.__call__ 中的 F1 gate 逻辑。同时运行 pytest。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "bf373af7-2c6d-42ab-8178-e9ab1267bd1c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WZsPACLojqqti1MjqMLAM1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6638,
+                "cache_read_input_tokens": 24071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6638
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LkwV6vpnYJErD429p2ehNz",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -n \"class CEDRewardWrapper\\|def __call__\\|f1.*gate\\|f1.*zero\\|ced.*reward.*0\\|gold_triples\\|predicted.*gold\\|no.*match\\|gate\" /root/autodl-tmp/freige/training/grpo_trainer.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "f07144d5-f8b1-4a9a-a87e-74bfeea484fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WZsPACLojqqti1MjqMLAM1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6638,
+                "cache_read_input_tokens": 24071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6638
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T16:15:15.001Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LkwV6vpnYJErD429p2ehNz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "81af7af5-f50d-471a-9ce8-9c49db1a5fc0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FTep5HQKLC9pfYWJEmwZXC",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pytest freige/tests/test_ced_gate.py -v 2>&1",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "ee06b2b6-2f9d-4c1e-80ef-7b12ff0506ce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WZsPACLojqqti1MjqMLAM1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6638,
+                "cache_read_input_tokens": 24071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6638
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T16:15:29.028Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FTep5HQKLC9pfYWJEmwZXC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================= test session starts ==============================\\\\nplatform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /root/miniconda3/bin/python\\\\ncachedir: .pytest_cache\\\\nrootdir: /root/autodl-tmp\\\\nplugins: anyio-4.10.0\\\\ncollecting ... collected 3 items\\\\n\\\\nfreige/tests/test_ced_gate.py::test_empty_output_returns_zero PASSED     [ 33%]\\\\nfreige/tests/test_ced_gate.py::test_correct_triple_returns_positive PASSED [ 66%]\\\\nfreige/tests/test_ced_gate.py::test_nonsense_output_returns_zero PASSED  [100%]\\\\n\\\\n=============================== warnings summary ===============================\\\\n../miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22\\\\n  /root/miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n    if is_vllm_available():\\\\n\\\\n../miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40\\\\n  /root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n    if is_vllm_available():\\\\n\\\\n../miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36\\\\n  /root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n    if is_vllm_available():\\\\n\\\\n<frozen importlib._bootstrap>:488\\\\n  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute\\\\n\\\\n<frozen importlib._bootstrap>:488\\\\n  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute\\\\n\\\\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\\\\n======================== 3 passed, 5 warnings in 10.23s ========================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "39ab94be-5730-4a74-b321-72d18934f626",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================= test session starts ==============================\\\\nplatform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /root/miniconda3/bin/python\\\\ncachedir: .pytest_cache\\\\nrootdir: /root/autodl-tmp\\\\nplugins: anyio-4.10.0\\\\ncollecting ... collected 3 items\\\\n\\\\nfreige/tests/test_ced_gate.py::test_empty_output_returns_zero PASSED     [ 33%]\\\\nfreige/tests/test_ced_gate.py::test_correct_triple_returns_positive PASSED [ 66%]\\\\nfreige/tests/test_ced_gate.py::test_nonsense_output_returns_zero PASSED  [100%]\\\\n\\\\n=============================== warnings summary ===============================\\\\n../miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22\\\\n  /root/miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n    if is_vllm_available():\\\\n\\\\n../miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40\\\\n  /root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n    if is_vllm_available():\\\\n\\\\n../miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36\\\\n  /root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n    if is_vllm_available():\\\\n\\\\n<frozen importlib._bootstrap>:488\\\\n  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute\\\\n\\\\n<frozen importlib._bootstrap>:488\\\\n  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute\\\\n\\\\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\\\\n======================== 3 passed, 5 warnings in 10.23s ========================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.22}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"============================= test session starts ==============================\\nplatform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /root/miniconda3/bin/python\\ncachedir: .pytest_cache\\nrootdir: /root/autodl-tmp\\nplugins: anyio-4.10.0\\ncollecting ... collected 3 items\\n\\nfreige/tests/test_ced_gate.py::test_empty_output_returns_zero PASSED     [ 33%]\\nfreige/tests/test_ced_gate.py::test_correct_triple_returns_positive PASSED [ 66%]\\nfreige/tests/test_ced_gate.py::test_nonsense_output_returns_zero PASSED  [100%]\\n\\n=============================== warnings summary ===============================\\n../miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22\\n  /root/miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\n    if is_vllm_available():\\n\\n../miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40\\n  /root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\n    if is_vllm_available():\\n\\n../miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36\\n  /root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\n    if is_vllm_available():\\n\\n<frozen importlib._bootstrap>:488\\n  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute\\n\\n<frozen importlib._bootstrap>:488\\n  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute\\n\\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\\n======================== 3 passed, 5 warnings in 10.23s ========================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 13.22}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. Pytest passed: 3/3 tests. Now I need to see the CEDRewardWrapper.__call__ F1 gating logic. Let me read the specific lines.",
+              "signature": "ErwCClkIDRgCKkB5//B19mylqwfbuNWwptdK0MqXiA5fU9w/HvfO+A7EVFRZGo+pg0VIIsNly3voj2W5gIfCTX61JG7vqHcQXSUrMg9jbGF1ZGUtb3B1cy00LTY4ABIMOgtK6OnZa+SDJmY4GgxBV2fWVF/2NdxPa28iMLfIXEgCV85HUKnEVbD9H1vtBsOo6UXjxsOXMD2NoVw3ovcN8Yln1CHYN98YhHoChSqQAYcTD8/+2102IbA3ArzeRhdVuXWrEEqCEPLeq44CxB2llirJ6LYUp9DyyqrqsR5TLrN29dy9PIi3UGXyPn3XvR+zFCksxCBixG/DWNoLXHp7n9tazNrpmHDUJ7EosS+kMzv4iBb/QUrOsPG8DPcDY7SqyQEohKTfqikMeUsfjDQ0eQn3JvIghOSXb0LH6F5nOxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "079888a6-6826-4fc8-a145-bcbec64ce231",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PibkAbSD3NB2NnH4EY7AS3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1460,
+                "cache_read_input_tokens": 30709,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1460
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "pytest 3/3 PASSED。再看 CEDRewardWrapper 的 F1 gate 代码。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "acaf0726-efdf-48f2-8f5e-baecae3e53e7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PibkAbSD3NB2NnH4EY7AS3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1460,
+                "cache_read_input_tokens": 30709,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1460
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ac7Znb9tPztR4XKfR7wGgs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -n \"class CEDRewardWrapper\\|def __call__\\|f1_gate\\|gold_triples\\|no_match\\|ced.*0\" /root/autodl-tmp/freige/training/grpo_trainer.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "0cb45553-e4eb-411a-9284-66832b9b23ae",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PibkAbSD3NB2NnH4EY7AS3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1460,
+                "cache_read_input_tokens": 30709,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1460
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T16:15:33.506Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ac7Znb9tPztR4XKfR7wGgs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "238a1778-67e7-4ab3-86be-67240c42fc3f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RftY56fxsor7QhNgzuoSYP",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "sed -n '130,230p' /root/autodl-tmp/freige/training/grpo_trainer.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "31a5ebb8-9416-41d5-ad5c-622348834c9d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QiCiRCAqjzTR8agAab6sN2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 444,
+                "cache_read_input_tokens": 32169,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 444
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T16:15:36.676Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RftY56fxsor7QhNgzuoSYP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "26783ef1-b993-4210-80df-e268202a9cdf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Uia37n6fb6CXZ6jPCRVUwC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -n \"class CEDRewardWrapper\" /root/autodl-tmp/freige/training/grpo_trainer.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "8b01a2e8-a628-4b92-b7b5-212a18659254",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013efMe5zSH6RHFjiDNNX1JJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 223,
+                "cache_read_input_tokens": 32613,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 223
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T16:15:40.261Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Uia37n6fb6CXZ6jPCRVUwC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"141:class CEDRewardWrapper:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "41f81c37-a6b7-4a12-b027-7e45572b3029",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"141:class CEDRewardWrapper:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"141:class CEDRewardWrapper:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WMntbbiazhQeam9bd6PBxs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "tail -n +141 /root/autodl-tmp/freige/training/grpo_trainer.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "985623ef-1bc8-47e3-b8a3-a937a5044ddb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WW4PwxVJZYZZXNVty27Nm8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 216,
+                "cache_read_input_tokens": 32836,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 216
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T16:15:43.728Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WMntbbiazhQeam9bd6PBxs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"class CEDRewardWrapper:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"将 CED 奖励封装为 GRPO 兼容的 reward function。\\\\n\\\\n    对每个 completion 解析 triples + evidence，用 CED 模型计算奖励，\\\\n    返回所有 triples 的平均 CED reward。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        nli_model: str = \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n        tau: float = 0.5,\\\\n        mode: str = \\\\\\\"ced\\\\\\\",\\\\n        device: str = None,\\\\n        tau_start: float = None,\\\\n        tau_end: float = None,\\\\n        total_steps: int = None,\\\\n    ):\\\\n        from freige.rewards.ced_reward import CEDRewardModel, verbalize_triple\\\\n        self.__name__ = f\\\\\\\"{mode}_reward\\\\\\\"\\\\n        self.reward_model = CEDRewardModel(model_name=nli_model, device=device)\\\\n        self.verbalize = verbalize_triple\\\\n        self.mode = mode\\\\n        self._call_count = 0\\\\n        if tau_start is not None and tau_end is not None:\\\\n            self.tau_start = tau_start\\\\n            self.tau_end = tau_end\\\\n            self.total_steps = total_steps\\\\n        else:\\\\n            self.tau_start = tau\\\\n            self.tau_end = tau\\\\n            self.total_steps = None\\\\n\\\\n    @property\\\\n    def tau(self) -> float:\\\\n        if self.total_steps and self.total_steps > 0:\\\\n            progress = min(self._call_count / self.total_steps, 1.0)\\\\n        else:\\\\n            progress = 1.0\\\\n        return self.tau_start + (self.tau_end - self.tau_start) * progress\\\\n\\\\n    def __call__(\\\\n        self,\\\\n        completions: list[str],\\\\n        all_sents: list[str],\\\\n        gold_triples: list[str],\\\\n        **kwargs,\\\\n    ) -> list[float]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"计算 CED/flat-NLI 奖励。\\\\n\\\\n        all_sents: JSON 字符串列表，每个元素为文档句子列表。\\\\n        gold_triples: JSON 字符串列表，含 evidence_sent_ids 和 hard_negative_sent_ids。\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        current_tau = self.tau\\\\n        self._call_count += 1\\\\n        num_gen = len(completions) // len(all_sents)\\\\n        rewards = []\\\\n\\\\n        for i, text in enumerate(completions):\\\\n            prompt_idx = i // num_gen\\\\n            try:\\\\n                sents = json.loads(all_sents[prompt_idx])\\\\n                gold = json.loads(gold_triples[prompt_idx])\\\\n            except (json.JSONDecodeError, IndexError):\\\\n                rewards.append(0.0)\\\\n                continue\\\\n\\\\n            pred = _parse_json_output(text)\\\\n            if not pred:\\\\n                rewards.append(0.0)\\\\n                continue\\\\n\\\\n            gold_map = {}\\\\n            for g in gold:\\\\n                key = (\\\\n                    str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                )\\\\n                gold_map[key] = g\\\\n\\\\n            # F1 gate: at least one predicted triple must match gold\\\\n            has_gold_match = False\\\\n            for p in pred:\\\\n                if isinstance(p, dict):\\\\n                    _pk = (\\\\n                        str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                        str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                        str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    )\\\\n                    if _pk in gold_map:\\\\n                        has_gold_match = True\\\\n                        break\\\\n            if not has_gold_match:\\\\n                rewards.append(0.0)\\\\n                continue\\\\n\\\\n            triple_rewards = []\\\\n            for p in pred:\\\\n                if not isinstance(p, dict):\\\\n                    continue\\\\n                pred_evi_ids = p.get(\\\\\\\"evidence\\\\\\\", [])\\\\n                if not isinstance(pred_evi_ids, list) or not pred_evi_ids:\\\\n                    triple_rewards.append(0.0)\\\\n                    continue\\\\n\\\\n                claim = self.verbalize(\\\\n                    str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n                    str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n                    str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n                )\\\\n                cited_sents = [sents[idx] for idx in pred_evi_ids\\\\n                               if isinstance(idx, int) and 0 <= idx < len(sents)]\\\\n                if not cited_sents:\\\\n                    triple_rewards.append(0.0)\\\\n                    conti\\\\n\\\\n... [截断: 输出过长，省略 7702 字符] ...\\\\n\\\\nnfig(\\\\n            load_in_4bit=True,\\\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\\\n            bnb_4bit_quant_type=\\\\\\\"nf4\\\\\\\",\\\\n            bnb_4bit_use_double_quant=True,\\\\n        )\\\\n        model_kwargs[\\\\\\\"device_map\\\\\\\"] = {\\\\\\\"\\\\\\\":  local_rank}\\\\n    else:\\\\n        model_kwargs[\\\\\\\"torch_dtype\\\\\\\"] = torch.bfloat16 if args.bf16 else torch.float16\\\\n    model = AutoModelForCausalLM.from_pretrained(args.model_name, **model_kwargs)\\\\n\\\\n    if args.sft_adapter:\\\\n        logger.info(\\\\\\\"Loading SFT adapter from %s\\\\\\\", args.sft_adapter)\\\\n        model = PeftModel.from_pretrained(model, args.sft_adapter)\\\\n        model = model.merge_and_unload()\\\\n\\\\n    reward_fns = [\\\\n        WeightedRewardFn(format_reward_fn, args.format_reward_weight),\\\\n        WeightedRewardFn(f1_reward_fn, args.f1_reward_weight),\\\\n    ]\\\\n\\\\n    if args.stage >= 2 and args.ced_reward_weight > 0:\\\\n        mode = \\\\\\\"flat_nli\\\\\\\" if args.stage == 2 else \\\\\\\"ced\\\\\\\"\\\\n        num_gpus = int(os.environ.get(\\\\\\\"WORLD_SIZE\\\\\\\", 1))\\\\n        steps_per_epoch = math.ceil(\\\\n            len(train_dataset) / (args.per_device_batch_size * num_gpus * args.gradient_accumulation_steps)\\\\n        )\\\\n        total_steps = steps_per_epoch * args.num_epochs\\\\n        ced_wrapper = CEDRewardWrapper(\\\\n            nli_model=args.nli_model,\\\\n            mode=mode,\\\\n            device=args.reward_device,\\\\n            tau_start=args.tau_start,\\\\n            tau_end=args.tau_end,\\\\n            total_steps=total_steps,\\\\n        )\\\\n        reward_fns.append(WeightedRewardFn(ced_wrapper, args.ced_reward_weight))\\\\n        logger.info(\\\\n            \\\\\\\"Stage %d: using %s reward, tau %.2f→%.2f over %d steps\\\\\\\",\\\\n            args.stage, mode, args.tau_start, args.tau_end, total_steps,\\\\n        )\\\\n    else:\\\\n        logger.info(\\\\\\\"Extraction-only mode: format + F1 rewards (stage=%d, ced_weight=%.1f)\\\\\\\", args.stage, args.ced_reward_weight)\\\\n\\\\n    lora_config = LoraConfig(\\\\n        task_type=TaskType.CAUSAL_LM,\\\\n        r=args.lora_rank,\\\\n        lora_alpha=args.lora_alpha,\\\\n        lora_dropout=0.05,\\\\n        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\",\\\\n                         \\\\\\\"gate_proj\\\\\\\", \\\\\\\"up_proj\\\\\\\", \\\\\\\"down_proj\\\\\\\"],\\\\n    )\\\\n\\\\n    save_strategy = \\\\\\\"steps\\\\\\\" if args.save_steps else \\\\\\\"epoch\\\\\\\"\\\\n    save_steps = args.save_steps if args.save_steps else None\\\\n\\\\n    grpo_config_kwargs = dict(\\\\n        output_dir=args.output_dir,\\\\n        num_train_epochs=args.num_epochs,\\\\n        per_device_train_batch_size=args.per_device_batch_size,\\\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\\\n        learning_rate=args.learning_rate,\\\\n        bf16=args.bf16,\\\\n        logging_steps=5,\\\\n        save_strategy=save_strategy,\\\\n        save_total_limit=args.save_total_limit,\\\\n        seed=args.seed,\\\\n        num_generations=args.num_generations,\\\\n        max_completion_length=args.max_new_tokens,\\\\n        report_to=\\\\\\\"wandb\\\\\\\" if \\\\\\\"WANDB_API_KEY\\\\\\\" in os.environ else \\\\\\\"none\\\\\\\",\\\\n        gradient_checkpointing=True,\\\\n        gradient_checkpointing_kwargs={\\\\\\\"use_reentrant\\\\\\\": False},\\\\n        deepspeed=args.deepspeed,\\\\n        num_iterations=args.num_iterations,\\\\n    )\\\\n    if save_steps:\\\\n        grpo_config_kwargs[\\\\\\\"save_steps\\\\\\\"] = save_steps\\\\n    if args.max_steps > 0:\\\\n        grpo_config_kwargs[\\\\\\\"max_steps\\\\\\\"] = args.max_steps\\\\n    if args.kl_coef > 0:\\\\n        grpo_config_kwargs[\\\\\\\"beta\\\\\\\"] = args.kl_coef\\\\n    grpo_config = GRPOConfig(**grpo_config_kwargs)\\\\n\\\\n    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\\\n\\\\n    trainer = GRPOTrainer(\\\\n        model=model,\\\\n        args=grpo_config,\\\\n        train_dataset=train_dataset,\\\\n        reward_funcs=reward_fns,\\\\n        peft_config=lora_config,\\\\n        processing_class=tokenizer,\\\\n        callbacks=callbacks,\\\\n    )\\\\n\\\\n    logger.info(\\\\\\\"Starting GRPO training (stage %d)...\\\\\\\", args.stage)\\\\n    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)\\\\n\\\\n    logger.info(\\\\\\\"Saving model to %s\\\\\\\", args.output_dir)\\\\n    trainer.save_model(args.output_dir)\\\\n    tokenizer.save_pretrained(args.output_dir)\\\\n    logger.info(\\\\\\\"GRPO training (stage %d) complete.\\\\\\\", args.stage)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "ac6143c6-e0d8-4c32-a89e-88e5064c5849",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"class CEDRewardWrapper:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"将 CED 奖励封装为 GRPO 兼容的 reward function。\\\\n\\\\n    对每个 completion 解析 triples + evidence，用 CED 模型计算奖励，\\\\n    返回所有 triples 的平均 CED reward。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        nli_model: str = \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n        tau: float = 0.5,\\\\n        mode: str = \\\\\\\"ced\\\\\\\",\\\\n        device: str = None,\\\\n        tau_start: float = None,\\\\n        tau_end: float = None,\\\\n        total_steps: int = None,\\\\n    ):\\\\n        from freige.rewards.ced_reward import CEDRewardModel, verbalize_triple\\\\n        self.__name__ = f\\\\\\\"{mode}_reward\\\\\\\"\\\\n        self.reward_model = CEDRewardModel(model_name=nli_model, device=device)\\\\n        self.verbalize = verbalize_triple\\\\n        self.mode = mode\\\\n        self._call_count = 0\\\\n        if tau_start is not None and tau_end is not None:\\\\n            self.tau_start = tau_start\\\\n            self.tau_end = tau_end\\\\n            self.total_steps = total_steps\\\\n        else:\\\\n            self.tau_start = tau\\\\n            self.tau_end = tau\\\\n            self.total_steps = None\\\\n\\\\n    @property\\\\n    def tau(self) -> float:\\\\n        if self.total_steps and self.total_steps > 0:\\\\n            progress = min(self._call_count / self.total_steps, 1.0)\\\\n        else:\\\\n            progress = 1.0\\\\n        return self.tau_start + (self.tau_end - self.tau_start) * progress\\\\n\\\\n    def __call__(\\\\n        self,\\\\n        completions: list[str],\\\\n        all_sents: list[str],\\\\n        gold_triples: list[str],\\\\n        **kwargs,\\\\n    ) -> list[float]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"计算 CED/flat-NLI 奖励。\\\\n\\\\n        all_sents: JSON 字符串列表，每个元素为文档句子列表。\\\\n        gold_triples: JSON 字符串列表，含 evidence_sent_ids 和 hard_negative_sent_ids。\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        current_tau = self.tau\\\\n        self._call_count += 1\\\\n        num_gen = len(completions) // len(all_sents)\\\\n        rewards = []\\\\n\\\\n        for i, text in enumerate(completions):\\\\n            prompt_idx = i // num_gen\\\\n            try:\\\\n                sents = json.loads(all_sents[prompt_idx])\\\\n                gold = json.loads(gold_triples[prompt_idx])\\\\n            except (json.JSONDecodeError, IndexError):\\\\n                rewards.append(0.0)\\\\n                continue\\\\n\\\\n            pred = _parse_json_output(text)\\\\n            if not pred:\\\\n                rewards.append(0.0)\\\\n                continue\\\\n\\\\n            gold_map = {}\\\\n            for g in gold:\\\\n                key = (\\\\n                    str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                )\\\\n                gold_map[key] = g\\\\n\\\\n            # F1 gate: at least one predicted triple must match gold\\\\n            has_gold_match = False\\\\n            for p in pred:\\\\n                if isinstance(p, dict):\\\\n                    _pk = (\\\\n                        str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                        str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                        str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    )\\\\n                    if _pk in gold_map:\\\\n                        has_gold_match = True\\\\n                        break\\\\n            if not has_gold_match:\\\\n                rewards.append(0.0)\\\\n                continue\\\\n\\\\n            triple_rewards = []\\\\n            for p in pred:\\\\n                if not isinstance(p, dict):\\\\n                    continue\\\\n                pred_evi_ids = p.get(\\\\\\\"evidence\\\\\\\", [])\\\\n                if not isinstance(pred_evi_ids, list) or not pred_evi_ids:\\\\n                    triple_rewards.append(0.0)\\\\n                    continue\\\\n\\\\n                claim = self.verbalize(\\\\n                    str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n                    str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n                    str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n                )\\\\n                cited_sents = [sents[idx] for idx in pred_evi_ids\\\\n                               if isinstance(idx, int) and 0 <= idx < len(sents)]\\\\n                if not cited_sents:\\\\n                    triple_rewards.append(0.0)\\\\n                    conti\\\\n\\\\n... [截断: 输出过长，省略 7702 字符] ...\\\\n\\\\nnfig(\\\\n            load_in_4bit=True,\\\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\\\n            bnb_4bit_quant_type=\\\\\\\"nf4\\\\\\\",\\\\n            bnb_4bit_use_double_quant=True,\\\\n        )\\\\n        model_kwargs[\\\\\\\"device_map\\\\\\\"] = {\\\\\\\"\\\\\\\":  local_rank}\\\\n    else:\\\\n        model_kwargs[\\\\\\\"torch_dtype\\\\\\\"] = torch.bfloat16 if args.bf16 else torch.float16\\\\n    model = AutoModelForCausalLM.from_pretrained(args.model_name, **model_kwargs)\\\\n\\\\n    if args.sft_adapter:\\\\n        logger.info(\\\\\\\"Loading SFT adapter from %s\\\\\\\", args.sft_adapter)\\\\n        model = PeftModel.from_pretrained(model, args.sft_adapter)\\\\n        model = model.merge_and_unload()\\\\n\\\\n    reward_fns = [\\\\n        WeightedRewardFn(format_reward_fn, args.format_reward_weight),\\\\n        WeightedRewardFn(f1_reward_fn, args.f1_reward_weight),\\\\n    ]\\\\n\\\\n    if args.stage >= 2 and args.ced_reward_weight > 0:\\\\n        mode = \\\\\\\"flat_nli\\\\\\\" if args.stage == 2 else \\\\\\\"ced\\\\\\\"\\\\n        num_gpus = int(os.environ.get(\\\\\\\"WORLD_SIZE\\\\\\\", 1))\\\\n        steps_per_epoch = math.ceil(\\\\n            len(train_dataset) / (args.per_device_batch_size * num_gpus * args.gradient_accumulation_steps)\\\\n        )\\\\n        total_steps = steps_per_epoch * args.num_epochs\\\\n        ced_wrapper = CEDRewardWrapper(\\\\n            nli_model=args.nli_model,\\\\n            mode=mode,\\\\n            device=args.reward_device,\\\\n            tau_start=args.tau_start,\\\\n            tau_end=args.tau_end,\\\\n            total_steps=total_steps,\\\\n        )\\\\n        reward_fns.append(WeightedRewardFn(ced_wrapper, args.ced_reward_weight))\\\\n        logger.info(\\\\n            \\\\\\\"Stage %d: using %s reward, tau %.2f→%.2f over %d steps\\\\\\\",\\\\n            args.stage, mode, args.tau_start, args.tau_end, total_steps,\\\\n        )\\\\n    else:\\\\n        logger.info(\\\\\\\"Extraction-only mode: format + F1 rewards (stage=%d, ced_weight=%.1f)\\\\\\\", args.stage, args.ced_reward_weight)\\\\n\\\\n    lora_config = LoraConfig(\\\\n        task_type=TaskType.CAUSAL_LM,\\\\n        r=args.lora_rank,\\\\n        lora_alpha=args.lora_alpha,\\\\n        lora_dropout=0.05,\\\\n        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\",\\\\n                         \\\\\\\"gate_proj\\\\\\\", \\\\\\\"up_proj\\\\\\\", \\\\\\\"down_proj\\\\\\\"],\\\\n    )\\\\n\\\\n    save_strategy = \\\\\\\"steps\\\\\\\" if args.save_steps else \\\\\\\"epoch\\\\\\\"\\\\n    save_steps = args.save_steps if args.save_steps else None\\\\n\\\\n    grpo_config_kwargs = dict(\\\\n        output_dir=args.output_dir,\\\\n        num_train_epochs=args.num_epochs,\\\\n        per_device_train_batch_size=args.per_device_batch_size,\\\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\\\n        learning_rate=args.learning_rate,\\\\n        bf16=args.bf16,\\\\n        logging_steps=5,\\\\n        save_strategy=save_strategy,\\\\n        save_total_limit=args.save_total_limit,\\\\n        seed=args.seed,\\\\n        num_generations=args.num_generations,\\\\n        max_completion_length=args.max_new_tokens,\\\\n        report_to=\\\\\\\"wandb\\\\\\\" if \\\\\\\"WANDB_API_KEY\\\\\\\" in os.environ else \\\\\\\"none\\\\\\\",\\\\n        gradient_checkpointing=True,\\\\n        gradient_checkpointing_kwargs={\\\\\\\"use_reentrant\\\\\\\": False},\\\\n        deepspeed=args.deepspeed,\\\\n        num_iterations=args.num_iterations,\\\\n    )\\\\n    if save_steps:\\\\n        grpo_config_kwargs[\\\\\\\"save_steps\\\\\\\"] = save_steps\\\\n    if args.max_steps > 0:\\\\n        grpo_config_kwargs[\\\\\\\"max_steps\\\\\\\"] = args.max_steps\\\\n    if args.kl_coef > 0:\\\\n        grpo_config_kwargs[\\\\\\\"beta\\\\\\\"] = args.kl_coef\\\\n    grpo_config = GRPOConfig(**grpo_config_kwargs)\\\\n\\\\n    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\\\n\\\\n    trainer = GRPOTrainer(\\\\n        model=model,\\\\n        args=grpo_config,\\\\n        train_dataset=train_dataset,\\\\n        reward_funcs=reward_fns,\\\\n        peft_config=lora_config,\\\\n        processing_class=tokenizer,\\\\n        callbacks=callbacks,\\\\n    )\\\\n\\\\n    logger.info(\\\\\\\"Starting GRPO training (stage %d)...\\\\\\\", args.stage)\\\\n    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)\\\\n\\\\n    logger.info(\\\\\\\"Saving model to %s\\\\\\\", args.output_dir)\\\\n    trainer.save_model(args.output_dir)\\\\n    tokenizer.save_pretrained(args.output_dir)\\\\n    logger.info(\\\\\\\"GRPO training (stage %d) complete.\\\\\\\", args.stage)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"class CEDRewardWrapper:\\n    \\\"\\\"\\\"将 CED 奖励封装为 GRPO 兼容的 reward function。\\n\\n    对每个 completion 解析 triples + evidence，用 CED 模型计算奖励，\\n    返回所有 triples 的平均 CED reward。\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        nli_model: str = \\\"cross-encoder/nli-deberta-v3-base\\\",\\n        tau: float = 0.5,\\n        mode: str = \\\"ced\\\",\\n        device: str = None,\\n        tau_start: float = None,\\n        tau_end: float = None,\\n        total_steps: int = None,\\n    ):\\n        from freige.rewards.ced_reward import CEDRewardModel, verbalize_triple\\n        self.__name__ = f\\\"{mode}_reward\\\"\\n        self.reward_model = CEDRewardModel(model_name=nli_model, device=device)\\n        self.verbalize = verbalize_triple\\n        self.mode = mode\\n        self._call_count = 0\\n        if tau_start is not None and tau_end is not None:\\n            self.tau_start = tau_start\\n            self.tau_end = tau_end\\n            self.total_steps = total_steps\\n        else:\\n            self.tau_start = tau\\n            self.tau_end = tau\\n            self.total_steps = None\\n\\n    @property\\n    def tau(self) -> float:\\n        if self.total_steps and self.total_steps > 0:\\n            progress = min(self._call_count / self.total_steps, 1.0)\\n        else:\\n            progress = 1.0\\n        return self.tau_start + (self.tau_end - self.tau_start) * progress\\n\\n    def __call__(\\n        self,\\n        completions: list[str],\\n        all_sents: list[str],\\n        gold_triples: list[str],\\n        **kwargs,\\n    ) -> list[float]:\\n        \\\"\\\"\\\"计算 CED/flat-NLI 奖励。\\n\\n        all_sents: JSON 字符串列表，每个元素为文档句子列表。\\n        gold_triples: JSON 字符串列表，含 evidence_sent_ids 和 hard_negative_sent_ids。\\n        \\\"\\\"\\\"\\n        current_tau = self.tau\\n        self._call_count += 1\\n        num_gen = len(completions) // len(all_sents)\\n        rewards = []\\n\\n        for i, text in enumerate(completions):\\n            prompt_idx = i // num_gen\\n            try:\\n                sents = json.loads(all_sents[prompt_idx])\\n                gold = json.loads(gold_triples[prompt_idx])\\n            except (json.JSONDecodeError, IndexError):\\n                rewards.append(0.0)\\n                continue\\n\\n            pred = _parse_json_output(text)\\n            if not pred:\\n                rewards.append(0.0)\\n                continue\\n\\n            gold_map = {}\\n            for g in gold:\\n                key = (\\n                    str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                    str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                    str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n                )\\n                gold_map[key] = g\\n\\n            # F1 gate: at least one predicted triple must match gold\\n            has_gold_match = False\\n            for p in pred:\\n                if isinstance(p, dict):\\n                    _pk = (\\n                        str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                        str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                        str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n                    )\\n                    if _pk in gold_map:\\n                        has_gold_match = True\\n                        break\\n            if not has_gold_match:\\n                rewards.append(0.0)\\n                continue\\n\\n            triple_rewards = []\\n            for p in pred:\\n                if not isinstance(p, dict):\\n                    continue\\n                pred_evi_ids = p.get(\\\"evidence\\\", [])\\n                if not isinstance(pred_evi_ids, list) or not pred_evi_ids:\\n                    triple_rewards.append(0.0)\\n                    continue\\n\\n                claim = self.verbalize(\\n                    str(p.get(\\\"head\\\") or \\\"\\\"),\\n                    str(p.get(\\\"relation\\\") or \\\"\\\"),\\n                    str(p.get(\\\"tail\\\") or \\\"\\\"),\\n                )\\n                cited_sents = [sents[idx] for idx in pred_evi_ids\\n                               if isinstance(idx, int) and 0 <= idx < len(sents)]\\n                if not cited_sents:\\n                    triple_rewards.append(0.0)\\n                    conti\\n\\n... [截断: 输出过长，省略 7702 字符] ...\\n\\nnfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n            bnb_4bit_use_double_quant=True,\\n        )\\n        model_kwargs[\\\"device_map\\\"] = {\\\"\\\":  local_rank}\\n    else:\\n        model_kwargs[\\\"torch_dtype\\\"] = torch.bfloat16 if args.bf16 else torch.float16\\n    model = AutoModelForCausalLM.from_pretrained(args.model_name, **model_kwargs)\\n\\n    if args.sft_adapter:\\n        logger.info(\\\"Loading SFT adapter from %s\\\", args.sft_adapter)\\n        model = PeftModel.from_pretrained(model, args.sft_adapter)\\n        model = model.merge_and_unload()\\n\\n    reward_fns = [\\n        WeightedRewardFn(format_reward_fn, args.format_reward_weight),\\n        WeightedRewardFn(f1_reward_fn, args.f1_reward_weight),\\n    ]\\n\\n    if args.stage >= 2 and args.ced_reward_weight > 0:\\n        mode = \\\"flat_nli\\\" if args.stage == 2 else \\\"ced\\\"\\n        num_gpus = int(os.environ.get(\\\"WORLD_SIZE\\\", 1))\\n        steps_per_epoch = math.ceil(\\n            len(train_dataset) / (args.per_device_batch_size * num_gpus * args.gradient_accumulation_steps)\\n        )\\n        total_steps = steps_per_epoch * args.num_epochs\\n        ced_wrapper = CEDRewardWrapper(\\n            nli_model=args.nli_model,\\n            mode=mode,\\n            device=args.reward_device,\\n            tau_start=args.tau_start,\\n            tau_end=args.tau_end,\\n            total_steps=total_steps,\\n        )\\n        reward_fns.append(WeightedRewardFn(ced_wrapper, args.ced_reward_weight))\\n        logger.info(\\n            \\\"Stage %d: using %s reward, tau %.2f→%.2f over %d steps\\\",\\n            args.stage, mode, args.tau_start, args.tau_end, total_steps,\\n        )\\n    else:\\n        logger.info(\\\"Extraction-only mode: format + F1 rewards (stage=%d, ced_weight=%.1f)\\\", args.stage, args.ced_reward_weight)\\n\\n    lora_config = LoraConfig(\\n        task_type=TaskType.CAUSAL_LM,\\n        r=args.lora_rank,\\n        lora_alpha=args.lora_alpha,\\n        lora_dropout=0.05,\\n        target_modules=[\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\",\\n                         \\\"gate_proj\\\", \\\"up_proj\\\", \\\"down_proj\\\"],\\n    )\\n\\n    save_strategy = \\\"steps\\\" if args.save_steps else \\\"epoch\\\"\\n    save_steps = args.save_steps if args.save_steps else None\\n\\n    grpo_config_kwargs = dict(\\n        output_dir=args.output_dir,\\n        num_train_epochs=args.num_epochs,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        bf16=args.bf16,\\n        logging_steps=5,\\n        save_strategy=save_strategy,\\n        save_total_limit=args.save_total_limit,\\n        seed=args.seed,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_new_tokens,\\n        report_to=\\\"wandb\\\" if \\\"WANDB_API_KEY\\\" in os.environ else \\\"none\\\",\\n        gradient_checkpointing=True,\\n        gradient_checkpointing_kwargs={\\\"use_reentrant\\\": False},\\n        deepspeed=args.deepspeed,\\n        num_iterations=args.num_iterations,\\n    )\\n    if save_steps:\\n        grpo_config_kwargs[\\\"save_steps\\\"] = save_steps\\n    if args.max_steps > 0:\\n        grpo_config_kwargs[\\\"max_steps\\\"] = args.max_steps\\n    if args.kl_coef > 0:\\n        grpo_config_kwargs[\\\"beta\\\"] = args.kl_coef\\n    grpo_config = GRPOConfig(**grpo_config_kwargs)\\n\\n    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\n\\n    trainer = GRPOTrainer(\\n        model=model,\\n        args=grpo_config,\\n        train_dataset=train_dataset,\\n        reward_funcs=reward_fns,\\n        peft_config=lora_config,\\n        processing_class=tokenizer,\\n        callbacks=callbacks,\\n    )\\n\\n    logger.info(\\\"Starting GRPO training (stage %d)...\\\", args.stage)\\n    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)\\n\\n    logger.info(\\\"Saving model to %s\\\", args.output_dir)\\n    trainer.save_model(args.output_dir)\\n    tokenizer.save_pretrained(args.output_dir)\\n    logger.info(\\\"GRPO training (stage %d) complete.\\\", args.stage)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完毕，汇总结果：\n\n---\n\n### 1. F1 Gate 代码 — 已确认存在\n\n`CEDRewardWrapper.__call__`（`grpo_trainer.py:220` 附近）包含 F1 gating 逻辑：\n- 将 predicted triples 和 gold triples 都规范化为 `(head, relation, tail)` 小写 key\n- 遍历 predicted triples，检查是否至少有一个匹配 gold_map\n- **`if not has_gold_match: rewards.append(0.0); continue`** — 无匹配则 CED reward 直接归零，跳过 NLI 计算\n\n### 2. Pytest — 3/3 PASSED\n\n```\ntest_empty_output_returns_zero     PASSED\ntest_correct_triple_returns_positive PASSED\ntest_nonsense_output_returns_zero  PASSED\n```\n\n测试文件位于 `/root/autodl-tmp/freige/tests/test_ced_gate.py`，全部通过。\n\n### 3. ced_kl001_r4 — 使用了正确代码\n\n日志确认：\n- 加载了 NLI 模型 `cross-encoder/nli-deberta-v3-base`\n- **`Stage 3: using ced reward, tau 0.30→0.50 over 190 steps`** — CED reward 已启用，包含 F1 gate\n- 训练正在进行中，当前约 33/100 steps"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "uuid": "015c6c78-46cb-4848-9a29-c988f6c6e574",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AfrKUMQ2pw3oauoFAXb2Ej",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3235,
+                "cache_read_input_tokens": 33052,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3235
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完毕，汇总结果：\n\n---\n\n### 1. F1 Gate 代码 — 已确认存在\n\n`CEDRewardWrapper.__call__`（`grpo_trainer.py:220` 附近）包含 F1 gating 逻辑：\n- 将 predicted triples 和 gold triples 都规范化为 `(head, relation, tail)` 小写 key\n- 遍历 predicted triples，检查是否至少有一个匹配 gold_map\n- **`if not has_gold_match: rewards.append(0.0); continue`** — 无匹配则 CED reward 直接归零，跳过 NLI 计算\n\n### 2. Pytest — 3/3 PASSED\n\n```\ntest_empty_output_returns_zero     PASSED\ntest_correct_triple_returns_positive PASSED\ntest_nonsense_output_returns_zero  PASSED\n```\n\n测试文件位于 `/root/autodl-tmp/freige/tests/test_ced_gate.py`，全部通过。\n\n### 3. ced_kl001_r4 — 使用了正确代码\n\n日志确认：\n- 加载了 NLI 模型 `cross-encoder/nli-deberta-v3-base`\n- **`Stage 3: using ced reward, tau 0.30→0.50 over 190 steps`** — CED reward 已启用，包含 F1 gate\n- 训练正在进行中，当前约 33/100 steps"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 57577,
+            "duration_api_ms": 44424,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "a75478a9-5a2a-4612-86c8-6bb6d6b82ed4",
+            "total_cost_usd": 0.31807650000000004,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 24840,
+              "cache_read_input_tokens": 220031,
+              "output_tokens": 2060,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 24840,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 409,
+                  "cache_read_input_tokens": 33052,
+                  "cache_creation_input_tokens": 3235,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3235
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1146,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0012510000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 2060,
+                "cacheReadInputTokens": 220031,
+                "cacheCreationInputTokens": 24840,
+                "webSearchRequests": 0,
+                "costUSD": 0.31682550000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "798dcaed-ed2e-47de-9307-c02b542d639b"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-pytest-f1gate-verify.md"
+}

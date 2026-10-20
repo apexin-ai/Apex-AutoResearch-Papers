@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28ce2dea01d57fc6a180",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check all running status",
+  "task_key": "worker_check_all_running_status_20260515T005723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_all_running_status_20260515T005723_result.json",
+    "occurrence": 1,
+    "bytes": 1332,
+    "sha256": "8754f1280886fa541d7d35b1e4f3e625e20a0e9a88574bf90eb445a8e855d06c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进程状态总结\n\n| # | 进程 | GPU | 状态 | 进度 | 预计剩余 |\n|---|------|-----|------|------|---------|\n| 1 | PID 90080 — GRPO lr5e6_r1 | cuda:0 (13.3GB, 62%) | **Running** | 184/200 steps (92%) | ~25 min |\n| 2 | PID 122144 — RSFT generate | cuda:1 (22.7GB, 88%) | **Running** | 90/1514 batches (6%) | ~14h |\n| 3 | PID 111731 — ckpt-80 eval | cuda:2 (0MB, 0%) | **Finished** | — | — |\n| 4 | PID 117635 — ckpt-100 eval | cuda:3 (10.4GB, 81%) | **Running** | 49/62 batches (79%) | ~20 min |\n\n### ckpt-80 eval 结果\n\n| 指标 | 值 |\n|------|------|\n| **rel_f1** | **0.0116** |\n| evi_f1 | 0.828 |\n| evi_precision | 0.928 |\n| evi_recall | 0.748 |\n| edcr | 0.991 |\n| format_ok_rate | 99.9% |\n| n_truncated | 210/985 |\n\nrel_f1 极低 (1.16%)，预测了 13828 个三元组但只有 151 个 TP（gold 12151）。evidence 质量不错（evi_f1=0.828），但关系抽取几乎全错——模型在 ckpt-80 可能出现了关系预测退化。\n\n### GRPO 训练最新指标 (step ~184)\n\n- reward: 0.281, f1_reward: 0.014, ced_reward: 0.015\n- format_reward: 0.252\n- 最近几步 reward 有波动，f1_reward 和 ced_reward 都在低位\n\n### RSFT generate\n\n- 已完成 90/1514 batches，format_ok_rate 99.6%，truncation_rate 9.2%，diversity 0.9/8（多样性极低）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-running-status.md"
+}

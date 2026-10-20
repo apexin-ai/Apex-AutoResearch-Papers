@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86d52a0839fe9e4c28fa",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis mvp2 sft eval r2",
+  "task_key": "worker_analysis_mvp2_sft_eval_r2_20260514T145314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp2_sft_eval_r2_20260514T145314_result.json",
+    "occurrence": 1,
+    "bytes": 1420,
+    "sha256": "7b5fa2367dfcbce029907bf80454ef76c1462e38ce95c8b6786aebb8526692dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。以下是 mvp2_sft_eval_r2 的完整结果：\n\n## SFT Baseline Eval 结果 (DocRED dev, 985 samples)\n\n| 指标 | 数值 |\n|------|------|\n| **Rel-F1** | **0.4057** |\n| **Ign-F1** | 0.4057 |\n| **Precision** | 0.4043 |\n| **Recall** | 0.4070 |\n| **Evi-F1** | **0.7979** |\n| Evi-Precision | 0.8035 |\n| Evi-Recall | 0.7924 |\n| **EDCR** | **0.7118** |\n| Format OK | 983/985 (99.8%) |\n| **Parse 成功率** | **617/985 (62.6%)** |\n| 截断数 | 367/985 (37.3%) |\n| 总预测数 | 18,815 |\n| 推理耗时 | 6,484.7s (~108min) |\n\n## 分析\n\n**关键问题：截断率过高。** 367/985 (37.3%) 的输出在 max_new_tokens=1024 处被截断，导致 JSON 不完整、无法解析。这是 format_ok_rate (99.8%) 与实际 parse 成功率 (62.6%) 之间巨大差距的原因——模型生成了合法 JSON 格式，但被长度截断后变成不完整的输出。\n\n**对 GRPO 实验的 baseline 参考意义：**\n- Rel-F1=0.4057 是 GRPO 需要超越的关系抽取基线\n- Evi-F1=0.7979 说明 SFT 模型已经学到了较好的证据定位能力\n- EDCR=0.7118 表示约 71% 的引用是针对性的（非 distractor），GRPO 的 CED reward 目标是提升这个值\n- 实际可用的只有 62.6% 的样本，**mvp2_sft_eval_r3（统一 eval 代码 + truncated JSON 修复）应能显著提升 parse 率，从而给出更准确的 baseline 数值**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp2-sft-eval-r2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8051eb24b6d7edec0d47",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "infra fix reeval checkpoint paths",
+  "task_key": "worker_infra_fix_reeval_checkpoint_paths_20260516T031721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_reeval_checkpoint_paths_20260516T031721_result.json",
+    "occurrence": 1,
+    "bytes": 371,
+    "sha256": "d71f954cf884d27e958f7f6d3d0a745b439808fe9e9a6145484c07d1a2ac44c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 checkpoint 文件全部存在：\n\n| 路径 | 大小 | 时间 |\n|------|------|------|\n| `rsft_output/checkpoint-510/adapter_model.safetensors` | 504MB | May 15 15:12 |\n| `rsft_output_s44/checkpoint-510/adapter_model.safetensors` | 504MB | May 15 15:12 |\n| `rsft_output_flat_nli/checkpoint-507/adapter_model.safetensors` | 504MB | May 16 00:30 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-reeval-checkpoint-paths.md"
+}

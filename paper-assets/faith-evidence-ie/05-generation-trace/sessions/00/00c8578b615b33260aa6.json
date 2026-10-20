@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00c8578b615b33260aa6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval codalab test check",
+  "task_key": "worker_eval_codalab_test_check_20260517T125948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_codalab_test_check_20260517T125948_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "795b5bdab8caeb20c27e4343c80593431e36db5f2b6edac437c6ddc4f7693d12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Test predictions 已存在且格式正确。\n\n**汇总：**\n\n| 文件 | 路径 | 状态 |\n|---|---|---|\n| **plan_002_test_rsft_s43** | `/root/autodl-tmp/eval_results/plan_002_test_rsft_s43/` | 完整 |\n| **plan_002_test_rsft_s44** | `/root/autodl-tmp/eval_results/plan_002_test_rsft_s44/` | 完整 |\n\n**plan_002_test_rsft_s43 详情（RSFT CED s43, checkpoint-510）：**\n- `predictions.json`: 8.1MB, 1000 docs, 27,119 predictions, format_ok 99.8%\n- `codalab_submission.json`: 2.3MB, **25,741 triples**, 标准 DocRED 提交格式 `[{title, h_idx, t_idx, r, evidence}, ...]`\n- 可直接提交 CodaLab\n\n**plan_002_test_rsft_s44 详情（RSFT s44, checkpoint-510）：**\n- `predictions.json`: 8.1MB, 1000 docs, 26,925 predictions, format_ok 99.6%\n- `codalab_submission.json`: 2.3MB, 格式同上\n- 可直接提交 CodaLab\n\n文件已就绪，无需重跑 inference。两个 seed 的 `codalab_submission.json` 均可直接提交 CodaLab。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-codalab-test-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7640854852bb3ee2eebb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit plan017 14b rsft s43 generate",
+  "task_key": "worker_submit_plan017_14b_rsft_s43_generate_20260522T183558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_plan017_14b_rsft_s43_generate_20260522T183558_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "69bc40184275cb2205136881124e74d69581aeacc46e381d6328dd6db5460dd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已经在运行，无需重复提交。\n\n**当前状态：**\n- **exp_id**: `plan017_14b_rsft_s43_generate`\n- **PID**: 194682，cuda:1\n- **进度**: 62/3027 docs (~2%)，平均 ~14-20s/doc\n- **预估总时长**: 按 ~17s/doc 计算，3027 docs ≈ 14.3 小时，已跑约 19 分钟\n- **预计完成时间**: 约 5/23 16:30（UTC）\n\n命令：\n```\nCUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_generate \\\n    --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B \\\n    --sft_adapter /root/autodl-tmp/sft_output_14b_s43 \\\n    --data_path /root/autodl-tmp/data/docred \\\n    --output_dir /root/autodl-tmp/rsft_generations_14b_s43 \\\n    --num_generations 8 --max_new_tokens 1024 --seed 43\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-plan017-14b-rsft-s43-generate-copy-2.md"
+}

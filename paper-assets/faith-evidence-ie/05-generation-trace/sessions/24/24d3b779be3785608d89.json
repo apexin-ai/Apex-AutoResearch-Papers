@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "id": "24d3b779be3785608d89",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research ced reranking code search",
+  "task_key": "worker_research_ced_reranking_code_search_20260517T045528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ced_reranking_code_search_20260517T045528_result.json",
+    "occurrence": 1,
+    "bytes": 5166,
+    "sha256": "11c9fcdf9dd815bb37a8cc70bb4cd0bc0f18e8790edfe79b4e83fb88e08b3e3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。以下是调研结果：\n\n---\n\n## 调研结果\n\n### 1. 现有可复用代码\n\n| 路径 | 用途 |\n|------|------|\n| `freige/rewards/ced_reward.py` | **核心 NLI 模块**：`CEDRewardModel` 类，含 `nli_entailment_prob(premises, hypotheses)` 批量推理，`compute_ced_reward()` 和 `compute_flat_nli_reward()` |\n| `freige/eval/ced_reranker.py` | **已有完整 CED reranking 实现**：`score_candidate_ced()` 函数，对每个 triple 用 predicted evidence 做 CED scoring |\n| `freige/rewards/ced_reward.py::verbalize_triple()` | 将 `(head, Pxxx, tail)` 转为自然语言 claim |\n| `freige/eval/ced_reranker.py::verbalize_by_name()` | 用 relation name（而非 Pxxx code）做 verbalization |\n| `freige/training/rsft_score_filter.py` | RSFT 打分筛选，`compute_ced_reward_for_record()` |\n\n### 2. Predictions 文件格式\n\n```json\n{\n  \"doc_id\": \"Skai TV\",\n  \"raw_output\": \"[{\\\"head\\\": \\\"Skai TV\\\", ...}]\",\n  \"parsed_triples\": [\n    {\"head\": \"Skai TV\", \"relation\": \"country\", \"tail\": \"Greece\", \"evidence\": [0, 4]},\n    {\"head\": \"Skai TV\", \"relation\": \"headquarters location\", \"tail\": \"Piraeus\", \"evidence\": [0]}\n  ],\n  \"gold_triples\": [\n    {\"head\": \"Piraeus\", \"tail\": \"Greece\", \"relation\": \"country\", \"evidence\": [0, 4]}\n  ],\n  \"truncated\": false,\n  \"format_ok\": true\n}\n```\n\n**关键发现**：\n- `evidence` 字段是 **sentence index 列表**（整数），不是原文\n- predictions.json **不含 `sents`**，原文句子需从 `/root/autodl-tmp/data/docred/dev.json` 中按 `doc_id`（即 `title`）匹配获取\n- `dev.json` 中句子格式为 `doc[\"sents\"]`（list of list of tokens），需 `\" \".join(s)` 转为完整句子\n\n### 3. 关键问题回答\n\n1. **evidence 格式**：sentence index（int list），如 `[0, 4]`\n2. **NLI premise/hypothesis**：\n   - premise = concat of cited evidence sentences（用 index 从 doc sents 中取出拼接）\n   - hypothesis = verbalized triple（用 `verbalize_by_name(head, relation, tail)`）\n3. **现有代码可复用？** — **`ced_reranker.py` 已经是你要做的事情的完整实现**。它做的是 candidate-level reranking（选最佳 candidate），而你需要的是 **per-triple evidence filtering**（在单个 candidate 内过滤 evidence sentences）。核心 NLI 调用 `CEDRewardModel.nli_entailment_prob()` 完全可复用。\n\n### 4. 建议的 Evidence Filtering 脚本方案\n\n与已有 `ced_reranker.py`（选最佳 candidate）不同，新脚本做的是 **per-sentence evidence filtering**：\n\n```python\n# freige/eval/ced_evidence_filter.py\n\ndef filter_evidence_per_triple(\n    triple: dict,           # {\"head\", \"relation\", \"tail\", \"evidence\": [int]}\n    sents: list[str],       # document sentences\n    ced_model: CEDRewardModel,\n    tau: float = 0.5,\n) -> dict:\n    \"\"\"对单个 triple 的每条 evidence sentence 独立 scoring，过滤低分句。\"\"\"\n    claim = verbalize_by_name(triple[\"head\"], triple[\"relation\"], triple[\"tail\"])\n    evi_ids = [i for i in triple[\"evidence\"] if 0 <= i < len(sents)]\n    \n    if not evi_ids:\n        return {**triple, \"evidence\": [], \"evi_scores\": []}\n    \n    # 每句独立：premise=single sentence, hypothesis=claim\n    premises = [sents[i] for i in evi_ids]\n    hypotheses = [claim] * len(evi_ids)\n    scores = ced_model.nli_entailment_prob(premises, hypotheses).tolist()\n    \n    # 过滤\n    kept = [(idx, s) for idx, s in zip(evi_ids, scores) if s >= tau]\n    return {\n        **triple,\n        \"evidence\": [idx for idx, _ in kept],\n        \"evi_scores\": {idx: s for idx, s in zip(evi_ids, scores)},\n    }\n\n\ndef main(predictions_path, data_dir, output_dir, taus=[0.3, 0.5, 0.7]):\n    # 1. 加载 predictions + dev.json (获取 sents)\n    # 2. 按 doc_id 匹配 sents\n    # 3. 对每个 doc 的每个 parsed_triple 调用 filter_evidence_per_triple\n    # 4. 对每个 tau 输出 filtered_predictions.json\n    # 5. 对每个 tau 调用 DocREDEvaluator 计算 metrics\n```\n\n**与 `ced_reranker.py` 的区别**：\n- `ced_reranker`: 整个 candidate 打分 → 选最佳 candidate（不改 evidence）\n- 新脚本: 固定 candidate → 对每个 triple 的每条 evidence sentence 独立 NLI scoring → 删除低质量 evidence\n\n**NLI model 路径**: `/root/autodl-tmp/models/nli-deberta-v3-base` 或 `/root/autodl-tmp/models/deberta-v3-large-zeroshot-v2.0`"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "doc_id": "Skai TV",
+              "raw_output": "[{\"head\": \"Skai TV\", ...}]",
+              "parsed_triples": [
+                {
+                  "head": "Skai TV",
+                  "relation": "country",
+                  "tail": "Greece",
+                  "evidence": [
+                    0,
+                    4
+                  ]
+                },
+                {
+                  "head": "Skai TV",
+                  "relation": "headquarters location",
+                  "tail": "Piraeus",
+                  "evidence": [
+                    0
+                  ]
+                }
+              ],
+              "gold_triples": [
+                {
+                  "head": "Piraeus",
+                  "tail": "Greece",
+                  "relation": "country",
+                  "evidence": [
+                    0,
+                    4
+                  ]
+                }
+              ],
+              "truncated": false,
+              "format_ok": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ced-reranking-code-search.md"
+}

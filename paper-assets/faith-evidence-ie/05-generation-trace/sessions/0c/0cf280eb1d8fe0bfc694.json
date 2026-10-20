@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cf280eb1d8fe0bfc694",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code error analysis script",
+  "task_key": "worker_code_error_analysis_script_20260518T144152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_error_analysis_script_20260518T144152_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "623e69b47e89d510915223bb3857641669b44f722dbedf7137545be8f6f94355"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "FP 子类计数已修复（1.7B: 4748+582=5330 == Total FP）。\n\n脚本完成，输出位于 `/root/autodl-tmp/analysis/error_analysis/`：\n\n| 文件 | 内容 |\n|------|------|\n| `{eval}_errors.csv` | 每个 eval 的分类统计 |\n| `{eval}_per_relation.json` | 每个关系的 TP/FP/FN 明细 |\n| `comparison.csv` | 多 eval 横向对比 |\n| `error_analysis_table.tex` | LaTeX 表格，可直接放论文 |\n| `per_relation_all.json` | 合并的 per-relation 数据 |\n\n关键发现（3 个 SFT baseline 对比）:\n- **FP**: 主要是 hallucinated relation（~89%），relation confusion 占 ~11%\n- **FN**: cross-sentence miss 和 truncation loss 占主导，rare relation miss 相对少\n- **Evidence**: exact match 65-70%，over-citation 和 under-citation 各 ~15%，evidence shift 很低（<2%）\n- 1.7B→8B→Llama-8B 升级时，duplicates 显著下降（4538→4075→2624），truncation loss 也降"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-error-analysis-script.md"
+}

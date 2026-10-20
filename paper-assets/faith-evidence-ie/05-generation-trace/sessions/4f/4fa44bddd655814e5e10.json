@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fa44bddd655814e5e10",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_18_1779376115.md",
+  "task_key": "loop_18_1779376115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779376115.md",
+    "occurrence": 1,
+    "bytes": 4132,
+    "sha256": "25e796111686d1b7ce2010060c73d64b2a0ead6093115d5e54abb8bc1b3a8e8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-21T15:02:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0/1/2/3，不得用其他设备\n- LLaMA SFT 脚本用 `GPU=X` 传物理 GPU 编号，不能依赖框架注入的 CUDA_VISIBLE_DEVICES（脚本内部会覆盖）\n- RSFT eval 必须传 `--sft_adapter` 参数（nested LoRA 架构，不传会报错）\n- Evidence tax 论文报告标准：用 fair comparison（format-OK 子集），不修 parser（D134 决策）\n- LLaMA eval timeout：1024 版至少 4h，2048 版（尤其 s43 高截断 seed）至少 6h\n- 14B 模型 SFT adapter 路径是 `sft_output_14b/checkpoint-144`（不是顶层目录）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x (connect.westd.seetacloud.com:37389), 4×RTX PRO 6000 98GB\n- **工作目录**: /root/autodl-tmp/freige\n- **Python**: conda base, /root/miniconda3/bin/python, Python 3.12, PyTorch 2.8.0+cu128\n- **模型路径**: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B, /root/autodl-tmp/models/Qwen/Qwen3-14B\n- **SFT adapters**: sft_output_llama_3_1_8b (s42), sft_output_llama_3_1_8b_s43, sft_output_llama_3_1_8b_s44\n- **数据**: /root/autodl-tmp/data/docred (dev.json: 998 docs, 12275 triples)\n- **14B RSFT scored data**: /root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl (3015 条)\n- **Fair tax 脚本**: /root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py\n- **磁盘**: 815G/879G 可用 (3% used)\n- **活跃进程**:\n  - plan017_14b_rsft_eval (cuda:0, PID 53413)\n  - eval_llama_sft_s43_no_evidence_2048_r2 (cuda:1, PID 58417, tmux=eval_llama_sft_s43_no_evidence_2048_r2)\n  - plan017_14b_rsft_no_evidence_eval (cuda:2, PID 55039)\n  - eval_llama_sft_s42_with_evidence_2048 (cuda:3, PID 55468)\n\n### 3. 📊 当前状态\n刚处理 eval_llama_sft_s43_no_evidence_2048 的 timeout 失败（EXIT_CODE=124, 237/247 batch, 96%）。已以 timeout_hours=6 重提交为 r2 到 cuda:1。4 GPU 全满，Director 已汇报。\n\nRUNNING 实验：\n- **plan017_14b_rsft_eval** (cuda:0): 14B RSFT eval on DocRED dev，期望超越 SFT 0.5507 baseline\n- **eval_llama_sft_s43_no_evidence_2048_r2** (cuda:1): s43 SFT no-evi 2048 版重跑，补齐 3-seed evidence tax\n- **plan017_14b_rsft_no_evidence_eval** (cuda:2): 14B RSFT no-evidence eval，测 14B scale evidence tax\n- **eval_llama_sft_s42_with_evidence_2048** (cuda:3): s42 with-evi@2048 control，验证 with-evi 对 token limit 不敏感\n\n等待：4 个实验的 cron 完成回调。无 Worker 在跑。\n\n### 4. 📋 待办\n- plan017_14b_rsft_eval 完成 → 与 SFT 0.5507 对比，填 scaling table 14B 行 RSFT 列；success 则 14B scaling story 完整\n- plan017_14b_rsft_no_evidence_eval 完成 → 计算 14B evidence tax，与 8B/4B/1.7B 对比 tax 趋势\n- eval_llama_sft_s43_no_evidence_2048_r2 完成 → 跑 fair_evidence_tax.py 算 s43 fair tax；3-seed SFT evidence tax 完整后与 RSFT 3-seed (-1.14pp±0.76pp) 对比方差\n- eval_llama_sft_s42_with_evidence_2048 完成 → 与 s42@1024 (ign_f1=0.5384) 对比：delta<1pp 则 with-evi 对 token limit 不敏感（方法论合理），delta>1pp 则需要调整 evidence tax 计算\n- 所有 LLaMA evidence tax 实验完成 → 汇总 SFT vs RSFT evidence tax swing 对比，更新论文 Table\n\n### 5. 🎯 战略上下文\n- **核心方向**: FREIGE — LLM-based evidence-grounded DocRE，3 贡献：RSFT+NLI 有效性、Decoupling spectrum、Scale-dependent evidence tax + variance compression\n- **投稿目标**: EMNLP 2026 Main (ARR July, ~56 天)\n- **Scaling table** (核心论据): 1.7B/4B/8B/LLaMA-8B 已完成，14B RSFT eval 是最后一行\n- **D136 关键发现**: LLaMA SFT evidence tax wildly seed-dependent（s42 +1.35pp vs s44 -12.62pp），而 RSFT 一致 -1.14pp±0.76pp。这是 variance compression 最强证据之一\n- **易错点**:\n  - s42 的 eval 结果是 ign_f1=0.5384（不是 0.5514，后者是 rel_f1）\n  - LLaMA RSFT s42 ign_f1=0.5714（不是 0.5839=rel_f1），D129 已修正\n  - 4B RSFT 有两版数据（A 版 k=3 vs B 版 k=1），论文用 B 版 (0.5152)\n  - SFT evidence tax 的 \"fair comparison\" 只看 format-OK 子集，不是全集\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779376115.md"
+}

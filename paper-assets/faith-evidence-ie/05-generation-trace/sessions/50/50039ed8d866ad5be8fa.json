@@ -1,0 +1,211 @@
+{
+  "schema_version": "1.0",
+  "id": "50039ed8d866ad5be8fa",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "maintenance report cleanup",
+  "task_key": "worker_maintenance_report-cleanup_20260520T033258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_maintenance_report-cleanup_20260520T033258.jsonl",
+    "occurrence": 1,
+    "bytes": 12813,
+    "sha256": "9900119a5fdfaf1422537dd518e084893f3dd6509762da332af43b6b332c8eb7"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T03:34:23.430415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_maintenance_report-cleanup_20260520T033258",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T03:34:23.430997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Handover — 2026-05-20\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t| exp_id | 假设 | 状态 | 关键指标 | W&B |\n7\t|--------|------|------|---------|-----|\n8\t| eval_llama_rsft_s43_no_evidence | LLaMA-3.1-8B RSFT s43 no-evidence eval: 测量 LLaMA RSFT s43 的 evidence tax。With-evidence ign_f1=0.5662。对比 s42 evidence tax (-3.13pp) 看 seed 稳定性。跨家族 evidence tax 第 2 seed。 | — | — | — |\n9\t| llama_rsft_s44_pipeline | LLaMA-3.1-8B RSFT s44 full pipeline: 补齐第 3 个 seed，计算 LLaMA RSFT 3-seed mean 和 variance compression。s42 ign_f1=0.5839, s43 ign_f1=0.5662。Method A: 复用 s42 CED-scored data (2952 samples)，只变 RSFT training seed=44。 | — | — | — |\n10\t| plan017_14b_rsft_generate | 14B RSFT Step 1: 用 14B SFT adapter (ign_f1=0.5507) 在 DocRED 训练集上生成 N=8 RSFT 候选。验证 RSFT pipeline 在第 4 尺度档 (14B) 的有效性，补齐 scaling table 最后一行。D112 已确认 RSFT pipeline 从强 SFT base 出发可提升 +4.18pp (4B)。 | — | — | — |\n11\t\n12\t## 待处理\n13\t（无）\n14\t\n15\t## 近期结论\n16\t- **plan010_nli_large_eval_r2** (success): NLI v3-large ablation eval r2: 评估用 DeBERTa-v3-large CED scorer 训练的 RSFT 模型。r1 因 cron 监控旧 PID 误标 failed，实际推理进程 (PID 733763) 正常运行。Baseline: v3-base CED s42 ign_f1=0.4517。 ← 基于 plan010_nli_large_ablation\n17\t- **eval_llama_rsft_s42_no_evidence** (negative): Removing evidence output from LLaMA-3.1-8B RSFT model will improve ign_f1 by freeing generation capacity for relation extraction, similar to the Qwen3-8B no-evidence ablation. ← 基于 d102_llama_rsft_k1_s42\n18\t- **plan010_nli_large_eval** (failed): NLI v3-large ablation eval: 评估用 DeBERTa-v3-large CED scorer 训练的 RSFT 模型。Baseline: v3-base scored RSFT ign_f1=0.4517 (CED s42)。如 v3-large 更好=当前有提升空间 / 持平=NLI选择鲁棒 / 更差=over-confident scoring引入噪声。 ← 基于 plan010_nli_large_ablation\n19\t\n20\t## 趋势\n21\t成功 147 / 负向 21 / 失败 51 / 共 262\n22\tedcr: 0.653 ↑（近 3 次 success）\n23\tf1: 0.4636 ↓（近 3 次 success）\n24\t\n25\t## 下一步\n26\t（无活跃 idea，请通过 ideas.md 添加）\n27\t\n28\t## 资源状态\n29\trtx5090-4x: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\n30\t\n31\t## 告警\n32\t- mvp2_grpo_ced: 训练失败 — unknown\n33\t- mvp2_grpo_flatnli: 训练失败 — unknown\n34\t- mvp2_grpo_\n…[truncated 4283 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_maintenance_report-cleanup_20260520T033258",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T03:34:23.431663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_maintenance_report-cleanup_20260520T033258",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md",
+              "old_string": "rtx5090-4x: 空闲 cuda:0, cuda:1, cuda:2, cuda:3",
+              "new_string": "rtx5090-4x: cuda:0+2 plan017_14b_rsft_generate (~10h运行中), cuda:1 eval_llama_rsft_s43_no_evidence (运行中), cuda:3 llama_rsft_s44_pipeline (运行中)"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T03:34:23.432245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_maintenance_report-cleanup_20260520T033258",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T03:34:23.432467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_maintenance_report-cleanup_20260520T033258",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md",
+              "old_string": "## 告警\n- mvp2_grpo_ced: 训练失败 — unknown\n- mvp2_grpo_flatnli: 训练失败 — unknown\n- mvp2_grpo_extract: 训练失败 — unknown\n- mvp2_sft_eval: 已被终止 — unknown\n- mvp2_grpo_ced_r1: 已被终止 — unknown\n- mvp2_grpo_ced_r2: 已被终止 — unknown\n- mvp2_grpo_ced_r3: 训练失败 — unknown\n- mvp2_grpo_ced_r4: 已被终止 — unknown\n- mvp2_grpo_extract_r2: 已被终止 — unknown\n- mvp2_grpo_flatnli_r2: 已被终止 — unknown\n- mvp2_grpo_flatnli_r3: 已被终止 — unknown\n- mvp2_grpo_ced_kl001: 训练失败 — unknown\n- mvp2_grpo_ced_kl001_r2: 已被终止 — unknown\n- mvp2_grpo_ced_kl001_r3: 已被终止 — unknown\n- mvp2_grpo_flatnli_r4: 已被终止 — unknown\n- mvp2_grpo_extract_r4: 已被终止 — unknown\n- mvp2_grpo_flatnli_r5: 已被终止 — unknown\n- mvp2_eval_ced_kl001_r4_multi: 已被终止 — unknown\n- mvp2_eval_ced_kl001_r4_last: 已被终止 — unknown\n- mvp2_eval_ced_kl001_r4_ckpt90: 已被终止 — unknown\n- mvp2_eval_ced_kl001_r4_high: 训练失败 — unknown\n- mvp2_grpo_ced_lr5e6_r1: 已被终止 — unknown\n- mvp2_grpo_ced_lr5e6_p1_r1: 已被终止 — unknown\n- mvp2_grpo_ced_lr5e6_rp_r1: 训练失败 — unknown\n- mvp2_eval_ced_kl001_r4_ckpt7080: 训练失败 — unknown\n- mvp2_grpo_ced_lr5e6_rp_r2: 已被终止 — unknown\n- mvp2_eval_lr5e6_r1_ckpt40: 训练失败 — unknown\n- mvp2_eval_lr5e6_rp_r2_ckpt20: 已被终止 — unknown\n- mvp2_eval_lr5e6_r1_ckpt60: 训练失败 — unknown\n- mvp2_rsft_generate: 训练失败 — unknown\n- mvp2_rsft_ced_scoring_topk3: 已被终止 — unknown\n- mvp2_eval_rsft_s44: 已被终止 — unknown\n- mvp2_rsft_train_r2_fix: 已被终止 — unknown\n- mvp2_eval_rsft_s43: 训练失败 — unknown\n- mvp2_eval_rsft_r2b_maxtok1536: 已被终止 — unknown\n- plan_011_eval_g8_bf16_ckpt100: 已被终止 — unknown\n- plan_015_grpo_g4_bf16: 已被终止 — unknown\n- plan_015_grpo_g4_bf16_v2: 已被终止 — unknown\n- plan_015_grpo_g4_bf16_v3: 已被终止 — unknown\n- plan_002_test_eval_s44: 训练失败 — unknown\n- plan_009_extract_reward_eval: 训练失败 — unknown\n- plan_009_flatnli_reward_eval: 训练失败 — unknown\n- eval_plan_012_dpo_ced_ckpt400: 训练失败 — unknown\n- plan_009_flatnli_reward_eval_r2: 训练失败 — unknown\n- eval_plan_001_flat_nli_s43: 训练失败 — unknown\n- eval_plan_008_rsft_topk3: 已被终止 — unknown\n- eval_plan_012_dpo_1ep_fixed: 已被终止 — unknown\n- eval_plan_008_topk3_fixed: 已被终止 — unknown\n- eval_flat_nli_seed44: 已被终止 — unknown\n- eval_plan_014_no_evidence: 训练失败 — unknown\n- rsft_ced_s45_train: 已被终止 — unknown\n- rsft_ced_s43_train: 训练失败 — unknown\n- rsft_ced_s45_train_r2: 已被终止 — unknown\n- rsft_ced_s43_train_r2: 训练失败 — unknown\n- rsft_ced_s45_train_r3: 训练失败 — unknown\n- seed_comparison_prep: 已被终止 — unknown\n- plan_006_qwen3_1_7b_sft: 已被终止 — unknown\n- reeval_flat_nli_s44: 已被终止 — unknown\n- plan_006_qwen3_1_7b_no_evidence_eval: 训练失败 — unknown\n- plan_006_qwen3_8b_no_evidence_eval: 已被终止 — unknown\n- plan_006_qwen3_1_7b_no_evidence_eval_v2: 训练失败 — unknown\n- plan_006_qwen3_1_7b_no_evidence_eval_v2r2: 训练失败 — unknown\n- plan_007_redocred_4b_sft_eval: 训练失败 — unknown\n- plan_006_qwen3_8b_rsft_candidates: 训练失败 — unknown\n- plan_016_llama_rsft_candidates: 训练失败 — unknown\n- plan_007_redocred_rsft_eval: 训练失败 — unknown\n- plan_016_llama_rsft_candidates_r2: 训练失败 — unknown\n- plan_007_redocred_rsft_eval_r3: 训练失败 — unknown\n- plan_002_test_rsft_s43: 训练失败 — unknown\n- plan_007_redocred_rsft_eval_r4: 训练失败 — unknown\n- plan_016_llama_rsft_train: 训练失败 — unknown\n- plan_016_llama_rsft_train_r2: 训练失败 — unknown\n- rsft_s44_dev_eval_preds: 训练失败 — unknown\n- lead2_rsft_grpo_ced: 训练失败 — unknown\n- plan_006_qwen3_8b_rsft_train: 训练失败 — unknown\n- plan006_1_7b_rsft_eval: 已被终止 — unknown\n- plan_006_qwen3_1_7b_rsft_eval: 训练失败 — unknown\n- lead2_rsft_grpo_ced_r2: 训练失败 — unknown\n- plan_006_llama_rsft_seed43_eval: 训练失败 — unknown\n- d102_llama_rsft_k1_s43_eval: 已被终止 — unknown\n- wave1_sft_4b_s43_eval: 训练失败 — unknown\n- wave1_sft_4b_s44_eval: 训练失败 — unknown\n- plan019_1_7b_sft_s43: 训练失败 — unknown\n- plan019_1_7b_rsft_s43: 训练失败 — unknown\n- plan019_1_7b_rsft_s44: 训练失败 — unknown\n- d112_rsft_s44_train: 训练失败 — unknown\n- plan017_14b_sft_eval: 已被终止 — unknown\n- plan017_14b_sft_no_evidence_eval: 已被终止 — unknown\n- d112_rsft_s44_eval: 训练失败 — unknown\n- plan019_1_7b_rsft_no_evidence_eval: 已被终止 — unknown\n- plan019_8b_rsft_no_evidence_eval: 已被终止 — unknown\n- d112_rsft_no_evidence_eval: 训练失败 — unknown\n- d112_rsft_no_evidence_eval_r2: 训练失败 — unknown\n- plan010_nli_large_eval: 训练失败 — unknown",
+              "new_string": "## 告警\n（无活跃告警）"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T03:34:23.432777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_maintenance_report-cleanup_20260520T033258",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T03:34:23.432944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_maintenance_report-cleanup_20260520T033258",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T03:34:23.433103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Handover — 2026-05-20\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t| exp_id | 假设 | 状态 | 关键指标 | W&B |\n7\t|--------|------|------|---------|-----|\n8\t| eval_llama_rsft_s43_no_evidence | LLaMA-3.1-8B RSFT s43 no-evidence eval: 测量 LLaMA RSFT s43 的 evidence tax。With-evidence ign_f1=0.5662。对比 s42 evidence tax (-3.13pp) 看 seed 稳定性。跨家族 evidence tax 第 2 seed。 | — | — | — |\n9\t| llama_rsft_s44_pipeline | LLaMA-3.1-8B RSFT s44 full pipeline: 补齐第 3 个 seed，计算 LLaMA RSFT 3-seed mean 和 variance compression。s42 ign_f1=0.5839, s43 ign_f1=0.5662。Method A: 复用 s42 CED-scored data (2952 samples)，只变 RSFT training seed=44。 | — | — | — |\n10\t| plan017_14b_rsft_generate | 14B RSFT Step 1: 用 14B SFT adapter (ign_f1=0.5507) 在 DocRED 训练集上生成 N=8 RSFT 候选。验证 RSFT pipeline 在第 4 尺度档 (14B) 的有效性，补齐 scaling table 最后一行。D112 已确认 RSFT pipeline 从强 SFT base 出发可提升 +4.18pp (4B)。 | — | — | — |\n11\t\n12\t## 待处理\n13\t（无）\n14\t\n15\t## 近期结论\n16\t- **plan010_nli_large_eval_r2** (success): NLI v3-large ablation eval r2: 评估用 DeBERTa-v3-large CED scorer 训练的 RSFT 模型。r1 因 cron 监控旧 PID 误标 failed，实际推理进程 (PID 733763) 正常运行。Baseline: v3-base CED s42 ign_f1=0.4517。 ← 基于 plan010_nli_large_ablation\n17\t- **eval_llama_rsft_s42_no_evidence** (negative): Removing evidence output from LLaMA-3.1-8B RSFT model will improve ign_f1 by freeing generation capacity for relation extraction, similar to the Qwen3-8B no-evidence ablation. ← 基于 d102_llama_rsft_k1_s42\n18\t- **plan010_nli_large_eval** (failed): NLI v3-large ablation eval: 评估用 DeBERTa-v3-large CED scorer 训练的 RSFT 模型。Baseline: v3-base scored RSFT ign_f1=0.4517 (CED s42)。如 v3-large 更好=当前有提升空间 / 持平=NLI选择鲁棒 / 更差=over-confident scoring引入噪声。 ← 基于 plan010_nli_large_ablation\n19\t\n20\t## 趋势\n21\t成功 147 / 负向 21 / 失败 51 / 共 262\n22\tedcr: 0.653 ↑（近 3 次 success）\n23\tf1: 0.4636 ↓（近 3 次 success）\n24\t\n25\t## 下一步\n26\t（无活跃 idea，请通过 ideas.md 添加）\n27\t\n28\t## 资源状态\n29\trtx5090-4x: cuda:0+2 plan017_14b_rsft_generate (~10h运行中), cuda:1 eval_llama_rsft_s43_no_evidence (运行中), cuda:3 llama_rsft_s44_pipeline (运行中)\n30\t\n31\t\n…[truncated 20 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_maintenance_report-cleanup_20260520T033258",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T03:34:23.433333+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。清除 95 条历史告警，资源状态已更新为当前 3 个运行中任务的 GPU 分配。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_maintenance_report-cleanup_20260520T033258"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/maintenance-report-cleanup.md"
+}

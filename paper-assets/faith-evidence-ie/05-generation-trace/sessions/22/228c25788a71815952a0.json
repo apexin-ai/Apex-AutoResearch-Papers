@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "228c25788a71815952a0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 009 grpo forgetting dynamics",
+  "task_key": "worker_analysis_plan_009_grpo_forgetting_dynamics_20260515T143751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_009_grpo_forgetting_dynamics_20260515T143751_result.json",
+    "occurrence": 1,
+    "bytes": 1536,
+    "sha256": "2560fc6ba3220800f3e369e23a52bd73e8ba121dedcae592b4a0efbf361c0b19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已就绪。\n\n---\n\n## 汇总表\n\n| Run | Best rel_F1 | Final rel_F1 | Best Reward | Final Reward | Steps |\n|-----|------------|-------------|------------|-------------|-------|\n| CED, lr=5e-5, kl=0.01 | **0.2167** (step 100) | 0.2167 | 1.370 | 1.195 | 100 |\n| CED, lr=5e-6, kl=0.01 | 0.0138 (step 100) | 0.0138 | 0.461 | 0.380 | 180 |\n| CED, G=8, bf16 | N/A (无 eval) | N/A | 2.858 | 1.795 | 100 |\n| **SFT baseline** | **0.4057** | — | — | — | — |\n\n## Forgetting Dynamics 关键观察\n\n1. **Reward-performance decoupling**: 所有 GRPO 配置的 reward 持续上升（lr=5e-5 达 1.37, G=8 达 2.86），但 rel_F1 最高仅恢复到 SFT baseline 的 53%（0.217 vs 0.406），lr=5e-6 更是全程 <0.014。\n\n2. **Evidence-extraction decoupling**: lr=5e-6 的 evi_F1 从 0.628 稳步升至 0.850（超过 SFT 的 0.798），但 rel_F1 始终近零——模型学会了引用证据句但完全丧失了关系抽取能力，reward hacking 的典型表现。\n\n3. **U 型恢复不足**: lr=5e-5 的 rel_F1 呈 U 型（step-10: 0.003 → step-100: 0.217），有缓慢恢复趋势但远不够，且 evi_F1 反而从 0.72 降至 0.57——关系恢复以证据质量为代价。\n\n## 产出文件\n- `artifacts/plan_009_grpo_forgetting/grpo_forgetting_dynamics.pdf`\n- `artifacts/plan_009_grpo_forgetting/grpo_forgetting_dynamics.png`\n- `artifacts/plan_009_grpo_forgetting/summary.json`\n- 服务器端绘图脚本: `/root/autodl-tmp/artifacts/plan_009_grpo_forgetting/plot_forgetting_v2.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-009-grpo-forgetting-dynamics.md"
+}

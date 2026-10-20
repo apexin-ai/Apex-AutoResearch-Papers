@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3093a28f963159c8722",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "fix seed comparison ign f1 compat",
+  "task_key": "worker_fix_seed_comparison_ign_f1_compat_20260516T052418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_seed_comparison_ign_f1_compat_20260516T052418_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "8c6a5642cb4fa819df2c5aa952bee0199c2c99dc62900d022c3f622577a7453d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "seed_comparison.py 已正确读取 CED s43/s45 的 ign_f1：\n\n| Seed | CED Ign-F1 | fNLI Ign-F1 |\n|------|-----------|------------|\n| s43 | 0.4512 | — |\n| s45 | 0.4416 | 0.4462 |\n\n汇总统计也正常：CED ign_f1 = 0.4464 ± 0.0068 (n=2), fNLI = 0.4492 ± 0.0042 (n=2)。当前只有 s45 一个 matched seed，paired t-test 需等更多 seed 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-seed-comparison-ign-f1-compat.md"
+}

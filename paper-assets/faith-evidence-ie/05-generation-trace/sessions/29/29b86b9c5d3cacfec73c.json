@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29b86b9c5d3cacfec73c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code push anon repo v8",
+  "task_key": "worker_code_push-anon-repo-v8_20260524T061316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_push-anon-repo-v8_20260524T061316_result.json",
+    "occurrence": 1,
+    "bytes": 267,
+    "sha256": "b421b6fe5249ef8636aea9908bd906b858c054f86741fd4ae0e6df7cbdd8686c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推送完成。\n\n- **Commit**: `bfb8325` — Regenerate fig_scaling with updated style (RSFT bars + refined aesthetics)\n- **Files**: fig_scaling.pdf, fig_scaling.png, main.pdf\n- **Author**: 全部为 `Anonymous <anon@example.com>`，无信息泄露"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-push-anon-repo-v8.md"
+}

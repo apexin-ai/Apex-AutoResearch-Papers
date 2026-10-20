@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcc40b0e6d0bb1113b1d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "infra fix sft launch",
+  "task_key": "worker_infra_fix-sft-launch_20260514T061451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix-sft-launch_20260514T061451_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "561934b39d68324fafebfbea9910013e6daa8a1bb0ad8999728972829b062961"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中：\n\n- **进度**: 5/144 steps（~3.5%），~8.4s/step\n- **4 卡 GPU 均在使用**: 7.5-13.8 GB / 32 GB\n- **预计训练时长**: ~20 分钟/epoch，3 epoch 约 1 小时\n- lr_scheduler 警告无害，可忽略\n\n代码无需修改——TRL 1.1.0 的 SFTConfig 支持 `max_length` 和 `dataset_text_field`，原代码已正确使用。之前的崩溃可能是残留进程或环境问题导致，清理后重新提交即恢复正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-sft-launch.md"
+}

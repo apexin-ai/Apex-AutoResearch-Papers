@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "125fd4abbb87c334fe2d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research nli ablation prep",
+  "task_key": "worker_research_nli_ablation_prep_20260518T024839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_nli_ablation_prep_20260518T024839_result.json",
+    "occurrence": 1,
+    "bytes": 2295,
+    "sha256": "d4a463ab39b2f52d315ed6bdd0f6003d2aa0258f81915e937c3ca7532d9e1935"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息已经足够，汇总报告：\n\n---\n\n## Plan_010 NLI Model Ablation 准备度评估\n\n### 1. 模型可用性\n\n| 模型 | 状态 | 位置 |\n|------|------|------|\n| `cross-encoder/nli-deberta-v3-base` | **已下载** (715MB) | `/root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/` |\n| `cross-encoder/nli-deberta-v3-large` | **未下载** | HF cache 中不存在 |\n\n**重要发现：当前代码默认已经是 base，不是 large。**\n\n- `ced_reward.py:22` → `DEFAULT_NLI_MODEL = \"cross-encoder/nli-deberta-v3-base\"`\n- `rsft_score_filter.py:490` → `default=\"cross-encoder/nli-deberta-v3-base\"`\n- `ced_reranker.py:286` → `default=\"cross-encoder/nli-deberta-v3-base\"`\n\n也就是说：**plan_010 的 ablation 方向可能需要反过来**——需要下载 large 来对比 base，而非下载 base 来对比 large。\n\n`ced_reranker.py` docstring 中写的 `deberta-v3-large-zeroshot-v2.0` 是 MoritzLaurer 的 zero-shot 分类模型（不是 cross-encoder NLI），只出现在注释示例中，不是当前默认。\n\n### 2. 代码改动量\n\n**零代码改动。** `rsft_score_filter.py` 和 `ced_reranker.py` 都已支持 `--nli_model_path` 参数，直接传 `cross-encoder/nli-deberta-v3-large` 即可切换。\n\n### 3. GPU 时间预估\n\n| 步骤 | base (184M params) | large (~435M params) |\n|------|----|----|\n| CED NLI scoring | ~15-20 min | ~35-45 min |\n| RSFT 训练 | ~2h (不变) | ~2h (不变) |\n| Eval | ~1h (不变) | ~1h (不变) |\n| **总计** | ~3.5h | ~3.5-4h |\n\nNLI scoring 是 DeBERTa 推理，base→large 约 2-2.5x 慢，但绝对时间不长。RSFT 训练和 eval 与 NLI 模型选择无关。\n\n### 4. 阻塞项\n\n| 阻塞项 | 严重性 | 解法 |\n|--------|--------|------|\n| `cross-encoder/nli-deberta-v3-large` 未下载 | **中** | 需下载 ~1.7GB；服务器 HuggingFace **网络不可达**（刚确认连接超时），需通过镜像或离线传输 |\n| 网络不可达 | **高** | 服务器无法访问 huggingface.co，需要用 `hf-mirror.com` 或手动传模型文件 |\n\n**结论：** 代码 ready，唯一阻塞是服务器无法从 HuggingFace 下载 large 模型。需要配置 HF 镜像（`HF_ENDPOINT=https://hf-mirror.com`）或从外部下载后 scp 上传。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-nli-ablation-prep.md"
+}

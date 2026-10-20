@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b4445afd9f50900dd76",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis mvp2 eval rsft s43 r2",
+  "task_key": "worker_analysis_mvp2_eval_rsft_s43_r2_20260515T131820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp2_eval_rsft_s43_r2_20260515T131820_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "6ba9c3123045eeef4ae52cad36e316e692a7d652f7c5752efde6c0e2f1a8787b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成，结果如下：\n\n```\nrel_f1: 0.4683\nign_f1: 0.4683\nevi_f1: 0.8156\nedcr: 0.6388\nprecision: 0.4817\nrecall: 0.4556\nevi_precision: 0.8142\nevi_recall: 0.8170\nn_predictions: 14970\nn_truncated: 171\nformat_ok_rate: 1.0\ninference_time_s: 6316.7\n```\n\n**PASS** — rel_f1=0.4683 > 0.4057, evi_f1=0.8156 > 0.798。\n\n三个 seed 汇总：\n\n| Seed | rel_f1 | evi_f1 | EDCR |\n|------|--------|--------|------|\n| 42 (r1) | 0.4449 | 0.8187 | 0.6565 |\n| 44 | 0.4655 | 0.8087 | 0.6350 |\n| 43 (r2) | 0.4683 | 0.8156 | 0.6388 |\n| **均值** | **0.4596** | **0.8143** | **0.6434** |\n| **标准差** | **0.0127** | **0.0051** | **0.0113** |\n\n三个 seed 均稳定超过 SFT baseline（rel_f1=0.4057, evi_f1=0.7979），RSFT 提升显著。EDCR 均低于 SFT 的 0.7118，说明 RSFT 引入了更多 distractor citations。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp2-eval-rsft-s43-r2.md"
+}

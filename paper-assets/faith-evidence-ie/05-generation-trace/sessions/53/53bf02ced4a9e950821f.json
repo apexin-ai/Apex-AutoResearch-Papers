@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53bf02ced4a9e950821f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code rsft format fix",
+  "task_key": "worker_code_rsft-format-fix_20260515T011149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rsft-format-fix_20260515T011149_result.json",
+    "occurrence": 1,
+    "bytes": 1456,
+    "sha256": "5ce4cdfc26acbfa376f85f1d47a8257dc5e32f5d4fbc38fad508914cad5bf059"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个脚本语法验证通过。\n\n## 汇报\n\n### 格式兼容性：无 bug\n任务描述中的 bug **在当前代码中不存在**。`rsft_score_filter.py` 已经：\n- 输出 JSONL 格式（`rsft_train.jsonl`，每行一个 JSON 对象）\n- 字段名与 trainer 一致\n\n### 字段名映射表\n\n| 字段 | generate 输出 | score_filter 输出 | trainer 期望 |\n|------|-------------|-----------------|------------|\n| 用户输入 | `prompt`（完整 chat template） | `input`（从 prompt 提取 user 内容） | `s[\"input\"]` |\n| 模型输出 | `output` | `output` | `s[\"output\"]` |\n| CED 分数 | — | `ced_score`（取自 `ced_reward`） | `s.get(\"ced_score\", 1.0)` |\n| 文档 ID | `doc_id` | `doc_id` | — |\n\n### 修改内容\n\n| 文件 | 修改 | 原因 |\n|------|------|------|\n| `rsft_generate.py:51` | `quantize=True` → `quantize=False` | 函数默认值与 argparse 默认值不一致，防止非 CLI 调用时误启用量化 |\n| `rsft_score_filter.py:14` | docstring `rsft_train.json` → `rsft_train.jsonl (JSONL)` | docstring 与实际输出格式不符 |\n\n### quantize 默认值检查\n\n| 脚本 | argparse 默认值 | 备注 |\n|------|----------------|------|\n| `rsft_generate.py` | `False`（`store_true`） | 函数参数默认值已修为 `False` |\n| `rsft_trainer.py` | `False`（`store_true`） | 正确 |\n| `rsft_score_filter.py` | 无 `--quantize` 参数 | 不涉及模型推理 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rsft-format-fix.md"
+}

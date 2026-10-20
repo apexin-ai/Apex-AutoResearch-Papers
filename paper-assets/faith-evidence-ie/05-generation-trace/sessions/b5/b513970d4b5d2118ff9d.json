@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b513970d4b5d2118ff9d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops submit reeval s43 cuda1",
+  "task_key": "worker_ops_submit-reeval-s43-cuda1_20260515T225643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-reeval-s43-cuda1_20260515T225643_result.json",
+    "occurrence": 1,
+    "bytes": 229,
+    "sha256": "3541dacaf163b8a9b5f8ff8109019fa19bdea6d801565754795ad450a651f72c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交，进程正在 cuda:1 上启动（显存从 0→3 MiB，模型加载中）。\n\n- **PID**: 266178\n- **Log**: `~/runs/faith-evidence-ie/reeval_flat_nli_s43.log`\n- **tmux session**: `reeval_flat_nli_s43`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-reeval-s43-cuda1.md"
+}

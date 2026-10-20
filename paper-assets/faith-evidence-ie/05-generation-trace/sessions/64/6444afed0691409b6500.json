@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "6444afed0691409b6500",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ssh ced score shard1",
+  "task_key": "worker_ssh_ced-score-shard1_20260515T044134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_ced-score-shard1_20260515T044134.log",
+    "occurrence": 1,
+    "bytes": 771736,
+    "sha256": "5feb0c5ca10b47565029e25a8ca692e38e89b8fed6f66ecc419e967871872c4d"
+  },
+  "statistics": {
+    "messages": 615,
+    "user_turns": 0,
+    "tool_calls": 271,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 69,
+      "tool_call": 271,
+      "tool_result": 271,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 615,
+      "chunks": [
+        {
+          "path": "6444afed0691409b6500-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6444afed0691409b6500-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6444afed0691409b6500-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6444afed0691409b6500-part-0004.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-ced-score-shard1.md"
+}

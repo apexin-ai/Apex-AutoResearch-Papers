@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb498e698027678e3b54",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check 8b sft completion",
+  "task_key": "worker_ops_check_8b_sft_completion_20260516T090106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_8b_sft_completion_20260516T090106_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "2baa192cc0307851cbbbc25ab092fef1b092a4fa2a67e192fba87fed9c245171"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃 cron，无需删除。所有更新完成。\n\n**训练结果汇总：plan_006_qwen3_8b_sft_bf16 ✅ 成功**\n\n| 指标 | 值 |\n|------|-----|\n| 模型 | Qwen3-8B, bf16 LoRA SFT |\n| 总步数 | 570 steps (3 epochs) |\n| train_loss | 0.5705 |\n| eval_loss (ep1→3) | 0.6814 → 0.6853 → 0.7186 |\n| eval_token_accuracy (ep1→3) | 0.8396 → 0.8404 → 0.8377 |\n| 训练耗时 | 65 分 32 秒 |\n| Checkpoints | checkpoint-190, checkpoint-570 |\n| 最终模型 | `/root/autodl-tmp/sft_output_qwen3_8b_bf16/` (adapter_model.safetensors, 698MB) |\n\neval_loss 在 epoch 2-3 略有上升（0.685→0.719），token accuracy 微降，存在轻微过拟合迹象。最优 checkpoint 可能是 epoch 1（checkpoint-190）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-8b-sft-completion.md"
+}

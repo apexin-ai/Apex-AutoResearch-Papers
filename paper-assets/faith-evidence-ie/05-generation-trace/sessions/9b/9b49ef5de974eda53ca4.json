@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "9b49ef5de974eda53ca4",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ops download qwen3 8b",
+  "task_key": "worker_ops_download_qwen3_8b_20260516T061430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_qwen3_8b_20260516T061430.log",
+    "occurrence": 1,
+    "bytes": 1041101,
+    "sha256": "ea0ff915aa32e6fffc9a0116196e21fcce20e46989e67a8e5475e000252733f8"
+  },
+  "statistics": {
+    "messages": 773,
+    "user_turns": 0,
+    "tool_calls": 229,
+    "roles": {
+      "log": 1,
+      "system": 25,
+      "record": 1,
+      "assistant": 286,
+      "tool_call": 229,
+      "tool_result": 229,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 773,
+      "chunks": [
+        {
+          "path": "9b49ef5de974eda53ca4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9b49ef5de974eda53ca4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9b49ef5de974eda53ca4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9b49ef5de974eda53ca4-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9b49ef5de974eda53ca4-part-0005.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-download-qwen3-8b.md"
+}

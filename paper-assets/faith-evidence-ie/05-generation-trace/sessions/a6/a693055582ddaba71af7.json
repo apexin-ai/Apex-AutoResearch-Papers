@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a693055582ddaba71af7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research ref audit worker 1",
+  "task_key": "worker_research_ref-audit-worker-1_20260526T101554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-worker-1_20260526T101554_result.json",
+    "occurrence": 1,
+    "bytes": 1097,
+    "sha256": "39a07af7153a1ce6608a92b618aee43e8f9ce04fb345a408662061abd9fafedd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "引用审计完成。报告已写入 `artifacts/ref_audit_worker1.md`。\n\n**核心结论：所有 52 篇论文均真实存在，无虚构引用。**\n\n9 条有问题需修复：\n\n| 严重性 | cite_key | 问题 |\n|--------|----------|------|\n| 高 | wang2025relprior | 标题错误（添加 \"RelPrior:\" 前缀、改写措辞） |\n| 高 | tang2025rsftppo | 缺少 2 位作者（Shaan Ul Haque, Nithish Kannen） |\n| 中 | li2026qurl | Venue 过时：arXiv → 已被 ICLR 2026 接收 |\n| 中 | wang2025rullm | 标题添加虚假 \"Ru-LLM:\" 前缀；@article→@inproceedings |\n| 中 | gulcehre2023rest | @inproceedings 但 booktitle 是 arXiv preprint → 应改 @article |\n| 中 | ma2023dreeam | Venue \"Findings of EACL 2023\" 可能应为 \"EACL 2023 main\" |\n| 低 | xu2024lmrc | 标题添加 \"LMRC:\" 前缀 |\n| 低 | ito2025mogrpo | cite key \"ito\" 但第一作者是 Ichihara |\n| 低 | liu2026gdpo | 标题大小写微差 |\n\n另有 17 条 bib 条目未在正文引用（可清理）。7 个 cite key 与第一作者姓氏不匹配（不影响渲染）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-audit-worker-1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdd6dc1d68e6e04ae255",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp eval rsft s44",
+  "task_key": "worker_exp_eval-rsft-s44_20260515T073623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_eval-rsft-s44_20260515T073623_result.json",
+    "occurrence": 1,
+    "bytes": 138,
+    "sha256": "e6df90d17e27e6e87916dce18bac6544bf61f94c668c34729065a92d9afe575e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正在推理中，预计 1.5-2 小时完成。我会每 ~4.5 分钟轮询一次进度，完成后自动汇报指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-eval-rsft-s44.md"
+}

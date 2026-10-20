@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fecddf32e916142f1e6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis s43 evi f1 joint",
+  "task_key": "worker_analysis_s43_evi_f1_joint_20260515T132852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s43_evi_f1_joint_20260515T132852_result.json",
+    "occurrence": 1,
+    "bytes": 410,
+    "sha256": "382d9e6c00c9081066b2868dae8d0b3f2972d464b0086dbce2c88118c9691be1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。RSFT s43 的 joint Evi-F1 结果：\n\n| 指标 | 值 |\n|------|-----|\n| evi_f1_joint | 0.3711 |\n| evi_f1_joint_P | 0.3747 |\n| evi_f1_joint_R | 0.3675 |\n| delta_evi_f1_joint | -0.4445 |\n\n已更新到 registry `mvp2_eval_rsft_s43_r2`。与其他 RSFT 实验对比，s43 的 joint evi_f1 (0.3711) 与 s44 (0.3713) 非常接近，均高于 r1 (0.3468) 和 r2a/r2b (0.3509/0.3490)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s43-evi-f1-joint.md"
+}

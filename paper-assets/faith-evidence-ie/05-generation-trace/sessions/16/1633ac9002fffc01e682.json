@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1633ac9002fffc01e682",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check llama rsft r2 exit",
+  "task_key": "worker_ops_check_llama_rsft_r2_exit_20260516T145541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_llama_rsft_r2_exit_20260516T145541_result.json",
+    "occurrence": 1,
+    "bytes": 434,
+    "sha256": "6a47de147cd0bad5e9b1cd433ce96f6aa1037c47cec16b31a59cd677587a051f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：plan_016_llama_rsft_candidates_r2 失败。**\n\n- 进程在 cuda:1 上运行约 23 分钟后被外部终止（无 Python traceback/error）\n- 仅完成 64/3027 docs（2.1%），生成 512 行\n- 大概率 OOM：8B 模型加载时日志已提示 \"We will use 90% of the memory on device 0\"，但实际设置的是 CUDA_VISIBLE_DEVICES=1，显存紧张\n- Registry 已更新为 DONE/failed，cron 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-llama-rsft-r2-exit.md"
+}

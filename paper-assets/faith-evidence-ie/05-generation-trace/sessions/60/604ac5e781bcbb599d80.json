@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "604ac5e781bcbb599d80",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_9_1778874442.md",
+  "task_key": "loop_9_1778874442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778874442.md",
+    "occurrence": 1,
+    "bytes": 4829,
+    "sha256": "6056259b4b593a50e13a40cf46c8dd506d02eba0027106aca53c09b09426aa24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T19:41:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**cuda:0/1/2/3** on rtx5090-4x only（`gpu_ids: [0,1,2,3]`）\n- SFT baseline 量化 confound（D058）：**所有 vs SFT delta 必须用 `eval_sft_baseline_noquant` 结果重算**，老 baseline rel_f1=0.4057 是 `--quantize` 下的值，论文不可引用\n- CED 不再是独立贡献（D056）：CED vs flat-NLI 统计不可区分，标题和 claim 中禁止 CED 优势表述\n- plan_011 bf16 vs mvp2_grpo_ced_kl001_r4 是**唯一干净的 quantization ablation**（D052/D053）：plan_015 有 lr confound，不能替代\n- GRPO decoupling claim 精确边界**未定稿**（D059）：等 plan_011 G=8 step-level eval + plan_012 DPO 1ep 结果后才能写\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x，账号 root\n- **工作目录**: `/root/autodl-tmp/freige`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`，SFT adapter `/root/autodl-tmp/sft_output`\n- **数据**: `/root/autodl-tmp/data/docred`，RSFT 数据 `/root/autodl-tmp/rsft_filtered_*/`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - PID 234494: plan_008_rsft_topk3 (RSFT top_k=3 训练)\n  - PID 236774: plan_001_flat_nli_seed43 (flat-NLI RSFT seed43 训练)\n  - PID 237912: eval_sft_baseline_noquant (SFT baseline 无量化 eval)\n- **Cron**: 3 个 active cron 分别监控上述 3 个 PID\n\n### 3. 📊 当前状态\n刚完成 D059 Claim 2 re-scope 讨论，派了两个 Worker（GPU 状态检查 + plan_012 DPO 1ep 准备），正在等回调。\n\n**RUNNING (3)**:\n- `eval_sft_baseline_noquant` — SFT baseline 无量化重跑（D058 发现旧 baseline 有量化 confound）\n- `plan_001_flat_nli_seed43` — flat-NLI RSFT seed=43 训练（第二个 flat-NLI seed，补 D055 统计）\n- `plan_008_rsft_topk3` — top_k=3 RSFT 训练（ablation：CED 筛选阈值影响）\n\n**ALLOCATED (2)**:\n- `plan_012_dpo_ced_1ep` — DPO+CED 1 epoch（Worker 正在准备代码，cuda:3）\n- `plan_011_bf16_g8_step_eval` — bf16 GRPO G=8 step-level eval（cuda:0，等提交）\n\n**PREPARING (2)**:\n- `mvp2_eval_rsft_s44` — RSFT s44 full eval\n- `plan_011_eval_g8_bf16_ckpt100` — bf16 GRPO ckpt-100 详细 eval\n\n**等待中**:\n- Worker `worker_ops_gpu_status_and_dpo_fix_20260515T193559` 回调\n- Worker `worker_prep_plan_012_dpo_1ep_20260515T193812` 回调\n- 3 个 cron 回调（训练完成时触发）\n\n### 4. 📋 待办（条件触发式）\n- `eval_sft_baseline_noquant` cron 回调 → 用新 baseline 重算所有 delta → 更新 paper_framing.md MVP Evidence Summary 表 → 汇报 Director\n- `plan_001_flat_nli_seed43` cron 回调 → spawn eval worker → 结果与 seed42 (0.4539) 比较，判断 flat-NLI 稳定性\n- `plan_008_rsft_topk3` cron 回调 → spawn eval worker → 若 top_k=3 > top_k=1 → CED 筛选阈值写 ablation\n- Worker prep DPO 1ep 完成 → submit_on_allocated plan_012_dpo_ced_1ep\n- Worker GPU status 完成 → 确认 plan_011_bf16_g8_step_eval 可提交 → submit_on_allocated\n- plan_012 DPO 1ep eval 出结果 → 若 decouple → C2 写 \"RL 通病\"；若不 decouple → C2 写 \"on-policy + QLoRA 特有\"（D059）\n- plan_011 G=8 step-level eval 完成 → 确认 decoupling 在 G=8 下是否持续 → 精确化 C2 措辞\n- 全部 P0 eval 收齐 → 启动 Paper Agent retitle + reframe + related work 扩展\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D002: CED 信号有效（MVP-1 PASS）\n- D031/D033: GRPO+QLoRA 全线遗忘（rel_f1<0.02），但 CED reward 确实驱动 evi_f1↑\n- D038: RSFT 有效（eval bug 修正后 rel_f1=0.4655 +5.98pp）\n- D051/D052/D054: **decoupling 是 QLoRA artifact**（bf16 rel_f1=0.4549 vs QLoRA 0.2167，Δ=+23.8pp，clean single-variable ablation）\n- D056: CED ≈ flat-NLI，CED 降级\n- D059: C2 精确边界待 G=8 + DPO 1ep 数据\n\n**论文定位**: \"task definition (evidence-grounded DocRE) + QLoRA decoupling finding + EDCR metric\"，目标 EMNLP 2026 Main ARR July\n\n**易错点**:\n- **不要用旧 SFT baseline (0.4057)算 delta**——D058 发现量化 confound，必须等 `eval_sft_baseline_noquant` 结果\n- **plan_015 不是干净 ablation**——有 lr/weights/kl 三变量差异，只能做 robustness check（D052/D053）\n- **plan_011 ckpt-100 的 rel_f1=0.4549 是唯一 checkpoint eval**——step-level trajectory（ckpt-30/50/70）还没跑，这是 `plan_011_bf16_g8_step_eval` 的目的\n- **memory.md 是 placeholder**——没有历史经验记录，所有上下文在 decisions.yaml 和 registry 中\n- **test set eval 目前不可行**（D057）——DocRED test.json 无 gold labels，需要工程改造支持 CodaLab 提交格式\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778874442.md"
+}

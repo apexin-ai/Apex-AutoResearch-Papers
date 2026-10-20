@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abd2c88639843db6f2aa",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "audit figure appendix final",
+  "task_key": "worker_audit_figure-appendix-final_20260523T191633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_figure-appendix-final_20260523T191633_result.json",
+    "occurrence": 1,
+    "bytes": 1135,
+    "sha256": "032b33d7d8939403f3f673a044125516db7635d6b0d005449f98a2d6c1d75136"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心结论：\n\n**14项验证通过** — fig_evidence_tax 全部5组 tax/error/n_seeds、fig_spectrum 全部6个数据点、Cohen's d 4个值、95% CI 8个区间、ablation 均值、RSFT Gain、LLaMA per-seed、error analysis 百分比等全部与源表一致。\n\n**2处不一致需修复：**\n\n1. **1.7B 方差压缩倍数**：experiments.tex 写 \"31×\"，appendix tab:variance_ci 写 \"32.6×\"。原因是主文用 rounded std (2.79/0.09=31) 计算，appendix 用 unrounded std 计算。建议统一为 appendix 的 32.6× 或改主文为 \"~33×\"。\n\n2. **4-seed Ign-F1 std**：appendix 文字写 0.49，但从表中显示的 per-seed 值 (44.23, 45.12, 45.11, 44.16) 计算得 sample std=0.53 / population std=0.46，均不等于 0.49。可能是 per-seed 值在表中被四舍五入导致。严重性低，该值未被其他地方引用。\n\n**1处待确认：**\n- **Evi-F1 -7.7pp**（sentence-level CED filtering）在 analysis.tex 和 limitations.tex 中一致引用，但无对应的 appendix 表格提供原始数据。若 reviewer 追问来源，需补充或指向具体实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-figure-appendix-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23d604a431a8a665d3d3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu full status check",
+  "task_key": "worker_ops_gpu_full_status_check_20260516T114227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_full_status_check_20260516T114227_result.json",
+    "occurrence": 1,
+    "bytes": 1201,
+    "sha256": "e20b076e2359436da0c86aa0d0b1e9f2a473a75d8a52f2de62cee5c94b594707"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总\n\n| GPU | 显存占用 | 状态 | 详情 |\n|-----|---------|------|------|\n| **cuda:0** | 0 MiB / 32607 MiB | **空闲** | 1.7B no-evidence eval v2 未留下输出目录，进程已不存在。可能启动失败或从未成功提交。 |\n| **cuda:1** | 11415 MiB / 32607 MiB | **运行中** | `test_rsft_ced_s44` eval (PID 319638)，Qwen3-4B + RSFT checkpoint-510，test split，进度 228/250 batches (~91%)，预计剩余 ~19 分钟 |\n| **cuda:2** | 18421 MiB / 32607 MiB | **运行中** | `qwen3_8b_no_evidence_eval_v2` (PID 335357)，Qwen3-8B no-evidence eval，输出目录已创建但尚无结果文件，刚开始推理 |\n| **cuda:3** | 23737 MiB / 32607 MiB | **运行中** | `llama_3_1_8b_no_evidence_sft` 训练 (PID 333916)，进度 400/570 steps (~70%)，loss=0.4538，token_accuracy=0.879，epoch 2.11，预计剩余 ~14 分钟 |\n\n### 关键发现\n\n- **1.7B no-evidence eval v2 没有成功启动**——`qwen3_1_7b_no_evidence_eval_v2/` 目录不存在，cuda:0 完全空闲。上个 session 提交的任务可能失败了。\n- cuda:1 的 test eval 即将完成（~9 分钟内）。\n- cuda:3 的 LLaMA SFT 也接近尾声（~14 分钟）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-full-status-check.md"
+}

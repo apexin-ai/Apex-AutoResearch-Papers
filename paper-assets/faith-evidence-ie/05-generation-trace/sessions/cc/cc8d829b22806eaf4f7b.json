@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc8d829b22806eaf4f7b",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_13_1778931052.md",
+  "task_key": "loop_13_1778931052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778931052.md",
+    "occurrence": 1,
+    "bytes": 4087,
+    "sha256": "43a18615363da2eb29d48f9822a0b2ecd7000757b08bc6b80336e4e6ef96f11f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T11:30:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: rtx5090-4x 的 cuda:0, cuda:1, cuda:2, cuda:3（共 4 张）\n- D076 reeval 系列用统一协议: batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024。任何偏离都会导致 paired t-test 无效\n- CED RSFT 正确 checkpoint 是 `/root/autodl-tmp/rsft_output/checkpoint-510`（seed=42, lora_alpha=128, 510 步）。之前的 rsft_output_r2b 是错误的（lora_alpha=32, 160 步），不要用\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv\n- C3 (CED vs flat-NLI) 已降级为统计不可区分（D056），不要再 claim CED 优于 flat-NLI\n\n### 2. 🖥️ 基础设施快照\n- 服务器: rtx5090-4x, 4× RTX 5090 32GB\n- 工作目录: /root/autodl-tmp（项目代码 freige 包在此目录下）\n- Python: /root/miniconda3/bin/python (conda base env)\n- 模型: /root/autodl-tmp/models/Qwen3-4B（基座）; Qwen3-1.7B 已下载; 8B + LLaMA 下载中\n- SFT adapter: /root/autodl-tmp/sft_output\n- RSFT checkpoints: /root/autodl-tmp/rsft_output/checkpoint-510 (CED s42), 其他 seed 在各自目录\n- 数据: /root/autodl-tmp/data/docred (dev 985 docs)\n- HF cache: /root/autodl-tmp/.hf_cache\n- Eval 输出: /root/autodl-tmp/eval_results/\n- 日志: ~/runs/faith-evidence-ie/\n- 活跃进程:\n  - reeval_ced_s44 (PID 297190, cuda:0)\n  - reeval_flat_nli_s42 (PID 296732, cuda:0)\n  - plan_006_qwen3_1_7b_sft_bf16 (PID 310381, cuda:3)\n- Cron 监控: reeval_ced_s44, reeval_flat_nli_s42（reconcile 确认仍在跑）\n\n### 3. 📊 当前状态\n刚收到 cron 回调: `reeval_sft_baseline_d076` 和 `reeval_ced_s42` 两个 eval 进程正常退出，转 ANALYZING。\n\n- 已派 Worker `worker_analysis_reeval_sft_baseline_d076_20260516T072641`（turn 12，已 register_artifact，即将完成）\n- 已派 Worker `worker_analysis_reeval_ced_s42_20260516T072811`（刚启动）\n- cuda:1 和 cuda:2 已释放，暂无任务\n\nRegistry 状态:\n- ANALYZING: reeval_sft_baseline_d076, reeval_ced_s42\n- RUNNING: reeval_ced_s44 (cuda:0), reeval_flat_nli_s42 (cuda:0), plan_006_qwen3_1_7b_sft_bf16 (cuda:3)\n- PREPARING: seed_comparison_prep\n\nD076 reeval 5 件中: 3 完成(含 reeval_flat_nli_s43_r2 success), 2 还在跑\n\n### 4. 📋 待办\n- Worker analysis:reeval_sft_baseline_d076 回调 → 读 metrics, update_registry(conclusion+metrics), 刷新 report.md\n- Worker analysis:reeval_ced_s42 回调 → 同上\n- reeval_ced_s44 cron 完成 → 派分析 Worker\n- reeval_flat_nli_s42 cron 完成 → 派分析 Worker\n- **5 个 reeval 全部 DONE** → 立即派 Worker 做 paired t-test（SFT baseline vs CED RSFT vs flat-NLI RSFT），产出统计报告，汇报 Director\n- paired t-test 完成 → 更新 paper_framing.md C1/C3 的 evidence 强度\n- cuda:1 + cuda:2 空闲 → 汇报 Director 建议分配给 scope 扩展（Qwen3-8B SFT 或 Re-DocRED，取决于模型/数据下载进度）\n- plan_006_qwen3_1_7b_sft_bf16 完成 → 分析 + 继续 RSFT → eval pipeline\n\n### 5. 🎯 战略上下文\n- 核心方向: FREIGE — LLM evidence-grounded DocRE 系统性研究，目标 EMNLP 2026 Main (ARR July)\n- 关键发现: (1) evidence generation 代价 ~8pp rel_f1; (2) QLoRA GRPO 导致 decoupling（bf16 仅 mild）; (3) CED reranker 恢复 97%\n- D076 是关键路径: 之前的 eval 协议不统一（batch_size/max_new_tokens/seed 混乱），所有 C1/C3 的数字不可信。统一 reeval 收齐后的 paired t-test 才是最终可写入论文的数字\n- D077 scope 扩展已启动: 从单模型单数据集 → 多 scale × 跨家族 × 跨数据集，需要 ~100 GPU·h\n- 易错点: 不要把旧 eval 的数字（如 report.md 中的 0.4106/0.4893）当作最终数字——这些是旧协议产物，等 D076 reeval 出最终数字\n- 易错点: CED seeds s42/s44 是 3ep，flat-NLI seeds 有 4 个，样本量不对等时 t-test 要用 unequal variance (Welch's t-test)\n- plan_006 是 scope 扩展第一步（Qwen3-1.7B），验证 evidence tax 是否跨 scale 成立\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778931052.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2899232ce11598c10ae7",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check eval001 progress",
+  "task_key": "worker_ops_check-eval001-progress_20260515T211918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eval001-progress_20260515T211918_result.json",
+    "occurrence": 1,
+    "bytes": 278,
+    "sha256": "6c0ccb772b6ec86122b2cd801ab897e5c595426fcd10c75fe421986a13093ae0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "尚未完成。当前状态：\n\n- **进度**: 49/62 batches (79%)\n- **速度**: ~60s/batch\n- **剩余**: 13 batches × 60s ≈ **13 分钟**\n- **预计完成**: ~04:43 UTC (约 2026-05-16)\n\n日志中没有 F1/DONE 等结果输出，推理仍在进行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval001-progress.md"
+}

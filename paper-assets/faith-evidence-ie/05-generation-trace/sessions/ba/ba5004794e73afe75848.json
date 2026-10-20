@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba5004794e73afe75848",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "knowledge update memory scaling stats",
+  "task_key": "worker_knowledge_update_memory_scaling_stats_20260519T001114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_update_memory_scaling_stats_20260519T001114_result.json",
+    "occurrence": 1,
+    "bytes": 141,
+    "sha256": "f4f555d4c6754f553f3abdf5b3c7856bddc8ec66302f8bb707eafb8705379815"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已追加三段内容（4B SFT 3-seed 统计、8B SFT 2-seed 统计、D112 重叠修复记录），原有内容保持不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-update-memory-scaling-stats.md"
+}

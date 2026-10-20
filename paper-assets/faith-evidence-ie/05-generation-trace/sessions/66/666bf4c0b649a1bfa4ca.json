@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "666bf4c0b649a1bfa4ca",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check ckpt20 eval",
+  "task_key": "worker_ops_check_ckpt20_eval_20260514T221115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_ckpt20_eval_20260514T221115_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "7a578e19854d346d0cf850bdf6d2ec61a8879b63a248567efbb3374936e0e22e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结论：**negative，未通过 pass criteria**。\n\n## 关键指标\n\n| 指标 | 值 | 判定 |\n|------|-----|------|\n| **rel_f1** | **0.0077** | **远低于 0.30 阈值** |\n| evi_f1 | 0.628 | 尚可 |\n| edcr | 0.993 | 极高（99.3% 引用指向 distractor） |\n| format_ok_rate | 0.991 | 正常 |\n\n## 问题诊断\n\n模型在 ckpt-20 发生了**灾难性遗忘**（catastrophic forgetting）：\n- 预测数 14440 vs gold 12151，量级接近，但 TP 仅 102（命中率 < 1%）\n- 关系抽取能力几乎完全丧失（precision/recall 均 < 1%）\n- evidence 定位能力尚存（evi_precision=0.855），但 edcr=0.993 说明模型引用的几乎全是 distractor 句子\n- 60% 的文档输出被截断（n_truncated=587/985），field_compliance_rate 仅 0.40"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-ckpt20-eval.md"
+}

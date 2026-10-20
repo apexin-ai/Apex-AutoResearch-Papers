@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cd9d0d63e48316eeb9a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "harvest llama sft s44 r3",
+  "task_key": "worker_harvest_llama-sft-s44-r3_20260520T143734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_llama-sft-s44-r3_20260520T143734_result.json",
+    "occurrence": 1,
+    "bytes": 553,
+    "sha256": "7352f90df41bedbe22aa18a904bb25e713e9094f97adc913968a3ce210cb09e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总 LLaMA SFT 3-seed 结果：\n\n| Seed | Ign-F1 | Rel-F1 | Evi-F1(joint) | Evi-F1(TP) | EDCR |\n|------|--------|--------|---------------|------------|------|\n| s42 | 0.5384 | — | — | — | — |\n| s43 | 0.5142 | — | — | — | — |\n| **s44** | **0.4802** | 0.4902 | 0.3913 | 0.8502 | 0.6579 |\n\n**LLaMA SFT 3-seed Ign-F1**: mean = 0.5109, std = 0.0238\n\ns44 明显低于 s42/s43，拉低了均值。对比 RSFT 3-seed (mean=0.5654±0.0052)，SFT→RSFT 提升 +5.45 pp，且 RSFT 方差更小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-llama-sft-s44-r3.md"
+}

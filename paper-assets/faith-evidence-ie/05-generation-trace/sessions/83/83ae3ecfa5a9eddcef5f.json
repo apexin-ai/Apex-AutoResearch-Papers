@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83ae3ecfa5a9eddcef5f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze d140 1 7b sft s42 with evi 2048",
+  "task_key": "worker_analyze_d140_1_7b_sft_s42_with_evi_2048_20260521T062635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_d140_1_7b_sft_s42_with_evi_2048_20260521T062635_result.json",
+    "occurrence": 1,
+    "bytes": 2069,
+    "sha256": "62fd053064511b487da6ed46ca22fec6bc7112fa721e28ff29a0fecfe218b77b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常完成。汇总分析如下：\n\n---\n\n## D140: 1.7B SFT s42 with-evi @2048 结果分析\n\n### with-evi@2048 全量 Metrics\n\n| Metric | Value |\n|--------|-------|\n| **ign_f1** | **0.4806** |\n| f1 | 0.4951 |\n| ign_precision | 0.4759 |\n| ign_recall | 0.4854 |\n| precision | 0.5005 |\n| recall | 0.4897 |\n| evi_f1 (TP) | 0.8006 |\n| evi_f1_joint (DREEAM) | 0.3941 |\n| edcr | 0.7175 |\n| format_ok | 985/985 (100%) |\n| **truncated** | **267/985 (27.1%)** |\n| n_predictions | 25,534 |\n\n### 与 @1024 对比\n\n| | with-evi@1024 | with-evi@2048 | Delta |\n|--|---------------|---------------|-------|\n| ign_f1 | 0.4710 | 0.4806 | **+0.96pp** |\n| truncated | 314/985 (31.9%) | 267/985 (27.1%) | **-4.8pp** |\n\nwith-evi 从更大 token budget 中获益：截断率下降 4.8pp，ign_f1 提升近 1pp。\n\n### Matched Evidence Tax @2048\n\n| | no-evi | with-evi | Tax (no-evi − with-evi) |\n|--|--------|----------|-------------------------|\n| @1024 | 0.3982 | 0.4710 | **-7.28pp** |\n| @2048 | 0.3925 | 0.4806 | **-8.81pp** |\n\nTax 为负 = evidence 有帮助。@2048 下 evidence benefit 从 7.28pp **扩大到 8.81pp**（+1.53pp）。\n\n### 截断不对称性分析\n\n| | with-evi truncated | no-evi truncated | 差距 |\n|--|-------------------|-----------------|------|\n| @1024 | 31.9% | 50.9% | 19.0pp |\n| @2048 | 27.1% | 50.6% | **23.5pp** |\n\n关键发现：@2048 时 with-evi 截断从 31.9%→27.1%（下降 4.8pp），而 no-evi 几乎不变（50.9%→50.6%）。这解释了 evidence tax 为何扩大——with-evi 能利用额外 token budget，no-evi 不能（其截断是模型生成能力瓶颈，不是 budget 限制）。\n\n### 结论\n\n**Positive result。** 1.7B with-evi@2048 ign_f1=0.4806 显著优于 no-evi@2048 ign_f1=0.3925，evidence tax = -8.81pp。在 matched@2048 条件下，evidence benefit 比 @1024 更大，因为 with-evi 模型实际利用了更多 token budget 而 no-evi 模型没有。这进一步证实了 1.7B 模型中 evidence 的正面作用不是截断差异的 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-d140-1-7b-sft-s42-with-evi-2048.md"
+}

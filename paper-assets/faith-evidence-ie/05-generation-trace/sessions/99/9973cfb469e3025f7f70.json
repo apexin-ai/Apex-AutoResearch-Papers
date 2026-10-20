@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9973cfb469e3025f7f70",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code anon repo cleanup",
+  "task_key": "worker_code_anon-repo-cleanup_20260523T190451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon-repo-cleanup_20260523T190451_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "2123752a1dcd8ea61a5238138b4eba2bb7254a418538186339efd2430ae5832d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done.\n\n**Summary:**\n- **5 files modified, 5 replacements** — all wandb project name defaults (`freige-sft`, `freige-rsft`, `freige-grpo`, `freige-dpo`, `project=\"freige\"`) replaced with `\"your-project\"`\n- All other categories (hardcoded paths, autodl references, server IDs, emails, HF cache paths, `sys.path.insert` hacks) were already clean — zero matches\n- Post-fix verification: **zero matches** across all scan patterns\n- Committed and pushed to `origin/main` (commit `30aaafe`)\n- Report written to `artifacts/anon_cleanup_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anon-repo-cleanup.md"
+}

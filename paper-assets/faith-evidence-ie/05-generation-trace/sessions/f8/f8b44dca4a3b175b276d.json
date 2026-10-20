@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8b44dca4a3b175b276d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose 14b readiness",
+  "task_key": "worker_diagnose_14b-readiness_20260520T112407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_14b-readiness_20260520T112407_result.json",
+    "occurrence": 1,
+    "bytes": 719,
+    "sha256": "244af1b2a3a9740390ff4064bb37b7b35b78355c44db80fac5f2e380c2cab18f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 14B Gen Resume 检查结果\n\n| 依赖项 | 状态 | 备注 |\n|--------|------|------|\n| adapter_model.safetensors | ✅ | 嵌套路径: `sft_output_14b/sft_output_14b/checkpoint-144/` |\n| generations.jsonl | ✅ **已满** | **14976/14976 行**，路径: `rsft_generations_14b/rsft_generations_14b/` |\n| Qwen3-14B 基座 | ✅ | 8/8 shards |\n| rsft_generate.py --resume | ✅ | L279, L329 |\n| rsft_generate_14b_resume.sh | ❌ | 脚本不存在 |\n\n**结论：不需要 resume。** generations.jsonl 已有 14976 行（满量），progress.json 记录了完整的 completed_doc_ids 列表。生成已全部完成。\n\nGPU 状态：GPU 1 被占用（29.3GB, PID 15663），GPU 0/2/3 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-14b-readiness.md"
+}

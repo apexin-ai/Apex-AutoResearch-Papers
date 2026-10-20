@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "378081994a888f2dad00",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp sft 1 7b s44 dev eval",
+  "task_key": "worker_exp_sft_1_7b_s44_dev_eval_20260525T040242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_sft_1_7b_s44_dev_eval_20260525T040242_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "45a3abcda8e39ea7c4fb88ec0191f782e0c1c601601838b27f6a42d3d50abfa0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**已有结果！** `plan019_1_7b_sft_s44_eval` 已存在完整数据，无需重跑。\n\n## 结果对比\n\n| Model | ign_f1 | evi_f1_joint | 备注 |\n|-------|--------|-------------|------|\n| **SFT s42 1.7B** | 0.4786 | 0.3958 | `qwen3_1_7b_sft_eval` |\n| **SFT s44 1.7B** | 0.4321 | 0.3482 | `plan019_1_7b_sft_s44_eval` |\n| RSFT s42 1.7B (d102) | 0.5122 | 0.4275 | |\n| RSFT s44 1.7B (d158) | 0.4730 | 0.3897 | |\n\n## 结论\n\nSFT s44 本身就比 SFT s42 弱 **4.65pp**（0.4321 vs 0.4786）。\n\nRSFT 相对 SFT 的提升：\n- RSFT s42 over SFT s42: **+3.36pp** (0.5122 - 0.4786)\n- RSFT s44 over SFT s44: **+4.09pp** (0.4730 - 0.4321)\n\nRSFT s44 的绝对值低不是 RSFT pipeline 的问题——是 SFT s44 base 本身弱。RSFT 的相对提升其实 s44 (+4.09pp) > s42 (+3.36pp)。\n\n注：plan019 eval 用的 inference seed=42（非 44），但对 greedy 生成影响可忽略。field_compliance 较低（52% vs 68%）也印证 SFT s44 自身质量差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-sft-1-7b-s44-dev-eval.md"
+}

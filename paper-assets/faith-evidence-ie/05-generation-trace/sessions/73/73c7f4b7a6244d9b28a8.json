@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73c7f4b7a6244d9b28a8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnosis 14b ced scoring check",
+  "task_key": "worker_diagnosis_14b-ced-scoring-check_20260523T115436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_14b-ced-scoring-check_20260523T115436_result.json",
+    "occurrence": 1,
+    "bytes": 434,
+    "sha256": "16b88d097a2a2ca856b0460f958204873e52e19a97cc1fe0c34beb3b69b5780a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：仍在运行中。**\n\n- **PID 250046**：运行 6 小时 52 分钟，进程存活\n- **进度**：已 score 2500/24216 条（约 10.3%），每 500 条约 70 秒\n- **输出目录**：`/root/autodl-tmp/rsft_scored_14b_s43/` 已创建但尚为空（scoring 未完成，还没写出文件）\n- **预计剩余**：按当前速度，剩余 21716 条约需 ~50 分钟完成\n\n进程正常推进，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-14b-ced-scoring-check.md"
+}

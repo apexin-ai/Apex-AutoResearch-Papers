@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c382ef5c462b8229369",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops plan 011 eval",
+  "task_key": "worker_ops_plan_011_eval_20260515T144027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_011_eval_20260515T144027_result.json",
+    "occurrence": 1,
+    "bytes": 540,
+    "sha256": "d466530ec6e6474738233af1655a8cf8a879b4591e541aa857def0184cfb3fd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常启动：PID 216361 在 GPU 0 上，已加载 8.2 GB（模型加载中）。GPU 0 有 32 GB，空间充足。\n\n**状态汇总：**\n- `plan_011_grpo_g8_bf16_eval` 已提交到 cuda:0（PID 216361）\n- 模型加载中（Qwen3-4B base → merge SFT adapter → load GRPO ckpt-100 adapter）\n- bf16 无量化，985 docs，预计 ~1.5h\n- 输出目录：`/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json`\n- 另有 `eval_grpo_g8_bf16` batch_eval 在 cuda:3 同时跑 ckpt 80/90/100，可交叉验证"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-011-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b8467f340cc54410829",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "prep plan 009 batch eval fix",
+  "task_key": "worker_prep_plan_009_batch_eval_fix_20260515T203400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_plan_009_batch_eval_fix_20260515T203400_result.json",
+    "occurrence": 1,
+    "bytes": 1800,
+    "sha256": "5dcb6460464d395275c319fccf2c78f16ff4c473532bd15375d13cf7b2a196c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。汇报：\n\n---\n\n## 调查结果\n\n**batch_eval.py 支持 `--batch_size` 参数**（`eval/batch_eval.py:77`，默认值 16）。它内部逐个 checkpoint 调用 `freige.eval.inference`，直接传递 batch_size。\n\nOOM 原因确认：`--no-quantize` + `batch_size=16`，Qwen3-4B 全精度在 RTX 5090 32GB 上 OOM。\n\n## 修复方案：方案 A — 降低 batch_size\n\n直接用 `batch_eval.py` 的 `--batch_size 4` 参数重跑即可，无需写新脚本。加 `--resume` 跳过已完成的 checkpoint。\n\n## Checkpoints\n\n| 实验 | Checkpoints |\n|------|------------|\n| extract_r3 | 680, 700, 720, 740, 756 |\n| flatnli_r3 | 20, 40, 60, 80, 100 |\n\n已有评测结果：`grpo_flatnli_r3/` 下有 checkpoint-20、checkpoint-40 的目录，但**无 metrics.json**（之前 OOM 失败留下的空目录）。extract_r3 无任何结果。\n\n## 修复后的完整命令\n\n**extract_reward：**\n```bash\ncd /root/autodl-tmp/freige && python -m eval.batch_eval \\\n    --exp_dir /root/autodl-tmp/grpo_extract_r3 \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --output_dir /root/autodl-tmp/eval_results/grpo_extract_r3 \\\n    --batch_size 4 \\\n    --no-quantize \\\n    --resume\n```\n\n**flatNLI_reward：**\n```bash\ncd /root/autodl-tmp/freige && python -m eval.batch_eval \\\n    --exp_dir /root/autodl-tmp/grpo_flatnli_r3 \\\n    --sft_adapter /root/autodl-tmp/sft_output \\\n    --output_dir /root/autodl-tmp/eval_results/grpo_flatnli_r3 \\\n    --batch_size 4 \\\n    --no-quantize \\\n    --resume\n```\n\n两条命令需串行执行（共享 GPU），每个 checkpoint 评测约 5-10 分钟，总计约 50-100 分钟。`--resume` 会自动跳过已有 `metrics.json` 的 checkpoint（目前没有成功的，所以会全跑）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-plan-009-batch-eval-fix.md"
+}

@@ -1,0 +1,1420 @@
+{
+  "schema_version": "1.0",
+  "id": "9235f50c85a816076e05",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "research topk ablation lit",
+  "task_key": "worker_research_topk_ablation_lit_20260516T002831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_topk_ablation_lit_20260516T002831.jsonl",
+    "occurrence": 1,
+    "bytes": 74863,
+    "sha256": "7ac050c3a9e7f6c925b219db9de48d1ea718e4bc622abcf0aea9315514662bc7"
+  },
+  "statistics": {
+    "messages": 71,
+    "user_turns": 0,
+    "tool_calls": 35,
+    "roles": {
+      "tool_call": 35,
+      "tool_result": 35,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T00:32:34.976144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T00:32:34.976607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T00:32:34.976850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "file": "literature_map.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T00:32:34.977196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (68,498 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/mcp-agent-ml-research-read_project_file-1778891323627.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/mcp-agent-ml-research-read_project_file-1778891323627.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T00:32:34.977461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/mcp-agent-ml-research-read_project_file-1778891323627.txt | python3 -c \"\nimport sys, json\ndata = json.load(sys.stdin)\ntext = data['result']\n# Search for relevant keywords\nkeywords = ['rejection sampling', 'best-of', 'top.k', 'top_k', 'rerank', 'RLHF', 'RLAIF', 'reward model', 'selection noise', 'data quality', 'k sensitivity', 'ablation.*k', 'candidate', 'best.of.N', 'sample selection']\nimport re\nlines = text.split('\\n')\nfor i, line in enumerate(lines):\n    for kw in keywords:\n        if re.search(kw, line, re.IGNORECASE):\n            # Print context: 3 lines before and 5 after\n            start = max(0, i-3)\n            end = min(len(lines), i+6)\n            print(f'--- Match [{kw}] at line {i} ---')\n            for j in range(start, end):\n                print(f'{j}: {lines[j]}')\n            print()\n            break\n\" 2>&1 | head -500",
+              "description": "Search literature map for rejection sampling, top-k, reranking keywords"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T00:32:34.977698+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (82.1KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/b3xluxyob.txt\n\nPreview (first 2KB):\n--- Match [rejection sampling] at line 0 ---\n0: {\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml\", \"content\": \"# Literature Map for faith-evidence-ie (FREIGE)\\n# Focus: CED-as-training-stabilizer (D024) + RSFT for DocRE\\n# Updated: 2026-05-15 (W4 expanded: +11 papers from literature scan; +15 papers from Related Work survey; +17 papers from Related Work expansion)\\n\\npapers:\\n\\n  # === Category 1: Reward Diversity / Reward Shaping for RL Stability ===\\n\\n  - title: \\\"GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization\\\"\\n    authors: NVIDIA Labs\\n    year: 2025\\n    venue: ICML 2026\\n    url: https://arxiv.org/abs/2601.05242\\n    category: reward_diversity\\n    role: closest_prior_work\\n    key_finding: >\\n      直接将 GRPO 应用于多 reward 组合时，不同 rollout 的 reward 组合在归一化后 collapse 为相同 advantage 值，\\n      降低训练信号分辨率导致收敛失败。GDPO 对每个 reward 独立做 group-wise normalization 再聚合，\\n      保留多 reward 的相对差异，显著提升训练稳定性。\\n    relevance_to_ced_stabilizer: >\\n      最直接相关。CED reward 本质上引入了独立于 extraction F1 的 reward 维度（evidence quality），\\n      GDPO 的理论分析解释了为什么多维 reward 比单一 reward 更稳定——独立 reward 维度防止 advantage collapse。\\n      但 GDPO 是方法论贡献，CED 是 task-specific reward 设计自然具备了这一特性。\\n\\n  - title: \\\"DRA-GRPO: Exploring Diversity-Aware Reward Adjustment for R1-Zero-Like Training of LLMs\\\"\\n    authors: Xiwen Chen et al.\\n    year: 2025\\n    venue: arXiv 2505.09655\\n    url: https://arxiv.org/abs/2505.09655\\n    category: reward_diversity\\n    role: related_method\\n    key_finding: >\\n      GRPO 的标量 reward 无法区分语义多样但得分相同的输出（diversity-quality inconsistency）。\\n      DRA 用子模互信息（SMI）对 reward 加权，给多样性高的 completion 更大权重，\\\n…[truncated 293 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T00:32:34.977870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/b3xluxyob.txt",
+              "limit": "300"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T00:32:34.978003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (30621 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T00:32:34.978123+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/b3xluxyob.txt",
+              "limit": "150"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T00:32:34.978260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (30621 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T00:32:34.978385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/b3xluxyob.txt",
+              "limit": "100"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T00:32:34.978501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (30621 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T00:32:34.978621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/b3xluxyob.txt",
+              "limit": "80"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T00:32:34.978735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (30621 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T00:32:34.978864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/b3xluxyob.txt | python3 -c \"\nimport sys, json, re\ndata = sys.stdin.read()\nlines = data.split('\\n')\n\n# Find all match blocks and deduplicate\nseen = set()\nresults = []\ni = 0\nwhile i < len(lines):\n    if lines[i].startswith('--- Match ['):\n        block_lines = [lines[i]]\n        i += 1\n        while i < len(lines) and not lines[i].startswith('--- Match [') and lines[i].strip() != '':\n            block_lines.append(lines[i])\n            i += 1\n        # Use the line range as dedup key\n        key = block_lines[0]\n        if key not in seen:\n            seen.add(key)\n            results.append('\\n'.join(block_lines))\n    else:\n        i += 1\n\nfor r in results:\n    print(r)\n    print()\n\" 2>&1 | head -300",
+              "description": "Deduplicate and list all matched sections from literature map"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T00:32:34.979072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (82.1KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/bif3y4ek9.txt\n\nPreview (first 2KB):\n--- Match [rejection sampling] at line 0 ---\n0: {\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml\", \"content\": \"# Literature Map for faith-evidence-ie (FREIGE)\\n# Focus: CED-as-training-stabilizer (D024) + RSFT for DocRE\\n# Updated: 2026-05-15 (W4 expanded: +11 papers from literature scan; +15 papers from Related Work survey; +17 papers from Related Work expansion)\\n\\npapers:\\n\\n  # === Category 1: Reward Diversity / Reward Shaping for RL Stability ===\\n\\n  - title: \\\"GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization\\\"\\n    authors: NVIDIA Labs\\n    year: 2025\\n    venue: ICML 2026\\n    url: https://arxiv.org/abs/2601.05242\\n    category: reward_diversity\\n    role: closest_prior_work\\n    key_finding: >\\n      直接将 GRPO 应用于多 reward 组合时，不同 rollout 的 reward 组合在归一化后 collapse 为相同 advantage 值，\\n      降低训练信号分辨率导致收敛失败。GDPO 对每个 reward 独立做 group-wise normalization 再聚合，\\n      保留多 reward 的相对差异，显著提升训练稳定性。\\n    relevance_to_ced_stabilizer: >\\n      最直接相关。CED reward 本质上引入了独立于 extraction F1 的 reward 维度（evidence quality），\\n      GDPO 的理论分析解释了为什么多维 reward 比单一 reward 更稳定——独立 reward 维度防止 advantage collapse。\\n      但 GDPO 是方法论贡献，CED 是 task-specific reward 设计自然具备了这一特性。\\n\\n  - title: \\\"DRA-GRPO: Exploring Diversity-Aware Reward Adjustment for R1-Zero-Like Training of LLMs\\\"\\n    authors: Xiwen Chen et al.\\n    year: 2025\\n    venue: arXiv 2505.09655\\n    url: https://arxiv.org/abs/2505.09655\\n    category: reward_diversity\\n    role: related_method\\n    key_finding: >\\n      GRPO 的标量 reward 无法区分语义多样但得分相同的输出（diversity-quality inconsistency）。\\n      DRA 用子模互信息（SMI）对 reward 加权，给多样性高的 completion 更大权重，\\\n…[truncated 293 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T00:32:34.979269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/mcp-agent-ml-research-read_project_file-1778891323627.txt | python3 -c \"\nimport sys, json, re, yaml\n\ndata = json.load(sys.stdin)\ntext = data['result']\n\n# Extract YAML content from the result\nyaml_start = text.find('papers:')\nif yaml_start < 0:\n    print('No papers section found')\n    sys.exit()\n\nyaml_text = text[yaml_start:]\n# Parse as YAML\nparsed = yaml.safe_load(yaml_text)\npapers = parsed.get('papers', [])\n\n# Search for papers mentioning rejection sampling, top-k, best-of-N, data selection, reranking\nrelevant_keywords = ['rejection.sampl', 'best.of.n', 'top.k', 'top_k', 'rerank', 'data.selection', 'data.quality', 'sample.selection', 'candidate.select', 'noise.*train', 'train.*noise', 'k.sensit']\n\nrelevant_papers = []\nfor p in papers:\n    if not isinstance(p, dict):\n        continue\n    text_to_search = json.dumps(p, ensure_ascii=False).lower()\n    for kw in relevant_keywords:\n        if re.search(kw, text_to_search):\n            relevant_papers.append((kw, p.get('title', 'Unknown'), p.get('category', ''), p.get('key_finding', ''), p.get('relevance_to_ced_stabilizer', p.get('relevance_to_freige', ''))))\n            break\n\nprint(f'Found {len(relevant_papers)} relevant papers:')\nfor kw, title, cat, finding, rel in relevant_papers:\n    print(f'\\n=== {title} ===')\n    print(f'  Category: {cat}')\n    print(f'  Matched: {kw}')\n    print(f'  Key finding: {str(finding)[:500]}')\n    print(f'  Relevance: {str(rel)[:500]}')\n\" 2>&1",
+              "description": "Parse YAML and find papers related to rejection sampling, top-k, data selection"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T00:32:34.979419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 16, in <module>\n    papers = parsed.get('papers', [])\n             ^^^^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T00:32:34.979546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/mcp-agent-ml-research-read_project_file-1778891323627.txt | python3 -c \"\nimport sys, json, re\n\ndata = json.load(sys.stdin)\ntext = data['result']\n\n# Split into paper entries by looking for '  - title:' pattern\nentries = re.split(r'\\n  - title:', text)\n\nrelevant_keywords = ['rejection.sampl', 'best.of.n', 'top.k', 'top_k', 'rerank', 'data.selection', 'data.quality', 'sample.selection', 'candidate.select', 'noise.*train', 'train.*noise', 'k.sensit', 'best-of', 'sampling.*quality', 'quality.*sampling']\n\nprint(f'Total entries: {len(entries)}')\n\nfor i, entry in enumerate(entries):\n    if i == 0:\n        continue  # header\n    entry_lower = entry.lower()\n    for kw in relevant_keywords:\n        if re.search(kw, entry_lower):\n            # Get title\n            title_line = entry.split('\\n')[0].strip().strip('\\\"')\n            print(f'\\n===== [{kw}] {title_line} =====')\n            # Print first 800 chars\n            print(entry[:800])\n            print('...')\n            break\n\" 2>&1",
+              "description": "Find papers in literature map related to rejection sampling and top-k selection"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T00:32:34.979679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total entries: 1"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T00:32:34.979799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/mcp-agent-ml-research-read_project_file-1778891323627.txt | python3 -c \"\nimport sys, json, re\n\ndata = json.load(sys.stdin)\ntext = data['result']\n\n# The YAML is inside the JSON result field. Let's search directly with context\nkeywords = ['rejection.sampl', 'best.of.n', 'best-of-n', 'top.k', 'top_k', 'rerank', 'data.selection', 'data.quality', 'sample.selection', 'noise.*train', 'k.sensit', 'rsft', 'RSFT']\n\nlines = text.split('\\n')\nmatched_regions = set()\n\nfor kw in keywords:\n    for i, line in enumerate(lines):\n        if re.search(kw, line, re.IGNORECASE):\n            # Find the paper title above this line\n            region_start = i\n            for j in range(i, max(i-30, 0), -1):\n                if '- title:' in lines[j] or 'title:' in lines[j]:\n                    region_start = j\n                    break\n            region_end = min(i + 10, len(lines))\n            region_key = region_start\n            if region_key not in matched_regions:\n                matched_regions.add(region_key)\n                print(f'--- [{kw}] lines {region_start}-{region_end} ---')\n                for k in range(region_start, region_end):\n                    print(lines[k])\n                print()\n\" 2>&1 | head -400",
+              "description": "Search literature map with context around matched keywords"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T00:32:34.980013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (82.1KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/bgpuijbud.txt\n\nPreview (first 2KB):\n--- [rejection.sampl] lines 0-1 ---\n{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml\", \"content\": \"# Literature Map for faith-evidence-ie (FREIGE)\\n# Focus: CED-as-training-stabilizer (D024) + RSFT for DocRE\\n# Updated: 2026-05-15 (W4 expanded: +11 papers from literature scan; +15 papers from Related Work survey; +17 papers from Related Work expansion)\\n\\npapers:\\n\\n  # === Category 1: Reward Diversity / Reward Shaping for RL Stability ===\\n\\n  - title: \\\"GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization\\\"\\n    authors: NVIDIA Labs\\n    year: 2025\\n    venue: ICML 2026\\n    url: https://arxiv.org/abs/2601.05242\\n    category: reward_diversity\\n    role: closest_prior_work\\n    key_finding: >\\n      直接将 GRPO 应用于多 reward 组合时，不同 rollout 的 reward 组合在归一化后 collapse 为相同 advantage 值，\\n      降低训练信号分辨率导致收敛失败。GDPO 对每个 reward 独立做 group-wise normalization 再聚合，\\n      保留多 reward 的相对差异，显著提升训练稳定性。\\n    relevance_to_ced_stabilizer: >\\n      最直接相关。CED reward 本质上引入了独立于 extraction F1 的 reward 维度（evidence quality），\\n      GDPO 的理论分析解释了为什么多维 reward 比单一 reward 更稳定——独立 reward 维度防止 advantage collapse。\\n      但 GDPO 是方法论贡献，CED 是 task-specific reward 设计自然具备了这一特性。\\n\\n  - title: \\\"DRA-GRPO: Exploring Diversity-Aware Reward Adjustment for R1-Zero-Like Training of LLMs\\\"\\n    authors: Xiwen Chen et al.\\n    year: 2025\\n    venue: arXiv 2505.09655\\n    url: https://arxiv.org/abs/2505.09655\\n    category: reward_diversity\\n    role: related_method\\n    key_finding: >\\n      GRPO 的标量 reward 无法区分语义多样但得分相同的输出（diversity-quality inconsistency）。\\n      DRA 用子模互信息（SMI）对 reward 加权，给多样性高的 completion 更大权重，\\n      等价于 I\n…[truncated 293 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T00:32:34.980197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n -i -E \"rejection.sampl|best.of.n|top.k|top_k|rerank|data.quality|sample.select|k.sensit|rsft|RSFT\" /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml 2>/dev/null | head -80",
+              "description": "Search YAML file directly for relevant keywords"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T00:32:34.980385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2:# Focus: CED-as-training-stabilizer (D024) + RSFT for DocRE\n283:  # === Category 6: RSFT Methodology & Theory ===\n285:  - title: \"A Minimalist Approach to LLM Reasoning: from Rejection Sampling to Reinforce\"\n290:    category: rsft_methodology\n293:      RAFT（简单 rejection sampling baseline）在数学推理上与 GRPO/PPO 表现相当。\n297:      RAFT 只用正样本，但 RAFT 仍能达到相当性能，说明 rejection sampling 的简单性被低估了。\n298:    relevance_to_rsft_docre: >\n299:      直接支持我们的设计选择：(1) RSFT 在 DocRE 上成功而 GRPO 失败，\n300:      与该论文发现一致——rejection sampling 的 offline 特性天然避免了 catastrophic forgetting；\n301:      (2) GRPO 主要优势来自过滤全错 prompt，这与我们 RSFT 的 reward-based filtering 机制相同；\n303:      强化了 offline RSFT 的合理性。\n305:  - title: \"Beyond Rejection Sampling: Trajectory Fusion for Scaling Mathematical Reasoning (TrajFusion)\"\n310:    category: rsft_methodology\n313:      传统 RSFT 只用正确轨迹，丢弃错误轨迹。TrajFusion 将错误和正确轨迹交替拼接，\n315:    relevance_to_rsft_docre: >\n316:      Future work 方向：可考虑在 DocRE RSFT 中融合失败样本的信息。\n320:  - title: \"Rejection Sampling Based Fine Tuning Secretly Performs PPO\"\n325:    category: rsft_methodology\n328:      建立 RSFT 与 PPO 之间的理论联系：rejection sampling fine-tuning\n330:    relevance_to_rsft_docre: >\n331:      为 RSFT 的有效性提供理论解释。我们的 RSFT 成功可被视为\n357:    relevance_to_rsft_docre: >\n359:      (1) R1-RE 是句子级 RE，GRPO 成功；我们是文档级 RE，GRPO 失败→RSFT 成功。\n376:    relevance_to_rsft_docre: >\n378:      RSFT 的 difficulty-aware sampling 思想相通，但在不同模态。\n390:    relevance_to_rsft_docre: >\n392:      且使用 offline RSFT 而非 online RL。\n404:    relevance_to_rsft_docre: >\n406:      与我们 RSFT 直接微调 LLM 的方法路径不同。\n418:    relevance_to_rsft_docre: >\n442:    relevance_to_rsft_docre: >\n444:      Re-DocRED test F1=54.80。我们的 RSFT 提升显著更优。\n445:      RelPrior 是 inference paradigm 创新（两阶段筛选），我们是 training paradigm 创新（RSFT+CED），正交互补。\n467:    relevance_to_rsft_docre: >\n470:      与我们端到端 LLM 生成方式不同——我们通过 RSFT 的 reward-based filtering 隐式解决 class imbalance。\n487:    relevance_to_rsft_docre: >\n512:    relevance_to_rsft_docre: >\n538:    relevance_to_rsft_docre: >\n541:      RSFT 在此基\n…[truncated 2927 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T00:32:34.980550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+              "offset": "1218",
+              "limit": "40"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T00:32:34.980791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1218\t    venue: TMLR 2024\n1219\t    url: https://arxiv.org/abs/2304.06767\n1220\t    category: rsft_offline_rl\n1221\t    role: background\n1222\t    key_finding: >\n1223\t      RAFT 是 rejection sampling fine-tuning 的标准化框架：迭代式 generate → rank → filter → SFT。\n1224\t      每轮生成 n 个 response，用 reward model 排序，取 top-k 做 SFT。\n1225\t      在文本生成和对话上验证有效性，提供了 RSFT 的 canonical 实现。\n1226\t    relevance_to_freige: >\n1227\t      我们的 RSFT pipeline 直接基于 RAFT 框架。差异在于：\n1228\t      (1) 我们用 verifiable reward（F1 score）替代 learned reward model；\n1229\t      (2) 我们的 filtering 基于 extraction F1 threshold 而非 top-k ranking；\n1230\t      (3) 我们额外引入 CED reward 维度用于 inference-time reranking。\n1231\t\n1232\t  # === Category 7: Evidence-based DocRE (Expanded) ===\n1233\t\n1234\t  - title: \"EAAGRE: Evidence and Axial Attention Guided Document-level Relation Extraction\"\n1235\t    authors: Unknown (Computer Speech and Language)\n1236\t    year: 2024\n1237\t    venue: Computer Speech and Language 2024\n1238\t    url: https://www.sciencedirect.com/science/article/abs/pii/S0885230824001116\n1239\t    category: evidence_docre\n1240\t    role: related_method\n1241\t    key_finding: >\n1242\t      联合考虑 evidence information 和 relation triple 的全局交互。\n1243\t      直接引导 PLM encoder 最后一层的 top-k token attention 到 evidence sentences，\n1244\t      不引入额外可训练参数。Axial attention 建模 relation triple 之间的全局相互依赖。\n1245\t    relevance_to_freige: >\n1246\t      与 DREEAM 属于同一 evidence-guided attention 范式。\n1247\t      EAAGRE 的无参数 evidence attention 与我们 CED reranker 的 post-hoc 方式形成对比——\n1248\t      前者在 encoder 内部注入 evidence signal，后者在 generation 后验证。\n1249\t      证明 evidence 信号无论注入位置都能提升 DocRE 性能。\n1250\t\n1251\t  - title: \"GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction\"\n1252\t    authors: Yanxu Mao et al.\n1253\t    year: 2024\n1254\t    venue: arXiv 2407.21384\n1255\t    url: https://arxiv.org/abs/2407.21384\n1256\t    category: evidence_docre\n1257\t    role: related_method"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T00:32:34.981031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+              "offset": "1197",
+              "limit": "25"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T00:32:34.981177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1197\t      \"structured output 任务中 offline 方法优于 online GRPO\"的普遍性论述。\n1198\t\n1199\t  - title: \"RS-DPO: A Hybrid Rejection Sampling and Direct Preference Optimization Method for Alignment of Large Language Models\"\n1200\t    authors: Anonymous\n1201\t    year: 2024\n1202\t    venue: NAACL 2024 Findings\n1203\t    url: https://arxiv.org/abs/2402.10038\n1204\t    category: rsft_offline_rl\n1205\t    role: method-component\n1206\t    key_finding: >\n1207\t      系统性结合 rejection sampling 和 DPO。从 SFT 模型采样 k 个 response per prompt，\n1208\t      根据 reward 分布识别 contrastive pairs，用 DPO 对齐。\n1209\t      在有限资源环境下有效微调 LLM，超越独立的 RS、PPO 和 DPO。\n1210\t    relevance_to_freige: >\n1211\t      RS-DPO 提供了 rejection sampling 和 preference optimization 的桥梁方法。\n1212\t      我们的 RSFT 只用正样本训练（SFT loss），RS-DPO 进一步利用负样本构造 preference pair。\n1213\t      Future work 方向：可考虑用 RS-DPO 方式利用 RSFT rejected 样本做 DPO。\n1214\t\n1215\t  - title: \"RAFT: Reward rAnked FineTuning for Generative Foundation Model Alignment\"\n1216\t    authors: Anonymous\n1217\t    year: 2024\n1218\t    venue: TMLR 2024\n1219\t    url: https://arxiv.org/abs/2304.06767\n1220\t    category: rsft_offline_rl\n1221\t    role: background"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T00:32:34.981344+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+              "offset": "283",
+              "limit": "50"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T00:32:34.981496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "283\t  # === Category 6: RSFT Methodology & Theory ===\n284\t\n285\t  - title: \"A Minimalist Approach to LLM Reasoning: from Rejection Sampling to Reinforce\"\n286\t    authors: Xiao et al.\n287\t    year: 2025\n288\t    venue: arXiv 2504.11343\n289\t    url: https://arxiv.org/abs/2504.11343\n290\t    category: rsft_methodology\n291\t    role: key_theoretical_support\n292\t    key_finding: >\n293\t      RAFT（简单 rejection sampling baseline）在数学推理上与 GRPO/PPO 表现相当。\n294\t      消融实验表明 GRPO 的主要优势来自丢弃全错 prompt 而非 reward normalization。\n295\t      提出 Reinforce-Rej，在 RAFT 基础上过滤全对和全错 sample。\n296\t      关键洞察：GRPO 和 RAFT 的核心区别在于负样本处理——GRPO 混合正负样本训练，\n297\t      RAFT 只用正样本，但 RAFT 仍能达到相当性能，说明 rejection sampling 的简单性被低估了。\n298\t    relevance_to_rsft_docre: >\n299\t      直接支持我们的设计选择：(1) RSFT 在 DocRE 上成功而 GRPO 失败，\n300\t      与该论文发现一致——rejection sampling 的 offline 特性天然避免了 catastrophic forgetting；\n301\t      (2) GRPO 主要优势来自过滤全错 prompt，这与我们 RSFT 的 reward-based filtering 机制相同；\n302\t      (3) DocRE structured output 比 math reasoning 更难用 online RL 优化，\n303\t      强化了 offline RSFT 的合理性。\n304\t\n305\t  - title: \"Beyond Rejection Sampling: Trajectory Fusion for Scaling Mathematical Reasoning (TrajFusion)\"\n306\t    authors: Jie Deng et al.\n307\t    year: 2026\n308\t    venue: arXiv 2602.04391\n309\t    url: https://arxiv.org/abs/2602.04391\n310\t    category: rsft_methodology\n311\t    role: method_component\n312\t    key_finding: >\n313\t      传统 RSFT 只用正确轨迹，丢弃错误轨迹。TrajFusion 将错误和正确轨迹交替拼接，\n314\t      显式建模试错推理过程，在困难数学问题上显著超越标准 RFT。\n315\t    relevance_to_rsft_docre: >\n316\t      Future work 方向：可考虑在 DocRE RSFT 中融合失败样本的信息。\n317\t      但 DocRE 的结构化输出（JSON triple）不同于 math 的 chain-of-thought，\n318\t      融合方式需要重新设计。\n319\t\n320\t  - title: \"Rejection Sampling Based Fine Tuning Secretly Performs PPO\"\n321\t    authors: Anonymous\n322\t    year: 2025\n323\t    venue: ICML 2025\n324\t    url: https://openreview.net/forum?id=yQ2UivKlir\n325\t    category: rsft_methodology\n326\t    role: theoretical_support\n327\t    key_finding: >\n328\t      建立 RSFT 与 PPO 之间的理论联系：rejection sampling\n…[truncated 195 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T00:32:34.981643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+              "offset": "1155",
+              "limit": "45"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T00:32:34.981795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1155\t      通过将 reward 条件化于最终正确性，对齐内部推理与代码正确性。\n1156\t    relevance_to_freige: >\n1157\t      P-GRPO 的\"仅对成功输出奖励推理过程\"与我们 RSFT 的 rejection sampling 理念一致——\n1158\t      都是只从高质量输出中学习。P-GRPO 的 conditional reward 思路可启发 CED 改进：\n1159\t      只在 RE 正确时奖励 evidence quality，避免\"evidence 好但 RE 错\"的情况。\n1160\t\n1161\t  # === Category 25: Rejection Sampling Fine-Tuning / Offline RL (Direction 5) ===\n1162\t\n1163\t  - title: \"OREO: Offline Reinforcement Learning for LLM Multi-Step Reasoning\"\n1164\t    authors: Anonymous\n1165\t    year: 2024\n1166\t    venue: arXiv 2412.16145\n1167\t    url: https://arxiv.org/abs/2412.16145\n1168\t    category: rsft_offline_rl\n1169\t    role: direct-competitor\n1170\t    key_finding: >\n1171\t      基于 maximum entropy RL 的 offline 方法，联合学习 policy model 和 value function，\n1172\t      优化 soft Bellman Equation。无需 paired preference data，\n1173\t      实现更好的 credit assignment。学到的 value function 可免费引导 test-time tree search。\n1174\t      在 GSM8K、MATH、ALFWorld 上超越现有 offline 方法。\n1175\t    relevance_to_freige: >\n1176\t      OREO 提供了比简单 RSFT 更理论化的 offline RL 框架。\n1177\t      我们的 RSFT 可视为 OREO 的特例（无 value function，简单 threshold filtering）。\n1178\t      Future work 方向：用 OREO 替代简单 RSFT 可能进一步提升 DocRE 性能。\n1179\t\n1180\t  - title: \"PCL-Reasoner-V1.5: Advancing Math Reasoning with Offline Reinforcement Learning\"\n1181\t    authors: Yao Lu, Dengdong Fan, Jianzheng Nie, Fan Xu, Jie Chen, Bin Zhou, Yonghong Tian\n1182\t    year: 2026\n1183\t    venue: arXiv 2601.14716\n1184\t    url: https://arxiv.org/abs/2601.14716\n1185\t    category: rsft_offline_rl\n1186\t    role: key_evidence\n1187\t    key_finding: >\n1188\t      基于 Qwen2.5-32B 的数学推理模型。核心创新是 offline RL 方法，\n1189\t      在训练稳定性和效率上优于 GRPO 等 online RL。\n1190\t      AIME 2024 平均 90.9%，AIME 2025 平均 85.6%，\n1191\t      在 Qwen2.5-32B post-training 中达 SOTA。\n1192\t    relevance_to_freige: >\n1193\t      强有力证据支持 offline RL > online RL 的论点。\n1194\t      PCL-Reasoner 在数学推理上用 offline RL 超越 GRPO，\n1195\t      与我们在 DocRE 上 RSFT 超越 GRPO 的发现一致。\n1196\t      两个独立领域的 converging evidence 增强了\n1197\t      \"structur\n…[truncated 187 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T00:32:34.981969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n -i -E \"best.of|bon|sample.size|k.ablat|quality.*noise|noise.*quality|number.*candidates|候选|噪声.*训练|训练.*噪声|top-k.*ablat|k.*选\" /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml 2>/dev/null | head -40",
+              "description": "Search for more keywords: best-of-N, sample size, noise quality"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T00:32:34.982118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "440:      backbone: LLaMA3-8B\n456:      再用 LLM 在精简候选空间中做多分类（RC）。\n465:      backbone: BERT classifier + LLM\n510:      backbone: \"dual-encoder (few hundred M params)\"\n536:      backbone: \"Mistral-7B / Vicuna-7B / LLaMA3-8B (QLoRA)\"\n578:      先生成多个候选（含 evidence），再用 NLI 在推理阶段选最佳。\n1097:      标准量化引入静态确定性噪声，对 RL 后期训练不利。但精确控制的量化噪声\n1435:      为我们的 QLoRA rank 选择提供实证指导。\n1506:      但 sparse training 的 proactive conflict mitigation 需要 task-aware 的参数选择，\n1529:  # === Category 13: Inference-Time Reranking / Best-of-N (New from 2025-05-16 scan) ===\n1531:  - title: \"Is Best-of-N the Best of Them? Coverage, Scaling, and Optimality in Inference-Time Alignment\"\n1539:      Best-of-N sampling provably suffers from reward hacking when N is large.\n1542:      强调 pre-trained policy 对高质量 response 的 coverage 是 BoN 成功的关键。\n1544:      直接对应 CED reranker 的理论基础。CED 作为 inference-time reward model 选择最佳候选，\n1556:      证明 BoN 中 true reward 先升后降的 hacking pattern 是所有 inference-time 机制的固有属性。\n1557:      提出 Best-of-Poisson (BoP) 高效近似最优 reward-KL tradeoff policy，\n1564:  - title: \"Inference-Aware Fine-Tuning for Best-of-N Sampling in Large Language Models\"\n1572:      提出 inference-aware fine-tuning 范式：训练时直接优化 BoN inference 策略的性能。\n1573:      设计 imitation learning 和 RL 方法克服 BoN 中不可微的 argmax 操作。\n1574:      BoN-aware 模型隐式学习 exploration-exploitation meta-strategy，\n1579:      使模型生成 BoN-aware 的多样输出而非事后选择。\n1581:  - title: \"Evaluation of Best-of-N Sampling Strategies for Language Model Alignment\"\n1589:      系统评估 BoN 采样的 reward hacking 问题。\n1590:      提出 Stochastic Regularized BoN (SRBoN) 有理论保证的方法。\n1591:      发现简单的 Sentence Length Regularized BoN 也能获得 comparable 性能。\n1595:      可借鉴 SRBoN 的正则化思路防止 CED reranker over-optimize evidence 而牺牲 extraction quality。\n1597:  - title: \"Regularized Best-of-N Sampling with Minimum Bayes Risk Objective for Language Model Alignment\"\n1605:      MBR-BoN：用 Minimum Bayes Risk 目标作为 proximity regularizer 缓解 reward hacking。\n1607:      在 AlpacaFarm 和 hh-rlhf 上优于 vanilla BoN 和 MBR decoding。\n1609:     \n…[truncated 117 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T00:32:34.982311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+              "offset": "1529",
+              "limit": "85"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T00:32:34.982549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1529\t  # === Category 13: Inference-Time Reranking / Best-of-N (New from 2025-05-16 scan) ===\n1530\t\n1531\t  - title: \"Is Best-of-N the Best of Them? Coverage, Scaling, and Optimality in Inference-Time Alignment\"\n1532\t    authors: Audrey Huang et al.\n1533\t    year: 2025\n1534\t    venue: ICML 2025\n1535\t    url: https://arxiv.org/abs/2503.21878\n1536\t    category: inference_time_reranking\n1537\t    role: key_baseline\n1538\t    key_finding: >\n1539\t      Best-of-N sampling provably suffers from reward hacking when N is large.\n1540\t      提出 InferenceTimePessimism 算法，通过 pessimism in the face of uncertainty\n1541\t      实现 scaling-monotonic 性能（性能不随 N 增大而退化）。\n1542\t      强调 pre-trained policy 对高质量 response 的 coverage 是 BoN 成功的关键。\n1543\t    relevance_to_freige: >\n1544\t      直接对应 CED reranker 的理论基础。CED 作为 inference-time reward model 选择最佳候选，\n1545\t      该论文的 pessimism 原则可指导 CED reranker 的 threshold 设计——\n1546\t      避免过度信任 CED score 导致 reward hacking。\n1547\t\n1548\t  - title: \"Inference-Time Reward Hacking in Large Language Models\"\n1549\t    authors: Yiwei Chen et al.\n1550\t    year: 2025\n1551\t    venue: NeurIPS 2025 Spotlight\n1552\t    url: https://arxiv.org/abs/2506.19248\n1553\t    category: inference_time_reranking\n1554\t    role: related_analysis\n1555\t    key_finding: >\n1556\t      证明 BoN 中 true reward 先升后降的 hacking pattern 是所有 inference-time 机制的固有属性。\n1557\t      提出 Best-of-Poisson (BoP) 高效近似最优 reward-KL tradeoff policy，\n1558\t      以及 HedgeTune 自动寻找最优 inference-time 参数。\n1559\t    relevance_to_freige: >\n1560\t      CED reranker 本质上是 inference-time 对齐。此论文警示：\n1561\t      即使 CED score 是高质量 reward，过度优化（选 N 过大）仍可能退化。\n1562\t      HedgeTune 的思路可用于自动选择 CED reranker 的最优 N。\n1563\t\n1564\t  - title: \"Inference-Aware Fine-Tuning for Best-of-N Sampling in Large Language Models\"\n1565\t    authors: Yinlam Chow et al.\n1566\t    year: 2024\n1567\t    venue: ICLR 2025\n1568\t    url: https://arxiv.org/abs/2412.15287\n1569\t    category: inference_time_reranking\n1570\t    role: method_component\n1571\t    key_finding: >\n1572\t      提\n…[truncated 1946 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T00:32:34.982803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+              "offset": "1612",
+              "limit": "80"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T00:32:34.983072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1612\t  # === Category 14: RSFT Methodology Advances (New from 2025-05-16 scan) ===\n1613\t\n1614\t  - title: \"AdaSTaR: Adaptive Data Sampling for Training Self-Taught Reasoners\"\n1615\t    authors: Hyung Won Chung et al.\n1616\t    year: 2025\n1617\t    venue: NeurIPS 2025\n1618\t    url: https://arxiv.org/abs/2505.16322\n1619\t    category: rsft_methodology\n1620\t    role: related_method\n1621\t    key_finding: >\n1622\t      RFT/RSFT 的随机数据采样导致训练不均衡——已解决的样本被过度训练，困难样本训练不足。\n1623\t      AdaSTaR 引入两个自适应采样原则：(1) diversity sampling 促进均衡，\n1624\t      (2) curriculum sampling 根据模型能力动态调整数据难度。\n1625\t      在 6 个 benchmark 全部取得最优，训练 FLOPs 平均减少 58.6%。\n1626\t    relevance_to_freige: >\n1627\t      直接适用于 FREIGE 的 RSFT 阶段。当前 RSFT 随机采样 CED-filtered 数据，\n1628\t      AdaSTaR 的 curriculum 策略可优化采样——先训简单 relation pair，再逐步引入困难的多跳关系。\n1629\t      其 diversity sampling 也可缓解 RSFT 数据中 relation type 分布不均的问题。\n1630\t\n1631\t  - title: \"RIFT: Repurposing Negative Samples via Reward-Informed Fine-Tuning\"\n1632\t    authors: Unknown\n1633\t    year: 2026\n1634\t    venue: arXiv 2601.09253\n1635\t    url: https://arxiv.org/abs/2601.09253\n1636\t    category: rsft_methodology\n1637\t    role: direct_competitor\n1638\t    key_finding: >\n1639\t      RSFT 的 hard rejection 丢弃大量计算昂贵的负样本。\n1640\t      RIFT 保留所有轨迹，用标量 reward 重新加权 loss，\n1641\t      正 reward 样本鼓励正确行为，负 reward 样本提供反向梯度。\n1642\t      引入 stabilized loss 解决 naive reward integration 的训练坍塌问题。\n1643\t    relevance_to_freige: >\n1644\t      FREIGE 的 RSFT 同样面临 hard rejection 的效率问题——大量生成但 CED 不达标的样本被丢弃。\n1645\t      RIFT 的 soft reweighting 可替代 binary CED 筛选：\n1646\t      用 CED score 作为连续 reward 加权 SFT loss，充分利用所有生成样本。\n1647\t\n1648\t  # === Category 15: NLI for Evidence Scoring / Faithfulness (New from 2025-05-16 scan) ===\n1649\t\n1650\t  - title: \"FaithLens: Detecting and Explaining Faithfulness Hallucination\"\n1651\t    authors: Unknown\n1652\t    year: 2025\n1653\t    venue: arXiv 2512.20182\n1654\t    url: https://arxiv.org/abs/2512.20182\n1655\t    category: faithfulness_nli\n1656\t    role: method_component\n1657\t    key_find\n…[truncated 1600 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T00:32:34.983471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T00:32:34.983644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T00:32:34.983773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "rejection sampling top-k training data quality degradation noise LLM fine-tuning"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T00:32:34.983899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "best-of-N selection N sensitivity reward hacking training data RLHF 2024 2025"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T00:32:34.984031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "RAFT reward ranked fine-tuning top-k ablation data quality noise"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T00:32:34.984192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"RAFT reward ranked fine-tuning top-k ablation data quality noise\"\n\nLinks: [{\"title\":\"RAFT: Reward rAnked FineTuning for Generative Foundation Model Alignment\",\"url\":\"https://arxiv.org/html/2304.06767v4\"},{\"title\":\"[PDF] RAFT: Reward rAnked FineTuning for Generative Foundation Model Alignment | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/RAFT:-Reward-rAnked-FineTuning-for-Generative-Model-Dong-Xiong/3ab661db57d924f4ff1706e05ac807873ca00e0a\"},{\"title\":\"Reward-Ranked Fine-Tuning (RAFT)\",\"url\":\"https://www.emergentmind.com/topics/reward-ranked-fine-tuning-raft\"},{\"title\":\"Reward rAnked FineTuning (RAFT)\",\"url\":\"https://www.emergentmind.com/topics/reward-ranked-finetuning-raft\"},{\"title\":\"Papers Explained 303: Reward rAnked FineTuning (RAFT) | by Ritvik Rastogi | Medium\",\"url\":\"https://ritvik19.medium.com/papers-explained-303-reward-ranked-finetuning-raft-791154585908\"},{\"title\":\"[2304.06767] RAFT: Reward rAnked FineTuning for Generative Foundation Model Alignment\",\"url\":\"https://arxiv.org/abs/2304.06767\"},{\"title\":\"RAFT — LMFlow documentation\",\"url\":\"https://optimalscale.github.io/LMFlow/examples/raft.html\"},{\"title\":\"GitHub - RLHFlow/RAFT: This is an official implementation of the Reward rAnked Fine-Tuning Algorithm (RAFT), also known as iterative best-of-n fine-tuning or rejection sampling fine-tuning. · GitHub\",\"url\":\"https://github.com/RLHFlow/RAFT\"},{\"title\":\"(PDF) RAFT: Reward rAnked FineTuning for Generative Foundation Model Alignment\",\"url\":\"https://www.researchgate.net/publication/370058357_RAFT_Reward_rAnked_FineTuning_for_Generative_Foundation_Model_Alignment\"},{\"title\":\"RAFT: Reward rAnked FineTuning for Generative Foundation Model Alignment | OpenReview\",\"url\":\"https://openreview.net/forum?id=m7p5O7zblY\"}]\n\nI found comprehensive information about RAFT (Reward rAnked FineTuning). Here are the key findings:\n\n## Overview\nRAFT is a new framework designed to align generative models effectively, serving as an alte\n…[truncated 1544 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T00:32:34.984413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"best-of-N selection N sensitivity reward hacking training data RLHF 2024 2025\"\n\nLinks: [{\"title\":\"Reward Hacking in Reinforcement Learning | Lil'Log\",\"url\":\"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/\"},{\"title\":\"Inference-Time Reward Hacking in Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=hSX7Dd8dxy\"},{\"title\":\"Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://arxiv.org/pdf/2502.18770\"},{\"title\":\"Avoiding Reward Hacking\",\"url\":\"https://www.emergentmind.com/topics/avoiding-reward-hacking\"},{\"title\":\"Reward Modeling in LLM Alignment\",\"url\":\"https://www.emergentmind.com/topics/reward-modeling-in-llm-alignment\"},{\"title\":\"Mitigating Reward Hacking in RLHF via Information- ...\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/f25d75fc760aec0a6174f9f5d9da59b8-Paper-Conference.pdf\"},{\"title\":\"REWARD MODEL BOOSTING FOR RLHF\",\"url\":\"https://openreview.net/pdf/2fd4b1609b392151e6692f73c18ac0a8fe54ae94.pdf\"},{\"title\":\"Pessimistic Reward Modeling in RLHF against Reward Hacking\",\"url\":\"https://openreview.net/pdf?id=HWOAZUPA0C\"},{\"title\":\"Inference-Time Reward Hacking in Large Language Models Hadi Khalaf\",\"url\":\"https://openreview.net/pdf?id=hSX7Dd8dxy\"},{\"title\":\"Reward Hacking Mitigation using Verifiable Composite Rewards\",\"url\":\"https://arxiv.org/html/2509.15557v1\"}]\n\nI found comprehensive research on reward hacking and RLHF. Here are the key findings related to best-of-N selection, N sensitivity, reward hacking, and training data in RLHF from 2024-2025:\n\n## Best-of-N Sampling and Reward Hacking\n\nBest-of-N sampling (BoN) is a technique used in RLHF frameworks, and recent research has explored its sensitivity to reward hacking. Inference-time hacking occurs when overselecting based on noisy or adversarial proxy rewards at decode time leads to a collapse of alignment performance as selection pressure increases.\n\nResearch published in 2025 asks \"Is best-of-n the best of\n…[truncated 1184 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T00:32:34.984614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"rejection sampling top-k training data quality degradation noise LLM fine-tuning\"\n\nLinks: [{\"title\":\"When Fine-Tuning Fails and when it Generalises: Role of Data Diversity and Mixed Training in LLM-based TTS\",\"url\":\"https://arxiv.org/html/2603.10904\"},{\"title\":\"Rejection Sampling | RLHF Book by Nathan Lambert\",\"url\":\"https://rlhfbook.com/c/09-rejection-sampling\"},{\"title\":\"1Cademy - Rejection Sampling for LLM Fine-Tuning\",\"url\":\"https://1cademy.com/node/rejection-sampling-for-llm-fine-tuning/KccgwQodLPzOTmqGzDOH\"},{\"title\":\"Rejection Fine-Tuning (RFT)\",\"url\":\"https://www.emergentmind.com/topics/rejection-fine-tuning-rft\"},{\"title\":\"Rejection Sampling & SFT in LLM Alignment\",\"url\":\"https://www.emergentmind.com/topics/rejection-sampling-and-supervised-fine-tuning-sft\"},{\"title\":\"RS-DPO: A Hybrid Rejection Sampling and Direct Preference Optimization Method for Alignment of Large Language Models\",\"url\":\"https://arxiv.org/html/2402.10038v1\"},{\"title\":\"LLM Training: RLHF and Its Alternatives - Ahead of AI\",\"url\":\"https://magazine.sebastianraschka.com/p/llm-training-rlhf-and-its-alternatives\"},{\"title\":\"The Ultimate Guide to Rejection Sampling in LLMs: Making AI Sound Human, One Sample at a Time | by KoshurAI | 𝐀𝐈 𝐦𝐨𝐧𝐤𝐬.𝐢𝐨 | Medium\",\"url\":\"https://medium.com/aimonks/the-ultimate-guide-to-rejection-sampling-in-llms-making-ai-sound-human-one-sample-at-a-time-9e9e8c193359\"},{\"title\":\"Rejection-sampling Fine-Tuning (RFT)\",\"url\":\"https://www.emergentmind.com/topics/rejection-sampling-fine-tuning-rft-ad4c417c-416b-40b6-bf9a-4653b83ddcfb\"},{\"title\":\"DeepSeek-R1: RL for LLMs Rethought | by Anna Alexandra Grigoryan | Medium\",\"url\":\"https://thegrigorian.medium.com/deepseek-r1-rl-for-llms-rethought-e148445d4381\"}]\n\nI've completed the web search for your query. Here are the key findings related to rejection sampling, top-k sampling, training data quality degradation, noise, and LLM fine-tuning:\n\n## Key Results:\n\n**Rejection Sampling & Top-k Sampling:**\nC\n…[truncated 1643 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T00:32:34.984838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"rejection sampling\" \"top-k\" OR \"top k\" ablation training quality \"k=1\" OR \"k=3\" OR \"k=5\" fine-tuning 2024 2025"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T00:32:34.985000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "best-of-N training data selection increasing N degrades quality noise accumulation reward model imperfect proxy"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T00:32:34.985151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"rejection sampling\" \"top-k\" OR \"top k\" ablation training quality \"k=1\" OR \"k=3\" OR \"k=5\" fine-tuning 2024 2025\"\n\nLinks: [{\"title\":\"Rejection Sampling | RLHF Book by Nathan Lambert\",\"url\":\"https://rlhfbook.com/c/09-rejection-sampling\"},{\"title\":\"Rejection Sampling & SFT in LLM Alignment\",\"url\":\"https://www.emergentmind.com/topics/rejection-sampling-and-supervised-fine-tuning-sft\"},{\"title\":\"Rejection Sampling Fine-Tuning (RSFT)\",\"url\":\"https://www.emergentmind.com/topics/rejection-sampling-fine-tuning-rsft\"},{\"title\":\"Rejection Sampling Based Fine Tuning Secretly Performs PPO | OpenReview\",\"url\":\"https://openreview.net/forum?id=yQ2UivKlir\"},{\"title\":\"Rejection Fine-Tuning (RFT)\",\"url\":\"https://www.emergentmind.com/topics/rejection-fine-tuning-rft\"},{\"title\":\"Rejection-sampling Fine-Tuning (RFT)\",\"url\":\"https://www.emergentmind.com/topics/rejection-sampling-fine-tuning-rft-ad4c417c-416b-40b6-bf9a-4653b83ddcfb\"},{\"title\":\"DART-Math: Difficulty-Aware Rejection Tuning for Mathematical Problem-Solving\",\"url\":\"https://tongyx361.github.io/assets/dart-math/paper-dart-math.pdf\"},{\"title\":\"ICML Rejection Sampling Based Fine Tuning Secretly Performs PPO\",\"url\":\"https://icml.cc/virtual/2025/48054\"},{\"title\":\"DART-Math: Difficulty-Aware Rejection Tuning for ...\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/0ef1afa0daa888d695dcd5e9513bafa3-Paper-Conference.pdf\"},{\"title\":\"from Rejection Sampling to Reinforce\",\"url\":\"https://openreview.net/pdf?id=eK3yDPtwIK\"}]\n\nI've completed the web search for your query about rejection sampling with top-k ablation studies related to training quality and fine-tuning from 2024-2025. Here are the key findings:\n\n## Main Research Areas Found\n\n**Rejection Sampling Fine-Tuning (RSFT/RFT) - Core Technique:**\nRSFT has become the prevailing baseline for self-improvement in mathematical reasoning and chain-of-thought LLMs. On Qwen-2.5-Math-1.5B, RSFT achieved mean@8 accuracy 25.6% on MATH.\n\n**Top-K Ablati\n…[truncated 1091 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T00:32:34.985372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"best-of-N training data selection increasing N degrades quality noise accumulation reward model imperfect proxy\"\n\nLinks: [{\"title\":\"Diffusion Model as a Noise-Aware Latent Reward Model for Step-Level Preference Optimization\",\"url\":\"https://arxiv.org/html/2502.01051v5\"},{\"title\":\"Overcoming Reward Model Noise in Instruction-Guided Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2409.15922v1\"},{\"title\":\"Understanding the Effect of Noise in LLM Training Data with Algorithmic Chains of Thought\",\"url\":\"https://arxiv.org/html/2402.04004v2\"},{\"title\":\"Dual-Stage Clean-Sample Selection for Incremental Noisy Label Learning - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12292581/\"},{\"title\":\"Noise injection for training artificial neural networks - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC2771718/\"},{\"title\":\"Review–A Survey of Learning from Noisy Labels - IOPscience\",\"url\":\"https://iopscience.iop.org/article/10.1149/2754-2726/ac75f5\"},{\"title\":\"Deep learning with noisy labels: exploring techniques and ...\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC7484266/\"},{\"title\":\"Selecting optimal training data for learning to rank | Request PDF\",\"url\":\"https://www.researchgate.net/publication/220230355_Selecting_optimal_training_data_for_learning_to_rank\"},{\"title\":\"Understanding and Mitigating the Bias in Sample Selection for Learning with Noisy Labels\",\"url\":\"https://arxiv.org/html/2401.13360v3\"},{\"title\":\"A probabilistic approach to training machine learning models using noisy data - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S1364815224001944\"}]\n\nBased on the search results, I found several relevant papers addressing aspects of your query about best-of-N training data selection and quality degradation issues:\n\n## Key Findings:\n\n**Best-of-N and Quality Degradation:**\nThe best-of-N approach can be extended to a step-level version, enabling exploration and selection at each step of image genera\n…[truncated 1462 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T00:32:34.985549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T00:32:34.985674+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T00:32:34.985792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://rlhfbook.com/c/09-rejection-sampling",
+              "prompt": "Extract all content about: (1) how the number of samples N or top-k selection affects training data quality, (2) any ablation studies on k or N, (3) any discussion of noise introduced by selecting more candidates, (4) the trade-off between data quantity and quality when varying k. Include specific numbers and findings."
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T00:32:34.985912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/0ef1afa0daa888d695dcd5e9513bafa3-Paper-Conference.pdf",
+              "prompt": "This is the DART-Math paper. Extract: (1) any ablation on the number of samples k used for rejection tuning, (2) any findings on how increasing the number of selected samples affects training quality, (3) any discussion of noise from including lower-ranked samples, (4) the relationship between selection threshold/quantity and downstream performance."
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T00:32:34.986041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Analysis of Sample Size and Selection Effects in Rejection Sampling\n\nBased on the provided content, there is **limited empirical data** on the specific effects you requested:\n\n## What the Document States\n\n**On completion quantity:**\nThe text notes that \"successful implementations of rejection sampling have included 10 to 30 or more completions for each prompt. Using too few completions will make training biased and/or noisy.\"\n\nThis is the only quantitative guidance provided, though it lacks specific ablation results comparing these ranges.\n\n**On selection trade-offs:**\nThe document acknowledges that \"more completions can improve the best available sample, but only if the reward model can separate good and bad answers,\" suggesting a potential quality-quantity trade-off. However, no empirical findings demonstrate this trade-off.\n\n## What's Missing\n\nThe content explicitly states that \"the actual details on which prompts to use, how to select a reward model, how to sequence rejection sampling, etc. are not well documented in the literature.\" \n\nNotably, the document contains **no ablation studies comparing different N or k values**, no quantified noise analysis, and no empirical measurements of data quality degradation at different sample sizes.\n\nThe suggested experiments section recommends practitioners \"vary how much choice the reward model gets\" and \"change num_completions_per_prompt,\" but provides no baseline results from such experiments."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T00:32:34.986180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# DART-Math: Ablation Studies on Sample Selection\n\nBased on the provided PDF content, I can identify the following relevant findings:\n\n## Key Ablation Studies\n\n**Sample Size Analysis:**\nThe paper investigates how the number of selected samples (k) impacts rejection tuning effectiveness. The research examines performance across different selection quantities to determine optimal training configurations.\n\n**Quality vs. Quantity Tradeoff:**\nThe authors document findings showing that including lower-ranked samples introduces noise that can degrade training quality. This suggests a meaningful relationship between selection threshold stringency and final model performance.\n\n**Threshold Effects:**\nThe work establishes that downstream performance correlates with the selection threshold used during sample filtering. More restrictive thresholds (fewer samples) appear to produce cleaner training signals, though potentially with reduced data volume.\n\n**Training Stability:**\nThe ablation reveals that increasing selected sample count beyond optimal levels does not monotonically improve outcomes, indicating diminishing returns and potential negative effects from noisy lower-quality examples.\n\nThe paper demonstrates these findings through systematic experimental variation, establishing empirical guidelines for practitioners selecting rejection tuning hyperparameters.\n\n[Binary content (application/pdf, 558.4KB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/b69ab9a8-8e92-45c4-8283-0113da64e7fa/tool-results/webfetch-1778891463718-ld0o0y.pdf]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T00:32:34.986348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/html/2304.06767v4",
+              "prompt": "Extract from the RAFT paper: (1) Any ablation on the number of top-k samples selected per prompt for fine-tuning, (2) How the paper defines the filtering threshold or top-k ratio, (3) Any discussion of how increasing k (selecting more samples) affects training quality, (4) Any analysis of the trade-off between data quantity and noise when selecting top-ranked samples. Include specific numbers and experimental results."
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T00:32:34.986490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# RAFT Paper: Top-K Selection Analysis\n\n## 1. Ablation on Number of Top-K Samples\n\nThe paper conducts experiments with **K ∈ {8, 16, 32}** to evaluate how sample count affects performance:\n\n- **K=8**: Achieves reward of 2.180\n- **K=16**: Achieves reward of 2.251\n- **K=32**: Achieves reward of 2.329 (best performance)\n\nResults show \"as K increases, the obtained model tends to achieve a higher test reward\" with consistent diversity metrics across all settings.\n\n## 2. Filtering Threshold Definition\n\nThe paper employs **local ranking per prompt** rather than absolute thresholds. For each prompt, the method \"sample[s] K responses from the model and take[s] the response with the highest reward.\" This means selecting the **top-1 sample** from K candidates per prompt, establishing an implicit 1/K acceptance ratio.\n\n## 3. Impact of Increasing K on Training Quality\n\nThe theoretical justification shows that reward improvement follows: \"larger K leads to better performance\" with marginal benefits following \"log K\" scaling. Practically:\n\n- Larger K requires more inference time (5-7 hours for K ∈ {8,32})\n- K=16 and K=32 converge in 10-12 iterations versus 15-18 for K=8\n- Trade-off: \"balance the training cost and model performance\"\n\n## 4. Data Quality vs. Quantity Trade-Off\n\nThe paper doesn't explicitly analyze noise accumulation but notes that diversity metrics remain \"never worse\" with higher K values, suggesting quality preservation despite increased sampling."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T00:32:34.986683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T00:32:34.986821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\nced_stabilizer_literature_survey.md\ncuda3_diagnostic.md\nd024_literature_survey.md\ndiag_mvp2_grpo_flatnli_r3.md\ndiagnose_plan_001.md\ndiversity_probe.py\ndiversity_probe_results.md\ndream_reports\nedcr_analysis.md\nedcr_analysis_r2b.md\nedcr_diagnostic_table.md\neval_progress_check_0515.md\neval_script_audit.md\neval_status_check.md\nfreige\ngap_analysis_w3.md\ngrpo_forgetting_dynamics.pdf\ngrpo_forgetting_dynamics.png\nkl_analysis_report.md\nliterature_quantization_rl.md\nliterature_survey_evidence_overhead.md\nmanifest.yaml\nmetrics_summary.csv\nmetrics_summary_table.md\nmvp2_eval_rsft_r2b_maxtok1536_r2\nplan_001_flat_nli_seed45\nplan_003\nplan_003_edcr_cross_method_table.md\nplan_003_edcr_diagnostic\nplan_003_edcr_diagnostic.md\nplan_009\nplan_009_dynamics_data.json\nplan_009_dynamics_figure\nplan_009_forgetting_data.csv\nplan_009_forgetting_data_v5.csv\nplan_009_forgetting_figure\nplan_009_grpo_forgetting\nplan_012_dpo_ced\nplan_012_dpo_ced_1ep_analysis.md\nprocess_check_report.md\nrelated_work_gap_analysis.md\nrelated_work_survey\nrsft_gen_progress_check.md\nrsft_pipeline_commands.md\nstatus_check_loop4.md\ntraining_health_check.md\ntraining_trajectory_loop4.md\ntrl_grpo_stability_research.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T00:32:34.986949+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T00:32:34.987067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T00:32:34.987195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/topk_ablation_lit_review.md",
+              "content": "# Top-k Ablation Negative Result: Literature Context\n\n## 实验背景\n\nCED RSFT top_k ablation 结果为 negative：\n- top_k=3: rel_f1=0.4454, ign_f1=0.4364\n- top_k=1: rel_f1≈0.46\n- 增加 k 引入更多噪声训练样本，降低关系抽取精度\n\n## 文献中的共识\n\n### 1. RAFT 框架的关键设计：top-1 selection from K candidates\n\nRAFT (Dong et al., TMLR 2024) 定义了 RSFT 的标准框架：每轮生成 K 个 response，用 reward model 排序，**始终只取 top-1** 做 SFT。论文的 ablation 显示 K∈{8,16,32} 时性能随 K 增加而提升（K=8→2.180, K=16→2.251, K=32→2.329），但这是因为更大的候选池提供了更好的 top-1 样本——而非保留更多样本训练。\n\n这恰好与我们的实验形成对照：\n- **RAFT 的 K**：候选池大小，增大→更好的 top-1→性能提升\n- **我们的 top_k**：保留样本数，增大→引入次优样本→性能下降\n\nRAFT 隐式地做出了 \"只用最好的 1 个\" 的设计选择，我们的 ablation 从实验角度验证了这个选择的合理性。\n\n### 2. Best-of-N 文献：N 增大导致 reward hacking\n\nliterature_map.yaml 中 Category 13 收录了 4 篇直接相关论文：\n\n- **Huang et al. (ICML 2025)** \"Is Best-of-N the Best of Them?\"：证明 BoN 在 N 增大时 provably suffers from reward hacking——proxy reward 持续改善但 true reward 先升后降。根本原因是 reward model 作为不完美代理，选择压力越大，over-optimization 越严重。\n- **Chen et al. (NeurIPS 2025 Spotlight)** \"Inference-Time Reward Hacking\"：true reward 的先升后降是所有 inference-time 选择机制的固有属性，提出 BoP 和 HedgeTune 缓解。\n- **Ichihara et al. (TMLR 2025)**：系统评估 BoN reward hacking，提出 SRBoN 正则化方法。\n- **Jinnai et al. (NAACL 2025)**：MBR-BoN 用 proximity regularizer 约束选择偏离度。\n\n虽然这些论文讨论的是 inference-time reranking，但核心机制完全适用于 training-time data selection：**当 reward model（此处为 CED score）不完美时，选择更多样本放大了 proxy-true reward 的 misalignment**。\n\n### 3. 训练数据噪声的放大效应\n\n- **DART-Math (NeurIPS 2024)**：在数学推理 rejection tuning 中发现，放宽选择阈值（保留更多样本）增加数据量但引入噪声，downstream 性能非单调——存在 sweet spot。\n- **AdaSTaR (NeurIPS 2025)**：指出 RFT 的随机采样导致已解决样本被过度训练、困难样本训练不足，进一步论证了 naive top-k 扩大选择集的问题。\n- **RLHF Book (Nathan Lambert)**：指出 rejection sampling 中 \"more completions can improve the best available sample, but only if the reward model can separate good and bad answers\"——隐含条件是 reward model 必须足够准确，否则扩大选择集只是放大噪声。\n\n### 4. 对 CED top_k=3 negative result 的解释\n\n综合文献，我们的 negative result 可归因于两个交互因素：\n\n1. **CED score 作为不完美 proxy**：CED 用 NLI entailment 评估 evidence quality，但 evidence quality 与 relation extraction correctness 并非完全对齐。top_k=1 时只取 CED 最高分的样本，proxy 偏差影响小；top_k=3 时第 2、3 名样本的 CED score 更可能 reward-hack——evidence 看起来好但 RE triple 有误。\n\n2. **噪声稀释训练信号**：即使第 2、3 名样本不是 reward hacking，它们客观上也是次优样本。将它们与最优样本混合训练，稀释了每个 prompt 的训练信号强度，等价于在 SFT loss 中引入 label noise。\n\n## 建议\n\n### 不需要加入 literature_map.yaml 的论文\n上述关键论文（Huang et al., Chen et al., Ichihara et al., Jinnai et al., DART-Math, AdaSTaR）**已全部收录**在 literature_map.yaml 中。\n\n### 可考虑补充的论文\n- Nathan Lambert, *RLHF Book*, Chapter 9: Rejection Sampling (https://rlhfbook.com/c/09-rejection-sampling) — 作为 practitioner guide 补充，讨论了 completion 数量与 reward model 分辨力的交互，但无实验数据，优先级低。\n\n### 写作建议\n在论文 ablation section 中报告 top_k 结果时，可引用 Huang et al. (2025) 的 BoN reward hacking 理论和 RAFT 的 top-1 design choice 作为文献支撑，论证 \"CED scoring 的最优 k=1 与 BoN 文献中 reward over-optimization 的发现一致\"。\n"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T00:32:34.987448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/topk_ablation_lit_review.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T00:32:34.987595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "register artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T00:32:34.987719+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T00:32:34.987836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T00:32:34.987946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T00:32:34.988056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "artifact",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T00:32:34.988165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T00:32:34.988336+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出文件已写入 `artifacts/topk_ablation_lit_review.md`。\n\n核心发现：\n\n1. **literature_map.yaml 已有充分覆盖**——Category 13（BoN/Reranking）的 4 篇论文 + Category 14（RSFT Methodology）的 AdaSTaR/RIFT 直接解释了 top_k=3 的 negative result。\n\n2. **文献共识**：RAFT 框架始终只取 top-1（不是 top-k），我们的 ablation 从反面验证了这个设计。BoN 文献（Huang et al. ICML 2025）证明 proxy reward 不完美时，扩大选择集导致 reward hacking——CED score 与 RE correctness 的 misalignment 在 top_k=3 时被放大。\n\n3. **不需要新增论文到 literature_map.yaml**，已有收录足够支撑。写论文时可引用 Huang et al. (2025) 和 RAFT 的 top-1 设计作为文献锚点。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_topk_ablation_lit_20260516T002831"
+          },
+          "id": "event-000071"
+        }
+      ],
+      "message_count": 71
+    }
+  ],
+  "readable_path": "readable/conversations/research-topk-ablation-lit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56ae0b53929598ca479f",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_18_1779344008.md",
+  "task_key": "loop_18_1779344008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779344008.md",
+    "occurrence": 1,
+    "bytes": 4829,
+    "sha256": "2d1b351bba7095ad17b70e6e69547be622264c402b5cfefce85e8387feb90761"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-21T03:35:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 rtx5090-4x 的 cuda:0/1/2/3（gpu_ids 白名单），bjb2-12179 已废弃（数据已迁移）\n- rtx5090-4x 用 conda 环境，激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- 14B 模型路径 `/root/autodl-tmp/models/Qwen/Qwen3-14B`，SFT adapter `/root/autodl-tmp/sft_output_14b`——这些是从 bjb2 迁移过来的，迁移任务 `migration_bjb2_to_westd` 仍在 RUNNING（PID 6660），迁移完成前不要假设所有文件已就位\n- LLaMA 模型路径 `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`，SFT adapter `/root/autodl-tmp/sft_output_llama_3_1_8b`\n- 14B RSFT generation 的历史数据（1712/3027 docs）在 bjb2 AutoDL 重启时全丢，需从头重跑（不是 resume）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（4× RTX PRO 6000, 96GB VRAM/卡, 350GB disk）\n- 工作目录：`/root/autodl-tmp/freige`\n- Python：`/root/miniconda3/bin/python`（conda base env）\n- 数据集：`/root/autodl-tmp/data/docred`（train_annotated.json 3027 docs, dev.json ~1000 docs）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 磁盘：`/usr/bin/nvidia-smi` 分区 815G/879G 可用（3%）；`/autodl-pub` 5.3T/7.3T 可用（24%）\n- 活跃进程：\n  - `migration_bjb2_to_westd`：PID 6660，RUNNING（rsync 迁移 ~207G）\n  - `llama_sft_s43_train_eval_r3`：PID 15650，cuda:1，cron 监控中\n  - `llama_sft_s44_train_eval_r3`：PID 16658，cuda:2，cron 监控中\n  - `eval_llama_sft_s42_no_evidence_std_r2`：PID 16978，cuda:3，cron 监控中\n\n### 3. 📊 当前状态\n我刚收到 `plan017_14b_rsft_generate_r2` 的失败回调（EXIT_CODE=1，运行仅 38 秒就崩溃），**尚未诊断**——session reset 打断了诊断流程。\n\n**RUNNING 实验**：\n| exp_id | GPU | 摘要 |\n|--------|-----|------|\n| migration_bjb2_to_westd | — | bjb2 → westd 数据迁移（~207G） |\n| llama_sft_s43_train_eval_r3 | cuda:1 | LLaMA SFT s43 训练+eval（补齐 3-seed） |\n| llama_sft_s44_train_eval_r3 | cuda:2 | LLaMA SFT s44 训练+eval（补齐 3-seed） |\n| eval_llama_sft_s42_no_evidence_std_r2 | cuda:3 | LLaMA SFT s42 no-evidence 标准化 eval |\n\n**cuda:0 空闲**——plan017_14b_rsft_generate_r2 失败后释放，需要诊断后重新提交。\n\n**未处理的回调**：plan017_14b_rsft_generate_r2 失败诊断（需 spawn worker 读 `~/runs/faith-evidence-ie/plan017_14b_rsft_generate_r2.log` 尾部）。前一个 `eval_llama_sft_s42_no_evidence_std` 也是 EXIT_CODE=1 失败，已有 r2 版本在 cuda:3 上重跑。\n\n### 4. 📋 待办（条件触发式）\n- **立即**：spawn worker SSH 读 `plan017_14b_rsft_generate_r2.log` 诊断失败原因 → 修复后在 cuda:0 重新提交（r3）\n- migration_bjb2_to_westd cron 回调完成 → 验证 14B adapter + rsft_generations_14b 数据完整性 → 确认 14B gen 是否需要从头跑（大概率需要，因为 bjb2 上的 1712 docs 生成数据在重启时丢了）\n- llama_sft_s43_train_eval_r3 完成 → 记录 ign_f1 → 与 s42(0.5384) 对比\n- llama_sft_s44_train_eval_r3 完成 → 记录 ign_f1 → 3-seed SFT mean/std 计算 → 与 RSFT 3-seed (0.5654±0.0052) 对比 → variance compression 跨架构验证\n- eval_llama_sft_s42_no_evidence_std_r2 完成 → 得到 LLaMA SFT no-evidence ign_f1 → 计算 evidence tax（与 0.5384 对比）\n- 上述 LLaMA 实验全部完成 → 向 Director 汇报 LLaMA 行完整数据 → 更新论文 scaling table\n\n### 5. 🎯 战略上下文\n- **论文核心**：FREIGE 系统性研究，3 贡献：(1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression\n- **投稿目标**：EMNLP 2026 Main（ARR July cycle，~56 天）\n- **Scaling table 进度**：1.7B/4B/8B 行已完成，LLaMA-8B 行 3/4 完成（差 SFT 3-seed variance），14B 行只有 SFT eval（ign_f1=0.5507），RSFT 全流程（gen → CED → train → eval）尚未开始\n- **关键决策**：D131 采纳 Reviewer 统一叙事主线（3 contributions 从独立小文章改为统一 narrative）；D130 审计确认 LLaMA 数据正确；D127 NLI ablation narrative 修正\n- **易错点**：\n  - plan017_14b_rsft_generate_r2 只跑了 38 秒就崩——很可能是迁移后路径/文件问题（adapter 或 progress.json 状态不对），不要盲目重跑，先读 log\n  - LLaMA SFT s42 的 ign_f1 是 0.5384（不是 0.5514，那是 re_f1），D130 已审计确认\n  - LLaMA RSFT s42 的 ign_f1 是 0.5714（不是 0.5839），D129 已修正\n  - 14B gen 的 `--resume` flag 依赖 progress.json，如果 progress.json 是从 bjb2 迁移来的旧数据（指向已丢失的 1712 docs），resume 会出错——可能需要清空 output_dir 从头跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779344008.md"
+}

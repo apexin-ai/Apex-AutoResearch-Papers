@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb85021df29b3178dd98",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh submit llama rsft noevi 2048",
+  "task_key": "worker_ssh_submit-llama-rsft-noevi-2048_20260521T093835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit-llama-rsft-noevi-2048_20260521T093835_result.json",
+    "occurrence": 1,
+    "bytes": 231,
+    "sha256": "bcb6a52889d12590ff04adf853b446f7fd59461f4ee2dc815a6ebcc6bed75cdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册监控：\n\n- **exp_id**: eval_llama_rsft_s42_no_evi_2048\n- **PID**: 95606\n- **GPU**: cuda:0\n- **关键参数**: `--no_evidence --max_new_tokens 2048 --sft_adapter --base_model`（nested LoRA）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-llama-rsft-noevi-2048.md"
+}

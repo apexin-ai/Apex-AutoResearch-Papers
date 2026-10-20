@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff22261486bce86f49fc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "data filter truncated json",
+  "task_key": "worker_data_filter-truncated-json_20260515T083757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_filter-truncated-json_20260515T083757_result.json",
+    "occurrence": 1,
+    "bytes": 251,
+    "sha256": "2623f70bd8e495f3c7401af87f6a766f254ec30638d360c36d7dcb0dc22de1ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "过滤完成。\n\n| 指标 | 数量 |\n|------|------|\n| 原始样本 | 2718 |\n| 保留 | 2548 |\n| 截断移除 | 170 (6.3%) |\n\n清洗后数据：`/root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl`（2548 行，已验证）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-filter-truncated-json.md"
+}

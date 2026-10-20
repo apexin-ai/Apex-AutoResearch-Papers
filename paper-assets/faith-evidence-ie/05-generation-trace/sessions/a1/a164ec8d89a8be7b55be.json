@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a164ec8d89a8be7b55be",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh verify rsft s3",
+  "task_key": "worker_ssh_verify-rsft-s3_20260515T045211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-rsft-s3_20260515T045211_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "68adcad7a7a10928e68eea37385eb793400997381779a57dc7d5f33b764128fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## S3 验证结果\n\n| 指标 | 值 |\n|------|-----|\n| 生成行数 | 5288 |\n| Unique doc 数 | 659（预期 ~657，正常） |\n| 格式合规率 | 99.8%（5280/5288） |\n| 完成状态 | 正常完成，EXIT_CODE=0，耗时 ~3h |\n| Diversity | 7 次采样报告，范围 7.5~7.8/8 |\n\n**Diversity 明细**：7.7, 7.7, 7.6, 7.5, 7.6, 7.5, 7.8（/8）\n\n**S0 状态**：PID 135867 仍在运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-rsft-s3.md"
+}

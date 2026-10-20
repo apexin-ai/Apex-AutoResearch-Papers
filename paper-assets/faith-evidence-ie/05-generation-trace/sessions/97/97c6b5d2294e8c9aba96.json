@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97c6b5d2294e8c9aba96",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops llama rsft oom diagnosis",
+  "task_key": "worker_ops_llama_rsft_oom_diagnosis_20260516T154223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama_rsft_oom_diagnosis_20260516T154223_result.json",
+    "occurrence": 1,
+    "bytes": 3619,
+    "sha256": "86239357b38678d814b6bcd88f5a3aba8f11da6494482ca3984c2a14cc07ee4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have all the data needed. Here's the diagnosis and retry plan:\n\n---\n\n## OOM 根因分析\n\n**核心原因：GPU 共享导致显存不足，非模型本身过大。**\n\n证据对比：\n| | Qwen3-8B (成功) | LLaMA-3.1-8B (失败) |\n|---|---|---|\n| 模型参数 | ~8.2B (36层, FFN=12288) | ~8.0B (32层, FFN=14336) |\n| bf16 权重 | ~16.4GB | ~16.0GB |\n| KV cache peak (batch=8×5120 tokens) | ~5.8GB (36层) | ~5.1GB (32层) |\n| 观测显存占用 | 28067 MiB | 被 kill |\n| `CUDA_VISIBLE_DEVICES` | **=3 (已设)** | **未设或 GPU 被占** |\n\nQwen3-8B 更大、KV cache 更多，却稳定运行，说明 LLaMA OOM 是因为 cuda:1 当时被其他进程占用（与现在 cuda:1 被 eval 占 10.3GB 的情形一致）。没有设 `CUDA_VISIBLE_DEVICES` 或目标 GPU 不干净，`device_map=\"auto\"` 加载到已有 10+GB 占用的 GPU 上，16GB 模型 + 5GB KV cache + 10GB 已有 > 32GB → OOM killed。\n\nSFT adapter 额外开销：merge_and_unload 过程中临时多占 ~670MB（adapter_model.safetensors）。\n\n---\n\n## 推荐重试方案\n\n### 方案 A（首选）：bf16 全精度，等 GPU 空闲\n\n**前提**：等 cuda:1 上的 eval (PID 353322) 完成后，GPU 显存 < 2GB。\n\n```bash\n# 先确认 GPU 空闲\nnvidia-smi -i 1 --query-gpu=memory.used --format=csv,noheader\n# 确认 < 2GB 后执行：\n\nCUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 \\\nnohup python -m freige.training.rsft_generate \\\n    --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B \\\n    --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b \\\n    --num_generations 8 \\\n    --temperature 0.7 \\\n    --batch_size 1 \\\n    --max_new_tokens 1024 \\\n    --data_path /root/autodl-tmp/data/docred \\\n    --split train \\\n    --seed 42 \\\n    --output_dir /root/autodl-tmp/freige/outputs/rsft_candidates_llama_8b \\\n    > /root/autodl-tmp/logs/plan_016_llama_rsft_candidates_r3.log 2>&1 &\n```\n\n**预估显存**：16GB(模型) + 5GB(KV cache peak) + 2GB(activations/overhead) ≈ **23-28GB / 32GB**（与 Qwen3-8B 表现一致）\n\n**优势**：断点续传自动跳过已完成的 64 docs，从第 65 个继续。\n\n---\n\n### 方案 B（立即可用）：4-bit 量化\n\n如果不想等 GPU 空闲：\n\n```bash\nCUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 \\\nnohup python -m freige.training.rsft_generate \\\n    --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B \\\n    --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b \\\n    --num_generations 8 \\\n    --temperature 0.7 \\\n    --batch_size 1 \\\n    --max_new_tokens 1024 \\\n    --quantize \\\n    --data_path /root/autodl-tmp/data/docred \\\n    --split train \\\n    --seed 42 \\\n    --output_dir /root/autodl-tmp/freige/outputs/rsft_candidates_llama_8b \\\n    > /root/autodl-tmp/logs/plan_016_llama_rsft_candidates_r3.log 2>&1 &\n```\n\n**预估显存**：5GB(4bit模型) + 5GB(KV cache, bf16) + 2GB(overhead) ≈ **12-14GB / 32GB**\n\n**代价**：4-bit 量化可能略降生成质量。由于 RSFT 依赖 candidate diversity 和质量，bf16 优先。但量化可立即运行无需等待。\n\n---\n\n### 关键注意事项\n\n1. **必须设 `CUDA_VISIBLE_DEVICES`**（C002/C003），禁止依赖 `device_map=\"auto\"` 自动分配\n2. 方案 A 须遵守 C001：launch 前 `nvidia-smi -i 1` 确认 < 2GB\n3. 断点续传已内置（progress.json 记录 64 已完成 doc_ids），无需清空 output_dir\n4. 输出文件 generations.jsonl 以 append 模式写入，已有的 512 行保持不变"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama-rsft-oom-diagnosis.md"
+}

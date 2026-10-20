@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6768a9b3d72da1c7a37a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 003 edcr table",
+  "task_key": "worker_analysis_plan_003_edcr_table_20260515T182133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_003_edcr_table_20260515T182133_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "39864a1cd436e8476061b54ce270f51c7bfcc29bbf3b62637c70e1d6abf015c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。核心结论：\n\n**EDCR 排名**（lower = better）：CED-reranker (0.6156) > bf16 GRPO (0.6318) > RSFT-CED 3-seed (0.6434) ≈ RSFT-flatNLI (0.6431) >> SFT baseline (0.7118) >> QLoRA GRPO catastrophic (0.8584)\n\n**三个关键发现**：\n1. **EDCR 与 rel_f1 强负相关**——所有 CED-trained 方法一致降低 EDCR 5.5-9.6pp，且改善在 3 seed 间稳定（std=0.011）\n2. **EDCR 捕捉 evi_f1 之外的信息**——CED-reranker 和 RSFT s42 的 evi_f1 几乎相同（0.8188 vs 0.8187），但 EDCR 差 4.09pp\n3. **EDCR 对 catastrophic forgetting 有诊断价值**——QLoRA GRPO 的 EDCR 恶化到 0.8584，可作为训练健康度预警指标\n\nDPO+CED 和 SFT-no-evidence 的 eval 结果待出，表中标记为 pending。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-003-edcr-table.md"
+}

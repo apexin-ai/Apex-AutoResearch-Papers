@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5325d0717c2bbd4677db",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code rsft merge ced prep",
+  "task_key": "worker_code_rsft-merge-ced-prep_20260515T014833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rsft-merge-ced-prep_20260515T014833_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "999ba6aed96432f97b3ac4de419a5a12f4c935d29395de39fe88348a31119d28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全流程验证通过：\n\n| 指标 | 值 |\n|------|-----|\n| 24 条输入 → top_k=2 筛选 → 6 条输出 | 25% selection rate |\n| format_reward | mean=1.000 |\n| f1_reward | mean=0.719 |\n| ced_reward | mean=0.478 |\n| combined_score | mean=0.679 |\n| SFT 输出格式 | input/output + 元数据字段 |\n\n**总结**：\n\n`rsft_score_filter.py` 已具备完整的 RSFT 后处理 pipeline，唯一修改是 `load_generations()` 支持了多 shard 合并 + 去重。生成完成后，运行命令：\n\n```bash\ncd /root/autodl-tmp && \\\nHF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 \\\npython -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/rsft_generations \\\n    --output_path /root/autodl-tmp/rsft_filtered \\\n    --selection_strategy top_k --top_k 2 \\\n    --nli_device cuda:0\n```\n\n预估 GPU 上打分 ~5-10 min，CPU ~25 min。输出三个文件：`rsft_train.jsonl`（SFT 训练数据）、`rsft_scores.jsonl`（全量评分）、`rsft_report.json`（统计报告）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rsft-merge-ced-prep-copy-2.md"
+}

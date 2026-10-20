@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9be872b235fdfce35354",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check eval001 completion",
+  "task_key": "worker_ops_check-eval001-completion_20260515T213553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eval001-completion_20260515T213553_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "a1ef185502eb5ded3472a30516d26fe1812e799465dfbf44ff46256f6e3da93b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_plan_001_flat_nli_s43 已完成。** EXIT_CODE=0，耗时 ~61 分钟。\n\n**Metrics:**\n| 指标 | 值 |\n|------|-----|\n| F1 | 0.0022 |\n| Ign-F1 | 0.0022 |\n| Evi-F1 | 0.8533 |\n| EDCR | 0.9982 |\n| Format OK | 981/985 (99.6%) |\n| Truncated | 251/985 |\n| Predictions | 17285 |\n\n结果已写入 `/root/autodl-tmp/eval_results/rsft_flat_nli_s43/`。\n\n**F1=0.0022 极低**，说明关系抽取几乎全错，但 Evi-F1=0.8533 和 EDCR=0.9982 很高——模型能找到证据句但无法正确预测关系。Truncated 251/985 也偏高（25.5%），可能影响输出质量。\n\n**GPU 状态:** cuda:0 占用 14597 MiB / 31% 利用率（仍有进程占用），cuda:3 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval001-completion.md"
+}

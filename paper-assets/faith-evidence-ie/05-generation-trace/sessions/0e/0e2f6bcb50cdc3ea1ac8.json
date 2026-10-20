@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e2f6bcb50cdc3ea1ac8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code 14b rsft s43 eval prep",
+  "task_key": "worker_code_14b-rsft-s43-eval-prep_20260523T145359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-rsft-s43-eval-prep_20260523T145359_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "d54fcdda7bdcb2e3d434debfd15624a4b851f834d62be3ff100f7d95b8f3fe68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 已在运行，模型已加载到 GPU。\n\n**总结：**\n\n| 项目 | 详情 |\n|------|------|\n| **训练** | `plan017_14b_rsft_s43_train` — DONE (567 steps, 1h06m, loss=0.5076) |\n| **with-evi eval** | `plan017_14b_rsft_s43_eval` — RUNNING on cuda:0, PID 260780 |\n| **no-evi eval** | `plan017_14b_rsft_s43_no_evi_eval` — RUNNING on cuda:2, PID 260930 |\n| **batch_size** | 1（与 s42 eval 一致） |\n| **SFT adapter** | `/root/autodl-tmp/sft_output_14b_s43` |\n| **RSFT adapter** | `/root/autodl-tmp/rsft_output_14b_s43` |\n| **Cron 监控** | 已注册，300s 间隔 |\n\ns42 dev eval 的 14B 推理耗时约 5.3h（19086s, 500 docs test set）。dev set 有 985 docs，预计需要约 10h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-14b-rsft-s43-eval-prep.md"
+}

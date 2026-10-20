@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c4064f1f07c01b9b299",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops fix p0p1 submit cuda3",
+  "task_key": "worker_ops_fix-p0p1-submit-cuda3_20260514T200330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-p0p1-submit-cuda3_20260514T200330_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "3b8efe39ddf59b8830399e5ee0c10f2694c3336de8329f07a63201c1cbd58cd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并开始 GRPO 训练循环。\n\n**汇总：**\n- **脚本**: `/root/autodl-tmp/scripts/train_ced_lr5e6_rp.sh`（含 `--ced_recall_penalty`）\n- **tmux session**: `mvp2_grpo_ced_lr5e6_rp_r1`\n- **Python PID**: 94055，运行在 cuda:3（4434 MiB）\n- **状态**: 模型加载完成，NLI 模型加载完成，Stage 3 CED reward（tau 0.30→0.50），GRPO 训练已开始（0/200 steps）\n- **同时运行**: P0 实验（`mvp2_grpo_ced_lr5e6_r1`, PID 90085）在 cuda:0 上"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-p0p1-submit-cuda3.md"
+}

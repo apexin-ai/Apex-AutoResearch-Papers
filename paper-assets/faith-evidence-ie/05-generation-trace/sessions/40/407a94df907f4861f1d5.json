@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "407a94df907f4861f1d5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research related work gaps",
+  "task_key": "worker_research_related-work-gaps_20260515T143846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related-work-gaps_20260515T143846_result.json",
+    "occurrence": 1,
+    "bytes": 1163,
+    "sha256": "0cfb28f811c93bccf2c249a49984459d92765b9ffd8d537f23dbcc87e225d5fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研报告已保存到 `artifacts/related_work_gap_analysis.md`。\n\n总结：\n\n**共找到 14 篇论文**，按引用优先级分三档：\n\n**Must-cite（4 篇）**：\n- **R1-RE** (2507.04642) — sentence-level GRPO RE 成功，与我们 doc-level GRPO 失败构成正反对比\n- **Minimalist Approach** (2504.11343) — 证明 rejection sampling 可匹配 GRPO/PPO，为 FREIGE 的 RSFT 提供理论正当性\n- **DAPO** (2503.14476) — 识别 GRPO 的 entropy collapse，解释我们 GRPO 失败的可能原因\n- **Dr. GRPO** (2503.20783) — 识别 GRPO 的 length/normalization bias，在 DocRE 长序列场景下更严重\n\n**Should-cite（5 篇）**：\n- **RelPrior** (2511.08143) — 最新 LLM DocRE SOTA，直接竞争方法\n- **AutoRE** (2403.14888) — ACL 2024，RHF 三阶段 QLoRA DocRE\n- **Ru-LLM** (NLPCC 2025) — 逻辑规则约束 LLM DocRE\n- **GLiDRE** (2508.00757) — 轻量级 few-shot DocRE\n- **R²GRPO** (2505.22068) — 唯一成功将 GRPO 应用于 RE 任务的工作，高度相关\n\n**Nice-to-cite（5 篇）**：Contrastive Rewards、EMNLP 2024 Contrastive RM、RFT 原始论文、LMRC、ToolRE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-gaps.md"
+}

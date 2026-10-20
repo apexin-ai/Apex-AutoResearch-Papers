@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7507c6b2c2dd0e7ae5d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis s42 no evi format issue",
+  "task_key": "worker_analysis_s42-no-evi-format-issue_20260520T151608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s42-no-evi-format-issue_20260520T151608_result.json",
+    "occurrence": 1,
+    "bytes": 1734,
+    "sha256": "2828dea8cf336e37b83b68c22da376a3307c7ea87a04be580312b8524e56e8fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结果\n\n### Format Failure 原因\n\n111 个 format failure 分为两类，**零 evidence leakage**：\n\n| 类型 | 数量 | 原因 |\n|------|------|------|\n| 截断 | 46 | `max_new_tokens=1024` 不够，JSON 被截断 |\n| 畸形 JSON key | 65 | 模型输出 `\"tail:` 而非 `\"tail\":`（key 缺少闭引号） |\n\nRegex 修复潜力：85/111 (76.6%) 可修复（55/65 非截断 + 30/46 截断）。\n\n### Fair Comparison（关键发现）\n\n**原来报告的 evidence tax = -1.65pp 是不公平比较的产物**：\n\n| 子集 | No-evi ign_f1 | With-evi ign_f1 | Tax |\n|------|--------------|----------------|-----|\n| 全集 985 docs（不公平） | 0.5219 | 0.5384 | **-1.65pp** |\n| Fair 874 docs（no-evi format OK） | 0.5575 | 0.5440 | **+1.35pp** |\n| Fair 873 docs（双方 format OK） | 0.5577 | 0.5443 | **+1.34pp** |\n\n**方向反转**：在公平子集上，no-evidence 反而**优于** with-evidence +1.35pp。原来的 -1.65pp 完全因为 111 个 format failure 的 predictions 得到 0 credit，拉低了 no-evidence 均值。\n\n### 根因\n\n- 111 个 failed docs 更难（avg 13.9 gold triples vs 12.3），输出更长（avg 2393 chars vs 1596）\n- 更长的输出导致更高的截断率和 JSON 畸形率\n- No-evidence 模型实际 RE 能力不比 with-evidence 差，问题在于**格式鲁棒性**（88.7% vs 99.5%）\n\n### 建议\n\n1. **短期**：在 evaluator 的 `parse_model_output` 中添加 regex 修复 malformed keys 的逻辑，可恢复 ~55 个 doc\n2. **短期**：对长文档考虑增大 `max_new_tokens`（如 1536 或 2048）减少截断\n3. **论文报告**：用 fair comparison（873-874 docs）报告 evidence tax，而非不公平的全集比较"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s42-no-evi-format-issue.md"
+}

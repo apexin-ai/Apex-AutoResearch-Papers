@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe5b72e7039e2ac500b8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops prep llama sft s43 s44",
+  "task_key": "worker_ops_prep_llama_sft_s43_s44_20260520T023958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep_llama_sft_s43_s44_20260520T023958_result.json",
+    "occurrence": 1,
+    "bytes": 1292,
+    "sha256": "d32eb373fa19870862e32ecb4b2f9b8dfbbac4af38ef297d33839fdb732b9793"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已创建并通过语法检查。\n\n## 输出汇总\n\n**脚本路径：**\n- `/root/autodl-tmp/freige/scripts/seed_expansion/llama_sft_s43_train_eval.sh`\n- `/root/autodl-tmp/freige/scripts/seed_expansion/llama_sft_s44_train_eval.sh`\n\n**预估耗时（每 seed）：**\n- SFT 训练：~1 小时（570 steps，参考 s42 checkpoint 时间戳：18:54 → 19:33 跑了 380 steps）\n- Eval：~20-30 分钟（LLaMA 8B no-quantize, bs=4）\n- 合计：~1.5 小时/seed\n\n**GPU 需求：** 每个 seed 1 卡，可通过 `GPU=X` 环境变量指定卡号。两个 seed 可并行跑在不同卡上。\n\n**s42 原始训练参数（从 adapter_config.json + sft_llama_s44.sh 确认）：**\n```\nmodel: Meta-Llama-3.1-8B\nlora_rank: 64, lora_alpha: 128, lora_dropout: 0.05\n--no-quantize, --bf16\nper_device_batch_size: 1, gradient_accumulation_steps: 16\nnum_epochs: 3, learning_rate: 2e-4, warmup_ratio: 0.05\nmax_length: 4096\noutput: /root/autodl-tmp/sft_output_llama_3_1_8b\n```\n\n**启动方式：**\n```bash\nGPU=2 nohup bash /root/autodl-tmp/freige/scripts/seed_expansion/llama_sft_s43_train_eval.sh > /tmp/llama_sft_s43.log 2>&1 &\nGPU=3 nohup bash /root/autodl-tmp/freige/scripts/seed_expansion/llama_sft_s44_train_eval.sh > /tmp/llama_sft_s44.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-llama-sft-s43-s44.md"
+}

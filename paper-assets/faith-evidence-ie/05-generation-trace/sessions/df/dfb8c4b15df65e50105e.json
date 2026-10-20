@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfb8c4b15df65e50105e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops monitor kl 20steps",
+  "task_key": "worker_ops_monitor-kl-20steps_20260514T121555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-kl-20steps_20260514T121555_result.json",
+    "occurrence": 1,
+    "bytes": 56,
+    "sha256": "9f25f19282948071d808199ae27d8f1f6903eff9456a30fe57d8980b50722e9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 分钟后自动进行第 2 轮检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-kl-20steps.md"
+}

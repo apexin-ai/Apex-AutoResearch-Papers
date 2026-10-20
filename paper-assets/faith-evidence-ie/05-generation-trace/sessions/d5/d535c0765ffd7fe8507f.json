@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d535c0765ffd7fe8507f",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_7_1778844752.md",
+  "task_key": "loop_7_1778844752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778844752.md",
+    "occurrence": 1,
+    "bytes": 5596,
+    "sha256": "886cf1d47db3e0071c6fb887b62f1a75b273f48cfa4f3c732f4a754c103519cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-15T11:29:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: 只能用 rtx5090-4x 的 cuda:0/1/2/3（config gpu_ids=[0,1,2,3]）\n- RSFT 训练**禁止** `--quantize`（RTX 5090 上 CUBLAS 错误，bf16 Qwen3-4B 仅 ~8GB 无需量化）\n- 运行目录必须 `cd /root/autodl-tmp`（freige 不是 pip 安装的包，cd 到 freige/ 子目录会导致 import 找到内层空包）\n- **TaskEvalCallback 数字不可信**（D038）：`--eval_max_docs 50` 的 pred 与全量 12275 gold triples 计算 F1，严重低估。所有 RSFT 结论必须基于全量 dev eval（985 docs）\n- Qwen3 的 `generation_config.json` 会静默覆盖 temperature/top_k，生成前必须显式 `model.generation_config.temperature = X; model.generation_config.top_k = 0`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），账号 root\n- **工作目录**: `/root/autodl-tmp/freige`（代码仓）；`/root/autodl-tmp/`（运行目录）\n- **Python**: `/root/miniconda3/bin/python`（conda base），激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（base），`/root/autodl-tmp/sft_output`（SFT adapter）\n- **RSFT checkpoints**: r1 `/root/autodl-tmp/rsft_output`，s43 `/root/autodl-tmp/rsft_output_s43`，s44 `/root/autodl-tmp/rsft_output_s44`，r2a `/root/autodl-tmp/rsft_output_r2a`，r2b `/root/autodl-tmp/rsft_output_r2b`\n- **数据**: `/root/autodl-tmp/data/docred`，RSFT 过滤数据 `/root/autodl-tmp/rsft_filtered/rsft_train.jsonl`（2718 samples），clean 版 `rsft_train_clean.jsonl`（2548 samples）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - mvp2_ced_reranker_poc: PID 178050, cuda:0（985 docs × N=8 CED reranker）\n  - mvp2_eval_rsft_r1: PID 186329, cuda:2（r1 全量 dev eval）\n  - mvp2_eval_rsft_r2a: PID 189488, cuda:1（r2a 全量 dev eval）\n  - mvp2_eval_rsft_r2b: PID 189855, cuda:3（r2b 全量 dev eval）\n- **Cron**: 3 个活跃——mvp2_eval_rsft_r2a, mvp2_eval_rsft_r2b, mvp2_ced_reranker_poc\n\n### 3. 📊 当前状态\n**刚完成**: D038 重大修正——发现 RSFT r1 的 rel_f1=0.0483 是 TaskEvalCallback bug，s44 全量 eval 证明 RSFT 实际成功（rel_f1=0.4655 +5.98pp, evi_f1=0.8087 +1.08pp, edcr=0.635 -7.68pp）。MVP-2 首个数据点 PASS。已修复 bug 并部署。\n\n**正在等待**:\n- 4 卡全占，3 个 eval + 1 个 CED reranker PoC 运行中：\n  - r1 eval (cuda:2): 第 2 个 seed 数据点（seed=42）\n  - r2a eval (cuda:1): ablation — 1 epoch + clean data，same LoRA scaling\n  - r2b eval (cuda:3): ablation — 1 epoch + clean data + conservative LoRA (alpha=32, lr=1e-5)\n  - CED reranker (cuda:0): 推理时方案，无需训练，CED 选 N=8 候选最佳\n- s43 eval 失败（shell syntax error），需要重试（s43 训练已完成，checkpoint 在 rsft_output_s43）\n- mvp2_rsft_ced_scoring_topk3 (PENDING): top_k=3 vs top_k=1 的 CED filtering ablation，等审批\n\n**Registry 统计**: 47 实验，RUNNING 4 / ANALYZING 4 / DONE 32 / PENDING 1 / PREPARING 6\n\n### 4. 📋 待办（条件触发式）\n- r1/r2a/r2b eval 任一 cron 回调 → 记录 metrics 到 registry，对比 s44 数据点（rel_f1=0.4655）\n- r1 + s43 + s44 三个 seed 全出 → 计算 mean±std，判断 variance 是否可接受，汇报 Director\n- r2a/r2b eval 出结果 → ablation 分析（1 epoch vs 3 epoch / LoRA scaling 0.5 vs 2.0 / lr 1e-5 vs 2e-5）\n- s43 eval 重试 → spawn worker 用正确命令重跑（上次 EXIT_CODE=2 shell 语法错误）\n- CED reranker PoC 完成 → 对比 reranker vs RSFT vs SFT baseline，判断是否作为 complementary contribution\n- 所有 eval 完成 → 执行 `complete_mvp()` → 生成 `paper_framing.md` → `experiment_plan.yaml` → `dream_simulate`\n- topk3 scoring 审批通过 → spawn worker 执行 CED scoring + RSFT training（更多训练数据 ~8000 vs 2718）\n\n### 5. 🎯 战略上下文\n**项目核心**: FREIGE — 用 CED (Contrastive Evidence Discrimination) 奖励训练 LLM 做文档级关系抽取+可验证证据生成。\n\n**关键决策链**: D002(MVP-1 PASS) → D008/D031/D033(GRPO+QLoRA 全线 FAIL, catastrophic forgetting) → D036(diversity crisis 是 bug) → D038(RSFT 实际成功, eval bug 撤回 D037)\n\n**核心结论**:\n- CED 信号有效（MVP-1: margin 0.48, accuracy 81.5%）\n- 在线 RL (GRPO+QLoRA) 全线 FAIL：CED reward 能驱动 evidence 质量提升（evi_f1 升至 0.85），但 catastrophic forgetting 摧毁 rel_f1。这是**有论文价值的 negative result**（D033: CED↑ + rel_f1 catastrophic forgetting）\n- 离线 RL (RSFT + CED scoring) 成功：首个数据点 rel_f1=0.4655 (+5.98pp), evi_f1=0.8087 (+1.08pp), edcr=0.635 (-7.68pp)\n- 文献空白：DocRED 上无 rejection sampling + NLI reward 已发表工作；+5.98pp 显著超过同类 LLM-based DocRE 改进\n\n**易错点**:\n- 不要信 TaskEvalCallback 的 rel_f1 数字（所有 RSFT 训练中报的 0.04-0.05 都是 bug），必须全量 eval\n- s43 训练完成但 eval 失败（shell 语法错误），checkpoint 在 rsft_output_s43，需要重跑 eval\n- mvp2_rsft_train_r1 的 registry metrics 里 rel_f1=0.0483 是旧 bug 数字，不要引用。真实数字需等 r1 全量 eval 回调\n- CED reranker 是推理时方案（complementary），不要跟 RSFT 混淆为竞争关系——两者可以共存\n- GRPO 的 negative result 模式很清晰（CED↑ but rel_f1 catastrophic forgetting），写论文时不要描述为\"GRPO 失败\"，而是\"在线 RL 的固有 capability-alignment tradeoff\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778844752.md"
+}

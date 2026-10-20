@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f594ee38a7bec77afe15",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "analysis fair subset reconciliation",
+  "task_key": "worker_analysis_fair_subset_reconciliation_20260518T133428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fair_subset_reconciliation_20260518T133428.log",
+    "occurrence": 1,
+    "bytes": 637933,
+    "sha256": "d661d83438ba1a997f0658859931cbed3a83db9d015165d77601c92c67132607"
+  },
+  "statistics": {
+    "messages": 167,
+    "user_turns": 0,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 63,
+      "tool_result": 63,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 167,
+      "chunks": [
+        {
+          "path": "f594ee38a7bec77afe15-part-0001.json",
+          "message_count": 152
+        },
+        {
+          "path": "f594ee38a7bec77afe15-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-fair-subset-reconciliation.md"
+}

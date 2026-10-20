@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4183e390630f04ae6ed6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose full server status",
+  "task_key": "worker_diagnose_full-server-status_20260522T214808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_full-server-status_20260522T214808_result.json",
+    "occurrence": 1,
+    "bytes": 3024,
+    "sha256": "71e1bb0bc0e1ab845856824429be99fca22ceea6c1fc48eb3c2407424e26b300"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 当前状态\n\n| GPU | 显存占用 | 总显存 | 利用率 | 当前进程 |\n|-----|---------|--------|--------|---------|\n| 0 | 9.6 GB | 95.6 GB | 59% | PID 194600 — test_eval_4b_rsft_s42_no_evi (运行 3h32m) |\n| 1 | 31.7 GB | 95.6 GB | 92% | PID 194682 — rsft_generate 14b_s43 (运行 3h32m) |\n| 2 | 5.9 GB | 95.6 GB | 48% | PID 189485 — test_eval_1_7b_rsft_s42_no_evi (运行 5h35m) |\n| 3 | 18.4 GB | 95.6 GB | 72% | PID 196512 — test_eval_llama_rsft_s42_no_evi (运行 3h11m) |\n\n### Registry 标记 RUNNING 的 6 个实验（全部已完成，进程已死）\n\n| exp_id | PID | PID alive? | metrics.json? | ign_f1 | 状态判断 |\n|--------|-----|-----------|---------------|--------|---------|\n| test_eval_14b_rsft_s42 | 97434 | **DEAD** | 有 test_summary.json | 0.3849 (test) | **→ DONE** |\n| eval_llama_rsft_s42_no_evi_2048 | 95606 | **DEAD** | **有** | **0.5559** | **→ DONE** |\n| d140_4b_sft_s42_with_evi_2048 | 93402 | **DEAD** | **有** | 0.3946 | **→ DONE** |\n| d140_8b_sft_s42_no_evi_2048_fix | 87302 | **DEAD** | **有** | **0.5019** | **→ DONE** |\n| d140_1_7b_sft_s42_no_evi_2048_fix | 87382 | **DEAD** | **有** | 0.4233 | **→ DONE** |\n| d140_4b_sft_s42_no_evi_2048_fix | 88987 | **DEAD** | **有** | 0.4016 | **→ DONE** |\n\n### ROADMAP 提及的 test_eval / plan017 实验\n\n| exp_id | 状态 | 输出 | 关键指标 |\n|--------|------|------|---------|\n| test_eval_14b_rsft_s42 | **DONE** | codalab_submission.json + predictions.json | ign_f1=0.3849 (test), 500 docs |\n| test_eval_14b_rsft_s42_no_evi | **DONE** | codalab_submission.json + predictions.json | ign_f1=0.3926 (test), 500 docs |\n| test_eval_4b_rsft_s42_no_evi | **RUNNING** (PID 194600) | 目录空，尚未产出 | — |\n| test_eval_1_7b_rsft_s42_no_evi | **RUNNING** (PID 189485) | 目录空，尚未产出 | — |\n| test_eval_llama_rsft_s42_no_evi | **RUNNING** (PID 196512) | 目录空，尚未产出 | — |\n| plan017_14b_rsft_no_evidence_eval | **DONE** | metrics.json | **ign_f1=0.5432** (dev) |\n| plan017_14b_rsft_s43_generate | **RUNNING** (PID 194682) | 4800 lines (~600/3053 docs, ~20%) | — |\n\n### 可标 DONE 的实验（6 个 registry + 3 个已完成）\n1. `test_eval_14b_rsft_s42` — ign_f1=0.3849 (test)\n2. `test_eval_14b_rsft_s42_no_evi` — ign_f1=0.3926 (test)\n3. `eval_llama_rsft_s42_no_evi_2048` — ign_f1=0.5559 (dev)\n4. `d140_4b_sft_s42_with_evi_2048` — ign_f1=0.3946 (dev)\n5. `d140_8b_sft_s42_no_evi_2048_fix` — ign_f1=0.5019 (dev)\n6. `d140_1_7b_sft_s42_no_evi_2048_fix` — ign_f1=0.4233 (dev)\n7. `d140_4b_sft_s42_no_evi_2048_fix` — ign_f1=0.4016 (dev)\n8. `plan017_14b_rsft_no_evidence_eval` — ign_f1=0.5432 (dev)\n\n### 仍在运行（4 个进程占满 4 卡）\n1. `test_eval_4b_rsft_s42_no_evi` — GPU 0, 已跑 3.5h\n2. `test_eval_1_7b_rsft_s42_no_evi` — GPU 2, 已跑 5.5h\n3. `test_eval_llama_rsft_s42_no_evi` — GPU 3, 已跑 3h\n4. `plan017_14b_rsft_s43_generate` — GPU 1, 已跑 3.5h, ~20% 进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-full-server-status.md"
+}

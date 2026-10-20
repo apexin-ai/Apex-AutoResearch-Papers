@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dde11a04826739cfedfd",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_19_1779405396.md",
+  "task_key": "loop_19_1779405396",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19_1779405396.md",
+    "occurrence": 1,
+    "bytes": 4862,
+    "sha256": "3a5586f8b90b3cb954f3b60f97c028b768b89d2db6e020aaf5b4c2c5d5985ffb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-21T22:52:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0/1/2/3（共 4 张 RTX PRO 6000 96GB）\n- bjb2-12179 已退役，只做数据源，不在上面跑新实验\n- 14B SFT adapter 路径是 `/root/autodl-tmp/sft_output_14b/checkpoint-144/`（不是顶层目录，r2 因此失败）\n- LLaMA SFT s42 canonical ign_f1=0.5384（不是 0.5514=rel_f1，D130 教训）\n- LLaMA RSFT s42 canonical ign_f1=0.5714（不是 0.5839=rel_f1，D129 教训）\n- 环境激活用 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不用 venv\n- read_registry 必须传 `project=\"faith-evidence-ie\"`，否则读到的是默认 registry（只有 22 条），正确的项目 registry 有 297 条\n- `GPU=X` 环境变量传物理 GPU 编号，LLaMA SFT 脚本会覆盖 CUDA_VISIBLE_DEVICES\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x (connect.westd.seetacloud.com:37389)，4×RTX PRO 6000 Blackwell, 96GB VRAM/卡\n- **工作目录**: `/root/autodl-tmp/freige`\n- **Python**: `/root/miniconda3/bin/python`（conda base, Python 3.12, PyTorch 2.8.0+cu128, transformers 5.8.1）\n- **模型路径**: `/root/autodl-tmp/models/` 下各厂商目录；SFT/RSFT adapters 在 `/root/autodl-tmp/sft_output_*` 和 `/root/autodl-tmp/rsft_output_*`\n- **数据**: `/root/autodl-tmp/data/docred`\n- **磁盘**: 815G/879G 可用 (3%)\n- **活跃进程**:\n  - `eval_llama_rsft_s42_with_evidence_2048`: cuda:0, PID 70706, cron ✓\n  - `plan017_14b_rsft_eval_2048`: cuda:1, PID 70388, cron ✓\n  - `d140_1_7b_sft_s42_with_evi_2048`: cuda:2, PID 76967 (elapsed 1h47m), cron ✓ (Loop #19 补注册)\n  - `d140_8b_sft_s42_with_evi_2048`: cuda:3, PID 81857, cron ✓\n- **Workers**: \n  - `worker_research_d112-rsft-s44-train-prep_20260521T061852` (turn 9, SSH 准备 RSFT s44 训练脚本)\n  - `worker_research_next-batch-planning_20260521T061905` (turn 14, SSH 规划下批实验)\n\n### 3. 📊 当前状态\nLoop #19 完成了 session-start 初始化：reconcile crons (3→4, 补注册 1.7B)、更新 report.md、向 Director 汇报。4/4 GPU 全满，2 Workers 活跃。\n\n**LLaMA SFT matched@2048 tax 已全部完成 (D141)**:\n- 3-seed 全负: s42=-1.53pp, s43=-11.20pp, s44=-2.83pp (mean=-5.19±5.25pp)\n- RSFT tax: -1.14±0.76pp → variance compression 6.9×\n- D142 已采纳 Reviewer narrative reframe\n\n**D112 RSFT s44 pipeline**: CED scoring DONE (3014 条 selected, 12.4%)，Worker 正在准备训练脚本，等 GPU 释放。\n\nRegistry: 297 实验，4 RUNNING，293 DONE/其他。\n\n### 4. 📋 待办（条件触发式）\n- **eval_llama_rsft_s42_with_evidence_2048 完成** → 提取 metrics → 与 @1024 (0.5714) 对比 delta → 若 delta<1pp 则确认 RSFT tax@2048 稳定 → 提交 RSFT no-evi@2048 (如需要)\n- **plan017_14b_rsft_eval_2048 完成** → 提取 metrics → 与 @1024 (0.5886) 对比 → 若 delta<1pp 则确认 14B @2048 无影响 → 提交 14B no-evi@2048 (如需要)\n- **d140_1_7b_sft_s42_with_evi_2048 完成** → 与 no-evi@2048 (0.3925) 计算 matched tax → 注意 1.7B @2048 截断仍 50%，可能 tax 无意义\n- **d140_8b_sft_s42_with_evi_2048 完成** → 与 @1024 (0.4972) 对比 + 计算 Qwen 8B matched tax → 决定是否需要 8B no-evi@2048\n- **任一 GPU 释放** → 立即提交 D112 RSFT s44 train（Worker 应已准备好脚本）\n- **Worker d112-rsft-s44-train-prep 回调** → 检查训练脚本就绪 → 等 GPU 释放后立即 submit\n- **Worker next-batch-planning 回调** → 整合下批实验规划 → 按优先级排队\n- **全部 matched@2048 数据齐全** → 派 Worker 做 Paper Agent patch (evidence tax 数字全面更新)\n\n### 5. 🎯 战略上下文\n- **论文目标**: EMNLP 2026 Main (ARR July cycle, ~55 天)，Round 1 = 3.0 Findings → 目标 4.0 Main\n- **3 contributions**: (1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression (D131 统一叙事)\n- **D142 narrative reframe**: Contribution 3 聚焦 variance compression + evidence tax consistency，而非 magnitude\n- **LLaMA SFT with-evi@2048 种子方差巨大**: 0.5649, 0.4954, 0.4655 (std=0.052)。s43 no-evi 特别差 (format_ok 仅 84.7%)，导致 s43 tax=-11.20pp 是离群值。论文叙事需要处理这个 outlier（可能聚焦 median 或讨论 format compliance 的影响）\n- **RSFT 稳定性是核心卖点**: RSFT 3-seed ign_f1 std=0.005 vs SFT std=0.052 (10×)，RSFT tax std=0.76pp vs SFT tax std=5.25pp (6.9×)。这是跨所有 scale 一致的 pattern\n- **易错点**: (1) 不要混淆 ign_f1 和 rel_f1 (2) read_registry 不传 project 会读错 registry (3) 1.7B @2048 截断仍 50%——这个 scale 的 matched tax 可能不可靠，需要讨论 (4) D112 RSFT s44 是 4B scale 的额外种子，用的是之前 D112 shard 生成 + CED scoring 的 pipeline，不是 LLaMA\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1779405396.md"
+}

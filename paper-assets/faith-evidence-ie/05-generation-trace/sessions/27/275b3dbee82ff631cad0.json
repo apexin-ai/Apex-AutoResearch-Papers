@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "275b3dbee82ff631cad0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "infra gpu2 setup precompute",
+  "task_key": "worker_infra_gpu2-setup-precompute_20260514T070013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu2-setup-precompute_20260514T070013_result.json",
+    "occurrence": 1,
+    "bytes": 759,
+    "sha256": "bb2bdb09d57c4bbe8ffe731493d3940f8bd2f5ae3cb69bc28648431543c476df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "NLI 预计算正在运行，速度约 490 samples/s。38180 个样本预计 ~80 秒完成。\n\n汇总：\n\n| 步骤 | 状态 |\n|------|------|\n| 环境探测 | 4x RTX 5090, conda base, torch 2.10.0+cu128 |\n| 依赖安装 | 全部已预装，无需额外安装 |\n| 代码部署 | `docred_processor.py`, `ced_reward.py`, `ced_signal_validation.py` + 所有 `__init__.py` |\n| DocRED 数据 | train 3053 docs (38180 relations), dev 998 docs |\n| DeBERTa 模型 | `cross-encoder/nli-deberta-v3-base` 已缓存 |\n| NLI 预计算 | **RUNNING** on cuda:0, ~490 samples/s, exp_id=`precompute_nli_train` |\n\n输出将保存到 `/root/autodl-tmp/data/docred/train_nli_cache.json`。日志在 `~/runs/faith-evidence-ie/precompute_nli_train.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu2-setup-precompute.md"
+}

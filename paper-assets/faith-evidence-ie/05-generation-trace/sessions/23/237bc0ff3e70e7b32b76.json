@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "237bc0ff3e70e7b32b76",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose cuda3 and registry tail",
+  "task_key": "worker_diagnose_cuda3_and_registry_tail_20260521T194406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cuda3_and_registry_tail_20260521T194406_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "26284921ae584d601adcfd453899bd42fb6792a8d7785bacd873aa08145e9123"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 | 状态 |\n|-----|--------|----------|------|\n| 0 | 62% | 9.4G / 97.9G | 忙碌 (test_eval_4b_sft_s42) |\n| 1 | 91% | 32.5G / 97.9G | 忙碌 (test_eval_14b_sft_s42) |\n| 2 | 87% | 19.6G / 97.9G | 忙碌 (test_eval_8b_sft_s42) |\n| 3 | 90% | 18.9G / 97.9G | 忙碌 (test_eval_llama_sft_s42) |\n\n### 实验进程状态\n| 实验 | PID | GPU | 运行时间 | 状态 |\n|------|-----|-----|----------|------|\n| test_eval_4b_sft_s42 | 126048 | cuda:0 | 1h08m | 存活 |\n| test_eval_14b_sft_s42 | 125321 | cuda:1 | 1h11m | 存活 |\n| test_eval_8b_sft_s42 | 125615 | cuda:2 | 1h11m | 存活 |\n| test_eval_llama_sft_s42 | 130446 | cuda:3 | 3m35s | 存活 |\n\n### test_eval_llama_sft_s42 详情\n刚启动 3 分多钟，模型已加载完毕，正在推理中。日志显示已完成 8/500 文档，速度约 24-29s/it，输出目录暂为空（结果尚未写入）。按当前速度估计总耗时约 3-4 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cuda3-and-registry-tail.md"
+}

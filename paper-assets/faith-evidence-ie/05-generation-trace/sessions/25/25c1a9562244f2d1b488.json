@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25c1a9562244f2d1b488",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis inference efficiency",
+  "task_key": "worker_analysis_inference-efficiency_20260523T224854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_inference-efficiency_20260523T224854_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "4a367a7f221d13ef39e013cae14510d9f68273ce754816cbca1d7f35c1f19908"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/efficiency_comparison.md` 并注册。\n\n核心发现：\n\n1. **Evidence tax 与模型规模反相关**：1.7B no-evidence 反而慢 13.6%（生成 1.75× 更多 predictions），4B 增加 16.8%，8B 基本持平，14B 增加 16–24%。小模型缺少 evidence 结构约束后输出更冗长。\n\n2. **推理时间亚线性缩放**：1.7B→8B (4.7× 参数) 仅增加 1.63× 推理时间 (batch=4)。\n\n3. **RSFT 比 SFT 慢 15–47%**（with-evidence），因 RSFT 生成更结构化的输出。\n\n4. **batch_size 影响显著**：batch=16 比 batch=1 快 4–6×，不同 eval 间的 batch_size 差异是主要混淆因素，报告中已按 matched-setting 分组标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-inference-efficiency.md"
+}

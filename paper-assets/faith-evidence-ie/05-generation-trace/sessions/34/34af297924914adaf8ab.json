@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34af297924914adaf8ab",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval 8b s44 noevi cascade",
+  "task_key": "worker_eval_8b-s44-noevi-cascade_20260523T064645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_8b-s44-noevi-cascade_20260523T064645_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "f8ec2c8aa1f4eadf4903bb9ae17245a1e14a4fda290d340d526b700ea9d4f6a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**1. 8B s44 no-evi test eval** — 已提交到 cuda:0，PID 231544，cron 已注册（120s 轮询）\n\n**2. DPO dev eval** (PID 221956, cuda:2) — 仍在运行，已跑 3h16m，占 12.3 GB 显存\n\n**3. 1.7B s43 with-evi** (PID 214028, cuda:3) — 仍在运行，已跑 5h38m，占 6.1 GB 显存"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-8b-s44-noevi-cascade.md"
+}

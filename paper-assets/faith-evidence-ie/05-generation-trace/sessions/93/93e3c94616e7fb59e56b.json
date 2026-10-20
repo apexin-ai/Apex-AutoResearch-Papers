@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93e3c94616e7fb59e56b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit plan019 1 7b sft s43 eval",
+  "task_key": "worker_submit_plan019_1_7b_sft_s43_eval_20260518T201933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_plan019_1_7b_sft_s43_eval_20260518T201933_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "0e3c5f0671f4af961393a3b004df8f6751e5f11c19532f8f2777de6e5dfdc7c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n### 1. plan019_1_7b_sft_s43_r2 训练结果\n- **状态**: 完成 (EXIT_CODE=0)\n- **train_loss**: 0.6881\n- **eval_loss**: 0.8029\n- **eval_mean_token_accuracy**: 0.8237\n- **eval_entropy**: 0.6810\n- **epoch**: 3.0\n- **runtime**: 2697s (~45min)\n- **checkpoint**: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed43/` (checkpoint-380, checkpoint-570, adapter 278MB)\n\n### 2. wave1_sft_4b_s43_eval_r2\n- **仍在运行** (PID 568649/568654, cuda:2, 10404MiB)\n- 输出目录为空，尚未产出 eval_result.json\n\n### 3. plan019_1_7b_sft_s43_eval\n- **未提交** — cuda:2 被 wave1_sft_4b_s43_eval_r2 占用 (10404MiB)，违反 C001 约束\n- 需等 wave1_sft_4b_s43_eval_r2 完成后再提交"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-plan019-1-7b-sft-s43-eval.md"
+}

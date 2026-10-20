@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6227d0bb1f9fd1efba52",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops d158 disk cleanup exec",
+  "task_key": "worker_ops_d158_disk_cleanup_exec_20260524T092005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d158_disk_cleanup_exec_20260524T092005_result.json",
+    "occurrence": 1,
+    "bytes": 304,
+    "sha256": "9246ab3acc56eb237be1f14f49d637d5e5c02f10d364726b270d45673db68408"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Tier 1 磁盘清理完成。\n\n**结果汇总：**\n- 可用空间：62G → **106G**（释放 ~44G，超过 100G 目标 ✓）\n- 实验进程 302254 / 302391 正常运行（已运行 ~29 分钟） ✓\n- 最大目录：models 70G，其余为各 seed 的 sft/rsft 输出（4-8G 每个）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d158-disk-cleanup-exec.md"
+}

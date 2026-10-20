@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "id": "12533946e3ed5a2bdf07",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ssh diversity probe",
+  "task_key": "worker_ssh_diversity-probe_20260514T232333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diversity-probe_20260514T232333.log",
+    "occurrence": 1,
+    "bytes": 1385075,
+    "sha256": "efd0920950b09584285dc9d0a8d615a218ca1e1156746734754c978e3c01187f"
+  },
+  "statistics": {
+    "messages": 800,
+    "user_turns": 2,
+    "tool_calls": 325,
+    "roles": {
+      "log": 1,
+      "system": 31,
+      "record": 2,
+      "assistant": 113,
+      "tool_call": 325,
+      "user": 2,
+      "tool_result": 325,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "12533946e3ed5a2bdf07-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 764,
+      "chunks": [
+        {
+          "path": "12533946e3ed5a2bdf07-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "12533946e3ed5a2bdf07-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "12533946e3ed5a2bdf07-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "12533946e3ed5a2bdf07-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "12533946e3ed5a2bdf07-part-0005.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 30,
+      "chunks": [
+        {
+          "path": "12533946e3ed5a2bdf07-part-0005.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-diversity-probe.md"
+}

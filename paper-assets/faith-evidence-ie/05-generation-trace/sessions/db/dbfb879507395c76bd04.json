@@ -1,0 +1,890 @@
+{
+  "schema_version": "1.0",
+  "id": "dbfb879507395c76bd04",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "paper research docre methods",
+  "task_key": "worker_paper_research_docre_methods_20260517T150401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_research_docre_methods_20260517T150401.jsonl",
+    "occurrence": 1,
+    "bytes": 56835,
+    "sha256": "6de4102405adada0e61828f1a86ac5dca9666f118e3d06676d036fec0262b39b"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "tool_call": 22,
+      "tool_result": 22,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T15:08:11.998249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T15:08:11.998739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T15:08:11.999060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "DocRED \"A Large-Scale Document-Level Relation Extraction Dataset\" Yao et al ACL 2019 arxiv"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T15:08:11.999400+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"DocRED \"A Large-Scale Document-Level Relation Extraction Dataset\" Yao et al ACL 2019 arxiv\"\n\nLinks: [{\"title\":\"GitHub - thunlp/DocRED: Dataset and codes for ACL 2019 DocRED: A Large-Scale Document-Level Relation Extraction Dataset. · GitHub\",\"url\":\"https://github.com/thunlp/DocRED\"},{\"title\":\"DocRED: A Large-Scale Document-Level Relation Extraction Dataset - ACL Anthology\",\"url\":\"https://aclanthology.org/P19-1074/\"},{\"title\":\"[1906.06127] DocRED: A Large-Scale Document-Level Relation Extraction Dataset\",\"url\":\"https://arxiv.org/abs/1906.06127\"},{\"title\":\"dblp: DocRED: A Large-Scale Document-Level Relation Extraction Dataset.\",\"url\":\"https://dblp.org/rec/conf/acl/YaoYLHLLLHZS19.html\"},{\"title\":\"[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9\"},{\"title\":\"DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Request PDF\",\"url\":\"https://www.researchgate.net/publication/335780641_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset\"},{\"title\":\"(PDF) DocRED: A Large-Scale Document-Level Relation Extraction Dataset\",\"url\":\"https://www.researchgate.net/publication/333815327_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset\"},{\"title\":\"DocRED: A Large-Scale Document-Level Relation Extraction Dataset - Big Physics\",\"url\":\"https://www.bigphysics.org/index.php/DocRED:_A_Large-Scale_Document-Level_Relation_Extraction_Dataset\"},{\"title\":\"thunlp/docred · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/thunlp/docred\"},{\"title\":\"[Quick Review] DocRED: A Large-Scale Document-Level Relation Extraction Dataset\",\"url\":\"https://liner.com/review/docred-largescale-documentlevel-relation-extraction-dataset\"}]\n\nI've found the information about the DocRED paper. Here are the search results:\n\n## Key Information Found:\n\n**Paper Det\n…[truncated 1433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T15:08:11.999668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Re-DocRED Tan et al EMNLP 2022 re-annotated DocRED false negatives arxiv"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T15:08:11.999944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Re-DocRED Tan et al EMNLP 2022 re-annotated DocRED false negatives arxiv\"\n\nLinks: [{\"title\":\"[2205.12696] Revisiting DocRED -- Addressing the False Negative Problem in Relation Extraction\",\"url\":\"https://arxiv.org/abs/2205.12696\"},{\"title\":\"GitHub - tonytan48/Re-DocRED\",\"url\":\"https://github.com/tonytan48/Re-DocRED\"},{\"title\":\"Revisiting DocRED -- Addressing the False Negative Problem in Relation Extraction - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2022arXiv220512696T/abstract\"},{\"title\":\"Revisiting DocRED – Addressing the False Negative Problem in Relation Extraction\",\"url\":\"https://arxiv.org/html/2205.12696\"},{\"title\":\"Revisiting DocRED – Addressing the False Negative Problem\",\"url\":\"https://arxiv.org/pdf/2205.12696\"},{\"title\":\"Revisiting DocRED - Addressing the False Negative Problem in Relation Extraction - ACL Anthology\",\"url\":\"https://aclanthology.org/2022.emnlp-main.580/\"},{\"title\":\"tonytan48/Re-DocRED · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/tonytan48/Re-DocRED\"},{\"title\":\"Revisiting DocRED – Addressing the False Negative ...\",\"url\":\"https://aclanthology.org/2022.emnlp-main.580.pdf\"},{\"title\":\"[2205.12696v3] Revisiting DocRED -- Addressing the False Negative Problem in Relation Extraction\",\"url\":\"http://arxiv.org/abs/2205.12696v3\"},{\"title\":\"README.md · tonytan48/Re-DocRED at main\",\"url\":\"https://huggingface.co/datasets/tonytan48/Re-DocRED/blob/main/README.md\"}]\n\nI found the paper you're looking for! Here's what the search revealed:\n\n## Re-DocRED: Revisiting DocRED - Addressing the False Negative Problem in Relation Extraction\n\nThis is a paper by Tan et al. published at EMNLP 2022, available on arXiv as paper 2205.12696.\n\n**Key Details:**\n\n- The paper identifies that the annotation of DocRED is incomplete with prevalent false negative samples, and analyzes the causes and effects of this overwhelming false negative problem.\n\n- The researchers re-annotated 4,053 documents in the DocRED dataset by a\n…[truncated 644 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T15:08:12.000220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ATLOP \"Adaptive Thresholding and Localized Context Pooling\" Zhou et al AAAI 2021 document-level relation extraction arxiv"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T15:08:12.000528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ATLOP \"Adaptive Thresholding and Localized Context Pooling\" Zhou et al AAAI 2021 document-level relation extraction arxiv\"\n\nLinks: [{\"title\":\"Document-Level Relation Extraction with Adaptive Thresholding and Localized Context Pooling | Proceedings of the AAAI Conference on Artificial Intelligence\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/view/17717\"},{\"title\":\"GitHub - wzhouad/ATLOP: Source code for paper \\\"Document-Level Relation Extraction with Adaptive Thresholding and Localized Context Pooling\\\", AAAI 2021\",\"url\":\"https://github.com/wzhouad/ATLOP\"},{\"title\":\"ATLOP/README.md at main · wzhouad/ATLOP\",\"url\":\"https://github.com/wzhouad/ATLOP/blob/main/README.md?plain=1\"},{\"title\":\"Document-Level Relation Extraction with Adaptive Thresholding and Localized Context Pooling | CoLab\",\"url\":\"https://colab.ws/articles/10.1609/aaai.v35i16.17717\"},{\"title\":\"Document-Level Relation Extraction with Adaptive Thresholding and Localized Context Pooling\",\"url\":\"https://papertalk.org/papertalks/29629\"},{\"title\":\"Document-Level Relation Extraction with Adaptive Thresholding and\",\"url\":\"https://wzhouad.github.io/slides/ATLOP_AAAI21.pdf\"},{\"title\":\"Boosting Document-Level Relation Extraction by Mining ...\",\"url\":\"https://aclanthology.org/2022.emnlp-main.704.pdf\"},{\"title\":\"Releases · wzhouad/ATLOP\",\"url\":\"https://github.com/wzhouad/ATLOP/releases\"},{\"title\":\"ATLOP/evaluation.py at main · wzhouad/ATLOP\",\"url\":\"https://github.com/wzhouad/ATLOP/blob/main/evaluation.py\"},{\"title\":\"ATLOP/model.py at main · wzhouad/ATLOP\",\"url\":\"https://github.com/wzhouad/ATLOP/blob/main/model.py\"}]\n\nI found the paper you're looking for! Here are the key details:\n\n## ATLOP Paper Information\n\nThe ATLOP (Adaptive Thresholding and Localized Context Pooling) model achieves an F1 score of 63.4 on document-level relation extraction, and significantly outperforms existing models on both CDR and GDA datasets.\n\n### Technical Contributions\n\nThe paper proposes two novel techni\n…[truncated 911 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T15:08:12.000818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "LMRC LLM document-level relation extraction Li et al 2023 arxiv"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T15:08:12.001093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"LMRC LLM document-level relation extraction Li et al 2023 arxiv\"\n\nLinks: [{\"title\":\"LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://arxiv.org/html/2408.13889v1\"},{\"title\":\"AutoRE: Document-Level Relation Extraction with Large Language Models\",\"url\":\"https://arxiv.org/html/2403.14888v1\"},{\"title\":\"[2408.13889] LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://arxiv.org/abs/2408.13889\"},{\"title\":\"GLiDRE: Generalist Lightweight model for Document-level Relation Extraction\",\"url\":\"https://arxiv.org/html/2508.00757\"},{\"title\":\"Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction\",\"url\":\"https://arxiv.org/html/2511.08143v1\"},{\"title\":\"LLM with Relation Classifier for Document-Level Relation Extraction | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/llm-relation-classifier-document-level-relation-extraction\"},{\"title\":\"[Literature Review] LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://www.themoonlight.io/en/review/llm-with-relation-classifier-for-document-level-relation-extraction\"},{\"title\":\"(PDF) LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://www.researchgate.net/publication/383428854_LLM_with_Relation_Classifier_for_Document-Level_Relation_Extraction\"},{\"title\":\"Enhancing Relation Extraction via Supervised Rationale Verification and Feedback\",\"url\":\"https://arxiv.org/html/2412.07289v2\"},{\"title\":\"Document-Level In-Context Few-Shot Relation Extraction via Pre-Trained Language Models\",\"url\":\"https://arxiv.org/html/2310.11085\"}]\n\nBased on the search results, I found information about the LMRC paper. Here's what I found:\n\n## LMRC: LLM with Relation Classifier for Document-Level Relation Extraction\n\nThe paper is titled \"LLM with Relation Classifier for Document-Level Relation Extraction\" by Xingzuo Li and 3 other authors. However, it's importan\n…[truncated 1066 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T15:08:12.001371+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "DocKS-RAG \"document-level relation extraction\" RAG Xu et al 2024 arxiv"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T15:08:12.001641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"DocKS-RAG \"document-level relation extraction\" RAG Xu et al 2024 arxiv\"\n\nLinks: [{\"title\":\"DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning | OpenReview\",\"url\":\"https://openreview.net/forum?id=SVl9tIADWV\"},{\"title\":\"RAKG:Document-level Retrieval Augmented Knowledge Graph Construction\",\"url\":\"https://arxiv.org/html/2504.09823v1\"},{\"title\":\"Knowledge Graph-Guided Retrieval Augmented Generation\",\"url\":\"https://arxiv.org/html/2502.06864v1\"},{\"title\":\"Relation Extraction with Fine-Tuned Large Language Models in Retrieval Augmented Generation Frameworks\",\"url\":\"https://arxiv.org/html/2406.14745v2\"},{\"title\":\"ICML Poster DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning\",\"url\":\"https://icml.cc/virtual/2025/poster/45220\"},{\"title\":\"Date of publication xxxx 00, 2024, date of current version Oct. 15, 2024.\",\"url\":\"https://arxiv.org/pdf/2406.03790\"},{\"title\":\"A Comprehensive Survey of Document-level Relation ...\",\"url\":\"https://arxiv.org/pdf/2309.16396\"},{\"title\":\"DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning\",\"url\":\"https://proceedings.mlr.press/v267/xu25am.html\"},{\"title\":\"[2403.14888] AutoRE: Document-Level Relation Extraction with Large Language Models\",\"url\":\"https://arxiv.org/abs/2403.14888\"},{\"title\":\"Synergizing RAG and Reasoning: A Systematic Review\",\"url\":\"https://arxiv.org/html/2504.15909v1\"}]\n\nThe search has found relevant results about DocKS-RAG. Here's what I found:\n\n## DocKS-RAG Overview\n\nDocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning aims to extract comprehensive correlations between entities and relations from documents.\n\nThe paper was authored by Xiaolong Xu, Yibo Zhou, Haolong Xiang, Xiaoyong Li, Xuyun Zhang, Lianyong Qi, and Wanchun Dou.\n\n## Publication Information\n\nThe paper was published in the Proceedings of the 42nd Intern\n…[truncated 648 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T15:08:12.001907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "GenRES generative relation extraction evaluation arxiv"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T15:08:12.002172+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"GenRES generative relation extraction evaluation arxiv\"\n\nLinks: [{\"title\":\"[2402.10744] GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models\",\"url\":\"https://arxiv.org/abs/2402.10744\"},{\"title\":\"GENRES: Rethinking Evaluation for Generative Relation Extraction in the\",\"url\":\"https://arxiv.org/pdf/2402.10744\"},{\"title\":\"GENRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models - Illinois Experts\",\"url\":\"https://experts.illinois.edu/en/publications/genres-rethinking-evaluation-for-generative-relation-extraction-i/\"},{\"title\":\"GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models\",\"url\":\"https://www.emergentmind.com/papers/2402.10744\"},{\"title\":\"GitHub - pat-jj/GenRES: [NAACL'24] Evaluate Generative Relation Extraction\",\"url\":\"https://github.com/pat-jj/genres\"},{\"title\":\"Rethinking Evaluation for Generative Relation Extraction in ...\",\"url\":\"https://aclanthology.org/2024.naacl-long.155.pdf\"},{\"title\":\"GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.naacl-long.155/\"},{\"title\":\"A Survey of Generative Information Extraction\",\"url\":\"https://aclanthology.org/2025.coling-main.324.pdf\"},{\"title\":\"GenRE: A Generative Model for Relation Extraction | OpenReview\",\"url\":\"https://openreview.net/forum?id=w0fxBD6tJbV\"},{\"title\":\"[2202.13229] A Generative Model for Relation Extraction and Classification\",\"url\":\"https://arxiv.org/abs/2202.13229\"}]\n\nI found relevant research on GenRES. Here's what I discovered:\n\n## GenRES: Rethinking Evaluation for Generative Relation Extraction\n\nThe field of relation extraction (RE) is experiencing a notable shift towards generative relation extraction (GRE), leveraging the capabilities of large language models (LLMs). However, traditional relation extraction (RE) metrics like precis\n…[truncated 1274 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T15:08:12.002472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "DocuNet \"An Efficient Framework for Document-Level Relation Extraction\" Zhang et al 2021 arxiv"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T15:08:12.002746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"DocuNet \"An Efficient Framework for Document-Level Relation Extraction\" Zhang et al 2021 arxiv\"\n\nLinks: [{\"title\":\"Augmenting Document-level Relation Extraction with Efficient Multi-Supervision\",\"url\":\"https://arxiv.org/html/2407.01026v1\"},{\"title\":\"[2106.03618] Document-level Relation Extraction as Semantic Segmentation\",\"url\":\"https://arxiv.org/abs/2106.03618\"},{\"title\":\"COMM: Concentrated Margin Maximization for Robust Document-Level Relation Extraction\",\"url\":\"https://arxiv.org/html/2503.13885\"},{\"title\":\"Did the Models Understand Documents? Benchmarking Models for Language Understanding in Document-Level Relation Extraction\",\"url\":\"https://arxiv.org/html/2306.11386\"},{\"title\":\"Document-Level In-Context Few-Shot Relation Extraction via Pre-Trained Language Models\",\"url\":\"https://arxiv.org/html/2310.11085v3\"},{\"title\":\"GitHub - zjunlp/DocuNet: [IJCAI 2021] Document-level Relation Extraction as Semantic Segmentation · GitHub\",\"url\":\"https://github.com/zjunlp/DocuNet\"},{\"title\":\"Revisiting Document-Level Relation Extraction with ...\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/view/29792/31370\"},{\"title\":\"KnowRA: Knowledge Retrieval Augmented Method for Document-level Relation Extraction with Comprehensive Reasoning Abilities\",\"url\":\"https://arxiv.org/html/2501.00571\"},{\"title\":\"DocuNet/README.md at main · zjunlp/DocuNet\",\"url\":\"https://github.com/zjunlp/DocuNet/blob/main/README.md\"},{\"title\":\"REXEL: An End-to-end Model for Document-Level Relation Extraction and Entity Linking\",\"url\":\"https://arxiv.org/html/2404.12788v1\"}]\n\nBased on the search results, I found information about the DocuNet paper you're looking for.\n\nDocuNet (Zhang et al. 2021) regards the DocRE task as a semantic segmentation task, attempting to capture both local context information and global interdependency among triples.\n\nMore specifically, the paper proposes a Document U-shaped Network for document-level relation extraction by predicting an entity-level re\n…[truncated 880 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T15:08:12.003009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "KD-DocRE \"Knowledge Distillation\" Tan et al 2022 document-level relation extraction arxiv"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T15:08:12.003298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"KD-DocRE \"Knowledge Distillation\" Tan et al 2022 document-level relation extraction arxiv\"\n\nLinks: [{\"title\":\"[2203.10900] Document-Level Relation Extraction with Adaptive Focal Loss and Knowledge Distillation\",\"url\":\"https://arxiv.org/abs/2203.10900\"},{\"title\":\"GitHub - tonytan48/KD-DocRE: Implementation of Document-level Relation Extraction with Knowledge Distillation and Adaptive Focal Loss · GitHub\",\"url\":\"https://github.com/tonytan48/KD-DocRE\"},{\"title\":\"Document-Level Relation Extraction with Adaptive Focal Loss and Knowledge Distillation - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2022arXiv220310900T/abstract\"},{\"title\":\"Consistent Document-Level Relation Extraction via Counterfactuals\",\"url\":\"https://arxiv.org/html/2407.06699v2\"},{\"title\":\"Augmenting Document-level Relation Extraction with Efficient Multi-Supervision\",\"url\":\"https://arxiv.org/html/2407.01026v1\"},{\"title\":\"[2203.10900v1] Document-Level Relation Extraction with Adaptive Focal Loss and Knowledge Distillation\",\"url\":\"https://arxiv.org/abs/2203.10900v1\"},{\"title\":\"On the Robustness of Document-Level Relation Extraction Models to Entity Name Variations\",\"url\":\"https://arxiv.org/html/2406.07444v1\"},{\"title\":\"Document-Level Relation Extraction with Adaptive Focal Loss and Knowledge Distillation - ACL Anthology\",\"url\":\"https://aclanthology.org/2022.findings-acl.132/\"},{\"title\":\"Rethinking Document-Level Relation Extraction: A Reality Check\",\"url\":\"https://arxiv.org/html/2306.08953\"},{\"title\":\"LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://arxiv.org/html/2408.13889v1\"}]\n\nI found the paper you were searching for! Here are the key details:\n\n## KD-DocRE Paper Summary\n\n**Title:** Document-Level Relation Extraction with Adaptive Focal Loss and Knowledge Distillation\n\n**Authors:** Qingyu Tan, Ruidan He, Lidong Bing, and Hwee Tou Ng\n\n**Publication:** Findings of ACL 2022\n\n**arXiv ID:** 2203.10900 (posted March 21, 2022)\n\n## Key Contribut\n…[truncated 681 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T15:08:12.003568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "DocKS-RAG arxiv ID Xu 2024 document-level relation extraction LLM hybrid prompt tuning"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T15:08:12.003834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"DocKS-RAG arxiv ID Xu 2024 document-level relation extraction LLM hybrid prompt tuning\"\n\nLinks: [{\"title\":\"DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning\",\"url\":\"https://proceedings.mlr.press/v267/xu25am.html\"},{\"title\":\"ICML Poster DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning\",\"url\":\"https://icml.cc/virtual/2025/poster/45220\"},{\"title\":\"DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning | OpenReview\",\"url\":\"https://openreview.net/forum?id=SVl9tIADWV\"},{\"title\":\"Unified Ranking for Multiple Retrieval-Augmented Large ...\",\"url\":\"https://dl.acm.org/doi/pdf/10.1145/3626772.3657733\"},{\"title\":\"Relation Extraction with Fine-Tuned Large Language Models in Retrieval Augmented Generation Frameworks\",\"url\":\"https://arxiv.org/html/2406.14745v2\"},{\"title\":\"[2403.14888] AutoRE: Document-Level Relation Extraction with Large Language Models\",\"url\":\"https://arxiv.org/abs/2403.14888\"},{\"title\":\"Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction\",\"url\":\"https://arxiv.org/html/2511.08143\"},{\"title\":\"1 Retrieval-Augmented Generation for Large Language Models: A Survey\",\"url\":\"https://arxiv.org/pdf/2312.10997\"},{\"title\":\"AutoRE: Document-Level Relation Extraction with Large ...\",\"url\":\"https://aclanthology.org/2024.acl-demos.20.pdf\"},{\"title\":\"A Survey of Graph Retrieval-Augmented Generation for ...\",\"url\":\"https://arxiv.org/pdf/2501.13958\"}]\n\nBased on the search results, I found information about DocKS-RAG. Here's what the research paper contains:\n\n## DocKS-RAG Paper Summary\n\nDocKS-RAG is titled \"Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning\" and focuses on document-level relation extraction (RE), which aims to extract comprehensive correlations between entities and relations from documents.\n\n**Key Components:**\n\nThe framework\n…[truncated 1025 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T15:08:12.004090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "DocKS-RAG arxiv preprint 2024 Xiaolong Xu"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T15:08:12.004367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"DocKS-RAG arxiv preprint 2024 Xiaolong Xu\"\n\nLinks: [{\"title\":\"arXiv.org e-Print archive\",\"url\":\"https://arxiv.org/\"},{\"title\":\"DoTA-RAG: Dynamic of Thought Aggregation RAG\",\"url\":\"https://arxiv.org/html/2506.12571v1\"},{\"title\":\"CodeRAG: Supportive Code Retrieval on Bigraph for Real-World Code Generation\",\"url\":\"https://arxiv.org/html/2504.10046v1\"},{\"title\":\"Preprint. SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND\",\"url\":\"https://arxiv.org/pdf/2310.11511\"},{\"title\":\"Arxiv\",\"url\":\"https://arxiv.org/pdf/2502.01477\"},{\"title\":\"[2410.12837] A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions\",\"url\":\"https://arxiv.org/abs/2410.12837\"},{\"title\":\"A Survey of Graph Retrieval-Augmented Generation for Customized Large Language Models\",\"url\":\"https://arxiv.org/html/2501.13958v1\"},{\"title\":\"A Survey of RAG-Reasoning Systems in LLMs\",\"url\":\"https://arxiv.org/pdf/2507.09477\"},{\"title\":\"Retrieval-Augmented Generation for AI-Generated Content: A Survey\",\"url\":\"https://arxiv.org/html/2402.19473v2\"},{\"title\":\"HM-RAG: Hierarchical Multi-Agent Multimodal Retrieval Augmented Generation\",\"url\":\"https://arxiv.org/html/2504.12330v1\"}]\n\nBased on the search results, I was unable to find a specific arxiv preprint titled \"DocKS-RAG\" from 2024 by Xiaolong Xu. The search returned various RAG (Retrieval-Augmented Generation) related papers and surveys from 2024-2025, but none matching the exact title and author you specified.\n\nThe results included papers on related RAG topics such as:\n- DoTA-RAG (Dynamic of Thought Aggregation RAG)\n- CodeRAG (Code Retrieval)\n- Self-RAG\n- Various RAG surveys and applications\n\nIf you're looking for information about a specific paper, you might want to:\n1. Try searching directly on arxiv.org with different keywords\n2. Verify the exact spelling of the paper title\n3. Check if the author name might be spelled differently\n4. Search for the arxiv ID if you have it\n\nWould you like\n…[truncated 157 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T15:08:12.004633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:arxiv.org \"DocKS-RAG\" OR \"document-level relation extraction\" \"hybrid prompt tuning\" Xu 2024"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T15:08:12.004889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:arxiv.org \"DocKS-RAG\" OR \"document-level relation extraction\" \"hybrid prompt tuning\" Xu 2024\"\n\nNo links found.\n\nThe search was processed, but it appears that the web search tool doesn't support the special search operators like \"site:\" that you included in your query. Unfortunately, no results were returned for this search.\n\nTo help you find this content more effectively, I'd recommend:\n\n1. **Visit arxiv.org directly** and use their search interface with your keywords\n2. **Try a simpler search** without the \"site:\" operator, such as: \"DocKS-RAG hybrid prompt tuning Xu 2024\" or \"document-level relation extraction hybrid prompt tuning\"\n3. **Browse by category** on arxiv.org if you know the relevant research area (e.g., cs.CL for natural language processing)\n\nWould you like me to perform a web search with a simplified version of this query?\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T15:08:12.005121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "LLM document-level relation extraction 2024 2025 state-of-the-art DocRED Re-DocRED new methods"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T15:08:12.005433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"LLM document-level relation extraction 2024 2025 state-of-the-art DocRED Re-DocRED new methods\"\n\nLinks: [{\"title\":\"LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://arxiv.org/html/2408.13889v1\"},{\"title\":\"[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9\"},{\"title\":\"Leveraging Large Language Models for Document-Level Complex Relation Extraction Through Self-Verification and Tool-Assisted Relational Reasoning | Springer Nature Link\",\"url\":\"https://link.springer.com/chapter/10.1007/978-981-96-9812-7_32\"},{\"title\":\"AutoRE: Document-Level Relation Extraction with Large Language Models\",\"url\":\"https://arxiv.org/html/2403.14888v1\"},{\"title\":\"[2403.14888] AutoRE: Document-Level Relation Extraction with Large Language Models\",\"url\":\"https://arxiv.org/abs/2403.14888\"},{\"title\":\"Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction | Springer Nature Link\",\"url\":\"https://link.springer.com/chapter/10.1007/978-981-95-3343-5_11\"},{\"title\":\"Document-level Relation Extraction with Relation Correlations - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0893608023006883\"},{\"title\":\"Document-Level Relation Extraction\",\"url\":\"https://www.emergentmind.com/topics/document-level-relation-extraction\"},{\"title\":\"LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://openreview.net/pdf?id=SOWcC2cCMT\"},{\"title\":\"A Temporal Knowledge Graph Generation Dataset Supervised Distantly by Large Language Models | Scientific Data\",\"url\":\"https://www.nature.com/articles/s41597-025-05062-0\"}]\n\nHere's a comprehensive summary of recent state-of-the-art developments in LLM-based document-level relation extraction (2024-2025):\n\n## Key Recent Methods\n\n### AutoRE (2024)\nAutoRE is a\n…[truncated 1903 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T15:08:12.005701+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "AutoRE \"Document-Level Relation Extraction with Large Language Models\" arxiv 2403.14888 authors venue"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T15:08:12.006094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"AutoRE \"Document-Level Relation Extraction with Large Language Models\" arxiv 2403.14888 authors venue\"\n\nLinks: [{\"title\":\"[2403.14888] AutoRE: Document-Level Relation Extraction with Large Language Models\",\"url\":\"https://arxiv.org/abs/2403.14888\"},{\"title\":\"AutoRE: Document-Level Relation Extraction with Large Language Models\",\"url\":\"https://arxiv.org/html/2403.14888v1\"},{\"title\":\"[2403.14888] AutoRE: Document-Level Relation Extraction with Large Language Models\",\"url\":\"http://export.arxiv.org/abs/2403.14888\"},{\"title\":\"AutoRE: Document-Level Relation Extraction with Large Language Models | alphaXiv\",\"url\":\"https://www.alphaxiv.org/abs/2403.14888v1\"},{\"title\":\"GitHub - THUDM/AutoRE\",\"url\":\"https://github.com/THUDM/AutoRE\"},{\"title\":\"[Literature Review] AutoRE: Document-Level Relation Extraction with Large Language Models\",\"url\":\"https://www.themoonlight.io/en/review/autore-document-level-relation-extraction-with-large-language-models\"},{\"title\":\"AutoRE: Document-Level Relation Extraction with Large ...\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/autore-document-level-relation-extraction-large-language\"},{\"title\":\"AutoRE/README_EN.md at main · THUDM/AutoRE\",\"url\":\"https://github.com/THUDM/AutoRE/blob/main/README_EN.md\"},{\"title\":\"AutoRE: Document-Level Relation Extraction with Large Language Models\",\"url\":\"https://yiyibooks.cn/__trs__/arxiv/2403.14888v1/index.html\"},{\"title\":\"(PDF) LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://www.researchgate.net/publication/383428854_LLM_with_Relation_Classifier_for_Document-Level_Relation_Extraction\"}]\n\nBased on the search results, here's the information about AutoRE:\n\n**Authors:** Lilong Xue, Dan Zhang, Yuxiao Dong, and Jie Tang\n\n**Title:** AutoRE: Document-Level Relation Extraction with Large Language Models\n\n**ArXiv ID:** 2403.14888\n\n**Venue:** The Knowledge Engineering Group (KEG), Tsinghua University\n\nThe paper was submitted on 21 Mar 2024 (v1), last revis\n…[truncated 137 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T15:08:12.006379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "AutoRE Xue Zhang Dong Tang ACL 2024 accepted venue conference document-level relation extraction"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T15:08:12.006662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"AutoRE Xue Zhang Dong Tang ACL 2024 accepted venue conference document-level relation extraction\"\n\nLinks: [{\"title\":\"AutoRE: Document-Level Relation Extraction with Large Language Models - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.acl-demos.20/\"},{\"title\":\"Accepted Demo Papers - ACL 2024\",\"url\":\"https://2024.aclweb.org/program/demo_papers/\"},{\"title\":\"GitHub - THUDM/AutoRE\",\"url\":\"https://github.com/THUDM/AutoRE\"},{\"title\":\"[2403.14888] AutoRE: Document-Level Relation Extraction with Large Language Models\",\"url\":\"https://arxiv.org/abs/2403.14888\"},{\"title\":\"AutoRE: Document-Level Relation Extraction with Large ...\",\"url\":\"https://aclanthology.org/2024.acl-demos.20.pdf\"},{\"title\":\"Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction | Springer Nature Link\",\"url\":\"https://link.springer.com/chapter/10.1007/978-981-95-3343-5_11\"},{\"title\":\"(PDF) AutoRE: Document-Level Relation Extraction with Large Language Models\",\"url\":\"https://www.researchgate.net/publication/384197797_AutoRE_Document-Level_Relation_Extraction_with_Large_Language_Models\"},{\"title\":\"AutoRE: Document-Level Relation Extraction with Large Language Models\",\"url\":\"https://arxiv.org/html/2403.14888v1\"},{\"title\":\"A Survey of Generative Information Extraction\",\"url\":\"https://aclanthology.org/2025.coling-main.324.pdf\"},{\"title\":\"CaDRL: Document-level Relation Extraction via Context- ...\",\"url\":\"https://aclanthology.org/2025.coling-main.551.pdf\"}]\n\nBased on the search results, here's what I found about the AutoRE paper:\n\n## AutoRE: Document-Level Relation Extraction with Large Language Models\n\nThe paper \"AutoRE: Document-Level Relation Extraction with Large Language Models\" by Lilong Xue, Dan Zhang, Yuxiao Dong, and Jie Tang was accepted at the 62nd Annual Meeting of the Association for Computational Linguistics (ACL 2024) in the Volume 3: System Demonstrations track, held in Bangkok, Thailand.\n\n### Key Details:\n\n- **Venue**: ACL 2024 Sys\n…[truncated 825 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T15:08:12.006923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "LMRC arxiv 2408.13889 authors full list Li et al venue accepted conference"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T15:08:12.007178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"LMRC arxiv 2408.13889 authors full list Li et al venue accepted conference\"\n\nLinks: [{\"title\":\"[2408.13889] LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://arxiv.org/abs/2408.13889\"},{\"title\":\"LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://arxiv.org/html/2408.13889\"},{\"title\":\"arXiv:2311.08213v1 [cs.CV] 14 Nov 2023\",\"url\":\"https://arxiv.org/pdf/2311.08213\"},{\"title\":\"Computation and Language\",\"url\":\"https://www.arxiv.org/list/cs.CL/pastweek?skip=4&show=500\"},{\"title\":\"Authorship Attribution in the Era of LLMs: Problems, Methodologies, and Challenges\",\"url\":\"https://arxiv.org/html/2408.08946v2\"},{\"title\":\"Large Language Models: A Survey\",\"url\":\"https://arxiv.org/html/2402.06196v3\"},{\"title\":\"Contrastive Preference Optimization: Pushing the Boundaries of LLM Performance in Machine Translation\",\"url\":\"https://arxiv.org/html/2401.08417v3\"},{\"title\":\"arXiv:2408.14134v3 [cs.LG] 15 Feb 2025\",\"url\":\"http://shichuan.org/doc/192.pdf\"},{\"title\":\"Computer Science\",\"url\":\"https://arxiv.org/list/cs/pastweek?skip=235&show=1000\"},{\"title\":\"arXiv:2408.12088v2 [cs.CY] 4 Feb 2025\",\"url\":\"https://arxiv.org/pdf/2408.12088\"}]\n\nBased on the search results, here is the information about the arxiv paper 2408.13889:\n\n**Title:** LLM with Relation Classifier for Document-Level Relation Extraction\n\n**Full Author List:** Xingzuo Li, Kehai Chen, Yunfei Long, Min Zhang\n\n**Method/Acronym:** LMRC (LLM with Relation Classifier)\n\n**Submission Information:** Submitted on 25 Aug 2024 (v1), last revised 7 Dec 2024 (this version, v2)\n\nHowever, the search results do not contain information about the specific venue or conference where this paper was accepted. The results show it is an arXiv preprint, but details about conference acceptance are not available in these sources.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T15:08:12.007453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "LMRC \"LLM with Relation Classifier\" accepted AAAI EMNLP ACL 2025 Xingzuo Li"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T15:08:12.007729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"LMRC \"LLM with Relation Classifier\" accepted AAAI EMNLP ACL 2025 Xingzuo Li\"\n\nLinks: [{\"title\":\"[Literature Review] LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://www.themoonlight.io/en/review/llm-with-relation-classifier-for-document-level-relation-extraction\"},{\"title\":\"LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://arxiv.org/html/2408.13889v2\"},{\"title\":\"LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://openreview.net/pdf?id=SOWcC2cCMT\"},{\"title\":\"Accepted Main Conference Papers - ACL 2025\",\"url\":\"https://2025.aclweb.org/program/main_papers/\"},{\"title\":\"The 2025 Conference on Empirical Methods in Natural Language Processing - ACL Anthology\",\"url\":\"https://aclanthology.org/events/emnlp-2025/\"},{\"title\":\"LLM with Relation Classifier for Document-Level Relation Extraction | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/llm-relation-classifier-document-level-relation-extraction\"},{\"title\":\"Generation-Augmented Retrieval: Rethinking the Role of ...\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.974.pdf\"},{\"title\":\"Zhuosheng Zhang, Shanghai Jiao Tong University - BCMI Lab\",\"url\":\"https://bcmi.sjtu.edu.cn/home/zhangzs/\"},{\"title\":\"BYOKG-RAG: Multi-Strategy Graph Retrieval for ...\",\"url\":\"https://aclanthology.org/2025.emnlp-main.1417.pdf\"},{\"title\":\"Paper Digest: ACL 2025 Papers & Highlights – Paper Digest\",\"url\":\"https://www.paperdigest.org/2025/07/acl-2025-papers-highlights/\"}]\n\nBased on the search results, I found information about the LMRC paper by Xingzuo Li and colleagues:\n\nThe paper presents a novel approach to document-level relation extraction (DocRE) by utilizing large language models (LLMs) structured around a composite method that integrates a relation classifier, authored by Xingzuo Li, Kehai Chen, Yunfei Long, and Min Zhang.\n\nThe method named LMRC (LLM with Relation Classifier) aims at bri\n…[truncated 1144 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T15:08:12.008130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "GenRES NAACL 2024 Pengcheng Jiang authors full venue proceedings"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T15:08:12.008438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"GenRES NAACL 2024 Pengcheng Jiang authors full venue proceedings\"\n\nLinks: [{\"title\":\"GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.naacl-long.155/\"},{\"title\":\"Accepted Papers - NAACL-HLT 2024\",\"url\":\"https://2024.naacl.org/program/accepted_papers/\"},{\"title\":\"GENRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models - Illinois Experts\",\"url\":\"https://experts.illinois.edu/en/publications/genres-rethinking-evaluation-for-generative-relation-extraction-i/\"},{\"title\":\"Second Call for Main Conference Papers - NAACL-HLT 2024\",\"url\":\"https://2024.naacl.org/calls/papers/\"},{\"title\":\"NAACL 2024 - Amazon Science\",\"url\":\"https://www.amazon.science/conferences-and-events/naacl-2024\"},{\"title\":\"Paper Digest: NAACL 2024 Papers & Highlights – Resources | Paper Digest\",\"url\":\"https://resources.paperdigest.org/2024/06/naacl-2024-highlights/\"},{\"title\":\"2024 Annual Conference of the North American Chapter of the Association for Computational Linguistics - NAACL-HLT 2024\",\"url\":\"https://2024.naacl.org/\"},{\"title\":\"Nations of the Americas Chapter of the Association for Computational Linguistics - ACL Anthology\",\"url\":\"https://aclanthology.org/venues/naacl/\"},{\"title\":\"NAACL 2024 The 2024 Conference of the North American ...\",\"url\":\"https://aclanthology.org/2024.naacl-tutorials.pdf\"},{\"title\":\"First Call for Main Conference Papers - NAACL-HLT 2024\",\"url\":\"https://2024.naacl.org/calls/first_call_for_papers/\"}]\n\nBased on the search results, here's the information about the GenRES paper at NAACL 2024:\n\n**Paper Title:** GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models\n\n**Authors:** Pengcheng Jiang, Jiacheng Lin, Zifeng Wang, Jimeng Sun, and Jiawei Han\n\n**Venue & Proceedings:** Proceedings of the 2024 Conference of the North American Chapter of the Association \n…[truncated 463 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T15:08:12.008756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "openreview.net \"DocKS-RAG\" SVl9tIADWV arxiv preprint"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T15:08:12.009016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"openreview.net \"DocKS-RAG\" SVl9tIADWV arxiv preprint\"\n\nLinks: [{\"title\":\"DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning | OpenReview\",\"url\":\"https://openreview.net/forum?id=SVl9tIADWV\"},{\"title\":\"OpenReview Archive | OpenReview\",\"url\":\"https://openreview.net/group?id=OpenReview.net%2FArchive\"},{\"title\":\"RankRAG: Unifying Context Ranking with Retrieval-Augmented Generation in LLMs\",\"url\":\"https://openreview.net/pdf?id=S1fc92uemC\"},{\"title\":\"Venues | OpenReview\",\"url\":\"https://openreview.net/\"},{\"title\":\"[2501.00309] Retrieval-Augmented Generation with Graphs (GraphRAG)\",\"url\":\"https://arxiv.org/abs/2501.00309\"},{\"title\":\"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019\",\"url\":\"https://openreview.net/pdf/655bb056e30116388ec938c1db7ccd6ffdddec17.pdf\"},{\"title\":\"SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND ...\",\"url\":\"https://openreview.net/pdf?id=hSyW5go0v8\"},{\"title\":\"Enhancing RAG Reasoning through Test-Time Critique ...\",\"url\":\"https://openreview.net/pdf?id=cnUq7GkS6d\"},{\"title\":\"EnterpriseRAG-Bench: A RAG Benchmark for Company Internal Knowledge\",\"url\":\"https://arxiv.org/html/2605.05253v1\"},{\"title\":\"A Survey of Graph Retrieval-Augmented Generation for ...\",\"url\":\"https://openreview.net/pdf?id=9FJiOMuZkr\"}]\n\nI found the paper you were looking for. DocKS-RAG is a novel and effective framework which introduces extra structural knowledge and semantic information to further enhance the performance of document-level relation extraction.\n\nMore specifically, DocKS-RAG is a framework for document-level relation extraction that enhances structural and semantic understanding by integrating a Document-level Knowledge Graph and a Sentence-level Semantic Retrieval-Augmented Generation mechanism. Additionally, the framework designs a hybrid-prompt tuning method on large language models, and experiments on benchmark datasets show significant improvements over existin\n…[truncated 228 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T15:08:12.011367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"DocKS-RAG\" Xiaolong Xu arxiv.org 2024 2025"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T15:08:12.011749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"DocKS-RAG\" Xiaolong Xu arxiv.org 2024 2025\"\n\nLinks: [{\"title\":\"privacy challenges and solutions in rag-enhanced llms for ...\",\"url\":\"https://arxiv.org/pdf/2511.11347\"},{\"title\":\"A Survey of RAG-Reasoning Systems in LLMs\",\"url\":\"https://arxiv.org/pdf/2507.09477\"},{\"title\":\"A Survey on Retrieval And Structuring Augmented Generation\",\"url\":\"https://arxiv.org/pdf/2509.10697\"},{\"title\":\"Published as a conference paper at COLM 2025\",\"url\":\"https://arxiv.org/pdf/2504.13079\"},{\"title\":\"RAGOps: Operating and Managing Retrieval-Augmented Generation Pipelines\",\"url\":\"https://arxiv.org/html/2506.03401v1\"},{\"title\":\"Engineering the RAG Stack: A Comprehensive Review of the Architecture and Trust Frameworks for Retrieval Augmented Generation Systems\",\"url\":\"https://arxiv.org/html/2601.05264v1\"},{\"title\":\"REFRAG: Rethinking RAG based Decoding\",\"url\":\"https://arxiv.org/pdf/2509.01092\"},{\"title\":\"Artificial Intelligence 2025\",\"url\":\"https://www.arxiv.org/list/cs.AI/2025?skip=23750&show=2000\"},{\"title\":\"[2410.12837] A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions\",\"url\":\"https://arxiv.org/abs/2410.12837\"},{\"title\":\"Advancements in RAG [Retrieval-Augmented Generation] Systems by Mid-2025 | by Martinagrafsvw | Medium\",\"url\":\"https://medium.com/@martinagrafsvw25/advancements-in-rag-retrieval-augmented-generation-systems-by-mid-2025-935a39c15ae9\"}]\n\nBased on my web search results, I found a reference to work by Xiaolong Xu related to RAG systems. Xu et al. leverage knowledge graphs for retrieval by parsing issue tickets into tree structures with interconnected relationships, then using entity matching and graph traversal to locate relevant information instead of relying on text-chunk similarity search.\n\nHowever, I did not find a specific paper titled \"DocKS-RAG\" by Xiaolong Xu in the search results. The search returned various RAG-related papers from 2024-2025, but this particular paper titl\n…[truncated 597 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T15:08:12.012029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "DREEAM document-level relation extraction 2023 2024 arxiv Ma et al"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T15:08:12.012343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"DREEAM document-level relation extraction 2023 2024 arxiv Ma et al\"\n\nLinks: [{\"title\":\"[2302.08675] DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction\",\"url\":\"https://arxiv.org/abs/2302.08675\"},{\"title\":\"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.eacl-main.145/\"},{\"title\":\"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction\",\"url\":\"https://www.researchgate.net/publication/373811777_DREEAM_Guiding_Attention_with_Evidence_for_Improving_Document-Level_Relation_Extraction\"},{\"title\":\"Three-stage document-level entity relation extraction | The Journal of Supercomputing | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11227-025-07068-2\"},{\"title\":\"GLiDRE: Generalist Lightweight model for Document-level Relation Extraction\",\"url\":\"https://arxiv.org/html/2508.00757v1\"},{\"title\":\"Augmenting Document-level Relation Extraction with Efficient Multi-Supervision\",\"url\":\"https://arxiv.org/html/2407.01026v1\"},{\"title\":\"GitHub - YoumiMa/dreeam: source code for {D}ocument-level {R}elation {E}xtraction with {E}vidence-guided {A}ttention {M}echanism · GitHub\",\"url\":\"https://github.com/YoumiMa/dreeam\"},{\"title\":\"LLM with Relation Classifier for Document-Level Relation Extraction\",\"url\":\"https://arxiv.org/html/2408.13889v1\"},{\"title\":\"[PDF] DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/DREEAM:-Guiding-Attention-with-Evidence-for-Ma-Wang/51237757750c4618bf114ff329dacb9c997b771a\"},{\"title\":\"Evidence and Axial Attention Guided Document-level Relation Extraction | Computer Speech and Language\",\"url\":\"https://dl.acm.org/doi/10.1016/j.csl.2024.101728\"}]\n\nI found the paper you were looking for! Here are the key details:\n\nDREEAM: Guiding Attention with Evidence f\n…[truncated 1402 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T15:08:12.012619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "GLiDRE \"Generalist Lightweight model for Document-level Relation Extraction\" 2025 arxiv"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T15:08:12.012912+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"GLiDRE \"Generalist Lightweight model for Document-level Relation Extraction\" 2025 arxiv\"\n\nLinks: [{\"title\":\"[2508.00757] GLiDRE: Generalist Lightweight model for Document-level Relation Extraction\",\"url\":\"https://arxiv.org/abs/2508.00757\"},{\"title\":\"GLiDRE: Generalist Lightweight model for Document-level Relation Extraction\",\"url\":\"https://arxiv.org/html/2508.00757v2\"},{\"title\":\"GLiDRE: Generalist Lightweight model for Document-level Relation Extraction - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250800757A/abstract\"},{\"title\":\"GitHub - robinarmingaud/glidre: Zero and Few-shot document level relation extraction / ⚠️ Development moved to: https://github.com/cea-list-lasti/glidre\",\"url\":\"https://github.com/robinarmingaud/glidre\"},{\"title\":\"(PDF) GLiDRE: Generalist Lightweight model for Document-level Relation Extraction\",\"url\":\"https://www.researchgate.net/publication/394262622_GLiDRE_Generalist_Lightweight_model_for_Document-level_Relation_Extraction\"},{\"title\":\"GLiClass: Generalist Lightweight Model for Sequence Classification Tasks\",\"url\":\"https://arxiv.org/html/2508.07662v1\"},{\"title\":\"Paper page - GLiClass: Generalist Lightweight Model for Sequence Classification Tasks\",\"url\":\"https://huggingface.co/papers/2508.07662\"},{\"title\":\"(PDF) GLiClass: Generalist Lightweight Model for Sequence Classification Tasks\",\"url\":\"https://www.researchgate.net/publication/394439683_GLiClass_Generalist_Lightweight_Model_for_Sequence_Classification_Tasks\"},{\"title\":\"GLiNER2: An Efficient Multi-Task Information Extraction System with Schema-Driven Interface\",\"url\":\"https://arxiv.org/html/2507.18546v1\"},{\"title\":\"GitHub - jackboyla/GLiREL: Generalist and Lightweight Model for Relation Extraction (Extract any relationship types from text) · GitHub\",\"url\":\"https://github.com/jackboyla/GLiREL\"}]\n\nI found the paper you were looking for! Here's what I found about GLiDRE:\n\n## Paper Details\n\nGLiDRE: Generalist Lightweight model for Document-level R\n…[truncated 1144 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T15:08:12.014373+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the information needed. Here are the results:\n\n---\n\n```\nVERIFICATION RESULTS:\n\n1. DocRED: ✅ VERIFIED\n   Title: \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\"\n   Authors: Yuan Yao, Deming Ye, Peng Li, Xu Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu, Lixin Huang, Jie Zhou, Maosong Sun\n   Venue: ACL 2019 (P19-1074)\n   arXiv: 1906.06127\n   ACL Anthology: https://aclanthology.org/P19-1074/\n\n2. Re-DocRED: ✅ VERIFIED\n   Title: \"Revisiting DocRED -- Addressing the False Negative Problem in Relation Extraction\"\n   Authors: Qingyu Tan, Lu Xu, Lidong Bing, Hwee Tou Ng\n   Venue: EMNLP 2022 (2022.emnlp-main.580)\n   arXiv: 2205.12696\n   ACL Anthology: https://aclanthology.org/2022.emnlp-main.580/\n\n3. ATLOP: ✅ VERIFIED\n   Title: \"Document-Level Relation Extraction with Adaptive Thresholding and Localized Context Pooling\"\n   Authors: Wenxuan Zhou, Kevin Huang, Tengyu Ma, Jing Huang\n   Venue: AAAI 2021\n   arXiv: 2010.11304\n   DOI: 10.1609/aaai.v35i16.17717\n\n4. LMRC: ✅ VERIFIED (年份需修正)\n   Title: \"LLM with Relation Classifier for Document-Level Relation Extraction\"\n   Authors: Xingzuo Li, Kehai Chen, Yunfei Long, Min Zhang\n   Venue: arXiv preprint (未确认正式会议录用)\n   arXiv: 2408.13889\n   ⚠️ 注意: 原始记录标注 \"Li et al., 2023\" 有误，arXiv 提交日期为 2024年8月，应修正为 2024\n\n5. DocKS-RAG: ✅ VERIFIED (venue需修正)\n   Title: \"DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning\"\n   Authors: Xiaolong Xu, Yibo Zhou, Haolong Xiang, Xiaoyong Li, Xuyun Zhang, Lianyong Qi, Wanchun Dou\n   Venue: ICML 2025 (Proceedings of Machine Learning Research vol. 267)\n   arXiv: ❌ 未找到 arXiv ID（论文通过 OpenReview 提交，ID: SVl9tIADWV）\n   PMLR: https://proceedings.mlr.press/v267/xu25am.html\n   ⚠️ 注意: 原始记录标注 \"Xu et al., 2024\"，实际发表于 ICML 2025。无 arXiv preprint。\n\n6. GenRES: ✅ VERIFIED\n   Title: \"GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models\"\n   Authors: Pengcheng Jiang, Jiacheng Lin, Zifeng Wang, Jimeng Sun, Jiawei Han\n   Venue: NAACL 2024 (Long Papers, pages 2820-2837)\n   arXiv: 2402.10744\n   ACL Anthology: https://aclanthology.org/2024.naacl-long.155/\n   DOI: 10.18653/v1/2024.naacl-long.155\n\n\nGAP-FILL (建议补充的论文):\n\n- [docunet] \"Document-level Relation Extraction as Semantic Segmentation\"\n  Authors: Ningyu Zhang, Xiang Chen, Xin Xie, Shumin Deng, Chuanqi Tan, Mosha Chen, Fei Huang, Luo Si, Huajun Chen\n  Venue: IJCAI 2021 | arXiv: 2106.03618\n\n- [kd_docre] \"Document-Level Relation Extraction with Adaptive Focal Loss and Knowledge Distillation\"\n  Authors: Qingyu Tan, Ruidan He, Lidong Bing, Hwee Tou Ng\n  Venue: Findings of ACL 2022 | arXiv: 2203.10900\n\n- [dreeam] \"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction\"\n  Authors: Youmi Ma, An Wang, Naoaki Okazaki\n  Venue: EACL 2023 | arXiv: 2302.08675\n  备注: 当前 DocRE SOTA 之一，与本项目 evidence-guided 主题高度相关\n\n- [autore] \"AutoRE: Document-Level Relation Extraction with Large Language Models\"\n  Authors: Lilong Xue, Dan Zhang, Yuxiao Dong, Jie Tang\n  Venue: ACL 2024 Demo | arXiv: 2403.14888\n  备注: LLM-based DocRE 代表性工作，RHF 范式，在 Re-DocRED 上 SOTA\n\n\nISSUES SUMMARY:\n- LMRC: 年份从 2023 修正为 2024\n- DocKS-RAG: 无 arXiv ID（仅 OpenReview + ICML 2025 proceedings），venue 从 2024 修正为 2025\n- 无 FAKE 论文，6 篇全部真实存在\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_docre_methods_20260517T150401"
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ],
+  "readable_path": "readable/conversations/paper-research-docre-methods.md"
+}

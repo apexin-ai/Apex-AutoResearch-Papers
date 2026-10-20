@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "483fbf36b36cc4c5d9f8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops eval bug root cause audit",
+  "task_key": "worker_ops_eval-bug-root-cause-audit_20260515T213949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-bug-root-cause-audit_20260515T213949_result.json",
+    "occurrence": 1,
+    "bytes": 6566,
+    "sha256": "7b4819d57f2232d62136eea5c0799bd6930ea0931fefbc1e64d713b39b0648ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。关键发现：`batch_eval.py` 的 `--sft_adapter` 是 `required=True`，但 `inference.py` 是 `default=None`（可选）。这就是根因。\n\n---\n\n## 根因分析\n\n### 1. 问题机制\n\n`inference.py` 的 adapter 加载链：\n```\nQwen3-4B (base) → [merge SFT adapter if --sft_adapter given] → [load RL/RSFT adapter if model_path is adapter]\n```\n\n所有 RSFT/DPO/GRPO adapter 都是在 SFT-merged 模型上训练的（它们的权重是相对于 base+SFT 的 delta）。如果跳过 SFT merge 直接把这些 adapter 加载到 raw Qwen3-4B 上，权重错位，输出垃圾，rel_f1≈0。\n\n### 2. 根因：inference.py 的 `--sft_adapter` 是可选参数，无缺失警告\n\n```python\n# inference.py line 264\nparser.add_argument(\"--sft_adapter\", default=None, ...)\n```\n\n而 `batch_eval.py` 做对了：\n```python\n# batch_eval.py line 80\nparser.add_argument(\"--sft_adapter\", required=True, ...)\n```\n\n**根因是手动提交 eval 命令时遗漏了 `--sft_adapter` 参数。** 不是代码变更，不是模板问题——是 inference.py 缺少防呆机制。\n\n### 3. 早期 mvp2_eval_rsft_r1 (s42) 为何成功？\n\nregistry 中记录的命令是缩写描述（`python -m freige.eval.inference --no-quantize (r1 checkpoint on cuda:2)`），不是实际执行的完整命令。该实验是手动运行的，实际命令大概率包含了 --sft_adapter 或等效参数。rsft_output 确认是 LoRA adapter（有 adapter_config.json），不可能在 raw Qwen3-4B 上拿到 0.4449 的 rel_f1。\n\n### 4. 对比证据\n\n| 实验对 | --sft_adapter | rel_f1 |\n|--------|:---:|:---:|\n| eval_plan_001_flat_nli (s42) | ✓ | 0.4539 |\n| eval_plan_001_flat_nli_s43 | ✗ | 0.0022 |\n\n同一模型，不同 seed，唯一差异就是 `--sft_adapter`。铁证。\n\n---\n\n## 全面审计表\n\n| exp_id | --sft_adapter | status | conclusion | rel_f1 | 受影响？ |\n|--------|:---:|:---:|:---:|:---:|:---:|\n| **eval_plan_001_flat_nli** | ✓ | DONE | success | 0.4539 | - |\n| **eval_plan_001_flat_nli_s43** | ✗ | DONE | failed | 0.0022 | **YES** |\n| **eval_plan_008_rsft_topk3** | ✗ | DONE | killed | N/A | **YES** |\n| **eval_plan_008_topk3_fixed** | ✓ | PREPARING | - | N/A | fix |\n| **eval_plan_012_dpo_ced_1ep** | ✗ | DONE | negative | 0.0022 | **YES** |\n| **eval_plan_012_dpo_1ep_fixed** | ✓ | PREPARING | - | N/A | fix |\n| **eval_plan_012_dpo_ced_ckpt400** | ✗ | DONE | failed | N/A | **YES** |\n| eval_plan_014_sft_no_evidence | N/A¹ | DONE | success | 0.4893 | - |\n| eval_grpo_g8_bf16 | ✓ | DONE | success | N/A | - |\n| eval_sft_baseline_noquant | ✗² | DONE | success | 0.4106 | - |\n| plan_011_grpo_g8_bf16_eval | ✓ | DONE | success | 0.4549 | - |\n| plan_011_bf16_g8_step_eval | ✗³ | RUNNING | - | N/A | 需查脚本 |\n| plan_011_eval_g8_bf16_ckpt100 | ✓ | PREPARING | killed | N/A | - |\n| plan_002_test_eval_s44 | ✓ | DONE | failed | N/A | - |\n| plan_009_extract_reward_eval | ✗³ | DONE | failed | N/A | 需查脚本 |\n| plan_009_flatnli_reward_eval | N/A¹ | DONE | failed | N/A | - |\n| plan_009_flatnli_reward_eval_r2 | ✓ | DONE | failed | N/A | - |\n| mvp2_eval_rsft_r1 | ✗⁴ | DONE | success | 0.4449 | - |\n| mvp2_eval_rsft_r2a | ✗⁴ | DONE | success | 0.4494 | - |\n| mvp2_eval_rsft_r2b | ✗⁴ | DONE | success | 0.4493 | - |\n| mvp2_eval_rsft_r2b_maxtok1536 | ✗⁴ | DONE | killed | N/A | unclear |\n| mvp2_eval_rsft_r2b_maxtok1536_r2 | ✓ | DONE | negative | 0.4504 | - |\n| mvp2_eval_rsft_s43 | ✓ | DONE | failed | N/A | - |\n| mvp2_eval_rsft_s43_r2 | ✓ | DONE | success | 0.4683 | - |\n| mvp2_eval_rsft_s44 | N/A¹ | PREPARING | killed | N/A | - |\n| mvp2_eval_sft_baseline | ✗² | DONE | success | 0.4057 | - |\n| mvp2_sft_eval | ✗⁴ | DONE | killed | N/A | - |\n| mvp2_sft_eval_r2 | ✗² | DONE | success | 0.4057 | - |\n| mvp2_sft_eval_r3 | ✗² | DONE | success | 0.4057 | - |\n| mvp2_eval_ced_kl001_r4_ckpt10 | ✓ | DONE | success | 0.00296 | - |\n| mvp2_eval_ced_kl001_r4_ckpt7080 | ✓ | DONE | failed | N/A | - |\n| mvp2_eval_ced_kl001_r4_ckpt90 | ✗ | DONE | killed | N/A | **可能** |\n| mvp2_eval_ced_kl001_r4_early | ✓ | DONE | negative | N/A | - |\n| mvp2_eval_ced_kl001_r4_high | ✓ | DONE | failed | N/A | - |\n| mvp2_eval_ced_kl001_r4_last | ✓ | DONE | killed | N/A | - |\n| mvp2_eval_ced_kl001_r4_multi | ✓ | DONE | killed | N/A | - |\n| mvp2_eval_ced_kl001_r4_step100 | ✓ | DONE | negative | 0.2167 | - |\n| mvp2_eval_ced_kl001_r4_step90 | ✓ | DONE | negative | 0.2108 | - |\n| mvp2_eval_lr5e6_r1_ckpt20 | ✗³ | DONE | negative | 0.0077 | 需查脚本 |\n| mvp2_eval_lr5e6_r1_ckpt40 | ✗³ | DONE | failed | N/A | 需查脚本 |\n| mvp2_eval_lr5e6_r1_ckpt40_r2 | ✗⁴ | DONE | negative | 0.0071 | unclear |\n| mvp2_eval_lr5e6_r1_ckpt60 | ✗³ | DONE | failed | N/A | 需查脚本 |\n| mvp2_eval_lr5e6_r1_ckpt60_r2 | ✓ | DONE | negative | 0.0093 | - |\n| mvp2_eval_lr5e6_r1_ckpt80 | ✓ | DONE | negative | 0.0116 | - |\n| mvp2_eval_lr5e6_r1_ckpt100 | ✓ | DONE | negative | 0.0138 | - |\n| mvp2_eval_lr5e6_rp_r2_ckpt20 | ✗⁴ | DONE | killed | N/A | unclear |\n\n**注释：**\n- ¹ 无命令记录\n- ² SFT baseline eval — model_path 本身就是 SFT adapter，不需要 --sft_adapter\n- ³ 通过 bash 脚本执行，参数是否正确需检查脚本内容\n- ⁴ 命令为缩写描述，非实际执行命令\n\n### 确认受影响的实验（4个）\n\n| exp_id | 应有的 rel_f1 参考值 | 修复状态 |\n|--------|:---:|:---:|\n| eval_plan_001_flat_nli_s43 | ~0.45 (参考 s42=0.4539) | **需重跑** |\n| eval_plan_008_rsft_topk3 | 未知 | eval_plan_008_topk3_fixed PREPARING |\n| eval_plan_012_dpo_ced_1ep | 未知 | eval_plan_012_dpo_1ep_fixed PREPARING |\n| eval_plan_012_dpo_ced_ckpt400 | 未知 | **需重跑** |\n\n---\n\n## 修复建议\n\n**立即修复：** 在 `inference.py` 中加入防呆逻辑 — 当 model_path 是 adapter 且未指定 --sft_adapter 时，发出警告或报错：\n\n```python\n# inference.py main() 中，adapter 检测之后加：\nif adapter_path and not args.sft_adapter:\n    logger.warning(\"model_path is a LoRA adapter but --sft_adapter not set. \"\n                   \"Loading adapter on raw base model — this is likely wrong \"\n                   \"for RSFT/DPO/GRPO adapters trained on SFT-merged model.\")\n```\n\n**防止复发：**\n1. `inference.py` 的 `--sft_adapter` 改为在有 adapter 时 required（或至少 loud warning）\n2. 提交 eval 时用模板/脚本统一构造命令，不手写"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-bug-root-cause-audit.md"
+}

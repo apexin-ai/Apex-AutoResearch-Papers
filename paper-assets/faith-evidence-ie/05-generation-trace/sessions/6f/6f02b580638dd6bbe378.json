@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f02b580638dd6bbe378",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval wave1 sft s43 s44",
+  "task_key": "worker_eval_wave1_sft_s43_s44_20260518T134815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_wave1_sft_s43_s44_20260518T134815_result.json",
+    "occurrence": 1,
+    "bytes": 268,
+    "sha256": "908d7390d7ea270103b3b85040350e86460323a1cca9668adfa6759df3a23fd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练还需约 6-7 分钟完成，270 秒后自动检查。到时如果完成会立即：\n1. 读取 log 提取 metrics\n2. update_registry → ANALYZING → DONE\n3. 提交两个 eval（修正 base_model 路径为 `/root/autodl-tmp/models/Qwen3-4B`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-wave1-sft-s43-s44.md"
+}

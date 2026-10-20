@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b66013d42bbedbbcea3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis evidence tax prep",
+  "task_key": "worker_analysis_evidence_tax_prep_20260518T102202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_evidence_tax_prep_20260518T102202_result.json",
+    "occurrence": 1,
+    "bytes": 3362,
+    "sha256": "bcc9c9fc0180cb714d1af6d1ff8a63daa15bf356db92e2b1e61944861d806101"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本语法通过。下面是汇报。\n\n---\n\n## 1. 已收集数据汇总表\n\n### SFT with-evidence vs no-evidence\n\n| Model | Mode | Rel F1 | Ign F1 | Evi F1 | EDCR | Preds | Trunc (%) | Tax (Ign-F1) |\n|---|---|---|---|---|---|---|---|---|\n| **Qwen3-1.7B** | with-evi | 49.45 | 47.86 | 83.16 | 0.670 | 17184 | 314 (31.9%) | |\n| | no-evi | 41.03 | 39.82 | — | — | 26157 | 501 (50.9%) | **-8.04pp** (evidence helps!) |\n| **Qwen3-4B** | with-evi | 40.49 | 39.74 | 79.86 | 0.698 | 16880 | 288 (29.2%) | |\n| | no-evi | 48.76 | 47.21 | — | — | 21181 | 307 (31.2%) | **+7.47pp** |\n| **Qwen3-8B** | with-evi | 52.62 | 50.51 | 81.88 | 0.651 | 17401 | 313 (31.8%) | |\n| | no-evi | 52.83 | 50.79 | — | — | 19948 | 225 (22.8%) | **+0.28pp** |\n| **LLaMA-8B** | with-evi | 55.14 | 53.84 | 81.51 | 0.628 | 15325 | 197 (20.0%) | |\n| | no-evi | 56.24 | 54.52 | — | — | 18466 | 182 (18.5%) | **+0.68pp** |\n\n### RSFT (with-evidence only)\n\n| Model | Ign F1 | Trunc | Preds |\n|---|---|---|---|\n| 1.7B RSFT-k1 (D102) | 51.22 | 249 | 16154 |\n| 4B RSFT-CED s44 | 45.11 | 190 | 15264 |\n| 8B RSFT | 54.33 | 267 | 16831 |\n| LLaMA-8B RSFT | 55.63 | 187 | 14959 |\n\n### 关键发现\n\n**Evidence tax 模式非单调**：\n- 1.7B: evidence 反而 **帮助** RE（-8.04pp），因为 no-evidence 1.7B 严重过度生成（26157 preds，50.9% 截断）\n- 4B: evidence tax 最大（+7.47pp）\n- 8B: evidence tax 几乎消失（+0.28~0.68pp）\n\n这意味着 evidence tax 的核心机制是 **output length vs model capacity 的竞争**：\n- 小模型（1.7B）: capacity 不够，no-evidence 模式下反而产生更多重复/幻觉，evidence 结构起到约束作用\n- 中等模型（4B）: evidence 产生真正的 length tax，截断导致关系丢失\n- 大模型（8B）: capacity 足够，evidence 几乎不影响 RE 性能\n\n## 2. 缺失数据\n\n| 数据 | 状态 |\n|---|---|\n| 4B with-evidence predictions.json | **缺失**（sft_baseline_d076_reeval 只有 metrics.json，无法做 per-doc 分析） |\n| D102 8B RSFT eval (d102_8b_k1_s42) | **空目录**（eval 未开始/进行中） |\n| D102 LLaMA RSFT eval (d102_llama_k1_s42) | **空目录** |\n| D102 8B seed43 (d102_8b_k1_s43) | **空目录** |\n| No-evidence RSFT 变体 | **不存在**（所有 RSFT 均 with-evidence） |\n\n## 3. 分析脚本\n\n路径: `/root/autodl-tmp/freige/scripts/evidence_tax_analysis.py`\n\n5 个模块：\n- **Module A**: Output length distribution（chars, triples, 按 doc length 分层）\n- **Module B**: Truncation impact（trunc vs clean docs 的 F1 差异，用 evaluator 重新计算）\n- **Module C**: Per-relation analysis（按 relation type 计算 recall，找出 tax 最大的关系类型）\n- **Module D**: False positive analysis（FP rate, FP 在 trunc vs clean docs 的分布）\n- **Module E**: Fair subset analysis（排除 truncated+repetitive docs 后重新计算 tax）\n\n运行：`python scripts/evidence_tax_analysis.py --module all`（或 A/B/C/D/E）\n\n## 4. D102 eval 完成后还需什么\n\n1. **重跑 4B with-evidence eval 并保存 predictions.json**，否则 4B 的 per-doc 分析无法进行\n2. D102 8B/LLaMA eval 完成后，可以比较 RSFT 是否改变 evidence tax 模式\n3. 可能需要 **4B no-evidence RSFT** 做完整的 RSFT-level tax 对比（目前只有 SFT-level 的对比）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-evidence-tax-prep.md"
+}

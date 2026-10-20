@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "677db8d585333d83c414",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "harvest llama rsft s42 withevi 2048",
+  "task_key": "worker_harvest_llama-rsft-s42-withevi-2048_20260521T070416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_llama-rsft-s42-withevi-2048_20260521T070416_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "1dac995e2e59dc51bf49c4ac886ea0170e52a72a487df8720d8fa49e042302fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项任务完成：\n\n**Part 1: RSFT s42 with-evi@2048 收割**\n| 指标 | @1024 | @2048 | Delta |\n|------|-------|-------|-------|\n| ign_f1 | 0.5714 | **0.5774** | +0.60pp |\n| f1 | - | 0.5892 | - |\n| evi_f1(TP) | - | 0.8222 | - |\n| edcr | - | 0.6143 | - |\n| truncated | - | 90/985 | - |\n\nDelta +0.60pp < 1pp → **RSFT @1024 evidence tax 可信，不受 truncation 显著影响。** Registry → DONE(success)。\n\n**Part 2: d140_4b_sft_s42_no_evi_2048 已提交**\n- PID: 85668, cuda:0\n- `--no_evidence` 参数已传 (C005)\n- `CUDA_VISIBLE_DEVICES=0` 已设 (C002/C003)\n- Registry → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-llama-rsft-s42-withevi-2048.md"
+}

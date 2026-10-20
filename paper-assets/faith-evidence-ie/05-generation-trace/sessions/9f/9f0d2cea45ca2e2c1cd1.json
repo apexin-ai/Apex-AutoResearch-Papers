@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f0d2cea45ca2e2c1cd1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "cpu fix seed comparison ign f1",
+  "task_key": "worker_cpu_fix_seed_comparison_ign_f1_20260516T052536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_fix_seed_comparison_ign_f1_20260516T052536_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "bd2dd60acfd5dcf76637a316ee580a5b6d0410a2f0b7874c8cdc67155a8470d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "干净。结果汇报：\n\n**方案**：B — 修改 `seed_comparison.py` 的 `load_metrics()`\n\n**改动**（第57-59行）：从 `metrics.json` 读取时，不再无条件 strip `ign_f1`，而是只在 `ign_f1 ≈ f1`（旧 buggy 输出特征）时才 strip。`metrics_v2.json` 路径不受影响。\n\n**dry-run 结果**：\n- 4 个已完成的 seed（CED s43/s45, flatNLI s44/s45）全部正确加载，`ign_f1` 均有值且 ≠ f1\n- 4 个 re-eval（CED s42/s44, flatNLI s42/s43）尚未完成，显示 NOT FOUND — 它们完成后将只有 `metrics.json`（无 `metrics_v2.json`），修复后的逻辑会正确保留其有效 `ign_f1`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-fix-seed-comparison-ign-f1.md"
+}

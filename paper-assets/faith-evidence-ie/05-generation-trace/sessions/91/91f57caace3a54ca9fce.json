@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91f57caace3a54ca9fce",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis dpo rebuilt 3ep eval",
+  "task_key": "worker_analysis_dpo_rebuilt_3ep_eval_20260523T133847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dpo_rebuilt_3ep_eval_20260523T133847_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "51f22052e8ead6e35a940435bc71dec6948f263172511d94dfaaf4242d344c14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：NEGATIVE — 3 epoch DPO 确认过拟合。**\n\n核心对比：\n\n| 指标 | 1ep | 3ep | 变化 |\n|------|-----|-----|------|\n| **ign_f1** | 0.3223 | 0.3076 | **-4.6%** |\n| ign_recall | 0.3820 | 0.3466 | -9.3% |\n| ign_precision | 0.2787 | 0.2765 | -0.8% |\n| **edcr** | 0.8123 | 0.7503 | **-7.6%** |\n| evi_f1 (TP) | 0.8090 | 0.8484 | +4.9% |\n| n_truncated | 175 | 220 | +25.7% |\n\n过拟合机制：\n- 训练 accuracy 持续上升（ep1 ~0.78 → ep3 ~0.87），但 eval ign_f1 下降 — 经典过拟合\n- **recall 是主要受害者**（-9.3%），模型变得更保守，提取更少的关系\n- **EDCR 显著下降**（-7.6%），更多 distractor 句子被引用\n- **生成更冗长**（truncated +25.7%），输出更频繁触达 2048 token 上限\n\n**1 epoch 是 DPO 的最佳训练时长。** 分析报告已写入 artifacts 并注册，registry 已更新为 DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dpo-rebuilt-3ep-eval.md"
+}

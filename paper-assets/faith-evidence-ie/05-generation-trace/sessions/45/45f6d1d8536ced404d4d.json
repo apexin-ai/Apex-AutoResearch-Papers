@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45f6d1d8536ced404d4d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check 8b no evi eval v2 completion",
+  "task_key": "worker_ops_check_8b_no_evi_eval_v2_completion_20260516T130604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_8b_no_evi_eval_v2_completion_20260516T130604_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "a72ef0360e33641075aaab93114904ca1bda30dd4b9a020603acd0c1c1d26619"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**plan_006_qwen3_8b_no_evidence_eval_v2** — 成功完成 ✓\n\n| 指标 | 值 |\n|------|-----|\n| Ign-F1 | **0.5079** |\n| Rel-F1 | **0.5283** |\n| Evi-F1 | 0 (no-evidence 模型，符合预期) |\n| EDCR | 0 (同上) |\n| Format compliance | 99.49% |\n| 推理时间 | 6402s (~107min) |\n| Truncated | 225/985 docs |\n\n**cuda:2 空闲**（0 MiB），可用于下一个任务。\n\nGPU 状态：\n- GPU 0: 10319 MiB (占用)\n- GPU 1: 23292 MiB (占用)\n- GPU 2: **0 MiB** (空闲) ← 可用\n- GPU 3: 17883 MiB (占用)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-8b-no-evi-eval-v2-completion.md"
+}

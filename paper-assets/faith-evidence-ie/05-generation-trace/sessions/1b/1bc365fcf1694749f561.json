@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bc365fcf1694749f561",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_6_1778819119.md",
+  "task_key": "loop_6_1778819119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778819119.md",
+    "occurrence": 1,
+    "bytes": 4097,
+    "sha256": "278a64e034b7ad710cdbbbf7c62ed22c54af112db208669e53ae0cfe5dfb32b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T04:24:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3（全在 rtx5090-4x 同一台机器）\n- GRPO+QLoRA 方向已判死（D031），不得再启动任何 GRPO 训练实验\n- lr=5e-6 系列 eval 是收尾性质（收集轨迹数据），不是新方向验证\n- 服务器用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），**不是 venv**\n- submit_on_allocated 命令必须自带 conda activate，不能假设 shell 已激活\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（RTX 5090 32GB × 4，2 个 SSH endpoint 同一台机器）\n- 工作目录：`/root/autodl-tmp`\n- Python：`/root/miniconda3/bin/python`\n- 模型路径：`/root/autodl-tmp/models/Qwen3-4B`（基座），`/root/autodl-tmp/sft_output`（SFT adapter），`/root/autodl-tmp/grpo_ced_lr5e6/`（GRPO checkpoints）\n- 数据：`/root/autodl-tmp/data/docred`\n- Eval 输出：`/root/autodl-tmp/eval_results/`\n- 活跃进程：`mvp2_rsft_generate`（PID 122144, cuda:1）— Rejection Sampling 生成阶段，SFT 模型对训练样本生成 N=8 候选输出\n- Cron 监控：mvp2_rsft_generate 已 reconcile，仍在运行\n\n### 3. 📊 当前状态\n**刚做完**：收到 `mvp2_eval_lr5e6_r1_ckpt100` 完成回调，已派 Worker（`worker_analysis_mvp2_eval_lr5e6_r1_ckpt100_20260515T012129`）SSH 读取 eval 结果并更新 registry。Worker 尚未回调。\n\n**Registry 状态**：\n- RUNNING: `mvp2_rsft_generate`（RSFT 生成阶段，cuda:1，D031 pivot 方向）\n- ANALYZING: `mvp2_eval_lr5e6_r1_ckpt100`（Worker 正在处理）\n- PREPARING: `mvp2_grpo_ced_kl001_r2`, `mvp2_grpo_ced_kl001_r3`, `mvp2_eval_ced_kl001_r4_last`（均为废弃的 GRPO 实验，不会再跑）\n\n**等待中**：\n- Worker 回调：ckpt100 分析 Worker\n- Cron：mvp2_rsft_generate 完成回调\n- 未向 Director 汇报本次 ckpt100 结果（等 Worker 回调后一并汇报）\n\n### 4. 📋 待办\n- ckpt100 Worker 回调到达 → 读 metrics → 预期 negative（轨迹: ckpt20=0.0077→ckpt40=0.0071→ckpt60=0.0093→ckpt80=0.0116，远低于 pass=0.30）→ 更新 report.md → 向 Director 汇报完整 lr5e6 轨迹数据（作为 GRPO 判死的最终证据）→ 不需要 Framing 提案（D031 已判死，这是收尾数据）\n- mvp2_rsft_generate cron 回调 → 这是 **关键节点**：RSFT 生成完成后需要 CED 打分 + 筛选 top-k + 启动 RSFT 训练。派 Worker 检查生成质量（diversity、format compliance）→ 准备 RSFT 训练代码 → 向 Director 提交 RSFT 训练方案审批\n- cuda:0, cuda:2, cuda:3 空闲 → GRPO 训练已 killed，应用于 RSFT 相关任务（如果生成已完成则可并行跑 CED scoring）\n- 3 个 PREPARING 实验（kl001_r2/r3, kl001_r4_last）→ GRPO 方向已死，应标记为 killed 清理 registry\n\n### 5. 🎯 战略上下文\n- **核心结论链**：MVP-1 验证 CED reward 有效 (D025前) → GRPO+QLoRA lr=5e-5 全线 mode collapse/灾难性遗忘 (D024-D027) → lr=5e-6 无 catastrophic forgetting 但完全没学到关系抽取 (D030-D031) → **GRPO+QLoRA 判死，pivot 到离线 RL**\n- **当前方向**：Rejection Sampling FT（优先）+ DPO+CED（并行备选）。RSFT 生成阶段正在跑（mvp2_rsft_generate），这是 pivot 后的第一个实验\n- **SFT baseline**: rel_f1=0.4057，是所有后续方法要超越的目标\n- **易错点**：\n  1. lr5e6 系列 eval 的 rel_f1 极低（0.007-0.012），但 evi_f1 在持续提升（0.628→0.828）——这说明模型学会了生成 evidence 但忘了关系抽取。这个分离现象是重要的分析素材\n  2. kl001_r4 step-100 的 rel_f1=0.2167 比 lr5e6 高很多，但仍低于 SFT baseline 0.4057——两个 lr 都失败但失败模式不同\n  3. mvp2_diversity_probe 已验证 SFT 模型在 T=0.7 下输出多样性足够（success），RSFT 方案可行性前置验证通过\n  4. Contingency: 如果离线 RL 也失败 → 全参微调（排除 QLoRA adapter 是 forgetting 根因）或 CED 作为 reranker（后训练→推理时）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778819119.md"
+}

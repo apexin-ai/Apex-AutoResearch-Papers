@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8c862bf8906d674a1e2",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_2_1778781516.md",
+  "task_key": "loop_2_1778781516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778781516.md",
+    "occurrence": 1,
+    "bytes": 5218,
+    "sha256": "0b80b3f458fdcdba24ab4103dd707eba600dac26b3b140a99a9afd2f8bb598d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-14T17:01:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 [0,1,2,3]，全在 rtx5090-4x 一台机器上。不存在其他服务器可用\n- submit_training_job 命令**必须** `bash -c \"...\"` 包裹，否则 tmux 以 sh 执行，source/conda activate 全失败（EXIT_CODE=127，已踩 3 次）\n- GRPO 训练命令必须包含 `--data_dir /root/autodl-tmp/data/docred`，不传会触发 HF 远程下载失败（datasets 不支持 thunlp/docred 自定义脚本）\n- kl_coef=0.05 在 QLoRA 4-bit 下 step 5 必爆（KL→10^8），**不要再用**。当前验证中的安全值是 0.01\n- CED 实验代码必须含 F1 gate（grpo_trainer.py L221-234），否则短输出无 triple 也拿 CED=0.99 → mode collapse\n- kill_job 后必须 nvidia-smi 验证子进程已退出，tmux wrapper 死了但 python 子进程可能 orphan 占显存\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（ssh config 里 rtx5090-4x 和 bjb2-12179 都指向同一台 4×RTX 5090 32GB）\n- 工作目录：/root/autodl-tmp/（训练代码在 /root/autodl-tmp/freige/）\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，pip/python 在 /root/miniconda3/bin/\n- 模型：/root/autodl-tmp/models/Qwen3-4B（7.6GB，ModelScope 下载）\n- SFT adapter：/root/autodl-tmp/sft_output（QLoRA rank=64, alpha=128, 4-bit NF4）\n- 数据：/root/autodl-tmp/data/docred（train=3027, dev=985）\n- HF cache：HF_HOME=/root/autodl-tmp/.hf_cache + HF_HUB_DISABLE_XET=1\n- NLI 模型：cross-encoder/nli-deberta-v3-base（已缓存）\n- Eval 工具：/root/autodl-tmp/freige/eval/batch_eval.py + find_best_checkpoint.py（已部署验证）\n- flatnli checkpoint 备份：/root/autodl-tmp/checkpoints_backup/flatnli_r3_healthy/（checkpoint-20 到 checkpoint-100）\n- 活跃进程：\n  - ced_kl001_r4: PID 68084, tmux=mvp2_grpo_ced_kl001_r4, cuda:0, cron 已注册\n  - sft_eval_r3: PID 62352, cuda:1, 状态 ANALYZING（进程已退出，待结果分析）\n  - extract_r4: PID 73264, tmux=mvp2_grpo_extract_r4, cuda:2, cron 已注册\n  - flatnli_r5: PID 73407, tmux=mvp2_grpo_flatnli_r5, cuda:3, cron 已注册\n\n### 3. 📊 当前状态\n刚完成 Director 6-step recovery plan 执行：kill 僵尸进程、修复 CED F1 gate、统一切换到 D020 稳定配置（kl=0.01, gen=8, save_steps=10）。三路 100-step 探测已提交。\n\n**RUNNING 实验**:\n| exp_id | GPU | 状态 | 摘要 |\n|--------|-----|------|------|\n| ced_kl001_r4 | cuda:0 | step ~45/100, **健康** | KL=0.098, f1=0.24, ced=0.24 同步，无 hacking。首次健康 GRPO！~1.5h 完成 |\n| extract_r4 | cuda:2 | 刚启动 | extraction-only 探测，与 ced_kl001_r4 并行 ablation |\n| flatnli_r5 | cuda:3 | 刚启动 | flat-NLI 探测，从 checkpoint-100 恢复，max_steps=200 |\n\n**ANALYZING**: sft_eval_r3 (cuda:1) — Worker `analysis:sft-eval-r3-results` 正在读取结果与 r2 对比\n\n**等待中**:\n- Worker `analysis:sft-eval-r3-results` 回调 → 对比 r2 vs r3 指标\n- ced_kl001_r4 cron 完成回调 → 分析 100 步探测结果，决定是否放开全量\n- extract_r4 / flatnli_r5 cron 完成回调 → 三路探测完成后汇总对比\n\n### 4. 📋 待办（条件触发式）\n- sft_eval_r3 Worker 回调 → 对比 r2 vs r3 差异 <0.5pp 则 r2 baseline 有效，update_registry DONE/success\n- ced_kl001_r4 完成（~100 步）→ 检查最终 KL<5 + f1>0 + reward_std>0 → 汇报 Director 请求放开全量训练（去掉 max_steps 限制）\n- extract_r4 完成 → 对比 ced_kl001_r4：相同配置下 CED reward 是否比 extract-only 多带来 Evi-F1 提升\n- flatnli_r5 完成 → 三路对比：CED vs extract-only vs flat-NLI 在 kl=0.01+gen=8 下的表现\n- 三路探测全部完成 → 向 Director 提交全量训练审批（预计 3 路并行全量 ~8-16h/each）\n- 全量训练完成 → batch_eval.py 评估 best + last checkpoint → 填 MVP-2 对比矩阵 5 格\n- Reviewer warning 监控：如果任何 CED 实验出现 f1↓ + ced↑ divergence → 说明 F1 gate 粒度不够（当前只检查\"任一匹配\"），需加强\n\n### 5. 🎯 战略上下文\n**核心发现（本 session 最大收获）**：\n- D020 配置 (kl=0.01 + gen=8 + F1 gate) 产出了项目首次健康 GRPO 训练（ced_kl001_r4 step 45 所有指标正确）\n- Mode collapse 根因不仅是 kl_coef=0——CED reward 提供短输出捷径是关键。extract_r3 (kl=0, 无 CED) 停滞但不 collapse；ced_r5 (kl=0, 有 CED) 彻底 collapse。这是论文可写的发现\n\n**决策链**：D008(QLoRA+kl不兼容) → D014(CED mode collapse+F1 gate) → D020(kl=0.01+gen=8统一配置) → 当前三路探测\n\n**SFT baseline**: F1=0.4057, Evi-F1=0.7979, EDCR=0.7118。MVP-2 pass criteria: CED_Evi-F1 − SFT_Evi-F1 ≥ 2pp\n\n**易错点**：\n- extract_r3 之前被误诊为\"不可恢复停滞\"，实际是 f1 波动来自 SFT 残留而非 GRPO 学习（grad_norm=0）。不要被正的 f1_reward 骗了，要看 reward_std 和 grad_norm\n- flatnli_r5 的 max_steps=200 是因为从 checkpoint-100 恢复，trainer 从 step 100 继续，200=100 步新训练。如果设 100 会立即停止\n- rtx5090-4x 必须 `source /etc/network_turbo` 才能访问外网（pip/HF/wandb）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778781516.md"
+}

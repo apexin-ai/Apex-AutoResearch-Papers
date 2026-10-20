@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3269fd5ea4476d50263d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "prep plan019 scaling seeds scripts",
+  "task_key": "worker_prep_plan019_scaling_seeds_scripts_20260518T171145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_plan019_scaling_seeds_scripts_20260518T171145_result.json",
+    "occurrence": 1,
+    "bytes": 1404,
+    "sha256": "6a361d59d9ca47e5c9eb2e2df1d8a7d8e0fa325e7d542310d8635c7920bc1a7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过语法检查。汇总如下：\n\n## 创建的脚本（4个）\n\n| 脚本 | 类型 | 模型 | Seed | 关键路径 |\n|------|------|------|------|----------|\n| `sft_8b_s44.sh` | SFT | Qwen3-8B | 44 | output: `sft_output_qwen3_8b_s44/` |\n| `sft_llama_s44.sh` | SFT | LLaMA-3.1-8B | 44 | output: `sft_output_llama_3_1_8b_s44/` |\n| `eval_8b_s44.sh` | RSFT Eval | Qwen3-8B | 42 | model: `rsft_output_qwen3_8b_k1_s44`, sft_adapter: `sft_output_qwen3_8b_bf16` |\n| `eval_llama_s44.sh` | RSFT Eval | LLaMA-3.1-8B | 42 | model: `rsft_output_llama_3_1_8b_k1_s44`, sft_adapter: `sft_output_llama_3_1_8b` |\n\n## 已存在的脚本（无需创建）\n\n| 脚本 | 类型 | 状态 |\n|------|------|------|\n| `sft_1_7b_s43.sh` | SFT 1.7B s43 | 已有 |\n| `train_8b_s44.sh` | RSFT 8B s44 | 已有 |\n| `train_llama_s44.sh` | RSFT LLaMA s44 | 已有 |\n\n## SFT 超参数（8B/LLaMA 一致，匹配 canonical）\n\nlr=2e-4, epochs=3, batch=1, grad_accum=16, warmup=0.05, lora_rank=64, lora_alpha=128, lora_dropout=0.05, max_length=4096, bf16, no-quantize\n\n## 验证通过\n\n- 所有依赖路径（base model, sft adapter, rsft data）均已确认存在\n- CUDA_VISIBLE_DEVICES 全部使用 `${GPU:-${CUDA_VISIBLE_DEVICES:-0}}` 新格式\n- Eval 脚本使用 D076 协议（`--model_path=rsft_checkpoint --base_model=base --sft_adapter=adapter`）\n- `bash -n` 语法检查 4/4 通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-plan019-scaling-seeds-scripts.md"
+}

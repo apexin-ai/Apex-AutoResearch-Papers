@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35346fc05655ef675b62",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "train wave1 grpo bf16",
+  "task_key": "worker_train_wave1_grpo_bf16_20260518T124324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_wave1_grpo_bf16_20260518T124324_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "21da26beef1cb4c533f4901ed84582ee6d991605236a16b3d5d15bc67c441ae2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功提交并注册。\n\n**总结：**\n\n| 项目 | 值 |\n|---|---|\n| exp_id | `wave1_grpo_bf16_g4` |\n| PID | 542121 |\n| GPU | cuda:2 (10.4 GB 占用) |\n| 状态 | RUNNING |\n| 输出目录 | `/root/autodl-tmp/grpo_bf16_g4` |\n| 日志 | `/root/autodl-tmp/grpo_bf16_g4.log` |\n| RSFT checkpoint | `/root/autodl-tmp/sft_output` |\n| 训练参数 | bf16 no-quantize, G=4, grad_accum=16, max_steps=200, kl=0.0 |\n\n修复了一个 bug：脚本中 `--no_quantize` 改为 `--no-quantize`（argparse 连字符格式）。训练已进入 GRPO generation 阶段，首步 generation 较慢属正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-wave1-grpo-bf16.md"
+}

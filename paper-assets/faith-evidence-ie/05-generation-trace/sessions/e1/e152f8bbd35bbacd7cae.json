@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e152f8bbd35bbacd7cae",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code prep seed46 and reeval commands",
+  "task_key": "worker_code_prep-seed46-and-reeval-commands_20260515T220754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-seed46-and-reeval-commands_20260515T220754_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "8f50b662bdc002ff5e7f0dd736fc1a970b077423e0cbebab324b780862a42159"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完毕，汇总结果：\n\n### 1. seed46 准备状态：✅ 可以提交\n- 输出目录 `/root/autodl-tmp/rsft_output_flat_nli_s46` **不存在**，无冲突\n- 训练数据 `rsft_train.jsonl` 存在，**2691 行**\n- 磁盘空间：250G 总量，已用 184G，**剩余 67G (26%)**，足够一次训练（adapter ~500MB + checkpoints）\n\n训练命令已准备好，确认无误可直接执行。\n\n### 2. reeval_flat_nli_s43 checkpoint：✅ 存在\n- `/root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507/adapter_model.safetensors` — 504MB，时间戳 May 16 03:56\n\n### 3. reeval_rsft_topk3 checkpoint：✅ 存在\n- `/root/autodl-tmp/rsft_topk3_output/adapter_model.safetensors` — 504MB，时间戳 May 16 05:05\n\n### 4. 问题\n无。三项检查全部通过。提交 reeval 前记得按 C001 约束先 `nvidia-smi` 确认目标 GPU 显存占用 < 2GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-seed46-and-reeval-commands.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24b1a46322fb9175f0c4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "experiment qwen3 1 7b no evidence sft r2",
+  "task_key": "worker_experiment_qwen3_1_7b_no_evidence_sft_r2_20260516T083444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_qwen3_1_7b_no_evidence_sft_r2_20260516T083444_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "4afc538714f4cb8e9b60e333345e1c1555f0068735c7651255e957265bb3c247"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。训练任务已提交并运行中：\n\n| 项目 | 值 |\n|------|------|\n| exp_id | `plan_006_qwen3_1_7b_no_evidence_sft` |\n| GPU | cuda:2 (RTX 5090, 32GB) |\n| PID | 321094 |\n| 状态 | RUNNING |\n| 预计时间 | 570 steps × ~3.6s ≈ 34 min |\n| 输出目录 | `/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence` |\n| 日志 | `~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_no_evidence_sft.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-qwen3-1-7b-no-evidence-sft-r2.md"
+}

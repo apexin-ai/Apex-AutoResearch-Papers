@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb4db553fdc3159179bf",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops d034 check ckpt7080 step90 gpus",
+  "task_key": "worker_ops_d034-check-ckpt7080-step90-gpus_20260514T195737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d034-check-ckpt7080-step90-gpus_20260514T195737_result.json",
+    "occurrence": 1,
+    "bytes": 1874,
+    "sha256": "c157f6a2fac5f0eb10237b9e979dd8feceaa2f02d37085e6e96314d6fd5059e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## 1. ckpt7080 eval — 双双失败\n\n- **checkpoint-70**: OOM killed (exit -9)，仅推理到 2/62 batches (3%)\n- **checkpoint-80**: 启动推理后也死了——日志停在 \"Inference: 0%\"，无 EXIT_CODE，无 GPU 进程，无 exit file\n\n**根因**: eval 脚本未指定 GPU，默认用 GPU 0。ckpt-70 运行时 step-90 eval 仍在 GPU 0 上（两进程抢显存 → OOM）；ckpt-80 启动时 P0 训练已占 GPU 0（13.6 GB）→ 同样 OOM。\n\n**修复建议**: 重跑时加 `CUDA_VISIBLE_DEVICES=1` 或 `CUDA_VISIBLE_DEVICES=3`（当前空闲）。\n\n---\n\n## 2. step-90 eval — 已完成 ✓\n\n| 指标 | 值 |\n|------|-----|\n| F1 | 0.2108 |\n| Ign-F1 | 0.2108 |\n| Evi-F1 | 0.5666 |\n| EDCR | 0.8584 |\n| Format OK | 985/985 (100%) |\n| Truncated | 22/985 |\n| Predictions | 11160 |\n\n进程 83207 已退出，metrics 写入 `/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json`。\n\n---\n\n## 3. GPU 状态\n\n| GPU | VRAM | Util | 进程 |\n|-----|------|------|------|\n| 0 | 13645/32607 MiB | 56% | PID 90085 — P0 GRPO 训练 |\n| **1** | **0/32607 MiB** | **0%** | **空闲** |\n| 2 | 10297/32607 MiB | 71% | PID 85997 — checkpoint-20 eval (运行 48 min) |\n| **3** | **0/32607 MiB** | **0%** | **空闲** |\n\n**GPU 1、3 空闲**，可用于 P0 补充任务或 P1。\n\n---\n\n## 4. P0 训练 (grpo_ced_lr5e6_r1) — 存活但有隐患\n\n- PID 90080 存活，已运行 18 min\n- 当前进度: **step 9/200** (4.5%)，~110s/step\n- **⚠️ KL 爆炸**: step 5 时 KL divergence = **2,412,554,396.9**（阈值 100.0，超了 2400 万倍）。当前为 monitoring-only 未停止，但这个量级意味着 policy 已严重偏离 reference model，后续 reward 和 loss 很可能崩坏。\n- 日志中尚未出现 f1_reward 数值（step 太早，还在 warmup 阶段）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d034-check-ckpt7080-step90-gpus.md"
+}

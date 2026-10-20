@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a36e38059c65a23c8e25",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "data ign f1 fix flat nli s43",
+  "task_key": "worker_data_ign_f1_fix_flat_nli_s43_20260516T001833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_ign_f1_fix_flat_nli_s43_20260516T001833_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "49526c32c1d2bbce13431c1daf8c9d5d1286e0be4738441f2a2ab2ac88f6438f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总两个实验的关键指标：\n\n### rsft_flat_nli_s43\n\n| 指标 | metrics.json (旧) | metrics_v2.json (修正) |\n|------|-------------------|----------------------|\n| F1 (rel_f1) | 0.0022 | 0.0022 |\n| Ign-F1 | 0.0022 | 0.0023 |\n| Evi-F1 | 0.8533 | 0.8533 |\n\n这个模型 rel_f1 极低（0.22%），几乎没有正确预测关系三元组，Ign-F1 修正后差异可忽略。\n\n### rsft_topk3_reeval\n\n| 指标 | metrics.json (旧) | metrics_v2.json (修正) |\n|------|-------------------|----------------------|\n| F1 (rel_f1) | 0.4454 | 0.4454 |\n| Ign-F1 | 0.4454 | 0.4364 |\n| Evi-F1 | 0.8088 | 0.8088 |\n\n修正后 Ign-F1 从 0.4454 降至 0.4364（-0.0090），说明之前有约 0.9pp 的训练集泄漏膨胀。两个目录的 metrics_v2.json 均已就绪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-ign-f1-fix-flat-nli-s43.md"
+}

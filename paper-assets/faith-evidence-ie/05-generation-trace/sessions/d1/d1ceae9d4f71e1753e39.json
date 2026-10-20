@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1ceae9d4f71e1753e39",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose progress check 14b 8b",
+  "task_key": "worker_diagnose_progress-check-14b-8b_20260522T151341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_progress-check-14b-8b_20260522T151341_result.json",
+    "occurrence": 1,
+    "bytes": 306,
+    "sha256": "e752d2693618bbc3099a76d298d5c114bfaa12090a20391d17a34a6e6df22062"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验 | GPU | 进度 | ETA |\n|------|-----|------|-----|\n| 14B RSFT no-evi | cuda:0 (32.5/98GB, 84%) | 284/500 (57%) | ~2h19m |\n| 8B RSFT no-evi | cuda:3 (19.6/98GB, 65%) | 349/500 (70%) | ~1h23m |\n\n两个都在推理中，8B 预计先完成（约1.5h后），14B 约2.5h后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-progress-check-14b-8b.md"
+}

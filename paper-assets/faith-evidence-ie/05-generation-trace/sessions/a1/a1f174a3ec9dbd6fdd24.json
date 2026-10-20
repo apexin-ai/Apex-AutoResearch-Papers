@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1f174a3ec9dbd6fdd24",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "harvest two evals and submit next",
+  "task_key": "worker_harvest_two_evals_and_submit_next_20260518T200453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_two_evals_and_submit_next_20260518T200453_result.json",
+    "occurrence": 1,
+    "bytes": 888,
+    "sha256": "8fed26f9be15d9481ba5f4eeb6d0617f51e38617ad16ed9cfdf974ce343a4cb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 卡全在工作。\n\n```\n=== random_rsft_k1_eval 结果 ===\n状态: 完成 (success)\nign_f1: 0.4114\nf1: 0.4198\nevi_f1: 0.7964\nEDCR: 0.6971\ntruncated: 235/985\nformat_compliance: 99.9%\nfield_compliance: 74.8%\n关键对比: CED RSFT k=1 mean ign_f1=0.4596, Random 差距: -4.82pp → CED 选择显著优于随机\n\n=== grpo_bf16_g4_ckpt100_eval 结果 ===\n状态: 完成 (success)\nign_f1: 0.4431 (vs SFT baseline 0.4057 → +3.74pp)\nf1: 0.4511\nevi_f1: 0.8010\nEDCR: 0.6453\ntruncated: 182/985\nformat_compliance: 99.9%\nfield_compliance: 81.4%\nD106 判断: 继续 — ign_f1 0.4431 > SFT baseline 0.4057，无 catastrophic forgetting\n\n=== GPU 填充 ===\ncuda:0: 训练中 (32045 MiB)\ncuda:1: wave1_sft_4b_s44_eval_r2 (PID 571192, 8181 MiB 加载中)\ncuda:2: 训练中 (31328 MiB)\ncuda:3: grpo_bf16_g4_ckpt200_eval (PID 571115, 8181 MiB 加载中)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-two-evals-and-submit-next.md"
+}

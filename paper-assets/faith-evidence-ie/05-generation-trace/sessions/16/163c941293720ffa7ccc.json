@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "163c941293720ffa7ccc",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_10_1778883124.md",
+  "task_key": "loop_10_1778883124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778883124.md",
+    "occurrence": 1,
+    "bytes": 4781,
+    "sha256": "2e2c9feb39590aa4c1bd33915a05f6f101efc239bdaa07aa645702a967f5fdfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T22:03:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **cuda:0,1,2,3**（rtx5090-4x），不得使用其他设备\n- **D064 bug**：所有 eval 必须带 `--sft_adapter /root/autodl-tmp/sft_output`，缺此参数会导致 rel_f1≈0.002（已有 3 个 eval 因此被 killed 并重跑）\n- eval 命令必须带 `--no-quantize`（D058：推理量化会引入 confound，差 <1pp 但影响可比性）\n- `device_map=\"auto\"` 不加 `CUDA_VISIBLE_DEVICES` 会跨 GPU 加载导致 OOM kill（plan_011 踩过两次，retry_count=2）\n- mvp2_eval_rsft_s44 和 plan_011_eval_g8_bf16_ckpt100 标记为 STALE/killed，不要重跑\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），account=root\n- **工作目录**: `/root/autodl-tmp`，代码 `/root/autodl-tmp/freige`\n- **Python**: `/root/miniconda3/bin/python`，conda base（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（base），SFT adapter `/root/autodl-tmp/sft_output`\n- **数据**: `/root/autodl-tmp/data/docred`，RSFT flat-NLI 数据 `/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`，离线模式 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- **活跃进程**:\n  - plan_001_flat_nli_seed45: PID 257187, cuda:2, tmux session, cron 监控中\n  - plan_011_bf16_g8_step_eval: PID 249541, cuda:1, tmux session, cron 监控中\n  - plan_001_flat_nli_seed44: PID 258503, cuda:0, tmux session（PREPARING，应已在跑）\n  - eval_plan_012_dpo_1ep_fixed_r2: PID 262075, cuda:3, tmux session（PREPARING）\n\n### 3. 📊 当前状态\n上一个 session 发现 D064 bug（3 个 eval 缺 --sft_adapter），killed 无效 eval 并派 2 个 Worker 重跑。同时在 cuda:0/cuda:2 上启动了 flat-NLI seed44/seed45 训练（C3 统计检验需要 5+ seeds）。\n\n**RUNNING/活跃实验**:\n| exp_id | GPU | 任务 | 备注 |\n|--------|-----|------|------|\n| plan_001_flat_nli_seed45 | cuda:2 | flat-NLI RSFT 训练 s45 | RUNNING, cron 监控 |\n| plan_011_bf16_g8_step_eval | cuda:1 | bf16 GRPO G=8 step 30/50/70 eval | RUNNING, cron 监控 |\n| plan_001_flat_nli_seed44 | cuda:0 | flat-NLI RSFT 训练 s44 | PREPARING（已提交） |\n| eval_plan_012_dpo_1ep_fixed_r2 | cuda:3 | DPO 1ep eval（带 --sft_adapter 修复） | PREPARING（已提交） |\n\n**等待中的回调**:\n- 2 个 Worker running：reeval_flat_nli_s43 和 reeval_rsft_topk3（D064 修复 eval，应该很快完成提交）\n- plan_011_bf16_g8_step_eval 和 plan_001_flat_nli_seed45 有 cron 监控，完成后自动回调\n\n### 4. 📋 待办（条件触发式）\n- reeval Worker 完成 → 确认 submit_training_job 成功 → update_registry 为 RUNNING\n- eval_plan_012_dpo_1ep_fixed_r2 完成 → 如果 rel_f1 合理（>0.35）→ DPO 作为 offline preference baseline 纳入论文；如果仍崩 → D061 结论不变（DPO 3ep 过拟合，1ep 也不行），DPO 作为 negative result\n- plan_011_bf16_g8_step_eval 完成 → step 30/50/70 的 rel_f1/evi_f1 曲线确认 decoupling dynamics → 更新 forgetting figure → C2 证据链完整\n- plan_001_flat_nli_seed44/45 训练完成 → 立即 eval（带 --sft_adapter + --no-quantize）→ 凑齐 5 seeds（s42/s43/s44/s45 + 还需 s46）做 CED vs flat-NLI 统计检验\n- 5 seeds eval 全部收齐 → paired t-test / Wilcoxon → 如果 p<0.05 则 C3 升级，否则 C3 维持降级（D056）\n- 所有 P0 eval 收齐 → 启动 plan_002 test set eval + plan_003 EDCR cross-method diagnostic table\n\n### 5. 🎯 战略上下文\n**论文核心 story**: evidence-grounded DocRE 新任务 + evidence tax ~8pp + GRPO decoupling（QLoRA-specific，bf16 下不复现）+ CED reranker 恢复 97%。EMNLP 2026 Main (ARR July, ~7月15-25)。\n\n**决策链关键节点**:\n- D064（当天）: --sft_adapter bug 发现，3 个 eval 作废重跑——这是当前最紧急的事\n- D062: task decoupling（rel_f1↑ + evi_f1↓）升级为跨方法系统性现象\n- D060: CED reranker 恢复 97% evidence tax，是 C1 核心证据\n- D056: CED vs flat-NLI 统计不可区分，C3 降级\n\n**易错点**:\n- PREPARING 状态的实验可能已经在跑（有 PID），但 registry 未转 RUNNING——Worker 提交后需要手动 update_registry(status=\"RUNNING\")\n- flat-NLI 目前只有 s42 一个有效 eval（s43 因 D064 bug 作废正在重跑），s44/s45 还在训练。CED RSFT 有 s42/s44 两个有效 eval。要凑齐 5 seeds 做统计检验还需要时间\n- DPO 3ep (rel_f1=0.3429) 已确认过拟合，1ep 是最后机会——但之前的 1ep eval 也因 D064 bug 作废，正在重跑\n- plan_011 之前因 device_map=\"auto\" 两次 OOM kill，第三次用 CUDA_VISIBLE_DEVICES=1 修复了\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778883124.md"
+}

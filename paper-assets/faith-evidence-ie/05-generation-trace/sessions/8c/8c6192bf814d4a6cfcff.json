@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8c6192bf814d4a6cfcff",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "prep next batch test eval",
+  "task_key": "worker_prep_next-batch-test-eval_20260521T194550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_next-batch-test-eval_20260521T194550.log",
+    "occurrence": 1,
+    "bytes": 658888,
+    "sha256": "e53bfe59adbd1bda59fdba15432e7167d1fc9342bb819113cb33eca8eb9b36e2"
+  },
+  "statistics": {
+    "messages": 109,
+    "user_turns": 0,
+    "tool_calls": 40,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 25,
+      "tool_call": 40,
+      "tool_result": 40,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "8c6192bf814d4a6cfcff-part-0001.json",
+          "message_count": 100
+        },
+        {
+          "path": "8c6192bf814d4a6cfcff-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/prep-next-batch-test-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40dc0870cb4953766a71",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose test eval 4b rsft s42 v2 fix",
+  "task_key": "worker_diagnose_test_eval_4b_rsft_s42_v2_fix_20260522T011529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_test_eval_4b_rsft_s42_v2_fix_20260522T011529_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "ccff1d6100054311ded28bbe0dfda191b119b311125a180e61de0d1b44e526f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**根因**：v2 命令有两个错误：\n1. `--rsft_adapter` 不是 `test_inference.py` 的合法参数（EXIT_CODE=2 的直接原因）\n2. base model 路径 `/models/Qwen/Qwen3-4B` 不存在（实际路径是 `/models/Qwen3-4B`）\n\n**修复**：按 `test_inference.py` 的 nested LoRA 接口约定重新映射参数：\n- `--model_path` → RSFT adapter (`rsft_output_ced_s42_v2`)\n- `--base_model` → 基座模型 (`models/Qwen3-4B`)\n- `--sft_adapter` → SFT adapter (`sft_output`)\n- 删除 `--rsft_adapter`\n\n**已提交** `test_eval_4b_rsft_s42_v3`，PID 151217，cuda:2（显存 0 MiB，干净），registry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-test-eval-4b-rsft-s42-v2-fix.md"
+}

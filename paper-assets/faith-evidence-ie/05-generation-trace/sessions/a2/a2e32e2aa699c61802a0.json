@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2e32e2aa699c61802a0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis error analysis rsft comparison",
+  "task_key": "worker_analysis_error_analysis_rsft_comparison_20260518T144730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error_analysis_rsft_comparison_20260518T144730_result.json",
+    "occurrence": 1,
+    "bytes": 1499,
+    "sha256": "177eea130e5ceab45eaa4ba5d3d8c3cff4fd5c7bfe3b702bed249be063ec8609"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "核心结论汇总：\n\n**RSFT 相对 SFT 的三大改善机制（三个模型尺度一致）：**\n\n1. **Truncation FN 减少 16-22%** — 最大改善项。RSFT 筛选的样本让模型学会更紧凑的输出格式，减少输出截断丢失。1.7B 减少 841 个，效果最显著。\n\n2. **Hallucinated FP 减少 6-12%** — 拒绝不忠实生成的训练信号直接降低幻觉。Llama 获益最大（-593，-11.8%）。\n\n3. **Duplicates 减少 11-20%** — 格式规范性的副产品，小模型受益最大（1.7B: -20.2%）。\n\n**未改善的：**\n- Evidence quality 基本不变（exact match 变化 < 0.4pp），evidence grounding 需要专门的训练信号\n- Relation confusion FP 不变（除 Llama -11.4%）\n- Rare relation FN 不变\n\n**k=1 vs k=3：** k=1 在 1.7B 和 Llama 上优于 k=3，8B 上 k=3 略优（Ign-F1 +0.57）。总体 k=1 更好。\n\n**Per-relation 获益最大的关系类型：** participant, conflict, league, screenwriter, operator, contains administrative territorial entity 等。这些关系通常涉及较多跨句推理或长尾实体，RSFT 通过减少幻觉和截断帮助最大。\n\n所有产出：\n- `/root/autodl-tmp/analysis/error_analysis_sft/` — SFT 分析\n- `/root/autodl-tmp/analysis/error_analysis_d102_k1/` — RSFT d102 k=1 分析\n- `/root/autodl-tmp/analysis/error_analysis_plan006_k3/` — RSFT plan_006 k=3 分析\n- `/root/autodl-tmp/analysis/error_analysis_comparison_report.md` — 完整对比报告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-analysis-rsft-comparison.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8527a31a4c861b86155b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops kill v3 children",
+  "task_key": "worker_ops_kill-v3-children_20260522T013541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-v3-children_20260522T013541_result.json",
+    "occurrence": 1,
+    "bytes": 188,
+    "sha256": "aa9f8554b845915c0ab7ff864c06633c3ff1f08aef3a22c3db1f3ad626e64195"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:2 释放状态 ✅\n\n- 进程 151222/151221 已 kill -9 终止\n- cuda:2: **0 MiB / 97887 MiB**，完全空闲\n- Registry `test_eval_4b_rsft_s42_v3` → DONE (killed)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-v3-children.md"
+}

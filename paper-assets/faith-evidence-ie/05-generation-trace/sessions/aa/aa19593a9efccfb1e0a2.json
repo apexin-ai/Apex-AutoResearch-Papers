@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa19593a9efccfb1e0a2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "emergency 14b ghost recovery",
+  "task_key": "worker_emergency_14b-ghost-recovery_20260520T151513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_14b-ghost-recovery_20260520T151513_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "ebb3384efbfda8d8cb6aa9f94de75889bcd27e6bb1a87515bd864e041494ec08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Step 6 — 结果汇报\n\n| 项目 | 结果 |\n|------|------|\n| 恢复文件行数 | **20424** |\n| 原始文件行数（旧 inode） | **14976** |\n| 新增恢复数据 | **5448 行** |\n| 文件替换 | 成功（旧文件已备份为 `generations_old.jsonl`） |\n| progress.json | 存在，包含完整的 `completed_doc_ids` 列表 |\n| 最后 3 行 JSON | 全部有效 |\n| 进程 PID 17649 | 已终止 |\n\n数据已完整恢复，未丢失。等待你的指示决定下一步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-14b-ghost-recovery.md"
+}

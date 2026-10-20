@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d39a84461f284c9a449",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research find 4b rsft s42 checkpoint",
+  "task_key": "worker_research_find_4b_rsft_s42_checkpoint_20260519T125818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_find_4b_rsft_s42_checkpoint_20260519T125818_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "aa9b1e824cefd612cf58c655d9b1473220b200413b4e9266741735d99886198b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "从 `rsft_output_random_k1` 的 training_args.bin 中解析出 **seed=42**（`K*` = ASCII 42）。这就是 canonical 4B RSFT s42。\n\n## 结果\n\n### 所有 RSFT 目录及 base model\n\n| 目录 | Base Model | 备注 |\n|------|-----------|------|\n| `rsft_output_random_k1` | Qwen3-4B | **seed=42, canonical** |\n| `rsft_output_ced_s43` | Qwen3-4B | seed=43, CED method |\n| `rsft_output_4b_sft_s44` | Qwen3-4B | D112 QLoRA (排除) |\n| `rsft_output_4b_sft_s44_bf16` | Qwen3-4B | D112 bf16 (排除) |\n| `rsft_output_qwen3_1_7b_k1[_s43/_s44]` | Qwen3-1.7B | 3个目录 |\n| `rsft_output_qwen3_8b_k1[_s43/_s44]` | Qwen3-8B | 3个目录 |\n| `rsft_output_llama_3_1_8b_k1[_s43]` | Llama-3.1-8B | 2个目录 |\n\n### Canonical 4B RSFT s42\n\n- **路径**: `/root/autodl-tmp/rsft_output_random_k1`\n- **base_model**: `/root/autodl-tmp/models/Qwen3-4B`\n- **seed**: 42\n- **LoRA**: r=64, alpha=128, dropout=0.05\n- **文件列表**:\n  ```\n  adapter_config.json\n  adapter_model.safetensors\n  added_tokens.json\n  chat_template.jinja\n  checkpoint-1000/\n  checkpoint-1020/\n  merges.txt\n  special_tokens_map.json\n  tokenizer.json\n  tokenizer_config.json\n  training_args.bin\n  vocab.json\n  README.md\n  ```\n- adapter 完整（adapter_config.json + adapter_model.safetensors 均存在）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-find-4b-rsft-s42-checkpoint.md"
+}

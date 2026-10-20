@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1509f173bbcee1e79830",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check eval progress step90 step100",
+  "task_key": "worker_ops_check-eval-progress-step90-step100_20260514T184613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eval-progress-step90-step100_20260514T184613_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "9b8c71f8889dfa33761393bca87124d5a84b10a7ae18a18c489bf1b239d51218"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Eval 进度\n\n| GPU | Eval | PID | 存活 | 进度 (batches) | 预计剩余 |\n|-----|------|-----|------|---------------|---------|\n| cuda:0 | step-100 | 80789 | Y | 26/62 | ~50 min |\n| cuda:1 | step-90 | 83207 | Y | 9/62 | ~72 min |\n| cuda:2 | multi | 78857 | Y | 45/62 | ~21 min |\n| cuda:3 | high | 81962 | Y | 22/62 | ~51 min |\n\n4 个 GPU 全部在跑，利用率 69-83%，每个 ~9-10 GB 显存。\n\n**已完成的 checkpoint 结果**: 无。checkpoint-90 和 checkpoint-100 的输出目录已创建但为空（inference 尚未完成）。\n\n**预计完成时间**:\n- multi (cuda:2) 最先完成，约 21 min 后\n- step-100 (cuda:0) 约 50 min 后\n- high (cuda:3) 约 51 min 后\n- step-90 (cuda:1) 最晚，约 72 min 后（刚启动 ~14 min）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-progress-step90-step100.md"
+}

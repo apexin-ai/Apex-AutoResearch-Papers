@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f251c8268401a2535f55",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit d112 step3 immediate",
+  "task_key": "worker_submit_d112_step3_immediate_20260519T042821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_d112_step3_immediate_20260519T042821_result.json",
+    "occurrence": 1,
+    "bytes": 857,
+    "sha256": "a51c61e45a3684af398fd39d1f903da14bfd64bc05b9611025ad9d53d934c47a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中。567 steps，3014 样本，3 epochs，~6.3s/step。\n\n## 总结\n\n**D112 Step 2 CED Scoring** — 完成\n- 24216 条记录全部打分，输出 rsft_train.jsonl 3014 行（k=1 筛选）\n- Registry 已标记 `success`\n\n**D112 Step 3 RSFT Training** — 已提交并运行中\n- PID: 613075, cuda:0, GPU 0 占用 ~5 GB\n- 567 steps, ~6.3s/step, 预计 ~60 分钟完成\n- 日志：`/root/autodl-tmp/logs/d112_rsft_s44_train.log`\n\n**8B Eval (PID 598911)** — 仍在运行\n- 进度 197/247 (79.8%), ~45s/it, 预计 ~37 分钟完成\n- cuda:3, 18.9 GB\n\n**全卡 GPU 状态**：\n| GPU | 占用 | 进程 |\n|-----|------|------|\n| 0 | 5 GB / 32 GB | D112 RSFT train (613075) |\n| 1 | 16 GB / 32 GB | 其他训练 (611578) |\n| 2 | 17 GB / 32 GB | 其他训练 (611579) |\n| 3 | 19 GB / 32 GB | 8B eval (598911) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-d112-step3-immediate.md"
+}

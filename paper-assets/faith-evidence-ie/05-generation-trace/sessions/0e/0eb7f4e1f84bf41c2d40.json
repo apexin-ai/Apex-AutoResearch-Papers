@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0eb7f4e1f84bf41c2d40",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval sft baseline noquant",
+  "task_key": "worker_eval_sft_baseline_noquant_20260515T183640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_sft_baseline_noquant_20260515T183640_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "1ed6a13f9fee4bc867de30662240e43238f5bf466858c42b55f995093b8b96de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D058 执行完毕，汇总：\n\n**1. eval_sft_baseline_noquant**\n- PID: **237912**（实际 GPU 进程 PID 237917）\n- GPU: cuda:1, 8172 MiB 已占用\n- 状态: RUNNING，推理进行中（62 batches, 985 docs）\n- Registry 已更新 spec（含完整 provenance）\n\n**2. flat-NLI 实际 seed 值**\n- 从 `/root/autodl-tmp/rsft_output_flat_nli/training_args.bin` 解析：**seed=42**，data_seed=None\n- 日志中没有显式打印 seed（rsft_trainer.py 不 log seed），但 TrainingArguments 中记录的值是 42（argparse 默认值）\n- Reviewer 看到 registry 中 seed=null 是因为 registry 未填，实际训练确实用了 seed=42"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-sft-baseline-noquant.md"
+}

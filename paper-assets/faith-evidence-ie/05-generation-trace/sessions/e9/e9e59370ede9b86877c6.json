@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9e59370ede9b86877c6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "infra investigate gpu2 orphan",
+  "task_key": "worker_infra_investigate_gpu2_orphan_20260516T002653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_investigate_gpu2_orphan_20260516T002653_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "95d534e7ac5168c85719b5b84536e8afc98e6a8f5ce1ffc526141854ac4c024b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。汇总：\n\n**PID 276148 身份**：`rsft-ced-s45-r2` 训练进程（PPID 276147），是被 kill 的 `rsft_ced_s45_train_r2` 的子进程残留。没有对应的 tmux session 存活，属于 orphan。\n\n**清理结果**：已成功 kill。\n\n**GPU 当前状态**：\n| GPU | 显存占用 | 状态 |\n|-----|---------|------|\n| 0 | 10,855 / 32,607 MiB | eval_flat_nli_s44 (PID 270467) |\n| 1 | 28,341 / 32,607 MiB | rsft_ced_s43_train_r3 (PID 277315) |\n| **2** | **0 / 32,607 MiB** | **空闲，可用** |\n| 3 | 10,859 / 32,607 MiB | eval_flat_nli_seed45 (PID 272169) |\n\nGPU 2 已完全释放，可以重新提交 CED s45 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-investigate-gpu2-orphan.md"
+}

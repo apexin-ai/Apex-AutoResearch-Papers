@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c201e9051b232bfe5570",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check 14b s44 eval results",
+  "task_key": "worker_check_14b_s44_eval_results_20260525T111824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_14b_s44_eval_results_20260525T111824_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "9dd415fc48f840236a15c546fbe4a59e4721443d4f6a66110441ebf83a587023"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 均在运行中，尚无结果输出。\n\n| 任务 | GPU | 进度 | 启动时间 | 预计剩余 |\n|------|-----|------|---------|---------|\n| **d158_14b_rsft_s44_eval** (dev with-evi) | cuda:0 | 389/985 (39%) | 17:02 | ~4h |\n| **d158_14b_rsft_s44_dev_no_evi** (dev no-evi) | cuda:2 | 92/985 (9%) | 18:53 | ~2.5h |\n| **d158_14b_rsft_s44_test_no_evi** (test no-evi) | cuda:3 | 7/32 batches (22%) | 18:53 | ~1.5h |\n\n结果目录目前都是空的（推理完成后才会写出 metrics）。test_no_evi 的 32 个 batch 每个约 3.5 min，预计最先完成（~20:20 左右）。dev no-evi 和 dev with-evi 各约 985 个文档逐个推理，速度较慢。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-14b-s44-eval-results.md"
+}

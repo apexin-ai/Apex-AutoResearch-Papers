@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0",
+  "id": "77bfbbb2e46a90ca3ec5",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "analysis eval step100 results",
+  "task_key": "worker_analysis_eval_step100_results_20260514T193713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_eval_step100_results_20260514T193713.jsonl",
+    "occurrence": 1,
+    "bytes": 12384,
+    "sha256": "7e3c991b81f7abe31a73ca177d47c40098c21cc643fcd64e4a4bdd8b575d505d"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T19:37:49.069481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_step100_results_20260514T193713",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T19:37:49.069941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_step100_results_20260514T193713",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T19:37:49.070177+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_step100_results_20260514T193713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "tail -100 ~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step100.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T19:37:49.070406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_step100_results_20260514T193713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/eval_results/grpo_ced_kl001_step100/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T19:37:49.070681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nFound 1 checkpoints: [100]\\\\n\\\\n============================================================\\\\n[02:09:01] Evaluating: checkpoint-100\\\\n  Output: /root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100\\\\n  Command: /root/miniconda3/bin/python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_kl001/checkpoint-100 --sft_adapter /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100 --quantize\\\\n============================================================\\\\n\\\\n2026-05-15 02:09:06,484 INFO Detected adapter at /root/autodl-tmp/grpo_ced_kl001/checkpoint-100, base: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 02:09:06,484 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 02:09:06,847 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 02:09:08,909 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.88s/it]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.03s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.03s/it]\\\\n2026-05-15 02:09:15,066 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\\\n/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\\\n  warnings.warn(\\\\n2026-05-15 02:09:25,347 INFO Loading LoRA adapter: /root/autodl-tmp/grpo_ced_kl001/checkpoint-100\\\\n2026\n…[truncated 5644 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_step100_results_20260514T193713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T19:37:49.070912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_step100_results_20260514T193713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "ls -la /root/autodl-tmp/grpo_ced_kl001/checkpoint-100/",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T19:37:49.071118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 3 root root  60 May 15 03:35 .\\\\ndrwxr-xr-x 5 root root  85 May 15 02:09 ..\\\\ndrwxr-xr-x 2 root root  62 May 15 03:35 checkpoint-100\\\\n-rw-r--r-- 1 root root 204 May 15 03:35 summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_step100_results_20260514T193713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T19:37:49.071353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 790240\\\\ndrwxr-xr-x  2 root root      4096 May 15 02:04 .\\\\ndrwxr-xr-x 12 root root      4096 May 15 02:04 ..\\\\n-rw-r--r--  1 root root      5231 May 15 02:04 README.md\\\\n-rw-r--r--  1 root root      1112 May 15 02:04 adapter_config.json\\\\n-rw-r--r--  1 root root 264309400 May 15 02:04 adapter_model.safetensors\\\\n-rw-r--r--  1 root root       707 May 15 02:04 added_tokens.json\\\\n-rw-r--r--  1 root root      4168 May 15 02:04 chat_template.jinja\\\\n-rw-r--r--  1 root root   1671853 May 15 02:04 merges.txt\\\\n-rw-r--r--  1 root root 528915723 May 15 02:04 optimizer.pt\\\\n-rw-r--r--  1 root root     14645 May 15 02:04 rng_state.pth\\\\n-rw-r--r--  1 root root      1465 May 15 02:04 scheduler.pt\\\\n-rw-r--r--  1 root root       613 May 15 02:04 special_tokens_map.json\\\\n-rw-r--r--  1 root root  11422654 May 15 02:04 tokenizer.json\\\\n-rw-r--r--  1 root root      5430 May 15 02:04 tokenizer_config.json\\\\n-rw-r--r--  1 root root     25371 May 15 02:04 trainer_state.json\\\\n-rw-r--r--  1 root root      7889 May 15 02:04 training_args.bin\\\\n-rw-r--r--  1 root root   2776833 May 15 02:04 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_step100_results_20260514T193713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T19:37:49.071566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_step100_results_20260514T193713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T19:37:49.071790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.2848525469168901,\\\\n  \\\\\\\"recall\\\\\\\": 0.17488272570158836,\\\\n  \\\\\\\"f1\\\\\\\": 0.21671510886747236,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.2848525469168901,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.17488272570158836,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.21671510886747236,\\\\n  \\\\\\\"tp\\\\\\\": 2125,\\\\n  \\\\\\\"pred_count\\\\\\\": 7460,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.5244207367894649,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.6352988691437803,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.5745594009679481,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 11029,\\\\n  \\\\\\\"edcr\\\\\\\": 0.8539190193164933,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 18390,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 21536,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.9786802030456853,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.9786802030456853,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 964,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 964,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 11067,\\\\n  \\\\\\\"n_truncated\\\\\\\": 21,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 5139.9,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/grpo_ced_kl001/checkpoint-100\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": true\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_step100_results_20260514T193713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T19:37:49.071997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_step100_results_20260514T193713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "rtx5090-4x",
+              "command": "cat /root/autodl-tmp/eval_results/grpo_ced_kl001_step100/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T19:37:49.072178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint-100\\\\\\\": {\\\\n    \\\\\\\"step\\\\\\\": 100,\\\\n    \\\\\\\"f1\\\\\\\": 0.21671510886747236,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.21671510886747236,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.5745594009679481,\\\\n    \\\\\\\"edcr\\\\\\\": 0.8539190193164933,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 1.0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_step100_results_20260514T193713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T19:37:49.072437+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 评估结果：`mvp2_eval_ced_kl001_r4_step100` (checkpoint-100)\n\n### 核心指标\n\n```json\n{\n  \"f1\": 0.2167,\n  \"ign_f1\": 0.2167,\n  \"precision\": 0.2849,\n  \"recall\": 0.1749,\n  \"evi_f1\": 0.5746,\n  \"evi_precision\": 0.5244,\n  \"evi_recall\": 0.6353,\n  \"edcr\": 0.8539,\n  \"tp\": 2125,\n  \"pred_count\": 7460,\n  \"gold_count\": 12151,\n  \"n_predictions\": 11067,\n  \"n_parseable\": 985,\n  \"n_documents\": 985,\n  \"n_truncated\": 21,\n  \"n_format_ok\": 985,\n  \"format_ok_rate\": 1.0,\n  \"format_compliance_rate\": 1.0,\n  \"field_compliance_rate\": 0.9787,\n  \"evidence_format_rate\": 0.9787,\n  \"n_distractor_citations\": 18390,\n  \"n_total_citations\": 21536,\n  \"inference_time_seconds\": 5139.9\n}\n```\n\n### 日志末尾 20 行\n\n```\n2026-05-15 03:35:07,333 INFO Inference done. 21/985 truncated, 0 errors.\n2026-05-15 03:35:07,334 INFO Inference: 5139.9s (5.22 s/doc)\n2026-05-15 03:35:07,892 INFO Loaded 37785 training triples for Ign-F1\n2026-05-15 03:35:08,002 INFO Metrics → /root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/metrics.json\n2026-05-15 03:35:08,133 INFO Predictions → /root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/predictions.json\n\n==================================================\n  F1:          0.2167\n  Ign-F1:      0.2167\n  Evi-F1:      0.5746\n  EDCR:        0.8539\n  Format OK:   985/985 (100.0%)\n  Truncated:   21/985\n  Predictions: 11067\n==================================================\n\nSummary saved to /root/autodl-tmp/eval_results/grpo_ced_kl001_step100/summary.json\n  Total: 1, Evaluated: 1, Skipped: 0, Failed: 0\n  Best by F1: checkpoint-100 (step 100)\n    F1=0.2167  Ign-F1=0.2167  Evi-F1=0.5746  EDCR=0.8539\nEXIT_CODE=0\n```\n\n### 要点\n\n- **F1 = 0.2167**，precision 0.2849 vs recall 0.1749，recall 明显偏低（gold 12151，仅命中 2125）\n- **Evi-F1 = 0.5746**，evidence 质量尚可（recall 0.6353 > precision 0.5244）\n- **EDCR = 0.8539**，distractor citation 比例高（18390/21536 = 85.4%）\n- **格式完美**：985/985 全部可解析，field compliance 97.87%\n- 21/985 文档截断（2.1%），0 错误\n- 推理耗时 5139.9s（~85.7 min），5.22 s/doc"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_step100_results_20260514T193713"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-eval-step100-results.md"
+}

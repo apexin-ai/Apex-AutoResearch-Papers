@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc0b17d2739152b0d5b4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research rsft literature update",
+  "task_key": "worker_research_rsft-literature-update_20260515T113125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_rsft-literature-update_20260515T113125_result.json",
+    "occurrence": 1,
+    "bytes": 795,
+    "sha256": "c84e4f908a113d78aac3f18ea668068d9c2e2459c5de66b0ea4d3c4d470e763f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个产出已生成：\n\n**literature_map.yaml** — 新增 3 个 category（共 11 篇新论文）：\n- Category 6: RSFT Methodology & Theory（3 篇）\n- Category 7: RL for Information Extraction（5 篇）\n- Category 8: Recent LLM-based DocRE Methods（5 篇）\n\n**worker_outputs/rsft_literature_scan.md** — 核心结论：\n\n- **最直接竞争者 R1-RE**（arXiv 2507.04642）用 GRPO 做句子级 RE，与我们差异明确：文档级 vs 句子级、offline RSFT vs online GRPO、有 CED evidence reward vs 无\n- **无人在 IE/RE 上用过 RSFT**，我们的 novelty 完全成立\n- **NLI-based CED reward for RE training** 无先例\n- 建议 must-cite 4 篇：R1-RE、\"Minimalist Approach\"（RSFT 理论）、RelPrior、\"RSFT=PPO\"（ICML 2025）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-rsft-literature-update.md"
+}

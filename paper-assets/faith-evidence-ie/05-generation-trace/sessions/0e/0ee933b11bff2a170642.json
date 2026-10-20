@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ee933b11bff2a170642",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper unify figure colors",
+  "task_key": "worker_paper_unify-figure-colors_20260524T222818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_unify-figure-colors_20260524T222818_result.json",
+    "occurrence": 1,
+    "bytes": 1357,
+    "sha256": "000ebdbf01a42c752ee90be2692cb8889a87ece59b08011fbf435558f9c2b486"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。LaTeX 编译成功（19 pages, 无 error）。\n\n### 颜色变更汇总\n\n| 脚本 | 变量 | 旧颜色 | 新颜色 | 语义 |\n|---|---|---|---|---|\n| **plot_scaling.py** | `COL_EVI` | `#0072B2` | `#5B9BD5` | SFT w/ evidence 蓝 |\n| | `COL_NO` | `#999999` | `#B0B0B0` | no-evidence 灰 |\n| | `COL_RSFT` | `#E69F00` | `#E8A838` | RSFT 橙 |\n| | `COL_EVI_E` | `#005A8C` | `#497CAA` | edge 蓝 |\n| | `COL_NO_E` | `#777777` | `#8C8C8C` | edge 灰 |\n| | `COL_RSFT_E` | `#B87D00` | `#BA862D` | edge 橙 |\n| **plot_spectrum.py** | `COLORS['baseline']` | `#0072B2` | `#5B9BD5` | baseline 蓝 |\n| | `COLORS['treatment']` | `#E69F00` | `#009E73` | GRPO bf16 绿 |\n| | `COLORS['safe']` | `#009E73` | `#E8A838` | RSFT 橙 |\n| | `COLORS['neutral']` | `#999999` | `#B0B0B0` | SFT 灰 |\n| **plot_variance_compression.py** | SFT inline | `#0072B2` | `#5B9BD5` | SFT 蓝 |\n| | RSFT inline | `#009E73` | `#E8A838` | RSFT 橙 |\n| **plot_fig_grpo_dynamics.py** | `C_ORANGE` | `#E69F00` | `#D55E00` | collapse 红 |\n| | `C_BLUE` | `#0072B2` | `#009E73` | safe 绿 |\n| **plot_evidence_tax.py** | `COL_BENEFIT` | `#0072B2` | `#E8A838` | 统一橙 |\n| | `COL_COST` | `#E69F00` | `#E8A838` | 统一橙 |\n| | edge colors | `#005A8C`/`#B87D00` | `#BA862D` | 统一 edge 橙 |\n| | error bars | `#005A8C`/`#B87D00` | `black` | 黑色 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-unify-figure-colors.md"
+}

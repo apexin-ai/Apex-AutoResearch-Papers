@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2bf81eecf7fe7268520",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research evi f1 protocol",
+  "task_key": "worker_research_evi_f1_protocol_20260515T131134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_evi_f1_protocol_20260515T131134_result.json",
+    "occurrence": 1,
+    "bytes": 2448,
+    "sha256": "4c92757d71bb1754e9973e3f3770ed4e025fb8bcf8cc6ed5720e88702ef5e882"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。两个评测协议存在**根本性差异**。\n\n---\n\n## 对比结论\n\n### DREEAM 的 Evi-F1（`official_evaluate()`）\n\n```python\n# precision 分母: 所有预测 triple 的 evidence（含 FP triple）\npred_evi += len(evi)           # 在 if (title,r,h,t) in std 之外\n# recall 分母: 所有 gold triple 的 evidence（含 FN triple）\ntot_evidences += len(label['evidence'])  # 遍历所有 gold label\n```\n\n- **Precision** = 正确匹配的 evidence 数 / **所有预测 triple** 的 evidence 数\n- **Recall** = 正确匹配的 evidence 数 / **所有 gold triple** 的 evidence 数\n\n### 我们的 Evi-F1（`compute_evi_f1()`）\n\n```python\nif key not in gold_map:\n    continue           # 直接跳过 FP triple\n\ntotal_pred += len(pred_evi)   # 只计 TP triple 的 evidence\ntotal_gold += len(gold_evi)   # 只计 TP triple 对应的 gold evidence\n```\n\n- **Precision** = 正确匹配的 evidence 数 / **TP triple** 的 evidence 数\n- **Recall** = 正确匹配的 evidence 数 / **TP triple** 对应的 gold evidence 数\n\n### 核心差异\n\n| 维度 | DREEAM | 我们 |\n|------|--------|------|\n| FP triple 的 evidence | 计入 precision 分母（惩罚） | 跳过 |\n| FN triple 的 gold evidence | 计入 recall 分母（惩罚） | 跳过 |\n| 语义 | 关系抽取 + evidence 的**联合**质量 | 在正确关系上的 evidence **条件**质量 |\n| 严格程度 | **远更严格** | 宽松 |\n\n### 差距来源\n\n假设关系 F1 约 60%（recall ~55%），那么：\n- 我们的 recall 分母 ≈ DREEAM recall 分母的 55%，recall 会高很多\n- 我们的 precision 分母不包含 FP triple 的 evidence，precision 也会高很多\n- 从 57% → 82% 的差距完全可以解释\n\n### 结论\n\n1. **两者不是同一协议**，不能在论文中直接对比\n2. DREEAM 的更严格，是 DocRED 社区标准协议\n3. 我们的指标衡量的是\"关系预测正确时 evidence 质量如何\"——是个有意义的条件指标，但和 DREEAM 报告的不可比\n\n### 对齐方案\n\n在 `compute_evi_f1` 中加入两个改动即可对齐 DREEAM 协议：\n\n1. **不跳过 FP triple**：FP triple 的 predicted evidence 全算入 `total_pred`（但不贡献 `total_tp`）\n2. **Recall 分母改为全部 gold evidence**：遍历所有 gold 条目累加 evidence 数，而不是只看被匹配到的 gold triple\n\n需要我实现对齐后的评测函数吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-evi-f1-protocol.md"
+}

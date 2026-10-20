@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d91732aab5f7ae027c6c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor d140 progress check",
+  "task_key": "worker_monitor_d140_progress_check_20260521T091057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_d140_progress_check_20260521T091057_result.json",
+    "occurrence": 1,
+    "bytes": 403,
+    "sha256": "a53f18312b2311df26c76b820b8c5b770fb60eb2ca4a778aab8eac7896eeb52c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部存活，进度：\n\n| 实验 | 进度 | ETA |\n|------|------|-----|\n| 1.7B no-evi (cuda:0) | 205/247 (83%) | ~22min |\n| 4B no-evi (cuda:1) | 177/247 (72%) | ~35min |\n| 8B no-evi (cuda:2) | 139/247 (56%) | ~81min |\n| 4B with-evi (cuda:3) | 11/247 (4%) | ~2.5h |\n\n4 卡全在正常工作，磁盘 108G 可用。报告已写入 `artifacts/d140_progress_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-d140-progress-check.md"
+}

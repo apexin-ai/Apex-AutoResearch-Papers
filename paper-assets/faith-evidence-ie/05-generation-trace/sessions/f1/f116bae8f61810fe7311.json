@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f116bae8f61810fe7311",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "knowledge sync experiment plan stale ids",
+  "task_key": "worker_knowledge_sync_experiment_plan_stale_ids_20260519T054353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_sync_experiment_plan_stale_ids_20260519T054353_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "5a7ead50cbb3c2438b6065efe4064783039a0a147887d56728ae3a3a0b68d3fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 处 registry_id 已全部更新。验证结果：\n\n| plan_id | 旧值 | 新值 | 原因 |\n|---------|------|------|------|\n| plan_016 | `plan_016_llama_rsft_candidates` (failed) | `plan_016_llama_grpo_qlora` (DONE/success) | 旧值指向失败的初始 candidate gen，GRPO 实验是该 plan 的核心验证 |\n| plan_mvp2_grpo | `mvp2_grpo_ced_lr5e6_r1` (killed) | `mvp2_grpo_ced_kl001_r4` (DONE/success) | 旧值被 kill，r4 是完整跑完的 QLoRA GRPO 实验 |\n| plan_017 | null | `plan017_14b_sft` (RUNNING) | 14B SFT 已提交运行 |\n| plan_019 | `plan019_1_7b_sft_s43_r2` (DONE) | `plan019_1_7b_rsft_s44_r2` (RUNNING) | SFT 步骤已完成，当前最新进展是 1.7B RSFT 重跑 |\n| plan_d112 | `d112_rsft_s44_gen_shard0` (DONE) | `d112_rsft_s44_train` (RUNNING) | gen+CED score 步骤已完成，当前最新步骤是 RSFT train |\n\n其余 20 个 plan 的 registry_id 与 registry 一致，无需更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-sync-experiment-plan-stale-ids.md"
+}

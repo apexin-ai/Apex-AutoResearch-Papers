@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d7e22a4f2762a7d4033",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis extract r3 stagnation",
+  "task_key": "worker_analysis_extract_r3_stagnation_20260514T152014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_extract_r3_stagnation_20260514T152014_result.json",
+    "occurrence": 1,
+    "bytes": 1735,
+    "sha256": "4b681b1403848c05e467b0c964f773cbe6fbf8d9774755389d0b35422a297a2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n- **停滞类型：不可恢复**\n- **停滞起始 step：~70 / 总 756 steps**（仅用了 9% 的训练即崩塌）\n- **grad_norm=0 前最佳 checkpoint：不存在**（所有 checkpoint 520-600 均在崩塌区，最早 checkpoint 也晚了 ~450 步）\n- **建议：kill，所有 checkpoint 均无保留价值**\n\n## 关键指标趋势\n\n| 阶段 | Steps | grad_norm | entropy | completion_len | frac_zero_std | f1_reward |\n|------|-------|-----------|---------|---------------|---------------|-----------|\n| 健康期 | 5-65 | 0.2-3.1 | 0.07→0.04 | 707→84 | 0.25-0.75 | 0.02→0.51 |\n| 崩塌拐点 | ~70 | →0.0 | →0.03 | →44 | →0.95 | →0.04 |\n| 死区 | 70-490 | 偶发非零 | 0.02→0.01 | 44±2 | 0.85-1.0 | 0.02-0.53 |\n| 完全死亡 | 490-608 | 全零 | 0.003-0.008 | 43±1 | 0.90-1.0 | 0.20-0.53 |\n\n## 崩塌机制\n\n经典 GRPO entropy collapse 链条：\n\n1. **kl_coef=0.0** → 无参考策略锚定，模型可自由偏移\n2. 模型在 ~65 步内学会输出极短模板（44 tokens），完成长度从 707 骤降\n3. **num_generations=4 太少** → 4 个相同短输出 = 同一个 reward = reward_std=0\n4. **frac_reward_zero_std 在 step 70 跳至 0.95** → 95% 的 batch 内 reward 无方差\n5. GRPO advantage = (reward - mean) / std → 分母为零 → advantage=0 → grad_norm=0\n6. 策略锁死，不可逆\n\n## r4 修复建议\n\n- `num_generations`: 4 → **8 或 16**（增加 batch 内多样性）\n- `kl_coef`: 0.0 → **0.01-0.05**（防止策略过度偏移）\n- 生成温度提高（如 1.2）或加 entropy bonus\n- 前 100 步每 20 步存一个 checkpoint（健康期太短，当前 save_steps 太大错过了所有有用的状态）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-extract-r3-stagnation.md"
+}

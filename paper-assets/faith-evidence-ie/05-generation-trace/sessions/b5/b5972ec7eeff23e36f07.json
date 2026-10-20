@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5972ec7eeff23e36f07",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis evidence tax mechanistic",
+  "task_key": "worker_analysis_evidence_tax_mechanistic_20260518T131147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_evidence_tax_mechanistic_20260518T131147_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "623b316fa0cfb52a2eccccec0b1fee85df1f13d9a7f639a855521ca0a8061f54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已注册为 artifact `art_20260518_cc2048`，关键发现已写入 memory.md。\n\n核心发现：\n\n1. **Duplication regularization 是主要机制**：1.7B 无 evidence 时生成 60.5% 重复三元组（unique 仅 10,343），evidence 将重复率降至 33.0% 且 unique 数反而更多（11,511）。8B 模型的重复率差距仅 3-8pp。\n\n2. **Truncation asymmetry 是次要机制**：1.7B 无 evidence 截断率 50.9% vs 有 evidence 31.9%；8B 反转，evidence 截断率更高。229 篇文档仅在 no-evidence 条件下截断，evidence F1 高出 20.7pp。\n\n3. **Fair comparison 证明 scaffold 效应**：排除截断后，evidence 仍帮助 1.7B 4.9pp，而 8B Qwen 差异恰好为 0.0pp。这证明 8B 的 tax 完全由截断开销解释，而 1.7B 有真实的推理质量提升。\n\n4. **4B 处于 \"capacity valley\"**：输出够干净不需要正则化，但容量不足以同时生成 evidence + RE。\n\n建议的 4 张图表方案已列在报告末尾，可后续派 Worker 画图。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-evidence-tax-mechanistic.md"
+}

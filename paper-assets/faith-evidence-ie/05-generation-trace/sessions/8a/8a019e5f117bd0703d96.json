@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a019e5f117bd0703d96",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze test eval 8b rsft s44 with evi",
+  "task_key": "worker_analyze_test_eval_8b_rsft_s44_with_evi_20260523T064606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_test_eval_8b_rsft_s44_with_evi_20260523T064606_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "7bfc489443cdd4d38c01872cfb25466f31a2bc5be9036b2f9386acfc899e5ab0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## test_eval_8b_rsft_s44_with_evi 结果\n\n| 指标 | 值 |\n|------|-----|\n| **ign_f1** | **0.3329** |\n| f1 | 0.3329 |\n| precision | 0.5133 |\n| recall | 0.2463 |\n| Evi-F1(TP) | 0.5897 |\n| Evi-F1(DREEAM) | 0.2458 |\n| EDCR | 0.8090 |\n\n注：`train_annotated.json not found`，所以 ign_f1 = f1。\n\n### 3-seed summary (8B RSFT k1 with-evidence)\n\n| seed | ign_f1 |\n|------|--------|\n| s42 | 0.3353 |\n| s43 | 0.3398 |\n| s44 | 0.3329 |\n| **mean ± std** | **0.3360 ± 0.0035** |\n\n三个 seed 的 ign_f1 范围 0.3329–0.3398，标准差 0.0035，变异系数约 1.0%，variance 很小，可以支撑 variance compression claim。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-test-eval-8b-rsft-s44-with-evi.md"
+}

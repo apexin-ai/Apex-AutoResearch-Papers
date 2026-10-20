@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "318bc7e94caa62f03f7c",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_18_1779354158.md",
+  "task_key": "loop_18_1779354158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779354158.md",
+    "occurrence": 1,
+    "bytes": 4504,
+    "sha256": "6185baf50ee2d2e6b5759a86dd8d679bbfe00d8814cb19bb3e302bd0019629d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-21T07:21:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: rtx5090-4x 的 cuda:0, cuda:1, cuda:2, cuda:3（4 张全分配给本项目）\n- LLaMA SFT 脚本用 `GPU=X` 环境变量传物理 GPU 编号，不能依赖框架注入的 CUDA_VISIBLE_DEVICES（脚本内部会覆盖）\n- 14B 模型路径: `/root/autodl-tmp/models/Qwen/Qwen3-14B`，SFT adapter: `/root/autodl-tmp/sft_output_14b/checkpoint-144`（必须指向 checkpoint-144 子目录，不是顶层）\n- bjb2-12179 数据盘只读迁移源，不要在上面跑新实验\n- evidence tax 测量必须用同一模型 + `--no_evidence` flag，不能对比独立训练的 no-evidence 模型（Reviewer 指出的方法论问题）\n\n### 2. 🖥️ 基础设施快照\n- **主服务器 rtx5090-4x** (connect.westd.seetacloud.com:37389): 4× RTX PRO 6000 Blackwell, 98GB VRAM/卡, ~190GB 可用磁盘\n  - 工作目录: `/root/autodl-tmp/freige`\n  - Python: `/root/miniconda3/bin/python` (conda base, Python 3.12, PyTorch 2.8.0+cu128, transformers 5.8.1, flash-attn 2.8.3)\n  - 模型: `/root/autodl-tmp/models/` (Qwen3-14B, Qwen3-4B, Meta-Llama-3.1-8B)\n  - 数据: `/root/autodl-tmp/data/docred`\n  - HF cache: `/root/autodl-tmp/.hf_cache`\n- **数据源 bjb2-12179**: 208G 完好，迁移 rsync 仍在后台 (migration_bjb2_to_westd, PID 6660)\n- 活跃 cron: migration_bjb2_to_westd, eval_llama_sft_s43_no_evidence (PID 27322, cuda:1), eval_llama_sft_s44_no_evidence (PID 29983, cuda:2), eval_llama_rsft_s44_no_evidence (PID 30188, cuda:3)\n\n### 3. 📊 当前状态\n- **刚发生**: `plan017_14b_rsft_generate_r3` 在 cuda:0 上跑了 3.7h 后被 SIGTERM (143) 杀死。已派诊断 Worker (`worker_diagnose_plan017_14b_rsft_generate_r3_20260520T151914`) 去查日志和系统状态，**Worker 尚未返回**。\n- **RUNNING 实验** (3 个 eval + 1 个 migration):\n  - `eval_llama_sft_s43_no_evidence` (cuda:1) — LLaMA SFT s43 no-evidence eval，补齐 evidence tax 3-seed\n  - `eval_llama_sft_s44_no_evidence` (cuda:2) — LLaMA SFT s44 no-evidence eval\n  - `eval_llama_rsft_s44_no_evidence` (cuda:3) — LLaMA RSFT s44 no-evidence eval，最后 1 个 RSFT evidence tax seed\n  - `migration_bjb2_to_westd` — 数据迁移，后台 rsync\n- **另有 1 个运行中 Worker**: `worker_analysis_s42-no-evi-format-issue` (从上个 session 遗留，可能已完成但状态未更新)\n- **cuda:0 当前空闲**，等诊断 Worker 返回后决定是否重试 14B gen r4\n- 尚未向 Director 汇报本次失败（等诊断结论）\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 返回 → 根据 root_cause 决定：infrastructure/resource 类可自动修复重试 r4；否则汇报 Director 决策。更新 registry notes，发飞书结果卡片\n- eval_llama_sft_s43_no_evidence 完成 → 记录 ign_f1，计算 SFT s43 evidence tax (对比 with-evi 0.5142)，更新 memory.md\n- eval_llama_sft_s44_no_evidence 完成 → 记录 ign_f1，计算 SFT s44 evidence tax (对比 with-evi 0.4802)\n- eval_llama_rsft_s44_no_evidence 完成 → 记录 ign_f1，计算 RSFT s44 evidence tax (对比 with-evi 0.5587)。**3 个 RSFT seed 全部完成后**计算 RSFT evidence tax mean±std\n- **3 个 eval 全部完成** → 汇总 LLaMA 全系列 evidence tax 表格（SFT 3-seed + RSFT 3-seed），汇报 Director，更新论文数据\n- 14B gen 恢复后 → CED scoring → RSFT train → eval，填 ROADMAP 中 14B 行\n- migration 完成 → 确认数据完整性，关闭 bjb2 实例\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 Main (ARR July, ~56 天)\n- **核心 story**: FREIGE — 3 contributions: (1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression\n- **D133**: LLaMA 升级为 co-primary evidence（不再只是 cross-family 验证点）\n- **D131**: 3 contributions 从独立小文章统一为一条叙事主线\n- **关键数据缺口**: 14B RSFT (gen 62% done, 被 SIGTERM 中断) 和 LLaMA evidence tax (3 个 eval 正在跑)\n- **易踩坑**:\n  - SIGTERM 可能是 OOM killer、tmux 被杀、或磁盘满导致——等诊断 Worker 结论再行动，不要盲目重试\n  - 14B gen 是 CPU+GPU 混合负载（生成 + 写文件），磁盘满会导致静默失败\n  - `worker_analysis_s42-no-evi-format-issue` 可能是僵尸 Worker，新 session 检查其状态\n  - LLaMA evidence tax 数据：s42 SFT no-evi ign_f1=0.5219（已完成），RSFT s42=0.5526, s43=0.5546（已完成），注意这些是 ign_f1 不是 rel_f1\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779354158.md"
+}

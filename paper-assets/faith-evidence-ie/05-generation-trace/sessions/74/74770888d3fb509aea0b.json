@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74770888d3fb509aea0b",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh eval ckpt40 prep",
+  "task_key": "worker_ssh_eval-ckpt40-prep_20260514T212331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-ckpt40-prep_20260514T212331_result.json",
+    "occurrence": 1,
+    "bytes": 341,
+    "sha256": "c348ea309ddbd72bce5c96dab6ceb95c7d3d3cfc455abd3caaaf98dd41e95f07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **训练状态**：mvp2_grpo_ced_lr5e6_r1 在 step 55/200，PID 90080 存活，checkpoint-20 和 checkpoint-40 均已保存\n- **ckpt-40 eval 已提交**：`mvp2_eval_lr5e6_r1_ckpt40`，cuda:2，PID 101831，模型加载已开始\n- **日志**：`~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt40.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-ckpt40-prep.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "85b6036003c367e4b0ff",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ssh fix diversity monitoring",
+  "task_key": "worker_ssh_fix-diversity-monitoring_20260515T013737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-diversity-monitoring_20260515T013737.log",
+    "occurrence": 1,
+    "bytes": 674994,
+    "sha256": "c12aa9776b8c32cdea838e8f5d984f24831b365d9a3a8e406e6f005e53fe465b"
+  },
+  "statistics": {
+    "messages": 178,
+    "user_turns": 0,
+    "tool_calls": 66,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 66,
+      "tool_result": 66,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 178,
+      "chunks": [
+        {
+          "path": "85b6036003c367e4b0ff-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "85b6036003c367e4b0ff-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-fix-diversity-monitoring.md"
+}

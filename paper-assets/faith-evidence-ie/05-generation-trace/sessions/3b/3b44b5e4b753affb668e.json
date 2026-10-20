@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b44b5e4b753affb668e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "experiment qwen3 8b sft eval",
+  "task_key": "worker_experiment_qwen3_8b_sft_eval_20260516T090208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_qwen3_8b_sft_eval_20260516T090208_result.json",
+    "occurrence": 1,
+    "bytes": 282,
+    "sha256": "840191ca1b0d74f842893207ebc1d20ab5a93b6924bedaefd7ff89a0c4d2daf9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **GPU 3**: 空闲 ✓\n- **Adapter/模型**: 存在 ✓\n- **进程**: PID 322966，运行中 ✓\n- **Registry**: `plan_006_qwen3_8b_sft_eval` → RUNNING ✓\n\n日志：`/root/autodl-tmp/eval_results/qwen3_8b_sft_eval.log`，预估 2-3h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-qwen3-8b-sft-eval.md"
+}

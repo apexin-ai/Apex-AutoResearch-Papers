@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e38992b817619957e5fd",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "investigate 4b evidence tax source",
+  "task_key": "worker_investigate_4b_evidence_tax_source_20260518T134827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_4b_evidence_tax_source_20260518T134827.log",
+    "occurrence": 1,
+    "bytes": 701296,
+    "sha256": "538b6ac9d5007db6df2cef50dc45a6ba9894d7c95dffbea69d9808437da2f73a"
+  },
+  "statistics": {
+    "messages": 93,
+    "user_turns": 0,
+    "tool_calls": 36,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 17,
+      "tool_call": 36,
+      "tool_result": 36,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 93,
+      "chunks": [
+        {
+          "path": "e38992b817619957e5fd-part-0001.json",
+          "message_count": 60
+        },
+        {
+          "path": "e38992b817619957e5fd-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/investigate-4b-evidence-tax-source.md"
+}

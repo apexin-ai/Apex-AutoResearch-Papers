@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cd98dc9125c0adc4c7d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose gpu status quick",
+  "task_key": "worker_diagnose_gpu-status-quick_20260520T145513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu-status-quick_20260520T145513_result.json",
+    "occurrence": 1,
+    "bytes": 670,
+    "sha256": "18bea800fffb5188dd717816a1a3fe24a759697c9f815554599316fda7bdbf97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 卡全在跑，所有进程存活：\n\n| GPU | 显存占用 | 利用率 | 任务 | PID | 运行时间 |\n|-----|---------|--------|------|-----|---------|\n| 0 | 32503/97887 MiB | 91% | plan017_14b_rsft_generate_r3 | 17644 | 3h20m |\n| 1 | 18879/97887 MiB | 92% | eval_llama_sft_s43_no_evidence | 27322 | 47m |\n| 2 | 18879/97887 MiB | 90% | eval_llama_sft_s44_no_evidence | 29983 | 5m |\n| 3 | 18879/97887 MiB | 91% | eval_llama_rsft_s44_no_evidence | 30188 | 5m |\n\nGPU 0 的 14B RSFT generate 显存占用最大（32.5GB），3 个 eval 任务各占约 18.9GB。所有任务均正确设置了 `CUDA_VISIBLE_DEVICES` 且带 `--no_evidence` 参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-status-quick.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11d494032fb21d11374f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 014 sft no evidence",
+  "task_key": "worker_analysis_plan_014_sft_no_evidence_20260515T170422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_014_sft_no_evidence_20260515T170422_result.json",
+    "occurrence": 1,
+    "bytes": 1510,
+    "sha256": "237a54cd7c917a7ca00909bee817da869165d0a4520550ea3d034015997beb8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练结果摘要：plan_014_sft_no_evidence\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | **完成** (EXIT_CODE=0) |\n| 模型 | Qwen3-4B + QLoRA 4-bit |\n| 模式 | NO-EVIDENCE（只输出 relation triples） |\n| 数据 | DocRED: 3027 train / 985 eval |\n| 可训练参数 | 132M / 4.15B (3.18%) |\n| Epochs / Steps | 3 / 570 |\n| 训练耗时 | ~64 min |\n| Checkpoint | `/root/autodl-tmp/sft_no_evidence_output` |\n\n### Loss 曲线\n\n| Epoch | Loss | Token Acc |\n|-------|------|-----------|\n| 0.05 | 1.547 | 0.715 |\n| 0.16 | 0.847 | 0.800 |\n| 0.26 | 0.802 | 0.810 |\n| 0.95 | 0.761 | 0.820 |\n| 1.0 | 0.825 | 0.804 ← epoch boundary spike |\n| 2.85 | 0.562 | 0.858 |\n| 3.0 | 0.606 | 0.849 |\n\n**最终指标：** train_loss=0.7077, eval_loss=0.8781, eval_token_accuracy=0.8086\n\n**W&B：** 未配置，无远程日志。\n\n### Dev Eval 状态\n\n- **PID:** 229663, cuda:1, 正在运行\n- **进度：** 1/124 batches, ~48s/batch → 预计 ~99 min 完成\n- **输出目录：** `/root/autodl-tmp/eval_plan_014_no_evidence`\n- **注意：** inference.py 无 `--no_evidence` 参数，但 evaluator 对缺失 evidence 用 `get(\"evidence\", [])` 处理，rel_f1 正常计算，evi_f1 预计 ~0\n\n### 待 eval 完成后对比\n\n| 模型 | rel_f1 | evi_f1 | EDCR |\n|------|--------|--------|------|\n| SFT (with evidence) | 0.4057 | 0.7979 | 0.7118 |\n| SFT (no evidence) | **待出** | ~0 | N/A |\n| RSFT mean | 0.4596 | 0.8143 | - |\n| CED reranker | 0.4864 | 0.8188 | - |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-014-sft-no-evidence.md"
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "a362f113302d21a85006",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ssh ced score shard3",
+  "task_key": "worker_ssh_ced-score-shard3_20260515T050128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_ced-score-shard3_20260515T050128.log",
+    "occurrence": 1,
+    "bytes": 1072278,
+    "sha256": "b293e36a0a4290747d968f7e9a4d5b4d1341f20b5f530da8713b06fd4ba8f851"
+  },
+  "statistics": {
+    "messages": 706,
+    "user_turns": 1,
+    "tool_calls": 315,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 66,
+      "tool_call": 315,
+      "tool_result": 315,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 675,
+      "chunks": [
+        {
+          "path": "a362f113302d21a85006-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a362f113302d21a85006-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a362f113302d21a85006-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a362f113302d21a85006-part-0004.json",
+          "message_count": 135
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "a362f113302d21a85006-part-0004.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-ced-score-shard3.md"
+}

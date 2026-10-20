@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b7662aab000319ea6fed",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "code unify eval",
+  "task_key": "worker_code_unify-eval_20260514T133544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_unify-eval_20260514T133544.log",
+    "occurrence": 1,
+    "bytes": 641259,
+    "sha256": "0c7060847f9abed924778a8358e3593cc3ccc95646ed6e936f673b5d0db895c2"
+  },
+  "statistics": {
+    "messages": 254,
+    "user_turns": 0,
+    "tool_calls": 95,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 59,
+      "tool_call": 95,
+      "tool_result": 95,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 254,
+      "chunks": [
+        {
+          "path": "b7662aab000319ea6fed-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b7662aab000319ea6fed-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-unify-eval.md"
+}

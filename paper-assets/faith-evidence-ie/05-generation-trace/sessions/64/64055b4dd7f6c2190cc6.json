@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64055b4dd7f6c2190cc6",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh cleanup tmux and submit 4b withevi",
+  "task_key": "worker_ssh_cleanup-tmux-and-submit-4b-withevi_20260521T090438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cleanup-tmux-and-submit-4b-withevi_20260521T090438_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "e4e37c85a499c3fe544b41d20126fd47ca4ae811175e0eca34ee1f7b459c68f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:3 不空闲，无法提交。** 按 C001 约束（eval 前 GPU 显存须 < 2GB），当前所有卡都被占用：\n\n| GPU | 显存占用 | PID |\n|-----|---------|-----|\n| cuda:0 | 6159 MiB | 87387 |\n| cuda:1 | 11463 MiB | 88992 |\n| cuda:2 | 19599 MiB | 87307 |\n| cuda:3 | 10739 MiB | 93402 |\n\ntmux session 已清理。需要等某张卡释放后再提交，或者你想先确认这些进程分别在跑什么？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cleanup-tmux-and-submit-4b-withevi.md"
+}

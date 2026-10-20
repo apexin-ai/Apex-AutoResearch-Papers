@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf6c5ef6c16bcbedbf11",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code rsft no evidence eval scripts",
+  "task_key": "worker_code_rsft_no_evidence_eval_scripts_20260519T124925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rsft_no_evidence_eval_scripts_20260519T124925_result.json",
+    "occurrence": 1,
+    "bytes": 1609,
+    "sha256": "131ddd57bf7a2d6c1b163143c128eb0ad7d72458d8188d6f9a81c39331d9581a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本语法验证通过。汇报如下：\n\n---\n\n### 脚本状态\n\n两个脚本**已存在**，修复了 4B 的 SFT adapter 路径问题。\n\n**4B (`eval_4b_rsft_no_evidence.sh`)** — 修复完成：\n- `--model_path /root/autodl-tmp/rsft_output_4b_sft_s44`\n- `--base_model /root/autodl-tmp/models/Qwen3-4B`\n- `--sft_adapter /root/autodl-tmp/sft_output_seed44/` ← 原来写的是 `sft_output/`，已修正为与 RSFT 训练一致的 `sft_output_seed44/`\n- `--no_evidence --no-quantize --batch_size 4 --seed 42`\n\n**8B (`eval_8b_rsft_no_evidence.sh`)** — 路径均正确，无需修改：\n- `--model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1`\n- `--base_model /root/autodl-tmp/models/Qwen/Qwen3-8B`\n- `--sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16/`\n\n### Checkpoint 路径说明\n\n⚠️ 任务提到的 `rsft_output_qwen3_4b_k1_s42` **不存在**。4B RSFT 只有 s44 版本（`rsft_output_4b_sft_s44`，基于 `sft_output_seed44` 训练）。脚本已指向这个实际存在的 checkpoint。\n\n### GPU 与进程状态\n\n全部 4 张卡占满：\n\n| GPU | 显存 | 任务 |\n|-----|------|------|\n| 0 | 27.1/31.8 GB | d112 4B RSFT bf16 rerun（训练中） |\n| 1 | 31.5/31.8 GB | 14B SFT eval |\n| 2 | 31.9/31.8 GB | 14B SFT no-evidence eval |\n| 3 | 31.6/31.8 GB | 1.7B RSFT no-evidence eval |\n\n**8B SFT s43** 在 GPU 4（pts/4）上训练中（PID 683952，启动于 20:04），命令中未显式设 `CUDA_VISIBLE_DEVICES`。\n\n→ 目前没有空闲 GPU，需要等 14B eval 或 1.7B eval 完成后才能提交 4B/8B RSFT no-evidence eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rsft-no-evidence-eval-scripts.md"
+}

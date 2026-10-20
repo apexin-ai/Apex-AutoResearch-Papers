@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cd3ab9eca1fb255c9b1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan 002 test eval",
+  "task_key": "worker_code_plan_002_test_eval_20260517T010501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_002_test_eval_20260517T010501_result.json",
+    "occurrence": 1,
+    "bytes": 366,
+    "sha256": "13b24183ffe75eca75788413bad0c5f9050e0c96c13ac7b5b9eb0e2fdda2c6e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **Exp ID**: `plan_002_test_rsft_s44`\n- **PID**: 396333\n- **GPU**: cuda:0 (1435 MiB used, 满足 C001)\n- **Model**: Qwen3-4B → SFT adapter → RSFT-s44/checkpoint-510\n- **Data**: DocRED test split\n- **Log**: `~/runs/faith-evidence-ie/plan_002_test_rsft_s44.log`\n\n任务已在 rtx5090-4x 上运行，registry 状态 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-002-test-eval.md"
+}

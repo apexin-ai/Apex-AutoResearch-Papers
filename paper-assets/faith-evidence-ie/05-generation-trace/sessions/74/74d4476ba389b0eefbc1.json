@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74d4476ba389b0eefbc1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "experiment qwen3 1 7b no evidence sft",
+  "task_key": "worker_experiment_qwen3_1_7b_no_evidence_sft_20260516T072825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_qwen3_1_7b_no_evidence_sft_20260516T072825_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "63cf33af65fa861279d0b72fa6e6afff9921a0bdd47ba20980b318926d6f2161"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交完成。当前状态：\n\n**实验**: `plan_006_qwen3_1_7b_no_evidence_sft`\n- **状态**: QUEUED → 等待模型下载完成后自动启动训练\n- **GPU**: cuda:2（已确认空闲 0 MiB）\n- **模型下载**: Qwen3-1.7B 从 ModelScope CDN 下载中，~1MB/s，预计 ~55min\n- **训练配置**: bf16 LoRA (rank=64, alpha=128), `--no_evidence`, `--no-quantize`, seed=42, 3 epochs\n- **输出**: `/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence/`\n- **日志**: `~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_no_evidence_sft.log`\n- **PID**: 316274（包装脚本，等下载 PID 316228 完成后启动训练）\n\n包装脚本 `/tmp/download_and_train_1_7b.sh` 会自动：\n1. 等待下载进程完成\n2. 验证模型文件存在\n3. 启动 `sft_trainer.py --no_evidence --no-quantize` 训练\n\n下载完成 + 训练预计总计 ~1.5-2h。需要定期检查时告诉我。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-qwen3-1-7b-no-evidence-sft.md"
+}

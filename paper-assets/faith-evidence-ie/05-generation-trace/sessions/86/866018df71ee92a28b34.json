@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "866018df71ee92a28b34",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops verify llama download",
+  "task_key": "worker_ops_verify_llama_download_20260516T071619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_llama_download_20260516T071619_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "b1919fa32a590d7786bd16ed5ce725d3f29b09ff044eac276475a87c393410b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载**正在进行中**，进程 PID 311976 活跃。当前状态：\n\n| Shard | 大小 | 状态 |\n|-------|------|------|\n| model-00001-of-00004.safetensors | 4.7G | ✅ 完成 |\n| model-00002-of-00004.safetensors | 4.2G（在 `._____temp/`） | ⏳ 下载中 |\n| model-00003-of-00004.safetensors | — | ❌ 待下载 |\n| model-00004-of-00004.safetensors | 1.1G | ✅ 完成 |\n\n模型总大小 ~15GB。已完成 ~10G/15G，剩余 ~5G。文件修改时间持续推进，下载速度约 2.3 MB/s，预计还需 ~35 分钟完成。\n\nconfig.json、tokenizer.json 等元数据文件已就位。无需干预，下载会自行完成。完成后 `._____temp/` 中的文件会被 ModelScope 自动移到主目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-llama-download.md"
+}

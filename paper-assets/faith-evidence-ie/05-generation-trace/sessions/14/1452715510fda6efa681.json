@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1452715510fda6efa681",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops gpu status and 1 7b rsft",
+  "task_key": "worker_ops_gpu_status_and_1_7b_rsft_20260517T025818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_and_1_7b_rsft_20260517T025818_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "e023e3b99ee4fc2c7d2d93a702aac3f71c667f8e9a2f4f9b888b40f285b0b02d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**总结：**\n\n- **1.7B CED scoring**: 完成，9,042 samples 已就绪，等待 RSFT training\n- **s43 test eval**: cuda:1 仍在运行，尚无输出\n- **1.7B RSFT training**: 4 卡全满，无法提交。最早可用的 GPU 预计是 cuda:0 或 cuda:1（eval 完成后释放，~11GB 任务应在 1-2h 内结束），或 cuda:2（llama scoring 结束后）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-and-1-7b-rsft.md"
+}

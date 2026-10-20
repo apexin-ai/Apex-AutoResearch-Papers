@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fa2198b78c3882dcbf1",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_6_1778819140.md",
+  "task_key": "loop_6_1778819140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778819140.md",
+    "occurrence": 1,
+    "bytes": 4276,
+    "sha256": "a2de9d023fd7e4ff0b9ee9a4300549a51216d1f023f447518f7b8213293166f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T04:25:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `cuda:0,1,2,3`（rtx5090-4x），禁止使用任何其他 GPU 编号\n- **运行目录必须是 `/root/autodl-tmp/`**，不是 `/root/autodl-tmp/freige/`——后者导致 Python import 找到内层空 `freige/freige/` 包，所有脚本都会 ImportError\n- RSFT 训练**禁止 `--quantize`**——4-bit + merge_and_unload 在 RTX 5090 上触发 CUBLAS 错误。bf16 Qwen3-4B 仅 ~8GB，无需量化\n- Qwen3 `generation_config.json` 会静默覆盖代码传的 temperature/top_k，生成前必须显式 `model.generation_config.temperature = X; model.generation_config.top_k = 0`\n- Shard 3 的日志路径与其他 shard 不同：`/root/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log`（不是 shard 目录下的 log.txt）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x（4× RTX 5090 32GB），account=root\n- **工作目录**: `/root/autodl-tmp/freige`（代码），运行时 cd `/root/autodl-tmp/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（base）, `/root/autodl-tmp/sft_output`（SFT adapter）\n- **NLI 模型**: `/root/autodl-tmp/.hf_cache`（cross-encoder/nli-deberta-v3-base，已下载）\n- **RSFT 输出**: `/root/autodl-tmp/rsft_generations/shard_{0,1,2,3}/generations.jsonl`\n- **活跃进程**: 4 个 RSFT 生成 shard\n  - s0: PID 135867, cuda:0, cron 监控中\n  - s1: PID 136270, cuda:1, cron 监控中\n  - s2: PID 136649, cuda:2, cron 监控中\n  - s3: PID 137985, cuda:3, cron 监控中\n- **W&B**: project = faith-evidence-ie（GRPO 历史实验在此，RSFT 生成阶段无 W&B）\n\n### 3. 📊 当前状态\n4 卡并行 RSFT 候选生成正在运行（mvp2_rsft_gen_s0/s1/s2/s3），上次快照（~14:50 UTC+8）显示 87.7% 完成，预估 ~15:20 全部完成。但这是数小时前的快照——现在很可能已经完成或即将完成，等 cron 回调确认。\n\n**Registry RUNNING**: mvp2_rsft_gen_s0, s1, s2, s3（均为 RSFT 生成 shard）\n\n**等待中**: 4 个 shard 的 cron 完成回调。无等待 Director 决策的事项。无 PREPARING 实验。\n\n**GRPO 方向已判死 (D031)**，所有 GRPO 实验已 DONE/killed。当前全力推进 RSFT+CED 离线 RL 路线。\n\n### 4. 📋 待办（条件触发式）\n- **4 shard cron 回调到达（任一完成）** → 检查输出完整性（行数 = docs × 8），等全部 4 shard 完成后合并\n- **全部 4 shard 完成** → 派 Worker 执行：① 合并 4 shard JSONL 到一个文件 ② 运行 `rsft_score_filter.py` 做 CED 打分筛选（top_pct=25） ③ 统计筛选后样本数和 CED 分布\n- **CED 筛选完成** → 派 Worker 启动 RSFT 训练（`rsft_trainer.py`，bf16，LoRA r=64/α=128，无 quantize），用 `submit_training_job` 提交\n- **RSFT 训练完成** → eval rel_f1 对比 SFT baseline (0.406)。Pass: rel_f1 > 0.406；如果 < 0.35 需要分析失败原因\n- **truncation_rate > 10% 问题** → shard 1 truncation=10.1%，当前 max_new_tokens=1024。后续若需重跑，考虑提到 2048\n\n### 5. 🎯 战略上下文\n**核心 narrative**: FREIGE = CED reward 引导 LLM 在文档级 RE 中同时生成抽取结果和可验证证据。MVP-1 验证 CED 信号有效（margin=0.48, acc=81.5%）。GRPO+QLoRA 在线 RL 全线 catastrophic forgetting（D031），pivot 到 RSFT+CED 离线 RL。\n\n**决策链**: D027(ced_kl001 FAIL) → D031(GRPO 判死, pivot RSFT) → D033(lr5e6 最终确认 FAIL) → D034/D035(diversity crisis) → D036(撤销 D034/D035, diversity 是监控 bug 不是真问题, 恢复 4 卡生成)\n\n**易错点**:\n- **不要重启 GRPO 方向**——已验证 3 种 reward type × 2 种 lr 全部 FAIL，不是超参问题，是 GRPO+QLoRA 在结构化生成任务上的根本局限\n- **diversity crisis 是假警报 (D036)**——监控代码有 bug（归一化不一致 + 分母错误），实际 diversity 7.5/8，不要因此怀疑生成质量\n- `submit_on_allocated` 的命令必须用 `cd /root/autodl-tmp && python -m freige.training.xxx`，不要 `cd /root/autodl-tmp/freige`\n- RSFT 是 MVP-2 的最后一条可行路径（contingency 还有 DPO+CED 和 prompt-level diversity，但优先级远低于 RSFT）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778819140.md"
+}

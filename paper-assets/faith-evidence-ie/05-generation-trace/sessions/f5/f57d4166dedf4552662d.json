@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f57d4166dedf4552662d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor milestone a check",
+  "task_key": "worker_monitor_milestone-a-check_20260520T095853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_milestone-a-check_20260520T095853_result.json",
+    "occurrence": 1,
+    "bytes": 93,
+    "sha256": "b89afab34f6378c601f74d64cc1e25d61a299a601f970eb9697b4bcaba9e6fb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "shard 3 当前进度：761MB / 4.58GB。将在约 4.5 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-milestone-a-check.md"
+}

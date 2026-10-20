@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "dcc31942413a7c0af25f",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ops plan 014 sft no evidence",
+  "task_key": "worker_ops_plan_014_sft_no_evidence_20260515T155027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_014_sft_no_evidence_20260515T155027.log",
+    "occurrence": 1,
+    "bytes": 21294897,
+    "sha256": "1ec0a41d0238ce374c62a0d5c25629c4c99f7501b3277c9438582fd3213ba69d"
+  },
+  "statistics": {
+    "messages": 130,
+    "user_turns": 0,
+    "tool_calls": 46,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 46,
+      "tool_result": 46,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 130,
+      "chunks": [
+        {
+          "path": "dcc31942413a7c0af25f-part-0001.json",
+          "message_count": 35
+        },
+        {
+          "path": "dcc31942413a7c0af25f-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "dcc31942413a7c0af25f-part-0003.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-plan-014-sft-no-evidence.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccc87bd094fd3175731d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval llama rsft seed43 eval r2",
+  "task_key": "worker_eval_llama_rsft_seed43_eval_r2_20260517T160318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama_rsft_seed43_eval_r2_20260517T160318_result.json",
+    "occurrence": 1,
+    "bytes": 375,
+    "sha256": "ceb53d7b729f08d5303f71c53a0aa9ae0c94000d7ebca666bd497f7e0b723af2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功确认：\n\n- **PID**: 463080\n- **GPU 0 显存占用**: 17883 MiB（符合 LLaMA-8B 预期）\n- **tmux session**: `plan_006_llama_rsft_seed43_eval_r2`\n- **日志**: `~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval_r2.log`\n\neval 正在运行，修正了 `base_model` 路径为 `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama-rsft-seed43-eval-r2.md"
+}

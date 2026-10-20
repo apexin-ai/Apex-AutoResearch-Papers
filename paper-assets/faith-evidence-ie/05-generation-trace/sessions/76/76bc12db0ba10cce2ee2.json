@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76bc12db0ba10cce2ee2",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops fix cuda1 duplicate eval",
+  "task_key": "worker_ops_fix-cuda1-duplicate-eval_20260514T204431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-cuda1-duplicate-eval_20260514T204431_result.json",
+    "occurrence": 1,
+    "bytes": 246,
+    "sha256": "e5d12c5458410a193e353a145f2f96e28f9c9a3c4e2ef061c27abed389512c3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **PID 97340 已自行退出**，无需 kill\n- **cuda:1 上仅 PID 96500**，占用 9710 MiB\n- **eval 进度**：4/62 batches（~6%），每 batch 约 162s，已运行约 22 分钟，预计还需约 2.5 小时完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-cuda1-duplicate-eval.md"
+}

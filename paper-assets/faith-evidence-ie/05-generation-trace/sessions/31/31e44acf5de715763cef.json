@@ -1,0 +1,990 @@
+{
+  "schema_version": "1.0",
+  "id": "31e44acf5de715763cef",
+  "project": "faith-evidence-ie",
+  "kind": "conversation",
+  "title": "fix d112 shard registry entries",
+  "task_key": "worker_fix_d112_shard_registry_entries_20260519T004337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fix_d112_shard_registry_entries_20260519T004337.jsonl",
+    "occurrence": 1,
+    "bytes": 34149,
+    "sha256": "c3bd7fdb2260926801b0c4d04d1dc2543eb7373219c206715546b039aa7f2988"
+  },
+  "statistics": {
+    "messages": 47,
+    "user_turns": 0,
+    "tool_calls": 23,
+    "roles": {
+      "tool_call": 23,
+      "tool_result": 23,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T00:45:30.950715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T00:45:30.951901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "ToolSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T00:45:30.952146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T00:45:30.952327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'd112_rsft_s44_generate'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T00:45:30.952524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"d112_rsft_s44_gen_shard2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:43:47.622Z\\\", \\\"updated_at\\\": \\\"2026-05-18T23:45:14.223Z\\\", \\\"hypothesis\\\": \\\"D112 shard 2: 并行候选生成加速。\\\", \\\"parent\\\": \\\"d112_rsft_s44_generate\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 SHARD=2 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"model_name\\\": \\\"4b_sft_s44\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 3053, \\\"seed\\\": 44, \\\"log_path\\\": \\\"/root/runs/faith-evidence-ie/d112_rsft_s44_gen_shard2.log\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_seed44\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\"}}, \\\"d112_rsft_s44_gen_shard1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:43:46.463Z\\\", \\\"updated_at\\\": \\\"2026-05-18T23:45:12.018Z\\\", \\\"hypothesis\\\": \\\"D112 shard 1: 并行候选生成加速。与 shard 0 (cuda:3) 合作覆盖全部 3053 docs 的 1/4。\\\", \\\"parent\\\": \\\"d112_rsft_s44_generate\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 SHARD=1 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"model_name\\\": \\\"4b_sft_s44\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 3053, \\\"seed\\\": 44, \\\"log_path\\\": \\\"/root/runs/faith-evidence-ie/d112_rsft_s44_gen_shard1.log\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_seed44\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\"}}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7676}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T00:45:30.952953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7166}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T00:45:30.953201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'd112_rsft_s44_gen_shard0'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T00:45:30.953393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'd112_rsft_s44_gen_shard3'}",
+              "project": "faith-evidence-ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T00:45:30.953536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7026}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T00:45:30.953664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "faith-evidence-ie",
+              "limit": "20",
+              "fields": "['status', 'hypothesis']"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T00:45:30.953796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7848}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T00:45:30.954017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"d112_rsft_s44_generate\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D112 step1: 用 SFT s44 adapter (ign_f1=0.4734, 最强 seed) 生成 N=8 RSFT 候选。验证 RSFT pipeline 从强 SFT base 出发是否能进一步提升，决定 Claim 1 表述强度。\\\"}, \\\"d111_4b_sft_s42_reeval\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"hypothesis\\\": \\\"D111: 4B SFT s42 D076 re-eval with standardized protocol. Prior evals gave inconsistent results (0.4106/0.4036/0.3974). Re-eval with identical D076 protocol as s43 (0.4365) and s44 for fair 3-seed comparison.\\\"}, \\\"plan019_8b_rsft_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"8B RSFT seed44 (Option A: seed expansion). Reuses s42 SFT adapter + s42 CED k=1 scored data, only changes RSFT training seed to 44. Tests if RSFT gain is robust across seeds at 8B scale. Expected: ign_f1 similar to canonical 8B RSFT s42.\\\"}, \\\"d112_rsft_s44_gen_shard2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"D112 shard 2: 并行候选生成加速。\\\"}, \\\"d112_rsft_s44_gen_shard1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"D112 shard 1: 并行候选生成加速。与 shard 0 (cuda:3) 合作覆盖全部 3053 docs 的 1/4。\\\"}, \\\"plan019_8b_sft_s44_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"8B SFT s44 eval (D076 protocol): measure SFT baseline for seed44 at 8B scale. Paired with canonical s42 (ign_f1=0.5051) for 2-seed mean±std.\\\"}, \\\"grpo_bf16_g4_ckpt200_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"GRPO bf16 G=4 checkpoint-200 eval (final): compare with ckpt-100 for D106 learning curve. If ckpt-200 > ckpt-100, GRPO is improving. Expected: rel_f1 improvement over ckpt-100.\\\"}, \\\"random_rsft_k1_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Random k=1 RSFT baseline: same candidate pool as CED RSFT but random selection instead of CED scoring. If random RSFT significantly underperforms CED RSFT (rel_f1 gap > 1.5pp), proves CED scoring precision is the key, not just data filtering quantity. CED k=1 mean rel_f1=0.4596, expect random < 0.445.\\\"}, \\\"plan019_1_7b_sft_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hyp\n…[truncated 3295 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T00:45:30.954268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard1",
+              "field": "parent",
+              "value": "",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T00:45:30.954422+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard2",
+              "field": "parent",
+              "value": "",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T00:45:30.954766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:43:46.463Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:44:27.916Z\\\", \\\"hypothesis\\\": \\\"D112 shard 1: 并行候选生成加速。与 shard 0 (cuda:3) 合作覆盖全部 3053 docs 的 1/4。\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 SHARD=1 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"model_name\\\": \\\"4b_sft_s44\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 3053, \\\"seed\\\": 44, \\\"log_path\\\": \\\"/root/runs/faith-evidence-ie/d112_rsft_s44_gen_shard1.log\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_seed44\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2431}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T00:45:30.954938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard0",
+              "field": "hypothesis",
+              "value": "D112 shard 0: 并行候选生成 (docs [0:756])，用 SFT s44 adapter 生成 N=8 RSFT 候选。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T00:45:30.955105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:43:47.622Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:44:29.130Z\\\", \\\"hypothesis\\\": \\\"D112 shard 2: 并行候选生成加速。\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 SHARD=2 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"model_name\\\": \\\"4b_sft_s44\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 3053, \\\"seed\\\": 44, \\\"log_path\\\": \\\"/root/runs/faith-evidence-ie/d112_rsft_s44_gen_shard2.log\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_seed44\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2078}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T00:45:30.955270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard3",
+              "field": "hypothesis",
+              "value": "D112 shard 3: 并行候选生成 (docs [2268:3027])，用 SFT s44 adapter 生成 N=8 RSFT 候选。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T00:45:30.955441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T00:44:30.408Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:44:30.408Z\\\", \\\"hypothesis\\\": \\\"D112 shard 0: 并行候选生成 (docs [0:756])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2235}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T00:45:30.955586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T00:44:31.524Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:44:31.524Z\\\", \\\"hypothesis\\\": \\\"D112 shard 3: 并行候选生成 (docs [2268:3027])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0879}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T00:45:30.955760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard0",
+              "field": "status",
+              "value": "PENDING",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T00:45:30.955895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard3",
+              "field": "status",
+              "value": "PENDING",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T00:45:30.956034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T00:44:30.408Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:44:37.318Z\\\", \\\"hypothesis\\\": \\\"D112 shard 0: 并行候选生成 (docs [0:756])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3386}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T00:45:30.956175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T00:44:31.524Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:44:39.685Z\\\", \\\"hypothesis\\\": \\\"D112 shard 3: 并行候选生成 (docs [2268:3027])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0454}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T00:45:30.956333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard0",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T00:45:30.956473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard3",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T00:45:30.956617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T00:44:30.408Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:44:45.049Z\\\", \\\"hypothesis\\\": \\\"D112 shard 0: 并行候选生成 (docs [0:756])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2277}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T00:45:30.956800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T00:44:31.524Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:44:47.386Z\\\", \\\"hypothesis\\\": \\\"D112 shard 3: 并行候选生成 (docs [2268:3027])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8225}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T00:45:30.956948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard0",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T00:45:30.957072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard3",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T00:45:30.957205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T00:44:30.408Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:44:53.764Z\\\", \\\"hypothesis\\\": \\\"D112 shard 0: 并行候选生成 (docs [0:756])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7567}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T00:45:30.957535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T00:44:31.524Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:44:56.221Z\\\", \\\"hypothesis\\\": \\\"D112 shard 3: 并行候选生成 (docs [2268:3027])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.4744}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T00:45:30.957693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard0",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "faith-evidence-ie",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 SHARD=0 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh', 'server': 'rtx5090-4x', 'gpu_ids': ['cuda:3'], 'data_path': '/root/autodl-tmp/data/docred/train_annotated.json', 'data_count': 756, 'model_name': 'Qwen3-4B', 'seed': 42, 'pid': 590423}"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T00:45:30.957851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "faith-evidence-ie",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 SHARD=3 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh', 'server': 'rtx5090-4x', 'gpu_ids': ['cuda:0'], 'data_path': '/root/autodl-tmp/data/docred/train_annotated.json', 'data_count': 759, 'model_name': 'Qwen3-4B', 'seed': 42, 'pid': 590568}"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T00:45:30.958013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T00:44:30.408Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:45:05.131Z\\\", \\\"hypothesis\\\": \\\"D112 shard 0: 并行候选生成 (docs [0:756])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 SHARD=0 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 756, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"pid\\\": 590423}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1799}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T00:45:30.958166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T00:44:31.524Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:45:07.177Z\\\", \\\"hypothesis\\\": \\\"D112 shard 3: 并行候选生成 (docs [2268:3027])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 SHARD=3 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 759, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"pid\\\": 590568}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.113}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T00:45:30.958545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard1",
+              "field": "hypothesis",
+              "value": "D112 shard 1: 并行候选生成 (docs [756:1512])，用 SFT s44 adapter 生成 N=8 RSFT 候选。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T00:45:30.958715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:43:46.463Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:45:13.998Z\\\", \\\"hypothesis\\\": \\\"D112 shard 1: 并行候选生成 (docs [756:1512])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 SHARD=1 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"model_name\\\": \\\"4b_sft_s44\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 3053, \\\"seed\\\": 44, \\\"log_path\\\": \\\"/root/runs/faith-evidence-ie/d112_rsft_s44_gen_shard1.log\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_seed44\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0767}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T00:45:30.958865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard2",
+              "field": "hypothesis",
+              "value": "D112 shard 2: 并行候选生成 (docs [1512:2268])，用 SFT s44 adapter 生成 N=8 RSFT 候选。",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T00:45:30.959326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:43:47.622Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:45:15.333Z\\\", \\\"hypothesis\\\": \\\"D112 shard 2: 并行候选生成 (docs [1512:2268])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 SHARD=2 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"model_name\\\": \\\"4b_sft_s44\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 3053, \\\"seed\\\": 44, \\\"log_path\\\": \\\"/root/runs/faith-evidence-ie/d112_rsft_s44_gen_shard2.log\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_seed44\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0829}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T00:45:30.959634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard1",
+              "field": "spec",
+              "value": "{'command': 'CUDA_VISIBLE_DEVICES=1 SHARD=1 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh', 'server': 'rtx5090-4x', 'gpu_ids': ['cuda:1'], 'data_path': '/root/autodl-tmp/data/docred/train_annotated.json', 'data_count': 756, 'model_name': 'Qwen3-4B', 'seed': 42, 'pid': 587729}",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T00:45:30.959842+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:43:46.463Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:45:17.222Z\\\", \\\"hypothesis\\\": \\\"D112 shard 1: 并行候选生成 (docs [756:1512])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 SHARD=1 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 756, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"pid\\\": 587729}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1384}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T00:45:30.960152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d112_rsft_s44_gen_shard2",
+              "field": "spec",
+              "value": "{'command': 'CUDA_VISIBLE_DEVICES=2 SHARD=2 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh', 'server': 'rtx5090-4x', 'gpu_ids': ['cuda:2'], 'data_path': '/root/autodl-tmp/data/docred/train_annotated.json', 'data_count': 756, 'model_name': 'Qwen3-4B', 'seed': 42, 'pid': 587819}",
+              "project": "faith-evidence-ie"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T00:45:30.960375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d112_rsft_s44_gen_shard2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:43:47.622Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:45:18.786Z\\\", \\\"hypothesis\\\": \\\"D112 shard 2: 并行候选生成 (docs [1512:2268])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 SHARD=2 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 756, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"pid\\\": 587819}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1771}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T00:45:30.960535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "faith-evidence-ie",
+              "fields": "['status', 'hypothesis', 'spec', 'parent']"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T00:45:30.960739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"d112_rsft_s44_gen_shard2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"D112 shard 2: 并行候选生成 (docs [1512:2268])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 SHARD=2 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 756, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"pid\\\": 587819}}, \\\"d112_rsft_s44_gen_shard1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"D112 shard 1: 并行候选生成 (docs [756:1512])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 SHARD=1 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 756, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"pid\\\": 587729}}, \\\"d112_rsft_s44_gen_shard3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"D112 shard 3: 并行候选生成 (docs [2268:3027])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 SHARD=3 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 759, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"pid\\\": 590568}}, \\\"d112_rsft_s44_gen_shard0\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"D112 shard 0: 并行候选生成 (docs [0:756])，用 SFT s44 adapter 生成 N=8 RSFT 候选。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 SHARD=0 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/train_annotated.json\\\", \\\"data_count\\\": 756, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\n…[truncated 140 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T00:45:30.960960+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 修复完成。汇总：\n\n| exp_id | status | gpu | PID | docs 范围 |\n|--------|--------|-----|-----|----------|\n| `d112_rsft_s44_gen_shard0` | RUNNING | cuda:3 | 590423 | [0:756] |\n| `d112_rsft_s44_gen_shard1` | RUNNING | cuda:1 | 587729 | [756:1512] |\n| `d112_rsft_s44_gen_shard2` | RUNNING | cuda:2 | 587819 | [1512:2268] |\n| `d112_rsft_s44_gen_shard3` | RUNNING | cuda:0 | 590568 | [2268:3027] |\n\n- shard0/shard3：新建，状态从 PREPARING 推进至 RUNNING\n- shard1/shard2：已清除多余 parent 字段，更新 hypothesis 和 spec（补充 gpu_ids/pid）\n- `d112_rsft_s44_generate`：已确认为 DONE 状态，无需修改"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_d112_shard_registry_entries_20260519T004337"
+          },
+          "id": "event-000047"
+        }
+      ],
+      "message_count": 47
+    }
+  ],
+  "readable_path": "readable/conversations/fix-d112-shard-registry-entries.md"
+}

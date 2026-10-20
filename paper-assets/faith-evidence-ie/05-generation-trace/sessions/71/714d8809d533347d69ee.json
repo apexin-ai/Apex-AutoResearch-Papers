@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "714d8809d533347d69ee",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval plan 008 rsft topk3",
+  "task_key": "worker_eval_plan_008_rsft_topk3_20260515T211207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_008_rsft_topk3_20260515T211207_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "385f4481571636aefc5f27926dfe08683342b7c9b4bc3cc24bd2f33a25a4d7a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:3 上已经在运行完全相同的评测命令（PID 255528）：\n\n```\npython -m freige.eval.inference --model_path /root/autodl-tmp/rsft_topk3_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_topk3 --no-quantize\n```\n\n这个任务已经在跑了，无需重复提交。是否需要我检查它的运行进度或 registry 状态？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-008-rsft-topk3.md"
+}

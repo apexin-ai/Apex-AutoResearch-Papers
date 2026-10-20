@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "351e633fddee66ff4ce3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze plan017 14b rsft generate r4",
+  "task_key": "worker_analyze_plan017_14b_rsft_generate_r4_20260520T180958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_plan017_14b_rsft_generate_r4_20260520T180958_result.json",
+    "occurrence": 1,
+    "bytes": 923,
+    "sha256": "3b1b7e4b1d5dd1d50039ed622687716c4e92a8379847e7ed6b23391c77798f34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结果\n\n**`plan017_14b_rsft_generate_r4` 成功完成。**\n\n| 指标 | 结果 |\n|------|------|\n| 状态 | 正常退出 (EXIT_CODE=0) |\n| 总 doc 数 | **3027**（全部完成） |\n| 总生成数 | **24,216**（3027×8，符合预期） |\n| 本次新增 | 474 docs（从 2553 resume） |\n| 运行时间 | ~2h31m（474 docs） |\n| Format OK | 24,206/24,216（**99.96%**，仅 10 条 format 失败） |\n| Truncated | 1,701/24,216（7.0%，长输出被截断） |\n| Diversity | mean=7.28/8, median=8.0/8 |\n| 输出文件 | `generations.jsonl`，349MB |\n| 磁盘剩余 | 116GB / 350GB（68% 已用） |\n\n数据质量正常：每条包含 doc_id、generation_idx、prompt、output、format_ok、truncated、gold_triples 等完整字段，JSON 格式正确。\n\n唯一注意点：7% 的 truncated 率和 10 条 format 失败，在 RSFT 筛选阶段会被过滤，不影响后续流程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-plan017-14b-rsft-generate-r4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "974348f58ce3c185ca2f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose full gpu status check",
+  "task_key": "worker_diagnose_full-gpu-status-check_20260522T040247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_full-gpu-status-check_20260522T040247_result.json",
+    "occurrence": 1,
+    "bytes": 1091,
+    "sha256": "e48aeee2bad6593bef643d64e811276c4555aee982213da314b56659853ef748"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n| 实验 | GPU | 状态 | 备注 |\n|------|-----|------|------|\n| dev_eval_4b_rsft_ced_s42_v2 | cuda:0 | **FAILED** | `FileNotFoundError: dev.json`（目录只有 `dev_revised.json`），需重提加 `--split dev_revised` |\n| test_eval_1_7b_sft_s42_no_evi | cuda:1 | **DONE** ✓ | ign_f1=0.2093, precision=0.3899, recall=0.143 |\n| test_eval_8b_sft_s42_no_evi | cuda:2 | **RUNNING** 55% | 273/500, ~31s/it, 预计还需 ~1h57m |\n| test_eval_14b_sft_s42_no_evi | cuda:3 | **RUNNING** 91% | 454/500, ~38s/it, 预计还需 ~29min |\n\n### GPU 总览\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 0 / 98GB | 0% | **空闲** |\n| 1 | 0 / 98GB | 0% | **空闲** |\n| 2 | 19.6 / 98GB | 87% | 8B eval |\n| 3 | 32.5 / 98GB | 92% | 14B eval |\n\n### 需要处理\n\n**dev_eval_4b_rsft_ced_s42_v2** 需要重提。inference.py 的 `load_split` 默认查找 `dev.json`，但数据目录只有 `dev_revised.json`。需要加 `--split dev_revised` 参数。GPU 0 已空闲，可以立即重提。是否现在重提？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-full-gpu-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "217e2ad75476d8d09887",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose 14b sft completion",
+  "task_key": "worker_diagnose_14b_sft_completion_20260519T071832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_14b_sft_completion_20260519T071832_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "69edeceada098aef0e531d520c88a587ca5364fbf00104e8d735983800580048"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan017_14b_sft 训练成功完成。**\n\n| 指标 | 值 |\n|---|---|\n| global_step | 144 / 144 |\n| train_loss (final) | 0.5457 |\n| eval_loss | 0.6292 |\n| checkpoint | `/root/autodl-tmp/sft_output_14b/checkpoint-144/` |\n\nLoss 趋势正常，最后 5 步：0.5528 → 0.5535 → 0.5385 → 0.5240 → 0.5457\n\n**GPU 状态：**\n- cuda:0 — 29639/32607 MiB（占用中）\n- **cuda:1 — 0 MiB（已释放）**\n- **cuda:2 — 0 MiB（已释放）**\n- cuda:3 — 5415/32607 MiB（占用中）\n\ncuda:1 和 cuda:2 均已释放，可用于后续 eval 任务。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-14b-sft-completion.md"
+}

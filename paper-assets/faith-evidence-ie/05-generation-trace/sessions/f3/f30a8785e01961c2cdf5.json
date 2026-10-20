@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f30a8785e01961c2cdf5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops llama rsft train r2 cuda2",
+  "task_key": "worker_ops_llama_rsft_train_r2_cuda2_20260517T031125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama_rsft_train_r2_cuda2_20260517T031125_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "f730c69a822c68d32983a197b3e059e259d0d790dee60dbcab8b126f11fd2e59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**总结**：\n- **R1 OOM 原因**：未加 `--quantize` 和 `--bf16`，8B 模型以 fp32 加载（~32GB），无剩余空间给 LoRA/optimizer/activations\n- **R2 修复**：`--quantize`（4-bit QLoRA）+ `--bf16` + batch_size=2 + grad_accum=8\n- **状态**：cuda:2 上 PID 405397 稳定运行，29GB/32GB，步速 ~9.5s/step，预计 ~4.4h 完成（1656 步）\n- **tmux session**：`plan_016_llama_rsft_r2`\n- **日志**：`/root/runs/faith-evidence-ie/plan_016_llama_rsft_train_r2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama-rsft-train-r2-cuda2.md"
+}

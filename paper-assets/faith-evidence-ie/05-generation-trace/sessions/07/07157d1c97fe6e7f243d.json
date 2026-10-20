@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07157d1c97fe6e7f243d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis test eval 1 7b rsft s43 no evi",
+  "task_key": "worker_analysis_test_eval_1_7b_rsft_s43_no_evi_20260523T083247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_test_eval_1_7b_rsft_s43_no_evi_20260523T083247_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "780ff1bb2a64aa3f9e3d98b2918f3f6ed2a0f999dc29411f70c29943d9a61614"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。汇总：\n\n**Metrics**\n\n| 指标 | 值 |\n|------|-----|\n| ign_f1 | 0.2410 |\n| precision | 0.4282 |\n| recall | 0.1677 |\n| f1 | 0.2410 |\n| format_ok_rate | 97.6% |\n| n_documents | 500 |\n| n_truncated | 472 |\n| inference_time | 2348.7s |\n\n**Evidence Tax**\n\n- s43: no_evi(0.2410) - with_evi(0.2870) = **-4.59pp**\n- s42: no_evi(0.2390) - with_evi(0.2933) = **-5.43pp**\n\n方向一致（均为负，no_evi 劣于 with_evi），s43 tax 幅度比 s42 小 0.84pp。Evidence 对 RE 性能有正面贡献，跨 seed 稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-test-eval-1-7b-rsft-s43-no-evi.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03dd493f9e2a12a70bc0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code write inference script",
+  "task_key": "worker_code_write-inference-script_20260514T080343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_write-inference-script_20260514T080343_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "fb8ab18f136ac54e46b3aa7d2f95db0d1f682621791dd60e5ad578a07b53de10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过，无 ImportError，参数列表正确显示。\n\n`/root/autodl-tmp/freige/eval/inference.py` 已创建，包含：\n- **模型加载**: 4-bit NF4 QLoRA + SDPA + 自动检测 adapter vs 完整模型\n- **Prompt 构造**: 与 SFT/GRPO 训练一致的 Qwen3 chat template（`enable_thinking=False`）\n- **批量推理**: greedy decoding，batch 级错误容忍，截断检测\n- **输出解析**: 三级修复（直接解析 → 提取 `[...]` → 截断 JSON 补全），`str(x or \"\")` None 保护\n- **评测**: DocREDEvaluator 计算 F1/Ign-F1/Evi-F1/EDCR/format compliance\n- **输出**: `metrics.json` + `predictions.json`（含 per-doc gold_triples、format_ok、truncated）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-write-inference-script.md"
+}

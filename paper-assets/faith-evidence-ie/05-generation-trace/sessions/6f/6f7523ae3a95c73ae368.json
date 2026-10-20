@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f7523ae3a95c73ae368",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "search 4b sft multi seed adapters",
+  "task_key": "worker_search_4b_sft_multi_seed_adapters_20260521T152912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_search_4b_sft_multi_seed_adapters_20260521T152912_result.json",
+    "occurrence": 1,
+    "bytes": 774,
+    "sha256": "b418263f27f38cb03146a5184ec1ec1ee9ab7a745109fc9488c7a298a99cf8f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Seeds confirmed. Here are the results:\n\n```\n4B SFT s42: /root/autodl-tmp/sft_output              (seed=42 confirmed)\n4B SFT s43: /root/autodl-tmp/sft_output_seed43        (seed=43 confirmed)\n4B SFT s44: /root/autodl-tmp/sft_output_seed44        (seed=44 confirmed)\n```\n\nAll three adapters share identical configs:\n- **base_model**: `/root/autodl-tmp/models/Qwen3-4B`\n- **LoRA**: r=64, alpha=128, dropout=0.05, CAUSAL_LM\n- **target_modules**: q/k/v/o_proj, gate/up/down_proj\n- **epochs**: 3, total steps: 144, checkpoints at step 96 and 144\n\nBest checkpoint metrics:\n| Seed | Best step | Best metric |\n|------|-----------|-------------|\n| 42   | 144       | 0.7201      |\n| 43   | 96        | 0.7468      |\n| 44   | 96        | 0.7464      |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/search-4b-sft-multi-seed-adapters.md"
+}

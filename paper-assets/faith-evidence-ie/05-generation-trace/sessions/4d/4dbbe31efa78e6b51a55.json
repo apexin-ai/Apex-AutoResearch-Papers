@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "4dbbe31efa78e6b51a55",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose plan017 14b rsft generate r3",
+  "task_key": "worker_diagnose_plan017_14b_rsft_generate_r3_20260520T151914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan017_14b_rsft_generate_r3_20260520T151914_result.json",
+    "occurrence": 1,
+    "bytes": 2509,
+    "sha256": "5207cf88f6beabf245c1a927b17ce6e026e23efbe5116cae3b4142e770ed9aae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。所有证据收集齐全。\n\n```json\n{\n  \"root_cause\": \"进程收到外部 SIGTERM (exit code 143)，日志无 Traceback/OOM/CUDA error。dmesg 和 journalctl 均无 OOM killer 记录。进程未在 tmux/screen 中运行，也无 PID 文件。无 registry 文件可追溯。最可能原因：启动该进程的 SSH session 断开后进程收到信号被杀，或被其他自动化/手动 kill。\",\n  \"error_type\": \"infrastructure\",\n  \"fix_steps\": [\n    \"用 tmux 保护进程：tmux new -s rsft_gen，在 tmux 内运行命令，防止 SSH 断连导致进程被杀\",\n    \"直接 --resume 重跑，JSONL 已有 2553 docs（20424 行），只需处理剩余 474 docs\",\n    \"命令：tmux new -s rsft_gen 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b --num_generations 8 --resume'\"\n  ],\n  \"can_auto_fix\": true,\n  \"progress\": \"已完成 2553 / 3027 docs（84.3%），剩余 474 docs，预计 ~1.5-2.5h\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "进程收到外部 SIGTERM (exit code 143)，日志无 Traceback/OOM/CUDA error。dmesg 和 journalctl 均无 OOM killer 记录。进程未在 tmux/screen 中运行，也无 PID 文件。无 registry 文件可追溯。最可能原因：启动该进程的 SSH session 断开后进程收到信号被杀，或被其他自动化/手动 kill。",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "用 tmux 保护进程：tmux new -s rsft_gen，在 tmux 内运行命令，防止 SSH 断连导致进程被杀",
+                "直接 --resume 重跑，JSONL 已有 2553 docs（20424 行），只需处理剩余 474 docs",
+                "命令：tmux new -s rsft_gen 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b --num_generations 8 --resume'"
+              ],
+              "can_auto_fix": true,
+              "progress": "已完成 2553 / 3027 docs（84.3%），剩余 474 docs，预计 ~1.5-2.5h"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan017-14b-rsft-generate-r3.md"
+}

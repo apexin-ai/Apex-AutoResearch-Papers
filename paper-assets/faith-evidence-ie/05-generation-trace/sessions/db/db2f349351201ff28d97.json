@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db2f349351201ff28d97",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops d028 full eval sweep",
+  "task_key": "worker_ops_d028-full-eval-sweep_20260514T191357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d028-full-eval-sweep_20260514T191357_result.json",
+    "occurrence": 1,
+    "bytes": 2351,
+    "sha256": "3f8643161f6f6321cae4fd4878422fbfbdcc94e62e2287cb531456286e748707"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D028 全面 Eval 结果\n\n### 进程状态\n\n| GPU | Eval Task | PID | 当前 ckpt | Progress | ETA |\n|-----|-----------|-----|----------|----------|-----|\n| 0 | step100 | 80799 | ckpt-100 | 48/62 (77%) | ~20 min |\n| 1 | step90 | 83217 | ckpt-90 | 31/62 (50%) | ~45 min |\n| 2 | multi | 85997 | ckpt-20 | 5/62 (8%) | ~50 min (仅ckpt-20), 剩余 30,40,60,70,80 |\n| 3 | high | 81962 | ckpt-60 | 45/62 (73%) | ~21 min (仅ckpt-60), 剩余 70,80,90 |\n\n所有 4 GPU 满载运行，无异常。\n\n### 已完成 Checkpoint 结果\n\n| Step | reward | rel_f1 | Δ vs SFT | evi_f1 | Δ vs SFT | edcr | recall | pred_count | trunc | MVP-2? |\n|------|--------|--------|----------|--------|----------|------|--------|------------|-------|--------|\n| **SFT** | - | 0.4057 | - | 0.7979 | - | 0.7118 | 0.407 | 18815 | 367 | baseline |\n| 10 | - | **0.0030** | **-40.3pp** | 0.7200 | -7.8pp | 0.9983 | 0.003 | 11621 | 24 | FAIL |\n| 50 | 1.101 | **0.1563** | **-24.9pp** | 0.5643 | -23.4pp | 0.8858 | 0.117 | 9250 | 11 | FAIL |\n\n### 关键分析\n\n**Step 10**: rel_f1 几乎为零 (0.003)，但 evi_f1=0.720、EDCR=0.998 极高。模型在 GRPO 初期就学会了\"好的 evidence 格式\"（低 truncation=24 vs SFT=367），但完全丢失了关系抽取能力。pred_count=11621 表明大量无意义的 relation 预测。\n\n**Step 50**: rel_f1 回升到 0.156（仍比 SFT 低 24.9pp），evi_f1 反而从 0.720 降到 0.564。经典的 reward hacking 趋势——reward 在上升（1.101），但两个核心指标都大幅退化。\n\n**趋势令人担忧**: reward↑ 而 rel_f1↓ evi_f1↓，CED reward signal 可能有根本性问题。\n\n### 待决 - MVP-2 判定\n\n**step-90** (reward=1.370, true best) 和 **step-100** (reward=1.195, last) 是最终判定点：\n- step-100 ETA: ~20 min（最先出结果）\n- step-90 ETA: ~45 min\n\nMVP-2 pass criteria:\n- `(CED_Evi-F1 − SFT_Evi-F1) ≥ 2pp` → 需要 evi_f1 ≥ 0.8179\n- `CED_F1 ≥ SFT_F1 − 5pp` → 需要 rel_f1 ≥ 0.3557\n\n基于 step 10/50 的退化趋势，**MVP-2 pass 概率很低**。但 step 90 的 reward 显著高于 step 50，仍有翻盘可能。需要等 20-45 min 出结果才能最终判定。\n\n### 冗余工作\n\ncuda:3 (high) 也会跑 ckpt-90，但 cuda:1 (step90) 会先完成。两者都用 `--resume`，后到者会自动跳过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d028-full-eval-sweep.md"
+}

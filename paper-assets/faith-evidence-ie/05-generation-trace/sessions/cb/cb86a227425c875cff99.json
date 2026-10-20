@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb86a227425c875cff99",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "wandb training trajectory loop4",
+  "task_key": "worker_wandb_training-trajectory-loop4_20260514T230459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_wandb_training-trajectory-loop4_20260514T230459_result.json",
+    "occurrence": 1,
+    "bytes": 621,
+    "sha256": "b7d9e65bba029ebfd38a4622c0bb33c05e1c1625364677a044c475140cb25927"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/training_trajectory_loop4.md`。\n\n核心结论：\n\n**Step 100 出现了真实的 f1_reward 拐点**（0.016→0.093，5.8x），f1 和 ced 同步上升说明模型确实在学抽取而非纯 format hacking。但 eval 数据 (ckpt-20: 0.0077, ckpt-40: 0.0071) 表明训练 reward 尚未转化为实际抽取能力。\n\n最大风险是 **training reward 与 eval F1 脱节**。ckpt-100 的 eval 是决定性验证点——如果 eval F1 > 0.15 说明拐点真实，< 0.05 则判定 reward hacking。\n\nrel_f1 > 0.30 的概率 < 5%。建议优先 eval ckpt-100 和 ckpt-120。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/wandb-training-trajectory-loop4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d86ce9522bae1e76c9ee",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "read d102 8b results both",
+  "task_key": "worker_read_d102_8b_results_both_20260518T121449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_read_d102_8b_results_both_20260518T121449_result.json",
+    "occurrence": 1,
+    "bytes": 1464,
+    "sha256": "f28fd4438220b70e73291bca44f509e2757805380e83f0e55144ed137ec8e9c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 8B k=1 s42 eval ===\nrel_f1=0.5549, ign_f1=0.5376, evi_f1=0.8136, edcr=0.6231\nnum_preds=16314, truncated=242/985, format_ok=985/985\nmodel: rsft_output_qwen3_8b_k1\n\n=== 8B k=1 s43 eval ===\nrel_f1=0.5651, ign_f1=0.5471, evi_f1=0.8180, edcr=0.6094\nnum_preds=16226, truncated=231/985, format_ok=985/985\nmodel: rsft_output_qwen3_8b_k1_s43\n\n=== 8B k=3 baseline (plan_006, dev) ===\n路径: plan_006_qwen3_8b_rsft_eval (checkpoint-3393)\nrel_f1=0.5606, ign_f1=0.5433, evi_f1=0.8052, edcr=0.6377\nnum_preds=16831, truncated=267/985, format_ok=985/985\n注: plan_006_qwen3_8b_rsft_test 是 test split，无 dev metrics（需 CodaLab）\n\n=== k=1 vs k=3 对比 (8B Qwen) ===\n           | rel_f1 | ign_f1 | evi_f1 | edcr   | truncated\nk=3 (p006) | 0.5606 | 0.5433 | 0.8052 | 0.6377 | 267\nk=1 s42    | 0.5549 | 0.5376 | 0.8136 | 0.6231 | 242\nk=1 s43    | 0.5651 | 0.5471 | 0.8180 | 0.6094 | 231\n\nk=1 s43 在 rel_f1/ign_f1/evi_f1 均优于 k=3 baseline，edcr 降低（更少 distractor citations）。\nk=1 s42 略低于 k=3 baseline 的 rel/ign_f1，但 evi_f1 更好。\ntruncated 数从 267→231 改善，说明 k=1 输出更紧凑。\n\n=== LLaMA s43 训练状态 ===\n进行中, PID 537136, GPU 3\nstep 632/1107 (~57%), ~3.0s/it, 预计剩余 ~24 min\nloss ≈ 0.49-0.56, checkpoints: 550, 600\n训练稳定\n\n=== GPU 状态 ===\nGPU 0: 0 MiB, 0%\nGPU 1: 0 MiB, 0%\nGPU 2: 0 MiB, 0%\nGPU 3: 30593 MiB, 69% (LLaMA s43 训练)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/read-d102-8b-results-both.md"
+}

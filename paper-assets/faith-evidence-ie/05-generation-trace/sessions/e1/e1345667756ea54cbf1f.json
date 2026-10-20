@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1345667756ea54cbf1f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp check rsft r1 eval result",
+  "task_key": "worker_exp_check-rsft-r1-eval-result_20260515T112348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_check-rsft-r1-eval-result_20260515T112348_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "f3a033c5aedd2cc4bfb74ca193b75879d79f3a1bf26e61fada7d633141059dcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## RSFT r1 全量 Dev Eval 结果\n\n| Metric | RSFT r1 | SFT baseline | Δ vs SFT | s44 |\n|--------|---------|-------------|----------|-----|\n| rel_f1 | **0.4449** | 0.4057 | +0.0392 | 0.4655 |\n| evi_f1 | **0.8187** | 0.7979 | +0.0208 | 0.8087 |\n| EDCR | 0.6565 | 0.7118 | -0.0553 | 0.6350 |\n| num_preds | 15307 | — | — | — |\n\n**MVP-2 PASS** — rel_f1 > 0.4057 ✓, evi_f1 > 0.798 ✓\n\n注意：evi_f1 比 s44 还高 (+0.01)，rel_f1 比 SFT baseline 高但低于 s44。EDCR 介于两者之间。213/985 文档被截断。\n\nRegistry 已更新为 DONE/success，cron 已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-check-rsft-r1-eval-result.md"
+}

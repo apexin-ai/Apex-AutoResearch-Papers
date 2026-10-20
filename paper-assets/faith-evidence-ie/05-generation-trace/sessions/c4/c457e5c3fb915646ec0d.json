@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c457e5c3fb915646ec0d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze eval rsft ced s45",
+  "task_key": "worker_analyze_eval_rsft_ced_s45_20260516T042237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_rsft_ced_s45_20260516T042237_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "ad9675b51fc6248951babf34f8132b3267793e125cf0bcc42a54ebfcf37d3cc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_rsft_ced_s45 结果\n\n| 指标 | 值 |\n|------|------|\n| **F1** | **0.4514** |\n| Ign-F1 | 0.4416 |\n| Precision | 0.4718 |\n| Recall | 0.4326 |\n| Evi-F1 | 0.8174 |\n| EDCR | 0.6550 |\n| Evi-F1 (joint) | 0.3558 |\n| Format OK | 100% (985/985) |\n| Truncated | 206/985 |\n\nF1=0.4514 > 0.40 阈值，标记 success。与 flat-NLI s42 (0.4539) 基本持平（差 0.0025）。\n\nRegistry 已更新为 DONE，产出已注册。等 s42/s43/s44 的 CED 结果确认后即可做 paired t-test。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-rsft-ced-s45.md"
+}

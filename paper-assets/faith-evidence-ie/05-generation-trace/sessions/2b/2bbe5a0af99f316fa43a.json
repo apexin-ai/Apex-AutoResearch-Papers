@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bbe5a0af99f316fa43a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval grpo g8 bf16 results",
+  "task_key": "worker_analysis_eval_grpo_g8_bf16_results_20260515T175633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_grpo_g8_bf16_results_20260515T175633_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "9cd2e1ff12d5ba2788928bb4efbc263784a038add071413171d45715499cd343"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估**全部正常完成**，EXIT_CODE=0，3 个 checkpoint 都已评估。\n\n### 结果汇总\n\n| Metric | ckpt-80 | ckpt-90 | ckpt-100 |\n|--------|---------|---------|----------|\n| **Rel-F1** | 0.4456 | 0.4523 | **0.4549** |\n| **Ign-F1** | 0.4456 | 0.4523 | **0.4549** |\n| **Evi-F1** | 0.8034 | 0.8052 | **0.8086** |\n| **EDCR** | **0.6409** | 0.6414 | 0.6318 |\n| **Format OK** | 99.9% | 99.8% | **100.0%** |\n| **Truncated** | 50/985 | 61/985 | 61/985 |\n\n**Best by F1: checkpoint-100** (F1=0.4549, Evi-F1=0.8086)。\n\n趋势：F1 和 Evi-F1 从 ckpt-80 到 100 单调上升，EDCR 在 ckpt-100 略降（0.6409→0.6318）。Format OK 逐步改善到 100%。\n\n需要我更新 registry 状态吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-grpo-g8-bf16-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91492944ce3b250e7150",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose urgent full status and cascade",
+  "task_key": "worker_diagnose_urgent-full-status-and-cascade_20260522T181214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_urgent-full-status-and-cascade_20260522T181214_result.json",
+    "occurrence": 1,
+    "bytes": 1365,
+    "sha256": "1297b409cdd2b7c7eb378d769a75459810e8a438e431ba719c041e471552c345"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All registry entries updated to RUNNING. Here's the full status summary:\n\n## 完成的实验（已更新 registry）\n\n| 实验 | GPU | ign_f1 | Evidence Tax | 关键发现 |\n|------|-----|--------|-------------|---------|\n| **14B RSFT no-evi** | cuda:0 | 0.3926 | **+0.77pp** | no-evi 反而更好！with-evi=0.3849 |\n| **8B RSFT no-evi** | cuda:3 | 0.3319 | **-0.34pp** | evidence 微弱帮助, with-evi=0.3353 |\n| **14B SFT s43** | cuda:1 | train_loss=0.6052, eval_loss=0.6552 | — | s42对比: train=0.5457, eval=0.6292, s43略高 |\n\n## 仍在运行\n\n| 实验 | GPU | 进度 | ETA |\n|------|-----|------|-----|\n| **1.7B RSFT no-evi** | cuda:2 (6GB) | 146/500 (29%) | ~5h |\n\n## 级联提交（3 个新任务已启动）\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| **test_eval_4b_rsft_s42_no_evi** | cuda:0 (9.5GB) | 194600 | RUNNING |\n| **plan017_14b_rsft_s43_generate** | cuda:1 (28.7GB) | 194682 | RUNNING |\n| **test_eval_llama_rsft_s42_no_evi** | cuda:3 (36.7GB) | 194438 | RUNNING |\n\n**14B evidence tax 结果出乎意料**：no-evidence 模式在 test set 上 ign_f1=0.3926 比 with-evidence 的 0.3849 高 0.77pp。这与 dev set 上 evidence 帮助 -4.54pp 的方向相反，说明 14B RSFT 的 evidence benefit 在 dev/test 之间不一致（类似 8B SFT 曾出现的 dev-test 方向反转）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-urgent-full-status-and-cascade.md"
+}

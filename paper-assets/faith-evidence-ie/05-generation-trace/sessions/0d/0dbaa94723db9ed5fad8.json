@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0dbaa94723db9ed5fad8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval d102 8b k1 both",
+  "task_key": "worker_eval_d102_8b_k1_both_20260518T082635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d102_8b_k1_both_20260518T082635_result.json",
+    "occurrence": 1,
+    "bytes": 322,
+    "sha256": "056192a89c4f0dcb50fe5dd255ac8434fe99b977c749e9949b7f01633a87d06d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已在两张 GPU 上并行运行中：\n- **cuda:0** (s42): PID 523743, 2/247 batches, ~54s/batch\n- **cuda:1** (s43): PID 524152, 2/247 batches, ~46s/batch\n\n预计总时长 3-3.5 小时（比预期长，因为 8B no-quantize + max_new_tokens=1024 + batch_size=4）。5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d102-8b-k1-both.md"
+}

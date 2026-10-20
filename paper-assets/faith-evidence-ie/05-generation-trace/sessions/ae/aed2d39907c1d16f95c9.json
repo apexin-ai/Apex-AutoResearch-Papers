@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aed2d39907c1d16f95c9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code eval pipeline prep",
+  "task_key": "worker_code_eval-pipeline-prep_20260514T073710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-pipeline-prep_20260514T073710_result.json",
+    "occurrence": 1,
+    "bytes": 4301,
+    "sha256": "c62e981bc4258eeac66b6f0136c6bc3da60ac5efae34bd1d5f129bb3786bc858"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息已收集完毕。汇总如下：\n\n---\n\n## 1. SFT Eval 脚本\n\n**需要写新脚本：Yes**\n\n`eval/evaluator.py` 是纯库模块（`DocREDEvaluator` 类），没有 `__main__` 或 argparse CLI 入口。也没有找到 `run_eval`/`infer`/`predict`/`generate` 等任何 runner 脚本。\n\n需要一个 eval runner，负责：\n- 加载 checkpoint（base model + LoRA adapter）\n- 对 dev.json 每个文档做 inference（生成 JSON 输出）\n- 调用 `parse_model_output()` 解析\n- 调用 `gold_from_docred()` 转 gold\n- 调用 `DocREDEvaluator.from_train_file(train_path).evaluate()` 计算指标\n- 输出: F1, Ign-F1, Evi-F1, EDCR, format compliance\n\n---\n\n## 2. 三路 GRPO 完整命令\n\n所有命令的公共前缀（环境变量 + conda）：\n```bash\nsource /etc/network_turbo && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_HUB_DISABLE_XET=1 && \\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && \\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp\n```\n\n### Stage 3: GRPO+CED（当前在跑）\n```bash\naccelerate launch --config_file freige/configs/accelerate_4gpu.yaml \\\n  -m freige.training.grpo_trainer \\\n  --model_name /root/autodl-tmp/models/Qwen3-4B \\\n  --sft_adapter /root/autodl-tmp/sft_output \\\n  --data_dir /root/autodl-tmp/data/docred \\\n  --stage 3 \\\n  --tau_start 0.3 --tau_end 0.5 \\\n  --output_dir /root/autodl-tmp/grpo_s3 \\\n  --num_generations 4 \\\n  --reward_device cpu \\\n  --per_device_batch_size 1 \\\n  --gradient_accumulation_steps 16 \\\n  --num_epochs 1 \\\n  --learning_rate 5e-5 \\\n  --seed 42 \\\n  --wandb_run_name grpo-s3-ced\n```\n\n### Stage 2: flat-NLI\n```bash\naccelerate launch --config_file freige/configs/accelerate_4gpu.yaml \\\n  -m freige.training.grpo_trainer \\\n  --model_name /root/autodl-tmp/models/Qwen3-4B \\\n  --sft_adapter /root/autodl-tmp/sft_output \\\n  --data_dir /root/autodl-tmp/data/docred \\\n  --stage 2 \\\n  --tau_start 0.3 --tau_end 0.5 \\\n  --output_dir /root/autodl-tmp/grpo_s2 \\\n  --num_generations 4 \\\n  --reward_device cpu \\\n  --per_device_batch_size 1 \\\n  --gradient_accumulation_steps 16 \\\n  --num_epochs 1 \\\n  --learning_rate 5e-5 \\\n  --seed 42 \\\n  --wandb_run_name grpo-s2-flat-nli\n```\n\n### Stage 1: extraction-only\n```bash\naccelerate launch --config_file freige/configs/accelerate_4gpu.yaml \\\n  -m freige.training.grpo_trainer \\\n  --model_name /root/autodl-tmp/models/Qwen3-4B \\\n  --sft_adapter /root/autodl-tmp/sft_output \\\n  --data_dir /root/autodl-tmp/data/docred \\\n  --stage 1 \\\n  --output_dir /root/autodl-tmp/grpo_s1 \\\n  --num_generations 4 \\\n  --per_device_batch_size 1 \\\n  --gradient_accumulation_steps 16 \\\n  --num_epochs 1 \\\n  --learning_rate 5e-5 \\\n  --seed 42 \\\n  --wandb_run_name grpo-s1-extraction\n```\nStage 1 不需要 `--reward_device`（只用 format + F1 reward，无 NLI 模型），也不需要 `--tau_start/--tau_end`。\n\n---\n\n## 3. GRPO 输出目录\n\n`/root/autodl-tmp/grpo_s3/` 当前为空目录（训练刚开始 7/189 steps）。根据 GRPOConfig：\n- `save_strategy=\"epoch\"`, `save_total_limit=2` → 每 epoch 结束保存 checkpoint，最多保留 2 个\n- 训练完成后 `trainer.save_model()` + `tokenizer.save_pretrained()` 保存最终模型\n- 如果有 WANDB_API_KEY，会上报 wandb\n\n产出文件预期：`adapter_config.json`, `adapter_model.safetensors`, tokenizer 文件, `checkpoint-*` 子目录\n\n---\n\n## 4. 发现的问题\n\n| 项目 | 状态 |\n|------|------|\n| GRPO CED 运行中 | 正常，7/189 steps，~2min/step，预计 ~6h |\n| SFT eval runner | **缺失**，需要新写 |\n| NLI cache (`/root/autodl-tmp/nli_cache/`) | 未验证是否被 GRPO 训练引用（`grpo_trainer.py` 的 `CEDRewardWrapper` 没有显式的 `nli_cache` 参数，可能在 `ced_reward.py` 内部处理） |\n| `train_nli_cache.json` | 存在于 `/root/autodl-tmp/data/docred/`，38180 样本预计算 cache |\n| HF 超时 | 日志显示 NLI 模型下载有 retry（已成功解决） |\n\n**下一步**：需要写一个 `eval/run_eval.py`（或 `scripts/evaluate.py`），做 checkpoint inference + evaluator 调用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-pipeline-prep.md"
+}

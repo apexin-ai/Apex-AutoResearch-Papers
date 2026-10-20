@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b266de9a475d87ef773",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit test eval llama sft s42 no evi",
+  "task_key": "worker_submit_test_eval_llama_sft_s42_no_evi_20260522T043716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_test_eval_llama_sft_s42_no_evi_20260522T043716_result.json",
+    "occurrence": 1,
+    "bytes": 468,
+    "sha256": "21f6af7bd84262061b9b7ff7905a398ed0846b2458fc92af4a43e0a1035905b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并确认运行中。\n\n**汇报：**\n- **路径确认**：base model `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`，SFT adapter `/root/autodl-tmp/sft_output_llama_3_1_8b`，与 with-evi test eval 完全一致\n- **PID**：162768\n- **GPU 占用**：cuda:3 上 18870 MiB，推理已开始（500 docs, batch_size=1）\n- **`--no_evidence` 已通过 /proc cmdline 确认传入**\n- 预计耗时 ~3.5h（参考 with-evi 版本 3h28m）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-test-eval-llama-sft-s42-no-evi.md"
+}

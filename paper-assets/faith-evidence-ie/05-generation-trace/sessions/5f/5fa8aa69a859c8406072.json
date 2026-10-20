@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fa8aa69a859c8406072",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_20_1779576515.md",
+  "task_key": "loop_20_1779576515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_20_1779576515.md",
+    "occurrence": 1,
+    "bytes": 4830,
+    "sha256": "a170fae8eca2126381299d905285b66abbaec42ee022949f3b080e02195d262d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: idle_timeout\nupdated: '2026-05-22T22:07:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 rtx5090-4x cuda:0-3（4张），gpu_ids 白名单严格执行\n- 4B RSFT s42 原始 checkpoint 有 bug（train loss 异常），已 retrain 为 v2（`retrain_4b_rsft_ced_s42_v2`），论文中 4B RSFT 数据必须用 v2 checkpoint 的 eval 结果，不能用原始 s42\n- Evidence tax claim 限制为 Qwen family observational（D147），cross-architecture（LLaMA）仅 supplementary/Discussion\n- Threshold claim（C3）限制为 observational + Qwen family specific（D147 reviewer 预审结论）\n- 截断问题：1.7B/8B 在 @1024 有截断不对称（D139/D140），evidence tax 必须用 matched@2048 数据；test set eval 也用 @2048 max_length\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx5090-4x（4× RTX PRO 6000, 96GB/卡），工作目录 `/root/autodl-tmp/faith-evidence-ie/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 模型路径：`/root/autodl-tmp/faith-evidence-ie/outputs/` 下各 checkpoint\n- 数据集：`/root/autodl-tmp/faith-evidence-ie/data/`，test set = `test_revised.json`（500 docs）\n- W&B project：`faith-evidence-ie`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程（截至 handoff 时刻）：\n  - `dev_eval_4b_rsft_ced_s42_v2` — cuda:0，验证 retrain v2 checkpoint dev 质量\n  - `test_eval_4b_sft_s42_no_evi` — cuda:1，4B no-evi test eval\n  - `test_eval_llama_sft_s42_no_evi` — cuda:3，LLaMA no-evi test eval\n- cuda:2 刚释放（`test_eval_8b_sft_s42_no_evi` 完成进入 ANALYZING）\n- Worker running：`worker_diagnose_dev-eval-status-and-codalab-verify`（CPU 任务）\n\n### 3. 📊 当前状态\n**刚发生**：`test_eval_8b_sft_s42_no_evi` cron 回调到达（进程正常退出，W&B 数据可用），状态 ANALYZING。我在 session 初始化阶段（read_registry + reconcile_crons 完成），尚未完成结果分析——registry filter 返回空（可能 exp_id 格式问题），需要下一个 session 用 Bash jq 查 registry.yaml 或 spawn Worker 读 W&B/log 拿 metrics。\n\n**D147 evidence tax test spot-check 进度**：\n| Scale | Dev fair_tax | Test tax | 状态 |\n|-------|------------|----------|------|\n| 1.7B | -5.63pp (helps) | -4.86pp (helps) | ✅ DONE |\n| 4B | +0.25±0.47pp (neutral) | ⏳ | cuda:1 RUNNING |\n| 8B | +0.04pp (neutral) | ⏳ **ANALYZING** | **需要分析** |\n| 14B | +0.03pp (neutral) | -0.32pp (neutral) | ✅ DONE |\n| LLaMA | -5.19pp (helps) | ⏳ | cuda:3 RUNNING |\n\n**配对 with-evidence test 结果**（用于计算 tax）：\n- 8B with-evi test: 查 `test_eval_8b_sft_s42` 的 ign_f1（需要确认 exp_id，可能在 registry 中叫别的名字）\n\n### 4. 📋 待办（条件触发式）\n- **立即**：`test_eval_8b_sft_s42_no_evi` ANALYZING → spawn Worker 读 W&B/log 拿 ign_f1 → 与 8B with-evi test 配对 → 计算 test evidence tax → update_registry(conclusion) → 汇报 Director\n- cuda:2 已空闲 → 分析完 8B 后视情况安排（可能无更多 eval 需要跑）\n- `test_eval_4b_sft_s42_no_evi` cron 回调到达 → 同上流程，计算 4B test tax\n- `test_eval_llama_sft_s42_no_evi` cron 回调到达 → 计算 LLaMA test tax（supplementary）\n- `dev_eval_4b_rsft_ced_s42_v2` cron 回调到达 → 验证 v2 dev ign_f1 与原始 ~0.4517 一致性，偏差 >2pp 需报告\n- 全部 5 scale no-evi test 完成 → 编译完整 test evidence tax 表 → Paper Agent patch 写入论文 → 升级/确认 evidence tax narrative\n- CodaLab 格式转换 + 提交（`convert_codalab.py` 已就绪，Worker 可能正在验证）\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 Main（ARR July cycle，~55 天），Round 1 得分 3.0 Findings，目标提升到 4.0 Main\n- **论文 3 大贡献**：(1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Evidence tax landscape + variance compression\n- **D147 是当前 framing 的锚**：reviewer 预审后大幅收紧了 claim——threshold 限 observational/Qwen-specific，cross-arch 仅 supplementary。所有 evidence tax 表述必须遵守 D147 约束\n- **关键决策链**：D138→D139→D140→D141→D142→D143→D144→D145→D146→D147，核心是截断审计（D139/D140）发现 @1024 evidence tax 不可信 → matched@2048 修正 → 3-seed 确认 → reviewer 预审 framing 收紧\n- **易错点**：\n  - registry filter 用 exp_id 查特定实验可能返回空——用 jq 或 grep 直接查 registry.yaml 更可靠\n  - 8B with-evidence test 的 exp_id 可能不叫 `test_eval_8b_sft_s42`，需要在 registry 中搜索确认\n  - 不要混淆 @1024 和 @2048 的 evidence tax 数据——论文用 @2048 matched\n  - 4B RSFT 必须用 v2 checkpoint（原始有 train loss 异常）\n  - test set 是 `test_revised.json`（500 docs），不是 dev set\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-1779576515.md"
+}

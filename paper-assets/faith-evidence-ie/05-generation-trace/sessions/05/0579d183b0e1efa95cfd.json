@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0579d183b0e1efa95cfd",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "prep 1 7b scaling seeds",
+  "task_key": "worker_prep_1_7b_scaling_seeds_20260518T144205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_1_7b_scaling_seeds_20260518T144205_result.json",
+    "occurrence": 1,
+    "bytes": 1130,
+    "sha256": "799939b7a5fb1b587af4a3ad6db83922910996a1f851d63159a0ccf66da75616"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个脚本全部就绪，dry-run 通过。\n\n**创建的脚本：**\n\n| 脚本 | 用途 |\n|------|------|\n| `sft_1_7b_s43.sh` | SFT 训练 seed=43 |\n| `sft_1_7b_s44.sh` | SFT 训练 seed=44 |\n| `eval_sft_1_7b_s43.sh` | Eval seed=43 (D076) |\n| `eval_sft_1_7b_s44.sh` | Eval seed=44 (D076) |\n\n**超参与 canonical 完全一致**（lr=2e-4, bs=1, grad_accum=16, epoch=3, warmup_ratio=0.05, lora=64/128/0.05, bf16 no-quantize, max_length=4096），仅改 seed 和 output_dir。\n\n**输出路径：**\n- 训练：`/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed43/` 和 `_seed44/`\n- Eval：`/root/autodl-tmp/eval_results/sft_1_7b_s43_eval/` 和 `_s44_eval/`\n\n**Eval 参数**参照 canonical 1.7B SFT eval 的实际配置（`model_path`=base model, `sft_adapter`=LoRA adapter, bs=4, no-quantize, seed=42）。\n\n**启动方式：**\n```bash\nGPU=X bash scripts/seed_expansion/sft_1_7b_s43.sh\nGPU=X bash scripts/seed_expansion/eval_sft_1_7b_s43.sh\n```\n\n注意：现有的 `train_1_7b_s43.sh` / `train_1_7b_s44.sh` 是 **RSFT** 脚本（用 `rsft_trainer`），与这里新建的 SFT 脚本不冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-1-7b-scaling-seeds.md"
+}

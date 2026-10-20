@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd10a8c067eaada55f08",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit plan017 14b rsft s43 generate",
+  "task_key": "worker_submit_plan017_14b_rsft_s43_generate_20260522T185529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_plan017_14b_rsft_s43_generate_20260522T185529_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "18ab44b6926a8bf77c113f63299c0dae0fc250fd5034cdbb7d9a41a996a8616d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**s43 generation 已经在运行，无需重复提交。**\n\nRegistry 中 `plan017_14b_rsft_s43_generate` 状态为 RUNNING：\n- **PID**: 194682\n- **GPU**: cuda:1（32GB 占用）\n- **命令**: `CUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b_s43 --num_generations 8 --max_new_tokens 1024 --seed 43`\n- **进度**: 114/3027 docs（~4%），已运行约 38 分钟\n- **预估完成**: 以当前 ~20s/doc 速度，剩余 ~16 小时\n- **质量**: format_ok=100%, truncation=7.8%, diversity=7.2/8（与 s42 的 7.28 一致）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-plan017-14b-rsft-s43-generate.md"
+}

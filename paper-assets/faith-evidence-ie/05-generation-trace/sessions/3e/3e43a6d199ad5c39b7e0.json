@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e43a6d199ad5c39b7e0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analyze d140 8b sft s42 no evi 2048 fix",
+  "task_key": "worker_analyze_d140_8b_sft_s42_no_evi_2048_fix_20260521T103134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_d140_8b_sft_s42_no_evi_2048_fix_20260521T103134_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "5788dff504f0cb0a1269b0e3eba6a1d5c2f2ecea1f1e23af0c9bb13a69a10c76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。总结：\n\n### d140_8b_sft_s42_no_evi_2048_fix 结果\n\n| 指标 | no-evi (本实验) | with-evi (配对) | 差异 |\n|------|----------------|----------------|------|\n| **Ign-F1** | **0.5019** | 0.5012 | +0.0007 |\n| F1 | 0.5227 | 0.5219 | +0.0008 |\n| Evi-F1(DREEAM) | 0.0130 | 0.4087 | — |\n| EDCR | 0.7051 | 0.7039 | +0.0012 |\n| Format OK | 100% | 99.9% | — |\n| Truncated | 260/985 | 236/985 | +24 |\n\n**Evidence Tax = -0.0007**（本质为零）。在 8B SFT + 2048 tokens 条件下，要求模型额外输出 evidence 对 RE 性能无显著影响——既不帮助也不损害关系抽取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-d140-8b-sft-s42-no-evi-2048-fix.md"
+}

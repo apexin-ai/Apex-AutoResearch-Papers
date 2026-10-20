@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6813c348b051deda2e54",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code test eval 4b rsft s42 v2 check",
+  "task_key": "worker_code_test_eval_4b_rsft_s42_v2_check_20260522T000221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_test_eval_4b_rsft_s42_v2_check_20260522T000221_result.json",
+    "occurrence": 1,
+    "bytes": 449,
+    "sha256": "192a52925b4fc38c9fc2900b4be22c7dbc80710a0559a14cf8f3ba165d33342f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功重新提交并确认运行中：\n\n- **tmux session**: `test_eval_4b_rsft_s42_v2` 已创建\n- **PID**: 146485，运行在 cuda:2\n- **状态**: 模型权重已加载完成，正在加载 SFT adapter（`/root/autodl-tmp/sft_output`）\n- **Registry**: 已更新为 RUNNING，pid=146485\n\n之前失败原因是 `EXIT_CODE=2 (shell misuse / syntax)`，这次直接用 tmux 手动提交，绕过了命令格式问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-test-eval-4b-rsft-s42-v2-check.md"
+}

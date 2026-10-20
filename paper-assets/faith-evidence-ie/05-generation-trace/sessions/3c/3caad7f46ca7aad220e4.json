@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3caad7f46ca7aad220e4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code push anon repo v5",
+  "task_key": "worker_code_push-anon-repo-v5_20260524T050728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_push-anon-repo-v5_20260524T050728_result.json",
+    "occurrence": 1,
+    "bytes": 290,
+    "sha256": "3e0bbac6d0b64ba69e3ae4c82f9ec49772cfac2491eedf5acda16a3abde0a1ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**推送结果：**\n\n- **Commit**: `73bbe67` — Add main-text references to appendix sections (fair_subset, scaling_details, qualitative)\n- **Push**: 成功，`0dd75cc..73bbe67 main -> main`\n- **Author 检查**: 全部为 `Anonymous <anon@example.com>`，无身份泄漏"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-push-anon-repo-v5.md"
+}

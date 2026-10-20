@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92c8bc46335c4c99ecfc",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit test eval 4b sft s42",
+  "task_key": "worker_submit_test_eval_4b_sft_s42_20260521T183414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_test_eval_4b_sft_s42_20260521T183414_result.json",
+    "occurrence": 1,
+    "bytes": 311,
+    "sha256": "78eb5c84423a675ed0048dbeb512f1b794bcd290de25c684bf8d709285995e14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **exp_id**: `test_eval_4b_sft_s42`\n- **PID**: 126048，cuda:0\n- **状态**: RUNNING\n- **日志**: `/root/autodl-tmp/eval_results/test_eval_4b_sft_s42/run.log`\n- **参数**: Qwen3-4B + SFT adapter, batch_size=1, max_new_tokens=2048, no-quantize, split=test_revised (500 docs)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-test-eval-4b-sft-s42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e50c1020186e05ab4de",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "viz evidence tax landscape",
+  "task_key": "worker_viz_evidence-tax-landscape_20260523T131855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_evidence-tax-landscape_20260523T131855_result.json",
+    "occurrence": 1,
+    "bytes": 385,
+    "sha256": "3c5926ab2dda2cafd15e07f2b1e7be98bc039a49233d48bd381b85b08682ce36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已生成：\n\n- **PDF**: `/root/autodl-tmp/freige/artifacts/fig_evidence_tax.pdf` (21K)\n- **PNG**: `/root/autodl-tmp/freige/artifacts/fig_evidence_tax.png` (57K)\n\nOkabe-Ito 双色柱状图，蓝色=evidence helps（负税），橙色=evidence hurts（正税），黑色 error bars，14B 标注 *n=1*，零基线虚线，single-column 宽度 3.5\"，300 DPI。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-evidence-tax-landscape.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18a2775dfa48fca241be",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor d145 experiments progress",
+  "task_key": "worker_monitor_d145_experiments_progress_20260521T165117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_d145_experiments_progress_20260521T165117_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "4708f5951dde7877d2df3abc22f05c6576a67b99ae44f54d27ba61e6189ecbf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个进程存活。汇总：\n\n```\nexp_id: d145_4b_sft_s43_with_evi_2048\npid_alive: true\nelapsed: 56m20s\nprogress: 90/247 batches (36.4%)\nestimated_remaining: ~1h57m\nstatus: running\ngpu: cuda:0, 11767 MiB, 90% util\n\nexp_id: d145_4b_sft_s43_no_evi_2048\npid_alive: true\nelapsed: 56m17s\nprogress: 99/247 batches (40.1%)\nestimated_remaining: ~1h18m\nstatus: running\ngpu: cuda:1, 11703 MiB, 88% util\n\nexp_id: d145_4b_sft_s44_with_evi_2048\npid_alive: true\nelapsed: 46m17s\nprogress: 82/247 batches (33.2%)\nestimated_remaining: ~2h00m\nstatus: running\ngpu: cuda:2, 11765 MiB, 90% util\n\nexp_id: test_eval_1_7b_rsft_s42\npid_alive: true\nelapsed: 5h12m44s\nprogress: 446/500 batches (89.2%)\nestimated_remaining: ~31m\nstatus: running\ngpu: cuda:3, 6071 MiB, 45% util\n```\n\ntest_eval_1_7b_rsft_s42 最快完成（约 31 分钟后），其余三个 4B eval 还需 1.3\\~2 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-d145-experiments-progress.md"
+}

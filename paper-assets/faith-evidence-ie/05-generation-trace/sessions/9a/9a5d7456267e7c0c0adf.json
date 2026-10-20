@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a5d7456267e7c0c0adf",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops download qwen3 8b r2",
+  "task_key": "worker_ops_download_qwen3_8b_r2_20260516T063616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_qwen3_8b_r2_20260516T063616_result.json",
+    "occurrence": 1,
+    "bytes": 614,
+    "sha256": "e7ee6559c47c9727200fa8eec964fa333233fa07c5c5e6e1bc62ada7d6a619f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**清理前后对比：**\n\n| 指标 | 清理前 | 清理后 | 下载后 |\n|------|--------|--------|--------|\n| 已用 | 240GB | 204GB | 220GB |\n| 可用 | 11GB | 47GB | 31GB |\n\n**清理项：**\n- Meta-Llama-3.1-8B（两个硬链接目录）：~30GB — 项目零引用\n- Qwen3-8B 残留下载（错误嵌套结构）：1.2GB\n- HF cache Qwen3-4B blobs：881MB\n\n**Qwen3-8B 下载验证通过：**\n- 路径：`/root/autodl-tmp/models/Qwen/Qwen3-8B`\n- 5 个 safetensors 分片，共 16GB\n- config/tokenizer 加载正常：qwen3, hidden=4096, 36 layers, vocab=151936"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-qwen3-8b-r2.md"
+}

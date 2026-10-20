@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3703986739fb49f50ca",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_6_1778822796.md",
+  "task_key": "loop_6_1778822796",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778822796.md",
+    "occurrence": 1,
+    "bytes": 4945,
+    "sha256": "0b3f01e82b4dba00b9ec89562de53eea68945b3f9746efda46527c2668031e30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T05:11:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3（rtx5090-4x 服务器，4× RTX 5090 32GB）\n- 运行目录必须 `cd /root/autodl-tmp`，**禁止** `cd /root/autodl-tmp/freige`（后者导致 Python import 找到内层空 `freige/freige/` 包，所有训练/eval 脚本都会 import 失败）\n- RSFT 训练**禁止** `--quantize`（4-bit + merge_and_unload 在 RTX 5090 上触发 CUBLAS 错误），bf16 Qwen3-4B 仅 ~8GB 无需量化\n- GRPO+QLoRA 方向已判死（D031/D033），不要重新尝试在线 RL\n- Qwen3 generation_config 会静默覆盖代码传参（top_k=20, temperature=0.6），生成前必须显式 override\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：rtx5090-4x，账户 root\n- **工作目录**：`/root/autodl-tmp/freige`（代码），运行命令从 `/root/autodl-tmp` 执行\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境）\n- **环境激活**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**：`/root/autodl-tmp/models/Qwen3-4B`（base）、`/root/autodl-tmp/sft_output`（SFT adapter）\n- **NLI 模型**：`/root/autodl-tmp/.hf_cache` 下的 `cross-encoder/nli-deberta-v3-base`\n- **RSFT 生成输出**：`/root/autodl-tmp/rsft_generations/shard_{0,1,2,3}/generations.jsonl`\n- **W&B project**：faith-evidence-ie（wandb config 在服务器上已配置）\n- **HF cache**：`HF_HOME=/root/autodl-tmp/.hf_cache`\n- **活跃进程**：RSFT 生成已全部完成（4 shard PID 135867/136270/136649/137985 均已退出）\n- **活跃 Worker**：4 个 CED scoring worker 正在运行（worker_ssh_ced-score-shard{0,2,3} + worker_ssh_urgent-shard-status）\n- **Cron**：无活跃 cron（reconcile 返回 0）\n\n### 3. 📊 当前状态\n**刚完成**：RSFT 生成全量完成（4 shard × N=8，~3027 docs，~19248+ 行 JSONL，diversity 7.4-7.8/8，format_ok 99.6-100%）。\n\n**正在进行**：CED 打分筛选（RSFT pipeline step 2）。4 个 Worker 正在执行：\n- `worker_ssh_ced-score-shard0`（running，启动 05:01 UTC）\n- `worker_ssh_ced-score-shard2`（running，启动 04:41 UTC）\n- `worker_ssh_ced-score-shard3`（running，启动 05:01 UTC）\n- `worker_ssh_urgent-shard-status`（running，启动 04:32 UTC）\n- shard 1 CED scoring 已完成（worker done 04:56 UTC）\n\n**Registry 状态**：\n- 52 个实验总计：13 success / 11 negative / 12 failed / 其余 killed\n- 所有 RUNNING 实验已完成，无活跃训练\n- 3 个 PREPARING+killed 是 GRPO 遗留（kl001_r2, kl001_r3, eval_ced_kl001_r4_last），已废弃不再执行\n\n**等待中**：\n- 等 CED scoring Worker 回调（shard 0/2/3）→ 合并 → RSFT 训练\n- 无 Director 待决策项\n\n### 4. 📋 待办（条件触发式）\n- CED scoring shard 0/2/3 Worker DONE 回调到达 → 检查筛选结果质量（通过率、CED score 分布）→ 合并 4 shard 筛选结果\n- 4 shard CED scoring 全部完成 → 合并为统一 `rsft_train.jsonl` → 提交 RSFT 训练（`rsft_trainer.py`，bf16，LoRA rank=64）→ 创建 registry 实验条目 + submit_training_job\n- RSFT 训练完成 → eval（rel_f1 对比 SFT baseline 0.4057 + evi_f1 对比 0.798）→ 结论判定\n- RSFT eval 结果 rel_f1 > SFT baseline → RSFT success，推进 DPO+CED 或 complete_mvp()\n- RSFT eval 结果 rel_f1 ≤ SFT baseline → negative，走 red-section framing 提案，考虑 contingency（prompt-level diversity / CED reranker / 全参微调）\n- `worker_ssh_fix-f1-threshold` 已完成 → 该 Worker 修复了 score_filter 中 f1_threshold 逻辑，确认修复已生效\n\n### 5. 🎯 战略上下文\n- **核心研究问题**：FREIGE — 用 CED (Contrastive Evidence Discrimination) 奖励训练 LLM 在文档级关系抽取中同时生成抽取结果和可验证证据\n- **MVP-1 通过**：CED signal 有效（margin 0.4827, accuracy 81.5%, r=0.34）\n- **MVP-2 关键 pivot**：GRPO+QLoRA 全线 FAIL（D031/D033，在线 RL 导致 rel_f1 catastrophic forgetting），转 RSFT（离线 RL）\n- **RSFT 是当前唯一活跃路线**——生成阶段刚完成，CED scoring 进行中，下一步就是 RSFT 训练\n- **论文关键素材**：GRPO 训练中 evi_f1 单调上升 0.628→0.850 而 rel_f1 崩塌，证明 CED reward signal 本身有效，问题在 online RL + QLoRA 的训练方式\n- **D034/D035/D036 教训**：diversity crisis 是监控 bug 不是生成质量问题。修复后真实 diversity=7.52/8。不要再怀疑 T=0.7 的 diversity\n- **易错点**：\n  1. 不要把 3 个 PREPARING+killed 的 GRPO 实验当作待执行任务——它们是历史遗留，已废弃\n  2. score_filter 的 `--f1_threshold` 刚被 fix-f1-threshold Worker 修复过，确认当前代码版本正确再用\n  3. RSFT trainer 的 `--lora_rank` 默认 64（不是 GRPO 时期的 4），这是正确的，不要改小\n  4. report.md 的\"告警\"列表全是历史 GRPO 失败，不需要处理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778822796.md"
+}

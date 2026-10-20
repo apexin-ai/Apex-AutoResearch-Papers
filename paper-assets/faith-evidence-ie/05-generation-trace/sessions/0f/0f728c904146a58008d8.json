@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f728c904146a58008d8",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code prepare experiment scripts",
+  "task_key": "worker_code_prepare-experiment-scripts_20260520T085111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-experiment-scripts_20260520T085111_result.json",
+    "occurrence": 1,
+    "bytes": 2073,
+    "sha256": "81f28794997ea93d56a7b3b02af4a5a3d577ef01a342ca0c57fc776b96319ffc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个脚本全部语法通过。\n\n## 汇总\n\n### 实验 1 & 2：LLaMA SFT s43/s44 retrain + eval（已有脚本，无需修改）\n\n| | 路径 | GPU 参数 |\n|---|---|---|\n| s43 | `scripts/seed_expansion/llama_sft_s43_train_eval.sh` | `GPU=0 bash ...` 或 `GPU=1 bash ...` |\n| s44 | `scripts/seed_expansion/llama_sft_s44_train_eval.sh` | 同上 |\n\n两个脚本已有 `export CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`，训练完自动 eval。\n\n### 实验 3：eval_llama_sft_s42_no_evidence_std（新建）\n\n- 路径：`scripts/eval_llama_sft_s42_no_evidence_std.sh`\n- 模型：`/root/autodl-tmp/sft_output_llama_3_1_8b`（s42 SFT 模型）\n- 关键参数：`--no_evidence`（inference.py L393 确认，`action=\"store_true\"`）\n- 用法：`GPU=3 nohup bash scripts/eval_llama_sft_s42_no_evidence_std.sh > /tmp/eval_no_evi.log 2>&1 &`\n- 耗时：~30min\n\n### 实验 4：rsft_generate_14b_resume（新建）\n\n- 路径：`scripts/rsft_generate_14b_resume.sh`\n- 基座：`/root/autodl-tmp/models/Qwen/Qwen3-14B`\n- SFT adapter：`/root/autodl-tmp/sft_output_14b`\n- 进度：1872/3028 docs 已完成（14976 行 / 8 gens），`--resume` 从 progress.json 自动恢复\n- 用法：`GPU=0 nohup bash scripts/rsft_generate_14b_resume.sh > /tmp/rsft_gen_14b.log 2>&1 &`\n- 耗时：~4-5h\n\n### westd-37389 启动命令（迁移完成后）\n\n```bash\n# 4 GPU 并行：\nGPU=0 nohup bash scripts/seed_expansion/llama_sft_s43_train_eval.sh > /tmp/s43.log 2>&1 &\nGPU=1 nohup bash scripts/seed_expansion/llama_sft_s44_train_eval.sh > /tmp/s44.log 2>&1 &\nGPU=2 nohup bash scripts/rsft_generate_14b_resume.sh > /tmp/rsft_gen_14b.log 2>&1 &\nGPU=3 nohup bash scripts/eval_llama_sft_s42_no_evidence_std.sh > /tmp/eval_no_evi.log 2>&1 &\n```\n\n### 注意事项\n\n1. **14B 生成单卡可行**：Qwen3-14B bf16 ≈ 28GB，westd 的 RTX PRO 6000 有 98GB 显存，单卡充裕\n2. **eval 先跑完**：实验 3 只需 ~30min，跑完后 GPU 3 可以接其他任务\n3. **14B 生成最慢**：剩余 ~1156 docs × 8 gens，预计 4-5h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-experiment-scripts.md"
+}

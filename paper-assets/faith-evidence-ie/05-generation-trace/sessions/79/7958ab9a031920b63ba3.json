@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "7958ab9a031920b63ba3",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "ops gpu status and dpo fix",
+  "task_key": "worker_ops_gpu_status_and_dpo_fix_20260515T193559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_and_dpo_fix_20260515T193559.log",
+    "occurrence": 1,
+    "bytes": 603327,
+    "sha256": "aceecf8c28d702f6798ba5bed65febbe7582e293ea283b8fd5d11be80b4ddbd8"
+  },
+  "statistics": {
+    "messages": 300,
+    "user_turns": 1,
+    "tool_calls": 103,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 103,
+      "tool_result": 103,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 133,
+      "chunks": [
+        {
+          "path": "7958ab9a031920b63ba3-part-0001.json",
+          "message_count": 133
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 167,
+      "chunks": [
+        {
+          "path": "7958ab9a031920b63ba3-part-0001.json",
+          "message_count": 47
+        },
+        {
+          "path": "7958ab9a031920b63ba3-part-0002.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-gpu-status-and-dpo-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65c26414500b2cb8405c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose nli large paper discrepancy",
+  "task_key": "worker_diagnose_nli-large-paper-discrepancy_20260522T161220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_nli-large-paper-discrepancy_20260522T161220_result.json",
+    "occurrence": 1,
+    "bytes": 1315,
+    "sha256": "162b0d96bae3c9fe3763df8536aa44f7a8f037c674869bfa25babc07e30b099d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已完整。诊断结论如下：\n\n## 诊断结果：+1.10pp 是正确的\n\n**analysis.tex L8 的 +1.10pp 没有错误。** 问题出在 Reviewer 对比了错误的 baseline 数字。\n\n### 精确数据溯源\n\n论文在 appendix.tex L48 明确写了对比方式：\n\n> yields only +1.10pp Ign-F1 (**45.33** vs. **44.23**, s42)\n\n这是 **same-seed (s42) 对比**：\n\n| 实验 | Registry exp_id | Ign-F1 | Rel-F1 | Evi-F1 | EDCR |\n|------|----------------|--------|--------|--------|------|\n| CED v3-base (s42) | `reeval_ced_s42` | **0.4423** | 0.4517 | 0.8175 | 0.6569 |\n| CED v3-large (s42) | `plan010_nli_large_eval_r2` | **0.4533** | 0.4636 | 0.8194 | 0.6530 |\n| **差值** | | **+1.10pp** | +1.19pp | +0.20pp | -0.39pp |\n\nRegistry 数字与论文 ablation 表 (appendix.tex L65, L77) 完全吻合。\n\n### Reviewer 误差来源\n\n用户任务描述中说\"原始 RSFT CED baseline: ign_f1 约 0.4517\"——这个 **0.4517 是 `reeval_ced_s42` 的 rel_f1，不是 ign_f1**。ign_f1 是 0.4423，比 0.4517 低近 1pp。混淆了 ign_f1 和 rel_f1 导致差值看起来只有 +0.16pp。\n\n### 结论\n\n- **+1.10pp 准确无误**，指 Ign-F1 same-seed s42 对比\n- analysis.tex 无需修改\n- 附录已有完整数据支撑（包含 seed noise 0.88pp 的对比论证）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-nli-large-paper-discrepancy.md"
+}

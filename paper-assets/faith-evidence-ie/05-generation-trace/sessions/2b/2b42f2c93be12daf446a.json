@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b42f2c93be12daf446a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh registry audit and status",
+  "task_key": "worker_ssh_registry-audit-and-status_20260521T234218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_registry-audit-and-status_20260521T234218_result.json",
+    "occurrence": 1,
+    "bytes": 5931,
+    "sha256": "b3bac9925d61020a2d16599193a88f34da9bef6a723193a7df8bce0305eb5e0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集完毕。\n\n---\n\n## 任务 1: GPU 状态\n\n| GPU | 显存占用 | PID | 进程 |\n|-----|---------|-----|------|\n| 0 | 6,071 / 97,887 MiB (6%) | 140534 | `freige.eval.test_inference` — **test_eval_1_7b_sft_s42** |\n| 1 | 32,503 / 97,887 MiB (33%) | 125323 | `freige.eval.test_inference` — **test_eval_14b_sft_s42** |\n| 2 | 94,453 / 97,887 MiB (97%) | 142872 | `freige.training.rsft_trainer` — **retrain_4b_rsft_ced_s42_v2** |\n| 3 | 32,503 / 97,887 MiB (33%) | 143166 | `freige.eval.test_inference` — **test_eval_14b_sft_s42_no_evi** |\n\n注意：PID 125323（GPU 1）与预期的 125321 略有出入，应为同一实验的子进程。\n\n---\n\n## 任务 2: Stale RUNNING 实验（全部 DEAD，进程已结束）\n\n### 1. d140_1_7b_sft_s42_no_evi_2048_fix (PID 87382) — ✅ DEAD\n\n| 指标 | 值 |\n|------|-----|\n| **F1** | **0.4436** |\n| **ign_F1** | **0.4233** |\n| precision | 0.4584 |\n| recall | 0.4298 |\n| ign_precision | 0.4297 |\n| ign_recall | 0.4172 |\n| tp | 5222 |\n| pred_count | 11391 |\n| gold_count | 12151 |\n| evi_precision/recall/f1 | 0.0 / 0.0 / 0.0 |\n| format_compliance_rate | 0.9848 |\n| field_compliance_rate | 0.0 |\n| n_predictions | 44566 |\n| n_truncated | 507 |\n| inference_time_seconds | 7438.2 |\n| config: no_evidence=true, split=dev, seed=42, max_new_tokens=2048, model=Qwen3-1.7B, adapter=sft_output_qwen3_1_7b_bf16 |\n\n### 2. d140_4b_sft_s42_no_evi_2048_fix (PID 88987) — ✅ DEAD\n\n| 指标 | 值 |\n|------|-----|\n| **F1** | **0.4095** |\n| **ign_F1** | **0.4016** |\n| precision | 0.4062 |\n| recall | 0.4128 |\n| ign_precision | 0.3859 |\n| ign_recall | 0.4185 |\n| tp | 5016 |\n| pred_count | 12349 |\n| gold_count | 12151 |\n| evi_precision/recall/f1 | 0.0 / 0.0 / 0.0 |\n| format_compliance_rate | 0.9980 |\n| field_compliance_rate | 0.0 |\n| n_predictions | 25638 |\n| n_truncated | 178 |\n| inference_time_seconds | 7606.2 |\n| config: no_evidence=true, split=dev, seed=42, model=Qwen3-4B, adapter=sft_output |\n\n### 3. d140_8b_sft_s42_no_evi_2048_fix (PID 87302) — ✅ DEAD\n\n| 指标 | 值 |\n|------|-----|\n| **F1** | **0.5227** |\n| **ign_F1** | **0.5019** |\n| precision | 0.5001 |\n| recall | 0.5475 |\n| ign_precision | 0.4716 |\n| ign_recall | 0.5363 |\n| tp | 6653 |\n| pred_count | 13304 |\n| gold_count | 12151 |\n| evi_precision | 0.9063 |\n| evi_recall | 0.0196 |\n| evi_f1 | 0.0384 |\n| edcr | 0.7051 |\n| format_compliance_rate | 1.0 |\n| field_compliance_rate | 0.0081 |\n| n_predictions | 31119 |\n| n_truncated | 260 |\n| inference_time_seconds | 10900.5 |\n| config: no_evidence=true, split=dev, seed=42, model=Qwen3-8B, adapter=sft_output_qwen3_8b_bf16 |\n\n### 4. d140_4b_sft_s42_with_evi_2048 (PID 93402) — ✅ DEAD\n\n| 指标 | 值 |\n|------|-----|\n| **F1** | **0.4033** |\n| **ign_F1** | **0.3946** |\n| precision | 0.3954 |\n| recall | 0.4115 |\n| ign_precision | 0.3748 |\n| ign_recall | 0.4167 |\n| tp | 5000 |\n| pred_count | 12645 |\n| gold_count | 12151 |\n| **evi_precision** | **0.7823** |\n| **evi_recall** | **0.7991** |\n| **evi_f1** | **0.7906** |\n| edcr | 0.7262 |\n| evi_f1_joint | 0.3129 |\n| format_compliance_rate | 0.9980 |\n| field_compliance_rate | 0.7523 |\n| n_predictions | 24682 |\n| n_truncated | 243 |\n| inference_time_seconds | 8887.1 |\n| config: no_evidence=false, split=dev, seed=42, model=Qwen3-4B, adapter=sft_output |\n\n### 5. test_eval_14b_rsft_s42 (PID 97434) — ✅ DEAD\n\n无 `metrics.json`，但有 `test_summary.json`（test split，无 gold label 计算 metrics 的方式不同）：\n\n| 指标 | 值 |\n|------|-----|\n| **F1** | **0.3849** |\n| **ign_F1** | **0.3849** |\n| precision | 0.4805 |\n| recall | 0.3210 |\n| tp | 5570 |\n| pred_count | 11593 |\n| gold_count | 17350 |\n| **evi_precision** | **0.4684** |\n| **evi_recall** | **0.8442** |\n| **evi_f1** | **0.6025** |\n| edcr | 0.7865 |\n| evi_f1_joint | 0.2688 |\n| format_compliance_rate | 0.998 |\n| field_compliance_rate | 0.36 |\n| n_documents | 500 |\n| n_predictions | 15835 |\n| n_truncated | 67 |\n| inference_time_seconds | 19085.8 |\n| config: split=test_revised, no_evidence=false, model=rsft_output_14b (Qwen3-14B RSFT) |\n\n### 6. eval_llama_rsft_s42_no_evi_2048 (PID 95606) — ✅ DEAD\n\n| 指标 | 值 |\n|------|-----|\n| **F1** | **0.5703** |\n| **ign_F1** | **0.5559** |\n| precision | 0.5673 |\n| recall | 0.5734 |\n| ign_precision | 0.5440 |\n| ign_recall | 0.5684 |\n| tp | 6967 |\n| pred_count | 12282 |\n| gold_count | 12151 |\n| evi_precision | 1.0 |\n| evi_recall | 0.0003 |\n| evi_f1 | 0.0007 |\n| format_compliance_rate | 0.9990 |\n| field_compliance_rate | 0.0 |\n| n_predictions | 24365 |\n| n_truncated | 140 |\n| inference_time_seconds | 15710.3 |\n| config: no_evidence=true, split=dev, seed=42, model=rsft_output_llama_3_1_8b_k1 (Llama-3.1-8B RSFT) |\n\n---\n\n## 任务 3: 当前活跃实验\n\n| 实验 | PID | 状态 | GPU | 说明 |\n|------|-----|------|-----|------|\n| test_eval_14b_sft_s42 | 125323 | **ALIVE** | GPU 1 (32.5GB) | 14B SFT test eval |\n| test_eval_1_7b_sft_s42 | 140534 | **ALIVE** | GPU 0 (6.1GB) | 1.7B SFT test eval |\n| retrain_4b_rsft_ced_s42_v2 | 142872 | **ALIVE** | GPU 2 (94.4GB) | 4B RSFT training, step 350/510, loss=0.626, token_acc=0.854 |\n| test_eval_14b_sft_s42_no_evi | 143166 | **ALIVE** | GPU 3 (32.5GB) | 14B SFT no-evi test eval |\n\n**retrain_4b_rsft_ced_s42_v2 训练进度**：\n- 当前 step: 350 / 510 (68.6%)\n- 最新 checkpoint: checkpoint-350 (saved 07:41)\n- Loss: 0.6263\n- Mean token accuracy: 0.8536\n- Learning rate: 7.85e-6\n- save_steps=50, 下一个 checkpoint 在 step 400\n\n日志文件未在 `~/runs/faith-evidence-ie/` 找到（可能 nohup 输出到其他位置）。但进程全部活跃，从 GPU 占用和 trainer_state 看运行正常。\n\n---\n\n## 任务 4: 磁盘状态\n\n```\n/dev/md0  350G  251G  100G  72%  /root/autodl-tmp\n```\n\n剩余 100GB，暂无压力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-registry-audit-and-status.md"
+}

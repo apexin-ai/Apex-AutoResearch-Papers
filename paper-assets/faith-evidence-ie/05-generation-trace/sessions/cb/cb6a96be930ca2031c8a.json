@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb6a96be930ca2031c8a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "monitor running experiments eta",
+  "task_key": "worker_monitor_running_experiments_eta_20260516T015218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_running_experiments_eta_20260516T015218_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "b495684fdae361458e534fde0f178702943bca803902ea2888bf28833ab9d11b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度快照 (2026-05-16 ~09:52 UTC)\n\n| exp_id | GPU | PID存活 | 进度 | 预计完成 | 备注 |\n|--------|-----|---------|------|----------|------|\n| eval_flat_nli_s44 | cuda:0 (11GB/32GB) | ✅ 270462 | 204/247 (83%) | ~30min (~10:22 UTC) | ~45s/batch |\n| rsft_ced_s43_train_r3 | cuda:1 (28.7GB/32GB) | ✅ 277310 | 510/510 (100%) | 即将完成 | 训练步已跑完，正在收尾(eval/save) |\n| eval_rsft_ced_s45 | cuda:2 (10.8GB/32GB) | ✅ 283838 | 33/247 (13%) | ~2h15min (~12:07 UTC) | ~38s/batch，刚启动22min |\n| eval_flat_nli_seed45 | cuda:3 (11GB/32GB) | ✅ 272164 | 164/247 (66%) | ~66min (~10:58 UTC) | ~48s/batch |\n\n要点：\n- rsft_ced_s43_train_r3 训练 510 步已 100% 完成，进程仍存活可能在做最终 eval 或保存 checkpoint\n- 其余 3 个 eval 正常推进，无异常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-running-experiments-eta-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2353a9898eeabfa9f4a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code verify ced pipeline",
+  "task_key": "worker_code_verify-ced-pipeline_20260515T022425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-ced-pipeline_20260515T022425_result.json",
+    "occurrence": 1,
+    "bytes": 1470,
+    "sha256": "6eeee66c1b44ada0e5f869f48e8beecc3f82f0274e54c9baf51dba745acde5b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n---\n\n## 验证报告\n\n### 要求满足情况\n\n| # | 要求 | 状态 |\n|---|------|------|\n| 1 | 加载 merge_shards 产物 | ✅ `load_generations()` 支持 root + shard 目录，按 `(doc_id, generation_idx)` 去重 |\n| 2 | 计算 CED score | ✅ 三维打分（format/f1/ced）+ weighted combined_score |\n| 3 | top-1/top-k 参数化筛选 | ✅ `--selection_strategy top_k --top_k 1` 正常工作，每 doc 选 best candidate |\n| 4 | 输出格式兼容 rsft_trainer | ✅ `{input, output, ced_score, ...}` 与 `load_rsft_data()` 完全匹配 |\n| 5 | Summary 统计 | ✅ 已补充 p5/p10/p90/p95 + histogram bins |\n\n### 修改内容\n- `generate_report()` 中 `{name}_stats` 新增 p5/p10/p90/p95 percentiles 和 10-bin histogram\n- `selected_stats` 新增 median/p25/p75\n\n### Dry-run 结果\n- 3 docs / 24 records → top_k=1 筛选后 3 条（每 doc 1 条，selection_rate=12.5%）\n- 输出字段正确：`input`（从 prompt 提取的 user content）、`output`、`ced_score`\n- report 包含完整统计 + histogram\n\n### 生成完成后的确切运行命令\n\n```bash\ncd /root/autodl-tmp && \\\nHF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/rsft_generations \\\n    --output_path /root/autodl-tmp/rsft_filtered \\\n    --selection_strategy top_k --top_k 1 \\\n    --nli_device cuda:0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-ced-pipeline.md"
+}

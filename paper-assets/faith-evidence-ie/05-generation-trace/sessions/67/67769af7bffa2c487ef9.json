@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67769af7bffa2c487ef9",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit test eval 14b sft s42 no evi",
+  "task_key": "worker_submit_test_eval_14b_sft_s42_no_evi_20260521T231408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_test_eval_14b_sft_s42_no_evi_20260521T231408_result.json",
+    "occurrence": 1,
+    "bytes": 230,
+    "sha256": "5435d8d453b98c5957485e6556d8c0028e9fff44eabef279e6c959c7c88381fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册：\n\n- **exp_id**: `test_eval_14b_sft_s42_no_evi`\n- **PID**: 143161，cuda:3\n- **状态**: RUNNING\n- **日志**: `/tmp/test_eval_14b_sft_s42_no_evi.log`\n- **关键 flag**: `--no_evidence` ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-test-eval-14b-sft-s42-no-evi.md"
+}

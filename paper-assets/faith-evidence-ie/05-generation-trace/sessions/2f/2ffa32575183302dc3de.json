@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ffa32575183302dc3de",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code plan017 14b rsft s43 ced scoring",
+  "task_key": "worker_code_plan017_14b_rsft_s43_ced_scoring_20260523T114634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan017_14b_rsft_s43_ced_scoring_20260523T114634_result.json",
+    "occurrence": 1,
+    "bytes": 458,
+    "sha256": "1c8c0b068f5bb4a7103a132b1324a4abecea40430158edb310706e8aeca49d41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **PID 250046** 在 cuda:1 上运行 CED scoring\n- **输入**: `/root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl` (24216 candidates)\n- **输出**: `/root/autodl-tmp/rsft_scored_14b_s43/`\n- **参数**: 与 s42 一致 — NLI model `cross-encoder/nli-deberta-v3-base`, top_k=1, scoring_mode=ced\n- **Registry**: `plan017_14b_rsft_s43_ced_scoring` → RUNNING\n- **监控 cron** 已注册，每 3 分钟轮询进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan017-14b-rsft-s43-ced-scoring.md"
+}

@@ -1,0 +1,1721 @@
+{
+  "schema_version": "1.0",
+  "session_id": "34d7e494a16348e21226",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S1xYmpdnQj8FC2RkD51H6C",
+              "name": "Bash",
+              "input": {
+                "command": "echo \"Waiting...\"",
+                "description": "Wait"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "f29043c5-b781-4d56-8693-55f4a19a8589",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Aiho52maFuWjP4mi1E5YFM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 95,
+                "cache_read_input_tokens": 103496,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 95
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": "2026-05-26T10:44:40.383Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S1xYmpdnQj8FC2RkD51H6C",
+              "type": "tool_result",
+              "content": "Waiting...",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "48ae845f-df19-4731-8a22-a664e2915b6e",
+            "tool_use_result": {
+              "stdout": "Waiting...",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ebdz2TPgHhLFzQgEZZCaFy",
+              "name": "Bash",
+              "input": {
+                "command": "echo \"Waiting...\"",
+                "description": "Wait"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "a81cc33c-fbb5-443c-a164-954788feffe4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0123UFMUkq76w5iX91mWexM2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 87,
+                "cache_read_input_tokens": 103591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 87
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": "2026-05-26T10:44:42.459Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ebdz2TPgHhLFzQgEZZCaFy",
+              "type": "tool_result",
+              "content": "Waiting...",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "5e93d06d-41e3-4471-aa48-5e7d5592680f",
+            "tool_use_result": {
+              "stdout": "Waiting...",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F9CkiFQitY6HQkcSdEF862",
+              "name": "Bash",
+              "input": {
+                "command": "echo \"Still waiting...\"",
+                "description": "Wait"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "078695aa-70f1-4039-bd2a-884b3e0705f8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0145cisJzgVaDD9quRogpure",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 87,
+                "cache_read_input_tokens": 103678,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 87
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": "2026-05-26T10:44:47.352Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F9CkiFQitY6HQkcSdEF862",
+              "type": "tool_result",
+              "content": "Still waiting...",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "7e31b2d9-7ff8-48cb-8eb4-7820433bdd10",
+            "tool_use_result": {
+              "stdout": "Still waiting...",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CqFwZikKEZ25ARNmkHWf1i",
+              "name": "Bash",
+              "input": {
+                "command": "echo \"Waiting...\"",
+                "description": "Wait"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "6c7a8f62-b4be-4983-a86b-83f52e8e7cd5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bt6oKsNyMGiDvDkVN56PHo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 87,
+                "cache_read_input_tokens": 103765,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 87
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": "2026-05-26T10:44:49.400Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CqFwZikKEZ25ARNmkHWf1i",
+              "type": "tool_result",
+              "content": "Waiting...",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "ed80899e-6db0-416e-8f31-f4d2126a60a7",
+            "tool_use_result": {
+              "stdout": "Waiting...",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017ebKpWFpF1GQ33gyhXNPwR",
+              "name": "Bash",
+              "input": {
+                "command": "echo \"Checking...\"",
+                "description": "Check"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "f3553485-9cb7-4050-ac02-e9e22cc7798f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EYM6iU32DqQqdcxUb5RmKJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 87,
+                "cache_read_input_tokens": 103852,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 87
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": "2026-05-26T10:44:51.912Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017ebKpWFpF1GQ33gyhXNPwR",
+              "type": "tool_result",
+              "content": "Checking...",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "3b5390ba-edcf-4088-a8ad-7e207dc65119",
+            "tool_use_result": {
+              "stdout": "Checking...",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CTEB3vuoNsyek9nghPhwpJ",
+              "name": "Bash",
+              "input": {
+                "command": "echo \"Waiting...\"",
+                "description": "Wait"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "ace8fdfe-7c79-4c2b-a697-8e3951a730e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016EWeBZpPCoWm98Zwk8mtnJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 87,
+                "cache_read_input_tokens": 103939,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 87
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": "2026-05-26T10:44:56.978Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CTEB3vuoNsyek9nghPhwpJ",
+              "type": "tool_result",
+              "content": "Waiting...",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "f4e7dbf0-0479-4b70-a541-b387017689b2",
+            "tool_use_result": {
+              "stdout": "Waiting...",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GD8V3QrBkZMcvrYZRdkhpC",
+              "name": "Bash",
+              "input": {
+                "command": "echo \"Waiting...\"",
+                "description": "Wait"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "fabd58a8-3ccf-416f-8770-010093d5d411",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011nJ35tZd38Sz2s2drwNePQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 87,
+                "cache_read_input_tokens": 104026,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 87
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": "2026-05-26T10:44:59.017Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GD8V3QrBkZMcvrYZRdkhpC",
+              "type": "tool_result",
+              "content": "Waiting...",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "3de87cc7-1093-4c4e-9e01-28ab581b644c",
+            "tool_use_result": {
+              "stdout": "Waiting...",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PL2u2rb7xdm2sv9vsFMcRk",
+              "name": "Bash",
+              "input": {
+                "command": "echo \"Waiting...\"",
+                "description": "Wait"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "de83b3db-c870-46cd-a46a-666e0a386f03",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XjDJLXPGcwLfRySJ3JY4DQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 87,
+                "cache_read_input_tokens": 104113,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 87
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": "2026-05-26T10:45:01.974Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PL2u2rb7xdm2sv9vsFMcRk",
+              "type": "tool_result",
+              "content": "Waiting...",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "321557fb-2435-4bfd-bb46-ae84295df517",
+            "tool_use_result": {
+              "stdout": "Waiting...",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019Zino8FDH5t846H94F4xFh",
+              "name": "Bash",
+              "input": {
+                "command": "echo \"Continuing...\"",
+                "description": "Wait"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "625b97ad-fa03-486d-a8a5-64c1bb083adb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HEeMBu4Jtax3t2NXHJArxi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 87,
+                "cache_read_input_tokens": 104200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 87
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": "2026-05-26T10:45:03.933Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019Zino8FDH5t846H94F4xFh",
+              "type": "tool_result",
+              "content": "Continuing...",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "17e0e75a-20ea-4fe6-83d2-da0e498074e6",
+            "tool_use_result": {
+              "stdout": "Continuing...",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The batch 5 agent seems to be taking a long time. Let me just proceed with the information I have so far. I have verified batches 1-4 (41 references). For batch 5, I had:\n42. he2023debertav3\n43. dettmers2023qlora\n44. hoffmann2022chinchilla\n45. yuan2023rft\n46. tamo2026evidencerl\n47. liu2026rift\n48. deng2026trajfusion\n49. tian2026mugrpo\n50. ji2026treegrpo\n51. deepseek2025r1\n\n\n52. gulcehre2023rest\n\nI can work with the well-known papers and flag the 2026 references for separate verification, then start drafting the report with what I have from batches 1-4 and the confirmed entries from batch 5.\n\nLooking at what I can verify from my own knowledge: he2023debertav3, dettmers2023qlora, hoffmann2022chinchilla, yuan2023rft, and deepseek2025r1 are all established papers I can confirm. The gulcehre2023rest entry has a formatting issue in the bibliography—it's marked as an inproceedings entry but uses \"arXiv preprint\" as the booktitle, which isn't the correct format for that type of publication.\n\nFor the 2026 references, I need to be cautious since I can't fully verify those, but I'll start compiling the report now rather than waiting. I've identified several issues across the earlier batches: ma2023dreeam lists \"Findings EACL 2023\" when it should reference the main EACL 2023 conference, li2026qurl needs its venue updated to ICLR 2026 instead of just being marked as an arXiv preprint, and xu2024lmrc has citation problems I'm working through.\n\nLooking at the remaining issues, there are several patterns emerging—cite keys that don't match the actual first authors (wang2025rear should be luo2025, wang2025relprior should be pi2025, zhang2025glidre should be armingaud2025, tang2025rsftppo should be anil2025), fabricated title prefixes and venues, and incomplete venue information that cuts off mid-name.\n\nFor batch 5, I'm noticing that gulcehre2023rest has an @inproceedings entry with an arXiv preprint as the booktitle, which is incorrect formatting—it should be @article instead. I should wait to see if the agent returns with the 2026 references before finalizing the report, but I have enough information to compile findings now.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "7cba14e9-187f-4115-800d-ab0dfd783afe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YUFXzk3f2ZvGYx6S55maQp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 191,
+                "cache_read_input_tokens": 104287,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 191
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Batch 5 is taking longer due to the 2026 references. Let me start compiling the report with the information I have from batches 1-4, and I'll supplement batch 5 with additional verification."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "57c70590-110e-4d1d-a6dc-c1892e47deef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YUFXzk3f2ZvGYx6S55maQp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 191,
+                "cache_read_input_tokens": 104287,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 191
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000380"
+        },
+        {
+          "source_line": 381,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015QnmSd45QQXAaiLGAAYDZj",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "bcf5644e-7567-4e91-9601-25a92f47cb33",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YUFXzk3f2ZvGYx6S55maQp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 191,
+                "cache_read_input_tokens": 104287,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 191
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": "2026-05-26T10:45:40.041Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015QnmSd45QQXAaiLGAAYDZj",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "37efdecb-ebec-4722-b190-90f778d86ee2",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000382"
+        },
+        {
+          "source_line": 383,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_updated",
+                "task_id": "a32692ef3570c895e",
+                "patch": {
+                  "status": "completed",
+                  "end_time": 1779792343780
+                },
+                "uuid": "fa777054-a2cd-41fd-bf1a-f6ca3b3fcfa4",
+                "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41"
+              }
+            }
+          ],
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the critical 2026 references and gulcehre2023rest myself while waiting for batch 5."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "1791cc87-3c7c-4a87-8ea3-d163d4f4a6c4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015V43aWgNM1qqQJmmfe13Cb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1790,
+                "cache_read_input_tokens": 104478,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1790
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UbEuzbFreuprDJM6dgWjT5",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2603.19532 EvidenceRL Reinforcing Evidence Consistency"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "3e4f3b4f-b29b-47e4-b4f4-c28b73615256",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015V43aWgNM1qqQJmmfe13Cb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1790,
+                "cache_read_input_tokens": 104478,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1790
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AaiyhregeD6hRMK7YvU7Wm",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2601.09253 RIFT Repurposing Negative Samples Reward-Informed Fine-Tuning"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "f9081a2a-b23f-41b3-80f1-6a9e86f6e362",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015V43aWgNM1qqQJmmfe13Cb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1790,
+                "cache_read_input_tokens": 104478,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1790
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000386"
+        },
+        {
+          "source_line": 387,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Fv1wTgHfUpqADiMkbYBSHg",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2602.04391 \"Beyond Rejection Sampling\" Trajectory Fusion Mathematical Reasoning"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "911c11af-6e6c-4a6f-8285-9be702b55252",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015V43aWgNM1qqQJmmfe13Cb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1790,
+                "cache_read_input_tokens": 104478,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1790
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000387"
+        },
+        {
+          "source_line": 388,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MQrz7nykR5mbcVJb8uUYSa",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2605.17570 mu-GRPO \"How Off-Policy Can GRPO Be\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "d2984627-7186-4097-9671-1195e0e218b6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015V43aWgNM1qqQJmmfe13Cb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1790,
+                "cache_read_input_tokens": 104478,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1790
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000388"
+        },
+        {
+          "source_line": 389,
+          "timestamp": "2026-05-26T10:45:53.888Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UbEuzbFreuprDJM6dgWjT5",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2603.19532 EvidenceRL Reinforcing Evidence Consistency\"\n\nLinks: [{\"title\":\"[2603.19532] EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models\",\"url\":\"https://arxiv.org/abs/2603.19532\"},{\"title\":\"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models\",\"url\":\"https://arxiv.org/html/2603.19532\"},{\"title\":\"[2603.25942] Reinforcing Structured Chain-of-Thought for Video Understanding\",\"url\":\"https://arxiv.org/abs/2603.25942\"},{\"title\":\"[2603.04647v1] Coordinated Semantic Alignment and Evidence Constraints for Retrieval-Augmented Generation with Large Language Models\",\"url\":\"https://arxiv.org/abs/2603.04647v1\"},{\"title\":\"[2603.04647] Coordinated Semantic Alignment and Evidence Constraints for Retrieval-Augmented Generation with Large Language Models\",\"url\":\"https://arxiv.org/abs/2603.04647\"},{\"title\":\"[2603.09803] Good Reasoning Makes Good Demonstrations: Implicit Reasoning Quality Supervision via In-Context Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2603.09803\"}]\n\nBased on the search results, I found the paper arxiv 2603.19532:\n\n**EvidenceRL** is a reinforcement learning framework that addresses the problem of LLMs producing answers that appear plausible yet are unsupported by available evidence, and enforces evidence adherence during training.\n\nEvidenceRL scores candidate responses for grounding (entailment with retrieved evidence and context) and correctness (agreement with reference answers) and optimizes the generator using Group Relative Policy Optimization (GRPO).\n\nThe framework uses automated NLI and LLM-judge rewards to enforce evidence grounding as a differentiable training objective, removing the dependency on human preference annotations.\n\nThe paper was published on March 20, 2026, and the authors are from Georgia Institute of Technology and Peking University. You can access the full paper at https://arxiv.org/abs/2603.19532.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "96cdba72-0a76-407b-81e2-a97923d9858b",
+            "tool_use_result": {
+              "query": "arxiv 2603.19532 EvidenceRL Reinforcing Evidence Consistency",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_014wN9dJiSVikxvaa4L5ZpbX",
+                  "content": [
+                    {
+                      "title": "[2603.19532] EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models",
+                      "url": "https://arxiv.org/abs/2603.19532"
+                    },
+                    {
+                      "title": "EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models",
+                      "url": "https://arxiv.org/html/2603.19532"
+                    },
+                    {
+                      "title": "[2603.25942] Reinforcing Structured Chain-of-Thought for Video Understanding",
+                      "url": "https://arxiv.org/abs/2603.25942"
+                    },
+                    {
+                      "title": "[2603.04647v1] Coordinated Semantic Alignment and Evidence Constraints for Retrieval-Augmented Generation with Large Language Models",
+                      "url": "https://arxiv.org/abs/2603.04647v1"
+                    },
+                    {
+                      "title": "[2603.04647] Coordinated Semantic Alignment and Evidence Constraints for Retrieval-Augmented Generation with Large Language Models",
+                      "url": "https://arxiv.org/abs/2603.04647"
+                    },
+                    {
+                      "title": "[2603.09803] Good Reasoning Makes Good Demonstrations: Implicit Reasoning Quality Supervision via In-Context Reinforcement Learning",
+                      "url": "https://arxiv.org/abs/2603.09803"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the paper arxiv 2603.19532:\n\n**EvidenceRL** is a reinforcement learning framework that addresses the problem of LLMs producing answers that appear plausible yet are unsupported by available evidence, and enforces evidence adherence during training.\n\nEvidenceRL scores candidate responses for grounding (entailment with retrieved evidence and context) and correctness (agreement with reference answers) and optimizes the generator using Group Relative Policy Optimization (GRPO).\n\nThe framework uses automated NLI and LLM-judge rewards to enforce evidence grounding as a differentiable training objective, removing the dependency on human preference annotations.\n\nThe paper was published on March 20, 2026, and the authors are from Georgia Institute of Technology and Peking University. You can access the full paper at https://arxiv.org/abs/2603.19532."
+              ],
+              "durationSeconds": 8.244022782000014
+            }
+          },
+          "id": "event-000389"
+        },
+        {
+          "source_line": 390,
+          "timestamp": "2026-05-26T10:45:57.107Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AaiyhregeD6hRMK7YvU7Wm",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2601.09253 RIFT Repurposing Negative Samples Reward-Informed Fine-Tuning\"\n\nLinks: [{\"title\":\"[2601.09253] RIFT: Repurposing Negative Samples via Reward-Informed Fine-Tuning\",\"url\":\"https://arxiv.org/abs/2601.09253\"},{\"title\":\"RIFT: Repurposing Negative Samples via Reward-Informed Fine-Tuning\",\"url\":\"https://arxiv.org/html/2601.09253v1\"},{\"title\":\"[Literature Review] RIFT: Repurposing Negative Samples via Reward-Informed Fine-Tuning\",\"url\":\"https://www.themoonlight.io/en/review/rift-repurposing-negative-samples-via-reward-informed-fine-tuning\"},{\"title\":\"PIRF: Physics-Informed Reward Fine-Tuning for Diffusion Models\",\"url\":\"https://arxiv.org/html/2509.20570\"},{\"title\":\"Learning from Mistakes: Negative Reasoning Samples Enhance Out-of-Domain Generalization\",\"url\":\"https://arxiv.org/html/2601.04992\"},{\"title\":\"Reward Score Matching: Unifying Reward-based Fine-tuning for Flow and Diffusion Models\",\"url\":\"https://arxiv.org/html/2604.17415v2\"},{\"title\":\"Fine-Tuning Diffusion Models via Intermediate Distribution Shaping\",\"url\":\"https://arxiv.org/html/2510.02692v1\"},{\"title\":\"RIFT: Closed-Loop RL Fine-Tuning for Realistic and Controllable Traffic Simulation\",\"url\":\"https://arxiv.org/html/2505.03344v1\"}]\n\nBased on the search results, here's what I found about arxiv 2601.09253:\n\n**RIFT: Repurposing Negative Samples via Reward-Informed Fine-Tuning** is a paper submitted on January 14, 2026, by authors Zehua Liu, Shuqi Liu, Tao Zhong, and Mingxuan Yuan.\n\n**Overview:**\n\nWhile Supervised Fine-Tuning (SFT) and Rejection Sampling Fine-Tuning (RFT) are standard for LLM alignment, they either rely on costly expert data or discard valuable negative samples, leading to data inefficiency. To address this, the paper proposes Reward Informed Fine-Tuning (RIFT), a simple yet effective framework that utilizes all self-generated samples.\n\n**Key Innovation:**\n\nUnlike the hard thresholding of RFT, RIFT repurposes negative trajectories, reweighting the loss with scalar rewards to learn from both the positive and negative trajectories from the model outputs. To overcome the training collapse caused by naive reward integration, where direct multiplication yields an unbounded loss, the paper introduces a stabilized loss formulation that ensures numerical robustness and optimization efficiency.\n\n**Results:**\n\nExtensive experiments on mathematical benchmarks across various base models show that RIFT consistently outperforms RFT.\n\nYou can access the full paper at: https://arxiv.org/abs/2601.09253\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "506926c0-89e6-454b-98f1-f0d3362e2150",
+            "tool_use_result": {
+              "query": "arxiv 2601.09253 RIFT Repurposing Negative Samples Reward-Informed Fine-Tuning",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_013SbBzqM1z6zJpX4M6c7jjn",
+                  "content": [
+                    {
+                      "title": "[2601.09253] RIFT: Repurposing Negative Samples via Reward-Informed Fine-Tuning",
+                      "url": "https://arxiv.org/abs/2601.09253"
+                    },
+                    {
+                      "title": "RIFT: Repurposing Negative Samples via Reward-Informed Fine-Tuning",
+                      "url": "https://arxiv.org/html/2601.09253v1"
+                    },
+                    {
+                      "title": "[Literature Review] RIFT: Repurposing Negative Samples via Reward-Informed Fine-Tuning",
+                      "url": "https://www.themoonlight.io/en/review/rift-repurposing-negative-samples-via-reward-informed-fine-tuning"
+                    },
+                    {
+                      "title": "PIRF: Physics-Informed Reward Fine-Tuning for Diffusion Models",
+                      "url": "https://arxiv.org/html/2509.20570"
+                    },
+                    {
+                      "title": "Learning from Mistakes: Negative Reasoning Samples Enhance Out-of-Domain Generalization",
+                      "url": "https://arxiv.org/html/2601.04992"
+                    },
+                    {
+                      "title": "Reward Score Matching: Unifying Reward-based Fine-tuning for Flow and Diffusion Models",
+                      "url": "https://arxiv.org/html/2604.17415v2"
+                    },
+                    {
+                      "title": "Fine-Tuning Diffusion Models via Intermediate Distribution Shaping",
+                      "url": "https://arxiv.org/html/2510.02692v1"
+                    },
+                    {
+                      "title": "RIFT: Closed-Loop RL Fine-Tuning for Realistic and Controllable Traffic Simulation",
+                      "url": "https://arxiv.org/html/2505.03344v1"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about arxiv 2601.09253:\n\n**RIFT: Repurposing Negative Samples via Reward-Informed Fine-Tuning** is a paper submitted on January 14, 2026, by authors Zehua Liu, Shuqi Liu, Tao Zhong, and Mingxuan Yuan.\n\n**Overview:**\n\nWhile Supervised Fine-Tuning (SFT) and Rejection Sampling Fine-Tuning (RFT) are standard for LLM alignment, they either rely on costly expert data or discard valuable negative samples, leading to data inefficiency. To address this, the paper proposes Reward Informed Fine-Tuning (RIFT), a simple yet effective framework that utilizes all self-generated samples.\n\n**Key Innovation:**\n\nUnlike the hard thresholding of RFT, RIFT repurposes negative trajectories, reweighting the loss with scalar rewards to learn from both the positive and negative trajectories from the model outputs. To overcome the training collapse caused by naive reward integration, where direct multiplication yields an unbounded loss, the paper introduces a stabilized loss formulation that ensures numerical robustness and optimization efficiency.\n\n**Results:**\n\nExtensive experiments on mathematical benchmarks across various base models show that RIFT consistently outperforms RFT.\n\nYou can access the full paper at: https://arxiv.org/abs/2601.09253"
+              ],
+              "durationSeconds": 10.36666992799996
+            }
+          },
+          "id": "event-000390"
+        },
+        {
+          "source_line": 391,
+          "timestamp": "2026-05-26T10:45:57.408Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MQrz7nykR5mbcVJb8uUYSa",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2605.17570 mu-GRPO \"How Off-Policy Can GRPO Be\"\"\n\nLinks: [{\"title\":\"[2605.17570] How Off-Policy Can GRPO Be? Mu-GRPO for Efficient LLM Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2605.17570\"},{\"title\":\"How Off-Policy Can GRPO Be? 𝝁-GRPO for Efficient LLM Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2605.17570\"},{\"title\":\"Revisiting Group Relative Policy Optimization: Insights into On-Policy and Off-Policy Training\",\"url\":\"https://arxiv.org/pdf/2505.22257\"},{\"title\":\"Group-Relative REINFORCE Is Secretly an Off-Policy Algorithm: Demystifying Some Myths About GRPO and Its Friends\",\"url\":\"https://arxiv.org/pdf/2509.24203\"},{\"title\":\"OP-GRPO: Efficient Off-Policy GRPO for Flow-Matching Models\",\"url\":\"https://arxiv.org/pdf/2604.04142\"}]\n\nI found the paper you're looking for. Here's what the search results show:\n\nThe paper \"How Off-Policy Can GRPO Be? Mu-GRPO for Efficient LLM Reinforcement Learning\" addresses how Group Relative Policy Optimization (GRPO) has been a key driver of progress in reinforcement learning with verifiable rewards (RLVR) for large language models, but is typically trained in a low-staleness, near-on-policy regime that incurs substantial system overhead.\n\nThe authors show that GRPO-style algorithms can tolerate substantially larger rollout staleness than previously assumed, and propose Mu-GRPO, an RL training framework that organizes training into a small number (e.g., four) of large sequential generation-optimization stages.\n\nTo stabilize learning under stale data, Mu-GRPO combines relaxed clipping, which preserves useful stale-rollout gradients, with negative-advantage veto, which removes destabilizing post-trigger suffix updates in negative-advantage responses.\n\nThe paper was published on arXiv on May 17, 2026, and is authored by Minghao Tian and two other authors from Rice University.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "6809891b-b0df-4cde-9482-ee035c58c57b",
+            "tool_use_result": {
+              "query": "arxiv 2605.17570 mu-GRPO \"How Off-Policy Can GRPO Be\"",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_014QFbshfQEN8GckPMwedony",
+                  "content": [
+                    {
+                      "title": "[2605.17570] How Off-Policy Can GRPO Be? Mu-GRPO for Efficient LLM Reinforcement Learning",
+                      "url": "https://arxiv.org/abs/2605.17570"
+                    },
+                    {
+                      "title": "How Off-Policy Can GRPO Be? 𝝁-GRPO for Efficient LLM Reinforcement Learning",
+                      "url": "https://arxiv.org/html/2605.17570"
+                    },
+                    {
+                      "title": "Revisiting Group Relative Policy Optimization: Insights into On-Policy and Off-Policy Training",
+                      "url": "https://arxiv.org/pdf/2505.22257"
+                    },
+                    {
+                      "title": "Group-Relative REINFORCE Is Secretly an Off-Policy Algorithm: Demystifying Some Myths About GRPO and Its Friends",
+                      "url": "https://arxiv.org/pdf/2509.24203"
+                    },
+                    {
+                      "title": "OP-GRPO: Efficient Off-Policy GRPO for Flow-Matching Models",
+                      "url": "https://arxiv.org/pdf/2604.04142"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for. Here's what the search results show:\n\nThe paper \"How Off-Policy Can GRPO Be? Mu-GRPO for Efficient LLM Reinforcement Learning\" addresses how Group Relative Policy Optimization (GRPO) has been a key driver of progress in reinforcement learning with verifiable rewards (RLVR) for large language models, but is typically trained in a low-staleness, near-on-policy regime that incurs substantial system overhead.\n\nThe authors show that GRPO-style algorithms can tolerate substantially larger rollout staleness than previously assumed, and propose Mu-GRPO, an RL training framework that organizes training into a small number (e.g., four) of large sequential generation-optimization stages.\n\nTo stabilize learning under stale data, Mu-GRPO combines relaxed clipping, which preserves useful stale-rollout gradients, with negative-advantage veto, which removes destabilizing post-trigger suffix updates in negative-advantage responses.\n\nThe paper was published on arXiv on May 17, 2026, and is authored by Minghao Tian and two other authors from Rice University."
+              ],
+              "durationSeconds": 9.154380893999944
+            }
+          },
+          "id": "event-000391"
+        },
+        {
+          "source_line": 392,
+          "timestamp": "2026-05-26T10:45:57.579Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Fv1wTgHfUpqADiMkbYBSHg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2602.04391 \"Beyond Rejection Sampling\" Trajectory Fusion Mathematical Reasoning\"\n\nLinks: [{\"title\":\"[2602.04391] Beyond Rejection Sampling: Trajectory Fusion for Scaling Mathematical Reasoning\",\"url\":\"https://arxiv.org/abs/2602.04391\"},{\"title\":\"Beyond Rejection Sampling: Trajectory Fusion for Scaling Mathematical Reasoning\",\"url\":\"https://arxiv.org/html/2602.04391\"},{\"title\":\"Information-Theoretic Multi-Model Fusion for Target-Oriented Adaptive Sampling in Materials Design\",\"url\":\"https://arxiv.org/html/2602.03319\"},{\"title\":\"Beyond Policy Optimization: A Data Curation Flywheel for Sparse-Reward Long-Horizon Planning\",\"url\":\"https://arxiv.org/html/2508.03018v1\"},{\"title\":\"[2602.03319] Information-Theoretic Multi-Model Fusion for Target-Oriented Adaptive Sampling in Materials Design\",\"url\":\"https://arxiv.org/abs/2602.03319\"},{\"title\":\"Beyond Quantity: Trajectory Diversity Scaling for Code Agents\",\"url\":\"https://arxiv.org/html/2602.03219v2\"},{\"title\":\"Optimal Real-Time Fusion of Time-Series Data Under Rényi Differential Privacy\",\"url\":\"https://arxiv.org/html/2602.21525\"},{\"title\":\"The Comparability of Model Fusion to Measured Data in Confuser Rejection\",\"url\":\"https://arxiv.org/html/2505.00836\"},{\"title\":\"Computer Science Jun 2025\",\"url\":\"https://arxiv.org/list/cs/2025-06?skip=1350&show=2000\"}]\n\nI found the paper! Here are the key details about arxiv 2602.04391:\n\n**Title:** Beyond Rejection Sampling: Trajectory Fusion for Scaling Mathematical Reasoning\n\n**Main Contribution:** The paper proposes TrajFusion, a fine-tuning strategy that reframes rejection sampling as a structured supervision construction process. Specifically, TrajFusion forms fused trajectories that explicitly model trial-and-error reasoning by interleaving selected incorrect trajectories with reflection prompts and correct trajectories.\n\n**Key Innovation:** The length of each fused sample is adaptively controlled based on the frequency and diversity of teacher errors, providing richer supervision for challenging problems while safely reducing to vanilla rejection sampling fine-tuning (RFT) when error signals are uninformative.\n\n**Problem Addressed:** While large language models (LLMs) have made impressive strides in mathematical reasoning using rejection sampling that retains only correct reasoning trajectories, this paradigm treats supervision as a binary filter that systematically excludes teacher-generated errors, leaving a gap in how reasoning failures are modeled during training.\n\nThe paper was published on February 4, 2026 and is available on arXiv.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "efedae1c-2b6d-4949-ac04-b8e76826ee5e",
+            "tool_use_result": {
+              "query": "arxiv 2602.04391 \"Beyond Rejection Sampling\" Trajectory Fusion Mathematical Reasoning",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01KHijGnp3Hi4DsYfgwGJrG1",
+                  "content": [
+                    {
+                      "title": "[2602.04391] Beyond Rejection Sampling: Trajectory Fusion for Scaling Mathematical Reasoning",
+                      "url": "https://arxiv.org/abs/2602.04391"
+                    },
+                    {
+                      "title": "Beyond Rejection Sampling: Trajectory Fusion for Scaling Mathematical Reasoning",
+                      "url": "https://arxiv.org/html/2602.04391"
+                    },
+                    {
+                      "title": "Information-Theoretic Multi-Model Fusion for Target-Oriented Adaptive Sampling in Materials Design",
+                      "url": "https://arxiv.org/html/2602.03319"
+                    },
+                    {
+                      "title": "Beyond Policy Optimization: A Data Curation Flywheel for Sparse-Reward Long-Horizon Planning",
+                      "url": "https://arxiv.org/html/2508.03018v1"
+                    },
+                    {
+                      "title": "[2602.03319] Information-Theoretic Multi-Model Fusion for Target-Oriented Adaptive Sampling in Materials Design",
+                      "url": "https://arxiv.org/abs/2602.03319"
+                    },
+                    {
+                      "title": "Beyond Quantity: Trajectory Diversity Scaling for Code Agents",
+                      "url": "https://arxiv.org/html/2602.03219v2"
+                    },
+                    {
+                      "title": "Optimal Real-Time Fusion of Time-Series Data Under Rényi Differential Privacy",
+                      "url": "https://arxiv.org/html/2602.21525"
+                    },
+                    {
+                      "title": "The Comparability of Model Fusion to Measured Data in Confuser Rejection",
+                      "url": "https://arxiv.org/html/2505.00836"
+                    },
+                    {
+                      "title": "Computer Science Jun 2025",
+                      "url": "https://arxiv.org/list/cs/2025-06?skip=1350&show=2000"
+                    }
+                  ]
+                },
+                "I found the paper! Here are the key details about arxiv 2602.04391:\n\n**Title:** Beyond Rejection Sampling: Trajectory Fusion for Scaling Mathematical Reasoning\n\n**Main Contribution:** The paper proposes TrajFusion, a fine-tuning strategy that reframes rejection sampling as a structured supervision construction process. Specifically, TrajFusion forms fused trajectories that explicitly model trial-and-error reasoning by interleaving selected incorrect trajectories with reflection prompts and correct trajectories.\n\n**Key Innovation:** The length of each fused sample is adaptively controlled based on the frequency and diversity of teacher errors, providing richer supervision for challenging problems while safely reducing to vanilla rejection sampling fine-tuning (RFT) when error signals are uninformative.\n\n**Problem Addressed:** While large language models (LLMs) have made impressive strides in mathematical reasoning using rejection sampling that retains only correct reasoning trajectories, this paradigm treats supervision as a binary filter that systematically excludes teacher-generated errors, leaving a gap in how reasoning failures are modeled during training.\n\nThe paper was published on February 4, 2026 and is available on arXiv."
+              ],
+              "durationSeconds": 9.915333942000055
+            }
+          },
+          "id": "event-000392"
+        },
+        {
+          "source_line": 393,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Batch 5 has now completed as well. Let me compile all findings:\n\n**Batch 5 results:**\n- he2023debertav3: ✓ OK\n- dettmers2023qlora: ✓ OK\n- hoffmann2022chinchilla: ✓ OK\n- yuan2023rft: ✓ OK\n- tamo2026evidencerl: ✓ OK (real paper)\n\n\n- liu2026rift: ✓ OK (real paper)\n- deng2026trajfusion: ✓ OK (real paper)\n- tian2026mugrpo: ✓ OK (real paper)\n- ji2026treegrpo: ✓ OK (real paper)\n- deepseek2025r1: ✓ OK\n\nI found an issue with gulcehre2023rest — the author names are incorrect, listing Dyer and Grangier when it should be Doucet and de Freitas, and there's another problem I'm still examining.\n\nNow that I've gone through all 52 references, I'm compiling the full audit report. Looking at the cited references, I've identified several issues: ma2023dreeam has the wrong venue designation, li2026qurl needs its ICLR 2026 acceptance reflected, xu2024lmrc and wang2025rear have incorrect cite keys based on actual first authors, and wang2025relprior appears to have a fabricated title prefix that doesn't match the real paper.\n\nI'm also finding more serious problems with tang2025rsftppo—the venue is completely fabricated and the cite key is wrong—and gulcehre2023rest has both incorrect author names and an invalid @inproceedings format using \"arXiv preprint\" as a booktitle. Continuing through the remaining issues with tan2022redocred and others.\n\nI'm also noticing some uncited references with their own problems: ito2025mogrpo, wang2025rullm, and zhang2025glidre all have incorrect cite keys where the first author doesn't match. Now I need to look more carefully at how citations are actually being used in the text—for instance, the xu2024lmrc citation in the introduction claims the paper frames relation extraction as multi-choice reading comprehension, but the actual title suggests it's about a relation classifier instead, so I should verify whether that characterization is accurate. Since the bibliography is configured to only include cited entries in the final PDF output, those 17 uncited entries in the bib file won't actually appear. Now I'll compile the complete audit report.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "b98f29be-d38d-4e41-b1f2-d298cb10a5e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016fq9Mz4y9CUp5cioUUKdB3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 596,
+                "cache_creation_input_tokens": 6201,
+                "cache_read_input_tokens": 106268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6201
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000393"
+        },
+        {
+          "source_line": 394,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 batches complete. Now compiling the full audit report.\n\n**Critical findings from batch 5:**\n- **gulcehre2023rest**: 2 wrong authors (Dyer → Doucet, Grangier → de Freitas) + invalid @inproceedings for arXiv\n- All 2026 references verified as real papers\n\nNow writing the complete audit report."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "71563965-3568-4013-9177-8ad7f1902421",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016fq9Mz4y9CUp5cioUUKdB3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 596,
+                "cache_creation_input_tokens": 6201,
+                "cache_read_input_tokens": 106268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6201
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000394"
+        },
+        {
+          "source_line": 395,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ErKh3cb2WktBDPzhnYpcLE",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/",
+                "description": "Check artifacts directory exists"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "a86d0c21-1c0d-41cc-b635-937aaae83639",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016fq9Mz4y9CUp5cioUUKdB3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 596,
+                "cache_creation_input_tokens": 6201,
+                "cache_read_input_tokens": 106268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6201
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000395"
+        },
+        {
+          "source_line": 396,
+          "timestamp": "2026-05-26T10:46:29.425Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ErKh3cb2WktBDPzhnYpcLE",
+              "type": "tool_result",
+              "content": "14b_rsft_status.md\n1_7b_repetition_fair_eval.md\n_project\nanon_cleanup_report.md\nanon_repo_diff.md\nbaseline_verification.md\nced_eval_commands.md\nced_stabilizer_literature_survey.md\ncomprehensive_results.md\ncuda3_diagnostic.md\nd024_literature_survey.md\nd076_eval_audit.py\nd076_final_audit.py\nd076_seed_status.md\nd102_next_batch\nd112\nd112_pipeline_plan.md\nd112_rsft_no_evidence_eval_r3_analysis.md\nd112_rsft_no_evidence_eval_r3_prep.md\nd112_rsft_s44_train_prep.md\nd140_4b_sft_s42_no_evi_2048_diagnosis.md\nd140_progress_check.md\ndev_test_gap_paragraph.md\ndiag_mvp2_grpo_flatnli_r3.md\ndiag_plan019_1_7b_rsft_s43.md\ndiag_redocred_rsft_r2.md\ndiagnose_8b_timeout.md\ndiagnose_eval_llama_rsft_s42_with_evidence_2048.md\ndiagnose_eval_llama_sft_s42_no_evidence_std.md\ndiagnose_plan_001.md\ndiversity_probe.py\ndiversity_probe_results.md\ndpo_rebuilt_3ep_eval\ndream_reports\ndreeam_evif1_alignment_report.md\nedcr_analysis.md\nedcr_analysis_r2b.md\nedcr_diagnostic_table.md\nefficiency_comparison.md\neval_plan_014_no_evidence_r2_analysis.md\neval_progress_20260516.md\neval_progress_check_0515.md\neval_rsft_ced_s43\neval_rsft_ced_s45\neval_script_audit.md\neval_status_check.md\nevidence_cost_literature_scan.md\nevidence_tax_annotation_notes.md\nexperiment_summary_table.md\nfig_edcr_relations.pdf\nfig_edcr_relations.png\nfig_evidence_tax.pdf\nfig_evidence_tax.png\nfig_grpo_dynamics.pdf\nfig_grpo_dynamics.png\nfig_spectrum.pdf\nfig_spectrum.png\nfinal_audit_v2_w1_text.md\nfinal_audit_v2_w2_tables.md\nfinal_audit_v2_w3_figures_appendix.md\nfinal_audit_w1_abstract.md\nfinal_audit_w2_tables.md\nfinal_audit_w3_figures.md\nfreige\ngap_analysis_w3.md\ngrpo_forgetting_dynamics.pdf\ngrpo_forgetting_dynamics.png\nkl_analysis_report.md\nliterature_quantization_rl.md\nliterature_survey_evidence_overhead.md\nmanifest.yaml\nmetrics_summary.csv\nmetrics_summary_table.md\nmvp2_eval_rsft_r2b_maxtok1536_r2\nnegative_review.md\nnext_batch_plan.md\nno_evi_test_commands.md\npaired_ttest_analysis.py\npaper\npaper_evidence_table.md\npaper_main_tables_draft.md\npaper_metrics_table.md\npaper_status_audit.md\npaper_table1_data.md\nplan017_14b_rsft_s43_eval\nplan017_14b_rsft_s43_no_evi_eval\nplan019_8b_sft_s43_eval_analysis.md\nplan_001_flat_nli_seed45\nplan_003\nplan_003_edcr_cross_method_table.md\nplan_003_edcr_diagnostic\nplan_003_edcr_diagnostic.md\nplan_006_qwen3_1_7b_no_evidence_eval_v3_results.json\nplan_007_redocred_rsft_eval_r2\nplan_009\nplan_009_dynamics_data.json\nplan_009_dynamics_figure\nplan_009_forgetting_data.csv\nplan_009_forgetting_data_v5.csv\nplan_009_forgetting_figure\nplan_009_grpo_forgetting\nplan_012_dpo_ced\nplan_012_dpo_ced_1ep_analysis.md\nprocess_check_report.md\nreeval_ced_s42\nreeval_ced_s44\nreeval_commands.md\nreeval_flat_nli_s42\nreeval_flat_nli_s43_r2\nreeval_sft_baseline_d076\nref_audit_worker2.md\nrelated_work_gap_analysis.md\nrelated_work_survey\nreview_issues.yaml\nreview_reports\nreview_round_2\nreview_round_3\nreview_round_4\nrsft_gen_progress_check.md\nrsft_pipeline_commands.md\nserver_audit_bjb2.md\nserver_audit_rtx5090.md\nserver_state_20260522.md\nstatus_check_loop4.md\ntest_eval_14b_rsft_s43\ntest_eval_14b_rsft_s43_no_evi\ntest_eval_14b_rsft_s43_pair\ntest_eval_4b_rsft_s44_no_evi_r2\ntest_eval_8b_rsft_s42\ntest_eval_commands.md\ntest_eval_llama_rsft_s42_no_evi_v2\ntest_eval_llama_rsft_s42_with_evi_v3\ntest_table_compilation.md\ntest_table_draft.md\ntopk_ablation_lit_review.md\ntraining_health_check.md\ntraining_trajectory_loop4.md\ntrl_grpo_stability_research.md\nworker_check_status.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "7d29da4e-d372-4db6-9c0e-09be33cecf66",
+            "tool_use_result": {
+              "stdout": "14b_rsft_status.md\n1_7b_repetition_fair_eval.md\n_project\nanon_cleanup_report.md\nanon_repo_diff.md\nbaseline_verification.md\nced_eval_commands.md\nced_stabilizer_literature_survey.md\ncomprehensive_results.md\ncuda3_diagnostic.md\nd024_literature_survey.md\nd076_eval_audit.py\nd076_final_audit.py\nd076_seed_status.md\nd102_next_batch\nd112\nd112_pipeline_plan.md\nd112_rsft_no_evidence_eval_r3_analysis.md\nd112_rsft_no_evidence_eval_r3_prep.md\nd112_rsft_s44_train_prep.md\nd140_4b_sft_s42_no_evi_2048_diagnosis.md\nd140_progress_check.md\ndev_test_gap_paragraph.md\ndiag_mvp2_grpo_flatnli_r3.md\ndiag_plan019_1_7b_rsft_s43.md\ndiag_redocred_rsft_r2.md\ndiagnose_8b_timeout.md\ndiagnose_eval_llama_rsft_s42_with_evidence_2048.md\ndiagnose_eval_llama_sft_s42_no_evidence_std.md\ndiagnose_plan_001.md\ndiversity_probe.py\ndiversity_probe_results.md\ndpo_rebuilt_3ep_eval\ndream_reports\ndreeam_evif1_alignment_report.md\nedcr_analysis.md\nedcr_analysis_r2b.md\nedcr_diagnostic_table.md\nefficiency_comparison.md\neval_plan_014_no_evidence_r2_analysis.md\neval_progress_20260516.md\neval_progress_check_0515.md\neval_rsft_ced_s43\neval_rsft_ced_s45\neval_script_audit.md\neval_status_check.md\nevidence_cost_literature_scan.md\nevidence_tax_annotation_notes.md\nexperiment_summary_table.md\nfig_edcr_relations.pdf\nfig_edcr_relations.png\nfig_evidence_tax.pdf\nfig_evidence_tax.png\nfig_grpo_dynamics.pdf\nfig_grpo_dynamics.png\nfig_spectrum.pdf\nfig_spectrum.png\nfinal_audit_v2_w1_text.md\nfinal_audit_v2_w2_tables.md\nfinal_audit_v2_w3_figures_appendix.md\nfinal_audit_w1_abstract.md\nfinal_audit_w2_tables.md\nfinal_audit_w3_figures.md\nfreige\ngap_analysis_w3.md\ngrpo_forgetting_dynamics.pdf\ngrpo_forgetting_dynamics.png\nkl_analysis_report.md\nliterature_quantization_rl.md\nliterature_survey_evidence_overhead.md\nmanifest.yaml\nmetrics_summary.csv\nmetrics_summary_table.md\nmvp2_eval_rsft_r2b_maxtok1536_r2\nnegative_review.md\nnext_batch_plan.md\nno_evi_test_commands.md\npaired_ttest_analysis.py\npaper\npaper_evidence_table.md\npaper_main_tables_draft.md\npaper_metrics_table.md\npaper_status_audit.md\npaper_table1_data.md\nplan017_14b_rsft_s43_eval\nplan017_14b_rsft_s43_no_evi_eval\nplan019_8b_sft_s43_eval_analysis.md\nplan_001_flat_nli_seed45\nplan_003\nplan_003_edcr_cross_method_table.md\nplan_003_edcr_diagnostic\nplan_003_edcr_diagnostic.md\nplan_006_qwen3_1_7b_no_evidence_eval_v3_results.json\nplan_007_redocred_rsft_eval_r2\nplan_009\nplan_009_dynamics_data.json\nplan_009_dynamics_figure\nplan_009_forgetting_data.csv\nplan_009_forgetting_data_v5.csv\nplan_009_forgetting_figure\nplan_009_grpo_forgetting\nplan_012_dpo_ced\nplan_012_dpo_ced_1ep_analysis.md\nprocess_check_report.md\nreeval_ced_s42\nreeval_ced_s44\nreeval_commands.md\nreeval_flat_nli_s42\nreeval_flat_nli_s43_r2\nreeval_sft_baseline_d076\nref_audit_worker2.md\nrelated_work_gap_analysis.md\nrelated_work_survey\nreview_issues.yaml\nreview_reports\nreview_round_2\nreview_round_3\nreview_round_4\nrsft_gen_progress_check.md\nrsft_pipeline_commands.md\nserver_audit_bjb2.md\nserver_audit_rtx5090.md\nserver_state_20260522.md\nstatus_check_loop4.md\ntest_eval_14b_rsft_s43\ntest_eval_14b_rsft_s43_no_evi\ntest_eval_14b_rsft_s43_pair\ntest_eval_4b_rsft_s44_no_evi_r2\ntest_eval_8b_rsft_s42\ntest_eval_commands.md\ntest_eval_llama_rsft_s42_no_evi_v2\ntest_eval_llama_rsft_s42_with_evi_v3\ntest_table_compilation.md\ntest_table_draft.md\ntopk_ablation_lit_review.md\ntraining_health_check.md\ntraining_trajectory_loop4.md\ntrl_grpo_stability_research.md\nworker_check_status.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000396"
+        },
+        {
+          "source_line": 397,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NZZ4qzWB9GvPqMjiiSFwdk",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/ref_audit_worker3.md",
+                "content": "# 引用核对清单 — Worker 3\n\n总计: 52 条引用 (35 条在正文中被引用, 17 条仅存在于 bib 文件), 11 条有问题\n\n## 问题汇总\n\n| 严重度 | 数量 | 说明 |\n|--------|------|------|\n| 高危 (内容错误) | 4 | gulcehre2023rest 作者错误, wang2025relprior 标题虚构, tang2025rsftppo 会议名虚构, ma2023dreeam venue 错误 |\n| 中等 (格式/key 问题) | 5 | xu2024lmrc/wang2025rear/wang2025rullm cite key 与首作者不一致, gulcehre2023rest entry type 错误, li2026qurl 缺少 venue 更新 |\n| 低 (仅限未引用条目) | 3 | ito2025mogrpo/zhang2025glidre cite key 错误 (未被引用), tan2022redocred 标题标点 |\n\n## 逐条结果\n\n---\n\n### 1. [autore2024] — ✓\n- 真实性: ✓\n- 作者: ✓ Xue, Lilong; Zhang, Dan; Dong, Yuxiao; Tang, Jie\n- 年份: ✓ 2024\n- 标题: ✓ \"AutoRE: Document-Level Relation Extraction with Large Language Models\"\n- Venue: ✓ ACL 2024 System Demonstrations\n- arXiv ID: ✓ 2403.14888\n- 正文用法: ✓ intro: \"fine-tune LLMs with structured decomposition\"; related work: \"uses QLoRA with relation-head-facts decomposition\"\n- 备注: 无问题\n\n### 2. [xu2025docksrag] — ✓\n- 真实性: ✓\n- 作者: ✓ Xu, Xiaolong et al.\n- 年份: ✓ 2025\n- 标题: ✓ \"DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning\"\n- Venue: ✓ ICML 2025 (PMLR 267)\n- arXiv ID: N/A\n- 正文用法: ✓ intro: \"combine retrieval-augmented generation with structured knowledge\"\n- 备注: 无问题\n\n### 3. [dai2025r1re] — ✓\n- 真实性: ✓\n- 作者: ✓ Dai, Runpeng; Zheng, Tong; Yang, Run; Yu, Kaixian; Zhu, Hongtu\n- 年份: ✓ 2025\n- 标题: ✓ \"R1-RE: Cross-Domain Relation Extraction with RLVR\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2507.04642\n- 正文用法: ✓ related work: \"applications to structured IE include R1-RE\"\n- 备注: 无问题\n\n### 4. [gao2023scaling] — ✓\n- 真实性: ✓\n- 作者: ✓ Gao, Leo; Schulman, John; Hilton, Jacob\n- 年份: ✓ 2023\n- 标题: ✓ \"Scaling Laws for Reward Model Overoptimization\"\n- Venue: ✓ ICML 2023\n- arXiv ID: ✓ 2210.10760\n- 正文用法: ✓ related work: \"capacity-dependent scaling dynamics\"; experiments: reward optimization dynamics\n- 备注: 无问题\n\n### 5. [hu2022lora] — ✓\n- 真实性: ✓\n- 作者: ✓ Hu, Edward J. et al.\n- 年份: ✓ 2022\n- 标题: ✓ \"LoRA: Low-Rank Adaptation of Large Language Models\"\n- Venue: ✓ ICLR 2022\n- arXiv ID: ✓ 2106.09685\n- 正文用法: ✓ method: \"Low-Rank Adaptation (LoRA)\"\n- 备注: 无问题\n\n### 6. [li2026qurl] — ✗\n- 真实性: ✓\n- 作者: ✓ Li, Yuhang; Elangovan, Reena; Dong, Xin; Panda, Priyadarshini; Khailany, Brucek\n- 年份: ✓ 2026\n- 标题: ✓ \"QuRL: Efficient Reinforcement Learning with Quantized Rollout\"\n- Venue: ✗ bib 列为 arXiv preprint，实际已被 **ICLR 2026** 接收\n- arXiv ID: ✓ 2602.13953\n- 正文用法: ✓ experiments: \"resembling the quantized-actor divergence of \\citet{li2026qurl}\"\n- 备注: 应更新 venue 为 ICLR 2026\n\n### 7. [laban2022summac] — ✓\n- 真实性: ✓\n- 作者: ✓ Laban, Philippe; Schnabel, Tobias; Bennett, Paul N.; Hearst, Marti A.\n- 年份: ✓ 2022\n- 标题: ✓ \"SummaC: Re-Visiting NLI-based Models for Inconsistency Detection in Summarization\"\n- Venue: ✓ TACL, vol 10, pp 163-177\n- arXiv ID: N/A\n- 正文用法: ✓ related work: NLI-based faithfulness evaluation\n- 备注: 无问题\n\n### 8. [li2025srvf] — ✓\n- 真实性: ✓\n- 作者: ✓ Li, Yongqi; Miao, Xin; Zhou, Shen; Xu, Mayi; Ren, Yuyang; Qian, Tieyun\n- 年份: ✓ 2025\n- 标题: ✓ \"Enhancing Relation Extraction via Supervised Rationale Verification and Feedback\"\n- Venue: ✓ AAAI 2025\n- arXiv ID: ✓ 2412.07289\n- 正文用法: ✓ related work: \"reward-based evidence grounding\"\n- 备注: 无问题\n\n### 9. [jin2025rl_panacea] — ✓\n- 真实性: ✓\n- 作者: ✓ Jin, Hangzhan; Lv, Sicheng; Wu, Sifan; Hamdaqa, Mohammad\n- 年份: ✓ 2025\n- 标题: ✓ \"RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2508.16546\n- 正文用法: ✓ related work: \"catastrophic forgetting in RL alignment\"\n- 备注: 无问题\n\n### 10. [ma2023dreeam] — ✗\n- 真实性: ✓\n- 作者: ✓ Ma, Youmi; Wang, An; Okazaki, Naoaki\n- 年份: ✓ 2023\n- 标题: ✓ \"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction\"\n- Venue: ✗ bib 写 \"Findings of the Association for Computational Linguistics: EACL 2023\"，实际是 **EACL 2023 主会议** (ACL Anthology: 2023.eacl-main.145)\n- arXiv ID: ✓ 2302.08675\n- 正文用法: ✓\n- 备注: **venue 错误**。应改为 \"Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics\"\n\n### 11. [moskovitz2024constrained] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Moskovitz, Ted et al.\n- 年份: ✓ 2024\n- 标题: ✓ \"Confronting Reward Model Overoptimization with Constrained RLHF\"\n- Venue: ✓ ICLR 2024\n- arXiv ID: N/A (OpenReview URL 正确)\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite，不会出现在论文中\n\n### 12. [rafailov2023direct] — ✓\n- 真实性: ✓\n- 作者: ✓ Rafailov, Rafael; Sharma, Archit; Mitchell, Eric; Ermon, Stefano; Manning, Christopher D.; Finn, Chelsea\n- 年份: ✓ 2023\n- 标题: ✓ \"Direct Preference Optimization: Your Language Model is Secretly a Reward Model\"\n- Venue: ✓ NeurIPS 2023\n- arXiv ID: ✓ 2305.18290\n- 正文用法: ✓ intro/method: DPO paradigm\n- 备注: 无问题\n\n### 13. [shao2024deepseekmath] — ✓\n- 真实性: ✓\n- 作者: ✓ Shao, Zhihong et al. (bib 中作者名略有缩写但可接受)\n- 年份: ✓ 2024\n- 标题: ✓ \"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2402.03300\n- 正文用法: ✓ intro/method: GRPO\n- 备注: 无问题\n\n### 14. [tan2022redocred] — ✓ (微小问题)\n- 真实性: ✓\n- 作者: ✓ Tan, Qingyu; Xu, Lu; Bing, Lidong; Ng, Hwee Tou; Aljunied, Sharifah Mahani\n- 年份: ✓ 2022\n- 标题: ✓ (微小: 官方标题用 dash 不是 colon，但功能上可接受)\n- Venue: ✓ EMNLP 2022\n- arXiv ID: N/A\n- 正文用法: ✓\n- 备注: 官方标题用 dash \"Revisiting DocRED - Addressing...\" 而非 colon \"Revisiting DocRED: Addressing...\"，低优先级\n\n### 15. [xiao2022sais] — ✓\n- 真实性: ✓\n- 作者: ✓ Xiao, Yuxin; Zhang, Zecheng; Mao, Yuning; Yang, Carl; Han, Jiawei\n- 年份: ✓ 2022\n- 标题: ✓ \"SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction\"\n- Venue: ✓ NAACL 2022\n- arXiv ID: N/A\n- 正文用法: ✓\n- 备注: 无问题\n\n### 16. [xie2022eider] — ✓\n- 真实性: ✓\n- 作者: ✓ Xie, Yiqing; Shen, Jiaming; Li, Sha; Mao, Yuning; Han, Jiawei\n- 年份: ✓ 2022\n- 标题: ✓ \"EIDER: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion\"\n- Venue: ✓ Findings ACL 2022\n- arXiv ID: ✓ 2106.08657\n- 正文用法: ✓\n- 备注: 无问题\n\n### 17. [xu2024lmrc] — ✗\n- 真实性: ✓\n- 作者: ✗ bib 中作者正确列为 Li, Xingzuo et al.，但 **cite key 写 \"xu2024\" 与首作者 Li 不一致**\n- 年份: ✓ 2024\n- 标题: ✓ (bib 加了 \"LMRC:\" 前缀，arXiv 原标题无此前缀，但作为缩写惯例可接受)\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2408.13889\n- 正文用法: ✗ 正文 \"\\citet{xu2024lmrc}\" 渲染为 \"Xu et al. (2024)\"，但首作者是 **Li**，读者看到的引用与实际作者不符\n- 备注: **cite key 命名错误导致正文显示错误作者**。应改 key 为 li2024lmrc，或修正正文中所有引用\n\n### 18. [yao2019docred] — ✓\n- 真实性: ✓\n- 作者: ✓ Yao, Yuan et al.\n- 年份: ✓ 2019\n- 标题: ✓ \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\"\n- Venue: ✓ ACL 2019\n- arXiv ID: N/A\n- 正文用法: ✓\n- 备注: 无问题\n\n### 19. [zelikman2022star] — ✓\n- 真实性: ✓\n- 作者: ✓ Zelikman, Eric; Wu, Yuhuai; Mu, Jesse; Goodman, Noah D.\n- 年份: ✓ 2022\n- 标题: ✓ \"STaR: Bootstrapping Reasoning With Reasoning\"\n- Venue: ✓ NeurIPS 2022\n- arXiv ID: ✓ 2203.14465\n- 正文用法: ✓ intro/method: STaR as RSFT foundation\n- 备注: 无问题\n\n### 20. [dong2023raft] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Dong, Hanze et al.\n- 年份: ✓ 2023\n- 标题: ✓ \"RAFT: Reward rAnked FineTuning for Generative Foundation Model Alignment\"\n- Venue: ✓ TMLR\n- arXiv ID: ✓ 2304.06767\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 21. [ito2025mogrpo] — ✗ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Ichihara, Yuki; Jinnai, Yuu; Morimura, Tetsuro; Sakamoto, Mitsuki; Mitsuhashi, Ryota; Uchibe, Eiji\n- 年份: ✓ 2025\n- 标题: ✓ \"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2509.22047\n- 正文用法: N/A (未在正文中被引用)\n- 备注: cite key \"ito2025\" 但首作者是 Ichihara。未被引用所以不影响论文。\n\n### 22. [li2025drift] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Li, Jiazheng; Yan, Hanqi; He, Yulan\n- 年份: ✓ 2025\n- 标题: ✓ \"Drift: Enhancing LLM Faithfulness in Rationale Generation via Dual-Reward Probabilistic Inference\"\n- Venue: ✓ ACL 2025\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 23. [liu2026gdpo] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Liu, Shih-Yang et al.\n- 年份: ✓ 2026\n- 标题: ✓ \"GDPO: Group Reward-Decoupled Normalization Policy Optimization for Multi-Reward RL Optimization\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2601.05242\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 24. [liu2025drgrpo] — ✓\n- 真实性: ✓\n- 作者: ✓ Liu, Zichen; Chen, Changyu; Li, Wenjun; Qi, Penghui; Pang, Tianyu; Du, Chao; Lee, Wee Sun; Lin, Min\n- 年份: ✓ 2025\n- 标题: ✓ \"Understanding R1-Zero-Like Training: A Critical Perspective\"\n- Venue: ✓ Conference on Language Modeling (COLM 2025)\n- arXiv ID: ✓ 2503.20783\n- 正文用法: ✓ related work: \"length bias\" (paper proposes Dr. GRPO to address length bias)\n- 备注: cite key \"drgrpo\" 基于论文提出的方法名，可接受\n\n### 25. [yu2025dapo] — ✓\n- 真实性: ✓\n- 作者: ✓ Yu, Qiying et al.\n- 年份: ✓ 2025\n- 标题: ✓ \"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2503.14476\n- 正文用法: ✓ related work: \"entropy collapse\"\n- 备注: 无问题\n\n### 26. [zhang2024infuse] — ✓\n- 真实性: ✓\n- 作者: ✓ Zhang, Huajian; Xu, Yumo; Perez-Beltrachini, Laura\n- 年份: ✓ 2024\n- 标题: ✓ \"Fine-Grained Natural Language Inference Based Faithfulness Evaluation for Diverse Summarisation Tasks\"\n- Venue: ✓ EACL 2024\n- arXiv ID: N/A\n- 正文用法: ✓ related work: NLI-based faithfulness evaluation\n- 备注: 无问题\n\n### 27. [wang2025rear] — ✗\n- 真实性: ✓\n- 作者: ✓ Luo, Jianwen; Hong, Yu; Yang, Shuai; Yao, Jianmin (作者内容正确)\n- 年份: ✓ 2025\n- 标题: ✓ \"REAR: Reinforced Reasoning Optimization for Event Argument Extraction with Relation-Aware Support\"\n- Venue: ✓ Findings EMNLP 2025\n- arXiv ID: N/A\n- 正文用法: ✗ 正文 \"\\citep{wang2025rear}\" 但首作者是 **Luo**，BibTeX 渲染为 \"Luo et al.\" 是正确的因为 author field 正确，但 cite key 命名不一致\n- 备注: **cite key \"wang2025\" 与首作者 Luo 不一致**。由于 author field 内容正确，BibTeX 渲染不受影响，但 key 命名有误导性。\n\n### 28. [wang2025relprior] — ✗\n- 真实性: ✓\n- 作者: ✓ Pi, Qiankun; Sun, Yepeng; Lu, Jicang; Fan, Qinlong; Huang, Ningbo; Wang, Shiyu (作者内容正确)\n- 年份: ✓ 2025\n- 标题: ✗ bib 标题 \"RelPrior: Relation as a Prior for LLM-based Document-Level Relation Extraction\"。**实际 arXiv 标题是 \"Relation as a Prior: A Novel Paradigm for LLM-based Document-Level Relation Extraction\"**。\"RelPrior:\" 前缀是虚构的，\"A Novel Paradigm\" 被省略。\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2511.08143\n- 正文用法: ✓ related work: \"RelPrior leverages relation priors\" (用法合理但论文实际不以 RelPrior 为简称)\n- 备注: **标题部分虚构**。cite key \"wang2025\" 与首作者 Pi 不一致。应修正标题为 \"Relation as a Prior: A Novel Paradigm for {LLM}-based Document-Level Relation Extraction\"\n\n### 29. [zhang2025glidre] — ✗ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Armingaud, Robin; Besançon, Romaric\n- 年份: ✓ 2025\n- 标题: ✓ \"GLiDRE: Generalist Lightweight Model for Document-level Relation Extraction\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2508.00757\n- 正文用法: N/A (未在正文中被引用)\n- 备注: cite key \"zhang2025\" 但作者是 Armingaud 和 Besançon，无 Zhang。未被引用不影响论文。\n\n### 30. [tang2025rsftppo] — ✗\n- 真实性: ✓\n- 作者: ✓ Anil, Gautham Govind; Nagaraj, Dheeraj Mysore; Shanmugam, Karthikeyan; Shakkottai, Sanjay (作者内容正确)\n- 年份: ✓ 2025\n- 标题: ✓ \"Rejection Sampling Based Fine Tuning Secretly Performs PPO\"\n- Venue: ✗ bib 写 \"ICML 2025 Workshop on Practical Aspects of Unlearning and Test-time Adaptation (PUT)\"。**实际 workshop 名为 \"2nd Workshop on Test-Time Adaptation: Putting Updates to the Test (PUT)\"**。\"Practical Aspects of Unlearning and Test-time Adaptation\" 是虚构的。\n- arXiv ID: N/A (OpenReview URL 正确)\n- 正文用法: ✓ related work: \"theoretical connections to PPO\"\n- 备注: **venue 名称虚构**。cite key \"tang2025\" 与首作者 Anil 不一致。由于 author field 正确 BibTeX 渲染不受影响，但 venue 必须修正。\n\n### 31. [wang2025rullm] — ✗ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Zhang, Kunli; Wu, Pengcheng; Yu, Bohan; Li, Yunlong; Kong, Dezhi; Zan, Hongying; Peng, Min; Song, Yu (作者内容正确)\n- 年份: ✓ 2025\n- 标题: ✓ \"Ru-LLM: Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction\"\n- Venue: ✓ NLPCC 2025 (但 entry type 有误)\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中被引用)\n- 备注: cite key \"wang2025\" 但首作者是 Zhang。@article 应改为 @inproceedings (NLPCC 是会议)。未被引用不影响论文。\n\n### 32. [zhou2021atlop] — ✓\n- 真实性: ✓\n- 作者: ✓ Zhou, Wenxuan; Huang, Kevin; Ma, Tengyu; Huang, Jing\n- 年份: ✓ 2021\n- 标题: ✓ \"Document-Level Relation Extraction with Adaptive Thresholding and Localized Context Pooling\"\n- Venue: ✓ AAAI 2021\n- arXiv ID: ✓ 2010.11304\n- 正文用法: ✓ intro: \"encoder-based methods such as \\citet{zhou2021atlop} long dominated\"\n- 备注: 无问题\n\n### 33. [ruder2017overview] — ✓\n- 真实性: ✓\n- 作者: ✓ Ruder, Sebastian\n- 年份: ✓ 2017\n- 标题: ✓ \"An Overview of Multi-Task Learning in Deep Neural Networks\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 1706.05098\n- 正文用法: ✓ related work: \"negative transfer in multi-task learning\"\n- 备注: 无问题\n\n### 34. [standley2020tasks] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Standley, Trevor et al.\n- 年份: ✓ 2020\n- 标题: ✓ \"Which Tasks Should Be Learned Together in Multi-task Learning?\"\n- Venue: ✓ ICML 2020\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 35. [yu2020gradient] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Yu, Tianhe et al.\n- 年份: ✓ 2020\n- 标题: ✓ \"Gradient Surgery for Multi-Task Learning\"\n- Venue: ✓ NeurIPS 2020\n- arXiv ID: ✓ 2001.06782\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 36. [wang2023selfconsistency] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Wang, Xuezhi et al.\n- 年份: ✓ 2023\n- 标题: ✓ \"Self-Consistency Improves Chain of Thought Reasoning in Language Models\"\n- Venue: ✓ ICLR 2023\n- arXiv ID: ✓ 2203.11171\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 37. [ouyang2022instructgpt] — ✓\n- 真实性: ✓\n- 作者: ✓ Ouyang, Long et al.\n- 年份: ✓ 2022\n- 标题: ✓ \"Training Language Models to Follow Instructions with Human Feedback\"\n- Venue: ✓ NeurIPS 2022\n- arXiv ID: ✓ 2203.02155\n- 正文用法: ✓ related work/method: RLHF\n- 备注: 无问题\n\n### 38. [schulman2017ppo] — ✓\n- 真实性: ✓\n- 作者: ✓ Schulman, John; Wolski, Filip; Dhariwal, Prafulla; Radford, Alec; Klimov, Oleg\n- 年份: ✓ 2017\n- 标题: ✓ \"Proximal Policy Optimization Algorithms\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 1707.06347\n- 正文用法: ✓ related work: PPO\n- 备注: 无问题\n\n### 39. [zeng2020gain] — ✓\n- 真实性: ✓\n- 作者: ✓ Zeng, Shuang; Xu, Runxin; Chang, Baobao; Li, Lei\n- 年份: ✓ 2020\n- 标题: ✓ \"Double Graph Based Reasoning for Document-level Relation Extraction\"\n- Venue: ✓ EMNLP 2020\n- arXiv ID: N/A\n- 正文用法: ✓ related work: \"graph-based methods such as GAIN\"\n- 备注: 无问题\n\n### 40. [ethayarajh2024kto] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Ethayarajh, Kawin et al.\n- 年份: ✓ 2024\n- 标题: ✓ \"KTO: Model Alignment as Prospect Theoretic Optimization\"\n- Venue: ✓ ICML 2024\n- arXiv ID: ✓ 2402.01306\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 41. [coste2024reward] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Coste, Thomas; Anwar, Usman; Kirk, Robert; Krueger, David\n- 年份: ✓ 2024\n- 标题: ✓ \"Reward Model Ensembles Help Mitigate Overoptimization\"\n- Venue: ✓ ICLR 2024\n- arXiv ID: ✓ 2310.02743\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 42. [he2023debertav3] — ✓\n- 真实性: ✓\n- 作者: ✓ He, Pengcheng; Gao, Jianfeng; Chen, Weizhu\n- 年份: ✓ 2023\n- 标题: ✓ \"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\"\n- Venue: ✓ ICLR 2023\n- arXiv ID: ✓ 2111.09543\n- 正文用法: ✓ method: NLI model \"based on DeBERTaV3\"\n- 备注: 无问题\n\n### 43. [dettmers2023qlora] — ✓\n- 真实性: ✓\n- 作者: ✓ Dettmers, Tim; Pagnoni, Artidoro; Holtzman, Ari; Zettlemoyer, Luke\n- 年份: ✓ 2023\n- 标题: ✓ \"QLoRA: Efficient Finetuning of Quantized LLMs\"\n- Venue: ✓ NeurIPS 2023\n- arXiv ID: ✓ 2305.14314\n- 正文用法: ✓ method: \"Quantized LoRA (QLoRA)\"\n- 备注: 无问题\n\n### 44. [hoffmann2022chinchilla] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Hoffmann, Jordan et al.\n- 年份: ✓ 2022\n- 标题: ✓ \"Training Compute-Optimal Large Language Models\"\n- Venue: ✓ NeurIPS 2022\n- arXiv ID: ✓ 2203.15556\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 45. [yuan2023rft] — ✓\n- 真实性: ✓\n- 作者: ✓ Yuan, Zheng et al.\n- 年份: ✓ 2023\n- 标题: ✓ \"Scaling Relationship on Learning Mathematical Reasoning with Large Language Models\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2308.01825\n- 正文用法: ✓ related work: \"subsequent scaling analyses\"\n- 备注: 无问题\n\n### 46. [tamo2026evidencerl] — ✓\n- 真实性: ✓ (2026 年论文，已通过 WebSearch 验证存在)\n- 作者: ✓ Tamo, J. Ben; Lu, Yuxing; Marteau, Benoit L.; Nnamdi, Micky C.; Wang, May D.\n- 年份: ✓ 2026 (March 2026)\n- 标题: ✓ \"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2603.19532\n- 正文用法: ✓ related work: \"reward-based evidence grounding\"\n- 备注: 无问题。2026 年引用，已验证真实存在。\n\n### 47. [liu2026rift] — ✓ (未被引用)\n- 真实性: ✓ (2026 年论文，已通过 WebSearch 验证存在)\n- 作者: ✓ Liu, Zehua; Liu, Shuqi; Zhong, Tao; Yuan, Mingxuan\n- 年份: ✓ 2026 (January 2026)\n- 标题: ✓ \"RIFT: Repurposing Negative Samples via Reward-Informed Fine-Tuning\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2601.09253\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 48. [deng2026trajfusion] — ✓ (未被引用)\n- 真实性: ✓ (2026 年论文，已通过 WebSearch 验证存在)\n- 作者: ✓ Deng, Jie; Tong, Hanshuang; Li, Jun; Liang, Shining; Wu, Ning; Li, Hongzhi; Xie, Yutao\n- 年份: ✓ 2026 (February 2026)\n- 标题: ✓ \"Beyond Rejection Sampling: Trajectory Fusion for Scaling Mathematical Reasoning\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2602.04391\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 49. [tian2026mugrpo] — ✓ (未被引用)\n- 真实性: ✓ (2026 年论文，已通过 WebSearch 验证存在)\n- 作者: ✓ Tian, Minghao; Xie, Yunfei; Wei, Chen\n- 年份: ✓ 2026 (May 2026)\n- 标题: ✓ \"How Off-Policy Can GRPO Be? μ-GRPO for Efficient LLM Reinforcement Learning\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2605.17570\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 50. [ji2026treegrpo] — ✓ (未被引用)\n- 真实性: ✓ (2026 年论文，已通过 WebSearch 验证存在)\n- 作者: ✓ Ji, Yuxiang; Ma, Ziyu; Wang, Yong; Chen, Guanhua; Chu, Xiangxiang; Wu, Liaoni\n- 年份: ✓ 2026\n- 标题: ✓ \"Tree Search for LLM Agent Reinforcement Learning\"\n- Venue: ✓ ICLR 2026\n- arXiv ID: ✓ 2509.21240\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 51. [deepseek2025r1] — ✓\n- 真实性: ✓\n- 作者: ✓ DeepSeek-AI\n- 年份: ✓ 2025\n- 标题: ✓ \"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\"\n- Venue: ✓ arXiv preprint (后发表于 Nature，arXiv 条目可接受)\n- arXiv ID: ✓ 2501.12948\n- 正文用法: ✓ related work: \"DeepSeek-R1 demonstrates its effectiveness at scale\"\n- 备注: 无问题\n\n### 52. [gulcehre2023rest] — ✗\n- 真实性: ✓\n- 作者: ✗ bib 列出 \"Dyer, Chris\" 和 \"Grangier, David\"，**实际应为 \"Doucet, Arnaud\" 和 \"de Freitas, Nando\"**。两个作者名错误。\n- 年份: ✓ 2023\n- 标题: ✓ \"Reinforced Self-Training (ReST) for Language Modeling\"\n- Venue: ✗ 使用 @inproceedings 但 booktitle = \"arXiv preprint arXiv:2308.08998\"，这不是合法的 venue 格式。应改为 @article。\n- arXiv ID: ✓ 2308.08998\n- 正文用法: ✓ related work: \"subsequent scaling analyses\"\n- 备注: **两个严重错误**：(1) 两个作者名错误 (Dyer→Doucet, Grangier→de Freitas)；(2) @inproceedings + arXiv preprint 作为 booktitle 是格式错误，应改为 @article\n\n---\n\n## 未被引用的 bib 条目 (17 条)\n\n以下条目存在于 references.bib 但未在任何 .tex 文件中被 \\cite，不会出现在编译后的论文中：\n\n1. moskovitz2024constrained\n2. dong2023raft\n3. ito2025mogrpo\n4. li2025drift\n5. liu2026gdpo\n6. liu2026rift\n7. deng2026trajfusion\n8. tian2026mugrpo\n9. ji2026treegrpo\n10. standley2020tasks\n11. yu2020gradient\n12. wang2023selfconsistency\n13. ethayarajh2024kto\n14. coste2024reward\n15. hoffmann2022chinchilla\n16. wang2025rullm\n17. zhang2025glidre\n\n---\n\n## 需要修正的条目 (按优先级排序)\n\n### 高优先级 (内容错误，影响论文可信度)\n\n1. **gulcehre2023rest**: 两个作者名错误 + entry type 错误\n   - \"Dyer, Chris\" → \"Doucet, Arnaud\"\n   - \"Grangier, David\" → \"de Freitas, Nando\"\n   - @inproceedings → @article, booktitle → journal\n\n2. **wang2025relprior**: 标题虚构前缀\n   - \"RelPrior: Relation as a Prior for LLM-based Document-Level Relation Extraction\" → \"Relation as a Prior: A Novel Paradigm for LLM-based Document-Level Relation Extraction\"\n\n3. **tang2025rsftppo**: venue 名称虚构\n   - \"ICML 2025 Workshop on Practical Aspects of Unlearning and Test-time Adaptation (PUT)\" → \"2nd Workshop on Test-Time Adaptation: Putting Updates to the Test (PUT) @ ICML 2025\"\n\n4. **ma2023dreeam**: venue 错误\n   - \"Findings of the Association for Computational Linguistics: EACL 2023\" → \"Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics\"\n\n### 中优先级 (影响正确性但不致命)\n\n5. **xu2024lmrc**: cite key 导致正文显示错误作者\n   - cite key \"xu2024lmrc\" → 应改为 \"li2024lmrc\" (首作者是 Li)\n   - 正文中 \\citet 会渲染为 \"Li et al.\" (因为 author field 正确)，但读者搜索 \"xu2024\" 找不到此论文\n\n6. **li2026qurl**: venue 需更新\n   - arXiv preprint → ICLR 2026\n\n### 低优先级 (cosmetic / 仅影响未引用条目)\n\n7. **wang2025rear**: cite key 与首作者不一致 (Luo, not Wang)，但 author field 正确，BibTeX 渲染不受影响\n8. **tan2022redocred**: 标题标点 (colon vs dash)\n9. **ito2025mogrpo** / **zhang2025glidre** / **wang2025rullm**: 未引用条目的 cite key 与首作者不一致\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "51f3943d-0a12-4493-8d1b-f1b38d770e57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RPuL2GQEWhb5foikNNoX1p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3448,
+                "cache_read_input_tokens": 112469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3448
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000397"
+        },
+        {
+          "source_line": 398,
+          "timestamp": "2026-05-26T10:49:36.950Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NZZ4qzWB9GvPqMjiiSFwdk",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/ref_audit_worker3.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "c8d8f5e1-9eda-4621-abeb-07dd464e0dd0",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/ref_audit_worker3.md",
+              "content": "# 引用核对清单 — Worker 3\n\n总计: 52 条引用 (35 条在正文中被引用, 17 条仅存在于 bib 文件), 11 条有问题\n\n## 问题汇总\n\n| 严重度 | 数量 | 说明 |\n|--------|------|------|\n| 高危 (内容错误) | 4 | gulcehre2023rest 作者错误, wang2025relprior 标题虚构, tang2025rsftppo 会议名虚构, ma2023dreeam venue 错误 |\n| 中等 (格式/key 问题) | 5 | xu2024lmrc/wang2025rear/wang2025rullm cite key 与首作者不一致, gulcehre2023rest entry type 错误, li2026qurl 缺少 venue 更新 |\n| 低 (仅限未引用条目) | 3 | ito2025mogrpo/zhang2025glidre cite key 错误 (未被引用), tan2022redocred 标题标点 |\n\n## 逐条结果\n\n---\n\n### 1. [autore2024] — ✓\n- 真实性: ✓\n- 作者: ✓ Xue, Lilong; Zhang, Dan; Dong, Yuxiao; Tang, Jie\n- 年份: ✓ 2024\n- 标题: ✓ \"AutoRE: Document-Level Relation Extraction with Large Language Models\"\n- Venue: ✓ ACL 2024 System Demonstrations\n- arXiv ID: ✓ 2403.14888\n- 正文用法: ✓ intro: \"fine-tune LLMs with structured decomposition\"; related work: \"uses QLoRA with relation-head-facts decomposition\"\n- 备注: 无问题\n\n### 2. [xu2025docksrag] — ✓\n- 真实性: ✓\n- 作者: ✓ Xu, Xiaolong et al.\n- 年份: ✓ 2025\n- 标题: ✓ \"DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning\"\n- Venue: ✓ ICML 2025 (PMLR 267)\n- arXiv ID: N/A\n- 正文用法: ✓ intro: \"combine retrieval-augmented generation with structured knowledge\"\n- 备注: 无问题\n\n### 3. [dai2025r1re] — ✓\n- 真实性: ✓\n- 作者: ✓ Dai, Runpeng; Zheng, Tong; Yang, Run; Yu, Kaixian; Zhu, Hongtu\n- 年份: ✓ 2025\n- 标题: ✓ \"R1-RE: Cross-Domain Relation Extraction with RLVR\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2507.04642\n- 正文用法: ✓ related work: \"applications to structured IE include R1-RE\"\n- 备注: 无问题\n\n### 4. [gao2023scaling] — ✓\n- 真实性: ✓\n- 作者: ✓ Gao, Leo; Schulman, John; Hilton, Jacob\n- 年份: ✓ 2023\n- 标题: ✓ \"Scaling Laws for Reward Model Overoptimization\"\n- Venue: ✓ ICML 2023\n- arXiv ID: ✓ 2210.10760\n- 正文用法: ✓ related work: \"capacity-dependent scaling dynamics\"; experiments: reward optimization dynamics\n- 备注: 无问题\n\n### 5. [hu2022lora] — ✓\n- 真实性: ✓\n- 作者: ✓ Hu, Edward J. et al.\n- 年份: ✓ 2022\n- 标题: ✓ \"LoRA: Low-Rank Adaptation of Large Language Models\"\n- Venue: ✓ ICLR 2022\n- arXiv ID: ✓ 2106.09685\n- 正文用法: ✓ method: \"Low-Rank Adaptation (LoRA)\"\n- 备注: 无问题\n\n### 6. [li2026qurl] — ✗\n- 真实性: ✓\n- 作者: ✓ Li, Yuhang; Elangovan, Reena; Dong, Xin; Panda, Priyadarshini; Khailany, Brucek\n- 年份: ✓ 2026\n- 标题: ✓ \"QuRL: Efficient Reinforcement Learning with Quantized Rollout\"\n- Venue: ✗ bib 列为 arXiv preprint，实际已被 **ICLR 2026** 接收\n- arXiv ID: ✓ 2602.13953\n- 正文用法: ✓ experiments: \"resembling the quantized-actor divergence of \\citet{li2026qurl}\"\n- 备注: 应更新 venue 为 ICLR 2026\n\n### 7. [laban2022summac] — ✓\n- 真实性: ✓\n- 作者: ✓ Laban, Philippe; Schnabel, Tobias; Bennett, Paul N.; Hearst, Marti A.\n- 年份: ✓ 2022\n- 标题: ✓ \"SummaC: Re-Visiting NLI-based Models for Inconsistency Detection in Summarization\"\n- Venue: ✓ TACL, vol 10, pp 163-177\n- arXiv ID: N/A\n- 正文用法: ✓ related work: NLI-based faithfulness evaluation\n- 备注: 无问题\n\n### 8. [li2025srvf] — ✓\n- 真实性: ✓\n- 作者: ✓ Li, Yongqi; Miao, Xin; Zhou, Shen; Xu, Mayi; Ren, Yuyang; Qian, Tieyun\n- 年份: ✓ 2025\n- 标题: ✓ \"Enhancing Relation Extraction via Supervised Rationale Verification and Feedback\"\n- Venue: ✓ AAAI 2025\n- arXiv ID: ✓ 2412.07289\n- 正文用法: ✓ related work: \"reward-based evidence grounding\"\n- 备注: 无问题\n\n### 9. [jin2025rl_panacea] — ✓\n- 真实性: ✓\n- 作者: ✓ Jin, Hangzhan; Lv, Sicheng; Wu, Sifan; Hamdaqa, Mohammad\n- 年份: ✓ 2025\n- 标题: ✓ \"RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2508.16546\n- 正文用法: ✓ related work: \"catastrophic forgetting in RL alignment\"\n- 备注: 无问题\n\n### 10. [ma2023dreeam] — ✗\n- 真实性: ✓\n- 作者: ✓ Ma, Youmi; Wang, An; Okazaki, Naoaki\n- 年份: ✓ 2023\n- 标题: ✓ \"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction\"\n- Venue: ✗ bib 写 \"Findings of the Association for Computational Linguistics: EACL 2023\"，实际是 **EACL 2023 主会议** (ACL Anthology: 2023.eacl-main.145)\n- arXiv ID: ✓ 2302.08675\n- 正文用法: ✓\n- 备注: **venue 错误**。应改为 \"Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics\"\n\n### 11. [moskovitz2024constrained] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Moskovitz, Ted et al.\n- 年份: ✓ 2024\n- 标题: ✓ \"Confronting Reward Model Overoptimization with Constrained RLHF\"\n- Venue: ✓ ICLR 2024\n- arXiv ID: N/A (OpenReview URL 正确)\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite，不会出现在论文中\n\n### 12. [rafailov2023direct] — ✓\n- 真实性: ✓\n- 作者: ✓ Rafailov, Rafael; Sharma, Archit; Mitchell, Eric; Ermon, Stefano; Manning, Christopher D.; Finn, Chelsea\n- 年份: ✓ 2023\n- 标题: ✓ \"Direct Preference Optimization: Your Language Model is Secretly a Reward Model\"\n- Venue: ✓ NeurIPS 2023\n- arXiv ID: ✓ 2305.18290\n- 正文用法: ✓ intro/method: DPO paradigm\n- 备注: 无问题\n\n### 13. [shao2024deepseekmath] — ✓\n- 真实性: ✓\n- 作者: ✓ Shao, Zhihong et al. (bib 中作者名略有缩写但可接受)\n- 年份: ✓ 2024\n- 标题: ✓ \"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2402.03300\n- 正文用法: ✓ intro/method: GRPO\n- 备注: 无问题\n\n### 14. [tan2022redocred] — ✓ (微小问题)\n- 真实性: ✓\n- 作者: ✓ Tan, Qingyu; Xu, Lu; Bing, Lidong; Ng, Hwee Tou; Aljunied, Sharifah Mahani\n- 年份: ✓ 2022\n- 标题: ✓ (微小: 官方标题用 dash 不是 colon，但功能上可接受)\n- Venue: ✓ EMNLP 2022\n- arXiv ID: N/A\n- 正文用法: ✓\n- 备注: 官方标题用 dash \"Revisiting DocRED - Addressing...\" 而非 colon \"Revisiting DocRED: Addressing...\"，低优先级\n\n### 15. [xiao2022sais] — ✓\n- 真实性: ✓\n- 作者: ✓ Xiao, Yuxin; Zhang, Zecheng; Mao, Yuning; Yang, Carl; Han, Jiawei\n- 年份: ✓ 2022\n- 标题: ✓ \"SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction\"\n- Venue: ✓ NAACL 2022\n- arXiv ID: N/A\n- 正文用法: ✓\n- 备注: 无问题\n\n### 16. [xie2022eider] — ✓\n- 真实性: ✓\n- 作者: ✓ Xie, Yiqing; Shen, Jiaming; Li, Sha; Mao, Yuning; Han, Jiawei\n- 年份: ✓ 2022\n- 标题: ✓ \"EIDER: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion\"\n- Venue: ✓ Findings ACL 2022\n- arXiv ID: ✓ 2106.08657\n- 正文用法: ✓\n- 备注: 无问题\n\n### 17. [xu2024lmrc] — ✗\n- 真实性: ✓\n- 作者: ✗ bib 中作者正确列为 Li, Xingzuo et al.，但 **cite key 写 \"xu2024\" 与首作者 Li 不一致**\n- 年份: ✓ 2024\n- 标题: ✓ (bib 加了 \"LMRC:\" 前缀，arXiv 原标题无此前缀，但作为缩写惯例可接受)\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2408.13889\n- 正文用法: ✗ 正文 \"\\citet{xu2024lmrc}\" 渲染为 \"Xu et al. (2024)\"，但首作者是 **Li**，读者看到的引用与实际作者不符\n- 备注: **cite key 命名错误导致正文显示错误作者**。应改 key 为 li2024lmrc，或修正正文中所有引用\n\n### 18. [yao2019docred] — ✓\n- 真实性: ✓\n- 作者: ✓ Yao, Yuan et al.\n- 年份: ✓ 2019\n- 标题: ✓ \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\"\n- Venue: ✓ ACL 2019\n- arXiv ID: N/A\n- 正文用法: ✓\n- 备注: 无问题\n\n### 19. [zelikman2022star] — ✓\n- 真实性: ✓\n- 作者: ✓ Zelikman, Eric; Wu, Yuhuai; Mu, Jesse; Goodman, Noah D.\n- 年份: ✓ 2022\n- 标题: ✓ \"STaR: Bootstrapping Reasoning With Reasoning\"\n- Venue: ✓ NeurIPS 2022\n- arXiv ID: ✓ 2203.14465\n- 正文用法: ✓ intro/method: STaR as RSFT foundation\n- 备注: 无问题\n\n### 20. [dong2023raft] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Dong, Hanze et al.\n- 年份: ✓ 2023\n- 标题: ✓ \"RAFT: Reward rAnked FineTuning for Generative Foundation Model Alignment\"\n- Venue: ✓ TMLR\n- arXiv ID: ✓ 2304.06767\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 21. [ito2025mogrpo] — ✗ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Ichihara, Yuki; Jinnai, Yuu; Morimura, Tetsuro; Sakamoto, Mitsuki; Mitsuhashi, Ryota; Uchibe, Eiji\n- 年份: ✓ 2025\n- 标题: ✓ \"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2509.22047\n- 正文用法: N/A (未在正文中被引用)\n- 备注: cite key \"ito2025\" 但首作者是 Ichihara。未被引用所以不影响论文。\n\n### 22. [li2025drift] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Li, Jiazheng; Yan, Hanqi; He, Yulan\n- 年份: ✓ 2025\n- 标题: ✓ \"Drift: Enhancing LLM Faithfulness in Rationale Generation via Dual-Reward Probabilistic Inference\"\n- Venue: ✓ ACL 2025\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 23. [liu2026gdpo] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Liu, Shih-Yang et al.\n- 年份: ✓ 2026\n- 标题: ✓ \"GDPO: Group Reward-Decoupled Normalization Policy Optimization for Multi-Reward RL Optimization\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2601.05242\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 24. [liu2025drgrpo] — ✓\n- 真实性: ✓\n- 作者: ✓ Liu, Zichen; Chen, Changyu; Li, Wenjun; Qi, Penghui; Pang, Tianyu; Du, Chao; Lee, Wee Sun; Lin, Min\n- 年份: ✓ 2025\n- 标题: ✓ \"Understanding R1-Zero-Like Training: A Critical Perspective\"\n- Venue: ✓ Conference on Language Modeling (COLM 2025)\n- arXiv ID: ✓ 2503.20783\n- 正文用法: ✓ related work: \"length bias\" (paper proposes Dr. GRPO to address length bias)\n- 备注: cite key \"drgrpo\" 基于论文提出的方法名，可接受\n\n### 25. [yu2025dapo] — ✓\n- 真实性: ✓\n- 作者: ✓ Yu, Qiying et al.\n- 年份: ✓ 2025\n- 标题: ✓ \"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2503.14476\n- 正文用法: ✓ related work: \"entropy collapse\"\n- 备注: 无问题\n\n### 26. [zhang2024infuse] — ✓\n- 真实性: ✓\n- 作者: ✓ Zhang, Huajian; Xu, Yumo; Perez-Beltrachini, Laura\n- 年份: ✓ 2024\n- 标题: ✓ \"Fine-Grained Natural Language Inference Based Faithfulness Evaluation for Diverse Summarisation Tasks\"\n- Venue: ✓ EACL 2024\n- arXiv ID: N/A\n- 正文用法: ✓ related work: NLI-based faithfulness evaluation\n- 备注: 无问题\n\n### 27. [wang2025rear] — ✗\n- 真实性: ✓\n- 作者: ✓ Luo, Jianwen; Hong, Yu; Yang, Shuai; Yao, Jianmin (作者内容正确)\n- 年份: ✓ 2025\n- 标题: ✓ \"REAR: Reinforced Reasoning Optimization for Event Argument Extraction with Relation-Aware Support\"\n- Venue: ✓ Findings EMNLP 2025\n- arXiv ID: N/A\n- 正文用法: ✗ 正文 \"\\citep{wang2025rear}\" 但首作者是 **Luo**，BibTeX 渲染为 \"Luo et al.\" 是正确的因为 author field 正确，但 cite key 命名不一致\n- 备注: **cite key \"wang2025\" 与首作者 Luo 不一致**。由于 author field 内容正确，BibTeX 渲染不受影响，但 key 命名有误导性。\n\n### 28. [wang2025relprior] — ✗\n- 真实性: ✓\n- 作者: ✓ Pi, Qiankun; Sun, Yepeng; Lu, Jicang; Fan, Qinlong; Huang, Ningbo; Wang, Shiyu (作者内容正确)\n- 年份: ✓ 2025\n- 标题: ✗ bib 标题 \"RelPrior: Relation as a Prior for LLM-based Document-Level Relation Extraction\"。**实际 arXiv 标题是 \"Relation as a Prior: A Novel Paradigm for LLM-based Document-Level Relation Extraction\"**。\"RelPrior:\" 前缀是虚构的，\"A Novel Paradigm\" 被省略。\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2511.08143\n- 正文用法: ✓ related work: \"RelPrior leverages relation priors\" (用法合理但论文实际不以 RelPrior 为简称)\n- 备注: **标题部分虚构**。cite key \"wang2025\" 与首作者 Pi 不一致。应修正标题为 \"Relation as a Prior: A Novel Paradigm for {LLM}-based Document-Level Relation Extraction\"\n\n### 29. [zhang2025glidre] — ✗ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Armingaud, Robin; Besançon, Romaric\n- 年份: ✓ 2025\n- 标题: ✓ \"GLiDRE: Generalist Lightweight Model for Document-level Relation Extraction\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2508.00757\n- 正文用法: N/A (未在正文中被引用)\n- 备注: cite key \"zhang2025\" 但作者是 Armingaud 和 Besançon，无 Zhang。未被引用不影响论文。\n\n### 30. [tang2025rsftppo] — ✗\n- 真实性: ✓\n- 作者: ✓ Anil, Gautham Govind; Nagaraj, Dheeraj Mysore; Shanmugam, Karthikeyan; Shakkottai, Sanjay (作者内容正确)\n- 年份: ✓ 2025\n- 标题: ✓ \"Rejection Sampling Based Fine Tuning Secretly Performs PPO\"\n- Venue: ✗ bib 写 \"ICML 2025 Workshop on Practical Aspects of Unlearning and Test-time Adaptation (PUT)\"。**实际 workshop 名为 \"2nd Workshop on Test-Time Adaptation: Putting Updates to the Test (PUT)\"**。\"Practical Aspects of Unlearning and Test-time Adaptation\" 是虚构的。\n- arXiv ID: N/A (OpenReview URL 正确)\n- 正文用法: ✓ related work: \"theoretical connections to PPO\"\n- 备注: **venue 名称虚构**。cite key \"tang2025\" 与首作者 Anil 不一致。由于 author field 正确 BibTeX 渲染不受影响，但 venue 必须修正。\n\n### 31. [wang2025rullm] — ✗ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Zhang, Kunli; Wu, Pengcheng; Yu, Bohan; Li, Yunlong; Kong, Dezhi; Zan, Hongying; Peng, Min; Song, Yu (作者内容正确)\n- 年份: ✓ 2025\n- 标题: ✓ \"Ru-LLM: Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction\"\n- Venue: ✓ NLPCC 2025 (但 entry type 有误)\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中被引用)\n- 备注: cite key \"wang2025\" 但首作者是 Zhang。@article 应改为 @inproceedings (NLPCC 是会议)。未被引用不影响论文。\n\n### 32. [zhou2021atlop] — ✓\n- 真实性: ✓\n- 作者: ✓ Zhou, Wenxuan; Huang, Kevin; Ma, Tengyu; Huang, Jing\n- 年份: ✓ 2021\n- 标题: ✓ \"Document-Level Relation Extraction with Adaptive Thresholding and Localized Context Pooling\"\n- Venue: ✓ AAAI 2021\n- arXiv ID: ✓ 2010.11304\n- 正文用法: ✓ intro: \"encoder-based methods such as \\citet{zhou2021atlop} long dominated\"\n- 备注: 无问题\n\n### 33. [ruder2017overview] — ✓\n- 真实性: ✓\n- 作者: ✓ Ruder, Sebastian\n- 年份: ✓ 2017\n- 标题: ✓ \"An Overview of Multi-Task Learning in Deep Neural Networks\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 1706.05098\n- 正文用法: ✓ related work: \"negative transfer in multi-task learning\"\n- 备注: 无问题\n\n### 34. [standley2020tasks] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Standley, Trevor et al.\n- 年份: ✓ 2020\n- 标题: ✓ \"Which Tasks Should Be Learned Together in Multi-task Learning?\"\n- Venue: ✓ ICML 2020\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 35. [yu2020gradient] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Yu, Tianhe et al.\n- 年份: ✓ 2020\n- 标题: ✓ \"Gradient Surgery for Multi-Task Learning\"\n- Venue: ✓ NeurIPS 2020\n- arXiv ID: ✓ 2001.06782\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 36. [wang2023selfconsistency] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Wang, Xuezhi et al.\n- 年份: ✓ 2023\n- 标题: ✓ \"Self-Consistency Improves Chain of Thought Reasoning in Language Models\"\n- Venue: ✓ ICLR 2023\n- arXiv ID: ✓ 2203.11171\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 37. [ouyang2022instructgpt] — ✓\n- 真实性: ✓\n- 作者: ✓ Ouyang, Long et al.\n- 年份: ✓ 2022\n- 标题: ✓ \"Training Language Models to Follow Instructions with Human Feedback\"\n- Venue: ✓ NeurIPS 2022\n- arXiv ID: ✓ 2203.02155\n- 正文用法: ✓ related work/method: RLHF\n- 备注: 无问题\n\n### 38. [schulman2017ppo] — ✓\n- 真实性: ✓\n- 作者: ✓ Schulman, John; Wolski, Filip; Dhariwal, Prafulla; Radford, Alec; Klimov, Oleg\n- 年份: ✓ 2017\n- 标题: ✓ \"Proximal Policy Optimization Algorithms\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 1707.06347\n- 正文用法: ✓ related work: PPO\n- 备注: 无问题\n\n### 39. [zeng2020gain] — ✓\n- 真实性: ✓\n- 作者: ✓ Zeng, Shuang; Xu, Runxin; Chang, Baobao; Li, Lei\n- 年份: ✓ 2020\n- 标题: ✓ \"Double Graph Based Reasoning for Document-level Relation Extraction\"\n- Venue: ✓ EMNLP 2020\n- arXiv ID: N/A\n- 正文用法: ✓ related work: \"graph-based methods such as GAIN\"\n- 备注: 无问题\n\n### 40. [ethayarajh2024kto] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Ethayarajh, Kawin et al.\n- 年份: ✓ 2024\n- 标题: ✓ \"KTO: Model Alignment as Prospect Theoretic Optimization\"\n- Venue: ✓ ICML 2024\n- arXiv ID: ✓ 2402.01306\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 41. [coste2024reward] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Coste, Thomas; Anwar, Usman; Kirk, Robert; Krueger, David\n- 年份: ✓ 2024\n- 标题: ✓ \"Reward Model Ensembles Help Mitigate Overoptimization\"\n- Venue: ✓ ICLR 2024\n- arXiv ID: ✓ 2310.02743\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 42. [he2023debertav3] — ✓\n- 真实性: ✓\n- 作者: ✓ He, Pengcheng; Gao, Jianfeng; Chen, Weizhu\n- 年份: ✓ 2023\n- 标题: ✓ \"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\"\n- Venue: ✓ ICLR 2023\n- arXiv ID: ✓ 2111.09543\n- 正文用法: ✓ method: NLI model \"based on DeBERTaV3\"\n- 备注: 无问题\n\n### 43. [dettmers2023qlora] — ✓\n- 真实性: ✓\n- 作者: ✓ Dettmers, Tim; Pagnoni, Artidoro; Holtzman, Ari; Zettlemoyer, Luke\n- 年份: ✓ 2023\n- 标题: ✓ \"QLoRA: Efficient Finetuning of Quantized LLMs\"\n- Venue: ✓ NeurIPS 2023\n- arXiv ID: ✓ 2305.14314\n- 正文用法: ✓ method: \"Quantized LoRA (QLoRA)\"\n- 备注: 无问题\n\n### 44. [hoffmann2022chinchilla] — ✓ (未被引用)\n- 真实性: ✓\n- 作者: ✓ Hoffmann, Jordan et al.\n- 年份: ✓ 2022\n- 标题: ✓ \"Training Compute-Optimal Large Language Models\"\n- Venue: ✓ NeurIPS 2022\n- arXiv ID: ✓ 2203.15556\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 45. [yuan2023rft] — ✓\n- 真实性: ✓\n- 作者: ✓ Yuan, Zheng et al.\n- 年份: ✓ 2023\n- 标题: ✓ \"Scaling Relationship on Learning Mathematical Reasoning with Large Language Models\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2308.01825\n- 正文用法: ✓ related work: \"subsequent scaling analyses\"\n- 备注: 无问题\n\n### 46. [tamo2026evidencerl] — ✓\n- 真实性: ✓ (2026 年论文，已通过 WebSearch 验证存在)\n- 作者: ✓ Tamo, J. Ben; Lu, Yuxing; Marteau, Benoit L.; Nnamdi, Micky C.; Wang, May D.\n- 年份: ✓ 2026 (March 2026)\n- 标题: ✓ \"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2603.19532\n- 正文用法: ✓ related work: \"reward-based evidence grounding\"\n- 备注: 无问题。2026 年引用，已验证真实存在。\n\n### 47. [liu2026rift] — ✓ (未被引用)\n- 真实性: ✓ (2026 年论文，已通过 WebSearch 验证存在)\n- 作者: ✓ Liu, Zehua; Liu, Shuqi; Zhong, Tao; Yuan, Mingxuan\n- 年份: ✓ 2026 (January 2026)\n- 标题: ✓ \"RIFT: Repurposing Negative Samples via Reward-Informed Fine-Tuning\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2601.09253\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 48. [deng2026trajfusion] — ✓ (未被引用)\n- 真实性: ✓ (2026 年论文，已通过 WebSearch 验证存在)\n- 作者: ✓ Deng, Jie; Tong, Hanshuang; Li, Jun; Liang, Shining; Wu, Ning; Li, Hongzhi; Xie, Yutao\n- 年份: ✓ 2026 (February 2026)\n- 标题: ✓ \"Beyond Rejection Sampling: Trajectory Fusion for Scaling Mathematical Reasoning\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2602.04391\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 49. [tian2026mugrpo] — ✓ (未被引用)\n- 真实性: ✓ (2026 年论文，已通过 WebSearch 验证存在)\n- 作者: ✓ Tian, Minghao; Xie, Yunfei; Wei, Chen\n- 年份: ✓ 2026 (May 2026)\n- 标题: ✓ \"How Off-Policy Can GRPO Be? μ-GRPO for Efficient LLM Reinforcement Learning\"\n- Venue: ✓ arXiv preprint\n- arXiv ID: ✓ 2605.17570\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 50. [ji2026treegrpo] — ✓ (未被引用)\n- 真实性: ✓ (2026 年论文，已通过 WebSearch 验证存在)\n- 作者: ✓ Ji, Yuxiang; Ma, Ziyu; Wang, Yong; Chen, Guanhua; Chu, Xiangxiang; Wu, Liaoni\n- 年份: ✓ 2026\n- 标题: ✓ \"Tree Search for LLM Agent Reinforcement Learning\"\n- Venue: ✓ ICLR 2026\n- arXiv ID: ✓ 2509.21240\n- 正文用法: N/A (未在正文中被引用)\n- 备注: bib 中存在但未被 \\cite\n\n### 51. [deepseek2025r1] — ✓\n- 真实性: ✓\n- 作者: ✓ DeepSeek-AI\n- 年份: ✓ 2025\n- 标题: ✓ \"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\"\n- Venue: ✓ arXiv preprint (后发表于 Nature，arXiv 条目可接受)\n- arXiv ID: ✓ 2501.12948\n- 正文用法: ✓ related work: \"DeepSeek-R1 demonstrates its effectiveness at scale\"\n- 备注: 无问题\n\n### 52. [gulcehre2023rest] — ✗\n- 真实性: ✓\n- 作者: ✗ bib 列出 \"Dyer, Chris\" 和 \"Grangier, David\"，**实际应为 \"Doucet, Arnaud\" 和 \"de Freitas, Nando\"**。两个作者名错误。\n- 年份: ✓ 2023\n- 标题: ✓ \"Reinforced Self-Training (ReST) for Language Modeling\"\n- Venue: ✗ 使用 @inproceedings 但 booktitle = \"arXiv preprint arXiv:2308.08998\"，这不是合法的 venue 格式。应改为 @article。\n- arXiv ID: ✓ 2308.08998\n- 正文用法: ✓ related work: \"subsequent scaling analyses\"\n- 备注: **两个严重错误**：(1) 两个作者名错误 (Dyer→Doucet, Grangier→de Freitas)；(2) @inproceedings + arXiv preprint 作为 booktitle 是格式错误，应改为 @article\n\n---\n\n## 未被引用的 bib 条目 (17 条)\n\n以下条目存在于 references.bib 但未在任何 .tex 文件中被 \\cite，不会出现在编译后的论文中：\n\n1. moskovitz2024constrained\n2. dong2023raft\n3. ito2025mogrpo\n4. li2025drift\n5. liu2026gdpo\n6. liu2026rift\n7. deng2026trajfusion\n8. tian2026mugrpo\n9. ji2026treegrpo\n10. standley2020tasks\n11. yu2020gradient\n12. wang2023selfconsistency\n13. ethayarajh2024kto\n14. coste2024reward\n15. hoffmann2022chinchilla\n16. wang2025rullm\n17. zhang2025glidre\n\n---\n\n## 需要修正的条目 (按优先级排序)\n\n### 高优先级 (内容错误，影响论文可信度)\n\n1. **gulcehre2023rest**: 两个作者名错误 + entry type 错误\n   - \"Dyer, Chris\" → \"Doucet, Arnaud\"\n   - \"Grangier, David\" → \"de Freitas, Nando\"\n   - @inproceedings → @article, booktitle → journal\n\n2. **wang2025relprior**: 标题虚构前缀\n   - \"RelPrior: Relation as a Prior for LLM-based Document-Level Relation Extraction\" → \"Relation as a Prior: A Novel Paradigm for LLM-based Document-Level Relation Extraction\"\n\n3. **tang2025rsftppo**: venue 名称虚构\n   - \"ICML 2025 Workshop on Practical Aspects of Unlearning and Test-time Adaptation (PUT)\" → \"2nd Workshop on Test-Time Adaptation: Putting Updates to the Test (PUT) @ ICML 2025\"\n\n4. **ma2023dreeam**: venue 错误\n   - \"Findings of the Association for Computational Linguistics: EACL 2023\" → \"Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics\"\n\n### 中优先级 (影响正确性但不致命)\n\n5. **xu2024lmrc**: cite key 导致正文显示错误作者\n   - cite key \"xu2024lmrc\" → 应改为 \"li2024lmrc\" (首作者是 Li)\n   - 正文中 \\citet 会渲染为 \"Li et al.\" (因为 author field 正确)，但读者搜索 \"xu2024\" 找不到此论文\n\n6. **li2026qurl**: venue 需更新\n   - arXiv preprint → ICLR 2026\n\n### 低优先级 (cosmetic / 仅影响未引用条目)\n\n7. **wang2025rear**: cite key 与首作者不一致 (Luo, not Wang)，但 author field 正确，BibTeX 渲染不受影响\n8. **tan2022redocred**: 标题标点 (colon vs dash)\n9. **ito2025mogrpo** / **zhang2025glidre** / **wang2025rullm**: 未引用条目的 cite key 与首作者不一致\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000398"
+        },
+        {
+          "source_line": 399,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/ref_audit_worker3.md`。\n\n**结果概要：52 条引用全部验证，11 条有问题，0 条虚构。**\n\n**高优先级修正（4 条）：**\n1. **gulcehre2023rest** — 两个作者名错误（Dyer→Doucet, Grangier→de Freitas）+ @inproceedings 应为 @article\n2. **wang2025relprior** — 标题虚构了 \"RelPrior:\" 前缀，真实标题是 \"Relation as a Prior: A Novel Paradigm for...\"\n3. **tang2025rsftppo** — venue 名称虚构（\"Practical Aspects of Unlearning...\" → 实际是 \"2nd Workshop on Test-Time Adaptation: Putting Updates to the Test\"）\n4. **ma2023dreeam** — venue 错误：不是 Findings EACL 2023，是 EACL 2023 主会议\n\n**中优先级（2 条）：**\n5. **xu2024lmrc** — cite key \"xu\" 但首作者是 Li，\\citet 渲染不受影响但 key 误导\n6. **li2026qurl** — 已被 ICLR 2026 接收，应更新 venue\n\n**所有 2026 年引用（7 条）均已验证为真实存在的论文。** 另有 17 条 bib 条目未在正文中被 \\cite，不会出现在编译后的 PDF 中。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "uuid": "111494ae-4def-4551-92de-891666c59670",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ASvfkcu4ecdqmcKmK9sGp2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11709,
+                "cache_read_input_tokens": 115917,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11709
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000399"
+        },
+        {
+          "source_line": 400,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/ref_audit_worker3.md`。\n\n**结果概要：52 条引用全部验证，11 条有问题，0 条虚构。**\n\n**高优先级修正（4 条）：**\n1. **gulcehre2023rest** — 两个作者名错误（Dyer→Doucet, Grangier→de Freitas）+ @inproceedings 应为 @article\n2. **wang2025relprior** — 标题虚构了 \"RelPrior:\" 前缀，真实标题是 \"Relation as a Prior: A Novel Paradigm for...\"\n3. **tang2025rsftppo** — venue 名称虚构（\"Practical Aspects of Unlearning...\" → 实际是 \"2nd Workshop on Test-Time Adaptation: Putting Updates to the Test\"）\n4. **ma2023dreeam** — venue 错误：不是 Findings EACL 2023，是 EACL 2023 主会议\n\n**中优先级（2 条）：**\n5. **xu2024lmrc** — cite key \"xu\" 但首作者是 Li，\\citet 渲染不受影响但 key 误导\n6. **li2026qurl** — 已被 ICLR 2026 接收，应更新 venue\n\n**所有 2026 年引用（7 条）均已验证为真实存在的论文。** 另有 17 条 bib 条目未在正文中被 \\cite，不会出现在编译后的 PDF 中。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 837706,
+            "duration_api_ms": 2318233,
+            "num_turns": 122,
+            "stop_reason": "end_turn",
+            "session_id": "7ad27970-2427-4427-8982-3e07c0bbdf41",
+            "total_cost_usd": 11.998261000000005,
+            "usage": {
+              "input_tokens": 704,
+              "cache_creation_input_tokens": 116179,
+              "cache_read_input_tokens": 10108149,
+              "output_tokens": 35747,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 116179,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 456,
+                  "cache_read_input_tokens": 115917,
+                  "cache_creation_input_tokens": 11709,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 11709
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1315760,
+                "outputTokens": 42595,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 119,
+                "costUSD": 2.7187349999999992,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10279,
+                "outputTokens": 61919,
+                "cacheReadInputTokens": 11882812,
+                "cacheCreationInputTokens": 278200,
+                "webSearchRequests": 0,
+                "costUSD": 9.279526000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "8fb88ee7-5fb7-4be4-a4c2-bbc1b722d8d1"
+          },
+          "id": "event-000400"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccfef8f4b0215b8e0f98",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh harvest 14b rsft 2048",
+  "task_key": "worker_ssh_harvest-14b-rsft-2048_20260521T073921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest-14b-rsft-2048_20260521T073921_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "dca1cdccfec46f7ab95cb1446c466ca418fad34a01092eaf96ec31dcee784847"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 汇总\n\n| 指标 | @1024 | @2048 | Delta |\n|------|-------|-------|-------|\n| **Ign-F1** | 0.5886 | 0.5896 | **+0.10pp** |\n| F1 | 0.6003 | 0.6020 | +0.17pp |\n| Evi-F1(DREEAM) | — | 0.4871 | — |\n| EDCR | — | 0.5496 | — |\n| Format OK | 100% | 100% | — |\n| **n_truncated** | **0** | **18** | +18 |\n| Inference time | — | 17373s (4h50m) | — |\n\n**结论：@1024 可信。** Delta 仅 +0.10pp，远小于 1pp 阈值。18 篇文档在 @2048 下反而出现截断（模型在更大 budget 下生成了更长输出但仍超限），但对整体指标无实质影响。14B RSFT 的 @1024 评估结果可以直接用于论文报告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-14b-rsft-2048.md"
+}

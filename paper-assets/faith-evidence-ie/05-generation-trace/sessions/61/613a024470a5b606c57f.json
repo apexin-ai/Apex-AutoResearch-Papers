@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "613a024470a5b606c57f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis test eval 14b rsft s43",
+  "task_key": "worker_analysis_test_eval_14b_rsft_s43_20260523T165514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_test_eval_14b_rsft_s43_20260523T165514_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "420dd80ad93ddf538c35a101b4bf2159e1cf06f08f62f92b04fa453592de8d42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**s43 Test Results:**\n| | Ign-F1 | Precision | Recall |\n|---|---|---|---|\n| with-evi | 0.3767 | 0.4252 | 0.3382 |\n| no-evi | 0.3775 | 0.4138 | 0.3470 |\n| **Evidence tax** | **+0.08pp** | | |\n\n**14B 2-Seed Reproducibility:**\n- with-evi: 0.3808 ± 0.0058 (s42=0.3849, s43=0.3767)\n- no-evi: 0.3851 ± 0.0107 (s42=0.3926, s43=0.3775)\n- evidence tax: **+0.42 ± 0.49pp** (n=2)，置信区间跨零，方向不确定\n\n**Full-Scale Evidence Tax:**\n| Scale | Tax (pp) | Direction |\n|---|---|---|\n| 4B | +1.65±0.29 | positive (evidence hurts) |\n| 8B | -0.91±0.74 | negative (evidence helps) |\n| **14B** | **+0.42±0.49** | **ambiguous** |\n| LLaMA-8B | -1.46±0.40 | negative (evidence helps) |\n\ns43 整体 ign_f1 低于 s42（with-evi 低 0.82pp，no-evi 低 1.51pp），seed 方差偏大。CodaLab 提交文件已生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-test-eval-14b-rsft-s43.md"
+}

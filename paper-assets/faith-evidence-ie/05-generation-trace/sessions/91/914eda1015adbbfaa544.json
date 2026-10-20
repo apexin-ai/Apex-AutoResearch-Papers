@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "914eda1015adbbfaa544",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check plan002 test s44",
+  "task_key": "worker_ops_check_plan002_test_s44_20260517T013751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_plan002_test_s44_20260517T013751_result.json",
+    "occurrence": 1,
+    "bytes": 293,
+    "sha256": "d838034e0d90528f1e7962226b423bf21fb1c730e953bacb65a0f3909d6cbe45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验仍在运行中。\n\n**状态**: PID 396338 活跃，CPU 112%，在 cuda:0 上运行。\n\n**进度**: 38/250 batches (15%)，~50s/batch。09:06 启动，已运行约 32 分钟。\n\n**预计剩余时间**: ~212 batches × 50s ≈ 2.9 小时，预计 ~12:30 UTC 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-plan002-test-s44.md"
+}

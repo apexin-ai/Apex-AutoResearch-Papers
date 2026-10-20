@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7ceebe58f4b34cdc8ff",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval d102 llama k1 s42",
+  "task_key": "worker_eval_d102_llama_k1_s42_20260518T082621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d102_llama_k1_s42_20260518T082621_result.json",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "df06bc1ddbd63a83e2340e300b1e859c275bef08213a861156e71d128529d24a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已在 GPU 3 后台运行（PID 523336），247 batches，约 23.5s/batch，预计 ~1.5 小时完成。我会定时检查进度，完成后报告 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d102-llama-k1-s42.md"
+}

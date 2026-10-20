@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abe845aaaa6144f861a5",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh check cuda0 submit eval001",
+  "task_key": "worker_ssh_check_cuda0_submit_eval001_20260515T210423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_cuda0_submit_eval001_20260515T210423_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "7ff12b6016eec2da788297a7bda7a93a71ccbd66065efb7e89c370dd7587de95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_plan_001_flat_nli_s43 已经在运行中，无需重新提交。**\n\n当前状态：\n- **PID 252179** (wrapper) 存活，**PID 252184** (python 进程) 在 cuda:0 上运行，已运行 ~34 分钟，占用 18328 MiB\n- **tmux session**: `eval_plan_001_flat_nli_s43` (created 04:30:26)\n- **Registry 状态**: RUNNING，提交时间 2026-05-15T20:30:26\n- **命令**: `python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s43 --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 43 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s43 --no-quantize`\n\n参数符合要求：全量 dev eval、`--no-quantize`、cuda:0。Registry spec 也已填写完整。无需任何操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-cuda0-submit-eval001.md"
+}

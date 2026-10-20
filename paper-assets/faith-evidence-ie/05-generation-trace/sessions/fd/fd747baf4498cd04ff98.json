@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd747baf4498cd04ff98",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit rsft ced s43 r2",
+  "task_key": "worker_submit_rsft_ced_s43_r2_20260516T000955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_rsft_ced_s43_r2_20260516T000955_result.json",
+    "occurrence": 1,
+    "bytes": 786,
+    "sha256": "365ea76d9fbf0cc016fac18285c8fb09110845c14385c8d4f9335f510aee080a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Flag 检查\n\n| Flag | rsft_trainer.py 默认值 | s42 实际 | s44 实际 | s43 r2 实际 |\n|------|----------------------|---------|---------|------------|\n| `--bf16` | `default=True` | ✓ (默认开启) | ✓ (默认开启) | ✓ (默认开启) |\n| `--weighted_sampling` | `store_true` (默认 False) | `weighted=True` ✓ | `weighted=True` ✓ | `weighted=True` ✓ |\n\n三个 seed 一致：都用了 `--weighted_sampling`，`--bf16` 默认开启无需显式传。\n\n### rsft_ced_s43_train_r2 已在运行\n\n- **已在 cuda:1 上训练**（PID 275269, 28216MiB）\n- 启动时间：2026-05-16 08:10:30\n- 进度：step 7/510（刚启动不久）\n- 日志确认 `weighted=True`，无报错\n\n**无需重复提交**，训练已在进行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-rsft-ced-s43-r2.md"
+}

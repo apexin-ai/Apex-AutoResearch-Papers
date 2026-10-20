@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7ade824b47c39c183a23",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "code plan 004 dreeam baseline",
+  "task_key": "worker_code_plan_004_dreeam_baseline_20260515T133326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_004_dreeam_baseline_20260515T133326.log",
+    "occurrence": 1,
+    "bytes": 621198,
+    "sha256": "d3282f0b1c3dc6e572ed0c6f58d669b3c451998764be1de6760bc23bf5a3fb67"
+  },
+  "statistics": {
+    "messages": 353,
+    "user_turns": 0,
+    "tool_calls": 123,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 103,
+      "tool_call": 123,
+      "tool_result": 123,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 353,
+      "chunks": [
+        {
+          "path": "7ade824b47c39c183a23-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ade824b47c39c183a23-part-0002.json",
+          "message_count": 173
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-004-dreeam-baseline.md"
+}

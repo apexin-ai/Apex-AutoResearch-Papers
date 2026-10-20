@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "658c4dff837b009ec01d",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research ced scoring compat",
+  "task_key": "worker_research_ced_scoring_compat_20260516T124141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ced_scoring_compat_20260516T124141_result.json",
+    "occurrence": 1,
+    "bytes": 2569,
+    "sha256": "24b3101a7329926be4b68fde3e940752b3ca440d60f0522105dfeed43f83146e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已收集到所有必要信息。汇报如下：\n\n---\n\n## CED Scoring Pipeline 兼容性确认\n\n### 1. CED scoring 与生成模型无关\n\n**是的，完全无关。** CED scoring pipeline 的输入是纯文本：\n- `claim`: 由 (head, relation, tail) 通过 verbalization template 生成的自然语言句子\n- `cited_evidence_sents`: 模型输出中引用的文档句子（文本列表）\n- `hard_negative_sents`: 文档中未被引用的其他句子\n\n不需要生成模型的 weights、tokenizer 或任何模型特定信息。只要 candidates 能被 parse 成 `[{\"head\": ..., \"relation\": ..., \"tail\": ..., \"evidence\": [...]}]` 格式，CED 就能打分。\n\n### 2. CED 使用的 NLI 模型\n\n- **默认模型**: `cross-encoder/nli-deberta-v3-base`（HuggingFace hub ID，定义在 `rewards/ced_reward.py:22`）\n- **ced_reranker.py 示例中用**: `/root/autodl-tmp/models/deberta-v3-large-zeroshot-v2.0`\n- **rsft_score_filter.py 示例中用**: `/root/autodl-tmp/models/nli-deberta-v3-base`\n- 实际磁盘上 `/root/autodl-tmp/models/` 目录下目前**没有** deberta 模型（只有 Meta-Llama-3.1-8B、Qwen3-4B 等），HF cache 里也没有。使用前需要下载。\n\n### 3. CED scoring 完整流程\n\n```\nrsft_generate.py (生成 N 个 candidates per doc)\n    → generations.jsonl\n        → rsft_score_filter.py (CED 打分 + 筛选)\n            → rsft_train.jsonl (高质量样本)\n                → rsft_trainer.py (SFT 训练，支持 CED score 加权采样)\n```\n\n关键脚本用法：\n```bash\n# Step 1: 打分筛选\npython -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/rsft_generations \\\n    --output_path /root/autodl-tmp/rsft_filtered \\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\n    --scoring_mode ced  # 或 flat_nli\n    --selection_strategy top_pct --top_pct 25\n\n# Step 2: 独立 reranking 评估\npython -m freige.eval.ced_reranker \\\n    --base_model <任意生成模型> \\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\n    --num_generations 8 --temperature 0.7\n```\n\n### 4. 对 LLaMA/8B/1.7B candidates 的适配\n\n**无需任何适配。** 只要满足：\n1. 生成输出能被 `parse_model_output()` 解析为标准 triple 格式（JSON list with head/relation/tail/evidence fields）\n2. evidence 字段是文档中的句子 ID 列表\n\n这些条件由 prompt 格式保证，与底层生成模型无关。Qwen3-4B、LLaMA-3.1-8B、SmolLM-1.7B 都用同一个 system prompt 和输出格式，CED 直接兼容。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ced-scoring-compat.md"
+}

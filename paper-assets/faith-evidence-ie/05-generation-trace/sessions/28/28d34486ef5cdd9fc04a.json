@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28d34486ef5cdd9fc04a",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis eval plan 014 no evidence r2",
+  "task_key": "worker_analysis_eval_plan_014_no_evidence_r2_20260516T041450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_plan_014_no_evidence_r2_20260516T041450_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "47ff9bcaf17676f6256b33a25125d341bf4ea18e38df6d83722dd1a23490be12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**rel_f1 = 0.4876**, Ign-F1 = 0.4721\n\n与 evidence-SFT baseline (rel_f1=0.4106) 对比，**evidence tax = +7.7 个 F1 点（+18.8%）**。去掉 evidence 生成后关系抽取显著提升，与之前中间 eval 的 0.4893 高度一致（差 0.17%），结果可复现。\n\n其他要点：\n- No-evidence 模式确认生效：raw_output 只含 head/relation/tail，evi_pred_total=0\n- 格式合规率 99.3%，precision/recall 基本平衡（0.490/0.485）\n- 截断率 31.2%（307/985），即使不生成 evidence 也有不少截断\n- 无 W&B run ID\n- 结论：**Positive result**\n\n分析已写入 `artifacts/eval_plan_014_no_evidence_r2_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-plan-014-no-evidence-r2-copy-2.md"
+}

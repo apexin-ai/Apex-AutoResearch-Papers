@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0cd1f4d9e9a3edd13a3",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops update report cleanup",
+  "task_key": "worker_ops_update_report_cleanup_20260519T190459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_update_report_cleanup_20260519T190459_result.json",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "b22b1df7aebcaefe9eae89a2c2147738a294ee1e66a9093ccc94be08aac79677"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "report.md 已清理完成：125 行 → 43 行，删除全部 95 条过期告警，更新了运行中/待处理/资源状态/趋势/下一步至当前状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-update-report-cleanup.md"
+}

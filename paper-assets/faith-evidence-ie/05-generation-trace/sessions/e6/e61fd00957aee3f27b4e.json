@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e61fd00957aee3f27b4e",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_18_1779354164.md",
+  "task_key": "loop_18_1779354164",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779354164.md",
+    "occurrence": 1,
+    "bytes": 3775,
+    "sha256": "616ee817124e1c13937ae45a3b558702d3ed72407317d326a5d09124c0f00710"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-21T09:02:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: rtx5090-4x cuda:0/1/2/3，白名单外的 GPU 必须 push back Director\n- LLaMA SFT 脚本用 `GPU=X` 传物理 GPU 编号，不能依赖框架注入的 CUDA_VISIBLE_DEVICES\n- LLaMA eval timeout 至少 14400s (4h)，默认 7200s 不够（eval_llama_sft_s43_no_evidence 在 99% 时被 kill 过）\n- RSFT inference 是 nested LoRA：必须传 `--sft_adapter` 参数，先 merge SFT 再加载 RSFT adapter\n- Evidence tax 论文报告用 fair comparison（format-OK 子集），不修 parser（D134 决策）\n\n### 2. 🖥️ 基础设施快照\n- **主服务器**: rtx5090-4x (connect.westd.seetacloud.com:37389), 4× RTX PRO 6000 Blackwell, 98GB/卡\n- **工作目录**: `/root/autodl-tmp/freige`\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型路径**: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`, `/root/autodl-tmp/models/Qwen/Qwen3-*`\n- **SFT adapters**: `/root/autodl-tmp/sft_output_llama_3_1_8b`, RSFT: `/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s4{2,3,4}`\n- **数据**: `/root/autodl-tmp/data/docred`\n- **Eval 结果**: `/root/autodl-tmp/eval_results/`\n- **磁盘**: 814G/879G 可用 (3%)，充裕\n- **活跃进程**: plan017_14b_rsft_generate_r4 (PID 33608, cuda:0), eval_llama_sft_s43_no_evidence_r2 (PID 36398, cuda:1), eval_llama_sft_s44_no_evidence (PID 29983, cuda:2)\n- **cron 监控**: 上述 3 个 + migration_bjb2_to_westd (PID 6660)\n\n### 3. 📊 当前状态\n刚完成 eval_llama_rsft_s44_no_evidence 分析并推进到 DONE (ign_f1=0.5550, conclusion=success)。LLaMA RSFT 3-seed evidence tax 已完整: mean=-1.14pp ± 0.76pp（evidence 一致有益）。已向 Director 汇报，cuda:3 空闲中。\n\n**RUNNING:**\n- `plan017_14b_rsft_generate_r4` (cuda:0): 14B RSFT 候选生成，从 doc 2553/3027 继续\n- `eval_llama_sft_s43_no_evidence_r2` (cuda:1): LLaMA SFT s43 no-evidence eval，~2h\n- `eval_llama_sft_s44_no_evidence` (cuda:2): LLaMA SFT s44 no-evidence eval，~2h\n\n**等待**: 无 Worker 回调待处理。3 个 cron 会在实验完成时触发回调。Director 尚未回复 cuda:3 空闲问题。\n\n### 4. 📋 待办\n- eval_llama_sft_s43_no_evidence_r2 完成 → 提取 metrics + fair comparison 分析（SFT format compliance 低 ~88.7%，必须用 format-OK 子集）\n- eval_llama_sft_s44_no_evidence 完成 → 同上 → 两个都完成后计算 LLaMA SFT 3-seed evidence tax mean±std\n- plan017_14b_rsft_generate_r4 完成 → CED scoring (CPU) → 14B RSFT train (需 GPU) → eval → no-evidence eval\n- LLaMA SFT 3-seed evidence tax 完成 → 更新 ROADMAP 表格 LLaMA 行的 variance compression\n- cuda:3 空闲 → 等 Director 指示或 14B gen 完成后铺 CED scoring\n\n### 5. 🎯 战略上下文\n- **论文 3 贡献**: (1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression\n- **投稿**: EMNLP 2026 Main, ARR July, ~56 天\n- **关键发现**: SFT evidence tax 方向与 RSFT 相反（SFT: evidence 有害 +1.35pp fair; RSFT: evidence 有益 -1.14pp）。假说: CED 过滤使 evidence 从负担变为资产\n- **易错点**: (1) SFT no-evi eval format compliance 低，必须做 fair comparison，不能直接用全集 tax (2) memory.md 中 evidence tax 符号: 负值=evidence helps (3) 14B RSFT 是串行 pipeline (gen→CED→train→eval)，不能跳步 (4) D130 已修正 LLaMA 指标: ign_f1 是正确的（非 rel_f1=0.5839 那是 s42 RSFT 的 rel_f1）\n- **决策链**: D134(fair comparison) → D133(LLaMA 升 co-primary) → D132(LLaMA SFT 3-seed) → D131(统一叙事主线) → D130(LLaMA 审计修正) → D129(RSFT ign_f1 修正)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779354164.md"
+}

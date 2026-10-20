@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de7308614d860e91d368",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check redocred r2 completion",
+  "task_key": "worker_ops_check_redocred_r2_completion_20260516T133300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_redocred_r2_completion_20260516T133300_result.json",
+    "occurrence": 1,
+    "bytes": 301,
+    "sha256": "34ca933ba86a39d7433fb1c95363e11a38e67a30f94c00d2617dda8b6d942c72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕（conclusion、metrics、checkpoint_path、log_path 均已设置，状态已为 DONE）。\n\n**结果总结**：Re-DocRED 4B SFT eval r2 成功完成。Ign-F1=0.3659, Evi-F1=0.8170, EDCR=0.6674。139/493 文档因输出长度截断，format compliance 99.6%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-redocred-r2-completion.md"
+}

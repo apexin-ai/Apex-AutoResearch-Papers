@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b6af70d5bedbd4c97e4",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 009 dynamics figure",
+  "task_key": "worker_analysis_plan_009_dynamics_figure_20260515T230715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_009_dynamics_figure_20260515T230715_result.json",
+    "occurrence": 1,
+    "bytes": 688,
+    "sha256": "5ea0cf553610881860e07cafd3ed658453fbc971e272da80901d88f0b9f3e38e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成并拷贝到本地。\n\n3-panel figure 清晰展示了 forgetting dynamics：\n- **(a) Relation F1**：QLoRA GRPO 从 0.003 缓慢爬升到 0.22，始终远低于 SFT baseline (0.41)；BF16 GRPO 全程稳定在 0.43-0.45，高于 SFT baseline\n- **(b) Evidence F1**：QLoRA 初始骤降到 0.42 后回升到 ~0.57，仍低于 SFT baseline (0.80)；BF16 全程稳定在 ~0.80\n- **(c) EDCR**：QLoRA 的 EDCR 高达 0.85-1.0（严重 evidence-dominated），BF16 稳定在 ~0.46（均衡）\n\n文件位置：\n- 服务器：`/root/autodl-tmp/figures/plan_009/forgetting_dynamics.{pdf,png}`\n- 本地：`artifacts/plan_009/figures/forgetting_dynamics.{pdf,png}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-009-dynamics-figure.md"
+}

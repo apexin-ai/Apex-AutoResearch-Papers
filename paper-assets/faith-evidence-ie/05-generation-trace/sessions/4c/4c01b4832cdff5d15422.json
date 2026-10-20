@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c01b4832cdff5d15422",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ops check eval flat nli s44 validity",
+  "task_key": "worker_ops_check_eval_flat_nli_s44_validity_20260516T092325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_eval_flat_nli_s44_validity_20260516T092325_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "04cbc03adeae57c62f0cf1475b1093ed56599d011241eb7cfc8c5a39b9d2b505"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**原始结果有效，D076 完全合规：**\n- `ign_f1 = 0.4521` (metrics_v2.json，与 Reviewer 引用一致)\n- batch_size=4 ✓, max_new_tokens=1024 ✓, quantize=false ✓, sft_adapter ✓\n- 完整评估了 985 文档，推理耗时 10580s\n\n**已 kill reeval_flat_nli_s44：**\n- PID 322215（父）+ PID 322220（孤儿子进程）均已终止\n- **cuda:0 已释放，当前 0 MiB 占用**\n\n**Registry 备注：** 两个 exp_id（eval_flat_nli_s44、reeval_flat_nli_s44）在当前 registry 中不存在，无需更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-flat-nli-s44-validity.md"
+}

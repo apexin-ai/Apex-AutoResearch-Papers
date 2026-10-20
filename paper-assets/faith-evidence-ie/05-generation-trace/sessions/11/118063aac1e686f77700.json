@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "118063aac1e686f77700",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose 1 7b rsft s43 exit",
+  "task_key": "worker_diagnose_1_7b_rsft_s43_exit_20260519T032242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_1_7b_rsft_s43_exit_20260519T032242_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "d8fdb0df4d045f15934f23cf9f386390920203733dd904bc328f14e5db133bb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论：**SUCCESS**\n\n训练正常完成。证据：\n\n1. **trainer_state 确认**：`max_steps=567`, `should_training_stop=true`, 最后记录 step=560, loss=0.5526, token_accuracy=86.9%\n2. **输出完整**：\n   - 最终 adapter：`/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/adapter_model.safetensors` (278MB)\n   - 中间 checkpoints：checkpoint-550, checkpoint-567\n   - adapter_config：LoRA r=64, alpha=128, base=Qwen3-1.7B\n   - training_args.bin, tokenizer 全套文件均存在\n3. **Steps 精确匹配**：3021 samples / (batch_size=4 × grad_accum=4) × 3 epochs = 567 steps\n4. **cuda:2 当前空闲**：0MiB, 0% utilization\n\n| 项目 | 值 |\n|---|---|\n| 结论 | **success** |\n| Checkpoint 路径 | `/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/` |\n| 最终 step | 567 (3 epochs 完整) |\n| 最终 loss | 0.5526 |\n| 最终 token accuracy | 86.9% |\n| cuda:2 状态 | 空闲 |\n| tmux session | 已自动退出（不存在） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-1-7b-rsft-s43-exit.md"
+}

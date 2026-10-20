@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c959bfe30d12dc67e92",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "research find 4b rsft s42 canonical",
+  "task_key": "worker_research_find_4b_rsft_s42_canonical_20260519T135415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_find_4b_rsft_s42_canonical_20260519T135415_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "5156fcdafd9eeae8b02300d9a53d98608ff3cdf0c3a479abf722891b28f5d33c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "搜索结果：\n\n**Canonical 4B CED RSFT s42 checkpoint 已被清理，需重训。**\n\n- 原始路径：`/root/autodl-tmp/rsft_output/checkpoint-510`（已删除）\n- 历史指标（D076 标准 eval）：ign_f1=0.4423, evi_f1=0.8174, edcr=0.6569\n- 所有上游依赖仍存在：training data (2718 samples)、SFT adapter、base model\n- 完整训练命令和现存目录汇总已写入 `memory.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-find-4b-rsft-s42-canonical.md"
+}

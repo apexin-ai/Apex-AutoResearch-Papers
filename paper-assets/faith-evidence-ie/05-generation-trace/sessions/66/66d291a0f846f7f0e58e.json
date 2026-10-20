@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66d291a0f846f7f0e58e",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis ckpt80 eval results",
+  "task_key": "worker_analysis_ckpt80_eval_results_20260515T005922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ckpt80_eval_results_20260515T005922_result.json",
+    "occurrence": 1,
+    "bytes": 824,
+    "sha256": "7d1d9ed87e25d96aefb52c25766a8dd12f5f25a4197c7dd8282d52abec71e771"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**ckpt-80 eval 结果** (negative):\n\n| 指标 | 值 |\n|------|-----|\n| rel_f1 | **0.0116** |\n| precision | 0.0109 |\n| recall | 0.0124 |\n| evi_f1 | 0.8280 |\n| edcr | 0.9908 |\n| format_ok_rate | 0.9990 |\n| pred_count | 13,828 (gold: 12,151) |\n| inference_time | 6,099s |\n\n**GRPO lr5e6 完整轨迹**:\n\n| checkpoint | rel_f1 | evi_f1 |\n|-----------|--------|--------|\n| ckpt-20 | 0.0077 | — |\n| ckpt-40 | 0.0071 | — |\n| ckpt-60 | 0.0093 | — |\n| ckpt-80 | 0.0116 | 0.828 |\n| SFT baseline | **0.406** | **0.798** |\n\nrel_f1 在 0.007–0.012 区间平坦，无恢复信号。evi_f1 虽高（0.828 > SFT 的 0.798），但 relation 分类彻底崩溃——pred_count=13,828 几乎全是噪声预测，tp 仅 151。\n\nRegistry 已更新：`mvp2_eval_lr5e6_r1_ckpt80` → DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ckpt80-eval-results.md"
+}

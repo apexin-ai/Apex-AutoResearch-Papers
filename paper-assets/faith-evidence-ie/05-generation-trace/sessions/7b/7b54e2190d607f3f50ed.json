@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b54e2190d607f3f50ed",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_18_1779385073.md",
+  "task_key": "loop_18_1779385073",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779385073.md",
+    "occurrence": 1,
+    "bytes": 5016,
+    "sha256": "7afa2ec46cae55325627af7c3c250135a30da94b543d57fc89ae00d4e2931c73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-21T15:08:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：rtx5090-4x 的 cuda:0/1/2/3，共 4 张。不得使用其他服务器或卡号\n- LLaMA eval 脚本必须用 `GPU=X` 环境变量传物理 GPU 编号（脚本内部 `export CUDA_VISIBLE_DEVICES=${GPU:-...}` 会覆盖框架注入）\n- LLaMA eval timeout 至少 14400s (4h)，默认 7200s 会在 99% 处 kill（s43 前车之鉴）\n- RSFT eval 必须传 `--sft_adapter` 参数（nested LoRA 架构：先 merge SFT，再加载 RSFT）\n- Evidence tax 论文报告标准：fair comparison（format-OK 子集），不修 parser，与 1.7B D083 方法论一致\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：rtx5090-4x (connect.westd.seetacloud.com:37389)，4× RTX PRO 6000 Blackwell, 98GB VRAM/卡\n- **工作目录**：`/root/autodl-tmp/freige`\n- **Python**：`/root/miniconda3/bin/python`，conda base，PyTorch 2.8.0+cu128，transformers 5.8.1，flash-attn 2.8.3\n- **模型路径**：\n  - Qwen3-14B: `/root/autodl-tmp/models/Qwen/Qwen3-14B`\n  - LLaMA-3.1-8B: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`\n  - SFT adapters: `/root/autodl-tmp/sft_output_llama_3_1_8b_s{42,43,44}`\n  - 14B SFT: `/root/autodl-tmp/sft_output_14b/checkpoint-144`\n  - 14B RSFT: `/root/autodl-tmp/rsft_output_14b`\n- **数据**：`/root/autodl-tmp/data/docred`（dev 985 docs, train 3027 docs）\n- **Fair tax 脚本**：`/root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py`\n- **磁盘**：350GB 数据盘，~190GB free (46% used)\n- **活跃进程**（截至 handoff 时刻）：\n  - plan017_14b_rsft_eval: PID 53413, cuda:0, tmux 管理\n  - eval_llama_sft_s43_no_evidence_2048: PID 45587, cuda:1, tmux 管理\n  - eval_llama_sft_s42_no_evidence_2048: PID 42346, cuda:3, tmux 管理\n\n### 3. 📊 当前状态\n**刚做的事**：收到 eval_llama_sft_s44_no_evidence_2048 完成回调（ANALYZING），已 spawn Worker `worker_analysis_eval_llama_sft_s44_no_evidence_2048_20260520T210146` 去 SSH 读结果、跑 fair_evidence_tax.py、更新 registry。**Worker 尚未回调**。\n\n**Registry 状态**：\n| exp_id | status | gpu | 摘要 |\n|--------|--------|-----|------|\n| plan017_14b_rsft_eval | RUNNING | cuda:0 | 14B RSFT eval，SFT baseline ign_f1=0.5507，期望 +2-6pp |\n| eval_llama_sft_s43_no_evidence_2048 | RUNNING | cuda:1 | s43 2048 版验证，原 1024 版 truncation=38.4%, ign_f1=0.3391 |\n| eval_llama_sft_s42_no_evidence_2048 | RUNNING | cuda:3 | s42 2048 版验证，原 1024 版 fair tax=+1.35pp |\n| eval_llama_sft_s44_no_evidence_2048 | ANALYZING | cuda:2(已释放) | Worker 正在分析结果 |\n\n**等待中**：\n- Worker 回调：analysis:eval_llama_sft_s44_no_evidence_2048（读结果 + 跑 fair tax + 更新 registry）\n- Cron 回调：s42/s43 2048 版 + 14B RSFT eval 完成\n\n**cuda:2 已空闲**——Worker 回调后应评估是否有实验可铺上去。\n\n### 4. 📋 待办（条件触发式）\n- Worker analysis:s44_2048 回调 → 读 metrics，判断截断伪影 vs 真实退化。如果 ign_f1 恢复到 ~0.47-0.52 → 截断 artifact 确认；如果仍然低 → evidence dependency 真实\n- s42_2048 + s43_2048 cron 回调 → 同样 spawn Worker 分析，跑 fair tax。3-seed 2048 版全部完成后汇总 LLaMA SFT evidence tax（2048 版），更新 memory.md，向 Director 汇报完整 3-seed evidence tax 表\n- plan017_14b_rsft_eval cron 回调 → 分析 14B RSFT ign_f1，对比 SFT baseline 0.5507，填充 scaling table 第 4 行（1.7B/4B/8B/14B），这是论文 Claim 1 的关键数据点\n- 3-seed evidence tax 2048 全部完成 + 14B RSFT eval 完成 → 向 Director 发完整汇报：(1) LLaMA evidence tax 2048 修正版 (2) 14B scaling row (3) 论文 ready 的完整 scaling table\n- cuda:2 空闲 → 如果有可铺实验（如 14B no-evidence eval、LLaMA variance compression 补充实验），立即提交\n\n### 5. 🎯 战略上下文\n- **项目核心**：FREIGE，LLM evidence-grounded DocRE 系统性研究。3 contributions：(1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression\n- **投稿目标**：EMNLP 2026 Main (ARR July, ~56 天)，Round 1 评分 3.0 Findings，目标 4.0 Main\n- **当前瓶颈**：LLaMA SFT evidence tax 的 2048 版验证（3 个 eval 正在跑），14B RSFT eval（正在跑）\n- **关键决策链**：D134（fair comparison 方法论）→ D136（SFT evidence tax wildly seed-dependent）→ 2048 验证系列。RSFT evidence tax 已完成：-1.14pp±0.76pp（一致负向=evidence helps）\n- **易错点**：\n  - eval_llama_sft_s43_no_evidence_r2 仍在 ANALYZING 状态（conclusion=success 但 status 未转 DONE），新 session 可能需要清理\n  - plan017_14b_rsft_generate_r4 也在 ANALYZING（conclusion=success），同上\n  - s44 的 with-evi eval 结果目录名可能不是 `llama_sft_s44_eval`，Worker 需要 ls 搜索正确路径\n  - 服务器正在从 bjb2 迁移到 westd-37389（即 rtx5090-4x），部分旧路径引用可能指向 bjb2\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779385073.md"
+}

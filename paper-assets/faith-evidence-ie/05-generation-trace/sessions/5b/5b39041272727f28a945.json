@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b39041272727f28a945",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code rsft fix critical",
+  "task_key": "worker_code_rsft-fix-critical_20260514T235716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rsft-fix-critical_20260514T235716_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "fc9511b5f6788a396df1bd42184f7fda905e2a814058061f05a61bc4f7d6dc01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## 修复结果\n\n| 问题 | 文件 | 修改内容 |\n|------|------|----------|\n| `--quantize` 默认值 | `rsft_generate.py` | `BooleanOptionalAction, default=True` → `action=\"store_true\"` (默认 False) |\n| 数据格式不兼容 | `rsft_score_filter.py` | 输出从 JSON array (`{messages, scores}`) → JSONL (`{input, output, ced_score, ...}`)，文件名 `rsft_train.json` → `rsft_train.jsonl` |\n| NLI 模型缺失 | — | `cross-encoder/nli-deberta-v3-base` 已下载到 `/root/autodl-tmp/.hf_cache/` |\n\n验证: `generate OK` / `score_filter OK` / `trainer OK` / `NLI OK`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rsft-fix-critical.md"
+}

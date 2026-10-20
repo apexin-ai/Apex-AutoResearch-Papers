@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10985a67341f9d4ddf8f",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis 3seed summary edcr",
+  "task_key": "worker_analysis_3seed-summary-edcr_20260515T115248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_3seed-summary-edcr_20260515T115248_result.json",
+    "occurrence": 1,
+    "bytes": 1208,
+    "sha256": "d7ecfab855ee9a61210443079facbc802a92bb414d7c032770b2b2fcacca9a57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成。\n\n## Task A：3-seed 汇总脚本\n\n脚本已部署到 `/root/autodl-tmp/scripts/summarize_3seed.py`，dry-run 通过（2/3 seeds）。\n\n当前 2-seed 结果：\n| 指标 | r1 (s42) | s44 (s44) | Mean±Std | vs SFT |\n|------|----------|-----------|----------|--------|\n| Rel F1 | 0.4449 | 0.4655 | 0.455±0.015 | +12.2% |\n| Evi F1 | 0.8187 | 0.8087 | 0.814±0.007 | +2.0% |\n| EDCR | 0.6565 | 0.6350 | 0.646±0.015 | -9.3% |\n\ns43 eval 完成后直接运行 `python3 /root/autodl-tmp/scripts/summarize_3seed.py` 即可获取 3-seed 汇总。\n\n## Task B：EDCR 证据分布分析\n\n从 1848 个含 distractor 的 matched triples 中采样 50 个，自动分类 + 人工复核 \"unrelated\" 类别，核心发现：\n\n- **~84% 的 \"distractor\" citations 实际语义相关**（实体提及 68% + 共指/实体变体 16%）\n- **真正无关的 distractor 仅 ~4%**\n- 82% 的 case 只多引了 1 个句子，68% 的 case 完整覆盖了 gold evidence\n- **结论**：EDCR 下降是 over-citation（引用更宽泛的相关语境），不是证据质量退化。Evi F1 反而优于 SFT（0.81 vs 0.80）\n\n报告已注册为 artifact `edcr_analysis_r2b.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-3seed-summary-edcr.md"
+}

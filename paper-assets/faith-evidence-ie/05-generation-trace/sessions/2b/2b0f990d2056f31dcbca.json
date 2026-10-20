@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b0f990d2056f31dcbca",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code push anon repo v3",
+  "task_key": "worker_code_push-anon-repo-v3_20260523T234238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_push-anon-repo-v3_20260523T234238_result.json",
+    "occurrence": 1,
+    "bytes": 227,
+    "sha256": "2503c8c95f4ad7f83e0206d5e66eac14a7b2b88adc57c8eb32e37d29b525d606"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Commit**: `3b99b98462da963c6ca947f63b4b6909299679b5`\n- **Push**: `cd07aa6..3b99b98 main -> main` 成功\n- **Author/Committer**: `Anonymous <anon@example.com>` — 匿名信息正确，无泄露"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-push-anon-repo-v3.md"
+}

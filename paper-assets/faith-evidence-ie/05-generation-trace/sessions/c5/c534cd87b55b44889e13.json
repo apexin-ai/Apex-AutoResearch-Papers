@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c534cd87b55b44889e13",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval test eval 4b rsft s42 r2",
+  "task_key": "worker_eval_test_eval_4b_rsft_s42_r2_20260521T183419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_test_eval_4b_rsft_s42_r2_20260521T183419_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "f81074a6a7c30b8b68b032b85221f0bfc2ea47efdc16be7f2c2ca2fd594f2d81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 使用 53.7GB，训练正常运行。\n\n## 报告\n\n**原失败原因**：4B RSFT s42 checkpoint (`/root/autodl-tmp/rsft_output/checkpoint-510`) 已从服务器删除。`test_inference.py` 尝试从该路径加载 tokenizer/model 失败，回退到 HF Hub 查找也失败（本地路径不是合法 repo id）。\n\n**修复方案**：使用相同训练数据和参数重训 4B RSFT s42。\n- 数据：`/root/autodl-tmp/rsft_filtered/rsft_train.jsonl` (2718 CED k=1 样本)\n- 参数：bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, seed=42\n- 输出：`/root/autodl-tmp/rsft_output_ced_s42/` (遵循命名规范)\n\n**当前状态**：\n- `retrain_4b_rsft_ced_s42` 在 cuda:0 训练中 (PID 126855)，step 3/510，~7.87s/step，预计 ~66 分钟完成\n- 训练完成后需提交 `test_eval_4b_rsft_s42_r2`，使用新 checkpoint 路径 `/root/autodl-tmp/rsft_output_ced_s42/checkpoint-510`\n\n**下一步**：训练完成后（约 ~1h），提交 test set eval 到空闲 GPU，registry ID `test_eval_4b_rsft_s42_r2`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-test-eval-4b-rsft-s42-r2.md"
+}

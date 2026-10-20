@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d56f8a6e1a1f6c61b023",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "code seed comparison fix",
+  "task_key": "worker_code_seed_comparison_fix_20260516T054336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_seed_comparison_fix_20260516T054336_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "6e8162ba6fd0c6a4d0fad5fbf816611f207405c58105bfcb3a3d2d1b8b1267af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本修改完成，无语法错误，`--help` 和 `--dry-run` 均正常运行。\n\n### 修改内容\n\n在 `load_metrics` 函数的 `return m` 前添加了 2 行：\n\n```python\nif \"rel_ign_f1\" in m and \"ign_f1\" not in m:\n    m[\"ign_f1\"] = m[\"rel_ign_f1\"]\n```\n\n### eval_results 中 key 使用情况\n\n**`rel_ign_f1`：无任何文件使用。** grep 搜索整个 eval_results 目录，零匹配。\n\n**`ign_f1`：所有 metrics 文件均使用 `ign_f1`**，包括 seed comparison 引用的：\n- `rsft_ced_s43/metrics_v2.json` — ign_f1=0.4512\n- `rsft_ced_s45/metrics_v2.json` — ign_f1=0.4416\n- `rsft_flat_nli_s44/metrics_v2.json` — ign_f1=0.4521\n- `rsft_flat_nli_s45/metrics_v2.json` — ign_f1=0.4462\n\n**4 个 reeval 目录为空**（无 metrics 文件）：\n- `rsft_ced_s42_reeval/`\n- `rsft_ced_s44_reeval/`\n- `rsft_flat_nli_s42_reeval/`\n- `rsft_flat_nli_s43_reeval_r2/`\n\n兼容逻辑已就位，当未来出现 `rel_ign_f1` 的 metrics 文件时会自动归一化为 `ign_f1`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-seed-comparison-fix.md"
+}

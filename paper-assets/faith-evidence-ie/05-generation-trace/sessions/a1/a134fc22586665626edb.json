@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a134fc22586665626edb",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "check eval module consistency",
+  "task_key": "worker_check_eval_module_consistency_20260518T104319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval_module_consistency_20260518T104319_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "c96823ae4e633e51e539012c084017da93a3d260d5ab90dfde3544560e568713"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 排查结论：PASS — 同一代码\n\n```\n模块一致性检查:\n  freige.eval.inference → /root/autodl-tmp/freige/freige/eval/inference.py\n  eval.inference        → /root/autodl-tmp/freige/eval/inference.py\n  MD5: f08477ee40cb1194d3845213db1a1179 (两文件完全相同)\n  大小: 21096 bytes, 最后修改 May 17 21:02 (同一时间)\n  结论: PASS — 两个路径指向内容完全相同的文件，eval 结果跨模型可比\n\n当前运行中的 8B eval 进程 (全部使用 python -m freige.eval.inference):\n  PID 523341 — LLaMA-3.1-8B, CUDA:3, seed=s42\n  PID 523748 — Qwen3-8B, CUDA:0, seed=s42\n  PID 524157 — Qwen3-8B, CUDA:1, seed=s43\n```\n\n项目结构存在两份 `eval/inference.py`（`freige/eval/` 和 `freige/freige/eval/`），但 md5 完全一致，不影响结果。无需重跑 8B eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-module-consistency.md"
+}

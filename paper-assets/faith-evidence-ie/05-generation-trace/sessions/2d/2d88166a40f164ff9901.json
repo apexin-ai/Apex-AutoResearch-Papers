@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d88166a40f164ff9901",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose dev eval status and codalab verify",
+  "task_key": "worker_diagnose_dev-eval-status-and-codalab-verify_20260522T055058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_dev-eval-status-and-codalab-verify_20260522T055058_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "da2e20b089b1991727108f496f9bb74a6ab0095806fd4a770498da1f147a5c93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n## 任务 1: dev_eval_4b_rsft_ced_s42_v2 状态\n\n**仍在运行。** PID 161216 存活，已运行 ~2 小时，进度 341/985（~35%）。cuda:0 占用 9.6GB、56% 利用率，正常推理中。输出目录已创建但尚无结果文件（推理完成后写入）。按当前速度（平均 ~20s/doc），预计还需 ~3.5 小时完成。\n\n## 任务 3: CodaLab dry-run 格式验证\n\n**全部 12 个提交文件格式 OK。** 所有文件均包含必需键 `h_idx, t_idx, r, title`（外加 `evidence`）：\n\n| 文件 | triples 数 |\n|------|-----------|\n| 14b_rsft_s42 | 11,235 |\n| 14b_sft_s42 | 14,423 |\n| 14b_sft_s42_no_evi | 15,563 |\n| 1.7b_rsft_s42 | 7,793 |\n| 1.7b_sft_s42 | 8,020 |\n| 1.7b_sft_s42_no_evi | 6,144 |\n| 4b_rsft_s42_v2 | 9,630 |\n| 4b_sft_s42 | 10,609 |\n| 8b_rsft_s42 | 8,049 |\n| 8b_sft_s42 | 8,678 |\n| llama_rsft_s42 | 9,641 |\n| llama_sft_s42 | 9,502 |\n\n（注：用户消息中未包含任务 2 的内容。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-dev-eval-status-and-codalab-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5d28f616d081af80383",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_6_1778818000.md",
+  "task_key": "loop_6_1778818000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778818000.md",
+    "occurrence": 1,
+    "bytes": 4815,
+    "sha256": "62c0d5f323dedc13c2d291ab70338d3838ace63afa7c8af6c62942e841dafa8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T04:02:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 on rtx5090-4x，不可用其他 GPU\n- RSFT 训练**禁止 --quantize**（4-bit + merge_and_unload 在 RTX 5090 上触发 CUBLAS 错误，bf16 Qwen3-4B 仅 ~8GB 无需量化）\n- 运行目录必须是 `/root/autodl-tmp/`，不可 `cd /root/autodl-tmp/freige`（会导致 Python import 找到内层空 freige/freige/ 包）\n- Qwen3 自带 generation_config.json 会静默覆盖代码参数（top_k=20, temperature=0.6），生成前必须显式 override\n- GRPO+QLoRA 方向已判死（D031/D033），不再投入 GPU\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：rtx5090-4x（4× RTX 5090 32GB），备用 bjb2-12179\n- **工作目录**：`/root/autodl-tmp/freige`（运行时 cd 到 `/root/autodl-tmp/`）\n- **Python**：`/root/miniconda3/bin/python`（aml-train 镜像，conda base 环境）\n- **模型**：`/root/autodl-tmp/models/Qwen3-4B`\n- **SFT adapter**：`/root/autodl-tmp/sft_output`（adapter_config.json + adapter_model.safetensors）\n- **NLI 模型**：`/root/autodl-tmp/.hf_cache`（cross-encoder/nli-deberta-v3-base）\n- **HF cache**：`/root/autodl-tmp/.hf_cache`\n- **活跃进程**：\n  - mvp2_rsft_gen_s0: PID 135867, cuda:0\n  - mvp2_rsft_gen_s1: PID 136270, cuda:1（续跑，已有 302 docs 断点）\n  - mvp2_rsft_gen_s2: PID 136649, cuda:2\n  - mvp2_rsft_gen_s3: PID 137985, cuda:3\n- **Cron 监控**：4 个 cron 分别监控上述 4 个 shard（reconcile 确认全部 still running）\n- **RSFT 代码**：`training/rsft_generate.py`(296行) / `rsft_score_filter.py`(464行) / `rsft_trainer.py`(252行)，全部 dry-run 验证通过\n\n### 3. 📊 当前状态\n**刚完成**：D036 撤销 diversity crisis（D034/D035 是监控 bug，实际 diversity=7.52/8），修复 diversity_metrics.py 后重启 4 卡并行 RSFT 生成。\n\n**RUNNING（4 个）**：\n| exp_id | GPU | 任务 |\n|--------|-----|------|\n| mvp2_rsft_gen_s0 | cuda:0 | RSFT generation shard 0/4, N=8 @ T=0.7, batch_size=1 |\n| mvp2_rsft_gen_s1 | cuda:1 | RSFT generation shard 1/4（含 302 docs 断点续传） |\n| mvp2_rsft_gen_s2 | cuda:2 | RSFT generation shard 2/4 |\n| mvp2_rsft_gen_s3 | cuda:3 | RSFT generation shard 3/4 |\n\n**总量**：3027 docs × 8 generations，预计 ~3h 完成全量。\n\n**等待中**：无 running Worker，无 pending Director 决策。等 4 个 shard cron 回调。\n\n**PREPARING（遗留，低优先级）**：mvp2_grpo_ced_kl001_r2/r3, mvp2_eval_ced_kl001_r4_last — GRPO 已判死，这些应清理或标记 killed。\n\n### 4. 📋 待办（条件触发式）\n- **任一 shard cron 回调到达** → 检查该 shard 输出完整性（doc count + diversity cross-check），更新 registry\n- **4 个 shard 全部完成** → spawn Worker 合并 4 shard 输出到统一 generations.jsonl → spawn Worker 跑 `rsft_score_filter.py`（CED 打分 + 筛选）→ 向 Director 汇报生成阶段结果（diversity stats + 筛选后样本数）\n- **CED 筛选完成** → spawn Worker 跑 `rsft_trainer.py`（参数：bf16, lora_rank=64, lora_alpha=128, 不加 --quantize）→ 提交为新实验 mvp2_rsft_train\n- **RSFT 训练完成** → eval rel_f1 + evidence quality，与 SFT baseline (rel_f1=0.406, evi_f1=0.628) 对比\n- **eval rel_f1 > 0.406** → MVP-2 PASS，走 complete_mvp() → paper_framing.md → experiment_plan.yaml\n- **eval rel_f1 < 0.406 但 > 0.30** → 尝试调参（CED threshold / selection_strategy / weighted_sampling）\n- **eval rel_f1 < 0.30** → 走 red-section，向 Director 提 Framing 调整提案（contingency: DPO+CED / prompt-level diversity / 全参微调）\n\n### 5. 🎯 战略上下文\n- **核心方向**：FREIGE = CED reward 训练 LLM 做文档级 RE + 可验证证据生成\n- **MVP-1 已通过**：CED margin=0.4827, accuracy=81.5%, r=0.34\n- **GRPO 全线 FAIL（D031/D033）**：在线 RL + QLoRA 导致 rel_f1 catastrophic forgetting，不是超参问题，是结构性局限\n- **当前 pivot（D031）**：RSFT + CED（离线 RL），完全避免在线策略偏移\n- **决策链**：D027(kl001 FAIL) → D030/D031(lr5e6 FAIL) → D033(全线判死) → D034(diversity crisis) → D036(撤销 D034, bug)\n- **项目累计**：成功 10 / 负向 11 / 失败 11 / 共 48 实验，~60+ GPU-hours 在 GRPO 上\n- **易踩的坑**：\n  - 不要重试任何 GRPO+QLoRA 变体——已证明是死路\n  - PREPARING 状态的 3 个 GRPO 实验是遗留垃圾，不要提交\n  - rsft_score_filter.py 的 NLI 模型需要 GPU，CED 打分也需要——规划时注意 GPU 分配（生成完成后 4 卡全空，不是问题）\n  - memory.md 里的文献调研（5 篇 alignment tax 论文）是 GRPO 时代的分析，对 RSFT 方向参考价值有限，但 Online Merging Optimizer 思路可能在 RSFT 训练阶段有用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778818000.md"
+}

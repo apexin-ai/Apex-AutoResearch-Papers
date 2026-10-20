@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75984915c85ddf9a94c6",
+  "project": "faith-evidence-ie",
+  "kind": "history",
+  "title": "agent / loop_18_1779344305.md",
+  "task_key": "loop_18_1779344305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779344305.md",
+    "occurrence": 1,
+    "bytes": 4440,
+    "sha256": "4c4e37ff87d458f30c9ae9deffbe4d573b181a99df4aae1766c6a2dd36ddece6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-21T06:13:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: rtx5090-4x 的 cuda:0/1/2/3，**不可用其他服务器或卡号**\n- LLaMA SFT 脚本必须通过 `GPU=X` 环境变量传物理 GPU 编号（脚本内部 `export CUDA_VISIBLE_DEVICES=${GPU:-...}` 会覆盖框架注入）\n- ign_f1 是论文主指标，**不要和 rel_f1 混淆**（D130 审计教训：s42 SFT ign_f1=0.5384 非 0.5514）\n- 14B RSFT adapter 路径是 `sft_output_14b/checkpoint-144`（不是顶层目录，r2 因此失败）\n- conda 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx5090-4x (connect.westd.seetacloud.com:37389), 4× RTX PRO 6000 Blackwell 98GB\n- **工作目录**: `/root/autodl-tmp/freige`\n- **Python**: `/root/miniconda3/bin/python` (conda base, Python 3.12, PyTorch 2.8.0+cu128)\n- **模型**: `/root/autodl-tmp/models/` (meta-llama/Meta-Llama-3.1-8B, Qwen3-4B 等)\n- **数据**: `/root/autodl-tmp/data/docred` (3053 docs)\n- **Checkpoints**:\n  - LLaMA SFT s42: `/root/autodl-tmp/sft_output_llama_3_1_8b/`\n  - LLaMA SFT s43: `/root/autodl-tmp/sft_output_llama_3_1_8b_s43/` (刚完成)\n  - LLaMA SFT s44: 训练中\n  - 14B SFT: `/root/autodl-tmp/sft_output_14b/checkpoint-144`\n- **磁盘**: 815GB/879GB 可用 (3% 已用)\n- **活跃进程**:\n  - plan017_14b_rsft_generate_r3: PID 17644, cuda:0 (14B RSFT 候选生成, 从 doc 1873 resume)\n  - llama_sft_s44_train_eval_r3: PID 16658, cuda:2 (LLaMA SFT seed44)\n  - eval_llama_sft_s42_no_evidence_std_r2: PID 16978, cuda:3 (SFT s42 no-evidence eval)\n  - migration_bjb2_to_westd: PID 6660 (rsync 数据迁移, 后台)\n\n### 3. 📊 当前状态\n**刚完成**: llama_sft_s43_train_eval_r3 → DONE/success, ign_f1=**0.5142**。已更新 registry + memory.md，已向 Director 汇报（含 cuda:1 利用建议）。\n\n**RUNNING 实验**:\n| exp_id | GPU | 摘要 |\n|--------|-----|------|\n| plan017_14b_rsft_generate_r3 | cuda:0 | 14B RSFT 候选生成 resume (从 doc 1873, 剩 1155 docs) |\n| llama_sft_s44_train_eval_r3 | cuda:2 | LLaMA SFT seed44 训练+eval, 补齐第 3 seed |\n| eval_llama_sft_s42_no_evidence_std_r2 | cuda:3 | LLaMA SFT s42 no-evidence eval (evidence tax 测量) |\n\n**cuda:1 空闲** ⚠️ — 已向 Director 建议跑 LLaMA SFT s43 no-evidence eval，等待 Director 回复。\n\n**等待中**: 3 个 cron 回调 (上述 RUNNING 实验完成时触发)，Director 对 cuda:1 安排的决策。\n\n### 4. 📋 待办（条件触发式）\n- Director 批准 cuda:1 安排 → spawn worker 提交 LLaMA SFT s43 no-evidence eval (`--no_evidence` flag + s43 adapter)\n- llama_sft_s44_train_eval_r3 cron 回调 → 分析结果 → 计算 LLaMA SFT 3-seed 统计 (mean, std, Cohen's d vs RSFT) → 更新 ROADMAP 表格\n- eval_llama_sft_s42_no_evidence_std_r2 cron 回调 → 记录 evidence tax → 与 RSFT evidence tax (-1.52pp) 对比\n- plan017_14b_rsft_generate_r3 完成 → CED scoring → RSFT train → eval（14B 全流程剩余）\n- LLaMA SFT 3-seed 全部完成后 → 正式计算 variance compression ratio → 更新论文 Table\n\n### 5. 🎯 战略上下文\n**项目核心**: FREIGE 论文 3 个贡献——(1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression。目标 EMNLP 2026 Main (ARR July, ~56 天)。\n\n**关键数据全景** (论文 Table 核心):\n\n| Scale | SFT ign_f1 (seeds) | RSFT ign_f1 (seeds) | Variance compression |\n|-------|---------------------|----------------------|---------------------|\n| 1.7B | 0.4464 (3) | 0.5119 (3) | **31×** |\n| 4B | 0.4358 (3) | 0.4482/0.5152 | **7.5×** |\n| 8B-Qwen | 0.5019 (3) | 0.5433 (3) | **7.4×** |\n| 8B-LLaMA SFT | 0.5384, **0.5142**, 🔄s44 | 0.5654±0.52pp (3) | TBD (2-seed range 已 1.9×) |\n| 14B | 0.5507 (1) | 🔄 gen 62% | — |\n\n**易错点**:\n- LLaMA SFT s43 的 ign_f1=0.5142 比 s42 低 2.4pp，这是**正常的 seed 方差**不是 bug——正是 variance compression claim 需要的 evidence\n- 14B adapter 路径坑: 必须指向 `checkpoint-144` 子目录，顶层无 adapter_config.json\n- evidence tax 方法论: 必须用同一 adapter + `--no_evidence` flag 做推理对比，**不能**用独立训练的 no-evidence 模型（Reviewer 已标记此问题）\n- D131 叙事调整: 3 contributions 从独立小文章重构为统一叙事主线，写论文时注意一致性\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779344305.md"
+}

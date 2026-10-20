@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "102273f533d10e8a08c0",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "ssh check sft baseline eval",
+  "task_key": "worker_ssh_check-sft-baseline-eval_20260514T233704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-sft-baseline-eval_20260514T233704_result.json",
+    "occurrence": 1,
+    "bytes": 768,
+    "sha256": "b6122a90ec6440c921adc1eec75c5ee71edd267bb535cde7295d9240d7d7513f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## SFT Baseline Eval 结果\n\n**进程状态**: 正常完成（PID 104979 已退出，metrics.json 和 predictions.json 均已写入）\n\n**关键指标**:\n\n| 指标 | 值 |\n|------|-----|\n| rel_f1 | **0.4057** |\n| evi_f1 | **0.7979** |\n| edcr | **0.7118** |\n| pred_count | 12,234 (gold: 12,151) |\n| format_ok_rate | **99.80%** (983/985) |\n| format_compliance_rate | 99.80% |\n| field_compliance_rate | 62.64% |\n| n_truncated | 367 |\n| inference_time | 6138.5s (~102min) |\n\n**结果与之前 SFT eval r2/r3 完全一致**（rel_f1=0.4057, evi_f1=0.7979），确认 apple-to-apple 对比协议复现成功。\n\n**结果文件**: `/root/autodl-tmp/sft_baseline_eval_results/metrics.json`\n\n**cuda:3**: 已释放（0 MiB, 0% utilization）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-sft-baseline-eval.md"
+}

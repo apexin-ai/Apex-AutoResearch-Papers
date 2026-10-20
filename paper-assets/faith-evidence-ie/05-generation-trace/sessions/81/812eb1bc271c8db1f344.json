@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "812eb1bc271c8db1f344",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "submit 1 7b rsft s44 cuda1 and prep step2",
+  "task_key": "worker_submit_1_7b_rsft_s44_cuda1_and_prep_step2_20260519T030102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_1_7b_rsft_s44_cuda1_and_prep_step2_20260519T030102_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "ef47e236644fb4e72c3f7b04f2c604d7554e4f4174cc8c4eaa601427a6ab49da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 注册完成。汇报：\n\n**1.7B RSFT s44 已提交**\n- PID: **602749**\n- tmux session: **rsft_1_7b_s44**\n- GPU: cuda:1（已占用 4757 MiB，模型加载中）\n\n**shard 3 进度**\n- **5744 行**\n\n**4 卡占用状态**\n\n| GPU | 显存占用 | 利用率 | 任务 |\n|-----|---------|--------|------|\n| cuda:0 | 18141/32607 MiB | 63% | PID 590568 |\n| cuda:1 | 4757/32607 MiB | 0% | PID 602749 (1.7B RSFT s44，刚启动加载中) |\n| cuda:2 | 29119/32607 MiB | 98% | PID 601718 |\n| cuda:3 | 18891/32607 MiB | 67% | PID 598911 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-1-7b-rsft-s44-cuda1-and-prep-step2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5591693e4a17be1e3257",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "diagnose extract r4 step30 40 check",
+  "task_key": "worker_diagnose_extract-r4-step30-40-check_20260514T172912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_extract-r4-step30-40-check_20260514T172912_result.json",
+    "occurrence": 1,
+    "bytes": 468,
+    "sha256": "e8dcb6ebdcb76d487a939aa4df18329f852ff54596d2cc54c94f76714bc93e58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "270 秒后回来检查 checkpoint-30。目前观察：\n- extract_r4 从 step 10 起已陷入 mode collapse（frac_zero_std=0.8, f1=0）\n- 模型只优化 format_reward（从 0.17→0.29），完全放弃了 f1_reward\n- grad_norm 虽从 0.005 回升到 0.198，但未转化为 f1 改善\n- 与 ced_kl001_r4 相比，ced 在 step 20 时 frac 已降到 0.1 且 f1=0.003 开始恢复，而 extract_r4 在 step 20 仍是 frac=0.8/f1=0，情况明显更差"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-extract-r4-step30-40-check.md"
+}

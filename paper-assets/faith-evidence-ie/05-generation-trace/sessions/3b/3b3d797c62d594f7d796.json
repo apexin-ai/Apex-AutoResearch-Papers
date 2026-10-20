@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b3d797c62d594f7d796",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "exp eval rsft r2b full",
+  "task_key": "worker_exp_eval-rsft-r2b-full_20260515T100320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_eval-rsft-r2b-full_20260515T100320_result.json",
+    "occurrence": 1,
+    "bytes": 122,
+    "sha256": "aff8871824f6b81feb0f7c22e1744d008d673bbb9311cc7c87c7a7aab6c87936"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已在 cuda:3 后台运行（PID 189855），预计约 1h40m 完成。下次轮询在 4.5 分钟后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-eval-rsft-r2b-full.md"
+}

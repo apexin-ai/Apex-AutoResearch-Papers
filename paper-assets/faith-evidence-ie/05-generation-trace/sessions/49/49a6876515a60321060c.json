@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49a6876515a60321060c",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "paper figure fig grpo dynamics",
+  "task_key": "worker_paper_figure_fig_grpo_dynamics_20260517T181631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_grpo_dynamics_20260517T181631_result.json",
+    "occurrence": 1,
+    "bytes": 870,
+    "sha256": "58a725c31a177782bbec2d30eeb903bb6fb76e90799cf9f2b65bb269e2395772"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n**输出文件**：\n- PDF: `artifacts/fig_grpo_dynamics.pdf`\n- PNG: `artifacts/fig_grpo_dynamics.png`\n\n**数据来源**：\n- G=4 QLoRA: `grpo_ced_kl001` checkpoints 10/20/30/50/60/90/100\n- G=8 bf16: `plan_011_bf16_g8` steps 30/50/70 + `grpo_g8_bf16` checkpoints 80/90/100\n- Step 0 = SFT baseline (`sft_baseline_noquant`)\n\n**关键发现**：\n- **(a)** G=4 QLoRA 的 Rel F1 在 step 10 从 0.41 崩塌至 0.003（catastrophic collapse），之后缓慢恢复但始终远低于 SFT baseline。G=8 bf16 全程稳定且略优于 SFT。\n- **(b)** 两组的 Evidence F1 均维持在 0.56-0.81 范围，证明 evidence 生成机制本身并未崩溃。\n- **(c)** G=4 QLoRA 的 EDCR 在 step 10 跳至 0.998（几乎所有 citation 指向 distractor），随后缓慢下降。G=8 bf16 维持 0.63-0.69 并持续改善。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-grpo-dynamics.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "a2234eca36591f007637",
+  "project": "faith-evidence-ie",
+  "kind": "worker",
+  "title": "audit final text numbers",
+  "task_key": "worker_audit_final-text-numbers_20260524T042713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_final-text-numbers_20260524T042713.log",
+    "occurrence": 1,
+    "bytes": 1212861,
+    "sha256": "25779d90e109687562ff5e2b1b8e61ef919dc6414b36f0e4fed5b9f2fdbe25d3"
+  },
+  "statistics": {
+    "messages": 86,
+    "user_turns": 0,
+    "tool_calls": 27,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 27,
+      "tool_result": 27,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 86,
+      "chunks": [
+        {
+          "path": "a2234eca36591f007637-part-0001.json",
+          "message_count": 23
+        },
+        {
+          "path": "a2234eca36591f007637-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "a2234eca36591f007637-part-0003.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-final-text-numbers.md"
+}

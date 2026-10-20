@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b7bb2dbf2bb7f791237",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis rsft ced s43 train r3",
+  "task_key": "worker_analysis_rsft_ced_s43_train_r3_20260516T021246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rsft_ced_s43_train_r3_20260516T021246_result.json",
+    "occurrence": 1,
+    "bytes": 1280,
+    "sha256": "a54ef74d8f44a3d8dc0f9ff70aa5d707bd81505ae8a3fc78137794d2ecffb99a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练结果摘要\n\n- **状态**: success (EXIT_CODE=0, \"RSFT training complete.\")\n- **最终 train_loss**: 0.6151\n- **最终 eval_loss**: 0.7618\n- **总步数**: 510\n- **Epoch**: 3.0\n- **训练耗时**: 1h 49m (08:21 → 10:10)\n- **Checkpoint 路径**: `/root/autodl-tmp/rsft_output_ced_s43/` (adapter_model.safetensors, 504MB)\n- **W&B run ID**: 无（未启用 W&B）\n- **基座模型**: Qwen3-4B + SFT adapter merged\n- **数据**: 2718 samples, CED scores mean=0.668\n- **可训练参数**: 132M / 4.15B (3.18%)\n\n### Task Eval 指标\n\n| Step | F1 | Ign-F1 | Evi-F1 | EDCR | Preds |\n|------|-----|--------|--------|------|-------|\n| 170 | 0.4601 | 0.4548 | 0.7004 | 0.6205 | 899 |\n| 510 (final) | **0.5026** | **0.4932** | **0.7624** | **0.6516** | 795 |\n\n### Eval Metrics (final)\n- eval_entropy: 0.6722\n- eval_mean_token_accuracy: 0.8291\n\n### 对比前次\n- r1: 失败\n- r2: 被 kill (SIGTERM)\n- **r3: 正常完成**，训练收敛正常，F1 从 step 170 的 0.46 提升到 final 的 0.50\n\n## 建议\n- 可以进入 eval 阶段。提交 eval 前需按 C001 约束先 `nvidia-smi` 确认目标 GPU 显存空闲 < 2GB。\n- 注意模型保存路径是 `/root/autodl-tmp/rsft_output_ced_s43/`（不在 `freige/` 子目录下）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rsft-ced-s43-train-r3.md"
+}

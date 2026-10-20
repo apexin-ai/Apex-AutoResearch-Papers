@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8e3a60ab236a0b31417",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "analysis plan 008 rsft topk3 done",
+  "task_key": "worker_analysis_plan_008_rsft_topk3_done_20260515T210915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_008_rsft_topk3_done_20260515T210915_result.json",
+    "occurrence": 1,
+    "bytes": 1038,
+    "sha256": "e120786fae735b995d7cfaf0a43258c3f10ca51061e067c0b243c6d0f3f94c02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇报如下：\n\n```\n训练完成状态: 正常 (EXIT_CODE=0)\n总步数: 1509 (3 epochs)\n训练时长: 3h02m\n最终 train_loss: 0.5543\n最终 eval_loss: 0.8297\nToken accuracy: 82.28%\n\nTask eval (50-doc subset):\n  Epoch 1 (step 503):  F1=0.4848, Evi-F1=0.7450, EDCR=0.6525\n  Epoch 2 (step 1006): F1=0.4824, Evi-F1=0.6997, EDCR=0.6529\n  Epoch 3 (step 1509): F1=0.5012, Evi-F1=0.6816, EDCR=0.5963\n\nCheckpoints: 1350, 1400, 1450, 1500, 1509\ncuda:3 状态: 空闲 (0 MiB, 0%)\nW&B: 无（训练未配置 wandb logging）\n```\n\n**关键发现：** F1 随 epoch 上升（0.4848→0.5012），但 Evi-F1 持续下降（0.745→0.6816），EDCR 也在降（0.6525→0.5963）。呈现 **relation extraction 改善 vs 证据质量退化** 的 trade-off。\n\n与 CED RSFT top_k=5 baseline (rel_f1=0.4596) 对比：subset F1=0.5012 表面更高，但注意这是 50-doc subset 而非 full dev，需要 full dev eval（eval_plan_008_rsft_topk3，已在 ALLOCATED 状态）才能做可靠对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-008-rsft-topk3-done.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab15feb408057bd59312",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "setup milestone detector",
+  "task_key": "worker_setup_milestone-detector_20260520T090526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_milestone-detector_20260520T090526_result.json",
+    "occurrence": 1,
+    "bytes": 278,
+    "sha256": "48d30e05916fef3bdea8c1c77c2d4d60756ff2a785bcf4275575484e1f6a8781"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **PID**: 8338\n- 脚本已在后台运行，每 2 分钟检查一次 Milestone A（LLaMA SFT 就绪）和 Milestone B（14B gen resume 就绪），就绪时写 `/tmp/milestone_a.flag` / `/tmp/milestone_b.flag`，全部完成后自动退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-milestone-detector.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0370335a97a00501dbe1",
+  "project": "faith-evidence-ie",
+  "kind": "result",
+  "title": "eval 8b rsft test predictions",
+  "task_key": "worker_eval_8b_rsft_test_predictions_20260517T152958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_8b_rsft_test_predictions_20260517T152958_result.json",
+    "occurrence": 1,
+    "bytes": 359,
+    "sha256": "637694a60e300787d0f40e8d6b167a535465ef1c8dde24589c6b9214a46d727f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务正常运行中。\n\n- **exp_id**: `plan_006_qwen3_8b_rsft_test`\n- **PID**: 460585\n- **GPU**: cuda:1\n- **状态**: 模型已加载，正在推理（1000 docs, 250 batches）\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test.log`\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-8b-rsft-test-predictions.md"
+}
