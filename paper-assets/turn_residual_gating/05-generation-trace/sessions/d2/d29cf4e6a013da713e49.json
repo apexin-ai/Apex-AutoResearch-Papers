@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d29cf4e6a013da713e49",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code gar robustness eval script",
+  "task_key": "worker_code_gar_robustness_eval_script_20260524T065123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gar_robustness_eval_script_20260524T065123_result.json",
+    "occurrence": 1,
+    "bytes": 1187,
+    "sha256": "ecef3b9f9dc8289ae4d8edcfef535ff4e4aa43930eee2dd8edc4ecf9dec86cc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在清楚了。脚本已就绪，正确的运行命令如下：\n\n**脚本路径**: `/root/turn_residual_gating/scripts/eval_gar_robustness.py`\n\n**运行命令**（KL 完成后执行）:\n\n```bash\ncd /root/turn_residual_gating && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\n# Base model\npython scripts/eval_gar_robustness.py --gate-type none\n\n# TG v7 s42\npython scripts/eval_gar_robustness.py \\\n  --checkpoint-dir runs/phase2_tg_s42_v7 --gate-type threadgate\n\n# SS s42\npython scripts/eval_gar_robustness.py \\\n  --checkpoint-dir checkpoints/tg_v8b_ss_fixed_s42 --gate-type uniform\n```\n\n**关键设计**:\n- 单次 forward pass 后调用 `compute_gar()` 4 次（不同 goal/query position 组合），零额外 GPU 开销\n- 自动为无 system prompt 的 eval_200 对话添加默认 system prompt（GAR-goal-only 需要）\n- 输出 mid_turns_avg_gar（turns 3+ 平均）\n\n**预估运行时间**: eager attention + 50 conversations × ~3-5s/conv ≈ 每个模型 3-4 分钟。3 个模型总计 ~10-12 分钟。\n\n**输出**: `results/gar_robustness/{base_model,phase2_tg_s42_v7,tg_v8b_ss_fixed_s42}_gar_robustness.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gar-robustness-eval-script.md"
+}

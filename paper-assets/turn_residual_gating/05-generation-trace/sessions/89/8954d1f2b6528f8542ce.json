@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8954d1f2b6528f8542ce",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check phase1a multiseed qwen",
+  "task_key": "worker_check_phase1a_multiseed_qwen_20260525T111028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_phase1a_multiseed_qwen_20260525T111028_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "032c5998947db2ac3dcf69a32f41fa6407c08cffd5b70cea4e65d9a6aa599085"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练状态：仍在运行中（PCGrad s123，第 1/8 个任务）**\n\n| 指标 | 值 |\n|------|-----|\n| 当前任务 | PCGrad s123（队列中 8 个任务的第 1 个） |\n| 优化器步数 | **1800 / 3000**（60%） |\n| 当前 Epoch | Epoch 1 / 3（forward step ~6550） |\n| 最新 Loss | L_NTP=1.11, L_GAR≈0, Total≈1.11 |\n| Gate 均值 | 0.946, std=0.053, min=0.72, max=0.99 |\n| PCGrad | cos_sim=0.008, conflict_layers=50.0% |\n| GPU 占用 | 99%, 63.7GB / 97.9GB VRAM |\n| 内存 | 52.7GB（稳定） |\n| 启动时间 | 2026-05-25 14:18:08（已运行约 5 小时） |\n\n训练正常进行，还有 40% 的步数（约 1200 步）要跑完当前 s123 任务，之后还有 7 个任务排队。按当前速率估计 s123 还需约 3-4 小时完成，全部 8 个任务可能需要 1-2 天。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-phase1a-multiseed-qwen.md"
+}

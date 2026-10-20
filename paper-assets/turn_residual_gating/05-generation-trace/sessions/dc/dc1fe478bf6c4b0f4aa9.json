@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "dc1fe478bf6c4b0f4aa9",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "audit appendix tables",
+  "task_key": "worker_audit_appendix_tables_20260525T201208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_appendix_tables_20260525T201208.log",
+    "occurrence": 1,
+    "bytes": 790746,
+    "sha256": "2a2b2d2571d71fd5caf6312dd85513d0535ef25500872b4a3688569c6a91bea1"
+  },
+  "statistics": {
+    "messages": 156,
+    "user_turns": 1,
+    "tool_calls": 60,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 60,
+      "tool_result": 60,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 37,
+      "chunks": [
+        {
+          "path": "dc1fe478bf6c4b0f4aa9-part-0001.json",
+          "message_count": 37
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 119,
+      "chunks": [
+        {
+          "path": "dc1fe478bf6c4b0f4aa9-part-0001.json",
+          "message_count": 71
+        },
+        {
+          "path": "dc1fe478bf6c4b0f4aa9-part-0002.json",
+          "message_count": 48
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-appendix-tables.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3466552f06b7041fecb",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "audit reference verification",
+  "task_key": "worker_audit_reference_verification_20260524T115033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_reference_verification_20260524T115033_result.json",
+    "occurrence": 1,
+    "bytes": 3083,
+    "sha256": "8e34a4590b2956339f79f1ef692e7699a34c2c4d006b38c06ecbd2a45a784b69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 58 entries verified. Here's the compiled report.\n\n---\n\n## 引用验证报告\n\n**总数**: 58 条\n**已验证**: 58 条\n**问题**: 5 条（2 critical, 3 warning）\n\n### 问题列表\n\n1. **[critical]** `zhang2024tell` — 5 个作者名错误：\n   - Zhang, **Qinyuan** → Zhang, **Qingru**\n   - Singh, **Agarwal** → Singh, **Chandan**\n   - Liu, **Liang** → Liu, **Liyuan**\n   - Liu, **Xin** → Liu, **Xiaodong**\n   - Yu, **Bing** → Yu, **Bin**\n   - （Title, year, venue 正确）\n\n2. **[critical]** `li2024measuring` — 3 个作者名错误：\n   - Li, **Liang** → Li, **Kenneth**\n   - Liu, **Qingyun** → Liu, **Tianle**\n   - Bashkansky, **Elias** → Bashkansky, **Naomi**\n   - （Title, year, venue 正确）\n\n3. **[warning]** `zheng2024judging` — 年份错误：bib 写 2024，实际是 **NeurIPS 2023**\n\n4. **[warning]** `luo2025flexidepth` — Venue 需更新：bib 写 arXiv，实际已发表于 **COLM 2025**；Title 多了 \"(FlexiDepth)\"，原文标题无此后缀\n\n5. **[warning]** `ding2023ultrachat` — Venue 需更新：bib 写 arXiv，实际已发表于 **EMNLP 2023**\n\n### 已验证通过（53 条）\n\n1. `dongre2026attention` — ✅ Title, author, year, venue 全部正确\n2. `hong2025rhea` — ✅\n3. `laban2025lost` — ✅\n4. `liu2026intent` — ✅\n5. `bai2024mtbench101` — ✅\n6. `fan2020layerdrop` — ✅\n7. `raposo2024mixture` — ✅\n8. `schuster2022calm` — ✅\n9. `qiu2025gated` — ✅\n10. `xiao2024streaming` — ✅\n11. `hsieh2024found` — ✅\n12. `bengio2015scheduled` — ✅\n13. `ranzato2016sequence` — ✅\n14. `lamb2016professor` — ✅（arXiv 顺序 Lamb 在前，与 bib 一致）\n15. `leblond2018searnn` — ✅\n16. `he2019exposure` — ✅\n17. `wiseman2016sequence` — ✅\n18. `arora2022exposure` — ✅\n19. `yu2020pcgrad` — ✅\n20. `chen2018gradnorm` — ✅\n21. `liu2021cagrad` — ✅\n22. `navon2022nash` — ✅\n23. `bachlechner2021rezero` — ✅\n24. `grattafiori2024llama3` — ✅\n25. `gromov2024unreasonable` — ✅（key 写 2024 为 preprint 年，year 字段 2025 为 ICLR 发表年，可接受）\n26. `vaswani2017attention` — ✅\n27. `he2016deep` — ✅\n28. `srivastava2015highway` — ✅\n29. `hu2022lora` — ✅\n30. `zhang2020dialogpt` — ✅\n31. `roller2021recipes` — ✅\n32. `clark2019what` — ✅\n33. `voita2019analyzing` — ✅\n34. `kovaleva2019revealing` — ✅\n35. `liu2024lost` — ✅\n36. `zhang2019bridging` — ✅\n37. `mihaylova2019scheduled` — ✅\n38. `dou2019attention` — ✅\n39. `dou2022parallel` — ✅\n40. `li2016persona` — ✅\n41. `xu2022goldfish` — ✅\n42. `vig2019multiscale` — ✅\n43. `abnar2020quantifying` — ✅\n44. `ethayarajh2019contextual` — ✅\n45. `brunner2020identifiability` — ✅\n46. `veit2016residual` — ✅\n47. `dong2021attention` — ✅\n48. `zhou2020drophead` — ✅\n49. `dauphin2017language` — ✅\n50. `shazeer2020glu` — ✅\n51. `lin2022truthfulqa` — ✅\n52. `hendrycks2021measuring` — ✅\n53. `dettmers2023qlora` — ✅"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-reference-verification.md"
+}

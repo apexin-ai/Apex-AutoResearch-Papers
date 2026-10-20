@@ -1,0 +1,30 @@
+{
+  "exp_id": "mvp-003-verifier",
+  "project": "verifier-tts-struct-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-11T19:22:12.011Z",
+    "updated_at": "2026-05-11T19:40:00.810Z",
+    "hypothesis": "LLM 语义验证可以评估 NER 候选质量，verify-selected@N≥8 > greedy ≥ 1.0 F1 点",
+    "conclusion": "negative",
+    "metrics": {
+      "greedy_F1": 42.05,
+      "verify_selected_N4": "41.56±0.13",
+      "verify_selected_N8": "41.98±0.14",
+      "verify_selected_N16": "42.00±0.33",
+      "oracle_N16": "48.54±0.36",
+      "verify_parse_rate": "100%",
+      "same_score_rate_N4": "56-65%",
+      "same_score_rate_N8": "50-52%",
+      "same_score_rate_N16": "40-43%",
+      "pearson_corr": "0.088-0.101",
+      "spearman_corr": "0.129-0.149",
+      "verdict": "NEGATIVE — verifier 无法区分好坏候选，同模型自验证失败"
+    }
+  },
+  "timestamp": "2026-05-11T19:40:00.820632+00:00",
+  "trigger": "update_registry"
+}

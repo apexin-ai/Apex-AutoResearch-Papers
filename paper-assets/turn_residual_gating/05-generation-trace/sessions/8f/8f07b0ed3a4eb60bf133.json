@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f07b0ed3a4eb60bf133",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis llama tg progress check",
+  "task_key": "worker_analysis_llama_tg_progress_check_20260521T013837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_tg_progress_check_20260521T013837_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "ab4bac718584117df4adafa4a8516bd3dcf4c67145fd670e597c6be5f2eea234"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态: RUNNING**\n\n| 指标 | 值 |\n|------|-----|\n| PID | 199643 (运行 5h32m) |\n| GPU | NVIDIA RTX PRO 6000 Blackwell, 102GB VRAM |\n| 模型 | Llama-3.1-8B-Instruct + ThreadGate |\n| 进度 | Epoch 1, Step 7650 / 8000 (每 epoch 8000 步, 共 3 epochs) |\n| 总进度 | 15650 / 24000 步 (**65.2%**) |\n| 当前 Loss | L_NTP=0.757, Loss=0.757 |\n| Gate 均值 | 0.925 (std=0.059) |\n| 内存 | 63.4 GB |\n| ETA | **~3 小时** (按 2845 步/小时推算) |\n\n**训练曲线摘要:**\n\n- Epoch 0 完成: Avg Loss=1.009, Avg NTP=0.990\n- Epoch 1 即将结束 (~96%), loss 降至 0.75-0.95 区间\n- Gate 值从初始 0.818 升至 ~0.945 (epoch 0 末), epoch 1 稳定在 ~0.925-0.935\n- L_GAR 在 step ~800 后收敛至近 0, L_DIV 全程为 0\n- Gate profile 显示层间分化明显: 浅层 (L0-L5) ~0.97, 深层 (L24-L28) ~0.82, 末层 (L30-L31) 回升至 0.95 — 符合预期的 U 型模式"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-tg-progress-check.md"
+}

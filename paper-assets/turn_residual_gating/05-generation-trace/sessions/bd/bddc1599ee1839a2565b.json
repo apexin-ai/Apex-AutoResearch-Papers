@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bddc1599ee1839a2565b",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops sync code to remote",
+  "task_key": "worker_ops_sync_code_to_remote_20260518T171147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_code_to_remote_20260518T171147_result.json",
+    "occurrence": 1,
+    "bytes": 245,
+    "sha256": "e4d5dc86d933ccd82c29c2a7793ec38e3925dfce1a1530ba77ed8bf4160cec5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步结果:\n- threadgate.py: 已同步 (173行)\n- train_phase2.py: 已同步 (339行)\n- config.py: 已同步 (15行)\n- eval_phase2_gar.py: 已同步 (443行)\n- turn_utils.py: 已同步 (162行)\n\n语法检查: 全部通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-code-to-remote.md"
+}

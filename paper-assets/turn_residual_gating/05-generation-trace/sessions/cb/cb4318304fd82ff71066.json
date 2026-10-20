@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "cb4318304fd82ff71066",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "code anonymous repo",
+  "task_key": "worker_code_anonymous_repo_20260524T124841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anonymous_repo_20260524T124841.log",
+    "occurrence": 1,
+    "bytes": 1172015,
+    "sha256": "4827bf818b0afe7b3a9e4fdc397fa451b214b4be597a17881abeebd7b522575b"
+  },
+  "statistics": {
+    "messages": 312,
+    "user_turns": 0,
+    "tool_calls": 99,
+    "roles": {
+      "log": 1,
+      "system": 56,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 99,
+      "tool_result": 99,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 312,
+      "chunks": [
+        {
+          "path": "cb4318304fd82ff71066-part-0001.json",
+          "message_count": 91
+        },
+        {
+          "path": "cb4318304fd82ff71066-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "cb4318304fd82ff71066-part-0003.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-anonymous-repo.md"
+}

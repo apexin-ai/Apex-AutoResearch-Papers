@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "bbd3a0a7652bfa765503",
+  "project": "verifier-tts-struct-ie",
+  "kind": "worker",
+  "title": "infra mvp 001 env",
+  "task_key": "worker_infra_mvp-001-env_20260511T162823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp-001-env_20260511T162823.log",
+    "occurrence": 1,
+    "bytes": 572600,
+    "sha256": "0e5bfe7765c7e309461aa721740947c09e6f41550873a86cfd6ac0c32b1c2b29"
+  },
+  "statistics": {
+    "messages": 347,
+    "user_turns": 0,
+    "tool_calls": 133,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 133,
+      "tool_result": 133
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 347,
+      "chunks": [
+        {
+          "path": "bbd3a0a7652bfa765503-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bbd3a0a7652bfa765503-part-0002.json",
+          "message_count": 167
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-mvp-001-env.md"
+}

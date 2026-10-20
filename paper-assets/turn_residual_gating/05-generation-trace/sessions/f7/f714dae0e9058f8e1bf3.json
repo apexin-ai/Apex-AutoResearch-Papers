@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f714dae0e9058f8e1bf3",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops gpu name verify",
+  "task_key": "worker_ops_gpu_name_verify_20260524T124648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_name_verify_20260524T124648_result.json",
+    "occurrence": 1,
+    "bytes": 481,
+    "sha256": "493bea7b8a7955f29b2e462da6836dd016a0c65b24563bdb6594342947633409"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n- **nvidia-smi 实际输出**: NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB (~95.6 GB)\n- **论文描述**: NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (102 GB)\n- **差异**: GPU 名称一致，但**显存不一致**。实际为 97887 MiB ≈ 95.6 GB，论文写的 102 GB。可能是论文误用了营销规格（96 GB GDDR7）并四舍五入到了 102，或混淆了其他型号。建议修正为 **96 GB**（厂商标称值）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-name-verify.md"
+}

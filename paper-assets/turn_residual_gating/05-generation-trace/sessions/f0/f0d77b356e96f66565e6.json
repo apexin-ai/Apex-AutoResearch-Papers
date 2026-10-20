@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0d77b356e96f66565e6",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "research literature map init",
+  "task_key": "worker_research_literature_map_init_20260518T153139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature_map_init_20260518T153139_result.json",
+    "occurrence": 1,
+    "bytes": 1444,
+    "sha256": "6f977146c68e81a9ceccccb5144932274824a536893ce3a82ce3cb1eec52c2c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`literature_map.yaml` 已写入，覆盖三个方向共 17 篇论文：\n\n**layer_importance (5 篇)**\n- Gromov et al. (ICLR 2025) — 深层冗余，浅层关键 [foundation]\n- ShortGPT (2024) — Block Influence 度量 [foundation]\n- Curse of Depth (NeurIPS 2025) — Pre-LN 导致深层无效的理论解释 [foundation]\n- Reassessing Layer Pruning (2024) — 删最后 25% 层即可 [context]\n- LayerDrop (ICLR 2020) — structured dropout 经典方法 [method-component]\n\n**multi_turn_attention (5 篇)**\n- When Attention Closes (2025) — 提出 GAR，与本项目最直接相关 [foundation]\n- LLMs Get Lost (2025) — 多轮性能下降 39% 的量化基准 [foundation]\n- Intent Mismatch (2026) — scaling 无法解决多轮失败 [context]\n- Lost in the Middle (TACL 2024) — U 型 attention 分布经典发现 [foundation]\n- Style Amnesia (2025) — system prompt style 衰减 [context]\n\n**residual_gating (7 篇)**\n- Mixture-of-Depths (2024, DeepMind) — top-k routing 动态分配计算 [method-component]\n- CALM (NeurIPS 2022) — 置信度 early exit [method-component]\n- Gated Attention (NeurIPS 2025 Oral) — sigmoid gate 消除 attention sink [method-component]\n- SkipNet (ECCV 2018) — 残差网络 gating 先驱 [method-component]\n- FlexiDepth (2025) — plug-in router 自适应 skip，**直接竞品** [direct-competitor]\n- Skip Middle Layers (2025) — 负面结果参考 [context]"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-map-init.md"
+}

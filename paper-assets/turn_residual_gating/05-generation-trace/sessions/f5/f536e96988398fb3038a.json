@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f536e96988398fb3038a",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops scp fig1 pb v2",
+  "task_key": "worker_ops_scp_fig1_pb_v2_20260523T045410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp_fig1_pb_v2_20260523T045410_result.json",
+    "occurrence": 1,
+    "bytes": 154,
+    "sha256": "7ff8e8cec8ee67876bce643c5c1a430a8c68600d5c875ffdc0765e0969cb170b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件传输完成，大小与远程一致（PNG 303513 bytes, PDF 322033 bytes）。临时密钥和远程临时文件均已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-fig1-pb-v2.md"
+}

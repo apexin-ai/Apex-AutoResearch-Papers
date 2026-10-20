@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "985e9c0911d0edfa6790",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "paper research residual scaling",
+  "task_key": "worker_paper_research_residual_scaling_20260519T214510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_residual_scaling_20260519T214510_result.json",
+    "occurrence": 1,
+    "bytes": 347,
+    "sha256": "f487126ae405e113f8ab3e4c2d01b50821a8e900c613bb214f15bd41fad2c82f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`literature_map.yaml` 新增 `residual_scaling` category，含 2 篇论文：\n\n1. **Bachlechner et al. 2021** (ReZero, UAI 2021) — `must-cite`，ThreadGate per-layer sigmoid gate 的直接理论来源\n2. **Zhang et al. 2019** (Fixup, ICLR 2019) — `foundation`，残差分支缩放控制梯度爆炸的数学基础"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-residual-scaling.md"
+}

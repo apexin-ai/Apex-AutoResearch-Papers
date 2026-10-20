@@ -1,0 +1,129 @@
+baseline: null
+experiments:
+  mvp-001:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-11T16:26:44.110Z'
+    updated_at: '2026-05-11T19:47:01.112Z'
+    hypothesis: 并行 TTS（生成 N 个候选 + 结构自洽性 IoU 聚合）在 SciERC NER 上优于单次 greedy 抽取，self-consistency@N≥8
+      > greedy@N=1 ≥ 1.0 F1 点
+    notes: 'PARTIAL（Director 指示）: oracle +6.49pt >> 3pt 阈值，方向可行，聚合机制需改进。服务器: seetacloud-bjb2-structtts
+      8x5090'
+    conclusion: success
+    metrics:
+      greedy_N1_F1: 42.05
+      greedy_P: 43.6
+      greedy_R: 40.6
+      exact_sc_best: 42.22±0.63 (N=8)
+      iou_sc_best: 42.24±0.72 (N=8,tau=0.3)
+      freq_merge_best: 42.71±0.59 (N=8,k=2)
+      weighted_merge_best: 42.18±0.18 (N=8,k=3)
+      oracle_N16: 48.54±0.36
+      oracle_greedy_gap: 6.49
+      parse_success_rate: 99.99%
+      all_aggregation_methods_failed: true
+      verdict: NEGATIVE — 4 种聚合方法均未达 1.0pt 阈值，最佳 +0.66pt
+    spec:
+      command: bash run_all.sh (8x vLLM instances, parallel inference N=1,4,8,16)
+      server: seetacloud-bjb2-structtts
+      data_path: /root/projects/verifier-tts-struct-ie/data/processed_data/json/test.json
+      data_count: 100
+      model_name: Qwen3-8B
+      seed: 42,123,456
+      checkpoint_path: /root/autodl-tmp/models/Qwen/Qwen3-8B
+      log_path: /root/projects/verifier-tts-struct-ie/results/run_all.log
+    completed_at: '2026-05-11T18:44:14.669Z'
+  mvp-002-re:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-11T19:22:09.175Z'
+    updated_at: '2026-05-11T19:45:03.388Z'
+    hypothesis: RE 有实体对+关系类型的结构约束，self-consistency/freq-merge 在 relation 三元组级别匹配下信号更强，aggregation@N≥8
+      > greedy ≥ 1.0 F1 点
+    conclusion: negative
+    metrics:
+      greedy_F1: 6.2
+      exact_sc_N4: 6.35±0.15
+      freq_merge_N4_k2: 6.51±0.11
+      oracle_N4: 8.83±0.22
+      random_N4: 6.40±0.63
+      oracle_greedy_gap_N4: 2.63
+      best_agg_vs_greedy: 0.31
+      N8_N16: FAILED (vLLM n-param connection errors)
+      parse_rate_N1: 97.0%
+      parse_rate_N4: 98.2%
+      parse_rate_N8: 13.8% (connection errors)
+      verdict: NEGATIVE — RE baseline 太低(6.2%), N≥8 失败, N=4 聚合增益仅+0.31pt
+    spec:
+      command: re_inference.py + re_aggregate.py, 4 vLLM on cuda:0-3
+      server: seetacloud-bjb2-structtts
+      data_path: /root/projects/verifier-tts-struct-ie/data/processed_data/json/test.json
+      data_count: 100
+      model_name: Qwen3-8B
+      seed: 42,123,456
+      checkpoint_path: /root/autodl-tmp/models/Qwen/Qwen3-8B
+      log_path: /root/projects/verifier-tts-struct-ie/re_results/
+    completed_at: '2026-05-11T19:45:03.388Z'
+  mvp-003-verifier:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-11T19:22:12.011Z'
+    updated_at: '2026-05-11T19:40:08.419Z'
+    hypothesis: LLM 语义验证可以评估 NER 候选质量，verify-selected@N≥8 > greedy ≥ 1.0 F1 点
+    conclusion: negative
+    metrics:
+      greedy_F1: 42.05
+      verify_selected_N4: 41.56±0.13
+      verify_selected_N8: 41.98±0.14
+      verify_selected_N16: 42.00±0.33
+      oracle_N16: 48.54±0.36
+      verify_parse_rate: 100%
+      same_score_rate_N4: 56-65%
+      same_score_rate_N8: 50-52%
+      same_score_rate_N16: 40-43%
+      pearson_corr: 0.088-0.101
+      spearman_corr: 0.129-0.149
+      verdict: NEGATIVE — verifier 无法区分好坏候选，同模型自验证失败
+    spec:
+      command: verifier.py + verify_evaluate.py on existing NER candidates
+      server: seetacloud-bjb2-structtts
+      data_path: /root/projects/verifier-tts-struct-ie/results/
+      data_count: 100
+      model_name: Qwen3-8B
+      seed: 42,123,456
+      checkpoint_path: /root/autodl-tmp/models/Qwen/Qwen3-8B
+      log_path: /root/projects/verifier-tts-struct-ie/verify_results/
+    completed_at: '2026-05-11T19:40:08.419Z'
+  mvp-004-sequential:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-11T19:48:20.184Z'
+    updated_at: '2026-05-11T20:06:39.273Z'
+    hypothesis: Sequential self-refinement（K轮迭代修正）在 SciERC NER 上优于 greedy 和 parallel
+      聚合，sequential@K≥3 > greedy ≥ 1.0 F1 点
+    parent: mvp-001
+    conclusion: negative
+    metrics:
+      K1_greedy_F1: 42.21
+      K2_F1: 42.33±0.38
+      K3_F1: 41.98±0.51
+      K4_F1: 41.98±0.51
+      K2_delta: 0.12
+      K3_delta: -0.23
+      K4_delta: -0.23
+      K2_P: 42.7±1.7
+      K2_R: 42.0±1.0
+      K4_P: 41.7±2.9
+      K4_R: 42.4±2.1
+      parallel_freq_4x: 42.71
+      verdict: FAIL — sequential 退化，training-free TTS 不适用于 IE
+    spec:
+      command: sequential_refine.py, K={1,2,3,4}, 8 vLLM instances
+      server: seetacloud-bjb2-structtts
+      data_path: /root/projects/verifier-tts-struct-ie/data/test_shard_{0-7}.jsonl
+      data_count: 100
+      model_name: Qwen3-8B
+      seed: 42,123,456
+      checkpoint_path: /root/autodl-tmp/models/Qwen/Qwen3-8B
+      log_path: /root/projects/verifier-tts-struct-ie/seq_results/
+    completed_at: '2026-05-11T20:06:39.273Z'

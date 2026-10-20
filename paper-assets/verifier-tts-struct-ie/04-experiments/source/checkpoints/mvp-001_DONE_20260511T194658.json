@@ -1,0 +1,42 @@
+{
+  "exp_id": "mvp-001",
+  "project": "verifier-tts-struct-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-11T16:26:44.110Z",
+    "updated_at": "2026-05-11T19:46:58.852Z",
+    "hypothesis": "并行 TTS（生成 N 个候选 + 结构自洽性 IoU 聚合）在 SciERC NER 上优于单次 greedy 抽取，self-consistency@N≥8 > greedy@N=1 ≥ 1.0 F1 点",
+    "notes": "服务器切换: home-1x5090 → seetacloud-bjb2-structtts (8x RTX 5090 32GB)，8卡数据并行方案",
+    "conclusion": "success",
+    "metrics": {
+      "greedy_N1_F1": 42.05,
+      "greedy_P": 43.6,
+      "greedy_R": 40.6,
+      "exact_sc_best": "42.22±0.63 (N=8)",
+      "iou_sc_best": "42.24±0.72 (N=8,tau=0.3)",
+      "freq_merge_best": "42.71±0.59 (N=8,k=2)",
+      "weighted_merge_best": "42.18±0.18 (N=8,k=3)",
+      "oracle_N16": "48.54±0.36",
+      "oracle_greedy_gap": 6.49,
+      "parse_success_rate": "99.99%",
+      "all_aggregation_methods_failed": true,
+      "verdict": "NEGATIVE — 4 种聚合方法均未达 1.0pt 阈值，最佳 +0.66pt"
+    },
+    "spec": {
+      "command": "bash run_all.sh (8x vLLM instances, parallel inference N=1,4,8,16)",
+      "server": "seetacloud-bjb2-structtts",
+      "data_path": "/root/projects/verifier-tts-struct-ie/data/processed_data/json/test.json",
+      "data_count": 100,
+      "model_name": "Qwen3-8B",
+      "seed": "42,123,456",
+      "checkpoint_path": "/root/autodl-tmp/models/Qwen/Qwen3-8B",
+      "log_path": "/root/projects/verifier-tts-struct-ie/results/run_all.log"
+    },
+    "completed_at": "2026-05-11T18:44:14.669Z"
+  },
+  "timestamp": "2026-05-11T19:46:58.894906+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "ec2a261cf627dbdbae22",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "code phase2 tg v3 dryrun and train",
+  "task_key": "worker_code_phase2_tg_v3_dryrun_and_train_20260518T130834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2_tg_v3_dryrun_and_train_20260518T130834.log",
+    "occurrence": 1,
+    "bytes": 601717,
+    "sha256": "1f0fed19652fe3583c82c585c062de8c211ad2353019072730c9b503114d833a"
+  },
+  "statistics": {
+    "messages": 393,
+    "user_turns": 0,
+    "tool_calls": 145,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 145,
+      "tool_result": 145,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 393,
+      "chunks": [
+        {
+          "path": "ec2a261cf627dbdbae22-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ec2a261cf627dbdbae22-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ec2a261cf627dbdbae22-part-0003.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-phase2-tg-v3-dryrun-and-train.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp-003-verifier",
+  "project": "verifier-tts-struct-ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-11T19:22:12.011Z",
+    "updated_at": "2026-05-11T19:39:47.530Z",
+    "hypothesis": "LLM 语义验证可以评估 NER 候选质量，verify-selected@N≥8 > greedy ≥ 1.0 F1 点",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-11T19:39:47.564380+00:00",
+  "trigger": "update_registry"
+}

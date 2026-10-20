@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebbe2711abe2e2d008f2",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code anonymous repo",
+  "task_key": "worker_code_anonymous_repo_20260524T124841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anonymous_repo_20260524T124841_result.json",
+    "occurrence": 1,
+    "bytes": 1377,
+    "sha256": "714424be3219c0c3436283d61e02a6775a4b39472e5e6f68be484670c87d310a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "匿名仓库已完成。位置：`artifacts/anonymous_repo/`\n\n**内容概览（27 files, 3.8K lines）：**\n\n| 目录 | 文件 | 说明 |\n|------|------|------|\n| `src/` | `threadgate.py` | ThreadGatedModel, TurnEmbedding, GateNetwork |\n| | `gar.py` | GAR measurement + 6 种辅助 loss mode |\n| | `turn_utils.py` | ChatML / Llama-3 turn boundary detection |\n| | `model_loader.py` | Checkpoint loading + KV cache gate hooks |\n| | `attention_steering.py` | Pre-softmax attention bias |\n| | `split_softmax.py` | Li et al. 2024 baseline |\n| | `trc_measure.py` | Turn Representation Coherence metric |\n| | `train.py` | 基础训练（TG/UG/LoRA-only） |\n| | `train_pcgrad.py` | PCGrad 梯度冲突解决 |\n| | `train_scheduled_sampling.py` | Scheduled Sampling |\n| | `eval_gar.py` / `eval_multiturn.py` | GAR + 多轮评估 |\n| | `gradient_conflict_analysis.py` | NTP-GAR 梯度冲突分析 |\n| `scripts/` | 8 个 `.sh` | 训练（5 条件）+ 评估（3 脚本） |\n| `data/` | `download_ultrachat.py`, `convert_to_eval.py` | 数据准备 |\n\n**匿名化检查通过：** 无 `/root/`、wandb、邮箱、机构名、服务器地址。所有 Python 文件语法验证通过。\n\n下一步：你可以用这个目录初始化匿名 GitHub 仓库（如 Anonymous GitHub 或 OpenReview 匿名提交），在 rebuttal 中提供链接给 Reviewer。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anonymous-repo.md"
+}

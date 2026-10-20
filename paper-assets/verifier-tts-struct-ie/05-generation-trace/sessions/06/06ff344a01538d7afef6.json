@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06ff344a01538d7afef6",
+  "project": "verifier-tts-struct-ie",
+  "kind": "result",
+  "title": "code mvp 001 fix parsestats",
+  "task_key": "worker_code_mvp-001-fix-parsestats_20260511T172434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-001-fix-parsestats_20260511T172434_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "fb34d11cd7a8c87924f20b6c41fe07ace1f924d7d62f411f2516bbec3e3dc67b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，语法验证通过。\n\n**改动**：第 172 行（原第 131 行），将：\n```python\nstats_path = os.path.join(args.output_dir, \"parse_stats.json\")\n```\n改为：\n```python\nstats_path = os.path.join(args.output_dir, f\"parse_stats_shard{shard_id}_n{args.n_candidates}_seed{args.seed}.json\")\n```\n\n`shard_id` 复用了已有的提取逻辑（第 104 行 `shard_id = basename.replace(\"test_shard_\", \"\").replace(\".jsonl\", \"\")`），8 个 shard 并行时会各自写入独立文件如 `parse_stats_shard3_n8_seed42.json`，不再互相覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-001-fix-parsestats.md"
+}

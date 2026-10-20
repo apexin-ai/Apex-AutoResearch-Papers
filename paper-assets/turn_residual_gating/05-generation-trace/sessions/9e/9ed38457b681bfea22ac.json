@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ed38457b681bfea22ac",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code multiseed config diff",
+  "task_key": "worker_code_multiseed_config_diff_20260522T090747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_multiseed_config_diff_20260522T090747_result.json",
+    "occurrence": 1,
+    "bytes": 6952,
+    "sha256": "a79b01113686d2aa01f6659d59e7bbb9f6a68a85aee10eae09b5e194cf20e668"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。以下是完整配置表。\n\n---\n\n## 共享超参（5 条件完全一致）\n\n| 参数 | 值 | 来源 |\n|------|-----|------|\n| model | Qwen2.5-7B-Instruct (`/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct`) | config.py MODEL_NAME |\n| lr | 2e-4 | config.py LEARNING_RATE (v7 未显式传，用默认值) |\n| batch_size | 1 | config.py BATCH_SIZE (v7 未显式传，用默认值) |\n| grad_accum | 8 (effective batch = 8) | config.py GRADIENT_ACCUMULATION |\n| epochs | 3 | train_phase2.py argparse default |\n| max_seq_len | 2048 | v7 命令显式传 |\n| optimizer | AdamW | train_phase2.py:190 硬编码 |\n| weight_decay | 0.01 | train_phase2.py:190 硬编码 |\n| lr_scheduler | cosine_with_warmup | train_phase2.py:197 硬编码 |\n| warmup_steps | max(1, total_steps // 10) ≈ 10% | train_phase2.py:199 硬编码 |\n| LoRA rank (r) | 16 | config.py LORA_RANK |\n| LoRA alpha | 32 | train_phase2.py:141 硬编码 |\n| LoRA dropout | 0.05 | train_phase2.py:143 硬编码 |\n| LoRA target_modules | [\"q_proj\", \"v_proj\"] | train_phase2.py:142 硬编码 |\n| LoRA bias | \"none\" | 硬编码 |\n| precision | bf16 (torch.bfloat16) | threadgate.py:81 硬编码 |\n| gradient_checkpointing | enabled | train_phase2.py:148 硬编码 |\n| grad_clip_norm | 1.0 | train_phase2.py ~L278 硬编码 |\n| attn_implementation | \"eager\" | train_phase2.py:151-154 硬编码 |\n| gar_epsilon | 0.001 | config.py GAR_EPSILON |\n| data | ultrachat_8k (全量，无 train/eval split) | --data-dir 默认值 |\n| seeds | [42, 123, 7] (3 seeds) | D048 协议 |\n\n## 条件差异（仅列不同项）\n\n| 参数 | Base | TG | LO | UG | SS |\n|------|------|----|----|----|----|\n| **训练脚本** | train_phase2.py | train_phase2.py | train_phase2.py | train_phase2.py | **train_phase2_v8b.py** |\n| **gate-type** | none | threadgate | none | uniform | threadgate |\n| **lambda-gar** | **0** | 1.0 | 1.0 | 1.0 | 1.0 |\n| **lambda-gate-div** | 0 (自动，code 检查 gate_type≠none) | 1.0 | 0 (自动，gate_type=none) | 1.0 | 1.0 |\n| **init-bias** | N/A (无 gate) | 1.5 | N/A (无 gate) | 1.5 | 1.5 |\n| **gate-lr-multiplier** | N/A (无 gate) | 10 | N/A (无 gate) | 10 | 10 |\n| **min-gate-std** | N/A | 0.05 | N/A | 0.05 | 0.05 |\n| **gar-loss-mode** | N/A (λ=0) | mse_target | mse_target | mse_target | mse_target |\n| **gar-target** | N/A (λ=0) | 0.5 | 0.5 | 0.5 | 0.5 |\n| **scheduled-sampling** | No | No | No | No | **Yes** |\n| **ss-max-ratio** | — | — | — | — | **0.3** |\n| **ss-warmup-steps** | — | — | — | — | 0 |\n| **ss-gen-max-tokens** | — | — | — | — | 128 |\n| **ss-gen-temperature** | — | — | — | — | 0.7 |\n\n## 完整运行命令模板\n\n**Base** (纯 LoRA SFT):\n```bash\npython src/train_phase2.py \\\n  --gate-type none --lambda-gar 0 \\\n  --max-seq-len 2048 --seed {SEED} --epochs 3 \\\n  --output-dir runs/d048_base_s{SEED} \\\n  --data-dir data/ultrachat_8k\n```\n\n**TG** (= v7 配置):\n```bash\npython src/train_phase2.py \\\n  --gate-type threadgate \\\n  --gar-loss-mode mse_target --gar-target 0.5 \\\n  --lambda-gar 1.0 --lambda-gate-div 1.0 \\\n  --min-gate-std 0.05 --init-bias 1.5 \\\n  --gate-lr-multiplier 10 --max-seq-len 2048 \\\n  --seed {SEED} --epochs 3 \\\n  --output-dir runs/d048_tg_s{SEED} \\\n  --data-dir data/ultrachat_8k\n```\n\n**LO** (GAR loss only, 无 gate):\n```bash\npython src/train_phase2.py \\\n  --gate-type none \\\n  --gar-loss-mode mse_target --gar-target 0.5 \\\n  --lambda-gar 1.0 \\\n  --max-seq-len 2048 --seed {SEED} --epochs 3 \\\n  --output-dir runs/d048_lo_s{SEED} \\\n  --data-dir data/ultrachat_8k\n```\n\n**UG** (uniform gate):\n```bash\npython src/train_phase2.py \\\n  --gate-type uniform \\\n  --gar-loss-mode mse_target --gar-target 0.5 \\\n  --lambda-gar 1.0 --lambda-gate-div 1.0 \\\n  --min-gate-std 0.05 --init-bias 1.5 \\\n  --gate-lr-multiplier 10 --max-seq-len 2048 \\\n  --seed {SEED} --epochs 3 \\\n  --output-dir runs/d048_ug_s{SEED} \\\n  --data-dir data/ultrachat_8k\n```\n\n**SS** (scheduled sampling):\n```bash\npython src/train_phase2_v8b.py \\\n  --gate-type threadgate \\\n  --gar-loss-mode mse_target --gar-target 0.5 \\\n  --lambda-gar 1.0 --lambda-gate-div 1.0 \\\n  --min-gate-std 0.05 --init-bias 1.5 \\\n  --gate-lr-multiplier 10 --max-seq-len 2048 \\\n  --scheduled-sampling --ss-max-ratio 0.3 \\\n  --ss-warmup-steps 0 --ss-gen-max-tokens 128 --ss-gen-temperature 0.7 \\\n  --seed {SEED} --epochs 3 \\\n  --output-dir runs/d048_ss_s{SEED} \\\n  --data-dir data/ultrachat_8k\n```\n\n## 待确认问题\n\n### 1. Base 关闭 GAR loss — `--lambda-gar 0` 可行\n\n代码 L274: `loss = l_ntp + args.lambda_gar * l_gar + args.lambda_gate_div * l_gate_div`。`lambda_gar=0` 使 GAR 项归零。同时 `gate_type=none` 使 `l_gate_div` 也自动为 0（代码 L263-267 检查 `gate_type != \"none\"`）。最终 loss = l_ntp，纯 LoRA SFT。**无需代码改动。** 唯一副作用：`compute_gar_loss` 仍被调用（浪费少量计算），但不影响训练结果。\n\n### 2. ⚠️ UG gate alpha 不是固定 0.5 — 是可学习的\n\n任务描述说 UG \"alpha=0.5 固定\"，但代码中 `--gate-type uniform` 使用的是 `UniformGateNetwork`（threadgate.py:57-69），这是一个**可学习**的网络：`sigmoid(fc2(relu(fc1(cat(down_proj(h), constant_vector)))))`。它和 threadgate 的区别仅在于用 constant_vector 替代 turn_embedding，即**不感知 turn 结构**，但 gate 值仍然是动态计算并可学习的。\n\n- 初始 gate ≈ sigmoid(init_bias=1.5) ≈ 0.82，不是 0.5\n- 如果需要 alpha 恒定为 0.5，需要**修改代码**：新增一个不含可学习参数的 FixedGateNetwork，直接返回 0.5\n\n**建议**：当前 UniformGateNetwork 的消融意义是\"去掉 turn-aware 信息但保留可学习 gate\"，这已经是有效的消融。如果改为固定 0.5，消融意义变为\"完全去掉 gate 的自适应能力\"。请 Director 确认需要哪种。\n\n### 3. SS 使用 train_phase2_v8b.py\n\nSS 条件必须用 `train_phase2_v8b.py`，因为 `--scheduled-sampling` 参数只在 v8b 中存在。v8b 的基础超参（LoRA、optimizer、warmup）与 train_phase2.py 完全一致，已验证。\n\n### 4. config.py 默认 vs v7 实际值差异\n\n| 参数 | config.py 默认 | v7 实际 | D048 应使用 |\n|------|---------------|---------|------------|\n| lambda_gar (GAR_LAMBDA) | **2.0** | 1.0 | 1.0 |\n| init_bias (INIT_BIAS) | **2.0** | 1.5 | 1.5 |\n| gate_lr_multiplier | **1.0** | 10 | 10 |\n| gar_target (GAR_TARGET) | **0.3** | 0.5 | 0.5 |\n\n上表中 D048 采用 v7 实际值。如果直接不传这些参数，会用 config.py 默认值，与 v7 不一致。**所有条件必须显式传这些参数。**\n\n### 5. 无 eval split\n\n数据集 `ultrachat_8k` 只有单个 split（data-00000-of-00001.arrow），训练时全量使用，无 train/eval 划分。如需 eval，需另行处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-multiseed-config-diff.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8029d8e6dcf5f1b2521b",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code training dynamics plot",
+  "task_key": "worker_code_training_dynamics_plot_20260519T114500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_training_dynamics_plot_20260519T114500_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "8325f6d36d10547d9bcf61dbae94b3f006b898db56dd40992a797ce40ff71675"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本执行成功。输出文件：\n\n| 文件 | 大小 |\n|------|------|\n| `results/v7_training_dynamics.pdf` | 39.5 KB |\n| `results/v7_training_dynamics.png` | 318.8 KB |\n| `results/v7_training_dynamics_parsed.json` | 124.9 KB |\n\n解析数据：480 条 loss 行、61 条 GATE 记录（去重后）、31 条 GATE-PROFILE 记录。\n\n脚本位于 `/root/turn_residual_gating/plot_training_dynamics.py`，五个 panel 分别展示 L_NTP、L_GAR（含三阶段标注）、Gate mean±std、Gate min/max、L_DIV，gs75 和 gs144 处有红/蓝垂直虚线标注 Phase A/B/C。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-training-dynamics-plot.md"
+}

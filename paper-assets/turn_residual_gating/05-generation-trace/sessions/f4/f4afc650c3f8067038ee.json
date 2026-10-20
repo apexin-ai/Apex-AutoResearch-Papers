@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4afc650c3f8067038ee",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code apply v2 full fixes",
+  "task_key": "worker_code_apply_v2_full_fixes_20260518T112437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_apply_v2_full_fixes_20260518T112437_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "ae31caee742266543d0797151559231e4b576bfe9ee0a94d02ac7feba6008f56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**3 项修复已应用（远程 + 本地同步）：**\n1. `config.py`: GAR_EPSILON 0.001 → 0.002\n2. `train_phase2.py`: --lambda-gar default 0.5 → 5.0；新增 --init-bias 参数 (default=2.0)，传入模型构造\n3. `threadgate.py`: ThreadGatedModel.__init__ 和 create_model 的 init_bias 5.0 → 2.0\n\n**Dry-run 5 步指标：**\n\n| Step | L_NTP | L_GAR | Loss | Gate | Mem |\n|------|-------|-------|------|------|-----|\n| 0 | 1.9796 | 0.1226 | 2.5927 | 0.8743 | 42.3GB |\n| 1 | 1.3270 | 0.1226 | 1.9399 | 0.8744 | 42.3GB |\n| 2 | 1.5047 | 0.0792 | 1.9009 | 0.8747 | 46.7GB |\n| 3 | 1.6303 | 0.0851 | 2.0558 | 0.8757 | 46.7GB |\n| 4 | 1.8503 | 0.0508 | 2.1044 | 0.8764 | 46.7GB |\n\n- L_GAR 非零 ✓ (0.05~0.12)\n- GAR 贡献占总 loss 15-30% ✓\n- Gate ≈ 0.874 ≈ sigmoid(2.0) ✓\n- 无 OOM/NaN ✓\n- 峰值 46.7GB / 102GB ✓\n- Gate 梯度已接收 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-apply-v2-full-fixes.md"
+}

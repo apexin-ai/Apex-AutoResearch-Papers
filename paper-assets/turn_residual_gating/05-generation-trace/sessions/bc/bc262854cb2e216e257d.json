@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc262854cb2e216e257d",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check v8b training progress",
+  "task_key": "worker_check_v8b_training_progress_20260520T181614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_v8b_training_progress_20260520T181614_result.json",
+    "occurrence": 1,
+    "bytes": 910,
+    "sha256": "3c55b658bef4ad6380fee48fda1dcdbb9dfcf51f92f44b417d123d08f25a0b6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**v8b 训练已完成。**\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | **已完成** |\n| 总耗时 | 29333s ≈ **8.1 小时** |\n| 最终 step | global_step=3000 / 3000 (100%) |\n| Epochs 完成 | Epoch 1 + Epoch 2（从 epoch_0 checkpoint resume） |\n| Epoch 2 Avg Loss | **0.9330** (NTP=0.9322, GAR=0.0008, DIV=0.0000) |\n| Gate (final) | mean=**0.9586**, std=0.0582, min=0.7227, max=1.0000 |\n| SS ratio | 0.500, used=7668/16000 (47.9%), fallback=0 |\n| 显存 | 53.1GB（稳定） |\n| GPU | 当前空闲，训练已结束 |\n| 错误 | **无** — 日志中无 error/exception |\n| Checkpoint | `checkpoints/tg_v8b_ss_fixed_s42/` — epoch_0, epoch_1, epoch_2 + final (gate_params.pt + lora) 均已保存 |\n\nGate profile (step 3000) 低值层: L4=0.723, L5=0.867, L0=0.887 — 与之前 v7/v9 模式一致，浅层 gate 更低。\n\n训练正常完成，可以进入评估阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-v8b-training-progress.md"
+}

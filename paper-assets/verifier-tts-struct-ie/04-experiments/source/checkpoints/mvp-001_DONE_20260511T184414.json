@@ -1,0 +1,43 @@
+{
+  "exp_id": "mvp-001",
+  "project": "verifier-tts-struct-ie",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-11T16:26:44.110Z",
+    "updated_at": "2026-05-11T18:44:14.669Z",
+    "hypothesis": "并行 TTS（生成 N 个候选 + 结构自洽性 IoU 聚合）在 SciERC NER 上优于单次 greedy 抽取，self-consistency@N≥8 > greedy@N=1 ≥ 1.0 F1 点",
+    "notes": "服务器切换: home-1x5090 → seetacloud-bjb2-structtts (8x RTX 5090 32GB)，8卡数据并行方案",
+    "conclusion": "success",
+    "metrics": {
+      "greedy_N1_F1": 42.05,
+      "self_consistency_N4_F1": "41.88±0.37",
+      "self_consistency_N8_F1": "42.20±0.66",
+      "self_consistency_N16_F1": "41.40±0.37",
+      "weighted_vote_N8_F1": "42.52±0.32",
+      "weighted_vote_N16_F1": "42.23±0.38",
+      "oracle_N4_F1": "45.92±0.42",
+      "oracle_N8_F1": "47.45±0.25",
+      "oracle_N16_F1": "48.54±0.36",
+      "random_N8_F1": "41.79±0.58",
+      "parse_success_rate": "99.99%",
+      "oracle_greedy_gap_N16": 6.49,
+      "verdict": "PARTIAL"
+    },
+    "spec": {
+      "command": "bash run_all.sh (8x vLLM instances, parallel inference N=1,4,8,16)",
+      "server": "seetacloud-bjb2-structtts",
+      "data_path": "/root/projects/verifier-tts-struct-ie/data/processed_data/json/test.json",
+      "data_count": 100,
+      "model_name": "Qwen3-8B",
+      "seed": "42,123,456",
+      "checkpoint_path": "/root/autodl-tmp/models/Qwen/Qwen3-8B",
+      "log_path": "/root/projects/verifier-tts-struct-ie/results/run_all.log"
+    },
+    "completed_at": "2026-05-11T18:44:14.669Z"
+  },
+  "timestamp": "2026-05-11T18:44:14.677450+00:00",
+  "trigger": "update_registry"
+}

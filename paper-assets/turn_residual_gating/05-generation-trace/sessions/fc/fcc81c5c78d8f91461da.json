@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcc81c5c78d8f91461da",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "verify lora rank check",
+  "task_key": "worker_verify_lora_rank_check_20260520T062536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_lora_rank_check_20260520T062536_result.json",
+    "occurrence": 1,
+    "bytes": 1067,
+    "sha256": "29c36d6d743c13746e169de4ef098fceb045f02d6c0b0d8d0842f04d059cc0f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果确认完毕。\n\n## 汇总\n\n**config.py**: `LORA_RANK = 16`\n\n**argparse**: 无 `--lora-rank` 参数（共 20 个参数，无一与 LoRA rank 相关），因此所有实验都使用 config.py 的硬编码值。\n\n**4 个实验 checkpoint 的 adapter_config.json 确认结果：**\n\n| 实验 | checkpoint 路径 | LoRA rank (`r`) | `lora_alpha` | 来源 |\n|------|----------------|-----------------|--------------|------|\n| v7 TG | `runs/phase2_tg_s42_v7/lora/adapter_config.json` | **16** | 32 | PEFT 保存的配置 |\n| UG | `runs/phase2_ug_s42/lora/adapter_config.json` | **16** | 32 | PEFT 保存的配置 |\n| LoRA-only | `runs/phase2_lora_only_s42/lora/adapter_config.json` | **16** | 32 | PEFT 保存的配置 |\n| v9 PCGrad | `checkpoints/tg_v9_pcgrad_s42/lora/adapter_config.json` | **16** | 32 | PEFT 保存的配置 |\n\n**结论**：所有 4 个实验的 LoRA rank 均为 **16**，不是论文中写的 8。论文需要修正为 rank=16, alpha=32。其他共同配置：target_modules = `[q_proj, v_proj]`，dropout = 0.05。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-lora-rank-check.md"
+}

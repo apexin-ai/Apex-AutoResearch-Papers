@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83990858c48ba3cc49aa",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code d048 batch scripts",
+  "task_key": "worker_code_d048_batch_scripts_20260522T102854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d048_batch_scripts_20260522T102854_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "5ed13794fe640ea899b38d100cdc17232e0356b426f655fae243878229294b4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "13 个脚本全部创建完成，已 chmod +x。所有 13 个 output 目录均不存在，无覆盖风险。\n\n汇总：\n\n| 条件 | 脚本数 | 文件 |\n|------|--------|------|\n| SS | 2 | d048_ss_s123.sh, d048_ss_s456.sh |\n| PCGrad | 2 | d048_pcgrad_s123.sh, d048_pcgrad_s456.sh |\n| Base | 3 | d048_base_s42.sh, d048_base_s123.sh, d048_base_s456.sh |\n| TG | 2 | d048_tg_s123.sh, d048_tg_s456.sh |\n| LO | 2 | d048_lo_s123.sh, d048_lo_s456.sh |\n| UG | 2 | d048_ug_s123.sh, d048_ug_s456.sh |\n\n加上已有的 d048_ss_s42.sh，共 14 个脚本覆盖 6×3=18 runs。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d048-batch-scripts.md"
+}

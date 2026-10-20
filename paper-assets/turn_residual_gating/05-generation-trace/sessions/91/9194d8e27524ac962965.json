@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9194d8e27524ac962965",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "monitor v7 diag step100",
+  "task_key": "worker_monitor_v7_diag_step100_20260518T184649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v7_diag_step100_20260518T184649_result.json",
+    "occurrence": 1,
+    "bytes": 511,
+    "sha256": "5afbff559a6b83262dfcdd9de4047d6729fcec32b94f201293a03759e265403b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练在跑，GPU 97% 利用率。当前进度：micro-step ~200（global_step ~25）。GATE 日志目前只有 step=0 的记录。\n\n已观察到的早期数据：\n- micro-step 200 时 L_DIV=0.0000，gate mean=0.8054 — L_DIV 已经掉到 0，值得关注\n- L_NTP 从 2.03 → 1.31（step 100 micro）→ 1.46（step 200 micro），正常下降中\n- L_GAR 基本持平在 0.23 附近，尚未出现明显下降\n\n4.5 分钟后再检查，等待 global_step 50/100 的 GATE 数据出现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v7-diag-step100.md"
+}

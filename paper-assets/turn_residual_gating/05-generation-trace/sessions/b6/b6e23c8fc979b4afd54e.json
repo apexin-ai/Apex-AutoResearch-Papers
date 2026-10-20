@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "b6e23c8fc979b4afd54e",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "paper appendix figure recolor",
+  "task_key": "worker_paper_appendix_figure_recolor_20260523T133337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_figure_recolor_20260523T133337.log",
+    "occurrence": 1,
+    "bytes": 1361214,
+    "sha256": "101554dd7a390a831ba88f7580c1704e31d0446eddbb20808486b4ea5d11c0e8"
+  },
+  "statistics": {
+    "messages": 294,
+    "user_turns": 2,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "assistant": 61,
+      "tool_call": 108,
+      "tool_result": 108,
+      "record": 2,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 148,
+      "chunks": [
+        {
+          "path": "b6e23c8fc979b4afd54e-part-0001.json",
+          "message_count": 134
+        },
+        {
+          "path": "b6e23c8fc979b4afd54e-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 137,
+      "chunks": [
+        {
+          "path": "b6e23c8fc979b4afd54e-part-0002.json",
+          "message_count": 103
+        },
+        {
+          "path": "b6e23c8fc979b4afd54e-part-0003.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "b6e23c8fc979b4afd54e-part-0003.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-appendix-figure-recolor.md"
+}

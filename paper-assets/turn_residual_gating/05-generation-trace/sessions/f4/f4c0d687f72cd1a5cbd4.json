@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4c0d687f72cd1a5cbd4",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops check and execute gpu sequence",
+  "task_key": "worker_ops_check_and_execute_gpu_sequence_20260523T004244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_and_execute_gpu_sequence_20260523T004244_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "85a3e483cd1352c286969206724f33470819ac6675c22254d774d195292a3d6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**情况 A：一切正常，自动过渡已触发，流水线正在运行。**\n\n### 当前状态\n\n| 项目 | 状态 |\n|------|------|\n| **tmux sessions** | `auto_transition` + `queue_runner` 均存活 |\n| **GPU** | RTX PRO 6000 Blackwell, 88% util, 60383/97887 MiB, PID 56974 |\n| **流水线进度** | [2/8] 完成 → [3/8] SS s123 训练中（刚启动 step 0） |\n\n### PCGrad AR N=50 结果（已完成）\n\n4 个方法的结果文件均存在于 `results/d048_ar_n50_existing/`：\n\n| 方法 | β=0 GAR | β=3 GAR | β=5 GAR | β=5 PPL |\n|------|---------|---------|---------|---------|\n| **TG** | 0.0234 | 0.5300 | **0.6815** | 1.908 |\n| **PCGrad** | 0.0180 | 0.5313 | 0.6615 | 1.761 |\n| **UG** | 0.0268 | 0.5176 | 0.6566 | 1.723 |\n| **LoRA-only** | — | — | — | — |\n\n### 当前训练：[3/8] SS s123\n\n- 08:43:07 启动，模型已加载，step 0 开始\n- 配置：scheduled sampling, max_ratio=0.3, 3000 steps, grad_accum=8\n- Gate 初始均值 0.8118，std 0.0277\n\n无需手动干预，流水线自动串行执行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-and-execute-gpu-sequence.md"
+}

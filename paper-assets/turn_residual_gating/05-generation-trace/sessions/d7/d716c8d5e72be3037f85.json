@@ -1,0 +1,797 @@
+{
+  "schema_version": "1.0",
+  "id": "d716c8d5e72be3037f85",
+  "project": "turn_residual_gating",
+  "kind": "conversation",
+  "title": "paper figure fig1 overview",
+  "task_key": "worker_paper_figure_fig1_overview_20260519T192811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_figure_fig1_overview_20260519T192811.jsonl",
+    "occurrence": 1,
+    "bytes": 55170,
+    "sha256": "effe6a59daf324305c1d80d60f5f8eb74465176a8265cc425e55bfff4c579b3b"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 19,
+    "roles": {
+      "tool_call": 19,
+      "tool_result": 19,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T19:37:00.267045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-banana.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T19:37:00.267578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-visualization.skill.md"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T19:37:00.267967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdescription: 用 PaperBanana 生成学术图表——概念图（架构/流程/framework）首选，探索性统计图也可。LLM 写 matplotlib 代码 + VLM Critic 闭环迭代。需要 GOOGLE_API_KEY。\n3\tname: paper-banana\n4\tscope: global\n5\ttags:\n6\t  - visualization\n7\t  - paper\n8\t  - matplotlib\n9\t  - llm-codegen\n10\t  - conceptual-diagram\n11\tversion: 2\n12\ttools:\n13\t  - ssh_execute\n14\t---\n15\t\n16\t# Paper Banana — LLM 驱动的学术图表生成\n17\t\n18\tPaperBanana 由 Gemini 自动写 matplotlib 代码，VLM Critic 评估渲染结果并迭代优化（默认 3 轮），输出 NeurIPS 风格 300 DPI 图表。\n19\t\n20\t## 适用范围（与 paper-visualization.skill.md L4 路由一致）\n21\t\n22\t| 场景 | 推荐工具 | 原因 |\n23\t|------|---------|------|\n24\t| **概念图**（架构图、流程图、framework 示意） | **PaperBanana** | matplotlib 手写 boxes/arrows/icons 极痛苦，LLM 生成代码更灵活 |\n25\t| **统计图**（scatter、bar、line、heatmap、forest） | **matplotlib 手写** | 确定性、可控、有模板 |\n26\t| **探索性图**，不确定 layout | **PaperBanana** | LLM 多轮迭代试错 |\n27\t| 离线 / 无 GOOGLE_API_KEY | **matplotlib 手写** | 不依赖外部 API |\n28\t\n29\t> **核心定位**：PaperBanana 的真正优势是**概念图**——这类图没有数据输入、是纯视觉布局，手写 matplotlib 代码极其繁琐。统计图有成熟模板（见 `draw-paper-figure.skill.md`），手写更可控。\n30\t>\n31\t> **与 draw-paper-figure 的区别**：draw-paper-figure 是手写模板（快、可控、确定性）；paper-banana 是 LLM 自动生成代码（慢、灵活、适合新图类型）。\n32\t\n33\t## 前置条件：GOOGLE_API_KEY\n34\t\n35\t```bash\n36\t# 检查 key 是否已配置\n37\tssh_execute(\"echo $GOOGLE_API_KEY | head -c 10\")\n38\t\n39\t# 如未配置，需要用户提供 key，然后：\n40\tssh_execute(\"echo 'export GOOGLE_API_KEY=[REDACTED]' >> ~/.bashrc && source ~/.bashrc\")\n41\t\n42\t# 安装 PaperBanana\n43\tssh_execute(\"pip install paperbanana -q\")\n44\t\n45\t# 验证安装\n46\tssh_execute(\"paperbanana --version\")\n47\t```\n48\t\n49\t**⚠️ 如果 GOOGLE_API_KEY 未设置，直接停下来问用户要 key，不要尝试绕过。**\n50\t\n51\t**⚠️ 中国大陆服务器访问 Gemini API 可能被墙。** 先测试连通性：`curl -s -o /dev/null -w '%{http_code}' https://generativelanguage.googleapis.com`，超时则需设置代理或改用海外服务器。\n52\t\n53\t## 用法一：概念图（主要用途）\n54\t\n55\t概念图没有数据文件输入，靠 `--intent` 描述布局、组件、箭头、颜色语义。\n56\t\n57\t```bash\n58\t# Framework / Pipeline 图\n59\tssh_execute(\"\"\"\n60\tcd ~/my-project && \\\n61\tGOOGLE_API_KEY=[REDACTED] paperbanana plot \\\n62\t  --intent \"Three-stage pipeline diagram flowing left to right:\n63\tStage 1 'Data Collection' (blue\n…[truncated 4521 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T19:37:00.268263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdescription: 学术论文图表设计与生成——四层指南（防丑原则 + 叙事原则 + Pattern 库 + 工具路由）。Paper Agent 规划 visualization_plan 时读，Worker 执行时也读。\n3\tname: paper-visualization\n4\tscope: global\n5\ttags:\n6\t- research\n7\t- visualization\n8\t- paper\n9\t- matplotlib\n10\t- paperbanana\n11\tversion: 5\n12\troles:\n13\t- agent\n14\t- paper_agent\n15\t---\n16\t\n17\t# Paper Visualization — 学术图表设计与生成\n18\t\n19\t> **核心理念**：好图不是\"画得对\"，是\"回答一个问题\"。每张图动笔前先问：**这张图要让读者看到什么？**\n20\t\n21\t本 skill 分五层：\n22\t\n23\t- **L0 学习同行** — 设计前看几张优秀同类型论文图，比读任何原则都有效\n24\t- **L1 防丑原则** — 底线，所有图必须遵守\n25\t- **L2 叙事原则** — 让图有说服力（区分\"数据图\"和\"论证图\"）\n26\t- **L3 Pattern 库** — 具体技法目录，按 `design_notes` 选用\n27\t- **L4 工具路由 + 模板** — paperbanana vs matplotlib，常用统计图模板\n28\t\n29\t---\n30\t\n31\t## L0 学习同行（设计前的功课）\n32\t\n33\t你的子领域里，**最被引用、最被记住的论文是怎么画图的？** 在动笔之前花点时间去看一眼——这个动作的回报远高于读完下面的 L1-L4。\n34\t\n35\t### 为什么这一步是重要的\n36\t\n37\t- 同领域读者已经被这些论文的视觉语言\"训练\"过——遵循惯例 = 降低读者认知负担\n38\t- 顶会论文经历过 reviewer 严苛审查，能登出来的图基本说明它的 narrative 设计是被接受的\n39\t- 抽象原则告诉你\"用 fill_between 表示发散\"，但好论文告诉你\"在这种数据上，发散到底应该画多淡才合适\"\n40\t- 一个领域往往有它特有的图表惯例（如校准研究的 reliability diagram、scaling 研究的 log-log curve、RL 的 learning curve with seed bands），不看就不会用\n41\t\n42\t### 什么时候值得投入\n43\t\n44\t判断权交给你。一些可参考的信号：\n45\t\n46\t- **值得多花时间**：会决定论文成败的图（hero figure、main result、新颖的实验类型）\n47\t- **不太值得**：常规 supplementary 图、loss curve 这类标准化已经很高的图\n48\t- **强烈建议看**：你打算画一种自己不熟悉的图，或者数据形态是这个领域少见的\n49\t\n50\t### 怎么看\n51\t\n52\t工具：`paper-image-extractor` skill 可以从 arXiv source 或 PDF 提取参考论文里的 figure。你已经有 `literature_map.yaml` 里的论文清单作为起点。\n53\t\n54\t看的时候问自己（不是机械检查清单，是真的去理解）：\n55\t\n56\t- 这张图回答了什么问题？读者一眼能 get 到吗？\n57\t- 它用了哪些叙事层（background band / 参考线 / 概念曲线 / fill 区域）？这些层在我的数据上有对应物吗？\n58\t- 它的颜色和 marker 怎么承载语义？我的图能不能借鉴这套映射？\n59\t- 它有什么是这篇论文特有的（与他们的具体数据 / claim 绑死）？这些不要照搬。\n60\t- 如果让我重画它的图，我会怎么改？为什么作者没这么做？\n61\t\n62\t### 怎么把学到的传下去\n63\t\n64\t把你看完后的判断**直接写进对应 fig 的 `design_notes`**，用人话不用模板。例子：\n65\t\n66\t```yaml\n67\tdesign_notes:\n68\t  - \"学 GPTQ Fig 4：用 log-scale bit-width + dashed FP16 baseline + 不同 marker shape 分模型族\"\n69\t  - \"Pattern A（regime band）划分 in-domain / OOD 两段\"\n70\t  - \"AWQ Fig 2 那种 hatching 区分 outlier 不适用我们的数据，跳过\"\n71\t```\n72\t\n73\t\n…[truncated 11092 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T19:37:00.268499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "echo \"GOOGLE_API_KEY: [REDACTED]}\" && python3 --version 2>/dev/null && python3 -c \"import matplotlib; print('matplotlib', matplotlib.__version__)\" 2>/dev/null",
+              "description": "Check local environment for API key and matplotlib"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T19:37:00.268647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GOOGLE_API_KEY: \n[REDACTED] 3.14.4\nmatplotlib 3.10.9"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T19:37:00.268774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/ 2>/dev/null || echo \"DIR_NOT_EXISTS\"",
+              "description": "Check if output directory exists"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T19:37:00.268893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DIR_NOT_EXISTS"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T19:37:00.269096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper",
+              "description": "Create output directory for figures"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T19:37:00.269226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T19:37:00.269388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/fig1_overview.py",
+              "content": "\"\"\"Figure 1: ThreadGate Overview — three-panel causal narrative.\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport os\n\n# --- Layout constants ---\nONE_MM = 1 / 25.4\nFIG_W = 170 * ONE_MM   # EMNLP full width\nFIG_H = FIG_W * 6 / 16  # 16:6\n\nC_OK    = '#009E73'\nC_FAIL  = '#D55E00'\nC_GRAY  = '#999999'\nC_BLUE  = '#0072B2'\nC_AMBER = '#E69F00'\nC_TEXT  = '#222222'\nC_LIGHT = '#F7F7F7'\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 7,\n    'figure.dpi': 300, 'savefig.dpi': 300,\n    'savefig.bbox': 'tight', 'savefig.pad_inches': 0.02,\n    'pdf.fonttype': 42, 'ps.fonttype': 42,\n})\n\nfig, ax = plt.subplots(figsize=(FIG_W, FIG_H))\nax.set_xlim(0, 16)\nax.set_ylim(0, 6)\nax.axis('off')\n\n# ── helpers ──────────────────────────────────────────────────────────\ndef rbox(x, y, w, h, fc='white', ec='#BBBBBB', lw=0.6, **kw):\n    p = FancyBboxPatch((x, y), w, h, boxstyle='round,pad=0.12',\n                        facecolor=fc, edgecolor=ec, linewidth=lw,\n                        zorder=kw.get('zorder', 2))\n    ax.add_patch(p)\n    return p\n\ndef arr(x1, y1, x2, y2, c='#444444', lw=0.9, ls='-', style='-|>',\n        rad=0.0, shrinkA=0, shrinkB=0):\n    cs = f'arc3,rad={rad}' if rad else 'arc3,rad=0'\n    a = FancyArrowPatch((x1, y1), (x2, y2), arrowstyle=style,\n                         connectionstyle=cs, color=c, linewidth=lw,\n                         linestyle=ls, mutation_scale=8,\n                         shrinkA=shrinkA, shrinkB=shrinkB, zorder=4)\n    ax.add_patch(a)\n\ndef txt(x, y, s, fs=6, c=C_TEXT, ha='center', va='center', fw='normal', **kw):\n    return ax.text(x, y, s, fontsize=fs, color=c, ha=ha, va=va,\n                   fontweight=fw, zorder=5, **kw)\n\n# ── panel dividers ───────────────────────────────────────────────────\nfor xd in [5.25, 10.75]:\n    ax.plot([xd, xd], [0.2, 5.8], color='#DDDDDD', lw=0.5, zorder=0)\n\n# ── panel headers ────────────────────────────────────────────────────\ntxt(2.65, 5.65, 'Observation', fs=7.5, fw='bold', c=C_BLUE)\ntxt(8.0,  5.65, 'Intervention: ThreadGate', fs=7.5, fw='bold', c=C_AMBER)\ntxt(13.4, 5.65, 'Result & Root Cause', fs=7.5, fw='bold', c=C_FAIL)\n\n# ╔══════════════════════════════════════════════════════════════════╗\n# ║  LEFT PANEL — Problem                                          ║\n# ╚══════════════════════════════════════════════════════════════════╝\n\n# -- dialogue column --\ndw, dh = 2.0, 0.32\ndx = 0.4\nalphas = [1.0, 0.85, 0.6, 0.35]\nlabels = ['System prompt', 'User turn 1', 'User turn 2', 'User turn N']\nys_dial = [4.95, 4.45, 3.95, 2.95]\n\nfor i, (lab, yd, al) in enumerate(zip(labels, ys_dial, alphas)):\n    fc = C_BLUE if i == 0 else '#E0E0E0'\n    tc = 'white' if i == 0 else C_TEXT\n    rbox(dx, yd, dw, dh, fc=fc, ec='#AAAAAA', lw=0.5)\n    txt(dx + dw/2, yd + dh/2, lab, fs=5.5, c=tc)\n\n# ellipsis between turn 2 and turn N\ntxt(dx + dw/2, 3.5, '⋮', fs=9, c=C_GRAY)\n\n# attention decay arrow (right side of dialogue)\nax.annotate('', xy=(2.8, 3.0), xytext=(2.8, 5.1),\n            arrowprops=dict(arrowstyle='->', color=C_FAIL, lw=1.3,\n                           shrinkA=2, shrinkB=2))\ntxt(3.55, 4.0, 'Attention\\ndecays', fs=5, c=C_FAIL, style='italic')\n\n# -- GAR decay conceptual curve --\ncx = np.linspace(0, 1, 30)\ncy = 1.0 * np.exp(-2.5 * cx)  # exponential decay\npx = cx * 1.6 + 0.5  # map to x ∈ [0.5, 2.1]\npy = cy * 1.0 + 1.4  # map to y ∈ [1.4, 2.4]\nax.plot(px, py, color=C_FAIL, lw=1.2, zorder=3)\nax.fill_between(px, 1.4, py, color=C_FAIL, alpha=0.08, zorder=1)\ntxt(0.5, 2.55, 'GAR', fs=5.5, c=C_TEXT, ha='left', fw='bold')\ntxt(1.3, 2.55, '(Goal Attention Ratio)', fs=4.5, c=C_GRAY, ha='left')\ntxt(0.5, 1.3, 'Turn 1', fs=4.5, c=C_GRAY, ha='left')\ntxt(2.0, 1.3, 'Turn N', fs=4.5, c=C_GRAY, ha='right')\n# decay percentage\ntxt(2.6, 1.65, '↓ 70.8%', fs=6, c=C_FAIL, fw='bold', ha='left')\n\n# -- residual stream persistence --\nrbox(0.3, 0.15, 4.7, 0.65, fc='#E8F5E9', ec=C_OK, lw=0.8)\ntxt(2.65, 0.6, 'But: goal info persists in residual stream', fs=5.5,\n    c='#00795C', fw='bold')\ntxt(2.65, 0.32, 'Probing accuracy AUC = 0.98  →  info available but unused',\n    fs=4.5, c=C_OK, style='italic')\n\n# -- attention vs residual markers --\ntxt(3.6, 2.3, '✗', fs=7, c=C_FAIL, fw='bold')\ntxt(4.1, 2.3, 'Attention path', fs=5, c=C_FAIL, ha='left')\ntxt(3.6, 1.95, '✓', fs=7, c=C_OK, fw='bold')\ntxt(4.1, 1.95, 'Residual path', fs=5, c=C_OK, ha='left')\n\n\n# ╔══════════════════════════════════════════════════════════════════╗\n# ║  CENTER PANEL — ThreadGate Architecture                        ║\n# ╚══════════════════════════════════════════════════════════════════╝\n\n# -- Transformer layer block diagram --\n# Layout: input at bottom, transformer block, gate, multiply, add, output at top\n\nbx, bw = 6.8, 1.8  # main column\n\n# input x_l\nrbox(bx, 0.35, bw, 0.4, fc='#E3F2FD', ec=C_BLUE, lw=0.7)\ntxt(bx + bw/2, 0.55, r'$\\mathbf{x}_l$', fs=7, c=C_BLUE)\n\n# f_l block\nrbox(bx, 1.3, bw, 0.55, fc='#EEEEEE', ec='#888888', lw=0.7)\ntxt(bx + bw/2, 1.58, r'Transformer block $f_l$', fs=5.5, c=C_TEXT)\n\n# gate g_l\ngx = 9.1\nrbox(gx, 1.3, 1.5, 0.55, fc='#FFF3E0', ec=C_AMBER, lw=1.0)\ntxt(gx + 0.75, 1.65, r'Gate $g_l$', fs=5.5, c='#B8860B', fw='bold')\ntxt(gx + 0.75, 1.4, r'$\\sigma(b + \\mathrm{MLP}(\\mathbf{t}))$', fs=5, c='#666666')\n\n# multiply node\nmx, my = bx + bw/2 + 0.3, 2.25\ncircle = plt.Circle((mx, my), 0.18, fc='#FFF3E0', ec=C_AMBER, lw=0.8, zorder=3)\nax.add_patch(circle)\ntxt(mx, my, '×', fs=8, c=C_AMBER, fw='bold')\n\n# addition node\nsx, sy = bx + 0.15, 2.25\ncircle2 = plt.Circle((sx, sy), 0.18, fc='#E3F2FD', ec=C_BLUE, lw=0.8, zorder=3)\nax.add_patch(circle2)\ntxt(sx, sy, '+', fs=8, c=C_BLUE, fw='bold')\n\n# output x_{l+1}\nrbox(bx, 2.85, bw, 0.4, fc='#E3F2FD', ec=C_BLUE, lw=0.7)\ntxt(bx + bw/2, 3.05, r'$\\mathbf{x}_{l+1}$', fs=7, c=C_BLUE)\n\n# Arrows\n# x_l → f_l\narr(bx + bw/2, 0.75, bx + bw/2, 1.3, c='#555555')\n# f_l → multiply\narr(bx + bw/2 + 0.3, 1.85, mx, my - 0.18, c='#555555')\n# gate → multiply\narr(gx, 1.58, mx + 0.18, my, c=C_AMBER, lw=0.8)\n# multiply → add\narr(mx - 0.18, my, sx + 0.18, sy, c='#555555', lw=0.7)\n# add → output\narr(sx, sy + 0.18, sx, 2.85, c='#555555')\n\n# Residual skip connection (x_l → add)\nax.annotate('', xy=(sx - 0.05, sy - 0.16), xytext=(bx + 0.15, 0.75),\n            arrowprops=dict(arrowstyle='-|>', color=C_BLUE, lw=0.9,\n                           connectionstyle='arc3,rad=-0.4',\n                           shrinkA=2, shrinkB=2))\ntxt(5.85, 1.5, 'residual', fs=4.5, c=C_BLUE, style='italic', rotation=65)\n\n# turn embedding input to gate\narr(gx + 0.75, 0.8, gx + 0.75, 1.3, c=C_GRAY, lw=0.6, ls='--')\ntxt(gx + 0.75, 0.6, 'turn\\nembed', fs=4.5, c=C_GRAY, style='italic')\n\n# Formula box\nrbox(5.7, 3.75, 4.6, 0.55, fc='white', ec='#CCCCCC', lw=0.5)\ntxt(8.0, 4.03, r'$x_{l+1} = x_l + g_l \\cdot f_l(x_l)$', fs=7.5, c=C_TEXT)\n\n# \"Natural hypothesis\" label\nrbox(5.9, 4.6, 4.2, 0.55, fc='#FAFAFA', ec='#DDDDDD', lw=0.4)\ntxt(8.0, 4.97, 'Natural hypothesis:', fs=5, c=C_GRAY, fw='bold')\ntxt(8.0, 4.72, '\"Learnable gate should recover goal attention\"', fs=5,\n    c='#666666', style='italic')\n\n# Arrows between panels\narr(5.1, 2.5, 5.55, 2.5, c=C_GRAY, lw=0.8, ls='--', style='-|>')\narr(10.55, 2.5, 10.9, 2.5, c=C_GRAY, lw=0.8, ls='--', style='-|>')\n\n\n# ╔══════════════════════════════════════════════════════════════════╗\n# ║  RIGHT PANEL — Failure + Root Cause                            ║\n# ╚══════════════════════════════════════════════════════════════════╝\n\n# -- Training success box --\nrbox(11.0, 4.55, 4.5, 0.8, fc='#E8F5E9', ec=C_OK, lw=0.8)\ntxt(11.25, 5.15, '✓', fs=7, c=C_OK, fw='bold', ha='left')\ntxt(11.7, 5.15, 'Training:', fs=5.5, c=C_OK, fw='bold', ha='left')\ntxt(13.1, 5.15, 'GAR  0.02 → 0.48', fs=5.5, c=C_TEXT, ha='left')\ntxt(11.25, 4.8, '✓', fs=7, c=C_OK, fw='bold', ha='left')\ntxt(11.7, 4.8, 'Same-dist eval:', fs=5.5, c=C_OK, fw='bold', ha='left')\ntxt(13.6, 4.8, 'GAR = 0.49', fs=5.5, c=C_TEXT, ha='left')\n\n# -- Inference failure box (prominent) --\nrbox(11.0, 2.65, 4.5, 1.5, fc='#FBE9E7', ec=C_FAIL, lw=1.5)\ntxt(13.25, 3.9, '✗  Model-generated text', fs=6, c=C_FAIL, fw='bold')\ntxt(13.25, 3.45, 'GAR = 0.016', fs=10, c=C_FAIL, fw='bold',\n    path_effects=[pe.withStroke(linewidth=2.5, foreground='white')])\n# 30x gap badge\nrbox(12.2, 2.75, 2.1, 0.45, fc=C_FAIL, ec=C_FAIL, lw=0)\ntxt(13.25, 2.98, '30× generalization gap', fs=6, c='white', fw='bold')\n\n# arrow from success to failure\narr(13.25, 4.55, 13.25, 4.2, c='#555555', lw=0.8)\n\n# -- Failure mechanism taxonomy --\ntxt(11.2, 2.35, 'Mechanism analysis:', fs=5.5, c=C_TEXT, fw='bold', ha='left')\n\n# Gradient conflict — ruled out\ntxt(11.4, 1.9, '① Gradient conflict', fs=5, c=C_GRAY, ha='left')\narr(13.4, 1.92, 14.0, 1.92, c=C_GRAY, lw=0.5, style='-|>')\ntxt(14.1, 1.9, 'PCGrad → ruled out', fs=4.5, c=C_GRAY, ha='left',\n    style='italic')\n# strikethrough line\nax.plot([11.35, 13.3], [1.9, 1.9], color=C_GRAY, lw=0.5, ls='-', alpha=0.5)\n\n# Distribution shift — root cause (highlighted)\nrbox(11.2, 0.9, 4.3, 0.7, fc='#FFF3E0', ec=C_FAIL, lw=1.2)\ntxt(13.35, 1.4, '② Distribution shift (exposure bias)', fs=5.5,\n    c=C_FAIL, fw='bold')\ntxt(13.35, 1.08, 'Teacher-forcing ≠ autoregressive generation  →  ROOT CAUSE',\n    fs=4.5, c=C_FAIL, style='italic')\n\n# ── save ─────────────────────────────────────────────────────────────\nout_dir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper'\nos.makedirs(out_dir, exist_ok=True)\n\npdf_path = os.path.join(out_dir, 'fig1_overview.pdf')\npng_path = os.path.join(out_dir, 'fig1_overview.png')\n\nfig.savefig(pdf_path, format='pdf')\nfig.savefig(png_path, format='png')\nplt.close()\n\nprint(f\"PDF: {pdf_path}\")\nprint(f\"PNG: {png_path}\")\n"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T19:37:00.269695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/fig1_overview.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T19:37:00.269832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures && python3 fig1_overview.py 2>&1",
+              "description": "Generate Figure 1 v1"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T19:37:00.269954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig1_overview.pdf\nPNG: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig1_overview.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T19:37:00.270093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig1_overview.png"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T19:37:00.270474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T19:37:00.270702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/fig1_overview.py",
+              "content": "\"\"\"Figure 1: ThreadGate Overview — three-panel causal narrative (v2).\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport os\n\nONE_MM = 1 / 25.4\nFIG_W = 170 * ONE_MM\nFIG_H = FIG_W * 6 / 16\n\nC_OK   = '#009E73'\nC_FAIL = '#D55E00'\nC_GRAY = '#999999'\nC_BLUE = '#0072B2'\nC_AMB  = '#E69F00'\nC_TXT  = '#222222'\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans', 'font.size': 7,\n    'figure.dpi': 300, 'savefig.dpi': 300,\n    'savefig.bbox': 'tight', 'savefig.pad_inches': 0.02,\n    'pdf.fonttype': 42, 'ps.fonttype': 42,\n})\n\nfig, ax = plt.subplots(figsize=(FIG_W, FIG_H))\nax.set_xlim(0, 16)\nax.set_ylim(0, 6)\nax.axis('off')\n\n# ── helpers ──────────────────────────────────────────────────────\ndef rbox(x, y, w, h, fc='white', ec='#BBB', lw=0.6, zorder=2, pad=0.1):\n    p = FancyBboxPatch((x, y), w, h, boxstyle=f'round,pad={pad}',\n                        facecolor=fc, edgecolor=ec, linewidth=lw, zorder=zorder)\n    ax.add_patch(p)\n    return p\n\ndef arr(x1, y1, x2, y2, c='#444', lw=0.9, ls='-', rad=0.0, ms=7,\n        shrA=1, shrB=1):\n    a = FancyArrowPatch((x1, y1), (x2, y2), arrowstyle=f'-|>,head_length={ms*0.15},head_width={ms*0.08}',\n                         connectionstyle=f'arc3,rad={rad}',\n                         color=c, linewidth=lw, linestyle=ls,\n                         shrinkA=shrA, shrinkB=shrB, zorder=4)\n    ax.add_patch(a)\n\ndef txt(x, y, s, fs=6, c=C_TXT, ha='center', va='center', fw='normal', **kw):\n    return ax.text(x, y, s, fontsize=fs, color=c, ha=ha, va=va,\n                   fontweight=fw, zorder=5, **kw)\n\n# ── panel dividers (thin dotted) ─────────────────────────────────\nfor xd in [5.25, 10.75]:\n    ax.plot([xd, xd], [0.15, 5.75], color='#E0E0E0', lw=0.6,\n            ls=(0, (4, 3)), zorder=0)\n\n# ── panel headers ────────────────────────────────────────────────\ntxt(2.65, 5.65, 'Observation', fs=7.5, fw='bold', c=C_BLUE)\ntxt(8.0,  5.65, 'Intervention: ThreadGate', fs=7.5, fw='bold', c='#996600')\ntxt(13.4, 5.65, 'Result & Root Cause', fs=7.5, fw='bold', c=C_FAIL)\n\n# ═══════════════════════════════════════════════════════════════════\n#  LEFT PANEL\n# ═══════════════════════════════════════════════════════════════════\n\n# Dialogue stack\ndw, dh = 1.85, 0.30\ndx = 0.35\nturns = [\n    ('System prompt', 5.0, C_BLUE, 'white'),\n    ('User turn 1',   4.5, '#EDEDED', C_TXT),\n    ('User turn 2',   4.05, '#EDEDED', C_TXT),\n    ('User turn N',   3.15, '#EDEDED', C_TXT),\n]\nfor lab, yd, fc, tc in turns:\n    rbox(dx, yd, dw, dh, fc=fc, ec='#AAAAAA', lw=0.5)\n    txt(dx + dw/2, yd + dh/2, lab, fs=5.5, c=tc)\n\ntxt(dx + dw/2, 3.65, '⋮', fs=9, c=C_GRAY)\n\n# Attention decay arrow + label\nax.annotate('', xy=(2.65, 3.22), xytext=(2.65, 5.15),\n            arrowprops=dict(arrowstyle='-|>', color=C_FAIL, lw=1.4,\n                           shrinkA=3, shrinkB=3, mutation_scale=10))\ntxt(3.1, 4.15, 'attention\\ndecays', fs=5, c=C_FAIL, style='italic', ha='left')\n\n# Attention ✗ / Residual ✓ (compact, near dialogue)\ntxt(3.25, 3.65, '✗', fs=6, c=C_FAIL, fw='bold')\ntxt(3.55, 3.65, 'attn', fs=4.5, c=C_FAIL, ha='left')\ntxt(3.25, 3.35, '✓', fs=6, c=C_OK, fw='bold')\ntxt(3.55, 3.35, 'resid', fs=4.5, c=C_OK, ha='left')\n\n# GAR decay curve — larger area\ngax_l, gax_r = 0.4, 4.1\ngay_b, gay_t = 1.1, 2.7\nrbox(gax_l - 0.1, gay_b - 0.15, gax_r - gax_l + 0.2, gay_t - gay_b + 0.3,\n     fc='#FAFAFA', ec='#E0E0E0', lw=0.4, zorder=1)\n\ncx = np.linspace(0, 1, 50)\ncy = np.exp(-3.0 * cx)\npx = cx * (gax_r - gax_l) + gax_l\npy = cy * (gay_t - gay_b - 0.2) + gay_b + 0.05\n\nax.plot(px, py, color=C_FAIL, lw=1.3, zorder=3)\nax.fill_between(px, gay_b, py, color=C_FAIL, alpha=0.06, zorder=1)\n\n# axis-like labels for mini plot\ntxt(gax_l + 0.05, gay_t + 0.05, 'GAR', fs=5, c=C_TXT, ha='left', fw='bold')\ntxt(gax_l, gay_b - 0.08, '1', fs=4, c=C_GRAY, ha='center')\ntxt(gax_r, gay_b - 0.08, 'N', fs=4, c=C_GRAY, ha='center')\ntxt((gax_l + gax_r)/2, gay_b - 0.08, 'Turn', fs=4, c=C_GRAY)\n\n# decay percentage badge\nrbox(2.7, 1.65, 1.3, 0.35, fc='#FBE9E7', ec=C_FAIL, lw=0.6)\ntxt(3.35, 1.83, '↓ 70.8%', fs=6, c=C_FAIL, fw='bold')\n\n# Residual stream persistence (bottom box)\nrbox(0.25, 0.15, 4.8, 0.65, fc='#E8F5E9', ec=C_OK, lw=0.8)\ntxt(2.65, 0.6, 'Goal info persists in residual stream', fs=5.5,\n    c='#00795C', fw='bold')\ntxt(2.65, 0.33, 'Probing AUC = 0.98 — info available but attention blocked',\n    fs=4.5, c=C_OK, style='italic')\n\n# ═══════════════════════════════════════════════════════════════════\n#  CENTER PANEL — architecture (vertical: bottom → top)\n# ═══════════════════════════════════════════════════════════════════\n\n# Clean single-column architecture\nbx, bw = 7.0, 1.9\nLAYER_Y = {\n    'input': 0.3,\n    'fork':  0.95,\n    'fblock': 1.25,\n    'fblock_top': 1.85,\n    'gate_in': 1.25,\n    'gate_top': 1.85,\n    'mult': 2.2,\n    'add': 2.65,\n    'output': 3.0,\n}\n\n# input x_l\nrbox(bx, LAYER_Y['input'], bw, 0.4, fc='#E3F2FD', ec=C_BLUE, lw=0.7)\ntxt(bx + bw/2, LAYER_Y['input'] + 0.2, r'$\\mathbf{x}_l$  (input)', fs=6, c=C_BLUE)\n\n# transformer block f_l\nfb_x, fb_w = 6.2, 1.8\nrbox(fb_x, LAYER_Y['fblock'], fb_w, 0.6, fc='#EEEEEE', ec='#888', lw=0.7)\ntxt(fb_x + fb_w/2, LAYER_Y['fblock'] + 0.3, r'$f_l$ (transformer)', fs=5.5, c=C_TXT)\n\n# gate g_l\ngx_l, gw = 8.8, 1.6\nrbox(gx_l, LAYER_Y['gate_in'], gw, 0.6, fc='#FFF3E0', ec=C_AMB, lw=1.0)\ntxt(gx_l + gw/2, LAYER_Y['gate_in'] + 0.38, r'Gate $g_l$', fs=5.5, c='#996600', fw='bold')\ntxt(gx_l + gw/2, LAYER_Y['gate_in'] + 0.13, r'$\\sigma(b + \\mathrm{MLP}(\\mathbf{t}))$', fs=5, c='#777')\n\n# multiply node ⊗\nmx, my = 8.2, LAYER_Y['mult']\ncirc = Circle((mx, my), 0.2, fc='#FFF3E0', ec=C_AMB, lw=0.8, zorder=3)\nax.add_patch(circ)\ntxt(mx, my, '×', fs=9, c=C_AMB, fw='bold')\n\n# add node ⊕\nsx, sy = 7.0, LAYER_Y['add']\ncirc2 = Circle((sx, sy), 0.2, fc='#E3F2FD', ec=C_BLUE, lw=0.8, zorder=3)\nax.add_patch(circ2)\ntxt(sx, sy, '+', fs=9, c=C_BLUE, fw='bold')\n\n# output x_{l+1}\nrbox(bx, LAYER_Y['output'], bw, 0.4, fc='#E3F2FD', ec=C_BLUE, lw=0.7)\ntxt(bx + bw/2, LAYER_Y['output'] + 0.2, r'$\\mathbf{x}_{l+1}$  (output)', fs=6, c=C_BLUE)\n\n# -- wiring arrows --\n# x_l fork point\nfork_y = LAYER_Y['fork']\n# x_l → fork\narr(bx + bw/2, LAYER_Y['input'] + 0.4, bx + bw/2, fork_y, c='#555')\n# fork → f_l (left branch)\nax.plot([bx + bw/2, fb_x + fb_w/2], [fork_y, fork_y], color='#555',\n        lw=0.7, zorder=3)\narr(fb_x + fb_w/2, fork_y, fb_x + fb_w/2, LAYER_Y['fblock'], c='#555')\n# fork → add (residual skip — straight down-to-up on left)\nax.plot([bx + bw/2, sx - 0.6, sx - 0.6], [fork_y, fork_y, sy],\n        color=C_BLUE, lw=0.9, zorder=3, ls='--')\narr(sx - 0.6, sy, sx - 0.2, sy, c=C_BLUE, lw=0.9)\ntxt(6.0, 1.6, 'skip', fs=4.5, c=C_BLUE, style='italic')\n\n# f_l → multiply\narr(fb_x + fb_w/2, LAYER_Y['fblock_top'], mx - 0.6, my, c='#555',\n    rad=-0.15)\n# gate → multiply\narr(gx_l, LAYER_Y['gate_in'] + 0.3, mx + 0.2, my, c=C_AMB, lw=0.8)\n# multiply → add\narr(mx - 0.2, my, sx + 0.2, sy - 0.05, c='#555', rad=-0.1)\n# add → output\narr(sx, sy + 0.2, bx + bw/2, LAYER_Y['output'], c='#555', rad=0.1)\n\n# turn embedding → gate\narr(gx_l + gw/2, 0.85, gx_l + gw/2, LAYER_Y['gate_in'], c=C_GRAY, lw=0.6, ls='--')\nrbox(gx_l + 0.15, 0.5, gw - 0.3, 0.35, fc='#F5F5F5', ec=C_GRAY, lw=0.4)\ntxt(gx_l + gw/2, 0.68, 'turn embed', fs=4.5, c=C_GRAY, style='italic')\n\n# Formula box (prominent)\nrbox(5.7, 3.75, 4.6, 0.5, fc='white', ec='#CCC', lw=0.5)\ntxt(8.0, 4.0, r'$x_{l+1} = x_l + g_l \\cdot f_l(x_l)$', fs=7.5, c=C_TXT)\n\n# Natural hypothesis\nrbox(5.85, 4.55, 4.3, 0.65, fc='#FAFAFA', ec='#DDD', lw=0.4)\ntxt(8.0, 5.0, 'Natural hypothesis:', fs=5, c=C_GRAY, fw='bold')\ntxt(8.0, 4.72, '\"Learnable gate on residual stream\\nshould recover goal attention\"',\n    fs=5, c='#666', style='italic')\n\n# ── inter-panel arrows ────────────────────────────────────────────\narr(5.1, 3.0, 5.5, 3.0, c=C_GRAY, lw=0.7, ls='--')\narr(10.55, 3.0, 10.9, 3.0, c=C_GRAY, lw=0.7, ls='--')\n\n# ═══════════════════════════════════════════════════════════════════\n#  RIGHT PANEL\n# ═══════════════════════════════════════════════════════════════════\n\n# Training + same-dist success\nrbox(11.05, 4.5, 4.4, 0.85, fc='#E8F5E9', ec=C_OK, lw=0.8)\ntxt(11.3, 5.12, '✓', fs=7, c=C_OK, fw='bold', ha='left')\ntxt(11.65, 5.12, 'Training success:', fs=5.5, c=C_OK, fw='bold', ha='left')\ntxt(13.55, 5.12, 'GAR  0.02 → 0.48', fs=5.5, c=C_TXT, ha='left')\ntxt(11.3, 4.75, '✓', fs=7, c=C_OK, fw='bold', ha='left')\ntxt(11.65, 4.75, 'Same-dist eval:', fs=5.5, c=C_OK, fw='bold', ha='left')\ntxt(13.55, 4.75, 'GAR = 0.49', fs=5.5, c=C_TXT, ha='left')\n\n# Arrow down\narr(13.25, 4.5, 13.25, 4.15, c='#555', lw=0.7)\n\n# Inference failure (big red box)\nrbox(11.05, 2.7, 4.4, 1.4, fc='#FBE9E7', ec=C_FAIL, lw=1.5)\ntxt(13.25, 3.85, '✗  Model-generated text (inference)', fs=5.5,\n    c=C_FAIL, fw='bold')\ntxt(13.25, 3.35, 'GAR = 0.016', fs=11, c=C_FAIL, fw='bold',\n    path_effects=[pe.withStroke(linewidth=3, foreground='white')])\n\n# 30x badge\nrbox(12.05, 2.8, 2.4, 0.38, fc=C_FAIL, ec=C_FAIL, lw=0, pad=0.06)\ntxt(13.25, 2.99, '30× generalization gap', fs=6, c='white', fw='bold')\n\n# Mechanism analysis\ntxt(11.2, 2.35, 'Mechanism analysis:', fs=5.5, c=C_TXT, fw='bold', ha='left')\n\n# ① Gradient conflict — ruled out\ntxt(11.4, 1.95, '① Gradient conflict → PCGrad exclusion', fs=5,\n    c=C_GRAY, ha='left')\ntxt(15.2, 1.95, '→ not causal', fs=5, c=C_GRAY, ha='right', style='italic')\nax.plot([11.35, 14.5], [1.88, 1.88], color=C_GRAY, lw=0.4, zorder=6)\n\n# ② Distribution shift — ROOT CAUSE (highlighted)\nrbox(11.15, 0.85, 4.35, 0.75, fc='#FFF3E0', ec=C_FAIL, lw=1.2)\ntxt(13.33, 1.38, '② Distribution shift (exposure bias)', fs=5.5,\n    c=C_FAIL, fw='bold')\ntxt(13.33, 1.05, 'Teacher-forcing ≠ autoregressive generation',\n    fs=4.8, c=C_FAIL, style='italic')\n\n# ROOT CAUSE badge\nrbox(14.4, 0.4, 1.1, 0.3, fc=C_FAIL, ec=C_FAIL, lw=0, pad=0.04)\ntxt(14.95, 0.55, 'ROOT CAUSE', fs=4.5, c='white', fw='bold')\narr(14.95, 0.7, 14.4, 0.85, c=C_FAIL, lw=0.7)\n\n# ── save ─────────────────────────────────────────────────────────\nout_dir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper'\nos.makedirs(out_dir, exist_ok=True)\nfor fmt in ['pdf', 'png']:\n    fig.savefig(os.path.join(out_dir, f'fig1_overview.{fmt}'), format=fmt)\nplt.close()\nprint(\"Done: fig1_overview.pdf + fig1_overview.png\")\n"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T19:37:00.271125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/fig1_overview.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T19:37:00.271290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 fig1_overview.py 2>&1",
+              "description": "Generate Figure 1 v2"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T19:37:00.271435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done: fig1_overview.pdf + fig1_overview.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T19:37:00.271560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig1_overview.png"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T19:37:00.271968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T19:37:00.272206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/fig1_overview.py",
+              "content": "\"\"\"Figure 1: ThreadGate Overview — three-panel causal narrative (v3).\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport os\n\nONE_MM = 1 / 25.4\nFIG_W = 170 * ONE_MM\nFIG_H = FIG_W * 6 / 16\n\nC_OK   = '#009E73'\nC_FAIL = '#D55E00'\nC_GRAY = '#999999'\nC_BLUE = '#0072B2'\nC_AMB  = '#E69F00'\nC_TXT  = '#222222'\n\nWH_STROKE = [pe.withStroke(linewidth=2.5, foreground='white')]\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans', 'font.size': 7,\n    'figure.dpi': 300, 'savefig.dpi': 300,\n    'savefig.bbox': 'tight', 'savefig.pad_inches': 0.02,\n    'pdf.fonttype': 42, 'ps.fonttype': 42,\n})\n\nfig, ax = plt.subplots(figsize=(FIG_W, FIG_H))\nax.set_xlim(0, 16)\nax.set_ylim(0, 6)\nax.axis('off')\n\ndef rbox(x, y, w, h, fc='white', ec='#BBB', lw=0.6, zorder=2, pad=0.1):\n    p = FancyBboxPatch((x, y), w, h, boxstyle=f'round,pad={pad}',\n                        facecolor=fc, edgecolor=ec, linewidth=lw, zorder=zorder)\n    ax.add_patch(p)\n\ndef arr(x1, y1, x2, y2, c='#444', lw=0.9, ls='-', rad=0.0, ms=7,\n        shrA=1, shrB=1):\n    a = FancyArrowPatch(\n        (x1, y1), (x2, y2),\n        arrowstyle=f'-|>,head_length={ms*0.15},head_width={ms*0.08}',\n        connectionstyle=f'arc3,rad={rad}',\n        color=c, linewidth=lw, linestyle=ls,\n        shrinkA=shrA, shrinkB=shrB, zorder=4)\n    ax.add_patch(a)\n\ndef txt(x, y, s, fs=6, c=C_TXT, ha='center', va='center', fw='normal', **kw):\n    return ax.text(x, y, s, fontsize=fs, color=c, ha=ha, va=va,\n                   fontweight=fw, zorder=5, **kw)\n\n# ── panel dividers ───────────────────────────────────────────────\nfor xd in [5.25, 10.75]:\n    ax.plot([xd, xd], [0.15, 5.75], color='#E0E0E0', lw=0.6,\n            ls=(0, (4, 3)), zorder=0)\n\n# ── panel headers ────────────────────────────────────────────────\ntxt(2.65, 5.65, 'Observation', fs=7.5, fw='bold', c=C_BLUE)\ntxt(8.0,  5.65, 'Intervention: ThreadGate', fs=7.5, fw='bold', c='#996600')\ntxt(13.4, 5.65, 'Result & Root Cause', fs=7.5, fw='bold', c=C_FAIL)\n\n# ═══════════════════════════════════════════════════════════════════\n#  LEFT PANEL\n# ═══════════════════════════════════════════════════════════════════\n\ndw, dh = 1.85, 0.30\ndx = 0.35\nturns = [\n    ('System prompt', 5.0, C_BLUE, 'white'),\n    ('User turn 1',   4.5, '#EDEDED', C_TXT),\n    ('User turn 2',   4.05, '#EDEDED', C_TXT),\n    ('User turn N',   3.15, '#EDEDED', C_TXT),\n]\nfor lab, yd, fc, tc in turns:\n    rbox(dx, yd, dw, dh, fc=fc, ec='#AAA', lw=0.5)\n    txt(dx + dw/2, yd + dh/2, lab, fs=5.5, c=tc)\n\ntxt(dx + dw/2, 3.65, '⋮', fs=9, c=C_GRAY)\n\n# Attention decay arrow\nax.annotate('', xy=(2.65, 3.22), xytext=(2.65, 5.15),\n            arrowprops=dict(arrowstyle='-|>', color=C_FAIL, lw=1.4,\n                           shrinkA=3, shrinkB=3, mutation_scale=10))\ntxt(3.15, 4.15, 'attention\\ndecays', fs=5, c=C_FAIL, style='italic', ha='left')\n\n# Attention ✗ / Residual ✓\ntxt(3.3, 3.65, '✗ attn path', fs=4.5, c=C_FAIL, ha='left')\ntxt(3.3, 3.35, '✓ resid path', fs=4.5, c=C_OK, ha='left')\n\n# GAR decay curve\ngax_l, gax_r = 0.4, 4.1\ngay_b, gay_t = 1.1, 2.7\nrbox(gax_l - 0.1, gay_b - 0.15, gax_r - gax_l + 0.2, gay_t - gay_b + 0.3,\n     fc='#FAFAFA', ec='#E0E0E0', lw=0.4, zorder=1)\n\ncx = np.linspace(0, 1, 50)\ncy = np.exp(-3.0 * cx)\npx = cx * (gax_r - gax_l) + gax_l\npy = cy * (gay_t - gay_b - 0.2) + gay_b + 0.05\n\nax.plot(px, py, color=C_FAIL, lw=1.3, zorder=3)\nax.fill_between(px, gay_b, py, color=C_FAIL, alpha=0.06, zorder=1)\n\ntxt(gax_l + 0.05, gay_t + 0.05, 'GAR', fs=5, c=C_TXT, ha='left', fw='bold')\ntxt(gax_l, gay_b - 0.08, '1', fs=4, c=C_GRAY, ha='center')\ntxt(gax_r, gay_b - 0.08, 'N', fs=4, c=C_GRAY, ha='center')\ntxt((gax_l + gax_r)/2, gay_b - 0.08, 'Turn', fs=4, c=C_GRAY)\n\nrbox(2.7, 1.65, 1.3, 0.35, fc='#FBE9E7', ec=C_FAIL, lw=0.6)\ntxt(3.35, 1.83, '↓ 70.8%', fs=6, c=C_FAIL, fw='bold')\n\n# Residual stream persistence\nrbox(0.25, 0.15, 4.8, 0.65, fc='#E8F5E9', ec=C_OK, lw=0.8)\ntxt(2.65, 0.6, 'Goal info persists in residual stream', fs=5.5,\n    c='#00795C', fw='bold')\ntxt(2.65, 0.33, 'Probing AUC = 0.98 — available but attention blocked',\n    fs=4.5, c=C_OK, style='italic')\n\n# ═══════════════════════════════════════════════════════════════════\n#  CENTER PANEL — architecture\n# ═══════════════════════════════════════════════════════════════════\n\nbx, bw = 7.1, 1.7\n\n# input\nrbox(bx, 0.3, bw, 0.4, fc='#E3F2FD', ec=C_BLUE, lw=0.7)\ntxt(bx + bw/2, 0.5, r'$\\mathbf{x}_l$', fs=6.5, c=C_BLUE)\n\n# transformer block\nfb_x, fb_w = 6.25, 1.65\nrbox(fb_x, 1.3, fb_w, 0.55, fc='#EEE', ec='#888', lw=0.7)\ntxt(fb_x + fb_w/2, 1.58, r'$f_l$ (block)', fs=5.5, c=C_TXT)\n\n# gate\ngx, gw = 8.7, 1.6\nrbox(gx, 1.3, gw, 0.55, fc='#FFF3E0', ec=C_AMB, lw=1.0)\ntxt(gx + gw/2, 1.65, r'Gate $g_l$', fs=5.5, c='#996600', fw='bold')\ntxt(gx + gw/2, 1.4, r'$\\sigma(b{+}\\mathrm{MLP}(\\mathbf{t}))$', fs=4.8, c='#777')\n\n# multiply ⊗\nmx, my = 8.2, 2.2\ncirc = Circle((mx, my), 0.18, fc='#FFF3E0', ec=C_AMB, lw=0.8, zorder=3)\nax.add_patch(circ)\ntxt(mx, my, '×', fs=9, c=C_AMB, fw='bold')\n\n# add ⊕\nsx, sy = 7.1, 2.65\ncirc2 = Circle((sx, sy), 0.18, fc='#E3F2FD', ec=C_BLUE, lw=0.8, zorder=3)\nax.add_patch(circ2)\ntxt(sx, sy, '+', fs=9, c=C_BLUE, fw='bold')\n\n# output\nrbox(bx, 3.0, bw, 0.4, fc='#E3F2FD', ec=C_BLUE, lw=0.7)\ntxt(bx + bw/2, 3.2, r'$\\mathbf{x}_{l+1}$', fs=6.5, c=C_BLUE)\n\n# -- wiring --\n# x_l top → fork at y=0.95\nmid_x = bx + bw/2\narr(mid_x, 0.7, mid_x, 0.95, c='#555')\n\n# fork → f_l (left)\nax.plot([mid_x, fb_x + fb_w/2], [0.95, 0.95], color='#555', lw=0.7, zorder=3)\narr(fb_x + fb_w/2, 0.95, fb_x + fb_w/2, 1.3, c='#555')\n\n# residual skip: fork → ⊕ (around the left side)\nskip_x = 5.9\nax.plot([mid_x, skip_x], [0.95, 0.95], color=C_BLUE, lw=0.9, ls='--', zorder=3)\nax.plot([skip_x, skip_x], [0.95, sy], color=C_BLUE, lw=0.9, ls='--', zorder=3)\narr(skip_x, sy, sx - 0.18, sy, c=C_BLUE, lw=0.9)\ntxt(5.65, 1.7, 'skip', fs=4.5, c=C_BLUE, style='italic',\n    path_effects=WH_STROKE)\n\n# f_l → ⊗\narr(fb_x + fb_w/2, 1.85, mx, my - 0.18, c='#555', rad=-0.05)\n# gate → ⊗\narr(gx, 1.58, mx + 0.18, my, c=C_AMB, lw=0.8)\n# ⊗ → ⊕\narr(mx - 0.18, my + 0.05, sx + 0.18, sy - 0.05, c='#555', rad=0.0)\n# ⊕ → output\narr(sx + 0.05, sy + 0.18, bx + bw/2, 3.0, c='#555', rad=0.1)\n\n# turn embedding → gate\narr(gx + gw/2, 0.85, gx + gw/2, 1.3, c=C_GRAY, lw=0.6, ls='--')\nrbox(gx + 0.2, 0.5, gw - 0.4, 0.3, fc='#F5F5F5', ec=C_GRAY, lw=0.4)\ntxt(gx + gw/2, 0.65, 'turn embed', fs=4.5, c=C_GRAY, style='italic')\n\n# formula\nrbox(5.7, 3.75, 4.6, 0.5, fc='white', ec='#CCC', lw=0.5)\ntxt(8.0, 4.0, r'$x_{l+1} = x_l + g_l \\cdot f_l(x_l)$', fs=7.5, c=C_TXT)\n\n# hypothesis\nrbox(5.85, 4.55, 4.3, 0.65, fc='#FAFAFA', ec='#DDD', lw=0.4)\ntxt(8.0, 5.0, 'Natural hypothesis:', fs=5, c=C_GRAY, fw='bold')\ntxt(8.0, 4.72, '\"Learnable gate should recover goal attention\"',\n    fs=5, c='#666', style='italic')\n\n# inter-panel arrows\narr(5.1, 2.8, 5.5, 2.8, c=C_GRAY, lw=0.7, ls='--')\narr(10.55, 2.8, 10.9, 2.8, c=C_GRAY, lw=0.7, ls='--')\n\n# ═══════════════════════════════════════════════════════════════════\n#  RIGHT PANEL\n# ═══════════════════════════════════════════════════════════════════\n\n# Training + same-dist success (stacked lines, no overlap)\nrbox(11.05, 4.5, 4.4, 0.85, fc='#E8F5E9', ec=C_OK, lw=0.8)\ntxt(11.3, 5.12, '✓  Training:', fs=5.5, c=C_OK, fw='bold', ha='left')\ntxt(14.5, 5.12, 'GAR 0.02→0.48', fs=5.5, c=C_TXT, ha='left')\ntxt(11.3, 4.75, '✓  Same-dist eval:', fs=5.5, c=C_OK, fw='bold', ha='left')\ntxt(14.5, 4.75, 'GAR = 0.49', fs=5.5, c=C_TXT, ha='left')\n\n# Arrow\narr(13.25, 4.5, 13.25, 4.15, c='#555', lw=0.7)\n\n# Inference failure\nrbox(11.05, 2.7, 4.4, 1.4, fc='#FBE9E7', ec=C_FAIL, lw=1.5)\ntxt(13.25, 3.85, '✗  Model-generated text (inference)', fs=5.5,\n    c=C_FAIL, fw='bold')\ntxt(13.25, 3.35, 'GAR = 0.016', fs=11, c=C_FAIL, fw='bold',\n    path_effects=[pe.withStroke(linewidth=3, foreground='white')])\n\n# 30x badge\nrbox(12.1, 2.78, 2.3, 0.38, fc=C_FAIL, ec=C_FAIL, lw=0, pad=0.06)\ntxt(13.25, 2.97, '30× generalization gap', fs=6, c='white', fw='bold')\n\n# Mechanism analysis\ntxt(11.2, 2.35, 'Mechanism analysis:', fs=5.5, c=C_TXT, fw='bold', ha='left')\n\n# ① ruled out\ntxt(11.4, 1.95, '① Gradient conflict → PCGrad → not causal', fs=5,\n    c=C_GRAY, ha='left')\nax.plot([11.35, 14.8], [1.88, 1.88], color=C_GRAY, lw=0.5, zorder=6)\n\n# ② root cause\nrbox(11.15, 0.85, 4.35, 0.75, fc='#FFF3E0', ec=C_FAIL, lw=1.2)\ntxt(13.33, 1.38, '② Distribution shift (exposure bias)', fs=5.5,\n    c=C_FAIL, fw='bold')\ntxt(13.33, 1.05, 'Teacher-forcing ≠ autoregressive generation',\n    fs=4.8, c=C_FAIL, style='italic')\n\n# ROOT CAUSE badge\nrbox(14.35, 0.35, 1.15, 0.32, fc=C_FAIL, ec=C_FAIL, lw=0, pad=0.04)\ntxt(14.93, 0.51, 'ROOT', fs=4.5, c='white', fw='bold')\narr(14.93, 0.67, 14.2, 0.85, c=C_FAIL, lw=0.7)\n\n# ── save ─────────────────────────────────────────────────────────\nout_dir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper'\nos.makedirs(out_dir, exist_ok=True)\nfor fmt in ['pdf', 'png']:\n    fig.savefig(os.path.join(out_dir, f'fig1_overview.{fmt}'), format=fmt)\nplt.close()\nprint(\"Done: fig1_overview.pdf + fig1_overview.png\")\n"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T19:37:00.272612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/fig1_overview.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T19:37:00.272778+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 fig1_overview.py 2>&1",
+              "description": "Generate Figure 1 v3"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T19:37:00.272905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done: fig1_overview.pdf + fig1_overview.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T19:37:00.273034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig1_overview.png"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T19:37:00.273399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T19:37:00.273603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig1_overview.{pdf,png}",
+              "description": "Verify output files exist and check sizes"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T19:37:00.273729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu  48K May 19 19:35 /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig1_overview.pdf\n-rw-r--r-- 1 ubuntu ubuntu 189K May 19 19:35 /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig1_overview.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T19:37:00.273864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nfrom PIL import Image\nimg = Image.open('/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig1_overview.png')\nprint(f'PNG size: {img.size[0]}x{img.size[1]}px')\nprint(f'DPI: {img.info.get(\\\"dpi\\\", \\\"not set\\\")}')\n# check at 84mm column width: 84mm ≈ 3.31in, figure is ~170mm wide\n# at column width, scale factor = 84/170 = 0.494\n# min font in figure = 4.5pt → scaled = 4.5 * 0.494 ≈ 2.2pt (too small for column)\n# but at full width (170mm), fonts are as designed (4.5-11pt)\nprint('Target: full-width placement (170mm), min font 4.5pt at full size')\n\" 2>&1",
+              "description": "Check PNG dimensions and DPI"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T19:37:00.273994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PNG size: 1599x591px\nDPI: (299.9994, 299.9994)\nTarget: full-width placement (170mm), min font 4.5pt at full size"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T19:37:00.274154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T19:37:00.274273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T19:37:00.274391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fig1_overview",
+              "type": "chart",
+              "description": "Figure 1 概念图: ThreadGate three-panel overview (Observation → Intervention → Result & Root Cause). Shows GAR decay problem, ThreadGate architecture with sigmoid gate on residual stream, and 30× generalization gap due to distribution shift. Full-width 16:6 aspect ratio, matplotlib vector PDF + 300 DPI PNG.",
+              "project": "turn_residual_gating",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig1_overview.pdf",
+              "tags": "['figure1', 'conceptual', 'overview', 'paper']"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T19:37:00.274570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_0f2c08\\\", \\\"name\\\": \\\"fig1_overview\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Figure 1 概念图: ThreadGate three-panel overview (Observation → Intervention → Result & Root Cause). Shows GAR decay problem, ThreadGate architecture with sigmoid gate on residual stream, and 30× generalization gap due to distribution shift. Full-width 16:6 aspect ratio, matplotlib vector PDF + 300 DPI PNG.\\\", \\\"path\\\": \\\"projects/turn_residual_gating/artifacts/_project/chart/fig1_overview.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"turn_residual_gating\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T19:36:46.180691+00:00\\\", \\\"tags\\\": [\\\"figure1\\\", \\\"conceptual\\\", \\\"overview\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T19:37:00.274722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fig1_overview_png",
+              "type": "chart",
+              "description": "Figure 1 概念图 PNG 版本 (300 DPI raster). Same content as fig1_overview PDF.",
+              "project": "turn_residual_gating",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig1_overview.png",
+              "tags": "['figure1', 'conceptual', 'overview', 'paper', 'png']"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T19:37:00.274882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_1e5edf\\\", \\\"name\\\": \\\"fig1_overview_png\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Figure 1 概念图 PNG 版本 (300 DPI raster). Same content as fig1_overview PDF.\\\", \\\"path\\\": \\\"projects/turn_residual_gating/artifacts/_project/chart/fig1_overview.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"turn_residual_gating\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T19:36:50.673600+00:00\\\", \\\"tags\\\": [\\\"figure1\\\", \\\"conceptual\\\", \\\"overview\\\", \\\"paper\\\", \\\"png\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T19:37:00.275050+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 生成完成。\n\n**输出文件**:\n- PDF (vector): `figures/paper/fig1_overview.pdf` (48K)\n- PNG (300 DPI): `figures/paper/fig1_overview.png` (189K, 1599×591px)\n\n**三段式布局**:\n- **左 — Observation**: 多轮对话栈 + GAR 衰减曲线 (↓70.8%) + 残差流持久性 (AUC=0.98)\n- **中 — ThreadGate**: 残差连接上的 sigmoid gate 架构图 + 公式 $x_{l+1} = x_l + g_l \\cdot f_l(x_l)$\n- **右 — Result**: 训练成功 (GAR 0.48) vs 推理失败 (GAR 0.016, 30× gap) + 根因分析 → distribution shift\n\n**注意**: 这是 full-width 图 (170mm)。最小字号 4.5pt 用于次要标注，主要内容 5.5pt+。若需缩到 column width 需要进一步精简内容或增大字号。生成脚本保存在 `figures/fig1_overview.py` 方便迭代。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig1_overview_20260519T192811"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/conversations/paper-figure-fig1-overview.md"
+}

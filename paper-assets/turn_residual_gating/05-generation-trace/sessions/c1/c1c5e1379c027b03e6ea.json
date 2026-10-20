@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "c1c5e1379c027b03e6ea",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "fix gradient conflict heatmap colormap",
+  "task_key": "worker_fix_gradient_conflict_heatmap_colormap_20260523T182728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gradient_conflict_heatmap_colormap_20260523T182728.log",
+    "occurrence": 1,
+    "bytes": 816334,
+    "sha256": "72c3e239e77c97fdbb777c853a01e9dcc10b02ca96363dc9351a4dfceea1e7b4"
+  },
+  "statistics": {
+    "messages": 209,
+    "user_turns": 2,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 81,
+      "tool_result": 81,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 99,
+      "chunks": [
+        {
+          "path": "c1c5e1379c027b03e6ea-part-0001.json",
+          "message_count": 99
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 100,
+      "chunks": [
+        {
+          "path": "c1c5e1379c027b03e6ea-part-0001.json",
+          "message_count": 69
+        },
+        {
+          "path": "c1c5e1379c027b03e6ea-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "c1c5e1379c027b03e6ea-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-gradient-conflict-heatmap-colormap.md"
+}

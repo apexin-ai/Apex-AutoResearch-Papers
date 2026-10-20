@@ -1,0 +1,583 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig1_overview.pdf' which does not exist",
+          "location": "introduction.tex:9"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{fig:gate-shift} has no matching \\label",
+          "location": "analysis.tex:33"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{fig:training-pcgrad} has no matching \\label",
+          "location": "analysis.tex:41"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:limitations} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:gar-ours} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:discussion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "3 critical, 7 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 6,
+          "num_cites": 0
+        },
+        {
+          "file": "analysis.tex",
+          "role": "result",
+          "num_numbers": 31,
+          "num_cites": 5
+        },
+        {
+          "file": "background.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 1
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 3,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 5,
+          "num_cites": 5
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 51,
+          "num_cites": 1
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 17,
+          "num_cites": 5
+        },
+        {
+          "file": "limitations.tex",
+          "role": "other",
+          "num_numbers": 3,
+          "num_cites": 2
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 8,
+          "num_cites": 2
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 21
+        }
+      ],
+      "critical": [
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{ko2024found} used in related_work but no matching entry in references.bib.",
+          "location": "related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{levy2025lost} used in related_work but no matching entry in references.bib.",
+          "location": "related_work"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.01, 'experiments' reports 0.016.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.016, 'experiments' reports 0.01.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'abnar2020quantifying' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'arora2022exposure' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'brunner2020identifiability' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'clark2019what' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dauphin2017language' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dettmers2023qlora' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'ding2023ultrachat' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dong2021attention' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dou2019attention' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dou2022parallel' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'ethayarajh2019contextual' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'grattafiori2024llama3' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'gromov2024unreasonable' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'he2016deep' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'hendrycks2021measuring' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'hong2025rhea' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'hsieh2024found' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'hu2022lora' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kovaleva2019revealing' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'laban2025lost' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'li2016persona' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'li2024measuring' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'lin2022truthfulqa' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'liu2024lost' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'mihaylova2019scheduled' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'roller2021recipes' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'shazeer2020glu' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'srivastava2015highway' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'vaswani2017attention' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'veit2016residual' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'vig2019multiscale' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'voita2019analyzing' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'wiseman2016sequence' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'xu2022goldfish' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhang2019bridging' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhang2020dialogpt' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhang2024tell' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zheng2024judging' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhou2020drophead' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\cdot",
+              "\\times"
+            ],
+            "analysis": [
+              "\\nabla",
+              "\\theta",
+              "\\times"
+            ],
+            "background": [
+              "\\ell",
+              "\\tau"
+            ],
+            "conclusion": [
+              "\\times"
+            ],
+            "discussion": [
+              "\\lambda",
+              "\\times"
+            ],
+            "experiments": [
+              "\\lambda",
+              "\\tau",
+              "\\times"
+            ],
+            "introduction": [
+              "\\cdot",
+              "\\tau",
+              "\\times"
+            ],
+            "limitations": [
+              "\\tau"
+            ],
+            "method": [
+              "\\approx",
+              "\\lambda",
+              "\\ldots",
+              "\\sigma",
+              "\\tau",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 2,
+        "warning": 41,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": false,
+      "passed": false,
+      "compiled": {
+        "success": false,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/docs/_audit_compile_cbnit87n",
+        "main_tex": "main.tex",
+        "log_tail": "This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex 2026.5.2)  25 MAY 2026 14:48\nentering extended mode\n restricted \\write18 enabled.\n %&-line parsing enabled.\n**main.tex\n(./main.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo\nFile: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)\n)\n\\c@part=\\count275\n\\c@section=\\count276\n\\c@subsection=\\count277\n\\c@subsubsection=\\count278\n\\c@paragraph=\\count279\n\\c@subparagraph=\\count280\n\\c@figure=\\count281\n\\c@table=\\count282\n\\abovecaptionskip=\\skip49\n\\belowcaptionskip=\\skip50\n\\bibindent=\\dimen148\n)\n\n! LaTeX Error: File `acl.sty' not found.\n\nType X to quit or <RETURN> to proceed,\nor enter new name. (Default extension: sty)\n\nEnter file name: \n! Emergency stop.\n<read *> \n         \nl.3 \\usepackage\n               {times}^^M\n*** (cannot \\read from terminal in nonstop modes)\n\n \nHere is how much of TeX's memory you used:\n 244 strings out of 469438\n 2932 string characters out of 5468411\n 433756 words of memory out of 5000000\n 28998 multiletter control sequences out of 15000+600000\n 628021 words of font info for 41 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 35i,0n,38p,145b,36s stack positions out of 10000i,1000n,20000p,200000b,200000s\n!  ==> Fatal error occurred, no output PDF file produced!",
+        "error": "LaTeX Error: File `acl.sty' not found.",
+        "pages": null,
+        "warnings": []
+      },
+      "pages": null,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [],
+      "issues": [
+        "compile failed: LaTeX Error: File `acl.sty' not found."
+      ],
+      "summary": "FAIL: compile failed: LaTeX Error: File `acl.sty' not found."
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "critical",
+      "dimension": "叙事一致性",
+      "message": "Discussion (\\S5 line 5) 写 \"cannot fully rule out KV cache drift (\\S{sec:limitations})\"，Conclusion (\\S7 line 4) 写 \"KV cache drift remains untested\"，但 Limitations 章节完全没有提到 \"KV cache drift\"。这是一个悬空交叉引用：Discussion 把读者引向 Limitations 去看 KV cache drift 的讨论，但那里没有。要么在 Limitations 中补充一句 KV cache drift 未测试，要么修改 Discussion 的引用目标。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Abstract、Intro、Experiments、Analysis、Conclusion 的核心叙事线一致：问题（multi-turn attention decay）→ 方法（five-way testbed + causal exclusion）→ 结果（TF-AR gap, exposure bias）→ 补救（scheduled sampling）。五个章节讲的是同一个故事，无 A/B 漂移。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Intro 四条 contribution 均有对应正文支撑：C1→§5.3 dist-shift + Table 1 AR列; C2→§5.2 PCGrad + §3.4 comparison design; C3→§4.3 steering + Fig 3; C4→§4.4 SS + Fig 4。无孤儿贡献。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Abstract 回答四个问题（问题/重要性/方法/结果）✓，187 words（符合 ≤200 约束）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Intro 采用压缩三段+Figure+Contributions 结构（P1 背景+问题, P2 已有方法+gap, P3 本文方法+结果, Fig1, 贡献列表）。在 8 页限制下合理。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Related Work 按主题组织（multi-turn decay / gating+attention / exposure bias），非 \"A did X, B did Y\" 堆砌。每类有 positioning 句。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "贡献-范围对齐",
+      "message": "Intro C1 声称 \"reproduced across two architectures (Qwen-2.5-7B, Llama-3.1-8B) and model scales (1.5B--8B)\"，但正文 Analysis §5.5 仅提到 \"Cross-scale validation on Qwen-2.5-1.5B confirms the same pattern\" 并指向 Appendix。1.5B 结果完全在 appendix，正文几乎未展开。如果要在贡献中声称 \"model scales (1.5B-8B)\"，正文应至少有一句正式提及 1.5B 的关键数字，而非仅靠 appendix 交叉引用。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "贡献-范围对齐",
+      "message": "主结果表 (tab:four-way) 的 \\label 仍为 \"four-way\" 但内容和 caption 描述的是 \"Five-way comparison\"。虽然不影响编译，但内部标签与实际内容不一致，增加维护出错风险。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "论文无 \"significantly outperforms\" 或 \"state-of-the-art\" 等过强声明。作为 negative result + diagnostic 论文，claim 措辞恰当（\"primary contributing factor\"、\"proximal cause\"、\"consistent with\"）。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "Claim强度",
+      "message": "Intro C1 称 \"first empirical demonstration that exposure bias collapses auxiliary attention objectives in multi-turn transformers\"。\"first\" 是一个难以绝对验证的声明。建议加限定：\"To our knowledge, the first...\" 或检查是否有遗漏的先行工作。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "实验严谨性",
+      "message": "主结果表 (Table 1) 的 AR 列有 95% CI（bootstrap），但 TF 列和 IID 列没有 error bars/CI。TF GAR-ours 报告为点估计（0.50, 0.51 等）。虽然 TF 评估是确定性的（给定同一数据得到同一结果），但说明这一点有助于审稿人理解为什么没有 CI。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "Scheduled sampling 有 3-seed 验证（mean ± std），ThreadGate 有 2-seed 验证。主消融多数为单 seed 但 Limitations 已声明。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "PCGrad 因果排除使用了 modus tollens 逻辑结构，且有 Wilcoxon 检验 (p=0.002)。统计方法合理。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "超参在 Appendix A 完整披露：模型、LoRA 配置、优化器、训练数据、seed、GPU、训练时间。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "匿名代码链接已在 abstract footnote 提供。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "术语",
+      "message": "\"Goal Accessibility Ratio (GAR)\" 在 Intro 和 Method 中一致使用。GAR-ours 和 GAR-Dongre 在 Method §3.1 定义后全文一致使用。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "$g_l$, $f_l$, $x_l$, $\\tau=0.5$, $\\lambda$ 等符号在 Method 和后续章节一致。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节过渡",
+      "message": "Method §3.1 (Preliminaries) 和 §3.2 (ThreadGate Architecture) 之间插入了一个 AR 实验结果图 (fig:attention-heatmap, [H] 强制放置)，显示 \"Per-turn GAR-ours under AR generation\"。此图引用了 \"ThreadGate\"、\"LoRA-only\" 等概念，但这些概念在 §3.2 和 §3.4 才正式定义。虽然 Intro 已简要提及这些名称，但在 Method 章节的定义之前放实验结果图，打断了 \"定义→设计→实验\" 的自然阅读流。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节过渡",
+      "message": "Analysis §5 开头有清晰的 roadmap 句（\"Each subsection kills one alternative hypothesis via causal exclusion\"），每个 subsection 结尾自然过渡到下一个。Discussion 不重复 Results 数字，而是做更高层解读。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "当前版本 ~80 words，3 个 distinct limitations（架构/数据集范围、单 seed + PPL-only 评估、单一 auxiliary loss family）。符合 EMNLP 2026 用户规则（\"一小段，覆盖 3 个点左右\"）。内容实质，非回避式。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "去AI",
+      "message": "全文有 10+ 处 em-dash (---) 用于解释性插入，违反写作规范第一优先级硬规则。主要位置:"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "\", confirming that/confirming ...\" 分词短语在全文出现 15+ 次（analysis.tex:7,17,21; experiments.tex:10,19,27; conclusion.tex:4; appendix 中更多）。虽然科技论文中偶尔可接受，但如此高密度的 participial clause 模式是 AI 生成的典型标志。建议将大部分改写为独立句或从句（\"which confirms...\"、\"This confirms...\"）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "无 \"notably\"/\"importantly\"/\"it is worth noting\"，无 \"leverage\"/\"utilize\"/\"delve\"/\"myriad\"/\"plethora\"。无 \"Furthermore\"/\"Moreover\"/\"Additionally\" 堆砌。段落长度合理（5-10 句/段），无过度分段。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "\"v1 through v7\" 和 \"v8b\" 等内部迭代编号在论文中以学术方式呈现（\"seven iterations spanning four loss families\"），有描述性说明。无服务器名、内部 IP、账号等泄露。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "[EMNLP 2026] Abstract 187 words ≤ 200 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "[EMNLP 2026] Limitations 一小段、3 个点 ✓，仅在正文中出现一次（§limitations），appendix 无 limitations section ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "[EMNLP 2026] ARR Checklist 不在论文 PDF 中 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "[项目] Method overview 已移除，Fig 1 为 headline result ✓。正文有 6 个可视化图（fig:headline, fig:steering-recovery, fig:ss-gap, fig:ss-multiseed, fig:gate-shift, fig:attention-heatmap）≥ 4-5 个 ✓"
+    }
+  ],
+  "visual_findings": null,
+  "counts": {
+    "critical": 7,
+    "warning": 54,
+    "info": 20
+  },
+  "error": "",
+  "timestamp": "2026-05-25T14:56:21.940101+00:00"
+}

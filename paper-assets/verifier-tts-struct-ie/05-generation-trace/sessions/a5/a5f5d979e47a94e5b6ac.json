@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "a5f5d979e47a94e5b6ac",
+  "project": "verifier-tts-struct-ie",
+  "kind": "worker",
+  "title": "infra mvp 001 env 8gpu",
+  "task_key": "worker_infra_mvp-001-env-8gpu_20260511T164930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp-001-env-8gpu_20260511T164930.log",
+    "occurrence": 1,
+    "bytes": 1155695,
+    "sha256": "a766eb5cb89103ef89e1c08bbc0effb0b7536c8e529a6d9e42e30f474ad0ea19"
+  },
+  "statistics": {
+    "messages": 944,
+    "user_turns": 1,
+    "tool_calls": 393,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 148,
+      "tool_call": 393,
+      "tool_result": 393,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 912,
+      "chunks": [
+        {
+          "path": "a5f5d979e47a94e5b6ac-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a5f5d979e47a94e5b6ac-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a5f5d979e47a94e5b6ac-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a5f5d979e47a94e5b6ac-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "a5f5d979e47a94e5b6ac-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "a5f5d979e47a94e5b6ac-part-0006.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "a5f5d979e47a94e5b6ac-part-0006.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-mvp-001-env-8gpu.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9bd5eedd4bc127d8411",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis reference audit",
+  "task_key": "worker_analysis_reference_audit_20260522T042955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reference_audit_20260522T042955_result.json",
+    "occurrence": 1,
+    "bytes": 3919,
+    "sha256": "fec194108f202854051c14f273f89adbe49bddd8412b09c86366ab71bdb5ca38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。下面是审计报告。\n\n---\n\n## 引用审计报告\n\n**总数**: 46 条 bib 条目（22 条被引用，24 条 orphan）  \n**真实性**: 22/22 被引用条目均为真实论文  \n**格式问题**: 5 条需修复  \n**结构问题**: 1 个重复 bib 文件\n\n---\n\n### A. 真实性验证\n\n所有 22 条被引用条目通过 WebSearch 验证为真实论文，无幻觉引用。\n\nOpenAlex 报告 3 条 `not_found`，均为索引问题而非真实性问题：\n\n| Key | 原因 |\n|-----|------|\n| `fan2020layerdrop` | Fan, Grave, Joulin. ICLR 2020. OpenAlex 索引缺失，论文真实 |\n| `luo2025flexidepth` | Xuan Luo et al. arXiv 2503.23798. OpenAlex 未收录，论文真实 |\n| `elhage2021framework` | Elhage et al. Anthropic blog post，非正式论文，不在 OpenAlex 中 |\n\n---\n\n### B. 需修复的错误（5 条）\n\n**1. [severity: critical] `levy2025lost` — 第一作者错误**\n- bib 写 `Levy and others`，实际第一作者是 **Philippe Laban**\n- 修复: `author = {Laban and others}`\n\n**2. [severity: critical] `ko2024found` — 第一作者错误**\n- bib 写 `Ko and others`，实际第一作者是 **Cheng-Yu Hsieh**\n- 修复: `author = {Hsieh and others}`\n\n**3. [severity: warning] `anonymous2024reassessing` — 应使用真实作者**\n- 论文已公开，第一作者是 Yao Lu\n- 修复: `author = {Lu and others}`\n\n**4. [severity: warning] `anonymous2025style` — 应使用真实作者**\n- 论文已公开，第一作者是 Yu-Xiang Lin\n- 修复: `author = {Lin and others}`\n\n**5. [severity: warning] `grattafiori2024llama3` — author 字段异常 + 缺 URL**\n- `author = {Grattafiori and 1 others}` 中 `1 others` 非标准\n- 修复: `author = {Grattafiori and others}`, 补 `url = {https://arxiv.org/abs/2407.21783}`\n\n---\n\n### C. 格式一致性\n\n**Author 格式不统一**：部分条目列全部作者（如 `Bengio and Vinyals and Jaitly and Shazeer`），部分用 `Last and others`。建议统一为其中一种风格。当前引用的 22 条中：\n- 全部作者列表: bengio2015scheduled, ranzato2016sequence, lamb2016professor, leblond2018searnn, he2019exposure, yu2020pcgrad, chen2018gradnorm, liu2021cagrad, navon2022nash, bachlechner2021rezero, dongre2026attention\n- `and others` 缩写: 其余 11 条\n\n**`he2019exposure` arXiv 标题变更**：arXiv 1905.10617 最新版标题改为 \"Exposure Bias versus Self-Recovery...\"，bib 中使用 v1 标题。如论文引用的是 v1 内容则可保留，否则建议更新。\n\n---\n\n### D. 完整性\n\n**Missing（引用了但 bib 没有）**: 0 条\n\n**Orphan（bib 有但未引用）**: 24 条\n\n| 分类 | 条目 |\n|------|------|\n| Layer Importance | gromov2024deeper, men2024shortgpt, sun2025curse, anonymous2024reassessing |\n| Multi-Turn | liu2023lost, anonymous2025style |\n| Residual Gating | wang2018skipnet, lawson2025skip |\n| Attention Manipulation | press2022alibi, chen2023positional, peng2024yarn, han2024lminfinite |\n| Theoretical | elhage2021framework, elhage2022superposition, belrose2023tuned, yu2023residual, makkuva2025markov, ildiz2024markov |\n| Benchmarks | zheng2023mtbench, chiang2024arena, dubois2024alpacaeval, lin2024wildbench, sirdeshmukh2025multichallenge |\n| Residual Scaling | zhang2019fixup |\n\n建议：删除 orphan 条目，或在正文中补充引用。\n\n**重复 bib 文件**: `paper/sections/references.bib` 是 `paper/references.bib` 的副本。`main.tex` 只引用后者。建议删除 `paper/sections/references.bib` 以避免维护不一致。\n\n---\n\n### E. 修复优先级\n\n1. **立即修复**: `levy2025lost` 和 `ko2024found` 的第一作者错误（reviewer 一查即发现）\n2. **应修复**: anonymous 条目替换为真实作者、`grattafiori2024llama3` 格式修正\n3. **建议修复**: 清理 24 条 orphan 条目、统一 author 格式、删除重复 bib 文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-reference-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76f7ae7b99e9d804785e",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ssh v7 eval extract and llama launch",
+  "task_key": "worker_ssh_v7_eval_extract_and_llama_launch_20260522T002825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_v7_eval_extract_and_llama_launch_20260522T002825_result.json",
+    "occurrence": 1,
+    "bytes": 792,
+    "sha256": "354017730040c3f81b963f17347be18485cf6b35b7ccc2b94d8e07f55186ae81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型正在加载中，一切正常。\n\n---\n\n**全部完成。汇总：**\n\n**eval_v7_tg_s123 结果** (raw GAR, M020):\n\n| Metric | s123 | s42 | Delta |\n|--------|------|-----|-------|\n| TF GAR-ours (mid) | 0.5052 | 0.5035 | +0.0017 |\n| TF GAR-dongre (mid) | 0.0119 | - | - |\n| TF PPL | 2.7802 | 2.784 | -0.004 |\n| AR GAR-ours (mid) | 0.0165 | 0.0157 | +0.0008 |\n| AR GAR-dongre (mid) | 0.0177 | 0.0194 | -0.0017 |\n| AR PPL | 1.3855 | 1.36 | +0.026 |\n| **Gap ratio** | **30.6×** | **~32×** | -1.4× |\n\nMulti-seed robustness 确认：s123 与 s42 各指标高度一致，gap ratio 30.6× 在 20-40× 范围内。\n\n**llama_lora_only_s42** 已提交到 westd-20861 cuda:0，PID=271741，tmux session `llama_lora_only_s42`。Registry 和 plan_011 已关联。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-v7-eval-extract-and-llama-launch.md"
+}

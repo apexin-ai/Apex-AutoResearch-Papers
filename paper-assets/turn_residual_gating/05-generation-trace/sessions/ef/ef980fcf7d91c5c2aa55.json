@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef980fcf7d91c5c2aa55",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "infra verify gpu release",
+  "task_key": "worker_infra_verify_gpu_release_20260519T163310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify_gpu_release_20260519T163310_result.json",
+    "occurrence": 1,
+    "bytes": 308,
+    "sha256": "0fdcdda8dc709a93997505b3de16e3934fbe89bf0bf2fbecf0a606326a69100e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **GPU 显存**：cuda:0 (RTX PRO 6000 Black, 96GB) 占用 0MiB，无任何 GPU 进程\n- **残留进程**：无 train_phase2 / python phase2 相关进程\n- **tmux session**：无 phase2_tg_s42_v8_schedsampling session\n\n**结论：cuda:0 空闲，可立即用于新训练。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-gpu-release.md"
+}

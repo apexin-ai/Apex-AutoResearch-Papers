@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9e8b595110749838823",
+  "project": "turn_residual_gating",
+  "kind": "history",
+  "title": "director / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_1.md",
+    "occurrence": 1,
+    "bytes": 4536,
+    "sha256": "53b0999a1c0c4717f95c34f3da62a9fd28c3806c5d29c34248623aed9574d389"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-19T10:47:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-20861:cuda:0（唯一已分配 GPU）\n- westd-22162（4卡）和 westd-16980（2卡）归属未确认——已两次问 Manager 未回复，禁止在这些卡上启动实验\n- Qwen 模型缓存（~15GB）在所有 Qwen 实验完成前不可删——Llama-3 下载必须等 Qwen phase 结束\n- 磁盘 30GB 总量，当前 15GB 可用，Llama-3 权重 ~16GB 需要先清理 Qwen cache\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-20861 (connect.westd.seetacloud.com)，工作目录 `/root/turn_residual_gating`\n- Python/conda：未记录具体路径（Agent 环境已配好，直接 `python src/...` 可用）\n- Qwen 模型：`/root/.cache/modelscope/hub/models/Qwen/Qwen2___5-7B-Instruct/`\n- Llama tokenizer：`/root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/`（仅 tokenizer，权重未下载）\n- 训练数据：`/root/turn_residual_gating/data/ultrachat_8k/`\n- Eval 数据：`/root/turn_residual_gating/data/ultrachat_eval_sample.json`（50 conv, 2737 lines, idx>=4201）\n- 活跃进程：phase2_lora_only_s42 训练中（~48.5%, 预计还 ~2.5h），tmux session 名未记录\n- 四路 eval 脚本已就绪：`/root/turn_residual_gating/scripts/run_4way_eval.sh`\n- Route B 设计文档：`/root/turn_residual_gating/route_b_design.md`\n\n### 3. 📊 当前状态\n刚完成：(1) Reviewer 深度分析 LoRA-only 信号 → D018 已记录；(2) 派 Agent 预写四路 eval 脚本（已完成）+ Route B 实验设计框架（已完成）；(3) 补充要求 Agent 加 PPL + per-turn GAR curve 到 eval（已排队，Agent 应已处理）；(4) 向 Manager 再次追问 6 张空卡归属。\n\nRegistry RUNNING：`phase2_lora_only_s42`（LoRA-only baseline，gate 固定 1.0，~48.5%）。其余 10 个实验全部 DONE。\n\n等待中：LoRA-only 训练完成回调（~2.5h）；Manager 关于 westd-22162/16980 的回复。\n\nReviewer 刚 RESET（18h 硬限）。Reviewer 最后一条 warning：Route B 设计有 3 个问题需修正——(1) eval 数据源不一致（建议 ultrachat + standard_conversations 都跑）；(2) §3.4 GAR 泛化曲线缺中间 checkpoint（推荐重跑短训练 ~2h 在 gs50-1000 密集保存）；(3) 缺 NTP PPL 对比（低成本，建议加入）。\n\n### 4. 📋 待办（条件触发式）\n- LoRA-only 训练完成 → 立即跑 `run_4way_eval.sh` 四路 eval（Base/TG/UG/LoRA-only × ours/dongre GAR + gate-profile + PPL）\n- 四路 eval 完成 → 比较 LoRA-only vs TG 推理 GAR：≈相当 → Route B 确认（negative result paper）；LoRA-only 显著更差 → Route A 尝试（two-stage，但 D018 评估 <5% 成功率）\n- Route B 确认 → 清理 Qwen cache → 下载 Llama-3.1-8B → 跨模型 Phase 1 GAR 诊断 + 训练复现\n- Manager 回复 GPU 可用 → 立即分配给跨模型验证或 Route A two-stage\n- Manager 回复 GPU 不可用 → 评估是否申请云 GPU（后续路线需 6-21 GPU·h）\n- Reviewer 3 个修正建议 → 新 Reviewer session 启动后提醒落实：(a) eval 补跑 standard_conversations 版本；(b) 考虑是否值得 2h 重跑短训练拿中间 checkpoint；(c) 确认 PPL 已加入 eval 脚本\n\n### 5. 🎯 战略上下文\n- 核心决策链：D013(v7弱) → D014(反向turn conditioning) → D015(30x GAR过拟合) → D016(two-stage conditional) → D017(两路策略) → D018(Route A <5%, 根本矛盾是 teacher-forcing→generation 分布偏移)\n- **Route B 是压倒性预期路线**。LoRA-only 训练 L_GAR≈0 与 TG/UG 完全一致，gating 在训练端已确认冗余。推理端 eval 是最后确认步骤。\n- Route B framing 关键：**\"发现了 X 机制\"而非\"方法 X 失败了\"**。核心贡献是机制分析（反向 turn conditioning + NTP-GAR 梯度竞争 + teacher-forcing 分布偏移），不是 gating 方法本身。\n- Findings 可行性 65-75%，main track 需跨模型完整消融或提出替代方案\n- 易错点：(1) UG 是 per-layer independent gates WITHOUT turn conditioning，不是 all layers same value；(2) eval 数据 ultrachat_eval_sample.json idx>=4201 与训练集不重叠但来自同源，论文需说明；(3) v7 只有 epoch 级 checkpoint（gs1000/2000/3000），没有 phase transition 阶段的中间 checkpoint\n- 目标：EMNLP 2026 ARR August cycle, deadline 2026-08-03（~10 weeks），时间充裕\n- Dongre et al. (2605.12922) 是独立平行工作，诊断 GAR 衰减但无干预方案——互补关系，不是竞争\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1.md"
+}

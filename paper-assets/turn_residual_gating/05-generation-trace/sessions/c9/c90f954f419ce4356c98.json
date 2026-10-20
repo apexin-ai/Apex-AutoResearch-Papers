@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c90f954f419ce4356c98",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code matched llama ar eval prep",
+  "task_key": "worker_code_matched_llama_ar_eval_prep_20260521T035027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_matched_llama_ar_eval_prep_20260521T035027_result.json",
+    "occurrence": 1,
+    "bytes": 982,
+    "sha256": "c9fbc55df2f279bc0f4639a57303d36b05866bd14869ba34bfa2742e158a1465"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 修改内容\n\n**`src/eval_phase2_gar.py`** — 3 处修改：\n1. `build_conversation()` (L184): `system_prompt` 改为可选，`None` 时不加 system message（匹配 ultrachat 无 system prompt 的格式）\n2. 新增 CLI 参数 `--ar-from-fixed`（L362）和 `--max-turns`（L364）\n3. 新增对话加载分支（L402-415）：从 `--conversations-path` 提取 user turns，截断到 `--max-turns`，用 `build_conversation()` 生成 AR 响应\n\n**`scripts/eval_llama_ar_matched.sh`** — 4 步 AR eval：\n- AR Base + GAR-ours (N=50, T=4)\n- AR Base + GAR-Dongre (N=50, T=4)\n- AR TG + GAR-ours (N=50, T=4)\n- AR TG + GAR-Dongre (N=50, T=4)\n\n输出到 `runs/eval_llama_ar_matched/`，自动检测 TG checkpoint。\n\n## 执行命令\n\n```bash\nbash /root/turn_residual_gating/scripts/eval_llama_ar_matched.sh\n```\n\n注意：AR 模式需要对每个 conversation 逐轮生成（50×4=200 次 model.generate），耗时远大于 TF eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-matched-llama-ar-eval-prep.md"
+}

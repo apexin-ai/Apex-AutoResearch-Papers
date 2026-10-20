@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a06bac4557efa82a2e7e",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "data attention steering extract",
+  "task_key": "worker_data_attention_steering_extract_20260520T111052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_attention_steering_extract_20260520T111052.log",
+    "occurrence": 1,
+    "bytes": 546153,
+    "sha256": "65340990137cf9085f9fe96088f277eb8ad10201e34ded08079826f9df1c8b31"
+  },
+  "statistics": {
+    "messages": 240,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 240,
+      "chunks": [
+        {
+          "path": "a06bac4557efa82a2e7e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a06bac4557efa82a2e7e-part-0002.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-attention-steering-extract.md"
+}

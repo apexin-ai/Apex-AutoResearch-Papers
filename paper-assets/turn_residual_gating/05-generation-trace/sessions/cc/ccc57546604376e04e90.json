@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccc57546604376e04e90",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check eval ss s123 results",
+  "task_key": "worker_check_eval_ss_s123_results_20260523T173042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval_ss_s123_results_20260523T173042_result.json",
+    "occurrence": 1,
+    "bytes": 1511,
+    "sha256": "3a0b289ecb7f51bbe0cff4987871d3fc1ba63bbd2111dcc6ae7a1eebd6ffe2ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Here's the report:\n\n---\n\n## TF Eval 结果 (SS s123, epoch 2)\n\n- 状态: **TF 完成, AR 进行中**\n\n| Config | Turn 1 GAR | PPL |\n|--------|-----------|-----|\n| Base + GAR-ours | 0.1008 | 3.96 |\n| Base + GAR-dongre | 0.0075 | 3.96 |\n| **SS s123 + GAR-ours** | **0.5536** | **2.61** |\n| **SS s123 + GAR-dongre** | **0.4106** | **2.61** |\n\nMid-turns avg GAR: 全部 NaN（num_turns=2，无 mid-turns 可测）\n\n## Gate Dynamic Range (TF, SS s123)\n\n门控 turn1→turn15 偏移最大的层：\n- L19: 0.175 → 0.973 (diff **-0.798**)\n- L24: 0.400 → 0.978 (diff -0.578)\n- L6: 0.421 → 0.947 (diff -0.526)\n- L9: 0.502 → 0.935 (diff -0.433)\n\n## s42 AR 参考（用于后续 s123 AR 对比）\n\n| Beta | Base | SS s42 | SS s42 CI |\n|------|------|--------|-----------|\n| 0.0 | 0.019 | **0.347** | [0.327, 0.366] |\n| 3.0 | 0.531 | **0.593** | [0.574, 0.613] |\n| 5.0 | 0.704 | **0.717** | [0.696, 0.738] |\n\n## AR Eval 状态\n\n- AR 1/2 (SS s123 beta=0,3,5): **正在运行** (PID 110052, 29.5GB VRAM, 58% GPU util)\n- AR 2/2: 未开始\n- 无 AR 结果文件产出（仍在生成中）\n\n## GPU 链状态\n\n- **Step 1/7** (SS s123 eval): TF ✓, AR 进行中\n- Step 2/7 (SS s456 resume training): 未开始\n- Steps 3-7: SS s456 eval → Qwen-1.5B phase1 → Qwen-1.5B TG → Qwen-1.5B eval → MMLU eval\n\n链脚本 `scripts/gpu_chain_next.sh` 使用 `set -e`，各步骤串行执行，AR eval 完成后会自动推进到 Step 2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-ss-s123-results.md"
+}

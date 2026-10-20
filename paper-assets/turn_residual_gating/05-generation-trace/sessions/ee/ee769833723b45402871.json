@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee769833723b45402871",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis p1 kl divergence",
+  "task_key": "worker_analysis_p1_kl_divergence_20260523T202017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_p1_kl_divergence_20260523T202017_result.json",
+    "occurrence": 1,
+    "bytes": 2033,
+    "sha256": "de07cf5f208aa3cfd88741a3e08373779f50f47f86c3011c4d1fbdb164867b98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SCP 不可用，结果已保存在服务器端。汇总 P1 分析结果。\n\n## P1 TF vs AR Attention KL Divergence 分析结果\n\n### 完成的工作\n\n**1. CPU Proxy 分析**（已完成，`results/p1_kl_divergence/`）\n\n匹配 TF/AR 数据的 GAR 对比（eval_200）：\n\n| 模型 | TF mid-GAR | AR mid-GAR | Gap |\n|------|-----------|-----------|-----|\n| Base | 0.071 | 0.059 | +0.012 |\n| SS (s123) | 0.536 | 0.488 | +0.049 |\n\nAR mid-turn GAR 排名（越高 = 目标注意力保留越好）：\n\n| Rank | Model | AR mid-GAR |\n|------|-------|-----------|\n| 1 | SS (s123) | 0.4231 |\n| 2 | **TG (v7)** | **0.0641** |\n| 3 | LoRA-only | 0.0373 |\n| 4 | UG | 0.0333 |\n| 5 | PCGrad | 0.0301 |\n| 6 | Base | 0.0186 |\n\nTG 在 AR 推理下的 GAR 是 Base 的 **3.4x**，证实 gate 机制在 AR 下保留了 goal attention。\n\n**2. GPU 脚本**（已就绪，等 GPU 空闲执行）\n\n- `scripts/p1_kl_divergence.py` — per-head TF vs AR attention KL 分析\n- `scripts/launch_p1_kl.sh` — 自动运行 Base + TG 对比\n\n脚本功能：\n- 对每个 conversation 做 TF（GT context）和 AR（生成 context）两次推理\n- 提取 per-head GAR → 计算 ΔGAR 和 binary KL(p_tf || p_ar)\n- 分析 Corr(TF_GAR, ΔGAR)：验证 goal-attending heads 是否受 exposure bias 破坏更大\n- 分析 Corr(gate_value, ΔGAR)：验证 gate 是否选择性保护这些 heads\n\n**3. 生成的可视化**（服务器端 `results/p1_kl_divergence/`）：\n- `p1_ar_gar_comparison.pdf` — 所有模型 AR GAR 曲线对比\n- `p1_ar_mid_gar_bar.pdf` — Mid-turn AR GAR 条形图\n- `p1_tf_ar_gap.pdf` — Base 和 SS 的 TF-AR gap 可视化\n\n### 局限性\n\nCPU 分析的匹配 TF/AR 数据仅覆盖 2 个 turn（TF 数据的 min_turns 限制），且缺少 TG 在 eval_200 上的 TF 数据。**Per-head 分析是关键缺失部分**——需要 GPU 运行 `launch_p1_kl.sh`。\n\n### 下一步\n\nGPU 空闲后执行：\n```bash\ncd /root/turn_residual_gating && bash scripts/launch_p1_kl.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-p1-kl-divergence.md"
+}

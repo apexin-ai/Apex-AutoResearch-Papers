@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "faa1c75c879aca5e6522",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code v7 impl",
+  "task_key": "worker_code_v7_impl_20260518T183903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v7_impl_20260518T183903_result.json",
+    "occurrence": 1,
+    "bytes": 1090,
+    "sha256": "0b8099ed8953cf88182065cb1118689c0fa7f258f4d91cabbe72b4382f31ecb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个文件语法验证全部通过。变更汇总：\n\n### gar.py — 无变更\n`mse_target` 模式已存在（行 196-204）。\n\n### config.py — 无变更\n`LAMBDA_GATE_DIV = 1.0` 和 `MIN_GATE_STD = 0.05` 已存在（行 17-18）。\n\n### train_phase2.py — 3 处变更\n\n**1. 新增 `import torch.nn.functional as F`**（行 9）\n\n**2. Label masking 修复**（`__getitem__` 方法）：\n- 将 `boundaries` 获取移到 `turn_feats` 之前\n- `labels[:] = -100` 先 mask 全部\n- 遍历 `boundaries[\"turns\"]`，只对 `role == \"assistant\"` 的 turn 恢复原始 token\n\n**3. `torch.relu` → `F.relu`**（gate diversity loss 计算处）\n\n### gate_values 梯度处理\n`threadgate.py` 的 `get_gate_values(with_grad=True)` 返回 `_gate_values_with_grad`（行 131 存储未 detach 的 gate tensor），训练循环已正确使用 `model.get_gate_values(with_grad=True)` 获取有梯度的 gate 值。梯度链路完整。\n\n其余变更（CLI 参数、gate diversity loss 计算、总 loss 公式、日志输出、config dump）已在外部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v7-impl.md"
+}

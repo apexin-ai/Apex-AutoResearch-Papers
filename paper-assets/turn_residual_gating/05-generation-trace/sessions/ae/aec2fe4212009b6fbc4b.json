@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aec2fe4212009b6fbc4b",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check llama ss progress v3",
+  "task_key": "worker_check_llama_ss_progress_v3_20260524T111453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_llama_ss_progress_v3_20260524T111453_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "08dcc080fd2534f8824083e80dbaca5ec020ab2101e750e768d65ee58062e041"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Llama SS 训练状态汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 PID | 158507，已运行 3h57m |\n| GPU | RTX PRO 6000 (98GB)，占用 57GB，利用率 67% |\n| 当前进度 | **Step 1450 / 3000**（Epoch 1），48.3% |\n| Loss | ~0.91（NTP 为主，GAR 极小） |\n| Gate 均值 | 0.92–0.94，深层(L24-L30)明显低于浅层 |\n| SS ratio | 0.300，间歇触发 |\n| 预估剩余 | 按当前速率（~367 steps/h），还剩 ~4h13m 完成 |\n\n训练正常推进，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-llama-ss-progress-v3.md"
+}

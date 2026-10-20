@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp-002-re",
+  "project": "verifier-tts-struct-ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-11T19:22:09.175Z",
+    "updated_at": "2026-05-11T19:44:48.493Z",
+    "hypothesis": "RE 有实体对+关系类型的结构约束，self-consistency/freq-merge 在 relation 三元组级别匹配下信号更强，aggregation@N≥8 > greedy ≥ 1.0 F1 点",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-11T19:44:48.528053+00:00",
+  "trigger": "update_registry"
+}

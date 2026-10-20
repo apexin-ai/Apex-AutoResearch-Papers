@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99a5053205714a2897af",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code phase2 tg v3 dryrun and train",
+  "task_key": "worker_code_phase2_tg_v3_dryrun_and_train_20260518T130834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2_tg_v3_dryrun_and_train_20260518T130834_result.json",
+    "occurrence": 1,
+    "bytes": 1449,
+    "sha256": "da4c85de0b895a2baa16c9ba4f0d320f861b9ef576e40e7fc6c1d97ddcfafb89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常进行中。\n\n---\n\n## 汇报\n\n### 1. Dry-run 完整指标表（λ=0.5, 50 global steps）\n\n| Batch Step | ~Global Step | L_NTP  | L_GAR   | L_total | Gate_mean |\n|------------|-------------|--------|---------|---------|-----------|\n| 0          | 0           | 1.9796 | -0.0157 | 1.9717  | 0.8743    |\n| 50         | 6           | 1.4147 | -0.0142 | 1.4076  | 0.8756    |\n| 100        | 12          | 0.8577 | -0.0154 | 0.8500  | 0.8732    |\n| 150        | 18          | 1.2551 | -0.0218 | 1.2442  | 0.8758    |\n| 200        | 25          | 1.2635 | -0.0141 | 1.2565  | 0.8802    |\n| 250        | 31          | 0.9018 | -0.0185 | 0.8925  | 0.8832    |\n| 300        | 37          | 0.9621 | -0.0243 | 0.9500  | 0.8831    |\n| 350        | 43          | 0.8143 | -0.0197 | 0.8045  | 0.8831    |\n\n### 2. 校准 λ=2.0\n- |L_GAR| 均值 ≈ 0.018，L_NTP 均值 ≈ 1.1\n- λ=0.5 时 GAR 贡献仅占 L_NTP 的 ~0.8%\n- 按 Director 规则 \"0.5 × L_GAR << L_NTP → λ 升到 2.0\"\n- λ=2.0 时 GAR 贡献 ≈ 0.036 ≈ 3.6% of L_NTP（仍偏小，但已是规则最大值）\n- Gate 值在 dry-run 中微幅上升 0.8743→0.8831，未下降\n\n### 3. 正式训练已提交\n- **PID**: 30973\n- **tmux session**: `phase2_tg_s42_v3`\n- **日志**: `/root/turn_residual_gating/runs/phase2_tg_s42_v3.log`\n- **Registry**: RUNNING\n\n### 4. 显存使用\n- 峰值 85.4 GB / 97.9 GB (87%)\n- GPU 利用率 98%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase2-tg-v3-dryrun-and-train.md"
+}

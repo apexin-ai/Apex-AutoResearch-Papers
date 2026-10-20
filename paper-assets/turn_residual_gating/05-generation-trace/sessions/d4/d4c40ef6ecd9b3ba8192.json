@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4c40ef6ecd9b3ba8192",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "eval attention steering relaunch",
+  "task_key": "worker_eval_attention_steering_relaunch_20260520T092543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_attention_steering_relaunch_20260520T092543_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "84938dd7835bcd84519eb020ef420d5d9191c9fef52ae9d7b0580ea6b8364b34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果完整，所有 6 个 β 值的数据都已存在。**不需要重跑。**\n\n## Attention Steering 结果 (v7 TG, gen mode, N=5 convs)\n\n| β | mid_turns_avg_GAR | avg_PPL |\n|---:|------------------:|--------:|\n| 0.0 | 0.0280 | 1.409 |\n| 0.5 | 0.0287 | 1.387 |\n| 1.0 | 0.0349 | 1.360 |\n| 2.0 | 0.0620 | 1.411 |\n| 5.0 | 0.6795 | 1.908 |\n| 10.0 | 0.9590 | 4.220 |\n\n关键观察：\n- **β=0→1**: GAR 微增 (0.028→0.035)，PPL 略降至 1.36——steering 几乎免费\n- **β=2**: GAR 翻倍至 0.062，PPL 仍与 baseline 持平 (1.41)\n- **β=5**: GAR 跳至 0.68，PPL 开始上升到 1.91——steering 效果显著但代价可控\n- **β=10**: GAR 接近饱和 0.96，PPL 恶化到 4.22——过度 steering 导致生成质量劣化\n\nRegistry 状态需要更新为 DONE。需要我更新吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-attention-steering-relaunch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7691da3fa428a0f2fb6a",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops ug completion check",
+  "task_key": "worker_ops_ug_completion_check_20260519T065227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ug_completion_check_20260519T065227_result.json",
+    "occurrence": 1,
+    "bytes": 1652,
+    "sha256": "fd82db7b6910fbedd6fcd0da1dd1c1af68b8d741d33c820e180a29e091192459"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。Cron 列表为空（不在本 session 创建的，无需删除）。\n\n---\n\n## 报告\n\n### 1. 训练状态：正常完成\n\"Training complete in 21994.5s\" + \"Final model saved\" + gate gradients confirmed。无任何 error/traceback。\n\n### 2. 训练量\n- **3 个 epoch 全部完成**，最终 global step = 7950（每 epoch ~2650 steps × 3 = 7950）\n- 总耗时 **21994.5 秒（~6.1 小时）**\n\n### 3. 关键 Metrics\n\n| Epoch | Avg Loss | Avg NTP | Avg GAR | Avg DIV |\n|-------|----------|---------|---------|---------|\n| 0 | 1.0019 | 0.9755 | 0.0259 | 0.0005 |\n| 1 | 0.9447 | 0.9435 | 0.0013 | 0.0000 |\n| 2 | 0.9319 | 0.9309 | 0.0010 | 0.0000 |\n\nFinal gate stats: **mean=0.9598, std=0.0518, min=0.7773, max=1.0000**\n\n### 4. Final Gate Profile (step 3000, 28 layers)\n\n```\nL0:0.875  L1:0.996  L2:0.996  L3:0.777  L4:0.980  L5:0.812  L6:0.977\nL7:0.957  L8:0.977  L9:0.973  L10:0.980 L11:0.961 L12:0.969 L13:0.973\nL14:0.934 L15:0.980 L16:0.965 L17:0.953 L18:0.980 L19:0.969 L20:0.961\nL21:0.992 L22:0.980 L23:0.984 L24:0.984 L25:0.992 L26:0.996 L27:1.000\n```\n\n注意：uniform gate 模式下各层值仍有差异（L3=0.777 最低，L27=1.000 最高），这说明 uniform gate 实际上也学到了 per-layer 不同的 gate 值。\n\n### 5. Checkpoint 路径\n- Final model: `/root/turn_residual_gating/runs/phase2_ug_s42/`\n- LoRA adapter: `lora/adapter_model.safetensors` (19.3MB)\n- Gate params: `gate_params.pt` (3.2MB)\n- Per-epoch checkpoints: `epoch_0/`, `epoch_1/`, `epoch_2/`\n\n### 6. GPU 状态\n**已完全释放**：0 MiB / 97887 MiB used, 0% utilization。GPU 可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ug-completion-check.md"
+}

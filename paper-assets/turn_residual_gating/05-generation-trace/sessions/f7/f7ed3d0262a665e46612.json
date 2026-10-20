@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7ed3d0262a665e46612",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code plan new b trc baseline",
+  "task_key": "worker_code_plan_new_b_trc_baseline_20260520T070905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_new_b_trc_baseline_20260520T070905_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "14083f111f532e35136f49e19391cfa705a81b36f9c5e99fb48ef8290e24f3da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。全部代码准备完毕，验证结果：\n\n**创建的文件：**\n- `src/trc_measure.py` — TRC/TBP 测量模块（`compute_trc`, `compute_tbp`, `measure_trc_and_tbp`）\n- `src/eval_trc_baseline.py` — eval 脚本，支持 TF/gen/both 三种模式，三种 checkpoint 类型\n- `scripts/launch_trc_baseline.sh` — 批量跑 v7 TG / LoRA-only / base 三组\n\n**Dry-run 结果（base model, 1 conv, TF）：**\n- TRC = 0.189（9 个 turn pair，range 0.006–0.723）\n- TBP CE = 0.553, PPL = 1.74\n- hidden states 提取 + cos_sim 计算 + JSON 输出全部正常\n- 耗时 ~24s（含模型加载），GPU 占用约 15GB\n\n**未启动完整 eval。** 跑 `bash scripts/launch_trc_baseline.sh` 即可启动全量评测。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-new-b-trc-baseline.md"
+}

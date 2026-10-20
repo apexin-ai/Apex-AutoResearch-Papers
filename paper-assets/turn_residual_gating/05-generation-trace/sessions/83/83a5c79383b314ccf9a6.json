@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83a5c79383b314ccf9a6",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code fix gar rope",
+  "task_key": "worker_code_fix_gar_rope_20260518T050818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_gar_rope_20260518T050818_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "35885bb08234ba512b14c18d64601c371b1380384ccd5733023cbee5220c66d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks passed with the real Qwen2.5-0.5B model on CPU. Summary of changes:\n\n**gar.py** (rewritten):\n- Replaced `register_forward_pre_hook` with `register_forward_hook` that captures the model's native attention weights (`output[1]`) which already include RoPE\n- Removed manual Q/K projection, causal masking, and softmax computation from both `compute_gar` and `compute_gar_differentiable`\n- Added warning when `attn_implementation != \"eager\"` (SDPA/Flash don't return weights)\n- All public API signatures and return formats preserved\n\n**turn_utils.py** (line 105-106): Removed dead `if ids_list[i] == im_end_id: pass` block.\n\n**verify_gar_fix.py** (new): Verification script with mock fallback; confirmed with real Qwen2.5-0.5B that attention rows sum to 1.0, shapes are correct, and GAR values are in [0, 1]."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-gar-rope.md"
+}

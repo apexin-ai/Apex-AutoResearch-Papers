@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8803a68226680113db7d",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "research route b design",
+  "task_key": "worker_research_route_b_design_20260519T104143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_route_b_design_20260519T104143_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "ab4e2846971c0880d8498a311df093e60f3b6915579dbee1e4544473f78b1bd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/route_b_design.md`。\n\n内容覆盖：\n- 三个论文定位选项（推荐 Option A 为主 + B 融入 Discussion）\n- 四路消融 eval 设计及预期结果\n- 五个机制分析实验（梯度冲突量化、gate profile 深入、attention 可视化、GAR 泛化曲线、训练动力学三阶段）\n- Llama-3.1-8B 跨模型验证（Phase 1 + TG 训练 + 可选消融）\n- 与 Dongre et al. 的精确互补定位和独特增量\n- 论文结构草案 + 贡献列表\n- 时间表（核心 ~12h GPU，D+0 到 D+2 完成 Qwen 全部数据）\n- 六项风险评估及应急方案\n\n所有实验设计均基于 paper_framing.md 的 NF1-NF4 和 C1-C6 状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-route-b-design.md"
+}

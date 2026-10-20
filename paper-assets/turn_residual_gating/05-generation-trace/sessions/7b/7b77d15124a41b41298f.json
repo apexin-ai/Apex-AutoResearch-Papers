@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b77d15124a41b41298f",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code gar module",
+  "task_key": "worker_code_gar_module_20260518T044654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gar_module_20260518T044654_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "78950829cb0f5d91841c8bd5e5dfa570b6ba7ae92667e5710b379686dec7e532"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件全部通过语法检查。\n\n**已创建的文件：**\n\n- **`config.py`** — 项目超参常量（模型名、LoRA rank、GAR 参数、训练配置等）\n- **`turn_utils.py`** — 基于 `<|im_start|>`/`<|im_end|>` 的 turn 边界检测，提供 `detect_turn_boundaries`（完整 turn 结构解析、goal token 定位、assistant 末尾 token、turn distance/index map）和 `build_turn_features`（ThreadGate 所需的 turn distance / turn index / boundary mask）\n- **`gar.py`** — `GARMeasurer` 通过 forward pre-hook 捕获 Q/K states 手动计算 attention weights（绕过 SDPA 不暴露 attention 的问题），支持 `measure_only=True`（detach，诊断用）和 `measure_only=False`（保留梯度，训练用）两种模式；`compute_gar_loss` 实现 L_GAR = Σ max(0, GAR(τ-1) - GAR(τ) - ε) 的 margin 惩罚\n\n系统环境无 torch，语法检查已通过。实际 import 验证需在有 torch 的训练环境中执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gar-module.md"
+}

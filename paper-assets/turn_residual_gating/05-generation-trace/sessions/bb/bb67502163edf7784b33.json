@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb67502163edf7784b33",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis final ar results",
+  "task_key": "worker_analysis_final_ar_results_20260523T034411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_final_ar_results_20260523T034411_result.json",
+    "occurrence": 1,
+    "bytes": 3226,
+    "sha256": "4d311a6b2618625c5b560fd459e67d9a8266652e0b87cc769d341554d61678a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果如下：\n\n---\n\n## 1. 汇总统计 (`d048_summary_ci_wilcoxon.json`)\n\n### β=0.0 (纯 AR, 无 teacher forcing)\n\n| 条件 | GAR mean | std | 95% CI | n |\n|------|---------|-----|--------|---|\n| **Base** | 0.01859 | 0.01683 | [0.01375, 0.02421] | 39 |\n| **TG** | 0.06414 | 0.08200 | [0.04118, 0.09118] | 39 |\n| **UG** | 0.03329 | 0.03005 | [0.02476, 0.04336] | 39 |\n| **LO** | 0.03728 | 0.03785 | [0.02688, 0.05004] | 39 |\n| **PCGrad** | 0.03006 | 0.02358 | [0.02324, 0.03757] | 39 |\n| **SS** | 0.34714 | 0.06340 | [0.32657, 0.36556] | 39 |\n\nWilcoxon:\n- **TG vs Base**: W=31, p<0.001, r=0.802\n- **TG vs LO**: W=187, p=0.0039, r=0.454\n- **SS vs TG**: W=1, p<0.001, r=0.869\n- **PCGrad vs TG**: W=176, p=0.0022, r=0.478 (PCGrad < TG)\n\n### β=3.0\n\n| 条件 | GAR mean | std | 95% CI | n |\n|------|---------|-----|--------|---|\n| **Base** | 0.53147 | 0.05817 | [0.51354, 0.55019] | 39 |\n| **TG** | 0.55585 | 0.06087 | [0.53756, 0.57451] | 39 |\n| **UG** | 0.56510 | 0.07009 | [0.54343, 0.58722] | 39 |\n| **LO** | 0.56001 | 0.06528 | [0.54087, 0.58076] | 39 |\n| **PCGrad** | 0.55918 | 0.05286 | [0.54274, 0.57578] | 39 |\n| **SS** | 0.59332 | 0.06205 | [0.57444, 0.61321] | 39 |\n\nWilcoxon:\n- **TG vs Base**: W=242, p=0.039, r=0.331\n- **TG vs LO**: W=376, p=0.852, r=0.031 (n.s.)\n- **SS vs TG**: W=207, p=0.0098, r=0.409\n- **PCGrad vs TG**: W=368, p=0.767, r=0.049 (n.s.)\n\n### β=5.0\n\n| 条件 | GAR mean | std | 95% CI | n |\n|------|---------|-----|--------|---|\n| **Base** | 0.70423 | 0.08128 | [0.67852, 0.73041] | 38 |\n| **TG** | 0.72710 | 0.06132 | [0.70836, 0.74654] | 38 |\n| **UG** | 0.70829 | 0.05915 | [0.69010, 0.72606] | 39 |\n| **LO** | 0.70817 | 0.06642 | [0.68715, 0.72921] | 38 |\n| **PCGrad** | 0.70829 | 0.05961 | [0.68996, 0.72706] | 39 |\n| **SS** | 0.71697 | 0.06648 | [0.69591, 0.73779] | 39 |\n\nWilcoxon: 所有对比均 n.s.（p>0.08）\n\n## 2. 各条件 AR N=50 关键指标\n\n| 条件 | checkpoint | gate_type | β=0 GAR | β=0 PPL | β=3 GAR | β=5 GAR |\n|------|-----------|-----------|---------|---------|---------|---------|\n| Base | (none) | none | 0.01859 | 1.4468 | 0.53147 | 0.70423 |\n| TG | phase2_tg_s42_v7 | threadgate | 0.06414 | 1.4324 | 0.55585 | 0.72710 |\n| UG | phase2_ug_s42 | uniform | 0.03329 | 1.4338 | 0.56510 | 0.70829 |\n| LO | phase2_lora_only_s42 | none | 0.03728 | 1.4310 | 0.56001 | 0.70817 |\n| PCGrad | tg_v9_pcgrad_s42 | threadgate | 0.03006 | 1.4486 | 0.55918 | 0.70829 |\n| SS | d048_ss_s42 | threadgate | 0.34714 | 1.4423 | 0.59332 | 0.71697 |\n\n## 3. TF eval 结果\n\n**无 tf 相关文件。**\n\n## 4. SS s456 训练进度\n\n**找不到 s456 训练日志**——服务器上没有任何 `*s456*` 文件。\n\n## 5. remaining_queue 进度\n\n**找不到 remaining_queue 日志**——服务器上没有该文件。\n\n---\n\n**关键发现**：\n- β=0（纯 AR）下 TG 显著优于 Base（r=0.802）和 LO（r=0.454），但 SS 远超所有方法（GAR=0.347 vs TG 的 0.064）\n- β=3 下差距缩小，TG 仅显著优于 Base（p=0.039），与 LO/PCGrad 无显著差异\n- β=5 下所有方法差异均不显著\n- PPL 各条件非常接近（1.431–1.449），说明生成质量无退化"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-final-ar-results.md"
+}

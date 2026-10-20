@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0343ee0f100d7d5b477",
+  "project": "verifier-tts-struct-ie",
+  "kind": "result",
+  "title": "code mvp 001 iou reaggregate",
+  "task_key": "worker_code_mvp-001-iou-reaggregate_20260511T184705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-001-iou-reaggregate_20260511T184705_result.json",
+    "occurrence": 1,
+    "bytes": 1624,
+    "sha256": "4db3a35d01172ceb42e951c331eff358c33f5347b014a8989b8d0de70a919de6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "聚合完成。结果如下：\n\n## F1 矩阵 (micro_f1 × 100)\n\n| N | greedy | exact_sc | iou_sc_tau03 | iou_sc_tau05 | iou_sc_tau07 | weighted_vote | oracle | random |\n|---|--------|----------|-------------|-------------|-------------|---------------|--------|--------|\n| 1 | 42.05 | — | — | — | — | — | — | — |\n| 4 | — | 41.91±0.26 | 41.84±0.20 | 41.82±0.40 | 41.89±0.36 | 41.91±0.37 | 45.92±0.42 | 41.29±0.72 |\n| 8 | — | 42.22±0.63 | 42.24±0.72 | 42.21±0.52 | 42.21±0.73 | 42.52±0.32 | 47.45±0.25 | 41.79±0.58 |\n| 16 | — | 41.34±0.32 | 41.46±0.36 | 41.51±0.26 | 41.34±0.42 | 42.23±0.38 | 48.54±0.36 | 41.83±0.86 |\n\n## Pass/Fail 判断\n\n**FAIL** — iou_self_consistency@N≥8 未超过 greedy ≥ 1.0 F1 点。\n\n- 最佳 IoU SC: N=8, tau=0.3 → 42.24 vs greedy 42.05 = **+0.19**（远不到 1.0）\n- N=16 所有 tau 均低于 greedy（最高 41.51 vs 42.05）\n- IoU SC 与 exact SC 几乎无差异（最大差 0.17），说明 span 重叠匹配在当前数据上帮助极小\n\n## 关键发现\n\n- exact SC 和 IoU SC 表现几乎相同：投票分裂的主因不是 \"word embeddings\" vs \"word embedding\" 这类 span 边界差异，而是候选间 entity 集合高度多样化\n- Oracle 随 N 稳步增长（45.92→47.45→48.54），说明好答案存在于候选中，但当前 SC 选不出来\n- weighted_vote@N=8 (42.52) 是最好的非 oracle 策略\n\n## 产出\n\n- 修改后的脚本: `/root/projects/verifier-tts-struct-ie/scripts/aggregate.py`\n- 结果文件: `/root/projects/verifier-tts-struct-ie/results/final_results_iou.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-001-iou-reaggregate.md"
+}

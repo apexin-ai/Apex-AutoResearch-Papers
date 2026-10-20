@@ -1,0 +1,50 @@
+{
+  "exp_id": "mvp-001",
+  "project": "verifier-tts-struct-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-11T16:26:44.110Z",
+    "updated_at": "2026-05-11T18:56:25.353Z",
+    "hypothesis": "并行 TTS（生成 N 个候选 + 结构自洽性 IoU 聚合）在 SciERC NER 上优于单次 greedy 抽取，self-consistency@N≥8 > greedy@N=1 ≥ 1.0 F1 点",
+    "notes": "服务器切换: home-1x5090 → seetacloud-bjb2-structtts (8x RTX 5090 32GB)，8卡数据并行方案",
+    "conclusion": "negative",
+    "metrics": {
+      "greedy_N1_F1": 42.05,
+      "exact_sc_N4": "41.91±0.26",
+      "exact_sc_N8": "42.22±0.63",
+      "exact_sc_N16": "41.34±0.32",
+      "iou_sc_tau03_N8": "42.24±0.72",
+      "iou_sc_tau05_N8": "42.21±0.52",
+      "iou_sc_tau07_N8": "42.21±0.73",
+      "iou_sc_tau03_N16": "41.46±0.36",
+      "iou_sc_tau05_N16": "41.51±0.26",
+      "iou_sc_tau07_N16": "41.34±0.42",
+      "weighted_vote_N8": "42.52±0.32",
+      "weighted_vote_N16": "42.23±0.38",
+      "oracle_N4": "45.92±0.42",
+      "oracle_N8": "47.45±0.25",
+      "oracle_N16": "48.54±0.36",
+      "random_N8": "41.79±0.58",
+      "parse_success_rate": "99.99%",
+      "oracle_greedy_gap_N16": 6.49,
+      "iou_vs_exact_max_diff": 0.17,
+      "verdict": "PARTIAL — IoU SC 未改善 exact SC，核心机制需重新设计"
+    },
+    "spec": {
+      "command": "bash run_all.sh (8x vLLM instances, parallel inference N=1,4,8,16)",
+      "server": "seetacloud-bjb2-structtts",
+      "data_path": "/root/projects/verifier-tts-struct-ie/data/processed_data/json/test.json",
+      "data_count": 100,
+      "model_name": "Qwen3-8B",
+      "seed": "42,123,456",
+      "checkpoint_path": "/root/autodl-tmp/models/Qwen/Qwen3-8B",
+      "log_path": "/root/projects/verifier-tts-struct-ie/results/run_all.log"
+    },
+    "completed_at": "2026-05-11T18:44:14.669Z"
+  },
+  "timestamp": "2026-05-11T18:56:25.365249+00:00",
+  "trigger": "update_registry"
+}

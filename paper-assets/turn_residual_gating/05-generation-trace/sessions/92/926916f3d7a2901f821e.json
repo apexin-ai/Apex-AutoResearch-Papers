@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "926916f3d7a2901f821e",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops kill v6",
+  "task_key": "worker_ops_kill_v6_20260518T181816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_v6_20260518T181816_result.json",
+    "occurrence": 1,
+    "bytes": 264,
+    "sha256": "88f06fc88edf35a96047b1fd9417f6a9977c387c1e8321126fe8104d2c8241f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **tmux kill-session**: `phase2_tg_s42_v6` 已终止 (exit 0)\n- **残留进程**: 有 3 个残留进程 (PID 6566/6571/6572)，已全部 `kill -9`\n- **GPU 状态**: 已确认释放，0MiB 显存占用，无 python 进程，GPU 空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-v6.md"
+}

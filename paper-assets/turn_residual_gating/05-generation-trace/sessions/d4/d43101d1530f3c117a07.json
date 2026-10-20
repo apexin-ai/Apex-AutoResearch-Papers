@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d43101d1530f3c117a07",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check eval ss s123 ar status",
+  "task_key": "worker_check_eval_ss_s123_ar_status_20260523T174705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval_ss_s123_ar_status_20260523T174705_result.json",
+    "occurrence": 1,
+    "bytes": 1151,
+    "sha256": "8d0053b316ef6a7a7e982ed32e5601789055715d5a9286cdc03ee06c90489335"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### AR eval PID 110052: **运行中**（已跑 ~20 分钟）\n- 命令：`eval_attention_steering.py --checkpoint runs/d048_ss_s123/epoch_2 --beta 0 3 5 --max-convs 50`\n- 输出文件 `ss_s123_ar_n50.json` 尚未生成\n- AR eval 完成后还需跑 `base_ar_n50`（Step AR 2/2），然后是 Bootstrap CI\n\n### GPU 状态\n- 利用率 49%，显存 30.4 / 97.9 GiB（A100 80G）\n- 仅 PID 110052 在使用 GPU\n\n### GPU chain 进度：**Step 1/7**（SS s123 eval）\n- Phase 1 TF eval（4 个子任务）：**已完成** ✓\n- Phase 2 AR eval（AR 1/2 SS s123）：**运行中**\n- 后续 AR 2/2 + Bootstrap CI 待跑\n- Step 2/7（SS s456 resume training）**未启动**\n\n### 已完成的 TF 结果\n\n| 配置 | GAR-variant | turn1_avg_gar | avg_ppl |\n|------|-------------|---------------|---------|\n| Base | ours | 0.1008 | 3.9586 |\n| Base | dongre | 0.0075 | 3.9586 |\n| SS s123 | ours | 0.5536 | 2.6123 |\n| SS s123 | dongre | 0.4106 | 2.6123 |\n\nSS s123 在 TF eval 下 GAR-ours 从 0.1008→0.5536（+0.453），PPL 从 3.96→2.61，效果显著。AR eval 结果需等 PID 110052 完成后查看。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-ss-s123-ar-status.md"
+}

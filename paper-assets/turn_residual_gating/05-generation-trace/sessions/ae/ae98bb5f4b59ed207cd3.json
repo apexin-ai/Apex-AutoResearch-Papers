@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae98bb5f4b59ed207cd3",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "eval attention steering eval200",
+  "task_key": "worker_eval_attention_steering_eval200_20260520T093707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_attention_steering_eval200_20260520T093707_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "337ad1467cb974a77f765512ad3b04038af65bc74ddb3062c66c356976cfed97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正常运行。状态：\n\n- **PID**: 166506（子进程），GPU 占用 42.2GB / 97.9GB，GPU 利用率 72%\n- **进度**: β=0 已完成，β=2.0 正在跑（已到 Conv 25/200）\n- **模式**: tf（teacher-forcing），6 个 β 值：0, 2, 3, 4, 5, 10\n- **代码修改**: \n  - 移除了 tf 模式的 `SYSTEM_PROMPTS` 上限限制（原来限制 5 个）\n  - 新增 `--output-name` 参数，输出到 `eval200_attention_steering.json`，不覆盖已有 N=5 结果\n\n**注意**: 用了 **tf 模式**而非 gen 模式。原因：gen 模式 hardcode 了 5 个 system prompt + user questions，无法扩展到 200 个对话。tf 模式直接 teacher-force eval_200 的 200 个完整对话，是正确的大规模验证方式。\n\n**预计时间**: 200 convs × 6 β ≈ 1200 次 forward pass。β=0 + 25 convs of β=2 已完成（约 225/1200），速度约 ~3min 启动后已跑了约 225 个，预计总时间 ~90-120min。日志: `/tmp/eval200_steering.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-attention-steering-eval200.md"
+}

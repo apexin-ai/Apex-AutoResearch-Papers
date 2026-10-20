@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84207cfb67a4037fe72d",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check llama ss startup",
+  "task_key": "worker_check_llama_ss_startup_20260524T071947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_llama_ss_startup_20260524T071947_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "3f85652d92ec7f67ffea96c9fc13ae046c361df3ea99130d92d2d0c7bebb8bad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Llama SS training 已在运行。** 状态：\n\n- **GPU**: RTX PRO 6000 Blackwell (97GB), 98% 利用率, 86GB 显存占用\n- **训练进度**: Step 100 / 3000, Epoch 0\n- **指标**: L_NTP=1.609, L_GAR=0.237, Gate mean=0.818, SS ratio 尚在 warmup（0.004）\n- **配置**: LoRA + ThreadGate, SS max_ratio=0.3, 8x gradient accumulation\n\n**Gradient conflict 分析已完成**，结果在 `/root/turn_residual_gating/results/p2_llama_gradient_conflict/gradient_conflict_analysis.json`：\n- 整体 cos_sim mean ≈ 0.0045（近正交），conflict fraction = 53.1%（17/32 层负余弦）\n- NTP 梯度量级远大于 GAR（median ratio ~26x），符合预期\n- Layer 27 冲突最强（cos_sim = -0.149），Layer 31 几乎无交互（ratio >1000x）\n\n一切正常运行中，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-llama-ss-startup.md"
+}

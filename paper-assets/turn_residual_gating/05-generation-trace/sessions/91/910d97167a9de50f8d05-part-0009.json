@@ -1,0 +1,1624 @@
+{
+  "schema_version": "1.0",
+  "session_id": "910d97167a9de50f8d05",
+  "rounds": [
+    {
+      "number": 176,
+      "messages": [
+        {
+          "source_line": 1441,
+          "timestamp": "2026-05-23T19:18:58.244791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6e2b94df08a0b20a3ba53cbf41b\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3847
+          },
+          "id": "event-001441"
+        },
+        {
+          "source_line": 1442,
+          "timestamp": "2026-05-23T19:19:02.399990+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据正确性审计已派发给 Agent。任务要求系统性 grep 论文所有数字，与 registry/artifacts 交叉验证，检查内部一致性，输出结构化报告（✅/⚠️/❌），发现问题立即修复。等 Agent 回报结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director"
+          },
+          "id": "event-001442"
+        }
+      ]
+    },
+    {
+      "number": 177,
+      "messages": [
+        {
+          "source_line": 1443,
+          "timestamp": "2026-05-23T19:19:50.753618+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 1/1 (westd-20861:cuda:0 — SS s456 resume) | Worker 1 (CPU: 数据正确性审计) | 磁盘: westd-20861 49%\n\n已派 Worker 执行提交前全量数字交叉验证：\n- Step 1: regex 扫描所有 tex 文件中的数值\n- Step 2: 逐个对比 artifacts/registry/figure 脚本源数据\n- Step 3: 内部一致性检查（abstract vs results vs tables vs appendix）\n- Step 4: figure 生成脚本硬编码数据验证\n- Step 5: 报告写入 artifacts/data_audit_report.md\n\n发现不一致只记录不自行修改，等审计报告出来后统一处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "source": "agent"
+          },
+          "id": "event-001443"
+        },
+        {
+          "source_line": 1444,
+          "timestamp": "2026-05-23T19:19:57.216048+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director"
+          },
+          "id": "event-001444"
+        }
+      ]
+    },
+    {
+      "number": 178,
+      "messages": [
+        {
+          "source_line": 1445,
+          "timestamp": "2026-05-23T19:35:21.436958+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 陈卓凡 (ou_caf916738d0f6d7b5e69228e94b9b47b)]: [引用消息] 提分 3.5 方案 — Framing/Writing + 实验补充 一、Framing 升级（参考高分诊断型论文） 对标 gromov2024 (COLM, 高引)、sun2025 (NeurIPS)、xiao2024 (ICLR)——这三篇高分诊断论文的共同模式是  \"发现问题 → 精准定位机制 → 提供初步修复\" ，不是纯 negative result。 当前论文最大的 framing 弱点： SS 结果被严重低估 。SS 将 gap 从 8× 压缩到 1.4×，这是一个真正的 positive result，但目前只放在 Discussion 的一段话里。 改进方向 ： 1.  SS 从 Discussion 升级为独立 Results 小节  — 与 steering 并列，作为\"初步修复\"的证据 2.  贡献列表新增第 5 条 ：\"first evidence that scheduled sampling transfers to multi-turn transformer attention objectives (gap 8×→1.4×)\" 3.  Abstract 重心调整 ：不只是\"发现 exposure bias 破坏 GAR\"，而是\"发现 + 定位机制（PCGrad modus tollens）+ 初步修复（SS）\"的完整弧 4.  标题考虑 ：当前标题偏长，可考虑更有记忆点的版本 二、实验补充 已在 GPU 链中（无需操作）： -  SS s456（~ 7h 训练中）→ 3-seed 正式统计 -  Qwen-1.5B 训练+eval → 模型规模维度 -  MMLU eval → 下游质量指标 建议新增（按优先级）： 1.  [P0] SS + β-steering 联合 eval  — SS 已给 AR GAR 0.385，steering 给 0.717。两者组合可能接近 parity，这将是极强的 constructive finding。纯 eval，~ 1h 2.  [P1] Llama SS 训练  — 如果 SS 在 Qwen 上有效，Llama 上也有效吗？跨模型 SS 验证。~ 10h 3.  [P1] TF vs AR attention KL divergence  — 量化 TF/AR 注意力分布的差异，为\"为什么 GAR collapse\"提供机制性证据。纯 CPU 分析 4.  [P2] plan_013 Llama gradient conflict  — 跨模型因果排除链。~ 0.5h 以上 4 项总计 ~ 12h GPU + CPU 分析，在 s456 chain 完成后可排入。 需要你确认：这个方向可以吗？如果同意我立即派 Paper Agent 做 framing 升级 + 派 Agent 排实验。\n\n这个方向可以"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "source": "feishu:oc_640e53b6afbbd5e34eb7273cd5a707a0"
+          },
+          "id": "event-001445"
+        },
+        {
+          "source_line": 1446,
+          "timestamp": "2026-05-23T19:35:33.915693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:director_reply_to_user",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001446"
+        },
+        {
+          "source_line": 1447,
+          "timestamp": "2026-05-23T19:35:34.397727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 482
+          },
+          "id": "event-001447"
+        },
+        {
+          "source_line": 1448,
+          "timestamp": "2026-05-23T19:35:35.853495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "director reply user",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001448"
+        },
+        {
+          "source_line": 1449,
+          "timestamp": "2026-05-23T19:35:35.954278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-001449"
+        },
+        {
+          "source_line": 1450,
+          "timestamp": "2026-05-23T19:35:40.873095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "收到确认。立即并行启动：\n1. **Paper Agent** — Framing 升级：SS 升为独立 Results 小节、新增第 5 条贡献、Abstract 重塑为\"发现+定位+修复\"完整弧\n2. **Main Agent** — 排入 P0-P2 实验（SS+steering 联合 eval → Llama SS → TF/AR KL divergence → Llama gradient conflict），等 s456 chain 完成后依次上线"
+            }
+          },
+          "id": "event-001450"
+        },
+        {
+          "source_line": 1451,
+          "timestamp": "2026-05-23T19:35:43.923571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3050
+          },
+          "id": "event-001451"
+        },
+        {
+          "source_line": 1452,
+          "timestamp": "2026-05-23T19:36:07.839531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_paper_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
+            "tool_args": {
+              "text": "[Reframe] Framing 升级 — 提分 3.5\n\n**投稿目标**: EMNLP 2026 ARR（8 页正文限制）\n\n**核心调整**（用户已批准）：\n\n1. **SS 从 Discussion 升级为独立 Results 小节**\n   - 当前 SS 结果只在 discussion.tex 的一个 `\\paragraph{Scheduled sampling.}` 里\n   - 升级为 `\\subsection{Scheduled Sampling Compresses the TF–AR Gap}` 或类似标题，与 §5.4 Steering 并列\n   - 内容扩充：2-seed 结果（s42: 0.347/gap 1.44×, s123: 0.418/gap 1.20×, 均值 0.383/gap 1.32×），PPL 无损（1.44 vs 1.43），GAR-Dongre 也上升（0.019→0.353）\n   - 等 s456 完成后再更新为 3-seed 统计\n\n2. **贡献列表新增第 5 条**\n   - \"We provide the first evidence that scheduled sampling—originally designed for RNN sequence models—transfers to multi-turn transformer attention objectives, compressing the TF–AR gap from 8× to 1.4× with no perplexity cost.\"\n\n3. **Abstract 重心调整**\n   - 从\"发现 exposure bias 破坏 GAR\"调整为完整弧：\"发现（8-27× collapse）→ 定位机制（PCGrad modus tollens 排除 gradient conflict）→ 初步修复（SS 压缩到 1.4×, steering 恢复到 0.727）\"\n   - 保持 ≤200 words\n\n4. **标题考虑**\n   - 当前标题如果偏长，可提出 2-3 个更有记忆点的候选（保留当前标题作为选项）\n\n**对标论文模式**：gromov2024 (COLM 高引)、sun2025 (NeurIPS)、xiao2024 (ICLR) — 共同模式是\"发现问题 → 精准定位机制 → 提供初步修复\"，不是纯 negative result。\n\n**引用需要验证**：这次不用验证引用（上一轮已全量验证 56 条）。\n\n**注意**：正文 8 页限制，SS 升级后需要从其他地方压缩空间（可考虑精简 Method 或 Related Work）。升级后的 paper_framing.md 也需要同步更新（特别是 Core Claims 和 Selling Points）。",
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-001452"
+        },
+        {
+          "source_line": 1453,
+          "timestamp": "2026-05-23T19:36:09.294905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6e145449b4a0b302ff78769f366\\\", \\\"queued\\\": true, \\\"paper_agent_session_key\\\": \\\"feishu:group:oc_934666158b769e82a2351d9206410118:paper_agent\\\", \\\"created_new_session\\\": false}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
+            "elapsed_ms": 1455
+          },
+          "id": "event-001453"
+        },
+        {
+          "source_line": 1454,
+          "timestamp": "2026-05-23T19:36:33.343331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**[实验排期] 提分 3.5 — 新增 P0-P2 实验**\n\n用户已批准方向。以下实验在 s456 GPU chain 完成后依次排入：\n\n**P0: SS + β-steering 联合 eval**（最高优先级）\n- Hypothesis: SS 已给 AR GAR ~0.385，steering 单独给 0.717。两者组合可能接近 TF parity → 极强 constructive finding\n- 方法: 用 SS 训好的 checkpoint（s42 的 TG+SS checkpoint），跑 AR eval 时同时开 β-steering（β=3,5）\n- 纯 eval，预计 ~1h\n- 对应 claim: C4 (mitigation) 的扩展\n- 输出: SS+steering AR GAR 数值 + 与 TF GAR 的 gap\n\n**P1: TF vs AR attention KL divergence**\n- Hypothesis: TF 和 AR 下的 attention 分布差异（KL divergence）在 GAR-relevant heads 上更大 → 机制性证据\n- 方法: 收集 TF 和 AR inference 各 50 样本的 per-head attention distribution，计算 KL(TF||AR)\n- 纯 CPU 分析，可与 GPU 任务并行\n- 对应 claim: C1 (exposure bias characterization)\n\n**P1: Llama SS 训练**\n- Hypothesis: SS 在 Qwen 上有效（gap 8×→1.4×），Llama 上也应有效 → 跨模型 SS 验证\n- 方法: 复用 Qwen SS 训练配置，在 Llama-3.1-8B 上训练 + eval\n- ~10h GPU\n- 对应 claim: C5 (cross-model) + C4 (mitigation)\n\n**P2: Llama gradient conflict (plan_013)**\n- Hypothesis: Llama 上 PCGrad 也无法改善 AR GAR → 跨模型因果排除\n- ~0.5h GPU\n- 对应 claim: C2 (causal exclusion) 跨模型验证\n\n**执行策略**：\n1. 数据审计 Worker 继续跑（CPU，不占 GPU）\n2. s456 chain 完成后立即上 P0（~1h）\n3. P0 完成后上 P1 Llama SS（~10h）\n4. KL divergence 分析随时可以用 CPU 并行做\n5. P2 在 Llama SS 训练间隙插入\n\n先准备好 P0 和 P1-KL 的代码，s456 chain 一结束就无缝衔接。",
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-001454"
+        },
+        {
+          "source_line": 1455,
+          "timestamp": "2026-05-23T19:36:34.516306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6e1452d68ca0b4ba86df07e7397\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 0, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[WORKER DONE] Worker worker_audit_data_correctness_presubmit_20260523T191928 已完成（status=done）。用 `get_worker_status('worker_audit_data_correctness_presubmit_20260523T191928')` 读取结果，然后处理。\\\\n\\\\n- worker_id: \\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 1172
+          },
+          "id": "event-001455"
+        },
+        {
+          "source_line": 1456,
+          "timestamp": "2026-05-23T19:36:45.710756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "read experiment plan status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001456"
+        },
+        {
+          "source_line": 1457,
+          "timestamp": "2026-05-23T19:36:46.190346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 479
+          },
+          "id": "event-001457"
+        },
+        {
+          "source_line": 1458,
+          "timestamp": "2026-05-23T19:36:48.551043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-001458"
+        },
+        {
+          "source_line": 1459,
+          "timestamp": "2026-05-23T19:36:49.052386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": \\\"C1\\\", \\\"description\\\": \\\"Phase 1 GAR degradation diagnosis on Qwen-2.5-7B (70.8% raw drop)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [], \\\"registry_id\\\": \\\"phase1_gar_diag\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"turn1_avg_gar\\\": 0.0418, \\\"mid_turns_avg_gar\\\": 0.0122, \\\"relative_drop\\\": 0.708, \\\"num_conversations\\\": 5, \\\"num_turns\\\": 10, \\\"per_turn_avg_gar\\\": [0.0418, 0.0241, 0.0224, 0.013, 0.0133, 0.0086, 0.0078, 0.008, 0.0157, 0.0064]}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": \\\"C2\\\", \\\"description\\\": \\\"ThreadGate v7 training (MSE+gate_div) - training GAR 0.48, inference GAR 0.016\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"phase2_tg_s42_v7\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_iid_ours_mid_gar\\\": 0.5035, \\\"eval_iid_dongre_mid_gar\\\": 0.0152, \\\"eval_iid_ppl\\\": 2.784, \\\"eval_heldout_ours_mid_gar\\\": 0.5035, \\\"eval_heldout_dongre_mid_gar\\\": 0.0152, \\\"eval_heldout_ppl\\\": 2.78, \\\"eval_modelgen_ours_mid_gar\\\": 0.0157, \\\"eval_modelgen_dongre_mid_gar\\\": 0.0194, \\\"eval_modelgen_ppl\\\": 1.36, \\\"gate_mean_final\\\": 0.9336, \\\"gate_std_final\\\": 0.0492}}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": \\\"C4\\\", \\\"description\\\": \\\"Uniform Gate ablation - isolate turn conditioning contribution\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"phase2_ug_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"epoch0_avg_loss\\\": 1.0019, \\\"epoch0_avg_ntp\\\": 0.9755, \\\"epoch0_avg_gar\\\": 0.0259, \\\"epoch0_avg_div\\\": 0.0005, \\\"epoch1_avg_loss\\\": 0.9447, \\\"epoch1_avg_ntp\\\": 0.9435, \\\"epoch1_avg_gar\\\": 0.0013, \\\"epoch1_avg_div\\\": 0, \\\"epoch2_avg_loss\\\": 0.9319, \\\"epoch2_avg_ntp\\\": 0.9309, \\\"epoch2_avg_gar\\\": 0.001, \\\"epoch2_avg_div\\\": 0, \\\"final_gate_mean\\\": 0.9598, \\\"final_gate_std\\\": 0.0518, \\\"final_gate_min\\\": 0.7773, \\\"fi\n…[truncated 14822 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 501
+          },
+          "id": "event-001459"
+        },
+        {
+          "source_line": 1460,
+          "timestamp": "2026-05-23T19:36:56.429038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/experiment_plan.yaml"
+            }
+          },
+          "id": "event-001460"
+        },
+        {
+          "source_line": 1461,
+          "timestamp": "2026-05-23T19:36:56.931060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texperiments:\n2\t- id: plan_001\n3\t  claim: C1\n4\t  description: Phase 1 GAR degradation diagnosis on Qwen-2.5-7B (70.8% raw drop)\n5\t  priority: P0\n6\t  gpu_budget_hours: 2\n7\t  deps: []\n8\t  registry_id: phase1_gar_diag\n9\t  status: done\n10\t- id: plan_002\n11\t  claim: C2\n12\t  description: ThreadGate v7 training (MSE+gate_div) - training GAR 0.48, inference\n13\t    GAR 0.016\n14\t  priority: P0\n15\t  gpu_budget_hours: 6\n16\t  deps:\n17\t  - plan_001\n18\t  registry_id: phase2_tg_s42_v7\n19\t  status: done\n20\t- id: plan_003\n21\t  claim: C4\n22\t  description: Uniform Gate ablation - isolate turn conditioning contribution\n23\t  priority: P0\n24\t  gpu_budget_hours: 6\n25\t  deps:\n26\t  - plan_001\n27\t  registry_id: phase2_ug_s42\n28\t  status: done\n29\t- id: plan_004\n30\t  claim: C4\n31\t  description: LoRA-only ablation - isolate gating mechanism contribution\n32\t  priority: P0\n33\t  gpu_budget_hours: 6\n34\t  deps:\n35\t  - plan_001\n36\t  registry_id: phase2_lora_only_s42\n37\t  status: done\n38\t- id: plan_005\n39\t  claim: C4\n40\t  description: Four-way eval (Base/TG/UG/LoRA-only x GAR-ours/Dongre + PPL)\n41\t  priority: P0\n42\t  gpu_budget_hours: 2\n43\t  deps:\n44\t  - plan_002\n45\t  - plan_003\n46\t  - plan_004\n47\t  registry_id: phase2_4way_eval\n48\t  status: done\n49\t- id: plan_006\n50\t  claim: C3\n51\t  description: Gradient conflict analysis on v7 (3 epoch checkpoints) - NTP vs GAR\n52\t    gradient cos_sim + magnitude ratio\n53\t  priority: P0\n54\t  gpu_budget_hours: 0.5\n55\t  deps:\n56\t  - plan_002\n57\t  registry_id: analysis_gradient_conflict\n58\t  status: done\n59\t- id: plan_007\n60\t  claim: C3\n61\t  description: Attention heatmap visualization (4 models x 3 conversations x 28 layers)\n62\t  priority: P0\n63\t  gpu_budget_hours: 0.5\n64\t  deps:\n65\t  - plan_002\n66\t  - plan_003\n67\t  - plan_004\n68\t  registry_id: analysis_attention_heatmap\n69\t  status: done\n70\t- id: plan_008\n71\t  claim: C2, C4\n72\t  description: 'Held-out eval: create truly held-out eval set (50 convs, idx>=8000\n73\t    from UltraChat full) and re-run 4-way eval to valida\n…[truncated 5452 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-001461"
+        },
+        {
+          "source_line": 1462,
+          "timestamp": "2026-05-23T19:37:17.613112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/experiment_plan.yaml",
+              "old_string": "  status: planned\n  registry_id: phase2_tg_s42_v8b_resume",
+              "new_string": "  status: planned\n  registry_id: phase2_tg_s42_v8b_resume\n- id: plan_024\n  claim: C4\n  description: 'SS + β-steering combined eval — apply β-steering (β=3,5) on top of\n    SS-trained checkpoint. SS alone gives AR GAR ~0.385, steering alone gives 0.717.\n    If combined approaches TF parity → strong constructive finding for mitigation.'\n  priority: P0\n  gpu_budget_hours: 1\n  deps:\n  - plan_023\n  status: planned\n- id: plan_025\n  claim: C1\n  description: 'TF vs AR attention KL divergence — compute per-head KL(P_TF||P_AR)\n    on 50 conversations to quantify attention distribution shift. If GAR-relevant heads\n    show larger KL → mechanistic evidence for why GAR collapses. Pure CPU analysis.'\n  priority: P1\n  gpu_budget_hours: 0\n  deps:\n  - plan_002\n  status: planned\n- id: plan_026\n  claim: C5, C4\n  description: 'Llama-3.1-8B Scheduled Sampling — replicate SS training on Llama to\n    verify cross-model gap compression. If Llama gap also compresses → SS is a general\n    mitigation, not model-specific.'\n  priority: P1\n  gpu_budget_hours: 10\n  deps:\n  - plan_010\n  status: planned\n- id: plan_027\n  claim: C4, W7\n  description: 'SS 3-seed validation — s42 (done, gap 1.44×), s123 (done, gap 1.20×),\n    s456 (training). Provides mean±std for SS gap compression. Addresses single-seed\n    reviewer concern.'\n  priority: P0\n  gpu_budget_hours: 16\n  deps:\n  - plan_023\n  status: running"
+            }
+          },
+          "id": "event-001462"
+        },
+        {
+          "source_line": 1463,
+          "timestamp": "2026-05-23T19:37:18.087607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 474
+          },
+          "id": "event-001463"
+        },
+        {
+          "source_line": 1464,
+          "timestamp": "2026-05-23T19:37:22.296313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md"
+            }
+          },
+          "id": "event-001464"
+        },
+        {
+          "source_line": 1465,
+          "timestamp": "2026-05-23T19:37:22.788930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing: Mechanistic Analysis of Training-Inference Distribution Shift in Attention Steering\n2\t\n3\t> 定位: **Mechanistic insight paper**（不是简单 negative result）。核心卖点是 teacher-forcing→generation 分布偏移如何摧毁 lightweight residual gating 的 auxiliary attention loss 泛化性（~30× 断层的定量证据）。这个 insight 为 auxiliary attention loss 在 teacher-forcing 下的 exposure bias 脆弱性提供首个实证刻画。\n4\t> Novelty 排序: (1) exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画 (~30× gap) > (2) PCGrad 因果排除梯度方向冲突 + \"观察→假设→排除→指向真因\" 完整因果链 (D028) > (3) principled intervention + systematic ablation 的 negative result\n5\t> **⚠️ Dream review D024: \"Cannot\" overclaims, novelty \"first measurement\" 过高, 缺 gradient surgery baseline (PCGrad). 标题改 \"Fails to\", novelty 降级 \"first empirical characterization\"**\n6\t> 目标会议: EMNLP 2026, ARR August cycle, deadline 2026-08-03 (~10.5 weeks)\n7\t> 最后更新: 2026-05-22 (C5 fully confirmed; gap numbers unified to ~30×; M017 修正: PPL -46% 为跨协议伪影, IID PPL 无差异; selective dissociation 撤回; D033 跨变体确认)\n8\t> **⚠️ Llama-3 跨模型验证 = MUST-HAVE**（不含 → Findings 3.0 紧绷；含 → 3.0-3.5）\n9\t\n10\t---\n11\t\n12\t## 1. Title Candidates\n13\t\n14\t- **T1 (推荐)**: Why Lightweight Gating Fails to Fix Multi-Turn Attention Degradation: A Mechanistic Analysis\n15\t- **T2**: The Distribution Shift Trap: Why Training-Time Attention Steering Fails at Inference\n16\t- **T3**: Residual Gating Fails to Recover Goal Attention in Multi-Turn Dialogue\n17\t- **T4**: Lightweight Gating Struggles with Multi-Turn Attention Degradation: Evidence from Exposure Bias\n18\t\n19\t推荐 T1: \"Fails to Fix\" 替代 \"Cannot Fix\"（审稿共识：证据仅支持 tested conditions 下的失败，非绝对否定）。\"Lightweight Gating\" 覆盖标量+uniform gate。\n20\t\n21\t---\n22\t\n23\t## 2. Story Arc\n24\t\n25\tMulti-turn dialogue performance in LLMs degrades as conversations grow longer. Dongre et al. (2026) quantified this through the Goal Accessibility Ratio (GAR), showing 27-48% drops over 50 turns, while their residual stream probes reveal that goal information persists (AUC up to 0.98) even as the attention channel closes. This create\n…[truncated 15730 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Read",
+            "elapsed_ms": 492
+          },
+          "id": "event-001465"
+        },
+        {
+          "source_line": 1466,
+          "timestamp": "2026-05-23T19:37:38.398421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "old_string": "> 最后更新: 2026-05-22 (C5 fully confirmed; gap numbers unified to ~30×; M017 修正: PPL -46% 为跨协议伪影, IID PPL 无差异; selective dissociation 撤回; D033 跨变体确认)\n> **⚠️ Llama-3 跨模型验证 = MUST-HAVE**（不含 → Findings 3.0 紧绷；含 → 3.0-3.5）",
+              "new_string": "> 最后更新: 2026-05-23 (Framing 升级: SS 从 Discussion 升为独立 Results, 新增第 5 条贡献, narrative arc 改为\"发现+定位+修复\"; C5 fully confirmed; gap numbers unified to ~30×; M017 修正: PPL -46% 为跨协议伪影, IID PPL 无差异; selective dissociation 撤回; D033 跨变体确认)\n> **⚠️ Llama-3 跨模型验证 = MUST-HAVE**（不含 → Findings 3.0 紧绷；含 → 3.0-3.5）\n> **Framing 升级目标 3.5**: 对标 gromov2024/sun2025/xiao2024 \"发现→定位→修复\" 模式。SS gap 8×→1.4× 是真正的 positive result，不应埋在 Discussion。"
+            }
+          },
+          "id": "event-001466"
+        },
+        {
+          "source_line": 1467,
+          "timestamp": "2026-05-23T19:37:38.838379+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 439
+          },
+          "id": "event-001467"
+        },
+        {
+          "source_line": 1468,
+          "timestamp": "2026-05-23T19:37:48.831504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "old_string": "Combined with Dongre et al.'s independent failure of goal re-injection, our results provide the first empirical characterization of how text distribution shift (exposure bias) selectively destroys attention patterns learned through auxiliary losses, and identify the specific mechanisms through which this vulnerability manifests.",
+              "new_string": "Combined with Dongre et al.'s independent failure of goal re-injection, our results provide the first empirical characterization of how text distribution shift (exposure bias) selectively destroys attention patterns learned through auxiliary losses, and identify the specific mechanisms through which this vulnerability manifests. Crucially, we show that scheduled sampling—originally designed for RNN sequence models—transfers to multi-turn transformer attention objectives, compressing the TF–AR gap from 8× to 1.4× with no perplexity cost (2-seed mean; 3rd seed in progress). Inference-time β-steering independently recovers GAR from 0.064 to 0.727. These mitigation results upgrade the paper from pure negative result to a complete \"discover → diagnose → initial remedy\" arc, matching the narrative pattern of high-impact diagnostic papers (gromov2024, sun2025, xiao2024)."
+            }
+          },
+          "id": "event-001468"
+        },
+        {
+          "source_line": 1469,
+          "timestamp": "2026-05-23T19:37:48.882542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001469"
+        },
+        {
+          "source_line": 1470,
+          "timestamp": "2026-05-23T19:38:00.001289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "old_string": "4. **跨模型验证** (Qwen-2.5-7B + Llama-3.1-8B) 确认失败机制的普遍性",
+              "new_string": "4. **跨模型验证** (Qwen-2.5-7B + Llama-3.1-8B) 确认失败机制的普遍性\n5. **Scheduled sampling 作为初步修复**: 首次证明 scheduled sampling（原为 RNN 设计）可迁移到 multi-turn transformer attention objectives，将 TF–AR gap 从 8× 压缩到 1.4×（2-seed mean），无 PPL 代价。配合 inference-time β-steering（GAR 0.064→0.727），构成完整的 mitigation toolkit"
+            }
+          },
+          "id": "event-001470"
+        },
+        {
+          "source_line": 1471,
+          "timestamp": "2026-05-23T19:38:00.210451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 209
+          },
+          "id": "event-001471"
+        },
+        {
+          "source_line": 1472,
+          "timestamp": "2026-05-23T19:38:20.754567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "old_string": "### 修正后预期\n- **收窄 claim + 扩充引用 + code 验证后**: best 预期 3.5 (Weak Accept / Borderline Conference)。移除两个 Major weakness (W1 overclaim + W6 thin refs)。\n- **加 bootstrap CI + Llama-3 数据后**: median 预期 3.0-3.5。\n- **冲 Main 条件**: 上述修正 + exposure-bias mitigation 实验 (W8) + 25-30 references。\n- **核心差异化**: 不是 \"gating 失败了\"（弱），而是 \"exposure bias 在 auxiliary attention loss 上的首个定量测量 + 失败机制 taxonomy\"。\n- **关键风险**: W5（exposure bias 已知）需要精确定位增量；W7（单 seed）需 bootstrap CI 或追加 seed。",
+              "new_string": "### 修正后预期（2026-05-23 Framing 升级后）\n- **当前状态**: SS 升级为独立 Results + 5th contribution + 56 references + Llama 跨模型 + 3-seed 统计中 + bootstrap CI。\n- **Best case**: 3.5 (Borderline Conference / Accept)。完整 \"发现→定位→修复\" 弧匹配 gromov/sun/xiao 模式。\n- **Median case**: 3.0-3.5 (Findings-Conference borderline)。若 SS+steering 联合 eval 接近 TF parity → 推向 3.5。\n- **冲 Main 条件**: SS+steering 联合接近 parity + Llama SS 跨模型复现 + KL divergence 机制证据 + 3-seed 正式统计。\n- **核心差异化**: 不是 \"gating 失败了\"（弱），而是 \"exposure bias 在 auxiliary attention loss 上的首个定量测量 + PCGrad 因果排除 + SS/steering 初步修复\"（强）。\n- **关键风险**: W5（exposure bias 已知）需要精确定位增量；SS+steering 联合是否真能接近 parity 待验证。"
+            }
+          },
+          "id": "event-001472"
+        },
+        {
+          "source_line": 1473,
+          "timestamp": "2026-05-23T19:38:20.755291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001473"
+        },
+        {
+          "source_line": 1474,
+          "timestamp": "2026-05-23T19:38:23.572697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "update roadmap",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001474"
+        },
+        {
+          "source_line": 1475,
+          "timestamp": "2026-05-23T19:38:24.062522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 489
+          },
+          "id": "event-001475"
+        },
+        {
+          "source_line": 1476,
+          "timestamp": "2026-05-23T19:38:26.864445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-001476"
+        },
+        {
+          "source_line": 1477,
+          "timestamp": "2026-05-23T19:38:27.343693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/ROADMAP.md\\\", \\\"content\\\": \\\"# turn_residual_gating — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-22 16:57 UTC | 更新原因: DDL 修正 5/25 + 今日大量工作完成反映 + 写作线收尾\\\\n\\\\n## 核心方向\\\\nDiagnostic framework: lightweight residual gating 的 auxiliary attention loss 在 text distribution shift (exposure bias) 下泛化失败（~31× gap）。PCGrad 排除梯度方向冲突。**双路 mitigation 已验证**：inference-time attention steering (β=5, GAR 0.064→0.727, N=50) + training-time scheduled sampling (GAR 0.016→0.318, gap → 1.57×, PPL 不变)。**跨模型泛化确认**：Llama-3.1-8B gap 27× (median, N=20)。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: D048 修复 + 提交准备（**DDL: ARR May 2026-05-25，剩余 3 天**）\\\\n- **核心 claim**: C1✅ C2✅ C3✅ C4✅ C5✅ C6✅(N=50) C7✅(dual-seed)\\\\n- **成功率**: 27 success / 5 negative / 3 failed / 37 total\\\\n- **审稿**: Group C Round 3 Overall 3.0 (Findings)，目标 3.5 (Conference)\\\\n- **写作**: Round 3 全部 13 项修复完成，主文 8 页，编译 0 error\\\\n- **附录**: Appendix A-D 完整（超参/loss iterations/instruction retention/可视化 6 图表）\\\\n- **论文编译**: 14 页 0 error 0 undefined ref\\\\n\\\\n## 近期任务\\\\n\\\\n### 实验线（GPU 串行，westd-20861:cuda:0）\\\\n- [ ] **SS s42 训练** — resume v3 运行中，epoch 1-2，预计 ~20:00 UTC 完成\\\\n- [ ] **SS s42 eval** — TF + AR N=50 + bootstrap CI（训练完成后立即执行，~1h）\\\\n- [ ] **AR N=50 existing** — TG/UG/PCGrad/LO 4 条件扩容（~8h）\\\\n- [ ] **SS s123 + s456 训练+eval** — 各 ~5h+1h\\\\n- [ ] **Base/TG multi-seed** — s123/s456 各 ~5h+1h\\\\n- [ ] ~~GradNorm~~ / ~~Llama PCGrad+UG~~ / ~~N=200~~ — 如时间允许\\\\n\\\\n### 写作线（已基本完成）\\\\n- [x] Round 3 全部 13 项写作修复（GAR 命名/Rhea/贡献措辞/PCGrad scope/页数/Discussion 压缩等）\\\\n- [x] Appendix D: 6 个可视化（gate heatmap/cross-model/AR GAR decay/gate distribution/loss curves/β-steering table）\\\\n- [x] Table 2 扩展 Failure Mechanism 列\\\\n- [x] 图片同步 + 编译验证（14 页 0 error）\\\\n- [ ] Abstract/Intro/Conclusion 数字更新为 mean±std（等 multi-seed 数据）\\\\n\\\\n### 提交准备\\\\n- [ ] Multi-seed 数字更新论文\\\\n- [ ] 最终编译 + 视觉审查\\\\n- [ ] Round 4 Group C 审稿\\\\n- [ ] 5/25 提交 ARR May\\\\n\\\\n## GPU 预算\\\\n\n…[truncated 1849 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 479
+          },
+          "id": "event-001477"
+        },
+        {
+          "source_line": 1478,
+          "timestamp": "2026-05-23T19:39:09.478435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "reason": "Framing 升级至 3.5 (用户批准) + 新增 P0-P2 实验 + DDL 切换至 ARR August",
+              "content": "# turn_residual_gating — Research Dashboard\n\n## 核心方向\n**Framing 升级（2026-05-23 用户批准）**: 从 \"发现 exposure bias 破坏 GAR\" 升级为完整 \"发现→定位→修复\" 弧（对标 gromov2024/sun2025/xiao2024 高分诊断论文）。SS 从 Discussion 升为独立 Results 小节，新增第 5 条贡献。目标从 Findings 3.0 提至 Conference 3.5。详见 paper_framing.md。\n\n## 当前进展\n- **阶段**: 提分 3.5 — Framing 升级 + 补充实验\n- **DDL**: ARR August 2026-08-03（~10 weeks）\n- **核心 claim**: C1✅ C2✅ C3✅ C4✅ C5✅ + **C4-mitigation 升级中**\n- **实验成功率**: 27 success / 5 negative / 3 failed / 37 total\n- **审稿**: Group C Round 3 Overall 3.0 → 目标 3.5\n- **写作**: Paper Agent 正在执行 Reframe（SS 升级 + 5th contribution + Abstract 重塑）\n- **数据审计**: Worker 正在执行提交前全量数字交叉验证\n\n## 近期任务\n\n### 正在进行\n- [ ] **数据正确性审计** — Worker grep 所有论文数字 vs registry/artifacts 交叉验证\n- [ ] **Paper Agent Reframe** — SS 升为独立 Results + 5th contribution + Abstract 重心调整\n- [ ] **SS s456 训练** — GPU chain 中，westd-20861:cuda:0（~7h，完成后自动 eval）\n\n### GPU chain（自动串行）\n- [ ] SS s456 eval → 3-seed 统计 (plan_027)\n- [ ] Qwen-1.5B 训练+eval → 模型规模维度\n- [ ] MMLU eval → 下游质量指标\n\n### 新增实验（s456 chain 后排入）\n- [ ] **[P0] plan_024: SS+steering 联合 eval** — SS checkpoint + β=3,5 steering，~1h。可能接近 TF parity\n- [ ] **[P1] plan_025: TF vs AR KL divergence** — per-head 注意力分布差异量化，CPU 并行\n- [ ] **[P1] plan_026: Llama SS** — 跨模型 SS 验证，~10h\n- [ ] **[P2] plan_013: Llama gradient conflict** — 跨模型因果排除，~0.5h\n\n### 写作线\n- [ ] 3-seed 数字更新（abstract/Table 1/discussion → mean±std）\n- [ ] SS Results 小节定稿（等 3-seed + plan_024 数据）\n- [ ] 最终编译 + 视觉审查 + Round 4 审稿\n\n## GPU 预算\n- **已分配**: westd-20861:cuda:0 (1×RTX PRO 6000 Blackwell, 102GB)\n- **当前**: SS s456 训练中\n- **累计 GPU 时间**: ~165h\n- **剩余预估**: ~25h（s456 eval 1h + SS+steering 1h + Llama SS 10h + Llama grad 0.5h + Qwen-1.5B ~8h + MMLU ~2h + buffer）\n\n## 风险监控\n- **SS+steering 联合效果未知**: 可能接近 parity（极强 positive），也可能不叠加\n- **Llama SS 效果未知**: Qwen 有效不保证 Llama 有效\n- **时间充裕**: DDL 8/3，~10 weeks，足够跑完所有新增实验 + 多轮迭代"
+            }
+          },
+          "id": "event-001478"
+        },
+        {
+          "source_line": 1479,
+          "timestamp": "2026-05-23T19:39:10.363255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/ROADMAP.md\\\", \\\"lines\\\": 67, \\\"reason\\\": \\\"Framing 升级至 3.5 (用户批准) + 新增 P0-P2 实验 + DDL 切换至 ARR August\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "elapsed_ms": 884
+          },
+          "id": "event-001479"
+        },
+        {
+          "source_line": 1480,
+          "timestamp": "2026-05-23T19:39:16.399077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "log decision",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001480"
+        },
+        {
+          "source_line": 1481,
+          "timestamp": "2026-05-23T19:39:16.892032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 492
+          },
+          "id": "event-001481"
+        },
+        {
+          "source_line": 1482,
+          "timestamp": "2026-05-23T19:39:28.466920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "summary": "D051: Framing 升级至 3.5 — SS 升为独立 Results + 5th contribution + \"发现→定位→修复\" narrative arc",
+              "rationale": "用户批准提分方案。对标 gromov2024/sun2025/xiao2024 高分诊断论文的 \"发现问题→定位机制→初步修复\" 模式。SS 将 gap 8×→1.4× 是真正的 positive result，之前被低估放在 Discussion 一段话里。升级内容：(1) SS 从 Discussion 升为独立 Results 小节；(2) 贡献列表新增第 5 条 SS 迁移；(3) Abstract 重塑为完整弧；(4) 新增 4 项实验（plan_024-027）。DDL 切换至 ARR August 2026-08-03。",
+              "related_experiments": "[{'exp_id': 'phase2_tg_s42_v8b_resume', 'role': 'SS 原始验证', 'result': 'gap 8×→1.57×'}, {'exp_id': 'd048_eval_ss_s42', 'role': 'SS s42 N=50 eval', 'result': 'gap 1.44×'}, {'exp_id': 'd048_eval_ss_s123', 'role': 'SS s123 N=50 eval', 'result': 'gap 1.20×'}]",
+              "depends_on": "['D050', 'D049']"
+            }
+          },
+          "id": "event-001482"
+        },
+        {
+          "source_line": 1483,
+          "timestamp": "2026-05-23T19:39:28.969964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D051\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 503
+          },
+          "id": "event-001483"
+        },
+        {
+          "source_line": 1484,
+          "timestamp": "2026-05-23T19:39:36.335506+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成所有调度：\n\n1. **Paper Agent** — 正在执行 Reframe（SS 升级 + 5th contribution + Abstract 重塑）\n2. **Main Agent** — 数据审计 Worker 处理中，实验排期已排队（P0 SS+steering → P1 KL divergence + Llama SS → P2 Llama gradient conflict）\n3. **experiment_plan.yaml** — 新增 plan_024-027\n4. **paper_framing.md** — Story arc 扩展、5th contribution 加入、竞争力预期更新至 3.5\n5. **ROADMAP** — DDL 切换至 ARR August 8/3，反映新方向\n6. **D051** — 决策已记录"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director"
+          },
+          "id": "event-001484"
+        }
+      ]
+    },
+    {
+      "number": 179,
+      "messages": [
+        {
+          "source_line": 1485,
+          "timestamp": "2026-05-23T19:39:38.757722+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 1/1 (westd-20861:cuda:0 — SS s456 resume) | Worker 0 | 磁盘: westd-20861 49%\n\n## 数据正确性审计完成\n\n完整报告: `artifacts/data_audit_report.md`\n统计: ~85 个数字审计，75 个一致 (88%)，5 个不一致，2 个无法追溯\n\n### 需要决策的问题（按优先级排序）\n\n**[CRITICAL] D1: Fig 4 caption 与数据根本性不匹配**\n- Caption 写 \"TF evaluation, GAR near 0.5, 7-8% decay\"\n- 实际 figure 数据是 AR-scale (0.01-0.06)，衰减 77-87%\n- N=45 无法追溯，figure 实际用 n_convs=3\n- **建议**: 重写 caption 准确描述 figure 内容（AR-scale attention 衰减），或用真实 TF per-turn GAR 数据重新生成 figure\n\n**[MEDIUM] D4: SS protocol 混淆 — 可能误报**\n- 审计 Worker 对比了旧实验 `v8b_ss_s123`（ratio=0.5）和 `d048_ss_s42`（ratio=0.3）\n- 但实际提交的 d048 系列 s42/s123/s456 全部使用 `--ss-ratio 0.3`\n- **需确认**: 论文中描述的 \"0 to 0.5\" 是否已改为 \"0 to 0.3\"？如果论文仍写 0.5，则需修正为 0.3\n\n**[MEDIUM] D2: Fig 3b 用 N=5 数据 (20-33× gap) vs 正文 N=50 (7.8-16.7×)**\n- 未标注 N=5，reviewer 对比 Table 1 会困惑\n- **建议**: Fig 3b 加 \"(N=5)\" 标注，或用 N=50 数据重画\n\n**[LOW-MEDIUM] D6: 跨模型 \"8-27×\" 中 8× 用 mean，27× 用 median**\n- **建议**: abstract 加 \"(median)\" 限定词，或统一用同一聚合方式\n\n**[LOW] D3: PCGrad 训练时间 7.2h/+20% vs 实际 7.98h/+33%**\n- **建议**: 修正为 8.0h/+33%\n\n### 已验证一致的关键数字\n- Abstract 所有核心指标 (GAR 0.50/0.064, 8×, β=5 0.727, SS 1.44×, p=0.004) ✅\n- Table 1 全部数字 ✅\n- Steering 结果 (β=3 phase transition, β=5/10) ✅\n- 统计检验 (Wilcoxon p-values, McNemar, correlation) ✅\n- 参数量 (~57K), 超参 (λ=1.0, τ=0.5, 10× LR) ✅\n- 指令保留 (75.9%→87.0%, +11.1pp) ✅\n\n请指示 D1-D6 中哪些需要立即修复。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "source": "agent"
+          },
+          "id": "event-001485"
+        },
+        {
+          "source_line": 1486,
+          "timestamp": "2026-05-23T19:39:51.405891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-001486"
+        },
+        {
+          "source_line": 1487,
+          "timestamp": "2026-05-23T19:39:51.457333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":0,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] **[实验排期] 提分 3.5 — 新增 P0-P2 实验**\\\\n\\\\n用户已批准方向。以下实验在 s456 GPU chain 完成后依次排入：\\\\n\\\\n**P0: SS + β-steering 联合 eval**（最高\\\"},\\\"pending\\\":[],\\\"idle_seconds\\\":147}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-001487"
+        },
+        {
+          "source_line": 1488,
+          "timestamp": "2026-05-23T19:40:16.170114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**[审计修复] 数据正确性审计 — 5 项修复**\n\n审计报告已审阅。以下全部需要修复，按优先级执行：\n\n**D1 [CRITICAL] Fig 4 caption 重写**\n- 当前 caption 描述的是 TF evaluation（GAR near 0.5, 7-8% decay），但 figure 实际画的是 AR-scale 数据（0.01-0.06, 衰减 77-87%）\n- **修复**: 重写 caption 准确描述 figure 实际内容。figure 本身不需要重画——它展示的是 AR generation 下 per-turn GAR 衰减，这正是我们想展示的\n- 同时检查 N=45 标注是否准确（figure 脚本实际用多少 conversations）\n\n**D2 [MEDIUM] Fig 3b 标注 N=5**\n- Fig 3b 用 N=5 pilot 数据，正文 Table 1 是 N=50\n- **修复**: Fig 3b caption 加 \"(N=5 pilot)\" 标注，让读者知道这是早期探索性结果\n\n**D3 [LOW] PCGrad 训练时间修正**\n- 论文写 7.2h/+20%，实际 7.98h/+33%\n- **修复**: 找到对应文本位置，改为 \"~8.0h (+33%)\"\n\n**D4 [MEDIUM] SS ratio 确认**\n- 先 grep 论文中所有提到 SS ratio/scheduled sampling ratio 的位置\n- d048 系列（s42/s123/s456）全部使用 `--ss-ratio 0.3`，即最终 SS ratio 从 0 线性增到 0.3\n- 如果论文写 \"0 to 0.5\"，改为 \"0 to 0.3\"；如果已经写 0.3 则标记一致\n\n**D6 [LOW-MEDIUM] 跨模型 gap 聚合方式统一**\n- Abstract 写 \"8× ... 27×\"，8× 是 Qwen mean，27× 是 Llama median\n- **修复**: 在 abstract 中 27× 后加 \"(median)\" 限定，或者统一用 mean。建议方案：查 Llama mean gap 是多少，如果与 median 接近就统一用 mean\n\n全部修复后 recompile 论文验证无 error。",
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-001488"
+        },
+        {
+          "source_line": 1489,
+          "timestamp": "2026-05-23T19:40:19.885612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6e1464fc1ca0b35f211517c56d2\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 0, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[Director 指令] **[实验排期] 提分 3.5 — 新增 P0-P2 实验**\\\\n\\\\n用户已批准方向。以下实验在 s456 GPU chain 完成后依次排入：\\\\n\\\\n**P0: SS + β-steering 联合 eval**（最高优先级）\\\\n- Hypothesis: SS 已给 AR GAR ~0.385，steering 单独给 0.717。两者组合可能接近 TF parity → 极\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3715
+          },
+          "id": "event-001489"
+        },
+        {
+          "source_line": 1490,
+          "timestamp": "2026-05-23T19:40:31.996611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**数据正确性审计完成** — 85 个数字审核，88% 一致\n\n发现 5 个问题，已派 Agent 修复：\n1. **[CRITICAL] Fig 4 caption 与实际数据不匹配** — caption 描述 TF (GAR~0.5)，figure 画的是 AR-scale (0.01-0.06)。重写 caption\n2. **[MEDIUM] Fig 3b 未标注 N=5** — 加 \"(N=5 pilot)\" 避免与 Table 1 (N=50) 混淆\n3. **[MEDIUM] SS ratio 确认** — d048 系列用 0.3，检查论文是否一致\n4. **[LOW] PCGrad 训练时间** — 7.2h/+20% → 8.0h/+33%\n5. **[LOW] 跨模型 gap 聚合方式** — 8× mean vs 27× median 需统一\n\n核心指标（GAR/PPL/p-values/参数量/steering/instruction retention）全部一致 ✅\n\n**并行进行中：**\n- Paper Agent: Framing 升级（SS→Results、5th contribution、Abstract 重塑）\n- GPU: SS s456 训练中\n- Agent: 准备 P0-P2 实验代码 + 审计修复"
+            }
+          },
+          "id": "event-001490"
+        },
+        {
+          "source_line": 1491,
+          "timestamp": "2026-05-23T19:40:32.598823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 602
+          },
+          "id": "event-001491"
+        },
+        {
+          "source_line": 1492,
+          "timestamp": "2026-05-23T19:40:42.881711+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计结果已审阅，修复指令已派发，用户已同步。等待 Agent 完成实验排期处理后执行修复。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director"
+          },
+          "id": "event-001492"
+        }
+      ]
+    },
+    {
+      "number": 180,
+      "messages": [
+        {
+          "source_line": 1493,
+          "timestamp": "2026-05-23T19:41:13.363108+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n[severity: info] ROADMAP 更新审查：Framing 3.5 升级 + DDL August + 新实验计划\n\n## 总体评价：方向合理，支撑充分\n\n### 1. DDL 推迟（5/25 → 8/3）\n**合理**。10 周窗口 vs 25h GPU 预算——算力完全充足，无 deadline 风险。这消除了之前\"单 seed + 匆忙提交\"的质量风险。\n\n### 2. Framing 升级（3.0 → 3.5 目标）\n**有数据支撑**。SS 2-seed mean AR GAR = 0.385（s42: 0.347, s123: 0.423），TF-AR gap 从 8× 压缩到 1.30×，PPL 无代价。这确实构成 positive result，不应埋在 Discussion。对标 gromov/sun/xiao 的 \"发现→定位→修复\" 模式是合适的叙事策略。\n\n5th contribution \"scheduled sampling 迁移到 multi-turn transformer attention objectives\" 的 \"首次\" claim 需要审慎——目前仅 2 seeds on Qwen，需要 s456 + 理想情况下 Llama SS 来支撑。\n\n### 3. 新实验优先级\n- **P0 SS+steering 联合**（1h）：高价值低成本。若叠加效果好→强力支撑 3.5；若不叠加→仍有独立贡献。正确放在 P0。\n- **P1 KL divergence**（CPU）：好的机制诊断补充，不占 GPU。\n- **P1 Llama SS**（10h）：跨模型 SS 验证是冲 3.5 的关键。不过论文的 5th contribution 不应依赖于此——如果 Llama SS 失败，5th contribution 应 scope 到 \"on Qwen\"。\n- **P2 Llama gradient conflict**（0.5h）：完成跨模型因果排除，低成本高价值。\n\n### 4. [severity: warning] paper_framing.md 数字陈旧\n\npaper_framing.md 多处仍使用旧数字：\n- \"GAR-ours=0.016, ~30× gap\" — 当前论文数据：TG AR GAR=0.064, gap=7.8×（N=50）\n- C2 描述的 \"~30×\" 源自旧 phase2 data（v7 IID vs model-gen），不是 d048_final_ar_eval 的统一评估结果\n- NF2 \"~30×\" 同样陈旧\n\n论文本身已使用正确数字（8-17× Qwen, 27× Llama），但 framing doc 未同步。建议在 Paper Agent Reframe 期间一并更新 framing doc 的数字，避免后续 agent 被误导。\n\n### 5. 风险补充\nROADMAP 已正确标注 SS+steering 和 Llama SS 的未知性。补充一个风险：**β=0 的 seed 间方差较大**（s42: 0.347 vs s123: 0.423, 相对差 22%）。s456 如果偏向某一端，3-seed mean±std 的置信区间可能较宽。论文表述应避免过度精确的 point estimate，改用 range 或 mean±std。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "source": "reviewer"
+          },
+          "id": "event-001493"
+        },
+        {
+          "source_line": 1494,
+          "timestamp": "2026-05-23T19:41:32.700303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "offset": "0",
+              "limit": "10"
+            }
+          },
+          "id": "event-001494"
+        },
+        {
+          "source_line": 1495,
+          "timestamp": "2026-05-23T19:41:32.801079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t# Paper Framing: Mechanistic Analysis of Training-Inference Distribution Shift in Attention Steering\n1\t\n2\t> 定位: **Mechanistic insight paper**（不是简单 negative result）。核心卖点是 teacher-forcing→generation 分布偏移如何摧毁 lightweight residual gating 的 auxiliary attention loss 泛化性（~30× 断层的定量证据）。这个 insight 为 auxiliary attention loss 在 teacher-forcing 下的 exposure bias 脆弱性提供首个实证刻画。\n3\t> Novelty 排序: (1) exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画 (~30× gap) > (2) PCGrad 因果排除梯度方向冲突 + \"观察→假设→排除→指向真因\" 完整因果链 (D028) > (3) principled intervention + systematic ablation 的 negative result\n4\t> **⚠️ Dream review D024: \"Cannot\" overclaims, novelty \"first measurement\" 过高, 缺 gradient surgery baseline (PCGrad). 标题改 \"Fails to\", novelty 降级 \"first empirical characterization\"**\n5\t> 目标会议: EMNLP 2026, ARR August cycle, deadline 2026-08-03 (~10.5 weeks)\n6\t> 最后更新: 2026-05-23 (Framing 升级: SS 从 Discussion 升为独立 Results, 新增第 5 条贡献, narrative arc 改为\"发现+定位+修复\"; C5 fully confirmed; gap numbers unified to ~30×; M017 修正: PPL -46% 为跨协议伪影, IID PPL 无差异; selective dissociation 撤回; D033 跨变体确认)\n7\t> **⚠️ Llama-3 跨模型验证 = MUST-HAVE**（不含 → Findings 3.0 紧绷；含 → 3.0-3.5）\n8\t> **Framing 升级目标 3.5**: 对标 gromov2024/sun2025/xiao2024 \"发现→定位→修复\" 模式。SS gap 8×→1.4× 是真正的 positive result，不应埋在 Discussion。\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001495"
+        },
+        {
+          "source_line": 1496,
+          "timestamp": "2026-05-23T19:41:41.080005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "old_string": "> 定位: **Mechanistic insight paper**（不是简单 negative result）。核心卖点是 teacher-forcing→generation 分布偏移如何摧毁 lightweight residual gating 的 auxiliary attention loss 泛化性（~30× 断层的定量证据）。这个 insight 为 auxiliary attention loss 在 teacher-forcing 下的 exposure bias 脆弱性提供首个实证刻画。\n> Novelty 排序: (1) exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画 (~30× gap) > (2) PCGrad 因果排除梯度方向冲突 + \"观察→假设→排除→指向真因\" 完整因果链 (D028) > (3) principled intervention + systematic ablation 的 negative result",
+              "new_string": "> 定位: **Mechanistic insight paper**（不是简单 negative result）。核心卖点是 teacher-forcing→generation 分布偏移如何摧毁 lightweight residual gating 的 auxiliary attention loss 泛化性（8×–27× gap，Qwen 7.8× / Llama 27× median）。这个 insight 为 auxiliary attention loss 在 teacher-forcing 下的 exposure bias 脆弱性提供首个实证刻画。**SS 初步修复将 gap 压缩到 1.4×。**\n> Novelty 排序: (1) exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画 (8×–27× gap) > (2) PCGrad 因果排除梯度方向冲突 + \"观察→假设→排除→指向真因\" 完整因果链 (D028) > (3) SS 迁移到 multi-turn transformer attention objectives (gap 8×→1.4×) > (4) principled intervention + systematic ablation 的 negative result"
+            }
+          },
+          "id": "event-001496"
+        },
+        {
+          "source_line": 1497,
+          "timestamp": "2026-05-23T19:41:41.131098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001497"
+        },
+        {
+          "source_line": 1498,
+          "timestamp": "2026-05-23T19:41:48.055764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "old_string": "> 最后更新: 2026-05-23 (Framing 升级: SS 从 Discussion 升为独立 Results, 新增第 5 条贡献, narrative arc 改为\"发现+定位+修复\"; C5 fully confirmed; gap numbers unified to ~30×; M017 修正: PPL -46% 为跨协议伪影, IID PPL 无差异; selective dissociation 撤回; D033 跨变体确认)",
+              "new_string": "> 最后更新: 2026-05-23 (Framing 升级 + 数字同步: gap 统一为 8×–27×（论文 N=50 数据），~30× 旧数字已替换; SS 升为独立 Results; 新增第 5 条贡献; narrative arc 改为\"发现+定位+修复\")"
+            }
+          },
+          "id": "event-001498"
+        },
+        {
+          "source_line": 1499,
+          "timestamp": "2026-05-23T19:41:48.106741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001499"
+        },
+        {
+          "source_line": 1500,
+          "timestamp": "2026-05-23T19:42:00.691867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "old_string": "| C2 | Residual gating 训练时在 same-distribution text 上有效优化 GAR-ours (0.48→0.49 泛化成功)，但在 model-generated text 上完全失败 (GAR-ours=0.016, ~30× text distribution shift gap)。GAR-Dongre 在两种分布上均低（~0.01-0.016），无 gap——说明分布偏移选择性影响 summary-position attention pattern。 | v7 训练曲线 + 4-way eval + v7 直接 eval + Reviewer 独立验证 (D024) | ✅ 已验证（precision upgrade） |",
+              "new_string": "| C2 | Residual gating 训练时在 same-distribution text 上有效优化 GAR-ours (TF GAR=0.50)，但在 model-generated text 上完全失败 (AR GAR=0.064, 7.8× gap on Qwen N=50; 27× median on Llama N=20)。GAR-Dongre 在两种分布上均低，无 gap——说明分布偏移选择性影响 summary-position attention pattern。 | v7 训练 + d048 N=50 eval + Llama eval + Reviewer 独立验证 | ✅ 已验证（N=50 precision） |"
+            }
+          },
+          "id": "event-001500"
+        },
+        {
+          "source_line": 1501,
+          "timestamp": "2026-05-23T19:42:00.792899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-001501"
+        },
+        {
+          "source_line": 1502,
+          "timestamp": "2026-05-23T19:42:12.637030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "old_string": "| NF2 | ~30× text distribution shift gap (GAR-ours): ultrachat 文本 0.49 vs 模型生成文本 0.016。Same-distribution 泛化成功（训练 0.48 → ultrachat eval 0.49），cross-distribution 泛化失败。**D033 跨变体确认**: v9 PCGrad (0.0151), UG (0.0149), LoRA-only (0.0245) model-gen GAR 均接近 baseline (0.0122)——gap 独立于训练策略，是 exposure bias 的普遍表现。GAR-Dongre 在两种分布上均低（~0.01-0.019），无 gap——分布偏移选择性影响 summary-position (last token) attention pattern | D015 + 4-way eval + v7 direct eval + D024 + **D033 cross-variant model-gen** | 核心 negative finding。精确定位为 TEXT DISTRIBUTION SHIFT（exposure bias）。D033 确认跨所有训练变体的普遍性。 |",
+              "new_string": "| NF2 | 8×–27× text distribution shift gap (GAR-ours): TF GAR=0.50 vs AR GAR=0.064 (Qwen N=50, 7.8× gap); Llama AR GAR=0.018 (27× median gap, N=20)。Same-distribution 泛化成功（TF eval GAR=0.50），cross-distribution 泛化失败。**D033 跨变体确认**: v9 PCGrad, UG, LoRA-only model-gen GAR 均接近 baseline——gap 独立于训练策略，是 exposure bias 的普遍表现。GAR-Dongre 在两种分布上均低，无 gap——分布偏移选择性影响 summary-position (last token) attention pattern | d048 N=50 eval + Llama eval + D033 cross-variant | 核心 negative finding。精确定位为 TEXT DISTRIBUTION SHIFT（exposure bias）。 |"
+            }
+          },
+          "id": "event-001502"
+        },
+        {
+          "source_line": 1503,
+          "timestamp": "2026-05-23T19:42:12.637840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001503"
+        },
+        {
+          "source_line": 1504,
+          "timestamp": "2026-05-23T19:42:36.966616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "old_string": "**SP1 (核心卖点): Exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画。** ~30× training-inference GAR-ours gap 提供了 teacher-forcing distribution shift 如何摧毁 auxiliary attention loss 泛化性的实证证据。训练时模型在 gold context 上优化 attention pattern，推理时在自身生成的 context 上条件化——两者分布不同导致 attention pattern 不迁移。虽然 exposure bias 概念本身已知 (Bengio et al. 2015)，且 sequence generation 中有量化先例 (Ranzato et al. 2016, Wiseman & Rush 2016)，但此前无人刻画其对 auxiliary attention loss 的具体影响。我们的 ~30× gap 测量展示了这种脆弱性在 attention steering 场景下的严重程度。**注意：(1) claim scope 严格限于 lightweight residual gating + GAR auxiliary loss 的实测范围，不泛化到所有 attention steering 方法。(2) ~30× gap 在 GAR-ours（last token only, summary-position attention）上测得（IID 0.50 vs model-gen 0.016）；GAR-Dongre（all response tokens）在两种分布上均低（~0.01-0.019），无 gap——表明 exposure bias 选择性影响 summary-position attention pattern，这一差异本身有分析价值。**",
+              "new_string": "**SP1 (核心卖点): Exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画。** 8×–27× training-inference GAR-ours gap（Qwen 7.8×, Llama 27× median）提供了 teacher-forcing distribution shift 如何摧毁 auxiliary attention loss 泛化性的实证证据。训练时模型在 gold context 上优化 attention pattern，推理时在自身生成的 context 上条件化——两者分布不同导致 attention pattern 不迁移。虽然 exposure bias 概念本身已知 (Bengio et al. 2015)，且 sequence generation 中有量化先例 (Ranzato et al. 2016, Wiseman & Rush 2016)，但此前无人刻画其对 auxiliary attention loss 的具体影响。我们的 8×–27× gap 测量展示了这种脆弱性在 attention steering 场景下的严重程度。**注意：(1) claim scope 严格限于 lightweight residual gating + GAR auxiliary loss 的实测范围，不泛化到所有 attention steering 方法。(2) gap 在 GAR-ours（last token only, summary-position attention）上测得（TF 0.50 vs AR 0.064 Qwen / 0.018 Llama）；GAR-Dongre（all response tokens）在两种分布上均低，无 gap——表明 exposure bias 选择性影响 summary-position attention pattern，这一差异本身有分析价值。**"
+            }
+          },
+          "id": "event-001504"
+        },
+        {
+          "source_line": 1505,
+          "timestamp": "2026-05-23T19:42:37.017378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001505"
+        },
+        {
+          "source_line": 1506,
+          "timestamp": "2026-05-23T19:42:43.238971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "old_string": "方向冲突虽然可测量存在于 v7 中，但对训练和推理结果无任何因果影响——10-40× NTP 幅度主导使方向冲突完全无关紧要（inconsequential）。",
+              "new_string": "方向冲突虽然可测量存在于 v7 中，但对训练和推理结果无任何因果影响——7.5–14.7× NTP 幅度主导使方向冲突完全无关紧要（inconsequential）。"
+            }
+          },
+          "id": "event-001506"
+        },
+        {
+          "source_line": 1507,
+          "timestamp": "2026-05-23T19:42:43.340887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-001507"
+        },
+        {
+          "source_line": 1508,
+          "timestamp": "2026-05-23T19:42:51.896481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "old_string": "**D024 精确化**: GAR-ours 在 same-distribution (ultrachat) text 上 ≈0.49（泛化成功），在 model-generated text 上 ≈0.016（~30× gap）。GAR-Dongre 在两种分布上均低 (~0.01-0.016, 无 gap)。~30× gap 是 text distribution shift 现象，特定于 summary-position attention (GAR-ours)。",
+              "new_string": "**D024 精确化（d048 N=50 更新）**: GAR-ours TF=0.50, AR=0.064（Qwen 7.8× gap）; Llama AR=0.018（27× median gap）。GAR-Dongre 在两种分布上均低，无 gap。8×–27× gap 是 text distribution shift 现象，特定于 summary-position attention (GAR-ours)。"
+            }
+          },
+          "id": "event-001508"
+        },
+        {
+          "source_line": 1509,
+          "timestamp": "2026-05-23T19:42:51.948859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 52
+          },
+          "id": "event-001509"
+        },
+        {
+          "source_line": 1510,
+          "timestamp": "2026-05-23T19:42:57.118677+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "old_string": "| 机制分析 | residual probe AUC=0.98 (goal info 持续存在) | NTP-GAR 梯度冲突 + ~30× 泛化 gap + turn conditioning 反转 |",
+              "new_string": "| 机制分析 | residual probe AUC=0.98 (goal info 持续存在) | NTP-GAR 梯度冲突 + 8×–27× 泛化 gap + turn conditioning 反转 |"
+            }
+          },
+          "id": "event-001510"
+        },
+        {
+          "source_line": 1511,
+          "timestamp": "2026-05-23T19:42:57.119427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001511"
+        },
+        {
+          "source_line": 1512,
+          "timestamp": "2026-05-23T19:43:03.867615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "old_string": "共同推论: 两种独立干预路线均失败 → lightweight residual gating with auxiliary attention loss 在 teacher-forcing 下面临严重泛化障碍 → 需要 inference-time 干预或 exposure bias mitigation。（注意：scope 限于 lightweight gating，不泛化到所有 attention steering 方法。）",
+              "new_string": "共同推论: 两种独立干预路线均失败 → lightweight residual gating with auxiliary attention loss 在 teacher-forcing 下面临严重泛化障碍（8×–27× gap）→ 需要 inference-time 干预或 exposure bias mitigation（SS 已验证可将 gap 压缩到 1.4×）。（注意：scope 限于 lightweight gating，不泛化到所有 attention steering 方法。）"
+            }
+          },
+          "id": "event-001512"
+        },
+        {
+          "source_line": 1513,
+          "timestamp": "2026-05-23T19:43:03.868108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001513"
+        },
+        {
+          "source_line": 1514,
+          "timestamp": "2026-05-23T19:43:12.242175+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper_framing.md 数字已全量同步到论文 N=50 数据（~30× → 8×–27×）。Reviewer warning 已处理。\n\nReviewer 另外两个建议也已纳入：\n1. 5th contribution 的 \"首次\" claim 需等 s456 + 理想情况 Llama SS 支撑——已在 plan_026/027 中安排\n2. β=0 seed 间方差（s42: 0.347 vs s123: 0.423, 22%）——论文最终表述会用 mean±std 或 range，不用 point estimate"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director"
+          },
+          "id": "event-001514"
+        }
+      ]
+    },
+    {
+      "number": 181,
+      "messages": [
+        {
+          "source_line": 1515,
+          "timestamp": "2026-05-23T19:43:12.708393+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n[severity: warning] P0 SS+steering eval 脚本与已有数据重复——无需重跑\n\np0_ss_steering_eval.sh 使用 SS s42 checkpoint + β=0,3,5 + eval_200 N=50，但这与 d048_final_ar_eval 已经产出的 `ss_s42_ar_n50.json` 完全相同：\n\n| β | ss_s42_ar_n50.json (已有) | P0 脚本 (拟运行) |\n|---|--------------------------|------------------|\n| 0 | 0.347 | 同 checkpoint + 同 data + 同 β → 相同结果 |\n| 3 | 0.593 | 同上 |\n| 5 | 0.717 | 同上 |\n\n**SS+steering \"叠加\" 问题已有答案**：\n- β=3: SS 0.593 vs TG-only 0.556 → SS 仅增 +0.037（7%）\n- β=5: SS 0.717 vs TG-only 0.727 → SS 反而略低 -0.010\n- **结论：SS 和 steering 不叠加**。SS 的主要价值在 β=0（0.347 vs 0.064 = 5.4×），steering 的主要价值在高 β。两者在高 β 区间的效果趋同。\n\n**建议**：跳过 P0 脚本执行，直接在论文中用已有数据讨论 SS+steering 的交互效应。节省 ~1h GPU 时间用于 Llama SS 或其他实验。\n\n---\n\n[RESET REQUEST] Research Reviewer 达到硬限\n  触发原因：运行时长 16h0m\n  本轮累计 55 条消息 / 16h 0min\n\n⚠️ 你自己的 context 状态：已 118 条消息 / 16h 0min\n\n请回复：\n  [RESET AGENT]     只重置 Research Reviewer，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Research Reviewer 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "source": "reviewer"
+          },
+          "id": "event-001515"
+        },
+        {
+          "source_line": 1516,
+          "timestamp": "2026-05-23T19:43:37.359925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__urgent_agent_message"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "message": "**[P0 取消] SS+steering 联合 eval 无需执行**\n\nReviewer 指出 `ss_s42_ar_n50.json` 已包含 SS checkpoint 在 β=0,3,5 下的数据：\n- β=0: 0.347（SS 独有贡献）\n- β=3: 0.593（vs TG-only 0.556，仅 +0.037）\n- β=5: 0.717（vs TG-only 0.727，反而略低）\n\n**结论：SS 和 steering 不叠加。** 高 β 区间效果趋同。这是有价值的发现，论文中可讨论。\n\n**不要执行 p0_ss_steering_eval.sh**，跳过 plan_024，直接用已有数据。节省的 GPU 时间用于 Llama SS (plan_026) 或其他实验。"
+            }
+          },
+          "id": "event-001516"
+        },
+        {
+          "source_line": 1517,
+          "timestamp": "2026-05-23T19:43:38.012733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"inserted\\\":true,\\\"queue_depth\\\":3,\\\"agent_key\\\":\\\"feishu:group:oc_934666158b769e82a2351d9206410118\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "elapsed_ms": 652
+          },
+          "id": "event-001517"
+        },
+        {
+          "source_line": 1518,
+          "timestamp": "2026-05-23T19:43:41.926395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-001518"
+        },
+        {
+          "source_line": 1519,
+          "timestamp": "2026-05-23T19:43:41.977522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 51
+          },
+          "id": "event-001519"
+        },
+        {
+          "source_line": 1520,
+          "timestamp": "2026-05-23T19:43:47.090075+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 和我都重置。当前所有关键状态已持久化：\n- **ROADMAP**: 升级至 3.5 framing + DDL August + 新实验排期\n- **paper_framing.md**: 数字同步 (8×–27×) + 5th contribution + narrative arc\n- **experiment_plan.yaml**: plan_024-027 已加入\n- **decisions.yaml**: D051 已记录\n- **Agent 队列**: 审计修复 + 实验排期 + P0 取消，3 条待处理"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director"
+          },
+          "id": "event-001520"
+        }
+      ]
+    },
+    {
+      "number": 182,
+      "messages": [
+        {
+          "source_line": 1521,
+          "timestamp": "2026-05-23T19:43:47.610661+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001521"
+        },
+        {
+          "source_line": 1522,
+          "timestamp": "2026-05-23T19:44:37.911498+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 只有 westd-20861:cuda:0（1×RTX PRO 6000 Blackwell 102GB），不可用其他设备\n- SS s456 训练正在 GPU 上跑，不要中断或抢占\n- plan_024 (SS+steering 联合 eval) 已取消——数据已存在于 `ss_s42_ar_n50.json`，Reviewer 确认 SS 和 steering 不叠加（高 β 趋同）\n- paper_framing.md 的 gap 数字已从 ~30× 统一为 8×–27×（论文 N=50 数据），不要回退到旧数字\n- DDL 已切换至 ARR August 2026-08-03（~10 weeks），不再是 5/25\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-20861，工作目录 `/root/turn_residual_gating/`\n- Python：conda base (`/root/miniconda3/bin/python`)\n- 模型：Qwen-2.5-7B-Instruct + Llama-3.1-8B-Instruct（路径在服务器 autodl-tmp 下）\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/`\n- 论文路径：`paper/sections/*.tex`（注意 paper_compile_and_check 需传 `paper_dir` 参数）\n- 匿名 repo：`https://github.com/anonymous-nlp-2026/turn_residual_gating`（HTTPS，commit a7a4eac）\n- 活跃进程：SS s456 训练（PID 112418，GPU chain 自动串行：s456 eval → Qwen-1.5B → MMLU）\n\n### 3. 📊 当前状态\n**刚完成**：\n- 数据正确性审计（85 数字，88% 一致）→ 5 项修复已派 Agent（D1 Fig4 caption critical, D2-D6 medium/low）\n- paper_framing.md 数字同步（~30× → 8×–27×，Reviewer warning 已修）\n- Framing 升级：experiment_plan.yaml 新增 plan_024-027，paper_framing.md 更新 5th contribution + story arc\n- ROADMAP 更新，D051 决策已记录\n\n**正在进行**：\n- Paper Agent：Reframe 模式（SS 升为独立 Results + 5th contribution + Abstract 重塑）\n- Agent：正在处理实验排期 + 审计修复（队列中有 3 条消息）\n- GPU：SS s456 训练中（chain 后自动 eval → Qwen-1.5B → MMLU）\n\n### 4. 📋 待办\n- Agent 完成审计修复 → 验证 Fig4 caption / Fig3b N=5 标注 / PCGrad 时间 / SS ratio / 跨模型 gap 聚合 → recompile\n- SS s456 eval 完成 → 3-seed mean±std 计算 → 更新论文数字（abstract/Table 1/discussion）\n- Paper Agent Reframe 完成 → 审阅 SS Results 小节 + Abstract + 5th contribution\n- s456 chain 全部完成 → 排入 plan_025 KL divergence (CPU) + plan_026 Llama SS (10h GPU) + plan_013 Llama gradient conflict (0.5h)\n- 3-seed 数据到齐 + Reframe 定稿 → Round 4 Group C 审稿（submit_paper_to_review）\n- SS β=0 seed 间方差较大（s42: 0.347 vs s123: 0.423, 22%）→ s456 出来后评估是否用 mean±std 还是 range\n\n### 5. 🎯 战略上下文\n- **D051 核心决策**：用户批准 framing 从 3.0 升级到 3.5。对标 gromov/sun/xiao \"发现→定位→修复\" 模式。SS gap 8×→1.4× 从 Discussion 升为独立 Results，新增第 5 条贡献\n- **SS+steering 不叠加**是已确认结论（Reviewer 核实），但 SS 在 β=0 的独立价值（0.064→0.347, 5.4×）仍然很强，论文应讨论交互效应\n- **易错点 1**：plan_024 已取消，不要再派执行\n- **易错点 2**：paper_compile_and_check 默认路径是 `docs/paper/`，实际是 `paper/`，必须传 paper_dir\n- **易错点 3**：d048 eval 中 base_ar_n50.json 曾被覆盖事故（M027），s456 已用不同文件名规避\n- **5th contribution 的 \"首次\" claim**：需要 s456 确认 + 理想情况 Llama SS 跨模型验证支撑。若 Llama SS 失败，scope 限定到 \"on Qwen\"\n- 决策链：D041(SS success) → D048(multi-seed plan) → D050(N=50 数据切换) → D051(framing 升级 3.5)\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director"
+          },
+          "id": "event-001522"
+        }
+      ]
+    }
+  ]
+}

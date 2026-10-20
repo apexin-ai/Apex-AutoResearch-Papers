@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2b942296e2d497b0ec2",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "research literature map fill",
+  "task_key": "worker_research_literature_map_fill_20260522T045024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature_map_fill_20260522T045024_result.json",
+    "occurrence": 1,
+    "bytes": 1463,
+    "sha256": "23a9eac3376dcab63251e69b913129ef0e7718d87568e90dc38e5924d01b47ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 papers added successfully. Here's the summary:\n\n---\n\n**添加了 5 篇论文，覆盖 4 个方向：**\n\n| # | 论文 | 方向 | Role | 关联 |\n|---|------|------|------|------|\n| 1 | Wiseman & Rush 2016, \"Sequence-to-Sequence Learning as Beam-Search Optimization\" (EMNLP) | a. Exposure bias | foundation | paper_framing SP1 明确引用为 exposure bias 量化先例 |\n| 2 | Zhang et al. 2019, \"Bridging the Gap between Training and Inference for NMT\" (ACL) | d. Scheduled sampling | method-component | 训练时混合 model-generated tokens，对应 W8 讨论的 mitigation 方向 |\n| 3 | Arora et al. 2022, \"Why Exposure Bias Matters\" (ACL Findings) | a. Exposure bias | theoretical-foundation | 用 imitation learning 证明 exposure bias → compounding errors 且 PPL 无法捕捉——直接支撑 30x gap 论证 |\n| 4 | Mihaylova & Martins 2019, \"Scheduled Sampling for Transformers\" (ACL SRW) | d. Scheduled sampling | method-component | 将 scheduled sampling 扩展到 transformer，相关于 Discussion 中的 mitigation 未来方向 |\n| 5 | Li et al. 2024, \"Measuring and Controlling Instruction (In)Stability in Language Model Dialogs\" (COLM) | b/c. GAR + Multi-turn attention | direct-competitor | 同一问题（attention 到 system prompt 随轮次衰减），识别 attention decay 机制，提出 split-softmax 推理时修复 |\n\n同时已将 5 篇的 bib entries 添加到 `paper/references.bib`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-map-fill.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6d4f8aa42747cbadda9",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "data v7 training dynamics",
+  "task_key": "worker_data_v7_training_dynamics_20260518T201309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_v7_training_dynamics_20260518T201309_result.json",
+    "occurrence": 1,
+    "bytes": 1792,
+    "sha256": "25d55837e9c60ee905f941dd1a52551543e29f03f197e223194830671eccd104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有文件已生成。汇报如下：\n\n## 数据收集结果\n\n**行数统计：**\n- 训练输出行 (Epoch)：124 条\n- GATE 统计行：16 条 (gs 0-750, 每 50 gs 一条)\n- GATE profile 行：8 条 (gs 0-700, 每 100 gs 一条)\n- CSV 总行数：125 (含 header)\n\n**训练进度：**\n- 最后一条：micro_step 6150, global_step 768.8\n- Gate mean 收敛至 ~0.96\n\n**CSV 前 5 行：**\n| micro_step | gs | L_NTP | L_GAR | mean_GAR |\n|---|---|---|---|---|\n| 0 | 0.0 | 2.0275 | 0.2342 | 0.0161 |\n| 50 | 6.2 | 1.7218 | 0.2349 | 0.0153 |\n| 100 | 12.5 | 1.3103 | 0.2337 | 0.0166 |\n| 150 | 18.8 | 1.6785 | 0.2277 | 0.0228 |\n| 200 | 25.0 | 1.4617 | 0.2348 | 0.0154 |\n\n**CSV 后 5 行：**\n| micro_step | gs | L_NTP | L_GAR | mean_GAR |\n|---|---|---|---|---|\n| 5950 | 743.8 | 0.9011 | 0.0002 | 0.4859 |\n| 6000 | 750.0 | 0.8836 | 0.0061 | 0.4219 |\n| 6050 | 756.2 | 0.7173 | 0.0009 | 0.4700 |\n| 6100 | 762.5 | 1.3465 | 0.0000 | 0.5000 |\n| 6150 | 768.8 | 0.7768 | 0.0002 | 0.4859 |\n\n## 三阶段拐点\n\n| 阶段 | 范围 (gs) | 范围 (micro) | mean_GAR |\n|---|---|---|---|\n| **Phase A** | 0 - 75 | 0 - 600 | ~0.015-0.033 平台 |\n| **A→B 拐点** | **gs 75** | **micro 600** | 0.033 → 0.066 开始加速 |\n| **Phase B** | 75 - 144 | 600 - 1150 | 0.033 → 0.434 加速上升 |\n| **B→C 拐点** | **gs ~144** | **micro ~1150** | 跳至 0.43，此后收敛 |\n| **Phase C** | 144+ | 1150+ | ~0.43-0.50 收敛波动 |\n\n**文件路径：**\n- CSV: `/root/turn_residual_gating/runs/v7_training_dynamics.csv`\n- 原始 GATE 统计: `/root/turn_residual_gating/runs/v7_gate_stats.txt`\n- 原始 GATE profile: `/root/turn_residual_gating/runs/v7_gate_profiles.txt`\n- 原始训练输出: `/root/turn_residual_gating/runs/v7_training_output.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-v7-training-dynamics.md"
+}

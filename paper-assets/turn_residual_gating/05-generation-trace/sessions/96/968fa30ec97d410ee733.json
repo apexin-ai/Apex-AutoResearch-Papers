@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "968fa30ec97d410ee733",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check ss s123 and chain",
+  "task_key": "worker_check_ss_s123_and_chain_20260523T133353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_ss_s123_and_chain_20260523T133353_result.json",
+    "occurrence": 1,
+    "bytes": 1062,
+    "sha256": "b46fd76f0061df0d8940690ed00c40692606e764f09d3fe3e95c9065cf3b85c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### SS s123 训练状态：进行中（Epoch 1/3）\n\n| 项目 | 状态 |\n|------|------|\n| PID 84793 | **运行中**，已运行 5h40m |\n| 当前进度 | Epoch 1（epoch_0 在 18:33 保存，耗时 ~2h38m） |\n| epoch_1 目录 | 尚未创建 → epoch 1 仍在训练（SS 比例递增导致后期 epoch 更慢） |\n| 预计完成 | epoch 1 ~22:00，epoch 2 ~00:30（粗估） |\n| GPU 占用 | 32612 MiB / 97887 MiB，RTX PRO 6000，GPU-Util 55% |\n\n### GPU 链状态\n\n| 项目 | 状态 |\n|------|------|\n| wait_and_launch.sh (v1) | **已超时退出**（10min 超时，19:29 退出） |\n| wait_and_chain_v2.sh (PID 94251) | **存活**，已运行 1h47m，6h 超时兜底 |\n| gpu_chain_next.sh | 尚未触发（等待 PID 84793 退出后自动启动） |\n\n### 风险\n\nv2 等待脚本 6h 超时 = 19:46 + 6h = 次日 01:46。如果训练在 00:30 前完成，链可以正常接续。如果训练超过 01:46 还没结束（不太可能），v2 会超时退出导致链断裂。\n\n当前无需干预，链路完整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-ss-s123-and-chain.md"
+}

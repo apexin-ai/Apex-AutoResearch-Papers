@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b659204d47c21e4f4eca",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code d048 gradnorm",
+  "task_key": "worker_code_d048_gradnorm_20260522T102920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d048_gradnorm_20260522T102920_result.json",
+    "occurrence": 1,
+    "bytes": 1239,
+    "sha256": "174f6cc4ec4c568c4b914338e05201ab1b3836d40270dd488b22f45d19d35f89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Syntax verified, dry-run dir cleaned. Here's the summary:\n\n**`train_phase2_gradnorm.py` — creation + verification report:**\n\n| Check | Status |\n|-------|--------|\n| `--help` argparse | PASS — `--gradnorm`, `--gradnorm-alpha`, `--gradnorm-lr` present |\n| Syntax check | PASS |\n| Dry-run training | BLOCKED — GPU occupied by `train_phase2_v8b.py` (d048_ss_s42, seed 42, 3 epochs). Only ~35 GiB free of 97 GiB. |\n\n**OOM fix applied:** The original implementation used two `autograd.grad(retain_graph=True)` calls on the same computation graph, which OOMed on the second call. Restructured `gradnorm_step` to:\n1. Run its own dedicated forward pass (separate computation graph)\n2. First `autograd.grad(retain_graph=True)` for NTP gradient norm\n3. `del grads + torch.cuda.empty_cache()` cleanup\n4. Second `autograd.grad(retain_graph=False)` for GAR gradient norm — graph fully released\n5. Moved to execute after `loss.backward()` in the training loop (training .grad preserved since `autograd.grad` doesn't touch .grad)\n\n**File:** `/root/turn_residual_gating/src/train_phase2_gradnorm.py` (21408 bytes, 524 lines)\n\nDry-run verification needs to happen once the d048_ss_s42 job finishes or on a free GPU."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d048-gradnorm.md"
+}

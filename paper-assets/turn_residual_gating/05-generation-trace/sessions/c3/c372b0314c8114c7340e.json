@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "c372b0314c8114c7340e",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "code implement split softmax",
+  "task_key": "worker_code_implement_split_softmax_20260523T000457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_implement_split_softmax_20260523T000457.log",
+    "occurrence": 1,
+    "bytes": 643846,
+    "sha256": "73202d0b862697e603de78e53171bcfc5877131fe6ae9d2305693d2d066ae8d9"
+  },
+  "statistics": {
+    "messages": 134,
+    "user_turns": 0,
+    "tool_calls": 48,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 48,
+      "tool_result": 48,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 134,
+      "chunks": [
+        {
+          "path": "c372b0314c8114c7340e-part-0001.json",
+          "message_count": 119
+        },
+        {
+          "path": "c372b0314c8114c7340e-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-implement-split-softmax.md"
+}

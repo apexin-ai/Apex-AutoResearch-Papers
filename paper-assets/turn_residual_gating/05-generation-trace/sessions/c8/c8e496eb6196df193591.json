@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8e496eb6196df193591",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "paper writing exp steering",
+  "task_key": "worker_paper_writing_exp_steering_20260520T104655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_exp_steering_20260520T104655_result.json",
+    "occurrence": 1,
+    "bytes": 403,
+    "sha256": "15024b669c96f47a0987db12a88185bd348a01b5d12e51a8a845ccd63a34aad1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§5.3 已追加到 `experiments.tex` 末尾（lines 45–58）。正文约 200 words，包含三段：动机与方法设置、Gen/TF 双协议结果（含 phase transition 发现和 Gen β=5 GAR 超越 TF baseline 的关键点）、因果环闭合与 caveats。Figure 5 环境在末尾，caption 按指定内容写入。无 em-dash、无 -ing 结尾、所有数字与表格精确匹配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-exp-steering.md"
+}

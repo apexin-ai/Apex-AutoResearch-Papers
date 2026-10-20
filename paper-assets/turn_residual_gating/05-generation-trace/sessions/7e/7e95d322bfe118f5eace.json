@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e95d322bfe118f5eace",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "monitor phase2 tg s42 v4 early diag",
+  "task_key": "worker_monitor_phase2_tg_s42_v4_early_diag_20260518T162313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_phase2_tg_s42_v4_early_diag_20260518T162313_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "410d7a18717f235cbc863b0d3944d8396411891149d122b5bc308471d4f2e4ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 次 SSH 连接全部失败，诊断结果如下：\n\n```\nSSH 状态: 连接失败(重试3次) — Unable to connect to port 20861 on 36.103.198.204\n日志可读性: 不可读（无法连接服务器）\n当前步数: 未知\ngate_std 趋势: 无数据\nL4 状态: 无数据\n总 loss: 无数据\nGAR 稳态: 无数据\n诊断结论: 数据不足无法判断 — 服务器 westd-20861 端口不可达，可能服务器已关机/重启/网络中断\n```\n\n服务器端口 20861 完全不可达（连接立即被拒绝，非超时），最可能的原因是：\n1. 服务器实例已被回收或重启\n2. 端口映射失效\n\n建议检查 SeetaCloud 控制台确认实例状态。如果实例已停止，v4 训练也随之中断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-phase2-tg-s42-v4-early-diag.md"
+}

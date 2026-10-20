@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9b25595251f882b5a69",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis gradient conflict and attention",
+  "task_key": "worker_analysis_gradient_conflict_and_attention_20260519T131756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_conflict_and_attention_20260519T131756_result.json",
+    "occurrence": 1,
+    "bytes": 1149,
+    "sha256": "47f2da372246feeb0c9799964c15dbafb964bbf2f7896dd34babbfb9db195154"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n## Gradient Conflict Analysis (3 epochs)\n\n| Epoch | cos_sim | 负向层 | 强冲突层 | NTP/GAR 幅值比 |\n|-------|---------|--------|----------|----------------|\n| 0 | -0.089 | 22/28 (78.6%) | 3/28 | 7.5x |\n| 1 | -0.054 | 20/28 (71.4%) | 0/28 | 13.7x |\n| 2 | -0.042 | 19/28 (67.9%) | 0/28 | 14.7x |\n\n## Attention Heatmap (4-way comparison)\n\n| Model | Mean Goal Attn | T1→T10 Decay |\n|-------|---------------|--------------|\n| Base | 0.0136 | 87.5% |\n| TG v7 | 0.0232 | 77.7% |\n| UG | 0.0216 | 80.3% |\n| LoRA-only | 0.0216 | 81.0% |\n\n## 关键发现\n\n1. **NTP-GAR 梯度冲突普遍存在**：67-79% 的层梯度方向相反，且随 epoch 增加 NTP 幅值主导越来越大（7.5→14.7x），GAR 信号被淹没\n2. **四模型 attention 衰减几乎一致**：TG 77.7% vs LoRA-only 81.0%，gating 机制零增量\n3. **根本原因**：gate 参数无法同时服务 NTP（push gate→1.0）和 GAR（要求重新分配 attention），训练中 NTP 梯度碾压 GAR\n\n产出文件位于 `westd-20861:/root/turn_residual_gating/runs/analysis/`，已注册 3 个 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-conflict-and-attention.md"
+}

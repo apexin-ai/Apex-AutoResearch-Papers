@@ -1,0 +1,398 @@
+{
+  "schema_version": "1.0",
+  "id": "ace14a7366d159578682",
+  "project": "turn_residual_gating",
+  "kind": "conversation",
+  "title": "paper writing conclusion abstract limitations",
+  "task_key": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_conclusion_abstract_limitations_20260519T232714.jsonl",
+    "occurrence": 1,
+    "bytes": 25120,
+    "sha256": "916ac6812fd947b6c4e6e7b99a9abf929c696a22b794721990807da542010e34"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T23:28:34.949541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T23:28:34.950123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T23:28:34.950323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T23:28:34.950729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T23:28:34.950897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T23:28:34.951064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tMulti-turn dialogue is the dominant mode of interaction with large language models (LLMs), and system prompts that specify task goals form the foundation of instruction following. As conversations grow longer, however, models progressively lose track of these goal specifications. \\citet{dongre2026attention} quantified this degradation across 12 models: the Goal Attention Ratio (GAR), which measures how much attention the model allocates to goal tokens in the system prompt, declines by an average of 70.8\\% between early and mid-conversation turns. We replicate this finding on Qwen-2.5-7B-Instruct, where GAR drops from 0.0418 at turn~1 to 0.0122 at mid-conversation, consistent with the cross-model pattern. This attention decay represents a systematic failure of multi-turn models to maintain task coherence, and it grows worse with each additional turn.\n4\t\n5\tA striking aspect of this degradation is what it does \\emph{not} affect. \\citet{dongre2026attention} showed that goal-relevant information persists in the residual stream throughout the conversation: linear discriminant analysis probes recover goal content with AUC\\,=\\,0.98 even at late turns where attention to goal tokens has collapsed. The information is present in the hidden states, but the attention mechanism fails to route it toward the output computation. This dissociation between information availability and information utilization suggests a natural intervention: if the residual stream already carries goal information, a learnable gate on the residual pathway could amplify or attenuate layer contributions to recover goal attention. This reasoning motivates ThreadGate, which applies a per-layer sigmoid gate $g_l$ to each residual update: $x_{l+1} = x_l + g_l \\cdot f_l(x_l)$, following the ReZero residual scaling principle \\citep{bachlechner2021rezero}.\n6\t\n7\t\\begin{figure*}[t]\n8\t  \\centering\n9\t  \\includegraphics[width=\\textwidth]{fig1_overview.pdf}\n10\t  \\ca\n…[truncated 4284 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T23:28:34.951217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T23:28:34.951378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Setup}\n5\t\n6\tWe fine-tune Qwen-2.5-7B-Instruct on 8K multi-turn conversations from the UltraChat training split, a dataset of naturalistic dialogues across diverse topics. LoRA adapters (rank 8) are applied to all linear layers. The combined loss $\\mathcal{L} = \\mathcal{L}_\\text{NTP} + \\lambda_\\text{GAR}\\mathcal{L}_\\text{GAR} + \\lambda_\\text{div}\\mathcal{L}_\\text{div}$ uses $\\lambda_\\text{GAR} = \\lambda_\\text{div} = 1.0$ with MSE target $\\tau = 0.5$ (\\S\\ref{sec:loss}). We train for 3 epochs with AdamW (lr $= 2 \\times 10^{-4}$, batch size 1, gradient accumulation 8, seed 42); each variant requires approximately 6 hours on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (102\\,GB). Full hyperparameters are provided in Appendix~A.\n7\t\n8\tTo isolate the contribution of gating, we evaluate four configurations: (1)~\\textbf{ThreadGate}: LoRA + per-layer learned gates + NTP + GAR loss; (2)~\\textbf{Uniform Gate}: LoRA + a single shared gate across all layers + NTP + GAR loss; (3)~\\textbf{LoRA-only}: LoRA + NTP + GAR loss, with gates fixed at 1.0 (no learned gating mechanism); (4)~\\textbf{Base}: the pretrained model without any fine-tuning. Each configuration is evaluated under two teacher-forced protocols. \\emph{IID evaluation} computes metrics on UltraChat text from the same distribution as training. \\emph{Held-out evaluation} uses 50 non-overlapping conversations to test within-distribution generalization. We report three metrics: GAR-ours (attention to goal tokens at the last token of each assistant turn, as defined in \\S\\ref{sec:background}), GAR-Dongre \\citep{dongre2026attention} (attention to goal tokens averaged across all response tokens, all layers, and all heads), and perplexity (PPL).\n9\t\n10\t\\subsection{Main Results}\n11\t\n12\tTable~\\ref{tab:four-way} presents the four-way ablation. The central finding is that all three fine-tuned variants converge to nearly identical performance across both eval\n…[truncated 4184 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T23:28:34.951555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/analysis.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T23:28:34.951783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Analysis}\\label{sec:analysis}\n2\t\n3\tThe four-way ablation in \\S\\ref{sec:experiments} established that gating produces no measurable benefit over LoRA-only fine-tuning. This section investigates why. We first characterize the gradient dynamics between the two training objectives (\\S\\ref{subsec:gradient-conflict}), then show that the learned gates exhibit behavior opposite to the design intent (\\S\\ref{subsec:gate-conditioning}). A targeted causal experiment rules out gradient direction conflict as the explanation (\\S\\ref{subsec:pcgrad}), and a distribution shift analysis identifies the actual failure mode (\\S\\ref{subsec:dist-shift}).\n4\t\n5\t\\subsection{Gradient Conflict Observation}\\label{subsec:gradient-conflict}\n6\t\n7\tTo understand how the two loss terms interact during training, we measure the cosine similarity between $\\nabla_\\theta \\mathcal{L}_\\text{NTP}$ and $\\nabla_\\theta \\mathcal{L}_\\text{GAR}$ at each transformer layer across three training epochs. Table~\\ref{tab:grad-conflict} summarizes the results.\n8\t\n9\t\\begin{table}[t]\n10\t\\centering\n11\t\\small\n12\t\\caption{Gradient interaction between $\\mathcal{L}_\\text{NTP}$ and $\\mathcal{L}_\\text{GAR}$ across training epochs. \\textit{cos\\_sim}: mean cosine similarity across layers. \\textit{neg\\%}: percentage of layers with negative cosine similarity. \\textit{mag\\_ratio}: ratio of NTP to GAR gradient magnitudes.}\n13\t\\label{tab:grad-conflict}\n14\t\\begin{tabular}{lccc}\n15\t\\toprule\n16\t\\textbf{Epoch} & \\textbf{cos\\_sim} & \\textbf{neg\\%} & \\textbf{mag\\_ratio} \\\\\n17\t\\midrule\n18\t0 & $-$0.089 & 78.6 & 7.5$\\times$ \\\\\n19\t1 & $-$0.054 & 71.4 & 13.7$\\times$ \\\\\n20\t2 & $-$0.042 & 67.9 & 14.7$\\times$ \\\\\n21\t\\bottomrule\n22\t\\end{tabular}\n23\t\\end{table}\n24\t\n25\tTwo patterns are apparent. First, the NTP and GAR gradients point in opposing directions across 68--79\\% of layers throughout training. The mean cosine similarity is negative at every epoch, though it attenuates slightly from $-$0.089 to $-$0.042 as training progresses. Second, t\n…[truncated 7826 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T23:28:34.951955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/discussion.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T23:28:34.952098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\\label{sec:discussion}\n2\t\n3\tThe failure of ThreadGate traces to a fundamental incompatibility between teacher-forcing and auxiliary attention losses, not to the gating architecture itself. Under teacher-forcing, $\\mathcal{L}_\\text{GAR}$ optimizes attention patterns conditioned on ground-truth prefixes that never appear at inference time. The gate parameters, subject to NTP gradient pressure that grows from 7.5$\\times$ to 14.7$\\times$ the GAR gradient magnitude (\\S\\ref{subsec:gradient-conflict}), converge toward 1.0 and become passive. The resulting 2--7\\% residual attenuation cannot compensate for the distributional mismatch between teacher-forced and autoregressive contexts, as the 30$\\times$ GAR gap confirms (\\S\\ref{subsec:dist-shift}). Stronger gating (lower initial values, higher $\\lambda_\\text{GAR}$) would degrade NTP performance, while weaker gating is already ineffective. This dilemma is structural: any lightweight intervention trained jointly with NTP under teacher-forcing faces the same pressure toward passivity.\n4\t\n5\tFour directions follow from the experimental evidence. First, \\textbf{inference-time attention intervention} sidesteps the training generalization problem entirely by rescaling or pruning attention heads at decoding time, operating on the actual autoregressive distribution rather than a teacher-forced proxy. Second, a \\textbf{decoupled goal-processing pathway}, analogous to adapter modules but dedicated to goal tokens, could maintain goal information through a channel that NTP gradients do not dominate. Third, \\textbf{GAR-aware decoding} would incorporate goal attention into the sampling or reranking stage rather than the training loss, avoiding exposure bias by construction. Fourth, \\textbf{exposure bias mitigation for auxiliary losses} remains a viable direction: scheduled sampling \\citep{bengio2015scheduled} or Professor Forcing \\citep{lamb2016professor} applied specifically to $\\mathcal{L}_\\text{GAR}$ could reduce the\n…[truncated 1639 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T23:28:34.952316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/conclusion.tex",
+              "content": "\\section{Conclusion}\\label{sec:conclusion}\n\nWe investigated whether lightweight residual gating can recover goal attention in multi-turn dialogue. ThreadGate applies per-layer sigmoid gates to the residual stream, trained jointly with an auxiliary Goal Attention Ratio (GAR) loss that targets attention to system prompt goal tokens. Training succeeds: teacher-forced GAR reaches 0.49 across all fine-tuned variants. The failure emerges at inference time. Under autoregressive generation, GAR drops to 0.016 for ThreadGate, a 30$\\times$ gap that the gating mechanism cannot bridge. A four-way ablation (ThreadGate, Uniform Gate, LoRA-only, Base) confirms that gating contributes zero measurable benefit, with GAR-ours varying by only 0.75 percentage points across fine-tuned variants on held-out data. A PCGrad causal exclusion experiment rules out gradient direction conflict between the NTP and GAR objectives as the cause: eliminating direction conflict does not rescue GAR convergence. The root cause is exposure bias. Attention patterns optimized under teacher-forced prefixes do not transfer to model-generated text, and the primary NTP objective's self-recovery from exposure bias does not extend to auxiliary attention losses. These results indicate that auxiliary attention losses face a fundamental generalization barrier under teacher-forcing. Future work should explore inference-time attention intervention or exposure bias mitigation strategies that operate on the autoregressive distribution directly.\n"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T23:28:34.952485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T23:28:34.952614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/abstract.tex",
+              "content": "\\begin{abstract}\nMulti-turn dialogue with Large Language Models (LLMs) suffers from progressive attention decay toward system prompt goal tokens. The Goal Attention Ratio (GAR) declines by 70.8\\% between early and mid-conversation turns, yet linear probes recover goal content from the residual stream with AUC\\,=\\,0.98, indicating that goal information persists but the attention mechanism fails to route it. We introduce ThreadGate, a per-layer sigmoid gate on the residual stream ($x_{l+1} = x_l + g_l \\cdot f_l(x_l)$), trained jointly with next-token prediction (NTP) and an auxiliary GAR loss. A four-way ablation (ThreadGate, Uniform Gate, LoRA-only, Base) on Qwen-2.5-7B-Instruct reveals that training succeeds (teacher-forced GAR\\,=\\,0.49) but generalization fails: autoregressive GAR drops to 0.016, a 30$\\times$ gap. Gating contributes zero measurable benefit, with only 0.75 percentage points separating all fine-tuned variants on held-out data. A PCGrad experiment rules out gradient direction conflict as the cause. The failure traces to exposure bias: attention patterns optimized under teacher-forced prefixes do not transfer to model-generated text, and the NTP objective's token-level self-recovery does not extend to auxiliary attention losses. These findings provide the first empirical characterization of how exposure bias selectively destroys auxiliary objective generalization while leaving the primary objective intact.\n\\end{abstract}\n"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T23:28:34.952754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/abstract.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T23:28:34.952876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/limitations.tex",
+              "content": "\\section{Limitations}\\label{sec:limitations}\n\nOur experiments use a single random seed (seed\\,=\\,42). While the four-way convergence across ThreadGate, Uniform Gate, and LoRA-only provides indirect evidence of robustness (three independent configurations reaching indistinguishable performance is unlikely to result from seed-specific artifacts), multi-seed validation would strengthen this conclusion.\n\nWe test only one type of auxiliary attention loss (GAR with MSE target $\\tau = 0.5$). Other attention steering objectives, such as head-specific or layer-specific attention losses, may exhibit different sensitivity to exposure bias. Our negative result applies to the GAR family; it does not rule out all auxiliary attention interventions.\n\nTraining uses 8K conversations from UltraChat. Larger-scale training could alter gate dynamics, particularly if the model encounters sufficient distributional diversity to reduce the training-inference mismatch.\n\nCross-model validation on Llama-3.1-8B-Instruct is in progress (\\S\\ref{sec:cross-model}). Until those results are available, our conclusions rest on a single model family (Qwen-2.5-7B-Instruct).\n\nThe PCGrad causal exclusion addresses gradient direction conflict only. Magnitude imbalance (GradNorm; \\citealp{chen2018gradnorm}) and Nash equilibrium approaches (Nash-MTL; \\citealp{navon2022nash}) remain untested and could reveal additional failure modes or interaction effects.\n\nAll three fine-tuned variants share the same GAR auxiliary loss. This design isolates the gating mechanism but does not test whether gating could be effective without an auxiliary attention loss or under a different training objective.\n"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T23:28:34.953007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/limitations.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T23:28:34.953162+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件已写入。数字与 Introduction/Experiments 一致（30× gap, GAR 0.49 vs 0.016, 0.75pp spread, 70.8% decline, probe AUC=0.98）。Abstract 内 LLM/GAR/NTP 均已定义。六项 Limitations 全部覆盖。无破折号、无 AI 风格用词、无 -ing 短语结尾。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_abstract_limitations_20260519T232714"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-conclusion-abstract-limitations.md"
+}

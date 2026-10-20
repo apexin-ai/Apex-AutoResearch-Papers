@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp-001",
+  "project": "verifier-tts-struct-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-11T16:26:44.110Z",
+    "updated_at": "2026-05-11T17:43:07.077Z",
+    "hypothesis": "并行 TTS（生成 N 个候选 + 结构自洽性 IoU 聚合）在 SciERC NER 上优于单次 greedy 抽取，self-consistency@N≥8 > greedy@N=1 ≥ 1.0 F1 点",
+    "notes": "服务器切换: home-1x5090 → seetacloud-bjb2-structtts (8x RTX 5090 32GB)，8卡数据并行方案"
+  },
+  "timestamp": "2026-05-11T17:43:07.112077+00:00",
+  "trigger": "update_registry"
+}

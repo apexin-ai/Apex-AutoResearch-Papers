@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "dc516ca1c2e6501d0ad8",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "code phase2 v3b impl and run",
+  "task_key": "worker_code_phase2_v3b_impl_and_run_20260518T133903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2_v3b_impl_and_run_20260518T133903.log",
+    "occurrence": 1,
+    "bytes": 1521939,
+    "sha256": "53364478ecbb6ad274b448306e3b23a4d7b682bbef731ad5c7fdd7e27d08514f"
+  },
+  "statistics": {
+    "messages": 810,
+    "user_turns": 1,
+    "tool_calls": 335,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 130,
+      "tool_call": 335,
+      "tool_result": 335,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 330,
+      "chunks": [
+        {
+          "path": "dc516ca1c2e6501d0ad8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dc516ca1c2e6501d0ad8-part-0002.json",
+          "message_count": 150
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 480,
+      "chunks": [
+        {
+          "path": "dc516ca1c2e6501d0ad8-part-0002.json",
+          "message_count": 30
+        },
+        {
+          "path": "dc516ca1c2e6501d0ad8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "dc516ca1c2e6501d0ad8-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "dc516ca1c2e6501d0ad8-part-0005.json",
+          "message_count": 90
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-phase2-v3b-impl-and-run.md"
+}

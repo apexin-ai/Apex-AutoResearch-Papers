@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "id": "a05ba5501e381a855a62",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "diagnose d048 ss s42",
+  "task_key": "worker_diagnose_d048_ss_s42_20260522T155358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_d048_ss_s42_20260522T155358_result.json",
+    "occurrence": 1,
+    "bytes": 2401,
+    "sha256": "a1789a965d8593983baf5630047bdbeb8a9b8a282a5ddb55f61c9858c6b84309"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n```json\n{\"root_cause\":\"GPU 内存争用 - 进程 30899 占 68.62 GiB（已死亡），训练进程被挤压至 26.13 GiB 后 OOM\",\"error_type\":\"resource\",\"training_progress\":\"Epoch 1 / Step 7800（共 3 epochs，epoch 0 已完成）\",\"has_checkpoint\":true,\"checkpoint_path\":\"/root/turn_residual_gating/runs/d048_ss_s42/epoch_0/\",\"competing_process\":\"进程 30899 已不存在，GPU 当前完全空闲（0 MiB / 97887 MiB）\",\"fix_steps\":[\"GPU 已空闲，竞争进程已消失\",\"epoch_0 checkpoint 存在（lora/adapter_model.safetensors + gate_params.pt），epoch_1 未保存\",\"检查 train_phase2_v8b.py 是否支持 --resume 从 epoch_0 恢复，避免从头重训\",\"若不支持 resume，直接重跑 bash scripts/d048_ss_s42.sh\"],\"can_auto_fix\":true}\n```\n\n**关键发现：**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 30899 | **已死亡**，GPU 完全空闲（0 MiB，0%利用率） |\n| 训练进度 | Epoch 1 Step 7800，正常内存 53.0-53.1 GB，SS ratio 已到 max 0.300 |\n| Checkpoint | epoch_0 已保存（`runs/d048_ss_s42/epoch_0/`），epoch_1 **未保存** |\n| OOM 位置 | `Qwen2 eager_attention_forward` → `softmax`，申请 424 MiB 但仅剩 218.56 MiB |\n| 脚本配置 | `--output-dir runs/d048_ss_s42`，无 `--resume` 参数 |\n\n训练本身内存正常（53 GiB / 95 GiB），纯粹是外部进程争抢导致 OOM。GPU 已空闲，可直接重跑。需要确认训练代码是否能从 epoch_0 checkpoint 恢复，否则需要从头跑 3 个 epoch。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "GPU 内存争用 - 进程 30899 占 68.62 GiB（已死亡），训练进程被挤压至 26.13 GiB 后 OOM",
+              "error_type": "resource",
+              "training_progress": "Epoch 1 / Step 7800（共 3 epochs，epoch 0 已完成）",
+              "has_checkpoint": true,
+              "checkpoint_path": "/root/turn_residual_gating/runs/d048_ss_s42/epoch_0/",
+              "competing_process": "进程 30899 已不存在，GPU 当前完全空闲（0 MiB / 97887 MiB）",
+              "fix_steps": [
+                "GPU 已空闲，竞争进程已消失",
+                "epoch_0 checkpoint 存在（lora/adapter_model.safetensors + gate_params.pt），epoch_1 未保存",
+                "检查 train_phase2_v8b.py 是否支持 --resume 从 epoch_0 恢复，避免从头重训",
+                "若不支持 resume，直接重跑 bash scripts/d048_ss_s42.sh"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d048-ss-s42.md"
+}

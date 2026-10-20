@@ -1,0 +1,17 @@
+{
+  "exp_id": "mvp-004-sequential",
+  "project": "verifier-tts-struct-ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-11T19:48:20.184Z",
+    "updated_at": "2026-05-11T20:06:24.271Z",
+    "hypothesis": "Sequential self-refinement（K轮迭代修正）在 SciERC NER 上优于 greedy 和 parallel 聚合，sequential@K≥3 > greedy ≥ 1.0 F1 点",
+    "parent": "mvp-001",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-11T20:06:24.310355+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90bf527054032f8aef8f",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops ug progress and base gar",
+  "task_key": "worker_ops_ug_progress_and_base_gar_20260519T025947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ug_progress_and_base_gar_20260519T025947_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "38b22b2e370c1328842a52d682cd8b75c92a7a68e9ba59b08ed6e40037276458"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### Part 1: UG 训练进度\n\n| 指标 | 值 |\n|---|---|\n| 当前位置 | Epoch 1, micro-step 900 |\n| Global step | ~1113 / 3000 |\n| 进度 | **~37%** |\n| 已运行 | ~2h 20min（08:43 开始） |\n| 预估速率 | ~8 global steps/min |\n| 剩余 global steps | ~1887 |\n| **预估剩余时间** | **~3h 55min（约 15:00 完成）** |\n\n训练状态正常：\n- Gate 均值从 epoch 0 的 ~0.97 缓降至 epoch 1 的 ~0.96\n- 最低 gate 层：L3=0.793, L5=0.809（一直是最低的两层）\n- 最高 gate 层：L27=1.000, L2/L4/L26=0.996\n- L_GAR 很小（0.000-0.007），L_DIV 几乎为零\n- 显存稳定在 53.1GB\n\n### Part 2: Base model GAR on ultrachat\n\n**无法在当前条件下完成。**\n\n- GPU：UG 训练占用 70GB/98GB，尝试 GPU 推理 OOM\n- CPU：7B 模型 forward pass（含 output_attentions=True）× 50 组对话，预估需 50-150 分钟，远超 10 分钟限制，已终止\n\n**建议**：等 UG 训练完成（预计 ~15:00 北京时间）后用 GPU 跑，几分钟即可完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ug-progress-and-base-gar.md"
+}

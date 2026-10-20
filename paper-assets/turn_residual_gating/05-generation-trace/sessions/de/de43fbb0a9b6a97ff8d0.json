@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de43fbb0a9b6a97ff8d0",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis v8 ss gar signal check",
+  "task_key": "worker_analysis_v8_ss_gar_signal_check_20260519T160535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v8_ss_gar_signal_check_20260519T160535_result.json",
+    "occurrence": 1,
+    "bytes": 2807,
+    "sha256": "20e7c96d4f4505d90a4caef9d2791e90c94bb703ac9e4fb632605754d780200c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完成。以下是分析结果：\n\n---\n\n## v8 Scheduled Sampling 训练状态报告\n\n### 1. 进程状态：已死亡\n- 训练进程**不在运行**（服务器无 Python 训练进程）\n- 日志末次更新：2026-05-20 00:07:26（约 25 分钟前）\n- 日志无 error/traceback，可能 OOM 或 tmux 被关\n- 停在 micro-step **1400 / 24000**（grad_accum=8，global_step ≈ 175 / 3000，完成 **5.8%**）\n\n### 2. SS Steps：零可观测数据\n- 日志每 50 步记录一次，共 30 条记录\n- **所有 30 条均为 `SS=no`**，零条 `SS=YES`\n- SS ratio 在 step 1400 = **0.058**（线性 ramp：`global_step/total_steps`，上限 0.5）\n- `used=2.6%` → 约 36 个 SS micro-step 发生了，但无一命中日志采样点\n- **结论：无法直接观测 SS steps 的 L_GAR**\n\n### 3. TF Steps L_GAR（所有日志数据都是 TF）\n\n| 阶段 | Steps | L_GAR 范围 | 趋势 |\n|------|-------|-----------|------|\n| 稳定期 | 0–500 | 0.219–0.235 | 平稳 |\n| 急降期 | 550–750 | 0.204→0.047 | 快速下降 |\n| 坍塌期 | 800–1400 | 0.000–0.025 | 接近零 |\n\n- **TF L_GAR 均值（step 850–1400, n=12）**: **0.0062 ± 0.0082**\n- 与 v7 完全一致的模式——TF context 上 GAR 迅速达标，loss → 0\n\n### 4. Gate 值趋势\n- Step 0: 0.810 → Step 1400: **0.930**\n- 门控接近全开（≈1.0），模型趋向 base+LoRA\n\n### 5. 对\"SS 零信号\"假设的判断\n\n**间接证据强烈支持零信号假设**：\n\n1. TF L_GAR 已坍塌到 ≈ 0（与 v7 相同）\n2. 4-way eval 显示 inference GAR-ours ≈ 0.50（≈ target），说明模型在自己生成的文本上 GAR 本来就接近目标\n3. 如果 GAR on model-generated context 已经 ≈ target，则 SS steps 的 L_GAR = max(0, target - GAR) ≈ 0\n4. Gate → 0.93 意味着几乎没有 residual gating 效应，与 base model 行为一致\n\n**但直接证据缺失**——因为零条 SS step 被日志捕获，且训练进程已死。\n\n### 6. 实验设计缺陷\n\n两个严重问题：\n- **SS ratio ramp 太慢**：用 `global_step / total_steps` 线性 ramp，训练 5.8% 时 ratio 才 0.058，有效 SS 步数极少。到训练结束才达 0.5。模型在 ratio 有意义之前（~step 500+）就已经把 TF L_GAR 训到 0 了。\n- **日志不区分 SS/TF 的 L_GAR 统计**：只有当某个 step 恰好是 SS 且恰好命中每 50 步的日志点时才能看到 `SS=YES`，无 running average 分类统计。\n\n### 建议\n\n训练已死，且即使重启也大概率零信号。如果要验证假设，需要：\n1. 加一个 wandb 或日志字段专门追踪 SS steps 的 L_GAR running average\n2. 考虑 SS ratio 不用线性 ramp 而是从更高值开始（如 0.3→0.5），或者在 TF L_GAR 坍塌之前就开始大量 SS"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v8-ss-gar-signal-check.md"
+}

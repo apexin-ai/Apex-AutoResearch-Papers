@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9fa6196aba038000349",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis extract fig4 data",
+  "task_key": "worker_analysis_extract_fig4_data_20260519T210826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_extract_fig4_data_20260519T210826_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "9de2bfbbc735c97c7954d353da388c41f1ba4710bf323c048a686f286da5d7da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。总结：\n\n**已完成**: `figures/paper/fig4_real_data.json` 已生成。\n\n**问题**: SSH 工具（`mcp__agent-ml-research__ssh_read_only`）已从当前环境的 MCP server 中移除，4 个 worker 都无法连接服务器。所有 worker（`fig4_extract`, `extract_heatmap_gar`, `extract_fig4_data`, `fig4_attention_heatmap_fix`）均因此卡住。\n\n**当前数据来源**:\n- **Base**: registry 中 `phase1_gar_diag` 的实际 per-turn 值（10 个点，来自 GARMeasurer）\n- **TG/UG/LoRA**: 从 attention_heatmap 实验汇总指标（mean + decay）用指数衰减模型拟合的 10 个点，**不是实际测量值**\n\n**获取实际数据**: 服务器上的 JSON 文件路径已记录在 `_metadata.server_json_paths` 中。恢复 SSH 访问后，在服务器上执行 `_metadata.note` 中的命令即可提取实际 per-turn 均值并替换拟合值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-extract-fig4-data.md"
+}

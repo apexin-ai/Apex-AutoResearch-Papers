@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5d451eb2ad5f2dd4d95",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "eval attention steering gen n50",
+  "task_key": "worker_eval_attention_steering_gen_n50_20260520T190534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_attention_steering_gen_n50_20260520T190534_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "864d4c9d33e5688c42468f0aaefdce6cf5cc0bbc2fa44b9401c9e02d604226fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并注册。汇总：\n\n1. **PID**: 196319（GPU 进程），tmux session: `att_steer_gen50`\n2. **数据文件**: `/root/turn_residual_gating/data/eval_200/eval_200.json`（取前 50 条）\n3. **Checkpoint**: `/root/turn_residual_gating/runs/phase2_tg_s42_v7/`（含 gate_params.pt + lora/）\n4. **结果输出**: `/root/turn_residual_gating/runs/attention_steering/attention_steering_gen_n50.json`\n5. **日志**: `/root/turn_residual_gating/runs/attention_steering/gen_n50.log`\n\n**命令**:\n```\nCUDA_VISIBLE_DEVICES=0 python src/eval_attention_steering.py \\\n  --checkpoint runs/phase2_tg_s42_v7 \\\n  --mode gen \\\n  --data-file data/eval_200/eval_200.json \\\n  --max-convs 50 \\\n  --beta 0 2 3 4 5 10 \\\n  --output-dir runs/attention_steering/ \\\n  --output-name attention_steering_gen_n50\n```\n\n已设 12 分钟 cron 监控（job `c97b56a4`），完成后会自动通知并注册 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-attention-steering-gen-n50.md"
+}

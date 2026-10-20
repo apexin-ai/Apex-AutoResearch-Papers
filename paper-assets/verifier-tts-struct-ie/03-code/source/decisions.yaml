@@ -1,0 +1,88 @@
+_next_id: 8
+decisions:
+- id: D001
+  date: 2026-05-11 16:24 UTC
+  summary: MVP 选用 SciERC NER + Qwen3-8B，验证并行 TTS 核心机制
+  rationale: SciERC 公开无需 LDC license，NER 任务最简单直接，能快速验证"多候选+结构聚合是否优于单次抽取"这一核心假设。Qwen3-8B
+    FP16 ~16GB 可装入 5090 32GB。加 oracle best-of-N 对照可区分"候选无多样性"和"选择机制弱"两类失败模式。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-11 16:27 UTC
+  summary: MVP 实验采用 3 random seeds 控制噪声，pass 阈值保持 ≥1.0 F1（均值）
+  rationale: Reviewer 指出 NER F1 跨 seed 波动 0.5-1.5pt，单次运行下 ≥1.0pt 改进可能落入噪声。3 seeds
+    增加约 2x 时间但 MVP 仍可在 ~16-24h 内完成，可信度大幅提升。N=1 greedy 是确定性的不需多 seed。
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-11 18:58 UTC
+  summary: Per-entity SC（exact 和 IoU）均失败，pivot 到 entity-level frequency merging
+  rationale: Oracle +6.49pt 证明候选多样性真实存在，但 IoU SC 与 exact SC 几乎相同（+0.17pt），根因是候选间 entity
+    set 高度多样化（不是 span 边界差异）。Per-entity voting 在此场景本质失效。Entity-level merging（pool +
+    frequency threshold）直接利用互补信息，可用已有推理结果纯 CPU 测试，几分钟出结果。这也揭示了 IE 与 reasoning 在 TTS
+    聚合策略上的根本差异——selection vs merging——本身是更有深度的 taxonomy contribution。
+  related_experiments:
+  - exp_id: mvp-001
+    role: evidence
+    result: Oracle +6.49pt but SC +0.17pt
+  depends_on:
+  - D001
+  - D002
+- id: D004
+  date: 2026-05-11 19:21 UTC
+  summary: Freq merging 也未达标（+0.66pt），并行测试 verifier-based selection + SciERC RE 任务
+  rationale: 4 种统计聚合方法全部未达 1.0pt 阈值，但 oracle +6.49pt 证明方向可行（Partial）。两个并行假设：(1) NER
+    entity independence 太高导致统计方法失效，RE 有更强结构约束可能适合聚合；(2) 需要语义级验证而非统计聚合。并行测试可同时回答两个问题，8
+    卡资源足够。RE 如果成功 → taxonomy 核心发现（NER 不适合 vs RE 适合 TTS 聚合）；verifier 如果成功 → method
+    升级。
+  related_experiments:
+  - exp_id: mvp-001
+    role: evidence
+    result: Freq merge best +0.66pt, oracle +6.49pt, all 4 aggregation methods below
+      1.0pt threshold
+  depends_on:
+  - D003
+- id: D005
+  date: 2026-05-11 19:47 UTC
+  summary: 不 kill 项目，MVP 扩展测试 sequential self-refinement 作为最后判定
+  rationale: 5 种并行聚合方法全部未达标，但 oracle +6.49pt 证明方向可行（Partial）。RE 6.2% baseline 不具参考性。IDEA_BRIEF
+    核心对比是 parallel vs sequential，SCIR 证明 sequential 在 IE 上有效（+5.27%）。如果 sequential
+    works + parallel doesn't → taxonomy 核心发现。如果 sequential 也失败 → 训练-free TTS 不适用于
+    IE，判定 MVP fail。这是最后一轮 MVP 测试。
+  related_experiments:
+  - exp_id: mvp-001
+    role: evidence
+    result: 'PARTIAL: oracle +6.49pt, all aggregation <1pt'
+  - exp_id: mvp-002
+    role: evidence
+    result: 'NEGATIVE: RE baseline 6.2%, N>4 OOM'
+  - exp_id: mvp-003
+    role: evidence
+    result: 'NEGATIVE: verifier Pearson r=0.09'
+  depends_on:
+  - D004
+- id: D006
+  date: 2026-05-11 19:50 UTC
+  summary: D005 补充硬退出条件：mvp-004 sequential@K≥3 < 1.0pt → kill 或 pivot 到纯 taxonomy
+    分析
+  rationale: Reviewer 指出 D005 缺量化 kill 条件，易陷入沉没成本。明确：如果 sequential self-refinement
+    也无法在 K≥3 时超过 greedy ≥1.0pt（3 seeds 均值），则判定 training-free TTS 不适用于 IE，项目 kill 或
+    pivot 到纯 negative taxonomy 分析论文（无 positive method contribution，发表难度显著上升）。
+  related_experiments: []
+  depends_on:
+  - D005
+- id: D007
+  date: 2026-05-11 20:09 UTC
+  summary: MVP FAIL — D006 kill 条件触发，escalate 给用户决定项目去向
+  rationale: Sequential@K=3 F1=-0.23pt，触发 D006 硬退出条件。8 种 training-free 方法（exact/IoU
+    SC、binary/weighted freq merge、LLM verifier、sequential refine）× 2 任务（NER/RE）全部未达
+    1.0pt 阈值。Oracle +6.49pt 证明候选多样性真实存在，但所有无监督聚合/验证/修正方法均无法利用。核心发现：IE 的 verification
+    gap 在 training-free 条件下不可闭合——与 IDEA_BRIEF 的乐观假设（"schema constraints enable training-free
+    verification"）矛盾。项目去向需用户决策。
+  related_experiments:
+  - exp_id: mvp-004
+    role: trigger
+    result: Sequential K=3 -0.23pt, K=4 -0.23pt, kill condition D006 triggered
+  depends_on:
+  - D006

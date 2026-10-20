@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea0944d1c1bf9bcef7ff",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "data attention steering extract",
+  "task_key": "worker_data_attention_steering_extract_20260520T111052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_attention_steering_extract_20260520T111052_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "570ae64928ede99b01552d807cda5c733fa00d11f1f9600b49658fdb525666f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据提取完成。以下是最终结果汇总：\n\n## Gen 模式（5 conversations, v7 checkpoint）\n\n**已获取完整 per-conversation 数据的 beta 值：**\n\n| Beta | GAR (mean) | PPL (mean) | 数据精度 | 来源 |\n|------|-----------|-----------|---------|------|\n| 0.0 | 0.0280 | 1.409 | 全精度 | 服务器 JSON |\n| 2.0 | 0.0620 | 1.411 | 4位小数 | 实验日志 |\n| 5.0 | 0.6795 | 1.908 | 4位小数 | 实验日志 |\n| 10.0 | 0.9590 | 4.220 | 全精度 | 服务器 JSON |\n\n**仅有聚合值（per-conv 数据被 SSH 截断）：**\n- beta 0.5: GAR=0.0287, PPL=1.387（有2条对话的部分高精度曲线）\n- beta 1.0: GAR=0.0349, PPL=1.360\n\n**保存位置：**\n`artifacts/attention_steering_v7_tg_gen/data/steering_per_conv_gen5.json`\n\n**缺失原因：** `ssh_read_only` 工具输出截断在 ~8KB，14KB 的 JSON 文件中间 6KB 被截断。实验日志的 `tail -80` 只捕获了后 3 个 beta 值。beta 0.5 和 1.0 的 per-conversation 数据在截断区域内。\n\n**是否影响论文：** beta 0.5 和 1.0 处于低 steering 区域（GAR 几乎不变），对 phase transition 分析和 error bar 影响极小。关键数据（beta 0.0 baseline、2.0 过渡点、5.0/10.0 高 steering）均完整。\n\n如果需要完整的 beta 0.5/1.0 数据，需要从服务器上用 `head -c 7000` / `tail -c +4000` 分段读取 JSON 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-attention-steering-extract.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cafd976be546920e7a8d",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops check modelscope llama3",
+  "task_key": "worker_ops_check_modelscope_llama3_20260519T042203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_modelscope_llama3_20260519T042203_result.json",
+    "occurrence": 1,
+    "bytes": 640,
+    "sha256": "d618ebc3a9b0b1c2b4d6f87c33caf1505fc5cdb8648effb93993b0c204851885"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。报告：\n\n| 项目 | 结果 |\n|---|---|\n| ModelScope 可用性 | 可用（已预装） |\n| Llama-3.1-8B-Instruct 路径 | `LLM-Research/Meta-Llama-3.1-8B-Instruct`（第一个候选即命中） |\n| 本地缓存路径 | `/root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct` |\n| tokenizer 文件 | `tokenizer.json`, `tokenizer_config.json`, `special_tokens_map.json` |\n| chat_template 含 `start_header_id` | True |\n| `<\\|start_header_id\\|>` token ID | `128006` |\n| `<\\|eot_id\\|>` token ID | `128009` |\n| Special tokens | `<\\|begin_of_text\\|>`, `<\\|eot_id\\|>` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-modelscope-llama3.md"
+}

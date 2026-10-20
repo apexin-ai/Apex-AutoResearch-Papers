@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aca1bf09e8701019f331",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops sync and integration test",
+  "task_key": "worker_ops_sync_and_integration_test_20260519T042455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_and_integration_test_20260519T042455_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "ea1d3da94a17b1a06d41070f9d274bb2d39a95d9317a32877bdbeefd5789a127"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果汇总\n\n### 1. 同步验证\n\n| 文件 | 行数 | MD5 |\n|---|---|---|\n| `turn_utils.py` | 237 | `f8929e61...` |\n| `train_phase2.py` | 373 | `0f08186a...` |\n| `eval_phase2_gar.py` | 529 | `ee3e4e65...` |\n| `test_turn_utils.py` | 421 | `b48acdf7...` |\n\n### 2. Integration Test (真实 tokenizer) — 2/2 passed\n\n**Qwen2.5-7B-Instruct (chatml)**:\n- 5 turns detected, roles: `[system, user, assistant, user, assistant]`\n- Seq len: 69, Goal tokens (ours): 11, Goal tokens (dongre): 6\n- Assistant last token positions: `[38, 66]`\n- Boundary positions: 10\n\n**Llama-3.1-8B-Instruct (llama3)**:\n- 5 turns detected, roles: `[system, user, assistant, user, assistant]`\n- Seq len: 91, Goal tokens (ours): 33, Goal tokens (dongre): 27\n- Assistant last token positions: `[61, 89]`\n- Boundary positions: 10\n\n### 3. Unit Test (mock-based) — 27/27 passed\n\n所有 27 个测试用例全部通过，0 failures。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-and-integration-test.md"
+}

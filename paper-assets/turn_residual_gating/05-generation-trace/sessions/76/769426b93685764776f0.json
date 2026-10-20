@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "769426b93685764776f0",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code prepare unified ar n50 eval",
+  "task_key": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_unified_ar_n50_eval_20260522T235014_result.json",
+    "occurrence": 1,
+    "bytes": 1742,
+    "sha256": "f674c52a3212d522ea94865a695038746ce7b5450f88d5c70fcdeceac16d0b71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`bash -n` 通过。脚本已创建。\n\n---\n\n## 报告\n\n### Checkpoint 确认\n\n| 条件 | 路径 | gate_params.pt | lora/ | --gate-type |\n|------|------|:-:|:-:|-------------|\n| TG v7 s42 | `runs/phase2_tg_s42_v7/epoch_2` | ✓ | ✓ | `threadgate` |\n| UG s42 | `runs/phase2_ug_s42/epoch_2` | ✓ | ✓ | `uniform` |\n| PCGrad s42 | `checkpoints/tg_v9_pcgrad_s42/epoch_2` | ✓ | ✓ | `threadgate` |\n| LoRA-only s42 | `runs/phase2_lora_only_s42/epoch_2` | — | ✓ | `none` |\n| SS v8b s42 | `runs/d048_ss_s42/epoch_2` | ✓ | ✓ | `threadgate` |\n\n**路径修正**：任务给的 UG/LO 路径（`checkpoints/ug_s42/`、`checkpoints/lora_only_s42/`）不存在，实际在 `runs/phase2_ug_s42/` 和 `runs/phase2_lora_only_s42/`。\n\n**gate-type 修正**：任务说 UG 用 `threadgate`，但 UG 的 `train_config.json` 明确是 `gate_type: uniform`，已有脚本 `d048_eval_existing_s42_ar_n50.sh` 和 `d048_final_ar_eval.sh` 也用 `uniform`。脚本中已按 `uniform` 设置。\n\n### 脚本结构 (`scripts/unified_ar_n50_eval.sh`)\n\n1. **Checkpoint 验证** — 启动前检查 5 个 checkpoint 完整性\n2. **10 轮 AR eval** — 5 条件 × 2 GAR variants（ours + dongre），共 10 次 `eval_attention_steering.py --mode gen`\n   - 有 gate 的条件（TG/UG/PCGrad/SS）：`--beta 0 3 5`\n   - 无 gate 的条件（LO）：`--beta 0`\n3. **Bootstrap 95% CI** — curve[2:] 计算 mid-turn GAR，B=10000\n4. **Paired Wilcoxon** — TG vs LO / TG vs UG / SS vs TG / PCGrad vs TG\n5. **输出** — 每条件的 JSON 在 `results/unified_ar_n50/{condition}/`，汇总在 `unified_summary_ci.json`\n\n数据源：`data/eval_200/eval_200.json`，`--max-convs 50`，与 `d048_final_ar_eval.sh` 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-unified-ar-n50-eval.md"
+}

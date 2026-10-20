@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2fb02d7bb3ce46a78a5",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "audit body text",
+  "task_key": "worker_audit_body_text_20260525T203748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_body_text_20260525T203748_result.json",
+    "occurrence": 1,
+    "bytes": 1287,
+    "sha256": "f9e5d0e60fc76941505cc7250556a5224f8d484015456678a86b546f9d496651"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/audit_body_text.md`。\n\n**核心发现：~160 个定量声明中，~135 个与 Registry 一致，6 个问题（2 major + 4 minor），19 个需独立验证。**\n\n### 2 个 Major 问题\n\n1. **Table 1 IID 列数据存疑** — TG/LO 的 IID GAR-O 显示 0.50，但 Registry `phase2_4way_eval` 记录为 0.4866/0.4860（应舍入为 0.49）。IID PPL 显示 2.78 但 Registry 记录为 2.62–2.63（held-out 值为 2.78）。疑似 IID 列误用了 held-out 数据，或 IID eval 已重跑但 Registry 未更新。\n\n2. **\"≤1 pp\" 应为 \"≤2 pp\"** — experiments.tex 称 \"held-out GAR-ours differs by ≤1 pp\"，实际各变体 IID→held-out 最大差异 1.7pp（TG），Table 精度下 UG 差 2pp。\n\n### 4 个 Minor 问题\n\n3. **~1.3× SS gap 偏高** — 多种子均值 gap = 1.245 ≈ 1.2×，非 ~1.3×（s42 单种子 1.29×）\n4. **SS TF GAR 0.498±0.004** — 实际 0.499±0.003\n5. **Fig 1 caption \"85–90%\" 未区分 base vs fine-tuned** — fine-tuned 仅 77–81%\n6. **Llama SS \"2 vs 3 epochs\"** — Registry spec 写 epochs=3，需确认实际\n\n### 跨章节一致性\n\n所有跨章节出现的数字（~1.3×、7.8×、0.064、0.727、0.717 等）**内部完全一致**，无矛盾。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-body-text-copy-2.md"
+}

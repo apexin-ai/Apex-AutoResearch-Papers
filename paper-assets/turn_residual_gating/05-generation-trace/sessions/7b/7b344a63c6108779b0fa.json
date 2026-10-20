@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b344a63c6108779b0fa",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260519T230152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260519T230152_result.json",
+    "occurrence": 1,
+    "bytes": 263,
+    "sha256": "4b1d3e43a36f208d3371e7e69ecc868c86ffd658aa81a3fe07d99ebde90e3353"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work 写入完成。5 段 ~550 词，21 篇引用，所有 cite key 已验证存在于 `references.bib`。每段末尾定位本文与该方向的关系，无破折号、无 AI 风格用词、无 -ing 短语结尾、无 contribution claim。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

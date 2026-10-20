@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e315c322af03e78afb03",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "eval llama tg s42",
+  "task_key": "worker_eval_llama_tg_s42_20260521T033013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama_tg_s42_20260521T033013_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "e4a9c63a947aefc274063dd977ed90501ff9361a8cd68e54f1f731a1cf2c2be2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已启动并注册。\n\n**汇报：**\n\n| 项目 | 值 |\n|------|-----|\n| **PID** | 216379（主进程），216591（当前 eval 子进程） |\n| **状态** | RUNNING，已完成 step 1/8（tf_base_ours），正在执行 step 2（tf_base_dongre） |\n| **实际步数** | 8 步（LoRA-only checkpoint 不存在，跳过 4 步） |\n| **预计时长** | 8 × 10-20 min ≈ 80-160 min |\n| **输出目录** | `runs/eval_llama_tg_s42/`（tf_base_ours, tf_base_dongre, tf_tg_ours, tf_tg_dongre, ar_base_ours, ar_base_dongre, ar_tg_ours, ar_tg_dongre） |\n| **日志** | `runs/eval_llama_tg_s42.log` + `/tmp/eval_llama_tg_s42_nohup.log` |\n| **Registry** | `llama_eval_s42` → RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama-tg-s42.md"
+}

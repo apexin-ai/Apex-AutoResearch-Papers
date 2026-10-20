@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ca503b2e0dd1b34a1ef",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops ss s42 eval and queue",
+  "task_key": "worker_ops_ss_s42_eval_and_queue_20260522T225144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ss_s42_eval_and_queue_20260522T225144_result.json",
+    "occurrence": 1,
+    "bytes": 409,
+    "sha256": "3598b123358c5b47b0312a7f9141ab719c41d593fd7131f242410b3a30e7e154"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 成功启动，正在运行：\n\n- **PID**: 48241\n- **GPU**: cuda:0，已占用 47873 MiB 显存\n- **进度**: TF 1/4 (Base+GAR-ours) 已完成，正在运行 TF 2/4 (Base+GAR-Dongre)\n- **Checkpoint**: epoch_2 命中\n- **预估完成**: ~1h（TF 4 阶段 ~15min + AR N=50 ~40min + bootstrap ~5min）\n\nEval 完成后由 cron 回调触发下一步，无需手动启动 queue_runner。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ss-s42-eval-and-queue.md"
+}

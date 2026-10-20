@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd9c0969012e44d46279",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis cos sim gate profile extract",
+  "task_key": "worker_analysis_cos_sim_gate_profile_extract_20260520T024156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cos_sim_gate_profile_extract_20260520T024156_result.json",
+    "occurrence": 1,
+    "bytes": 1460,
+    "sha256": "c5c616a64ce91fffca8fea06440f272189079ef28798d64452a310afc8c1fdc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n### Task 1: v7 per-step cos_sim\n**v7 仅有 3 个 epoch-level 数据点，无 per-step 粒度。**\n\nv7 训练时未开启 PCGrad，不记录 per-step cos_sim。cos_sim 数据来自 post-hoc 梯度冲突分析（`runs/analysis/gradient_conflict/epoch_{0,1,2}.json`），每个 epoch 在 checkpoint 上用 10 个样本计算：\n- epoch 0: cos_sim = -0.089, conflict_fraction = 78.6%\n- epoch 1: cos_sim = -0.054, conflict_fraction = 71.4%\n- epoch 2: cos_sim = -0.042, conflict_fraction = 67.9%\n\n无需新建文件，已有 `artifacts/cos_sim_trajectory/v7_cos_sim.json` 覆盖此数据。\n\n### Task 2: v9 gate profile\n已提取并保存：\n- **`artifacts/gate_profile_v9.json`** — v9 PCGrad 28层 turn1 vs turn21 gate 值\n- **`artifacts/gate_profile_v7.json`** — v7 对比数据\n\n关键发现：\n\n| 指标 | v7 | v9 PCGrad |\n|------|-----|-----------|\n| Mean turn1 gate | 0.881 | 0.877 |\n| Mean turn21 gate | 0.946 | 0.945 |\n| Mean diff | -0.065 | -0.068 |\n| Max diff layer | L23 (-0.210) | **L15 (-0.332)** |\n| Min gate (turn1) | L14 (0.747) | **L15 (0.625)** |\n\nv9 PCGrad 的最大特点：**L15 出现极端动态范围** — turn1 gate 仅 0.625（远低于 v7 任何层），turn21 升到 0.957，diff = -0.332。这表明 PCGrad 允许特定层学到更大的 turn-dependent 调控幅度，而非 v7 那样所有层趋同。v9 也有 2 个 positive-diff 层（L13, L20），v7 只有 1 个（L19）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cos-sim-gate-profile-extract.md"
+}

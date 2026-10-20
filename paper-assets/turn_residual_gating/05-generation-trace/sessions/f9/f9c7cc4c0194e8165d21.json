@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9c7cc4c0194e8165d21",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "eval trc baseline launch",
+  "task_key": "worker_eval_trc_baseline_launch_20260520T071757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_trc_baseline_launch_20260520T071757_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "57e525f018730e472e2630ffe591c6567b6dc11d6f9f66e136fc9e0c913dbcf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。\n\n- **PID 158713**: TRC baseline 进程已在 GPU 上，占用 **15GB**\n- GPU 总占用: 37GB (v8b) + 27GB (attn_steering) + 15GB (TRC) = **79.7GB / 98GB**，无 OOM 风险\n- v7 TG checkpoint 正在加载（loading weights 57%），即将开始 TF+gen 评估\n\n脚本串行跑三个 checkpoint（v7 TG → LoRA-only → base），预计 30-60 分钟完成。日志路径: `~/runs/turn_residual_gating/trc_baseline_v7_tg.log`。\n\n注意: `tee` 报了目录不存在（`runs/trc_baseline/` 未提前创建），但不影响主流程——输出仍写入 tmux 监控日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-trc-baseline-launch.md"
+}

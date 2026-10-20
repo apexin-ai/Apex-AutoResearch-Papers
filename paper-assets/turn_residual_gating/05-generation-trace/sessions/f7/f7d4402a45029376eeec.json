@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7d4402a45029376eeec",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "viz fig1 overview v3",
+  "task_key": "worker_viz_fig1_overview_v3_20260523T023906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig1_overview_v3_20260523T023906_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "b901c18cdcd21a16166ea54c8e65120c77eb0bed7989460f380a0eb2da8bd6f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v3 已生成，两个文件确认存在：\n- `fig1_overview_v3.pdf` (37 KB)\n- `fig1_overview_v3.png` (183 KB)\n\n三个修复总结：\n1. **Panel (b)** — 改为垂直流程图，每步两行（粗体标题 + 结论），步骤间用浅灰箭头连接，最终结论行用浅绿色背景高亮，✓/✗ 右对齐\n2. **Panel (a)** — 主图右下角加 inset axes 放大 AR bars（y 范围 0–0.022），主图 AR bar 顶部标注数值\n3. **Panel (c)** — 所有数据点标签统一放到点**上方**（`va='bottom'`, `g + 0.03`），β=0 不再与 x 轴重叠"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig1-overview-v3.md"
+}

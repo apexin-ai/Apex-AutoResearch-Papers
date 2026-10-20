@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c108f6f27534ba0984f6",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "monitor v5 diag step250",
+  "task_key": "worker_monitor_v5_diag_step250_20260518T172555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v5_diag_step250_20260518T172555_result.json",
+    "occurrence": 1,
+    "bytes": 2969,
+    "sha256": "ee520a46713f3bb7eb908efeae0c74886444dbdf729888e71ba076917c4e7468"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据充足了。训练已到 step 1250，且新的 [GATE] step=150 刚刷出。重要发现：之前的\"step 100 诊断\"数据因 stdout 缓冲混淆了不同步数的数据。\n\n```\n=== v5 第二次诊断 (@step 250-300, 含最新 step 1250) ===\n训练状态: 运行中 (PID 3644)\n当前步数: 1250 / 3000\n\n⚠️ 重要修正: 上次\"step 100 诊断\"的 L_GAR=-0.167/L_NTP=0.82/loss=0.65 \n实际对应 step 800，不是 step 100。原因是 [GATE] 统计行因 stdout \n缓冲延迟刷出，与 step 800 的训练日志交错，造成误读。\n实际 step 100: L_GAR=-0.0166, L_NTP=1.3074, Loss=1.2908, Gate=0.8110\n\n========================================\n步数 250-300 数据 (原定诊断窗口)\n========================================\n              Step 250    Step 300\nL_NTP:        1.1242      1.1170\nL_GAR:       -0.0190     -0.0242\n总 loss:      1.1052      1.0928 (正值)\nGate_mean:    0.8032      0.8059\n\ngate_std/min/max/per-layer: 不可用 (详细 [GATE] 行尚未刷出)\n\n→ 在 step 250-300: 完全绿灯。L_GAR 极小，远离 -0.8 阈值。\n\n========================================\n最新状态 (step 1250)\n========================================\ngate_std: 0.0286 (趋势: ↓, 0.0341→0.0611→0.0376→0.0286, 来自 [GATE] step=150)\ngate_mean: 0.9395 (趋势: ↑, vs step250=0.8032)\ngate_min: 0.8711 (来自 [GATE] step=150)\ngate_max: 0.9805 (来自 [GATE] step=150)\n\nPer-layer gate: 仅有 [GATE] step=150 的 summary，无 per-layer profile\n  (step=150 的 PROFILE 行尚未刷出)\n\nL_GAR 轨迹:\n  s0:-0.016 → s250:-0.019 → s600:-0.033 → s700:-0.070 → s750:-0.141\n  → s800:-0.167 → s900:-0.275 → s1000:-0.415 → s1150:-0.603\n  → s1200:-0.674 → s1250:-0.500 (回弹)\n\nL_NTP: 1.3513 (vs step250=1.1242, 有波动)\n总 loss: 0.8513 (正值)\n\n========================================\n诊断结论: 黄灯\n========================================\nL_GAR 饱和: 否 (peak -0.674@s1200, 未破 -0.8)\n  但 s600→s1200 加速明显，600 步内从 -0.033 → -0.674\n  s1250 回弹至 -0.500，显示有振荡，非单调下坠\n\ngate_std 退化: 否 (0.0286 > 0.02)\n  但持续下降中 (0.0376→0.0286)，趋势需警惕\n  如果保持下降速率，约 step 1800-2000 可能破 0.02\n\n红灯条件 (L_GAR<-0.8 且 gate_std<0.02): 未触发\n\n分析:\n1. v5 与 v3b 走势有本质区别。v3b 的 L_GAR 指数下坠无回弹，\n   v5 在 s1200→s1250 出现 -0.674→-0.500 的明显回弹，说明\n   GAR loss 没有失控，优化器在 NTP loss 和 GAR loss 间仍有张力\n\n2. Gate mean 0.94 偏高但 gate_std=0.0286 说明层间仍有分化，\n   不是所有 gate 都在趋向 1.0\n\n3. 预计风险窗口: step 1500-1800。如果 L_GAR 再次下探 <-0.7\n   且 gate_std 同时跌破 0.025，建议准备中途调参方案\n   (降低 lambda_gar 或降低 gate_lr_multiplier)\n\n4. 建议: 在 step 1500 进行第三次诊断\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v5-diag-step250.md"
+}

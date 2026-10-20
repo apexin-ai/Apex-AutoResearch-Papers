@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e1313a5e808f3d2e1d5",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops check queue runner exit",
+  "task_key": "worker_ops_check_queue_runner_exit_20260522T232511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_queue_runner_exit_20260522T232511_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "9426a44a57d147d0a48ff7a8dedcafb9192de35ae70ccdab517bd1ffd57f8566"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 利用率 72%，21GB 显存占用 — 进程正常运行中，没有卡住。\n\n## 汇报\n\n**queue_runner 没有退出，仍在正常运行。**\n\n### 当前执行进度\n- **Item [1/8] SS s42** — 跳过（已完成）\n- **Item [2/8] AR N=50 existing s42 checkpoints** — 正在执行\n  - [1/4] TG s42 AR N=50 — **完成** ✓\n    - Beta=0.0: Mid-GAR=0.0280, PPL=1.41\n    - Beta=3.0: Mid-GAR=0.5374, PPL=1.55\n    - Beta=5.0: Mid-GAR=0.6795, PPL=1.91\n    - 结果保存到 `results/d048_ar_n50_existing/tg_s42_ar_n50.json`\n  - [2/4] UG s42 AR N=50 — **正在运行**（模型已加载，生成中）\n  - [3/4] 和 [4/4] 待执行\n- **Items [3-8]** — 排队中\n\n### GPU 状态\n- 利用率 72%，显存 21GB / 98GB — 正常工作\n- PID 51492 活跃\n\n### 结论\n不需要干预，queue_runner 在 tmux 里按计划串行执行。无 OOM、无 CUDA error、无 traceback。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-queue-runner-exit.md"
+}

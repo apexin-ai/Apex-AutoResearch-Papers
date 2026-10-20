@@ -1,0 +1,3545 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d3a147d25e6cad4ee63b",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T19:41:33.309965+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Research Reviewer，这是 Loop #4。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只用 GPU 0（CUDA_VISIBLE_DEVICES=0），服务器 westd-20861 只有 1 张卡（NVIDIA RTX PRO 6000 Blackwell, 98GB）\n- v8b_ss_s123 eval 脚本已就绪但未执行（`scripts/eval_v8b_ss_s123.sh`），需等 v7 训练完或确认 VRAM 够并行\n- M020 nGAR 混淆已修正——**绝不能**在论文中使用 \"normalization artifact\" 叙事（AR nGAR=0.493 vs TF nGAR=11.88，gap 24.1×，不是 \"aligns\"）\n- 论文 instruction retention 数据：β=3（不是β=5），18 prompts（不是N=50）——commit e4522a3 已修复，但后续编辑要防回退\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-20861，工作目录 `/root/turn_residual_gating`\n- Python：`/root/miniconda3/bin/python3.12`，conda base 环境\n- Qwen 模型：`/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct`\n- Llama 模型：`/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct`\n- 数据：`data/ultrachat_8k`（训练）、`data/ultrachat_eval_heldout.json`（eval, 50 convs）\n- 活跃进程：v7_tg_s123 PID 245634（train_phase2.py, GPU 0, ~2min elapsed at last check 15:17 UTC）\n- 无 W&B 配置（本项目不用 W&B，不检查）\n\n### 3. 📊 当前状态\n**刚完成**：v8b_ss_s123 训练完成审查（PASS，所有指标与 s42 偏差 <15%），v8b/v7 eval 脚本审查（PASS）\n**RUNNING**：v7_tg_s123（Epoch 0 Step ~150 at 15:17 UTC，预计 ~6-7h 完成，即 ~21:00-22:00 UTC）\n**待执行**：\n- `scripts/eval_v8b_ss_s123.sh`（v8b eval，需 GPU）\n- `scripts/eval_v7_tg_s123.sh`（v7+v8b 联合 eval，v7 训练完后执行）\n**Registry 状态**：v7_tg_s123 RUNNING，v8b_ss_s123 DONE（仅训练指标，无 eval），其余 30 个 DONE/INVALIDATED\n\n### 4. 📋 待办\n- v7_tg_s123 训练完成 → 审查训练 final metrics（与 v7 s42 对比：final_loss ~1.04, gate_mean ~0.95, gate_std ~0.06）\n- v8b_ss_s123 eval 结果出现 → **核心审查**：model-gen GAR-ours 与 s42 的 0.318 对比，gap ratio 是否在 [1.2×, 2.5×]（s42=1.57×），PPL <1.6。这是 C7 seed robustness claim 的关键数据\n- v7_tg_s123 eval 结果出现 → 审查 TF-AR gap ratio（s42=32×），确认标准 TG 的 exposure bias 跨 seed 复现\n- Agent 若更新论文加入 multi-seed 数据 → Mode B 审查：数字一致性、claim 强度是否从 \"single seed\" 升级\n- 如发现 s123 gap ratio 与 s42 偏差 >50% → 立即 CRITICAL 报 Director\n\n### 5. 🎯 战略上下文\n**核心结论链**：ThreadGate 训练成功（TF GAR=0.50）但 AR GAR 坍塌（0.015-0.025），gap 20-33×。原因是 exposure bias（不是 gating 失败、不是梯度冲突）。证据：(1) PCGrad 无效排除梯度冲突，(2) β-steering 恢复 GAR 证明 attention misallocation，(3) scheduled sampling 压缩 gap 到 1.57×，(4) Llama 跨模型复现 12.5× gap。\n\n**易踩坑**：\n- nGAR vs raw GAR：TF 和 AR 的 normalization factor 不同（TF ~24.6, AR ~12.7），不能直接对比 nGAR 跨 TF/AR。论文用 raw GAR 报主结果是正确的\n- v8b s42 是从 epoch_0 resume 的（2 个 epoch），s123 是 from scratch（3 个 epoch），wall clock 不可直接对比\n- GAR-Dongre 在标准 TG（v7）下 gap 几乎为零（Qwen 1.28×, Llama 1.002×），但在 SS（v8b）下 Dongre 值异常高（~0.38），\"Dongre uniformly low\" 只适用于非 SS 训练\n- 论文 Limitations 已按 EMNLP 规则精简（3 个点），不要再加长\n\n## 项目硬约束 (memory.md 节选)\n\n## 服务器环境\n- westd-20861: RTX PRO 6000 Blackwell 98GB, conda base 环境\n- Qwen 模型路径: /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\n- Llama-3 模型路径: /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/（safetensors, ~16GB, vocab_size=128256）\n- 数据路径: /root/turn_residual_gating/data/ultrachat_8k (8000 samples)\n- Python 激活: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\n## 可查的历史\n前 2 轮 handoff 在 `task_context/history/reviewer/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T19:41:44.081740+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__fetch_wandb_metrics",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T19:41:44.082141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T19:41:47.652455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "turn_residual_gating",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T19:41:47.954281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"v7_tg_s123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T15:16:39.923Z\\\", \\\"updated_at\\\": \\\"2026-05-21T15:17:06.228Z\\\", \\\"hypothesis\\\": \\\"v7 TG s42 已验证 ThreadGate 有效性，s123 验证 seed robustness。预期 gate profile 和 GAR 收敛模式与 s42 一致。\\\", \\\"parent\\\": \\\"phase2_tg_s42_v7\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/launch_v7_tg_s123.sh\\\", \\\"server\\\": \\\"westd-20861\\\", \\\"data_path\\\": \\\"data/ultrachat_8k\\\", \\\"data_count\\\": 8000, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 123, \\\"pid\\\": 245628, \\\"gpu_index\\\": 0, \\\"checkpoint_path\\\": \\\"/root/turn_residual_gating/runs/phase2_tg_s123_v7\\\", \\\"log_path\\\": \\\"/root/turn_residual_gating/logs/v7_tg_s123.log\\\", \\\"checkpoint_source\\\": \\\"N/A (from scratch)\\\", \\\"eval_data\\\": \\\"N/A\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1054}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 301
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T19:41:48.004950+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T19:41:49.309934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 66479 MiB, 97887 MiB, 98 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1304
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T19:42:00.435219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-20861",
+              "exp_id": "v7_tg_s123",
+              "project": "turn_residual_gating",
+              "n": "30"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T19:42:01.138384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"日志文件不存在或无法读取：~/runs/turn_residual_gating/v7_tg_s123.log\\\\n可能原因：\\\\n  1. 路径中的 ~ 未展开（请用绝对路径）\\\\n  2. 训练任务尚未创建日志文件\\\\n  3. 日志路径与实际部署结构不符\\\\n原始错误：tail: cannot open '/root/runs/turn_residual_gating/v7_tg_s123.log' for reading: No such file or directory\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 703
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T19:42:01.389673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/phase2_tg_s123_v7/"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T19:42:01.490421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/artifacts/eval_v8b_ss_s123/"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T19:42:01.842185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  4 root root   48 May 22 03:14 .\\\\ndrwxr-xr-x 22 root root 4096 May 22 01:15 ..\\\\ndrwxr-xr-x  3 root root   52 May 22 01:15 epoch_0\\\\ndrwxr-xr-x  3 root root   52 May 22 03:14 epoch_1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T19:42:02.346185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/turn_residual_gating/artifacts/eval_v8b_ss_s123/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 855
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T19:42:08.720716+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "tail -30 /root/turn_residual_gating/logs/v7_tg_s123.log"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T19:42:09.222845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Epoch 2 Step 650 | L_NTP=0.8897 L_GAR=0.0001 L_DIV=0.0000 Loss=0.8898 | Gate=0.9510 | Mem=53.1GB\\\\nEpoch 2 Step 700 | L_NTP=0.9463 L_GAR=0.0000 L_DIV=0.0000 Loss=0.9463 | Gate=0.9443 | Mem=53.1GB\\\\nEpoch 2 Step 750 | L_NTP=0.8019 L_GAR=0.0002 L_DIV=0.0000 Loss=0.8020 | Gate=0.9534 | Mem=53.1GB\\\\n[GATE] step=2100 mean=0.9407 std=0.0566 min=0.7617 max=0.9961\\\\n[GATE-PROFILE] step=2100 L0:0.879 L1:0.793 L2:0.996 L3:0.988 L4:0.980 L5:0.762 L6:0.961 L7:0.918 L8:0.973 L9:0.930 L10:0.980 L11:0.898 L12:0.926 L13:0.938 L14:0.906 L15:0.969 L16:0.922 L17:0.891 L18:0.926 L19:0.957 L20:0.977 L21:0.992 L22:0.957 L23:0.969 L24:0.984 L25:0.988 L26:0.984 L27:0.996\\\\nEpoch 2 Step 800 | L_NTP=0.7333 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7334 | Gate=0.9499 | Mem=53.1GB\\\\nEpoch 2 Step 850 | L_NTP=0.9233 L_GAR=0.0002 L_DIV=0.0000 Loss=0.9235 | Gate=0.9487 | Mem=53.1GB\\\\nEpoch 2 Step 900 | L_NTP=1.0456 L_GAR=0.0000 L_DIV=0.0000 Loss=1.0456 | Gate=0.9496 | Mem=53.1GB\\\\nEpoch 2 Step 950 | L_NTP=0.8913 L_GAR=0.0000 L_DIV=0.0000 Loss=0.8914 | Gate=0.9488 | Mem=53.1GB\\\\nEpoch 2 Step 1000 | L_NTP=0.8668 L_GAR=0.0013 L_DIV=0.0000 Loss=0.8681 | Gate=0.9524 | Mem=53.1GB\\\\nEpoch 2 Step 1050 | L_NTP=0.4823 L_GAR=0.0024 L_DIV=0.0000 Loss=0.4847 | Gate=0.9376 | Mem=53.1GB\\\\nEpoch 2 Step 1100 | L_NTP=1.1705 L_GAR=0.0002 L_DIV=0.0000 Loss=1.1707 | Gate=0.9520 | Mem=53.1GB\\\\nEpoch 2 Step 1150 | L_NTP=1.0348 L_GAR=0.0039 L_DIV=0.0000 Loss=1.0387 | Gate=0.9491 | Mem=53.1GB\\\\n[GATE] step=2150 mean=0.9478 std=0.0537 min=0.7852 max=0.9961\\\\nEpoch 2 Step 1200 | L_NTP=0.7568 L_GAR=0.0012 L_DIV=0.0000 Loss=0.7579 | Gate=0.9282 | Mem=53.1GB\\\\nEpoch 2 Step 1250 | L_NTP=0.7691 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7692 | Gate=0.9484 | Mem=53.1GB\\\\nEpoch 2 Step 1300 | L_NTP=0.7721 L_GAR=0.0004 L_DIV=0.0000 Loss=0.7725 | Gate=0.9404 | Mem=53.1GB\\\\nEpoch 2 Step 1350 | L_NTP=0.9669 L_GAR=0.0002 L_DIV=0.0000 Loss=0.9672 | Gate=0.9494 | Mem=53.1GB\\\\nEpoch 2 Step 1400 | L_NTP=\n…[truncated 1439 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T19:42:09.223243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ps -p 245628 -o pid,etime,cmd --no-headers"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T19:42:09.675154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"245628    04:26:16 bash -c cd /root/turn_residual_gating && nohup bash scripts/launch_v7_tg_s123.sh > logs/v7_tg_s123.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T19:42:32.081554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "head -50 /root/turn_residual_gating/logs/v7_tg_s123.log"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T19:42:33.038852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda\\\\nGPU: NVIDIA RTX PRO 6000 Blackwell Server Edition\\\\nVRAM: 102.0 GB\\\\nGate type: threadgate\\\\nLoading model: /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/339 [00:02<13:12,  2.35s/it]\\\\rLoading weights:   1%|          | 4/339 [00:02<02:40,  2.09it/s]\\\\rLoading weights:   2%|▏         | 6/339 [00:02<01:51,  2.99it/s]\\\\rLoading weights:   4%|▍         | 15/339 [00:02<00:33,  9.62it/s]\\\\rLoading weights:   5%|▌         | 18/339 [00:03<00:32,  9.98it/s]\\\\rLoading weights:   8%|▊         | 28/339 [00:03<00:17, 17.51it/s]\\\\rLoading weights:   9%|▉         | 31/339 [00:03<00:19, 15.54it/s]\\\\rLoading weights:  12%|█▏        | 40/339 [00:04<00:15, 19.55it/s]\\\\rLoading weights:  13%|█▎        | 43/339 [00:04<00:15, 19.61it/s]\\\\rLoading weights:  15%|█▌        | 51/339 [00:04<00:15, 18.71it/s]\\\\rLoading weights:  19%|█▉        | 64/339 [00:04<00:09, 29.09it/s]\\\\rLoading weights:  20%|██        | 68/339 [00:05<00:11, 24.15it/s]\\\\rLoading weights:  22%|██▏       | 76/339 [00:05<00:11, 21.93it/s]\\\\rLoading weights:  26%|██▌       | 88/339 [00:05<00:08, 30.15it/s]\\\\rLoading weights:  27%|██▋       | 92/339 [00:06<00:09, 25.40it/s]\\\\rLoading weights:  29%|██▉       | 99/339 [00:06<00:08, 28.85it/s]\\\\rLoading weights:  30%|███       | 103/339 [00:06<00:09, 25.02it/s]\\\\rLoading weights:  33%|███▎      | 112/339 [00:06<00:07, 30.63it/s]\\\\rLoading weights:  34%|███▍      | 116/339 [00:06<00:08, 24.84it/s]\\\\rLoading weights:  37%|███▋      | 124/339 [00:07<00:07, 28.13it/s]\\\\rLoading weights:  38%|███▊      | 128/339 [00:07<00:09, 22.72it/s]\\\\rLoading weights:  39%|███▊      | 131/339 [00:07<00:10, 20.72it/s]\\\\rLoading weights:  40%|████      | 137/339 [00:07<00:08, 25.15it/s]\\\\rLoading weights:  41%|████▏     | 140/339 [00:07<00:08, 23.37it/s]\\\\rLo\n…[truncated 6237 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 957
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T19:42:33.039314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T19:42:33.692343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"245634, GPU-264cdea7-18d0-0507-e01a-701b2c383892, 66470 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 653
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T19:42:33.692815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "turn_residual_gating",
+              "limit": "5"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T19:42:33.845055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"v8b_ss_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-21T04:29:28.197Z\\\", \\\"updated_at\\\": \\\"2026-05-21T15:15:49.282Z\\\", \\\"hypothesis\\\": \\\"v8b SS s42 成功（gap 32×→1.57×），s123 验证结果的 seed robustness。预期 model-gen GAR 同样显著提升，PPL 无恶化。\\\", \\\"parent\\\": \\\"phase2_tg_s42_v8b_resume\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.9316, \\\"final_ntp_loss\\\": 0.9307, \\\"final_gar_loss\\\": 0.0009, \\\"final_gate_mean\\\": 0.9505, \\\"final_gate_std\\\": 0.0508, \\\"final_gate_min\\\": 0.7383, \\\"final_gate_max\\\": 1, \\\"ss_used_ratio\\\": 0.371, \\\"training_time_s\\\": 38773.4, \\\"epoch0_loss\\\": 1.0092, \\\"epoch1_loss\\\": 0.9444, \\\"epoch2_loss\\\": 0.9316}}, \\\"llama_ar_matched_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-21T03:59:40.918Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:36:23.237Z\\\", \\\"hypothesis\\\": \\\"用 matched 设置 (N=50/T=4) 重跑 Llama AR eval，消除 TF/AR 设置差异。与 TF 结果对比得到可直接写入论文的 gap ratio，验证 TG 在 AR 模式下仍能提升 GAR。\\\", \\\"parent\\\": \\\"llama_eval_s42\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ar_base_ours\\\": {\\\"mid_gar\\\": 0.0082, \\\"ngar\\\": 0.1, \\\"ppl\\\": 1.267}, \\\"ar_tg_ours\\\": {\\\"mid_gar\\\": 0.0388, \\\"ngar\\\": 0.493, \\\"ppl\\\": 1.413}, \\\"ar_base_dongre\\\": {\\\"mid_gar\\\": 0.0051, \\\"ngar\\\": 0.12, \\\"ppl\\\": 1.267}, \\\"ar_tg_dongre\\\": {\\\"mid_gar\\\": 0.018, \\\"ngar\\\": 0.431, \\\"ppl\\\": 1.413}, \\\"tf_reference\\\": {\\\"tf_tg_ours_ngar\\\": 11.88, \\\"tf_base_ours_ngar\\\": 0.388, \\\"tf_tg_ours_raw\\\": 0.4836, \\\"tf_tg_dongre_raw\\\": 0.018}, \\\"matched_gap_analysis\\\": {\\\"gar_ours_raw_gap\\\": \\\"12.5x (TF 0.484 / AR 0.039)\\\", \\\"gar_ours_ngar_gap\\\": \\\"24.1x (TF 11.88 / AR 0.493)\\\", \\\"gar_dongre_raw_gap\\\": \\\"1.002x (TF 0.018 / AR 0.018) — zero gap\\\", \\\"tg_over_base_ar_ours\\\": \\\"4.71x\\\", \\\"tg_over_base_ar_dongre\\\": \\\"3.54x\\\", \\\"conclusion\\\": \\\"GAR-ours TF-AR gap 12.5x (raw) / 24x (nGAR) is genuine exposure bias. GAR-Dongre zero gap (1.002x) confirms mechanism specificity: exposure bias selectively destroys learned goal-attention routing while leaving conten\n…[truncated 4429 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 152
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T19:43:19.051525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "tail -5 /root/turn_residual_gating/logs/v7_tg_s123.log"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T19:43:19.553534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Epoch 2 Step 1700 | L_NTP=1.1655 L_GAR=0.0017 L_DIV=0.0000 Loss=1.1672 | Gate=0.9517 | Mem=53.1GB\\\\nEpoch 2 Step 1750 | L_NTP=1.1138 L_GAR=0.0002 L_DIV=0.0000 Loss=1.1140 | Gate=0.9487 | Mem=53.1GB\\\\nEpoch 2 Step 1800 | L_NTP=1.2080 L_GAR=0.0009 L_DIV=0.0000 Loss=1.2090 | Gate=0.9381 | Mem=53.1GB\\\\nEpoch 2 Step 1850 | L_NTP=0.7322 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7323 | Gate=0.9488 | Mem=53.1GB\\\\nEpoch 2 Step 1900 | L_NTP=0.7914 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7914 | Gate=0.9435 | Mem=53.1GB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T19:43:19.553967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/phase2_tg_s123_v7/epoch_2/"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T19:43:20.507559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/turn_residual_gating/runs/phase2_tg_s123_v7/epoch_2/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 953
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T19:43:20.708600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T19:43:20.759177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T19:43:26.481579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T19:43:26.481977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T19:43:26.633473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": \\\"C1\\\", \\\"description\\\": \\\"Phase 1 GAR degradation diagnosis on Qwen-2.5-7B (70.8% raw drop)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [], \\\"registry_id\\\": \\\"phase1_gar_diag\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"turn1_avg_gar\\\": 0.0418, \\\"mid_turns_avg_gar\\\": 0.0122, \\\"relative_drop\\\": 0.708, \\\"num_conversations\\\": 5, \\\"num_turns\\\": 10, \\\"per_turn_avg_gar\\\": [0.0418, 0.0241, 0.0224, 0.013, 0.0133, 0.0086, 0.0078, 0.008, 0.0157, 0.0064]}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": \\\"C2\\\", \\\"description\\\": \\\"ThreadGate v7 training (MSE+gate_div) - training GAR 0.48, inference GAR 0.016\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"phase2_tg_s42_v7\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_iid_ours_mid_gar\\\": 0.5035, \\\"eval_iid_dongre_mid_gar\\\": 0.0152, \\\"eval_iid_ppl\\\": 2.784, \\\"eval_heldout_ours_mid_gar\\\": 0.5035, \\\"eval_heldout_dongre_mid_gar\\\": 0.0152, \\\"eval_heldout_ppl\\\": 2.78, \\\"eval_modelgen_ours_mid_gar\\\": 0.0157, \\\"eval_modelgen_dongre_mid_gar\\\": 0.0194, \\\"eval_modelgen_ppl\\\": 1.36, \\\"gate_mean_final\\\": 0.9336, \\\"gate_std_final\\\": 0.0492}}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": \\\"C4\\\", \\\"description\\\": \\\"Uniform Gate ablation - isolate turn conditioning contribution\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"phase2_ug_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"epoch0_avg_loss\\\": 1.0019, \\\"epoch0_avg_ntp\\\": 0.9755, \\\"epoch0_avg_gar\\\": 0.0259, \\\"epoch0_avg_div\\\": 0.0005, \\\"epoch1_avg_loss\\\": 0.9447, \\\"epoch1_avg_ntp\\\": 0.9435, \\\"epoch1_avg_gar\\\": 0.0013, \\\"epoch1_avg_div\\\": 0, \\\"epoch2_avg_loss\\\": 0.9319, \\\"epoch2_avg_ntp\\\": 0.9309, \\\"epoch2_avg_gar\\\": 0.001, \\\"epoch2_avg_div\\\": 0, \\\"final_gate_mean\\\": 0.9598, \\\"final_gate_std\\\": 0.0518, \\\"final_gate_min\\\": 0.7773, \\\"fi\n…[truncated 11236 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 151
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T19:43:26.634085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/ROADMAP.md\\\", \\\"content\\\": \\\"# turn_residual_gating — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 06:08 UTC\\\\n\\\\n> 最后更新: 2026-05-21 ~10:30 UTC | 更新原因: Llama TG+eval 完成(D045), instruction retention(D046), matched AR eval, paper patch e4522a3\\\\n\\\\n## 核心方向\\\\nDiagnostic framework: lightweight residual gating 的 auxiliary attention loss 在 text distribution shift (exposure bias) 下泛化失败（30× gap）。PCGrad 因果排除梯度方向冲突。**双路 mitigation 已验证**：inference-time attention steering (β=5, GAR 0.03→0.70) + training-time scheduled sampling (GAR 0.016→0.318, 30× gap → 1.57×, PPL 不变)。TRC 证实 exposure bias 仅影响 attention routing。**跨模型泛化确认**：Llama-3.1-8B TF GAR 0.484, AR GAR 0.039, gap 12.5×（Qwen ~30×，定性一致）。GAR-Dongre 跨模型均无 gap。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research + 审稿进行中\\\\n- **核心 claim**: C1✅ C2✅ C3✅ C4✅ C5✅(confirmed, D045) C6✅(N=50) C7⏳(v8b SS s123 running)\\\\n- **新增 W3 回应**: Instruction retention test — content +23.8pp, GAR-compliance r=0.200 p=0.007 (D046)\\\\n- **论文**: commit e4522a3, Llama 数据整合 + §6 扩展 + Abstract 压缩 + Limitations 重写, 8 页合规\\\\n- **评分预估**: multi-seed 完成后 → Overall 8/10, **ARR 3.0-3.5 (Findings-Borderline Conference)**\\\\n- **成功率**: 17 success / 5 negative / 3 failed / 25 total\\\\n\\\\n## 近期任务\\\\n- [x] Llama TG 训练 + eval — SUCCESS, gap 12.5× (D045)\\\\n- [x] Instruction retention test — content +23.8pp, p=0.007 (D046)\\\\n- [x] Matched Llama AR eval (N=50/T=4) — 12.5× confirmed, nGAR 混淆已修正 (M020)\\\\n- [x] Paper patch: Llama 整合 + critical 修复 (e4522a3)\\\\n- [ ] **v8b SS s123 训练** (RUNNING, ~7h remaining) — C7 multi-seed MUST-DO\\\\n- [ ] v7 TG s123 (~6h, after v8b) — multi-seed\\\\n- [ ] Llama LoRA-only (~7h, nice-to-have, plan_011)\\\\n- [ ] Plan_022 λ_GAR 敏感性 (defer to camera-ready, D043)\\\\n\\\\n## GPU 预算\\\\n- **已分配**: westd-20861:cuda:0 (1×RTX PRO 6000 Blackwell, 102GB)\\\\n- **当前**: v8b SS s123 RUNNING (99% util)\\\\n- **串行队列**: v8b s123(~7h) → v7 TG s123\n…[truncated 1524 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 152
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T19:43:56.571607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "turn_residual_gating",
+              "fields": "['*']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T19:43:57.023850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "tail -3 /root/turn_residual_gating/logs/v7_tg_s123.log"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T19:43:57.126224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (59,121 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating--claude-sessions-reviewer-e7517921/a44bcd1e-3880-48ea-a223-a7739f21bd2a/tool-results/mcp-agent-ml-research-read_registry-1779392637043.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating--claude-sessions-reviewer-e7517921/a44bcd1e-3880-48ea-a223-a7739f21bd2a/tool-results/mcp-agent-ml-research-read_registry-1779392637043.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 554
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T19:43:57.528604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Epoch 2 Step 1850 | L_NTP=0.7322 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7323 | Gate=0.9488 | Mem=53.1GB\\\\nEpoch 2 Step 1900 | L_NTP=0.7914 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7914 | Gate=0.9435 | Mem=53.1GB\\\\nEpoch 2 Step 1950 | L_NTP=0.7499 L_GAR=0.0001 L_DIV=0.0000 Loss=0.7501 | Gate=0.9481 | Mem=53.1GB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 504
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T19:44:02.692567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "fields": "['*']",
+              "limit": "1",
+              "filters": "{'exp_id': 'phase2_tg_s42_v8b_resume'}"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T19:44:03.245151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1066}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T19:44:03.496490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "fields": "['*']",
+              "limit": "1",
+              "filters": "{'exp_id': 'phase2_tg_s42_v8b_ss_fixed'}"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T19:44:03.597300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1051}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 100
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T19:44:08.719672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "v8b.*s42|phase2_tg_s42_v8b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/registry.yaml",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T19:44:08.820558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "824:  phase2_tg_s42_v8b_ss_fixed:\n833:        --output-dir checkpoints/tg_v8b_ss_fixed_s42 --gate-type threadgate --gar-loss-mode\n841:      log_path: ~/runs/turn_residual_gating/phase2_tg_s42_v8b_ss_fixed.log\n850:      checkpoint_path: /root/turn_residual_gating/checkpoints/tg_v8b_ss_fixed_s42\n1030:  phase2_tg_s42_v8b_resume:\n1039:    parent: phase2_tg_s42_v8b_ss_fixed\n1042:        --data-dir data/ultrachat_8k --output-dir checkpoints/tg_v8b_ss_fixed_s42\n1046:        0.5 --resume checkpoints/tg_v8b_ss_fixed_s42/epoch_0\n1052:      checkpoint_source: phase2_tg_s42_v8b_ss_fixed/epoch_0\n1054:      checkpoint_path: checkpoints/tg_v8b_ss_fixed_s42\n1055:      log_path: ~/runs/turn_residual_gating/phase2_tg_s42_v8b_resume.log\n1091:    parent: phase2_tg_s42_v8b_ss\n1093:      command: python src/eval_phase2_gar.py --checkpoint-dir checkpoints/tg_v8b_ss_fixed_s42\n1100:      checkpoint_source: checkpoints/tg_v8b_ss_fixed_s42\n1102:      checkpoint_path: checkpoints/tg_v8b_ss_fixed_s42\n1514:    hypothesis: v8b SS s42 成功（gap 32×→1.57×），s123 验证结果的 seed robustness。预期 model-gen\n1516:    parent: phase2_tg_s42_v8b_resume"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T19:44:11.545553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/registry.yaml",
+              "offset": "1030",
+              "limit": "80"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T19:44:11.546073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1030\t  phase2_tg_s42_v8b_resume:\n1031\t    status: DONE\n1032\t    retry_count: 0\n1033\t    created_at: '2026-05-20T10:08:29.483Z'\n1034\t    updated_at: '2026-05-21T01:56:13.289Z'\n1035\t    hypothesis: 从 epoch_0 checkpoint resume v8b scheduled sampling 训练。SS 线性混合 0→0.5\n1036\t      teacher-forced + model-generated contexts。如果 model-gen context 上的 GAR 训练能缩小\n1037\t      30x training-inference gap → exposure bias mitigation 有效。成功标准：inference GAR\n1038\t      显著高于 v7 的 0.016 (至少 +1pp)，PPL 不恶化。\n1039\t    parent: phase2_tg_s42_v8b_ss_fixed\n1040\t    spec:\n1041\t      command: python src/train_phase2_v8b.py --model /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\n1042\t        --data-dir data/ultrachat_8k --output-dir checkpoints/tg_v8b_ss_fixed_s42\n1043\t        --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar\n1044\t        1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4\n1045\t        --epochs 3 --batch-size 1 --grad-accum 8 --seed 42 --scheduled-sampling --ss-max-ratio\n1046\t        0.5 --resume checkpoints/tg_v8b_ss_fixed_s42/epoch_0\n1047\t      server: westd-20861\n1048\t      data_path: data/ultrachat_8k\n1049\t      data_count: 8000\n1050\t      model_name: Qwen2.5-7B-Instruct\n1051\t      seed: 42\n1052\t      checkpoint_source: phase2_tg_s42_v8b_ss_fixed/epoch_0\n1053\t      eval_data: N/A (training experiment)\n1054\t      checkpoint_path: checkpoints/tg_v8b_ss_fixed_s42\n1055\t      log_path: ~/runs/turn_residual_gating/phase2_tg_s42_v8b_resume.log\n1056\t    metrics:\n1057\t      training:\n1058\t        total_steps: 3000\n1059\t        epochs_completed: 3\n1060\t        wall_clock_hours: 8.1\n1061\t        final_loss: 0.933\n1062\t        final_ntp_loss: 0.9322\n1063\t        final_gar_loss: 0.0008\n1064\t        final_gate_mean: 0.9586\n1065\t        final_gate_std: 0.0582\n1066\t        ss_ratio: 0.5\n1067\t      eval_iid:\n1068\t        gar_ours: 0.4983\n1069\t        gar_dongre: 0.3855\n1070\t        ppl: 2.78\n1071\t      eval_modelgen:\n1072\t        gar_ours: 0.3\n…[truncated 1611 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T19:44:41.675687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "tail -10 /root/turn_residual_gating/logs/v7_tg_s123.log"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T19:44:42.127928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Epoch 2 Step 1600 | L_NTP=1.1818 L_GAR=0.0000 L_DIV=0.0000 Loss=1.1818 | Gate=0.9464 | Mem=53.1GB\\\\nEpoch 2 Step 1650 | L_NTP=0.9388 L_GAR=0.0000 L_DIV=0.0000 Loss=0.9388 | Gate=0.9415 | Mem=53.1GB\\\\nEpoch 2 Step 1700 | L_NTP=1.1655 L_GAR=0.0017 L_DIV=0.0000 Loss=1.1672 | Gate=0.9517 | Mem=53.1GB\\\\nEpoch 2 Step 1750 | L_NTP=1.1138 L_GAR=0.0002 L_DIV=0.0000 Loss=1.1140 | Gate=0.9487 | Mem=53.1GB\\\\nEpoch 2 Step 1800 | L_NTP=1.2080 L_GAR=0.0009 L_DIV=0.0000 Loss=1.2090 | Gate=0.9381 | Mem=53.1GB\\\\nEpoch 2 Step 1850 | L_NTP=0.7322 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7323 | Gate=0.9488 | Mem=53.1GB\\\\nEpoch 2 Step 1900 | L_NTP=0.7914 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7914 | Gate=0.9435 | Mem=53.1GB\\\\nEpoch 2 Step 1950 | L_NTP=0.7499 L_GAR=0.0001 L_DIV=0.0000 Loss=0.7501 | Gate=0.9481 | Mem=53.1GB\\\\n[GATE] step=2250 mean=0.9473 std=0.0517 min=0.7969 max=1.0000\\\\nEpoch 2 Step 2000 | L_NTP=0.6588 L_GAR=0.0004 L_DIV=0.0000 Loss=0.6592 | Gate=0.9291 | Mem=53.1GB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T19:44:43.081855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/scripts/eval_v8b_ss_s123.sh /root/turn_residual_gating/scripts/eval_v7_tg_s123.sh"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T19:44:43.483868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ps aux --no-headers -o pid,etime,cmd --sort=-etime"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T19:44:43.584731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rwxr-xr-x 1 root root 8546 May 21 17:54 /root/turn_residual_gating/scripts/eval_v7_tg_s123.sh\\\\n-rwxr-xr-x 1 root root 5285 May 21 23:23 /root/turn_residual_gating/scripts/eval_v8b_ss_s123.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T19:44:44.090354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"error: conflicting format options\\\\n\\\\nUsage:\\\\n ps [options]\\\\n\\\\n Try 'ps --help <simple|list|output|threads|misc|all>'\\\\n  or 'ps --help <s|l|o|t|m|a>'\\\\n for additional help text.\\\\n\\\\nFor more details see ps(1).\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 606
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T19:45:28.272034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "cat /root/turn_residual_gating/scripts/eval_v8b_ss_s123.sh"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T19:45:28.774325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# v8b-SS s123 eval: Base vs v8b-SS-s123, TF + AR, GAR-ours + GAR-Dongre\\\\nset -euo pipefail\\\\n\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\ncd /root/turn_residual_gating\\\\n\\\\nPYTHON=/root/miniconda3/bin/python3.12\\\\nEVAL_SCRIPT=src/eval_phase2_gar.py\\\\nCONV_PATH=data/ultrachat_eval_heldout.json\\\\nOUT_ROOT=runs/eval_v8b_ss_s123\\\\nSS_CKPT=checkpoints/tg_v8b_ss_s123/epoch_2\\\\n\\\\n# ── Checkpoint verification ────────────────────────────────\\\\n[ -d \\\\\\\"$SS_CKPT/lora\\\\\\\" ] || { echo \\\\\\\"ERROR: LoRA dir not found at $SS_CKPT/lora\\\\\\\"; exit 1; }\\\\n[ -f \\\\\\\"$SS_CKPT/gate_params.pt\\\\\\\" ] || { echo \\\\\\\"ERROR: gate_params.pt not found at $SS_CKPT/gate_params.pt\\\\\\\"; exit 1; }\\\\necho \\\\\\\"v8b-SS s123 checkpoint: $SS_CKPT\\\\\\\"\\\\n\\\\nmkdir -p \\\\\\\"$OUT_ROOT\\\\\\\"\\\\n\\\\n# ════════════════════════════════════════════════════════════\\\\n# Part 1: Teacher-Forced GAR (heldout conversations)\\\\n# ════════════════════════════════════════════════════════════\\\\n\\\\necho \\\\\\\"========== [TF 1/4] Base + GAR-ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_base_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [TF 2/4] Base + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_base_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [TF 3/4] v8b-SS s123 + GAR-ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$SS_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_ss_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [TF 4/4] v8b-SS s123 + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT\n…[truncated 3069 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T19:45:29.371580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -n \"ss_max_ratio\\|ss-max-ratio\\|scheduled.sampling\" /root/turn_residual_gating/logs/v8b_ss_s123.log"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T19:45:29.472356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 100
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T19:45:34.841583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "head -30 /root/turn_residual_gating/logs/v8b_ss_s123.log"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T19:45:35.295400+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda\\\\nGPU: NVIDIA RTX PRO 6000 Blackwell Server Edition\\\\nVRAM: 102.0 GB\\\\nGate type: threadgate\\\\nScheduled sampling: ON (max_ratio=0.5, warmup=0, gen_tokens=128, temp=0.7)\\\\nLoading model: /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/339 [00:00<01:13,  4.63it/s]\\\\rLoading weights:   1%|          | 2/339 [00:00<01:07,  4.97it/s]\\\\rLoading weights:   1%|          | 4/339 [00:00<00:40,  8.23it/s]\\\\rLoading weights:   1%|▏         | 5/339 [00:01<02:35,  2.15it/s]\\\\rLoading weights:  55%|█████▍    | 186/339 [00:01<00:00, 158.56it/s]\\\\rLoading weights:  74%|███████▎  | 250/339 [00:02<00:00, 124.52it/s]\\\\rLoading weights:  87%|████████▋ | 295/339 [00:02<00:00, 148.94it/s]\\\\rLoading weights: 100%|█████████▉| 338/339 [00:03<00:00, 147.58it/s]\\\\rLoading weights: 100%|████��█████| 339/339 [00:03<00:00, 111.13it/s]\\\\ntrainable params: 5,046,272 || all params: 7,620,662,784 || trainable%: 0.0662\\\\nLoading data from data/ultrachat_8k\\\\nDataset size: 8000\\\\nLoRA params: 112, Gate params: 142\\\\nGate LR multiplier: 10.0 (gate lr = 0.002)\\\\nTotal training steps: 3000\\\\nGradient accumulation: 8\\\\nLambda GAR: 1.0\\\\nLambda Gate Div: 1.0\\\\nMin Gate Std: 0.05\\\\n============================================================\\\\nTotal params: 7,622,329,900\\\\nTrainable params: 6,713,388 (0.09%)\\\\n============================================================\\\\n[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\nEpoch 0 Step 0 | L_NTP=1.3700 L_GAR=0.2337 L_DIV=0.0218 Loss=1.6255 | Gate=0.8118 | Mem=53.0GB | SS=no ratio=0.000 | SS_L_GAR=0.000 (n=0) TF_L_GAR=0.234 (n=1)\\\\n[GATE] step=0 mean=0.8118 std=0.0277 min=0.6953 max=0.8477\\\\n[GATE-PROFILE] step=0 L0:0.848 L1:0.812 L2:0.848 L3:0.820 L4:0.832 L5:0.820 L6:0.\n…[truncated 975 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T19:45:35.346079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/checkpoints/tg_v8b_ss_s123/epoch_2/"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T19:45:35.849162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 3316\\\\ndrwxr-xr-x 3 root root      52 May 21 23:15 .\\\\ndrwxr-xr-x 6 root root     138 May 21 23:15 ..\\\\n-rw-r--r-- 1 root root 3392947 May 21 23:15 gate_params.pt\\\\ndrwxr-xr-x 2 root root      83 May 21 23:15 lora\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T19:46:09.774181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "head -60 /root/turn_residual_gating/scripts/eval_v7_tg_s123.sh"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T19:46:11.281826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# v7 TG s123 seed-robustness eval\\\\n# 4-way: Base / LoRA-only / TG v7 s123 / v8b-SS s123\\\\n# TF + AR modes, GAR-ours + GAR-Dongre\\\\nset -e\\\\n\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\ncd /root/turn_residual_gating\\\\n\\\\nPYTHON=/root/miniconda3/bin/python3.12\\\\nEVAL_SCRIPT=src/eval_phase2_gar.py\\\\nCONV_PATH=data/ultrachat_eval_heldout.json\\\\nOUT_ROOT=runs/eval_v7_tg_s123\\\\n\\\\n# ── Auto-detect TG v7 s123 checkpoint ──────────────────────\\\\nTG_RUN_DIR=runs/phase2_tg_s123_v7\\\\nTG_CKPT=\\\\\\\"\\\\\\\"\\\\nfor ep_dir in $(ls -1d ${TG_RUN_DIR}/epoch_* 2>/dev/null | sort -t_ -k2 -rn); do\\\\n    if [ -f \\\\\\\"$ep_dir/gate_params.pt\\\\\\\" ] && [ -d \\\\\\\"$ep_dir/lora\\\\\\\" ]; then\\\\n        TG_CKPT=\\\\\\\"$ep_dir\\\\\\\"\\\\n        break\\\\n    fi\\\\ndone\\\\nif [ -z \\\\\\\"$TG_CKPT\\\\\\\" ] && [ -f \\\\\\\"$TG_RUN_DIR/gate_params.pt\\\\\\\" ] && [ -d \\\\\\\"$TG_RUN_DIR/lora\\\\\\\" ]; then\\\\n    TG_CKPT=\\\\\\\"$TG_RUN_DIR\\\\\\\"\\\\nfi\\\\nif [ -z \\\\\\\"$TG_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: No TG v7 s123 checkpoint found in $TG_RUN_DIR\\\\\\\"\\\\n    ls -la \\\\\\\"$TG_RUN_DIR\\\\\\\"/ 2>/dev/null || echo \\\\\\\"  (directory not found)\\\\\\\"\\\\n    exit 1\\\\nfi\\\\necho \\\\\\\"Using TG v7 s123 checkpoint: $TG_CKPT\\\\\\\"\\\\n\\\\n# ── Auto-detect LoRA-only s123 checkpoint ──────────────────\\\\nLO_RUN_DIR=runs/phase2_lora_only_s123\\\\nLO_CKPT=\\\\\\\"\\\\\\\"\\\\nfor ep_dir in $(ls -1d ${LO_RUN_DIR}/epoch_* 2>/dev/null | sort -t_ -k2 -rn); do\\\\n    if [ -d \\\\\\\"$ep_dir/lora\\\\\\\" ]; then\\\\n        LO_CKPT=\\\\\\\"$ep_dir\\\\\\\"\\\\n        break\\\\n    fi\\\\ndone\\\\nif [ -z \\\\\\\"$LO_CKPT\\\\\\\" ] && [ -d \\\\\\\"$LO_RUN_DIR/lora\\\\\\\" ]; then\\\\n    LO_CKPT=\\\\\\\"$LO_RUN_DIR\\\\\\\"\\\\nfi\\\\nif [ -z \\\\\\\"$LO_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"WARNING: LoRA-only s123 checkpoint not found in $LO_RUN_DIR, skipping LoRA-only eval\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"Using LoRA-only s123 checkpoint: $LO_CKPT\\\\\\\"\\\\nfi\\\\n\\\\n# ── Auto-detect v8b-SS s123 checkpoint ─────────────────────\\\\nSS_RUN_DIR=checkpoints/tg_v8b_ss_s123\\\\nSS_CK\n…[truncated 351 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1507
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T19:46:11.332451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -n \"num_conversations\\|num_turns\\|N=\\|T=\" /root/turn_residual_gating/scripts/eval_v8b_ss_s123.sh"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T19:46:11.734203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T19:46:11.786593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -n \"num_conversations\\|num_turns\\|N=\\|T=\" /root/turn_residual_gating/src/eval_phase2_gar.py"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T19:46:11.787006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T19:46:20.114715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -n \"num_conversations\\|num_turns\\|default.*5\\|default.*10\\|n_conv\\|n_turn\" /root/turn_residual_gating/src/eval_phase2_gar.py"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-21T19:46:20.165654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-21T19:46:20.768527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -rn \"conversations-path\\|num-conversations\\|num-turns\\|n_conv\" /root/turn_residual_gating/scripts/eval_v8b_ss_s123.sh"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-21T19:46:20.819118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-21T19:46:25.335963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -n \"num_conv\" /root/turn_residual_gating/src/eval_phase2_gar.py"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-21T19:46:25.738439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -n \"default\" /root/turn_residual_gating/src/eval_phase2_gar.py"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-21T19:46:25.788980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"552:        \\\\\\\"num_conversations\\\\\\\": len(all_gar_curves),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-21T19:46:26.291133+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"352:    parser.add_argument(\\\\\\\"--checkpoint-dir\\\\\\\", default=None)\\\\n354:    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", default=\\\\\\\"/root/turn_residual_gating/results/\\\\\\\")\\\\n355:    parser.add_argument(\\\\\\\"--baseline-results\\\\\\\", default=\\\\\\\"/root/turn_residual_gating/results/phase1_gar_results.json\\\\\\\")\\\\n356:    parser.add_argument(\\\\\\\"--model\\\\\\\", default=MODEL_NAME)\\\\n357:    parser.add_argument(\\\\\\\"--conversations-path\\\\\\\", default=None, help=\\\\\\\"Path to standard_conversations.json for fixed conversations\\\\\\\")\\\\n358:    parser.add_argument(\\\\\\\"--gar-variant\\\\\\\", default=\\\\\\\"ours\\\\\\\", choices=[\\\\\\\"ours\\\\\\\", \\\\\\\"dongre\\\\\\\"],\\\\n364:    parser.add_argument(\\\\\\\"--max-turns\\\\\\\", type=int, default=None,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-21T19:46:33.744857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -n \"n_gen\\|gen_conv\\|generate\\|NUM_CONV\\|NUM_TURN\" /root/turn_residual_gating/src/eval_phase2_gar.py"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-21T19:46:34.297351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-21T19:46:34.348086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -n \"N_CONV\\|N_TURNS\\|5\\|10\" /root/turn_residual_gating/src/eval_phase2_gar.py"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-21T19:46:34.348592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-21T19:46:39.368226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -n \"n_gen\" /root/turn_residual_gating/src/eval_phase2_gar.py"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-21T19:46:39.820327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-21T19:46:40.522978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -n \"generate\" /root/turn_residual_gating/src/eval_phase2_gar.py"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-21T19:46:40.774180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "wc -l /root/turn_residual_gating/src/eval_phase2_gar.py"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-21T19:46:40.925182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"196:            output = model.generate(input_ids, max_new_tokens=max_new_tokens, do_sample=False)\\\\n363:                        help=\\\\\\\"Extract user turns from --conversations-path and generate AR responses\\\\\\\")\\\\n401:    # Load or generate conversations\\\\n434:        conversations_source = \\\\\\\"generated\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-21T19:46:41.477484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"616 /root/turn_residual_gating/src/eval_phase2_gar.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-21T19:46:45.642789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "head -460 /root/turn_residual_gating/src/eval_phase2_gar.py"
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-21T19:46:46.145480+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# eval_phase2_gar.py — 评估训练后模型的 GAR 恢复效果\\\\n# 用法: python eval_phase2_gar.py --checkpoint-dir /root/turn_residual_gating/checkpoints/tg_s42 --gate-type threadgate\\\\n# GAR-Dongre 模式: python eval_phase2_gar.py --checkpoint-dir ... --gate-type threadgate --gar-variant dongre\\\\n# 输出: JSON 结果 + GAR 对比曲线图\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom threadgate import TurnEmbedding, GateNetwork, UniformGateNetwork\\\\nfrom gar import GARMeasurer\\\\nfrom turn_utils import detect_turn_boundaries, build_turn_features\\\\nfrom config import MODEL_NAME\\\\n\\\\n\\\\nSYSTEM_PROMPTS = [\\\\n    \\\\\\\"You are a knowledgeable science tutor. Always explain concepts step by step. Use analogies when possible. Never give direct answers without explanation. If the student makes an error, gently correct them and guide them to the right answer.\\\\\\\",\\\\n    \\\\\\\"You are a professional code reviewer. Focus on code quality, security, and performance. Point out potential bugs and suggest improvements. Always explain why a change is needed, not just what to change. Be constructive and specific.\\\\\\\",\\\\n    \\\\\\\"You are a creative writing coach. Help users improve their storytelling skills. Focus on character development, plot structure, and vivid descriptions. Give specific feedback with examples. Encourage experimentation with different styles.\\\\\\\",\\\\n    \\\\\\\"You are a math problem solver. Show all steps clearly. Explain the reasoning behind each step. If there are multiple approaches, mention them. Check your work by verifying the answer. Use LaTeX notation for formulas.\\\\\\\",\\\\n    \\\\\\\"You are a debate coach who helps users argue both sides of issues. Present bal\n…[truncated 7094 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-21T19:47:47.183953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] Reviewer Loop #4 状态确认\n\n**v7_tg_s123 训练**：RUNNING，进度 ~75%（Epoch 2 Step 2000, GATE step 2250/3000），ETA ~1.5h。指标与 s42 一致：gate_mean=0.947（s42: 0.934），gate_std=0.052（s42: 0.049），gate profile 呈典型 ThreadGate 模式（L1/L5 低 ~0.79，L27 高 ~1.0）。GPU 0 利用率 98%、显存 66.5/97.9GB，合规 ✓\n\n**v8b_ss_s123 eval**：脚本审核 PASS。checkpoint epoch_2 存在（gate_params.pt + lora），AR 生成参数 N=5/T=10 与 s42 一致。等 v7 完成后可执行。\n\n**ss_used_ratio 差异（0.371 vs s42 的 0.5）**：已核实为报告口径不同——s123 报的是训练全程 SS 使用率均值（线性 ramp 0→0.5，理论均值 0.370），s42 报的是终值。两者 max_ratio=0.5 一致，无配置差异。\n\n**数据完整性小问题**：experiment_plan.yaml 中 plan_018 出现两次（一次 DONE/PCGrad，一次 planned），建议 Agent 清理重复条目。非阻塞。\n\n**无 blocking 发现**。下一审查点：v7 训练完成后审查 final metrics + eval 结果。",
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-21T19:47:50.802127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3618
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-21T19:48:41.312153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "3600",
+              "reason": "等待 v7_tg_s123 训练完成（预计再 ~1.5h），届时审查 final metrics 并监控 eval 启动",
+              "prompt": "[HANDOFF] 你是 Research Reviewer，这是 Loop #4。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只用 GPU 0（CUDA_VISIBLE_DEVICES=0），服务器 westd-20861 只有 1 张卡（NVIDIA RTX PRO 6000 Blackwell, 98GB）\n- v8b_ss_s123 eval 脚本已就绪但未执行（`scripts/eval_v8b_ss_s123.sh`），需等 v7 训练完或确认 VRAM 够并行\n- M020 nGAR 混淆已修正——**绝不能**在论文中使用 \"normalization artifact\" 叙事（AR nGAR=0.493 vs TF nGAR=11.88，gap 24.1×，不是 \"aligns\"）\n- 论文 instruction retention 数据：β=3（不是β=5），18 prompts（不是N=50）——commit e4522a3 已修复，但后续编辑要防回退\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-20861，工作目录 `/root/turn_residual_gating`\n- Python：`/root/miniconda3/bin/python3.12`，conda base 环境\n- Qwen 模型：`/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct`\n- Llama 模型：`/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct`\n- 数据：`data/ultrachat_8k`（训练）、`data/ultrachat_eval_heldout.json`（eval, 50 convs）\n- 活跃进程：v7_tg_s123 PID 245634（train_phase2.py, GPU 0, ~4.5h elapsed at last check）\n- 无 W&B 配置（本项目不用 W&B，不检查）\n\n### 3. 📊 当前状态\n**RUNNING**：v7_tg_s123 — Epoch 2 Step 2000, GATE step 2250/3000 (~75%)，预计 ~1.5h 完成\n**待执行 eval**：\n- `scripts/eval_v8b_ss_s123.sh`（v8b eval，需 GPU，checkpoint ready at epoch_2）\n- `scripts/eval_v7_tg_s123.sh`（v7+v8b 联合 eval，v7 训练完后执行）\n**Registry 状态**：v7_tg_s123 RUNNING，v8b_ss_s123 DONE（仅训练指标，无 eval），其余 30+ DONE/INVALIDATED\n\n### 4. 📋 待办\n- v7_tg_s123 训练完成 → 审查训练 final metrics（与 v7 s42 对比：final_loss ~1.04, gate_mean ~0.95, gate_std ~0.06）\n- v8b_ss_s123 eval 结果出现 → **核心审查**：model-gen GAR-ours 与 s42 的 0.318 对比，gap ratio 是否在 [1.2×, 2.5×]（s42=1.57×），PPL <1.6。这是 C7 seed robustness claim 的关键数据\n- v7_tg_s123 eval 结果出现 → 审查 TF-AR gap ratio（s42=32×），确认标准 TG 的 exposure bias 跨 seed 复现\n- 如发现 s123 gap ratio 与 s42 偏差 >50% → 立即 CRITICAL 报 Director\n\n### 5. 🎯 战略上下文\n**核心结论链**：ThreadGate 训练成功（TF GAR=0.50）但 AR GAR 坍塌（0.015-0.025），gap 20-33×。原因是 exposure bias（不是 gating 失败、不是梯度冲突）。证据：(1) PCGrad 无效排除梯度冲突，(2) β-steering 恢复 GAR 证明 attention misallocation，(3) scheduled sampling 压缩 gap 到 1.57×，(4) Llama 跨模型复现 12.5× gap。\n\n### 6. 本轮已完成的审查\n- v7 训练进度 75%，指标与 s42 一致：gate_mean=0.947, gate_std=0.052, gate profile 正常\n- v8b eval 脚本审核 PASS，AR 生成参数 N=5/T=10 与 s42 一致\n- ss_used_ratio 差异（0.371 vs 0.5）已解释：报告口径不同，max_ratio 一致\n- GPU 合规 ✓（PID 245634 on GPU 0, 98% util, 66.5GB）\n- experiment_plan.yaml 中 plan_018 重复（info 级，已报 Director）\n\n**本次 wake-up 重点**：检查 v7 是否完成，审查 final metrics，监控 eval 启动"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-21T19:48:41.312599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 20:49:00 (in 3619s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 0
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-21T19:48:45.524474+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Loop #4 审查完毕。\n\n**本轮结论**：v7_tg_s123 训练正常推进（75%，gate 指标与 s42 一致），v8b eval 管线就绪，无 blocking 发现。已向 Director 报告状态和 plan_018 数据重复。下次检查在 ~1h 后，届时 v7 应接近完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer"
+          },
+          "id": "event-000090"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-21T19:48:45.524876+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ssh_check_v7_tg_s123_status_20260521T194257]:\nWorker worker_ssh_check_v7_tg_s123_status_20260521T194257 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "source": "system"
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-21T19:48:53.961537+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "tail -15 /root/turn_residual_gating/logs/v7_tg_s123.log"
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-21T19:48:54.513508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-21T19:48:55.267770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Epoch 2 Step 1650 | L_NTP=0.9388 L_GAR=0.0000 L_DIV=0.0000 Loss=0.9388 | Gate=0.9415 | Mem=53.1GB\\\\nEpoch 2 Step 1700 | L_NTP=1.1655 L_GAR=0.0017 L_DIV=0.0000 Loss=1.1672 | Gate=0.9517 | Mem=53.1GB\\\\nEpoch 2 Step 1750 | L_NTP=1.1138 L_GAR=0.0002 L_DIV=0.0000 Loss=1.1140 | Gate=0.9487 | Mem=53.1GB\\\\nEpoch 2 Step 1800 | L_NTP=1.2080 L_GAR=0.0009 L_DIV=0.0000 Loss=1.2090 | Gate=0.9381 | Mem=53.1GB\\\\nEpoch 2 Step 1850 | L_NTP=0.7322 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7323 | Gate=0.9488 | Mem=53.1GB\\\\nEpoch 2 Step 1900 | L_NTP=0.7914 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7914 | Gate=0.9435 | Mem=53.1GB\\\\nEpoch 2 Step 1950 | L_NTP=0.7499 L_GAR=0.0001 L_DIV=0.0000 Loss=0.7501 | Gate=0.9481 | Mem=53.1GB\\\\n[GATE] step=2250 mean=0.9473 std=0.0517 min=0.7969 max=1.0000\\\\nEpoch 2 Step 2000 | L_NTP=0.6588 L_GAR=0.0004 L_DIV=0.0000 Loss=0.6592 | Gate=0.9291 | Mem=53.1GB\\\\nEpoch 2 Step 2050 | L_NTP=0.8737 L_GAR=0.0001 L_DIV=0.0000 Loss=0.8737 | Gate=0.9445 | Mem=53.1GB\\\\nEpoch 2 Step 2100 | L_NTP=0.9066 L_GAR=0.0001 L_DIV=0.0000 Loss=0.9067 | Gate=0.9524 | Mem=53.1GB\\\\nEpoch 2 Step 2150 | L_NTP=0.7952 L_GAR=0.0001 L_DIV=0.0000 Loss=0.7953 | Gate=0.9434 | Mem=53.1GB\\\\nEpoch 2 Step 2200 | L_NTP=0.8714 L_GAR=0.0001 L_DIV=0.0000 Loss=0.8715 | Gate=0.9496 | Mem=53.1GB\\\\nEpoch 2 Step 2250 | L_NTP=0.6830 L_GAR=0.0018 L_DIV=0.0000 Loss=0.6848 | Gate=0.9474 | Mem=53.1GB\\\\nEpoch 2 Step 2300 | L_NTP=1.0675 L_GAR=0.0001 L_DIV=0.0000 Loss=1.0676 | Gate=0.9452 | Mem=53.1GB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1305
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-21T19:48:55.318445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "turn_residual_gating",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-21T19:48:55.670614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 97 %, 66479 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1157
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-21T19:48:55.821592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"v7_tg_s123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T15:16:39.923Z\\\", \\\"updated_at\\\": \\\"2026-05-21T15:17:06.228Z\\\", \\\"hypothesis\\\": \\\"v7 TG s42 已验证 ThreadGate 有效性，s123 验证 seed robustness。预期 gate profile 和 GAR 收敛模式与 s42 一致。\\\", \\\"parent\\\": \\\"phase2_tg_s42_v7\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/launch_v7_tg_s123.sh\\\", \\\"server\\\": \\\"westd-20861\\\", \\\"data_path\\\": \\\"data/ultrachat_8k\\\", \\\"data_count\\\": 8000, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 123, \\\"pid\\\": 245628, \\\"gpu_index\\\": 0, \\\"checkpoint_path\\\": \\\"/root/turn_residual_gating/runs/phase2_tg_s123_v7\\\", \\\"log_path\\\": \\\"/root/turn_residual_gating/logs/v7_tg_s123.log\\\", \\\"checkpoint_source\\\": \\\"N/A (from scratch)\\\", \\\"eval_data\\\": \\\"N/A\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.113}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 503
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-21T19:49:10.833864+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "v7 仍在跑，Epoch 2 Step 2300（从上次 Step 2000 推进了 300 步），进度约 76%。GPU 97%/66.5GB，一切正常。预计还需 ~1.2h 完成。\n\n无新发现，继续等待计划中的 wake-up。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer"
+          },
+          "id": "event-000098"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-21T19:49:11.353938+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_prep_llama_lora_only_20260521T194426]:\nWorker worker_code_prep_llama_lora_only_20260521T194426 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "source": "system"
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-21T19:49:20.487103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "fields": "['*']",
+              "limit": "3"
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-21T19:49:21.042618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"v7_tg_s123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T15:16:39.923Z\\\", \\\"updated_at\\\": \\\"2026-05-21T15:17:06.228Z\\\", \\\"hypothesis\\\": \\\"v7 TG s42 已验证 ThreadGate 有效性，s123 验证 seed robustness。预期 gate profile 和 GAR 收敛模式与 s42 一致。\\\", \\\"parent\\\": \\\"phase2_tg_s42_v7\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/launch_v7_tg_s123.sh\\\", \\\"server\\\": \\\"westd-20861\\\", \\\"data_path\\\": \\\"data/ultrachat_8k\\\", \\\"data_count\\\": 8000, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 123, \\\"pid\\\": 245628, \\\"gpu_index\\\": 0, \\\"checkpoint_path\\\": \\\"/root/turn_residual_gating/runs/phase2_tg_s123_v7\\\", \\\"log_path\\\": \\\"/root/turn_residual_gating/logs/v7_tg_s123.log\\\", \\\"checkpoint_source\\\": \\\"N/A (from scratch)\\\", \\\"eval_data\\\": \\\"N/A\\\"}}, \\\"v8b_ss_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:29:28.197Z\\\", \\\"updated_at\\\": \\\"2026-05-21T15:15:49.282Z\\\", \\\"hypothesis\\\": \\\"v8b SS s42 成功（gap 32×→1.57×），s123 验证结果的 seed robustness。预期 model-gen GAR 同样显著提升，PPL 无恶化。\\\", \\\"parent\\\": \\\"phase2_tg_s42_v8b_resume\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/launch_v8b_ss_s123.sh\\\", \\\"server\\\": \\\"westd-20861\\\", \\\"data_path\\\": \\\"data/ultrachat_8k\\\", \\\"data_count\\\": 8000, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"N/A (from scratch)\\\", \\\"eval_data\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"/root/turn_residual_gating/checkpoints/tg_v8b_ss_s123\\\", \\\"log_path\\\": \\\"/root/turn_residual_gating/logs/v8b_ss_s123.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.9316, \\\"final_ntp_loss\\\": 0.9307, \\\"final_gar_loss\\\": 0.0009, \\\"final_gate_mean\\\": 0.9505, \\\"final_gate_std\\\": 0.0508, \\\"final_gate_min\\\": 0.7383, \\\"final_gate_max\\\": 1, \\\"ss_used_ratio\\\": 0.371, \\\"training_time_s\\\": 38773.4, \\\"epoch0_loss\\\": 1.0092, \\\"epoch1_loss\\\": 0.9444, \\\"epoch2_loss\\\": 0.9316}, \\\"completed_at\\\": \\\"2026-05-21T15:15:49.282Z\\\"}, \\\"llama_tg_training\\\": {\\\"status\\\": \\\"PR\n…[truncated 700 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 555
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-21T19:49:21.244750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/scripts/launch_llama_lora_only_s42.sh"
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-21T19:49:22.551676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rwxr-xr-x 1 root root 810 May 22 03:46 /root/turn_residual_gating/scripts/launch_llama_lora_only_s42.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1306
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-21T19:49:27.521069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "cat /root/turn_residual_gating/scripts/launch_llama_lora_only_s42.sh"
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-21T19:49:27.973092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Plan_011: LoRA-only ablation for Llama-3.1-8B-Instruct (no gate)\\\\n# Matches Llama TG (launch_llama_tg.sh) hyperparams, gate_type=none\\\\n# Gate fixed at 1.0, no gate parameters trained\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n\\\\ncd /root/turn_residual_gating\\\\n\\\\npython src/train_phase2.py \\\\\\\\\\\\n    --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/ \\\\\\\\\\\\n    --gate-type none \\\\\\\\\\\\n    --gar-loss-mode mse_target \\\\\\\\\\\\n    --gar-target 0.5 \\\\\\\\\\\\n    --lambda-gar 1.0 \\\\\\\\\\\\n    --lambda-gate-div 0.0 \\\\\\\\\\\\n    --min-gate-std 0.0 \\\\\\\\\\\\n    --init-bias 1.5 \\\\\\\\\\\\n    --gate-lr-multiplier 10 \\\\\\\\\\\\n    --max-seq-len 2048 \\\\\\\\\\\\n    --seed 42 \\\\\\\\\\\\n    --output-dir /root/turn_residual_gating/runs/phase2_llama_lora_only_s42 \\\\\\\\\\\\n    --data-dir /root/turn_residual_gating/data/ultrachat_8k \\\\\\\\\\\\n    --epochs 3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-21T19:49:37.250605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "cat /root/turn_residual_gating/scripts/launch_llama_tg.sh"
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-21T19:49:37.752789+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Plan_010: ThreadGate training for Llama-3.1-8B-Instruct\\\\n# Hyperparams match Qwen v7 (launch_tg_s123.sh)\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n\\\\ncd /root/turn_residual_gating\\\\n\\\\npython src/train_phase2.py \\\\\\\\\\\\n    --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/ \\\\\\\\\\\\n    --gate-type threadgate \\\\\\\\\\\\n    --gar-loss-mode mse_target \\\\\\\\\\\\n    --gar-target 0.5 \\\\\\\\\\\\n    --lambda-gar 1.0 \\\\\\\\\\\\n    --lambda-gate-div 1.0 \\\\\\\\\\\\n    --min-gate-std 0.05 \\\\\\\\\\\\n    --init-bias 1.5 \\\\\\\\\\\\n    --gate-lr-multiplier 10 \\\\\\\\\\\\n    --max-seq-len 2048 \\\\\\\\\\\\n    --seed 42 \\\\\\\\\\\\n    --output-dir /root/turn_residual_gating/runs/phase2_llama_tg_s42 \\\\\\\\\\\\n    --data-dir /root/turn_residual_gating/data/ultrachat_8k \\\\\\\\\\\\n    --epochs 3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-21T19:49:50.388198+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Llama LoRA-only 脚本审核 PASS。与 Llama TG 脚本（`launch_llama_tg.sh`）对比：\n\n| 参数 | TG | LoRA-only | 备注 |\n|------|-----|-----------|------|\n| gate-type | threadgate | none | 唯一功能差异 ✓ |\n| lambda-gate-div | 1.0 | 0.0 | 无 gate → 无 div loss ✓ |\n| min-gate-std | 0.05 | 0.0 | 无 gate → 无 std 约束 ✓ |\n| 其余参数 | 完全一致 | 完全一致 | model/lr/seed/data/epochs ✓ |\n\n控制变量正确，仅隔离 gating mechanism 贡献。训练未启动，排队等 v7 完成后执行。无需行动。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer"
+          },
+          "id": "event-000108"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "messages": [
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-21T19:55:03.913120+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_paper_registry_consistency_20260521T194443]:\nWorker worker_analysis_paper_registry_consistency_20260521T194443 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "source": "system"
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-21T19:55:14.722163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/artifacts/"
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-21T19:55:15.727713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/paper_registry_audit*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-21T19:55:15.930030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/turn_residual_gating/artifacts/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1207
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-21T19:55:15.980652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/_project/report/paper_registry_audit.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/paper_registry_audit.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 252
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-21T19:55:18.741771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/_project/report/paper_registry_audit.md"
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-21T19:55:18.842799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper–Registry Numerical Consistency Audit\n2\t\n3\t**Date:** 2026-05-21\n4\t**Paper commit:** e4522a3\n5\t**Registry:** 32 experiments (read via `read_registry`)\n6\t**Raw data:** Verified against `artifacts/` JSON files where available\n7\t\n8\t---\n9\t\n10\t## Summary\n11\t\n12\t- **Total quantitative claims audited:** 98 (experimental results only; hyperparameters/architecture constants excluded)\n13\t- **Matched:** 91\n14\t- **Mismatched (⚠️):** 5\n15\t- **Minor rounding/notation (⚡):** 2\n16\t\n17\t---\n18\t\n19\t## ⚠️ MISMATCHES\n20\t\n21\t### 1. N=5 Steering: β=0 baseline GAR\n22\t| Location | Paper | Registry Source | Registry Value | Delta |\n23\t|----------|-------|----------------|----------------|-------|\n24\t| abstract:2, intro:16, experiments:49, discussion:3, conclusion:3 | **0.029** | `attention_steering_v7_tg_gen` beta=0.0 | **0.028** | +0.001 |\n25\t| Raw data: `artifacts/attention_steering_v7_tg_gen/data/attention_steering_results.json` line 7 confirms 0.028 | | | | |\n26\t\n27\t**Severity:** Low. 0.028 rounds to 0.028 not 0.029 at 3dp. Appears in abstract + 4 other sections.\n28\t\n29\t### 2. N=5 Steering: β=2 GAR\n30\t| Location | Paper | Registry Source | Registry Value | Delta |\n31\t|----------|-------|----------------|----------------|-------|\n32\t| experiments:49 (\"0.029→0.075\") | **0.075** | `attention_steering_v7_tg_gen` beta=2.0 | **0.062** | +0.013 (21%) |\n33\t| Raw data: `artifacts/attention_steering_v7_tg_gen/data/attention_steering_results.json` line 10 confirms 0.062 | | | | |\n34\t\n35\t**Severity:** HIGH. 21% relative difference. This number anchors the \"negligible change at low β\" narrative and the \"∼9× recovery\" calculation in the figure caption. With registry value, the β=2→5 jump is 0.062→0.6795 = 11.0×, not \"∼9×\". The paper's 0.075→0.697 gives 9.3×.\n36\t\n37\t### 3. N=5 Steering: β=5 GAR\n38\t| Location | Paper | Registry Source | Registry Value | Delta |\n39\t|----------|-------|----------------|----------------|-------|\n40\t| abstract:2, intro:16, experiments:49, discussion:3, conclusion:3 \n…[truncated 11464 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-21T19:55:33.184295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/attention_steering_results.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating"
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-21T19:55:33.786726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/attention_steering_v7_tg_gen/data/attention_steering_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/attention_steering_results.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 602
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-21T19:55:33.837591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/attention_steering_v7_tg_gen/**/*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating"
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-21T19:55:33.938342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/attention_steering_v7_tg_gen/data/attention_steering_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/attention_steering_v7_tg_gen/data/steering_per_conv_gen5.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/attention_steering_v7_tg_gen/data/steering_per_conv.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/attention_steering_v7_tg_gen/data/phase2_tg_s42_v7_attention_steering_full.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/attention_steering_v7_tg_gen/data/eval200_attention_steering_full.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/attention_steering_v7_tg_gen/data/fig5_per_conv_complete.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-21T19:55:36.650516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/attention_steering_v7_tg_gen/data/attention_steering_results.json"
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-21T19:55:37.303472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"experiment\": \"attention_steering_v7_tg_gen\",\n3\t  \"checkpoint\": \"phase2_tg_s42_v7\",\n4\t  \"mode\": \"gen\",\n5\t  \"n_convs\": 5,\n6\t  \"results\": [\n7\t    {\"beta\": 0.0, \"mid_turns_avg_gar\": 0.028, \"avg_ppl\": 1.409},\n8\t    {\"beta\": 0.5, \"mid_turns_avg_gar\": 0.0287, \"avg_ppl\": 1.387},\n9\t    {\"beta\": 1.0, \"mid_turns_avg_gar\": 0.0349, \"avg_ppl\": 1.36},\n10\t    {\"beta\": 2.0, \"mid_turns_avg_gar\": 0.062, \"avg_ppl\": 1.411},\n11\t    {\"beta\": 5.0, \"mid_turns_avg_gar\": 0.6795, \"avg_ppl\": 1.908},\n12\t    {\"beta\": 10.0, \"mid_turns_avg_gar\": 0.959, \"avg_ppl\": 4.22}\n13\t  ],\n14\t  \"phase_transition_range\": [2, 5],\n15\t  \"source\": \"runs/attention_steering/phase2_tg_s42_v7_attention_steering.json on westd-20861\"\n16\t}\n17\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 652
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-21T19:56:04.909166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: critical] Paper-Registry 数值不一致——N=5 Steering 数据存在 3 处错误\n\nWorker 完成的 paper_registry_audit 发现并经 Reviewer 独立验证确认：\n\n## HIGH 优先级\n\n**1. β=5 GAR: 论文 0.697 vs 原始数据 0.6795**\n- 来源：`artifacts/attention_steering_v7_tg_gen/data/attention_steering_results.json` line 11\n- 可能是数字转置错误（0.6**79**5 → 0.6**97**）\n- 影响范围：Abstract + Intro + Experiments + Discussion + Conclusion（5 个章节）\n- 这是论文的 headline steering 数字\n\n**2. β=2 GAR: 论文 0.075 vs 原始数据 0.062**\n- 来源：同上 line 10\n- 偏差 21%，无法用四舍五入解释\n- 影响：Experiments 中的 \"∼9× recovery\" 计算。实际是 0.062→0.6795 = 11.0×，不是 9.3×\n- 修正后 recovery 更强，但数字必须准确\n\n## MEDIUM 优先级\n\n**3. β=0 baseline: 论文 0.029 vs 原始数据 0.028**\n- 传播到 5 个章节\n\n**4. \"30×\" vs registry/计算值 32×**\n- 论文其他地方用 \"20-33×\"，\"30×\" 内部不一致\n\n**5. GAR-Dongre 比值方向标签**\n- Qwen 标为 TF/AR=1.28× 但实际是 AR/TF=1.28×（数值正确，方向标签错）\n\n## 要求\n\n请指示 Paper Agent 修正以上 5 处不一致。前两项为 CRITICAL——审稿人如果核查原始数据会直接质疑论文可信度。修正后 Reviewer 需要 re-audit 确认。\n\n91/98 claim 已验证匹配（93%），审计质量可靠。",
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-21T19:56:08.885438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3976
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-21T19:56:36.925928+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "CRITICAL 数值不一致已报告。Llama LoRA-only 脚本审核也已完成——与 TG 脚本对比，仅 `--gate-type none` + `--lambda-gate-div 0.0` + `--min-gate-std 0.0` 不同，其余超参一致，ablation 设置正确。\n\nv7 训练仍在进行（~76% 完成），预计再 ~1-1.5h。等待 scheduled wake-up 审查 final metrics。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer"
+          },
+          "id": "event-000124"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "messages": [
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-21T20:02:36.619784+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_paper_n5_cleanup_20260521T195631]:\nWorker worker_analysis_paper_n5_cleanup_20260521T195631 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "source": "system"
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-21T20:02:47.341082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating && git log --oneline -3",
+              "description": "Check recent commits for N=5 fix"
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-21T20:02:48.244909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "e4522a3 [paper] Fix instruction retention params + update Limitations + compress Abstract\n52e5da3 [paper] Llama cross-model confirmed + §6 mechanism expansion + instruction retention\n760d758 [paper] Llama-3.1-8B cross-model GAR decay diagnostic (§6.5 preliminary evidence)\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 903
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-21T20:02:48.395954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating && git diff HEAD~1 -- paper/sections/*.tex",
+              "description": "Show paper tex changes from latest commit"
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-21T20:02:48.446895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "diff --git a/paper/sections/abstract.tex b/paper/sections/abstract.tex\nindex 7a09510..8f5fd44 100644\n--- a/paper/sections/abstract.tex\n+++ b/paper/sections/abstract.tex\n@@ -1,3 +1,3 @@\n \\begin{abstract}\n-Multi-turn dialogue with Large Language Models (LLMs) suffers from progressive attention decay toward system prompt goal tokens. On Qwen-2.5-7B-Instruct, the Goal Attention Ratio (GAR) declines by 70.8\\% between early and mid-conversation turns, yet linear probes recover goal content from the residual stream with AUC\\,=\\,0.98. Goal information persists, but the attention mechanism fails to route it. We introduce ThreadGate, which modulates the residual stream with a per-layer content-and-turn-conditioned MLP gate ($x_{l+1} = x_l + g_l \\cdot f_l(x_l)$), trained jointly with next-token prediction (NTP) and an auxiliary GAR loss. A five-way comparison (ThreadGate, +PCGrad, Uniform Gate, LoRA-only, Base) on Qwen-2.5-7B-Instruct reveals that training succeeds (teacher-forced GAR\\,=\\,0.50) but generalization fails: under autoregressive generation, GAR drops to 0.015--0.025 across all fine-tuned variants, a 20--33$\\times$ gap. Gating contributes zero measurable benefit, with only 0.75 percentage points separating all four fine-tuned variants. A PCGrad experiment establishes that gradient direction conflict is neither necessary nor sufficient for the failure. The failure traces to exposure bias: attention patterns optimized under teacher-forced prefixes do not transfer to model-generated text, and the NTP objective's token-level self-recovery does not extend to auxiliary attention losses. An inference-time steering experiment provides constructive evidence that attention misallocation---not representation degradation---is the proximal cause: adding attention bias ($\\beta$\\,=\\,5) at generation time recovers autoregressive GAR from 0.029 to 0.697, exceeding the unsteered teacher-forced baseline (0.535). A preliminary scheduled sampling experiment confirms that the gap is miti\n…[truncated 17195 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-21T20:03:11.316600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "fields": "['*']",
+              "limit": "1",
+              "filters": "{'exp_id': 'attention_steering_gen_n50'}"
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-21T20:03:11.868958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1024}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-21T20:03:11.919553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/attention_steering_gen_n50/**/*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating"
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-21T20:03:11.970101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-21T20:03:16.436549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "attention_steering_gen_n50",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/registry.yaml",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "5"
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-21T20:03:16.888693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1119:  attention_steering_gen_n50:\n1132:        attention_steering_gen_n50\n1143:      log_path: /root/turn_residual_gating/runs/attention_steering/attention_steering_gen_n50.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 452
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-21T20:03:17.139900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/steering*n50*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating"
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-21T20:03:17.190551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-21T20:03:20.502144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/registry.yaml",
+              "offset": "1119",
+              "limit": "80"
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-21T20:03:20.552861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1119\t  attention_steering_gen_n50:\n1120\t    status: DONE\n1121\t    retry_count: 0\n1122\t    created_at: '2026-05-20T19:04:17.455Z'\n1123\t    updated_at: '2026-05-21T01:59:57.100Z'\n1124\t    hypothesis: N=5 gen steering 显示 β∈[2,5] phase transition (GAR 0.06→0.68)，但样本量不足以报告置信区间。N=50\n1125\t      conversations 应重现同一 phase transition pattern 并提供统计鲁棒的 mean±std，加固 C6 claim (attention\n1126\t      steering as causal mechanism proof)。\n1127\t    parent: attention_steering_v7_tg_gen\n1128\t    spec:\n1129\t      command: CUDA_VISIBLE_DEVICES=0 python src/eval_attention_steering.py --checkpoint\n1130\t        runs/phase2_tg_s42_v7 --mode gen --data-file data/eval_200/eval_200.json --max-convs\n1131\t        50 --beta 0 2 3 4 5 10 --output-dir runs/attention_steering/ --output-name\n1132\t        attention_steering_gen_n50\n1133\t      server: westd-20861\n1134\t      gpu:\n1135\t      - cuda:0\n1136\t      data_path: data/eval_200/eval_200.json\n1137\t      data_count: 50\n1138\t      model_name: Qwen2.5-7B-Instruct + v7 TG LoRA\n1139\t      seed: N/A (eval)\n1140\t      checkpoint_source: phase2_tg_s42_v7\n1141\t      eval_data: 50 conversations from eval_200.json, gen mode autoregressive\n1142\t      checkpoint_path: N/A (eval experiment)\n1143\t      log_path: /root/turn_residual_gating/runs/attention_steering/attention_steering_gen_n50.json\n1144\t    metrics:\n1145\t      corrected: true\n1146\t      aggregation: per-conv mid_gar(turns 2-7), >=3 turns only\n1147\t      beta_0.0:\n1148\t        mid_gar: 0.0641\n1149\t        mid_gar_std: 0.0809\n1150\t        ppl: 1.4324\n1151\t        ppl_std: 0.1029\n1152\t        n_valid: 39\n1153\t      beta_2.0:\n1154\t        mid_gar: 0.128\n1155\t        mid_gar_std: 0.1101\n1156\t        ppl: 1.4822\n1157\t        ppl_std: 0.1385\n1158\t        n_valid: 39\n1159\t      beta_3.0:\n1160\t        mid_gar: 0.5558\n1161\t        mid_gar_std: 0.0601\n1162\t        ppl: 1.5605\n1163\t        ppl_std: 0.1719\n1164\t        n_valid: 39\n1165\t      beta_4.0:\n1166\t        mid_gar: 0.6439\n1167\t        mid_gar_std: 0.0607\n1168\n…[truncated 1219 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-21T20:03:51.184909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.075|0\\.029|0\\.697",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-21T20:03:51.285792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-21T20:03:57.157013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "steering|beta|\\\\\\\\beta",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/experiments.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "30"
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-21T20:03:57.207675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "45:\\subsection{Inference-Time Attention Steering}\\label{subsec:steering}\n47:The preceding sections established that all training-time interventions fail uniformly: exposure bias collapses autoregressive GAR regardless of gating or gradient management. We now test whether inference-time attention manipulation can recover GAR without retraining. We apply an additive bias $\\beta$ to goal-token attention logits at every layer of the ThreadGate checkpoint during generation.\n49:Figure~\\ref{fig:steering}(a) presents initial results on $N$\\,=\\,5 ten-turn conversations. Low bias values ($\\beta \\in [0, 2]$) yield negligible GAR change (0.028\\,$\\to$\\,0.062) with stable PPL (${\\sim}$1.4). A sharp nonlinearity appears between $\\beta$\\,=\\,2 and $\\beta$\\,=\\,5: GAR increases ${\\sim}$11$\\times$ (0.062\\,$\\to$\\,0.6795$\\pm$0.020) while PPL rises only 35\\% (1.41\\,$\\to$\\,1.91). At $\\beta$\\,=\\,10, GAR saturates at 0.959 but PPL degrades to 4.22.\n51:[Omitted long matching line]\n53:These results provide constructive evidence that attention misallocation---not representation degradation---is the proximal cause of exposure-bias-induced GAR failure under the tested conditions (Qwen-2.5-7B, UltraChat, GAR-family losses): manually correcting attention via $\\beta$ bias restores GAR, and inference-time intervention circumvents the exposure bias barrier.\n57:  \\includegraphics[width=\\columnwidth]{fig5_attention_steering.pdf}\n58:[Omitted long matching line]\n59:  \\label{fig:steering}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-21T20:04:14.991095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "30.*times|30\\\\\\\\times",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-21T20:04:15.042858+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-21T20:04:19.009334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "30",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex",
+              "head_limit": "30"
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-21T20:04:19.059949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-21T20:04:23.077079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -rn \"30\" /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/*.tex 2>/dev/null | grep -i \"times\\|gap\\|×\" | head -10",
+              "description": "Search for remaining \"30x\" references in paper"
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-21T20:04:23.177923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-21T20:04:44.976542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] Paper N=5 数值修正验证 — PASS\n\nAgent 修正方案：\n1. Abstract/Intro/Discussion/Conclusion 的 headline steering 数字从 N=5 切换到 N=50：0.064→0.727（registry β=5 mid_gar=0.7271 ✓）\n2. Experiments.tex 中 N=5 数字修正为原始数据值：β=0=0.028, β=2=0.062, β=5=0.6795, recovery ~11× ✓\n3. \"30×\" → \"32×\" 全文修正 ✓\n4. 旧错误值（0.029, 0.075, 0.697）已全部清除，grep 确认无残留\n\nReviewer 独立验证：\n- N=50 β=5 数据来源确认：registry `attention_steering_gen_n50` beta_5.0 mid_gar=0.7271, ppl=1.7723, n_valid=38 ✓\n- N=5 原始数据对照：`attention_steering_results.json` line 10-11 确认 0.062/0.6795 ✓\n- experiments.tex 正确区分 N=5（Figure a 初始验证）和 N=50（统计鲁棒结果），叙事一致 ✓\n\n**⚠️ 注意**：N=50 β=5 PPL 为 1.77（增幅 24%），高于 β=3 的 1.56（增幅 9%）。当前论文用 β=5 作 headline 但未在 abstract/intro 明确 PPL cost。建议在 Discussion steering 段落补充 β=5 的 PPL tradeoff（Experiments 已有详细数据，不影响 claims 成立，但审稿人可能追问）。\n\n另：Llama LoRA-only 脚本 (`launch_llama_lora_only_s42.sh`) 审核 PASS，配置与 Llama TG 仅 gate-type 差异。",
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-21T20:04:48.589467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3612
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-21T20:04:53.004385+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修正验证完成。N=5 数值问题已全部解决，论文数字与原始数据一致。v7 训练仍在继续（约 80% 进度），等待完成后审查 final metrics。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer"
+          },
+          "id": "event-000152"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "messages": [
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-21T20:07:12.710463+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\nPaper Agent 已完成数值修正 patch（commit 66c3ef4）。请 re-audit 确认 5 处修正：\n\n1. experiments.tex β=5 GAR: 0.697→0.6795\n2. experiments.tex β=2 GAR: 0.075→0.062, recovery ~9×→~11×\n3. experiments.tex β=0 baseline: 0.029→0.028\n4. analysis.tex GAR-Dongre ratio 方向: TF/AR→AR/TF\n5. gen_fig5.py + fig5 重新生成\n\n同时验证 Abstract/Intro/Discussion/Conclusion 的 N=50 headline 数字（0.064, 0.727）与 registry 一致。\n\n重点关注：全文是否还有残留的旧错误值（0.697, 0.075, 0.029）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "source": "system"
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-21T20:07:21.966607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating && git log --oneline -5",
+              "description": "Check latest commits"
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-21T20:07:22.870593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "66c3ef4 [paper] Fix 5 paper-registry numerical inconsistencies (N=5 steering data)\ne4522a3 [paper] Fix instruction retention params + update Limitations + compress Abstract\n52e5da3 [paper] Llama cross-model confirmed + §6 mechanism expansion + instruction retention\n760d758 [paper] Llama-3.1-8B cross-model GAR decay diagnostic (§6.5 preliminary evidence)\n4cc5b24 [paper] N=50 steering: Reviewer presentation fixes\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 903
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-21T20:07:23.674594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating && git diff e4522a3..66c3ef4 -- paper/sections/*.tex",
+              "description": "Show all tex changes in the fix commit"
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-21T20:07:24.277313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "diff --git a/paper/sections/analysis.tex b/paper/sections/analysis.tex\nindex cb0a462..09e6076 100644\n--- a/paper/sections/analysis.tex\n+++ b/paper/sections/analysis.tex\n@@ -46,7 +46,7 @@ We define Turn-level Residual Coherence (TRC) as the cosine similarity between h\n \n The slightly elevated autoregressive TRC for LoRA-only likely reflects higher token-level predictability in model-generated text, which produces more self-similar hidden states. These results confirm the selectivity from \\S\\ref{subsec:dist-shift} with an orthogonal metric: exposure bias disrupts a specific learned routing behavior (summary-position attention to goal tokens) while leaving internal representations intact.\n \n-Cross-model evaluation extends this selectivity: GAR-Dongre shows negligible distribution shift on both Llama-3.1-8B (TF/AR ratio 1.002$\\times$) and Qwen-2.5-7B (1.28$\\times$), compared to the 12.5--30$\\times$ collapse in GAR-ours, confirming that exposure bias primarily disrupts attention concentration at generation boundaries rather than aggregate attention patterns (the scheduled sampling experiment in \\S\\ref{sec:discussion} breaks this pattern, with GAR-Dongre rising to 0.353).\n+Cross-model evaluation extends this selectivity: GAR-Dongre shows negligible distribution shift on both Llama-3.1-8B (AR/TF ratio 1.002$\\times$) and Qwen-2.5-7B (1.28$\\times$), compared to the 12.5--33$\\times$ collapse in GAR-ours, confirming that exposure bias primarily disrupts attention concentration at generation boundaries rather than aggregate attention patterns (the scheduled sampling experiment in \\S\\ref{sec:discussion} breaks this pattern, with GAR-Dongre rising to 0.353).\n \n \\subsection{Cross-Model Generality}\\label{subsec:cross-model}\n \ndiff --git a/paper/sections/experiments.tex b/paper/sections/experiments.tex\nindex a42cba4..771ed23 100644\n--- a/paper/sections/experiments.tex\n+++ b/paper/sections/experiments.tex\n@@ -46,16 +46,16 @@ LoRA-only         & 0.50 & 0.01 & 2.78 & 0.50 & 0.01 & 2.78\n…[truncated 4951 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 602
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-21T20:07:46.654694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating && grep -rn \"0\\.697\\|0\\.075\\|0\\.029\" paper/sections/*.tex",
+              "description": "Scan for any remaining old incorrect values"
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-21T20:07:47.006361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 351
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-21T20:07:47.508674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating && grep -rn \"0\\.727\\|0\\.064\" paper/sections/*.tex",
+              "description": "Verify N=50 headline numbers present"
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-21T20:07:48.412254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/abstract.tex:2:Multi-turn dialogue with Large Language Models (LLMs) suffers from progressive attention decay toward system prompt goal tokens. On Qwen-2.5-7B-Instruct, the Goal Attention Ratio (GAR) declines by 70.8\\% between early and mid-conversation turns, yet linear probes recover goal content from the residual stream with AUC\\,=\\,0.98. We introduce ThreadGate, a per-layer content-and-turn-conditioned MLP gate ($x_{l+1} = x_l + g_l \\cdot f_l(x_l)$) trained jointly with next-token prediction (NTP) and an auxiliary GAR loss. A five-way comparison reveals that training succeeds (teacher-forced GAR\\,=\\,0.50) but autoregressive GAR drops to 0.015--0.025, a 20--33$\\times$ gap; gating contributes zero measurable benefit and PCGrad-based causal exclusion rules out gradient conflict. The failure traces to exposure bias: attention patterns optimized under teacher-forced prefixes do not transfer to model-generated text. Inference-time steering ($\\beta$\\,=\\,5) recovers GAR from 0.064 to 0.727, providing constructive evidence that attention misallocation---not representation degradation---is the proximal cause. Scheduled sampling compresses the gap to 1.57$\\times$ with no PPL cost (single seed), and cross-model evaluation on Llama-3.1-8B confirms the gap (12.5$\\times$). These findings characterize how exposure bias selectively destroys auxiliary objective generalization under the tested conditions (Qwen-2.5-7B and Llama-3.1-8B, UltraChat, GAR-family losses).\npaper/sections/conclusion.tex:3:ThreadGate modulates the residual stream with per-layer gated MLP networks and an auxiliary GAR loss. Training succeeds (TF GAR\\,=\\,0.50), but autoregressive GAR collapses 20--33$\\times$ (exposure bias), confirmed on Llama-3.1-8B (12.5$\\times$). Inference-time steering ($\\beta$\\,=\\,5, GAR 0.727) and scheduled sampling (gap 32$\\times$$\\to$1.57$\\times$, no PPL cost, single seed) both demonstrate attention misallocation---not representation degradation---as the proximal cause.\n…[truncated 4502 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 903
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-21T20:07:48.563698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating && grep -rn \"30.*times\\|30.\\\\\\\\times\" paper/sections/*.tex",
+              "description": "Check for remaining 30x references"
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-21T20:07:48.614590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-21T20:08:01.361719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/_project/chart/fig5_attention_steering.pdf",
+              "description": "Check fig5 regeneration"
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-21T20:08:02.114981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 24967 May 20 10:45 /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/_project/chart/fig5_attention_steering.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 753
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-21T20:08:02.567134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/fig5_attention_steering.pdf 2>/dev/null; ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/figures/fig5_attention_steering.pdf 2>/dev/null",
+              "description": "Check fig5 in paper directory"
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-21T20:08:02.971232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 2"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 404
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-21T20:08:03.122227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/gen_fig5*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating"
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-21T20:08:03.122685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(ls -la /home/ubuntu/.agent-ml-research-i…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-21T20:08:09.886755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/gen_fig5*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating"
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-21T20:08:09.937295+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/gen_fig5.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-21T20:08:10.088247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/fig5_attention_steering*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating"
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-21T20:08:10.138844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/_project/chart/fig5_attention_steering.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig5_attention_steering.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig5_attention_steering.png"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-21T20:08:14.268941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig5_attention_steering.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/gen_fig5.py",
+              "description": "Check fig5 and gen script timestamps"
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-21T20:08:15.374187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 21783 May 21 20:04 /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig5_attention_steering.pdf\n-rw-r--r-- 1 ubuntu ubuntu  5318 May 21 20:03 /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/gen_fig5.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 1105
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-21T20:08:15.375690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating && git diff e4522a3..66c3ef4 -- figures/paper/gen_fig5.py",
+              "description": "Check gen_fig5.py changes in the fix commit"
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-21T20:08:15.426616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "diff --git a/figures/paper/gen_fig5.py b/figures/paper/gen_fig5.py\nindex 7453287..01193b9 100644\n--- a/figures/paper/gen_fig5.py\n+++ b/figures/paper/gen_fig5.py\n@@ -27,7 +27,7 @@ RED = '#B2182B'\n \n # Data — Panel (a) Autoregressive Generation (N=5, per-conversation mean±std)\n gen_beta =    [0.0,   0.5,   1.0,   2.0,   5.0,   10.0]\n-gen_gar =     [0.029, 0.033, 0.044, 0.075, 0.697, 0.959]\n+gen_gar =     [0.028, 0.0287, 0.0349, 0.062, 0.6795, 0.959]\n gen_gar_std = [0.014, 0.008, 0.007, 0.011, 0.020, 0.003]\n gen_ppl =     [1.41,  1.39,  1.36,  1.41,  1.91,  4.22]\n gen_ppl_std = [0.12,  0.11,  0.10,  0.12,  0.36,  0.99]\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-21T20:08:26.232549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/attention_steering_v7_tg_gen/data/steering_per_conv_gen5.json",
+              "limit": "50"
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-21T20:08:26.333284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"experiment\": \"attention_steering_v7_tg_gen\",\n3\t  \"checkpoint\": \"phase2_tg_s42_v7\",\n4\t  \"mode\": \"gen\",\n5\t  \"n_convs\": 5,\n6\t  \"n_turns\": 10,\n7\t  \"betas\": [\n8\t    0.0,\n9\t    0.5,\n10\t    1.0,\n11\t    2.0,\n12\t    5.0,\n13\t    10.0\n14\t  ],\n15\t  \"data_source\": \"reconstructed from worker logs (JSON + experiment log text)\",\n16\t  \"per_beta\": {\n17\t    \"0.0\": {\n18\t      \"mid_turns_avg_gar\": 0.028040310760668975,\n19\t      \"avg_ppl\": 1.4092668087271192,\n20\t      \"gar_curves\": [\n21\t        [\n22\t          0.06359952483971731,\n23\t          0.034448908838486,\n24\t          0.016376710850794153,\n25\t          0.019607226246448246,\n26\t          0.014657907203930828,\n27\t          0.009433028925064256,\n28\t          0.011485824140875097,\n29\t          0.015831627353242266,\n30\t          0.00891422347938614,\n31\t          0.01037777428975656\n32\t        ],\n33\t        [\n34\t          0.156626692629362,\n35\t          0.037979259407052476,\n36\t          0.02504711060806264,\n37\t          0.018457246425786028,\n38\t          0.013191473817087842,\n39\t          0.01228067005155846,\n40\t          0.015064822736206114,\n41\t          0.011210107373227926,\n42\t          0.01057901239426985,\n43\t          0.007441376629951838\n44\t        ],\n45\t        [\n46\t          0.02450216469809666,\n47\t          0.019350098909826013,\n48\t          0.01446332640584563,\n49\t          0.019659708416580608,\n50\t          0.013464019286896148,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-21T20:08:44.696031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] Re-audit commit 66c3ef4 — 全部 5 处修正 PASS\n\n## 逐项验证\n\n| # | 修正内容 | 原始数据 | 论文新值 | 状态 |\n|---|---------|---------|---------|------|\n| 1 | experiments.tex β=5 GAR | 0.6795 | 0.6795 | ✅ |\n| 2 | experiments.tex β=2 GAR + recovery | 0.062, 10.96× | 0.062, ~11× | ✅ |\n| 3 | experiments.tex β=0 baseline | 0.028 | 0.028 | ✅ |\n| 4 | analysis.tex Dongre ratio 方向 | AR/TF | AR/TF | ✅ |\n| 5 | gen_fig5.py 6 个数据点 + fig5 PDF | 全部修正 | 20:04 重生成 | ✅ |\n\n## 附加验证\n- Abstract/Intro/Discussion/Conclusion N=50 headline: 0.064→0.727（registry β=0=0.0641, β=5=0.7271）✅\n- \"30×\"→\"32×\" 全文替换完成 ✅\n- \"12.5--30×\"→\"12.5--33×\" analysis.tex ✅\n- **旧值扫描**：grep 0.697/0.075/0.029 全文零匹配，无残留 ✅\n- Figure caption ~9×→~11× ✅\n\n## 数据一致性总结\n修正前：91/98 claims matched (93%)\n修正后：**98/98 claims matched (100%)**\n\nPaper-registry 数值一致性审查关闭。",
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000180"
+        }
+      ]
+    }
+  ]
+}

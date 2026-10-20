@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eec5228ab45c04dc10c7",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis llama eval completion",
+  "task_key": "worker_analysis_llama_eval_completion_20260521T034404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_eval_completion_20260521T034404_result.json",
+    "occurrence": 1,
+    "bytes": 1195,
+    "sha256": "8a89308c730d282364a445ed4ebe086fe080fc76848ae8dbd57cb77ff74d21dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇报如下：\n\n```\n状态：success（8/8 步全部完成）\n\n                    GAR-ours    GAR-dongre   PPL\nTF Base:            0.0166      0.0038       3.45   (N=50, T=4)\nTF TG:              0.4836      0.0180       2.57   (N=50, T=4)\nAR Base:            0.0086      0.0118       1.24   (N=5,  T=10)\nAR TG:              0.0304      0.0217       1.32   (N=5,  T=10)\n\nTF-AR Gap ratio (TG,  ours):   15.9x\nTF-AR Gap ratio (Base, ours):  1.9x   ← control，无 TG 时 gap 很小\nTF-AR Gap ratio (TG,  dongre): 0.83x  ← dongre 指标无 gap（AR ≥ TF）\n\nvs Qwen v7: Llama 16x gap vs Qwen 32x gap\n```\n\n**C5 结论**：Llama-3.1-8B 确认跨模型泛化。TG 模型 GAR-ours 训练推理 gap 16x，虽低于 Qwen 的 32x 但仍非常显著。Base model control 仅 1.9x，说明 gap 是 TG 训练引入的 exposure bias 导致。\n\n**注意事项**：\n- TF/AR eval 设定不同（N=50/T=4 vs N=5/T=10），绝对值对比需谨慎\n- GAR-dongre 指标完全不展现 gap（ratio < 1），仅 GAR-ours 捕捉到 exposure bias 效应\n- Gate dynamic range 集中在 L24/L28/L30（diff 0.23-0.38），与 Qwen 类似的中高层 pattern"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-eval-completion.md"
+}

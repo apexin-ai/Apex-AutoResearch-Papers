@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "905ba4039c0808387c64",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "data attention steering v7 extract",
+  "task_key": "worker_data_attention_steering_v7_extract_20260520T111756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_attention_steering_v7_extract_20260520T111756_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "ea8ed6b5ff1f2bcc956fa3b0f0f22161bae5f1b6575d2d553fa94f31cae0621b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已保存。\n\n**结果总结：**\n- **4/6 betas 有完整 per-conversation 数据**（0.0, 2.0, 5.0, 10.0）\n- **2 betas 只有聚合均值**（0.5, 1.0）— 因为 SSH 工具输出被截断在 ~8KB，这两个 beta 的 per-conv 数据丢失在截断区域\n\nPer-conv GAR 用 gar_curves 的中间 turns (2-8) 平均值计算。beta_0.0 和 10.0 保留了完整精度，beta_2.0 和 5.0 的 gar 来自实验日志（4位小数），beta_5.0 的 PPL 保留了完整精度。\n\n如果需要 beta_0.5 和 1.0 的 per-conv 数据，需要等 SSH 工具可用后重新从服务器分 beta 读取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-attention-steering-v7-extract.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83d51f220afdbba94ef2",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis attention steering gen n50 results",
+  "task_key": "worker_analysis_attention_steering_gen_n50_results_20260520T193757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_attention_steering_gen_n50_results_20260520T193757_result.json",
+    "occurrence": 1,
+    "bytes": 1630,
+    "sha256": "e824de2a0d068d5b4ced058ff8f1e642dc2d676fe693af73bb514610333d7ab8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程仍在运行。** 当前状态：\n\n### 进度\n\n| β | 状态 | 进度 |\n|---|------|------|\n| 0.0 | 完成 | 50/50 |\n| 2.0 | 完成 | 50/50 |\n| 3.0 | 完成 | 50/50 |\n| 4.0 | **运行中** | 12/50 |\n| 5.0 | 待运行 | 0/50 |\n| 10.0 | 待运行 | 0/50 |\n\n总进度：162/300 convs (54%)\n\n### 已完成 β 的中间结果\n\n| β | Mid-turns avg GAR | Avg PPL |\n|---|-------------------|---------|\n| 0.0 | 0.1011 | 1.43 |\n| 2.0 | 0.2068 | 1.48 |\n| 3.0 | 0.6662 | 1.56 |\n\n### 与 N=5 gen 对比（已完成部分）\n\n| β | N=50 GAR | N=5 GAR | N=50 PPL | N=5 PPL |\n|---|----------|---------|----------|---------|\n| 0 | 0.101 | 0.028 | 1.43 | 1.41 |\n| 2 | 0.207 | 0.062 | 1.48 | 1.41 |\n| 3 | 0.666 | — | 1.56 | — |\n\n### 初步发现\n\n1. **Phase transition 重现**：β=2→3 出现 GAR 从 0.21 跳到 0.67 的剧烈跃迁（3.2×），与 N=5 中 β=2→5 的跳跃模式一致，但 N=50 的 transition point 更早（β≈3 而非 β≈5）\n2. **N=50 的 GAR 系统性偏高**：β=0 时 N=50 GAR (0.101) 比 N=5 (0.028) 高 3.6×，β=2 时差距更大（0.207 vs 0.062）。更多 conversation 样本暴露了更高的 baseline GAR\n3. **PPL 稳定**：β=0~3 的 PPL 增幅很小（1.43→1.56），说明 moderate β 下 attention steering 没有显著损害生成质量\n\n### 剩余时间估算\n\n已完成 3.24/6 个 beta（β=4 完成 24%），约 54%。每个 beta 约需 ~25-30 分钟（gen mode 需要逐 token 生成），剩余约 2.76 个 beta，预计还需 **70-85 分钟**。\n\n需要我稍后再次检查，还是等完成后再汇报完整数据？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-attention-steering-gen-n50-results.md"
+}

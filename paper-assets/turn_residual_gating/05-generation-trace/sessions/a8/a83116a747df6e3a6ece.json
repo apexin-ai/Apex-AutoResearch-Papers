@@ -1,0 +1,511 @@
+{
+  "schema_version": "1.0",
+  "id": "a83116a747df6e3a6ece",
+  "project": "turn_residual_gating",
+  "kind": "conversation",
+  "title": "analysis paper number audit",
+  "task_key": "worker_analysis_paper-number-audit_20260523T002633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_paper-number-audit_20260523T002633.jsonl",
+    "occurrence": 1,
+    "bytes": 32372,
+    "sha256": "292925bada5cf8725ed9482dadd8772115a396f34d8506aea0258b200fb69595"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T00:30:36.543875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/abstract.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T00:30:36.545272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tMulti-turn dialogue with LLMs suffers from progressive attention decay toward system-prompt goal tokens. On Qwen-2.5-7B-Instruct, the Goal Accessibility Ratio (GAR) declines 70.8\\% between early and mid-conversation turns, yet linear probes recover goal content from the residual stream (AUC\\,=\\,0.98). We introduce ThreadGate, per-layer content-and-turn-conditioned MLP gates trained jointly with next-token prediction and an auxiliary GAR loss. A five-way controlled comparison shows training succeeds (teacher-forced GAR\\,=\\,0.50) but autoregressive GAR collapses to 0.015--0.025, a 20--33$\\times$ gap; gating adds zero benefit over LoRA-only fine-tuning and PCGrad excludes gradient conflict. The failure traces to exposure bias: attention patterns learned under teacher-forced prefixes do not transfer to model-generated text. Steering ($\\beta$\\,=\\,5) recovers GAR to 0.727 and scheduled sampling compresses the gap to 1.57$\\times$ (single seed); cross-model evaluation on Llama-3.1-8B confirms the gap ($>$25$\\times$). These findings characterize how exposure bias selectively destroys auxiliary attention losses while leaving the primary NTP objective robust.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "elapsed_ms": 1
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T00:30:36.545518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T00:30:36.545732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tMulti-turn dialogue is the dominant mode of interaction with large language models (LLMs), and system prompts that specify task goals form the foundation of instruction following. As conversations grow longer, however, models progressively lose track of these goal specifications. \\citet{dongre2026attention} quantified this degradation across 12 models: the Goal Accessibility Ratio (GAR), which measures how much attention the model allocates to goal tokens in the system prompt, declines by 27--48\\% between early and mid-conversation turns. We replicate and extend this finding on Qwen-2.5-7B-Instruct, observing a 70.8\\% relative decline in GAR from 0.0418 at turn~1 to 0.0122 at mid-conversation. We attribute the steeper decline partly to our use of last-token GAR, which captures summary-position attention more sensitively than the all-token average of \\citet{dongre2026attention}, and partly to Qwen-2.5-7B's stronger instruction-following fidelity in early turns. This attention decay represents a systematic failure of multi-turn models to maintain task coherence, and it grows worse with each additional turn.\n4\t\n5\tA striking aspect of this degradation is what it does \\emph{not} affect. \\citet{dongre2026attention} showed that goal-relevant information persists in the residual stream throughout the conversation: linear discriminant analysis probes recover goal content with AUC\\,=\\,0.98 even at late turns where attention to goal tokens has collapsed. The information is present in the hidden states, but the attention mechanism fails to route it toward the output computation. This dissociation between information availability and information utilization suggests a natural intervention point.\n6\t\n7\tIf the residual stream already carries goal information, a learnable gate on the residual pathway could amplify or attenuate layer contributions to recover goal attention. This reasoning motivates ThreadGate, which modulates each\n…[truncated 4660 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T00:30:36.546013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T00:30:36.546324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Setup}\n5\t\n6\tWe fine-tune Qwen-2.5-7B-Instruct on 8K multi-turn conversations from the UltraChat training split, a dataset of naturalistic dialogues across diverse topics. LoRA adapters (rank 16, $\\alpha$=32) are applied to query and value projection layers (\\texttt{q\\_proj}, \\texttt{v\\_proj}). The combined loss $\\mathcal{L} = \\mathcal{L}_\\text{NTP} + \\lambda_\\text{GAR}\\mathcal{L}_\\text{GAR} + \\lambda_\\text{div}\\mathcal{L}_\\text{div}$ uses $\\lambda_\\text{GAR} = \\lambda_\\text{div} = 1.0$ with MSE target $\\tau = 0.5$ (\\S\\ref{sec:loss}). We train for 3 epochs with AdamW (lr $= 2 \\times 10^{-4}$, batch size 1, gradient accumulation 8, seed 42; ThreadGate additionally with seed 123); each variant requires approximately 6 hours on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (102\\,GB). Full hyperparameters are provided in Appendix~\\ref{sec:appendix-hyper}.\n7\t\n8\tWe evaluate five configurations that form a controlled comparison isolating four factors. \\textbf{ThreadGate}: full system with 28 gate networks (Eq.~\\ref{eq:gate}) and three-term loss. \\textbf{+PCGrad}: ThreadGate with PCGrad \\citep{yu2020pcgrad} projecting conflicting gradients (isolates gradient conflict). \\textbf{Uniform Gate}: identical gate architecture with turn embedding replaced by a still-learnable constant vector (content-conditioned but turn-unaware; isolates turn conditioning). \\textbf{LoRA-only}: gates fixed at 1.0, trained with $\\mathcal{L}_\\text{NTP} + \\mathcal{L}_\\text{GAR}$ only (isolates gating mechanism). \\textbf{Base}: pretrained model (isolates fine-tuning). All fine-tuned variants share training data, LoRA configuration, optimizer, and seed. We evaluate under \\emph{IID} (same-distribution UltraChat text) and \\emph{held-out} (50 non-overlapping conversations) teacher-forced protocols, reporting GAR-ours (last-token attention to goals, \\S\\ref{sec:background}), GAR-Dongre \\citep{dongre2026attention} (all-token average\n…[truncated 6791 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T00:30:36.546860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/analysis.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T00:30:36.547270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Analysis}\\label{sec:analysis}\n2\t\n3\tThe five-way comparison in \\S\\ref{sec:experiments} established that gating produces no measurable benefit over LoRA-only fine-tuning. This section traces the failure through a three-step diagnostic chain: we first show that gates learn behavior opposite to the design intent (\\S\\ref{subsec:gate-conditioning}), then rule out gradient conflict as the explanation through an exclusion experiment (\\S\\ref{subsec:pcgrad}), and finally identify distribution shift as the root cause (\\S\\ref{subsec:dist-shift}). \\S\\ref{subsec:mechanism-specificity} confirms this selectivity with an orthogonal hidden-state metric, and \\S\\ref{subsec:cross-model} confirms the failure generalizes across architecturally distinct LLMs.\n4\t\n5\t\\subsection{Gate Turn Conditioning}\\label{subsec:gate-conditioning}\n6\t\n7\tThe design intent of ThreadGate is to modulate the residual stream more aggressively at late conversation turns, where GAR naturally decays (\\S\\ref{sec:background}). We test whether the learned gates achieve this by comparing gate values at turn~1 (early) and turn~21 (late) across all 28 layers of the trained model.\n8\t\n9\tGAR-Dongre (all-token average) remains near zero (0.01--0.02) because system-prompt tokens compete with hundreds of context tokens for attention mass.\n10\t\n11\tThe gates do the opposite of the design intent. In 27 of 28 layers, the gate value at turn~1 is lower than at turn~21 (Wilcoxon signed-rank test: $p = 3.73 \\times 10^{-8}$, effect size $r = 0.975$). At layer~23, the gate is 0.769 at turn~1 and 0.979 at turn~21; at layer~14, it is 0.747 at turn~1 and 0.928 at turn~21. The pattern is consistent: gates suppress the residual stream more at early turns (where GAR is already high) and become nearly passive at late turns (where intervention is most needed). This inversion has a straightforward explanation. NTP loss pressure is highest at late turns, where the model must predict tokens conditioned on a long context. The NTP gradient \n…[truncated 7526 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T00:30:36.547702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T00:30:36.547941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\\label{sec:conclusion}\n2\t\n3\tThreadGate adds per-layer gated MLP networks with an auxiliary GAR loss; training succeeds (TF GAR\\,=\\,0.50) but autoregressive GAR collapses $>$25$\\times$ on both Qwen-2.5-7B and Llama-3.1-8B, with zero benefit over LoRA-only. Steering ($\\beta$\\,=\\,5, GAR 0.727) and scheduled sampling (gap 31$\\times$$\\to$1.57$\\times$; single seed) implicate attention misallocation as the proximal cause.\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T00:30:36.548147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/discussion.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T00:30:36.548360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\\label{sec:discussion}\n2\t\n3\tThe failure traces to an incompatibility between teacher-forcing and GAR-family auxiliary losses, not to the gating architecture. NTP gradient pressure (7.5--14.7$\\times$ the GAR magnitude) pushes gates toward identity (2--7\\% attenuation). Inference-time steering ($\\beta$\\,=\\,5) recovers GAR from 0.064 to 0.727, providing constructive evidence that attention misallocation is a proximal cause (\\S\\ref{subsec:steering}).\n4\t\n5\t\\paragraph{Scheduled sampling confirms exposure bias.} Scheduled sampling \\citep{bengio2015scheduled} mixes teacher-forced and model-generated contexts during training. AR GAR-ours increases from 0.016 to 0.318 (20$\\times$), compressing the ${\\sim}$31$\\times$ gap to 1.57$\\times$ with negligible PPL change (1.38 vs.\\ 1.36); a second seed yields AR GAR\\,=\\,0.418 (gap 1.20$\\times$). GAR-Dongre also rises (0.019$\\to$0.353); systematic ablation is deferred. By directly targeting the train-inference mismatch, scheduled sampling implicates exposure bias as the dominant factor.\n6\t\n7\t\\paragraph{KV cache drift as a downstream mechanism.} KV cache drift---accumulation of model-generated key-value states diverging from teacher-forced statistics---is better understood as a downstream consequence of exposure bias than an independent cause. Disentangling the two requires a switching experiment (teacher-forced prefix followed by autoregressive continuation); we leave this to future work.\n8\t\n9\t\\paragraph{GAR and downstream instruction compliance.} Instruction retention evaluation (18 constraint types, $\\beta$\\,=\\,3) shows content constraint compliance rising +23.8\\,pp (61.9\\%$\\to$85.7\\%; overall +11.1\\,pp, McNemar $p$\\,=\\,0.077); GAR correlates with compliance ($r$\\,=\\,0.200, $p$\\,=\\,0.007) while format constraints show no change (Appendix~\\ref{sec:appendix-ir})."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T00:30:36.548657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/appendix.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T00:30:36.548946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Training Hyperparameters}\\label{sec:appendix-hyper}\n2\t\n3\tAll fine-tuned variants share the following configuration: Qwen-2.5-7B-Instruct base model, LoRA rank 16 ($\\alpha$=32) on \\texttt{q\\_proj} and \\texttt{v\\_proj}, AdamW optimizer (lr = $2 \\times 10^{-4}$, $\\beta_1$=0.9, $\\beta_2$=0.999), batch size 1 with gradient accumulation 8, 3 epochs over 8K UltraChat conversations, maximum sequence length 2048, seed 42. ThreadGate gates use a 10$\\times$ learning rate multiplier and initial bias 1.5 ($\\sigma(1.5) \\approx 0.82$).\n4\t\n5\t\\section{Loss Formulation Search}\\label{sec:appendix-loss}\n6\t\n7\tTable~\\ref{tab:loss-iterations} summarizes the seven loss configurations explored before arriving at the final MSE + gate diversity formulation (\\S\\ref{sec:loss}). Configurations v1--v6 span three alternative loss families; none converged during training.\n8\t\n9\t\\begin{table*}[t]\n10\t\\centering\\footnotesize\n11\t\\caption{Loss formulation iterations on Qwen-2.5-7B-Instruct. GAR-ours (teacher-forced) and PPL are reported only for the converged configuration (v7).}\n12\t\\label{tab:loss-iterations}\n13\t\\begin{tabular}{l l l p{5.8cm} c c}\n14\t\\toprule\n15\t & \\textbf{Loss Family} & \\textbf{Status} & \\textbf{Failure Mechanism} & \\textbf{GAR} & \\textbf{PPL} \\\\\n16\t\\midrule\n17\tv1  & Cumulative            & \\texttimes~GAR loss $\\to$ 0     & GAR loss collapses to zero once threshold is reached; gate gradients vanish at equilibrium & ---  & ---  \\\\\n18\tv2  & Cumulative + $\\varepsilon$ & \\texttimes~same trajectory & Numerical instability from cumulative product; $\\varepsilon$-stabilization insufficient & ---  & ---  \\\\\n19\tv3  & Maximize ($\\lambda$=2)  & \\texttimes~gate frozen        & Unbounded reward drives gates toward identity (all-pass); no layer selectivity & ---  & ---  \\\\\n20\tv3b & Maximize ($\\lambda$=10) & \\texttimes~identity collapse   & Higher $\\lambda$ accelerates convergence to same degenerate identity solution & ---  & ---  \\\\\n21\tv5  & Maximize ($\\lambda$=1)  & \\texttimes~identity co\n…[truncated 3611 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T00:30:36.549206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/limitations.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T00:30:36.549427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Limitations}\\label{sec:limitations}\n2\t\n3\tOur findings are demonstrated on two model families (Qwen-2.5-7B and Llama-3.1-8B), one dataset (UltraChat, 8K conversations), and primarily a single seed (ThreadGate adds seed\\,=\\,123; the remaining variants rely on cross-variant convergence); the instruction retention analysis is exploratory (single model, single $\\beta$). We test only one auxiliary loss family (GAR with MSE target $\\tau$\\,=\\,0.5); head-specific or layer-specific attention losses may exhibit different sensitivity to exposure bias, and all variants share the same GAR objective, so we do not test whether gating could succeed under a different training signal. The PCGrad exclusion addresses gradient direction conflict only; magnitude imbalance \\citep{chen2018gradnorm} and Nash equilibrium approaches \\citep{navon2022nash} remain untested."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T00:30:36.549676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/paper/sections/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T00:30:36.549871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/method.tex\npaper/sections/appendix.tex\npaper/sections/abstract.tex\npaper/sections/introduction.tex\npaper/sections/experiments.tex\npaper/sections/related_work.tex\npaper/sections/analysis.tex\npaper/sections/discussion.tex\npaper/sections/conclusion.tex\npaper/sections/limitations.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T00:30:36.550065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/method.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T00:30:36.550290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\\label{sec:method}\n2\t\n3\t\\subsection{Preliminaries}\\label{sec:background}\n4\t\n5\t\\paragraph{Goal Accessibility Ratio.}\n6\tWe denote the task specification tokens in the system prompt as \\emph{goal tokens} $\\mathcal{G}$. \\citet{dongre2026attention} defined the Goal Accessibility Ratio (GAR) for a model with $L$ layers and $H$ heads at turn $\\tau$ as\n7\t\\begin{equation}\\label{eq:gar}\n8\t  \\text{GAR}(\\tau) = \\frac{1}{L \\cdot H \\cdot |\\mathcal{R}_\\tau|} \\sum_{\\ell=1}^{L} \\sum_{h=1}^{H} \\sum_{i \\in \\mathcal{R}_\\tau} \\sum_{j \\in \\mathcal{G}} A_{i,j}^{(\\ell,h)},\n9\t\\end{equation}\n10\twhere $\\mathcal{R}_\\tau$ is the set of response tokens at turn $\\tau$ and $A_{i,j}^{(\\ell,h)}$ is the attention weight from token $i$ to token $j$ at layer $\\ell$, head $h$.\n11\t\n12\t\\paragraph{Two GAR variants.}\n13\t\\textbf{GAR-Dongre} is the original definition (Eq.~\\ref{eq:gar}), averaging over all response tokens. \\textbf{GAR-ours} restricts the measurement to the \\emph{last token} of each assistant turn:\n14\t\\begin{equation}\\label{eq:gar-ours}\n15\t  \\text{GAR\\text{-}ours}(\\tau) = \\frac{1}{L \\cdot H} \\sum_{\\ell=1}^{L} \\sum_{h=1}^{H} \\sum_{j \\in \\mathcal{G}} A_{t_\\tau,\\, j}^{(\\ell,h)},\n16\t\\end{equation}\n17\twhere $t_\\tau$ is the last token index at turn $\\tau$. Attention at this position reflects the information drawn upon for continuation; we use GAR-ours as the optimization target for $\\mathcal{L}_\\text{GAR}$ (\\S\\ref{sec:loss}).\n18\t\n19\t\\subsection{ThreadGate Architecture}\n20\t\n21\tInspired by the residual scaling idea of ReZero \\citep{bachlechner2021rezero}, ThreadGate modulates the residual stream with a content-and-turn-conditioned gate at each transformer layer. The gated residual update at layer $l$ is\n22\t\\begin{equation}\n23\t  x_{l+1} = x_l + g_l \\cdot f_l(x_l),\n24\t\\end{equation}\n25\twhere $f_l$ denotes the sublayer computation (self-attention or FFN). The gate $g_l$ is produced by a two-layer MLP:\n26\t\\begin{equation}\\label{eq:gate}\n27\t  g_l = \\sigma\\!\\bigl(W_2\\,\\text{ReLU}(W_1\\,[\\te\n…[truncated 1968 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T00:30:36.550539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T00:30:36.550722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related}\n2\t\n3\t\\paragraph{Multi-turn attention degradation.}\n4\tRecent work has established that LLMs systematically degrade across conversation turns. \\citet{laban2025lost} showed that model performance drops on tasks placed in later turns, even when the tasks are identical to earlier ones. \\citet{liu2026intent} traced a related failure to intent mismatch, where models progressively shift from the user's original intent as dialogue extends. MT-Bench-101 \\citep{bai2024mtbench101} provides fine-grained multi-turn evaluation across 1388 turn-level instances, revealing that capability varies substantially across task categories. \\citet{dongre2026attention} established the quantitative foundation for this line of work: they defined the Goal Accessibility Ratio (GAR) and showed that attention to system-prompt goal tokens decays by 27--48\\% across turns in 12 models, while residual stream probes retain goal information with AUC\\,=\\,0.98. We observe a steeper 70.8\\% decline on Qwen-2.5-7B-Instruct (\\S\\ref{sec:experiments}). This dissociation between attention collapse and residual persistence motivates our gating intervention. Their work characterizes the phenomenon; ours attempts the first systematic cure and, in doing so, uncovers why lightweight interventions fail to transfer from training to inference.\n5\t\n6\t\\paragraph{Instruction stability.}\n7\t\\citet{li2024measuring} independently quantified instruction instability in multi-turn dialogs and proposed split-softmax---separating instruction from conversation tokens during attention computation---as an inference-time remedy. Split-softmax restructures the attention mechanism itself and requires no retraining, but cannot address exposure bias in auxiliary losses that depend on training-time optimization. Our work adds systematic diagnosis (five-way controlled comparison + PCGrad exclusion), exposure bias attribution, and training-time mitigation via scheduled sampling; our $\\beta$-steering c\n…[truncated 3442 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T00:30:36.551053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/paper_number_audit.md",
+              "content": "# Paper Number Audit: Single-Seed -> Mean+/-Std\n\nGenerated: 2026-05-23\n\n## Multi-Seed Data Reference\n\n| Metric | s42 | s123 | Mean+/-Std |\n|--------|-----|------|------------|\n| TG TF GAR | 0.5035 | 0.5052 | 0.504+/-0.001 |\n| TG AR GAR | 0.0157 | 0.0165 | 0.016+/-0.001 |\n| TG gap ratio | 32x | 30.6x | 31.3+/-1.0x |\n| SS TF GAR | 0.5025 | 0.503 | 0.503+/-0.000 |\n| SS AR GAR | 0.3887 | 0.418 | 0.403+/-0.021 |\n| SS gap ratio | 1.29x | 1.20x | 1.25+/-0.06x |\n| Gate mean | 0.9336 | 0.9467 | 0.940+/-0.009 |\n| Gate std | 0.0492 | 0.051 | 0.050+/-0.001 |\n\n---\n\n## HIGH PRIORITY: Stale + Needs Mean+/-Std\n\n### 1. SS gap ratio: 1.57x is STALE (should be 1.25+/-0.06x)\n\nThe paper quotes SS s42 AR GAR = 0.318 and gap = 1.57x, but the current d048_eval_ss_s42 shows AR GAR = 0.3887 (gap 1.29x). The s123 data (AR GAR 0.418, gap 1.20x) is already in Discussion but not propagated elsewhere. All instances need updating to mean+/-std.\n\n| File | Line | Current | Suggested | Note |\n|------|------|---------|-----------|------|\n| abstract.tex | 2 | \"gap to 1.57$\\times$ (single seed)\" | \"gap to $1.25\\pm0.06\\times$\" | Key claim; remove \"(single seed)\" |\n| introduction.tex | 18 | \"from 0.016 to 0.318 (20$\\times$), compressing the ${\\sim}$31$\\times$ gap to 1.57$\\times$ (single seed)\" | Update AR GAR to 0.40+/-0.02, fold to ~25x, gap to 1.25+/-0.06x; remove \"(single seed)\" |\n| introduction.tex | 20 | \"${\\sim}$31$\\times$ to 1.57$\\times$ (single seed)\" | \"31.3+/-1.0x to 1.25+/-0.06x\"; remove \"(single seed)\" |\n| conclusion.tex | 3 | \"gap 31$\\times$$\\to$1.57$\\times$; single seed\" | \"gap $31.3\\pm1.0\\times\\to1.25\\pm0.06\\times$\" |\n| discussion.tex | 5 | \"AR GAR-ours increases from 0.016 to 0.318 (20$\\times$), compressing the ${\\sim}$31$\\times$ gap to 1.57$\\times$... a second seed yields AR GAR=0.418 (gap 1.20$\\times$)\" | Consolidate: \"AR GAR-ours increases from 0.016 to $0.40\\pm0.02$ ($\\sim$25$\\times$), compressing the gap to $1.25\\pm0.06\\times$ (two seeds)\" |\n| discussion.tex | 5 | \"negligible PPL change (1.38 vs.\\ 1.36)\" | Verify if s123 PPL available; if so, report mean+/-std |\n\n### 2. SS GAR-Dongre rise\n\n| File | Line | Current | Suggested | Note |\n|------|------|---------|-----------|------|\n| discussion.tex | 5 | \"GAR-Dongre also rises (0.019$\\to$0.353)\" | Verify if s123 GAR-Dongre available; if so, mean+/-std |\n| analysis.tex | 45 | \"GAR-Dongre rising to 0.353\" | Same |\n\n---\n\n## MEDIUM PRIORITY: Has Multi-Seed Data, Needs Consistency\n\n### 3. TG gap ratio: ~31x -> 31.3+/-1.0x\n\nexperiments.tex line 16 already reports \"TF GAR-ours $0.504\\pm0.001$, AR GAR-ours $0.016\\pm0.001$, gap ${\\sim}$31$\\times$ (range 30.5--32.1$\\times$)\". This is close but:\n- Range should be 30.6--32.0x (not 30.5--32.1x)\n- Could express as 31.3+/-1.0x instead of range\n\nOther places quoting the TG gap inconsistently:\n\n| File | Line | Current | Suggested | Note |\n|------|------|---------|-----------|------|\n| experiments.tex | 16 | \"gap ${\\sim}$31$\\times$ (range 30.5--32.1$\\times$)\" | \"gap $31.3\\pm1.0\\times$\" or fix range to \"30.6--32.0x\" | Minor precision fix |\n| introduction.tex | 18 | \"${\\sim}$31$\\times$ gap\" (in SS context) | Use 31.3+/-1.0x when referring to TG gap specifically |\n| analysis.tex | 37 | No explicit gap number but references Table 1 | OK as-is |\n\n### 4. Gate profile values\n\n| File | Line | Current | Suggested | Note |\n|------|------|---------|-----------|------|\n| analysis.tex | 13 | \"0.93 to 0.98 (2--7\\% attenuation)\" | This is a per-layer range, not per-seed. But could add: \"gate mean $0.940\\pm0.009$ across two seeds\" | Optional; the 0.93-0.98 is layer range which is distinct |\n| appendix.tex | 68 (fig caption) | \"mean $\\sim$0.94--0.96\" | Could update to \"$0.940\\pm0.009$\" | Minor |\n\n---\n\n## LOW PRIORITY: Single-Seed, No Multi-Seed Data Available\n\nThese numbers are currently single-seed and no s123 counterpart was provided. Flag for awareness; may need additional experiments.\n\n### 5. Steering results (all single-seed, no s123 data provided)\n\n| File | Line | Current | Note |\n|------|------|---------|------|\n| abstract.tex | 2 | \"Steering ($\\beta$=5) recovers GAR to 0.727\" | Single seed |\n| experiments.tex | 50 | \"$\\beta$=5: 0.062 -> 0.6795+/-0.020, PPL 1.41->1.91\" | +/-0.020 is std across N=5 convos, not seeds |\n| experiments.tex | 52 | \"$\\beta$=3: 0.556+/-0.060, PPL 1.56\" | Same: std across convos |\n| experiments.tex | 52 | \"$\\beta$=5: GAR 0.727+/-0.061, PPL 1.77+/-0.27\" | Same |\n| experiments.tex | 52 | \"$\\beta$=0: mean 0.064, median 0.031, std 0.081\" | Distribution stats over convos |\n| discussion.tex | 3 | \"$\\beta$=5 recovers GAR from 0.064 to 0.727\" | Single seed |\n| conclusion.tex | 3 | \"$\\beta$=5, GAR 0.727\" | Single seed |\n\n### 6. Llama results (only s42 data provided)\n\n| File | Line | Current | Note |\n|------|------|---------|------|\n| analysis.tex | 48 | \"TF GAR-ours (N=50): 0.484 (TG), 0.481 (LO)\" | Single seed |\n| analysis.tex | 49 | \"Median GAR-ours 0.018 (TG, LO), Base 0.009\" | Single seed |\n| analysis.tex | 49 | \"TF-AR gaps of 27x and 26x\" | Single seed |\n| analysis.tex | 49 | \"mean GAR-ours: 0.043 (TG), 0.028 (LO)\" | Single seed |\n| abstract.tex | 2 | \"cross-model evaluation on Llama-3.1-8B confirms the gap ($>$25$\\times$)\" | Single seed |\n| introduction.tex | 20 | \"27$\\times$ gap\" | Single seed |\n\n### 7. Base model observations (no multi-seed data)\n\n| File | Line | Current | Note |\n|------|------|---------|------|\n| abstract.tex | 2 | \"GAR declines 70.8%\" | Base model observation, single measurement |\n| introduction.tex | 3 | \"70.8% relative decline from 0.0418 to 0.0122\" | Same |\n| related_work.tex | 4 | \"70.8% decline\" | Same |\n| experiments.tex | 14 | \"GAR-ours jumps from 0.01 to ~0.50, PPL 4.23 to 2.78\" | Base model values |\n\n### 8. Instruction retention (single-seed, single model)\n\n| File | Line | Current | Note |\n|------|------|---------|------|\n| discussion.tex | 7 | \"+23.8 pp, 61.9%->85.7%, overall +11.1 pp\" | Single seed, single model |\n| discussion.tex | 7 | \"r=0.200, p=0.007; McNemar p=0.077\" | Same |\n| appendix.tex | 30 | Same values repeated | Same |\n\n### 9. Gradient conflict statistics (single-seed)\n\n| File | Line | Current | Note |\n|------|------|---------|------|\n| analysis.tex | 24 | \"68--79% of layers, cos sim -0.089 to -0.042\" | Single seed |\n| analysis.tex | 24 | \"NTP magnitude dominates 7.5--14.7x\" | Single seed |\n| analysis.tex | 26 | \"PPL 2.780 vs 2.784, AR GAR 0.015 vs 0.016\" | TG vs PCGrad, single seed |\n\n### 10. Gate turn conditioning details (single-seed)\n\n| File | Line | Current | Note |\n|------|------|---------|------|\n| analysis.tex | 11-12 | \"p = 3.73e-8, r = 0.975\" | Single seed |\n| analysis.tex | 12 | \"L23: 0.769/0.979, L14: 0.747/0.928\" | Single seed layer values |\n\n### 11. TRC values (single-seed)\n\n| File | Line | Current | Note |\n|------|------|---------|------|\n| analysis.tex | 43 | \"TG TF/AR TRC 0.334/0.332, LO 0.349/0.411\" | Single seed |\n\n---\n\n## NO UPDATE NEEDED: Fixed Parameters / External References\n\nThese are experimental design choices or citations, not results:\n\n- N=50, N=5, N=45, N=20 (eval sample sizes)\n- T=4 turns, 10-turn conversations\n- 8K UltraChat conversations\n- LoRA rank 16, alpha=32\n- lr=2e-4, batch size 1, grad accum 8, seed 42/123\n- tau=0.5, lambda_GAR=1.0, lambda_div=1.0\n- 28 layers, 32 layers\n- 6 hours training time, 102GB GPU\n- \"27--48%\" from Dongre et al.\n- \"AUC=0.98\" from Dongre et al.\n- beta values (2, 3, 5, 10) -- these are hyperparameter choices\n\n---\n\n## Action Summary\n\n| Priority | Count | Action |\n|----------|-------|--------|\n| HIGH | 6 locations | SS gap/AR GAR values are stale AND need mean+/-std. Must fix before submission. |\n| MEDIUM | 3 locations | TG gap range minor precision fix; gate mean+/-std optional |\n| LOW | ~20 locations | Single-seed with no s123 data. Consider running s123 for steering and Llama if time permits. |\n\n### Recommended Fix Order\n1. Fix stale SS s42 numbers (0.318->0.3887, 1.57x->1.29x) across all sections\n2. Consolidate SS to mean+/-std (1.25+/-0.06x) in abstract/intro/conclusion/discussion\n3. Fix TG gap range precision (30.5--32.1 -> 30.6--32.0 or use 31.3+/-1.0x)\n4. Consider gate mean+/-std in analysis section (optional polish)\n"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T00:30:36.551307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/paper_number_audit.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T00:30:36.551548+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written to `artifacts/paper_number_audit.md`.\n\nKey findings:\n\n**HIGH PRIORITY (6 locations):** SS gap ratio \"1.57x\" is stale — d048_eval_ss_s42 gives 1.29x, not 1.57x (old AR GAR 0.318 vs new 0.3887). With s123 data, mean is **1.25+/-0.06x**. Affected: abstract, introduction (x2), conclusion, discussion (x2). Must fix before submission.\n\n**MEDIUM PRIORITY (3 locations):** TG gap range in experiments.tex says \"30.5--32.1x\" but actual data is 30.6--32.0x. Could express as 31.3+/-1.0x. Gate mean could optionally report 0.940+/-0.009 across seeds.\n\n**LOW PRIORITY (~20 locations):** Steering, Llama, base model, gradient stats, TRC, instruction retention — all single-seed with no s123 counterpart provided. Not blockable for submission if flagged in Limitations (which already mentions single-seed)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-number-audit_20260523T002633"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-paper-number-audit.md"
+}

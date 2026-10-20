@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "929842a49c3be1636a82",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "monitor phase2 tg s42 v4 status check",
+  "task_key": "worker_monitor_phase2_tg_s42_v4_status_check_20260518T162740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_phase2_tg_s42_v4_status_check_20260518T162740_result.json",
+    "occurrence": 1,
+    "bytes": 410,
+    "sha256": "91dabc52dfe5f137a133954b708476ade360abbe5cd0d70fe0e90883c6c41977"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nSSH 状态: 连接失败（2次尝试均超时，端口 20861 不可达）\n训练状态: 无法确认\n当前步数: N/A\ngate_std: N/A\nGAR 稳态: N/A\nNTP loss: N/A\n总 loss: N/A\nL4 gate: N/A\n诊断结论: [无法诊断] — 服务器 westd-20861 (36.103.198.204:20861) 仍然不可达，可能实例已关机或被回收。建议登录 SeetaCloud 控制台确认实例状态。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-phase2-tg-s42-v4-status-check.md"
+}

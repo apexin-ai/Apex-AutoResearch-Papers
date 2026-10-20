@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9cae110dd867fdaf246",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops ss s42 resume",
+  "task_key": "worker_ops_ss_s42_resume_20260522T155611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ss_s42_resume_20260522T155611_result.json",
+    "occurrence": 1,
+    "bytes": 57,
+    "sha256": "f6c54da6034ad0c6783d170f184fa487fd4c496201ae9f33b2a18dc9ff059f69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已在跑，无需进一步操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ss-s42-resume.md"
+}

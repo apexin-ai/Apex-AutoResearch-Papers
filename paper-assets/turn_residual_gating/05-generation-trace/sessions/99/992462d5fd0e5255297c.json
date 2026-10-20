@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "992462d5fd0e5255297c",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "paper research gradient conflict mtl",
+  "task_key": "worker_paper_research_gradient_conflict_mtl_20260519T214123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_gradient_conflict_mtl_20260519T214123_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "f97e54ef64cd4daac1586f69b6d2b44117420d900e704121fd8e9f3eb9a4612b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`gradient_conflict_mtl` cluster 已写入 4 篇：\n\n| 论文 | 会议 | Role |\n|------|------|------|\n| PCGrad — Gradient Surgery (Yu et al.) | NeurIPS 2020 | must-cite |\n| GradNorm (Chen et al.) | ICML 2018 | must-cite |\n| CAGrad (Liu et al.) | NeurIPS 2021 | context |\n| Nash-MTL (Navon et al.) | ICML 2022 | context |\n\n所有 URL 均为真实 arXiv 链接，relevance 已说明与论文 PCGrad 因果排除实验的关联。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-gradient-conflict-mtl.md"
+}

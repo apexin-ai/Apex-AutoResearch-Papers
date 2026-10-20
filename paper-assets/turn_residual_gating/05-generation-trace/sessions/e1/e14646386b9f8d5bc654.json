@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e14646386b9f8d5bc654",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code appendix data gar mmlu 15b",
+  "task_key": "worker_code_appendix_data_gar_mmlu_15b_20260524T150629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_appendix_data_gar_mmlu_15b_20260524T150629_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "648320f934b8b66374a6f6b0d08599eff198f79bb8fabbe66483c32e216ea342"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。生成的附录素材汇总：\n\n**第 4 项：数据集统计**\n- `tab_dataset_stats.tex` — UltraChat-200K 源数据 207,865 → 过滤≥5轮 17,302 → 采样 8,000 训练 / 50+50+200 评估；平均 5.6 轮 (5–7)\n- UltraChat 无 topic 标签，跳过 topic 分布图\n\n**第 5 项：GAR 定义鲁棒性**\n- `tab_gar_robustness.tex` — 4 种 token selection × 3 条件完整表，含 Turn-1 GAR / Mid-turn GAR / Gap Ratio\n- `fig_gar_robustness_grouped.pdf` — 分组柱状图（Base 近零 → TG/SS 大幅提升）\n\n**第 6 项：MMLU 质量保留**\n- `tab_mmlu_detail.tex` — 4 类别 × 6 条件详表（STEM/Social Sci/Humanities/Other + Overall + Δ），最大降幅仅 0.77pp\n- `fig_mmlu_comparison.pdf` — 分组柱状图对比\n\n**第 7 项：Qwen-1.5B 跨尺度**\n- `tab_qwen15b_results.tex` — Phase 1 诊断（79.8% GAR 衰减）+ Phase 2 TG 训练（β=0: p=0.005, β=5: p<0.001），含 CI 和 Wilcoxon 效应量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-appendix-data-gar-mmlu-15b.md"
+}

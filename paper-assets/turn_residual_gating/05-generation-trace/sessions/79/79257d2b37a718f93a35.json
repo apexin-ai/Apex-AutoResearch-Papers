@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79257d2b37a718f93a35",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code phase2 eval fixed conversations",
+  "task_key": "worker_code_phase2_eval_fixed_conversations_20260518T065200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2_eval_fixed_conversations_20260518T065200_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "2ae10cadd5a05fffc6c3a1e9f5f1025d4b59f29e08d25e7a0b7d4013d058338e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **`generate_standard_conversations.py`** (新建) - 用 vanilla Qwen2.5-7B-Instruct 生成 5 组 10-turn 标准对话，`do_sample=False` 确保可复现\n2. **`eval_phase2_gar.py`** (修改) - 添加 `--conversations-path` 参数，提供时加载固定对话（`conversations_source: \"fixed\"`），未提供时保持原有生成逻辑（`\"generated\"`）。normalized GAR 和 gate loading 逻辑未动\n3. **`compare_phase2.py`** (修改) - 加载结果后检查 `conversations_source` 一致性，不一致时打印警告；summary JSON 中增加 `conversations_source` 字段\n4. **`standard_conversations.json`** 已生成 - 5 个对话，每个 10 轮，35KB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase2-eval-fixed-conversations.md"
+}

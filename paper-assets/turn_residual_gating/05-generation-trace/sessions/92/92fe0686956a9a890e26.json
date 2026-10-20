@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92fe0686956a9a890e26",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code n200 phase2 prompt gen",
+  "task_key": "worker_code_n200_phase2_prompt_gen_20260522T103905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_n200_phase2_prompt_gen_20260522T103905_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "b66b85aaa27a75eaf90e009a8df1cce6866d1b3d05ab74054efd50a1e7dc801e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "总数 200，验证全通过。合并后按类别分布（含 18 个 legacy 映射到对应类别）：\n\n| 类别 | 新增 | 旧有 | 总计 | 占比 |\n|------|------|------|------|------|\n| content_constraint | 93 | 7 | 100 | 50% |\n| position_constraint | 35 | 5 | 40 | 20% |\n| format_constraint | 27 | 3 | 30 | 15% |\n| count_constraint | 17 | 3 | 20 | 10% |\n| compound_constraint | 10 | 0 | 10 | 5% |\n\n产出：\n- `scripts/generate_ir_prompts.py` — 批量生成脚本（seed=42 可复现）\n- `data/instruction_retention_prompts_200.json` — 200 个 prompt（18 旧 `check_fn` 格式 + 182 新 `check_type`/`check_args` 格式），无重复 ID，每个 5 条 user_messages，禁止类约束含诱导性问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-n200-phase2-prompt-gen.md"
+}

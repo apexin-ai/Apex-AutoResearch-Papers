@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f07f858a6fe8bd90801e",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "writing mf1 causal diagnostic",
+  "task_key": "worker_writing_mf1-causal-diagnostic_20260525T221829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_mf1-causal-diagnostic_20260525T221829_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "be4b8534693533a78912db7f871299bac3b772442ef3286dd9ee73e59f50d9da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。所有修改汇总：\n\n| 文件 | 修改 |\n|------|------|\n| `abstract.tex` ×2 | \"causal exclusion chain\" → \"diagnostic exclusion chain\"; \"substantially on Llama\" → \"from ~27× to 2.9× on Llama\" |\n| `introduction.tex` ×2 | 3 处 \"causal exclusion\" → \"diagnostic exclusion\" / \"systematic diagnostic exclusion\" |\n| `analysis.tex` ×2 | 1 处 \"via causal exclusion\" → \"via diagnostic exclusion\" |\n\n验证结果：6 个文件中 \"causal exclusion\" 出现次数 = 0。Abstract 字数 ~194，符合 200 word 限制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-mf1-causal-diagnostic.md"
+}

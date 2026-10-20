@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6b183284f6d5beb8a01",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis v8b ss s123 status and v7 launch",
+  "task_key": "worker_analysis_v8b_ss_s123_status_and_v7_launch_20260521T094357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v8b_ss_s123_status_and_v7_launch_20260521T094357_result.json",
+    "occurrence": 1,
+    "bytes": 1335,
+    "sha256": "7a2b6bb7d3da159aadda4edc22fa2a1eaefef08c2bdf3126ca8350945798e02a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### v8b SS s123 — 运行中 (55%)\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **Step 1650/3000** (55%), Epoch 1 进行中 |\n| L_NTP | ~0.64–0.90 (收敛正常) |\n| L_GAR | ~0.000 (已坍塌，与 s42 一致) |\n| Gate mean | 0.9581 (std=0.053, min=0.734) |\n| SS ratio | **0.500** (已达上限) |\n| SS_L_GAR | 0.016 / TF_L_GAR: 0.021 |\n| GPU | 82% utilization, 30.2 GB VRAM |\n| Checkpoint | epoch_0 已保存 (gate_params.pt + lora/) |\n\n**ETA**: 参考 s42 全程 8.1h，剩余 45% ≈ **~3.6 小时**（预计 ~20:30-21:00 服务器时间完成）。\n\n### v7 TG s123 — 暂不启动\n\nGPU 被 v8b SS s123 占用（v8b 峰值 53GB + v7 峰值 53GB > 102GB，共享会 OOM，s42 有前车之鉴）。v8b 完成后立即启动。\n\n**已准备好的 v7 TG s123 启动命令**（seed 42→123，output dir 对应修改）：\n```bash\nPYTHONUNBUFFERED=1 python src/train_phase2.py \\\n  --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 \\\n  --lambda-gar 1.0 --lambda-gate-div 1.0 --min-gate-std 0.05 \\\n  --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 \\\n  --seed 123 --output-dir runs/phase2_tg_s123_v7 \\\n  --data-dir data/ultrachat_8k --epochs 3\n```\n\n训练健康，gate dynamics 与 s42 一致。等 v8b 完成后可直接提交 v7 TG s123。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v8b-ss-s123-status-and-v7-launch.md"
+}

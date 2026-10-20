@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6d60e98ec6415d85669",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis gate wilcoxon test",
+  "task_key": "worker_analysis_gate_wilcoxon_test_20260519T165256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gate_wilcoxon_test_20260519T165256_result.json",
+    "occurrence": 1,
+    "bytes": 2360,
+    "sha256": "dfb8bd0af2df9c59b34ea1699d92768f67e0fe5fb17b870865db45094102eef9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果出来了。汇总如下：\n\n---\n\n## 统计检验结果\n\n### 1. Wilcoxon Signed-Rank Test（主检验，28 层配对）\n\n| 指标 | 值 |\n|------|-----|\n| N | 28 layers |\n| Mean gate turn1 | 0.894 ± 0.065 |\n| Mean gate turn21 | 0.950 ± 0.046 |\n| Layers with turn21 > turn1 | **27/28** (仅 L19 反向) |\n| T+ | 401 |\n| T- | 5 |\n| **p (one-sided)** | **3.73 × 10⁻⁸** |\n| Z | 5.38 |\n| Effect size r | **1.00** (large) |\n\n### 2. Per-Conversation 一致性\n\n全部 5 组对话均显著（p 范围 3.73×10⁻⁸ ~ 2.78×10⁻⁵），Fisher combined p ≈ 0。\n\n| Conv | Mean diff | T+ | p | r |\n|------|-----------|-----|------|------|\n| conv_0 | 0.052 | 380 | 2.8e-05 | 0.76 |\n| conv_1 | 0.044 | 376 | 7.6e-06 | 0.82 |\n| conv_2 | 0.053 | 397 | 1.2e-07 | 0.98 |\n| conv_3 | 0.067 | 401 | 3.7e-08 | 1.00 |\n| conv_4 | 0.063 | 403 | 1.9e-08 | 1.04 |\n\n### 3. Spearman 相关（turn index vs gate value）\n\n- 25/28 层 ρ > 0，**13/28 层达到 p < 0.05 显著**\n- Mean ρ = 0.367\n- 最强单调趋势：L21 (ρ=0.86, p=5e-7), L25 (ρ=0.79, p=1.9e-5), L16/L18 (ρ=0.69, p=4.9e-4)\n\n### 4. 层组分析\n\n| 层组 | Mean diff | Wilcoxon p |\n|------|-----------|------------|\n| Early (L0–L9) | 0.033 | 9.8e-04 |\n| Mid (L10–L19) | 0.051 | 4.9e-03 |\n| Late (L20–L27) | **0.090** | 3.9e-03 |\n\n深层 gating 效应约为浅层的 3 倍。Layer depth vs |diff| 趋势接近显著（ρ=0.35, p=0.064）。\n\n### 5. 论文可用描述\n\n> Across all 28 Transformer layers, gate values at turn 21 were significantly higher than at turn 1 (Wilcoxon signed-rank test, T⁺ = 401, p = 3.7 × 10⁻⁸, r = 1.00, N = 28), with 27 of 28 layers showing higher gate values at later turns. The mean gate value increased from 0.894 ± 0.065 (turn 1) to 0.950 ± 0.046 (turn 21), corresponding to a shift from partial residual suppression toward near-identity pass-through. Spearman rank correlation confirmed a monotonic increasing trend of gate values with turn index in 13 of 28 layers (mean ρ = 0.367). This pattern was consistent across all five evaluation conversations (Fisher combined p < 10⁻³⁰). The effect was most pronounced in late layers (L20–L27, mean Δ = 0.090) compared to early layers (L0–L9, mean Δ = 0.033).\n\n分析脚本已保存在 `artifacts/gate_stat_test_v2.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gate-wilcoxon-test-copy-2.md"
+}

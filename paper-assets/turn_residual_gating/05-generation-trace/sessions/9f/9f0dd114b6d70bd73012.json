@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f0dd114b6d70bd73012",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "knowledge paper framing",
+  "task_key": "worker_knowledge_paper_framing_20260518T171218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_paper_framing_20260518T171218_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "0e1bc82db3b4fa4544237ed98dcea56291f1d4f19c6024b07735c9769dbfec94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`paper_framing.md` 已保存。包含全部 8 个要求的章节:\n\n- **Title**: 推荐 T1 \"ThreadGate: Recovering Goal Attention in Multi-Turn Dialogue via Learnable Residual Gating\"\n- **Story Arc**: 从 GAR 衰减悖论 (attention 关闭但 residual stream 保留 goal info) 切入, 引出 ThreadGate 作为首个架构级干预\n- **Core Claims**: 6 条, 每条标注支撑实验和状态 (已验证/suggestive/待验证), C4 的 L4/L5 对齐措辞已校准为 suggestive\n- **Key Selling Points**: 5 个, 重点突出首个干预方案、per-layer 自适应解决跨架构变异、Dongre residual probe 独立支撑\n- **Reviewer Concerns**: 7 条, 含 R6 (为何不直接修 attention) 和 R7 (稀释 vs 结构性衰减) 两条额外预判\n- **Dongre 关系**: 明确诊断 vs 方案互补定位\n- **GAR 策略**: 训练用 ours, 主表用 Dongre, 附录用 ours\n- **MVP Pass**: 原样搬入, 含 partial pass 处置逻辑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-paper-framing.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d42fb2b70d5454d440f9",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code diagnose data distribution",
+  "task_key": "worker_code_diagnose_data_distribution_20260518T111440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_diagnose_data_distribution_20260518T111440_result.json",
+    "occurrence": 1,
+    "bytes": 211,
+    "sha256": "bbb3c0d02ad827044cb2643571cbb6de837b4c920e6f4b7a70e81105c7350f18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：数据排除。** 截断后 mean=5.58 assistant turns/sample，100% 样本可触发 GAR loss。L_GAR=0 的根因在 GAR loss 计算或梯度传播路径，不在数据 turn 数不足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-diagnose-data-distribution.md"
+}

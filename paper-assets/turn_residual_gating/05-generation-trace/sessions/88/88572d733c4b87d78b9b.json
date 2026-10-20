@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88572d733c4b87d78b9b",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code implement split softmax",
+  "task_key": "worker_code_implement_split_softmax_20260523T000457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_implement_split_softmax_20260523T000457_result.json",
+    "occurrence": 1,
+    "bytes": 1101,
+    "sha256": "72f5255578bc9492183f57646ac2d147075f23a15a1dccf018b35bf60299af06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n- **语法检查**: 3 个文件全部 OK\n- **Import 检查**: `SplitSoftmax` 和 `get_system_prompt_token_len` 导入正常\n- **模块检测**: Qwen2 和 Llama 的 `eager_attention_forward` / `repeat_kv` 均存在\n- **Tokenizer 集成**: system prompt 长度计算正确（11 tokens for \"You are a helpful assistant.\"）\n- **Module-level patching**: patch 和 restore 均工作正常\n- **数学验证**: rescaling 后 attention weights 总和仍为 1.0，sp_scale=1.4142（k=0.5 时放大系统 prompt 注意力），conv_scale=0.5858（衰减会话 token 注意力）\n\n### 创建的文件\n\n1. **`src/split_softmax.py`** — `SplitSoftmax` 类，通过 monkey-patch `eager_attention_forward` 实现 post-softmax rescaling（无需复制完整 forward）\n2. **`src/eval_split_softmax.py`** — 评估脚本，支持 `--mode tf/gen`、`--k-values` 扫描、与 attention_steering 输出格式一致\n3. **`scripts/d048_split_softmax_eval.sh`** — TF+Gen 评估，扫 k={0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.0}，base model 和 TG s42 v7 checkpoint 各一组"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-implement-split-softmax.md"
+}

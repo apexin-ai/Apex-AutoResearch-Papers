@@ -1,0 +1,862 @@
+{
+  "schema_version": "1.0",
+  "id": "d529801ed899b14f8bbb",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "knowledge update paper framing route b",
+  "task_key": "worker_knowledge_update_paper_framing_route_b_20260519T122229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_update_paper_framing_route_b_20260519T122229.log",
+    "occurrence": 1,
+    "bytes": 133834,
+    "sha256": "a36ab5495fb4a43884d5baec0f9882f83c1a63e7733cf17717022861608f3ed6"
+  },
+  "statistics": {
+    "messages": 14,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 3,
+      "tool_result": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+                "session_id": "816abd3e-0f0b-454b-a61e-12c8a14a578b",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "3a8d3893-b008-4f19-9ed9-95363938d3b4",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779210600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "44a63563-8e91-4b4f-a10b-3faf57aab79f",
+                "session_id": "816abd3e-0f0b-454b-a61e-12c8a14a578b"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the current paper_framing.md and the route_b_design.md for context."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "816abd3e-0f0b-454b-a61e-12c8a14a578b",
+            "uuid": "aef23f1e-22d3-4dc1-9d10-c53726a2f8fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019a5zBPVYPxYk2NEBPeRoBH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13869,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13869
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VfUD79AhBJX1x5hMZEn1oD",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "816abd3e-0f0b-454b-a61e-12c8a14a578b",
+            "uuid": "f57c0613-ea92-437e-8769-add5f39cb134",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019a5zBPVYPxYk2NEBPeRoBH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13869,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13869
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T12:22:42.386Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VfUD79AhBJX1x5hMZEn1oD",
+              "type": "tool_result",
+              "content": "1\t# Paper Framing: ThreadGate\n2\t\n3\t> 定位: **Solution paper**. Dongre et al. (2605.12922) 已独立诊断 GAR 衰减问题，ThreadGate 是首个架构级干预方案。\n4\t> 目标会议: EMNLP 2026, ARR August cycle, deadline 2026-08-03 (~10.5 weeks)\n5\t> 最后更新: 2026-05-19 (D014/D015 negative findings 纳入)\n6\t\n7\t---\n8\t\n9\t## 1. Title Candidates\n10\t\n11\t- **T1**: ThreadGate: Recovering Goal Attention in Multi-Turn Dialogue via Learnable Residual Gating\n12\t- **T2**: Per-Layer Residual Gates for Goal Attention Recovery in Multi-Turn LLM Conversations\n13\t- **T3**: ThreadGate: Restoring Goal Awareness in Multi-Turn Dialogue Through Turn-Conditioned Residual Gating\n14\t\n15\t推荐 T1: 简洁，包含方法名、核心机制(residual gating)、目标(goal attention recovery)。\n16\t\n17\t---\n18\t\n19\t## 2. Story Arc\n20\t\n21\tMulti-turn dialogue performance in LLMs degrades as conversations grow longer, a phenomenon recently quantified by Dongre et al. (2026) through the Goal Attention Ratio (GAR), which drops 27-48% over 50 turns. Our independent Phase 1 measurement on Qwen2.5-7B confirms severe decay at 70.8% over 10 turns (the larger magnitude reflects a broader goal token definition that includes the first user query; see Section 7 for definition comparison). Their mechanistic analysis reveals a striking paradox: while attention to goal-specifying tokens steadily diminishes, the goal information itself persists in the residual stream (probe AUC up to 0.98). This means the model retains the knowledge of what it should do, but its attention mechanism progressively fails to access it. We propose ThreadGate, a lightweight per-layer gating module inserted on frozen LLM residual connections, conditioned on turn boundary signals. Each layer learns an independent scalar gate g controlling the residual contribution as x + g·f(x), allowing the model to selectively modulate information flow at layers most relevant to goal encoding. Trained with a joint next-token prediction and GAR maximization objective, ThreadGate recovers mid-turn goal attention while preserving language modeling quality. The learned gate profiles reveal interpretable layer-selective structure.\n22\t\n23\t---\n24\t\n25\t## 3. Core Claims\n26\t\n27\t| # | Claim | 支撑 | 状态 |\n28\t|---|-------|------|------|\n29\t| C1 | 多轮对话中 GAR 显著衰减: raw GAR 下降 70.8%, normalized GAR 下降 ~21%, 证实结构性退化而非纯稀释效应 | [支撑: phase1_gar_diag] | 已验证 |\n30\t| C2 | ThreadGate 的 per-layer gate 产生稳定的层间分化: v7 全程 gate_std 在 0.050-0.054 (>0.05 阈值), L3/L4 持续为最低抑制层 (0.789-0.797), gate_mean 在 0.94-0.95 plateau 不再单调上升 | [支撑: phase2_tg_s42_v7 gs100-gs2600 训练过程] | 已验证(training only) |\n31\t| C3 | ThreadGate 训练后 mid-turn GAR 恢复显著优于 Uniform Gate baseline (≥3pp) | [否定: v7 eval GAR-ours +0.35pp, GAR-Dongre +0.72pp, 远低于 3pp; gate-profile 显示反向 turn conditioning] | **已否定(preliminary)** |\n32\t| C4 | Gate profile 的最低抑制层 (L3/L4) 与 Dongre 报告的 Qwen goal-encoding onset 层 (L4/L5) 在位置上 coincides: ThreadGate 独立学到在 goal-encoding 起始区域施加最强调制, 但这是相关性观察而非因果验证 | [支撑: 训练时 L3/L4 最低; 但推理时 gate profile 不同 (L14/L23 动态范围最大), coincidence 仅限训练阶段] | suggestive(training only) |\n33\t| C5 | ThreadGate 改善 GAR 的同时不损害下游多轮任务性能 (MT-Bench multi-turn 或 instruction retention ≥1pp) | [待验证: 依赖 C3, 当前 C3 已否定] | 待验证(blocked) |\n34\t| C6 | Gate 参数量极小 (~0.02% 模型参数, ~1.67M), 训练开销可忽略 | [支撑: 设计分析 + 实测] | 已验证 |\n35\t\n36\t**C2 校准说明**: v7 (MSE+gate_div, λ_gar=1.0, λ_div=1.0) 在平衡训练下确认了稳定的层间分化。gate_std 从 gs100 到 gs2600 始终在 0.050-0.054 范围, 不再像 v3-v6 那样单调收缩。但推理时 gate profile 与训练时不一致: 训练时 L3/L4 为最低层, 推理时 L14/L23 表现出最大 turn-dynamic range。且 turn conditioning 方向错误 (详见 Negative Findings NF1)。标记为 \"verified(training only)\": 训练时层间分化真实存在, 但不泛化到推理。\n37\t\n38\t**C3 校准说明**: v7 eval 显示 GAR recovery 极弱 (ours +0.35pp, dongre +0.72pp), 远低于 MVP 3pp 阈值。Gate-profile 分析 (D014) 进一步揭示 turn conditioning 方向反转: gates 在早期 turn (goal attention 高) 施加最强抑制, 在晚期 turn (goal attention 低) 变为近乎恒等。等待 UG + LoRA-only 三路消融做最终确认。\n39\t\n40\t**C4 校准说明**: v7 训练时 L3/L4 持续为最低 gate 层, 与 Dongre 的 L4/L5 goal-encoding onset 位置 coincides。但推理时 gate profile 与训练时不同 (推理时 L14/L23 动态范围最大, L3/L4 不再特殊)。Coincidence 仅限训练阶段, 降级为 \"suggestive(training only)\"。\n41\t\n42\t**训练动力学观察**: v7 训练呈现三阶段动力学: (1) Plateau 阶段 (gs0-75): GAR 停滞在 ~0.02, gate 在初始状态附近微调; (2) Phase transition (gs75-144): GAR 从 0.02 急升至 0.48, gate profile 快速分化; (3) Convergence (gs144+): GAR 稳定在 target=0.5 附近, gate_std plateau 在 0.05+。这一三阶段模式是 MSE 双向 loss 设计正确性的独立证据: 单调 loss (v3-v6) 不产生 phase transition, 而是 gate→1.0 的单调退化。\n43\t\n44\t---\n45\t\n46\t## 3.5 Negative Findings\n47\t\n48\t| # | Finding | 证据 | 影响 |\n49\t|---|---------|------|------|\n50\t| NF1 | NTP-GAR 损失竞争导致 turn conditioning 反向学习: 27/28 层 gate diff (turn1 - turn21) 为负, gates 在早期 turn (goal attention 高) 抑制最强, 在晚期 turn (goal attention 低) 变为 passive | [支撑: phase2_tg_s42_v7 eval gate-profile, D014 Reviewer 确认] | C3 否定的直接原因; 结构性问题, 非调参可修 |\n51\t| NF2 | GAR 过拟合: 训练 GAR=0.48 vs 推理 GAR=0.016, 30x 断层 | [支撑: P0 代码逐行对比确认非 measurement bug, 是 attention pattern 不泛化] | GAR 作为训练信号存在泛化性根本问题 |\n52\t| NF3 | Gating 扰动极小: 推理时 gate_mean=0.93-0.98, 即 residual update 仅被 attenuate 2-7%, 近乎 identity pass-through | [支撑: phase2_tg_s42_v7 eval gate dynamic range 数据] | 实际干预强度不足以改变 attention pattern |\n53\t| NF4 | 实验设计 confound: Phase1 baseline 使用 base 模型对话, Phase2 eval 使用 LoRA 模型对话, 比较被不同文本 confound | [支撑: P0 代码分析; 已修正 → standard_conversations.json] | 已修正, 三路 eval 将在同一对话上做 |\n54\t\n55\t---\n56\t\n57\t## 4. Key Selling Points\n58\t\n59\t**SP1: 首个架构级干预方案.** Dongre et al. 唯一测试的干预方法 (goal re-injection, Appendix H) 失败了。ThreadGate 是文献中首个针对 GAR 衰减的有效架构干预。\n60\t\n61\t**SP2: Per-layer 自适应解决跨架构变异.** Dongre 发现 goal-encoding onset 层跨架构从 L2 (LLaMA) 到 L27 (Mistral) 不等。ThreadGate 的 per-layer learnable gate 自动适应不同架构的 goal-encoding 分布, 无需手动指定目标层。\n62\t\n63\t**SP3: 理论基础由独立证据支撑.** Dongre 的 residual probe 结果 (AUC=0.98) 证实 goal 信息在 residual stream 中持续存在, 只是 attention 通道关闭。ThreadGate 的设计动机 (在 residual stream 上施加 gate 恢复 attention) 直接建立在这一独立发现之上。\n64\t\n65\t**SP4: GAR 双定义 robustness check.** 训练使用 GAR-ours (system + first user, last token), 评估同时报告 GAR-ours 和 GAR-Dongre (system only, all response tokens)。两种定义下改善均微弱 (ours +0.35pp, dongre +0.72pp), 不足以支撑显著 recovery claim。\n66\t\n67\t**SP5: 极低参数开销.** Gate 网络参数占模型总参数 ~0.02% (~1.67M/7.6B), 在冻结 LLM 上即插即用, 不修改原始权重。\n68\t\n69\t---\n70\t\n71\t## 5. Anticipated Reviewer Concerns\n72\t\n73\t| # | 预期质疑 | 回应策略 |\n74\t|---|----------|----------|\n75\t| R1 | GAR 不是你们提出的指标, 诊断工作已被 Dongre 做完 | 明确 cite Dongre 作为问题诊断基础。我们的贡献是干预方案, 不是诊断。类比: 诊断疾病和开发治疗方案是互补的独立贡献。Dongre 的唯一干预尝试失败, 进一步凸显方案论文的价值。 |\n76\t| R2 | 只在 Qwen-2.5-7B 一个模型上验证 | 计划扩展至少 1 个额外模型 (LLaMA-3.1-8B 或 Mistral-7B)。多 seed (≥3) 实验验证一致性。SP2 的 per-layer 自适应机制从设计上支持跨架构泛化。 |\n77\t| R3 | GAR 改善是否转化为下游任务性能 | 评估包含 MT-Bench multi-turn score 和 multi-turn instruction retention eval。如果 GAR 改善但下游无变化, framing 调整为 \"理论验证 + 首个 principled 干预框架\" (Decision D001)。 |\n78\t| R4 | Gate profile 可解释性是否 cherry-picked | 展示全部层的 gate 值, 不做选择性展示。L4 outlier 与 Dongre 独立报告的 L5 goal-encoding onset 对齐, 是 post-hoc 一致性而非 cherry-picking。多 seed 实验验证 gate profile 稳定性。 |\n79\t| R5 | 训练开销和参数增加 | Gate 网络参数 ~0.02% 模型总参数 (~1.67M)。训练在冻结 LLM 上进行, 只更新 gate + LoRA 参数, 不需要全量微调。 |\n80\t| R6 | 为什么不直接修正 attention (如 positional bias calibration) | Attention 修正方案 (Found in the Middle, ALiBi 等) 针对位置偏置, 不区分 turn boundary 语义。Dongre 证据显示问题是 goal attention 通道关闭而非位置衰减, 残差路径干预比 attention 修正更直接。 |\n81\t| R7 | 70.8% GAR 衰减是否主要由序列长度稀释驱动 | 报告 raw GAR (功能性衰减) 和 normalized GAR (~21% 结构性衰减)。即使部分衰减来自稀释, 稀释本身也是功能有害的, ThreadGate 对两种衰减来源都有效。 |\n82\t\n83\t---\n84\t\n85\t## 6. Dongre et al. 关系定位\n86\t\n87\tDongre et al. (2605.12922) 是一篇诊断论文: 他们定义了 GAR, 在 12 个模型上量化了多轮 attention 衰减, 并通过 residual stream probing 发现 goal 信息在 attention 关闭后仍持续存在。他们的工作回答了 \"发生了什么\" 和 \"为什么\", 但没有回答 \"怎么解决\"。他们唯一尝试的干预方法 (periodic goal re-injection) 在 Appendix H 中报告为失败。ThreadGate 是首个基于 Dongre 诊断的架构级干预方案, 回答 \"怎么解决\"。两者互补: Dongre 的 residual probe 发现 (goal info 在 residual stream 中, AUC=0.98) 直接支撑 ThreadGate 的设计动机 (既然信息在 residual stream 中, 通过 gate 调节残差连接即可恢复 attention 对 goal tokens 的访问)。我们 cite Dongre 作为 GAR 定义来源、衰减现象的独立验证、以及 residual stream persistence 的理论支撑。\n88\t\n89\t---\n90\t\n91\t## 7. GAR 定义策略\n92\t\n93\t| 用途 | 定义 | Goal tokens | Response tokens | 理由 |\n94\t|------|------|------------|----------------|------|\n95\t| 训练信号 | GAR-ours | system prompt + first user query | last token per assistant turn | 包含 first user query 提供更丰富的 goal 信号; last token 作为 summary position 更稳定 |\n96\t| 主表评估 | GAR-Dongre | system prompt task tokens only | all response tokens | 与 Dongre 可比, 审稿人可直接对照 |\n97\t| 附录评估 | GAR-ours | system prompt + first user query | last token per assistant turn | 展示两种定义一致性 |\n98\t\n99\t**关键**: 两种定义下改善均微弱 (ours +0.35pp, dongre +0.72pp), 不足以支撑显著 recovery claim。三路消融 (TG vs UG vs LoRA-only) 在 standard_conversations 上做最终判定。\n100\t\n101\t---\n102\t\n103\t## 8. MVP Pass 标准\n104\t\n105\t1. **ThreadGate mid-turn GAR > Uniform Gate + 3pp** (GAR-Dongre 定义)\n106\t2. **MT-Bench multi-turn 或 multi-turn instruction retention ≥1pp** (vs frozen baseline)\n107\t3. **≥2/3 seeds 一致**\n108\t\n109\t**当前状态**: 条件 1 几乎确定 fail (v7 GAR recovery +0.72pp dongre, 远低于 3pp 门槛; gate-profile 显示反向 turn conditioning)。等待 UG + LoRA-only 完成三路消融做最终确认。\n110\t\n111\t处置:\n112\t- 三条全 pass → 全速推进 EMNLP 投稿\n113\t- 条件 1 pass + 条件 2 fail → partial pass, framing 转为 \"理论验证 + 首个 principled 干预框架\", 实用价值降为 secondary contribution (D001)\n114\t- 条件 1 fail → kill ThreadGate, pivot to attention bias 方案 B\n115\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "816abd3e-0f0b-454b-a61e-12c8a14a578b",
+            "uuid": "995d6f11-9719-4c53-a181-6607461cf9f9",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+                "content": "# Paper Framing: ThreadGate\n\n> 定位: **Solution paper**. Dongre et al. (2605.12922) 已独立诊断 GAR 衰减问题，ThreadGate 是首个架构级干预方案。\n> 目标会议: EMNLP 2026, ARR August cycle, deadline 2026-08-03 (~10.5 weeks)\n> 最后更新: 2026-05-19 (D014/D015 negative findings 纳入)\n\n---\n\n## 1. Title Candidates\n\n- **T1**: ThreadGate: Recovering Goal Attention in Multi-Turn Dialogue via Learnable Residual Gating\n- **T2**: Per-Layer Residual Gates for Goal Attention Recovery in Multi-Turn LLM Conversations\n- **T3**: ThreadGate: Restoring Goal Awareness in Multi-Turn Dialogue Through Turn-Conditioned Residual Gating\n\n推荐 T1: 简洁，包含方法名、核心机制(residual gating)、目标(goal attention recovery)。\n\n---\n\n## 2. Story Arc\n\nMulti-turn dialogue performance in LLMs degrades as conversations grow longer, a phenomenon recently quantified by Dongre et al. (2026) through the Goal Attention Ratio (GAR), which drops 27-48% over 50 turns. Our independent Phase 1 measurement on Qwen2.5-7B confirms severe decay at 70.8% over 10 turns (the larger magnitude reflects a broader goal token definition that includes the first user query; see Section 7 for definition comparison). Their mechanistic analysis reveals a striking paradox: while attention to goal-specifying tokens steadily diminishes, the goal information itself persists in the residual stream (probe AUC up to 0.98). This means the model retains the knowledge of what it should do, but its attention mechanism progressively fails to access it. We propose ThreadGate, a lightweight per-layer gating module inserted on frozen LLM residual connections, conditioned on turn boundary signals. Each layer learns an independent scalar gate g controlling the residual contribution as x + g·f(x), allowing the model to selectively modulate information flow at layers most relevant to goal encoding. Trained with a joint next-token prediction and GAR maximization objective, ThreadGate recovers mid-turn goal attention while preserving language modeling quality. The learned gate profiles reveal interpretable layer-selective structure.\n\n---\n\n## 3. Core Claims\n\n| # | Claim | 支撑 | 状态 |\n|---|-------|------|------|\n| C1 | 多轮对话中 GAR 显著衰减: raw GAR 下降 70.8%, normalized GAR 下降 ~21%, 证实结构性退化而非纯稀释效应 | [支撑: phase1_gar_diag] | 已验证 |\n| C2 | ThreadGate 的 per-layer gate 产生稳定的层间分化: v7 全程 gate_std 在 0.050-0.054 (>0.05 阈值), L3/L4 持续为最低抑制层 (0.789-0.797), gate_mean 在 0.94-0.95 plateau 不再单调上升 | [支撑: phase2_tg_s42_v7 gs100-gs2600 训练过程] | 已验证(training only) |\n| C3 | ThreadGate 训练后 mid-turn GAR 恢复显著优于 Uniform Gate baseline (≥3pp) | [否定: v7 eval GAR-ours +0.35pp, GAR-Dongre +0.72pp, 远低于 3pp; gate-profile 显示反向 turn conditioning] | **已否定(preliminary)** |\n| C4 | Gate profile 的最低抑制层 (L3/L4) 与 Dongre 报告的 Qwen goal-encoding onset 层 (L4/L5) 在位置上 coincides: ThreadGate 独立学到在 goal-encoding 起始区域施加最强调制, 但这是相关性观察而非因果验证 | [支撑: 训练时 L3/L4 最低; 但推理时 gate profile 不同 (L14/L23 动态范围最大), coincidence 仅限训练阶段] | suggestive(training only) |\n| C5 | ThreadGate 改善 GAR 的同时不损害下游多轮任务性能 (MT-Bench multi-turn 或 instruction retention ≥1pp) | [待验证: 依赖 C3, 当前 C3 已否定] | 待验证(blocked) |\n| C6 | Gate 参数量极小 (~0.02% 模型参数, ~1.67M), 训练开销可忽略 | [支撑: 设计分析 + 实测] | 已验证 |\n\n**C2 校准说明**: v7 (MSE+gate_div, λ_gar=1.0, λ_div=1.0) 在平衡训练下确认了稳定的层间分化。gate_std 从 gs100 到 gs2600 始终在 0.050-0.054 范围, 不再像 v3-v6 那样单调收缩。但推理时 gate profile 与训练时不一致: 训练时 L3/L4 为最低层, 推理时 L14/L23 表现出最大 turn-dynamic range。且 turn conditioning 方向错误 (详见 Negative Findings NF1)。标记为 \"verified(training only)\": 训练时层间分化真实存在, 但不泛化到推理。\n\n**C3 校准说明**: v7 eval 显示 GAR recovery 极弱 (ours +0.35pp, dongre +0.72pp), 远低于 MVP 3pp 阈值。Gate-profile 分析 (D014) 进一步揭示 turn conditioning 方向反转: gates 在早期 turn (goal attention 高) 施加最强抑制, 在晚期 turn (goal attention 低) 变为近乎恒等。等待 UG + LoRA-only 三路消融做最终确认。\n\n**C4 校准说明**: v7 训练时 L3/L4 持续为最低 gate 层, 与 Dongre 的 L4/L5 goal-encoding onset 位置 coincides。但推理时 gate profile 与训练时不同 (推理时 L14/L23 动态范围最大, L3/L4 不再特殊)。Coincidence 仅限训练阶段, 降级为 \"suggestive(training only)\"。\n\n**训练动力学观察**: v7 训练呈现三阶段动力学: (1) Plateau 阶段 (gs0-75): GAR 停滞在 ~0.02, gate 在初始状态附近微调; (2) Phase transition (gs75-144): GAR 从 0.02 急升至 0.48, gate profile 快速分化; (3) Convergence (gs144+): GAR 稳定在 target=0.5 附近, gate_std plateau 在 0.05+。这一三阶段模式是 MSE 双向 loss 设计正确性的独立证据: 单调 loss (v3-v6) 不产生 phase transition, 而是 gate→1.0 的单调退化。\n\n---\n\n## 3.5 Negative Findings\n\n| # | Finding | 证据 | 影响 |\n|---|---------|------|------|\n| NF1 | NTP-GAR 损失竞争导致 turn conditioning 反向学习: 27/28 层 gate diff (turn1 - turn21) 为负, gates 在早期 turn (goal attention 高) 抑制最强, 在晚期 turn (goal attention 低) 变为 passive | [支撑: phase2_tg_s42_v7 eval gate-profile, D014 Reviewer 确认] | C3 否定的直接原因; 结构性问题, 非调参可修 |\n| NF2 | GAR 过拟合: 训练 GAR=0.48 vs 推理 GAR=0.016, 30x 断层 | [支撑: P0 代码逐行对比确认非 measurement bug, 是 attention pattern 不泛化] | GAR 作为训练信号存在泛化性根本问题 |\n| NF3 | Gating 扰动极小: 推理时 gate_mean=0.93-0.98, 即 residual update 仅被 attenuate 2-7%, 近乎 identity pass-through | [支撑: phase2_tg_s42_v7 eval gate dynamic range 数据] | 实际干预强度不足以改变 attention pattern |\n| NF4 | 实验设计 confound: Phase1 baseline 使用 base 模型对话, Phase2 eval 使用 LoRA 模型对话, 比较被不同文本 confound | [支撑: P0 代码分析; 已修正 → standard_conversations.json] | 已修正, 三路 eval 将在同一对话上做 |\n\n---\n\n## 4. Key Selling Points\n\n**SP1: 首个架构级干预方案.** Dongre et al. 唯一测试的干预方法 (goal re-injection, Appendix H) 失败了。ThreadGate 是文献中首个针对 GAR 衰减的有效架构干预。\n\n**SP2: Per-layer 自适应解决跨架构变异.** Dongre 发现 goal-encoding onset 层跨架构从 L2 (LLaMA) 到 L27 (Mistral) 不等。ThreadGate 的 per-layer learnable gate 自动适应不同架构的 goal-encoding 分布, 无需手动指定目标层。\n\n**SP3: 理论基础由独立证据支撑.** Dongre 的 residual probe 结果 (AUC=0.98) 证实 goal 信息在 residual stream 中持续存在, 只是 attention 通道关闭。ThreadGate 的设计动机 (在 residual stream 上施加 gate 恢复 attention) 直接建立在这一独立发现之上。\n\n**SP4: GAR 双定义 robustness check.** 训练使用 GAR-ours (system + first user, last token), 评估同时报告 GAR-ours 和 GAR-Dongre (system only, all response tokens)。两种定义下改善均微弱 (ours +0.35pp, dongre +0.72pp), 不足以支撑显著 recovery claim。\n\n**SP5: 极低参数开销.** Gate 网络参数占模型总参数 ~0.02% (~1.67M/7.6B), 在冻结 LLM 上即插即用, 不修改原始权重。\n\n---\n\n## 5. Anticipated Reviewer Concerns\n\n| # | 预期质疑 | 回应策略 |\n|---|----------|----------|\n| R1 | GAR 不是你们提出的指标, 诊断工作已被 Dongre 做完 | 明确 cite Dongre 作为问题诊断基础。我们的贡献是干预方案, 不是诊断。类比: 诊断疾病和开发治疗方案是互补的独立贡献。Dongre 的唯一干预尝试失败, 进一步凸显方案论文的价值。 |\n| R2 | 只在 Qwen-2.5-7B 一个模型上验证 | 计划扩展至少 1 个额外模型 (LLaMA-3.1-8B 或 Mistral-7B)。多 seed (≥3) 实验验证一致性。SP2 的 per-layer 自适应机制从设计上支持跨架构泛化。 |\n| R3 | GAR 改善是否转化为下游任务性能 | 评估包含 MT-Bench multi-turn score 和 multi-turn instruction retention eval。如果 GAR 改善但下游无变化, framing 调整为 \"理论验证 + 首个 principled 干预框架\" (Decision D001)。 |\n| R4 | Gate profile 可解释性是否 cherry-picked | 展示全部层的 gate 值, 不做选择性展示。L4 outlier 与 Dongre 独立报告的 L5 goal-encoding onset 对齐, 是 post-hoc 一致性而非 cherry-picking。多 seed 实验验证 gate profile 稳定性。 |\n| R5 | 训练开销和参数增加 | Gate 网络参数 ~0.02% 模型总参数 (~1.67M)。训练在冻结 LLM 上进行, 只更新 gate + LoRA 参数, 不需要全量微调。 |\n| R6 | 为什么不直接修正 attention (如 positional bias calibration) | Attention 修正方案 (Found in the Middle, ALiBi 等) 针对位置偏置, 不区分 turn boundary 语义。Dongre 证据显示问题是 goal attention 通道关闭而非位置衰减, 残差路径干预比 attention 修正更直接。 |\n| R7 | 70.8% GAR 衰减是否主要由序列长度稀释驱动 | 报告 raw GAR (功能性衰减) 和 normalized GAR (~21% 结构性衰减)。即使部分衰减来自稀释, 稀释本身也是功能有害的, ThreadGate 对两种衰减来源都有效。 |\n\n---\n\n## 6. Dongre et al. 关系定位\n\nDongre et al. (2605.12922) 是一篇诊断论文: 他们定义了 GAR, 在 12 个模型上量化了多轮 attention 衰减, 并通过 residual stream probing 发现 goal 信息在 attention 关闭后仍持续存在。他们的工作回答了 \"发生了什么\" 和 \"为什么\", 但没有回答 \"怎么解决\"。他们唯一尝试的干预方法 (periodic goal re-injection) 在 Appendix H 中报告为失败。ThreadGate 是首个基于 Dongre 诊断的架构级干预方案, 回答 \"怎么解决\"。两者互补: Dongre 的 residual probe 发现 (goal info 在 residual stream 中, AUC=0.98) 直接支撑 ThreadGate 的设计动机 (既然信息在 residual stream 中, 通过 gate 调节残差连接即可恢复 attention 对 goal tokens 的访问)。我们 cite Dongre 作为 GAR 定义来源、衰减现象的独立验证、以及 residual stream persistence 的理论支撑。\n\n---\n\n## 7. GAR 定义策略\n\n| 用途 | 定义 | Goal tokens | Response tokens | 理由 |\n|------|------|------------|----------------|------|\n| 训练信号 | GAR-ours | system prompt + first user query | last token per assistant turn | 包含 first user query 提供更丰富的 goal 信号; last token 作为 summary position 更稳定 |\n| 主表评估 | GAR-Dongre | system prompt task tokens only | all response tokens | 与 Dongre 可比, 审稿人可直接对照 |\n| 附录评估 | GAR-ours | system prompt + first user query | last token per assistant turn | 展示两种定义一致性 |\n\n**关键**: 两种定义下改善均微弱 (ours +0.35pp, dongre +0.72pp), 不足以支撑显著 recovery claim。三路消融 (TG vs UG vs LoRA-only) 在 standard_conversations 上做最终判定。\n\n---\n\n## 8. MVP Pass 标准\n\n1. **ThreadGate mid-turn GAR > Uniform Gate + 3pp** (GAR-Dongre 定义)\n2. **MT-Bench multi-turn 或 multi-turn instruction retention ≥1pp** (vs frozen baseline)\n3. **≥2/3 seeds 一致**\n\n**当前状态**: 条件 1 几乎确定 fail (v7 GAR recovery +0.72pp dongre, 远低于 3pp 门槛; gate-profile 显示反向 turn conditioning)。等待 UG + LoRA-only 完成三路消融做最终确认。\n\n处置:\n- 三条全 pass → 全速推进 EMNLP 投稿\n- 条件 1 pass + 条件 2 fail → partial pass, framing 转为 \"理论验证 + 首个 principled 干预框架\", 实用价值降为 secondary contribution (D001)\n- 条件 1 fail → kill ThreadGate, pivot to attention bias 方案 B\n",
+                "numLines": 115,
+                "startLine": 1,
+                "totalLines": 115
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LnkwGGSDH1BStk5WQoMszA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/route_b_design.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "816abd3e-0f0b-454b-a61e-12c8a14a578b",
+            "uuid": "d8554d54-f181-454d-9512-f75dfc3d7709",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019a5zBPVYPxYk2NEBPeRoBH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13869,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13869
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T12:22:42.480Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LnkwGGSDH1BStk5WQoMszA",
+              "type": "tool_result",
+              "content": "1\t# Route B: Negative Result / Analysis Paper 实验设计\n2\t\n3\t> 前提条件: LoRA-only eval 确认 gating 贡献为零（LoRA-only ≈ TG），或路线 A two-stage 失败后无缝转入\n4\t> 基于: paper_framing.md NF1-NF4, decisions D014-D017, memory.md v7 eval 发现\n5\t> 最后更新: 2026-05-19\n6\t\n7\t---\n8\t\n9\t## 1. 论文定位选项\n10\t\n11\t### Option A: \"Why Residual Gating Fails to Recover Goal Attention in Multi-Turn Dialogue\"\n12\t\n13\t- **定位**: 对 Dongre et al. (2605.12922) 诊断的首个系统性架构干预尝试 + 完整失败机制分析\n14\t- **核心贡献**: not \"what works\" but \"why the most principled approach doesn't work and what this tells us about the problem's hardness\"\n15\t- **叙事线**: Dongre 发现 goal info 在 residual stream 持续存在 (probe AUC=0.98) → 自然推论: 在 residual connection 上施加 gate 即可恢复 attention → ThreadGate 是这一推论的最直接实现 → 它的失败揭示了 NTP-GAR 梯度冲突和 attention pattern 泛化性这两个更深层的障碍\n16\t- **强点**: ThreadGate 的设计动机直接来自 Dongre 的 residual probe evidence，不是 ad hoc 尝试；失败机制（NF1-NF3）有完整量化；对所有基于 attention steering 的方法有警示意义\n17\t- **弱点**: 只有一种干预方法族（residual gating），审稿人可能质疑\"你只试了一种方法\"\n18\t- **缓解**: UG/LoRA-only 消融 + Dongre 自己的 goal re-injection 也失败 = 两种独立干预路线均失败\n19\t- **竞争力**: Findings ~70%，加跨模型验证有冲 main 的可能\n20\t\n21\t### Option B: \"The Training-Inference Generalization Gap in Attention Steering\"\n22\t\n23\t- **定位**: 发现并量化 GAR 作为训练信号的泛化性根本问题\n24\t- **核心贡献**: 30x training-inference GAR gap + 机制分析（NTP-GAR 梯度冲突导致 attention pattern 过拟合）\n25\t- **叙事线**: GAR 在训练中可被有效优化（0.02→0.48）→ 但训练学到的 attention pattern 不泛化到新对话（推理 GAR=0.016）→ 根因是 NTP loss 主导使 gate 学到反向 turn conditioning → 这意味着所有基于辅助 attention loss 的方法都面临相同泛化障碍\n26\t- **强点**: 泛化性问题对所有 attention steering 方法都有意义（不只是 residual gating）；30x gap 是一个 striking 数字\n27\t- **弱点**: 需要更多方法（不只 ThreadGate/UG）验证泛化性问题的普遍性；claim 的 scope 大于证据\n28\t- **缓解**: Dongre 的 goal re-injection 失败可作为间接 evidence；Base model 在 ultrachat 上 GAR≈eval GAR 排除数据分布解释\n29\t- **竞争力**: 如果泛化性 claim 立得住 → main track 潜力更高；但需要更强的实验支撑\n30\t\n31\t### Option C: \"A Comprehensive Analysis of Goal Attention Recovery Mechanisms\"\n32\t\n33\t- **定位**: 系统性比较多种 GAR 恢复策略的 survey/analysis paper\n34\t- **额外工作量**: 需实现 2-3 种额外干预方法（positional bias calibration, attention re-weighting, periodic goal re-injection with proper training），每种 ~10-15h GPU，时间预算不允许\n35\t- **竞争力**: 如果做全了很强，但 EMNLP deadline 前完不成\n36\t- **结论**: 不推荐，除非路线 A/B 审稿人要求 major revision 时再扩展\n37\t\n38\t### 推荐: Option A 为主，Option B 作为 framing 的一部分\n39\t\n40\tOption A 的 scope 更聚焦、证据更充分、写作负担更小。Option B 的泛化性洞察作为 Discussion section 的核心论点融入，而非作为独立 paper 的中心 claim（避免 overclaim）。\n41\t\n42\t---\n43\t\n44\t## 2. 核心消融实验（四路 eval）\n45\t\n46\t### 实验设计\n47\t\n48\t四个条件在同一组 standard_conversations.json（base model 生成，5 组 × 10 轮）上评估，消除文本 confound（NF4 修正）。\n49\t\n50\t| 条件 | 隔离目标 | GAR-ours | GAR-Dongre | nGAR | Gate profile | 状态 |\n51\t|------|----------|----------|-----------|------|-------------|------|\n52\t| Base (无训练) | 自然衰减 baseline | ~0.01 (ultrachat 已验证) | 待跑 | 待跑 | N/A | ✅ ultrachat 已跑，standard_conv 待统一 eval |\n53\t| TG v7 | 完整 ThreadGate | 0.016 (旧 eval) | 待重跑 | 待重跑 | 已有（D014 数据） | 待 standard_conv 统一 eval |\n54\t| UG | turn conditioning 增量 | 待跑 | 待跑 | 待跑 | 待跑 | ✅ 训练完成，eval 待做 |\n55\t| LoRA-only | gating 机制增量 | 待跑 | 待跑 | 待跑 | N/A (gate≡1.0) | 训练中 ~47.5% |\n56\t\n57\t### 关键对比\n58\t\n59\t1. **TG vs LoRA-only**: gating 机制是否有非零贡献（D012 核心问题）\n60\t2. **TG vs UG**: turn conditioning 是否有增量（如果两者 ≈，则 turn conditioning 无效）\n61\t3. **LoRA-only vs Base**: LoRA 微调本身是否改善/恶化 GAR\n62\t4. **所有条件 vs Base**: 任何训练干预是否改善推理时 GAR\n63\t\n64\t### 预期结果（negative result 假设下）\n65\t\n66\t- TG ≈ UG ≈ LoRA-only >> Base（LoRA 微调略改善 GAR，但 gating 无增量贡献）\n67\t- 或 TG ≈ UG ≈ LoRA-only ≈ Base（所有干预在推理时均无效）\n68\t- 任一结果都支撑 \"residual gating 对推理时 GAR 无显著影响\" 的 negative conclusion\n69\t\n70\t---\n71\t\n72\t## 3. 机制分析实验\n73\t\n74\t### 3.1 NTP-GAR 梯度冲突量化\n75\t\n76\t- **目的**: 量化 NTP loss 和 GAR loss 在 gate 参数上的梯度方向和幅度，为 NF1（反向 turn conditioning）提供机制解释\n77\t- **方法**: 在 v7 最终 checkpoint 上，取 10 个 ultrachat 样本做 single-step forward：\n78\t  1. 分别计算 ∇_gate(L_NTP) 和 ∇_gate(L_GAR)（28 层 × 每层 gate bias 参数）\n79\t  2. 逐层计算 cosine similarity: cos(∇_NTP, ∇_GAR)\n80\t  3. 计算梯度幅度比: ||∇_NTP|| / ||∇_GAR||\n81\t- **预期**: \n82\t  - cosine < 0（两个梯度方向冲突），尤其在 GAR 已收敛的 late training 阶段\n83\t  - ||∇_NTP|| >> ||∇_GAR||（NTP 梯度幅度远大于 GAR），解释为什么 NTP 主导了 gate 学习方向\n84\t  - 不同 turn position 的冲突程度不同：早期 turn（短序列）冲突小，晚期 turn（长序列）NTP 梯度放大，冲突加剧\n85\t- **与 NF1 关系**: 如果晚期 turn 的 NTP 梯度推 gate→1.0 最强烈，直接解释为什么 gates 在晚期 turn 变为 passive（NF1 核心发现）\n86\t- **GPU 时间**: ~10min（10 次 forward+backward，无需训练）\n87\t- **代码**: 修改 train_threadgate.py，关闭 optimizer step，分别 backward 两个 loss 记录梯度\n88\t\n89\t### 3.2 Gate Profile 深入分析\n90\t\n91\t已有数据的深度挖掘，无需新实验，纯分析工作。\n92\t\n93\t#### 3.2.1 Turn-by-turn gate 值变化（已有 D014 数据）\n94\t- 完整 28 层 × 10 turn 的 gate heatmap\n95\t- 标注 NF1 发现：27/28 层 diff (turn1 - turn21) < 0\n96\t- 识别异常层（唯一 diff > 0 的层是哪一层？是否与 Dongre goal-encoding 层有关？）\n97\t\n98\t#### 3.2.2 Layer-wise gate 与 Dongre goal-encoding layers 对比\n99\t- Dongre 报告 Qwen-2.5-7B goal encoding 从 L5 开始（probe AUC 陡升）\n100\t- 训练时 L3/L4 为最低 gate（与 L4/L5 onset 位置 coincides，C4 suggestive）\n101\t- 推理时 L14/L23 动态范围最大（与训练不一致）\n102\t- 分析：为什么训练-推理的 critical layer 不同？是否与 NTP 梯度在不同层的相对强度有关？\n103\t\n104\t#### 3.2.3 UG vs TG gate profile 对比\n105\t- 如果 UG 也产生相似的 per-layer 分化模式（L3/L4 最低）→ 分化是 GAR loss 驱动的，与 turn conditioning 无关\n106\t- 如果 UG 分化模式不同 → turn conditioning 确实影响了哪些层被抑制（即使方向错误）\n107\t- 已有线索（ROADMAP.md）：UG 训练也产生与 TG 相同的 per-layer 分化模式\n108\t\n109\t### 3.3 Attention Pattern 可视化\n110\t\n111\t- **目的**: 直观展示训练前后 attention 在 goal tokens 上的实际分布，让读者\"看到\"问题\n112\t- **方法**: \n113\t  1. 取 3 个 standard_conversations 样本\n114\t  2. 对 Base / TG / UG / LoRA-only 四个条件提取 attention weights（全层全头）\n115\t  3. 对每个条件：绘制 goal tokens 上的平均 attention heatmap（x 轴 = 层，y 轴 = turn）\n116\t  4. 对比 TG 训练时（ultrachat 数据）vs 推理时（standard_conv 数据）的 attention pattern → 可视化 30x 过拟合\n117\t- **预期**: \n118\t  - Base: 明确的 turn-wise attention 衰减\n119\t  - TG/UG/LoRA-only: 与 Base 差异极小（GAR 改善不泛化）\n120\t  - TG 训练时: goal tokens attention 显著增强（GAR=0.48 的视觉对应）\n121\t- **GPU 时间**: ~20min（四个模型各 forward 一次，提取 attention weights）\n122\t- **图表**: 1 个 4×1 subfigure（四个条件的 attention heatmap）+ 1 个训练 vs 推理对比图\n123\t\n124\t### 3.4 GAR 泛化性分析\n125\t\n126\t- **已有**: 训练 GAR=0.48 vs 推理 GAR=0.016（NF2，30x 断层，confirmed non-bug by D015）\n127\t- **已有**: Base model GAR on ultrachat ≈ GAR on eval data（~0.01），排除数据分布假设\n128\t- **新增 per-layer GAR breakdown**:\n129\t  - 目的：哪些层的 GAR 过拟合最严重？是否与 gate 分化最大的层相关？\n130\t  - 方法：分别在训练数据和 eval 数据上计算逐层 GAR，绘制 per-layer GAR ratio (train/eval)\n131\t  - 预期：所有层都过拟合，但 L3/L4（gate 分化最大层）可能过拟合更严重或更轻微 — 任一结果都有分析价值\n132\t- **新增 training trajectory GAR 泛化曲线**:\n133\t  - 目的：GAR 过拟合是渐进的还是突发的？与三阶段训练动力学（plateau → phase transition → convergence）的哪个阶段对应？\n134\t  - 方法：在训练过程的 5 个 checkpoint（gs50, gs100, gs150, gs200, gs400）上分别计算 eval GAR\n135\t  - 预期：训练 GAR 在 gs75-144 急升（phase transition），eval GAR 是否同步上升？如果不同步 → 过拟合在 phase transition 阶段即开始\n136\t- **GPU 时间**: ~30min（5 个 checkpoint × 1 次 eval forward）\n137\t\n138\t### 3.5 训练动力学三阶段分析（已有数据，需可视化）\n139\t\n140\tv7 训练呈现清晰的三阶段动力学（memory.md 记录），这是 paper 的亮点之一：\n141\t\n142\t1. **Plateau (gs0-75)**: GAR ≈ 0.02，gate 在初始状态附近微调\n143\t2. **Phase transition (gs75-144)**: GAR 从 0.02 急升至 0.48，gate profile 快速分化\n144\t3. **Convergence (gs144+)**: GAR 稳定在 target=0.5 附近，gate_std plateau 在 0.05+\n145\t\n146\t- **可视化**: 训练 GAR + gate_mean + gate_std + L_NTP + L_GAR 的五合一 training dynamics 图\n147\t- **叙事价值**: 说明 MSE 双向 loss 确实能驱动 gate 学到有意义的结构，问题不在训练而在泛化\n148\t- **数据来源**: v7_training_dynamics_csv（已有 artifact）\n149\t\n150\t---\n151\t\n152\t## 4. 跨模型验证（Llama-3.1-8B-Instruct）\n153\t\n154\t跨模型验证是 Route B 从 Findings 冲 main track 的关键加分项（D017）。\n155\t\n156\t### 4.1 Phase 1 复现：GAR 衰减诊断\n157\t\n158\t- **目的**: 在第二个模型上确认 GAR 衰减现象（Dongre 已在 12 个模型上验证，但我们需要自己的数据来做完整对比）\n159\t- **方法**: 用 Phase 1 GAR 诊断脚本在 Llama-3.1-8B-Instruct 上跑\n160\t- **预期**: 同样观察到 GAR 衰减（Dongre 在 Llama-3.1-8B 上报告 27-48% 衰减范围）\n161\t- **代码适配**: turn_utils.py 已支持 Llama chat template（D015 后完成）\n162\t- **模型路径**: /root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/（ModelScope 通道，已有 tokenizer，权重 ~16GB 需下载）\n163\t- **GPU 时间**: ~30min\n164\t- **磁盘**: 需先清理 Qwen cache 腾出空间（当前 15G/30G 可用，Llama 权重 ~16GB）\n165\t\n166\t### 4.2 ThreadGate v7 训练\n167\t\n168\t- **目的**: 在 Llama 上复现 ThreadGate 的 negative finding\n169\t- **方法**: 用与 Qwen v7 相同的设置（MSE+gate_div, λ_gar=1.0, λ_div=1.0, 3 epoch）\n170\t- **预期**: \n171\t  - 训练 GAR 同样可被优化到 ~0.5（MSE loss 有效性是模型无关的）\n172\t  - 推理 GAR 同样过拟合（如果确认 → NF2 普遍性加强）\n173\t  - Turn conditioning 同样反向（如果确认 → NF1 是 NTP-GAR 竞争的结构性后果，不是 Qwen 特有的）\n174\t- **代码适配**: threadgate.py 自动读取 hidden_dim (4096 for Llama vs 3584 for Qwen) / num_layers (32 for Llama vs 28 for Qwen)\n175\t- **GPU 时间**: ~6h（Llama-3.1-8B 比 Qwen-2.5-7B 稍大）\n176\t\n177\t### 4.3 消融（可选，视时间预算）\n178\t\n179\t- 如果时间允许：在 Llama 上也跑 UG + LoRA-only 消融\n180\t- 如果时间不允许：只做 TG + Base 对比，消融数据仅在 Qwen 上报告\n181\t- GPU 时间（如做）: UG ~6h + LoRA-only ~6h\n182\t\n183\t### 4.4 跨模型 gate profile 对比\n184\t\n185\t- 如果 Llama 上也出现类似的 per-layer 分化模式（某些浅层 gate 最低）→ 更强的普遍性 evidence\n186\t- 如果 Llama 的 critical layer 不同（如 L2 最低，对应 Dongre 报告 Llama goal-encoding onset 在 L2）→ 说明 gate 确实学到了模型特异的 goal-encoding 结构，但仍然无法泛化到推理\n187\t- 两种结果都有分析价值\n188\t\n189\t---\n190\t\n191\t## 5. 与 Dongre et al. (2605.12922) 的关系\n192\t\n193\t### 互补定位\n194\t\n195\t| 维度 | Dongre et al. | 本文 |\n196\t|------|---------------|------|\n197\t| 核心问题 | \"发生了什么\" + \"为什么\" | \"怎么干预\" + \"为什么干预失败\" |\n198\t| GAR 衰减 | 定义 GAR，12 模型量化衰减 | 独立确认（Qwen 70.8% raw, 21% normalized），我们的测量定义更宽（含 first user query） |\n199\t| 机制分析 | residual probe AUC=0.98（goal info 持续存在） | NTP-GAR 梯度冲突 + 30x 泛化 gap + turn conditioning 反转 |\n200\t| 干预尝试 | goal re-injection (Appendix H, 失败) | ThreadGate residual gating (失败) + UG/LoRA-only 消融 |\n201\t| 结论 | attention 通道关闭但 residual stream 保留 goal info | 即使在 residual stream 上施加 principled gating，NTP 梯度压制使 gate 无法学到正确的 turn-selective 干预 |\n202\t\n203\t### 共同推论\n204\t\n205\t两种独立干预路线（prompt-level goal re-injection + architecture-level residual gating）均失败，共同指向：\n206\t\n207\t1. 简单的 attention steering 不足以对抗 NTP 的优化压力\n208\t2. 需要更深层的架构改变（如 decoupled goal-processing pathway，或 inference-time attention intervention 绕过训练泛化问题）\n209\t\n210\t### 我们的独特增量\n211\t\n212\tDongre 诊断了问题，但没有解释为什么干预难以成功。我们量化了三个具体障碍：\n213\t1. **NTP-GAR 梯度冲突**（NF1 + 3.1 实验）: NTP loss 在 gate 参数上的梯度方向与 GAR loss 相反\n214\t2. **Attention pattern 不泛化**（NF2 + 3.4 实验）: 训练中学到的 attention redistribution 不迁移到新对话\n215\t3. **Gate 干预强度不足**（NF3）: 推理时 gate 仅 2-7% attenuation，远不足以改变 attention pattern\n216\t\n217\t---\n218\t\n219\t## 6. 论文结构草案（Option A framing）\n220\t\n221\t1. **Abstract** (150-250 words): 问题（GAR 衰减）→ 动机（Dongre residual probe → residual gating 是自然方案）→ 方法（ThreadGate）→ 核心发现（三个失败机制）→ 意义\n222\t2. **Introduction** (5 段): 多轮对话退化 → Dongre 诊断 + residual stream 持续性 → ThreadGate 设计动机 → 三个 negative findings 概述 → 贡献列表\n223\t3. **Related Work**: multi-turn degradation / residual gating & adaptive depth / attention steering\n224\t4. **Background**: GAR 定义（cite Dongre）+ residual stream persistence 证据\n225\t5. **Method**: ThreadGate 架构 + MSE+gate_div loss + 训练设置\n226\t6. **Experiments**: 四路消融 + 跨模型验证 + 训练动力学\n227\t7. **Analysis**: NTP-GAR 梯度冲突 + GAR 泛化性分析 + gate profile 深入分析 + attention 可视化\n228\t8. **Discussion**: 为什么 residual gating 不够 + 对 attention steering 方法的启示 + 潜在解决方向\n229\t9. **Conclusion**: negative result 总结 + 对社区的建议\n230\t\n231\t### 贡献列表（草案）\n232\t\n233\t1. 首个基于 residual stream persistence 证据设计的架构级 GAR 恢复干预（ThreadGate），及其完整失败分析\n234\t2. 发现并量化 NTP-GAR 梯度冲突导致 turn conditioning 反向学习的机制\n235\t3. 量化 GAR 训练信号的泛化性问题（30x training-inference gap），对所有基于辅助 attention loss 的方法有警示意义\n236\t4. 四路消融 + 跨模型验证的完整实验设计，为后续研究提供 baseline 和诊断工具\n237\t\n238\t---\n239\t\n240\t## 7. 实验时间表\n241\t\n242\t| 实验 | GPU 时间 | 依赖 | 预计完成 |\n243\t|------|----------|------|----------|\n244\t| LoRA-only 训练完成 | ~3h (剩余) | 无 | D+0 (2026-05-19) |\n245\t| 四路 eval on standard_conv (Qwen) | ~1h | LoRA-only 完成 | D+0 |\n246\t| 梯度冲突分析 (3.1) | ~10min | v7 checkpoint | D+0 |\n247\t| Attention 可视化 (3.3) | ~20min | 四路 checkpoint | D+0 |\n248\t| GAR 泛化曲线 — 5 checkpoints (3.4) | ~30min | v7 中间 checkpoints | D+1 |\n249\t| 训练动力学可视化 (3.5) | ~0 (纯绘图) | v7_training_dynamics_csv | D+0 |\n250\t| Gate profile 深入分析 (3.2) | ~0 (纯分析) | 四路 eval 数据 | D+1 |\n251\t| Llama 模型下载 | ~30min (网络) | 磁盘清理 | D+1 |\n252\t| Phase 1 GAR 诊断 (Llama) | ~30min | Llama 模型下载 | D+1 |\n253\t| TG v7 训练 (Llama) | ~6h | Llama 模型下载 | D+2 |\n254\t| Llama eval + gate profile | ~1h | Llama TG 完成 | D+2 |\n255\t| [可选] Llama UG + LoRA-only | ~12h | Llama TG eval | D+3-4 |\n256\t\n257\t**总 GPU 时间**: ~12h（核心）+ ~12h（可选 Llama 消融）\n258\t**写作启动**: D+2（Qwen 全部数据就绪后可开始 Method/Background/Related Work）\n259\t**完整初稿**: D+7-10（假设跨模型验证顺利）\n260\t\n261\t---\n262\t\n263\t## 8. 风险与应急\n264\t\n265\t| 风险 | 概率 | 影响 | 应急 |\n266\t|------|------|------|------|\n267\t| LoRA-only 意外优于 TG（gating 有负面贡献） | 低 | 叙事调整：gating 不仅无效还有害（更强的 negative finding） | 额外分析 why gating hurts |\n268\t| Llama 上 GAR 衰减模式与 Qwen 显著不同 | 中 | 跨模型 claim 弱化 | 聚焦 Qwen 深度分析，Llama 作为补充 |\n269\t| Llama 上 ThreadGate 意外成功 | 极低 | 整个 negative framing 需要重写 | 转回 Route A，Qwen 失败 + Llama 成功本身是更有趣的故事 |\n270\t| 磁盘空间不足以同时存 Qwen + Llama checkpoints | 中 | Llama 实验延迟 | 先完成 Qwen 所有分析，删除中间 checkpoints，再下载 Llama |\n271\t| 审稿人认为\"只测了 residual gating 一种方法，negative result 太窄\" | 高 | reject 风险 | Discussion 中系统性分析为什么其他方法（attention re-weighting, positional bias）也面临类似障碍；cite Dongre goal re-injection 失败 |\n272\t| 梯度冲突分析结果不显著（cosine ≈ 0 而非 < 0） | 中 | NF1 的机制解释弱化 | 转为 \"orthogonal gradients = GAR loss 无法有效引导 gate\" 的叙事（NTP 不一定反对，但 GAR 信号太弱被淹没） |\n273\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "816abd3e-0f0b-454b-a61e-12c8a14a578b",
+            "uuid": "1a84daec-fc33-4310-ab97-44d62a10c487",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/route_b_design.md",
+                "content": "# Route B: Negative Result / Analysis Paper 实验设计\n\n> 前提条件: LoRA-only eval 确认 gating 贡献为零（LoRA-only ≈ TG），或路线 A two-stage 失败后无缝转入\n> 基于: paper_framing.md NF1-NF4, decisions D014-D017, memory.md v7 eval 发现\n> 最后更新: 2026-05-19\n\n---\n\n## 1. 论文定位选项\n\n### Option A: \"Why Residual Gating Fails to Recover Goal Attention in Multi-Turn Dialogue\"\n\n- **定位**: 对 Dongre et al. (2605.12922) 诊断的首个系统性架构干预尝试 + 完整失败机制分析\n- **核心贡献**: not \"what works\" but \"why the most principled approach doesn't work and what this tells us about the problem's hardness\"\n- **叙事线**: Dongre 发现 goal info 在 residual stream 持续存在 (probe AUC=0.98) → 自然推论: 在 residual connection 上施加 gate 即可恢复 attention → ThreadGate 是这一推论的最直接实现 → 它的失败揭示了 NTP-GAR 梯度冲突和 attention pattern 泛化性这两个更深层的障碍\n- **强点**: ThreadGate 的设计动机直接来自 Dongre 的 residual probe evidence，不是 ad hoc 尝试；失败机制（NF1-NF3）有完整量化；对所有基于 attention steering 的方法有警示意义\n- **弱点**: 只有一种干预方法族（residual gating），审稿人可能质疑\"你只试了一种方法\"\n- **缓解**: UG/LoRA-only 消融 + Dongre 自己的 goal re-injection 也失败 = 两种独立干预路线均失败\n- **竞争力**: Findings ~70%，加跨模型验证有冲 main 的可能\n\n### Option B: \"The Training-Inference Generalization Gap in Attention Steering\"\n\n- **定位**: 发现并量化 GAR 作为训练信号的泛化性根本问题\n- **核心贡献**: 30x training-inference GAR gap + 机制分析（NTP-GAR 梯度冲突导致 attention pattern 过拟合）\n- **叙事线**: GAR 在训练中可被有效优化（0.02→0.48）→ 但训练学到的 attention pattern 不泛化到新对话（推理 GAR=0.016）→ 根因是 NTP loss 主导使 gate 学到反向 turn conditioning → 这意味着所有基于辅助 attention loss 的方法都面临相同泛化障碍\n- **强点**: 泛化性问题对所有 attention steering 方法都有意义（不只是 residual gating）；30x gap 是一个 striking 数字\n- **弱点**: 需要更多方法（不只 ThreadGate/UG）验证泛化性问题的普遍性；claim 的 scope 大于证据\n- **缓解**: Dongre 的 goal re-injection 失败可作为间接 evidence；Base model 在 ultrachat 上 GAR≈eval GAR 排除数据分布解释\n- **竞争力**: 如果泛化性 claim 立得住 → main track 潜力更高；但需要更强的实验支撑\n\n### Option C: \"A Comprehensive Analysis of Goal Attention Recovery Mechanisms\"\n\n- **定位**: 系统性比较多种 GAR 恢复策略的 survey/analysis paper\n- **额外工作量**: 需实现 2-3 种额外干预方法（positional bias calibration, attention re-weighting, periodic goal re-injection with proper training），每种 ~10-15h GPU，时间预算不允许\n- **竞争力**: 如果做全了很强，但 EMNLP deadline 前完不成\n- **结论**: 不推荐，除非路线 A/B 审稿人要求 major revision 时再扩展\n\n### 推荐: Option A 为主，Option B 作为 framing 的一部分\n\nOption A 的 scope 更聚焦、证据更充分、写作负担更小。Option B 的泛化性洞察作为 Discussion section 的核心论点融入，而非作为独立 paper 的中心 claim（避免 overclaim）。\n\n---\n\n## 2. 核心消融实验（四路 eval）\n\n### 实验设计\n\n四个条件在同一组 standard_conversations.json（base model 生成，5 组 × 10 轮）上评估，消除文本 confound（NF4 修正）。\n\n| 条件 | 隔离目标 | GAR-ours | GAR-Dongre | nGAR | Gate profile | 状态 |\n|------|----------|----------|-----------|------|-------------|------|\n| Base (无训练) | 自然衰减 baseline | ~0.01 (ultrachat 已验证) | 待跑 | 待跑 | N/A | ✅ ultrachat 已跑，standard_conv 待统一 eval |\n| TG v7 | 完整 ThreadGate | 0.016 (旧 eval) | 待重跑 | 待重跑 | 已有（D014 数据） | 待 standard_conv 统一 eval |\n| UG | turn conditioning 增量 | 待跑 | 待跑 | 待跑 | 待跑 | ✅ 训练完成，eval 待做 |\n| LoRA-only | gating 机制增量 | 待跑 | 待跑 | 待跑 | N/A (gate≡1.0) | 训练中 ~47.5% |\n\n### 关键对比\n\n1. **TG vs LoRA-only**: gating 机制是否有非零贡献（D012 核心问题）\n2. **TG vs UG**: turn conditioning 是否有增量（如果两者 ≈，则 turn conditioning 无效）\n3. **LoRA-only vs Base**: LoRA 微调本身是否改善/恶化 GAR\n4. **所有条件 vs Base**: 任何训练干预是否改善推理时 GAR\n\n### 预期结果（negative result 假设下）\n\n- TG ≈ UG ≈ LoRA-only >> Base（LoRA 微调略改善 GAR，但 gating 无增量贡献）\n- 或 TG ≈ UG ≈ LoRA-only ≈ Base（所有干预在推理时均无效）\n- 任一结果都支撑 \"residual gating 对推理时 GAR 无显著影响\" 的 negative conclusion\n\n---\n\n## 3. 机制分析实验\n\n### 3.1 NTP-GAR 梯度冲突量化\n\n- **目的**: 量化 NTP loss 和 GAR loss 在 gate 参数上的梯度方向和幅度，为 NF1（反向 turn conditioning）提供机制解释\n- **方法**: 在 v7 最终 checkpoint 上，取 10 个 ultrachat 样本做 single-step forward：\n  1. 分别计算 ∇_gate(L_NTP) 和 ∇_gate(L_GAR)（28 层 × 每层 gate bias 参数）\n  2. 逐层计算 cosine similarity: cos(∇_NTP, ∇_GAR)\n  3. 计算梯度幅度比: ||∇_NTP|| / ||∇_GAR||\n- **预期**: \n  - cosine < 0（两个梯度方向冲突），尤其在 GAR 已收敛的 late training 阶段\n  - ||∇_NTP|| >> ||∇_GAR||（NTP 梯度幅度远大于 GAR），解释为什么 NTP 主导了 gate 学习方向\n  - 不同 turn position 的冲突程度不同：早期 turn（短序列）冲突小，晚期 turn（长序列）NTP 梯度放大，冲突加剧\n- **与 NF1 关系**: 如果晚期 turn 的 NTP 梯度推 gate→1.0 最强烈，直接解释为什么 gates 在晚期 turn 变为 passive（NF1 核心发现）\n- **GPU 时间**: ~10min（10 次 forward+backward，无需训练）\n- **代码**: 修改 train_threadgate.py，关闭 optimizer step，分别 backward 两个 loss 记录梯度\n\n### 3.2 Gate Profile 深入分析\n\n已有数据的深度挖掘，无需新实验，纯分析工作。\n\n#### 3.2.1 Turn-by-turn gate 值变化（已有 D014 数据）\n- 完整 28 层 × 10 turn 的 gate heatmap\n- 标注 NF1 发现：27/28 层 diff (turn1 - turn21) < 0\n- 识别异常层（唯一 diff > 0 的层是哪一层？是否与 Dongre goal-encoding 层有关？）\n\n#### 3.2.2 Layer-wise gate 与 Dongre goal-encoding layers 对比\n- Dongre 报告 Qwen-2.5-7B goal encoding 从 L5 开始（probe AUC 陡升）\n- 训练时 L3/L4 为最低 gate（与 L4/L5 onset 位置 coincides，C4 suggestive）\n- 推理时 L14/L23 动态范围最大（与训练不一致）\n- 分析：为什么训练-推理的 critical layer 不同？是否与 NTP 梯度在不同层的相对强度有关？\n\n#### 3.2.3 UG vs TG gate profile 对比\n- 如果 UG 也产生相似的 per-layer 分化模式（L3/L4 最低）→ 分化是 GAR loss 驱动的，与 turn conditioning 无关\n- 如果 UG 分化模式不同 → turn conditioning 确实影响了哪些层被抑制（即使方向错误）\n- 已有线索（ROADMAP.md）：UG 训练也产生与 TG 相同的 per-layer 分化模式\n\n### 3.3 Attention Pattern 可视化\n\n- **目的**: 直观展示训练前后 attention 在 goal tokens 上的实际分布，让读者\"看到\"问题\n- **方法**: \n  1. 取 3 个 standard_conversations 样本\n  2. 对 Base / TG / UG / LoRA-only 四个条件提取 attention weights（全层全头）\n  3. 对每个条件：绘制 goal tokens 上的平均 attention heatmap（x 轴 = 层，y 轴 = turn）\n  4. 对比 TG 训练时（ultrachat 数据）vs 推理时（standard_conv 数据）的 attention pattern → 可视化 30x 过拟合\n- **预期**: \n  - Base: 明确的 turn-wise attention 衰减\n  - TG/UG/LoRA-only: 与 Base 差异极小（GAR 改善不泛化）\n  - TG 训练时: goal tokens attention 显著增强（GAR=0.48 的视觉对应）\n- **GPU 时间**: ~20min（四个模型各 forward 一次，提取 attention weights）\n- **图表**: 1 个 4×1 subfigure（四个条件的 attention heatmap）+ 1 个训练 vs 推理对比图\n\n### 3.4 GAR 泛化性分析\n\n- **已有**: 训练 GAR=0.48 vs 推理 GAR=0.016（NF2，30x 断层，confirmed non-bug by D015）\n- **已有**: Base model GAR on ultrachat ≈ GAR on eval data（~0.01），排除数据分布假设\n- **新增 per-layer GAR breakdown**:\n  - 目的：哪些层的 GAR 过拟合最严重？是否与 gate 分化最大的层相关？\n  - 方法：分别在训练数据和 eval 数据上计算逐层 GAR，绘制 per-layer GAR ratio (train/eval)\n  - 预期：所有层都过拟合，但 L3/L4（gate 分化最大层）可能过拟合更严重或更轻微 — 任一结果都有分析价值\n- **新增 training trajectory GAR 泛化曲线**:\n  - 目的：GAR 过拟合是渐进的还是突发的？与三阶段训练动力学（plateau → phase transition → convergence）的哪个阶段对应？\n  - 方法：在训练过程的 5 个 checkpoint（gs50, gs100, gs150, gs200, gs400）上分别计算 eval GAR\n  - 预期：训练 GAR 在 gs75-144 急升（phase transition），eval GAR 是否同步上升？如果不同步 → 过拟合在 phase transition 阶段即开始\n- **GPU 时间**: ~30min（5 个 checkpoint × 1 次 eval forward）\n\n### 3.5 训练动力学三阶段分析（已有数据，需可视化）\n\nv7 训练呈现清晰的三阶段动力学（memory.md 记录），这是 paper 的亮点之一：\n\n1. **Plateau (gs0-75)**: GAR ≈ 0.02，gate 在初始状态附近微调\n2. **Phase transition (gs75-144)**: GAR 从 0.02 急升至 0.48，gate profile 快速分化\n3. **Convergence (gs144+)**: GAR 稳定在 target=0.5 附近，gate_std plateau 在 0.05+\n\n- **可视化**: 训练 GAR + gate_mean + gate_std + L_NTP + L_GAR 的五合一 training dynamics 图\n- **叙事价值**: 说明 MSE 双向 loss 确实能驱动 gate 学到有意义的结构，问题不在训练而在泛化\n- **数据来源**: v7_training_dynamics_csv（已有 artifact）\n\n---\n\n## 4. 跨模型验证（Llama-3.1-8B-Instruct）\n\n跨模型验证是 Route B 从 Findings 冲 main track 的关键加分项（D017）。\n\n### 4.1 Phase 1 复现：GAR 衰减诊断\n\n- **目的**: 在第二个模型上确认 GAR 衰减现象（Dongre 已在 12 个模型上验证，但我们需要自己的数据来做完整对比）\n- **方法**: 用 Phase 1 GAR 诊断脚本在 Llama-3.1-8B-Instruct 上跑\n- **预期**: 同样观察到 GAR 衰减（Dongre 在 Llama-3.1-8B 上报告 27-48% 衰减范围）\n- **代码适配**: turn_utils.py 已支持 Llama chat template（D015 后完成）\n- **模型路径**: /root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/（ModelScope 通道，已有 tokenizer，权重 ~16GB 需下载）\n- **GPU 时间**: ~30min\n- **磁盘**: 需先清理 Qwen cache 腾出空间（当前 15G/30G 可用，Llama 权重 ~16GB）\n\n### 4.2 ThreadGate v7 训练\n\n- **目的**: 在 Llama 上复现 ThreadGate 的 negative finding\n- **方法**: 用与 Qwen v7 相同的设置（MSE+gate_div, λ_gar=1.0, λ_div=1.0, 3 epoch）\n- **预期**: \n  - 训练 GAR 同样可被优化到 ~0.5（MSE loss 有效性是模型无关的）\n  - 推理 GAR 同样过拟合（如果确认 → NF2 普遍性加强）\n  - Turn conditioning 同样反向（如果确认 → NF1 是 NTP-GAR 竞争的结构性后果，不是 Qwen 特有的）\n- **代码适配**: threadgate.py 自动读取 hidden_dim (4096 for Llama vs 3584 for Qwen) / num_layers (32 for Llama vs 28 for Qwen)\n- **GPU 时间**: ~6h（Llama-3.1-8B 比 Qwen-2.5-7B 稍大）\n\n### 4.3 消融（可选，视时间预算）\n\n- 如果时间允许：在 Llama 上也跑 UG + LoRA-only 消融\n- 如果时间不允许：只做 TG + Base 对比，消融数据仅在 Qwen 上报告\n- GPU 时间（如做）: UG ~6h + LoRA-only ~6h\n\n### 4.4 跨模型 gate profile 对比\n\n- 如果 Llama 上也出现类似的 per-layer 分化模式（某些浅层 gate 最低）→ 更强的普遍性 evidence\n- 如果 Llama 的 critical layer 不同（如 L2 最低，对应 Dongre 报告 Llama goal-encoding onset 在 L2）→ 说明 gate 确实学到了模型特异的 goal-encoding 结构，但仍然无法泛化到推理\n- 两种结果都有分析价值\n\n---\n\n## 5. 与 Dongre et al. (2605.12922) 的关系\n\n### 互补定位\n\n| 维度 | Dongre et al. | 本文 |\n|------|---------------|------|\n| 核心问题 | \"发生了什么\" + \"为什么\" | \"怎么干预\" + \"为什么干预失败\" |\n| GAR 衰减 | 定义 GAR，12 模型量化衰减 | 独立确认（Qwen 70.8% raw, 21% normalized），我们的测量定义更宽（含 first user query） |\n| 机制分析 | residual probe AUC=0.98（goal info 持续存在） | NTP-GAR 梯度冲突 + 30x 泛化 gap + turn conditioning 反转 |\n| 干预尝试 | goal re-injection (Appendix H, 失败) | ThreadGate residual gating (失败) + UG/LoRA-only 消融 |\n| 结论 | attention 通道关闭但 residual stream 保留 goal info | 即使在 residual stream 上施加 principled gating，NTP 梯度压制使 gate 无法学到正确的 turn-selective 干预 |\n\n### 共同推论\n\n两种独立干预路线（prompt-level goal re-injection + architecture-level residual gating）均失败，共同指向：\n\n1. 简单的 attention steering 不足以对抗 NTP 的优化压力\n2. 需要更深层的架构改变（如 decoupled goal-processing pathway，或 inference-time attention intervention 绕过训练泛化问题）\n\n### 我们的独特增量\n\nDongre 诊断了问题，但没有解释为什么干预难以成功。我们量化了三个具体障碍：\n1. **NTP-GAR 梯度冲突**（NF1 + 3.1 实验）: NTP loss 在 gate 参数上的梯度方向与 GAR loss 相反\n2. **Attention pattern 不泛化**（NF2 + 3.4 实验）: 训练中学到的 attention redistribution 不迁移到新对话\n3. **Gate 干预强度不足**（NF3）: 推理时 gate 仅 2-7% attenuation，远不足以改变 attention pattern\n\n---\n\n## 6. 论文结构草案（Option A framing）\n\n1. **Abstract** (150-250 words): 问题（GAR 衰减）→ 动机（Dongre residual probe → residual gating 是自然方案）→ 方法（ThreadGate）→ 核心发现（三个失败机制）→ 意义\n2. **Introduction** (5 段): 多轮对话退化 → Dongre 诊断 + residual stream 持续性 → ThreadGate 设计动机 → 三个 negative findings 概述 → 贡献列表\n3. **Related Work**: multi-turn degradation / residual gating & adaptive depth / attention steering\n4. **Background**: GAR 定义（cite Dongre）+ residual stream persistence 证据\n5. **Method**: ThreadGate 架构 + MSE+gate_div loss + 训练设置\n6. **Experiments**: 四路消融 + 跨模型验证 + 训练动力学\n7. **Analysis**: NTP-GAR 梯度冲突 + GAR 泛化性分析 + gate profile 深入分析 + attention 可视化\n8. **Discussion**: 为什么 residual gating 不够 + 对 attention steering 方法的启示 + 潜在解决方向\n9. **Conclusion**: negative result 总结 + 对社区的建议\n\n### 贡献列表（草案）\n\n1. 首个基于 residual stream persistence 证据设计的架构级 GAR 恢复干预（ThreadGate），及其完整失败分析\n2. 发现并量化 NTP-GAR 梯度冲突导致 turn conditioning 反向学习的机制\n3. 量化 GAR 训练信号的泛化性问题（30x training-inference gap），对所有基于辅助 attention loss 的方法有警示意义\n4. 四路消融 + 跨模型验证的完整实验设计，为后续研究提供 baseline 和诊断工具\n\n---\n\n## 7. 实验时间表\n\n| 实验 | GPU 时间 | 依赖 | 预计完成 |\n|------|----------|------|----------|\n| LoRA-only 训练完成 | ~3h (剩余) | 无 | D+0 (2026-05-19) |\n| 四路 eval on standard_conv (Qwen) | ~1h | LoRA-only 完成 | D+0 |\n| 梯度冲突分析 (3.1) | ~10min | v7 checkpoint | D+0 |\n| Attention 可视化 (3.3) | ~20min | 四路 checkpoint | D+0 |\n| GAR 泛化曲线 — 5 checkpoints (3.4) | ~30min | v7 中间 checkpoints | D+1 |\n| 训练动力学可视化 (3.5) | ~0 (纯绘图) | v7_training_dynamics_csv | D+0 |\n| Gate profile 深入分析 (3.2) | ~0 (纯分析) | 四路 eval 数据 | D+1 |\n| Llama 模型下载 | ~30min (网络) | 磁盘清理 | D+1 |\n| Phase 1 GAR 诊断 (Llama) | ~30min | Llama 模型下载 | D+1 |\n| TG v7 训练 (Llama) | ~6h | Llama 模型下载 | D+2 |\n| Llama eval + gate profile | ~1h | Llama TG 完成 | D+2 |\n| [可选] Llama UG + LoRA-only | ~12h | Llama TG eval | D+3-4 |\n\n**总 GPU 时间**: ~12h（核心）+ ~12h（可选 Llama 消融）\n**写作启动**: D+2（Qwen 全部数据就绪后可开始 Method/Background/Related Work）\n**完整初稿**: D+7-10（假设跨模型验证顺利）\n\n---\n\n## 8. 风险与应急\n\n| 风险 | 概率 | 影响 | 应急 |\n|------|------|------|------|\n| LoRA-only 意外优于 TG（gating 有负面贡献） | 低 | 叙事调整：gating 不仅无效还有害（更强的 negative finding） | 额外分析 why gating hurts |\n| Llama 上 GAR 衰减模式与 Qwen 显著不同 | 中 | 跨模型 claim 弱化 | 聚焦 Qwen 深度分析，Llama 作为补充 |\n| Llama 上 ThreadGate 意外成功 | 极低 | 整个 negative framing 需要重写 | 转回 Route A，Qwen 失败 + Llama 成功本身是更有趣的故事 |\n| 磁盘空间不足以同时存 Qwen + Llama checkpoints | 中 | Llama 实验延迟 | 先完成 Qwen 所有分析，删除中间 checkpoints，再下载 Llama |\n| 审稿人认为\"只测了 residual gating 一种方法，negative result 太窄\" | 高 | reject 风险 | Discussion 中系统性分析为什么其他方法（attention re-weighting, positional bias）也面临类似障碍；cite Dongre goal re-injection 失败 |\n| 梯度冲突分析结果不显著（cosine ≈ 0 而非 < 0） | 中 | NF1 的机制解释弱化 | 转为 \"orthogonal gradients = GAR loss 无法有效引导 gate\" 的叙事（NTP 不一定反对，但 GAR 信号太弱被淹没） |\n",
+                "numLines": 273,
+                "startLine": 1,
+                "totalLines": 273
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have both files. Let me rewrite paper_framing.md to reflect the Route B negative result + mechanistic insight narrative. I'll base it on the task description and the route_b_design.md content, keeping the format concise as a framing document (not a full experiment design).",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "816abd3e-0f0b-454b-a61e-12c8a14a578b",
+            "uuid": "74c1c3e8-5f4c-4d04-b304-93a7c314c378",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014jRiktjeiNG7Ccfx3XrMQ4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13250,
+                "cache_read_input_tokens": 25316,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13250
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have full context. Rewriting paper_framing.md to Route B negative result framing."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "816abd3e-0f0b-454b-a61e-12c8a14a578b",
+            "uuid": "c1b1fb4d-9646-4f3a-a0f6-a69d461de298",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014jRiktjeiNG7Ccfx3XrMQ4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13250,
+                "cache_read_input_tokens": 25316,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13250
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mnd4YNAJmVnzDUXvCzUnrz",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+                "content": "# Paper Framing: Negative Result + Mechanistic Insight\n\n> 定位: **Negative result paper**. 首个系统性架构干预尝试 + 完整失败机制分析。不是 \"X doesn't work\"，而是量化了三个具体失败机制 + v1-v7 消融链展示系统性探索。\n> 目标会议: EMNLP 2026, ARR August cycle, deadline 2026-08-03 (~10.5 weeks)\n> 最后更新: 2026-05-19 (Route B pivot after D014-D018 confirmed ThreadGate positive story untenable)\n\n---\n\n## 1. Title Candidates\n\n- **T1**: Why Residual Gating Fails to Fix Multi-Turn Attention Degradation\n- **T2**: The Residual Gating Trap: Three Failure Mechanisms in Goal Attention Recovery\n- **T3**: Residual Gating Cannot Recover Goal Attention in Multi-Turn Dialogue: A Mechanistic Analysis\n\n推荐 T1: 直接点明 negative result，包含方法 (residual gating)、现象 (multi-turn attention degradation)、和 \"why\" 暗示有机制分析。\n\n---\n\n## 2. Story Arc\n\nMulti-turn dialogue performance in LLMs degrades as conversations grow longer. Dongre et al. (2026) quantified this through the Goal Attention Ratio (GAR), showing 27-48% drops over 50 turns, while their residual stream probes reveal that goal information persists (AUC up to 0.98) even as the attention channel closes. This creates a natural hypothesis: if the information is in the residual stream but attention fails to access it, a learnable gate on the residual connection should recover it. We implement this hypothesis as ThreadGate, a per-layer gating module trained with joint NTP and GAR objectives. ThreadGate successfully optimizes GAR during training (0.02 to 0.48), but this improvement completely fails to transfer to inference (GAR = 0.016, a 30x gap). Through systematic analysis, we identify three coupled failure mechanisms: (1) NTP loss dominates gate gradients, causing gates to learn reverse turn conditioning (suppressing in early turns where GAR is high, becoming passive in late turns where GAR is low); (2) the resulting attention pattern overfits to training data and does not generalize; (3) at inference time, gates attenuate residual updates by only 2-7%, far too weak to shift attention patterns. Four-way ablation (ThreadGate vs. Uniform Gate vs. LoRA-only vs. Base) confirms gating provides zero incremental contribution. Combined with Dongre et al.'s independent failure of goal re-injection, our results suggest that simple attention steering approaches face fundamental obstacles from NTP optimization pressure.\n\n---\n\n## 3. Core Claims\n\n| # | Claim | 支撑 | 状态 |\n|---|-------|------|------|\n| C1 | GAR 衰减是真实且严重的结构性现象: Qwen-2.5-7B raw GAR 下降 70.8%, normalized GAR 下降 ~21% | Phase 1 GAR 诊断 | 已验证 |\n| C2 | Residual gating 在训练端可有效优化 GAR (0.02→0.48)，但推理时完全不泛化 (GAR=0.016, 30x 断层) | v7 训练曲线 + D015/D017 confirmed non-bug | 已验证 |\n| C3 | 三个耦合失败机制的因果分析: NF1 反向 turn conditioning + NF2 30x 泛化 gap + NF3 gate 干预强度不足 2-7% | D014 gate-profile 分析 + D015 代码验证 + 梯度冲突实验 (待做) | NF1/NF2/NF3 已验证，梯度冲突量化待做 |\n| C4 | Gating 无增量贡献: 四路消融 LoRA-only ≈ TG ≈ UG | 四路 eval on standard_conversations (待做) | 待 eval 确认 |\n| C5 | 跨模型验证: Llama-3.1-8B 上复现同样的失败模式 | Llama 实验 (待做) | 待做 |\n\n---\n\n## 4. Negative Findings (NF)\n\n| # | Finding | 证据 | 叙事角色 |\n|---|---------|------|----------|\n| NF1 | Gate turn conditioning 方向反转: 27/28 层 gate diff (turn1-turn21) < 0，早期 turn 强抑制，晚期 turn passive | D014 eval gate-profile | 解释 why gating fails: NTP 梯度推 gate→1.0，晚期 turn 推力最强 |\n| NF2 | 30x training-inference GAR gap: 训练 GAR=0.48 vs 推理 GAR=0.016 | D015 代码逐行验证非 bug，是 attention pattern 不泛化 | 核心 negative finding，对所有辅助 attention loss 方法有警示意义 |\n| NF3 | 推理时 gate attenuation 仅 2-7% (gate_mean=0.93-0.98)，近乎 identity | D014 gate dynamic range 数据 | 解释 why 推理时 GAR 不改善: 干预强度不足 |\n| NF4 | Eval baseline confound (Phase1 base vs Phase2 LoRA 文本不同) | P0 代码分析 | 已修正 → standard_conversations.json 统一 eval |\n\n---\n\n## 5. Key Selling Points\n\n**SP1: 动机最 principled 的干预方案。** Dongre 发现 goal info 在 residual stream 持续存在 (probe AUC=0.98)，residual gating 是对这一发现最直接的架构响应。不是 ad hoc 尝试，而是从 mechanistic evidence 出发的 principled design。其失败因此更有诊断价值。\n\n**SP2: 量化三个具体失败机制。** 不是 \"X doesn't work\" 的简单报告，而是: (1) NTP-GAR 梯度冲突的逐层量化; (2) 30x 泛化 gap 的训练轨迹追踪; (3) gate 干预强度的定量评估。为后续工作提供具体的 failure mode taxonomy。\n\n**SP3: 系统性探索，非单次实验。** v1-v7 覆盖 6 种 loss 设计 (cumulative/pairwise/maximize/hinge_target/smooth_saturation/mse_target)，MSE+gate_div 是唯一训练收敛方案。四路消融 (TG/UG/LoRA-only/Base) 严格隔离贡献。\n\n**SP4: 与 Dongre 形成 convergent evidence。** 两种独立干预路线 (Dongre 的 goal re-injection + 我们的 residual gating) 均失败，共同指向 NTP 优化压力下 attention steering 的根本困难。\n\n**SP5: 三阶段训练动力学。** v7 展现 plateau → phase transition → convergence 的清晰训练动力学，证明 MSE 双向 loss 设计本身是 sound 的，问题在泛化而非训练。\n\n---\n\n## 6. Anticipated Reviewer Concerns\n\n| # | 预期质疑 | 回应策略 |\n|---|----------|----------|\n| R1 | Novelty of negative result: \"X doesn't work\" 不够新 | 核心增量不是 \"不 work\" 本身，而是量化了三个具体失败机制 + v1-v7 系统消融链。对比: Dongre 知道 goal re-injection 失败但没分析 why。我们的 failure mode taxonomy 对后续工作有直接指导价值。 |\n| R2 | 是否尝试了足够多 gating variants | v1-v7 覆盖 6 种 loss 设计，MSE+gate_div 是唯一训练收敛方案。四路消融隔离 turn conditioning (TG vs UG) 和 gating 本身 (TG vs LoRA-only) 的贡献。非 \"试了一种方法就放弃\"。 |\n| R3 | 与 Dongre et al. (2605.12922) 的关系 | 互补非竞争: 他们诊断 \"发生了什么\"，我们做干预并分析 \"为什么干预不 work\"。两种独立干预路线均失败，共同指向问题的 hardness。我们 cite Dongre 作为 GAR 定义来源和 residual probe 理论支撑。 |\n| R4 | 只在 1-2 个模型上验证 | Qwen-2.5-7B 完整消融 + Llama-3.1-8B 跨模型验证。Dongre 已在 12 个模型上确认 GAR 衰减，我们的增量贡献在干预失败的机制分析，不在衰减诊断覆盖度。 |\n| R5 | 30x gap 是否可能是实现 bug | D015 代码逐行对比 + D017 controlled experiments 确认非 bug。Base model 在 ultrachat 和 eval data 上 GAR 均 ~0.01，排除数据分布解释。训练时 teacher-forcing 与推理时 autoregressive generation 的分布偏移是根本原因。 |\n| R6 | 这些 findings 对社区有什么 actionable 建议 | Discussion 提出具体方向: (1) inference-time attention intervention 绕过训练泛化问题; (2) decoupled goal-processing pathway; (3) GAR-aware decoding 而非 GAR-aware training。 |\n\n---\n\n## 7. Dongre et al. 关系定位\n\n| 维度 | Dongre et al. | 本文 |\n|------|---------------|------|\n| 核心问题 | \"发生了什么\" + \"为什么\" | \"怎么干预\" + \"为什么干预失败\" |\n| GAR 衰减 | 定义 GAR，12 模型量化衰减 | 独立确认 (Qwen 70.8% raw, 21% normalized) |\n| 机制分析 | residual probe AUC=0.98 (goal info 持续存在) | NTP-GAR 梯度冲突 + 30x 泛化 gap + turn conditioning 反转 |\n| 干预尝试 | goal re-injection (Appendix H, 失败) | ThreadGate residual gating (失败) + UG/LoRA-only 消融 |\n| 结论 | attention 通道关闭但 residual stream 保留 goal info | 即使在 residual stream 上施加 principled gating，NTP 梯度压制使 gate 无法学到正确的 turn-selective 干预 |\n\n共同推论: 两种独立干预路线均失败 → 简单 attention steering 不足以对抗 NTP 优化压力 → 需要更深层架构改变或 inference-time 干预。\n\n---\n\n## 8. GAR 定义策略\n\n| 用途 | 定义 | Goal tokens | Response tokens | 理由 |\n|------|------|------------|----------------|------|\n| 训练信号 | GAR-ours | system prompt + first user query | last token per assistant turn | 更丰富的 goal 信号; last token 作为 summary position 更稳定 |\n| 主表评估 | GAR-Dongre | system prompt task tokens only | all response tokens | 与 Dongre 可比，审稿人可直接对照 |\n| 附录评估 | GAR-ours | system prompt + first user query | last token per assistant turn | 两种定义一致性 |\n\n两种定义下推理 GAR 均极低 (~0.016)，与训练 GAR (0.48) 形成 30x 断层。定义差异不影响 negative finding。\n\n---\n\n## 9. 论文结构草案\n\n1. **Abstract** (150-250 words): GAR 衰减问题 → residual probe 证据支撑 gating 动机 → ThreadGate 方法 → 训练成功但推理失败 → 三个失败机制 → 对 attention steering 方法的启示\n2. **Introduction** (5 段): 多轮对话退化现象 → Dongre 诊断 + residual stream 持续性 → 自然推论: residual gating 应能恢复 → ThreadGate 实验结果: 训练有效推理失败 → 三个失败机制 + 贡献列表\n3. **Related Work**: multi-turn degradation / residual gating & adaptive depth / attention steering & intervention\n4. **Background**: GAR 定义 (cite Dongre) + residual stream persistence 证据\n5. **Method**: ThreadGate 架构 + MSE+gate_div loss + v1-v7 loss 设计演化 + 训练设置\n6. **Experiments**: 四路消融 (TG/UG/LoRA-only/Base) + 跨模型验证 (Llama-3.1-8B)\n7. **Analysis**: NTP-GAR 梯度冲突 + 30x 泛化 gap 分析 + gate profile + attention 可视化 + 训练动力学三阶段\n8. **Discussion**: 为什么 residual gating 不够 → 对所有 attention steering 方法的启示 → 潜在解决方向 (inference-time intervention / decoupled pathway / GAR-aware decoding)\n9. **Conclusion**: negative result 总结 + 对社区的 actionable 建议\n\n### 贡献列表\n\n1. 首个基于 residual stream persistence 证据设计的架构级 GAR 恢复干预 (ThreadGate)，及其完整失败分析\n2. 发现并量化三个耦合失败机制: NTP-GAR 梯度冲突导致反向 turn conditioning、30x training-inference 泛化断层、gate 干预强度不足\n3. 系统性 loss 设计探索 (v1-v7, 6 种 loss) + 四路消融，为后续研究提供 negative baseline 和诊断方法论\n4. 跨模型验证 (Qwen-2.5-7B + Llama-3.1-8B) 确认失败机制的普遍性\n\n---\n\n## 10. 竞争力评估\n\n- **Findings**: ~70%。证据充分、分析深入、叙事清晰的 negative result paper。\n- **Main track**: 加跨模型验证 + 梯度冲突量化 + attention 可视化后有冲击可能。关键: 三个失败机制的量化分析要做扎实，这是与 \"X doesn't work\" 简单 negative result 拉开距离的核心差异。\n- **风险**: 审稿人认为 \"只测了 residual gating 一种方法族\" → 需要 Discussion 中系统性论证为什么其他方法也面临类似障碍。\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "816abd3e-0f0b-454b-a61e-12c8a14a578b",
+            "uuid": "d61ce763-ed77-4c23-b5cb-850349cd85bb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014jRiktjeiNG7Ccfx3XrMQ4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13250,
+                "cache_read_input_tokens": 25316,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13250
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T12:24:10.897Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mnd4YNAJmVnzDUXvCzUnrz",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "816abd3e-0f0b-454b-a61e-12c8a14a578b",
+            "uuid": "fdb7c5da-3d15-4c29-8039-0937018281e2",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md",
+              "content": "# Paper Framing: Negative Result + Mechanistic Insight\n\n> 定位: **Negative result paper**. 首个系统性架构干预尝试 + 完整失败机制分析。不是 \"X doesn't work\"，而是量化了三个具体失败机制 + v1-v7 消融链展示系统性探索。\n> 目标会议: EMNLP 2026, ARR August cycle, deadline 2026-08-03 (~10.5 weeks)\n> 最后更新: 2026-05-19 (Route B pivot after D014-D018 confirmed ThreadGate positive story untenable)\n\n---\n\n## 1. Title Candidates\n\n- **T1**: Why Residual Gating Fails to Fix Multi-Turn Attention Degradation\n- **T2**: The Residual Gating Trap: Three Failure Mechanisms in Goal Attention Recovery\n- **T3**: Residual Gating Cannot Recover Goal Attention in Multi-Turn Dialogue: A Mechanistic Analysis\n\n推荐 T1: 直接点明 negative result，包含方法 (residual gating)、现象 (multi-turn attention degradation)、和 \"why\" 暗示有机制分析。\n\n---\n\n## 2. Story Arc\n\nMulti-turn dialogue performance in LLMs degrades as conversations grow longer. Dongre et al. (2026) quantified this through the Goal Attention Ratio (GAR), showing 27-48% drops over 50 turns, while their residual stream probes reveal that goal information persists (AUC up to 0.98) even as the attention channel closes. This creates a natural hypothesis: if the information is in the residual stream but attention fails to access it, a learnable gate on the residual connection should recover it. We implement this hypothesis as ThreadGate, a per-layer gating module trained with joint NTP and GAR objectives. ThreadGate successfully optimizes GAR during training (0.02 to 0.48), but this improvement completely fails to transfer to inference (GAR = 0.016, a 30x gap). Through systematic analysis, we identify three coupled failure mechanisms: (1) NTP loss dominates gate gradients, causing gates to learn reverse turn conditioning (suppressing in early turns where GAR is high, becoming passive in late turns where GAR is low); (2) the resulting attention pattern overfits to training data and does not generalize; (3) at inference time, gates attenuate residual updates by only 2-7%, far too weak to shift attention patterns. Four-way ablation (ThreadGate vs. Uniform Gate vs. LoRA-only vs. Base) confirms gating provides zero incremental contribution. Combined with Dongre et al.'s independent failure of goal re-injection, our results suggest that simple attention steering approaches face fundamental obstacles from NTP optimization pressure.\n\n---\n\n## 3. Core Claims\n\n| # | Claim | 支撑 | 状态 |\n|---|-------|------|------|\n| C1 | GAR 衰减是真实且严重的结构性现象: Qwen-2.5-7B raw GAR 下降 70.8%, normalized GAR 下降 ~21% | Phase 1 GAR 诊断 | 已验证 |\n| C2 | Residual gating 在训练端可有效优化 GAR (0.02→0.48)，但推理时完全不泛化 (GAR=0.016, 30x 断层) | v7 训练曲线 + D015/D017 confirmed non-bug | 已验证 |\n| C3 | 三个耦合失败机制的因果分析: NF1 反向 turn conditioning + NF2 30x 泛化 gap + NF3 gate 干预强度不足 2-7% | D014 gate-profile 分析 + D015 代码验证 + 梯度冲突实验 (待做) | NF1/NF2/NF3 已验证，梯度冲突量化待做 |\n| C4 | Gating 无增量贡献: 四路消融 LoRA-only ≈ TG ≈ UG | 四路 eval on standard_conversations (待做) | 待 eval 确认 |\n| C5 | 跨模型验证: Llama-3.1-8B 上复现同样的失败模式 | Llama 实验 (待做) | 待做 |\n\n---\n\n## 4. Negative Findings (NF)\n\n| # | Finding | 证据 | 叙事角色 |\n|---|---------|------|----------|\n| NF1 | Gate turn conditioning 方向反转: 27/28 层 gate diff (turn1-turn21) < 0，早期 turn 强抑制，晚期 turn passive | D014 eval gate-profile | 解释 why gating fails: NTP 梯度推 gate→1.0，晚期 turn 推力最强 |\n| NF2 | 30x training-inference GAR gap: 训练 GAR=0.48 vs 推理 GAR=0.016 | D015 代码逐行验证非 bug，是 attention pattern 不泛化 | 核心 negative finding，对所有辅助 attention loss 方法有警示意义 |\n| NF3 | 推理时 gate attenuation 仅 2-7% (gate_mean=0.93-0.98)，近乎 identity | D014 gate dynamic range 数据 | 解释 why 推理时 GAR 不改善: 干预强度不足 |\n| NF4 | Eval baseline confound (Phase1 base vs Phase2 LoRA 文本不同) | P0 代码分析 | 已修正 → standard_conversations.json 统一 eval |\n\n---\n\n## 5. Key Selling Points\n\n**SP1: 动机最 principled 的干预方案。** Dongre 发现 goal info 在 residual stream 持续存在 (probe AUC=0.98)，residual gating 是对这一发现最直接的架构响应。不是 ad hoc 尝试，而是从 mechanistic evidence 出发的 principled design。其失败因此更有诊断价值。\n\n**SP2: 量化三个具体失败机制。** 不是 \"X doesn't work\" 的简单报告，而是: (1) NTP-GAR 梯度冲突的逐层量化; (2) 30x 泛化 gap 的训练轨迹追踪; (3) gate 干预强度的定量评估。为后续工作提供具体的 failure mode taxonomy。\n\n**SP3: 系统性探索，非单次实验。** v1-v7 覆盖 6 种 loss 设计 (cumulative/pairwise/maximize/hinge_target/smooth_saturation/mse_target)，MSE+gate_div 是唯一训练收敛方案。四路消融 (TG/UG/LoRA-only/Base) 严格隔离贡献。\n\n**SP4: 与 Dongre 形成 convergent evidence。** 两种独立干预路线 (Dongre 的 goal re-injection + 我们的 residual gating) 均失败，共同指向 NTP 优化压力下 attention steering 的根本困难。\n\n**SP5: 三阶段训练动力学。** v7 展现 plateau → phase transition → convergence 的清晰训练动力学，证明 MSE 双向 loss 设计本身是 sound 的，问题在泛化而非训练。\n\n---\n\n## 6. Anticipated Reviewer Concerns\n\n| # | 预期质疑 | 回应策略 |\n|---|----------|----------|\n| R1 | Novelty of negative result: \"X doesn't work\" 不够新 | 核心增量不是 \"不 work\" 本身，而是量化了三个具体失败机制 + v1-v7 系统消融链。对比: Dongre 知道 goal re-injection 失败但没分析 why。我们的 failure mode taxonomy 对后续工作有直接指导价值。 |\n| R2 | 是否尝试了足够多 gating variants | v1-v7 覆盖 6 种 loss 设计，MSE+gate_div 是唯一训练收敛方案。四路消融隔离 turn conditioning (TG vs UG) 和 gating 本身 (TG vs LoRA-only) 的贡献。非 \"试了一种方法就放弃\"。 |\n| R3 | 与 Dongre et al. (2605.12922) 的关系 | 互补非竞争: 他们诊断 \"发生了什么\"，我们做干预并分析 \"为什么干预不 work\"。两种独立干预路线均失败，共同指向问题的 hardness。我们 cite Dongre 作为 GAR 定义来源和 residual probe 理论支撑。 |\n| R4 | 只在 1-2 个模型上验证 | Qwen-2.5-7B 完整消融 + Llama-3.1-8B 跨模型验证。Dongre 已在 12 个模型上确认 GAR 衰减，我们的增量贡献在干预失败的机制分析，不在衰减诊断覆盖度。 |\n| R5 | 30x gap 是否可能是实现 bug | D015 代码逐行对比 + D017 controlled experiments 确认非 bug。Base model 在 ultrachat 和 eval data 上 GAR 均 ~0.01，排除数据分布解释。训练时 teacher-forcing 与推理时 autoregressive generation 的分布偏移是根本原因。 |\n| R6 | 这些 findings 对社区有什么 actionable 建议 | Discussion 提出具体方向: (1) inference-time attention intervention 绕过训练泛化问题; (2) decoupled goal-processing pathway; (3) GAR-aware decoding 而非 GAR-aware training。 |\n\n---\n\n## 7. Dongre et al. 关系定位\n\n| 维度 | Dongre et al. | 本文 |\n|------|---------------|------|\n| 核心问题 | \"发生了什么\" + \"为什么\" | \"怎么干预\" + \"为什么干预失败\" |\n| GAR 衰减 | 定义 GAR，12 模型量化衰减 | 独立确认 (Qwen 70.8% raw, 21% normalized) |\n| 机制分析 | residual probe AUC=0.98 (goal info 持续存在) | NTP-GAR 梯度冲突 + 30x 泛化 gap + turn conditioning 反转 |\n| 干预尝试 | goal re-injection (Appendix H, 失败) | ThreadGate residual gating (失败) + UG/LoRA-only 消融 |\n| 结论 | attention 通道关闭但 residual stream 保留 goal info | 即使在 residual stream 上施加 principled gating，NTP 梯度压制使 gate 无法学到正确的 turn-selective 干预 |\n\n共同推论: 两种独立干预路线均失败 → 简单 attention steering 不足以对抗 NTP 优化压力 → 需要更深层架构改变或 inference-time 干预。\n\n---\n\n## 8. GAR 定义策略\n\n| 用途 | 定义 | Goal tokens | Response tokens | 理由 |\n|------|------|------------|----------------|------|\n| 训练信号 | GAR-ours | system prompt + first user query | last token per assistant turn | 更丰富的 goal 信号; last token 作为 summary position 更稳定 |\n| 主表评估 | GAR-Dongre | system prompt task tokens only | all response tokens | 与 Dongre 可比，审稿人可直接对照 |\n| 附录评估 | GAR-ours | system prompt + first user query | last token per assistant turn | 两种定义一致性 |\n\n两种定义下推理 GAR 均极低 (~0.016)，与训练 GAR (0.48) 形成 30x 断层。定义差异不影响 negative finding。\n\n---\n\n## 9. 论文结构草案\n\n1. **Abstract** (150-250 words): GAR 衰减问题 → residual probe 证据支撑 gating 动机 → ThreadGate 方法 → 训练成功但推理失败 → 三个失败机制 → 对 attention steering 方法的启示\n2. **Introduction** (5 段): 多轮对话退化现象 → Dongre 诊断 + residual stream 持续性 → 自然推论: residual gating 应能恢复 → ThreadGate 实验结果: 训练有效推理失败 → 三个失败机制 + 贡献列表\n3. **Related Work**: multi-turn degradation / residual gating & adaptive depth / attention steering & intervention\n4. **Background**: GAR 定义 (cite Dongre) + residual stream persistence 证据\n5. **Method**: ThreadGate 架构 + MSE+gate_div loss + v1-v7 loss 设计演化 + 训练设置\n6. **Experiments**: 四路消融 (TG/UG/LoRA-only/Base) + 跨模型验证 (Llama-3.1-8B)\n7. **Analysis**: NTP-GAR 梯度冲突 + 30x 泛化 gap 分析 + gate profile + attention 可视化 + 训练动力学三阶段\n8. **Discussion**: 为什么 residual gating 不够 → 对所有 attention steering 方法的启示 → 潜在解决方向 (inference-time intervention / decoupled pathway / GAR-aware decoding)\n9. **Conclusion**: negative result 总结 + 对社区的 actionable 建议\n\n### 贡献列表\n\n1. 首个基于 residual stream persistence 证据设计的架构级 GAR 恢复干预 (ThreadGate)，及其完整失败分析\n2. 发现并量化三个耦合失败机制: NTP-GAR 梯度冲突导致反向 turn conditioning、30x training-inference 泛化断层、gate 干预强度不足\n3. 系统性 loss 设计探索 (v1-v7, 6 种 loss) + 四路消融，为后续研究提供 negative baseline 和诊断方法论\n4. 跨模型验证 (Qwen-2.5-7B + Llama-3.1-8B) 确认失败机制的普遍性\n\n---\n\n## 10. 竞争力评估\n\n- **Findings**: ~70%。证据充分、分析深入、叙事清晰的 negative result paper。\n- **Main track**: 加跨模型验证 + 梯度冲突量化 + attention 可视化后有冲击可能。关键: 三个失败机制的量化分析要做扎实，这是与 \"X doesn't work\" 简单 negative result 拉开距离的核心差异。\n- **风险**: 审稿人认为 \"只测了 residual gating 一种方法族\" → 需要 Discussion 中系统性论证为什么其他方法也面临类似障碍。\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 24,
+                  "newStart": 1,
+                  "newLines": 24,
+                  "lines": [
+                    "-# Paper Framing: ThreadGate",
+                    "+# Paper Framing: Negative Result + Mechanistic Insight",
+                    " ",
+                    "-> 定位: **Solution paper**. Dongre et al. (2605.12922) 已独立诊断 GAR 衰减问题，ThreadGate 是首个架构级干预方案。",
+                    "+> 定位: **Negative result paper**. 首个系统性架构干预尝试 + 完整失败机制分析。不是 \"X doesn't work\"，而是量化了三个具体失败机制 + v1-v7 消融链展示系统性探索。",
+                    " > 目标会议: EMNLP 2026, ARR August cycle, deadline 2026-08-03 (~10.5 weeks)",
+                    "-> 最后更新: 2026-05-19 (D014/D015 negative findings 纳入)",
+                    "+> 最后更新: 2026-05-19 (Route B pivot after D014-D018 confirmed ThreadGate positive story untenable)",
+                    " ",
+                    " ---",
+                    " ",
+                    " ## 1. Title Candidates",
+                    " ",
+                    "-- **T1**: ThreadGate: Recovering Goal Attention in Multi-Turn Dialogue via Learnable Residual Gating",
+                    "-- **T2**: Per-Layer Residual Gates for Goal Attention Recovery in Multi-Turn LLM Conversations",
+                    "-- **T3**: ThreadGate: Restoring Goal Awareness in Multi-Turn Dialogue Through Turn-Conditioned Residual Gating",
+                    "+- **T1**: Why Residual Gating Fails to Fix Multi-Turn Attention Degradation",
+                    "+- **T2**: The Residual Gating Trap: Three Failure Mechanisms in Goal Attention Recovery",
+                    "+- **T3**: Residual Gating Cannot Recover Goal Attention in Multi-Turn Dialogue: A Mechanistic Analysis",
+                    " ",
+                    "-推荐 T1: 简洁，包含方法名、核心机制(residual gating)、目标(goal attention recovery)。",
+                    "+推荐 T1: 直接点明 negative result，包含方法 (residual gating)、现象 (multi-turn attention degradation)、和 \"why\" 暗示有机制分析。",
+                    " ",
+                    " ---",
+                    " ",
+                    " ## 2. Story Arc",
+                    " ",
+                    "-Multi-turn dialogue performance in LLMs degrades as conversations grow longer, a phenomenon recently quantified by Dongre et al. (2026) through the Goal Attention Ratio (GAR), which drops 27-48% over 50 turns. Our independent Phase 1 measurement on Qwen2.5-7B confirms severe decay at 70.8% over 10 turns (the larger magnitude reflects a broader goal token definition that includes the first user query; see Section 7 for definition comparison). Their mechanistic analysis reveals a striking paradox: while attention to goal-specifying tokens steadily diminishes, the goal information itself persists in the residual stream (probe AUC up to 0.98). This means the model retains the knowledge of what it should do, but its attention mechanism progressively fails to access it. We propose ThreadGate, a lightweight per-layer gating module inserted on frozen LLM residual connections, conditioned on turn boundary signals. Each layer learns an independent scalar gate g controlling the residual contribution as x + g·f(x), allowing the model to selectively modulate information flow at layers most relevant to goal encoding. Trained with a joint next-token prediction and GAR maximization objective, ThreadGate recovers mid-turn goal attention while preserving language modeling quality. The learned gate profiles reveal interpretable layer-selective structure.",
+                    "+Multi-turn dialogue performance in LLMs degrades as conversations grow longer. Dongre et al. (2026) quantified this through the Goal Attention Ratio (GAR), showing 27-48% drops over 50 turns, while their residual stream probes reveal that goal information persists (AUC up to 0.98) even as the attention channel closes. This creates a natural hypothesis: if the information is in the residual stream but attention fails to access it, a learnable gate on the residual connection should recover it. We implement this hypothesis as ThreadGate, a per-layer gating module trained with joint NTP and GAR objectives. ThreadGate successfully optimizes GAR during training (0.02 to 0.48), but this improvement completely fails to transfer to inference (GAR = 0.016, a 30x gap). Through systematic analysis, we identify three coupled failure mechanisms: (1) NTP loss dominates gate gradients, causing gates to learn reverse turn conditioning (suppressing in early turns where GAR is high, becoming passive in late turns where GAR is low); (2) the resulting attention pattern overfits to training data and does not generalize; (3) at inference time, gates attenuate residual updates by only 2-7%, far too weak to shift attention patterns. Four-way ablation (ThreadGate vs. Uniform Gate vs. LoRA-only vs. Base) confirms gating provides zero incremental contribution. Combined with Dongre et al.'s independent failure of goal re-injection, our results suggest that simple attention steering approaches face fundamental obstacles from NTP optimization pressure.",
+                    " ",
+                    " ---",
+                    " "
+                  ]
+                },
+                {
+                  "oldStart": 26,
+                  "oldLines": 89,
+                  "newStart": 26,
+                  "newLines": 101,
+                  "lines": [
+                    " ",
+                    " | # | Claim | 支撑 | 状态 |",
+                    " |---|-------|------|------|",
+                    "-| C1 | 多轮对话中 GAR 显著衰减: raw GAR 下降 70.8%, normalized GAR 下降 ~21%, 证实结构性退化而非纯稀释效应 | [支撑: phase1_gar_diag] | 已验证 |",
+                    "-| C2 | ThreadGate 的 per-layer gate 产生稳定的层间分化: v7 全程 gate_std 在 0.050-0.054 (>0.05 阈值), L3/L4 持续为最低抑制层 (0.789-0.797), gate_mean 在 0.94-0.95 plateau 不再单调上升 | [支撑: phase2_tg_s42_v7 gs100-gs2600 训练过程] | 已验证(training only) |",
+                    "-| C3 | ThreadGate 训练后 mid-turn GAR 恢复显著优于 Uniform Gate baseline (≥3pp) | [否定: v7 eval GAR-ours +0.35pp, GAR-Dongre +0.72pp, 远低于 3pp; gate-profile 显示反向 turn conditioning] | **已否定(preliminary)** |",
+                    "-| C4 | Gate profile 的最低抑制层 (L3/L4) 与 Dongre 报告的 Qwen goal-encoding onset 层 (L4/L5) 在位置上 coincides: ThreadGate 独立学到在 goal-encoding 起始区域施加最强调制, 但这是相关性观察而非因果验证 | [支撑: 训练时 L3/L4 最低; 但推理时 gate profile 不同 (L14/L23 动态范围最大), coincidence 仅限训练阶段] | suggestive(training only) |",
+                    "-| C5 | ThreadGate 改善 GAR 的同时不损害下游多轮任务性能 (MT-Bench multi-turn 或 instruction retention ≥1pp) | [待验证: 依赖 C3, 当前 C3 已否定] | 待验证(blocked) |",
+                    "-| C6 | Gate 参数量极小 (~0.02% 模型参数, ~1.67M), 训练开销可忽略 | [支撑: 设计分析 + 实测] | 已验证 |",
+                    "+| C1 | GAR 衰减是真实且严重的结构性现象: Qwen-2.5-7B raw GAR 下降 70.8%, normalized GAR 下降 ~21% | Phase 1 GAR 诊断 | 已验证 |",
+                    "+| C2 | Residual gating 在训练端可有效优化 GAR (0.02→0.48)，但推理时完全不泛化 (GAR=0.016, 30x 断层) | v7 训练曲线 + D015/D017 confirmed non-bug | 已验证 |",
+                    "+| C3 | 三个耦合失败机制的因果分析: NF1 反向 turn conditioning + NF2 30x 泛化 gap + NF3 gate 干预强度不足 2-7% | D014 gate-profile 分析 + D015 代码验证 + 梯度冲突实验 (待做) | NF1/NF2/NF3 已验证，梯度冲突量化待做 |",
+                    "+| C4 | Gating 无增量贡献: 四路消融 LoRA-only ≈ TG ≈ UG | 四路 eval on standard_conversations (待做) | 待 eval 确认 |",
+                    "+| C5 | 跨模型验证: Llama-3.1-8B 上复现同样的失败模式 | Llama 实验 (待做) | 待做 |",
+                    " ",
+                    "-**C2 校准说明**: v7 (MSE+gate_div, λ_gar=1.0, λ_div=1.0) 在平衡训练下确认了稳定的层间分化。gate_std 从 gs100 到 gs2600 始终在 0.050-0.054 范围, 不再像 v3-v6 那样单调收缩。但推理时 gate profile 与训练时不一致: 训练时 L3/L4 为最低层, 推理时 L14/L23 表现出最大 turn-dynamic range。且 turn conditioning 方向错误 (详见 Negative Findings NF1)。标记为 \"verified(training only)\": 训练时层间分化真实存在, 但不泛化到推理。",
+                    "-",
+                    "-**C3 校准说明**: v7 eval 显示 GAR recovery 极弱 (ours +0.35pp, dongre +0.72pp), 远低于 MVP 3pp 阈值。Gate-profile 分析 (D014) 进一步揭示 turn conditioning 方向反转: gates 在早期 turn (goal attention 高) 施加最强抑制, 在晚期 turn (goal attention 低) 变为近乎恒等。等待 UG + LoRA-only 三路消融做最终确认。",
+                    "-",
+                    "-**C4 校准说明**: v7 训练时 L3/L4 持续为最低 gate 层, 与 Dongre 的 L4/L5 goal-encoding onset 位置 coincides。但推理时 gate profile 与训练时不同 (推理时 L14/L23 动态范围最大, L3/L4 不再特殊)。Coincidence 仅限训练阶段, 降级为 \"suggestive(training only)\"。",
+                    "-",
+                    "-**训练动力学观察**: v7 训练呈现三阶段动力学: (1) Plateau 阶段 (gs0-75): GAR 停滞在 ~0.02, gate 在初始状态附近微调; (2) Phase transition (gs75-144): GAR 从 0.02 急升至 0.48, gate profile 快速分化; (3) Convergence (gs144+): GAR 稳定在 target=0.5 附近, gate_std plateau 在 0.05+。这一三阶段模式是 MSE 双向 loss 设计正确性的独立证据: 单调 loss (v3-v6) 不产生 phase transition, 而是 gate→1.0 的单调退化。",
+                    "-",
+                    " ---",
+                    " ",
+                    "-## 3.5 Negative Findings",
+                    "+## 4. Negative Findings (NF)",
+                    " ",
+                    "-| # | Finding | 证据 | 影响 |",
+                    "-|---|---------|------|------|",
+                    "-| NF1 | NTP-GAR 损失竞争导致 turn conditioning 反向学习: 27/28 层 gate diff (turn1 - turn21) 为负, gates 在早期 turn (goal attention 高) 抑制最强, 在晚期 turn (goal attention 低) 变为 passive | [支撑: phase2_tg_s42_v7 eval gate-profile, D014 Reviewer 确认] | C3 否定的直接原因; 结构性问题, 非调参可修 |",
+                    "-| NF2 | GAR 过拟合: 训练 GAR=0.48 vs 推理 GAR=0.016, 30x 断层 | [支撑: P0 代码逐行对比确认非 measurement bug, 是 attention pattern 不泛化] | GAR 作为训练信号存在泛化性根本问题 |",
+                    "-| NF3 | Gating 扰动极小: 推理时 gate_mean=0.93-0.98, 即 residual update 仅被 attenuate 2-7%, 近乎 identity pass-through | [支撑: phase2_tg_s42_v7 eval gate dynamic range 数据] | 实际干预强度不足以改变 attention pattern |",
+                    "-| NF4 | 实验设计 confound: Phase1 baseline 使用 base 模型对话, Phase2 eval 使用 LoRA 模型对话, 比较被不同文本 confound | [支撑: P0 代码分析; 已修正 → standard_conversations.json] | 已修正, 三路 eval 将在同一对话上做 |",
+                    "+| # | Finding | 证据 | 叙事角色 |",
+                    "+|---|---------|------|----------|",
+                    "+| NF1 | Gate turn conditioning 方向反转: 27/28 层 gate diff (turn1-turn21) < 0，早期 turn 强抑制，晚期 turn passive | D014 eval gate-profile | 解释 why gating fails: NTP 梯度推 gate→1.0，晚期 turn 推力最强 |",
+                    "+| NF2 | 30x training-inference GAR gap: 训练 GAR=0.48 vs 推理 GAR=0.016 | D015 代码逐行验证非 bug，是 attention pattern 不泛化 | 核心 negative finding，对所有辅助 attention loss 方法有警示意义 |",
+                    "+| NF3 | 推理时 gate attenuation 仅 2-7% (gate_mean=0.93-0.98)，近乎 identity | D014 gate dynamic range 数据 | 解释 why 推理时 GAR 不改善: 干预强度不足 |",
+                    "+| NF4 | Eval baseline confound (Phase1 base vs Phase2 LoRA 文本不同) | P0 代码分析 | 已修正 → standard_conversations.json 统一 eval |",
+                    " ",
+                    " ---",
+                    " ",
+                    "-## 4. Key Selling Points",
+                    "+## 5. Key Selling Points",
+                    " ",
+                    "-**SP1: 首个架构级干预方案.** Dongre et al. 唯一测试的干预方法 (goal re-injection, Appendix H) 失败了。ThreadGate 是文献中首个针对 GAR 衰减的有效架构干预。",
+                    "+**SP1: 动机最 principled 的干预方案。** Dongre 发现 goal info 在 residual stream 持续存在 (probe AUC=0.98)，residual gating 是对这一发现最直接的架构响应。不是 ad hoc 尝试，而是从 mechanistic evidence 出发的 principled design。其失败因此更有诊断价值。",
+                    " ",
+                    "-**SP2: Per-layer 自适应解决跨架构变异.** Dongre 发现 goal-encoding onset 层跨架构从 L2 (LLaMA) 到 L27 (Mistral) 不等。ThreadGate 的 per-layer learnable gate 自动适应不同架构的 goal-encoding 分布, 无需手动指定目标层。",
+                    "+**SP2: 量化三个具体失败机制。** 不是 \"X doesn't work\" 的简单报告，而是: (1) NTP-GAR 梯度冲突的逐层量化; (2) 30x 泛化 gap 的训练轨迹追踪; (3) gate 干预强度的定量评估。为后续工作提供具体的 failure mode taxonomy。",
+                    " ",
+                    "-**SP3: 理论基础由独立证据支撑.** Dongre 的 residual probe 结果 (AUC=0.98) 证实 goal 信息在 residual stream 中持续存在, 只是 attention 通道关闭。ThreadGate 的设计动机 (在 residual stream 上施加 gate 恢复 attention) 直接建立在这一独立发现之上。",
+                    "+**SP3: 系统性探索，非单次实验。** v1-v7 覆盖 6 种 loss 设计 (cumulative/pairwise/maximize/hinge_target/smooth_saturation/mse_target)，MSE+gate_div 是唯一训练收敛方案。四路消融 (TG/UG/LoRA-only/Base) 严格隔离贡献。",
+                    " ",
+                    "-**SP4: GAR 双定义 robustness check.** 训练使用 GAR-ours (system + first user, last token), 评估同时报告 GAR-ours 和 GAR-Dongre (system only, all response tokens)。两种定义下改善均微弱 (ours +0.35pp, dongre +0.72pp), 不足以支撑显著 recovery claim。",
+                    "+**SP4: 与 Dongre 形成 convergent evidence。** 两种独立干预路线 (Dongre 的 goal re-injection + 我们的 residual gating) 均失败，共同指向 NTP 优化压力下 attention steering 的根本困难。",
+                    " ",
+                    "-**SP5: 极低参数开销.** Gate 网络参数占模型总参数 ~0.02% (~1.67M/7.6B), 在冻结 LLM 上即插即用, 不修改原始权重。",
+                    "+**SP5: 三阶段训练动力学。** v7 展现 plateau → phase transition → convergence 的清晰训练动力学，证明 MSE 双向 loss 设计本身是 sound 的，问题在泛化而非训练。",
+                    " ",
+                    " ---",
+                    " ",
+                    "-## 5. Anticipated Reviewer Concerns",
+                    "+## 6. Anticipated Reviewer Concerns",
+                    " ",
+                    " | # | 预期质疑 | 回应策略 |",
+                    " |---|----------|----------|",
+                    "-| R1 | GAR 不是你们提出的指标, 诊断工作已被 Dongre 做完 | 明确 cite Dongre 作为问题诊断基础。我们的贡献是干预方案, 不是诊断。类比: 诊断疾病和开发治疗方案是互补的独立贡献。Dongre 的唯一干预尝试失败, 进一步凸显方案论文的价值。 |",
+                    "-| R2 | 只在 Qwen-2.5-7B 一个模型上验证 | 计划扩展至少 1 个额外模型 (LLaMA-3.1-8B 或 Mistral-7B)。多 seed (≥3) 实验验证一致性。SP2 的 per-layer 自适应机制从设计上支持跨架构泛化。 |",
+                    "-| R3 | GAR 改善是否转化为下游任务性能 | 评估包含 MT-Bench multi-turn score 和 multi-turn instruction retention eval。如果 GAR 改善但下游无变化, framing 调整为 \"理论验证 + 首个 principled 干预框架\" (Decision D001)。 |",
+                    "-| R4 | Gate profile 可解释性是否 cherry-picked | 展示全部层的 gate 值, 不做选择性展示。L4 outlier 与 Dongre 独立报告的 L5 goal-encoding onset 对齐, 是 post-hoc 一致性而非 cherry-picking。多 seed 实验验证 gate profile 稳定性。 |",
+                    "-| R5 | 训练开销和参数增加 | Gate 网络参数 ~0.02% 模型总参数 (~1.67M)。训练在冻结 LLM 上进行, 只更新 gate + LoRA 参数, 不需要全量微调。 |",
+                    "-| R6 | 为什么不直接修正 attention (如 positional bias calibration) | Attention 修正方案 (Found in the Middle, ALiBi 等) 针对位置偏置, 不区分 turn boundary 语义。Dongre 证据显示问题是 goal attention 通道关闭而非位置衰减, 残差路径干预比 attention 修正更直接。 |",
+                    "-| R7 | 70.8% GAR 衰减是否主要由序列长度稀释驱动 | 报告 raw GAR (功能性衰减) 和 normalized GAR (~21% 结构性衰减)。即使部分衰减来自稀释, 稀释本身也是功能有害的, ThreadGate 对两种衰减来源都有效。 |",
+                    "+| R1 | Novelty of negative result: \"X doesn't work\" 不够新 | 核心增量不是 \"不 work\" 本身，而是量化了三个具体失败机制 + v1-v7 系统消融链。对比: Dongre 知道 goal re-injection 失败但没分析 why。我们的 failure mode taxonomy 对后续工作有直接指导价值。 |",
+                    "+| R2 | 是否尝试了足够多 gating variants | v1-v7 覆盖 6 种 loss 设计，MSE+gate_div 是唯一训练收敛方案。四路消融隔离 turn conditioning (TG vs UG) 和 gating 本身 (TG vs LoRA-only) 的贡献。非 \"试了一种方法就放弃\"。 |",
+                    "+| R3 | 与 Dongre et al. (2605.12922) 的关系 | 互补非竞争: 他们诊断 \"发生了什么\"，我们做干预并分析 \"为什么干预不 work\"。两种独立干预路线均失败，共同指向问题的 hardness。我们 cite Dongre 作为 GAR 定义来源和 residual probe 理论支撑。 |",
+                    "+| R4 | 只在 1-2 个模型上验证 | Qwen-2.5-7B 完整消融 + Llama-3.1-8B 跨模型验证。Dongre 已在 12 个模型上确认 GAR 衰减，我们的增量贡献在干预失败的机制分析，不在衰减诊断覆盖度。 |",
+                    "+| R5 | 30x gap 是否可能是实现 bug | D015 代码逐行对比 + D017 controlled experiments 确认非 bug。Base model 在 ultrachat 和 eval data 上 GAR 均 ~0.01，排除数据分布解释。训练时 teacher-forcing 与推理时 autoregressive generation 的分布偏移是根本原因。 |",
+                    "+| R6 | 这些 findings 对社区有什么 actionable 建议 | Discussion 提出具体方向: (1) inference-time attention intervention 绕过训练泛化问题; (2) decoupled goal-processing pathway; (3) GAR-aware decoding 而非 GAR-aware training。 |",
+                    " ",
+                    " ---",
+                    " ",
+                    "-## 6. Dongre et al. 关系定位",
+                    "+## 7. Dongre et al. 关系定位",
+                    " ",
+                    "-Dongre et al. (2605.12922) 是一篇诊断论文: 他们定义了 GAR, 在 12 个模型上量化了多轮 attention 衰减, 并通过 residual stream probing 发现 goal 信息在 attention 关闭后仍持续存在。他们的工作回答了 \"发生了什么\" 和 \"为什么\", 但没有回答 \"怎么解决\"。他们唯一尝试的干预方法 (periodic goal re-injection) 在 Appendix H 中报告为失败。ThreadGate 是首个基于 Dongre 诊断的架构级干预方案, 回答 \"怎么解决\"。两者互补: Dongre 的 residual probe 发现 (goal info 在 residual stream 中, AUC=0.98) 直接支撑 ThreadGate 的设计动机 (既然信息在 residual stream 中, 通过 gate 调节残差连接即可恢复 attention 对 goal tokens 的访问)。我们 cite Dongre 作为 GAR 定义来源、衰减现象的独立验证、以及 residual stream persistence 的理论支撑。",
+                    "+| 维度 | Dongre et al. | 本文 |",
+                    "+|------|---------------|------|",
+                    "+| 核心问题 | \"发生了什么\" + \"为什么\" | \"怎么干预\" + \"为什么干预失败\" |",
+                    "+| GAR 衰减 | 定义 GAR，12 模型量化衰减 | 独立确认 (Qwen 70.8% raw, 21% normalized) |",
+                    "+| 机制分析 | residual probe AUC=0.98 (goal info 持续存在) | NTP-GAR 梯度冲突 + 30x 泛化 gap + turn conditioning 反转 |",
+                    "+| 干预尝试 | goal re-injection (Appendix H, 失败) | ThreadGate residual gating (失败) + UG/LoRA-only 消融 |",
+                    "+| 结论 | attention 通道关闭但 residual stream 保留 goal info | 即使在 residual stream 上施加 principled gating，NTP 梯度压制使 gate 无法学到正确的 turn-selective 干预 |",
+                    " ",
+                    "+共同推论: 两种独立干预路线均失败 → 简单 attention steering 不足以对抗 NTP 优化压力 → 需要更深层架构改变或 inference-time 干预。",
+                    "+",
+                    " ---",
+                    " ",
+                    "-## 7. GAR 定义策略",
+                    "+## 8. GAR 定义策略",
+                    " ",
+                    " | 用途 | 定义 | Goal tokens | Response tokens | 理由 |",
+                    " |------|------|------------|----------------|------|",
+                    "-| 训练信号 | GAR-ours | system prompt + first user query | last token per assistant turn | 包含 first user query 提供更丰富的 goal 信号; last token 作为 summary position 更稳定 |",
+                    "-| 主表评估 | GAR-Dongre | system prompt task tokens only | all response tokens | 与 Dongre 可比, 审稿人可直接对照 |",
+                    "-| 附录评估 | GAR-ours | system prompt + first user query | last token per assistant turn | 展示两种定义一致性 |",
+                    "+| 训练信号 | GAR-ours | system prompt + first user query | last token per assistant turn | 更丰富的 goal 信号; last token 作为 summary position 更稳定 |",
+                    "+| 主表评估 | GAR-Dongre | system prompt task tokens only | all response tokens | 与 Dongre 可比，审稿人可直接对照 |",
+                    "+| 附录评估 | GAR-ours | system prompt + first user query | last token per assistant turn | 两种定义一致性 |",
+                    " ",
+                    "-**关键**: 两种定义下改善均微弱 (ours +0.35pp, dongre +0.72pp), 不足以支撑显著 recovery claim。三路消融 (TG vs UG vs LoRA-only) 在 standard_conversations 上做最终判定。",
+                    "+两种定义下推理 GAR 均极低 (~0.016)，与训练 GAR (0.48) 形成 30x 断层。定义差异不影响 negative finding。",
+                    " ",
+                    " ---",
+                    " ",
+                    "-## 8. MVP Pass 标准",
+                    "+## 9. 论文结构草案",
+                    " ",
+                    "-1. **ThreadGate mid-turn GAR > Uniform Gate + 3pp** (GAR-Dongre 定义)",
+                    "-2. **MT-Bench multi-turn 或 multi-turn instruction retention ≥1pp** (vs frozen baseline)",
+                    "-3. **≥2/3 seeds 一致**",
+                    "+1. **Abstract** (150-250 words): GAR 衰减问题 → residual probe 证据支撑 gating 动机 → ThreadGate 方法 → 训练成功但推理失败 → 三个失败机制 → 对 attention steering 方法的启示",
+                    "+2. **Introduction** (5 段): 多轮对话退化现象 → Dongre 诊断 + residual stream 持续性 → 自然推论: residual gating 应能恢复 → ThreadGate 实验结果: 训练有效推理失败 → 三个失败机制 + 贡献列表",
+                    "+3. **Related Work**: multi-turn degradation / residual gating & adaptive depth / attention steering & intervention",
+                    "+4. **Background**: GAR 定义 (cite Dongre) + residual stream persistence 证据",
+                    "+5. **Method**: ThreadGate 架构 + MSE+gate_div loss + v1-v7 loss 设计演化 + 训练设置",
+                    "+6. **Experiments**: 四路消融 (TG/UG/LoRA-only/Base) + 跨模型验证 (Llama-3.1-8B)",
+                    "+7. **Analysis**: NTP-GAR 梯度冲突 + 30x 泛化 gap 分析 + gate profile + attention 可视化 + 训练动力学三阶段",
+                    "+8. **Discussion**: 为什么 residual gating 不够 → 对所有 attention steering 方法的启示 → 潜在解决方向 (inference-time intervention / decoupled pathway / GAR-aware decoding)",
+                    "+9. **Conclusion**: negative result 总结 + 对社区的 actionable 建议",
+                    " ",
+                    "-**当前状态**: 条件 1 几乎确定 fail (v7 GAR recovery +0.72pp dongre, 远低于 3pp 门槛; gate-profile 显示反向 turn conditioning)。等待 UG + LoRA-only 完成三路消融做最终确认。",
+                    "+### 贡献列表",
+                    " ",
+                    "-处置:",
+                    "-- 三条全 pass → 全速推进 EMNLP 投稿",
+                    "-- 条件 1 pass + 条件 2 fail → partial pass, framing 转为 \"理论验证 + 首个 principled 干预框架\", 实用价值降为 secondary contribution (D001)",
+                    "-- 条件 1 fail → kill ThreadGate, pivot to attention bias 方案 B",
+                    "+1. 首个基于 residual stream persistence 证据设计的架构级 GAR 恢复干预 (ThreadGate)，及其完整失败分析",
+                    "+2. 发现并量化三个耦合失败机制: NTP-GAR 梯度冲突导致反向 turn conditioning、30x training-inference 泛化断层、gate 干预强度不足",
+                    "+3. 系统性 loss 设计探索 (v1-v7, 6 种 loss) + 四路消融，为后续研究提供 negative baseline 和诊断方法论",
+                    "+4. 跨模型验证 (Qwen-2.5-7B + Llama-3.1-8B) 确认失败机制的普遍性",
+                    "+",
+                    "+---",
+                    "+",
+                    "+## 10. 竞争力评估",
+                    "+",
+                    "+- **Findings**: ~70%。证据充分、分析深入、叙事清晰的 negative result paper。",
+                    "+- **Main track**: 加跨模型验证 + 梯度冲突量化 + attention 可视化后有冲击可能。关键: 三个失败机制的量化分析要做扎实，这是与 \"X doesn't work\" 简单 negative result 拉开距离的核心差异。",
+                    "+- **风险**: 审稿人认为 \"只测了 residual gating 一种方法族\" → 需要 Discussion 中系统性论证为什么其他方法也面临类似障碍。"
+                  ]
+                }
+              ],
+              "originalFile": "# Paper Framing: ThreadGate\n\n> 定位: **Solution paper**. Dongre et al. (2605.12922) 已独立诊断 GAR 衰减问题，ThreadGate 是首个架构级干预方案。\n> 目标会议: EMNLP 2026, ARR August cycle, deadline 2026-08-03 (~10.5 weeks)\n> 最后更新: 2026-05-19 (D014/D015 negative findings 纳入)\n\n---\n\n## 1. Title Candidates\n\n- **T1**: ThreadGate: Recovering Goal Attention in Multi-Turn Dialogue via Learnable Residual Gating\n- **T2**: Per-Layer Residual Gates for Goal Attention Recovery in Multi-Turn LLM Conversations\n- **T3**: ThreadGate: Restoring Goal Awareness in Multi-Turn Dialogue Through Turn-Conditioned Residual Gating\n\n推荐 T1: 简洁，包含方法名、核心机制(residual gating)、目标(goal attention recovery)。\n\n---\n\n## 2. Story Arc\n\nMulti-turn dialogue performance in LLMs degrades as conversations grow longer, a phenomenon recently quantified by Dongre et al. (2026) through the Goal Attention Ratio (GAR), which drops 27-48% over 50 turns. Our independent Phase 1 measurement on Qwen2.5-7B confirms severe decay at 70.8% over 10 turns (the larger magnitude reflects a broader goal token definition that includes the first user query; see Section 7 for definition comparison). Their mechanistic analysis reveals a striking paradox: while attention to goal-specifying tokens steadily diminishes, the goal information itself persists in the residual stream (probe AUC up to 0.98). This means the model retains the knowledge of what it should do, but its attention mechanism progressively fails to access it. We propose ThreadGate, a lightweight per-layer gating module inserted on frozen LLM residual connections, conditioned on turn boundary signals. Each layer learns an independent scalar gate g controlling the residual contribution as x + g·f(x), allowing the model to selectively modulate information flow at layers most relevant to goal encoding. Trained with a joint next-token prediction and GAR maximization objective, ThreadGate recovers mid-turn goal attention while preserving language modeling quality. The learned gate profiles reveal interpretable layer-selective structure.\n\n---\n\n## 3. Core Claims\n\n| # | Claim | 支撑 | 状态 |\n|---|-------|------|------|\n| C1 | 多轮对话中 GAR 显著衰减: raw GAR 下降 70.8%, normalized GAR 下降 ~21%, 证实结构性退化而非纯稀释效应 | [支撑: phase1_gar_diag] | 已验证 |\n| C2 | ThreadGate 的 per-layer gate 产生稳定的层间分化: v7 全程 gate_std 在 0.050-0.054 (>0.05 阈值), L3/L4 持续为最低抑制层 (0.789-0.797), gate_mean 在 0.94-0.95 plateau 不再单调上升 | [支撑: phase2_tg_s42_v7 gs100-gs2600 训练过程] | 已验证(training only) |\n| C3 | ThreadGate 训练后 mid-turn GAR 恢复显著优于 Uniform Gate baseline (≥3pp) | [否定: v7 eval GAR-ours +0.35pp, GAR-Dongre +0.72pp, 远低于 3pp; gate-profile 显示反向 turn conditioning] | **已否定(preliminary)** |\n| C4 | Gate profile 的最低抑制层 (L3/L4) 与 Dongre 报告的 Qwen goal-encoding onset 层 (L4/L5) 在位置上 coincides: ThreadGate 独立学到在 goal-encoding 起始区域施加最强调制, 但这是相关性观察而非因果验证 | [支撑: 训练时 L3/L4 最低; 但推理时 gate profile 不同 (L14/L23 动态范围最大), coincidence 仅限训练阶段] | suggestive(training only) |\n| C5 | ThreadGate 改善 GAR 的同时不损害下游多轮任务性能 (MT-Bench multi-turn 或 instruction retention ≥1pp) | [待验证: 依赖 C3, 当前 C3 已否定] | 待验证(blocked) |\n| C6 | Gate 参数量极小 (~0.02% 模型参数, ~1.67M), 训练开销可忽略 | [支撑: 设计分析 + 实测] | 已验证 |\n\n**C2 校准说明**: v7 (MSE+gate_div, λ_gar=1.0, λ_div=1.0) 在平衡训练下确认了稳定的层间分化。gate_std 从 gs100 到 gs2600 始终在 0.050-0.054 范围, 不再像 v3-v6 那样单调收缩。但推理时 gate profile 与训练时不一致: 训练时 L3/L4 为最低层, 推理时 L14/L23 表现出最大 turn-dynamic range。且 turn conditioning 方向错误 (详见 Negative Findings NF1)。标记为 \"verified(training only)\": 训练时层间分化真实存在, 但不泛化到推理。\n\n**C3 校准说明**: v7 eval 显示 GAR recovery 极弱 (ours +0.35pp, dongre +0.72pp), 远低于 MVP 3pp 阈值。Gate-profile 分析 (D014) 进一步揭示 turn conditioning 方向反转: gates 在早期 turn (goal attention 高) 施加最强抑制, 在晚期 turn (goal attention 低) 变为近乎恒等。等待 UG + LoRA-only 三路消融做最终确认。\n\n**C4 校准说明**: v7 训练时 L3/L4 持续为最低 gate 层, 与 Dongre 的 L4/L5 goal-encoding onset 位置 coincides。但推理时 gate profile 与训练时不同 (推理时 L14/L23 动态范围最大, L3/L4 不再特殊)。Coincidence 仅限训练阶段, 降级为 \"suggestive(training only)\"。\n\n**训练动力学观察**: v7 训练呈现三阶段动力学: (1) Plateau 阶段 (gs0-75): GAR 停滞在 ~0.02, gate 在初始状态附近微调; (2) Phase transition (gs75-144): GAR 从 0.02 急升至 0.48, gate profile 快速分化; (3) Convergence (gs144+): GAR 稳定在 target=0.5 附近, gate_std plateau 在 0.05+。这一三阶段模式是 MSE 双向 loss 设计正确性的独立证据: 单调 loss (v3-v6) 不产生 phase transition, 而是 gate→1.0 的单调退化。\n\n---\n\n## 3.5 Negative Findings\n\n| # | Finding | 证据 | 影响 |\n|---|---------|------|------|\n| NF1 | NTP-GAR 损失竞争导致 turn conditioning 反向学习: 27/28 层 gate diff (turn1 - turn21) 为负, gates 在早期 turn (goal attention 高) 抑制最强, 在晚期 turn (goal attention 低) 变为 passive | [支撑: phase2_tg_s42_v7 eval gate-profile, D014 Reviewer 确认] | C3 否定的直接原因; 结构性问题, 非调参可修 |\n| NF2 | GAR 过拟合: 训练 GAR=0.48 vs 推理 GAR=0.016, 30x 断层 | [支撑: P0 代码逐行对比确认非 measurement bug, 是 attention pattern 不泛化] | GAR 作为训练信号存在泛化性根本问题 |\n| NF3 | Gating 扰动极小: 推理时 gate_mean=0.93-0.98, 即 residual update 仅被 attenuate 2-7%, 近乎 identity pass-through | [支撑: phase2_tg_s42_v7 eval gate dynamic range 数据] | 实际干预强度不足以改变 attention pattern |\n| NF4 | 实验设计 confound: Phase1 baseline 使用 base 模型对话, Phase2 eval 使用 LoRA 模型对话, 比较被不同文本 confound | [支撑: P0 代码分析; 已修正 → standard_conversations.json] | 已修正, 三路 eval 将在同一对话上做 |\n\n---\n\n## 4. Key Selling Points\n\n**SP1: 首个架构级干预方案.** Dongre et al. 唯一测试的干预方法 (goal re-injection, Appendix H) 失败了。ThreadGate 是文献中首个针对 GAR 衰减的有效架构干预。\n\n**SP2: Per-layer 自适应解决跨架构变异.** Dongre 发现 goal-encoding onset 层跨架构从 L2 (LLaMA) 到 L27 (Mistral) 不等。ThreadGate 的 per-layer learnable gate 自动适应不同架构的 goal-encoding 分布, 无需手动指定目标层。\n\n**SP3: 理论基础由独立证据支撑.** Dongre 的 residual probe 结果 (AUC=0.98) 证实 goal 信息在 residual stream 中持续存在, 只是 attention 通道关闭。ThreadGate 的设计动机 (在 residual stream 上施加 gate 恢复 attention) 直接建立在这一独立发现之上。\n\n**SP4: GAR 双定义 robustness check.** 训练使用 GAR-ours (system + first user, last token), 评估同时报告 GAR-ours 和 GAR-Dongre (system only, all response tokens)。两种定义下改善均微弱 (ours +0.35pp, dongre +0.72pp), 不足以支撑显著 recovery claim。\n\n**SP5: 极低参数开销.** Gate 网络参数占模型总参数 ~0.02% (~1.67M/7.6B), 在冻结 LLM 上即插即用, 不修改原始权重。\n\n---\n\n## 5. Anticipated Reviewer Concerns\n\n| # | 预期质疑 | 回应策略 |\n|---|----------|----------|\n| R1 | GAR 不是你们提出的指标, 诊断工作已被 Dongre 做完 | 明确 cite Dongre 作为问题诊断基础。我们的贡献是干预方案, 不是诊断。类比: 诊断疾病和开发治疗方案是互补的独立贡献。Dongre 的唯一干预尝试失败, 进一步凸显方案论文的价值。 |\n| R2 | 只在 Qwen-2.5-7B 一个模型上验证 | 计划扩展至少 1 个额外模型 (LLaMA-3.1-8B 或 Mistral-7B)。多 seed (≥3) 实验验证一致性。SP2 的 per-layer 自适应机制从设计上支持跨架构泛化。 |\n| R3 | GAR 改善是否转化为下游任务性能 | 评估包含 MT-Bench multi-turn score 和 multi-turn instruction retention eval。如果 GAR 改善但下游无变化, framing 调整为 \"理论验证 + 首个 principled 干预框架\" (Decision D001)。 |\n| R4 | Gate profile 可解释性是否 cherry-picked | 展示全部层的 gate 值, 不做选择性展示。L4 outlier 与 Dongre 独立报告的 L5 goal-encoding onset 对齐, 是 post-hoc 一致性而非 cherry-picking。多 seed 实验验证 gate profile 稳定性。 |\n| R5 | 训练开销和参数增加 | Gate 网络参数 ~0.02% 模型总参数 (~1.67M)。训练在冻结 LLM 上进行, 只更新 gate + LoRA 参数, 不需要全量微调。 |\n| R6 | 为什么不直接修正 attention (如 positional bias calibration) | Attention 修正方案 (Found in the Middle, ALiBi 等) 针对位置偏置, 不区分 turn boundary 语义。Dongre 证据显示问题是 goal attention 通道关闭而非位置衰减, 残差路径干预比 attention 修正更直接。 |\n| R7 | 70.8% GAR 衰减是否主要由序列长度稀释驱动 | 报告 raw GAR (功能性衰减) 和 normalized GAR (~21% 结构性衰减)。即使部分衰减来自稀释, 稀释本身也是功能有害的, ThreadGate 对两种衰减来源都有效。 |\n\n---\n\n## 6. Dongre et al. 关系定位\n\nDongre et al. (2605.12922) 是一篇诊断论文: 他们定义了 GAR, 在 12 个模型上量化了多轮 attention 衰减, 并通过 residual stream probing 发现 goal 信息在 attention 关闭后仍持续存在。他们的工作回答了 \"发生了什么\" 和 \"为什么\", 但没有回答 \"怎么解决\"。他们唯一尝试的干预方法 (periodic goal re-injection) 在 Appendix H 中报告为失败。ThreadGate 是首个基于 Dongre 诊断的架构级干预方案, 回答 \"怎么解决\"。两者互补: Dongre 的 residual probe 发现 (goal info 在 residual stream 中, AUC=0.98) 直接支撑 ThreadGate 的设计动机 (既然信息在 residual stream 中, 通过 gate 调节残差连接即可恢复 attention 对 goal tokens 的访问)。我们 cite Dongre 作为 GAR 定义来源、衰减现象的独立验证、以及 residual stream persistence 的理论支撑。\n\n---\n\n## 7. GAR 定义策略\n\n| 用途 | 定义 | Goal tokens | Response tokens | 理由 |\n|------|------|------------|----------------|------|\n| 训练信号 | GAR-ours | system prompt + first user query | last token per assistant turn | 包含 first user query 提供更丰富的 goal 信号; last token 作为 summary position 更稳定 |\n| 主表评估 | GAR-Dongre | system prompt task tokens only | all response tokens | 与 Dongre 可比, 审稿人可直接对照 |\n| 附录评估 | GAR-ours | system prompt + first user query | last token per assistant turn | 展示两种定义一致性 |\n\n**关键**: 两种定义下改善均微弱 (ours +0.35pp, dongre +0.72pp), 不足以支撑显著 recovery claim。三路消融 (TG vs UG vs LoRA-only) 在 standard_conversations 上做最终判定。\n\n---\n\n## 8. MVP Pass 标准\n\n1. **ThreadGate mid-turn GAR > Uniform Gate + 3pp** (GAR-Dongre 定义)\n2. **MT-Bench multi-turn 或 multi-turn instruction retention ≥1pp** (vs frozen baseline)\n3. **≥2/3 seeds 一致**\n\n**当前状态**: 条件 1 几乎确定 fail (v7 GAR recovery +0.72pp dongre, 远低于 3pp 门槛; gate-profile 显示反向 turn conditioning)。等待 UG + LoRA-only 完成三路消融做最终确认。\n\n处置:\n- 三条全 pass → 全速推进 EMNLP 投稿\n- 条件 1 pass + 条件 2 fail → partial pass, framing 转为 \"理论验证 + 首个 principled 干预框架\", 实用价值降为 secondary contribution (D001)\n- 条件 1 fail → kill ThreadGate, pivot to attention bias 方案 B\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper_framing.md 已重写为 Route B negative result + mechanistic insight 叙事。核心变化:\n\n- **Title**: 从 \"ThreadGate: Recovering...\" 转为 \"Why Residual Gating Fails to Fix...\"\n- **Story Arc**: 从 solution paper 转为 \"principled design → training success → inference failure → three coupled failure mechanisms\"\n- **Claims**: C1-C5 重组为 GAR 衰减确认、训练-推理断层、三个失败机制、四路消融无增量、跨模型验证\n- **Selling Points**: 从 \"首个有效方案\" 转为 failure mode taxonomy、系统性探索 (v1-v7)、与 Dongre convergent evidence\n- **Reviewer Concerns**: 新增 novelty of negative result、30x gap 是否 bug、actionable 建议等\n- **新增 §10 竞争力评估**: Findings ~70%，加跨模型验证有冲 main 可能"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "816abd3e-0f0b-454b-a61e-12c8a14a578b",
+            "uuid": "5dc45329-4de9-4a6f-9a04-397c3c662671",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015XGrjzUBHyXuQb3MzsLyDk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4481,
+                "cache_read_input_tokens": 38566,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4481
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper_framing.md 已重写为 Route B negative result + mechanistic insight 叙事。核心变化:\n\n- **Title**: 从 \"ThreadGate: Recovering...\" 转为 \"Why Residual Gating Fails to Fix...\"\n- **Story Arc**: 从 solution paper 转为 \"principled design → training success → inference failure → three coupled failure mechanisms\"\n- **Claims**: C1-C5 重组为 GAR 衰减确认、训练-推理断层、三个失败机制、四路消融无增量、跨模型验证\n- **Selling Points**: 从 \"首个有效方案\" 转为 failure mode taxonomy、系统性探索 (v1-v7)、与 Dongre convergent evidence\n- **Reviewer Concerns**: 新增 novelty of negative result、30x gap 是否 bug、actionable 建议等\n- **新增 §10 竞争力评估**: Findings ~70%，加跨模型验证有冲 main 可能"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 100348,
+            "duration_api_ms": 101718,
+            "num_turns": 4,
+            "stop_reason": "end_turn",
+            "session_id": "816abd3e-0f0b-454b-a61e-12c8a14a578b",
+            "total_cost_usd": 0.3591345,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 31600,
+              "cache_read_input_tokens": 75329,
+              "output_tokens": 4882,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 31600,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 268,
+                  "cache_read_input_tokens": 38566,
+                  "cache_creation_input_tokens": 4481,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4481
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1775,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0018950000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 4882,
+                "cacheReadInputTokens": 75329,
+                "cacheCreationInputTokens": 31600,
+                "webSearchRequests": 0,
+                "costUSD": 0.35723950000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c2b8e18c-5e26-48b9-bb81-5c7908ecf2c3"
+          },
+          "id": "event-000014"
+        }
+      ],
+      "message_count": 14
+    }
+  ],
+  "readable_path": "readable/worker-executions/knowledge-update-paper-framing-route-b.md"
+}

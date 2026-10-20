@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "772b20ba24d4d1625fd7",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "chain read kl run gar",
+  "task_key": "worker_chain_read_kl_run_gar_20260524T071233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_chain_read_kl_run_gar_20260524T071233_result.json",
+    "occurrence": 1,
+    "bytes": 2063,
+    "sha256": "c91d1de2539a517aa75803e7b38cc371a4e6c72721b1a4061fc809526e2ada13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有结果到手。汇总如下：\n\n---\n\n## GAR 鲁棒性结果 (50 conversations, AR-only)\n\n### `ours` 定义 (primary)\n\n| 指标 | Base | TG (v7) | SS (v8b) |\n|------|------|---------|----------|\n| turn1 GAR | 0.0858 | 0.3938 | 0.5274 |\n| mid_turns GAR | 0.0152 | 0.3254 | 0.4582 |\n| **TG/Base ratio (mid)** | — | **21.4×** | 30.1× |\n\n### `ours_all` 定义\n\n| 指标 | Base | TG (v7) | SS (v8b) |\n|------|------|---------|----------|\n| turn1 GAR | 0.1152 | 0.1275 | 0.5043 |\n| mid_turns GAR | 0.0152 | 0.0253 | 0.3658 |\n\n### `ours_first` 定义\n\n| 指标 | Base | TG (v7) | SS (v8b) |\n|------|------|---------|----------|\n| turn1 GAR | 0.2987 | 0.3225 | 0.7549 |\n| mid_turns GAR | 0.0224 | 0.0392 | 0.4118 |\n\n### `goal_only` 定义\n\n| 指标 | Base | TG (v7) | SS (v8b) |\n|------|------|---------|----------|\n| turn1 GAR | 0.0110 | 0.3313 | 0.4528 |\n| mid_turns GAR | 0.0049 | 0.3103 | 0.4435 |\n\n---\n\n## 综合结论\n\n**KL per-head 分析**:\n- TG ΔGAR 比 Base 高 35% (0.0165 vs 0.0122)，Mean KL 高 26% (0.054 vs 0.043)\n- Gate-KL 相关性弱 (r=0.11)，gate 大小不直接决定 KL 散度\n- 高 KL 层集中在 L23-L27 + L9，后半段是主要 TF/AR 分歧区\n\n**GAR 鲁棒性**:\n- `ours` 定义下 TG mid-turn GAR 是 Base 的 **21.4×**（0.3254 vs 0.0152），远超 8× claim\n- `goal_only` 定义下差距更极端：**63×**（0.3103 vs 0.0049）\n- `ours_all` 和 `ours_first` 定义下 TG 仅轻微高于 Base（1.7×），说明全头/首头定义下 gap 不显著\n- SS 所有定义都异常高（mid GAR > 0.36），再次确认 SS 模型行为异常\n\n**8× gap robustness**: 在 primary (`ours`) 和 `goal_only` 定义下，TG/Base AR GAR gap 远超 8×，claim robust。但在 `ours_all`/`ours_first` 定义下差距收窄至 <2×——gap 主要集中在特定 attention heads，不是全局现象。\n\n**注意**: SS eval 今次因 `--gate-type uniform` 与 checkpoint 格式不匹配而失败，使用的是此前 (15:09) 以正确 `threadgate` 类型运行的结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/chain-read-kl-run-gar.md"
+}

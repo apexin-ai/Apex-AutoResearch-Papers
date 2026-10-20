@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3e79e1f00756beb0e15",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops setup auto transition",
+  "task_key": "worker_ops_setup_auto_transition_20260523T003459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_setup_auto_transition_20260523T003459_result.json",
+    "occurrence": 1,
+    "bytes": 653,
+    "sha256": "393cf119aca4c38106d6ab9640b12481af072a01ca3965d05fe19290b532e64f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪：\n\n| 项目 | 状态 |\n|------|------|\n| `auto_transition` tmux session | 运行中，每 60s 检查 PCGrad 完成 |\n| `queue_runner` tmux session | 运行中，PCGrad beta=0 约 Conv 20/50 |\n| `d048_final_ar_eval.sh` | 已存在（6 条件 AR N=50 + Wilcoxon） |\n| `d048_remaining_queue.sh` | 已创建（SS s456 train+TF+AR eval → split-softmax） |\n| `d048_split_softmax_eval.sh` | 已存在 |\n\n**自动流水线**：PCGrad 完成 → kill queue_runner → `d048_final_ar_eval.sh`（~4-5h）→ SS s456 训练+eval（~8-9h）→ split-softmax eval（~2-3h）\n\n监控日志：`runs/d048_auto_transition.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-setup-auto-transition.md"
+}

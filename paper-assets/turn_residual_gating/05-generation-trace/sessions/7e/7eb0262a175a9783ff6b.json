@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7eb0262a175a9783ff6b",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code switching eval prep",
+  "task_key": "worker_code_switching_eval_prep_20260525T214123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_switching_eval_prep_20260525T214123_result.json",
+    "occurrence": 1,
+    "bytes": 1342,
+    "sha256": "f79bb607c3d96839aebb25abcb36de662f4e6f36c6477360ff7133add36f42df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 成功，脚本运行正常。结果显示 switch_k3 在 turn 4（切换后第一个 AR turn）GAR 跳到 0.0736（接近 pure_ar 的 0.0660），验证了脚本逻辑正确。\n\n汇总：\n\n1. **脚本**：复用已有 `/root/turn_residual_gating/src/eval_switching.py`（无需新写）\n2. **Checkpoint**：`/root/turn_residual_gating/runs/phase2_tg_s42_v7/epoch_2`（含 gate_params.pt + lora/）\n3. **Eval 数据**：`/root/turn_residual_gating/data/eval_200/eval_200.json`\n4. **预估运行时间**：dry-run 2 个对话 14s → 50 个对话 × 7 个 condition (pure_tf, pure_ar, k1-k5) ≈ **25-30 分钟**\n\n**完整提交命令**：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/turn_residual_gating/src/eval_switching.py --checkpoint-path /root/turn_residual_gating/runs/phase2_tg_s42_v7/epoch_2 --data-path /root/turn_residual_gating/data/eval_200/eval_200.json --output-path /root/turn_residual_gating/results/switching_tg_s42_v7 --max-conversations 50 --switch-points 1 2 3 4 5 --max-new-tokens 150\n```\n\nDry-run 初步观察：switch_k3 在切换点后 GAR 立即跳升到接近 pure_ar 水平（turn_4: 0.074 vs pure_ar 0.066），而非渐进衰减，初步支持瞬时分布偏移假说。完整 N=50 实验会给出更可靠的统计结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-switching-eval-prep.md"
+}

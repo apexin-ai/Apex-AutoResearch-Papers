@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80aa0466b8dc660862e2",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code lora only baseline",
+  "task_key": "worker_code_lora_only_baseline_20260518T201649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lora_only_baseline_20260518T201649_result.json",
+    "occurrence": 1,
+    "bytes": 1431,
+    "sha256": "91083794685f6fa9211b992f33d27243043e72c6f398a4523ca60abd14c92a9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件修改完毕，语法检查通过。\n\n### 修改汇总\n\n**threadgate.py** (5 处修改):\n- L86: 新增 `self.num_layers = num_layers`\n- L88-89: `gate_type=\"none\"` 分支，`self.gates = None`\n- L102: gates 设备迁移加 `if self.gates is not None` 守卫\n- L114-117: hooks 注册加 `if self.gate_type != \"none\"` 守卫\n- L163-164: `get_gate_values()` 对 `gate_type=\"none\"` 返回全 1.0 字典\n\n**train_phase2.py** (5 处修改):\n- L101: choices 加入 `\"none\"`\n- L181-187: gate_params 为空时 param_groups 只含 LoRA\n- L263: diversity loss 条件加 `args.gate_type != \"none\"`\n- L279: gate grad 检查加 `model.gates is not None`\n- L326, L340: checkpoint 保存 gate_params.pt 加 `model.gates is not None` 守卫\n\n### LoRA-only 训练命令\n\n```bash\npython3 /root/turn_residual_gating/src/train_phase2.py \\\n    --gate-type none \\\n    --output-dir /root/turn_residual_gating/checkpoints/v8_lora_only \\\n    --data-dir /root/turn_residual_gating/data/ultrachat_8k \\\n    --epochs 3 \\\n    --lr 2e-4 \\\n    --grad-accum 4 \\\n    --max-seq-len 2048 \\\n    --lambda-gar 0.1 \\\n    --gar-loss-mode mse_target \\\n    --gar-target 0.5 \\\n    --lambda-gate-div 0.0 \\\n    --seed 42\n```\n\n`--lambda-gate-div 0.0` 因为无 gate 可分化；`--init-bias` 和 `--gate-lr-multiplier` 会被忽略。L_GAR 仍通过 LoRA 改变 attention pattern 正常反传。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-lora-only-baseline.md"
+}

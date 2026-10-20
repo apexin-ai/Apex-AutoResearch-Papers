@@ -1,0 +1,865 @@
+{
+  "schema_version": "1.0",
+  "session_id": "8cbd94c00a402619dd6f",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-18T06:40:16.517Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WkuGSbfjuGs5CSGxszNKKR",
+              "type": "tool_result",
+              "content": "1\t# eval_phase2_gar.py — 评估训练后模型的 GAR 恢复效果\n2\t# 用法: python eval_phase2_gar.py --checkpoint-dir /root/turn_residual_gating/checkpoints/tg_s42 --gate-type threadgate\n3\t# 输出: JSON 结果 + GAR 对比曲线图\n4\t\n5\timport argparse\n6\timport json\n7\timport os\n8\timport sys\n9\t\n10\timport torch\n11\timport torch.nn as nn\n12\timport numpy as np\n13\timport matplotlib\n14\tmatplotlib.use(\"Agg\")\n15\timport matplotlib.pyplot as plt\n16\tfrom transformers import AutoTokenizer, AutoModelForCausalLM\n17\t\n18\tsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n19\tfrom threadgate import TurnEmbedding, GateNetwork, UniformGateNetwork\n20\tfrom gar import GARMeasurer\n21\tfrom turn_utils import detect_turn_boundaries, build_turn_features\n22\tfrom config import MODEL_NAME\n23\t\n24\t\n25\tSYSTEM_PROMPTS = [\n26\t    \"You are a knowledgeable science tutor. Always explain concepts step by step. Use analogies when possible. Never give direct answers without explanation. If the student makes an error, gently correct them and guide them to the right answer.\",\n27\t    \"You are a professional code reviewer. Focus on code quality, security, and performance. Point out potential bugs and suggest improvements. Always explain why a change is needed, not just what to change. Be constructive and specific.\",\n28\t    \"You are a creative writing coach. Help users improve their storytelling skills. Focus on character development, plot structure, and vivid descriptions. Give specific feedback with examples. Encourage experimentation with different styles.\",\n29\t    \"You are a math problem solver. Show all steps clearly. Explain the reasoning behind each step. If there are multiple approaches, mention them. Check your work by verifying the answer. Use LaTeX notation for formulas.\",\n30\t    \"You are a debate coach who helps users argue both sides of issues. Present balanced perspectives. Challenge weak arguments constructively. Teach logical reasoning and evidence evaluation. Avoid personal opinions.\",\n31\t]\n32\t\n33\tCONVERSATIONS_DATA = [\n34\t    [\"Why is the sky blue?\", \"What about sunsets being red?\", \"How does a rainbow form?\",\n35\t     \"Why do stars twinkle?\", \"What causes thunder?\", \"How do magnets work?\",\n36\t     \"Why is water wet?\", \"What is gravity?\", \"How do airplanes fly?\", \"Why is space dark?\"],\n37\t    [\"Review this: def add(a,b): return a+b\", \"What about error handling?\", \"How should I write tests for it?\",\n38\t     \"Is recursion better than iteration?\", \"When should I use async/await?\", \"How to handle memory leaks?\",\n39\t     \"Best practices for API design?\", \"How to optimize database queries?\", \"When to use microservices?\", \"How to handle rate limiting?\"],\n40\t    [\"Help me start a mystery story\", \"How do I create a compelling villain?\", \"What makes good dialogue?\",\n41\t     \"How to build suspense?\", \"Should I use first or third person?\", \"How to write a plot twist?\",\n42\t     \"Tips for describing settings?\", \"How to end a chapter with a cliffhanger?\", \"How to avoid cliches?\", \"How to write an epilogue?\"],\n43\t    [\"Solve: 3x + 7 = 22\", \"What is the derivative of x^3?\", \"Explain the Pythagorean theorem\",\n44\t     \"What is a prime number?\", \"How to calculate compound interest?\", \"What is the area of a circle?\",\n45\t     \"Explain matrix multiplication\", \"What is a logarithm?\", \"How to solve quadratic equations?\", \"What is calculus used for?\"],\n46\t    [\"Should AI be regulated?\", \"Is remote work better than office work?\", \"Should college be free?\",\n47\t     \"Is social media harmful?\", \"Should voting be mandatory?\", \"Is nuclear energy safe?\",\n48\t     \"Should animals have legal rights?\", \"Is space exploration worth the cost?\", \"Should there be a universal basic income?\", \"Is genetic engineering ethical?\"],\n49\t]\n50\t\n51\t\n52\tdef _find_hf_model(model):\n53\t    \"\"\"Find the HF CausalLM model (with .model.layers) in the model hierarchy.\"\"\"\n54\t    if hasattr(model, \"model\") and hasattr(model.model, \"layers\"):\n55\t        return model\n56\t    try:\n57\t        inner = model.base_model.model\n58\t        if hasattr(inner, \"model\") and hasattr(inner.model, \"layers\"):\n59\t            return inner\n60\t    except AttributeError:\n61\t        pass\n62\t    raise ValueError(\"Cannot find HF model with .model.layers in hierarchy\")\n63\t\n64\t\n65\tdef _find_layers(model):\n66\t    return _find_hf_model(model).model.layers\n67\t\n68\t\n69\tdef load_gates(checkpoint_dir, gate_type, hidden_dim, num_layers):\n70\t    \"\"\"Load gate networks and trained parameters from checkpoint.\"\"\"\n71\t    if gate_type == \"threadgate\":\n72\t        turn_embedding = TurnEmbedding()\n73\t        gates = nn.ModuleList([\n74\t            GateNetwork(hidden_dim, turn_embedding, init_bias=5.0)\n75\t            for _ in range(num_layers)\n76\t        ])\n77\t    else:\n78\t        turn_embedding = None\n79\t        gates = nn.ModuleList([\n80\t            UniformGateNetwork(hidden_dim, init_bias=5.0)\n81\t            for _ in range(num_layers)\n82\t        ])\n83\t\n84\t    gate_path = os.path.join(checkpoint_dir, \"gate_params.pt\")\n85\t    if not os.path.exists(gate_path):\n86\t        raise FileNotFoundError(f\"Gate parameters not found: {gate_path}\")\n87\t    gate_state = torch.load(gate_path, map_location=\"cpu\", weights_only=True)\n88\t    gates.load_state_dict(gate_state[\"gates\"])\n89\t    if gate_type == \"threadgate\" and \"turn_embedding\" in gate_state:\n90\t        turn_embedding.load_state_dict(gate_state[\"turn_embedding\"])\n91\t\n92\t    return gates, turn_embedding\n93\t\n94\t\n95\tdef register_gating_hooks(model, gates, gate_type, turn_embedding=None):\n96\t    \"\"\"Register forward hooks on transformer layers for residual gating.\"\"\"\n97\t    layers = _find_layers(model)\n98\t    hooks = []\n99\t    gate_values = {}\n100\t    turn_features_ref = [None]\n101\t\n102\t    for i, layer in enumerate(layers):\n103\t        device = next(layer.parameters()).device\n104\t        gates[i].to(device=device, dtype=torch.bfloat16)\n105\t    if gate_type == \"threadgate\" and turn_embedding is not None:\n106\t        device0 = next(layers[0].parameters()).device\n107\t        turn_embedding.to(device=device0, dtype=torch.bfloat16)\n108\t\n109\t    def make_hook(layer_idx):\n110\t        def hook(module, input, output):\n111\t            if gate_type == \"threadgate\" and turn_features_ref[0] is None:\n112\t                return output\n113\t\n114\t            layer_input = input[0]\n115\t            layer_output = output[0] if isinstance(output, tuple) else output\n116\t\n117\t            if gate_type == \"threadgate\":\n118\t                g = gates[layer_idx](layer_input, turn_features_ref[0])\n119\t            else:\n120\t                g = gates[layer_idx](layer_input)\n121\t\n122\t            f_x = layer_output - layer_input\n123\t            gated = layer_input + g * f_x\n124\t            gate_values[layer_idx] = g.detach()\n125\t\n126\t            if isinstance(output, tuple):\n127\t                return (gated,) + output[1:]\n128\t            return gated\n129\t        return hook\n130\t\n131\t    for i, layer in enumerate(layers):\n132\t        hooks.append(layer.register_forward_hook(make_hook(i)))\n133\t\n134\t    return hooks, turn_features_ref, gate_values\n135\t\n136\t\n137\tdef build_conversation(tokenizer, model, system_prompt, user_questions, device, max_new_tokens=100):\n138\t    \"\"\"Generate a multi-turn conversation (same logic as Phase 1).\"\"\"\n139\t    messages = [{\"role\": \"system\", \"content\": system_prompt}]\n140\t    for q in user_questions:\n141\t        messages.append({\"role\": \"user\", \"content\": q})\n142\t        text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)\n143\t        input_ids = tokenizer(text, return_tensors=\"pt\").input_ids.to(device)\n144\t\n145\t        if input_ids.shape[1] > 1800:\n146\t            messages.pop()\n147\t            break\n148\t\n149\t        with torch.no_grad():\n150\t            output = model.generate(input_ids, max_new_tokens=max_new_tokens, do_sample=False)\n151\t\n152\t        new_tokens = output[0][input_ids.shape[1]:]\n153\t        response = tokenizer.decode(new_tokens, skip_special_tokens=True).strip()\n154\t        messages.append({\"role\": \"assistant\", \"content\": response})\n155\t\n156\t    return messages\n157\t\n158\t\n159\tdef measure_gar_per_turn(model, tokenizer, measurer, messages, device, turn_features_ref, gate_type):\n160\t    \"\"\"Measure GAR at each assistant turn with gating active.\"\"\"\n161\t    full_text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=False)\n162\t    input_ids = tokenizer(full_text, return_tensors=\"pt\").input_ids.squeeze(0)\n163\t\n164\t    if input_ids.shape[0] > 2048:\n165\t        input_ids = input_ids[:2048]\n166\t\n167\t    boundaries = detect_turn_boundaries(input_ids, tokenizer)\n168\t    goal_positions = boundaries[\"goal_token_positions\"]\n169\t    assistant_positions = boundaries[\"assistant_last_token_positions\"]\n170\t\n171\t    if not goal_positions or not assistant_positions:\n172\t        return None\n173\t\n174\t    if gate_type == \"threadgate\":\n175\t        tf = build_turn_features(input_ids, tokenizer)\n176\t        turn_features_ref[0] = {\n177\t            \"turn_distance\": tf[\"turn_distance\"].to(device),\n178\t            \"turn_index\": tf[\"turn_index\"].to(device),\n179\t        }\n180\t\n181\t    input_ids_batch = input_ids.unsqueeze(0).to(device)\n182\t\n183\t    with measurer.measure():\n184\t        with torch.no_grad():\n185\t            model(input_ids_batch, output_attentions=True)\n186\t\n187\t    turn_features_ref[0] = None\n188\t\n189\t    gar_per_turn = []\n190\t    normalized_gar_per_turn = []\n191\t    visible_tokens_per_turn = []\n192\t    num_goal_tokens = len(goal_positions)\n193\t\n194\t    for pos in assistant_positions:\n195\t        result = measurer.compute_gar(goal_positions, [pos])\n196\t        raw_gar = result[\"mean_gar\"]\n197\t        gar_per_turn.append(raw_gar)\n198\t\n199\t        num_visible = pos + 1\n200\t        visible_tokens_per_turn.append(num_visible)\n201\t\n202\t        if num_goal_tokens > 0:\n203\t            norm_gar = raw_gar * num_visible / num_goal_tokens\n204\t        else:\n205\t            norm_gar = 0.0\n206\t        normalized_gar_per_turn.append(norm_gar)\n207\t\n208\t    return {\n209\t        \"gar_per_turn\": gar_per_turn,\n210\t        \"normalized_gar_per_turn\": normalized_gar_per_turn,\n211\t        \"visible_tokens_per_turn\": visible_tokens_per_turn,\n212\t    }\n213\t\n214\t\n215\tdef plot_gar_comparison(baseline_gar, trained_gar, output_path, gate_type):\n216\t    \"\"\"Plot baseline vs trained GAR curves.\"\"\"\n217\t    min_turns = min(len(baseline_gar), len(trained_gar))\n218\t    turns_x = list(range(1, min_turns + 1))\n219\t    b = baseline_gar[:min_turns]\n220\t    t = trained_gar[:min_turns]\n221\t\n222\t    fig, ax = plt.subplots(figsize=(9, 5.5))\n223\t    ax.plot(turns_x, b, \"r-s\", linewidth=2, markersize=6, label=\"Baseline (no gate)\")\n224\t    ax.plot(turns_x, t, \"b-o\", linewidth=2, markersize=6, label=f\"Trained ({gate_type})\")\n225\t\n226\t    b_mid = float(np.mean(b[2:8]) if len(b) >= 8 else np.mean(b[2:]))\n227\t    t_mid = float(np.mean(t[2:8]) if len(t) >= 8 else np.mean(t[2:]))\n228\t    ax.axhline(y=b_mid, color=\"red\", linestyle=\"--\", alpha=0.4, label=f\"Baseline mid: {b_mid:.4f}\")\n229\t    ax.axhline(y=t_mid, color=\"blue\", linestyle=\"--\", alpha=0.4, label=f\"Trained mid: {t_mid:.4f}\")\n230\t\n231\t    recovery_pp = (t_mid - b_mid) * 100\n232\t    ax.set_xlabel(\"Turn Index\", fontsize=12)\n233\t    ax.set_ylabel(\"GAR (Goal Attention Ratio)\", fontsize=12)\n234\t    ax.set_title(f\"GAR Recovery: {gate_type} (mid-turn recovery: {recovery_pp:+.1f}pp)\", fontsize=11)\n235\t    ax.legend(fontsize=9)\n236\t    ax.set_xticks(turns_x)\n237\t    ax.grid(True, alpha=0.3)\n238\t\n239\t    fig.savefig(output_path, dpi=150, bbox_inches=\"tight\")\n240\t    plt.close()\n241\t\n242\t\n243\tdef main():\n244\t    parser = argparse.ArgumentParser(description=\"Evaluate trained gated model GAR recovery\")\n245\t    parser.add_argument(\"--checkpoint-dir\", required=True)\n246\t    parser.add_argument(\"--gate-type\", required=True, choices=[\"threadgate\", \"uniform\"])\n247\t    parser.add_argument(\"--output-dir\", default=\"/root/turn_residual_gating/results/\")\n248\t    parser.add_argument(\"--baseline-results\", default=\"/root/turn_residual_gating/results/phase1_gar_results.json\")\n249\t    parser.add_argument(\"--model-name\", default=MODEL_NAME)\n250\t    args = parser.parse_args()\n251\t\n252\t    os.makedirs(args.output_dir, exist_ok=True)\n253\t    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n254\t    print(f\"Device: {device}\")\n255\t    print(f\"Gate type: {args.gate_type}\")\n256\t    print(f\"Checkpoint: {args.checkpoint_dir}\")\n257\t\n258\t    # Load base model with eager attention (required for GAR measurement)\n259\t    print(\"Loading base model (eager attention)...\")\n260\t    tokenizer = AutoTokenizer.from_pretrained(args.model_name)\n261\t    base_model = AutoModelForCausalLM.from_pretrained(\n262\t        args.model_name,\n263\t        torch_dtype=torch.bfloat16,\n264\t        device_map=\"auto\",\n265\t        attn_implementation=\"eager\",\n266\t    )\n267\t    base_model.eval()\n268\t\n269\t    # Apply LoRA if present\n270\t    lora_path = os.path.join(args.checkpoint_dir, \"lora\")\n271\t    if os.path.isdir(lora_path):\n272\t        print(\"Loading LoRA adapter...\")\n273\t        from peft import PeftModel\n274\t        base_model = PeftModel.from_pretrained(base_model, lora_path)\n275\t        base_model.eval()\n276\t    else:\n277\t        print(\"No LoRA directory found, using base model weights\")\n278\t\n279\t    # Generate conversations (without gating hooks, same as Phase 1)\n280\t    print(\"\\nGenerating conversations...\")\n281\t    conversations = []\n282\t    for i, (sys_prompt, user_qs) in enumerate(zip(SYSTEM_PROMPTS, CONVERSATIONS_DATA)):\n283\t        print(f\"  Conversation {i+1}/{len(SYSTEM_PROMPTS)}: {sys_prompt[:50]}...\")\n284\t        messages = build_conversation(tokenizer, base_model, sys_prompt, user_qs, device)\n285\t        num_turns = sum(1 for m in messages if m[\"role\"] == \"assistant\")\n286\t        print(f\"    {num_turns} assistant turns\")\n287\t        conversations.append(messages)\n288\t\n289\t    # Load gates and register hooks\n290\t    print(\"\\nLoading gate parameters...\")\n291\t    hidden_dim = base_model.config.hidden_size\n292\t    num_layers = base_model.config.num_hidden_layers\n293\t    gates, turn_embedding = load_gates(args.checkpoint_dir, args.gate_type, hidden_dim, num_layers)\n294\t\n295\t    hooks, turn_features_ref, gate_values = register_gating_hooks(\n296\t        base_model, gates, args.gate_type, turn_embedding\n297\t    )\n298\t\n299\t    # Create GARMeasurer on the underlying HF model\n300\t    hf_model = _find_hf_model(base_model)\n301\t    measurer = GARMeasurer(hf_model)\n302\t\n303\t    # Measure GAR with gating active\n304\t    print(\"\\nMeasuring GAR...\")\n305\t    all_gar_curves = []\n306\t    all_norm_curves = []\n307\t    all_visible_curves = []\n308\t    for i, messages in enumerate(conversations):\n309\t        result = measure_gar_per_turn(\n310\t            base_model, tokenizer, measurer, messages, device,\n311\t            turn_features_ref, args.gate_type,\n312\t        )\n313\t        if result:\n314\t            gar_curve = result[\"gar_per_turn\"]\n315\t            norm_curve = result[\"normalized_gar_per_turn\"]\n316\t            vis_curve = result[\"visible_tokens_per_turn\"]\n317\t            print(f\"  Conv {i+1} GAR:  {[f'{g:.4f}' for g in gar_curve]}\")\n318\t            print(f\"  Conv {i+1} nGAR: {[f'{g:.4f}' for g in norm_curve]}\")\n319\t            all_gar_curves.append(gar_curve)\n320\t            all_norm_curves.append(norm_curve)\n321\t            all_visible_curves.append(vis_curve)\n322\t        else:\n323\t            print(f\"  Conv {i+1}: WARNING - could not measure GAR\")\n324\t\n325\t    for h in hooks:\n326\t        h.remove()\n327\t\n328\t    if not all_gar_curves:\n329\t        print(\"ERROR: No valid GAR measurements\")\n330\t        sys.exit(1)\n331\t\n332\t    # Statistics\n333\t    min_turns = min(len(c) for c in all_gar_curves)\n334\t    aligned = [c[:min_turns] for c in all_gar_curves]\n335\t    avg_gar = np.mean(aligned, axis=0).tolist()\n336\t\n337\t    aligned_norm = [c[:min_turns] for c in all_norm_curves]\n338\t    avg_norm_gar = np.mean(aligned_norm, axis=0).tolist()\n339\t\n340\t    aligned_vis = [c[:min_turns] for c in all_visible_curves]\n341\t    avg_visible = [int(x) for x in np.mean(aligned_vis, axis=0).tolist()]\n342\t\n343\t    turn1_gar = avg_gar[0]\n344\t    mid_turns_gar = float(np.mean(avg_gar[2:8]) if len(avg_gar) >= 8 else np.mean(avg_gar[2:]))\n345\t    mid_turns_norm_gar = float(np.mean(avg_norm_gar[2:8]) if len(avg_norm_gar) >= 8 else np.mean(avg_norm_gar[2:]))\n346\t\n347\t    # Baseline comparison\n348\t    baseline_gar = None\n349\t    gar_recovery = None\n350\t    baseline_mid = None\n351\t    if os.path.exists(args.baseline_results):\n352\t        with open(args.baseline_results) as f:\n353\t            baseline = json.load(f)\n354\t        baseline_gar = baseline[\"avg_gar_per_turn\"]\n355\t        baseline_mid = baseline[\"mid_turns_avg_gar\"]\n356\t        gar_recovery = mid_turns_gar - baseline_mid\n357\t        print(f\"\\nBaseline mid-turn GAR: {baseline_mid:.4f}\")\n358\t        print(f\"Trained mid-turn GAR:  {mid_turns_gar:.4f}\")\n359\t        print(f\"GAR recovery:          {gar_recovery*100:+.2f}pp\")\n360\t    else:\n361\t        print(f\"\\nWARNING: Baseline not found at {args.baseline_results}\")\n362\t\n363\t    # Save results\n364\t    ckpt_name = os.path.basename(args.checkpoint_dir.rstrip(\"/\"))\n365\t    results = {\n366\t        \"checkpoint_dir\": args.checkpoint_dir,\n367\t        \"gate_type\": args.gate_type,\n368\t        \"model\": args.model_name,\n369\t        \"num_conversations\": len(all_gar_curves),\n370\t        \"num_turns\": min_turns,\n371\t        \"gar_curves\": all_gar_curves,\n372\t        \"avg_gar_per_turn\": avg_gar,\n373\t        \"turn1_avg_gar\": turn1_gar,\n374\t        \"mid_turns_avg_gar\": mid_turns_gar,\n375\t        \"baseline_mid_turns_avg_gar\": baseline_mid,\n376\t        \"gar_recovery_pp\": gar_recovery * 100 if gar_recovery is not None else None,\n377\t        \"normalized_gar_curves\": [c[:min_turns] for c in all_norm_curves],\n378\t        \"avg_normalized_gar_per_turn\": avg_norm_gar,\n379\t        \"mid_turns_avg_normalized_gar\": mid_turns_norm_gar,\n380\t        \"avg_visible_tokens_per_turn\": avg_visible,\n381\t    }\n382\t\n383\t    results_path = os.path.join(args.output_dir, f\"{ckpt_name}_gar.json\")\n384\t    with open(results_path, \"w\") as f:\n385\t        json.dump(results, f, indent=2)\n386\t    print(f\"\\nResults saved to {results_path}\")\n387\t\n388\t    if baseline_gar:\n389\t        plot_path = os.path.join(args.output_dir, f\"{ckpt_name}_gar_comparison.png\")\n390\t        plot_gar_comparison(baseline_gar, avg_gar, plot_path, args.gate_type)\n391\t        print(f\"Plot saved to {plot_path}\")\n392\t\n393\t    print(f\"\\n{'='*50}\")\n394\t    print(f\"Phase 2 GAR Evaluation ({args.gate_type})\")\n395\t    print(f\"{'='*50}\")\n396\t    print(f\"Turn 1 avg GAR:     {turn1_gar:.4f}\")\n397\t    print(f\"Mid-turns avg GAR:  {mid_turns_gar:.4f}\")\n398\t    print(f\"Mid-turns avg nGAR: {mid_turns_norm_gar:.4f}\")\n399\t    if gar_recovery is not None:\n400\t        print(f\"GAR recovery:       {gar_recovery*100:+.2f}pp\")\n401\t\n402\t\n403\tif __name__ == \"__main__\":\n404\t    main()\n405\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "ed23ed62-561c-47a5-903a-7373427c757e",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/src/eval_phase2_gar.py",
+                "content": "# eval_phase2_gar.py — 评估训练后模型的 GAR 恢复效果\n# 用法: python eval_phase2_gar.py --checkpoint-dir /root/turn_residual_gating/checkpoints/tg_s42 --gate-type threadgate\n# 输出: JSON 结果 + GAR 对比曲线图\n\nimport argparse\nimport json\nimport os\nimport sys\n\nimport torch\nimport torch.nn as nn\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\n\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\nfrom threadgate import TurnEmbedding, GateNetwork, UniformGateNetwork\nfrom gar import GARMeasurer\nfrom turn_utils import detect_turn_boundaries, build_turn_features\nfrom config import MODEL_NAME\n\n\nSYSTEM_PROMPTS = [\n    \"You are a knowledgeable science tutor. Always explain concepts step by step. Use analogies when possible. Never give direct answers without explanation. If the student makes an error, gently correct them and guide them to the right answer.\",\n    \"You are a professional code reviewer. Focus on code quality, security, and performance. Point out potential bugs and suggest improvements. Always explain why a change is needed, not just what to change. Be constructive and specific.\",\n    \"You are a creative writing coach. Help users improve their storytelling skills. Focus on character development, plot structure, and vivid descriptions. Give specific feedback with examples. Encourage experimentation with different styles.\",\n    \"You are a math problem solver. Show all steps clearly. Explain the reasoning behind each step. If there are multiple approaches, mention them. Check your work by verifying the answer. Use LaTeX notation for formulas.\",\n    \"You are a debate coach who helps users argue both sides of issues. Present balanced perspectives. Challenge weak arguments constructively. Teach logical reasoning and evidence evaluation. Avoid personal opinions.\",\n]\n\nCONVERSATIONS_DATA = [\n    [\"Why is the sky blue?\", \"What about sunsets being red?\", \"How does a rainbow form?\",\n     \"Why do stars twinkle?\", \"What causes thunder?\", \"How do magnets work?\",\n     \"Why is water wet?\", \"What is gravity?\", \"How do airplanes fly?\", \"Why is space dark?\"],\n    [\"Review this: def add(a,b): return a+b\", \"What about error handling?\", \"How should I write tests for it?\",\n     \"Is recursion better than iteration?\", \"When should I use async/await?\", \"How to handle memory leaks?\",\n     \"Best practices for API design?\", \"How to optimize database queries?\", \"When to use microservices?\", \"How to handle rate limiting?\"],\n    [\"Help me start a mystery story\", \"How do I create a compelling villain?\", \"What makes good dialogue?\",\n     \"How to build suspense?\", \"Should I use first or third person?\", \"How to write a plot twist?\",\n     \"Tips for describing settings?\", \"How to end a chapter with a cliffhanger?\", \"How to avoid cliches?\", \"How to write an epilogue?\"],\n    [\"Solve: 3x + 7 = 22\", \"What is the derivative of x^3?\", \"Explain the Pythagorean theorem\",\n     \"What is a prime number?\", \"How to calculate compound interest?\", \"What is the area of a circle?\",\n     \"Explain matrix multiplication\", \"What is a logarithm?\", \"How to solve quadratic equations?\", \"What is calculus used for?\"],\n    [\"Should AI be regulated?\", \"Is remote work better than office work?\", \"Should college be free?\",\n     \"Is social media harmful?\", \"Should voting be mandatory?\", \"Is nuclear energy safe?\",\n     \"Should animals have legal rights?\", \"Is space exploration worth the cost?\", \"Should there be a universal basic income?\", \"Is genetic engineering ethical?\"],\n]\n\n\ndef _find_hf_model(model):\n    \"\"\"Find the HF CausalLM model (with .model.layers) in the model hierarchy.\"\"\"\n    if hasattr(model, \"model\") and hasattr(model.model, \"layers\"):\n        return model\n    try:\n        inner = model.base_model.model\n        if hasattr(inner, \"model\") and hasattr(inner.model, \"layers\"):\n            return inner\n    except AttributeError:\n        pass\n    raise ValueError(\"Cannot find HF model with .model.layers in hierarchy\")\n\n\ndef _find_layers(model):\n    return _find_hf_model(model).model.layers\n\n\ndef load_gates(checkpoint_dir, gate_type, hidden_dim, num_layers):\n    \"\"\"Load gate networks and trained parameters from checkpoint.\"\"\"\n    if gate_type == \"threadgate\":\n        turn_embedding = TurnEmbedding()\n        gates = nn.ModuleList([\n            GateNetwork(hidden_dim, turn_embedding, init_bias=5.0)\n            for _ in range(num_layers)\n        ])\n    else:\n        turn_embedding = None\n        gates = nn.ModuleList([\n            UniformGateNetwork(hidden_dim, init_bias=5.0)\n            for _ in range(num_layers)\n        ])\n\n    gate_path = os.path.join(checkpoint_dir, \"gate_params.pt\")\n    if not os.path.exists(gate_path):\n        raise FileNotFoundError(f\"Gate parameters not found: {gate_path}\")\n    gate_state = torch.load(gate_path, map_location=\"cpu\", weights_only=True)\n    gates.load_state_dict(gate_state[\"gates\"])\n    if gate_type == \"threadgate\" and \"turn_embedding\" in gate_state:\n        turn_embedding.load_state_dict(gate_state[\"turn_embedding\"])\n\n    return gates, turn_embedding\n\n\ndef register_gating_hooks(model, gates, gate_type, turn_embedding=None):\n    \"\"\"Register forward hooks on transformer layers for residual gating.\"\"\"\n    layers = _find_layers(model)\n    hooks = []\n    gate_values = {}\n    turn_features_ref = [None]\n\n    for i, layer in enumerate(layers):\n        device = next(layer.parameters()).device\n        gates[i].to(device=device, dtype=torch.bfloat16)\n    if gate_type == \"threadgate\" and turn_embedding is not None:\n        device0 = next(layers[0].parameters()).device\n        turn_embedding.to(device=device0, dtype=torch.bfloat16)\n\n    def make_hook(layer_idx):\n        def hook(module, input, output):\n            if gate_type == \"threadgate\" and turn_features_ref[0] is None:\n                return output\n\n            layer_input = input[0]\n            layer_output = output[0] if isinstance(output, tuple) else output\n\n            if gate_type == \"threadgate\":\n                g = gates[layer_idx](layer_input, turn_features_ref[0])\n            else:\n                g = gates[layer_idx](layer_input)\n\n            f_x = layer_output - layer_input\n            gated = layer_input + g * f_x\n            gate_values[layer_idx] = g.detach()\n\n            if isinstance(output, tuple):\n                return (gated,) + output[1:]\n            return gated\n        return hook\n\n    for i, layer in enumerate(layers):\n        hooks.append(layer.register_forward_hook(make_hook(i)))\n\n    return hooks, turn_features_ref, gate_values\n\n\ndef build_conversation(tokenizer, model, system_prompt, user_questions, device, max_new_tokens=100):\n    \"\"\"Generate a multi-turn conversation (same logic as Phase 1).\"\"\"\n    messages = [{\"role\": \"system\", \"content\": system_prompt}]\n    for q in user_questions:\n        messages.append({\"role\": \"user\", \"content\": q})\n        text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)\n        input_ids = tokenizer(text, return_tensors=\"pt\").input_ids.to(device)\n\n        if input_ids.shape[1] > 1800:\n            messages.pop()\n            break\n\n        with torch.no_grad():\n            output = model.generate(input_ids, max_new_tokens=max_new_tokens, do_sample=False)\n\n        new_tokens = output[0][input_ids.shape[1]:]\n        response = tokenizer.decode(new_tokens, skip_special_tokens=True).strip()\n        messages.append({\"role\": \"assistant\", \"content\": response})\n\n    return messages\n\n\ndef measure_gar_per_turn(model, tokenizer, measurer, messages, device, turn_features_ref, gate_type):\n    \"\"\"Measure GAR at each assistant turn with gating active.\"\"\"\n    full_text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=False)\n    input_ids = tokenizer(full_text, return_tensors=\"pt\").input_ids.squeeze(0)\n\n    if input_ids.shape[0] > 2048:\n        input_ids = input_ids[:2048]\n\n    boundaries = detect_turn_boundaries(input_ids, tokenizer)\n    goal_positions = boundaries[\"goal_token_positions\"]\n    assistant_positions = boundaries[\"assistant_last_token_positions\"]\n\n    if not goal_positions or not assistant_positions:\n        return None\n\n    if gate_type == \"threadgate\":\n        tf = build_turn_features(input_ids, tokenizer)\n        turn_features_ref[0] = {\n            \"turn_distance\": tf[\"turn_distance\"].to(device),\n            \"turn_index\": tf[\"turn_index\"].to(device),\n        }\n\n    input_ids_batch = input_ids.unsqueeze(0).to(device)\n\n    with measurer.measure():\n        with torch.no_grad():\n            model(input_ids_batch, output_attentions=True)\n\n    turn_features_ref[0] = None\n\n    gar_per_turn = []\n    normalized_gar_per_turn = []\n    visible_tokens_per_turn = []\n    num_goal_tokens = len(goal_positions)\n\n    for pos in assistant_positions:\n        result = measurer.compute_gar(goal_positions, [pos])\n        raw_gar = result[\"mean_gar\"]\n        gar_per_turn.append(raw_gar)\n\n        num_visible = pos + 1\n        visible_tokens_per_turn.append(num_visible)\n\n        if num_goal_tokens > 0:\n            norm_gar = raw_gar * num_visible / num_goal_tokens\n        else:\n            norm_gar = 0.0\n        normalized_gar_per_turn.append(norm_gar)\n\n    return {\n        \"gar_per_turn\": gar_per_turn,\n        \"normalized_gar_per_turn\": normalized_gar_per_turn,\n        \"visible_tokens_per_turn\": visible_tokens_per_turn,\n    }\n\n\ndef plot_gar_comparison(baseline_gar, trained_gar, output_path, gate_type):\n    \"\"\"Plot baseline vs trained GAR curves.\"\"\"\n    min_turns = min(len(baseline_gar), len(trained_gar))\n    turns_x = list(range(1, min_turns + 1))\n    b = baseline_gar[:min_turns]\n    t = trained_gar[:min_turns]\n\n    fig, ax = plt.subplots(figsize=(9, 5.5))\n    ax.plot(turns_x, b, \"r-s\", linewidth=2, markersize=6, label=\"Baseline (no gate)\")\n    ax.plot(turns_x, t, \"b-o\", linewidth=2, markersize=6, label=f\"Trained ({gate_type})\")\n\n    b_mid = float(np.mean(b[2:8]) if len(b) >= 8 else np.mean(b[2:]))\n    t_mid = float(np.mean(t[2:8]) if len(t) >= 8 else np.mean(t[2:]))\n    ax.axhline(y=b_mid, color=\"red\", linestyle=\"--\", alpha=0.4, label=f\"Baseline mid: {b_mid:.4f}\")\n    ax.axhline(y=t_mid, color=\"blue\", linestyle=\"--\", alpha=0.4, label=f\"Trained mid: {t_mid:.4f}\")\n\n    recovery_pp = (t_mid - b_mid) * 100\n    ax.set_xlabel(\"Turn Index\", fontsize=12)\n    ax.set_ylabel(\"GAR (Goal Attention Ratio)\", fontsize=12)\n    ax.set_title(f\"GAR Recovery: {gate_type} (mid-turn recovery: {recovery_pp:+.1f}pp)\", fontsize=11)\n    ax.legend(fontsize=9)\n    ax.set_xticks(turns_x)\n    ax.grid(True, alpha=0.3)\n\n    fig.savefig(output_path, dpi=150, bbox_inches=\"tight\")\n    plt.close()\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Evaluate trained gated model GAR recovery\")\n    parser.add_argument(\"--checkpoint-dir\", required=True)\n    parser.add_argument(\"--gate-type\", required=True, choices=[\"threadgate\", \"uniform\"])\n    parser.add_argument(\"--output-dir\", default=\"/root/turn_residual_gating/results/\")\n    parser.add_argument(\"--baseline-results\", default=\"/root/turn_residual_gating/results/phase1_gar_results.json\")\n    parser.add_argument(\"--model-name\", default=MODEL_NAME)\n    args = parser.parse_args()\n\n    os.makedirs(args.output_dir, exist_ok=True)\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"Device: {device}\")\n    print(f\"Gate type: {args.gate_type}\")\n    print(f\"Checkpoint: {args.checkpoint_dir}\")\n\n    # Load base model with eager attention (required for GAR measurement)\n    print(\"Loading base model (eager attention)...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name)\n    base_model = AutoModelForCausalLM.from_pretrained(\n        args.model_name,\n        torch_dtype=torch.bfloat16,\n        device_map=\"auto\",\n        attn_implementation=\"eager\",\n    )\n    base_model.eval()\n\n    # Apply LoRA if present\n    lora_path = os.path.join(args.checkpoint_dir, \"lora\")\n    if os.path.isdir(lora_path):\n        print(\"Loading LoRA adapter...\")\n        from peft import PeftModel\n        base_model = PeftModel.from_pretrained(base_model, lora_path)\n        base_model.eval()\n    else:\n        print(\"No LoRA directory found, using base model weights\")\n\n    # Generate conversations (without gating hooks, same as Phase 1)\n    print(\"\\nGenerating conversations...\")\n    conversations = []\n    for i, (sys_prompt, user_qs) in enumerate(zip(SYSTEM_PROMPTS, CONVERSATIONS_DATA)):\n        print(f\"  Conversation {i+1}/{len(SYSTEM_PROMPTS)}: {sys_prompt[:50]}...\")\n        messages = build_conversation(tokenizer, base_model, sys_prompt, user_qs, device)\n        num_turns = sum(1 for m in messages if m[\"role\"] == \"assistant\")\n        print(f\"    {num_turns} assistant turns\")\n        conversations.append(messages)\n\n    # Load gates and register hooks\n    print(\"\\nLoading gate parameters...\")\n    hidden_dim = base_model.config.hidden_size\n    num_layers = base_model.config.num_hidden_layers\n    gates, turn_embedding = load_gates(args.checkpoint_dir, args.gate_type, hidden_dim, num_layers)\n\n    hooks, turn_features_ref, gate_values = register_gating_hooks(\n        base_model, gates, args.gate_type, turn_embedding\n    )\n\n    # Create GARMeasurer on the underlying HF model\n    hf_model = _find_hf_model(base_model)\n    measurer = GARMeasurer(hf_model)\n\n    # Measure GAR with gating active\n    print(\"\\nMeasuring GAR...\")\n    all_gar_curves = []\n    all_norm_curves = []\n    all_visible_curves = []\n    for i, messages in enumerate(conversations):\n        result = measure_gar_per_turn(\n            base_model, tokenizer, measurer, messages, device,\n            turn_features_ref, args.gate_type,\n        )\n        if result:\n            gar_curve = result[\"gar_per_turn\"]\n            norm_curve = result[\"normalized_gar_per_turn\"]\n            vis_curve = result[\"visible_tokens_per_turn\"]\n            print(f\"  Conv {i+1} GAR:  {[f'{g:.4f}' for g in gar_curve]}\")\n            print(f\"  Conv {i+1} nGAR: {[f'{g:.4f}' for g in norm_curve]}\")\n            all_gar_curves.append(gar_curve)\n            all_norm_curves.append(norm_curve)\n            all_visible_curves.append(vis_curve)\n        else:\n            print(f\"  Conv {i+1}: WARNING - could not measure GAR\")\n\n    for h in hooks:\n        h.remove()\n\n    if not all_gar_curves:\n        print(\"ERROR: No valid GAR measurements\")\n        sys.exit(1)\n\n    # Statistics\n    min_turns = min(len(c) for c in all_gar_curves)\n    aligned = [c[:min_turns] for c in all_gar_curves]\n    avg_gar = np.mean(aligned, axis=0).tolist()\n\n    aligned_norm = [c[:min_turns] for c in all_norm_curves]\n    avg_norm_gar = np.mean(aligned_norm, axis=0).tolist()\n\n    aligned_vis = [c[:min_turns] for c in all_visible_curves]\n    avg_visible = [int(x) for x in np.mean(aligned_vis, axis=0).tolist()]\n\n    turn1_gar = avg_gar[0]\n    mid_turns_gar = float(np.mean(avg_gar[2:8]) if len(avg_gar) >= 8 else np.mean(avg_gar[2:]))\n    mid_turns_norm_gar = float(np.mean(avg_norm_gar[2:8]) if len(avg_norm_gar) >= 8 else np.mean(avg_norm_gar[2:]))\n\n    # Baseline comparison\n    baseline_gar = None\n    gar_recovery = None\n    baseline_mid = None\n    if os.path.exists(args.baseline_results):\n        with open(args.baseline_results) as f:\n            baseline = json.load(f)\n        baseline_gar = baseline[\"avg_gar_per_turn\"]\n        baseline_mid = baseline[\"mid_turns_avg_gar\"]\n        gar_recovery = mid_turns_gar - baseline_mid\n        print(f\"\\nBaseline mid-turn GAR: {baseline_mid:.4f}\")\n        print(f\"Trained mid-turn GAR:  {mid_turns_gar:.4f}\")\n        print(f\"GAR recovery:          {gar_recovery*100:+.2f}pp\")\n    else:\n        print(f\"\\nWARNING: Baseline not found at {args.baseline_results}\")\n\n    # Save results\n    ckpt_name = os.path.basename(args.checkpoint_dir.rstrip(\"/\"))\n    results = {\n        \"checkpoint_dir\": args.checkpoint_dir,\n        \"gate_type\": args.gate_type,\n        \"model\": args.model_name,\n        \"num_conversations\": len(all_gar_curves),\n        \"num_turns\": min_turns,\n        \"gar_curves\": all_gar_curves,\n        \"avg_gar_per_turn\": avg_gar,\n        \"turn1_avg_gar\": turn1_gar,\n        \"mid_turns_avg_gar\": mid_turns_gar,\n        \"baseline_mid_turns_avg_gar\": baseline_mid,\n        \"gar_recovery_pp\": gar_recovery * 100 if gar_recovery is not None else None,\n        \"normalized_gar_curves\": [c[:min_turns] for c in all_norm_curves],\n        \"avg_normalized_gar_per_turn\": avg_norm_gar,\n        \"mid_turns_avg_normalized_gar\": mid_turns_norm_gar,\n        \"avg_visible_tokens_per_turn\": avg_visible,\n    }\n\n    results_path = os.path.join(args.output_dir, f\"{ckpt_name}_gar.json\")\n    with open(results_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to {results_path}\")\n\n    if baseline_gar:\n        plot_path = os.path.join(args.output_dir, f\"{ckpt_name}_gar_comparison.png\")\n        plot_gar_comparison(baseline_gar, avg_gar, plot_path, args.gate_type)\n        print(f\"Plot saved to {plot_path}\")\n\n    print(f\"\\n{'='*50}\")\n    print(f\"Phase 2 GAR Evaluation ({args.gate_type})\")\n    print(f\"{'='*50}\")\n    print(f\"Turn 1 avg GAR:     {turn1_gar:.4f}\")\n    print(f\"Mid-turns avg GAR:  {mid_turns_gar:.4f}\")\n    print(f\"Mid-turns avg nGAR: {mid_turns_norm_gar:.4f}\")\n    if gar_recovery is not None:\n        print(f\"GAR recovery:       {gar_recovery*100:+.2f}pp\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 405,
+                "startLine": 1,
+                "totalLines": 405
+              }
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019ciP2zxF2qfP3QmqvGeRtk",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/src/compare_phase2.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "00ca8cda-eca3-408b-9939-568a095e375a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DB9YQYgrPRs9HqxWt1bVNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18696,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 18696
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-18T06:40:17.503Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019ciP2zxF2qfP3QmqvGeRtk",
+              "type": "tool_result",
+              "content": "1\t# compare_phase2.py — 对比 ThreadGate vs Uniform Gate 结果\n2\t# 用法: python compare_phase2.py --tg-results results/tg_s42_gar.json --ug-results results/ug_s42_gar.json\n3\t# 输出: 对比表格 + 双曲线图 + Pass/Fail 判断\n4\t\n5\timport argparse\n6\timport json\n7\timport os\n8\timport sys\n9\t\n10\timport numpy as np\n11\timport matplotlib\n12\tmatplotlib.use(\"Agg\")\n13\timport matplotlib.pyplot as plt\n14\t\n15\t\n16\tdef load_results(path):\n17\t    with open(path) as f:\n18\t        return json.load(f)\n19\t\n20\t\n21\tdef print_gar_table(tg, ug, baseline_gar=None):\n22\t    \"\"\"Print turn-by-turn GAR comparison table with raw and normalized.\"\"\"\n23\t    tg_gar = tg[\"avg_gar_per_turn\"]\n24\t    ug_gar = ug[\"avg_gar_per_turn\"]\n25\t    min_turns = min(len(tg_gar), len(ug_gar))\n26\t\n27\t    tg_norm = tg.get(\"avg_normalized_gar_per_turn\", [])\n28\t    ug_norm = ug.get(\"avg_normalized_gar_per_turn\", [])\n29\t    has_norm = len(tg_norm) >= min_turns and len(ug_norm) >= min_turns\n30\t\n31\t    header = f\"{'Turn':>6}  {'TG_raw':>9}  {'UG_raw':>9}  {'Diff_raw':>9}\"\n32\t    if has_norm:\n33\t        header += f\"  {'TG_norm':>9}  {'UG_norm':>9}  {'Diff_norm':>10}\"\n34\t    print(header)\n35\t    print(\"-\" * len(header))\n36\t\n37\t    for i in range(min_turns):\n38\t        diff_raw = tg_gar[i] - ug_gar[i]\n39\t        row = f\"{i+1:>6}  {tg_gar[i]:>9.4f}  {ug_gar[i]:>9.4f}  {diff_raw:>+9.4f}\"\n40\t        if has_norm:\n41\t            diff_norm = tg_norm[i] - ug_norm[i]\n42\t            row += f\"  {tg_norm[i]:>9.4f}  {ug_norm[i]:>9.4f}  {diff_norm:>+10.4f}\"\n43\t        print(row)\n44\t\n45\t    print(\"-\" * len(header))\n46\t    tg_mid = tg[\"mid_turns_avg_gar\"]\n47\t    ug_mid = ug[\"mid_turns_avg_gar\"]\n48\t    diff_mid = tg_mid - ug_mid\n49\t    row = f\"{'Mid':>6}  {tg_mid:>9.4f}  {ug_mid:>9.4f}  {diff_mid:>+9.4f}\"\n50\t    if has_norm:\n51\t        tg_mid_n = tg.get(\"mid_turns_avg_normalized_gar\", 0)\n52\t        ug_mid_n = ug.get(\"mid_turns_avg_normalized_gar\", 0)\n53\t        diff_mid_n = tg_mid_n - ug_mid_n\n54\t        row += f\"  {tg_mid_n:>9.4f}  {ug_mid_n:>9.4f}  {diff_mid_n:>+10.4f}\"\n55\t    print(row)\n56\t\n57\t\n58\tdef plot_comparison(tg, ug, baseline_gar, output_path):\n59\t    \"\"\"Plot raw GAR (top) and normalized GAR (bottom).\"\"\"\n60\t    tg_gar = tg[\"avg_gar_per_turn\"]\n61\t    ug_gar = ug[\"avg_gar_per_turn\"]\n62\t    min_turns = min(len(tg_gar), len(ug_gar))\n63\t    turns_x = list(range(1, min_turns + 1))\n64\t\n65\t    tg_norm = tg.get(\"avg_normalized_gar_per_turn\", [])\n66\t    ug_norm = ug.get(\"avg_normalized_gar_per_turn\", [])\n67\t    has_norm = len(tg_norm) >= min_turns and len(ug_norm) >= min_turns\n68\t\n69\t    nrows = 2 if has_norm else 1\n70\t    fig, axes = plt.subplots(nrows, 1, figsize=(10, 5.5 * nrows), sharex=True)\n71\t    if nrows == 1:\n72\t        axes = [axes]\n73\t\n74\t    ax = axes[0]\n75\t    if baseline_gar:\n76\t        b = baseline_gar[:min_turns]\n77\t        ax.plot(turns_x, b, \"r-s\", linewidth=2, markersize=5, label=\"Baseline (no gate)\", alpha=0.8)\n78\t    ax.plot(turns_x, ug_gar[:min_turns], \"g-^\", linewidth=2, markersize=5, label=\"Uniform Gate\", alpha=0.8)\n79\t    ax.plot(turns_x, tg_gar[:min_turns], \"b-o\", linewidth=2.5, markersize=6, label=\"ThreadGate\")\n80\t\n81\t    tg_mid = tg[\"mid_turns_avg_gar\"]\n82\t    ug_mid = ug[\"mid_turns_avg_gar\"]\n83\t    ax.axhline(y=tg_mid, color=\"blue\", linestyle=\"--\", alpha=0.3)\n84\t    ax.axhline(y=ug_mid, color=\"green\", linestyle=\"--\", alpha=0.3)\n85\t\n86\t    delta_pp = (tg_mid - ug_mid) * 100\n87\t    passed = delta_pp > 3.0\n88\t    ax.set_ylabel(\"Raw GAR\", fontsize=12)\n89\t    ax.set_title(\n90\t        f\"ThreadGate vs Uniform Gate GAR Comparison\\n\"\n91\t        f\"TG mid: {tg_mid:.4f}, UG mid: {ug_mid:.4f}, \"\n92\t        f\"delta: {delta_pp:+.1f}pp ({'PASS' if passed else 'FAIL'}: >3pp required)\",\n93\t        fontsize=11,\n94\t    )\n95\t    ax.legend(fontsize=10)\n96\t    ax.set_xticks(turns_x)\n97\t    ax.grid(True, alpha=0.3)\n98\t\n99\t    if has_norm:\n100\t        ax2 = axes[1]\n101\t        ax2.plot(turns_x, ug_norm[:min_turns], \"g-^\", linewidth=2, markersize=5, label=\"Uniform Gate\", alpha=0.8)\n102\t        ax2.plot(turns_x, tg_norm[:min_turns], \"b-o\", linewidth=2.5, markersize=6, label=\"ThreadGate\")\n103\t\n104\t        tg_mid_n = tg.get(\"mid_turns_avg_normalized_gar\", 0)\n105\t        ug_mid_n = ug.get(\"mid_turns_avg_normalized_gar\", 0)\n106\t        ax2.axhline(y=tg_mid_n, color=\"blue\", linestyle=\"--\", alpha=0.3)\n107\t        ax2.axhline(y=ug_mid_n, color=\"green\", linestyle=\"--\", alpha=0.3)\n108\t\n109\t        delta_norm_pp = (tg_mid_n - ug_mid_n) * 100\n110\t        ax2.set_ylabel(\"Normalized GAR\", fontsize=12)\n111\t        ax2.set_title(\n112\t            f\"Normalized GAR: TG mid: {tg_mid_n:.4f}, UG mid: {ug_mid_n:.4f}, \"\n113\t            f\"delta: {delta_norm_pp:+.1f}pp\",\n114\t            fontsize=11,\n115\t        )\n116\t        ax2.legend(fontsize=10)\n117\t        ax2.set_xticks(turns_x)\n118\t        ax2.grid(True, alpha=0.3)\n119\t        ax2.set_xlabel(\"Turn Index\", fontsize=12)\n120\t    else:\n121\t        axes[0].set_xlabel(\"Turn Index\", fontsize=12)\n122\t\n123\t    fig.tight_layout()\n124\t    fig.savefig(output_path, dpi=150, bbox_inches=\"tight\")\n125\t    plt.close()\n126\t\n127\t\n128\tdef compare_mtbench(tg_mt_path, ug_mt_path):\n129\t    \"\"\"Compare MT-Bench results if available.\"\"\"\n130\t    if not (os.path.exists(tg_mt_path) and os.path.exists(ug_mt_path)):\n131\t        return None\n132\t\n133\t    tg_mt = load_results(tg_mt_path)\n134\t    ug_mt = load_results(ug_mt_path)\n135\t\n136\t    tg_overall = tg_mt[\"trained\"][\"summary\"][\"overall_avg\"]\n137\t    ug_overall = ug_mt[\"trained\"][\"summary\"][\"overall_avg\"]\n138\t    tg_t2 = tg_mt[\"trained\"][\"summary\"][\"turn2_avg\"]\n139\t    ug_t2 = ug_mt[\"trained\"][\"summary\"][\"turn2_avg\"]\n140\t    baseline_overall = tg_mt[\"baseline\"][\"summary\"][\"overall_avg\"]\n141\t    baseline_t2 = tg_mt[\"baseline\"][\"summary\"][\"turn2_avg\"]\n142\t\n143\t    return {\n144\t        \"threadgate\": {\"overall\": tg_overall, \"turn2\": tg_t2},\n145\t        \"uniform\": {\"overall\": ug_overall, \"turn2\": ug_t2},\n146\t        \"baseline\": {\"overall\": baseline_overall, \"turn2\": baseline_t2},\n147\t    }\n148\t\n149\t\n150\tdef main():\n151\t    parser = argparse.ArgumentParser(description=\"Compare ThreadGate vs Uniform Gate results\")\n152\t    parser.add_argument(\"--tg-results\", required=True, help=\"ThreadGate GAR results JSON\")\n153\t    parser.add_argument(\"--ug-results\", required=True, help=\"Uniform Gate GAR results JSON\")\n154\t    parser.add_argument(\"--baseline-results\", default=\"/root/turn_residual_gating/results/phase1_gar_results.json\")\n155\t    parser.add_argument(\"--output-dir\", default=\"/root/turn_residual_gating/results/\")\n156\t    args = parser.parse_args()\n157\t\n158\t    os.makedirs(args.output_dir, exist_ok=True)\n159\t\n160\t    tg = load_results(args.tg_results)\n161\t    ug = load_results(args.ug_results)\n162\t\n163\t    baseline_gar = None\n164\t    if os.path.exists(args.baseline_results):\n165\t        baseline = load_results(args.baseline_results)\n166\t        baseline_gar = baseline[\"avg_gar_per_turn\"]\n167\t\n168\t    # GAR comparison table\n169\t    print(f\"\\n{'='*60}\")\n170\t    print(\"GAR Turn-by-Turn Comparison\")\n171\t    print(f\"{'='*60}\")\n172\t    print_gar_table(tg, ug, baseline_gar)\n173\t\n174\t    # Pass/Fail\n175\t    tg_mid = tg[\"mid_turns_avg_gar\"]\n176\t    ug_mid = ug[\"mid_turns_avg_gar\"]\n177\t    delta_pp = (tg_mid - ug_mid) * 100\n178\t    passed = delta_pp > 3.0\n179\t\n180\t    print(f\"\\n{'='*60}\")\n181\t    print(\"Pass/Fail Criteria\")\n182\t    print(f\"{'='*60}\")\n183\t    print(f\"ThreadGate mid-turn GAR: {tg_mid:.4f}\")\n184\t    print(f\"Uniform mid-turn GAR:    {ug_mid:.4f}\")\n185\t    print(f\"Delta:                   {delta_pp:+.2f}pp\")\n186\t    print(f\"Criterion (>3pp):        {'PASS' if passed else 'FAIL'}\")\n187\t\n188\t    if tg.get(\"gar_recovery_pp\") is not None:\n189\t        print(f\"\\nThreadGate GAR recovery vs baseline: {tg['gar_recovery_pp']:+.2f}pp\")\n190\t    if ug.get(\"gar_recovery_pp\") is not None:\n191\t        print(f\"Uniform GAR recovery vs baseline:    {ug['gar_recovery_pp']:+.2f}pp\")\n192\t\n193\t    tg_norm_mid = tg.get(\"mid_turns_avg_normalized_gar\")\n194\t    ug_norm_mid = ug.get(\"mid_turns_avg_normalized_gar\")\n195\t    if tg_norm_mid is not None and ug_norm_mid is not None:\n196\t        norm_delta_pp = (tg_norm_mid - ug_norm_mid) * 100\n197\t        print(f\"\\nNormalized GAR:\")\n198\t        print(f\"ThreadGate mid-turn nGAR: {tg_norm_mid:.4f}\")\n199\t        print(f\"Uniform mid-turn nGAR:    {ug_norm_mid:.4f}\")\n200\t        print(f\"Delta:                    {norm_delta_pp:+.2f}pp\")\n201\t\n202\t    # MT-Bench comparison\n203\t    tg_mt_path = args.tg_results.replace(\"_gar.json\", \"_mtbench.json\")\n204\t    ug_mt_path = args.ug_results.replace(\"_gar.json\", \"_mtbench.json\")\n205\t    mt_results = compare_mtbench(tg_mt_path, ug_mt_path)\n206\t\n207\t    if mt_results:\n208\t        print(f\"\\n{'='*60}\")\n209\t        print(\"MT-Bench Style Scores\")\n210\t        print(f\"{'='*60}\")\n211\t        print(f\"                  ThreadGate  Uniform  Baseline\")\n212\t        print(f\"Overall avg:      {mt_results['threadgate']['overall']:.2f}        {mt_results['uniform']['overall']:.2f}     {mt_results['baseline']['overall']:.2f}\")\n213\t        print(f\"Turn 2 avg:       {mt_results['threadgate']['turn2']:.2f}        {mt_results['uniform']['turn2']:.2f}     {mt_results['baseline']['turn2']:.2f}\")\n214\t        mt_improvement = mt_results[\"threadgate\"][\"turn2\"] - mt_results[\"baseline\"][\"turn2\"]\n215\t        print(f\"TG turn2 improvement vs baseline: {mt_improvement:+.2f}pp\")\n216\t\n217\t    # Plot\n218\t    plot_path = os.path.join(args.output_dir, \"phase2_gar_comparison.png\")\n219\t    plot_comparison(tg, ug, baseline_gar, plot_path)\n220\t    print(f\"\\nComparison plot saved to {plot_path}\")\n221\t\n222\t    # Save combined summary\n223\t    summary = {\n224\t        \"gar\": {\n225\t            \"threadgate_mid\": tg_mid,\n226\t            \"uniform_mid\": ug_mid,\n227\t            \"delta_pp\": delta_pp,\n228\t            \"pass\": passed,\n229\t            \"threadgate_recovery_pp\": tg.get(\"gar_recovery_pp\"),\n230\t            \"uniform_recovery_pp\": ug.get(\"gar_recovery_pp\"),\n231\t        },\n232\t        \"normalized_gar\": {\n233\t            \"threadgate_mid\": tg.get(\"mid_turns_avg_normalized_gar\"),\n234\t            \"uniform_mid\": ug.get(\"mid_turns_avg_normalized_gar\"),\n235\t            \"delta_pp\": (\n236\t                (tg.get(\"mid_turns_avg_normalized_gar\", 0) - ug.get(\"mid_turns_avg_normalized_gar\", 0)) * 100\n237\t            ),\n238\t        },\n239\t    }\n240\t    if mt_results:\n241\t        summary[\"mtbench\"] = mt_results\n242\t\n243\t    summary_path = os.path.join(args.output_dir, \"phase2_comparison_summary.json\")\n244\t    with open(summary_path, \"w\") as f:\n245\t        json.dump(summary, f, indent=2)\n246\t    print(f\"Summary saved to {summary_path}\")\n247\t\n248\t\n249\tif __name__ == \"__main__\":\n250\t    main()\n251\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "ce5b503f-e6f5-483e-9d07-11d7eb7a1aaa",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/src/compare_phase2.py",
+                "content": "# compare_phase2.py — 对比 ThreadGate vs Uniform Gate 结果\n# 用法: python compare_phase2.py --tg-results results/tg_s42_gar.json --ug-results results/ug_s42_gar.json\n# 输出: 对比表格 + 双曲线图 + Pass/Fail 判断\n\nimport argparse\nimport json\nimport os\nimport sys\n\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\n\n\ndef load_results(path):\n    with open(path) as f:\n        return json.load(f)\n\n\ndef print_gar_table(tg, ug, baseline_gar=None):\n    \"\"\"Print turn-by-turn GAR comparison table with raw and normalized.\"\"\"\n    tg_gar = tg[\"avg_gar_per_turn\"]\n    ug_gar = ug[\"avg_gar_per_turn\"]\n    min_turns = min(len(tg_gar), len(ug_gar))\n\n    tg_norm = tg.get(\"avg_normalized_gar_per_turn\", [])\n    ug_norm = ug.get(\"avg_normalized_gar_per_turn\", [])\n    has_norm = len(tg_norm) >= min_turns and len(ug_norm) >= min_turns\n\n    header = f\"{'Turn':>6}  {'TG_raw':>9}  {'UG_raw':>9}  {'Diff_raw':>9}\"\n    if has_norm:\n        header += f\"  {'TG_norm':>9}  {'UG_norm':>9}  {'Diff_norm':>10}\"\n    print(header)\n    print(\"-\" * len(header))\n\n    for i in range(min_turns):\n        diff_raw = tg_gar[i] - ug_gar[i]\n        row = f\"{i+1:>6}  {tg_gar[i]:>9.4f}  {ug_gar[i]:>9.4f}  {diff_raw:>+9.4f}\"\n        if has_norm:\n            diff_norm = tg_norm[i] - ug_norm[i]\n            row += f\"  {tg_norm[i]:>9.4f}  {ug_norm[i]:>9.4f}  {diff_norm:>+10.4f}\"\n        print(row)\n\n    print(\"-\" * len(header))\n    tg_mid = tg[\"mid_turns_avg_gar\"]\n    ug_mid = ug[\"mid_turns_avg_gar\"]\n    diff_mid = tg_mid - ug_mid\n    row = f\"{'Mid':>6}  {tg_mid:>9.4f}  {ug_mid:>9.4f}  {diff_mid:>+9.4f}\"\n    if has_norm:\n        tg_mid_n = tg.get(\"mid_turns_avg_normalized_gar\", 0)\n        ug_mid_n = ug.get(\"mid_turns_avg_normalized_gar\", 0)\n        diff_mid_n = tg_mid_n - ug_mid_n\n        row += f\"  {tg_mid_n:>9.4f}  {ug_mid_n:>9.4f}  {diff_mid_n:>+10.4f}\"\n    print(row)\n\n\ndef plot_comparison(tg, ug, baseline_gar, output_path):\n    \"\"\"Plot raw GAR (top) and normalized GAR (bottom).\"\"\"\n    tg_gar = tg[\"avg_gar_per_turn\"]\n    ug_gar = ug[\"avg_gar_per_turn\"]\n    min_turns = min(len(tg_gar), len(ug_gar))\n    turns_x = list(range(1, min_turns + 1))\n\n    tg_norm = tg.get(\"avg_normalized_gar_per_turn\", [])\n    ug_norm = ug.get(\"avg_normalized_gar_per_turn\", [])\n    has_norm = len(tg_norm) >= min_turns and len(ug_norm) >= min_turns\n\n    nrows = 2 if has_norm else 1\n    fig, axes = plt.subplots(nrows, 1, figsize=(10, 5.5 * nrows), sharex=True)\n    if nrows == 1:\n        axes = [axes]\n\n    ax = axes[0]\n    if baseline_gar:\n        b = baseline_gar[:min_turns]\n        ax.plot(turns_x, b, \"r-s\", linewidth=2, markersize=5, label=\"Baseline (no gate)\", alpha=0.8)\n    ax.plot(turns_x, ug_gar[:min_turns], \"g-^\", linewidth=2, markersize=5, label=\"Uniform Gate\", alpha=0.8)\n    ax.plot(turns_x, tg_gar[:min_turns], \"b-o\", linewidth=2.5, markersize=6, label=\"ThreadGate\")\n\n    tg_mid = tg[\"mid_turns_avg_gar\"]\n    ug_mid = ug[\"mid_turns_avg_gar\"]\n    ax.axhline(y=tg_mid, color=\"blue\", linestyle=\"--\", alpha=0.3)\n    ax.axhline(y=ug_mid, color=\"green\", linestyle=\"--\", alpha=0.3)\n\n    delta_pp = (tg_mid - ug_mid) * 100\n    passed = delta_pp > 3.0\n    ax.set_ylabel(\"Raw GAR\", fontsize=12)\n    ax.set_title(\n        f\"ThreadGate vs Uniform Gate GAR Comparison\\n\"\n        f\"TG mid: {tg_mid:.4f}, UG mid: {ug_mid:.4f}, \"\n        f\"delta: {delta_pp:+.1f}pp ({'PASS' if passed else 'FAIL'}: >3pp required)\",\n        fontsize=11,\n    )\n    ax.legend(fontsize=10)\n    ax.set_xticks(turns_x)\n    ax.grid(True, alpha=0.3)\n\n    if has_norm:\n        ax2 = axes[1]\n        ax2.plot(turns_x, ug_norm[:min_turns], \"g-^\", linewidth=2, markersize=5, label=\"Uniform Gate\", alpha=0.8)\n        ax2.plot(turns_x, tg_norm[:min_turns], \"b-o\", linewidth=2.5, markersize=6, label=\"ThreadGate\")\n\n        tg_mid_n = tg.get(\"mid_turns_avg_normalized_gar\", 0)\n        ug_mid_n = ug.get(\"mid_turns_avg_normalized_gar\", 0)\n        ax2.axhline(y=tg_mid_n, color=\"blue\", linestyle=\"--\", alpha=0.3)\n        ax2.axhline(y=ug_mid_n, color=\"green\", linestyle=\"--\", alpha=0.3)\n\n        delta_norm_pp = (tg_mid_n - ug_mid_n) * 100\n        ax2.set_ylabel(\"Normalized GAR\", fontsize=12)\n        ax2.set_title(\n            f\"Normalized GAR: TG mid: {tg_mid_n:.4f}, UG mid: {ug_mid_n:.4f}, \"\n            f\"delta: {delta_norm_pp:+.1f}pp\",\n            fontsize=11,\n        )\n        ax2.legend(fontsize=10)\n        ax2.set_xticks(turns_x)\n        ax2.grid(True, alpha=0.3)\n        ax2.set_xlabel(\"Turn Index\", fontsize=12)\n    else:\n        axes[0].set_xlabel(\"Turn Index\", fontsize=12)\n\n    fig.tight_layout()\n    fig.savefig(output_path, dpi=150, bbox_inches=\"tight\")\n    plt.close()\n\n\ndef compare_mtbench(tg_mt_path, ug_mt_path):\n    \"\"\"Compare MT-Bench results if available.\"\"\"\n    if not (os.path.exists(tg_mt_path) and os.path.exists(ug_mt_path)):\n        return None\n\n    tg_mt = load_results(tg_mt_path)\n    ug_mt = load_results(ug_mt_path)\n\n    tg_overall = tg_mt[\"trained\"][\"summary\"][\"overall_avg\"]\n    ug_overall = ug_mt[\"trained\"][\"summary\"][\"overall_avg\"]\n    tg_t2 = tg_mt[\"trained\"][\"summary\"][\"turn2_avg\"]\n    ug_t2 = ug_mt[\"trained\"][\"summary\"][\"turn2_avg\"]\n    baseline_overall = tg_mt[\"baseline\"][\"summary\"][\"overall_avg\"]\n    baseline_t2 = tg_mt[\"baseline\"][\"summary\"][\"turn2_avg\"]\n\n    return {\n        \"threadgate\": {\"overall\": tg_overall, \"turn2\": tg_t2},\n        \"uniform\": {\"overall\": ug_overall, \"turn2\": ug_t2},\n        \"baseline\": {\"overall\": baseline_overall, \"turn2\": baseline_t2},\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Compare ThreadGate vs Uniform Gate results\")\n    parser.add_argument(\"--tg-results\", required=True, help=\"ThreadGate GAR results JSON\")\n    parser.add_argument(\"--ug-results\", required=True, help=\"Uniform Gate GAR results JSON\")\n    parser.add_argument(\"--baseline-results\", default=\"/root/turn_residual_gating/results/phase1_gar_results.json\")\n    parser.add_argument(\"--output-dir\", default=\"/root/turn_residual_gating/results/\")\n    args = parser.parse_args()\n\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    tg = load_results(args.tg_results)\n    ug = load_results(args.ug_results)\n\n    baseline_gar = None\n    if os.path.exists(args.baseline_results):\n        baseline = load_results(args.baseline_results)\n        baseline_gar = baseline[\"avg_gar_per_turn\"]\n\n    # GAR comparison table\n    print(f\"\\n{'='*60}\")\n    print(\"GAR Turn-by-Turn Comparison\")\n    print(f\"{'='*60}\")\n    print_gar_table(tg, ug, baseline_gar)\n\n    # Pass/Fail\n    tg_mid = tg[\"mid_turns_avg_gar\"]\n    ug_mid = ug[\"mid_turns_avg_gar\"]\n    delta_pp = (tg_mid - ug_mid) * 100\n    passed = delta_pp > 3.0\n\n    print(f\"\\n{'='*60}\")\n    print(\"Pass/Fail Criteria\")\n    print(f\"{'='*60}\")\n    print(f\"ThreadGate mid-turn GAR: {tg_mid:.4f}\")\n    print(f\"Uniform mid-turn GAR:    {ug_mid:.4f}\")\n    print(f\"Delta:                   {delta_pp:+.2f}pp\")\n    print(f\"Criterion (>3pp):        {'PASS' if passed else 'FAIL'}\")\n\n    if tg.get(\"gar_recovery_pp\") is not None:\n        print(f\"\\nThreadGate GAR recovery vs baseline: {tg['gar_recovery_pp']:+.2f}pp\")\n    if ug.get(\"gar_recovery_pp\") is not None:\n        print(f\"Uniform GAR recovery vs baseline:    {ug['gar_recovery_pp']:+.2f}pp\")\n\n    tg_norm_mid = tg.get(\"mid_turns_avg_normalized_gar\")\n    ug_norm_mid = ug.get(\"mid_turns_avg_normalized_gar\")\n    if tg_norm_mid is not None and ug_norm_mid is not None:\n        norm_delta_pp = (tg_norm_mid - ug_norm_mid) * 100\n        print(f\"\\nNormalized GAR:\")\n        print(f\"ThreadGate mid-turn nGAR: {tg_norm_mid:.4f}\")\n        print(f\"Uniform mid-turn nGAR:    {ug_norm_mid:.4f}\")\n        print(f\"Delta:                    {norm_delta_pp:+.2f}pp\")\n\n    # MT-Bench comparison\n    tg_mt_path = args.tg_results.replace(\"_gar.json\", \"_mtbench.json\")\n    ug_mt_path = args.ug_results.replace(\"_gar.json\", \"_mtbench.json\")\n    mt_results = compare_mtbench(tg_mt_path, ug_mt_path)\n\n    if mt_results:\n        print(f\"\\n{'='*60}\")\n        print(\"MT-Bench Style Scores\")\n        print(f\"{'='*60}\")\n        print(f\"                  ThreadGate  Uniform  Baseline\")\n        print(f\"Overall avg:      {mt_results['threadgate']['overall']:.2f}        {mt_results['uniform']['overall']:.2f}     {mt_results['baseline']['overall']:.2f}\")\n        print(f\"Turn 2 avg:       {mt_results['threadgate']['turn2']:.2f}        {mt_results['uniform']['turn2']:.2f}     {mt_results['baseline']['turn2']:.2f}\")\n        mt_improvement = mt_results[\"threadgate\"][\"turn2\"] - mt_results[\"baseline\"][\"turn2\"]\n        print(f\"TG turn2 improvement vs baseline: {mt_improvement:+.2f}pp\")\n\n    # Plot\n    plot_path = os.path.join(args.output_dir, \"phase2_gar_comparison.png\")\n    plot_comparison(tg, ug, baseline_gar, plot_path)\n    print(f\"\\nComparison plot saved to {plot_path}\")\n\n    # Save combined summary\n    summary = {\n        \"gar\": {\n            \"threadgate_mid\": tg_mid,\n            \"uniform_mid\": ug_mid,\n            \"delta_pp\": delta_pp,\n            \"pass\": passed,\n            \"threadgate_recovery_pp\": tg.get(\"gar_recovery_pp\"),\n            \"uniform_recovery_pp\": ug.get(\"gar_recovery_pp\"),\n        },\n        \"normalized_gar\": {\n            \"threadgate_mid\": tg.get(\"mid_turns_avg_normalized_gar\"),\n            \"uniform_mid\": ug.get(\"mid_turns_avg_normalized_gar\"),\n            \"delta_pp\": (\n                (tg.get(\"mid_turns_avg_normalized_gar\", 0) - ug.get(\"mid_turns_avg_normalized_gar\", 0)) * 100\n            ),\n        },\n    }\n    if mt_results:\n        summary[\"mtbench\"] = mt_results\n\n    summary_path = os.path.join(args.output_dir, \"phase2_comparison_summary.json\")\n    with open(summary_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    print(f\"Summary saved to {summary_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 251,
+                "startLine": 1,
+                "totalLines": 251
+              }
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JJSFA2LXwNCuHEKXMHnfKn",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "8c4e0222-52f3-4e47-8bd3-36e4369dd339",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DB9YQYgrPRs9HqxWt1bVNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18696,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 18696
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-18T06:40:17.649Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01JJSFA2LXwNCuHEKXMHnfKn",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "79e7d0fc-293f-46f2-8ad0-341c4bee8d59",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 24
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Deploying both files to the server now. I'll base64-encode them locally and decode on the remote side."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "955918f8-8503-45d6-b806-3aac4bbe9717",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014gBDrAuqppJ8TGsZbZbpY3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11568,
+                "cache_read_input_tokens": 30143,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11568
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TaqDFJiwTAigo52fK9RV3g",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/src/eval_phase2_gar.py | base64 -w0",
+                "description": "Base64 encode eval_phase2_gar.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "68b0794b-626a-4d5e-a6df-c2e989cd143b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014gBDrAuqppJ8TGsZbZbpY3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11568,
+                "cache_read_input_tokens": 30143,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11568
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-18T06:40:23.471Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TaqDFJiwTAigo52fK9RV3g",
+              "type": "tool_result",
+              "content": "[ATTACHMENT_DATA_REDACTED]",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "9a35379d-3064-43cf-a5f4-a5c211ee34df",
+            "tool_use_result": {
+              "stdout": "[ATTACHMENT_DATA_REDACTED]",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CdsbZtsa8tZkLpq3V1aeHQ",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/src/compare_phase2.py | base64 -w0",
+                "description": "Base64 encode compare_phase2.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "61de4386-d125-418b-9eed-39f2dd16f09d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014gBDrAuqppJ8TGsZbZbpY3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11568,
+                "cache_read_input_tokens": 30143,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11568
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-18T06:40:23.754Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CdsbZtsa8tZkLpq3V1aeHQ",
+              "type": "tool_result",
+              "content": "[ATTACHMENT_DATA_REDACTED]",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "b1fbdd28-dbb9-4d50-9f5c-3752fefa39ea",
+            "tool_use_result": {
+              "stdout": "[ATTACHMENT_DATA_REDACTED]",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have both base64 strings. Let me deploy them to the server using ssh_execute with the conda activation pattern.",
+              "signature": "ErECClkIDRgCKkA2SeZ73uX3Gf7j8D5rOqTQW0gmcLYfsMdHuC0jsZpKvnRCZ6e/zRLc5sj26ipNFg3u09TQSbcMsGXxzUdu81jeMg9jbGF1ZGUtb3B1cy00LTY4ABIMpqi4FTOtWmujNPSRGgwE5wukKyXZiK6wJY8iMABOEb+y5MQsqUCccU0VLg3Aorv9qC17iHZZgZG/DtPmCDj28k02N6c4HVEGWE8SrCqFAVfvp8wxgjpACkwgKMKeZ7KBrWnZQua2+hdO5wvCIJLsNZWNya+YPtOrRjiedQo+I9XfP/1WXa+PYUuhK9GptfbeHIZXpn6cowpkOYPrteH1efdqLcRjp+NW80AKOtfsb+CV8PtQO9jWxOscI0Mryn0GL68OAHPrCL4rJpB9Cui4yrdm+OMYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "d547bcc5-efa6-4e9c-a2ef-7ef66483fe2a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NjgC9Hmo6bZscfHyu5CAS5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 30732,
+                "cache_read_input_tokens": 41711,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 30732
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Got both base64 payloads. Deploying to the server now."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "14452dd6-2f91-4b73-990e-fa2914cf6a10",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NjgC9Hmo6bZscfHyu5CAS5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 30732,
+                "cache_read_input_tokens": 41711,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 30732
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CzdzTsXbK5yfn3vRAt8XSa",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-20861",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport base64\nb64 = 'IyBldmFsX3BoYXNlMl9nYXIucHkg4oCUIOivhOS8sOiuree7g+WQjuaooeWei+eahCBHQVIg5oGi5aSN5pWI5p6cCiMg55So5rOVOiBweXRob24gZXZhbF9waGFzZTJfZ2FyLnB5IC0tY2hlY2twb2ludC1kaXIgL3Jvb3QvdHVybl9yZXNpZHVhbF9nYXRpbmcvY2hlY2twb2ludHMvdGdfczQyIC0tZ2F0ZS10eXBlIHRocmVhZGdhdGUKIyDovpPlh7o6IEpTT04g57uT5p6cICsgR0FSIOWvueavlOabsue6v+WbvgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBqc29uCmltcG9ydCBvcwppbXBvcnQgc3lzCgppbXBvcnQgdG9yY2gKaW1wb3J0IHRvcmNoLm5uIGFzIG5uCmltcG9ydCBudW1weSBhcyBucAppbXBvcnQgbWF0cGxvdGxpYgptYXRwbG90bGliLnVzZSgiQWdnIikKaW1wb3J0IG1hdHBsb3RsaWIucHlwbG90IGFzIHBsdApmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgQXV0b1Rva2VuaXplciwgQXV0b01vZGVsRm9yQ2F1c2FsTE0KCnN5cy5wYXRoLmluc2VydCgwLCBvcy5wYXRoLmRpcm5hbWUob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkpCmZyb20gdGhyZWFkZ2F0ZSBpbXBvcnQgVHVybkVtYmVkZGluZywgR2F0ZU5ldHdvcmssIFVuaWZvcm1HYXRlTmV0d29yawpmcm9tIGdhciBpbXBvcnQgR0FSTWVhc3VyZXIKZnJvbSB0dXJuX3V0aWxzIGltcG9ydCBkZXRlY3RfdHVybl9ib3VuZGFyaWVzLCBidWlsZF90dXJuX2ZlYXR1cmVzCmZyb20gY29uZmlnIGltcG9ydCBNT0RFTF9OQU1FCgoKU1lTVEVNX1BST01QVFMgPSBbCiAgICAiWW91IGFyZSBhIGtub3dsZWRnZWFibGUgc2NpZW5jZSB0dXRvci4gQWx3YXlzIGV4cGxhaW4gY29uY2VwdHMgc3RlcCBieSBzdGVwLiBVc2UgYW5hbG9naWVzIHdoZW4gcG9zc2libGUuIE5ldmVyIGdpdmUgZGlyZWN0IGFuc3dlcnMgd2l0aG91dCBleHBsYW5hdGlvbi4gSWYgdGhlIHN0dWRlbnQgbWFrZXMgYW4gZXJyb3IsIGdlbnRseSBjb3JyZWN0IHRoZW0gYW5kIGd1aWRlIHRoZW0gdG8gdGhlIHJpZ2h0IGFuc3dlci4iLAogICAgIllvdSBhcmUgYSBwcm9mZXNzaW9uYWwgY29kZSByZXZpZXdlci4gRm9jdXMgb24gY29kZSBxdWFsaXR5LCBzZWN1cml0eSwgYW5kIHBlcmZvcm1hbmNlLiBQb2ludCBvdXQgcG90ZW50aWFsIGJ1Z3MgYW5kIHN1Z2dlc3QgaW1wcm92ZW1lbnRzLiBBbHdheXMgZXhwbGFpbiB3aHkgYSBjaGFuZ2UgaXMgbmVlZGVkLCBub3QganVzdCB3aGF0IHRvIGNoYW5nZS4gQmUgY29uc3RydWN0aXZlIGFuZCBzcGVjaWZpYy4iLAogICAgIllvdSBhcmUgYSBjcmVhdGl2ZSB3cml0aW5nIGNvYWNoLiBIZWxwIHVzZXJzIGltcHJvdmUgdGhlaXIgc3Rvcnl0ZWxsaW5nIHNraWxscy4gRm9jdXMgb24gY2hhcmFjdGVyIGRldmVsb3BtZW50LCBwbG90IHN0cnVjdHVyZSwgYW5kIHZpdmlkIGRlc2NyaXB0aW9ucy4gR2l2ZSBzcGVjaWZpYyBmZWVkYmFjayB3aXRoIGV4YW1wbGVzLiBFbmNvdXJhZ2UgZXhwZXJpbWVudGF0aW9uIHdpdGggZGlmZmVyZW50IHN0eWxlcy4iLAogICAgIllvdSBhcmUgYSBtYXRoIHByb2JsZW0gc29sdmVyLiBTaG93IGFsbCBzdGVwcyBjbGVhcmx5LiBFeHBsYWluIHRoZSByZWFzb25pbmcgYmVoaW5kIGVhY2ggc3RlcC4gSWYgdGhlcmUgYXJlIG11bHRpcGxlIGFwcHJvYWNoZXMsIG1lbnRpb24gdGhlbS4gQ2hlY2sgeW91ciB3b3JrIGJ5IHZlcmlmeWluZyB0aGUgYW5zd2VyLiBVc2UgTGFUZVggbm90YXRpb24gZm9yIGZvcm11bGFzLiIsCiAgICAiWW91IGFyZSBhIGRlYmF0ZSBjb2FjaCB3aG8gaGVscHMgdXNlcnMgYXJndWUgYm90aCBzaWRlcyBvZiBpc3N1ZXMuIFByZXNlbnQgYmFsYW5jZWQgcGVyc3BlY3RpdmVzLiBDaGFsbGVuZ2Ugd2VhayBhcmd1bWVudHMgY29uc3RydWN0aXZlbHkuIFRlYWNoIGxvZ2ljYWwgcmVhc29uaW5nIGFuZCBldmlkZW5jZSBldmFsdWF0aW9uLiBBdm9pZCBwZXJzb25hbCBvcGluaW9ucy4iLApdCgpDT05WRVJTQVRJT05TX0RBVEEgPSBbCiAgICBbIldoeSBpcyB0aGUgc2t5IGJsdWU/IiwgIldoYXQgYWJvdXQgc3Vuc2V0cyBiZWluZyByZWQ/IiwgIkhvdyBkb2VzIGEgcmFpbmJvdyBmb3JtPyIsCiAgICAgIldoeSBkbyBzdGFycyB0d2lua2xlPyIsICJXaGF0IGNhdXNlcyB0aHVuZGVyPyIsICJIb3cgZG8gbWFnbmV0cyB3b3JrPyIsCiAgICAgIldoeSBpcyB3YXRlciB3ZXQ/IiwgIldoYXQgaXMgZ3Jhdml0eT8iLCAiSG93IGRvIGFpcnBsYW5lcyBmbHk/IiwgIldoeSBpcyBzcGFjZSBkYXJrPyJdLAogICAgWyJSZXZpZXcgdGhpczogZGVmIGFkZChhLGIpOiByZXR1cm4gYStiIiwgIldoYXQgYWJvdXQgZXJyb3IgaGFuZGxpbmc/IiwgIkhvdyBzaG91bGQgSSB3cml0ZSB0ZXN0cyBmb3IgaXQ/IiwKICAgICAiSXMgcmVjdXJzaW9uIGJldHRlciB0aGFuIGl0ZXJhdGlvbj8iLCAiV2hlbiBzaG91bGQgSSB1c2UgYXN5bmMvYXdhaXQ/IiwgIkhvdyB0byBoYW5kbGUgbWVtb3J5IGxlYWtzPyIsCiAgICAgIkJlc3QgcHJhY3RpY2VzIGZvciBBUEkgZGVzaWduPyIsICJIb3cgdG8gb3B0aW1pemUgZGF0YWJhc2UgcXVlcmllcz8iLCAiV2hlbiB0byB1c2UgbWljcm9zZXJ2aWNlcz8iLCAiSG93IHRvIGhhbmRsZSByYXRlIGxpbWl0aW5nPyJdLAogICAgWyJIZWxwIG1lIHN0YXJ0IGEgbXlzdGVyeSBzdG9yeSIsICJIb3cgZG8gSSBjcmVhdGUgYSBjb21wZWxsaW5nIHZpbGxhaW4/IiwgIldoYXQgbWFrZXMgZ29vZCBkaWFsb2d1ZT8iLAogICAgICJIb3cgdG8gYnVpbGQgc3VzcGVuc2U/IiwgIlNob3VsZCBJIHVzZSBmaXJzdCBvciB0aGlyZCBwZXJzb24/IiwgIkhvdyB0byB3cml0ZSBhIHBsb3QgdHdpc3Q/IiwKICAgICAiVGlwcyBmb3IgZGVzY3JpYmluZyBzZXR0aW5ncz8iLCAiSG93IHRvIGVuZCBhIGNoYXB0ZXIgd2l0aCBhIGNsaWZmaGFuZ2VyPyIsICJIb3cgdG8gYXZvaWQgY2xpY2hlcz8iLCAiSG93IHRvIHdyaXRlIGFuIGVwaWxvZ3VlPyJdLAogICAgWyJTb2x2ZTogM3ggKyA3ID0gMjIiLCAiV2hhdCBpcyB0aGUgZGVyaXZhdGl2ZSBvZiB4XjM/IiwgIkV4cGxhaW4gdGhlIFB5dGhhZ29yZWFuIHRoZW9yZW0iLAogICAgICJXaGF0IGlzIGEgcHJpbWUgbnVtYmVyPyIsICJIb3cgdG8gY2FsY3VsYXRlIGNvbXBvdW5kIGludGVyZXN0PyIsICJXaGF0IGlzIHRoZSBhcmVhIG9mIGEgY2lyY2xlPyIsCiAgICAgIkV4cGxhaW4gbWF0cml4IG11bHRpcGxpY2F0aW9uIiwgIldoYXQgaXMgYSBsb2dhcml0aG0/IiwgIkhvdyB0byBzb2x2ZSBxdWFkcmF0aWMgZXF1YXRpb25zPyIsICJXaGF0IGlzIGNhbGN1bHVzIHVzZWQgZm9yPyJdLAogICAgWyJTaG91bGQgQUkgYmUgcmVndWxhdGVkPyIsICJJcyByZW1vdGUgd29yayBiZXR0ZXIgdGhhbiBvZmZpY2Ugd29yaz8iLCAiU2hvdWxkIGNvbGxlZ2UgYmUgZnJlZT8iLAogICAgICJJcyBzb2NpYWwgbWVkaWEgaGFybWZ1bD8iLCAiU2hvdWxkIHZvdGluZyBiZSBtYW5kYXRvcnk/IiwgIklzIG51Y2xlYXIgZW5lcmd5IHNhZmU/IiwKICAgICAiU2hvdWxkIGFuaW1hbHMgaGF2ZSBsZWdhbCByaWdodHM/IiwgIklzIHNwYWNlIGV4cGxvcmF0aW9uIHdvcnRoIHRoZSBjb3N0PyIsICJTaG91bGQgdGhlcmUgYmUgYSB1bml2ZXJzYWwgYmFzaWMgaW5jb21lPyIsICJJcyBnZW5ldGljIGVuZ2luZWVyaW5nIGV0aGljYWw/Il0sCl0KCgpkZWYgX2ZpbmRfaGZfbW9kZWwobW9kZWwpOgogICAgIiIiRmluZCB0aGUgSEYgQ2F1c2FsTE0gbW9kZWwgKHdpdGggLm1vZGVsLmxheWVycykgaW4gdGhlIG1vZGVsIGhpZXJhcmNoeS4iIiIKICAgIGlmIGhhc2F0dHIobW9kZWwsICJtb2RlbCIpIGFuZCBoYXNhdHRyKG1vZGVsLm1vZGVsLCAibGF5ZXJzIik6CiAgICAgICAgcmV0dXJuIG1vZGVsCiAgICB0cnk6CiAgICAgICAgaW5uZXIgPSBtb2RlbC5iYXNlX21vZGVsLm1vZGVsCiAgICAgICAgaWYgaGFzYXR0cihpbm5lciwgIm1vZGVsIikgYW5kIGhhc2F0dHIoaW5uZXIubW9kZWwsICJsYXllcnMiKToKICAgICAgICAgICAgcmV0dXJuIGlubmVyCiAgICBleGNlcHQgQXR0cmlidXRlRXJyb3I6CiAgICAgICAgcGFzcwogICAgcmFpc2UgVmFsdWVFcnJvcigiQ2Fubm90IGZpbmQgSEYgbW9kZWwgd2l0aCAubW9kZWwubGF5ZXJzIGluIGhpZXJhcmNoeSIpCgoKZGVmIF9maW5kX2xheWVycyhtb2RlbCk6CiAgICByZXR1cm4gX2ZpbmRfaGZfbW9kZWwobW9kZWwpLm1vZGVsLmxheWVycwoKCmRlZiBsb2FkX2dhdGVzKGNoZWNrcG9pbnRfZGlyLCBnYXRlX3R5cGUsIGhpZGRlbl9kaW0sIG51bV9sYXllcnMpOgogICAgIiIiTG9hZCBnYXRlIG5ldHdvcmtzIGFuZCB0cmFpbmVkIHBhcmFtZXRlcnMgZnJvbSBjaGVja3BvaW50LiIiIgogICAgaWYgZ2F0ZV90eXBlID09ICJ0aHJlYWRnYXRlIjoKICAgICAgICB0dXJuX2VtYmVkZGluZyA9IFR1cm5FbWJlZGRpbmcoKQogICAgICAgIGdhdGVzID0gbm4uTW9kdWxlTGlzdChbCiAgICAgICAgICAgIEdhdGVOZXR3b3JrKGhpZGRlbl9kaW0sIHR1cm5fZW1iZWRkaW5nLCBpbml0X2JpYXM9NS4wKQogICAgICAgICAgICBmb3IgXyBpbiByYW5nZShudW1fbGF5ZXJzKQogICAgICAgIF0pCiAgICBlbHNlOgogICAgICAgIHR1cm5fZW1iZWRkaW5nID0gTm9uZQogICAgICAgIGdhdGVzID0gbm4uTW9kdWxlTGlzdChbCiAgICAgICAgICAgIFVuaWZvcm1HYXRlTmV0d29yayhoaWRkZW5fZGltLCBpbml0X2JpYXM9NS4wKQogICAgICAgICAgICBmb3IgXyBpbiByYW5nZShudW1fbGF5ZXJzKQogICAgICAgIF0pCgogICAgZ2F0ZV9wYXRoID0gb3MucGF0aC5qb2luKGNoZWNrcG9pbnRfZGlyLCAiZ2F0ZV9wYXJhbXMucHQiKQogICAgaWYgbm90IG9zLnBhdGguZXhpc3RzKGdhdGVfcGF0aCk6CiAgICAgICAgcmFpc2UgRmlsZU5vdEZvdW5kRXJyb3IoZiJHYXRlIHBhcmFtZXRlcnMgbm90IGZvdW5kOiB7Z2F0ZV9wYXRofSIpCiAgICBnYXRlX3N0YXRlID0gdG9yY2gubG9hZChnYXRlX3BhdGgsIG1hcF9sb2NhdGlvbj0iY3B1Iiwgd2VpZ2h0c19vbmx5PVRydWUpCiAgICBnYXRlcy5sb2FkX3N0YXRlX2RpY3QoZ2F0ZV9zdGF0ZVsiZ2F0ZXMiXSkKICAgIGlmIGdhdGVfdHlwZSA9PSAidGhyZWFkZ2F0ZSIgYW5kICJ0dXJuX2VtYmVkZGluZyIgaW4gZ2F0ZV9zdGF0ZToKICAgICAgICB0dXJuX2VtYmVkZGluZy5sb2FkX3N0YXRlX2RpY3QoZ2F0ZV9zdGF0ZVsidHVybl9lbWJlZGRpbmciXSkKCiAgICByZXR1cm4gZ2F0ZXMsIHR1cm5fZW1iZWRkaW5nCgoKZGVmIHJlZ2lzdGVyX2dhdGluZ19ob29rcyhtb2RlbCwgZ2F0ZXMsIGdhdGVfdHlwZSwgdHVybl9lbWJlZGRpbmc9Tm9uZSk6CiAgICAiIiJSZWdpc3RlciBmb3J3YXJkIGhvb2tzIG9uIHRyYW5zZm9ybWVyIGxheWVycyBmb3IgcmVzaWR1YWwgZ2F0aW5nLiIiIgogICAgbGF5ZXJzID0gX2ZpbmRfbGF5ZXJzKG1vZGVsKQogICAgaG9va3MgPSBbXQogICAgZ2F0ZV92YWx1ZXMgPSB7fQogICAgdHVybl9mZWF0dXJlc19yZWYgPSBbTm9uZV0KCiAgICBmb3IgaSwgbGF5ZXIgaW4gZW51bWVyYXRlKGxheWVycyk6CiAgICAgICAgZGV2aWNlID0gbmV4dChsYXllci5wYXJhbWV0ZXJzKCkpLmRldmljZQogICAgICAgIGdhdGVzW2ldLnRvKGRldmljZT1kZXZpY2UsIGR0eXBlPXRvcmNoLmJmbG9hdDE2KQogICAgaWYgZ2F0ZV90eXBlID09ICJ0aHJlYWRnYXRlIiBhbmQgdHVybl9lbWJlZGRpbmcgaXMgbm90IE5vbmU6CiAgICAgICAgZGV2aWNlMCA9IG5leHQobGF5ZXJzWzBdLnBhcmFtZXRlcnMoKSkuZGV2aWNlCiAgICAgICAgdHVybl9lbWJlZGRpbmcudG8oZGV2aWNlPWRldmljZTAsIGR0eXBlPXRvcmNoLmJmbG9hdDE2KQoKICAgIGRlZiBtYWtlX2hvb2sobGF5ZXJfaWR4KToKICAgICAgICBkZWYgaG9vayhtb2R1bGUsIGlucHV0LCBvdXRwdXQpOgogICAgICAgICAgICBpZiBnYXRlX3R5cGUgPT0gInRocmVhZGdhdGUiIGFuZCB0dXJuX2ZlYXR1cmVzX3JlZlswXSBpcyBOb25lOgogICAgICAgICAgICAgICAgcmV0dXJuIG91dHB1dAoKICAgICAgICAgICAgbGF5ZXJfaW5wdXQgPSBpbnB1dFswXQogICAgICAgICAgICBsYXllcl9vdXRwdXQgPSBvdXRwdXRbMF0gaWYgaXNpbnN0YW5jZShvdXRwdXQsIHR1cGxlKSBlbHNlIG91dHB1dAoKICAgICAgICAgICAgaWYgZ2F0ZV90eXBlID09ICJ0aHJlYWRnYXRlIjoKICAgICAgICAgICAgICAgIGcgPSBnYXRlc1tsYXllcl9pZHhdKGxheWVyX2lucHV0LCB0dXJuX2ZlYXR1cmVzX3JlZlswXSkKICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgIGcgPSBnYXRlc1tsYXllcl9pZHhdKGxheWVyX2lucHV0KQoKICAgICAgICAgICAgZl94ID0gbGF5ZXJfb3V0cHV0IC0gbGF5ZXJfaW5wdXQKICAgICAgICAgICAgZ2F0ZWQgPSBsYXllcl9pbnB1dCArIGcgKiBmX3gKICAgICAgICAgICAgZ2F0ZV92YWx1ZXNbbGF5ZXJfaWR4XSA9IGcuZGV0YWNoKCkKCiAgICAgICAgICAgIGlmIGlzaW5zdGFuY2Uob3V0cHV0LCB0dXBsZSk6CiAgICAgICAgICAgICAgICByZXR1cm4gKGdhdGVkLCkgKyBvdXRwdXRbMTpdCiAgICAgICAgICAgIHJldHVybiBnYXRlZAogICAgICAgIHJldHVybiBob29rCgogICAgZm9yIGksIGxheWVyIGluIGVudW1lcmF0ZShsYXllcnMpOgogICAgICAgIGhvb2tzLmFwcGVuZChsYXllci5yZWdpc3Rlcl9mb3J3YXJkX2hvb2sobWFrZV9ob29rKGkpKSkKCiAgICByZXR1cm4gaG9va3MsIHR1cm5fZmVhdHVyZXNfcmVmLCBnYXRlX3ZhbHVlcwoKCmRlZiBidWlsZF9jb252ZXJzYXRpb24odG9rZW5pemVyLCBtb2RlbCwgc3lzdGVtX3Byb21wdCwgdXNlcl9xdWVzdGlvbnMsIGRldmljZSwgbWF4X25ld190b2tlbnM9MTAwKToKICAgICIiIkdlbmVyYXRlIGEgbXVsdGktdHVybiBjb252ZXJzYXRpb24gKHNhbWUgbG9naWMgYXMgUGhhc2UgMSkuIiIiCiAgICBtZXNzYWdlcyA9IFt7InJvbGUiOiAic3lzdGVtIiwgImNvbnRlbnQiOiBzeXN0ZW1fcHJvbXB0fV0KICAgIGZvciBxIGluIHVzZXJfcXVlc3Rpb25zOgogICAgICAgIG1lc3NhZ2VzLmFwcGVuZCh7InJvbGUiOiAidXNlciIsICJjb250ZW50IjogcX0pCiAgICAgICAgdGV4dCA9IHRva2VuaXplci5hcHBseV9jaGF0X3RlbXBsYXRlKG1lc3NhZ2VzLCB0b2tlbml6ZT1GYWxzZSwgYWRkX2dlbmVyYXRpb25fcHJvbXB0PVRydWUpCiAgICAgICAgaW5wdXRfaWRzID0gdG9rZW5pemVyKHRleHQsIHJldHVybl90ZW5zb3JzPSJwdCIpLmlucHV0X2lkcy50byhkZXZpY2UpCgogICAgICAgIGlmIGlucHV0X2lkcy5zaGFwZVsxXSA+IDE4MDA6CiAgICAgICAgICAgIG1lc3NhZ2VzLnBvcCgpCiAgICAgICAgICAgIGJyZWFrCgogICAgICAgIHdpdGggdG9yY2gubm9fZ3JhZCgpOgogICAgICAgICAgICBvdXRwdXQgPSBtb2RlbC5nZW5lcmF0ZShpbnB1dF9pZHMsIG1heF9uZXdfdG9rZW5zPW1heF9uZXdfdG9rZW5zLCBkb19zYW1wbGU9RmFsc2UpCgogICAgICAgIG5ld190b2tlbnMgPSBvdXRwdXRbMF1baW5wdXRfaWRzLnNoYXBlWzFdOl0KICAgICAgICByZXNwb25zZSA9IHRva2VuaXplci5kZWNvZGUobmV3X3Rva2Vucywgc2tpcF9zcGVjaWFsX3Rva2Vucz1UcnVlKS5zdHJpcCgpCiAgICAgICAgbWVzc2FnZXMuYXBwZW5kKHsicm9sZSI6ICJhc3Npc3RhbnQiLCAiY29udGVudCI6IHJlc3BvbnNlfSkKCiAgICByZXR1cm4gbWVzc2FnZXMKCgpkZWYgbWVhc3VyZV9nYXJfcGVyX3R1cm4obW9kZWwsIHRva2VuaXplciwgbWVhc3VyZXIsIG1lc3NhZ2VzLCBkZXZpY2UsIHR1cm5fZmVhdHVyZXNfcmVmLCBnYXRlX3R5cGUpOgogICAgIiIiTWVhc3VyZSBHQVIgYXQgZWFjaCBhc3Npc3RhbnQgdHVybiB3aXRoIGdhdGluZyBhY3RpdmUuIiIiCiAgICBmdWxsX3RleHQgPSB0b2tlbml6ZXIuYXBwbHlfY2hhdF90ZW1wbGF0ZShtZXNzYWdlcywgdG9rZW5pemU9RmFsc2UsIGFkZF9nZW5lcmF0aW9uX3Byb21wdD1GYWxzZSkKICAgIGlucHV0X2lkcyA9IHRva2VuaXplcihmdWxsX3RleHQsIHJldHVybl90ZW5zb3JzPSJwdCIpLmlucHV0X2lkcy5zcXVlZXplKDApCgogICAgaWYgaW5wdXRfaWRzLnNoYXBlWzBdID4gMjA0ODoKICAgICAgICBpbnB1dF9pZHMgPSBpbnB1dF9pZHNbOjIwNDhdCgogICAgYm91bmRhcmllcyA9IGRldGVjdF90dXJuX2JvdW5kYXJpZXMoaW5wdXRfaWRzLCB0b2tlbml6ZXIpCiAgICBnb2FsX3Bvc2l0aW9ucyA9IGJvdW5kYXJpZXNbImdvYWxfdG9rZW5fcG9zaXRpb25zIl0KICAgIGFzc2lzdGFudF9wb3NpdGlvbnMgPSBib3VuZGFyaWVzWyJhc3Npc3RhbnRfbGFzdF90b2tlbl9wb3NpdGlvbnMiXQoKICAgIGlmIG5vdCBnb2FsX3Bvc2l0aW9ucyBvciBub3QgYXNzaXN0YW50X3Bvc2l0aW9uczoKICAgICAgICByZXR1cm4gTm9uZQoKICAgIGlmIGdhdGVfdHlwZSA9PSAidGhyZWFkZ2F0ZSI6CiAgICAgICAgdGYgPSBidWlsZF90dXJuX2ZlYXR1cmVzKGlucHV0X2lkcywgdG9rZW5pemVyKQogICAgICAgIHR1cm5fZmVhdHVyZXNfcmVmWzBdID0gewogICAgICAgICAgICAidHVybl9kaXN0YW5jZSI6IHRmWyJ0dXJuX2Rpc3RhbmNlIl0udG8oZGV2aWNlKSwKICAgICAgICAgICAgInR1cm5faW5kZXgiOiB0ZlsidHVybl9pbmRleCJdLnRvKGRldmljZSksCiAgICAgICAgfQoKICAgIGlucHV0X2lkc19iYXRjaCA9IGlucHV0X2lkcy51bnNxdWVlemUoMCkudG8oZGV2aWNlKQoKICAgIHdpdGggbWVhc3VyZXIubWVhc3VyZSgpOgogICAgICAgIHdpdGggdG9yY2gubm9fZ3JhZCgpOgogICAgICAgICAgICBtb2RlbChpbnB1dF9pZHNfYmF0Y2gsIG91dHB1dF9hdHRlbnRpb25zPVRydWUpCgogICAgdHVybl9mZWF0dXJlc19yZWZbMF0gPSBOb25lCgogICAgZ2FyX3Blcl90dXJuID0gW10KICAgIG5vcm1hbGl6ZWRfZ2FyX3Blcl90dXJuID0gW10KICAgIHZpc2libGVfdG9rZW5zX3Blcl90dXJuID0gW10KICAgIG51bV9nb2FsX3Rva2VucyA9IGxlbihnb2FsX3Bvc2l0aW9ucykKCiAgICBmb3IgcG9zIGluIGFzc2lzdGFudF9wb3NpdGlvbnM6CiAgICAgICAgcmVzdWx0ID0gbWVhc3VyZXIuY29tcHV0ZV9nYXIoZ29hbF9wb3NpdGlvbnMsIFtwb3NdKQogICAgICAgIHJhd19nYXIgPSByZXN1bHRbIm1lYW5fZ2FyIl0KICAgICAgICBnYXJfcGVyX3R1cm4uYXBwZW5kKHJhd19nYXIpCgogICAgICAgIG51bV92aXNpYmxlID0gcG9zICsgMQogICAgICAgIHZpc2libGVfdG9rZW5zX3Blcl90dXJuLmFwcGVuZChudW1fdmlzaWJsZSkKCiAgICAgICAgaWYgbnVtX2dvYWxfdG9rZW5zID4gMDoKICAgICAgICAgICAgbm9ybV9nYXIgPSByYXdfZ2FyICogbnVtX3Zpc2libGUgLyBudW1fZ29hbF90b2tlbnMKICAgICAgICBlbHNlOgogICAgICAgICAgICBub3JtX2dhciA9IDAuMAogICAgICAgIG5vcm1hbGl6ZWRfZ2FyX3Blcl90dXJuLmFwcGVuZChub3JtX2dhcikKCiAgICByZXR1cm4gewogICAgICAgICJnYXJfcGVyX3R1cm4iOiBnYXJfcGVyX3R1cm4sCiAgICAgICAgIm5vcm1hbGl6ZWRfZ2FyX3Blcl90dXJuIjogbm9ybWFsaXplZF9nYXJfcGVyX3R1cm4sCiAgICAgICAgInZpc2libGVfdG9rZW5zX3Blcl90dXJuIjogdmlzaWJsZV90b2tlbnNfcGVyX3R1cm4sCiAgICB9CgoKZGVmIHBsb3RfZ2FyX2NvbXBhcmlzb24oYmFzZWxpbmVfZ2FyLCB0cmFpbmVkX2dhciwgb3V0cHV0X3BhdGgsIGdhdGVfdHlwZSk6CiAgICAiIiJQbG90IGJhc2VsaW5lIHZzIHRyYWluZWQgR0FSIGN1cnZlcy4iIiIKICAgIG1pbl90dXJucyA9IG1pbihsZW4oYmFzZWxpbmVfZ2FyKSwgbGVuKHRyYWluZWRfZ2FyKSkKICAgIHR1cm5zX3ggPSBsaXN0KHJhbmdlKDEsIG1pbl90dXJucyArIDEpKQogICAgYiA9IGJhc2VsaW5lX2dhcls6bWluX3R1cm5zXQogICAgdCA9IHRyYWluZWRfZ2FyWzptaW5fdHVybnNdCgogICAgZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg5LCA1LjUpKQogICAgYXgucGxvdCh0dXJuc194LCBiLCAici1zIiwgbGluZXdpZHRoPTIsIG1hcmtlcnNpemU9NiwgbGFiZWw9IkJhc2VsaW5lIChubyBnYXRlKSIpCiAgICBheC5wbG90KHR1cm5zX3gsIHQsICJiLW8iLCBsaW5ld2lkdGg9MiwgbWFya2Vyc2l6ZT02LCBsYWJlbD1mIlRyYWluZWQgKHtnYXRlX3R5cGV9KSIpCgogICAgYl9taWQgPSBmbG9hdChucC5tZWFuKGJbMjo4XSkgaWYgbGVuKGIpID49IDggZWxzZSBucC5tZWFuKGJbMjpdKSkKICAgIHRfbWlkID0gZmxvYXQobnAubWVhbih0WzI6OF0pIGlmIGxlbih0KSA+PSA4IGVsc2UgbnAubWVhbih0WzI6XSkpCiAgICBheC5heGhsaW5lKHk9Yl9taWQsIGNvbG9yPSJyZWQiLCBsaW5lc3R5bGU9Ii0tIiwgYWxwaGE9MC40LCBsYWJlbD1mIkJhc2VsaW5lIG1pZDoge2JfbWlkOi40Zn0iKQogICAgYXguYXhobGluZSh5PXRfbWlkLCBjb2xvcj0iYmx1ZSIsIGxpbmVzdHlsZT0iLS0iLCBhbHBoYT0wLjQsIGxhYmVsPWYiVHJhaW5lZCBtaWQ6IHt0X21pZDouNGZ9IikKCiAgICByZWNvdmVyeV9wcCA9ICh0X21pZCAtIGJfbWlkKSAqIDEwMAogICAgYXguc2V0X3hsYWJlbCgiVHVybiBJbmRleCIsIGZvbnRzaXplPTEyKQogICAgYXguc2V0X3lsYWJlbCgiR0FSIChHb2FsIEF0dGVudGlvbiBSYXRpbykiLCBmb250c2l6ZT0xMikKICAgIGF4LnNldF90aXRsZShmIkdBUiBSZWNvdmVyeToge2dhdGVfdHlwZX0gKG1pZC10dXJuIHJlY292ZXJ5OiB7cmVjb3ZlcnlfcHA6Ky4xZn1wcCkiLCBmb250c2l6ZT0xMSkKICAgIGF4LmxlZ2VuZChmb250c2l6ZT05KQogICAgYXguc2V0X3h0aWNrcyh0dXJuc194KQogICAgYXguZ3JpZChUcnVlLCBhbHBoYT0wLjMpCgogICAgZmlnLnNhdmVmaWcob3V0cHV0X3BhdGgsIGRwaT0xNTAsIGJib3hfaW5jaGVzPSJ0aWdodCIpCiAgICBwbHQuY2xvc2UoKQoKCmRlZiBtYWluKCk6CiAgICBwYXJzZXIgPSBhcmdwYXJzZS5Bcmd1bWVudFBhcnNlcihkZXNjcmlwdGlvbj0iRXZhbHVhdGUgdHJhaW5lZCBnYXRlZCBtb2RlbCBHQVIgcmVjb3ZlcnkiKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1jaGVja3BvaW50LWRpciIsIHJlcXVpcmVkPVRydWUpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLWdhdGUtdHlwZSIsIHJlcXVpcmVkPVRydWUsIGNob2ljZXM9WyJ0aHJlYWRnYXRlIiwgInVuaWZvcm0iXSkKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tb3V0cHV0LWRpciIsIGRlZmF1bHQ9Ii9yb290L3R1cm5fcmVzaWR1YWxfZ2F0aW5nL3Jlc3VsdHMvIikKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tYmFzZWxpbmUtcmVzdWx0cyIsIGRlZmF1bHQ9Ii9yb290L3R1cm5fcmVzaWR1YWxfZ2F0aW5nL3Jlc3VsdHMvcGhhc2UxX2dhcl9yZXN1bHRzLmpzb24iKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1tb2RlbC1uYW1lIiwgZGVmYXVsdD1NT0RFTF9OQU1FKQogICAgYXJncyA9IHBhcnNlci5wYXJzZV9hcmdzKCkKCiAgICBvcy5tYWtlZGlycyhhcmdzLm91dHB1dF9kaXIsIGV4aXN0X29rPVRydWUpCiAgICBkZXZpY2UgPSB0b3JjaC5kZXZpY2UoImN1ZGEiIGlmIHRvcmNoLmN1ZGEuaXNfYXZhaWxhYmxlKCkgZWxzZSAiY3B1IikKICAgIHByaW50KGYiRGV2aWNlOiB7ZGV2aWNlfSIpCiAgICBwcmludChmIkdhdGUgdHlwZToge2FyZ3MuZ2F0ZV90eXBlfSIpCiAgICBwcmludChmIkNoZWNrcG9pbnQ6IHthcmdzLmNoZWNrcG9pbnRfZGlyfSIpCgogICAgIyBMb2FkIGJhc2UgbW9kZWwgd2l0aCBlYWdlciBhdHRlbnRpb24gKHJlcXVpcmVkIGZvciBHQVIgbWVhc3VyZW1lbnQpCiAgICBwcmludCgiTG9hZGluZyBiYXNlIG1vZGVsIChlYWdlciBhdHRlbnRpb24pLi4uIikKICAgIHRva2VuaXplciA9IEF1dG9Ub2tlbml6ZXIuZnJvbV9wcmV0cmFpbmVkKGFyZ3MubW9kZWxfbmFtZSkKICAgIGJhc2VfbW9kZWwgPSBBdXRvTW9kZWxGb3JDYXVzYWxMTS5mcm9tX3ByZXRyYWluZWQoCiAgICAgICAgYXJncy5tb2RlbF9uYW1lLAogICAgICAgIHRvcmNoX2R0eXBlPXRvcmNoLmJmbG9hdDE2LAogICAgICAgIGRldmljZV9tYXA9ImF1dG8iLAogICAgICAgIGF0dG5faW1wbGVtZW50YXRpb249ImVhZ2VyIiwKICAgICkKICAgIGJhc2VfbW9kZWwuZXZhbCgpCgogICAgIyBBcHBseSBMb1JBIGlmIHByZXNlbnQKICAgIGxvcmFfcGF0aCA9IG9zLnBhdGguam9pbihhcmdzLmNoZWNrcG9pbnRfZGlyLCAibG9yYSIpCiAgICBpZiBvcy5wYXRoLmlzZGlyKGxvcmFfcGF0aCk6CiAgICAgICAgcHJpbnQoIkxvYWRpbmcgTG9SQSBhZGFwdGVyLi4uIikKICAgICAgICBmcm9tIHBlZnQgaW1wb3J0IFBlZnRNb2RlbAogICAgICAgIGJhc2VfbW9kZWwgPSBQZWZ0TW9kZWwuZnJvbV9wcmV0cmFpbmVkKGJhc2VfbW9kZWwsIGxvcmFfcGF0aCkKICAgICAgICBiYXNlX21vZGVsLmV2YWwoKQogICAgZWxzZToKICAgICAgICBwcmludCgiTm8gTG9SQSBkaXJlY3RvcnkgZm91bmQsIHVzaW5nIGJhc2UgbW9kZWwgd2VpZ2h0cyIpCgogICAgIyBHZW5lcmF0ZSBjb252ZXJzYXRpb25zICh3aXRob3V0IGdhdGluZyBob29rcywgc2FtZSBhcyBQaGFzZSAxKQogICAgcHJpbnQoIlxuR2VuZXJhdGluZyBjb252ZXJzYXRpb25zLi4uIikKICAgIGNvbnZlcnNhdGlvbnMgPSBbXQogICAgZm9yIGksIChzeXNfcHJvbXB0LCB1c2VyX3FzKSBpbiBlbnVtZXJhdGUoemlwKFNZU1RFTV9QUk9NUFRTLCBDT05WRVJTQVRJT05TX0RBVEEpKToKICAgICAgICBwcmludChmIiAgQ29udmVyc2F0aW9uIHtpKzF9L3tsZW4oU1lTVEVNX1BST01QVFMpfToge3N5c19wcm9tcHRbOjUwXX0uLi4iKQogICAgICAgIG1lc3NhZ2VzID0gYnVpbGRfY29udmVyc2F0aW9uKHRva2VuaXplciwgYmFzZV9tb2RlbCwgc3lzX3Byb21wdCwgdXNlcl9xcywgZGV2aWNlKQogICAgICAgIG51bV90dXJucyA9IHN1bSgxIGZvciBtIGluIG1lc3NhZ2VzIGlmIG1bInJvbGUiXSA9PSAiYXNzaXN0YW50IikKICAgICAgICBwcmludChmIiAgICB7bnVtX3R1cm5zfSBhc3Npc3RhbnQgdHVybnMiKQogICAgICAgIGNvbnZlcnNhdGlvbnMuYXBwZW5kKG1lc3NhZ2VzKQoKICAgICMgTG9hZCBnYXRlcyBhbmQgcmVnaXN0ZXIgaG9va3MKICAgIHByaW50KCJcbkxvYWRpbmcgZ2F0ZSBwYXJhbWV0ZXJzLi4uIikKICAgIGhpZGRlbl9kaW0gPSBiYXNlX21vZGVsLmNvbmZpZy5oaWRkZW5fc2l6ZQogICAgbnVtX2xheWVycyA9IGJhc2VfbW9kZWwuY29uZmlnLm51bV9oaWRkZW5fbGF5ZXJzCiAgICBnYXRlcywgdHVybl9lbWJlZGRpbmcgPSBsb2FkX2dhdGVzKGFyZ3MuY2hlY2twb2ludF9kaXIsIGFyZ3MuZ2F0ZV90eXBlLCBoaWRkZW5fZGltLCBudW1fbGF5ZXJzKQoKICAgIGhvb2tzLCB0dXJuX2ZlYXR1cmVzX3JlZiwgZ2F0ZV92YWx1ZXMgPSByZWdpc3Rlcl9nYXRpbmdfaG9va3MoCiAgICAgICAgYmFzZV9tb2RlbCwgZ2F0ZXMsIGFyZ3MuZ2F0ZV90eXBlLCB0dXJuX2VtYmVkZGluZwogICAgKQoKICAgICMgQ3JlYXRlIEdBUk1lYXN1cmVyIG9uIHRoZSB1bmRlcmx5aW5nIEhGIG1vZGVsCiAgICBoZl9tb2RlbCA9IF9maW5kX2hmX21vZGVsKGJhc2VfbW9kZWwpCiAgICBtZWFzdXJlciA9IEdBUk1lYXN1cmVyKGhmX21vZGVsKQoKICAgICMgTWVhc3VyZSBHQVIgd2l0aCBnYXRpbmcgYWN0aXZlCiAgICBwcmludCgiXG5NZWFzdXJpbmcgR0FSLi4uIikKICAgIGFsbF9nYXJfY3VydmVzID0gW10KICAgIGFsbF9ub3JtX2N1cnZlcyA9IFtdCiAgICBhbGxfdmlzaWJsZV9jdXJ2ZXMgPSBbXQogICAgZm9yIGksIG1lc3NhZ2VzIGluIGVudW1lcmF0ZShjb252ZXJzYXRpb25zKToKICAgICAgICByZXN1bHQgPSBtZWFzdXJlX2dhcl9wZXJfdHVybigKICAgICAgICAgICAgYmFzZV9tb2RlbCwgdG9rZW5pemVyLCBtZWFzdXJlciwgbWVzc2FnZXMsIGRldmljZSwKICAgICAgICAgICAgdHVybl9mZWF0dXJlc19yZWYsIGFyZ3MuZ2F0ZV90eXBlLAogICAgICAgICkKICAgICAgICBpZiByZXN1bHQ6CiAgICAgICAgICAgIGdhcl9jdXJ2ZSA9IHJlc3VsdFsiZ2FyX3Blcl90dXJuIl0KICAgICAgICAgICAgbm9ybV9jdXJ2ZSA9IHJlc3VsdFsibm9ybWFsaXplZF9nYXJfcGVyX3R1cm4iXQogICAgICAgICAgICB2aXNfY3VydmUgPSByZXN1bHRbInZpc2libGVfdG9rZW5zX3Blcl90dXJuIl0KICAgICAgICAgICAgcHJpbnQoZiIgIENvbnYge2krMX0gR0FSOiAge1tmJ3tnOi40Zn0nIGZvciBnIGluIGdhcl9jdXJ2ZV19IikKICAgICAgICAgICAgcHJpbnQoZiIgIENvbnYge2krMX0gbkdBUjoge1tmJ3tnOi40Zn0nIGZvciBnIGluIG5vcm1fY3VydmVdfSIpCiAgICAgICAgICAgIGFsbF9nYXJfY3VydmVzLmFwcGVuZChnYXJfY3VydmUpCiAgICAgICAgICAgIGFsbF9ub3JtX2N1cnZlcy5hcHBlbmQobm9ybV9jdXJ2ZSkKICAgICAgICAgICAgYWxsX3Zpc2libGVfY3VydmVzLmFwcGVuZCh2aXNfY3VydmUpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgcHJpbnQoZiIgIENvbnYge2krMX06IFdBUk5JTkcgLSBjb3VsZCBub3QgbWVhc3VyZSBHQVIiKQoKICAgIGZvciBoIGluIGhvb2tzOgogICAgICAgIGgucmVtb3ZlKCkKCiAgICBpZiBub3QgYWxsX2dhcl9jdXJ2ZXM6CiAgICAgICAgcHJpbnQoIkVSUk9SOiBObyB2YWxpZCBHQVIgbWVhc3VyZW1lbnRzIikKICAgICAgICBzeXMuZXhpdCgxKQoKICAgICMgU3RhdGlzdGljcwogICAgbWluX3R1cm5zID0gbWluKGxlbihjKSBmb3IgYyBpbiBhbGxfZ2FyX2N1cnZlcykKICAgIGFsaWduZWQgPSBbY1s6bWluX3R1cm5zXSBmb3IgYyBpbiBhbGxfZ2FyX2N1cnZlc10KICAgIGF2Z19nYXIgPSBucC5tZWFuKGFsaWduZWQsIGF4aXM9MCkudG9saXN0KCkKCiAgICBhbGlnbmVkX25vcm0gPSBbY1s6bWluX3R1cm5zXSBmb3IgYyBpbiBhbGxfbm9ybV9jdXJ2ZXNdCiAgICBhdmdfbm9ybV9nYXIgPSBucC5tZWFuKGFsaWduZWRfbm9ybSwgYXhpcz0wKS50b2xpc3QoKQoKICAgIGFsaWduZWRfdmlzID0gW2NbOm1pbl90dXJuc10gZm9yIGMgaW4gYWxsX3Zpc2libGVfY3VydmVzXQogICAgYXZnX3Zpc2libGUgPSBbaW50KHgpIGZvciB4IGluIG5wLm1lYW4oYWxpZ25lZF92aXMsIGF4aXM9MCkudG9saXN0KCldCgogICAgdHVybjFfZ2FyID0gYXZnX2dhclswXQogICAgbWlkX3R1cm5zX2dhciA9IGZsb2F0KG5wLm1lYW4oYXZnX2dhclsyOjhdKSBpZiBsZW4oYXZnX2dhcikgPj0gOCBlbHNlIG5wLm1lYW4oYXZnX2dhclsyOl0pKQogICAgbWlkX3R1cm5zX25vcm1fZ2FyID0gZmxvYXQobnAubWVhbihhdmdfbm9ybV9nYXJbMjo4XSkgaWYgbGVuKGF2Z19ub3JtX2dhcikgPj0gOCBlbHNlIG5wLm1lYW4oYXZnX25vcm1fZ2FyWzI6XSkpCgogICAgIyBCYXNlbGluZSBjb21wYXJpc29uCiAgICBiYXNlbGluZV9nYXIgPSBOb25lCiAgICBnYXJfcmVjb3ZlcnkgPSBOb25lCiAgICBiYXNlbGluZV9taWQgPSBOb25lCiAgICBpZiBvcy5wYXRoLmV4aXN0cyhhcmdzLmJhc2VsaW5lX3Jlc3VsdHMpOgogICAgICAgIHdpdGggb3BlbihhcmdzLmJhc2VsaW5lX3Jlc3VsdHMpIGFzIGY6CiAgICAgICAgICAgIGJhc2VsaW5lID0ganNvbi5sb2FkKGYpCiAgICAgICAgYmFzZWxpbmVfZ2FyID0gYmFzZWxpbmVbImF2Z19nYXJfcGVyX3R1cm4iXQogICAgICAgIGJhc2VsaW5lX21pZCA9IGJhc2VsaW5lWyJtaWRfdHVybnNfYXZnX2dhciJdCiAgICAgICAgZ2FyX3JlY292ZXJ5ID0gbWlkX3R1cm5zX2dhciAtIGJhc2VsaW5lX21pZAogICAgICAgIHByaW50KGYiXG5CYXNlbGluZSBtaWQtdHVybiBHQVI6IHtiYXNlbGluZV9taWQ6LjRmfSIpCiAgICAgICAgcHJpbnQoZiJUcmFpbmVkIG1pZC10dXJuIEdBUjogIHttaWRfdHVybnNfZ2FyOi40Zn0iKQogICAgICAgIHByaW50KGYiR0FSIHJlY292ZXJ5OiAgICAgICAgICB7Z2FyX3JlY292ZXJ5KjEwMDorLjJmfXBwIikKICAgIGVsc2U6CiAgICAgICAgcHJpbnQoZiJcbldBUk5JTkc6IEJhc2VsaW5lIG5vdCBmb3VuZCBhdCB7YXJncy5iYXNlbGluZV9yZXN1bHRzfSIpCgogICAgIyBTYXZlIHJlc3VsdHMKICAgIGNrcHRfbmFtZSA9IG9zLnBhdGguYmFzZW5hbWUoYXJncy5jaGVja3BvaW50X2Rpci5yc3RyaXAoIi8iKSkKICAgIHJlc3VsdHMgPSB7CiAgICAgICAgImNoZWNrcG9pbnRfZGlyIjogYXJncy5jaGVja3BvaW50X2RpciwKICAgICAgICAiZ2F0ZV90eXBlIjogYXJncy5nYXRlX3R5cGUsCiAgICAgICAgIm1vZGVsIjogYXJncy5tb2RlbF9uYW1lLAogICAgICAgICJudW1fY29udmVyc2F0aW9ucyI6IGxlbihhbGxfZ2FyX2N1cnZlcyksCiAgICAgICAgIm51bV90dXJucyI6IG1pbl90dXJucywKICAgICAgICAiZ2FyX2N1cnZlcyI6IGFsbF9nYXJfY3VydmVzLAogICAgICAgICJhdmdfZ2FyX3Blcl90dXJuIjogYXZnX2dhciwKICAgICAgICAidHVybjFfYXZnX2dhciI6IHR1cm4xX2dhciwKICAgICAgICAibWlkX3R1cm5zX2F2Z19nYXIiOiBtaWRfdHVybnNfZ2FyLAogICAgICAgICJiYXNlbGluZV9taWRfdHVybnNfYXZnX2dhciI6IGJhc2VsaW5lX21pZCwKICAgICAgICAiZ2FyX3JlY292ZXJ5X3BwIjogZ2FyX3JlY292ZXJ5ICogMTAwIGlmIGdhcl9yZWNvdmVyeSBpcyBub3QgTm9uZSBlbHNlIE5vbmUsCiAgICAgICAgIm5vcm1hbGl6ZWRfZ2FyX2N1cnZlcyI6IFtjWzptaW5fdHVybnNdIGZvciBjIGluIGFsbF9ub3JtX2N1cnZlc10sCiAgICAgICAgImF2Z19ub3JtYWxpemVkX2dhcl9wZXJfdHVybiI6IGF2Z19ub3JtX2dhciwKICAgICAgICAibWlkX3R1cm5zX2F2Z19ub3JtYWxpemVkX2dhciI6IG1pZF90dXJuc19ub3JtX2dhciwKICAgICAgICAiYXZnX3Zpc2libGVfdG9rZW5zX3Blcl90dXJuIjogYXZnX3Zpc2libGUsCiAgICB9CgogICAgcmVzdWx0c19wYXRoID0gb3MucGF0aC5qb2luKGFyZ3Mub3V0cHV0X2RpciwgZiJ7Y2twdF9uYW1lfV9nYXIuanNvbiIpCiAgICB3aXRoIG9wZW4ocmVzdWx0c19wYXRoLCAidyIpIGFzIGY6CiAgICAgICAganNvbi5kdW1wKHJlc3VsdHMsIGYsIGluZGVudD0yKQogICAgcHJpbnQoZiJcblJlc3VsdHMgc2F2ZWQgdG8ge3Jlc3VsdHNfcGF0aH0iKQoKICAgIGlmIGJhc2VsaW5lX2dhcjoKICAgICAgICBwbG90X3BhdGggPSBvcy5wYXRoLmpvaW4oYXJncy5vdXRwdXRfZGlyLCBmIntja3B0X25hbWV9X2dhcl9jb21wYXJpc29uLnBuZyIpCiAgICAgICAgcGxvdF9nYXJfY29tcGFyaXNvbihiYXNlbGluZV9nYXIsIGF2Z19nYXIsIHBsb3RfcGF0aCwgYXJncy5nYXRlX3R5cGUpCiAgICAgICAgcHJpbnQoZiJQbG90IHNhdmVkIHRvIHtwbG90X3BhdGh9IikKCiAgICBwcmludChmIlxueyc9Jyo1MH0iKQogICAgcHJpbnQoZiJQaGFzZSAyIEdBUiBFdmFsdWF0aW9uICh7YXJncy5nYXRlX3R5cGV9KSIpCiAgICBwcmludChmInsnPScqNTB9IikKICAgIHByaW50KGYiVHVybiAxIGF2ZyBHQVI6ICAgICB7dHVybjFfZ2FyOi40Zn0iKQogICAgcHJpbnQoZiJNaWQtdHVybnMgYXZnIEdBUjogIHttaWRfdHVybnNfZ2FyOi40Zn0iKQogICAgcHJpbnQoZiJNaWQtdHVybnMgYXZnIG5HQVI6IHttaWRfdHVybnNfbm9ybV9nYXI6LjRmfSIpCiAgICBpZiBnYXJfcmVjb3ZlcnkgaXMgbm90IE5vbmU6CiAgICAgICAgcHJpbnQoZiJHQVIgcmVjb3Zlcnk6ICAgICAgIHtnYXJfcmVjb3ZlcnkqMTAwOisuMmZ9cHAiKQoKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6CiAgICBtYWluKCkK'\nwith open('/root/turn_residual_gating/src/eval_phase2_gar.py', 'w') as f:\n    import base64\n    f.write(base64.b64decode(b64).decode('utf-8'))\nprint('eval_phase2_gar.py deployed OK')\n\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "abfcd8ae-f823-4ddb-ab01-634b8da02b82",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NjgC9Hmo6bZscfHyu5CAS5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 30732,
+                "cache_read_input_tokens": 41711,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 30732
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-18T06:47:26.353Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CzdzTsXbK5yfn3vRAt8XSa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_phase2_gar.py deployed OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "33af6c29-28f9-4372-b377-29e0981257fe",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_phase2_gar.py deployed OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"eval_phase2_gar.py deployed OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.62}}"
+              }
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01URkn6rWMxYSwBgYYdpuBz1",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-20861",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport base64\nb64 = 'IyBjb21wYXJlX3BoYXNlMi5weSDigJQg5a+55q+UIFRocmVhZEdhdGUgdnMgVW5pZm9ybSBHYXRlIOe7k+aenAojIOeUqOazlTogcHl0aG9uIGNvbXBhcmVfcGhhc2UyLnB5IC0tdGctcmVzdWx0cyByZXN1bHRzL3RnX3M0Ml9nYXIuanNvbiAtLXVnLXJlc3VsdHMgcmVzdWx0cy91Z19zNDJfZ2FyLmpzb24KIyDovpPlh7o6IOWvueavlOihqOagvCArIOWPjOabsue6v+WbviArIFBhc3MvRmFpbCDliKTmlq0KCmltcG9ydCBhcmdwYXJzZQppbXBvcnQganNvbgppbXBvcnQgb3MKaW1wb3J0IHN5cwoKaW1wb3J0IG51bXB5IGFzIG5wCmltcG9ydCBtYXRwbG90bGliCm1hdHBsb3RsaWIudXNlKCJBZ2ciKQppbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0CgoKZGVmIGxvYWRfcmVzdWx0cyhwYXRoKToKICAgIHdpdGggb3BlbihwYXRoKSBhcyBmOgogICAgICAgIHJldHVybiBqc29uLmxvYWQoZikKCgpkZWYgcHJpbnRfZ2FyX3RhYmxlKHRnLCB1ZywgYmFzZWxpbmVfZ2FyPU5vbmUpOgogICAgIiIiUHJpbnQgdHVybi1ieS10dXJuIEdBUiBjb21wYXJpc29uIHRhYmxlIHdpdGggcmF3IGFuZCBub3JtYWxpemVkLiIiIgogICAgdGdfZ2FyID0gdGdbImF2Z19nYXJfcGVyX3R1cm4iXQogICAgdWdfZ2FyID0gdWdbImF2Z19nYXJfcGVyX3R1cm4iXQogICAgbWluX3R1cm5zID0gbWluKGxlbih0Z19nYXIpLCBsZW4odWdfZ2FyKSkKCiAgICB0Z19ub3JtID0gdGcuZ2V0KCJhdmdfbm9ybWFsaXplZF9nYXJfcGVyX3R1cm4iLCBbXSkKICAgIHVnX25vcm0gPSB1Zy5nZXQoImF2Z19ub3JtYWxpemVkX2dhcl9wZXJfdHVybiIsIFtdKQogICAgaGFzX25vcm0gPSBsZW4odGdfbm9ybSkgPj0gbWluX3R1cm5zIGFuZCBsZW4odWdfbm9ybSkgPj0gbWluX3R1cm5zCgogICAgaGVhZGVyID0gZiJ7J1R1cm4nOj42fSAgeydUR19yYXcnOj45fSAgeydVR19yYXcnOj45fSAgeydEaWZmX3Jhdyc6Pjl9IgogICAgaWYgaGFzX25vcm06CiAgICAgICAgaGVhZGVyICs9IGYiICB7J1RHX25vcm0nOj45fSAgeydVR19ub3JtJzo+OX0gIHsnRGlmZl9ub3JtJzo+MTB9IgogICAgcHJpbnQoaGVhZGVyKQogICAgcHJpbnQoIi0iICogbGVuKGhlYWRlcikpCgogICAgZm9yIGkgaW4gcmFuZ2UobWluX3R1cm5zKToKICAgICAgICBkaWZmX3JhdyA9IHRnX2dhcltpXSAtIHVnX2dhcltpXQogICAgICAgIHJvdyA9IGYie2krMTo+Nn0gIHt0Z19nYXJbaV06PjkuNGZ9ICB7dWdfZ2FyW2ldOj45LjRmfSAge2RpZmZfcmF3Oj4rOS40Zn0iCiAgICAgICAgaWYgaGFzX25vcm06CiAgICAgICAgICAgIGRpZmZfbm9ybSA9IHRnX25vcm1baV0gLSB1Z19ub3JtW2ldCiAgICAgICAgICAgIHJvdyArPSBmIiAge3RnX25vcm1baV06PjkuNGZ9ICB7dWdfbm9ybVtpXTo+OS40Zn0gIHtkaWZmX25vcm06PisxMC40Zn0iCiAgICAgICAgcHJpbnQocm93KQoKICAgIHByaW50KCItIiAqIGxlbihoZWFkZXIpKQogICAgdGdfbWlkID0gdGdbIm1pZF90dXJuc19hdmdfZ2FyIl0KICAgIHVnX21pZCA9IHVnWyJtaWRfdHVybnNfYXZnX2dhciJdCiAgICBkaWZmX21pZCA9IHRnX21pZCAtIHVnX21pZAogICAgcm93ID0gZiJ7J01pZCc6PjZ9ICB7dGdfbWlkOj45LjRmfSAge3VnX21pZDo+OS40Zn0gIHtkaWZmX21pZDo+KzkuNGZ9IgogICAgaWYgaGFzX25vcm06CiAgICAgICAgdGdfbWlkX24gPSB0Zy5nZXQoIm1pZF90dXJuc19hdmdfbm9ybWFsaXplZF9nYXIiLCAwKQogICAgICAgIHVnX21pZF9uID0gdWcuZ2V0KCJtaWRfdHVybnNfYXZnX25vcm1hbGl6ZWRfZ2FyIiwgMCkKICAgICAgICBkaWZmX21pZF9uID0gdGdfbWlkX24gLSB1Z19taWRfbgogICAgICAgIHJvdyArPSBmIiAge3RnX21pZF9uOj45LjRmfSAge3VnX21pZF9uOj45LjRmfSAge2RpZmZfbWlkX246PisxMC40Zn0iCiAgICBwcmludChyb3cpCgoKZGVmIHBsb3RfY29tcGFyaXNvbih0ZywgdWcsIGJhc2VsaW5lX2dhciwgb3V0cHV0X3BhdGgpOgogICAgIiIiUGxvdCByYXcgR0FSICh0b3ApIGFuZCBub3JtYWxpemVkIEdBUiAoYm90dG9tKS4iIiIKICAgIHRnX2dhciA9IHRnWyJhdmdfZ2FyX3Blcl90dXJuIl0KICAgIHVnX2dhciA9IHVnWyJhdmdfZ2FyX3Blcl90dXJuIl0KICAgIG1pbl90dXJucyA9IG1pbihsZW4odGdfZ2FyKSwgbGVuKHVnX2dhcikpCiAgICB0dXJuc194ID0gbGlzdChyYW5nZSgxLCBtaW5fdHVybnMgKyAxKSkKCiAgICB0Z19ub3JtID0gdGcuZ2V0KCJhdmdfbm9ybWFsaXplZF9nYXJfcGVyX3R1cm4iLCBbXSkKICAgIHVnX25vcm0gPSB1Zy5nZXQoImF2Z19ub3JtYWxpemVkX2dhcl9wZXJfdHVybiIsIFtdKQogICAgaGFzX25vcm0gPSBsZW4odGdfbm9ybSkgPj0gbWluX3R1cm5zIGFuZCBsZW4odWdfbm9ybSkgPj0gbWluX3R1cm5zCgogICAgbnJvd3MgPSAyIGlmIGhhc19ub3JtIGVsc2UgMQogICAgZmlnLCBheGVzID0gcGx0LnN1YnBsb3RzKG5yb3dzLCAxLCBmaWdzaXplPSgxMCwgNS41ICogbnJvd3MpLCBzaGFyZXg9VHJ1ZSkKICAgIGlmIG5yb3dzID09IDE6CiAgICAgICAgYXhlcyA9IFtheGVzXQoKICAgIGF4ID0gYXhlc1swXQogICAgaWYgYmFzZWxpbmVfZ2FyOgogICAgICAgIGIgPSBiYXNlbGluZV9nYXJbOm1pbl90dXJuc10KICAgICAgICBheC5wbG90KHR1cm5zX3gsIGIsICJyLXMiLCBsaW5ld2lkdGg9MiwgbWFya2Vyc2l6ZT01LCBsYWJlbD0iQmFzZWxpbmUgKG5vIGdhdGUpIiwgYWxwaGE9MC44KQogICAgYXgucGxvdCh0dXJuc194LCB1Z19nYXJbOm1pbl90dXJuc10sICJnLV4iLCBsaW5ld2lkdGg9MiwgbWFya2Vyc2l6ZT01LCBsYWJlbD0iVW5pZm9ybSBHYXRlIiwgYWxwaGE9MC44KQogICAgYXgucGxvdCh0dXJuc194LCB0Z19nYXJbOm1pbl90dXJuc10sICJiLW8iLCBsaW5ld2lkdGg9Mi41LCBtYXJrZXJzaXplPTYsIGxhYmVsPSJUaHJlYWRHYXRlIikKCiAgICB0Z19taWQgPSB0Z1sibWlkX3R1cm5zX2F2Z19nYXIiXQogICAgdWdfbWlkID0gdWdbIm1pZF90dXJuc19hdmdfZ2FyIl0KICAgIGF4LmF4aGxpbmUoeT10Z19taWQsIGNvbG9yPSJibHVlIiwgbGluZXN0eWxlPSItLSIsIGFscGhhPTAuMykKICAgIGF4LmF4aGxpbmUoeT11Z19taWQsIGNvbG9yPSJncmVlbiIsIGxpbmVzdHlsZT0iLS0iLCBhbHBoYT0wLjMpCgogICAgZGVsdGFfcHAgPSAodGdfbWlkIC0gdWdfbWlkKSAqIDEwMAogICAgcGFzc2VkID0gZGVsdGFfcHAgPiAzLjAKICAgIGF4LnNldF95bGFiZWwoIlJhdyBHQVIiLCBmb250c2l6ZT0xMikKICAgIGF4LnNldF90aXRsZSgKICAgICAgICBmIlRocmVhZEdhdGUgdnMgVW5pZm9ybSBHYXRlIEdBUiBDb21wYXJpc29uXG4iCiAgICAgICAgZiJURyBtaWQ6IHt0Z19taWQ6LjRmfSwgVUcgbWlkOiB7dWdfbWlkOi40Zn0sICIKICAgICAgICBmImRlbHRhOiB7ZGVsdGFfcHA6Ky4xZn1wcCAoeydQQVNTJyBpZiBwYXNzZWQgZWxzZSAnRkFJTCd9OiA+M3BwIHJlcXVpcmVkKSIsCiAgICAgICAgZm9udHNpemU9MTEsCiAgICApCiAgICBheC5sZWdlbmQoZm9udHNpemU9MTApCiAgICBheC5zZXRfeHRpY2tzKHR1cm5zX3gpCiAgICBheC5ncmlkKFRydWUsIGFscGhhPTAuMykKCiAgICBpZiBoYXNfbm9ybToKICAgICAgICBheDIgPSBheGVzWzFdCiAgICAgICAgYXgyLnBsb3QodHVybnNfeCwgdWdfbm9ybVs6bWluX3R1cm5zXSwgImctXiIsIGxpbmV3aWR0aD0yLCBtYXJrZXJzaXplPTUsIGxhYmVsPSJVbmlmb3JtIEdhdGUiLCBhbHBoYT0wLjgpCiAgICAgICAgYXgyLnBsb3QodHVybnNfeCwgdGdfbm9ybVs6bWluX3R1cm5zXSwgImItbyIsIGxpbmV3aWR0aD0yLjUsIG1hcmtlcnNpemU9NiwgbGFiZWw9IlRocmVhZEdhdGUiKQoKICAgICAgICB0Z19taWRfbiA9IHRnLmdldCgibWlkX3R1cm5zX2F2Z19ub3JtYWxpemVkX2dhciIsIDApCiAgICAgICAgdWdfbWlkX24gPSB1Zy5nZXQoIm1pZF90dXJuc19hdmdfbm9ybWFsaXplZF9nYXIiLCAwKQogICAgICAgIGF4Mi5heGhsaW5lKHk9dGdfbWlkX24sIGNvbG9yPSJibHVlIiwgbGluZXN0eWxlPSItLSIsIGFscGhhPTAuMykKICAgICAgICBheDIuYXhobGluZSh5PXVnX21pZF9uLCBjb2xvcj0iZ3JlZW4iLCBsaW5lc3R5bGU9Ii0tIiwgYWxwaGE9MC4zKQoKICAgICAgICBkZWx0YV9ub3JtX3BwID0gKHRnX21pZF9uIC0gdWdfbWlkX24pICogMTAwCiAgICAgICAgYXgyLnNldF95bGFiZWwoIk5vcm1hbGl6ZWQgR0FSIiwgZm9udHNpemU9MTIpCiAgICAgICAgYXgyLnNldF90aXRsZSgKICAgICAgICAgICAgZiJOb3JtYWxpemVkIEdBUjogVEcgbWlkOiB7dGdfbWlkX246LjRmfSwgVUcgbWlkOiB7dWdfbWlkX246LjRmfSwgIgogICAgICAgICAgICBmImRlbHRhOiB7ZGVsdGFfbm9ybV9wcDorLjFmfXBwIiwKICAgICAgICAgICAgZm9udHNpemU9MTEsCiAgICAgICAgKQogICAgICAgIGF4Mi5sZWdlbmQoZm9udHNpemU9MTApCiAgICAgICAgYXgyLnNldF94dGlja3ModHVybnNfeCkKICAgICAgICBheDIuZ3JpZChUcnVlLCBhbHBoYT0wLjMpCiAgICAgICAgYXgyLnNldF94bGFiZWwoIlR1cm4gSW5kZXgiLCBmb250c2l6ZT0xMikKICAgIGVsc2U6CiAgICAgICAgYXhlc1swXS5zZXRfeGxhYmVsKCJUdXJuIEluZGV4IiwgZm9udHNpemU9MTIpCgogICAgZmlnLnRpZ2h0X2xheW91dCgpCiAgICBmaWcuc2F2ZWZpZyhvdXRwdXRfcGF0aCwgZHBpPTE1MCwgYmJveF9pbmNoZXM9InRpZ2h0IikKICAgIHBsdC5jbG9zZSgpCgoKZGVmIGNvbXBhcmVfbXRiZW5jaCh0Z19tdF9wYXRoLCB1Z19tdF9wYXRoKToKICAgICIiIkNvbXBhcmUgTVQtQmVuY2ggcmVzdWx0cyBpZiBhdmFpbGFibGUuIiIiCiAgICBpZiBub3QgKG9zLnBhdGguZXhpc3RzKHRnX210X3BhdGgpIGFuZCBvcy5wYXRoLmV4aXN0cyh1Z19tdF9wYXRoKSk6CiAgICAgICAgcmV0dXJuIE5vbmUKCiAgICB0Z19tdCA9IGxvYWRfcmVzdWx0cyh0Z19tdF9wYXRoKQogICAgdWdfbXQgPSBsb2FkX3Jlc3VsdHModWdfbXRfcGF0aCkKCiAgICB0Z19vdmVyYWxsID0gdGdfbXRbInRyYWluZWQiXVsic3VtbWFyeSJdWyJvdmVyYWxsX2F2ZyJdCiAgICB1Z19vdmVyYWxsID0gdWdfbXRbInRyYWluZWQiXVsic3VtbWFyeSJdWyJvdmVyYWxsX2F2ZyJdCiAgICB0Z190MiA9IHRnX210WyJ0cmFpbmVkIl1bInN1bW1hcnkiXVsidHVybjJfYXZnIl0KICAgIHVnX3QyID0gdWdfbXRbInRyYWluZWQiXVsic3VtbWFyeSJdWyJ0dXJuMl9hdmciXQogICAgYmFzZWxpbmVfb3ZlcmFsbCA9IHRnX210WyJiYXNlbGluZSJdWyJzdW1tYXJ5Il1bIm92ZXJhbGxfYXZnIl0KICAgIGJhc2VsaW5lX3QyID0gdGdfbXRbImJhc2VsaW5lIl1bInN1bW1hcnkiXVsidHVybjJfYXZnIl0KCiAgICByZXR1cm4gewogICAgICAgICJ0aHJlYWRnYXRlIjogeyJvdmVyYWxsIjogdGdfb3ZlcmFsbCwgInR1cm4yIjogdGdfdDJ9LAogICAgICAgICJ1bmlmb3JtIjogeyJvdmVyYWxsIjogdWdfb3ZlcmFsbCwgInR1cm4yIjogdWdfdDJ9LAogICAgICAgICJiYXNlbGluZSI6IHsib3ZlcmFsbCI6IGJhc2VsaW5lX292ZXJhbGwsICJ0dXJuMiI6IGJhc2VsaW5lX3QyfSwKICAgIH0KCgpkZWYgbWFpbigpOgogICAgcGFyc2VyID0gYXJncGFyc2UuQXJndW1lbnRQYXJzZXIoZGVzY3JpcHRpb249IkNvbXBhcmUgVGhyZWFkR2F0ZSB2cyBVbmlmb3JtIEdhdGUgcmVzdWx0cyIpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLXRnLXJlc3VsdHMiLCByZXF1aXJlZD1UcnVlLCBoZWxwPSJUaHJlYWRHYXRlIEdBUiByZXN1bHRzIEpTT04iKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS11Zy1yZXN1bHRzIiwgcmVxdWlyZWQ9VHJ1ZSwgaGVscD0iVW5pZm9ybSBHYXRlIEdBUiByZXN1bHRzIEpTT04iKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1iYXNlbGluZS1yZXN1bHRzIiwgZGVmYXVsdD0iL3Jvb3QvdHVybl9yZXNpZHVhbF9nYXRpbmcvcmVzdWx0cy9waGFzZTFfZ2FyX3Jlc3VsdHMuanNvbiIpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLW91dHB1dC1kaXIiLCBkZWZhdWx0PSIvcm9vdC90dXJuX3Jlc2lkdWFsX2dhdGluZy9yZXN1bHRzLyIpCiAgICBhcmdzID0gcGFyc2VyLnBhcnNlX2FyZ3MoKQoKICAgIG9zLm1ha2VkaXJzKGFyZ3Mub3V0cHV0X2RpciwgZXhpc3Rfb2s9VHJ1ZSkKCiAgICB0ZyA9IGxvYWRfcmVzdWx0cyhhcmdzLnRnX3Jlc3VsdHMpCiAgICB1ZyA9IGxvYWRfcmVzdWx0cyhhcmdzLnVnX3Jlc3VsdHMpCgogICAgYmFzZWxpbmVfZ2FyID0gTm9uZQogICAgaWYgb3MucGF0aC5leGlzdHMoYXJncy5iYXNlbGluZV9yZXN1bHRzKToKICAgICAgICBiYXNlbGluZSA9IGxvYWRfcmVzdWx0cyhhcmdzLmJhc2VsaW5lX3Jlc3VsdHMpCiAgICAgICAgYmFzZWxpbmVfZ2FyID0gYmFzZWxpbmVbImF2Z19nYXJfcGVyX3R1cm4iXQoKICAgICMgR0FSIGNvbXBhcmlzb24gdGFibGUKICAgIHByaW50KGYiXG57Jz0nKjYwfSIpCiAgICBwcmludCgiR0FSIFR1cm4tYnktVHVybiBDb21wYXJpc29uIikKICAgIHByaW50KGYieyc9Jyo2MH0iKQogICAgcHJpbnRfZ2FyX3RhYmxlKHRnLCB1ZywgYmFzZWxpbmVfZ2FyKQoKICAgICMgUGFzcy9GYWlsCiAgICB0Z19taWQgPSB0Z1sibWlkX3R1cm5zX2F2Z19nYXIiXQogICAgdWdfbWlkID0gdWdbIm1pZF90dXJuc19hdmdfZ2FyIl0KICAgIGRlbHRhX3BwID0gKHRnX21pZCAtIHVnX21pZCkgKiAxMDAKICAgIHBhc3NlZCA9IGRlbHRhX3BwID4gMy4wCgogICAgcHJpbnQoZiJcbnsnPScqNjB9IikKICAgIHByaW50KCJQYXNzL0ZhaWwgQ3JpdGVyaWEiKQogICAgcHJpbnQoZiJ7Jz0nKjYwfSIpCiAgICBwcmludChmIlRocmVhZEdhdGUgbWlkLXR1cm4gR0FSOiB7dGdfbWlkOi40Zn0iKQogICAgcHJpbnQoZiJVbmlmb3JtIG1pZC10dXJuIEdBUjogICAge3VnX21pZDouNGZ9IikKICAgIHByaW50KGYiRGVsdGE6ICAgICAgICAgICAgICAgICAgIHtkZWx0YV9wcDorLjJmfXBwIikKICAgIHByaW50KGYiQ3JpdGVyaW9uICg+M3BwKTogICAgICAgIHsnUEFTUycgaWYgcGFzc2VkIGVsc2UgJ0ZBSUwnfSIpCgogICAgaWYgdGcuZ2V0KCJnYXJfcmVjb3ZlcnlfcHAiKSBpcyBub3QgTm9uZToKICAgICAgICBwcmludChmIlxuVGhyZWFkR2F0ZSBHQVIgcmVjb3ZlcnkgdnMgYmFzZWxpbmU6IHt0Z1snZ2FyX3JlY292ZXJ5X3BwJ106Ky4yZn1wcCIpCiAgICBpZiB1Zy5nZXQoImdhcl9yZWNvdmVyeV9wcCIpIGlzIG5vdCBOb25lOgogICAgICAgIHByaW50KGYiVW5pZm9ybSBHQVIgcmVjb3ZlcnkgdnMgYmFzZWxpbmU6ICAgIHt1Z1snZ2FyX3JlY292ZXJ5X3BwJ106Ky4yZn1wcCIpCgogICAgdGdfbm9ybV9taWQgPSB0Zy5nZXQoIm1pZF90dXJuc19hdmdfbm9ybWFsaXplZF9nYXIiKQogICAgdWdfbm9ybV9taWQgPSB1Zy5nZXQoIm1pZF90dXJuc19hdmdfbm9ybWFsaXplZF9nYXIiKQogICAgaWYgdGdfbm9ybV9taWQgaXMgbm90IE5vbmUgYW5kIHVnX25vcm1fbWlkIGlzIG5vdCBOb25lOgogICAgICAgIG5vcm1fZGVsdGFfcHAgPSAodGdfbm9ybV9taWQgLSB1Z19ub3JtX21pZCkgKiAxMDAKICAgICAgICBwcmludChmIlxuTm9ybWFsaXplZCBHQVI6IikKICAgICAgICBwcmludChmIlRocmVhZEdhdGUgbWlkLXR1cm4gbkdBUjoge3RnX25vcm1fbWlkOi40Zn0iKQogICAgICAgIHByaW50KGYiVW5pZm9ybSBtaWQtdHVybiBuR0FSOiAgICB7dWdfbm9ybV9taWQ6LjRmfSIpCiAgICAgICAgcHJpbnQoZiJEZWx0YTogICAgICAgICAgICAgICAgICAgIHtub3JtX2RlbHRhX3BwOisuMmZ9cHAiKQoKICAgICMgTVQtQmVuY2ggY29tcGFyaXNvbgogICAgdGdfbXRfcGF0aCA9IGFyZ3MudGdfcmVzdWx0cy5yZXBsYWNlKCJfZ2FyLmpzb24iLCAiX210YmVuY2guanNvbiIpCiAgICB1Z19tdF9wYXRoID0gYXJncy51Z19yZXN1bHRzLnJlcGxhY2UoIl9nYXIuanNvbiIsICJfbXRiZW5jaC5qc29uIikKICAgIG10X3Jlc3VsdHMgPSBjb21wYXJlX210YmVuY2godGdfbXRfcGF0aCwgdWdfbXRfcGF0aCkKCiAgICBpZiBtdF9yZXN1bHRzOgogICAgICAgIHByaW50KGYiXG57Jz0nKjYwfSIpCiAgICAgICAgcHJpbnQoIk1ULUJlbmNoIFN0eWxlIFNjb3JlcyIpCiAgICAgICAgcHJpbnQoZiJ7Jz0nKjYwfSIpCiAgICAgICAgcHJpbnQoZiIgICAgICAgICAgICAgICAgICBUaHJlYWRHYXRlICBVbmlmb3JtICBCYXNlbGluZSIpCiAgICAgICAgcHJpbnQoZiJPdmVyYWxsIGF2ZzogICAgICB7bXRfcmVzdWx0c1sndGhyZWFkZ2F0ZSddWydvdmVyYWxsJ106LjJmfSAgICAgICAge210X3Jlc3VsdHNbJ3VuaWZvcm0nXVsnb3ZlcmFsbCddOi4yZn0gICAgIHttdF9yZXN1bHRzWydiYXNlbGluZSddWydvdmVyYWxsJ106LjJmfSIpCiAgICAgICAgcHJpbnQoZiJUdXJuIDIgYXZnOiAgICAgICB7bXRfcmVzdWx0c1sndGhyZWFkZ2F0ZSddWyd0dXJuMiddOi4yZn0gICAgICAgIHttdF9yZXN1bHRzWyd1bmlmb3JtJ11bJ3R1cm4yJ106LjJmfSAgICAge210X3Jlc3VsdHNbJ2Jhc2VsaW5lJ11bJ3R1cm4yJ106LjJmfSIpCiAgICAgICAgbXRfaW1wcm92ZW1lbnQgPSBtdF9yZXN1bHRzWyJ0aHJlYWRnYXRlIl1bInR1cm4yIl0gLSBtdF9yZXN1bHRzWyJiYXNlbGluZSJdWyJ0dXJuMiJdCiAgICAgICAgcHJpbnQoZiJURyB0dXJuMiBpbXByb3ZlbWVudCB2cyBiYXNlbGluZToge210X2ltcHJvdmVtZW50OisuMmZ9cHAiKQoKICAgICMgUGxvdAogICAgcGxvdF9wYXRoID0gb3MucGF0aC5qb2luKGFyZ3Mub3V0cHV0X2RpciwgInBoYXNlMl9nYXJfY29tcGFyaXNvbi5wbmciKQogICAgcGxvdF9jb21wYXJpc29uKHRnLCB1ZywgYmFzZWxpbmVfZ2FyLCBwbG90X3BhdGgpCiAgICBwcmludChmIlxuQ29tcGFyaXNvbiBwbG90IHNhdmVkIHRvIHtwbG90X3BhdGh9IikKCiAgICAjIFNhdmUgY29tYmluZWQgc3VtbWFyeQogICAgc3VtbWFyeSA9IHsKICAgICAgICAiZ2FyIjogewogICAgICAgICAgICAidGhyZWFkZ2F0ZV9taWQiOiB0Z19taWQsCiAgICAgICAgICAgICJ1bmlmb3JtX21pZCI6IHVnX21pZCwKICAgICAgICAgICAgImRlbHRhX3BwIjogZGVsdGFfcHAsCiAgICAgICAgICAgICJwYXNzIjogcGFzc2VkLAogICAgICAgICAgICAidGhyZWFkZ2F0ZV9yZWNvdmVyeV9wcCI6IHRnLmdldCgiZ2FyX3JlY292ZXJ5X3BwIiksCiAgICAgICAgICAgICJ1bmlmb3JtX3JlY292ZXJ5X3BwIjogdWcuZ2V0KCJnYXJfcmVjb3ZlcnlfcHAiKSwKICAgICAgICB9LAogICAgICAgICJub3JtYWxpemVkX2dhciI6IHsKICAgICAgICAgICAgInRocmVhZGdhdGVfbWlkIjogdGcuZ2V0KCJtaWRfdHVybnNfYXZnX25vcm1hbGl6ZWRfZ2FyIiksCiAgICAgICAgICAgICJ1bmlmb3JtX21pZCI6IHVnLmdldCgibWlkX3R1cm5zX2F2Z19ub3JtYWxpemVkX2dhciIpLAogICAgICAgICAgICAiZGVsdGFfcHAiOiAoCiAgICAgICAgICAgICAgICAodGcuZ2V0KCJtaWRfdHVybnNfYXZnX25vcm1hbGl6ZWRfZ2FyIiwgMCkgLSB1Zy5nZXQoIm1pZF90dXJuc19hdmdfbm9ybWFsaXplZF9nYXIiLCAwKSkgKiAxMDAKICAgICAgICAgICAgKSwKICAgICAgICB9LAogICAgfQogICAgaWYgbXRfcmVzdWx0czoKICAgICAgICBzdW1tYXJ5WyJtdGJlbmNoIl0gPSBtdF9yZXN1bHRzCgogICAgc3VtbWFyeV9wYXRoID0gb3MucGF0aC5qb2luKGFyZ3Mub3V0cHV0X2RpciwgInBoYXNlMl9jb21wYXJpc29uX3N1bW1hcnkuanNvbiIpCiAgICB3aXRoIG9wZW4oc3VtbWFyeV9wYXRoLCAidyIpIGFzIGY6CiAgICAgICAganNvbi5kdW1wKHN1bW1hcnksIGYsIGluZGVudD0yKQogICAgcHJpbnQoZiJTdW1tYXJ5IHNhdmVkIHRvIHtzdW1tYXJ5X3BhdGh9IikKCgppZiBfX25hbWVfXyA9PSAiX19tYWluX18iOgogICAgbWFpbigpCg=='\nwith open('/root/turn_residual_gating/src/compare_phase2.py', 'w') as f:\n    import base64\n    f.write(base64.b64decode(b64).decode('utf-8'))\nprint('compare_phase2.py deployed OK')\n\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "0ab2f8aa-11cc-4be7-9f45-dd629fdbaea6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NjgC9Hmo6bZscfHyu5CAS5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 30732,
+                "cache_read_input_tokens": 41711,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 30732
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-18T06:50:39.788Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01URkn6rWMxYSwBgYYdpuBz1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"compare_phase2.py deployed OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "a577793e-3326-49fa-9a90-0c326c05c98f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"compare_phase2.py deployed OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"compare_phase2.py deployed OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+              }
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files deployed. Now running syntax verification on the server."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "65bea153-1e1b-4943-9fb3-4ada6ef973a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CcaoGyM1XccasgaPMVuHrM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 31164,
+                "cache_read_input_tokens": 72443,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 31164
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016y1mTqa6F3rBd8f92iKBGR",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-20861",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating/src && python -c \"import ast; ast.parse(open('eval_phase2_gar.py').read()); print('eval_phase2_gar.py OK')\" && python -c \"import ast; ast.parse(open('compare_phase2.py').read()); print('compare_phase2.py OK')\" && wc -l eval_phase2_gar.py compare_phase2.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "7aef3753-ca87-42d1-91a4-b086d99df911",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CcaoGyM1XccasgaPMVuHrM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 31164,
+                "cache_read_input_tokens": 72443,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 31164
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-18T06:50:48.473Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016y1mTqa6F3rBd8f92iKBGR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_phase2_gar.py OK\\\\ncompare_phase2.py OK\\\\n  404 eval_phase2_gar.py\\\\n  250 compare_phase2.py\\\\n  654 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "53f5c420-27e1-4bba-8cbf-5164fc12bec6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_phase2_gar.py OK\\\\ncompare_phase2.py OK\\\\n  404 eval_phase2_gar.py\\\\n  250 compare_phase2.py\\\\n  654 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"eval_phase2_gar.py OK\\ncompare_phase2.py OK\\n  404 eval_phase2_gar.py\\n  250 compare_phase2.py\\n  654 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+              }
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。两个文件均已成功写入服务器并通过语法检查：\n\n- `eval_phase2_gar.py` — 404行，语法 OK\n- `compare_phase2.py` — 250行，语法 OK\n\n本地 artifacts 和远程服务器 `/root/turn_residual_gating/src/` 已同步。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "uuid": "b1e2fe80-0391-4f6d-b9cd-1a8c635eabbb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YRvENMvKYny2ain6bK7nFE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 353,
+                "cache_read_input_tokens": 103607,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 353
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。两个文件均已成功写入服务器并通过语法检查：\n\n- `eval_phase2_gar.py` — 404行，语法 OK\n- `compare_phase2.py` — 250行，语法 OK\n\n本地 artifacts 和远程服务器 `/root/turn_residual_gating/src/` 已同步。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1606219,
+            "duration_api_ms": 1600561,
+            "num_turns": 36,
+            "stop_reason": "end_turn",
+            "session_id": "38717d64-722e-483e-bcf7-87da0907d534",
+            "total_cost_usd": 4.32326025,
+            "usage": {
+              "input_tokens": 26,
+              "cache_creation_input_tokens": 252423,
+              "cache_read_input_tokens": 957506,
+              "output_tokens": 83309,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 252423,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 102,
+                  "cache_read_input_tokens": 103607,
+                  "cache_creation_input_tokens": 353,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 353
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1565,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001665,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1364,
+                "outputTokens": 86634,
+                "cacheReadInputTokens": 1128863,
+                "cacheCreationInputTokens": 253519,
+                "webSearchRequests": 0,
+                "costUSD": 4.32159525,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "fabfa75b-f192-45fb-953e-3154a7b3a27c"
+          },
+          "id": "event-000100"
+        }
+      ]
+    }
+  ]
+}

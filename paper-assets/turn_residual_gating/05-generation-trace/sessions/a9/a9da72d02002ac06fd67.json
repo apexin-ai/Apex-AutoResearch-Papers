@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9da72d02002ac06fd67",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "viz fig1 paperbanana v3",
+  "task_key": "worker_viz_fig1_paperbanana_v3_20260523T052413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig1_paperbanana_v3_20260523T052413_result.json",
+    "occurrence": 1,
+    "bytes": 455,
+    "sha256": "4b1198fe8e73bcf4024dfe183965c6fd945e72583251e631040758c4323ae860"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Gemini API 在此服务器无法访问，即使通过代理。**\n\n三次尝试全部超时（exit code 28, HTTP 000）：\n1. 直连（network_turbo）— 超时\n2. `127.0.0.1:7890` 代理 — 超时\n3. AutoDL 实际代理 `10.37.1.23:12798` — 超时\n\nAutoDL 的代理仅支持 GitHub/HuggingFace，Google API (`generativelanguage.googleapis.com`) 不在其白名单内。\n\n按指示不 fallback 到 matplotlib，停在这里。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig1-paperbanana-v3.md"
+}

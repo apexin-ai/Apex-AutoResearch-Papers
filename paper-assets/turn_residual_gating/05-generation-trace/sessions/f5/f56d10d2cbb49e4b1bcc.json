@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f56d10d2cbb49e4b1bcc",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "fix llama beta3 and 0055 final",
+  "task_key": "worker_fix_llama_beta3_and_0055_final_20260525T212557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_llama_beta3_and_0055_final_20260525T212557_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "2d670430813542d6ab341cdf94f940cfdc9a8c8b4f90f6a4a45b7f8cc2918d86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done.\n\n## Llama SS β=3\n- **服务器搜索结果**：找到 β=3 eval 数据，来源文件 `/root/turn_residual_gating/results/llama_ss_eval/llama_ss_ar_n50.json`\n  - β=0: GAR=0.1662, PPL=1.372\n  - β=3: GAR=0.1726 (→ 论文四舍五入 0.173 ✓), PPL=1.502\n  - β=5: GAR=0.7905, PPL=1.807\n- **处理方式**：补注册到 `p1_llama_ss_eval` registry，新增 `ss_ar_b3_gar=0.1726` 和 `ss_ar_b3_ppl=1.5`\n- **论文数字正确**，无需修改 `analysis.tex`/`appendix.tex`\n\n## 0.055 验证\n- `grep \"0.055\"` 搜索三个目录（`paper/`, `docs/paper/`, `artifacts/_project/paper/`）：**全部 0 hits**\n- `grep \"9.1×\"` 搜索同三个目录：**全部 0 hits**\n- 0.055 和 9.1× 已完全清除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-llama-beta3-and-0055-final.md"
+}

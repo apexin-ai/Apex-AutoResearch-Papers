@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be11e4a72e53e41a3f81",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "eval llama tg launch",
+  "task_key": "worker_eval_llama_tg_launch_20260520T200502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama_tg_launch_20260520T200502_result.json",
+    "occurrence": 1,
+    "bytes": 1353,
+    "sha256": "be974db2b75754bdb3f2dfff9fcec5a9a464224cea9962ff71593996ee1a2583"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型已加载到 GPU（77GB/102GB VRAM），正在进行 gate 初始化和数据加载，训练步数即将开始记录。\n\n---\n\n## 总结\n\n### Part 1: Llama Phase 1 GAR 诊断结果 ✓\n\n| Turn | Avg GAR |\n|------|---------|\n| 1 | 0.0263 |\n| 2 | 0.0183 |\n| 3 | 0.0087 |\n| 4 | 0.0055 |\n| 5 | 0.0060 |\n| 6 | 0.0035 |\n| 7 | 0.0038 |\n| 8 | 0.0037 |\n| 9 | 0.0050 |\n| 10 | 0.0026 |\n\n- **T1→T10 decay: 90.1%**（Qwen 87.5%）— Llama 衰减更严重\n- **T1→mid(3-8) drop: 80.2%** — PASS（阈值 ≥15%）\n- 5 个 topic 一致表现：knowledge_qa, coding_help, creative_writing, math_reasoning, debate\n- Registry: `llama_phase1_gar_diag` → **DONE (success)**\n\n### Part 2: Chat Template 确认 ✓\n- `turn_utils.py:9-10` 自动检测 `start_header_id` → `llama3` format\n- 已有 `verify_llama_compat.py` 验证通过\n- `train_phase2.py:46` 使用 `tokenizer.apply_chat_template()` — 无需手动指定\n\n### Part 3: Llama TG 训练已提交 ✓\n- **PID**: 199643\n- **GPU**: NVIDIA RTX PRO 6000 Blackwell (102GB), 99% utilization\n- **配置**: 与 Qwen v7 完全一致（threadgate, mse_target, gar_target=0.5, λ_gar=1, epochs=3）\n- **Registry**: `llama_tg_training` → **RUNNING**\n- **预估训练时间**: 4-8 小时（8B model, 8k samples × 3 epochs, seq_len 2048, single GPU Blackwell）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama-tg-launch.md"
+}

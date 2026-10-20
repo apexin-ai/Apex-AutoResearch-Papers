@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e57c396941937f9b135",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code fix threadgate",
+  "task_key": "worker_code_fix_threadgate_20260518T051023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_threadgate_20260518T051023_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "2f1786d0ea1c801969dd1269495a49b8662fb09933313449f3d3bc6f27c46e74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项修改全部完成，验证通过：\n\n1. **Gating 公式**：`f_x = layer_output - layer_input; gated = layer_input + gate * f_x` — gate=1 保留层贡献，gate→0 跳过层\n2. **init_bias**：全部 4 处从 `0.0` → `5.0`（sigmoid(5)≈0.993，初始接近原模型）\n3. **参数量对齐**：UniformGateNetwork 的 `down_proj` 输出维度从 `LORA_RANK` 改为 `LORA_RANK + TURN_EMBED_DIM`，fc1+fc2 参数量与 GateNetwork 完全一致（2177），down_proj 差异恰好是 `hidden_dim * TURN_EMBED_DIM`（GateNetwork 用 TurnEmbedding 填补这部分信息）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-threadgate.md"
+}

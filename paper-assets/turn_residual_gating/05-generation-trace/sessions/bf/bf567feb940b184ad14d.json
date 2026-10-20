@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf567feb940b184ad14d",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "viz gate profile crossmodel",
+  "task_key": "worker_viz_gate_profile_crossmodel_20260522T152840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_gate_profile_crossmodel_20260522T152840_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "cc84c9d3847dfd09a1d73d95258c0104e7759c4358a7cef01fe380187d4c3617"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成，输出确认：\n\n- **PDF**: `/root/turn_residual_gating/artifacts/fig_gate_profile_crossmodel.pdf` (27K)\n- **PNG**: `/root/turn_residual_gating/artifacts/fig_gate_profile_crossmodel.png` (131K, 3006×1048, 300 DPI)\n\n图表内容：\n- 左子图 **(a) Qwen-2.5-7B** (28 layers): 标注了 L1 (0.793) 和 L5 (0.797) 两个最低点，mean = 0.949 ± 0.048\n- 右子图 **(b) Llama-3.1-8B** (32 layers): 标注了 L25 (0.719)、L26 (0.762)、L24 (0.809) 三个 V 形谷底，mean = 0.917 ± 0.063\n- 共享 Y 轴 [0.68, 1.03]，蓝色双色系区分模型，红色虚线标注 mean ± std"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-gate-profile-crossmodel.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eeb56f5404a863fa6468",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check ss s123 progress",
+  "task_key": "worker_check_ss_s123_progress_20260523T111538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_ss_s123_progress_20260523T111538_result.json",
+    "occurrence": 1,
+    "bytes": 731,
+    "sha256": "cb185c07d80ab9ca9b928fe8679848fb77fefdb0f7a7355fd5017d79524ebe05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**SS s123 训练已完成。**\n\n| 项目 | 值 |\n|------|-----|\n| **状态** | 已完成 |\n| **总耗时** | 38773.4s（~10.8 小时） |\n| **Epochs** | 3/3（Epoch 0, 1, 2 全部完成） |\n| **最终 Avg Loss** | 0.9316（NTP=0.9307, GAR=0.0009, DIV=0.0000） |\n| **Gate 均值** | 0.9505（std=0.0508, min=0.7383, max=1.0000） |\n| **SS 使用率** | 8899/24000（37.1%），SS ratio 已到 0.500，fallback=0 |\n| **Checkpoint** | `checkpoints/tg_v8b_ss_s123/`（含 epoch_0/1/2） |\n\nPID 84793 仍占 GPU 44GB 显存（97% 利用率），可能是保存完 checkpoint 后还没退出，或者在做后处理。日志已打印 \"Training complete\" 和 \"Final model saved\"，训练本身已结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-ss-s123-progress.md"
+}
